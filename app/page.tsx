@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import ToolCard from "@/components/ToolCard";
@@ -6,9 +7,54 @@ import { siteConfig } from "@/config/site";
 import SearchSection from "@/components/SearchSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
+export const metadata: Metadata = {
+  title: "Productive Toolbox - 100+ Free Online Tools for Productivity",
+  description: "Discover 100+ free online tools including word counters, text formatters, image compressors, QR code generators, and more. No sign-up required, 100% free.",
+  openGraph: {
+    title: "Productive Toolbox - 100+ Free Online Tools",
+    description: "Free online tools for productivity. Word counters, text formatters, image tools, and more.",
+    url: siteConfig.url,
+    images: [{ url: "/og-home.png", width: 1200, height: 630 }]
+  }
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: "Free online tools for productivity",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${siteConfig.url}/tools?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: siteConfig.url
+    }
+  ]
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header />
       <main>
 
