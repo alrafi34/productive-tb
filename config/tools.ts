@@ -20,7 +20,7 @@ export const tools: Tool[] = [
   { slug: "character-counter", name: "Character Counter", description: "Count letters, spaces, symbols.", category: "writing", icon: "🔤", free: true },
   { slug: "reading-time-calculator", name: "Reading Time Calculator", description: "Estimate reading time for any text.", category: "writing", icon: "⏱️", free: true },
   { slug: "sentence-case-converter", name: "Sentence Case Converter", description: "Uppercase, lowercase, title case, sentence case.", category: "writing", icon: "🔡", free: true },
-  { slug: "paragraph-formatter", name: "Paragraph Formatter", description: "Remove extra spaces, line breaks.", category: "writing", icon: "📄", free: true },
+  { slug: "paragraph-formatter", name: "Paragraph Formatter", description: "Remove extra spaces, line breaks.", category: "writing", icon: "📝", free: true },
   { slug: "keyword-density-checker", name: "Keyword Density Checker", description: "See how often words appear in text.", category: "writing", icon: "🔍", free: true },
   { slug: "text-reverser", name: "Text Reverser Tool", description: "Reverse letters or words in text.", category: "writing", icon: "🔄", free: true },
   { slug: "text-to-clipboard", name: "Text to Clipboard Copy", description: "Quickly copy text.", category: "writing", icon: "📋", free: true },

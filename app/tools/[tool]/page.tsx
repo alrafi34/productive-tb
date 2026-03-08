@@ -5,9 +5,15 @@ import { siteConfig } from "@/config/site";
 
 import { toolConfig as wordCounterConfig } from "@/tools/word-counter/config";
 import WordCounterUI from "@/tools/word-counter/ui";
+import { toolConfig as sentenceCaseConfig } from "@/tools/sentence-case-converter/config";
+import SentenceCaseConverterUI from "@/tools/sentence-case-converter/ui";
+import { toolConfig as paragraphFormatterConfig } from "@/tools/paragraph-formatter/config";
+import ParagraphFormatterUI from "@/tools/paragraph-formatter/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
+  { config: sentenceCaseConfig, Component: SentenceCaseConverterUI },
+  { config: paragraphFormatterConfig, Component: ParagraphFormatterUI },
 ];
 
 export async function generateMetadata(
