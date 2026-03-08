@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -154,6 +155,7 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

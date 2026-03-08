@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { siteConfig } from "@/config/site";
 
 type Props = {
@@ -37,11 +38,7 @@ export default function ToolLayout({ title, description, icon, children }: Props
           {children}
         </article>
       </main>
-
-      {/* Minimal footer */}
-      <footer className="border-t border-gray-100 py-6 px-6 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} {siteConfig.name} · <Link href="/tools" className="hover:text-primary transition-colors">All Tools</Link>
-      </footer>
+      <Footer />
     </>
   );
 }

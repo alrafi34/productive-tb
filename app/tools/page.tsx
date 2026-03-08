@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ToolCard from "@/components/ToolCard";
 import { tools, categories } from "@/config/tools";
 import { siteConfig } from "@/config/site";
@@ -113,11 +114,7 @@ export default function ToolsPage() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-100 py-6 px-6 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} {siteConfig.name} · <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-      </footer>
+      <Footer />
     </>
   );
 }
