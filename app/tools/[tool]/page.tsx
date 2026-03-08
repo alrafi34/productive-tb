@@ -11,12 +11,15 @@ import { toolConfig as paragraphFormatterConfig } from "@/tools/paragraph-format
 import ParagraphFormatterUI from "@/tools/paragraph-formatter/ui";
 import { toolConfig as keywordDensityConfig } from "@/tools/keyword-density-checker/config";
 import KeywordDensityCheckerUI from "@/tools/keyword-density-checker/ui";
+import { toolConfig as textReverserConfig } from "@/tools/text-reverser/config";
+import TextReverserUI from "@/tools/text-reverser/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
   { config: sentenceCaseConfig, Component: SentenceCaseConverterUI },
   { config: paragraphFormatterConfig, Component: ParagraphFormatterUI },
   { config: keywordDensityConfig, Component: KeywordDensityCheckerUI },
+  { config: textReverserConfig, Component: TextReverserUI },
 ];
 
 export async function generateMetadata(
