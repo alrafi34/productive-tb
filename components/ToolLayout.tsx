@@ -14,33 +14,33 @@ export default function ToolLayout({ title, description, icon, children }: Props
     <>
       <Header />
       <main className="min-h-screen bg-gray-50 py-12 px-6">
-        <div className="max-w-3xl mx-auto">
+        <article className="max-w-3xl mx-auto">
 
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
-            <Link href="/" className="hover:text-indigo-600 transition-colors">{siteConfig.name}</Link>
+          <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-primary transition-colors">{siteConfig.name}</Link>
             <span>/</span>
-            <Link href="/tools" className="hover:text-indigo-600 transition-colors">Tools</Link>
+            <Link href="/tools" className="hover:text-primary transition-colors">Tools</Link>
             <span>/</span>
             <span className="text-gray-600">{title}</span>
           </nav>
 
-          {/* Tool header */}
-          <div className="mb-10">
+          {/* Tool header with semantic H1 */}
+          <header className="mb-10">
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-4xl">{icon}</span>
+              <span className="text-4xl" aria-hidden="true">{icon}</span>
               <h1 className="text-3xl font-bold text-gray-900" style={{ fontFamily: "var(--font-heading)" }}>{title}</h1>
             </div>
             <p className="text-gray-500 text-sm">{description}</p>
-          </div>
+          </header>
 
           {children}
-        </div>
+        </article>
       </main>
 
       {/* Minimal footer */}
       <footer className="border-t border-gray-100 py-6 px-6 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} {siteConfig.name} · <Link href="/tools" className="hover:text-indigo-600 transition-colors">All Tools</Link>
+        © {new Date().getFullYear()} {siteConfig.name} · <Link href="/tools" className="hover:text-primary transition-colors">All Tools</Link>
       </footer>
     </>
   );

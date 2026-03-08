@@ -115,7 +115,7 @@ export default function TestimonialsSection() {
         <div className="flex justify-center gap-12 mb-12">
           {[["50,000+","Monthly Users"],["100+","Free Tools"],["4.9★","Average Rating"]].map(([v,l]) => (
             <div key={l} className="text-center">
-              <strong className="block text-3xl font-bold text-indigo-600" style={{ fontFamily: "var(--font-heading)" }}>{v}</strong>
+              <strong className="block text-3xl font-bold text-primary" style={{ fontFamily: "var(--font-heading)" }}>{v}</strong>
               <span className="text-xs text-gray-400">{l}</span>
             </div>
           ))}

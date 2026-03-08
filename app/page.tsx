@@ -16,26 +16,26 @@ export default function HomePage() {
         <section className="bg-gradient-to-br from-gray-50 to-violet-50 py-24 px-6">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div className="animate-fade-in-up">
-              <span className="inline-flex items-center gap-1.5 bg-violet-100 text-indigo-600 text-xs font-semibold px-3 py-1.5 rounded-full mb-5" style={{ fontFamily: "var(--font-heading)" }}>
+              <span className="inline-flex items-center gap-1.5 bg-violet-100 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mb-5" style={{ fontFamily: "var(--font-heading)" }}>
                 ✨ 100% Free · No Sign-up Required
               </span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-5 tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
                 100+ Free Tools to Make Your Life{" "}
-                <span className="text-indigo-600">Productive</span>
+                <span className="text-primary">Productive</span>
               </h1>
               <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-md">{siteConfig.description}</p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/tools" className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors text-sm" style={{ fontFamily: "var(--font-heading)" }}>
+                <Link href="/tools" className="bg-primary hover:bg-primary-hover text-white font-semibold px-7 py-3.5 rounded-xl transition-colors text-sm" style={{ fontFamily: "var(--font-heading)" }}>
                   Explore Tools →
                 </Link>
-                <Link href="#categories" className="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white font-semibold px-7 py-3.5 rounded-xl transition-colors text-sm" style={{ fontFamily: "var(--font-heading)" }}>
+                <Link href="#categories" className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-7 py-3.5 rounded-xl transition-colors text-sm" style={{ fontFamily: "var(--font-heading)" }}>
                   Browse Categories
                 </Link>
               </div>
               <div className="flex gap-8 mt-10">
                 {[["100+", "Free Tools"], ["50K+", "Happy Users"], ["0", "Sign-ups Needed"]].map(([val, label]) => (
                   <div key={label}>
-                    <strong className="block text-2xl font-bold text-indigo-600" style={{ fontFamily: "var(--font-heading)" }}>{val}</strong>
+                    <strong className="block text-2xl font-bold text-primary" style={{ fontFamily: "var(--font-heading)" }}>{val}</strong>
                     <span className="text-xs text-gray-400">{label}</span>
                   </div>
                 ))}
@@ -58,7 +58,7 @@ export default function HomePage() {
               {tools.map(tool => <ToolCard key={tool.slug} tool={tool} />)}
             </div>
             <div className="text-center mt-10">
-              <Link href="/tools" className="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white font-semibold px-7 py-3 rounded-xl transition-colors text-sm" style={{ fontFamily: "var(--font-heading)" }}>
+              <Link href="/tools" className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-7 py-3 rounded-xl transition-colors text-sm" style={{ fontFamily: "var(--font-heading)" }}>
                 View All Tools →
               </Link>
             </div>
@@ -105,7 +105,7 @@ export default function HomePage() {
                   { label: "YouTube", path: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" },
                 ].map(({ label, path }) => (
                   <a key={label} href="#" aria-label={label}
-                    className="w-9 h-9 bg-gray-800 hover:bg-indigo-600 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                    className="w-9 h-9 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d={path}/></svg>
                   </a>
                 ))}
@@ -116,7 +116,7 @@ export default function HomePage() {
               <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Tools</p>
               <ul className="space-y-2.5">
                 {[["writing","Writing Tools"],["image","Image Tools"],["math","Math Tools"],["creator","Creator Tools"]].map(([slug,label]) => (
-                  <li key={slug}><Link href={`/tools?category=${slug}`} className="text-sm text-gray-500 hover:text-indigo-400 transition-colors">{label}</Link></li>
+                  <li key={slug}><Link href={`/tools?category=${slug}`} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
                 ))}
               </ul>
             </div>
@@ -125,7 +125,7 @@ export default function HomePage() {
               <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Company</p>
               <ul className="space-y-2.5">
                 {[["About","/about"],["Contact","/contact"],["Privacy Policy","/privacy"],["Terms of Use","/terms"]].map(([label,href]) => (
-                  <li key={href}><Link href={href} className="text-sm text-gray-500 hover:text-indigo-400 transition-colors">{label}</Link></li>
+                  <li key={href}><Link href={href} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
                 ))}
               </ul>
             </div>
@@ -136,7 +136,7 @@ export default function HomePage() {
               <div className="flex rounded-lg overflow-hidden">
                 <input type="email" placeholder="your@email.com"
                   className="flex-1 bg-gray-800 text-sm text-white px-4 py-2.5 outline-none placeholder:text-gray-600" />
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 transition-colors" style={{ fontFamily: "var(--font-heading)" }}>
+                <button className="bg-primary hover:bg-primary-hover text-white text-xs font-semibold px-4 transition-colors" style={{ fontFamily: "var(--font-heading)" }}>
                   Subscribe
                 </button>
               </div>
@@ -147,7 +147,7 @@ export default function HomePage() {
             <p className="text-xs text-gray-600">© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
             <div className="flex gap-5">
               {[["Privacy","/privacy"],["Terms","/terms"],["Contact","/contact"]].map(([label,href]) => (
-                <Link key={href} href={href} className="text-xs text-gray-600 hover:text-indigo-400 transition-colors">{label}</Link>
+                <Link key={href} href={href} className="text-xs text-gray-600 hover:text-primary transition-colors">{label}</Link>
               ))}
             </div>
           </div>
@@ -162,35 +162,35 @@ function HeroIllustration() {
     <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <ellipse cx="210" cy="200" rx="180" ry="130" fill="#ede9fe" opacity="0.5"/>
       <rect x="60" y="60" width="160" height="110" rx="14" fill="white" filter="url(#s)"/>
-      <rect x="60" y="60" width="160" height="36" rx="14" fill="#4f46e5"/>
-      <rect x="60" y="82" width="160" height="14" fill="#4f46e5"/>
+      <rect x="60" y="60" width="160" height="36" rx="14" fill="#058554"/>
+      <rect x="60" y="82" width="160" height="14" fill="#058554"/>
       <text x="140" y="84" textAnchor="middle" fill="white" fontSize="11" fontFamily="system-ui" fontWeight="600">Word Counter</text>
       <rect x="76" y="108" width="128" height="8" rx="4" fill="#e5e7eb"/>
       <rect x="76" y="122" width="96" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="76" y="136" width="60" height="20" rx="6" fill="#4f46e5"/>
+      <rect x="76" y="136" width="60" height="20" rx="6" fill="#058554"/>
       <text x="106" y="150" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Count →</text>
       <rect x="240" y="40" width="140" height="100" rx="14" fill="white" filter="url(#s)"/>
       <rect x="255" y="58" width="40" height="40" rx="8" fill="#ede9fe"/>
       <text x="275" y="84" textAnchor="middle" fontSize="20">🖼️</text>
       <rect x="305" y="62" width="60" height="8" rx="4" fill="#e5e7eb"/>
       <rect x="305" y="76" width="44" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="255" y="108" width="110" height="20" rx="6" fill="#4f46e5"/>
+      <rect x="255" y="108" width="110" height="20" rx="6" fill="#058554"/>
       <text x="310" y="122" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Compress Image</text>
       <rect x="100" y="190" width="130" height="110" rx="14" fill="white" filter="url(#s)"/>
       <text x="165" y="225" textAnchor="middle" fontSize="28">📱</text>
       <rect x="116" y="240" width="98" height="8" rx="4" fill="#e5e7eb"/>
       <rect x="116" y="254" width="70" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="116" y="270" width="98" height="20" rx="6" fill="#6366f1"/>
+      <rect x="116" y="270" width="98" height="20" rx="6" fill="#058554"/>
       <text x="165" y="284" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Generate QR</text>
       <rect x="255" y="160" width="130" height="100" rx="14" fill="white" filter="url(#s)"/>
       <circle cx="285" cy="190" r="16" fill="#f59e0b"/>
       <circle cx="305" cy="190" r="16" fill="#10b981" opacity="0.8"/>
-      <circle cx="325" cy="190" r="16" fill="#4f46e5" opacity="0.8"/>
+      <circle cx="325" cy="190" r="16" fill="#058554" opacity="0.8"/>
       <rect x="271" y="214" width="98" height="8" rx="4" fill="#e5e7eb"/>
       <rect x="271" y="228" width="70" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="271" y="242" width="98" height="16" rx="6" fill="#4f46e5"/>
+      <rect x="271" y="242" width="98" height="16" rx="6" fill="#058554"/>
       <text x="320" y="254" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Pick Color</text>
-      <rect x="30" y="180" width="56" height="24" rx="12" fill="#4f46e5"/>
+      <rect x="30" y="180" width="56" height="24" rx="12" fill="#058554"/>
       <text x="58" y="196" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="700">FREE</text>
       <rect x="340" y="130" width="68" height="24" rx="12" fill="#10b981"/>
       <text x="374" y="146" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="700">100+ Tools</text>

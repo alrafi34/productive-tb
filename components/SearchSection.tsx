@@ -24,10 +24,10 @@ export default function SearchSection() {
   }
 
   return (
-    <section id="search-section" className="bg-gradient-to-br from-indigo-600 to-indigo-500 py-20 px-6">
+    <section id="search-section" className="bg-gradient-to-br from-primary to-primary-hover py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-heading)" }}>Find the Right Tool</h2>
-        <p className="text-indigo-200 mb-8 text-sm">Search from 100+ tools instantly — no browsing required.</p>
+        <p className="text-white/70 mb-8 text-sm">Search from 100+ tools instantly — no browsing required.</p>
 
         <div className="relative max-w-xl mx-auto mb-6">
           <div className="flex bg-white rounded-xl overflow-hidden shadow-lg">
@@ -39,7 +39,7 @@ export default function SearchSection() {
               onChange={e => setQuery(e.target.value)}
               className="flex-1 px-5 py-4 text-sm text-gray-800 outline-none placeholder:text-gray-400"
             />
-            <button className="bg-indigo-600 hover:bg-indigo-700 px-5 text-white transition-colors" aria-label="Search">
+            <button className="bg-primary hover:bg-primary-hover px-5 text-white transition-colors" aria-label="Search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
@@ -51,7 +51,7 @@ export default function SearchSection() {
               {results.length > 0 ? results.map(t => (
                 <li key={t.slug}>
                   <button onClick={() => handleSelect(t.slug)}
-                    className="flex items-center gap-3 w-full px-5 py-3 text-left hover:bg-indigo-50 transition-colors">
+                    className="flex items-center gap-3 w-full px-5 py-3 text-left hover:bg-violet-50 transition-colors">
                     <span className="text-xl">{t.icon}</span>
                     <span>
                       <span className="block text-sm font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>{t.name}</span>

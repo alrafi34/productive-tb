@@ -8,7 +8,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
       <h3 className="text-base font-semibold text-gray-900" style={{ fontFamily: "var(--font-heading)" }}>{tool.name}</h3>
       <p className="text-sm text-gray-500 flex-1">{tool.description}</p>
       <Link href={`/tools/${tool.slug}`}
-        className="mt-1 inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+        className="mt-1 inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
         style={{ fontFamily: "var(--font-heading)" }}>
         Use Now
       </Link>
