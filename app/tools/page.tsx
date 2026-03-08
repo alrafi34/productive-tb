@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ToolCard from "@/components/ToolCard";
-import { tools, categories } from "@/config/tools";
+import ToolsFilter from "@/components/ToolsFilter";
+import { tools } from "@/config/tools";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -39,35 +39,12 @@ const collectionSchema = {
   }
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: siteConfig.url
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Tools",
-      item: `${siteConfig.url}/tools`
-    }
-  ]
-};
-
 export default function ToolsPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Header />
       <main className="min-h-screen bg-gray-50 py-12 px-6">
@@ -90,28 +67,8 @@ export default function ToolsPage() {
             </p>
           </header>
 
-          {/* Categories Filter */}
-          <div className="flex flex-wrap gap-3 justify-center mb-12">
-            <Link href="/tools" className="px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold">
-              All
-            </Link>
-            {categories.map(cat => (
-              <Link
-                key={cat.slug}
-                href={`/tools?category=${cat.slug}`}
-                className="px-4 py-2 rounded-lg bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary text-sm font-semibold transition-colors"
-              >
-                {cat.icon} {cat.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Tools Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tools.map(tool => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
+          {/* Client Component for Filtering */}
+          <ToolsFilter />
         </div>
       </main>
       <Footer />
