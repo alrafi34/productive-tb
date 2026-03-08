@@ -29,7 +29,7 @@ export async function generateMetadata(
   const entry = TOOLS.find(t => t.config.slug === slug);
   if (!entry) return {};
   
-  const { seo } = entry.config;
+  const seo = entry.config.seo as any;
   return {
     title: seo.title,
     description: seo.description,
