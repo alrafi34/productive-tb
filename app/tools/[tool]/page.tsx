@@ -9,11 +9,14 @@ import { toolConfig as sentenceCaseConfig } from "@/tools/sentence-case-converte
 import SentenceCaseConverterUI from "@/tools/sentence-case-converter/ui";
 import { toolConfig as paragraphFormatterConfig } from "@/tools/paragraph-formatter/config";
 import ParagraphFormatterUI from "@/tools/paragraph-formatter/ui";
+import { toolConfig as keywordDensityConfig } from "@/tools/keyword-density-checker/config";
+import KeywordDensityCheckerUI from "@/tools/keyword-density-checker/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
   { config: sentenceCaseConfig, Component: SentenceCaseConverterUI },
   { config: paragraphFormatterConfig, Component: ParagraphFormatterUI },
+  { config: keywordDensityConfig, Component: KeywordDensityCheckerUI },
 ];
 
 export async function generateMetadata(
