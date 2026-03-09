@@ -23,6 +23,18 @@ import { toolConfig as loremIpsumConfig } from "@/tools/lorem-ipsum-generator/co
 import LoremIpsumGeneratorUI from "@/tools/lorem-ipsum-generator/ui";
 import { toolConfig as markdownPreviewerConfig } from "@/tools/markdown-previewer/config";
 import MarkdownPreviewerUI from "@/tools/markdown-previewer/ui";
+import { toolConfig as textToClipboardConfig } from "@/tools/text-to-clipboard/config";
+import TextToClipboardUI from "@/tools/text-to-clipboard/ui";
+import { removeDuplicateLinesConfig } from "@/tools/remove-duplicate-lines/config";
+import RemoveDuplicateLinesUI from "@/tools/remove-duplicate-lines/ui";
+import { findAndReplaceConfig } from "@/tools/find-and-replace/config";
+import FindAndReplaceUI from "@/tools/find-and-replace/ui";
+import { textDiffCheckerConfig } from "@/tools/text-diff-checker/config";
+import TextDiffCheckerUI from "@/tools/text-diff-checker/ui";
+import { bionicReadingConverterConfig } from "@/tools/bionic-reading-converter/config";
+import BionicReadingConverterUI from "@/tools/bionic-reading-converter/ui";
+import { whitespaceRemoverConfig } from "@/tools/whitespace-remover/config";
+import WhitespaceRemoverUI from "@/tools/whitespace-remover/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -35,6 +47,12 @@ const TOOLS = [
   { config: imageResizerConfig, Component: ImageResizerUI },
   { config: loremIpsumConfig, Component: LoremIpsumGeneratorUI },
   { config: markdownPreviewerConfig, Component: MarkdownPreviewerUI },
+  { config: textToClipboardConfig, Component: TextToClipboardUI },
+  { config: removeDuplicateLinesConfig, Component: RemoveDuplicateLinesUI },
+  { config: findAndReplaceConfig, Component: FindAndReplaceUI },
+  { config: textDiffCheckerConfig, Component: TextDiffCheckerUI },
+  { config: bionicReadingConverterConfig, Component: BionicReadingConverterUI },
+  { config: whitespaceRemoverConfig, Component: WhitespaceRemoverUI },
 ];
 
 export async function generateMetadata(
