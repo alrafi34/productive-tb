@@ -28,7 +28,7 @@ export default function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary" style={{ fontFamily: "var(--font-heading)" }}>
-          <span className="text-2xl">🧰</span>
+          <img src="/favicon.svg" alt="" className="w-7 h-7" />
           {siteConfig.name}
         </Link>
 
