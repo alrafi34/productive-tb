@@ -1,24 +1,24 @@
 import Link from 'next/link';
-
-interface RelatedTool {
-  slug: string;
-  name: string;
-  description: string;
-  icon: string;
-  category: string;
-}
+import { getToolBySlug } from '@/lib/tools-registry';
 
 interface RelatedToolsProps {
-  tools: RelatedTool[];
+  currentTool: string;
+  tools: string[];
   title?: string;
 }
 
-export default function RelatedTools({ tools, title = "Related Tools" }: RelatedToolsProps) {
+export default function RelatedTools({ currentTool, tools, title = "Related Tools" }: RelatedToolsProps) {
+  const relatedTools = tools
+    .map(slug => getToolBySlug(slug))
+    .filter(tool => tool && tool.slug !== currentTool);
+
+  if (relatedTools.length === 0) return null;
+
   return (
     <div className="mt-16 pt-12 border-t border-gray-200">
       <h2 className="text-3xl font-bold text-gray-900 mb-6">{title}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tools.map((tool) => (
+        {relatedTools.map((tool) => (
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}

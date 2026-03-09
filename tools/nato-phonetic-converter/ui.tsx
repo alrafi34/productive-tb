@@ -279,11 +279,7 @@ export default function NATOPhoneticConverterUI() {
 
       <NATOPhoneticConverterSEOContent />
 
-      <RelatedTools tools={[
-        { slug: 'text-reverser', name: 'Text Reverser', description: 'Reverse text and words', icon: '🔄', category: 'writing' },
-        { slug: 'sentence-case-converter', name: 'Case Converter', description: 'Convert text case formats', icon: '🔡', category: 'writing' },
-        { slug: 'word-counter', name: 'Word Counter', description: 'Count words and characters', icon: '📝', category: 'writing' }
-      ]} />
+      <RelatedTools currentTool="nato-phonetic-converter" tools={["text-reverser", "sentence-case-converter", "word-counter"]} />
     </>
   );
 }

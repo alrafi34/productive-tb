@@ -518,11 +518,10 @@ export default function AnagramFinderUI() {
     
     <AnagramFinderSEOContent />
     
-    <RelatedTools tools={[
-      { slug: 'word-frequency-counter', name: 'Word Frequency Counter', description: 'Analyze word frequency in text', icon: '📊', category: 'text' },
-      { slug: 'text-reverser', name: 'Text Reverser', description: 'Reverse text, words, or letters', icon: '🔄', category: 'text' },
-      { slug: 'find-and-replace', name: 'Find and Replace', description: 'Search and replace text patterns', icon: '🔍', category: 'text' }
-    ]} />
+    <RelatedTools 
+      currentTool="anagram-finder"
+      tools={['word-frequency-counter', 'text-reverser', 'find-and-replace']} 
+    />
     </>
   );
 }

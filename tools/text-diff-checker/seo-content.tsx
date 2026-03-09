@@ -2,37 +2,6 @@ import React from 'react';
 import RelatedTools from '@/components/RelatedTools';
 
 export default function SEOContent() {
-  const relatedTools = [
-    {
-      slug: 'find-and-replace',
-      name: 'Find and Replace',
-      description: 'Search and replace text with advanced options',
-      icon: '🔍',
-      category: 'text'
-    },
-    {
-      slug: 'remove-duplicate-lines',
-      name: 'Remove Duplicate Lines',
-      description: 'Clean up text by removing duplicate lines',
-      icon: '🧹',
-      category: 'text'
-    },
-    {
-      slug: 'markdown-previewer',
-      name: 'Markdown Previewer',
-      description: 'Convert Markdown to HTML in real-time',
-      icon: '📋',
-      category: 'text'
-    },
-    {
-      slug: 'word-frequency-counter',
-      name: 'Word Frequency Counter',
-      description: 'Analyze word frequency and text statistics',
-      icon: '📊',
-      category: 'text'
-    }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto space-y-12">
       {/* How to Use */}
@@ -190,7 +159,7 @@ export default function SEOContent() {
         </div>
       </section>
 
-      <RelatedTools tools={relatedTools} />
+      <RelatedTools currentTool="text-diff-checker" tools={["find-and-replace", "remove-duplicate-lines", "markdown-previewer", "word-frequency-counter"]} />
     </div>
   );
 }

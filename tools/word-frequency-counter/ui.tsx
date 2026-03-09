@@ -333,31 +333,7 @@ export default function WordFrequencyCounterUI() {
       
       <WordFrequencyCounterSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "word-counter",
-            name: "Word Counter",
-            description: "Count words, characters, paragraphs in your text.",
-            icon: "📝",
-            category: "writing"
-          },
-          {
-            slug: "keyword-density-checker",
-            name: "Keyword Density Checker",
-            description: "See how often words appear in text for SEO.",
-            icon: "🔍",
-            category: "writing"
-          },
-          {
-            slug: "text-diff-checker",
-            name: "Text Diff Checker",
-            description: "Compare two text blocks and highlight differences.",
-            icon: "🔀",
-            category: "writing"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="word-frequency-counter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

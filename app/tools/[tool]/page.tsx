@@ -51,6 +51,24 @@ import { natoPhoneticConverterConfig } from "@/tools/nato-phonetic-converter/con
 import NATOPhoneticConverterUI from "@/tools/nato-phonetic-converter/ui";
 import { leetspeakConverterConfig } from "@/tools/leetspeak-converter/config";
 import LeetspeakConverterUI from "@/tools/leetspeak-converter/ui";
+import { toolConfig as upsideDownTextGeneratorConfig } from "@/tools/upside-down-text-generator/config";
+import UpsideDownTextGeneratorUI from "@/tools/upside-down-text-generator/ui";
+import { toolConfig as listPrefixSuffixConfig } from "@/tools/list-prefix-suffix/config";
+import ListPrefixSuffixUI from "@/tools/list-prefix-suffix/ui";
+import { toolConfig as morseCodeTranslatorConfig } from "@/tools/morse-code-translator/config";
+import MorseCodeTranslatorUI from "@/tools/morse-code-translator/ui";
+import { toolConfig as base64ImageEncoderConfig } from "@/tools/base64-image-encoder/config";
+import Base64ImageEncoderUI from "@/tools/base64-image-encoder/ui";
+import { toolConfig as faviconGeneratorConfig } from "@/tools/favicon-generator/config";
+import FaviconGeneratorUI from "@/tools/favicon-generator/ui";
+import { toolConfig as imageToGrayscaleConfig } from "@/tools/image-to-grayscale/config";
+import ImageToGrayscaleUI from "@/tools/image-to-grayscale/ui";
+import { toolConfig as exifRemoverConfig } from "@/tools/exif-remover/config";
+import ExifRemoverUI from "@/tools/exif-remover/ui";
+import { toolConfig as ditheringFilterConfig } from "@/tools/dithering-filter/config";
+import DitheringFilterUI from "@/tools/dithering-filter/ui";
+import { toolConfig as duotoneFilterConfig } from "@/tools/duotone-filter/config";
+import DuotoneFilterUI from "@/tools/duotone-filter/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -77,6 +95,15 @@ const TOOLS = [
   { config: zalgoTextGeneratorConfig, Component: ZalgoTextGeneratorUI },
   { config: natoPhoneticConverterConfig, Component: NATOPhoneticConverterUI },
   { config: leetspeakConverterConfig, Component: LeetspeakConverterUI },
+  { config: upsideDownTextGeneratorConfig, Component: UpsideDownTextGeneratorUI },
+  { config: listPrefixSuffixConfig, Component: ListPrefixSuffixUI },
+  { config: morseCodeTranslatorConfig, Component: MorseCodeTranslatorUI },
+  { config: base64ImageEncoderConfig, Component: Base64ImageEncoderUI },
+  { config: faviconGeneratorConfig, Component: FaviconGeneratorUI },
+  { config: imageToGrayscaleConfig, Component: ImageToGrayscaleUI },
+  { config: exifRemoverConfig, Component: ExifRemoverUI },
+  { config: ditheringFilterConfig, Component: DitheringFilterUI },
+  { config: duotoneFilterConfig, Component: DuotoneFilterUI },
 ];
 
 export async function generateMetadata(

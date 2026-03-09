@@ -360,31 +360,7 @@ export default function KeywordDensityCheckerUI() {
 
       <KeywordDensityCheckerSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "word-frequency-counter",
-            name: "Word Frequency Counter",
-            description: "Analyze text and count how often each word appears.",
-            icon: "📊",
-            category: "writing"
-          },
-          {
-            slug: "word-counter",
-            name: "Word Counter",
-            description: "Count words, characters, and paragraphs.",
-            icon: "📝",
-            category: "writing"
-          },
-          {
-            slug: "reading-time-calculator",
-            name: "Reading Time Calculator",
-            description: "Estimate reading time for any text content.",
-            icon: "⏱️",
-            category: "writing"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="keyword-density-checker" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

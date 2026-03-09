@@ -298,11 +298,7 @@ export default function LeetspeakConverterUI() {
 
       <LeetspeakConverterSEOContent />
 
-      <RelatedTools tools={[
-        { slug: 'zalgo-text-generator', name: 'Zalgo Text Generator', description: 'Create glitchy text effects', icon: '👾', category: 'writing' },
-        { slug: 'text-reverser', name: 'Text Reverser', description: 'Reverse text and words', icon: '🔄', category: 'writing' },
-        { slug: 'nato-phonetic-converter', name: 'NATO Phonetic Converter', description: 'Convert to phonetic alphabet', icon: '📻', category: 'writing' }
-      ]} />
+      <RelatedTools currentTool="leetspeak-converter" tools={["zalgo-text-generator", "text-reverser", "nato-phonetic-converter"]} />
     </>
   );
 }

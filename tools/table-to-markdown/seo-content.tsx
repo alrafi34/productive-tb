@@ -2,37 +2,6 @@ import React from 'react';
 import RelatedTools from '@/components/RelatedTools';
 
 export default function SEOContent() {
-  const relatedTools = [
-    {
-      slug: 'text-diff-checker',
-      name: 'Text Diff Checker',
-      description: 'Compare two text blocks and highlight differences',
-      icon: '🔀',
-      category: 'text'
-    },
-    {
-      slug: 'markdown-previewer',
-      name: 'Markdown Previewer',
-      description: 'Convert Markdown to HTML in real-time',
-      icon: '📋',
-      category: 'text'
-    },
-    {
-      slug: 'remove-duplicate-lines',
-      name: 'Remove Duplicate Lines',
-      description: 'Clean up text by removing duplicate lines',
-      icon: '🧹',
-      category: 'text'
-    },
-    {
-      slug: 'whitespace-remover',
-      name: 'White Space Remover',
-      description: 'Remove extra spaces and clean text formatting',
-      icon: '🧽',
-      category: 'text'
-    }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto space-y-12">
       <section>
@@ -185,7 +154,7 @@ export default function SEOContent() {
         </div>
       </section>
 
-      <RelatedTools tools={relatedTools} />
+      <RelatedTools currentTool="table-to-markdown" tools={["text-diff-checker", "markdown-previewer", "remove-duplicate-lines", "whitespace-remover"]} />
     </div>
   );
 }

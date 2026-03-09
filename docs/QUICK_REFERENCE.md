@@ -13,13 +13,12 @@ mkdir -p tools/your-tool-name && cd tools/your-tool-name
 # 2. Create 4 files
 touch config.ts logic.ts ui.tsx seo-content.tsx
 
-# 3. Copy templates from this guide
-
-# 4. Update 2 files
-# - config/tools.ts (add tool to array)
+# 3. Update 3 files
+# - lib/tools-registry.ts (add tool to registry)
 # - app/tools/[tool]/page.tsx (add imports)
+# - ui.tsx (add RelatedTools component)
 
-# 5. Test
+# 4. Test
 npm run dev
 # Visit: http://localhost:3000/tools/your-tool-name
 ```
@@ -69,6 +68,7 @@ export function processData(input: string): string {
 import { useState } from "react";
 import { processData } from "./logic";
 import ToolSEOContent from "./seo-content";
+import RelatedTools from "@/components/RelatedTools";
 
 export default function ToolUI() {
   const [input, setInput] = useState("");
@@ -91,6 +91,10 @@ export default function ToolUI() {
         {output && <div>{output}</div>}
       </div>
       <ToolSEOContent />
+      <RelatedTools
+        currentTool="tool-name"
+        tools={['related-tool-1', 'related-tool-2', 'related-tool-3']}
+      />
     </>
   );
 }
@@ -123,11 +127,14 @@ export default function ToolSEOContent() {
 
 ## 🔧 Update Existing Files
 
-### config/tools.ts
+### lib/tools-registry.ts
 
 ```typescript
-// Add to tools array:
-{ slug: "tool-name", name: "Tool Name", description: "Brief.", category: "writing", icon: "🔧", free: true },
+// Add import:
+import { toolConfig as toolConfig } from "@/tools/tool-name/config";
+
+// Add to TOOLS_REGISTRY:
+'tool-name': toolConfig,
 ```
 
 ### app/tools/[tool]/page.tsx
@@ -196,7 +203,8 @@ Keywords: [primary, primary+free, primary+online, variations, related, long-tail
 | Tool not found (404) | Check slug matches everywhere |
 | Styles not working | Use design system classes |
 | Not in TOOLS array | Update page.tsx |
-| Not on homepage | Update config/tools.ts |
+| RelatedTools not showing | Add to bottom of ui.tsx |
+| Not in registry | Update lib/tools-registry.ts |
 
 ---
 
@@ -216,13 +224,14 @@ Keywords: [primary, primary+free, primary+online, variations, related, long-tail
 ## 💡 Quick Tips
 
 1. Copy existing tool as template
-2. Change slug everywhere (4 places)
+2. Change slug everywhere (3 places: config.ts, tools-registry.ts, page.tsx)
 3. Test after each file
 4. Use real keywords in SEO
 5. Add 4-6 FAQ questions
 6. Keep logic.ts pure functions
 7. Test on mobile device
 8. Check meta tags in DevTools
+9. Add RelatedTools with 3 related tool slugs
 
 ---
 
@@ -235,8 +244,8 @@ tools/[tool-name]/
   ├── ui.tsx          ← React component
   └── seo-content.tsx ← SEO sections
 
-config/tools.ts       ← Add tool here
-app/tools/[tool]/page.tsx ← Add imports here
+lib/tools-registry.ts     ← Add tool here (centralized registry)
+app/tools/[tool]/page.tsx ← Add imports here (routing)
 ```
 
 ---

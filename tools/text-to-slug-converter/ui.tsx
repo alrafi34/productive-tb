@@ -339,11 +339,7 @@ export default function TextToSlugConverterUI() {
 
       <TextToSlugConverterSEOContent />
 
-      <RelatedTools tools={[
-        { slug: 'sentence-case-converter', name: 'Sentence Case Converter', description: 'Convert text case formats', icon: '🔡', category: 'writing' },
-        { slug: 'whitespace-remover', name: 'Whitespace Remover', description: 'Remove extra spaces from text', icon: '🧽', category: 'writing' },
-        { slug: 'find-and-replace', name: 'Find and Replace', description: 'Search and replace text patterns', icon: '🔍', category: 'writing' }
-      ]} />
+      <RelatedTools currentTool="text-to-slug-converter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

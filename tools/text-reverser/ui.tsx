@@ -177,31 +177,7 @@ export default function TextReverserUI() {
       
       <TextReverserSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "sentence-case-converter",
-            name: "Sentence Case Converter",
-            description: "Convert text to uppercase, lowercase, title case.",
-            icon: "🔡",
-            category: "writing"
-          },
-          {
-            slug: "paragraph-formatter",
-            name: "Paragraph Formatter",
-            description: "Remove extra spaces and line breaks from text.",
-            icon: "📝",
-            category: "writing"
-          },
-          {
-            slug: "word-counter",
-            name: "Word Counter",
-            description: "Count words, characters, and paragraphs.",
-            icon: "📝",
-            category: "writing"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="text-reverser" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

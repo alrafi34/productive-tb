@@ -2,37 +2,6 @@ import React from 'react';
 import RelatedTools from '@/components/RelatedTools';
 
 export default function SEOContent() {
-  const relatedTools = [
-    {
-      slug: 'remove-duplicate-lines',
-      name: 'Remove Duplicate Lines',
-      description: 'Clean up text by removing duplicate lines',
-      icon: '🧹',
-      category: 'text'
-    },
-    {
-      slug: 'find-and-replace',
-      name: 'Find and Replace',
-      description: 'Search and replace text with advanced options',
-      icon: '🔍',
-      category: 'text'
-    },
-    {
-      slug: 'text-reverser',
-      name: 'Text Reverser',
-      description: 'Reverse text, words, or letters instantly',
-      icon: '🔄',
-      category: 'text'
-    },
-    {
-      slug: 'bionic-reading-converter',
-      name: 'Bionic Reading Converter',
-      description: 'Convert text to Bionic Reading style',
-      icon: '👁️',
-      category: 'text'
-    }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto space-y-12">
       {/* How to Use */}
@@ -190,7 +159,7 @@ export default function SEOContent() {
         </div>
       </section>
 
-      <RelatedTools tools={relatedTools} />
+      <RelatedTools currentTool="whitespace-remover" tools={["remove-duplicate-lines", "find-and-replace", "text-reverser", "bionic-reading-converter"]} />
     </div>
   );
 }

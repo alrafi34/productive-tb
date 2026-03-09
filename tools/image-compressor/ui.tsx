@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useRef, useCallback } from "react";
 import { 
   compressImage, 
@@ -12,7 +11,6 @@ import {
 import type { ImageFile, CompressionSettings, CompressionPreset } from "./types";
 import ImageCompressorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
-
 export default function ImageCompressorUI() {
   const [images, setImages] = useState<ImageFile[]>([]);
   const [settings, setSettings] = useState<CompressionSettings>({
@@ -24,10 +22,8 @@ export default function ImageCompressorUI() {
   });
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   const handleFiles = useCallback(async (files: FileList | null) => {
     if (!files) return;
-
     const validFiles = Array.from(files).filter(isValidImageFile);
     
     const newImages: ImageFile[] = validFiles.map(file => ({
@@ -41,24 +37,19 @@ export default function ImageCompressorUI() {
       height: 0,
       status: 'pending',
     }));
-
     setImages(prev => [...prev, ...newImages]);
-
     // Auto-compress
     for (const img of newImages) {
       await compressImageFile(img);
     }
   }, [settings]);
-
   const compressImageFile = async (img: ImageFile) => {
     setImages(prev => prev.map(i => 
       i.id === img.id ? { ...i, status: 'compressing' } : i
     ));
-
     try {
       const { blob, width, height } = await compressImage(img.file, settings);
       const compressedUrl = URL.createObjectURL(blob);
-
       setImages(prev => prev.map(i => 
         i.id === img.id 
           ? { 
@@ -79,38 +70,31 @@ export default function ImageCompressorUI() {
       ));
     }
   };
-
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(true);
   };
-
   const handleDragLeave = () => {
     setIsDragging(false);
   };
-
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     handleFiles(e.dataTransfer.files);
   };
-
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleFiles(e.target.files);
   };
-
   const handlePreset = (preset: CompressionPreset) => {
     const presetSettings = getPresetSettings(preset);
     setSettings(prev => ({ ...prev, ...presetSettings }));
   };
-
   const downloadImage = (img: ImageFile) => {
     const a = document.createElement('a');
     a.href = img.compressedUrl;
     a.download = `compressed-${img.file.name}`;
     a.click();
   };
-
   const downloadAll = async () => {
     const completedImages = images.filter(img => img.status === 'completed');
     
@@ -118,11 +102,9 @@ export default function ImageCompressorUI() {
       downloadImage(completedImages[0]);
       return;
     }
-
     // For multiple images, download individually
     completedImages.forEach(img => downloadImage(img));
   };
-
   const removeImage = (id: string) => {
     setImages(prev => {
       const img = prev.find(i => i.id === id);
@@ -133,7 +115,6 @@ export default function ImageCompressorUI() {
       return prev.filter(i => i.id !== id);
     });
   };
-
   const clearAll = () => {
     images.forEach(img => {
       URL.revokeObjectURL(img.originalUrl);
@@ -141,11 +122,9 @@ export default function ImageCompressorUI() {
     });
     setImages([]);
   };
-
   const totalOriginalSize = images.reduce((sum, img) => sum + img.originalSize, 0);
   const totalCompressedSize = images.reduce((sum, img) => sum + img.compressedSize, 0);
   const totalSavings = calculateSavings(totalOriginalSize, totalCompressedSize);
-
   return (
     <>
       <div className="max-w-4xl mx-auto">
@@ -177,7 +156,6 @@ export default function ImageCompressorUI() {
             Supports JPG, PNG, and WebP • Max 20MB per file
           </p>
         </div>
-
         {/* Settings */}
         {images.length > 0 && (
           <div className="mt-6 bg-white rounded-xl border border-gray-100 shadow-sm p-6">
@@ -218,7 +196,6 @@ export default function ImageCompressorUI() {
                 Maximum Compression
               </button>
             </div>
-
             {/* Quality Slider */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -233,7 +210,6 @@ export default function ImageCompressorUI() {
                 className="w-full"
               />
             </div>
-
             {/* Format Selection */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -255,7 +231,6 @@ export default function ImageCompressorUI() {
                 ))}
               </div>
             </div>
-
             {/* Max Dimensions */}
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -285,7 +260,6 @@ export default function ImageCompressorUI() {
             </div>
           </div>
         )}
-
         {/* Summary Stats */}
         {images.length > 0 && (
           <div className="mt-6 grid grid-cols-3 gap-4">
@@ -309,7 +283,6 @@ export default function ImageCompressorUI() {
             </div>
           </div>
         )}
-
         {/* Images List */}
         {images.length > 0 && (
           <div className="mt-6 space-y-4">
@@ -324,7 +297,6 @@ export default function ImageCompressorUI() {
                       className="w-20 h-20 object-cover rounded-lg"
                     />
                   </div>
-
                   {/* Info */}
                   <div className="flex-1 min-w-0">
                     <h4 className="text-sm font-semibold text-gray-800 truncate mb-1">
@@ -351,7 +323,6 @@ export default function ImageCompressorUI() {
                       )}
                     </div>
                   </div>
-
                   {/* Actions */}
                   <div className="flex gap-2">
                     {img.status === 'completed' && (
@@ -374,7 +345,6 @@ export default function ImageCompressorUI() {
             ))}
           </div>
         )}
-
         {/* Action Buttons */}
         {images.length > 0 && (
           <div className="mt-6 flex gap-3 flex-wrap">
@@ -396,34 +366,9 @@ export default function ImageCompressorUI() {
           </div>
         )}
       </div>
-
       <ImageCompressorSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "image-resizer",
-            name: "Image Resizer",
-            description: "Resize images to custom dimensions with aspect ratio control.",
-            icon: "📐",
-            category: "image"
-          },
-          {
-            slug: "image-format-converter",
-            name: "Image Format Converter",
-            description: "Convert images between JPG, PNG, and WebP formats.",
-            icon: "🔄",
-            category: "image"
-          },
-          {
-            slug: "image-cropper",
-            name: "Image Cropper",
-            description: "Crop and trim images to remove unwanted areas.",
-            icon: "✂️",
-            category: "image"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="image-compressor" tools={["image-resizer", "image-to-grayscale", "exif-remover"]} />
     </>
   );
 }

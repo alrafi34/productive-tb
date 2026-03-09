@@ -126,31 +126,7 @@ export default function SentenceCaseConverterUI() {
       
       <SentenceCaseConverterSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "text-reverser",
-            name: "Text Reverser",
-            description: "Reverse letters or words in your text.",
-            icon: "🔄",
-            category: "writing"
-          },
-          {
-            slug: "paragraph-formatter",
-            name: "Paragraph Formatter",
-            description: "Remove extra spaces and line breaks from text.",
-            icon: "📝",
-            category: "writing"
-          },
-          {
-            slug: "word-counter",
-            name: "Word Counter",
-            description: "Count words, characters, and paragraphs.",
-            icon: "📝",
-            category: "writing"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="sentence-case-converter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

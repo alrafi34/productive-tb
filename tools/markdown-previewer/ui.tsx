@@ -209,31 +209,7 @@ ${html}
 
       <MarkdownPreviewerSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "word-counter",
-            name: "Word Counter",
-            description: "Count words, characters, and paragraphs in text.",
-            icon: "📝",
-            category: "writing"
-          },
-          {
-            slug: "text-diff-checker",
-            name: "Text Diff Checker",
-            description: "Compare two text blocks and highlight differences.",
-            icon: "🔀",
-            category: "writing"
-          },
-          {
-            slug: "html-to-jsx-converter",
-            name: "HTML to JSX Converter",
-            description: "Convert HTML to React JSX format.",
-            icon: "⚛️",
-            category: "developer"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="markdown-previewer" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

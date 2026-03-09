@@ -298,11 +298,7 @@ export default function ZalgoTextGeneratorUI() {
 
       <ZalgoTextGeneratorSEOContent />
 
-      <RelatedTools tools={[
-        { slug: 'text-reverser', name: 'Text Reverser', description: 'Reverse text and words', icon: '🔄', category: 'writing' },
-        { slug: 'sentence-case-converter', name: 'Case Converter', description: 'Convert text case formats', icon: '🔡', category: 'writing' },
-        { slug: 'text-to-slug-converter', name: 'Text to Slug', description: 'Create URL-friendly slugs', icon: '🔗', category: 'writing' }
-      ]} />
+      <RelatedTools currentTool="zalgo-text-generator" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

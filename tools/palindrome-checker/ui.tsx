@@ -320,11 +320,7 @@ export default function PalindromeCheckerUI() {
 
       <PalindromeCheckerSEOContent />
 
-      <RelatedTools tools={[
-        { slug: 'anagram-finder', name: 'Anagram Finder', description: 'Check if words are anagrams', icon: '🔤', category: 'text' },
-        { slug: 'text-reverser', name: 'Text Reverser', description: 'Reverse text, words, or letters', icon: '🔄', category: 'text' },
-        { slug: 'word-counter', name: 'Word Counter', description: 'Count words and characters', icon: '📝', category: 'text' }
-      ]} />
+      <RelatedTools currentTool="palindrome-checker" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

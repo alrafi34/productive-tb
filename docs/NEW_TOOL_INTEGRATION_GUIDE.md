@@ -140,6 +140,7 @@ export function calculateResult(input: number): number {
 import { useState } from "react";
 import { processText } from "./logic";
 import YourToolSEOContent from "./seo-content";
+import RelatedTools from "@/components/RelatedTools";
 
 export default function YourToolUI() {
   const [input, setInput] = useState("");
@@ -238,6 +239,11 @@ export default function YourToolUI() {
       </div>
       
       <YourToolSEOContent />
+      
+      <RelatedTools
+        currentTool="your-tool-name"
+        tools={['related-tool-1', 'related-tool-2', 'related-tool-3']}
+      />
     </>
   );
 }
@@ -247,10 +253,12 @@ export default function YourToolUI() {
 - ✅ "use client" directive at top
 - ✅ Import logic functions
 - ✅ Import SEO content component
+- ✅ Import RelatedTools component
 - ✅ Use design system classes
 - ✅ Add loading/disabled states
 - ✅ Include copy functionality
 - ✅ Add clear/reset buttons
+- ✅ Add RelatedTools at bottom with 3 related tool slugs
 - ✅ Responsive design
 
 ### Step 5: Create `seo-content.tsx`
@@ -371,22 +379,19 @@ export default function YourToolSEOContent() {
 - ✅ Natural keyword placement
 - ✅ 300+ words total content
 
-### Step 6: Update `config/tools.ts`
+### Step 6: Update `lib/tools-registry.ts`
 
-Add your tool to the tools array:
+Add your tool to the registry:
 
 ```typescript
-export const tools: Tool[] = [
+// Add import at top
+import { toolConfig as yourToolConfig } from "@/tools/your-tool-name/config";
+
+// Add to TOOLS_REGISTRY object
+export const TOOLS_REGISTRY = {
   // ... existing tools
-  { 
-    slug: "your-tool-name", 
-    name: "Your Tool Name", 
-    description: "Brief description.", 
-    category: "writing", 
-    icon: "🔧", 
-    free: true 
-  },
-];
+  'your-tool-name': yourToolConfig,
+};
 ```
 
 ### Step 7: Update `app/tools/[tool]/page.tsx`
@@ -404,6 +409,8 @@ const TOOLS = [
   { config: yourToolConfig, Component: YourToolUI },
 ];
 ```
+
+**Note:** You must update BOTH `lib/tools-registry.ts` (for RelatedTools component) AND `app/tools/[tool]/page.tsx` (for routing).
 
 ### Step 8: Test Your Tool
 
@@ -706,8 +713,9 @@ seo: {
 ## 🚨 Common Mistakes to Avoid
 
 1. ❌ **Forgetting "use client" directive** in ui.tsx
-2. ❌ **Not updating both config/tools.ts AND app/tools/[tool]/page.tsx**
+2. ❌ **Not updating lib/tools-registry.ts, app/tools/[tool]/page.tsx (both required)**
 3. ❌ **Using different slugs in different files**
+4. ❌ **Forgetting to add RelatedTools component at bottom of ui.tsx**
 4. ❌ **Not following design system classes**
 5. ❌ **Missing SEO content component**
 6. ❌ **Not testing on mobile**

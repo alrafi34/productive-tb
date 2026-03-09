@@ -81,31 +81,7 @@ export default function WordCounterUI() {
       
       <WordCounterSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "word-frequency-counter",
-            name: "Word Frequency Counter",
-            description: "Analyze text and count how often each word appears.",
-            icon: "📊",
-            category: "writing"
-          },
-          {
-            slug: "character-counter",
-            name: "Character Counter",
-            description: "Count letters, spaces, and symbols in your text.",
-            icon: "🔤",
-            category: "writing"
-          },
-          {
-            slug: "reading-time-calculator",
-            name: "Reading Time Calculator",
-            description: "Estimate reading time for any text content.",
-            icon: "⏱️",
-            category: "writing"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="word-counter" tools={["word-frequency-counter", "paragraph-formatter", "text-reverser"]} />
     </>
   );
 }

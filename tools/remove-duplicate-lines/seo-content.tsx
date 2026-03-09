@@ -2,37 +2,6 @@ import React from 'react';
 import RelatedTools from '@/components/RelatedTools';
 
 export default function SEOContent() {
-  const relatedTools = [
-    {
-      slug: 'word-frequency-counter',
-      name: 'Word Frequency Counter',
-      description: 'Analyze word frequency and text statistics',
-      icon: '📊',
-      category: 'text'
-    },
-    {
-      slug: 'text-reverser',
-      name: 'Text Reverser',
-      description: 'Reverse text, words, or letters instantly',
-      icon: '🔄',
-      category: 'text'
-    },
-    {
-      slug: 'case-converter',
-      name: 'Case Converter',
-      description: 'Convert text between different cases',
-      icon: '🔤',
-      category: 'text'
-    },
-    {
-      slug: 'text-to-clipboard',
-      name: 'Text to Clipboard',
-      description: 'Copy text with one click in multiple formats',
-      icon: '📋',
-      category: 'text'
-    }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto space-y-12">
       {/* How to Use */}
@@ -182,7 +151,7 @@ export default function SEOContent() {
         </div>
       </section>
 
-      <RelatedTools tools={relatedTools} />
+      <RelatedTools currentTool="remove-duplicate-lines" tools={["word-frequency-counter", "text-reverser", "text-to-clipboard", "find-and-replace"]} />
     </div>
   );
 }

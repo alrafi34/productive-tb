@@ -495,31 +495,7 @@ export default function ImageResizerUI() {
 
       <ImageResizerSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "image-compressor",
-            name: "Image Compressor",
-            description: "Reduce JPG/PNG size in browser without quality loss.",
-            icon: "🖼️",
-            category: "image"
-          },
-          {
-            slug: "image-format-converter",
-            name: "Image Format Converter",
-            description: "Convert images between JPG, PNG, and WebP formats.",
-            icon: "🔄",
-            category: "image"
-          },
-          {
-            slug: "image-cropper",
-            name: "Image Cropper",
-            description: "Crop and trim images to remove unwanted areas.",
-            icon: "✂️",
-            category: "image"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="image-resizer" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </div>
   );
 }

@@ -180,31 +180,7 @@ export default function ParagraphFormatterUI() {
       
       <ParagraphFormatterSEOContent />
       
-      <RelatedTools
-        tools={[
-          {
-            slug: "whitespace-remover",
-            name: "Whitespace Remover",
-            description: "Strip leading, trailing, or double spaces.",
-            icon: "🧽",
-            category: "writing"
-          },
-          {
-            slug: "remove-duplicate-lines",
-            name: "Remove Duplicate Lines",
-            description: "Clean up lists by removing identical entries.",
-            icon: "🧹",
-            category: "writing"
-          },
-          {
-            slug: "text-reverser",
-            name: "Text Reverser",
-            description: "Reverse letters or words in your text.",
-            icon: "🔄",
-            category: "writing"
-          }
-        ]}
-      />
+      <RelatedTools currentTool="paragraph-formatter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
     </>
   );
 }

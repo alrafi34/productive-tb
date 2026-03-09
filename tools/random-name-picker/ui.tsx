@@ -339,11 +339,7 @@ export default function RandomNamePickerUI() {
 
       <RandomNamePickerSEOContent />
 
-      <RelatedTools tools={[
-        { slug: 'word-frequency-counter', name: 'Word Frequency Counter', description: 'Analyze word frequency in text', icon: '📊', category: 'writing' },
-        { slug: 'remove-duplicate-lines', name: 'Remove Duplicate Lines', description: 'Clean up duplicate entries', icon: '🧹', category: 'writing' },
-        { slug: 'list-alphabetizer', name: 'List Alphabetizer', description: 'Sort lists alphabetically', icon: '🔤', category: 'writing' }
-      ]} />
+      <RelatedTools currentTool="random-name-picker" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
 
       <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     </>
