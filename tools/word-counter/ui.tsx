@@ -6,6 +6,7 @@ import {
   countParagraphs, countSentences, estimateReadingTime,
 } from "./logic";
 import WordCounterSEOContent from "./seo-content";
+import RelatedTools from "@/components/RelatedTools";
 
 export default function WordCounterUI() {
   const [text, setText] = useState("");
@@ -79,6 +80,32 @@ export default function WordCounterUI() {
       </div>
       
       <WordCounterSEOContent />
+      
+      <RelatedTools
+        tools={[
+          {
+            slug: "word-frequency-counter",
+            name: "Word Frequency Counter",
+            description: "Analyze text and count how often each word appears.",
+            icon: "📊",
+            category: "writing"
+          },
+          {
+            slug: "character-counter",
+            name: "Character Counter",
+            description: "Count letters, spaces, and symbols in your text.",
+            icon: "🔤",
+            category: "writing"
+          },
+          {
+            slug: "reading-time-calculator",
+            name: "Reading Time Calculator",
+            description: "Estimate reading time for any text content.",
+            icon: "⏱️",
+            category: "writing"
+          }
+        ]}
+      />
     </>
   );
 }

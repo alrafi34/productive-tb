@@ -13,6 +13,16 @@ import { toolConfig as keywordDensityConfig } from "@/tools/keyword-density-chec
 import KeywordDensityCheckerUI from "@/tools/keyword-density-checker/ui";
 import { toolConfig as textReverserConfig } from "@/tools/text-reverser/config";
 import TextReverserUI from "@/tools/text-reverser/ui";
+import { toolConfig as wordFrequencyConfig } from "@/tools/word-frequency-counter/config";
+import WordFrequencyCounterUI from "@/tools/word-frequency-counter/ui";
+import { toolConfig as imageCompressorConfig } from "@/tools/image-compressor/config";
+import ImageCompressorUI from "@/tools/image-compressor/ui";
+import { toolConfig as imageResizerConfig } from "@/tools/image-resizer/config";
+import ImageResizerUI from "@/tools/image-resizer/ui";
+import { toolConfig as loremIpsumConfig } from "@/tools/lorem-ipsum-generator/config";
+import LoremIpsumGeneratorUI from "@/tools/lorem-ipsum-generator/ui";
+import { toolConfig as markdownPreviewerConfig } from "@/tools/markdown-previewer/config";
+import MarkdownPreviewerUI from "@/tools/markdown-previewer/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -20,6 +30,11 @@ const TOOLS = [
   { config: paragraphFormatterConfig, Component: ParagraphFormatterUI },
   { config: keywordDensityConfig, Component: KeywordDensityCheckerUI },
   { config: textReverserConfig, Component: TextReverserUI },
+  { config: wordFrequencyConfig, Component: WordFrequencyCounterUI },
+  { config: imageCompressorConfig, Component: ImageCompressorUI },
+  { config: imageResizerConfig, Component: ImageResizerUI },
+  { config: loremIpsumConfig, Component: LoremIpsumGeneratorUI },
+  { config: markdownPreviewerConfig, Component: MarkdownPreviewerUI },
 ];
 
 export async function generateMetadata(

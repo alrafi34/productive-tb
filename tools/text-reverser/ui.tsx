@@ -10,6 +10,8 @@ import {
   countWords,
   countCharacters,
 } from "./logic";
+import TextReverserSEOContent from "./seo-content";
+import RelatedTools from "@/components/RelatedTools";
 
 type ReverseMode = "letters" | "words" | "eachWord" | "sentences" | "paragraphs";
 
@@ -73,7 +75,8 @@ export default function TextReverserUI() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <>
+      <div className="max-w-4xl mx-auto">
       {/* Mode Selection */}
       <div className="mb-6">
         <label className="block text-sm font-semibold text-gray-900 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
@@ -170,6 +173,35 @@ export default function TextReverserUI() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+      
+      <TextReverserSEOContent />
+      
+      <RelatedTools
+        tools={[
+          {
+            slug: "sentence-case-converter",
+            name: "Sentence Case Converter",
+            description: "Convert text to uppercase, lowercase, title case.",
+            icon: "🔡",
+            category: "writing"
+          },
+          {
+            slug: "paragraph-formatter",
+            name: "Paragraph Formatter",
+            description: "Remove extra spaces and line breaks from text.",
+            icon: "📝",
+            category: "writing"
+          },
+          {
+            slug: "word-counter",
+            name: "Word Counter",
+            description: "Count words, characters, and paragraphs.",
+            icon: "📝",
+            category: "writing"
+          }
+        ]}
+      />
+    </>
   );
 }

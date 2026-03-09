@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { toUpperCase, toLowerCase, toTitleCase, toSentenceCase } from "./logic";
 import SentenceCaseConverterSEOContent from "./seo-content";
+import RelatedTools from "@/components/RelatedTools";
 
 type CaseType = "uppercase" | "lowercase" | "titlecase" | "sentencecase";
 
@@ -124,6 +125,32 @@ export default function SentenceCaseConverterUI() {
       </div>
       
       <SentenceCaseConverterSEOContent />
+      
+      <RelatedTools
+        tools={[
+          {
+            slug: "text-reverser",
+            name: "Text Reverser",
+            description: "Reverse letters or words in your text.",
+            icon: "🔄",
+            category: "writing"
+          },
+          {
+            slug: "paragraph-formatter",
+            name: "Paragraph Formatter",
+            description: "Remove extra spaces and line breaks from text.",
+            icon: "📝",
+            category: "writing"
+          },
+          {
+            slug: "word-counter",
+            name: "Word Counter",
+            description: "Count words, characters, and paragraphs.",
+            icon: "📝",
+            category: "writing"
+          }
+        ]}
+      />
     </>
   );
 }

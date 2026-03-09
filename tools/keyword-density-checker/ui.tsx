@@ -8,6 +8,7 @@ import {
 } from "./logic";
 import type { DensityData, AnalysisOptions } from "./types";
 import KeywordDensityCheckerSEOContent from "./seo-content";
+import RelatedTools from "@/components/RelatedTools";
 
 export default function KeywordDensityCheckerUI() {
   const [text, setText] = useState("");
@@ -358,6 +359,32 @@ export default function KeywordDensityCheckerUI() {
       </div>
 
       <KeywordDensityCheckerSEOContent />
+      
+      <RelatedTools
+        tools={[
+          {
+            slug: "word-frequency-counter",
+            name: "Word Frequency Counter",
+            description: "Analyze text and count how often each word appears.",
+            icon: "📊",
+            category: "writing"
+          },
+          {
+            slug: "word-counter",
+            name: "Word Counter",
+            description: "Count words, characters, and paragraphs.",
+            icon: "📝",
+            category: "writing"
+          },
+          {
+            slug: "reading-time-calculator",
+            name: "Reading Time Calculator",
+            description: "Estimate reading time for any text content.",
+            icon: "⏱️",
+            category: "writing"
+          }
+        ]}
+      />
     </>
   );
 }
