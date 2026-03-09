@@ -35,6 +35,22 @@ import { bionicReadingConverterConfig } from "@/tools/bionic-reading-converter/c
 import BionicReadingConverterUI from "@/tools/bionic-reading-converter/ui";
 import { whitespaceRemoverConfig } from "@/tools/whitespace-remover/config";
 import WhitespaceRemoverUI from "@/tools/whitespace-remover/ui";
+import { tableToMarkdownConfig } from "@/tools/table-to-markdown/config";
+import TableToMarkdownUI from "@/tools/table-to-markdown/ui";
+import { anagramFinderConfig } from "@/tools/anagram-finder/config";
+import AnagramFinderUI from "@/tools/anagram-finder/ui";
+import { palindromeCheckerConfig } from "@/tools/palindrome-checker/config";
+import PalindromeCheckerUI from "@/tools/palindrome-checker/ui";
+import { textToSlugConverterConfig } from "@/tools/text-to-slug-converter/config";
+import TextToSlugConverterUI from "@/tools/text-to-slug-converter/ui";
+import { randomNamePickerConfig } from "@/tools/random-name-picker/config";
+import RandomNamePickerUI from "@/tools/random-name-picker/ui";
+import { zalgoTextGeneratorConfig } from "@/tools/zalgo-text-generator/config";
+import ZalgoTextGeneratorUI from "@/tools/zalgo-text-generator/ui";
+import { natoPhoneticConverterConfig } from "@/tools/nato-phonetic-converter/config";
+import NATOPhoneticConverterUI from "@/tools/nato-phonetic-converter/ui";
+import { leetspeakConverterConfig } from "@/tools/leetspeak-converter/config";
+import LeetspeakConverterUI from "@/tools/leetspeak-converter/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -53,6 +69,14 @@ const TOOLS = [
   { config: textDiffCheckerConfig, Component: TextDiffCheckerUI },
   { config: bionicReadingConverterConfig, Component: BionicReadingConverterUI },
   { config: whitespaceRemoverConfig, Component: WhitespaceRemoverUI },
+  { config: tableToMarkdownConfig, Component: TableToMarkdownUI },
+  { config: anagramFinderConfig, Component: AnagramFinderUI },
+  { config: palindromeCheckerConfig, Component: PalindromeCheckerUI },
+  { config: textToSlugConverterConfig, Component: TextToSlugConverterUI },
+  { config: randomNamePickerConfig, Component: RandomNamePickerUI },
+  { config: zalgoTextGeneratorConfig, Component: ZalgoTextGeneratorUI },
+  { config: natoPhoneticConverterConfig, Component: NATOPhoneticConverterUI },
+  { config: leetspeakConverterConfig, Component: LeetspeakConverterUI },
 ];
 
 export async function generateMetadata(
