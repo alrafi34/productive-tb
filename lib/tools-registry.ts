@@ -36,6 +36,9 @@ import { toolConfig as colorPaletteGeneratorConfig } from "@/tools/color-palette
 import { toolConfig as cssGradientGeneratorConfig } from "@/tools/css-gradient-generator/config";
 import { toolConfig as cssBoxShadowGeneratorConfig } from "@/tools/css-box-shadow-generator/config";
 import { toolConfig as colorFormatConverterConfig } from "@/tools/color-format-converter/config";
+import { toolConfig as cssGlassmorphismGeneratorConfig } from "@/tools/css-glassmorphism-generator/config";
+import { toolConfig as svgPathVisualizerConfig } from "@/tools/svg-path-visualizer/config";
+import { toolConfig as contrastCheckerConfig } from "@/tools/contrast-checker/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -76,6 +79,9 @@ export const TOOLS_REGISTRY = {
   'css-gradient-generator': cssGradientGeneratorConfig,
   'css-box-shadow-generator': cssBoxShadowGeneratorConfig,
   'color-format-converter': colorFormatConverterConfig,
+  'css-glassmorphism-generator': cssGlassmorphismGeneratorConfig,
+  'svg-path-visualizer': svgPathVisualizerConfig,
+  'contrast-checker': contrastCheckerConfig,
 };
 
 export function getToolBySlug(slug: string) {

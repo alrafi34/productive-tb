@@ -79,7 +79,7 @@ export const tools: Tool[] = [
   
   // Design & CSS Tools (New)
   { slug: "css-gradient-generator", name: "CSS Gradient Generator", description: "Visual slider to create linear-gradient code.", category: "design", icon: "🌈", free: true },
-  { slug: "box-shadow-generator", name: "Box Shadow Generator", description: "Adjust blur, spread, color with sliders.", category: "design", icon: "📦", free: true },
+  { slug: "css-box-shadow-generator", name: "CSS Box Shadow Generator", description: "Adjust blur, spread, color with sliders.", category: "design", icon: "📦", free: true },
   { slug: "color-format-converter", name: "Color Format Converter", description: "Convert Hex, RGB, HSL, CMYK formats.", category: "design", icon: "🎨", free: true },
   { slug: "css-glassmorphism-generator", name: "CSS Glassmorphism Generator", description: "Generate frosted glass effect code.", category: "design", icon: "🪟", free: true },
   { slug: "svg-path-visualizer", name: "SVG Path Visualizer", description: "Paste SVG path and see shape rendered.", category: "design", icon: "🖌️", free: true },

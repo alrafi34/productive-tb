@@ -79,6 +79,12 @@ import { toolConfig as cssBoxShadowGeneratorConfig } from "@/tools/css-box-shado
 import CSSBoxShadowGeneratorUI from "@/tools/css-box-shadow-generator/ui";
 import { toolConfig as colorFormatConverterConfig } from "@/tools/color-format-converter/config";
 import ColorFormatConverterUI from "@/tools/color-format-converter/ui";
+import { toolConfig as cssGlassmorphismGeneratorConfig } from "@/tools/css-glassmorphism-generator/config";
+import GlassmorphismGeneratorUI from "@/tools/css-glassmorphism-generator/ui";
+import { toolConfig as svgPathVisualizerConfig } from "@/tools/svg-path-visualizer/config";
+import SVGPathVisualizerUI from "@/tools/svg-path-visualizer/ui";
+import { toolConfig as contrastCheckerConfig } from "@/tools/contrast-checker/config";
+import ContrastCheckerUI from "@/tools/contrast-checker/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -119,6 +125,9 @@ const TOOLS = [
   { config: cssGradientGeneratorConfig, Component: CSSGradientGeneratorUI },
   { config: cssBoxShadowGeneratorConfig, Component: CSSBoxShadowGeneratorUI },
   { config: colorFormatConverterConfig, Component: ColorFormatConverterUI },
+  { config: cssGlassmorphismGeneratorConfig, Component: GlassmorphismGeneratorUI },
+  { config: svgPathVisualizerConfig, Component: SVGPathVisualizerUI },
+  { config: contrastCheckerConfig, Component: ContrastCheckerUI },
 ];
 
 export async function generateMetadata(
