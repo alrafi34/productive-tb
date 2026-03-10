@@ -31,6 +31,11 @@ import { toolConfig as imageToGrayscaleConfig } from "@/tools/image-to-grayscale
 import { toolConfig as exifRemoverConfig } from "@/tools/exif-remover/config";
 import { toolConfig as ditheringFilterConfig } from "@/tools/dithering-filter/config";
 import { toolConfig as duotoneFilterConfig } from "@/tools/duotone-filter/config";
+import { toolConfig as hexToRgbConverterConfig } from "@/tools/hex-to-rgb-converter/config";
+import { toolConfig as colorPaletteGeneratorConfig } from "@/tools/color-palette-generator/config";
+import { toolConfig as cssGradientGeneratorConfig } from "@/tools/css-gradient-generator/config";
+import { toolConfig as cssBoxShadowGeneratorConfig } from "@/tools/css-box-shadow-generator/config";
+import { toolConfig as colorFormatConverterConfig } from "@/tools/color-format-converter/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -66,6 +71,11 @@ export const TOOLS_REGISTRY = {
   'exif-remover': exifRemoverConfig,
   'dithering-filter': ditheringFilterConfig,
   'duotone-filter': duotoneFilterConfig,
+  'hex-to-rgb-converter': hexToRgbConverterConfig,
+  'color-palette-generator': colorPaletteGeneratorConfig,
+  'css-gradient-generator': cssGradientGeneratorConfig,
+  'css-box-shadow-generator': cssBoxShadowGeneratorConfig,
+  'color-format-converter': colorFormatConverterConfig,
 };
 
 export function getToolBySlug(slug: string) {

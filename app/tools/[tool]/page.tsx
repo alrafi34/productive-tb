@@ -69,6 +69,16 @@ import { toolConfig as ditheringFilterConfig } from "@/tools/dithering-filter/co
 import DitheringFilterUI from "@/tools/dithering-filter/ui";
 import { toolConfig as duotoneFilterConfig } from "@/tools/duotone-filter/config";
 import DuotoneFilterUI from "@/tools/duotone-filter/ui";
+import { toolConfig as hexToRgbConverterConfig } from "@/tools/hex-to-rgb-converter/config";
+import HexToRgbConverterUI from "@/tools/hex-to-rgb-converter/ui";
+import { toolConfig as colorPaletteGeneratorConfig } from "@/tools/color-palette-generator/config";
+import ColorPaletteGeneratorUI from "@/tools/color-palette-generator/ui";
+import { toolConfig as cssGradientGeneratorConfig } from "@/tools/css-gradient-generator/config";
+import CSSGradientGeneratorUI from "@/tools/css-gradient-generator/ui";
+import { toolConfig as cssBoxShadowGeneratorConfig } from "@/tools/css-box-shadow-generator/config";
+import CSSBoxShadowGeneratorUI from "@/tools/css-box-shadow-generator/ui";
+import { toolConfig as colorFormatConverterConfig } from "@/tools/color-format-converter/config";
+import ColorFormatConverterUI from "@/tools/color-format-converter/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -104,6 +114,11 @@ const TOOLS = [
   { config: exifRemoverConfig, Component: ExifRemoverUI },
   { config: ditheringFilterConfig, Component: DitheringFilterUI },
   { config: duotoneFilterConfig, Component: DuotoneFilterUI },
+  { config: hexToRgbConverterConfig, Component: HexToRgbConverterUI },
+  { config: colorPaletteGeneratorConfig, Component: ColorPaletteGeneratorUI },
+  { config: cssGradientGeneratorConfig, Component: CSSGradientGeneratorUI },
+  { config: cssBoxShadowGeneratorConfig, Component: CSSBoxShadowGeneratorUI },
+  { config: colorFormatConverterConfig, Component: ColorFormatConverterUI },
 ];
 
 export async function generateMetadata(
