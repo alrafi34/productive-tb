@@ -85,6 +85,24 @@ import { toolConfig as svgPathVisualizerConfig } from "@/tools/svg-path-visualiz
 import SVGPathVisualizerUI from "@/tools/svg-path-visualizer/ui";
 import { toolConfig as contrastCheckerConfig } from "@/tools/contrast-checker/config";
 import ContrastCheckerUI from "@/tools/contrast-checker/ui";
+import { toolConfig as neumorphismGeneratorConfig } from "@/tools/neumorphism-generator/config";
+import NeumorphismGeneratorUI from "@/tools/neumorphism-generator/ui";
+import { hslColorSliderConfig } from "@/tools/hsl-color-slider/config";
+import HSLColorSliderUI from "@/tools/hsl-color-slider/ui";
+import { cssFilterTesterConfig } from "@/tools/css-filter-tester/config";
+import CSSFilterTesterUI from "@/tools/css-filter-tester/ui";
+import { cssAnimationPreviewerConfig } from "@/tools/css-animation-previewer/config";
+import CSSAnimationPreviewerUI from "@/tools/css-animation-previewer/ui";
+import { gradientTextGeneratorConfig } from "@/tools/gradient-text-generator/config";
+import GradientTextGeneratorUI from "@/tools/gradient-text-generator/ui";
+import { colorPaletteContrastGridConfig } from "@/tools/color-palette-contrast-grid/config";
+import ColorPaletteContrastGridUI from "@/tools/color-palette-contrast-grid/ui";
+import { colorBlindnessSimulatorConfig } from "@/tools/color-blindness-simulator/config";
+import ColorBlindnessSimulatorUI from "@/tools/color-blindness-simulator/ui";
+import { randomHexColorGeneratorConfig } from "@/tools/random-hex-color-generator/config";
+import RandomHexColorGeneratorUI from "@/tools/random-hex-color-generator/ui";
+import { cssMeshGradientGeneratorConfig } from "@/tools/css-mesh-gradient-generator/config";
+import CSSMeshGradientGeneratorUI from "@/tools/css-mesh-gradient-generator/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -128,6 +146,15 @@ const TOOLS = [
   { config: cssGlassmorphismGeneratorConfig, Component: GlassmorphismGeneratorUI },
   { config: svgPathVisualizerConfig, Component: SVGPathVisualizerUI },
   { config: contrastCheckerConfig, Component: ContrastCheckerUI },
+  { config: neumorphismGeneratorConfig, Component: NeumorphismGeneratorUI },
+  { config: hslColorSliderConfig, Component: HSLColorSliderUI },
+  { config: cssFilterTesterConfig, Component: CSSFilterTesterUI },
+  { config: cssAnimationPreviewerConfig, Component: CSSAnimationPreviewerUI },
+  { config: gradientTextGeneratorConfig, Component: GradientTextGeneratorUI },
+  { config: colorPaletteContrastGridConfig, Component: ColorPaletteContrastGridUI },
+  { config: colorBlindnessSimulatorConfig, Component: ColorBlindnessSimulatorUI },
+  { config: randomHexColorGeneratorConfig, Component: RandomHexColorGeneratorUI },
+  { config: cssMeshGradientGeneratorConfig, Component: CSSMeshGradientGeneratorUI },
 ];
 
 export async function generateMetadata(

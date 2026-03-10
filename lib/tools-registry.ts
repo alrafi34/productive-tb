@@ -39,6 +39,15 @@ import { toolConfig as colorFormatConverterConfig } from "@/tools/color-format-c
 import { toolConfig as cssGlassmorphismGeneratorConfig } from "@/tools/css-glassmorphism-generator/config";
 import { toolConfig as svgPathVisualizerConfig } from "@/tools/svg-path-visualizer/config";
 import { toolConfig as contrastCheckerConfig } from "@/tools/contrast-checker/config";
+import { toolConfig as neumorphismGeneratorConfig } from "@/tools/neumorphism-generator/config";
+import { hslColorSliderConfig } from "@/tools/hsl-color-slider/config";
+import { cssFilterTesterConfig } from "@/tools/css-filter-tester/config";
+import { cssAnimationPreviewerConfig } from "@/tools/css-animation-previewer/config";
+import { gradientTextGeneratorConfig } from "@/tools/gradient-text-generator/config";
+import { colorPaletteContrastGridConfig } from "@/tools/color-palette-contrast-grid/config";
+import { colorBlindnessSimulatorConfig } from "@/tools/color-blindness-simulator/config";
+import { randomHexColorGeneratorConfig } from "@/tools/random-hex-color-generator/config";
+import { cssMeshGradientGeneratorConfig } from "@/tools/css-mesh-gradient-generator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -82,6 +91,15 @@ export const TOOLS_REGISTRY = {
   'css-glassmorphism-generator': cssGlassmorphismGeneratorConfig,
   'svg-path-visualizer': svgPathVisualizerConfig,
   'contrast-checker': contrastCheckerConfig,
+  'neumorphism-generator': neumorphismGeneratorConfig,
+  'hsl-color-slider': hslColorSliderConfig,
+  'css-filter-tester': cssFilterTesterConfig,
+  'css-animation-previewer': cssAnimationPreviewerConfig,
+  'gradient-text-generator': gradientTextGeneratorConfig,
+  'color-palette-contrast-grid': colorPaletteContrastGridConfig,
+  'color-blindness-simulator': colorBlindnessSimulatorConfig,
+  'random-hex-color-generator': randomHexColorGeneratorConfig,
+  'css-mesh-gradient-generator': cssMeshGradientGeneratorConfig,
 };
 
 export function getToolBySlug(slug: string) {
