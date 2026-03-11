@@ -376,6 +376,8 @@ export const tools: Tool[] = [
   { slug: "box-shadow-layering", name: "Box Shadow Layering", description: "Add multiple box-shadow values for depth.", category: "design", icon: "📦", free: true },
   { slug: "svg-path-simplifier", name: "SVG Path Simplifier", description: "Reduce coordinate points in SVG path.", category: "design", icon: "✂️", free: true },
   { slug: "cursor-style-previewer", name: "Cursor Style Previewer", description: "Test every CSS cursor type in real area.", category: "design", icon: "🖌️", free: true },
+  { slug: "css-cursor-style-previewer", name: "CSS Cursor Style Previewer", description: "Test and preview all CSS cursor types with interactive examples.", category: "design", icon: "👆", free: true },
+  { slug: "css-clamp-generator", name: "CSS Clamp Generator", description: "Generate responsive CSS clamp() values for fluid typography.", category: "design", icon: "📏", free: true },
   { slug: "placeholder-svg-icon-creator", name: "Placeholder SVG Icon Creator", description: "Generate standard shapes with custom colors.", category: "design", icon: "🔸", free: true },
   { slug: "glassmorphism-layer-tester", name: "Glassmorphism Layer Tester", description: "Control backdrop-filter blur intensities.", category: "design", icon: "🪟", free: true },
   { slug: "css-clip-path-polygon-builder", name: "CSS Clip-Path Builder (Polygon)", description: "Drag points to create complex image masks.", category: "design", icon: "✂️", free: true },
@@ -512,7 +514,6 @@ export const tools: Tool[] = [
   
   // Niche & Advanced Utilities (New)
   { slug: "favicon-grabber", name: "Favicon Grabber", description: "Extracts the favicon.ico from any URL.", category: "developer", icon: "🌐", free: true },
-  { slug: "css-clamp-generator", name: "CSS Clamp Generator", description: "Creates fluid typography code (font-size: clamp(...)).", category: "design", icon: "📏", free: true },
   { slug: "json-to-yaml-converter", name: "JSON-to-YAML Converter", description: "Allows for deep nesting and array conversion.", category: "developer", icon: "🔄", free: true },
   { slug: "text-to-morse-visual-flash", name: "Text-to-Morse Code (Visual Flash)", description: "Uses full-screen flashes for Morse code.", category: "creator", icon: "💡", free: true },
   { slug: "password-pattern-generator", name: "Password Pattern Generator", description: "Creates passwords based on shape patterns (e.g., z-shape).", category: "security", icon: "🔐", free: true },

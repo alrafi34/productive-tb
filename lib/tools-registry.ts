@@ -48,6 +48,15 @@ import { colorPaletteContrastGridConfig } from "@/tools/color-palette-contrast-g
 import { colorBlindnessSimulatorConfig } from "@/tools/color-blindness-simulator/config";
 import { randomHexColorGeneratorConfig } from "@/tools/random-hex-color-generator/config";
 import { cssMeshGradientGeneratorConfig } from "@/tools/css-mesh-gradient-generator/config";
+import { cssCursorStylePreviewerConfig } from "@/tools/css-cursor-style-previewer/config";
+import { cssClampGeneratorConfig } from "@/tools/css-clamp-generator/config";
+import { hexToRgbaConverterConfig } from "@/tools/hex-to-rgba-converter/config";
+import { passwordGeneratorConfig } from "@/tools/password-generator/config";
+import { wifiPasswordGeneratorConfig } from "@/tools/wifi-password-generator/config";
+import { textEncryptDecryptConfig } from "@/tools/text-encrypt-decrypt/config";
+import { usernameGeneratorConfig } from "@/tools/username-generator/config";
+import { hashGeneratorConfig } from "@/tools/hash-generator/config";
+import { passwordStrengthMeterConfig } from "@/tools/password-strength-meter/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -100,6 +109,15 @@ export const TOOLS_REGISTRY = {
   'color-blindness-simulator': colorBlindnessSimulatorConfig,
   'random-hex-color-generator': randomHexColorGeneratorConfig,
   'css-mesh-gradient-generator': cssMeshGradientGeneratorConfig,
+  'css-cursor-style-previewer': cssCursorStylePreviewerConfig,
+  'css-clamp-generator': cssClampGeneratorConfig,
+  'hex-to-rgba-converter': hexToRgbaConverterConfig,
+  'password-generator': passwordGeneratorConfig,
+  'wifi-password-generator': wifiPasswordGeneratorConfig,
+  'text-encrypt-decrypt': textEncryptDecryptConfig,
+  'username-generator': usernameGeneratorConfig,
+  'hash-generator': hashGeneratorConfig,
+  'password-strength-meter': passwordStrengthMeterConfig,
 };
 
 export function getToolBySlug(slug: string) {

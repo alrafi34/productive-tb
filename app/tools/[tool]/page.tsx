@@ -103,6 +103,24 @@ import { randomHexColorGeneratorConfig } from "@/tools/random-hex-color-generato
 import RandomHexColorGeneratorUI from "@/tools/random-hex-color-generator/ui";
 import { cssMeshGradientGeneratorConfig } from "@/tools/css-mesh-gradient-generator/config";
 import CSSMeshGradientGeneratorUI from "@/tools/css-mesh-gradient-generator/ui";
+import { cssCursorStylePreviewerConfig } from "@/tools/css-cursor-style-previewer/config";
+import CSSCursorStylePreviewerUI from "@/tools/css-cursor-style-previewer/ui";
+import { cssClampGeneratorConfig } from "@/tools/css-clamp-generator/config";
+import CSSClampGeneratorUI from "@/tools/css-clamp-generator/ui";
+import { hexToRgbaConverterConfig } from "@/tools/hex-to-rgba-converter/config";
+import HexToRgbaConverterUI from "@/tools/hex-to-rgba-converter/ui";
+import { passwordGeneratorConfig } from "@/tools/password-generator/config";
+import PasswordGeneratorUI from "@/tools/password-generator/ui";
+import { wifiPasswordGeneratorConfig } from "@/tools/wifi-password-generator/config";
+import WiFiPasswordGeneratorUI from "@/tools/wifi-password-generator/ui";
+import { textEncryptDecryptConfig } from "@/tools/text-encrypt-decrypt/config";
+import TextEncryptDecryptUI from "@/tools/text-encrypt-decrypt/ui";
+import { usernameGeneratorConfig } from "@/tools/username-generator/config";
+import UsernameGeneratorUI from "@/tools/username-generator/ui";
+import { hashGeneratorConfig } from "@/tools/hash-generator/config";
+import HashGeneratorUI from "@/tools/hash-generator/ui";
+import { passwordStrengthMeterConfig } from "@/tools/password-strength-meter/config";
+import PasswordStrengthMeterUI from "@/tools/password-strength-meter/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -155,6 +173,15 @@ const TOOLS = [
   { config: colorBlindnessSimulatorConfig, Component: ColorBlindnessSimulatorUI },
   { config: randomHexColorGeneratorConfig, Component: RandomHexColorGeneratorUI },
   { config: cssMeshGradientGeneratorConfig, Component: CSSMeshGradientGeneratorUI },
+  { config: cssCursorStylePreviewerConfig, Component: CSSCursorStylePreviewerUI },
+  { config: cssClampGeneratorConfig, Component: CSSClampGeneratorUI },
+  { config: hexToRgbaConverterConfig, Component: HexToRgbaConverterUI },
+  { config: passwordGeneratorConfig, Component: PasswordGeneratorUI },
+  { config: wifiPasswordGeneratorConfig, Component: WiFiPasswordGeneratorUI },
+  { config: textEncryptDecryptConfig, Component: TextEncryptDecryptUI },
+  { config: usernameGeneratorConfig, Component: UsernameGeneratorUI },
+  { config: hashGeneratorConfig, Component: HashGeneratorUI },
+  { config: passwordStrengthMeterConfig, Component: PasswordStrengthMeterUI },
 ];
 
 export async function generateMetadata(
