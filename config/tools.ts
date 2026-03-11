@@ -17,14 +17,14 @@ export type Category = {
 export const tools: Tool[] = [
   // Writing & Content Tools (1-10)
   { slug: "word-counter", name: "Word Counter", description: "Count words, characters, paragraphs.", category: "writing", icon: "📝", free: true },
-  { slug: "character-counter", name: "Character Counter", description: "Count letters, spaces, symbols.", category: "writing", icon: "🔤", free: true },
-  { slug: "reading-time-calculator", name: "Reading Time Calculator", description: "Estimate reading time for any text.", category: "writing", icon: "⏱️", free: true },
+  //{ slug: "character-counter", name: "Character Counter", description: "Count letters, spaces, symbols.", category: "writing", icon: "🔤", free: true },
+  //{ slug: "reading-time-calculator", name: "Reading Time Calculator", description: "Estimate reading time for any text.", category: "writing", icon: "⏱️", free: true },
   { slug: "sentence-case-converter", name: "Sentence Case Converter", description: "Uppercase, lowercase, title case, sentence case.", category: "writing", icon: "🔡", free: true },
   { slug: "paragraph-formatter", name: "Paragraph Formatter", description: "Remove extra spaces, line breaks.", category: "writing", icon: "📝", free: true },
   { slug: "keyword-density-checker", name: "Keyword Density Checker", description: "See how often words appear in text.", category: "writing", icon: "🔍", free: true },
   { slug: "text-reverser", name: "Text Reverser Tool", description: "Reverse letters or words in text.", category: "writing", icon: "🔄", free: true },
   { slug: "text-to-clipboard", name: "Text to Clipboard Copy", description: "Quickly copy text.", category: "writing", icon: "📋", free: true },
-  { slug: "plagiarism-checker", name: "Plagiarism Checker", description: "Basic similarity check using API.", category: "writing", icon: "✅", free: true },
+  //{ slug: "plagiarism-checker", name: "Plagiarism Checker", description: "Basic similarity check using API.", category: "writing", icon: "✅", free: true },
   { slug: "word-frequency-counter", name: "Word Frequency Counter", description: "Shows most used words.", category: "writing", icon: "📊", free: true },
   
   // Image & Design Tools (11-18)
@@ -33,8 +33,8 @@ export const tools: Tool[] = [
   { slug: "base64-image-encoder", name: "Base64 Image Encoder", description: "Convert images to Base64 string.", category: "image", icon: "🔐", free: true },
   { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "For designers and devs.", category: "design", icon: "🎨", free: true },
   { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate 3-5 color palettes.", category: "design", icon: "🌈", free: true },
-  { slug: "gradient-generator", name: "Gradient Generator", description: "Create CSS gradients.", category: "design", icon: "🎨", free: true },
-  { slug: "image-dimension-checker", name: "Image Dimension Checker", description: "Read width & height of an image.", category: "image", icon: "📏", free: true },
+  //{ slug: "gradient-generator", name: "Gradient Generator", description: "Create CSS gradients.", category: "design", icon: "🎨", free: true },
+  //{ slug: "image-dimension-checker", name: "Image Dimension Checker", description: "Read width & height of an image.", category: "image", icon: "📏", free: true },
   { slug: "favicon-generator", name: "Favicon Generator", description: "Resize image to 16×16 or 32×32 for web.", category: "image", icon: "🌐", free: true },
   
   // Security & Password Tools (19-22)
@@ -61,7 +61,7 @@ export const tools: Tool[] = [
   { slug: "remove-duplicate-lines", name: "Remove Duplicate Lines", description: "Clean up lists by removing identical entries.", category: "writing", icon: "🧹", free: true },
   { slug: "find-and-replace", name: "Find and Replace", description: "Swap specific words across large text blocks.", category: "writing", icon: "🔍", free: true },
   { slug: "text-diff-checker", name: "Text Diff Checker", description: "Compare two text blocks and highlight differences.", category: "writing", icon: "🔀", free: true },
-  { slug: "list-alphabetizer", name: "List Alphabetizer", description: "Sort any list from A-Z or Z-A.", category: "writing", icon: "🔤", free: true },
+  //{ slug: "list-alphabetizer", name: "List Alphabetizer", description: "Sort any list from A-Z or Z-A.", category: "writing", icon: "🔤", free: true },
   { slug: "bionic-reading-converter", name: "Bionic Reading Converter", description: "Bold first letters of words for fast reading.", category: "writing", icon: "👁️", free: true },
   { slug: "whitespace-remover", name: "White Space Remover", description: "Strip leading, trailing, or double spaces.", category: "writing", icon: "🧽", free: true },
   
@@ -84,8 +84,8 @@ export const tools: Tool[] = [
   { slug: "css-glassmorphism-generator", name: "CSS Glassmorphism Generator", description: "Generate frosted glass effect code.", category: "design", icon: "🪟", free: true },
   { slug: "svg-path-visualizer", name: "SVG Path Visualizer", description: "Paste SVG path and see shape rendered.", category: "design", icon: "🖌️", free: true },
   { slug: "aspect-ratio-calculator", name: "Aspect Ratio Calculator", description: "Calculate dimensions based on aspect ratio.", category: "design", icon: "📐", free: true },
-  { slug: "px-to-rem-converter", name: "PX to REM Converter", description: "Convert pixels to accessible rem units.", category: "design", icon: "📏", free: true },
-  { slug: "css-flexbox-grid-playground", name: "CSS Flexbox/Grid Playground", description: "Visual tool for flexbox and grid properties.", category: "design", icon: "🎯", free: true },
+  //{ slug: "px-to-rem-converter", name: "PX to REM Converter", description: "Convert pixels to accessible rem units.", category: "design", icon: "📏", free: true },
+  //{ slug: "css-flexbox-grid-playground", name: "CSS Flexbox/Grid Playground", description: "Visual tool for flexbox and grid properties.", category: "design", icon: "🎯", free: true },
   { slug: "contrast-checker", name: "Contrast Checker", description: "Check WCAG accessibility standards.", category: "design", icon: "♿", free: true },
   
   // Math & Data Converters (New)
@@ -99,7 +99,7 @@ export const tools: Tool[] = [
   
   // File & Image Micro-tools (New)
   { slug: "image-to-grayscale", name: "Image to Grayscale", description: "Apply grayscale filter to images.", category: "image", icon: "⚫", free: true },
-  { slug: "exif-data-remover", name: "EXIF Data Remover", description: "Strip metadata from images before sharing.", category: "image", icon: "🔒", free: true },
+  //{ slug: "exif-data-remover", name: "EXIF Data Remover", description: "Strip metadata from images before sharing.", category: "image", icon: "🔒", free: true },
   { slug: "barcode-generator", name: "Barcode Generator", description: "Generate standard UPC or EAN barcodes.", category: "creator", icon: "📊", free: true },
   { slug: "svg-to-data-uri", name: "SVG to Data URI", description: "Convert SVG code to CSS data URI string.", category: "developer", icon: "🔗", free: true },
   { slug: "pdf-page-counter", name: "PDF Page Counter", description: "Read local PDF file and return page count.", category: "creator", icon: "📄", free: true },
@@ -116,7 +116,7 @@ export const tools: Tool[] = [
   { slug: "zalgo-text-generator", name: "Zalgo Text Generator", description: "Add glitch decorations to text.", category: "writing", icon: "👾", free: true },
   { slug: "nato-phonetic-converter", name: "NATO Phonetic Alphabet Converter", description: "Convert text to NATO phonetic alphabet.", category: "writing", icon: "📻", free: true },
   { slug: "random-name-picker", name: "Random Name Picker", description: "Randomly select winner from a list.", category: "writing", icon: "🎰", free: true },
-  { slug: "sentence-shuffler", name: "Sentence Shuffler", description: "Randomize order of sentences in paragraph.", category: "writing", icon: "🔀", free: true },
+  //{ slug: "sentence-shuffler", name: "Sentence Shuffler", description: "Randomize order of sentences in paragraph.", category: "writing", icon: "🔀", free: true },
   
   // Developer & System Tools (New)
   { slug: "user-agent-parser", name: "User Agent Parser", description: "Display current browser and OS info.", category: "developer", icon: "🌐", free: true },
@@ -131,16 +131,16 @@ export const tools: Tool[] = [
   { slug: "docker-run-to-compose", name: "Docker Run to Compose", description: "Convert docker run command into YAML file.", category: "developer", icon: "🐳", free: true },
   
   // Design & Visuals (New)
-  { slug: "css-triangle-generator", name: "CSS Triangle Generator", description: "Create CSS-only triangles using borders.", category: "design", icon: "🔺", free: true },
-  { slug: "placeholder-image-generator", name: "Placeholder Image Generator", description: "Create SVG with custom dimensions and text.", category: "design", icon: "🖼️", free: true },
+  //{ slug: "css-triangle-generator", name: "CSS Triangle Generator", description: "Create CSS-only triangles using borders.", category: "design", icon: "🔺", free: true },
+  //{ slug: "placeholder-image-generator", name: "Placeholder Image Generator", description: "Create SVG with custom dimensions and text.", category: "design", icon: "🖼️", free: true },
   { slug: "golden-ratio-calculator", name: "Golden Ratio Calculator", description: "Split number into 1.618 golden ratio parts.", category: "design", icon: "✨", free: true },
   { slug: "css-filter-tester", name: "CSS Filter Tester", description: "Sliders for grayscale, sepia, invert, blur.", category: "design", icon: "🎨", free: true },
   { slug: "hsl-color-slider", name: "HSL Color Slider", description: "Visual way to understand Hue, Saturation, Lightness.", category: "design", icon: "🌈", free: true },
   { slug: "neumorphism-generator", name: "Box Shadow Neumorphism Generator", description: "Create soft 3D UI effect.", category: "design", icon: "💎", free: true },
-  { slug: "font-pairer", name: "Font Pairer", description: "Test two Google Fonts side-by-side.", category: "design", icon: "🔤", free: true },
+  //{ slug: "font-pairer", name: "Font Pairer", description: "Test two Google Fonts side-by-side.", category: "design", icon: "🔤", free: true },
   { slug: "css-animation-previewer", name: "CSS Animation Previewer", description: "Test ease-in, ease-out, cubic-bezier curves.", category: "design", icon: "🎬", free: true },
-  { slug: "svg-pattern-generator", name: "SVG Pattern Generator", description: "Create repeating background patterns.", category: "design", icon: "🔲", free: true },
-  { slug: "tailwind-class-builder", name: "Tailwind Class Builder", description: "Toggle styles and see Tailwind classes.", category: "design", icon: "💨", free: true },
+  //{ slug: "svg-pattern-generator", name: "SVG Pattern Generator", description: "Create repeating background patterns.", category: "design", icon: "🔲", free: true },
+  //{ slug: "tailwind-class-builder", name: "Tailwind Class Builder", description: "Toggle styles and see Tailwind classes.", category: "design", icon: "💨", free: true },
   
   // Math, Finance & Logic (New)
   { slug: "percentage-increase-decrease", name: "Percentage Increase/Decrease", description: "Calculate % change between two numbers.", category: "math", icon: "📈", free: true },
@@ -156,9 +156,9 @@ export const tools: Tool[] = [
   // Privacy & Security (New)
   { slug: "password-strength-meter", name: "Password Strength Meter", description: "Score password based on entropy and length.", category: "security", icon: "🔐", free: true },
   { slug: "text-encryptor-aes", name: "Text Encryptor (AES)", description: "Encrypt text with password using Web Crypto API.", category: "security", icon: "🔒", free: true },
-  { slug: "credit-card-validator", name: "Credit Card Validator", description: "Use Luhn Algorithm to check CC number validity.", category: "security", icon: "💳", free: true },
+  //{ slug: "credit-card-validator", name: "Credit Card Validator", description: "Use Luhn Algorithm to check CC number validity.", category: "security", icon: "💳", free: true },
   { slug: "email-obfuscator", name: "Email Obfuscator", description: "Convert emails to character codes.", category: "security", icon: "📧", free: true },
-  { slug: "secret-note-generator", name: "Secret Note Generator", description: "Generate link with URL fragments for notes.", category: "security", icon: "🔐", free: true },
+  //{ slug: "secret-note-generator", name: "Secret Note Generator", description: "Generate link with URL fragments for notes.", category: "security", icon: "🔐", free: true },
   { slug: "leetspeak-converter", name: "Leetspeak (1337) Converter", description: "Turn text into 1337 speak.", category: "writing", icon: "🤖", free: true },
   { slug: "file-hash-generator", name: "Simple File Hash", description: "Get SHA-256 fingerprint without uploading.", category: "security", icon: "🔑", free: true },
   { slug: "mock-data-generator", name: "Mock Data Generator", description: "Generate fake names, emails, dates for testing.", category: "developer", icon: "🎭", free: true },
@@ -189,7 +189,7 @@ export const tools: Tool[] = [
   { slug: "morse-code-audio-player", name: "Morse Code Audio Player", description: "Play text as Morse code beeps.", category: "creator", icon: "🔊", free: true },
   
   // Privacy & Cryptography (New)
-  { slug: "url-sanitizer", name: "URL Sanitizer", description: "Strip tracking parameters from links.", category: "security", icon: "🧹", free: true },
+  //{ slug: "url-sanitizer", name: "URL Sanitizer", description: "Strip tracking parameters from links.", category: "security", icon: "🧹", free: true },
   { slug: "random-id-generator", name: "Strong Random ID Generator", description: "Generate UUIDs or CUIDs for testing.", category: "developer", icon: "🆔", free: true },
   { slug: "xss-payload-tester", name: "XSS Payload Tester", description: "Safe environment to see escaped HTML.", category: "security", icon: "🛡️", free: true },
   { slug: "bcrypt-hash-verifier", name: "Bcrypt Hash Verifier", description: "Check if text matches Bcrypt hash.", category: "security", icon: "🔐", free: true },
@@ -207,7 +207,7 @@ export const tools: Tool[] = [
   { slug: "pixel-art-grid", name: "Pixel Art Grid", description: "16x16 or 32x32 grid to color cells.", category: "creator", icon: "🎮", free: true },
   { slug: "gradient-text-generator", name: "Gradient Text Generator", description: "Generate background-clip: text CSS code.", category: "design", icon: "🌈", free: true },
   { slug: "soundboard-maker", name: "Soundboard Maker", description: "Upload MP3s and map to keys.", category: "creator", icon: "🎹", free: true },
-  { slug: "css-button-library", name: "CSS Button Library", description: "Gallery of copy-paste button styles.", category: "design", icon: "🔘", free: true },
+  //{ slug: "css-button-library", name: "CSS Button Library", description: "Gallery of copy-paste button styles.", category: "design", icon: "🔘", free: true },
   { slug: "screen-recorder", name: "Screen Recorder", description: "Record screen and download .webm.", category: "creator", icon: "🎥", free: true },
   { slug: "emoji-search-copy", name: "Emoji Search & Copy", description: "Fast-filter UI to find emoji by name.", category: "creator", icon: "😀", free: true },
   { slug: "background-noise-mixer", name: "Background Noise Mixer", description: "Toggle Rain, Cafe, White Noise sounds.", category: "productivity", icon: "🎧", free: true },
@@ -216,7 +216,7 @@ export const tools: Tool[] = [
   { slug: "html-table-generator", name: "HTML Table Generator", description: "Enter rows/cols to get table code.", category: "developer", icon: "📊", free: true },
   { slug: "list-prefix-suffix", name: "List Item Prefix/Suffix", description: "Add character to every line of list.", category: "writing", icon: "📝", free: true },
   { slug: "social-media-post-preview", name: "Social Media Post Preview", description: "See text as Tweet or LinkedIn Post.", category: "creator", icon: "📱", free: true },
-  { slug: "character-map-browser", name: "Character Map Browser", description: "Display all Unicode characters.", category: "writing", icon: "🔤", free: true },
+  //{ slug: "character-map-browser", name: "Character Map Browser", description: "Display all Unicode characters.", category: "writing", icon: "🔤", free: true },
   { slug: "barcode-scanner-camera", name: "Barcode Scanner (Camera)", description: "Use camera to decode barcodes.", category: "creator", icon: "📷", free: true },
   { slug: "unit-ratio-calculator", name: "Unit Ratio Calculator", description: "Simplify fractions like 100:50 to 2:1.", category: "math", icon: "➗", free: true },
   { slug: "color-palette-extractor", name: "Color Palette Extractor", description: "Upload image to get 5 dominant colors.", category: "design", icon: "🎨", free: true },
@@ -251,9 +251,9 @@ export const tools: Tool[] = [
   // Data & Analytics (Local) (New)
   { slug: "csv-to-html-table", name: "CSV-to-HTML Table", description: "Turn spreadsheet into styled table.", category: "developer", icon: "📊", free: true },
   { slug: "data-anonymizer", name: "Data Anonymizer", description: "Replace names/emails with [REDACTED].", category: "security", icon: "🔒", free: true },
-  { slug: "stop-word-remover", name: "Stop-Word Remover", description: "Remove common words for SEO analysis.", category: "writing", icon: "🚫", free: true },
+  //{ slug: "stop-word-remover", name: "Stop-Word Remover", description: "Remove common words for SEO analysis.", category: "writing", icon: "🚫", free: true },
   { slug: "unique-string-generator", name: "Unique String Generator", description: "Create non-repeating alphanumeric strings.", category: "developer", icon: "🆔", free: true },
-  { slug: "text-sorter-by-length", name: "Text Sorter (By Length)", description: "Sort lines from shortest to longest.", category: "writing", icon: "📊", free: true },
+  //{ slug: "text-sorter-by-length", name: "Text Sorter (By Length)", description: "Sort lines from shortest to longest.", category: "writing", icon: "📊", free: true },
   { slug: "unicode-escape-converter", name: "Unicode Escape Converter", description: "Convert text to \\u escape sequences.", category: "developer", icon: "🔤", free: true },
   { slug: "number-to-words", name: "Number-to-Words", description: "Convert 1,250 to written form.", category: "math", icon: "🔢", free: true },
   { slug: "frequency-distribution", name: "Frequency Distribution", description: "Calculate number occurrences in dataset.", category: "math", icon: "📊", free: true },
@@ -276,9 +276,9 @@ export const tools: Tool[] = [
   { slug: "morse-code-flasher", name: "Morse Code Flasher", description: "Flash Morse code using screen.", category: "creator", icon: "💡", free: true },
   { slug: "base64-to-image", name: "Base64-to-Image", description: "Paste data string to see image.", category: "developer", icon: "🖼️", free: true },
   { slug: "yaml-to-toml-converter", name: "YAML-to-TOML Converter", description: "Translate between config formats.", category: "developer", icon: "🔄", free: true },
-  { slug: "list-inverter", name: "List Inverter", description: "Flip order of items in list.", category: "writing", icon: "🔄", free: true },
+  //{ slug: "list-inverter", name: "List Inverter", description: "Flip order of items in list.", category: "writing", icon: "🔄", free: true },
   { slug: "email-signature-builder", name: "Email Signature Builder", description: "Get copy-pasteable HTML signature.", category: "creator", icon: "✉️", free: true },
-  { slug: "css-clip-path-maker", name: "CSS Clip-Path Maker", description: "Drag-and-drop polygon shape creator.", category: "design", icon: "✂️", free: true },
+  //{ slug: "css-clip-path-maker", name: "CSS Clip-Path Maker", description: "Drag-and-drop polygon shape creator.", category: "design", icon: "✂️", free: true },
   { slug: "markdown-to-pdf-print", name: "Markdown-to-PDF (Print)", description: "Use window.print() to save files.", category: "creator", icon: "📝", free: true },
   { slug: "time-difference-seconds", name: "Time Difference (Seconds)", description: "Find gap between two timestamps.", category: "math", icon: "⏱️", free: true },
   { slug: "broken-link-finder", name: "Broken Link Finder (Local)", description: "Extract all <a> tags for review.", category: "developer", icon: "🔗", free: true },
@@ -310,13 +310,13 @@ export const tools: Tool[] = [
   
   // Creative & Visual Assets (New)
   { slug: "css-mesh-gradient-generator", name: "CSS Mesh Gradient Generator", description: "Create trendy multi-color backgrounds.", category: "design", icon: "🌈", free: true },
-  { slug: "dithering-image-filter", name: "Dithering Image Filter", description: "Turn images into retro pixelated B&W.", category: "image", icon: "⬛", free: true },
+  //{ slug: "dithering-image-filter", name: "Dithering Image Filter", description: "Turn images into retro pixelated B&W.", category: "image", icon: "⬛", free: true },
   { slug: "custom-scrollbar-styler", name: "Custom Scrollbar Styler", description: "Design webkit-scrollbar styles visually.", category: "design", icon: "📜", free: true },
-  { slug: "svg-wave-generator", name: "SVG Wave Generator", description: "Create organic waves for section dividers.", category: "design", icon: "🌊", free: true },
+  //{ slug: "svg-wave-generator", name: "SVG Wave Generator", description: "Create organic waves for section dividers.", category: "design", icon: "🌊", free: true },
   { slug: "css-keyframe-animator", name: "CSS Keyframe Animator", description: "Timeline UI to build @keyframes.", category: "design", icon: "🎬", free: true },
-  { slug: "duotone-image-filter", name: "Duotone Image Filter", description: "Apply two-color gradient map to photos.", category: "image", icon: "🎨", free: true },
+  //{ slug: "duotone-image-filter", name: "Duotone Image Filter", description: "Apply two-color gradient map to photos.", category: "image", icon: "🎨", free: true },
   { slug: "pattern-noise-generator", name: "Pattern Noise Generator", description: "Create grain/noise texture for UI depth.", category: "design", icon: "📺", free: true },
-  { slug: "icon-font-previewer", name: "Icon Font Previewer", description: "Upload font file to see all icons.", category: "design", icon: "🔤", free: true },
+  //{ slug: "icon-font-previewer", name: "Icon Font Previewer", description: "Upload font file to see all icons.", category: "design", icon: "🔤", free: true },
   { slug: "css-counter-styler", name: "CSS Counter Styler", description: "Design custom list markers.", category: "design", icon: "🔢", free: true },
   { slug: "text-to-image-canvas", name: "Text-to-Image (Canvas)", description: "Type quote and download as PNG.", category: "creator", icon: "🖼️", free: true },
   
@@ -340,7 +340,7 @@ export const tools: Tool[] = [
   { slug: "barcode-generator-code128", name: "Barcode Generator (Code 128)", description: "Generate standard industrial barcodes.", category: "creator", icon: "📊", free: true },
   { slug: "markdown-table-to-json", name: "Markdown Table-to-JSON", description: "Parse Markdown tables into data arrays.", category: "developer", icon: "📋", free: true },
   { slug: "window-resize-event-logger", name: "Window Resize Event Logger", description: "Show history of resize event debouncing.", category: "developer", icon: "📏", free: true },
-  { slug: "css-object-fit-tester", name: "CSS Object-Fit Tester", description: "Show cover vs contain on images.", category: "design", icon: "🖼️", free: true },
+  //{ slug: "css-object-fit-tester", name: "CSS Object-Fit Tester", description: "Show cover vs contain on images.", category: "design", icon: "🖼️", free: true },
   { slug: "lorem-pixel-generator", name: "Lorem Pixel Generator", description: "Generate placeholder image service URLs.", category: "design", icon: "🖼️", free: true },
   { slug: "user-story-mad-libs", name: "User-Story Mad Libs", description: "Build As a [role], I want to [action].", category: "productivity", icon: "📝", free: true },
   
@@ -369,18 +369,18 @@ export const tools: Tool[] = [
   { slug: "number-to-currency-converter", name: "Number-to-Currency Converter", description: "Format numbers into locale currency strings.", category: "math", icon: "💵", free: true },
   
   // Creative & UI/UX Design (New)
-  { slug: "css-grid-visualizer", name: "CSS Grid Visualizer", description: "Draw grid layout and copy grid-template-areas.", category: "design", icon: "🔲", free: true },
+  //{ slug: "css-grid-visualizer", name: "CSS Grid Visualizer", description: "Draw grid layout and copy grid-template-areas.", category: "design", icon: "🔲", free: true },
   { slug: "color-palette-from-image", name: "Color Palette Generator (from Image)", description: "Analyze dominant pixels for 5-color harmony.", category: "design", icon: "🎨", free: true },
   { slug: "font-stack-generator", name: "Font-Stack Generator", description: "Suggest safe fallback fonts for every OS.", category: "design", icon: "🔤", free: true },
   { slug: "css-animation-timeline", name: "CSS Animation Timeline", description: "Visual keyframe slider for custom animations.", category: "design", icon: "🎬", free: true },
-  { slug: "box-shadow-layering", name: "Box Shadow Layering", description: "Add multiple box-shadow values for depth.", category: "design", icon: "📦", free: true },
-  { slug: "svg-path-simplifier", name: "SVG Path Simplifier", description: "Reduce coordinate points in SVG path.", category: "design", icon: "✂️", free: true },
-  { slug: "cursor-style-previewer", name: "Cursor Style Previewer", description: "Test every CSS cursor type in real area.", category: "design", icon: "🖌️", free: true },
+  //{ slug: "box-shadow-layering", name: "Box Shadow Layering", description: "Add multiple box-shadow values for depth.", category: "design", icon: "📦", free: true },
+  //{ slug: "svg-path-simplifier", name: "SVG Path Simplifier", description: "Reduce coordinate points in SVG path.", category: "design", icon: "✂️", free: true },
+  //{ slug: "cursor-style-previewer", name: "Cursor Style Previewer", description: "Test every CSS cursor type in real area.", category: "design", icon: "🖌️", free: true },
   { slug: "css-cursor-style-previewer", name: "CSS Cursor Style Previewer", description: "Test and preview all CSS cursor types with interactive examples.", category: "design", icon: "👆", free: true },
   { slug: "css-clamp-generator", name: "CSS Clamp Generator", description: "Generate responsive CSS clamp() values for fluid typography.", category: "design", icon: "📏", free: true },
-  { slug: "placeholder-svg-icon-creator", name: "Placeholder SVG Icon Creator", description: "Generate standard shapes with custom colors.", category: "design", icon: "🔸", free: true },
+  //{ slug: "placeholder-svg-icon-creator", name: "Placeholder SVG Icon Creator", description: "Generate standard shapes with custom colors.", category: "design", icon: "🔸", free: true },
   { slug: "glassmorphism-layer-tester", name: "Glassmorphism Layer Tester", description: "Control backdrop-filter blur intensities.", category: "design", icon: "🪟", free: true },
-  { slug: "css-clip-path-polygon-builder", name: "CSS Clip-Path Builder (Polygon)", description: "Drag points to create complex image masks.", category: "design", icon: "✂️", free: true },
+  //{ slug: "css-clip-path-polygon-builder", name: "CSS Clip-Path Builder (Polygon)", description: "Drag points to create complex image masks.", category: "design", icon: "✂️", free: true },
   
   // Privacy & Security (Hardened) (New)
   { slug: "entropy-password-generator", name: "Entropy Password Generator", description: "Use crypto.getRandomValues() for passwords.", category: "security", icon: "🔐", free: true },
@@ -398,7 +398,7 @@ export const tools: Tool[] = [
   { slug: "world-clock-multi-zone", name: "World Clock (Multi-Zone)", description: "Compare up to 5 time zones in one view.", category: "productivity", icon: "🌍", free: true },
   { slug: "keyboard-mapping-tool", name: "Keyboard Mapping Tool", description: "Remap keys visually for custom shortcuts.", category: "productivity", icon: "⌨️", free: true },
   { slug: "stopwatch-split-lap-recorder", name: "Stopwatch (Split Lap Recorder)", description: "Log lap times and calculate averages.", category: "productivity", icon: "⏱️", free: true },
-  { slug: "color-blindness-simulator-advanced", name: "Color Blindness Simulator", description: "Simulate protanopia, deuteranopia, tritanopia.", category: "design", icon: "👁️", free: true },
+  //{ slug: "color-blindness-simulator-advanced", name: "Color Blindness Simulator", description: "Simulate protanopia, deuteranopia, tritanopia.", category: "design", icon: "👁️", free: true },
   { slug: "morse-code-audio-generator", name: "Morse Code Audio Generator", description: "Convert text to high-frequency audio tones.", category: "creator", icon: "🔊", free: true },
   { slug: "unit-converter-scientific", name: "Unit Converter (Scientific)", description: "Handle scientific units like Joules to Calories.", category: "math", icon: "🔬", free: true },
   { slug: "typing-rhythm-analyzer", name: "Typing Rhythm Analyzer", description: "Log time between key presses for typing flow.", category: "productivity", icon: "⌨️", free: true },
@@ -518,10 +518,10 @@ export const tools: Tool[] = [
   { slug: "text-to-morse-visual-flash", name: "Text-to-Morse Code (Visual Flash)", description: "Uses full-screen flashes for Morse code.", category: "creator", icon: "💡", free: true },
   { slug: "password-pattern-generator", name: "Password Pattern Generator", description: "Creates passwords based on shape patterns (e.g., z-shape).", category: "security", icon: "🔐", free: true },
   { slug: "url-slug-checker", name: "URL Slug Checker", description: "Checks if a string is SEO-friendly (no spaces, all lowercase).", category: "developer", icon: "✅", free: true },
-  { slug: "image-format-converter", name: "Image Format Converter", description: "Uses Canvas to re-encode JPG to PNG or vice-versa.", category: "image", icon: "🔄", free: true },
+  //{ slug: "image-format-converter", name: "Image Format Converter", description: "Uses Canvas to re-encode JPG to PNG or vice-versa.", category: "image", icon: "🔄", free: true },
   { slug: "wordle-solver", name: "Wordle-style Solver", description: "Suggests words based on green/yellow letter constraints.", category: "creator", icon: "🎮", free: true },
-  { slug: "character-counter-reading-time", name: "Character Counter (with reading time)", description: "Estimates time in minutes for a reader.", category: "writing", icon: "⏱️", free: true },
-  { slug: "bionic-reading-interactive", name: "Bionic Reading Tool (Interactive)", description: "Allows users to paste text and toggle bolding weight.", category: "writing", icon: "👁️", free: true },
+  //{ slug: "character-counter-reading-time", name: "Character Counter (with reading time)", description: "Estimates time in minutes for a reader.", category: "writing", icon: "⏱️", free: true },
+  //{ slug: "bionic-reading-interactive", name: "Bionic Reading Tool (Interactive)", description: "Allows users to paste text and toggle bolding weight.", category: "writing", icon: "👁️", free: true },
   { slug: "css-selector-path-finder", name: "CSS Selector Path Finder", description: "Click an element in a mock preview to get its CSS path.", category: "developer", icon: "🎯", free: true },
   { slug: "svg-to-base64-encoder", name: "SVG-to-Base64 Encoder", description: "Specifically for embedding SVGs in CSS url().", category: "developer", icon: "🔐", free: true },
   { slug: "local-time-zone-clock", name: "Local Time Zone Clock", description: "Shows clock synchronization across cities with DST support.", category: "productivity", icon: "🕐", free: true },
@@ -532,10 +532,10 @@ export const tools: Tool[] = [
   { slug: "url-sanitizer-tracking", name: "URL Sanitizer", description: "Removes tracking pixels and UTM codes.", category: "security", icon: "🧹", free: true },
   { slug: "broken-link-scanner-text", name: "Broken Link Scanner (Local Text)", description: "Extracts and checks URL patterns.", category: "developer", icon: "🔗", free: true },
   { slug: "csv-column-editor", name: "CSV Column Editor", description: "Allows hiding specific columns before exporting.", category: "developer", icon: "📋", free: true },
-  { slug: "table-of-contents-generator", name: "Table of Contents (ToC) Generator", description: "Takes Markdown headers and creates a nested list.", category: "writing", icon: "📑", free: true },
-  { slug: "text-to-slugifier", name: "Text-to-Slugifier", description: "Handles non-English character transliteration.", category: "writing", icon: "🔗", free: true },
+  //{ slug: "table-of-contents-generator", name: "Table of Contents (ToC) Generator", description: "Takes Markdown headers and creates a nested list.", category: "writing", icon: "📑", free: true },
+  //{ slug: "text-to-slugifier", name: "Text-to-Slugifier", description: "Handles non-English character transliteration.", category: "writing", icon: "🔗", free: true },
   { slug: "hex-to-rgba-converter", name: "Hex-to-RGBA Converter", description: "Adds an alpha channel slider.", category: "design", icon: "🎨", free: true },
-  { slug: "css-box-shadow-layered", name: "CSS Box-Shadow Generator (Layered)", description: "Allows stacking multiple shadows.", category: "design", icon: "📦", free: true },
+  //{ slug: "css-box-shadow-layered", name: "CSS Box-Shadow Generator (Layered)", description: "Allows stacking multiple shadows.", category: "design", icon: "📦", free: true },
   { slug: "data-uri-downloader", name: "Data URI Downloader", description: "Forces a browser download of any base64 data.", category: "developer", icon: "💾", free: true },
   
   // Advanced Developer Productivity (New)
