@@ -65,6 +65,7 @@ import { customScrollbarStylerConfig } from "@/tools/custom-scrollbar-styler/con
 import { cssKeyframeAnimatorConfig } from "@/tools/css-keyframe-animator/config";
 import { toolConfig as patternNoiseGeneratorConfig } from "@/tools/pattern-noise-generator/config";
 import { toolConfig as glassmorphismLayerTesterConfig } from "@/tools/glassmorphism-layer-tester/config";
+import { toolConfig as ipAddressMaskerConfig } from "@/tools/ip-address-masker/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -134,6 +135,7 @@ export const TOOLS_REGISTRY = {
   'css-keyframe-animator': cssKeyframeAnimatorConfig,
   'pattern-noise-generator': patternNoiseGeneratorConfig,
   'glassmorphism-layer-tester': glassmorphismLayerTesterConfig,
+  'ip-address-masker': ipAddressMaskerConfig,
 };
 
 export function getToolBySlug(slug: string) {

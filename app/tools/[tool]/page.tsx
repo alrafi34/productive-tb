@@ -149,6 +149,8 @@ import { toolConfig as steganographyToolConfig } from "@/tools/steganography-too
 import SteganographyToolUI from "@/tools/steganography-tool/ui";
 import { sriGeneratorConfig } from "@/tools/sri-generator/config";
 import SRIGeneratorUI from "@/tools/sri-generator/ui";
+import { toolConfig as ipAddressMaskerConfig } from "@/tools/ip-address-masker/config";
+import IPAddressMaskerUI from "@/tools/ip-address-masker/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -224,6 +226,7 @@ const TOOLS = [
   { config: bcryptHashVerifierConfig, Component: BcryptHashVerifierUI },
   { config: steganographyToolConfig, Component: SteganographyToolUI },
   { config: sriGeneratorConfig, Component: SRIGeneratorUI },
+  { config: ipAddressMaskerConfig, Component: IPAddressMaskerUI },
 ];
 
 export async function generateMetadata(
