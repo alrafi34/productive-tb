@@ -66,6 +66,27 @@ import { cssKeyframeAnimatorConfig } from "@/tools/css-keyframe-animator/config"
 import { toolConfig as patternNoiseGeneratorConfig } from "@/tools/pattern-noise-generator/config";
 import { toolConfig as glassmorphismLayerTesterConfig } from "@/tools/glassmorphism-layer-tester/config";
 import { toolConfig as ipAddressMaskerConfig } from "@/tools/ip-address-masker/config";
+import { toolConfig as checksumCalculatorConfig } from "@/tools/checksum-calculator/config";
+import { toolConfig as discountCalculatorConfig } from "@/tools/discount-calculator/config";
+import { toolConfig as percentageCalculatorConfig } from "@/tools/percentage-calculator/config";
+import { toolConfig as ageCalculatorConfig } from "@/tools/age-calculator/config";
+import { toolConfig as bmiCalculatorConfig } from "@/tools/bmi-calculator/config";
+import { toolConfig as unixTimestampConverterConfig } from "@/tools/timestamp-unix-converter/config";
+import { toolConfig as loanEmiCalculatorConfig } from "@/tools/loan-emi-calculator/config";
+import { toolConfig as randomNumberGeneratorConfig } from "@/tools/random-number-generator/config";
+import { toolConfig as currencyFormatPreviewerConfig } from "@/tools/currency-format-previewer/config";
+import { toolConfig as timerStopwatchConfig } from "@/tools/timer-stopwatch/config";
+import { toolConfig as percentageIncreaseDecreaseConfig } from "@/tools/percentage-increase-decrease-calculator/config";
+
+
+
+
+
+
+
+
+
+
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -136,7 +157,23 @@ export const TOOLS_REGISTRY = {
   'pattern-noise-generator': patternNoiseGeneratorConfig,
   'glassmorphism-layer-tester': glassmorphismLayerTesterConfig,
   'ip-address-masker': ipAddressMaskerConfig,
+  'checksum-calculator': checksumCalculatorConfig,
+  'discount-calculator': discountCalculatorConfig,
+  'percentage-calculator': percentageCalculatorConfig,
+  'age-calculator': ageCalculatorConfig,
+  'bmi-calculator': bmiCalculatorConfig,
+  'timestamp-unix-converter': unixTimestampConverterConfig,
+  'loan-emi-calculator': loanEmiCalculatorConfig,
+  'random-number-generator': randomNumberGeneratorConfig,
+  'currency-format-previewer': currencyFormatPreviewerConfig,
+  'timer-stopwatch': timerStopwatchConfig,
+  'percentage-increase-decrease': percentageIncreaseDecreaseConfig,
 };
+
+
+
+
+
 
 export function getToolBySlug(slug: string) {
   return TOOLS_REGISTRY[slug as keyof typeof TOOLS_REGISTRY];

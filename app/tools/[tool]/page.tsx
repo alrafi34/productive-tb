@@ -151,6 +151,28 @@ import { sriGeneratorConfig } from "@/tools/sri-generator/config";
 import SRIGeneratorUI from "@/tools/sri-generator/ui";
 import { toolConfig as ipAddressMaskerConfig } from "@/tools/ip-address-masker/config";
 import IPAddressMaskerUI from "@/tools/ip-address-masker/ui";
+import { toolConfig as checksumCalculatorConfig } from "@/tools/checksum-calculator/config";
+import ChecksumCalculatorUI from "@/tools/checksum-calculator/ui";
+import { toolConfig as discountCalculatorConfig } from "@/tools/discount-calculator/config";
+import DiscountCalculatorUI from "@/tools/discount-calculator/ui";
+import { toolConfig as percentageCalculatorConfig } from "@/tools/percentage-calculator/config";
+import PercentageCalculatorUI from "@/tools/percentage-calculator/ui";
+import { toolConfig as ageCalculatorConfig } from "@/tools/age-calculator/config";
+import AgeCalculatorUI from "@/tools/age-calculator/ui";
+import { toolConfig as bmiCalculatorConfig } from "@/tools/bmi-calculator/config";
+import BmiCalculatorUI from "@/tools/bmi-calculator/ui";
+import { toolConfig as unixTimestampConverterConfig } from "@/tools/timestamp-unix-converter/config";
+import UnixTimestampConverterUI from "@/tools/timestamp-unix-converter/ui";
+import { toolConfig as loanEmiCalculatorConfig } from "@/tools/loan-emi-calculator/config";
+import LoanEmiCalculatorUI from "@/tools/loan-emi-calculator/ui";
+import { toolConfig as randomNumberGeneratorConfig } from "@/tools/random-number-generator/config";
+import RandomNumberGeneratorUI from "@/tools/random-number-generator/ui";
+import { toolConfig as currencyFormatPreviewerConfig } from "@/tools/currency-format-previewer/config";
+import CurrencyFormatPreviewerUI from "@/tools/currency-format-previewer/ui";
+import { toolConfig as timerStopwatchConfig } from "@/tools/timer-stopwatch/config";
+import TimerStopwatchUI from "@/tools/timer-stopwatch/ui";
+import { toolConfig as percentageIncreaseDecreaseConfig } from "@/tools/percentage-increase-decrease-calculator/config";
+import PercentageIncreaseDecreaseUI from "@/tools/percentage-increase-decrease-calculator/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -227,7 +249,23 @@ const TOOLS = [
   { config: steganographyToolConfig, Component: SteganographyToolUI },
   { config: sriGeneratorConfig, Component: SRIGeneratorUI },
   { config: ipAddressMaskerConfig, Component: IPAddressMaskerUI },
+  { config: checksumCalculatorConfig, Component: ChecksumCalculatorUI },
+  { config: discountCalculatorConfig, Component: DiscountCalculatorUI },
+  { config: percentageCalculatorConfig, Component: PercentageCalculatorUI },
+  { config: ageCalculatorConfig, Component: AgeCalculatorUI },
+  { config: bmiCalculatorConfig, Component: BmiCalculatorUI },
+  { config: unixTimestampConverterConfig, Component: UnixTimestampConverterUI },
+  { config: loanEmiCalculatorConfig, Component: LoanEmiCalculatorUI },
+  { config: randomNumberGeneratorConfig, Component: RandomNumberGeneratorUI },
+  { config: currencyFormatPreviewerConfig, Component: CurrencyFormatPreviewerUI },
+  { config: timerStopwatchConfig, Component: TimerStopwatchUI },
+  { config: percentageIncreaseDecreaseConfig, Component: PercentageIncreaseDecreaseUI },
 ];
+
+
+
+
+
 
 export async function generateMetadata(
   { params }: { params: Promise<{ tool: string }> }
