@@ -133,6 +133,22 @@ import { customScrollbarStylerConfig } from "@/tools/custom-scrollbar-styler/con
 import CustomScrollbarStylerUI from "@/tools/custom-scrollbar-styler/ui";
 import { cssKeyframeAnimatorConfig } from "@/tools/css-keyframe-animator/config";
 import CSSKeyframeAnimatorUI from "@/tools/css-keyframe-animator/ui";
+import { toolConfig as patternNoiseGeneratorConfig } from "@/tools/pattern-noise-generator/config";
+import PatternNoiseGeneratorUI from "@/tools/pattern-noise-generator/ui";
+import { toolConfig as glassmorphismLayerTesterConfig } from "@/tools/glassmorphism-layer-tester/config";
+import GlassmorphismLayerTesterUI from "@/tools/glassmorphism-layer-tester/ui";
+import { toolConfig as aesEncryptorConfig } from "@/tools/aes-encryptor/config";
+import AESEncryptorUI from "@/tools/aes-encryptor/ui";
+import { toolConfig as emailObfuscatorConfig } from "@/tools/email-obfuscator/config";
+import EmailObfuscatorUI from "@/tools/email-obfuscator/ui";
+import { toolConfig as fileHashGeneratorConfig } from "@/tools/file-hash-generator/config";
+import FileHashGeneratorUI from "@/tools/file-hash-generator/ui";
+import { toolConfig as bcryptHashVerifierConfig } from "@/tools/bcrypt-hash-verifier/config";
+import BcryptHashVerifierUI from "@/tools/bcrypt-hash-verifier/ui";
+import { toolConfig as steganographyToolConfig } from "@/tools/steganography-tool/config";
+import SteganographyToolUI from "@/tools/steganography-tool/ui";
+import { sriGeneratorConfig } from "@/tools/sri-generator/config";
+import SRIGeneratorUI from "@/tools/sri-generator/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -200,6 +216,14 @@ const TOOLS = [
   { config: colorPaletteExtractorConfig, Component: ColorPaletteExtractorUI },
   { config: customScrollbarStylerConfig, Component: CustomScrollbarStylerUI },
   { config: cssKeyframeAnimatorConfig, Component: CSSKeyframeAnimatorUI },
+  { config: patternNoiseGeneratorConfig, Component: PatternNoiseGeneratorUI },
+  { config: glassmorphismLayerTesterConfig, Component: GlassmorphismLayerTesterUI },
+  { config: aesEncryptorConfig, Component: AESEncryptorUI },
+  { config: emailObfuscatorConfig, Component: EmailObfuscatorUI },
+  { config: fileHashGeneratorConfig, Component: FileHashGeneratorUI },
+  { config: bcryptHashVerifierConfig, Component: BcryptHashVerifierUI },
+  { config: steganographyToolConfig, Component: SteganographyToolUI },
+  { config: sriGeneratorConfig, Component: SRIGeneratorUI },
 ];
 
 export async function generateMetadata(

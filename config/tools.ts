@@ -155,8 +155,7 @@ export const tools: Tool[] = [
   
   // Privacy & Security (New)
   { slug: "password-strength-meter", name: "Password Strength Meter", description: "Score password based on entropy and length.", category: "security", icon: "🔐", free: true },
-  { slug: "text-encryptor-aes", name: "Text Encryptor (AES)", description: "Encrypt text with password using Web Crypto API.", category: "security", icon: "🔒", free: true },
-  //{ slug: "credit-card-validator", name: "Credit Card Validator", description: "Use Luhn Algorithm to check CC number validity.", category: "security", icon: "💳", free: true },
+  { slug: "text-encryptor-aes", name: "AES Text Encryptor", description: "Secure client-side text encryption and decryption using AES-GCM with Web Crypto API.", category: "security", icon: "🔐", free: true },
   { slug: "email-obfuscator", name: "Email Obfuscator", description: "Convert emails to character codes.", category: "security", icon: "📧", free: true },
   //{ slug: "secret-note-generator", name: "Secret Note Generator", description: "Generate link with URL fragments for notes.", category: "security", icon: "🔐", free: true },
   { slug: "leetspeak-converter", name: "Leetspeak (1337) Converter", description: "Turn text into 1337 speak.", category: "writing", icon: "🤖", free: true },

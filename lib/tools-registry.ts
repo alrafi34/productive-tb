@@ -63,6 +63,8 @@ import { cssBlobGeneratorConfig } from "@/tools/css-blob-generator/config";
 import { colorPaletteExtractorConfig } from "@/tools/color-palette-extractor/config";
 import { customScrollbarStylerConfig } from "@/tools/custom-scrollbar-styler/config";
 import { cssKeyframeAnimatorConfig } from "@/tools/css-keyframe-animator/config";
+import { toolConfig as patternNoiseGeneratorConfig } from "@/tools/pattern-noise-generator/config";
+import { toolConfig as glassmorphismLayerTesterConfig } from "@/tools/glassmorphism-layer-tester/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -130,6 +132,8 @@ export const TOOLS_REGISTRY = {
   'color-palette-extractor': colorPaletteExtractorConfig,
   'custom-scrollbar-styler': customScrollbarStylerConfig,
   'css-keyframe-animator': cssKeyframeAnimatorConfig,
+  'pattern-noise-generator': patternNoiseGeneratorConfig,
+  'glassmorphism-layer-tester': glassmorphismLayerTesterConfig,
 };
 
 export function getToolBySlug(slug: string) {
