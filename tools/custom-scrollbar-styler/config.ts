@@ -1,0 +1,63 @@
+export const customScrollbarStylerConfig = {
+  slug: "custom-scrollbar-styler",
+  name: "Custom Scrollbar Styler",
+  description: "Design custom CSS scrollbars visually with live preview",
+  category: "design",
+  icon: "📜",
+  free: true,
+  backend: false,
+  seo: {
+    title: "Custom Scrollbar Styler – Design CSS Scrollbars Visually | Productive Toolbox",
+    description: "Design custom CSS scrollbars visually with live preview. Generate WebKit and Firefox scrollbar styles instantly with presets and effects. Free online tool.",
+    keywords: [
+      "custom scrollbar css",
+      "scrollbar generator",
+      "webkit scrollbar",
+      "css scrollbar styler",
+      "custom scrollbar design",
+      "scrollbar css generator",
+      "firefox scrollbar",
+      "scrollbar color picker",
+      "scrollbar width",
+      "custom scrollbar maker",
+      "scrollbar design tool",
+      "webkit scrollbar generator",
+      "css scrollbar customizer",
+      "scrollbar style generator",
+      "custom scrollbar online"
+    ],
+    openGraph: {
+      title: "Custom Scrollbar Styler – Design CSS Scrollbars Visually",
+      description: "Design custom scrollbars with live preview. Generate WebKit and Firefox CSS instantly with presets and effects.",
+      type: "website",
+      url: "/custom-scrollbar-styler"
+    }
+  },
+  features: [
+    "Visual scrollbar design controls",
+    "Live scrollable preview",
+    "Adjustable scrollbar width (4px - 30px)",
+    "Track background color picker",
+    "Track border radius control",
+    "Thumb color customization",
+    "Thumb hover color",
+    "Thumb border radius",
+    "Thumb border width",
+    "Shadow effects",
+    "Gradient backgrounds",
+    "Glassmorphism effects",
+    "6 preset styles (Minimal, Rounded, Neon, Glassmorphism, Gradient, macOS)",
+    "Light and dark mode preview",
+    "WebKit CSS generation",
+    "Firefox CSS generation",
+    "CSS variables export",
+    "Minimal CSS export",
+    "One-click copy to clipboard",
+    "Download CSS file",
+    "Real-time preview updates",
+    "Cross-browser compatibility",
+    "Hover state preview",
+    "100% client-side processing",
+    "No backend required"
+  ]
+};

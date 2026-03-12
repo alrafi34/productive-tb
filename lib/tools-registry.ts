@@ -57,6 +57,12 @@ import { textEncryptDecryptConfig } from "@/tools/text-encrypt-decrypt/config";
 import { usernameGeneratorConfig } from "@/tools/username-generator/config";
 import { hashGeneratorConfig } from "@/tools/hash-generator/config";
 import { passwordStrengthMeterConfig } from "@/tools/password-strength-meter/config";
+import { aspectRatioCalculatorConfig } from "@/tools/aspect-ratio-calculator/config";
+import { goldenRatioCalculatorConfig } from "@/tools/golden-ratio-calculator/config";
+import { cssBlobGeneratorConfig } from "@/tools/css-blob-generator/config";
+import { colorPaletteExtractorConfig } from "@/tools/color-palette-extractor/config";
+import { customScrollbarStylerConfig } from "@/tools/custom-scrollbar-styler/config";
+import { cssKeyframeAnimatorConfig } from "@/tools/css-keyframe-animator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -118,6 +124,12 @@ export const TOOLS_REGISTRY = {
   'username-generator': usernameGeneratorConfig,
   'hash-generator': hashGeneratorConfig,
   'password-strength-meter': passwordStrengthMeterConfig,
+  'aspect-ratio-calculator': aspectRatioCalculatorConfig,
+  'golden-ratio-calculator': goldenRatioCalculatorConfig,
+  'css-border-radius-blob': cssBlobGeneratorConfig,
+  'color-palette-extractor': colorPaletteExtractorConfig,
+  'custom-scrollbar-styler': customScrollbarStylerConfig,
+  'css-keyframe-animator': cssKeyframeAnimatorConfig,
 };
 
 export function getToolBySlug(slug: string) {

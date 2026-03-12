@@ -121,6 +121,18 @@ import { hashGeneratorConfig } from "@/tools/hash-generator/config";
 import HashGeneratorUI from "@/tools/hash-generator/ui";
 import { passwordStrengthMeterConfig } from "@/tools/password-strength-meter/config";
 import PasswordStrengthMeterUI from "@/tools/password-strength-meter/ui";
+import { aspectRatioCalculatorConfig } from "@/tools/aspect-ratio-calculator/config";
+import AspectRatioCalculatorUI from "@/tools/aspect-ratio-calculator/ui";
+import { goldenRatioCalculatorConfig } from "@/tools/golden-ratio-calculator/config";
+import GoldenRatioCalculatorUI from "@/tools/golden-ratio-calculator/ui";
+import { cssBlobGeneratorConfig } from "@/tools/css-blob-generator/config";
+import CSSBlobGeneratorUI from "@/tools/css-blob-generator/ui";
+import { colorPaletteExtractorConfig } from "@/tools/color-palette-extractor/config";
+import ColorPaletteExtractorUI from "@/tools/color-palette-extractor/ui";
+import { customScrollbarStylerConfig } from "@/tools/custom-scrollbar-styler/config";
+import CustomScrollbarStylerUI from "@/tools/custom-scrollbar-styler/ui";
+import { cssKeyframeAnimatorConfig } from "@/tools/css-keyframe-animator/config";
+import CSSKeyframeAnimatorUI from "@/tools/css-keyframe-animator/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -182,6 +194,12 @@ const TOOLS = [
   { config: usernameGeneratorConfig, Component: UsernameGeneratorUI },
   { config: hashGeneratorConfig, Component: HashGeneratorUI },
   { config: passwordStrengthMeterConfig, Component: PasswordStrengthMeterUI },
+  { config: aspectRatioCalculatorConfig, Component: AspectRatioCalculatorUI },
+  { config: goldenRatioCalculatorConfig, Component: GoldenRatioCalculatorUI },
+  { config: cssBlobGeneratorConfig, Component: CSSBlobGeneratorUI },
+  { config: colorPaletteExtractorConfig, Component: ColorPaletteExtractorUI },
+  { config: customScrollbarStylerConfig, Component: CustomScrollbarStylerUI },
+  { config: cssKeyframeAnimatorConfig, Component: CSSKeyframeAnimatorUI },
 ];
 
 export async function generateMetadata(

@@ -1,0 +1,63 @@
+export const colorPaletteExtractorConfig = {
+  slug: "color-palette-extractor",
+  name: "Color Palette Extractor",
+  description: "Upload an image and extract dominant colors instantly",
+  category: "design",
+  icon: "🎨",
+  free: true,
+  backend: false,
+  seo: {
+    title: "Color Palette Extractor – Get Dominant Colors from Images | Productive Toolbox",
+    description: "Upload an image and instantly extract the top 5 dominant colors. Generate palettes, gradients, CSS variables, and accessibility checks. Free online tool.",
+    keywords: [
+      "color palette extractor",
+      "extract colors from image",
+      "dominant color picker",
+      "image color palette",
+      "color picker from image",
+      "palette generator from image",
+      "extract hex from image",
+      "image to color palette",
+      "color extractor tool",
+      "dominant colors",
+      "color quantization",
+      "image color analyzer",
+      "css color extractor",
+      "palette from photo",
+      "color scheme generator"
+    ],
+    openGraph: {
+      title: "Color Palette Extractor – Get Dominant Colors from Images",
+      description: "Upload an image and instantly extract dominant colors with HEX, RGB, HSL formats. Generate gradients and check accessibility.",
+      type: "website",
+      url: "/color-palette-extractor"
+    }
+  },
+  features: [
+    "Extract 5 dominant colors from any image",
+    "Multiple upload methods (file, drag & drop, paste)",
+    "Instant color extraction using median cut algorithm",
+    "HEX, RGB, and HSL color formats",
+    "Color percentage distribution",
+    "Light palette variation",
+    "Dark palette variation",
+    "Saturated palette variation",
+    "Muted palette variation",
+    "Automatic gradient generator",
+    "CSS gradient export",
+    "WCAG AA/AAA accessibility check",
+    "Contrast ratio calculator",
+    "Live UI preview (buttons, cards, headers)",
+    "Export as CSS variables",
+    "Export as SCSS variables",
+    "Export as JSON",
+    "Export as Tailwind config",
+    "Download palette as PNG image",
+    "Copy individual color values",
+    "Supports PNG, JPEG, WEBP, GIF",
+    "Client-side processing (no upload)",
+    "Fast performance with image optimization",
+    "100% browser-based",
+    "Privacy-focused (no server upload)"
+  ]
+};
