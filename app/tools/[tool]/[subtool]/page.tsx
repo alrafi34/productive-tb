@@ -211,6 +211,16 @@ import { toolConfig as sqlFormatterConfig } from "@/tools/sql-formatter/config";
 import SQLFormatterUI from "@/tools/sql-formatter/ui";
 import { toolConfig as jwtDebuggerConfig } from "@/tools/jwt-debugger/config";
 import JWTDebuggerUI from "@/tools/jwt-debugger/ui";
+import { binaryHexDecimalConverterConfig } from "@/tools/binary-hex-decimal-converter/config";
+import BinaryHexDecimalConverterUI from "@/tools/binary-hex-decimal-converter/ui";
+import { tipCalculatorConfig } from "@/tools/tip-calculator/config";
+import TipCalculatorUI from "@/tools/tip-calculator/ui";
+import { standardDeviationCalculatorConfig } from "@/tools/standard-deviation-calculator/config";
+import StandardDeviationCalculatorUI from "@/tools/standard-deviation-calculator/ui";
+import { toolConfig as romanNumeralConverterConfig } from "@/tools/roman-numeral-converter/config";
+import RomanNumeralConverterUI from "@/tools/roman-numeral-converter/ui";
+import { toolConfig as fuelCostCalculatorConfig } from "@/tools/fuel-cost-calculator/config";
+import FuelCostCalculatorUI from "@/tools/fuel-cost-calculator/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -315,6 +325,11 @@ const TOOLS = [
   { config: pieChartMakerConfig, Component: PieChartMakerUI },
   { config: sqlFormatterConfig, Component: SQLFormatterUI },
   { config: jwtDebuggerConfig, Component: JWTDebuggerUI },
+  { config: binaryHexDecimalConverterConfig, Component: BinaryHexDecimalConverterUI },
+  { config: tipCalculatorConfig, Component: TipCalculatorUI },
+  { config: standardDeviationCalculatorConfig, Component: StandardDeviationCalculatorUI },
+  { config: romanNumeralConverterConfig, Component: RomanNumeralConverterUI },
+  { config: fuelCostCalculatorConfig, Component: FuelCostCalculatorUI },
 ];
 
 /* generateStaticParams intentionally removed — see dynamic export above */

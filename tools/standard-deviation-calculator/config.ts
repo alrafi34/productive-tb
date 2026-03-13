@@ -1,0 +1,63 @@
+export const standardDeviationCalculatorConfig = {
+  slug: "standard-deviation-calculator",
+  name: "Standard Deviation Calculator",
+  description: "Calculate mean, variance, standard deviation, and other statistics instantly from a list of numbers",
+  category: "calculator",
+  icon: "📊",
+  free: true,
+  backend: false,
+  seo: {
+    title: "Standard Deviation Calculator Online – Mean, Variance & Statistics | Productive Toolbox",
+    description: "Free online Standard Deviation Calculator. Enter a list of numbers to instantly calculate mean, variance, standard deviation, and other statistics directly in your browser.",
+    keywords: [
+      "standard deviation calculator",
+      "variance calculator",
+      "mean calculator",
+      "statistics calculator",
+      "statistical analysis",
+      "data analysis tool",
+      "standard deviation formula",
+      "population standard deviation",
+      "sample standard deviation",
+      "statistical calculator",
+      "online calculator",
+      "free calculator",
+      "math calculator",
+      "data statistics",
+      "statistical measures"
+    ],
+    openGraph: {
+      title: "Standard Deviation Calculator Online – Mean, Variance & Statistics",
+      description: "Calculate mean, variance, standard deviation, and other statistics instantly from a list of numbers. 100% client-side processing.",
+      type: "website",
+      url: "/standard-deviation-calculator"
+    }
+  },
+  features: [
+    "Calculate standard deviation instantly",
+    "Support for population and sample standard deviation",
+    "Calculate mean (average)",
+    "Calculate variance",
+    "Find minimum and maximum values",
+    "Calculate range",
+    "Find median value",
+    "Count total numbers",
+    "Calculate sum of all numbers",
+    "CSV file upload support",
+    "Smart number parsing (comma, space, newline, tab)",
+    "Real-time statistics as you type",
+    "Copy results to clipboard",
+    "Export results as CSV",
+    "Export results as JSON",
+    "Download dataset with results",
+    "Generate random test dataset",
+    "Data visualization with histogram",
+    "LocalStorage history of datasets",
+    "Mobile-responsive design",
+    "Input validation and error handling",
+    "Tooltips for statistical terms",
+    "Smooth animations",
+    "100% client-side processing",
+    "No backend or API required"
+  ]
+};

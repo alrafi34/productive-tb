@@ -35,6 +35,29 @@ export default function CategoryToolsGrid({ category }: Props) {
     setCurrentPage(1);
   };
 
+  // Show limited page numbers on tablet (max 5 pages)
+  const getVisiblePages = () => {
+    if (totalPages <= 5) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+    
+    const pages = [];
+    const start = Math.max(1, currentPage - 2);
+    const end = Math.min(totalPages, currentPage + 2);
+    
+    if (start > 1) pages.push(1);
+    if (start > 2) pages.push("...");
+    
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    
+    if (end < totalPages - 1) pages.push("...");
+    if (end < totalPages) pages.push(totalPages);
+    
+    return pages;
+  };
+
   return (
     <>
       {/* Search bar */}
@@ -75,35 +98,48 @@ export default function CategoryToolsGrid({ category }: Props) {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-10">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-2 mt-10 px-4 flex-wrap">
+              {/* Previous Button */}
               <button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full sm:w-auto px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 ← Previous
               </button>
 
-              <div className="flex items-center gap-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
-                      currentPage === page
-                        ? "bg-primary text-white"
-                        : "border border-gray-200 text-gray-700 hover:bg-gray-50"
-                    }`}
-                  >
-                    {page}
-                  </button>
+              {/* Page Numbers - Hidden on mobile, visible on tablet+ */}
+              <div className="hidden sm:flex items-center gap-1 flex-wrap justify-center">
+                {getVisiblePages().map((page, idx) => (
+                  <div key={idx}>
+                    {page === "..." ? (
+                      <span className="px-2 py-2 text-gray-400">...</span>
+                    ) : (
+                      <button
+                        onClick={() => setCurrentPage(page as number)}
+                        className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
+                          currentPage === page
+                            ? "bg-primary text-white"
+                            : "border border-gray-200 text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    )}
+                  </div>
                 ))}
               </div>
 
+              {/* Page Indicator - Visible on mobile only */}
+              <div className="sm:hidden text-sm font-medium text-gray-600 px-3 py-2 bg-gray-50 rounded-lg">
+                Page <span className="font-bold text-gray-900">{currentPage}</span> of <span className="font-bold text-gray-900">{totalPages}</span>
+              </div>
+
+              {/* Next Button */}
               <button
                 onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full sm:w-auto px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Next →
               </button>

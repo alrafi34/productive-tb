@@ -94,6 +94,8 @@ import { toolConfig as urlEncoderDecoderConfig } from "@/tools/url-encoder-decod
 import { toolConfig as pieChartMakerConfig } from "@/tools/pie-chart-maker/config";
 import { toolConfig as sqlFormatterConfig } from "@/tools/sql-formatter/config";
 import { toolConfig as jwtDebuggerConfig } from "@/tools/jwt-debugger/config";
+import { binaryHexDecimalConverterConfig } from "@/tools/binary-hex-decimal-converter/config";
+import { toolConfig as fuelCostCalculatorConfig } from "@/tools/fuel-cost-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -137,6 +139,7 @@ export const TOOLS_REGISTRY = {
   'css-glassmorphism-generator': cssGlassmorphismGeneratorConfig,
   'svg-path-visualizer': svgPathVisualizerConfig,
   'contrast-checker': contrastCheckerConfig,
+  'fuel-cost-calculator': fuelCostCalculatorConfig,
   'neumorphism-generator': neumorphismGeneratorConfig,
   'hsl-color-slider': hslColorSliderConfig,
   'css-filter-tester': cssFilterTesterConfig,
@@ -192,6 +195,7 @@ export const TOOLS_REGISTRY = {
   'pie-chart-maker': pieChartMakerConfig,
   'sql-formatter': sqlFormatterConfig,
   'jwt-debugger': jwtDebuggerConfig,
+  'binary-hex-decimal-converter': binaryHexDecimalConverterConfig,
 };
 
 
