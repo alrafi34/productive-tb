@@ -96,6 +96,14 @@ import { toolConfig as sqlFormatterConfig } from "@/tools/sql-formatter/config";
 import { toolConfig as jwtDebuggerConfig } from "@/tools/jwt-debugger/config";
 import { binaryHexDecimalConverterConfig } from "@/tools/binary-hex-decimal-converter/config";
 import { toolConfig as fuelCostCalculatorConfig } from "@/tools/fuel-cost-calculator/config";
+import { toolConfig as unitRatioCalculatorConfig } from "@/tools/unit-ratio-calculator/config";
+import { toolConfig as dateDifferenceCalculatorConfig } from "@/tools/date-difference-calculator/config";
+import { toolConfig as timeDurationCalculatorConfig } from "@/tools/time-duration-calculator/config";
+import { toolConfig as temperatureConversionScientificConfig } from "@/tools/temperature-conversion-scientific/config";
+import { toolConfig as ohmsLawCalculatorConfig } from "@/tools/ohms-law-calculator/config";
+import { toolConfig as cmToMeterConverterConfig } from "@/tools/centimeter-to-meter-converter/config";
+import { toolConfig as meterToKmConverterConfig } from "@/tools/meter-to-km-converter/config";
+import { averageCalculatorConfig } from "@/tools/average-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -196,6 +204,14 @@ export const TOOLS_REGISTRY = {
   'sql-formatter': sqlFormatterConfig,
   'jwt-debugger': jwtDebuggerConfig,
   'binary-hex-decimal-converter': binaryHexDecimalConverterConfig,
+  'unit-ratio-calculator': unitRatioCalculatorConfig,
+  'date-difference-calculator': dateDifferenceCalculatorConfig,
+  'time-duration-calculator': timeDurationCalculatorConfig,
+  'temperature-conversion-scientific': temperatureConversionScientificConfig,
+  'ohms-law-calculator': ohmsLawCalculatorConfig,
+  'centimeter-to-meter-converter': cmToMeterConverterConfig,
+  'meter-to-km-converter': meterToKmConverterConfig,
+  'average-calculator': averageCalculatorConfig,
 };
 
 

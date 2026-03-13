@@ -149,6 +149,8 @@ export const tools: Tool[] = [
   //{ slug: "standard-deviation-calculator", name: "Standard Deviation Calculator", description: "Calculate spread of list of numbers.", category: "calculator", icon: "📊", free: true },
   //{ slug: "roman-numeral-converter", name: "Roman Numeral Converter", description: "Switch between numbers and Roman numerals.", category: "calculator", icon: "🏛️", free: true },
   { slug: "fuel-cost-calculator", name: "Fuel Cost Calculator", description: "Calculate trip cost based on distance and MPG.", category: "calculator", icon: "⛽", free: true },
+  { slug: "ohms-law-calculator", name: "Ohm's Law Calculator", description: "Calculate Voltage, Current, or Resistance instantly using Ohm's Law.", category: "calculator", icon: "⚡", free: true },
+
   //{ slug: "dice-roller", name: "Probability/Dice Roller", description: "Simulate rolling N number of dice.", category: "calculator", icon: "🎲", free: true },
   
   // Privacy & Security (New)
@@ -215,7 +217,8 @@ export const tools: Tool[] = [
   //{ slug: "social-media-post-preview", name: "Social Media Post Preview", description: "See text as Tweet or LinkedIn Post.", category: "creator", icon: "📱", free: true },
   //{ slug: "character-map-browser", name: "Character Map Browser", description: "Display all Unicode characters.", category: "writing", icon: "🔤", free: true },
   //{ slug: "barcode-scanner-camera", name: "Barcode Scanner (Camera)", description: "Use camera to decode barcodes.", category: "creator", icon: "📷", free: true },
-  { slug: "unit-ratio-calculator", name: "Unit Ratio Calculator", description: "Simplify fractions like 100:50 to 2:1.", category: "calculator", icon: "➗", free: true },
+  { slug: "unit-ratio-calculator", name: "Unit Ratio Calculator", description: "Simplify ratios like 100:50 to 2:1 instantly.", category: "calculator", icon: "⚖️", free: true },
+  { slug: "date-difference-calculator", name: "Date Difference Calculator", description: "Calculate years, months, days between two dates.", category: "calculator", icon: "📅", free: true },
   { slug: "color-palette-extractor", name: "Color Palette Extractor", description: "Upload image to get 5 dominant colors.", category: "design", icon: "🎨", free: true },
   //{ slug: "binary-visualizer", name: "Binary Visualizer", description: "See 0s and 1s represented by lights.", category: "developer", icon: "💡", free: true },
   //{ slug: "csv-column-picker", name: "CSV Column Picker", description: "Upload CSV and select columns to keep.", category: "developer", icon: "📋", free: true },
@@ -490,7 +493,6 @@ export const tools: Tool[] = [
   //{ slug: "pressure-converter", name: "Pressure Converter", description: "Pascal, Bar, PSI, Torr.", category: "calculator", icon: "💨", free: true },
   //{ slug: "torque-calculator", name: "Torque Calculator", description: "Calculates leverage/force interactions.", category: "calculator", icon: "🔧", free: true },
   //{ slug: "centripetal-force-tool", name: "Centripetal Force Tool", description: "Computes force based on mass/velocity/radius.", category: "calculator", icon: "🌀", free: true },
-  { slug: "ohms-law-calculator", name: "Ohm's Law Calculator", description: "V = IR calculator.", category: "calculator", icon: "⚡", free: true },
   //{ slug: "resistor-color-code-reader", name: "Resistor Color Code Reader", description: "Translates color bands to resistance value.", category: "calculator", icon: "🎨", free: true },
   //{ slug: "frequency-wavelength-tool", name: "Frequency/Wavelength Tool", description: "Relates sound/light speed to frequency.", category: "calculator", icon: "📡", free: true },
   //{ slug: "doppler-effect-simulator", name: "Doppler Effect Simulator", description: "Visualizes frequency shifts.", category: "calculator", icon: "🚗", free: true },
@@ -615,14 +617,14 @@ export const tools: Tool[] = [
   //{ slug: "global-utility-hub", name: "The Global Utility Hub", description: "A search-index tool that categorizes all 700+ tools into a single navigation map.", category: "productivity", icon: "🗺️", free: true },
 
   // New Calculators (80) to reach 200 total in category
-  { slug: "date-difference-calculator", name: "Date Difference Calculator", description: "Calculate years, months, days between two dates.", category: "calculator", icon: "📅", free: true },
   { slug: "time-duration-calculator", name: "Time Duration Calculator", description: "Find hours and minutes between two times.", category: "calculator", icon: "⏳", free: true },
+  { slug: "centimeter-to-meter-converter", name: "Centimeter to Meter Converter", description: "Convert centimeters to meters instantly.", category: "calculator", icon: "📏", free: true },
+
   //{ slug: "bill-split-calculator", name: "Bill Split Calculator", description: "Easily divide restaurant bills among friends.", category: "calculator", icon: "💵", free: true },
   //{ slug: "mileage-calculator", name: "Mileage Calculator", description: "Calculate fuel efficiency / MPG.", category: "calculator", icon: "🚗", free: true },
   //{ slug: "unit-price-calculator", name: "Unit Price Calculator", description: "Compare which item size is a better deal.", category: "calculator", icon: "⚖️", free: true },
   //{ slug: "countdown-timer-tool", name: "Countdown Timer", description: "Simple visual countdown with alarm.", category: "calculator", icon: "⏰", free: true },
-  { slug: "average-calculator", name: "Average Calculator", description: "Find the mean of a list of numbers.", category: "calculator", icon: "📊", free: true },
-  { slug: "cm-to-meter-converter", name: "Centimeter to Meter Converter", description: "Convert CM to M instantly.", category: "calculator", icon: "📏", free: true },
+  { slug: "average-calculator", name: "Average Calculator", description: "Calculate the arithmetic mean of numbers instantly.", category: "calculator", icon: "🔢", free: true },
   { slug: "meter-to-km-converter", name: "Meter to Kilometer Converter", description: "Convert M to KM instantly.", category: "calculator", icon: "🛣️", free: true },
   { slug: "inch-to-cm-converter", name: "Inch to Centimeter Converter", description: "Convert Inches to CM.", category: "calculator", icon: "📏", free: true },
   { slug: "feet-to-meter-converter", name: "Feet to Meter Converter", description: "Convert Feet to Meters.", category: "calculator", icon: "📏", free: true },

@@ -221,6 +221,22 @@ import { toolConfig as romanNumeralConverterConfig } from "@/tools/roman-numeral
 import RomanNumeralConverterUI from "@/tools/roman-numeral-converter/ui";
 import { toolConfig as fuelCostCalculatorConfig } from "@/tools/fuel-cost-calculator/config";
 import FuelCostCalculatorUI from "@/tools/fuel-cost-calculator/ui";
+import { toolConfig as unitRatioCalculatorConfig } from "@/tools/unit-ratio-calculator/config";
+import UnitRatioCalculatorUI from "@/tools/unit-ratio-calculator/ui";
+import { toolConfig as dateDifferenceCalculatorConfig } from "@/tools/date-difference-calculator/config";
+import DateDifferenceCalculatorUI from "@/tools/date-difference-calculator/ui";
+import { toolConfig as timeDurationCalculatorConfig } from "@/tools/time-duration-calculator/config";
+import TimeDurationCalculatorUI from "@/tools/time-duration-calculator/ui";
+import { toolConfig as temperatureConversionScientificConfig } from "@/tools/temperature-conversion-scientific/config";
+import TemperatureConversionUI from "@/tools/temperature-conversion-scientific/ui";
+import { toolConfig as ohmsLawCalculatorConfig } from "@/tools/ohms-law-calculator/config";
+import OhmsLawCalculatorUI from "@/tools/ohms-law-calculator/ui";
+import { toolConfig as cmToMeterConverterConfig } from "@/tools/centimeter-to-meter-converter/config";
+import CmToMeterUI from "@/tools/centimeter-to-meter-converter/ui";
+import { toolConfig as meterToKmConverterConfig } from "@/tools/meter-to-km-converter/config";
+import MeterToKmUI from "@/tools/meter-to-km-converter/ui";
+import { averageCalculatorConfig } from "@/tools/average-calculator/config";
+import AverageCalculatorUI from "@/tools/average-calculator/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -330,6 +346,14 @@ const TOOLS = [
   { config: standardDeviationCalculatorConfig, Component: StandardDeviationCalculatorUI },
   { config: romanNumeralConverterConfig, Component: RomanNumeralConverterUI },
   { config: fuelCostCalculatorConfig, Component: FuelCostCalculatorUI },
+  { config: unitRatioCalculatorConfig, Component: UnitRatioCalculatorUI },
+  { config: dateDifferenceCalculatorConfig, Component: DateDifferenceCalculatorUI },
+  { config: timeDurationCalculatorConfig, Component: TimeDurationCalculatorUI },
+  { config: temperatureConversionScientificConfig, Component: TemperatureConversionUI },
+  { config: ohmsLawCalculatorConfig, Component: OhmsLawCalculatorUI },
+  { config: cmToMeterConverterConfig, Component: CmToMeterUI },
+  { config: meterToKmConverterConfig, Component: MeterToKmUI },
+  { config: averageCalculatorConfig, Component: AverageCalculatorUI },
 ];
 
 /* generateStaticParams intentionally removed — see dynamic export above */
