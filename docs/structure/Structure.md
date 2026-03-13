@@ -49,7 +49,7 @@ productive-tb/
 │   │                                      #   - Category[] array (10 categories)
 │   └── site.ts                            # Site-wide config (name, url)
 │
-├── tools/                                 # ★ One folder per implemented tool (~609 tool configs)
+├── tools/                                 # ★ One folder per implemented tool (704 tool configs)
 │   ├── word-counter/
 │   │   ├── config.ts                      # Tool metadata + SEO (slug, name, description, seo{}, features[])
 │   │   ├── logic.ts                       # Pure TypeScript functions (no side effects)
@@ -58,7 +58,7 @@ productive-tb/
 │   │
 │   ├── sentence-case-converter/
 │   ├── discount-calculator/
-│   └── ... (600+ tool entries mapped)
+│   └── ... (704 tool entries mapped)
 │
 ├── lib/
 │   └── tools-registry.ts                  # Centralized tool registry (used by RelatedTools component)

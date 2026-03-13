@@ -49,7 +49,7 @@ productive-tb/
 │   ├── page.tsx                         # Homepage
 │   ├── globals.css                      # CSS variables & global styles
 │   └── tools/
-│       ├── page.tsx                     # /tools — 11-category index
+│       ├── page.tsx                     # /tools — 10-category index
 │       └── [tool]/
 │           ├── page.tsx                 # /tools/[category] — category page
 │           │                            # /tools/[slug] — redirects to /tools/[cat]/[slug]
@@ -67,7 +67,7 @@ productive-tb/
 │   ├── tools.ts                         # ★ Tool[] + Category[] definitions (10 categories)
 │   └── site.ts                          # Site name, URL
 │
-├── tools/                               # ★ ~609 tool folders (configurations mapped)
+├── tools/                               # ★ 700+ tool folders (configurations mapped)
 │   └── [tool-slug]/
 │       ├── config.ts                    # slug, name, desc, category, seo{}, features[]
 │       ├── logic.ts                     # Pure functions (no React, no DOM)
@@ -101,7 +101,7 @@ where `[tool]` = category slug and `[subtool]` = tool slug.
 
 ---
 
-## 📊 Available Categories (11)
+## 📊 Available Categories (10)
 
 | Slug | Name | Color Theme |
 |---|---|---|
@@ -226,7 +226,7 @@ Content:     400+ words total in seo-content.tsx
 
 ## 🏆 Current State
 
-### Tools Registered: ~609
+### Tools Registered: 704
 ### Categories: 10
 ### URL Pattern: `/tools/[category]/[tool-slug]`
 ### Stack: Next.js 15, TypeScript, Poppins + Inter fonts, Vanilla CSS + Tailwind
