@@ -72,10 +72,8 @@ export const tools: Tool[] = [
   { slug: "html-entity-encoder", name: "HTML Entity Encoder", description: "Convert symbols like < into &lt;.", category: "developer", icon: "🏷️", free: true },
   { slug: "js-console-mockup", name: "JavaScript Console Mockup", description: "Safe UI playground to test small JS snippets.", category: "developer", icon: "💻", free: true },
   { slug: "cron-expression-descriptor", name: "Cron Expression Descriptor", description: "Translate cron expressions into readable text.", category: "developer", icon: "⏰", free: true },
-  { slug: "jwt-debugger", name: "JWT Debugger", description: "Decode JWT header and payload locally.", category: "developer", icon: "🔓", free: true },
-  { slug: "regex-tester", name: "RegEx Tester", description: "Visual way to test Regular Expressions.", category: "developer", icon: "🔎", free: true },
+  { slug: "jwt-debugger", name: "JWT Debugger", description: "Decode and inspect JSON Web Tokens instantly.", category: "developer", icon: "🔐", free: true },
   { slug: "code-snippet-image-generator", name: "Code Snippet Image Generator", description: "Turn code into beautiful shareable screenshots.", category: "developer", icon: "📸", free: true },
-  { slug: "sql-formatter", name: "SQL Formatter", description: "Format messy SQL queries for readability.", category: "developer", icon: "🗄️", free: true },
   
   // Design & CSS Tools (New)
   { slug: "css-gradient-generator", name: "CSS Gradient Generator", description: "Visual slider to create linear-gradient code.", category: "design", icon: "🌈", free: true },

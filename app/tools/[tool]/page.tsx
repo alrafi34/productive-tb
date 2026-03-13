@@ -173,6 +173,40 @@ import { toolConfig as timerStopwatchConfig } from "@/tools/timer-stopwatch/conf
 import TimerStopwatchUI from "@/tools/timer-stopwatch/ui";
 import { toolConfig as percentageIncreaseDecreaseConfig } from "@/tools/percentage-increase-decrease-calculator/config";
 import PercentageIncreaseDecreaseUI from "@/tools/percentage-increase-decrease-calculator/ui";
+import { toolConfig as jsonValidatorConfig } from "@/tools/json-validator/config";
+import JSONValidatorUI from "@/tools/json-validator/ui";
+import { base64EncoderDecoderConfig } from "@/tools/base64-encoder-decoder/config";
+import Base64EncoderDecoderUI from "@/tools/base64-encoder-decoder/ui";
+import { regexTesterConfig } from "@/tools/regex-tester/config";
+import RegexTesterUI from "@/tools/regex-tester/ui";
+import { matrixCalculatorConfig } from "@/tools/matrix-calculator/config";
+import MatrixCalculatorUI from "@/tools/matrix-calculator/ui";
+import { toolConfig as xmlToJsonConfig } from "@/tools/xml-to-json/config";
+import XMLToJsonUI from "@/tools/xml-to-json/ui";
+import { toolConfig as jsonToCsvConfig } from "@/tools/json-to-csv/config";
+import JSONToCsvUI from "@/tools/json-to-csv/ui";
+import { toolConfig as flowchartLogicMapperConfig } from "@/tools/flowchart-logic-mapper/config";
+import FlowchartLogicMapperUI from "@/tools/flowchart-logic-mapper/ui";
+import { toolConfig as vennDiagramMakerConfig } from "@/tools/venn-diagram-maker/config";
+import VennDiagramMakerUI from "@/tools/venn-diagram-maker/ui";
+import { toolConfig as heatmapGridConfig } from "@/tools/heatmap-grid/config";
+import HeatmapGridUI from "@/tools/heatmap-grid/ui";
+import { toolConfig as wordCloudGeneratorConfig } from "@/tools/word-cloud-generator/config";
+import WordCloudGeneratorUI from "@/tools/word-cloud-generator/ui";
+import { toolConfig as mindMapBuilderConfig } from "@/tools/mind-map-builder/config";
+import MindMapBuilderUI from "@/tools/mind-map-builder/ui";
+import { toolConfig as barGraphGeneratorConfig } from "@/tools/bar-graph-generator/config";
+import BarGraphGeneratorUI from "@/tools/bar-graph-generator/ui";
+import { toolConfig as pomodoroTimerConfig } from "@/tools/pomodoro-timer/config";
+import PomodoroTimerUI from "@/tools/pomodoro-timer/ui";
+import { toolConfig as urlEncoderDecoderConfig } from "@/tools/url-encoder-decoder/config";
+import URLEncoderDecoderUI from "@/tools/url-encoder-decoder/ui";
+import { toolConfig as pieChartMakerConfig } from "@/tools/pie-chart-maker/config";
+import PieChartMakerUI from "@/tools/pie-chart-maker/ui";
+import { toolConfig as sqlFormatterConfig } from "@/tools/sql-formatter/config";
+import SQLFormatterUI from "@/tools/sql-formatter/ui";
+import { toolConfig as jwtDebuggerConfig } from "@/tools/jwt-debugger/config";
+import JWTDebuggerUI from "@/tools/jwt-debugger/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -260,6 +294,23 @@ const TOOLS = [
   { config: currencyFormatPreviewerConfig, Component: CurrencyFormatPreviewerUI },
   { config: timerStopwatchConfig, Component: TimerStopwatchUI },
   { config: percentageIncreaseDecreaseConfig, Component: PercentageIncreaseDecreaseUI },
+  { config: jsonValidatorConfig, Component: JSONValidatorUI },
+  { config: base64EncoderDecoderConfig, Component: Base64EncoderDecoderUI },
+  { config: regexTesterConfig, Component: RegexTesterUI },
+  { config: matrixCalculatorConfig, Component: MatrixCalculatorUI },
+  { config: xmlToJsonConfig, Component: XMLToJsonUI },
+  { config: jsonToCsvConfig, Component: JSONToCsvUI },
+  { config: flowchartLogicMapperConfig, Component: FlowchartLogicMapperUI },
+  { config: vennDiagramMakerConfig, Component: VennDiagramMakerUI },
+  { config: heatmapGridConfig, Component: HeatmapGridUI },
+  { config: wordCloudGeneratorConfig, Component: WordCloudGeneratorUI },
+  { config: mindMapBuilderConfig, Component: MindMapBuilderUI },
+  { config: barGraphGeneratorConfig, Component: BarGraphGeneratorUI },
+  { config: pomodoroTimerConfig, Component: PomodoroTimerUI },
+  { config: urlEncoderDecoderConfig, Component: URLEncoderDecoderUI },
+  { config: pieChartMakerConfig, Component: PieChartMakerUI },
+  { config: sqlFormatterConfig, Component: SQLFormatterUI },
+  { config: jwtDebuggerConfig, Component: JWTDebuggerUI },
 ];
 
 

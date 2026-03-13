@@ -77,16 +77,23 @@ import { toolConfig as randomNumberGeneratorConfig } from "@/tools/random-number
 import { toolConfig as currencyFormatPreviewerConfig } from "@/tools/currency-format-previewer/config";
 import { toolConfig as timerStopwatchConfig } from "@/tools/timer-stopwatch/config";
 import { toolConfig as percentageIncreaseDecreaseConfig } from "@/tools/percentage-increase-decrease-calculator/config";
-
-
-
-
-
-
-
-
-
-
+import { toolConfig as jsonValidatorConfig } from "@/tools/json-validator/config";
+import { base64EncoderDecoderConfig } from "@/tools/base64-encoder-decoder/config";
+import { regexTesterConfig } from "@/tools/regex-tester/config";
+import { matrixCalculatorConfig } from "@/tools/matrix-calculator/config";
+import { toolConfig as xmlToJsonConfig } from "@/tools/xml-to-json/config";
+import { toolConfig as jsonToCsvConfig } from "@/tools/json-to-csv/config";
+import { toolConfig as flowchartLogicMapperConfig } from "@/tools/flowchart-logic-mapper/config";
+import { toolConfig as vennDiagramMakerConfig } from "@/tools/venn-diagram-maker/config";
+import { toolConfig as heatmapGridConfig } from "@/tools/heatmap-grid/config";
+import { toolConfig as wordCloudGeneratorConfig } from "@/tools/word-cloud-generator/config";
+import { toolConfig as mindMapBuilderConfig } from "@/tools/mind-map-builder/config";
+import { toolConfig as barGraphGeneratorConfig } from "@/tools/bar-graph-generator/config";
+import { toolConfig as pomodoroTimerConfig } from "@/tools/pomodoro-timer/config";
+import { toolConfig as urlEncoderDecoderConfig } from "@/tools/url-encoder-decoder/config";
+import { toolConfig as pieChartMakerConfig } from "@/tools/pie-chart-maker/config";
+import { toolConfig as sqlFormatterConfig } from "@/tools/sql-formatter/config";
+import { toolConfig as jwtDebuggerConfig } from "@/tools/jwt-debugger/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -168,6 +175,23 @@ export const TOOLS_REGISTRY = {
   'currency-format-previewer': currencyFormatPreviewerConfig,
   'timer-stopwatch': timerStopwatchConfig,
   'percentage-increase-decrease': percentageIncreaseDecreaseConfig,
+  'json-validator': jsonValidatorConfig,
+  'base64-encoder-decoder': base64EncoderDecoderConfig,
+  'regex-tester': regexTesterConfig,
+  'matrix-calculator': matrixCalculatorConfig,
+  'xml-to-json': xmlToJsonConfig,
+  'json-to-csv': jsonToCsvConfig,
+  'flowchart-logic-mapper': flowchartLogicMapperConfig,
+  'venn-diagram-maker': vennDiagramMakerConfig,
+  'heatmap-grid': heatmapGridConfig,
+  'word-cloud-generator': wordCloudGeneratorConfig,
+  'mind-map-builder': mindMapBuilderConfig,
+  'bar-graph-generator': barGraphGeneratorConfig,
+  'pomodoro-timer': pomodoroTimerConfig,
+  'url-encoder-decoder': urlEncoderDecoderConfig,
+  'pie-chart-maker': pieChartMakerConfig,
+  'sql-formatter': sqlFormatterConfig,
+  'jwt-debugger': jwtDebuggerConfig,
 };
 
 
@@ -177,4 +201,8 @@ export const TOOLS_REGISTRY = {
 
 export function getToolBySlug(slug: string) {
   return TOOLS_REGISTRY[slug as keyof typeof TOOLS_REGISTRY];
+}
+
+export function getAllTools() {
+  return Object.values(TOOLS_REGISTRY);
 }
