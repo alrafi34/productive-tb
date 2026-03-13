@@ -1,394 +1,157 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import ToolLayout from "@/components/ToolLayout";
+import { redirect, notFound } from "next/navigation";
+import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import CategoryToolsGrid from "@/components/CategoryToolsGrid";
+import { tools, categories } from "@/config/tools";
 import { siteConfig } from "@/config/site";
 
-import { toolConfig as wordCounterConfig } from "@/tools/word-counter/config";
-import WordCounterUI from "@/tools/word-counter/ui";
-import { toolConfig as sentenceCaseConfig } from "@/tools/sentence-case-converter/config";
-import SentenceCaseConverterUI from "@/tools/sentence-case-converter/ui";
-import { toolConfig as paragraphFormatterConfig } from "@/tools/paragraph-formatter/config";
-import ParagraphFormatterUI from "@/tools/paragraph-formatter/ui";
-import { toolConfig as keywordDensityConfig } from "@/tools/keyword-density-checker/config";
-import KeywordDensityCheckerUI from "@/tools/keyword-density-checker/ui";
-import { toolConfig as textReverserConfig } from "@/tools/text-reverser/config";
-import TextReverserUI from "@/tools/text-reverser/ui";
-import { toolConfig as wordFrequencyConfig } from "@/tools/word-frequency-counter/config";
-import WordFrequencyCounterUI from "@/tools/word-frequency-counter/ui";
-import { toolConfig as imageCompressorConfig } from "@/tools/image-compressor/config";
-import ImageCompressorUI from "@/tools/image-compressor/ui";
-import { toolConfig as imageResizerConfig } from "@/tools/image-resizer/config";
-import ImageResizerUI from "@/tools/image-resizer/ui";
-import { toolConfig as loremIpsumConfig } from "@/tools/lorem-ipsum-generator/config";
-import LoremIpsumGeneratorUI from "@/tools/lorem-ipsum-generator/ui";
-import { toolConfig as markdownPreviewerConfig } from "@/tools/markdown-previewer/config";
-import MarkdownPreviewerUI from "@/tools/markdown-previewer/ui";
-import { toolConfig as textToClipboardConfig } from "@/tools/text-to-clipboard/config";
-import TextToClipboardUI from "@/tools/text-to-clipboard/ui";
-import { removeDuplicateLinesConfig } from "@/tools/remove-duplicate-lines/config";
-import RemoveDuplicateLinesUI from "@/tools/remove-duplicate-lines/ui";
-import { findAndReplaceConfig } from "@/tools/find-and-replace/config";
-import FindAndReplaceUI from "@/tools/find-and-replace/ui";
-import { textDiffCheckerConfig } from "@/tools/text-diff-checker/config";
-import TextDiffCheckerUI from "@/tools/text-diff-checker/ui";
-import { bionicReadingConverterConfig } from "@/tools/bionic-reading-converter/config";
-import BionicReadingConverterUI from "@/tools/bionic-reading-converter/ui";
-import { whitespaceRemoverConfig } from "@/tools/whitespace-remover/config";
-import WhitespaceRemoverUI from "@/tools/whitespace-remover/ui";
-import { tableToMarkdownConfig } from "@/tools/table-to-markdown/config";
-import TableToMarkdownUI from "@/tools/table-to-markdown/ui";
-import { anagramFinderConfig } from "@/tools/anagram-finder/config";
-import AnagramFinderUI from "@/tools/anagram-finder/ui";
-import { palindromeCheckerConfig } from "@/tools/palindrome-checker/config";
-import PalindromeCheckerUI from "@/tools/palindrome-checker/ui";
-import { textToSlugConverterConfig } from "@/tools/text-to-slug-converter/config";
-import TextToSlugConverterUI from "@/tools/text-to-slug-converter/ui";
-import { randomNamePickerConfig } from "@/tools/random-name-picker/config";
-import RandomNamePickerUI from "@/tools/random-name-picker/ui";
-import { zalgoTextGeneratorConfig } from "@/tools/zalgo-text-generator/config";
-import ZalgoTextGeneratorUI from "@/tools/zalgo-text-generator/ui";
-import { natoPhoneticConverterConfig } from "@/tools/nato-phonetic-converter/config";
-import NATOPhoneticConverterUI from "@/tools/nato-phonetic-converter/ui";
-import { leetspeakConverterConfig } from "@/tools/leetspeak-converter/config";
-import LeetspeakConverterUI from "@/tools/leetspeak-converter/ui";
-import { toolConfig as upsideDownTextGeneratorConfig } from "@/tools/upside-down-text-generator/config";
-import UpsideDownTextGeneratorUI from "@/tools/upside-down-text-generator/ui";
-import { toolConfig as listPrefixSuffixConfig } from "@/tools/list-prefix-suffix/config";
-import ListPrefixSuffixUI from "@/tools/list-prefix-suffix/ui";
-import { toolConfig as morseCodeTranslatorConfig } from "@/tools/morse-code-translator/config";
-import MorseCodeTranslatorUI from "@/tools/morse-code-translator/ui";
-import { toolConfig as base64ImageEncoderConfig } from "@/tools/base64-image-encoder/config";
-import Base64ImageEncoderUI from "@/tools/base64-image-encoder/ui";
-import { toolConfig as faviconGeneratorConfig } from "@/tools/favicon-generator/config";
-import FaviconGeneratorUI from "@/tools/favicon-generator/ui";
-import { toolConfig as imageToGrayscaleConfig } from "@/tools/image-to-grayscale/config";
-import ImageToGrayscaleUI from "@/tools/image-to-grayscale/ui";
-import { toolConfig as exifRemoverConfig } from "@/tools/exif-remover/config";
-import ExifRemoverUI from "@/tools/exif-remover/ui";
-import { toolConfig as ditheringFilterConfig } from "@/tools/dithering-filter/config";
-import DitheringFilterUI from "@/tools/dithering-filter/ui";
-import { toolConfig as duotoneFilterConfig } from "@/tools/duotone-filter/config";
-import DuotoneFilterUI from "@/tools/duotone-filter/ui";
-import { toolConfig as hexToRgbConverterConfig } from "@/tools/hex-to-rgb-converter/config";
-import HexToRgbConverterUI from "@/tools/hex-to-rgb-converter/ui";
-import { toolConfig as colorPaletteGeneratorConfig } from "@/tools/color-palette-generator/config";
-import ColorPaletteGeneratorUI from "@/tools/color-palette-generator/ui";
-import { toolConfig as cssGradientGeneratorConfig } from "@/tools/css-gradient-generator/config";
-import CSSGradientGeneratorUI from "@/tools/css-gradient-generator/ui";
-import { toolConfig as cssBoxShadowGeneratorConfig } from "@/tools/css-box-shadow-generator/config";
-import CSSBoxShadowGeneratorUI from "@/tools/css-box-shadow-generator/ui";
-import { toolConfig as colorFormatConverterConfig } from "@/tools/color-format-converter/config";
-import ColorFormatConverterUI from "@/tools/color-format-converter/ui";
-import { toolConfig as cssGlassmorphismGeneratorConfig } from "@/tools/css-glassmorphism-generator/config";
-import GlassmorphismGeneratorUI from "@/tools/css-glassmorphism-generator/ui";
-import { toolConfig as svgPathVisualizerConfig } from "@/tools/svg-path-visualizer/config";
-import SVGPathVisualizerUI from "@/tools/svg-path-visualizer/ui";
-import { toolConfig as contrastCheckerConfig } from "@/tools/contrast-checker/config";
-import ContrastCheckerUI from "@/tools/contrast-checker/ui";
-import { toolConfig as neumorphismGeneratorConfig } from "@/tools/neumorphism-generator/config";
-import NeumorphismGeneratorUI from "@/tools/neumorphism-generator/ui";
-import { hslColorSliderConfig } from "@/tools/hsl-color-slider/config";
-import HSLColorSliderUI from "@/tools/hsl-color-slider/ui";
-import { cssFilterTesterConfig } from "@/tools/css-filter-tester/config";
-import CSSFilterTesterUI from "@/tools/css-filter-tester/ui";
-import { cssAnimationPreviewerConfig } from "@/tools/css-animation-previewer/config";
-import CSSAnimationPreviewerUI from "@/tools/css-animation-previewer/ui";
-import { gradientTextGeneratorConfig } from "@/tools/gradient-text-generator/config";
-import GradientTextGeneratorUI from "@/tools/gradient-text-generator/ui";
-import { colorPaletteContrastGridConfig } from "@/tools/color-palette-contrast-grid/config";
-import ColorPaletteContrastGridUI from "@/tools/color-palette-contrast-grid/ui";
-import { colorBlindnessSimulatorConfig } from "@/tools/color-blindness-simulator/config";
-import ColorBlindnessSimulatorUI from "@/tools/color-blindness-simulator/ui";
-import { randomHexColorGeneratorConfig } from "@/tools/random-hex-color-generator/config";
-import RandomHexColorGeneratorUI from "@/tools/random-hex-color-generator/ui";
-import { cssMeshGradientGeneratorConfig } from "@/tools/css-mesh-gradient-generator/config";
-import CSSMeshGradientGeneratorUI from "@/tools/css-mesh-gradient-generator/ui";
-import { cssCursorStylePreviewerConfig } from "@/tools/css-cursor-style-previewer/config";
-import CSSCursorStylePreviewerUI from "@/tools/css-cursor-style-previewer/ui";
-import { cssClampGeneratorConfig } from "@/tools/css-clamp-generator/config";
-import CSSClampGeneratorUI from "@/tools/css-clamp-generator/ui";
-import { hexToRgbaConverterConfig } from "@/tools/hex-to-rgba-converter/config";
-import HexToRgbaConverterUI from "@/tools/hex-to-rgba-converter/ui";
-import { passwordGeneratorConfig } from "@/tools/password-generator/config";
-import PasswordGeneratorUI from "@/tools/password-generator/ui";
-import { wifiPasswordGeneratorConfig } from "@/tools/wifi-password-generator/config";
-import WiFiPasswordGeneratorUI from "@/tools/wifi-password-generator/ui";
-import { textEncryptDecryptConfig } from "@/tools/text-encrypt-decrypt/config";
-import TextEncryptDecryptUI from "@/tools/text-encrypt-decrypt/ui";
-import { usernameGeneratorConfig } from "@/tools/username-generator/config";
-import UsernameGeneratorUI from "@/tools/username-generator/ui";
-import { hashGeneratorConfig } from "@/tools/hash-generator/config";
-import HashGeneratorUI from "@/tools/hash-generator/ui";
-import { passwordStrengthMeterConfig } from "@/tools/password-strength-meter/config";
-import PasswordStrengthMeterUI from "@/tools/password-strength-meter/ui";
-import { aspectRatioCalculatorConfig } from "@/tools/aspect-ratio-calculator/config";
-import AspectRatioCalculatorUI from "@/tools/aspect-ratio-calculator/ui";
-import { goldenRatioCalculatorConfig } from "@/tools/golden-ratio-calculator/config";
-import GoldenRatioCalculatorUI from "@/tools/golden-ratio-calculator/ui";
-import { cssBlobGeneratorConfig } from "@/tools/css-blob-generator/config";
-import CSSBlobGeneratorUI from "@/tools/css-blob-generator/ui";
-import { colorPaletteExtractorConfig } from "@/tools/color-palette-extractor/config";
-import ColorPaletteExtractorUI from "@/tools/color-palette-extractor/ui";
-import { customScrollbarStylerConfig } from "@/tools/custom-scrollbar-styler/config";
-import CustomScrollbarStylerUI from "@/tools/custom-scrollbar-styler/ui";
-import { cssKeyframeAnimatorConfig } from "@/tools/css-keyframe-animator/config";
-import CSSKeyframeAnimatorUI from "@/tools/css-keyframe-animator/ui";
-import { toolConfig as patternNoiseGeneratorConfig } from "@/tools/pattern-noise-generator/config";
-import PatternNoiseGeneratorUI from "@/tools/pattern-noise-generator/ui";
-import { toolConfig as glassmorphismLayerTesterConfig } from "@/tools/glassmorphism-layer-tester/config";
-import GlassmorphismLayerTesterUI from "@/tools/glassmorphism-layer-tester/ui";
-import { toolConfig as aesEncryptorConfig } from "@/tools/aes-encryptor/config";
-import AESEncryptorUI from "@/tools/aes-encryptor/ui";
-import { toolConfig as emailObfuscatorConfig } from "@/tools/email-obfuscator/config";
-import EmailObfuscatorUI from "@/tools/email-obfuscator/ui";
-import { toolConfig as fileHashGeneratorConfig } from "@/tools/file-hash-generator/config";
-import FileHashGeneratorUI from "@/tools/file-hash-generator/ui";
-import { toolConfig as bcryptHashVerifierConfig } from "@/tools/bcrypt-hash-verifier/config";
-import BcryptHashVerifierUI from "@/tools/bcrypt-hash-verifier/ui";
-import { toolConfig as steganographyToolConfig } from "@/tools/steganography-tool/config";
-import SteganographyToolUI from "@/tools/steganography-tool/ui";
-import { sriGeneratorConfig } from "@/tools/sri-generator/config";
-import SRIGeneratorUI from "@/tools/sri-generator/ui";
-import { toolConfig as ipAddressMaskerConfig } from "@/tools/ip-address-masker/config";
-import IPAddressMaskerUI from "@/tools/ip-address-masker/ui";
-import { toolConfig as checksumCalculatorConfig } from "@/tools/checksum-calculator/config";
-import ChecksumCalculatorUI from "@/tools/checksum-calculator/ui";
-import { toolConfig as discountCalculatorConfig } from "@/tools/discount-calculator/config";
-import DiscountCalculatorUI from "@/tools/discount-calculator/ui";
-import { toolConfig as percentageCalculatorConfig } from "@/tools/percentage-calculator/config";
-import PercentageCalculatorUI from "@/tools/percentage-calculator/ui";
-import { toolConfig as ageCalculatorConfig } from "@/tools/age-calculator/config";
-import AgeCalculatorUI from "@/tools/age-calculator/ui";
-import { toolConfig as bmiCalculatorConfig } from "@/tools/bmi-calculator/config";
-import BmiCalculatorUI from "@/tools/bmi-calculator/ui";
-import { toolConfig as unixTimestampConverterConfig } from "@/tools/timestamp-unix-converter/config";
-import UnixTimestampConverterUI from "@/tools/timestamp-unix-converter/ui";
-import { toolConfig as loanEmiCalculatorConfig } from "@/tools/loan-emi-calculator/config";
-import LoanEmiCalculatorUI from "@/tools/loan-emi-calculator/ui";
-import { toolConfig as randomNumberGeneratorConfig } from "@/tools/random-number-generator/config";
-import RandomNumberGeneratorUI from "@/tools/random-number-generator/ui";
-import { toolConfig as currencyFormatPreviewerConfig } from "@/tools/currency-format-previewer/config";
-import CurrencyFormatPreviewerUI from "@/tools/currency-format-previewer/ui";
-import { toolConfig as timerStopwatchConfig } from "@/tools/timer-stopwatch/config";
-import TimerStopwatchUI from "@/tools/timer-stopwatch/ui";
-import { toolConfig as percentageIncreaseDecreaseConfig } from "@/tools/percentage-increase-decrease-calculator/config";
-import PercentageIncreaseDecreaseUI from "@/tools/percentage-increase-decrease-calculator/ui";
-import { toolConfig as jsonValidatorConfig } from "@/tools/json-validator/config";
-import JSONValidatorUI from "@/tools/json-validator/ui";
-import { base64EncoderDecoderConfig } from "@/tools/base64-encoder-decoder/config";
-import Base64EncoderDecoderUI from "@/tools/base64-encoder-decoder/ui";
-import { regexTesterConfig } from "@/tools/regex-tester/config";
-import RegexTesterUI from "@/tools/regex-tester/ui";
-import { matrixCalculatorConfig } from "@/tools/matrix-calculator/config";
-import MatrixCalculatorUI from "@/tools/matrix-calculator/ui";
-import { toolConfig as xmlToJsonConfig } from "@/tools/xml-to-json/config";
-import XMLToJsonUI from "@/tools/xml-to-json/ui";
-import { toolConfig as jsonToCsvConfig } from "@/tools/json-to-csv/config";
-import JSONToCsvUI from "@/tools/json-to-csv/ui";
-import { toolConfig as flowchartLogicMapperConfig } from "@/tools/flowchart-logic-mapper/config";
-import FlowchartLogicMapperUI from "@/tools/flowchart-logic-mapper/ui";
-import { toolConfig as vennDiagramMakerConfig } from "@/tools/venn-diagram-maker/config";
-import VennDiagramMakerUI from "@/tools/venn-diagram-maker/ui";
-import { toolConfig as heatmapGridConfig } from "@/tools/heatmap-grid/config";
-import HeatmapGridUI from "@/tools/heatmap-grid/ui";
-import { toolConfig as wordCloudGeneratorConfig } from "@/tools/word-cloud-generator/config";
-import WordCloudGeneratorUI from "@/tools/word-cloud-generator/ui";
-import { toolConfig as mindMapBuilderConfig } from "@/tools/mind-map-builder/config";
-import MindMapBuilderUI from "@/tools/mind-map-builder/ui";
-import { toolConfig as barGraphGeneratorConfig } from "@/tools/bar-graph-generator/config";
-import BarGraphGeneratorUI from "@/tools/bar-graph-generator/ui";
-import { toolConfig as pomodoroTimerConfig } from "@/tools/pomodoro-timer/config";
-import PomodoroTimerUI from "@/tools/pomodoro-timer/ui";
-import { toolConfig as urlEncoderDecoderConfig } from "@/tools/url-encoder-decoder/config";
-import URLEncoderDecoderUI from "@/tools/url-encoder-decoder/ui";
-import { toolConfig as pieChartMakerConfig } from "@/tools/pie-chart-maker/config";
-import PieChartMakerUI from "@/tools/pie-chart-maker/ui";
-import { toolConfig as sqlFormatterConfig } from "@/tools/sql-formatter/config";
-import SQLFormatterUI from "@/tools/sql-formatter/ui";
-import { toolConfig as jwtDebuggerConfig } from "@/tools/jwt-debugger/config";
-import JWTDebuggerUI from "@/tools/jwt-debugger/ui";
+/* ─── Category accent colours ─── */
+const categoryAccent: Record<string, { badge: string; icon: string }> = {
+  math:          { badge: "bg-violet-100 text-violet-700",  icon: "bg-violet-50 border-violet-100"  },
+  developer:     { badge: "bg-blue-100 text-blue-700",      icon: "bg-blue-50 border-blue-100"      },
+  writing:       { badge: "bg-emerald-100 text-emerald-700",icon: "bg-emerald-50 border-emerald-100"},
+  design:        { badge: "bg-pink-100 text-pink-700",      icon: "bg-pink-50 border-pink-100"      },
+  security:      { badge: "bg-red-100 text-red-700",        icon: "bg-red-50 border-red-100"        },
+  image:         { badge: "bg-amber-100 text-amber-700",    icon: "bg-amber-50 border-amber-100"    },
+  creator:       { badge: "bg-orange-100 text-orange-700",  icon: "bg-orange-50 border-orange-100"  },
+  visualization: { badge: "bg-cyan-100 text-cyan-700",      icon: "bg-cyan-50 border-cyan-100"      },
+  productivity:  { badge: "bg-lime-100 text-lime-700",      icon: "bg-lime-50 border-lime-100"      },
+  multimedia:    { badge: "bg-indigo-100 text-indigo-700",  icon: "bg-indigo-50 border-indigo-100"  },
+};
+const defaultAccent = { badge: "bg-gray-100 text-gray-700", icon: "bg-gray-50 border-gray-100" };
 
-const TOOLS = [
-  { config: wordCounterConfig, Component: WordCounterUI },
-  { config: sentenceCaseConfig, Component: SentenceCaseConverterUI },
-  { config: paragraphFormatterConfig, Component: ParagraphFormatterUI },
-  { config: keywordDensityConfig, Component: KeywordDensityCheckerUI },
-  { config: textReverserConfig, Component: TextReverserUI },
-  { config: wordFrequencyConfig, Component: WordFrequencyCounterUI },
-  { config: imageCompressorConfig, Component: ImageCompressorUI },
-  { config: imageResizerConfig, Component: ImageResizerUI },
-  { config: loremIpsumConfig, Component: LoremIpsumGeneratorUI },
-  { config: markdownPreviewerConfig, Component: MarkdownPreviewerUI },
-  { config: textToClipboardConfig, Component: TextToClipboardUI },
-  { config: removeDuplicateLinesConfig, Component: RemoveDuplicateLinesUI },
-  { config: findAndReplaceConfig, Component: FindAndReplaceUI },
-  { config: textDiffCheckerConfig, Component: TextDiffCheckerUI },
-  { config: bionicReadingConverterConfig, Component: BionicReadingConverterUI },
-  { config: whitespaceRemoverConfig, Component: WhitespaceRemoverUI },
-  { config: tableToMarkdownConfig, Component: TableToMarkdownUI },
-  { config: anagramFinderConfig, Component: AnagramFinderUI },
-  { config: palindromeCheckerConfig, Component: PalindromeCheckerUI },
-  { config: textToSlugConverterConfig, Component: TextToSlugConverterUI },
-  { config: randomNamePickerConfig, Component: RandomNamePickerUI },
-  { config: zalgoTextGeneratorConfig, Component: ZalgoTextGeneratorUI },
-  { config: natoPhoneticConverterConfig, Component: NATOPhoneticConverterUI },
-  { config: leetspeakConverterConfig, Component: LeetspeakConverterUI },
-  { config: upsideDownTextGeneratorConfig, Component: UpsideDownTextGeneratorUI },
-  { config: listPrefixSuffixConfig, Component: ListPrefixSuffixUI },
-  { config: morseCodeTranslatorConfig, Component: MorseCodeTranslatorUI },
-  { config: base64ImageEncoderConfig, Component: Base64ImageEncoderUI },
-  { config: faviconGeneratorConfig, Component: FaviconGeneratorUI },
-  { config: imageToGrayscaleConfig, Component: ImageToGrayscaleUI },
-  { config: exifRemoverConfig, Component: ExifRemoverUI },
-  { config: ditheringFilterConfig, Component: DitheringFilterUI },
-  { config: duotoneFilterConfig, Component: DuotoneFilterUI },
-  { config: hexToRgbConverterConfig, Component: HexToRgbConverterUI },
-  { config: colorPaletteGeneratorConfig, Component: ColorPaletteGeneratorUI },
-  { config: cssGradientGeneratorConfig, Component: CSSGradientGeneratorUI },
-  { config: cssBoxShadowGeneratorConfig, Component: CSSBoxShadowGeneratorUI },
-  { config: colorFormatConverterConfig, Component: ColorFormatConverterUI },
-  { config: cssGlassmorphismGeneratorConfig, Component: GlassmorphismGeneratorUI },
-  { config: svgPathVisualizerConfig, Component: SVGPathVisualizerUI },
-  { config: contrastCheckerConfig, Component: ContrastCheckerUI },
-  { config: neumorphismGeneratorConfig, Component: NeumorphismGeneratorUI },
-  { config: hslColorSliderConfig, Component: HSLColorSliderUI },
-  { config: cssFilterTesterConfig, Component: CSSFilterTesterUI },
-  { config: cssAnimationPreviewerConfig, Component: CSSAnimationPreviewerUI },
-  { config: gradientTextGeneratorConfig, Component: GradientTextGeneratorUI },
-  { config: colorPaletteContrastGridConfig, Component: ColorPaletteContrastGridUI },
-  { config: colorBlindnessSimulatorConfig, Component: ColorBlindnessSimulatorUI },
-  { config: randomHexColorGeneratorConfig, Component: RandomHexColorGeneratorUI },
-  { config: cssMeshGradientGeneratorConfig, Component: CSSMeshGradientGeneratorUI },
-  { config: cssCursorStylePreviewerConfig, Component: CSSCursorStylePreviewerUI },
-  { config: cssClampGeneratorConfig, Component: CSSClampGeneratorUI },
-  { config: hexToRgbaConverterConfig, Component: HexToRgbaConverterUI },
-  { config: passwordGeneratorConfig, Component: PasswordGeneratorUI },
-  { config: wifiPasswordGeneratorConfig, Component: WiFiPasswordGeneratorUI },
-  { config: textEncryptDecryptConfig, Component: TextEncryptDecryptUI },
-  { config: usernameGeneratorConfig, Component: UsernameGeneratorUI },
-  { config: hashGeneratorConfig, Component: HashGeneratorUI },
-  { config: passwordStrengthMeterConfig, Component: PasswordStrengthMeterUI },
-  { config: aspectRatioCalculatorConfig, Component: AspectRatioCalculatorUI },
-  { config: goldenRatioCalculatorConfig, Component: GoldenRatioCalculatorUI },
-  { config: cssBlobGeneratorConfig, Component: CSSBlobGeneratorUI },
-  { config: colorPaletteExtractorConfig, Component: ColorPaletteExtractorUI },
-  { config: customScrollbarStylerConfig, Component: CustomScrollbarStylerUI },
-  { config: cssKeyframeAnimatorConfig, Component: CSSKeyframeAnimatorUI },
-  { config: patternNoiseGeneratorConfig, Component: PatternNoiseGeneratorUI },
-  { config: glassmorphismLayerTesterConfig, Component: GlassmorphismLayerTesterUI },
-  { config: aesEncryptorConfig, Component: AESEncryptorUI },
-  { config: emailObfuscatorConfig, Component: EmailObfuscatorUI },
-  { config: fileHashGeneratorConfig, Component: FileHashGeneratorUI },
-  { config: bcryptHashVerifierConfig, Component: BcryptHashVerifierUI },
-  { config: steganographyToolConfig, Component: SteganographyToolUI },
-  { config: sriGeneratorConfig, Component: SRIGeneratorUI },
-  { config: ipAddressMaskerConfig, Component: IPAddressMaskerUI },
-  { config: checksumCalculatorConfig, Component: ChecksumCalculatorUI },
-  { config: discountCalculatorConfig, Component: DiscountCalculatorUI },
-  { config: percentageCalculatorConfig, Component: PercentageCalculatorUI },
-  { config: ageCalculatorConfig, Component: AgeCalculatorUI },
-  { config: bmiCalculatorConfig, Component: BmiCalculatorUI },
-  { config: unixTimestampConverterConfig, Component: UnixTimestampConverterUI },
-  { config: loanEmiCalculatorConfig, Component: LoanEmiCalculatorUI },
-  { config: randomNumberGeneratorConfig, Component: RandomNumberGeneratorUI },
-  { config: currencyFormatPreviewerConfig, Component: CurrencyFormatPreviewerUI },
-  { config: timerStopwatchConfig, Component: TimerStopwatchUI },
-  { config: percentageIncreaseDecreaseConfig, Component: PercentageIncreaseDecreaseUI },
-  { config: jsonValidatorConfig, Component: JSONValidatorUI },
-  { config: base64EncoderDecoderConfig, Component: Base64EncoderDecoderUI },
-  { config: regexTesterConfig, Component: RegexTesterUI },
-  { config: matrixCalculatorConfig, Component: MatrixCalculatorUI },
-  { config: xmlToJsonConfig, Component: XMLToJsonUI },
-  { config: jsonToCsvConfig, Component: JSONToCsvUI },
-  { config: flowchartLogicMapperConfig, Component: FlowchartLogicMapperUI },
-  { config: vennDiagramMakerConfig, Component: VennDiagramMakerUI },
-  { config: heatmapGridConfig, Component: HeatmapGridUI },
-  { config: wordCloudGeneratorConfig, Component: WordCloudGeneratorUI },
-  { config: mindMapBuilderConfig, Component: MindMapBuilderUI },
-  { config: barGraphGeneratorConfig, Component: BarGraphGeneratorUI },
-  { config: pomodoroTimerConfig, Component: PomodoroTimerUI },
-  { config: urlEncoderDecoderConfig, Component: URLEncoderDecoderUI },
-  { config: pieChartMakerConfig, Component: PieChartMakerUI },
-  { config: sqlFormatterConfig, Component: SQLFormatterUI },
-  { config: jwtDebuggerConfig, Component: JWTDebuggerUI },
-];
+export async function generateStaticParams() {
+  /* Generate params for every category slug */
+  return categories.map(cat => ({ tool: cat.slug }));
+}
 
-
-
-
-
-
-export async function generateMetadata(
-  { params }: { params: Promise<{ tool: string }> }
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ tool: string }>;
+}): Promise<Metadata> {
   const { tool: slug } = await params;
-  const entry = TOOLS.find(t => t.config.slug === slug);
-  if (!entry) return {};
-  
-  const seo = entry.config.seo as any;
+  const cat = categories.find(c => c.slug === slug);
+  if (!cat) return { title: "Not Found" };
+
+  const count = tools.filter(t => t.category === slug).length;
   return {
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords,
+    title: `${cat.name} – ${count} Free Online Tools | Productive Toolbox`,
+    description: `Explore ${count} free ${cat.name.toLowerCase()} directly in your browser. ${cat.description}`,
     openGraph: {
-      title: seo.openGraph?.title || seo.title,
-      description: seo.openGraph?.description || seo.description,
-      type: "website",
+      title: `${cat.name} – Productive Toolbox`,
+      description: `${count} free, browser-based ${cat.name.toLowerCase()}`,
       url: `${siteConfig.url}/tools/${slug}`,
-      siteName: siteConfig.name,
     },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.openGraph?.title || seo.title,
-      description: seo.openGraph?.description || seo.description,
-    },
-    alternates: {
-      canonical: `${siteConfig.url}/tools/${slug}`,
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
+    alternates: { canonical: `${siteConfig.url}/tools/${slug}` },
   };
 }
 
-export default async function ToolPage(
-  { params }: { params: Promise<{ tool: string }> }
-) {
+export default async function CategoryOrRedirectPage({
+  params,
+}: {
+  params: Promise<{ tool: string }>;
+}) {
   const { tool: slug } = await params;
-  const entry = TOOLS.find(t => t.config.slug === slug);
-  if (!entry) notFound();
-  const { config, Component } = entry;
-  
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: `${config.name} Tool`,
-    description: config.description,
-    url: `${siteConfig.url}/tools/${slug}`,
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    creator: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  };
-  
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ToolLayout title={config.name} description={config.description} icon={config.icon}>
-        <Component />
-      </ToolLayout>
-    </>
-  );
+
+  /* ── Case 1: slug matches a category → render category page ── */
+  const cat = categories.find(c => c.slug === slug);
+  if (cat) {
+    const catTools = tools.filter(t => t.category === slug);
+    const otherCategories = categories.filter(c => c.slug !== slug);
+    const accent = categoryAccent[slug] ?? defaultAccent;
+
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen bg-gray-50 py-12 px-6">
+          <div className="max-w-7xl mx-auto">
+
+            {/* Breadcrumb */}
+            <nav className="flex items-center gap-2 text-xs text-gray-400 mb-10" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-primary transition-colors">{siteConfig.name}</Link>
+              <span>/</span>
+              <Link href="/tools" className="hover:text-primary transition-colors">All Tools</Link>
+              <span>/</span>
+              <span className="text-gray-600 font-medium">{cat.name}</span>
+            </nav>
+
+            <div className="flex flex-col lg:flex-row gap-10">
+              {/* Main content */}
+              <div className="flex-1 min-w-0">
+                <header className="mb-10">
+                  <div className="flex items-center gap-5 mb-5">
+                    <div className={`w-16 h-16 flex items-center justify-center text-3xl rounded-2xl border-2 ${accent.icon} shadow-sm`}>
+                      {cat.icon}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-1">
+                        <h1 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
+                          {cat.name}
+                        </h1>
+                        <span className={`hidden sm:inline text-xs font-bold px-3 py-1 rounded-full ${accent.badge} uppercase tracking-widest`}>
+                          {catTools.length} tools
+                        </span>
+                      </div>
+                      <p className="text-gray-500 text-base" style={{ fontFamily: "var(--font-body)" }}>
+                        {cat.description}
+                      </p>
+                    </div>
+                  </div>
+                </header>
+                <CategoryToolsGrid category={cat} />
+              </div>
+
+              {/* Sidebar */}
+              <aside className="lg:w-64 xl:w-72 shrink-0">
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 sticky top-8">
+                  <h2 className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-5">
+                    Other Categories
+                  </h2>
+                  <ul className="space-y-1">
+                    {otherCategories.map(other => {
+                      const count = tools.filter(t => t.category === other.slug).length;
+                      return (
+                        <li key={other.slug}>
+                          <Link
+                            href={`/tools/${other.slug}`}
+                            className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors group"
+                          >
+                            <span className="flex items-center gap-2.5">
+                              <span className="text-lg leading-none">{other.icon}</span>
+                              <span className="truncate">{other.name}</span>
+                            </span>
+                            <span className="text-[10px] font-bold text-gray-300 group-hover:text-primary/60 transition-colors shrink-0">
+                              {count}
+                            </span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <div className="mt-6 pt-5 border-t border-gray-50">
+                    <Link href="/tools" className="flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+                      ← All Categories
+                    </Link>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  /* ── Case 2: slug matches a known tool → redirect to /tools/[category]/[slug] ── */
+  const tool = tools.find(t => t.slug === slug);
+  if (tool) {
+    redirect(`/tools/${tool.category}/${tool.slug}`);
+  }
+
+  /* ── Case 3: nothing matched ── */
+  notFound();
 }

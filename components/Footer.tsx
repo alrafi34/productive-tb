@@ -29,7 +29,7 @@ export default function Footer() {
             <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Tools</p>
             <ul className="space-y-2.5">
               {[["writing","Writing Tools"],["image","Image Tools"],["math","Math Tools"],["creator","Creator Tools"]].map(([slug,label]) => (
-                <li key={slug}><Link href={`/tools?category=${slug}`} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
+                <li key={slug}><Link href={`/tools/${slug}`} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
               ))}
             </ul>
           </div>

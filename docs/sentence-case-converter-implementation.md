@@ -30,9 +30,9 @@
 
 ### Integration
 
-4. **Updated `/app/tools/[tool]/page.tsx`**
+4. **Updated `/app/tools/[tool]/[subtool]/page.tsx`**
    - Added Sentence Case Converter to TOOLS array
-   - Automatic routing at `/tools/sentence-case-converter`
+   - Automatic routing at `/tools/writing/sentence-case-converter`
    - SEO metadata generation
    - JSON-LD structured data for search engines
 
@@ -94,7 +94,7 @@
 
 ## How to Use
 
-1. Navigate to: `http://localhost:3000/tools/sentence-case-converter`
+1. Navigate to: `http://localhost:3000/tools/writing/sentence-case-converter`
 2. Enter text in the textarea
 3. Select a case type (uppercase, lowercase, title case, or sentence case)
 4. View the converted text instantly
@@ -113,7 +113,8 @@ productive-tb/
 ├── app/
 │   └── tools/
 │       └── [tool]/
-│           └── page.tsx     ✅ Updated
+│           └── [subtool]/
+│               └── page.tsx ✅ Updated
 └── config/
     └── tools.ts             ✅ Already configured
 ```

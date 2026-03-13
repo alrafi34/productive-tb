@@ -5,14 +5,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://productivetoolbox.com';
   
   const toolUrls = tools.map(tool => ({
-    url: `${baseUrl}/tools/${tool.slug}`,
+    url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8
   }));
 
   const categoryUrls = categories.map(cat => ({
-    url: `${baseUrl}/tools?category=${cat.slug}`,
+    url: `${baseUrl}/tools/${cat.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7

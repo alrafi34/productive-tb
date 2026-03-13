@@ -584,9 +584,9 @@ Add to seo-content.tsx:
 <section className="mt-8">
   <h2>Related Tools</h2>
   <div className="grid grid-cols-3 gap-4">
-    <Link href="/tools/related-tool-1">Tool 1</Link>
-    <Link href="/tools/related-tool-2">Tool 2</Link>
-    <Link href="/tools/related-tool-3">Tool 3</Link>
+    <Link href="/tools/category/related-tool-1">Tool 1</Link>
+    <Link href="/tools/category/related-tool-2">Tool 2</Link>
+    <Link href="/tools/category/related-tool-3">Tool 3</Link>
   </div>
 </section>
 ```

@@ -118,7 +118,7 @@ export default function HomePage() {
             <p className="text-center text-gray-400 text-sm mb-12">Find the right tool for the job — organized by category.</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {categories.map(cat => (
-                <Link key={cat.slug} href={`/tools?category=${cat.slug}`}
+                <Link key={cat.slug} href={`/tools/${cat.slug}`}
                   className="bg-white border border-gray-100 rounded-xl p-6 flex flex-col items-center text-center gap-3 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
                   <div className="w-14 h-14 bg-violet-50 rounded-2xl flex items-center justify-center text-2xl">{cat.icon}</div>
                   <span className="text-sm font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>{cat.name}</span>
@@ -162,7 +162,7 @@ export default function HomePage() {
               <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Tools</p>
               <ul className="space-y-2.5">
                 {[["writing","Writing Tools"],["image","Image Tools"],["math","Math Tools"],["creator","Creator Tools"]].map(([slug,label]) => (
-                  <li key={slug}><Link href={`/tools?category=${slug}`} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
+                  <li key={slug}><Link href={`/tools/${slug}`} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
                 ))}
               </ul>
             </div>

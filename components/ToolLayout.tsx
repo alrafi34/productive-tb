@@ -7,10 +7,11 @@ type Props = {
   title: string;
   description: string;
   icon: string;
+  category?: { slug: string; name: string };
   children: React.ReactNode;
 };
 
-export default function ToolLayout({ title, description, icon, children }: Props) {
+export default function ToolLayout({ title, description, icon, category, children }: Props) {
   return (
     <>
       <Header />
@@ -22,6 +23,14 @@ export default function ToolLayout({ title, description, icon, children }: Props
             <Link href="/" className="hover:text-primary transition-colors">{siteConfig.name}</Link>
             <span>/</span>
             <Link href="/tools" className="hover:text-primary transition-colors">Tools</Link>
+            {category && (
+              <>
+                <span>/</span>
+                <Link href={`/tools/${category.slug}`} className="hover:text-primary transition-colors capitalize">
+                  {category.name}
+                </Link>
+              </>
+            )}
             <span>/</span>
             <span className="text-gray-600">{title}</span>
           </nav>

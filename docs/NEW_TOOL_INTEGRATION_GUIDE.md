@@ -1,6 +1,8 @@
-# 🚀 New Tool Integration Guide - Productive Toolbox
+# 🚀 New Tool Integration Guide — Productive Toolbox
 
 **Complete guide for developers and AI to integrate new tools into the Productive Toolbox project.**
+
+> **Last Updated:** March 2026 | **Version:** 2.0
 
 ---
 
@@ -8,22 +10,40 @@
 
 1. [Quick Start](#quick-start)
 2. [Project Structure](#project-structure)
-3. [Step-by-Step Integration](#step-by-step-integration)
-4. [SEO Strategy](#seo-strategy)
+3. [Routing Architecture](#routing-architecture)
+4. [Step-by-Step Integration](#step-by-step-integration)
 5. [Design System](#design-system)
-6. [Testing Checklist](#testing-checklist)
-7. [Examples from Existing Tools](#examples-from-existing-tools)
+6. [SEO Strategy](#seo-strategy)
+7. [Testing Checklist](#testing-checklist)
+8. [Examples from Existing Tools](#examples-from-existing-tools)
+9. [Common Mistakes](#common-mistakes)
 
 ---
 
 ## 🎯 Quick Start
 
 ### Prerequisites
-- Node.js installed
-- Basic knowledge of React/Next.js
+- Node.js + pnpm installed
+- Basic knowledge of React / Next.js 15
 - Understanding of TypeScript
 
-### Time to Integrate: ~30 minutes
+### Time to Integrate: ~30–45 minutes per tool
+
+### Files to Create (4)
+```
+tools/your-tool-name/
+  ├── config.ts         ← Tool metadata + SEO
+  ├── logic.ts          ← Pure business logic
+  ├── ui.tsx            ← "use client" React component
+  └── seo-content.tsx   ← SEO sections (How-To, FAQ, Benefits)
+```
+
+### Files to Update (3)
+```
+config/tools.ts                          ← Register tool in the list + pick category
+lib/tools-registry.ts                    ← Add to centralized registry (used by RelatedTools)
+app/tools/[tool]/[subtool]/page.tsx      ← Add import + entry in TOOLS array
+```
 
 ---
 
@@ -33,30 +53,80 @@
 productive-tb/
 ├── app/
 │   └── tools/
+│       ├── page.tsx                     # /tools — category index (11 categories)
 │       └── [tool]/
-│           └── page.tsx          # Dynamic route handler (UPDATE THIS)
+│           ├── page.tsx                 # /tools/[category] — category listing page
+│           │                            # /tools/[slug] — auto-redirect to /tools/[cat]/[slug]
+│           └── [subtool]/
+│               └── page.tsx             # /tools/[category]/[tool-slug] — INDIVIDUAL TOOL PAGE
+│
 ├── components/
-│   └── ToolLayout.tsx            # Shared layout (USE THIS)
+│   ├── ToolLayout.tsx                   # Shared wrapper for all tool pages (breadcrumb + H1)
+│   ├── RelatedTools.tsx                 # "Related Tools" section rendered at bottom of ui.tsx
+│   └── CategoryToolsGrid.tsx            # Filterable tool grid for category pages
+│
 ├── config/
-│   ├── tools.ts                  # Tool registry (UPDATE THIS)
-│   └── site.ts                   # Site config
+│   ├── tools.ts                         # Tool[] registry + Category[] definitions
+│   └── site.ts                          # Site-wide config (name, url)
+│
 ├── tools/
-│   └── [your-tool-name]/         # CREATE THIS FOLDER
-│       ├── ui.tsx                # React component
-│       ├── logic.ts              # Business logic
-│       ├── config.ts             # Tool metadata & SEO
-│       └── seo-content.tsx       # SEO content sections
+│   └── your-tool-name/                  # ← CREATE THIS
+│       ├── config.ts
+│       ├── logic.ts
+│       ├── ui.tsx
+│       └── seo-content.tsx
+│
+└── lib/
+    └── tools-registry.ts                # Used by RelatedTools component
 ```
+
+---
+
+## 🗺️ Routing Architecture
+
+The project uses a **two-level dynamic route** for tools:
+
+```
+/tools/[category]/[tool-slug]
+         ↑              ↑
+  e.g. "writing"   "word-counter"
+```
+
+### How it works
+
+| You visit | Handled by | What happens |
+|---|---|---|
+| `/tools` | `app/tools/page.tsx` | Shows 11 category cards |
+| `/tools/writing` | `app/tools/[tool]/page.tsx` | Shows all Writing Tools |
+| `/tools/writing/word-counter` | `app/tools/[tool]/[subtool]/page.tsx` | Renders the Word Counter tool |
+| `/tools/word-counter` | `app/tools/[tool]/page.tsx` | Auto-redirects to `/tools/writing/word-counter` |
+
+> ⚠️ **Important:** The actual tool renders in `[subtool]/page.tsx`. The `[tool]/page.tsx` handles categories and redirects only.
+
+### Available Categories (11)
+
+| Slug | Display Name | Icon | Color |
+|---|---|---|---|
+| `writing` | Writing Tools | ✍️ | Emerald |
+| `image` | Image Tools | 🖼️ | Amber |
+| `design` | Design Tools | 🎨 | Pink |
+| `security` | Security Tools | 🔒 | Red |
+| `math` | Math Tools | 🔢 | Violet |
+| `calculator` | Calculator Tools | 🧮 | Teal |
+| `creator` | Creator Tools | 🚀 | Orange |
+| `developer` | Developer Tools | 💻 | Blue |
+| `visualization` | Visualization Tools | 📊 | Cyan |
+| `productivity` | Productivity Tools | ⚡ | Lime |
+| `multimedia` | Multimedia Tools | 🎥 | Indigo |
 
 ---
 
 ## 🔧 Step-by-Step Integration
 
-### Step 1: Create Tool Folder
+### Step 1: Create the Tool Folder
 
 ```bash
 mkdir -p tools/your-tool-name
-cd tools/your-tool-name
 ```
 
 ### Step 2: Create `config.ts`
@@ -64,30 +134,31 @@ cd tools/your-tool-name
 **Purpose:** Tool metadata, SEO configuration, and features list.
 
 ```typescript
+// tools/your-tool-name/config.ts
+
 export const toolConfig = {
-  slug: "your-tool-name",                    // URL slug (kebab-case)
-  name: "Your Tool Name",                    // Display name
-  description: "Brief description of what your tool does",
-  category: "writing",                       // writing|image|design|security|math|creator
-  icon: "🔧",                                // Emoji icon
-  free: true,                                // true|false
-  backend: false,                            // true if needs API calls
+  slug: "your-tool-name",          // Must match folder name (kebab-case)
+  name: "Your Tool Name",          // Display name shown in UI and SEO title
+  description: "Brief description of what your tool does.",
+  category: "writing",             // Must match a slug from config/tools.ts Category[]
+  icon: "🔧",                      // Emoji icon shown in ToolLayout header
+  free: true,
+  backend: false,                  // true only if tool calls an API route
   seo: {
-    title: "Free Your Tool Name - Main Keyword | Productive Toolbox",
-    description: "Free online tool description with keywords. Perfect for target audience.",
+    title: "Free Your Tool Name — Main Benefit | Productive Toolbox",
+    description: "Free online tool description. Feature 1, Feature 2. Perfect for [audience]. No sign-up.",
     keywords: [
       "primary keyword",
-      "secondary keyword",
-      "long-tail keyword 1",
-      "long-tail keyword 2",
-      "tool name variations",
-      "free tool name",
-      "online tool name",
-      // Add 10-15 keywords
+      "free primary keyword",
+      "online primary keyword",
+      "tool name tool",
+      "related keyword",
+      "long-tail keyword phrase",
+      // 10–15 total
     ],
     openGraph: {
-      title: "Free Your Tool Name - Social Media Title",
-      description: "Social media description (shorter, engaging)",
+      title: "Free Your Tool Name — Engaging Social Title",
+      description: "Short, compelling social media description.",
       type: "website",
       url: "/your-tool-name"
     }
@@ -96,45 +167,52 @@ export const toolConfig = {
     "Feature 1",
     "Feature 2",
     "Feature 3",
-    // List 5-7 key features
+    "Works entirely in browser — no data uploaded",
+    "100% free, no sign-up required",
   ]
 };
 ```
 
+> **Category note:** Use one of the 11 slugs from the table above. If all your tool does is calculate something, use `calculator`.
+
+---
+
 ### Step 3: Create `logic.ts`
 
-**Purpose:** Pure functions for tool functionality (no UI logic).
+**Purpose:** Pure functions with zero UI dependencies. Easy to test and reuse.
 
 ```typescript
-// Example: Text manipulation tool
+// tools/your-tool-name/logic.ts
+
+/**
+ * Processes the input text and returns the result.
+ */
 export function processText(text: string): string {
-  // Your logic here
   return text.trim();
 }
 
-export function calculateResult(input: number): number {
-  // Your calculation logic
-  return input * 2;
+/**
+ * Calculates [whatever your tool calculates].
+ */
+export function calculateResult(value: number, factor: number): number {
+  return value * factor;
 }
-
-// Keep functions:
-// - Pure (no side effects)
-// - Testable
-// - Reusable
-// - Well-named
 ```
 
-**Best Practices:**
-- One function = one responsibility
-- Export all functions
-- Add TypeScript types
-- Keep it simple and readable
+**Rules for logic.ts:**
+- Export every function (they may be used by other tools)
+- No `useState`, no DOM access, no `window` — pure TypeScript only
+- Add JSDoc comments to describe inputs/outputs
+- Handle edge cases (empty string, zero, NaN)
+
+---
 
 ### Step 4: Create `ui.tsx`
 
-**Purpose:** React component with UI and user interactions.
+**Purpose:** The visible React component. Always a `"use client"` component.
 
 ```typescript
+// tools/your-tool-name/ui.tsx
 "use client";
 
 import { useState } from "react";
@@ -143,13 +221,12 @@ import YourToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 
 export default function YourToolUI() {
-  const [input, setInput] = useState("");
+  const [input, setInput]   = useState("");
   const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
 
   function handleProcess() {
-    const result = processText(input);
-    setOutput(result);
+    setOutput(processText(input));
   }
 
   function handleCopy() {
@@ -158,213 +235,206 @@ export default function YourToolUI() {
     setTimeout(() => setCopied(false), 2000);
   }
 
+  function handleReset() {
+    setInput("");
+    setOutput("");
+  }
+
   return (
     <>
-      <div className="max-w-3xl mx-auto">
-        {/* Input Section */}
-        <div className="relative mb-6">
-          <textarea
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Enter your text here..."
-            rows={8}
-            className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm text-gray-800 placeholder:text-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary resize-y leading-relaxed"
-            style={{ fontFamily: "var(--font-body)" }}
-          />
-          {input && (
-            <button
-              onClick={() => setInput("")}
-              className="absolute top-3 right-3 text-xs text-gray-400 hover:text-red-500 transition-colors bg-white px-2 py-1 rounded-lg border border-gray-100"
-            >
-              Clear
-            </button>
-          )}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="mb-6">
+      {/* ── Input Section ── */}
+      <div className="relative mb-6">
+        <textarea
+          id="tool-input"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          placeholder="Enter your text here..."
+          rows={8}
+          className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm text-gray-800 placeholder:text-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary resize-y leading-relaxed"
+          style={{ fontFamily: "var(--font-body)" }}
+        />
+        {input && (
           <button
-            onClick={handleProcess}
-            disabled={!input}
-            className="flex items-center gap-2 bg-primary hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
-            style={{ fontFamily: "var(--font-heading)" }}
+            onClick={() => setInput("")}
+            className="absolute top-3 right-3 text-xs text-gray-400 hover:text-red-500 transition-colors bg-white px-2 py-1 rounded-lg border border-gray-100"
           >
-            🔧 Process
+            Clear
           </button>
-        </div>
-
-        {/* Output Section */}
-        {output && (
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Result
-            </label>
-            <div className="relative">
-              <div
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 text-sm text-gray-800 shadow-sm min-h-[120px] leading-relaxed"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {output}
-              </div>
-              <button
-                onClick={handleCopy}
-                className="absolute top-3 right-3 text-xs bg-primary hover:bg-primary-hover text-white px-3 py-1.5 rounded-lg transition-colors font-semibold"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                {copied ? "✅ Copied!" : "📋 Copy"}
-              </button>
-            </div>
-          </div>
         )}
-
-        {/* Action Buttons */}
-        <div className="flex gap-3 flex-wrap">
-          <button
-            onClick={handleCopy}
-            disabled={!output}
-            className="flex items-center gap-2 bg-primary hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            {copied ? "✅ Copied!" : "📋 Copy Result"}
-          </button>
-          <button
-            onClick={() => { setInput(""); setOutput(""); }}
-            disabled={!input && !output}
-            className="flex items-center gap-2 border-2 border-gray-200 hover:border-red-300 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed text-gray-500 text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            🗑️ Reset
-          </button>
-        </div>
       </div>
-      
+
+      {/* ── Action Buttons ── */}
+      <div className="flex gap-3 flex-wrap mb-6">
+        <button
+          id="process-btn"
+          onClick={handleProcess}
+          disabled={!input}
+          className="flex items-center gap-2 bg-primary hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          🔧 Process
+        </button>
+        <button
+          id="reset-btn"
+          onClick={handleReset}
+          disabled={!input && !output}
+          className="flex items-center gap-2 border-2 border-gray-200 hover:border-red-300 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed text-gray-500 text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          🗑️ Reset
+        </button>
+      </div>
+
+      {/* ── Output Section ── */}
+      {output && (
+        <div className="mb-6">
+          <label
+            className="block text-sm font-semibold text-gray-700 mb-3"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Result
+          </label>
+          <div className="relative">
+            <div
+              className="w-full rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 text-sm text-gray-800 shadow-sm min-h-[120px] leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              {output}
+            </div>
+            <button
+              id="copy-btn"
+              onClick={handleCopy}
+              className="absolute top-3 right-3 text-xs bg-primary hover:bg-primary-hover text-white px-3 py-1.5 rounded-lg transition-colors font-semibold"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {copied ? "✅ Copied!" : "📋 Copy"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ── SEO Content ── */}
       <YourToolSEOContent />
-      
+
+      {/* ── Related Tools ── */}
       <RelatedTools
         currentTool="your-tool-name"
-        tools={['related-tool-1', 'related-tool-2', 'related-tool-3']}
+        tools={["related-slug-1", "related-slug-2", "related-slug-3"]}
       />
     </>
   );
 }
 ```
 
-**UI Component Checklist:**
-- ✅ "use client" directive at top
-- ✅ Import logic functions
-- ✅ Import SEO content component
-- ✅ Import RelatedTools component
-- ✅ Use design system classes
-- ✅ Add loading/disabled states
-- ✅ Include copy functionality
-- ✅ Add clear/reset buttons
-- ✅ Add RelatedTools at bottom with 3 related tool slugs
-- ✅ Responsive design
+**ui.tsx Checklist:**
+- ✅ `"use client"` at the very top (line 1)
+- ✅ Imports from `./logic`, `./seo-content`, `@/components/RelatedTools`
+- ✅ All interactive elements have a unique `id` (for testing)
+- ✅ Disabled states on buttons (`disabled={!input}`)
+- ✅ Copy to clipboard with temporary feedback
+- ✅ Reset clears both input and output
+- ✅ `YourToolSEOContent` rendered after tool UI
+- ✅ `RelatedTools` is the very last element
+- ✅ Uses design system classes (see Design System section)
+
+---
 
 ### Step 5: Create `seo-content.tsx`
 
-**Purpose:** SEO-optimized content sections for better search rankings.
+**Purpose:** SEO-rich static content sections that appear below the tool UI. Required for every tool.
 
 ```typescript
+// tools/your-tool-name/seo-content.tsx
+
 export default function YourToolSEOContent() {
   return (
     <>
-      {/* How to Use Section */}
+      {/* How to Use */}
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          How to Use the [Tool Name] Tool
+          How to Use the Your Tool Name
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3">
-              Quick Start Guide
-            </h3>
+            <h3 className="text-lg font-medium text-gray-800 mb-3">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-600">
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">1</span>
-                <span>Step 1 description</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">2</span>
-                <span>Step 2 description</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">3</span>
-                <span>Step 3 description</span>
-              </li>
+              {[
+                "Step 1 — description",
+                "Step 2 — description",
+                "Step 3 — description",
+              ].map((step, i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">
+                    {i + 1}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
             </ol>
           </div>
           <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3">
-              Key Features
-            </h3>
+            <h3 className="text-lg font-medium text-gray-800 mb-3">Key Features</h3>
             <ul className="space-y-2 text-gray-600">
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Feature 1
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Feature 2
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Feature 3
-              </li>
+              {["Feature A", "Feature B", "Feature C"].map(f => (
+                <li key={f} className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  {f}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6">
           Frequently Asked Questions
         </h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Question 1 with primary keyword?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Answer with keywords naturally included. Provide value and information.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Question 2 with secondary keyword?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Detailed answer addressing user concerns.
-            </p>
-          </div>
-          
-          {/* Add 4-6 FAQ items total */}
+          {[
+            {
+              q: "What is Your Tool Name?",
+              a: "Your Tool Name is a free online tool that…"
+            },
+            {
+              q: "Is Your Tool Name free to use?",
+              a: "Yes — 100% free. No account, no sign-up required."
+            },
+            {
+              q: "Does it work on mobile?",
+              a: "Yes, it's fully responsive on all screen sizes."
+            },
+            {
+              q: "Is my data safe?",
+              a: "Everything runs in your browser. Nothing is uploaded to any server."
+            },
+          ].map(({ q, a }) => (
+            <div key={q}>
+              <h3 className="text-lg font-medium text-gray-800 mb-2">{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Why Use */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Why Use Our [Tool Name]?
+          Why Use Our Your Tool Name?
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center">
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Benefit 1</h3>
-            <p className="text-gray-600 text-sm">Short description</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">🎯</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Benefit 2</h3>
-            <p className="text-gray-600 text-sm">Short description</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">📱</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Benefit 3</h3>
-            <p className="text-gray-600 text-sm">Short description</p>
-          </div>
+          {[
+            { emoji: "⚡", title: "Instant Results", desc: "No waiting — outputs appear immediately." },
+            { emoji: "🔒", title: "Private", desc: "Everything stays in your browser." },
+            { emoji: "📱", title: "Works Everywhere", desc: "Desktop, tablet, or mobile." },
+          ].map(({ emoji, title, desc }) => (
+            <div key={title} className="text-center">
+              <div className="text-4xl mb-3">{emoji}</div>
+              <h3 className="font-semibold text-gray-800 mb-2">{title}</h3>
+              <p className="text-gray-600 text-sm">{desc}</p>
+            </div>
+          ))}
         </div>
       </section>
     </>
@@ -372,53 +442,109 @@ export default function YourToolSEOContent() {
 }
 ```
 
-**SEO Content Requirements:**
-- ✅ 3 main sections (How to Use, FAQ, Benefits)
-- ✅ 4-6 FAQ questions with keyword-rich answers
-- ✅ H2 and H3 headings for structure
-- ✅ Natural keyword placement
-- ✅ 300+ words total content
+**seo-content.tsx Requirements:**
+- ✅ Minimum 3 sections: How to Use, FAQ, Why Use
+- ✅ 4–6 FAQ questions with keyword-rich answers
+- ✅ Proper H2 / H3 heading hierarchy
+- ✅ 400+ words total across all sections
+- ✅ Natural keyword placement (1–2%)
 
-### Step 6: Update `lib/tools-registry.ts`
+---
 
-Add your tool to the registry:
+### Step 6: Register in `config/tools.ts`
+
+Add your tool to the `tools` array. Pick the correct `category` slug:
 
 ```typescript
-// Add import at top
+// config/tools.ts
+
+export const tools: Tool[] = [
+  // ... existing tools ...
+
+  { slug: "your-tool-name", name: "Your Tool Name", description: "Brief description.", category: "writing", icon: "🔧", free: true },
+];
+```
+
+> Do **not** create a new category unless discussed with the team. Use one of the existing 11 category slugs.
+
+---
+
+### Step 7: Register in `lib/tools-registry.ts`
+
+This registry is used by the `RelatedTools` component to resolve tool slugs to data.
+
+```typescript
+// lib/tools-registry.ts
+
+// 1. Add import at the top
 import { toolConfig as yourToolConfig } from "@/tools/your-tool-name/config";
 
-// Add to TOOLS_REGISTRY object
+// 2. Add to TOOLS_REGISTRY object
 export const TOOLS_REGISTRY = {
-  // ... existing tools
-  'your-tool-name': yourToolConfig,
+  // ... existing entries ...
+  "your-tool-name": yourToolConfig,
 };
 ```
 
-### Step 7: Update `app/tools/[tool]/page.tsx`
+---
 
-Add imports and register your tool:
+### Step 8: Register in `app/tools/[tool]/[subtool]/page.tsx`
+
+This is the file that actually **renders** a tool UI when someone visits `/tools/[category]/[tool-slug]`.
 
 ```typescript
-// Add these imports at the top
+// app/tools/[tool]/[subtool]/page.tsx
+
+// 1. Add imports near the top with other imports
 import { toolConfig as yourToolConfig } from "@/tools/your-tool-name/config";
 import YourToolUI from "@/tools/your-tool-name/ui";
 
-// Add to TOOLS array
+// 2. Add to the TOOLS array (order doesn't matter)
 const TOOLS = [
-  // ... existing tools
+  // ... existing tools ...
   { config: yourToolConfig, Component: YourToolUI },
 ];
 ```
 
-**Note:** You must update BOTH `lib/tools-registry.ts` (for RelatedTools component) AND `app/tools/[tool]/page.tsx` (for routing).
+> ⚠️ **Both `lib/tools-registry.ts` AND `app/tools/[tool]/[subtool]/page.tsx` must be updated.** Missing either one will cause a 404 or broken RelatedTools.
 
-### Step 8: Test Your Tool
+---
+
+### Step 9: Also add category accent color (if creating a new category)
+
+If you created a brand new category (rare), add it to the `categoryAccent` map in `app/tools/[tool]/page.tsx`:
+
+```typescript
+// app/tools/[tool]/page.tsx
+const categoryAccent = {
+  // ... existing ...
+  "your-category": { badge: "bg-teal-100 text-teal-700", icon: "bg-teal-50 border-teal-100" },
+};
+```
+
+Also add it to `categoryStyles` in `app/tools/page.tsx`:
+
+```typescript
+// app/tools/page.tsx
+const categoryStyles = {
+  // ... existing ...
+  "your-category": { bg: "from-teal-50 to-white", border: "border-teal-100 hover:border-teal-300", badge: "bg-teal-100 text-teal-700", dot: "bg-teal-500" },
+};
+```
+
+---
+
+### Step 10: Test
 
 ```bash
+pnpm dev
+# or
 npm run dev
 ```
 
-Visit: `http://localhost:3000/tools/your-tool-name`
+Visit: `http://localhost:3000/tools/your-category/your-tool-name`
+
+Also test the redirect: `http://localhost:3000/tools/your-tool-name` (should redirect automatically)
 
 ---
 
@@ -427,59 +553,63 @@ Visit: `http://localhost:3000/tools/your-tool-name`
 ### Colors
 
 ```css
-Primary: #058554 (Green)
-Primary Hover: #069D63
-Background: #F9FAFB (Light Gray)
-Text: #1F2937 (Dark Gray)
-Border: #E5E7EB (Light Gray)
+Primary:         #058554  (Green)
+Primary Hover:   #069D63
+Background:      #F9FAFB  (Light Gray)
+Card Background: #FFFFFF  (White)
+Text:            #1F2937  (Dark Gray)
+Muted Text:      #6B7280
+Border:          #E5E7EB
 ```
 
-**CSS Variables (from globals.css):**
+**Tailwind CSS Variables:**
 ```css
---color-primary: #058554
---color-primary-hover: #069D63
-```
-
-**Tailwind Classes:**
-```css
-bg-primary → Green background
-hover:bg-primary-hover → Hover state
-text-primary → Green text
-border-primary → Green border
+bg-primary          → #058554
+hover:bg-primary-hover → #069D63
+text-primary        → #058554
+ring-primary        → #058554
+border-primary      → #058554
 ```
 
 ### Typography
 
 ```css
-Headings: var(--font-heading) → Poppins
-Body: var(--font-body) → Inter
+Headings: var(--font-heading)  →  Poppins (400, 600, 700)
+Body:     var(--font-body)     →  Inter (variable)
+```
+
+Always set font explicitly on text elements:
+```tsx
+style={{ fontFamily: "var(--font-heading)" }}   // for titles/buttons
+style={{ fontFamily: "var(--font-body)" }}       // for body text/textarea
 ```
 
 ### Spacing & Sizing
 
 ```css
-Border Radius: rounded-xl (12px)
-Padding: p-4 (16px), p-5 (20px), p-8 (32px)
-Gap: gap-3 (12px), gap-6 (24px)
-Max Width: max-w-3xl (48rem)
+Max width:       max-w-3xl (tool content), max-w-7xl (page wrapper)
+Border radius:   rounded-xl (12px) for inputs/buttons/cards
+Padding:         px-5 py-4 (inputs), px-5 py-2.5 (buttons), p-8 (sections)
+Gap:             gap-3 (button groups), gap-6 (content grids)
+Shadow:          shadow-sm (sections and inputs)
 ```
 
-### Common Classes
+### Component Classes (Copy-Paste)
 
-```typescript
-// Input/Textarea
+```tsx
+{/* Textarea / Input */}
 className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm text-gray-800 placeholder:text-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary resize-y leading-relaxed"
 
-// Primary Button
+{/* Primary Button */}
 className="flex items-center gap-2 bg-primary hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
 
-// Secondary Button
+{/* Secondary/Danger Button */}
 className="flex items-center gap-2 border-2 border-gray-200 hover:border-red-300 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed text-gray-500 text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
 
-// Output Display
+{/* Output Display Box */}
 className="w-full rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 text-sm text-gray-800 shadow-sm min-h-[120px] leading-relaxed"
 
-// Section Container
+{/* SEO Section Container */}
 className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8"
 ```
 
@@ -487,262 +617,142 @@ className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8"
 
 ## 🔍 SEO Strategy
 
-### Keyword Research Process
-
-1. **Primary Keyword** (Tool Name)
-   - Example: "word counter", "paragraph formatter"
-   - Use in: Title, H1, first paragraph, URL
-
-2. **Secondary Keywords** (Variations)
-   - Example: "free word counter", "online word counter"
-   - Use in: Meta description, H2 headings, content
-
-3. **Long-tail Keywords** (Specific queries)
-   - Example: "word counter with reading time"
-   - Use in: FAQ questions, content body
-
-### SEO Checklist
-
-#### Meta Tags
-- ✅ Title: 50-60 characters, include primary keyword
-- ✅ Description: 150-160 characters, compelling CTA
-- ✅ Keywords: 10-15 relevant terms
-- ✅ OpenGraph tags for social sharing
-- ✅ Canonical URL
-
-#### Content Structure
-- ✅ H1: Tool name (only one per page)
-- ✅ H2: Section headings (3-5 per page)
-- ✅ H3: Subsection headings
-- ✅ 500+ words total content
-- ✅ Natural keyword density (1-2%)
-
-#### Schema Markup
-- ✅ SoftwareApplication type
-- ✅ Free pricing info
-- ✅ Organization creator
-- ✅ FAQ schema (if applicable)
-
-#### Technical SEO
-- ✅ Fast loading (<2s)
-- ✅ Mobile responsive
-- ✅ Semantic HTML
-- ✅ Alt text for images
-- ✅ Internal linking
-
-### SEO Content Template
-
-```typescript
-seo: {
-  // Title Formula: "Free [Tool Name] - [Primary Benefit] | [Brand]"
-  title: "Free Word Counter - Count Words & Characters Online | Productive Toolbox",
-  
-  // Description Formula: "Free online [tool] to [benefit]. [Feature 1], [Feature 2]. Perfect for [audience]."
-  description: "Free online word counter to count words, characters, and reading time. Real-time analysis. Perfect for writers and students.",
-  
-  // Keywords: Mix of broad, specific, and long-tail
-  keywords: [
-    "word counter",              // Primary
-    "free word counter",         // Primary + modifier
-    "online word counter",       // Primary + modifier
-    "word count tool",           // Variation
-    "character counter",         // Related
-    "reading time calculator",   // Feature
-    "word counter for essays",   // Long-tail
-    // ... 8-15 total
-  ],
-}
+### Title Formula
 ```
+Free [Tool Name] — [Primary Benefit] | Productive Toolbox
+```
+- Keep under 60 characters
+- Start with "Free"
+- Include the main keyword
 
-### FAQ Question Formula
+### Description Formula
+```
+Free online [tool] to [benefit 1], [benefit 2]. [Unique feature]. Perfect for [audience]. No sign-up required.
+```
+- 150–160 characters
+- Include primary keyword naturally
+- End with a benefit statement
 
-1. **What is [tool name]?** - Define the tool
-2. **How do I use [tool name]?** - Usage instructions
-3. **Is [tool name] free?** - Pricing/access
-4. **Can I use [tool name] for [use case]?** - Specific application
-5. **How accurate is [tool name]?** - Quality/reliability
-6. **Does [tool name] work on mobile?** - Compatibility
+### Keywords (10–15 per tool)
+
+| Type | Example |
+|---|---|
+| Primary | `word counter` |
+| Modified | `free word counter`, `online word counter` |
+| Variations | `word count tool`, `character counter` |
+| Long-tail | `word counter for essays`, `word counter with reading time` |
+| Audience | `word counter for students`, `word counter for writers` |
+
+### FAQ Formula (4–6 questions minimum)
+
+1. **What is [tool name]?** — Define + primary keyword
+2. **How do I use [tool name]?** — Brief steps
+3. **Is [tool name] free?** — Yes, 100% free, no sign-up
+4. **Is my data safe/private?** — Runs in browser, nothing uploaded
+5. **Does it work on mobile?** — Yes, fully responsive
+6. **What is [specific feature] used for?** — Long-tail keyword opportunity
 
 ---
 
 ## ✅ Testing Checklist
 
 ### Functionality
-- [ ] Tool loads without errors
-- [ ] All features work correctly
-- [ ] Input validation works
-- [ ] Output displays properly
-- [ ] Copy to clipboard works
-- [ ] Clear/reset buttons work
+- [ ] Tool loads at `/tools/[category]/[tool-name]` without errors
+- [ ] Short URL `/tools/[tool-name]` redirects correctly
+- [ ] All buttons and inputs work
+- [ ] Copy to clipboard shows "✅ Copied!" feedback
+- [ ] Reset clears all state
+- [ ] Disabled states visible when input is empty
 - [ ] No console errors
 
 ### Design
-- [ ] Matches design system
-- [ ] Responsive on mobile (375px)
-- [ ] Responsive on tablet (768px)
-- [ ] Responsive on desktop (1920px)
-- [ ] Buttons have hover states
-- [ ] Disabled states work
-- [ ] Loading states (if applicable)
+- [ ] Matches design system classes
+- [ ] Responsive on 375px (mobile)
+- [ ] Responsive on 768px (tablet)
+- [ ] Responsive on 1440px (desktop)
+- [ ] `ToolLayout` breadcrumb shows correct category link
 
 ### SEO
-- [ ] Meta tags present
-- [ ] OpenGraph tags present
-- [ ] Structured data present
-- [ ] H1 tag present (only one)
-- [ ] H2/H3 hierarchy correct
-- [ ] FAQ section present
-- [ ] 500+ words content
-- [ ] Keywords naturally placed
+- [ ] `<title>` tag present with primary keyword
+- [ ] Meta description 150–160 chars
+- [ ] Only one `<h1>` on the page (rendered by `ToolLayout`)
+- [ ] H2/H3 hierarchy in `seo-content.tsx` is correct
+- [ ] FAQ section has 4+ questions
+- [ ] Schema markup (auto-generated by `[subtool]/page.tsx`)
+- [ ] Canonical URL correct
 
-### Performance
-- [ ] Page loads in <2 seconds
-- [ ] No layout shift
-- [ ] Smooth animations
-- [ ] No memory leaks
-
-### Accessibility
-- [ ] Keyboard navigation works
-- [ ] Focus states visible
-- [ ] ARIA labels present
-- [ ] Semantic HTML used
-- [ ] Color contrast sufficient
+### Registration
+- [ ] Added to `config/tools.ts` with correct category slug
+- [ ] Added to `lib/tools-registry.ts`
+- [ ] Added to TOOLS array in `app/tools/[tool]/[subtool]/page.tsx`
+- [ ] Category page shows the new tool card
+- [ ] Homepage search finds the new tool
 
 ---
 
 ## 📚 Examples from Existing Tools
 
-### Example 1: Word Counter (Simple Stats Tool)
+### Pattern 1: Stats Tool — Word Counter (`writing`)
+- **Input:** Textarea
+- **Processing:** Real-time (no button needed)
+- **Output:** Grid of stat cards (words, chars, sentences, paragraphs, reading time)
+- **Key point:** `useEffect` or inline calculation on every keystroke
 
-**Structure:**
-- Input: Textarea
-- Processing: Real-time counting
-- Output: Stats grid (6 cards)
-- Actions: Copy results, Reset
+### Pattern 2: Transformation Tool — Sentence Case Converter (`writing`)
+- **Input:** Textarea
+- **Options:** 4 case-type toggle buttons
+- **Processing:** Real-time via selected mode
+- **Output:** Converted text display + copy button
 
-**Key Features:**
-- No "Process" button (real-time)
-- Multiple stats displayed
-- Clean grid layout
+### Pattern 3: Calculator Tool — BMI Calculator (`calculator`)
+- **Input:** Number inputs (weight, height)
+- **Options:** Unit toggle (metric/imperial)
+- **Processing:** On button click
+- **Output:** BMI value + category label (Underweight, Normal, etc.)
 
-**Files:**
-- `logic.ts`: 6 pure functions
-- `ui.tsx`: 100 lines
-- `config.ts`: Standard structure
-- `seo-content.tsx`: 3 sections
+### Pattern 4: Visual Generator — CSS Gradient Generator (`design`)
+- **Input:** Color pickers + sliders
+- **Processing:** Real-time preview
+- **Output:** Live preview + copyable CSS code
 
-### Example 2: Sentence Case Converter (Transformation Tool)
-
-**Structure:**
-- Input: Textarea
-- Options: 4 case type buttons
-- Processing: Real-time conversion
-- Output: Display area
-- Actions: Copy, Reset
-
-**Key Features:**
-- Multiple transformation options
-- Visual option selection
-- Real-time preview
-
-**Files:**
-- `logic.ts`: 4 transformation functions
-- `ui.tsx`: 120 lines
-- `config.ts`: Standard structure
-- `seo-content.tsx`: 3 sections
-
-### Example 3: Paragraph Formatter (Advanced Tool)
-
-**Structure:**
-- Input: Textarea
-- Options: 5 formatting actions
-- Advanced: Collapsible settings
-- Processing: On-demand
-- Output: Display area
-- Actions: Copy, Download, Reset
-
-**Key Features:**
-- Multiple action buttons
-- Advanced options toggle
-- Download functionality
-- Custom settings
-
-**Files:**
-- `logic.ts`: 5 formatting functions
-- `ui.tsx`: 180 lines
-- `config.ts`: Standard structure
-- `seo-content.tsx`: 3 sections
-
----
-
-## 🎯 Tool Categories & Ideas
-
-### Writing Tools
-- Text analyzers
-- Case converters
-- Formatters
-- Counters
-- Generators
-
-**SEO Focus:** "free", "online", "tool", "writer", "student"
-
-### Image Tools
-- Compressors
-- Resizers
-- Converters
-- Editors
-
-**SEO Focus:** "free", "online", "no upload", "browser-based"
-
-### Math Tools
-- Calculators
-- Converters
-- Estimators
-
-**SEO Focus:** "calculator", "free", "online", "easy"
-
-### Security Tools
-- Generators
-- Validators
-- Checkers
-
-**SEO Focus:** "secure", "random", "strong", "generator"
+### Pattern 5: Visualization Tool — Pie Chart Maker (`visualization`)
+- **Input:** Data rows (label + value)
+- **Processing:** Canvas/SVG rendering
+- **Output:** Visual chart + copy data
 
 ---
 
 ## 🚨 Common Mistakes to Avoid
 
-1. ❌ **Forgetting "use client" directive** in ui.tsx
-2. ❌ **Not updating lib/tools-registry.ts, app/tools/[tool]/page.tsx (both required)**
-3. ❌ **Using different slugs in different files**
-4. ❌ **Forgetting to add RelatedTools component at bottom of ui.tsx**
-4. ❌ **Not following design system classes**
-5. ❌ **Missing SEO content component**
-6. ❌ **Not testing on mobile**
-7. ❌ **Keyword stuffing in SEO content**
-8. ❌ **Not adding disabled states to buttons**
-9. ❌ **Missing TypeScript types**
-10. ❌ **Not handling edge cases (empty input, etc.)**
+| ❌ Mistake | ✅ Fix |
+|---|---|
+| Missing `"use client"` in ui.tsx | Add as the very first line |
+| Using wrong category slug | Check the 11-slug table in this guide |
+| Forgetting `lib/tools-registry.ts` update | RelatedTools component will silently fail |
+| Forgetting `[subtool]/page.tsx` update | Tool returns 404 |
+| Slug mismatch across files | Use the same exact kebab-case slug everywhere |
+| No SEO content component | Page will rank poorly |
+| Missing `id` attributes on interactive elements | Breaks browser testing |
+| Keyword stuffing | Write naturally for humans |
+| No disabled state on buttons | Poor UX when input is empty |
+| Not using `style={{ fontFamily }}` | Wrong font renders |
 
 ---
 
 ## 📝 Quick Reference Commands
 
 ```bash
-# Create new tool folder
-mkdir -p tools/your-tool-name
-
 # Start development server
-npm run dev
+pnpm dev
 
-# Build for production
-npm run build
+# TypeScript + build check
+pnpm build
 
-# Check for errors
-npm run lint
+# Lint check
+pnpm lint
 
-# Test production build
-npm run start
+# Clear cache and restart
+rm -rf .next && pnpm dev
 ```
 
 ---
@@ -751,43 +761,16 @@ npm run start
 
 Your tool is ready when:
 
-✅ Loads at `/tools/your-tool-name`
-✅ All features work correctly
-✅ Responsive on all devices
-✅ SEO content displays
-✅ No console errors
-✅ Matches design system
-✅ Listed on homepage
-✅ Meta tags present
-✅ Fast loading (<2s)
+- ✅ Loads at `/tools/[category]/your-tool-name`
+- ✅ Short URL `/tools/your-tool-name` redirects automatically
+- ✅ All features work correctly
+- ✅ Responsive on mobile, tablet, desktop
+- ✅ No console errors
+- ✅ SEO content renders below the tool
+- ✅ RelatedTools section shows at the bottom
+- ✅ Meta tags visible in browser DevTools → Elements
+- ✅ Appears on the category page at `/tools/[category]`
 
 ---
 
-## 💡 Pro Tips
-
-1. **Copy existing tool** as starting point
-2. **Test on real devices**, not just browser resize
-3. **Use semantic HTML** for better SEO
-4. **Keep logic.ts pure** - no side effects
-5. **Write FAQ answers** like you're helping a friend
-6. **Use natural keywords** - don't force them
-7. **Test copy functionality** on different browsers
-8. **Add loading states** for async operations
-9. **Handle errors gracefully** with user-friendly messages
-10. **Document complex logic** with comments
-
----
-
-## 📞 Need Help?
-
-- Check existing tools for reference
-- Review this guide thoroughly
-- Test incrementally (one file at a time)
-- Use browser DevTools for debugging
-- Validate HTML/SEO with online tools
-
----
-
-**Last Updated:** 2024
-**Version:** 1.0
-**Maintained by:** Productive Toolbox Team
+**Version:** 2.0 | **Updated:** March 2026 | **Maintained by:** Productive Toolbox Team

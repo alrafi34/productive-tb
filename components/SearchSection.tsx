@@ -19,8 +19,10 @@ export default function SearchSection() {
     : [];
 
   function handleSelect(slug: string) {
+    const tool = tools.find(t => t.slug === slug);
+    const category = tool?.category ?? "utility";
     setQuery("");
-    router.push(`/tools/${slug}`);
+    router.push(`/tools/${category}/${slug}`);
   }
 
   return (
