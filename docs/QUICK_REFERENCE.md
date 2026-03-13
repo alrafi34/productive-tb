@@ -40,7 +40,7 @@ export const toolConfig = {
   slug: "tool-name",
   name: "Tool Name",
   description: "What it does in one sentence.",
-  category: "writing",   // ← one of the 11 category slugs
+  category: "writing",   // ← one of the 10 category slugs
   icon: "🔧",
   free: true,
   backend: false,
@@ -213,7 +213,7 @@ import ToolNameUI from "@/tools/tool-name/ui";
 ## 🗺️ URL Structure
 
 ```
-/tools                              → Category index (11 cards)
+/tools                              → Category index (10 cards)
 /tools/writing                      → Writing Tools category page
 /tools/writing/word-counter         → Individual tool page ← MAIN URL
 /tools/word-counter                 → Auto-redirects to /tools/writing/word-counter
@@ -229,7 +229,6 @@ import ToolNameUI from "@/tools/tool-name/ui";
 | `image` | Image Tools | 🖼️ |
 | `design` | Design Tools | 🎨 |
 | `security` | Security Tools | 🔒 |
-| `math` | Math Tools | 🔢 |
 | `calculator` | Calculator Tools | 🧮 |
 | `creator` | Creator Tools | 🚀 |
 | `developer` | Developer Tools | 💻 |
@@ -305,7 +304,7 @@ Keywords:    primary, "free primary", "online primary", variations, long-tail (1
 | RelatedTools blank | Not in tools-registry | Update `lib/tools-registry.ts` |
 | "use client" error | Server component using hooks | Add `"use client"` line 1 |
 | Wrong font rendering | Missing `style={{ fontFamily }}` | Add font style to elements |
-| Tool not in category | Wrong category slug | Check 11-category table |
+| Tool not in category | Wrong category slug | Check 10-category table |
 | Redirect not working | Not in `config/tools.ts` | Add to tools array |
 
 ---

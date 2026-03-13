@@ -53,7 +53,7 @@ app/tools/[tool]/[subtool]/page.tsx      ← Add import + entry in TOOLS array
 productive-tb/
 ├── app/
 │   └── tools/
-│       ├── page.tsx                     # /tools — category index (11 categories)
+│       ├── page.tsx                     # /tools — category index (10 categories)
 │       └── [tool]/
 │           ├── page.tsx                 # /tools/[category] — category listing page
 │           │                            # /tools/[slug] — auto-redirect to /tools/[cat]/[slug]
@@ -96,7 +96,7 @@ The project uses a **two-level dynamic route** for tools:
 
 | You visit | Handled by | What happens |
 |---|---|---|
-| `/tools` | `app/tools/page.tsx` | Shows 11 category cards |
+| `/tools` | `app/tools/page.tsx` | Shows 10 category cards |
 | `/tools/writing` | `app/tools/[tool]/page.tsx` | Shows all Writing Tools |
 | `/tools/writing/word-counter` | `app/tools/[tool]/[subtool]/page.tsx` | Renders the Word Counter tool |
 | `/tools/word-counter` | `app/tools/[tool]/page.tsx` | Auto-redirects to `/tools/writing/word-counter` |
@@ -111,7 +111,6 @@ The project uses a **two-level dynamic route** for tools:
 | `image` | Image Tools | 🖼️ | Amber |
 | `design` | Design Tools | 🎨 | Pink |
 | `security` | Security Tools | 🔒 | Red |
-| `math` | Math Tools | 🔢 | Violet |
 | `calculator` | Calculator Tools | 🧮 | Teal |
 | `creator` | Creator Tools | 🚀 | Orange |
 | `developer` | Developer Tools | 💻 | Blue |
@@ -173,7 +172,7 @@ export const toolConfig = {
 };
 ```
 
-> **Category note:** Use one of the 11 slugs from the table above. If all your tool does is calculate something, use `calculator`.
+> **Category note:** Use one of the 10 slugs from the table above. If all your tool does is calculate something, use `calculator`.
 
 ---
 
@@ -465,7 +464,7 @@ export const tools: Tool[] = [
 ];
 ```
 
-> Do **not** create a new category unless discussed with the team. Use one of the existing 11 category slugs.
+> Do **not** create a new category unless discussed with the team. Use one of the existing 10 category slugs.
 
 ---
 
@@ -727,7 +726,7 @@ Free online [tool] to [benefit 1], [benefit 2]. [Unique feature]. Perfect for [a
 | ❌ Mistake | ✅ Fix |
 |---|---|
 | Missing `"use client"` in ui.tsx | Add as the very first line |
-| Using wrong category slug | Check the 11-slug table in this guide |
+| Using wrong category slug | Check the 10-slug table in this guide |
 | Forgetting `lib/tools-registry.ts` update | RelatedTools component will silently fail |
 | Forgetting `[subtool]/page.tsx` update | Tool returns 404 |
 | Slug mismatch across files | Use the same exact kebab-case slug everywhere |

@@ -12,7 +12,7 @@ productive-tb/
 │   ├── sitemap.ts                         # XML sitemap generation
 │   │
 │   ├── tools/
-│   │   ├── page.tsx                       # /tools — category index grid (11 categories)
+│   │   ├── page.tsx                       # /tools — category index grid (10 categories)
 │   │   │
 │   │   ├── [tool]/                        # Dual-purpose dynamic segment
 │   │   │   ├── page.tsx                   # If slug = category → render category page
@@ -46,10 +46,10 @@ productive-tb/
 ├── config/
 │   ├── tools.ts                           # ★ Tool registry & category definitions
 │   │                                      #   - Tool[] array (slug, name, description, category, icon, free)
-│   │                                      #   - Category[] array (11 categories)
+│   │                                      #   - Category[] array (10 categories)
 │   └── site.ts                            # Site-wide config (name, url)
 │
-├── tools/                                 # ★ One folder per implemented tool (~103 tools)
+├── tools/                                 # ★ One folder per implemented tool (~609 tool configs)
 │   ├── word-counter/
 │   │   ├── config.ts                      # Tool metadata + SEO (slug, name, description, seo{}, features[])
 │   │   ├── logic.ts                       # Pure TypeScript functions (no side effects)
@@ -58,7 +58,7 @@ productive-tb/
 │   │
 │   ├── sentence-case-converter/
 │   ├── discount-calculator/
-│   └── ... (103 tool folders total)
+│   └── ... (600+ tool entries mapped)
 │
 ├── lib/
 │   └── tools-registry.ts                  # Centralized tool registry (used by RelatedTools component)
@@ -92,7 +92,7 @@ productive-tb/
 | `/tools/writing/word-counter` | `app/tools/[tool]/[subtool]/page.tsx` | Individual tool page |
 | `/tools/word-counter` | `app/tools/[tool]/page.tsx` | Redirects → `/tools/writing/word-counter` |
 
-## Available Categories (11)
+## Available Categories (10)
 
 | Slug | Name | Icon |
 |---|---|---|
@@ -100,7 +100,6 @@ productive-tb/
 | `image` | Image Tools | 🖼️ |
 | `design` | Design Tools | 🎨 |
 | `security` | Security Tools | 🔒 |
-| `math` | Math Tools | 🔢 |
 | `calculator` | Calculator Tools | 🧮 |
 | `creator` | Creator Tools | 🚀 |
 | `developer` | Developer Tools | 💻 |

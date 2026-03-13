@@ -64,10 +64,10 @@ productive-tb/
 │   └── ...
 │
 ├── config/
-│   ├── tools.ts                         # ★ Tool[] + Category[] definitions (11 categories)
+│   ├── tools.ts                         # ★ Tool[] + Category[] definitions (10 categories)
 │   └── site.ts                          # Site name, URL
 │
-├── tools/                               # ★ ~103 tool folders
+├── tools/                               # ★ ~609 tool folders (configurations mapped)
 │   └── [tool-slug]/
 │       ├── config.ts                    # slug, name, desc, category, seo{}, features[]
 │       ├── logic.ts                     # Pure functions (no React, no DOM)
@@ -87,7 +87,7 @@ productive-tb/
 ## 🗂️ URL Routing
 
 ```
-/tools                               → 11 category cards
+/tools                               → 10 category cards
 /tools/writing                       → Writing Tools category
 /tools/writing/word-counter          → Word Counter tool  ← CANONICAL URL
 /tools/word-counter                  → Auto-redirects to above
@@ -109,7 +109,6 @@ where `[tool]` = category slug and `[subtool]` = tool slug.
 | `image` | Image Tools | Amber |
 | `design` | Design Tools | Pink |
 | `security` | Security Tools | Red |
-| `math` | Math Tools | Violet |
 | `calculator` | Calculator Tools | Teal |
 | `creator` | Creator Tools | Orange |
 | `developer` | Developer Tools | Blue |
@@ -146,7 +145,7 @@ where `[tool]` = category slug and `[subtool]` = tool slug.
 ## 📋 Integration Checklist
 
 ### Phase 1 — Plan (10 min)
-- [ ] Choose category slug (from the 11 above)
+- [ ] Choose category slug (from the 10 above)
 - [ ] Choose tool slug (kebab-case, unique)
 - [ ] Research 10–15 SEO keywords
 - [ ] List 5+ features
@@ -227,8 +226,8 @@ Content:     400+ words total in seo-content.tsx
 
 ## 🏆 Current State
 
-### Tools Implemented: ~103
-### Categories: 11
+### Tools Registered: ~609
+### Categories: 10
 ### URL Pattern: `/tools/[category]/[tool-slug]`
 ### Stack: Next.js 15, TypeScript, Poppins + Inter fonts, Vanilla CSS + Tailwind
 

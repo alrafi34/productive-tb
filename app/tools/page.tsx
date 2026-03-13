@@ -16,9 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-/* ─── Category color palettes ─── */
 const categoryStyles: Record<string, { bg: string; border: string; badge: string; dot: string }> = {
-  math:         { bg: "from-violet-50 to-white", border: "border-violet-100 hover:border-violet-300", badge: "bg-violet-100 text-violet-700", dot: "bg-violet-500" },
   developer:    { bg: "from-blue-50 to-white",   border: "border-blue-100 hover:border-blue-300",   badge: "bg-blue-100 text-blue-700",   dot: "bg-blue-500"   },
   writing:      { bg: "from-emerald-50 to-white", border: "border-emerald-100 hover:border-emerald-300", badge: "bg-emerald-100 text-emerald-700", dot: "bg-emerald-500" },
   design:       { bg: "from-pink-50 to-white",    border: "border-pink-100 hover:border-pink-300",    badge: "bg-pink-100 text-pink-700",    dot: "bg-pink-500"   },

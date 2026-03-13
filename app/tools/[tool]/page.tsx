@@ -9,7 +9,6 @@ import { siteConfig } from "@/config/site";
 
 /* ─── Category accent colours ─── */
 const categoryAccent: Record<string, { badge: string; icon: string }> = {
-  math:          { badge: "bg-violet-100 text-violet-700",  icon: "bg-violet-50 border-violet-100"  },
   developer:     { badge: "bg-blue-100 text-blue-700",      icon: "bg-blue-50 border-blue-100"      },
   writing:       { badge: "bg-emerald-100 text-emerald-700",icon: "bg-emerald-50 border-emerald-100"},
   design:        { badge: "bg-pink-100 text-pink-700",      icon: "bg-pink-50 border-pink-100"      },
@@ -19,6 +18,7 @@ const categoryAccent: Record<string, { badge: string; icon: string }> = {
   visualization: { badge: "bg-cyan-100 text-cyan-700",      icon: "bg-cyan-50 border-cyan-100"      },
   productivity:  { badge: "bg-lime-100 text-lime-700",      icon: "bg-lime-50 border-lime-100"      },
   multimedia:    { badge: "bg-indigo-100 text-indigo-700",  icon: "bg-indigo-50 border-indigo-100"  },
+  calculator:    { badge: "bg-teal-100 text-teal-700",      icon: "bg-teal-50 border-teal-100"      },
 };
 const defaultAccent = { badge: "bg-gray-100 text-gray-700", icon: "bg-gray-50 border-gray-100" };
 
