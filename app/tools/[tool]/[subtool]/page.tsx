@@ -233,10 +233,46 @@ import { toolConfig as ohmsLawCalculatorConfig } from "@/tools/ohms-law-calculat
 import OhmsLawCalculatorUI from "@/tools/ohms-law-calculator/ui";
 import { toolConfig as cmToMeterConverterConfig } from "@/tools/centimeter-to-meter-converter/config";
 import CmToMeterUI from "@/tools/centimeter-to-meter-converter/ui";
+import { toolConfig as squareMeterToSquareFootConverterConfig } from "@/tools/square-meter-to-square-foot-converter/config";
+import AreaConverterUI from "@/tools/square-meter-to-square-foot-converter/ui";
 import { toolConfig as meterToKmConverterConfig } from "@/tools/meter-to-km-converter/config";
 import MeterToKmUI from "@/tools/meter-to-km-converter/ui";
+import { toolConfig as inchToCmConverterConfig } from "@/tools/inch-to-cm-converter/config";
+import InchToCmConverterUI from "@/tools/inch-to-cm-converter/ui";
 import { averageCalculatorConfig } from "@/tools/average-calculator/config";
 import AverageCalculatorUI from "@/tools/average-calculator/ui";
+import { scientificCalculatorConfig } from "@/tools/scientific-calculator/config";
+import ScientificCalculatorUI from "@/tools/scientific-calculator/ui";
+import { toolConfig as squareRootCalculatorConfig } from "@/tools/square-root-calculator/config";
+import SquareRootCalculatorUI from "@/tools/square-root-calculator/ui";
+import { fractionCalculatorConfig } from "@/tools/fraction-calculator/config";
+import FractionCalculatorUI from "@/tools/fraction-calculator/ui";
+import { toolConfig as exponentCalculatorConfig } from "@/tools/exponent-calculator/config";
+import ExponentCalculatorUI from "@/tools/exponent-calculator/ui";
+import { toolConfig as simpleInterestCalculatorConfig } from "@/tools/simple-interest-calculator/config";
+import SimpleInterestCalculatorUI from "@/tools/simple-interest-calculator/ui";
+import { toolConfig as compoundInterestCalculatorConfig } from "@/tools/compound-interest-calculator/config";
+import CompoundInterestCalculatorUI from "@/tools/compound-interest-calculator/ui";
+import { mortgageCalculatorConfig } from "@/tools/mortgage-calculator/config";
+import MortgageCalculatorUI from "@/tools/mortgage-calculator/ui";
+import { toolConfig as investmentReturnCalculatorConfig } from "@/tools/investment-return-calculator/config";
+import InvestmentReturnCalculatorUI from "@/tools/investment-return-calculator/ui";
+import { toolConfig as profitMarginCalculatorConfig } from "@/tools/profit-margin-calculator/config";
+import ProfitMarginCalculatorUI from "@/tools/profit-margin-calculator/ui";
+import { toolConfig as gstVatCalculatorConfig } from "@/tools/gst-vat-calculator/config";
+import GSTVATCalculatorUI from "@/tools/gst-vat-calculator/ui";
+import { toolConfig as salaryCalculatorConfig } from "@/tools/salary-calculator/config";
+import SalaryCalculatorUI from "@/tools/salary-calculator/ui";
+import { toolConfig as bmrCalculatorConfig } from "@/tools/bmr-calculator/config";
+import BMRCalculatorUI from "@/tools/bmr-calculator/ui";
+import { toolConfig as idealWeightCalculatorConfig } from "@/tools/ideal-weight-calculator/config";
+import IdealWeightCalculatorUI from "@/tools/ideal-weight-calculator/ui";
+import { toolConfig as bodyFatCalculatorConfig } from "@/tools/body-fat-calculator/config";
+import BodyFatCalculatorUI from "@/tools/body-fat-calculator/ui";
+import { toolConfig as dailyCalorieCalculatorConfig } from "@/tools/daily-calorie-calculator/config";
+import DailyCalorieCalculatorUI from "@/tools/daily-calorie-calculator/ui";
+import { powerConsumptionCalculatorConfig } from "@/tools/power-consumption-calculator/config";
+import PowerConsumptionCalculatorUI from "@/tools/power-consumption-calculator/ui";
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -352,8 +388,26 @@ const TOOLS = [
   { config: temperatureConversionScientificConfig, Component: TemperatureConversionUI },
   { config: ohmsLawCalculatorConfig, Component: OhmsLawCalculatorUI },
   { config: cmToMeterConverterConfig, Component: CmToMeterUI },
+  { config: squareMeterToSquareFootConverterConfig, Component: AreaConverterUI },
   { config: meterToKmConverterConfig, Component: MeterToKmUI },
+  { config: inchToCmConverterConfig, Component: InchToCmConverterUI },
   { config: averageCalculatorConfig, Component: AverageCalculatorUI },
+  { config: scientificCalculatorConfig, Component: ScientificCalculatorUI },
+  { config: fractionCalculatorConfig, Component: FractionCalculatorUI },
+  { config: exponentCalculatorConfig, Component: ExponentCalculatorUI },
+  { config: squareRootCalculatorConfig, Component: SquareRootCalculatorUI },
+  { config: simpleInterestCalculatorConfig, Component: SimpleInterestCalculatorUI },
+  { config: compoundInterestCalculatorConfig, Component: CompoundInterestCalculatorUI },
+  { config: mortgageCalculatorConfig, Component: MortgageCalculatorUI },
+  { config: investmentReturnCalculatorConfig, Component: InvestmentReturnCalculatorUI },
+  { config: profitMarginCalculatorConfig, Component: ProfitMarginCalculatorUI },
+  { config: gstVatCalculatorConfig, Component: GSTVATCalculatorUI },
+  { config: salaryCalculatorConfig, Component: SalaryCalculatorUI },
+  { config: bmrCalculatorConfig, Component: BMRCalculatorUI },
+  { config: idealWeightCalculatorConfig, Component: IdealWeightCalculatorUI },
+  { config: bodyFatCalculatorConfig, Component: BodyFatCalculatorUI },
+  { config: dailyCalorieCalculatorConfig, Component: DailyCalorieCalculatorUI },
+  { config: powerConsumptionCalculatorConfig, Component: PowerConsumptionCalculatorUI },
 ];
 
 /* generateStaticParams intentionally removed — see dynamic export above */

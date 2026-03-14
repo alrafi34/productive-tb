@@ -150,6 +150,7 @@ export const tools: Tool[] = [
   //{ slug: "roman-numeral-converter", name: "Roman Numeral Converter", description: "Switch between numbers and Roman numerals.", category: "calculator", icon: "🏛️", free: true },
   { slug: "fuel-cost-calculator", name: "Fuel Cost Calculator", description: "Calculate trip cost based on distance and MPG.", category: "calculator", icon: "⛽", free: true },
   { slug: "ohms-law-calculator", name: "Ohm's Law Calculator", description: "Calculate Voltage, Current, or Resistance instantly using Ohm's Law.", category: "calculator", icon: "⚡", free: true },
+  { slug: "power-consumption-calculator", name: "Power Consumption Calculator", description: "Estimate electric bill based on appliance usage.", category: "calculator", icon: "🔌", free: true },
 
   //{ slug: "dice-roller", name: "Probability/Dice Roller", description: "Simulate rolling N number of dice.", category: "calculator", icon: "🎲", free: true },
   
@@ -619,6 +620,8 @@ export const tools: Tool[] = [
   // New Calculators (80) to reach 200 total in category
   { slug: "time-duration-calculator", name: "Time Duration Calculator", description: "Find hours and minutes between two times.", category: "calculator", icon: "⏳", free: true },
   { slug: "centimeter-to-meter-converter", name: "Centimeter to Meter Converter", description: "Convert centimeters to meters instantly.", category: "calculator", icon: "📏", free: true },
+  { slug: "square-meter-to-square-foot-converter", name: "Square Meter to Square Foot Converter", description: "Convert area measurements from square meters (m²) to square feet (ft²) instantly.", category: "calculator", icon: "📐", free: true },
+
 
   //{ slug: "bill-split-calculator", name: "Bill Split Calculator", description: "Easily divide restaurant bills among friends.", category: "calculator", icon: "💵", free: true },
   //{ slug: "mileage-calculator", name: "Mileage Calculator", description: "Calculate fuel efficiency / MPG.", category: "calculator", icon: "🚗", free: true },
@@ -640,10 +643,12 @@ export const tools: Tool[] = [
   //{ slug: "mb-to-gb-converter", name: "Megabyte to Gigabyte Converter", description: "Digital storage conversion.", category: "calculator", icon: "💾", free: true },
   //{ slug: "speed-converter-tool", name: "Speed Converter", description: "Convert km/h, mph, knots, m/s.", category: "calculator", icon: "💨", free: true },
   //{ slug: "angle-converter-tool", name: "Angle Converter", description: "Convert Degrees, Radians, Gradians.", category: "calculator", icon: "📐", free: true },
-  { slug: "scientific-calculator-tool", name: "Scientific Calculator", description: "Full math functions: sin, cos, tan, log.", category: "calculator", icon: "🧮", free: true },
-  { slug: "fraction-calculator-tool", name: "Fraction Calculator", description: "Add, subtract, multiply, and divide fractions.", category: "calculator", icon: "➗", free: true },
-  { slug: "square-root-calculator-tool", name: "Square Root Calculator", description: "Find the root of any number.", category: "calculator", icon: "√", free: true },
-  { slug: "exponent-calculator-tool", name: "Exponent Calculator", description: "Calculate powers (x to the y).", category: "calculator", icon: "🔢", free: true },
+  { slug: "scientific-calculator", name: "Scientific Calculator", description: "Advanced calculator with trigonometry, logarithms, powers, and mathematical functions.", category: "calculator", icon: "🔬", free: true },
+  { slug: "fraction-calculator", name: "Fraction Calculator", description: "Add, subtract, multiply, and divide fractions with automatic simplification.", category: "calculator", icon: "➗", free: true },
+  { slug: "exponent-calculator", name: "Exponent Calculator", description: "Calculate powers (x to the y) instantly with support for negative and fractional exponents.", category: "calculator", icon: "🔢", free: true },
+  { slug: "square-root-calculator", name: "Square Root Calculator", description: "Calculate the square root of any number instantly with precision control.", category: "math", icon: "√", free: true },
+
+
   //{ slug: "logarithm-calculator-tool", name: "Logarithm Calculator", description: "Find log and ln for any base.", category: "calculator", icon: "📊", free: true },
   //{ slug: "lcm-calculator", name: "LCM Calculator", description: "Least Common Multiple of two or more numbers.", category: "calculator", icon: "🔢", free: true },
   //{ slug: "gcd-hcf-calculator", name: "GCD / HCF Calculator", description: "Greatest Common Divisor finder.", category: "calculator", icon: "🔢", free: true },
@@ -651,8 +656,8 @@ export const tools: Tool[] = [
   //{ slug: "permutation-calculator-tool", name: "Permutation Calculator", description: "Calculate nPr for probability.", category: "calculator", icon: "🎲", free: true },
   //{ slug: "combination-calculator-tool", name: "Combination Calculator", description: "Calculate nCr for probability.", category: "calculator", icon: "🎲", free: true },
   { slug: "mortgage-calculator", name: "Mortgage Calculator", description: "Calculate monthly home loan payments.", category: "calculator", icon: "🏠", free: true },
-  { slug: "simple-interest-calculator", name: "Simple Interest Calculator", description: "Basic interest over time.", category: "calculator", icon: "💰", free: true },
-  { slug: "compound-interest-calculator-tool", name: "Compound Interest Calculator", description: "See how your money grows.", category: "calculator", icon: "📈", free: true },
+  { slug: "simple-interest-calculator", name: "Simple Interest Calculator", description: "Calculate simple interest and total amount based on principal, rate, and time instantly.", category: "calculator", icon: "💰", free: true },
+  { slug: "compound-interest-calculator", name: "Compound Interest Calculator", description: "Calculate compound interest and visualize investment growth over time.", category: "calculator", icon: "📈", free: true },
   { slug: "investment-return-calculator", name: "Investment Return (ROI) Calculator", description: "Calculate gain or loss percentage.", category: "calculator", icon: "💹", free: true },
   { slug: "profit-margin-calculator", name: "Profit Margin Calculator", description: "Find gross and net profit margins.", category: "calculator", icon: "💰", free: true },
   //{ slug: "break-even-calculator", name: "Break-Even Calculator", description: "Find out when your business turns a profit.", category: "calculator", icon: "📈", free: true },
@@ -662,9 +667,9 @@ export const tools: Tool[] = [
   //{ slug: "retirement-savings-calculator", name: "Retirement Savings Calculator", description: "Plan for your future nest egg.", category: "calculator", icon: "🏝️", free: true },
   //{ slug: "loan-payoff-calculator", name: "Loan Payoff Calculator", description: "Find out how soon you can be debt-free.", category: "calculator", icon: "💳", free: true },
   //{ slug: "savings-calculator-tool", name: "Savings Goal Calculator", description: "How much to save to reach your target.", category: "calculator", icon: "🐷", free: true },
-  { slug: "bmr-calculator-tool", name: "BMR Calculator", description: "Basal Metabolic Rate estimation.", category: "calculator", icon: "🔥", free: true },
+  { slug: "bmr-calculator", name: "BMR Calculator", description: "Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) instantly.", category: "health", icon: "🔥", free: true },
   { slug: "ideal-weight-calculator", name: "Ideal Weight Calculator", description: "Check healthy weight for your height.", category: "calculator", icon: "⚖️", free: true },
-  { slug: "body-fat-calculator", name: "Body Fat Calculator", description: "Estimate body fat percentage.", category: "calculator", icon: "📏", free: true },
+  { slug: "body-fat-calculator", name: "Body Fat Calculator", description: "Estimate body fat percentage using US Navy or BMI methods with instant results.", category: "calculator", icon: "📏", free: true },
   { slug: "daily-calorie-calculator", name: "Daily Calorie Calculator", description: "Calories needed for maintenance or weight loss.", category: "calculator", icon: "🍎", free: true },
   //{ slug: "water-intake-calculator", name: "Water Intake Calculator", description: "Daily hydration needs based on weight.", category: "calculator", icon: "💧", free: true },
   //{ slug: "protein-intake-calculator", name: "Protein Intake Calculator", description: "Find daily protein needs for your goals.", category: "calculator", icon: "🥩", free: true },
@@ -686,7 +691,7 @@ export const tools: Tool[] = [
   //{ slug: "pipe-flow-calculator", name: "Pipe Flow Calculator", description: "Calculate water flow rates.", category: "calculator", icon: "🚰", free: true },
   //{ slug: "beam-load-calculator", name: "Beam Load Calculator", description: "Calculate weight limits for structural beams.", category: "calculator", icon: "🏗️", free: true },
   //{ slug: "gear-ratio-calculator-tool", name: "Gear Ratio Calculator", description: "Find RPM and torque for gears.", category: "calculator", icon: "⚙️", free: true },
-  { slug: "power-consumption-calculator", name: "Power Consumption Calculator", description: "Estimate electric bill based on appliance usage.", category: "calculator", icon: "🔌", free: true },
+
   //{ slug: "roi-business-calculator", name: "ROI (Return on Investment) Calculator", description: "Calculate business gain/loss.", category: "calculator", icon: "💹", free: true },
   //{ slug: "cac-calculator-tool", name: "Customer Acquisition Cost (CAC) Calculator", description: "Cost to get one new customer.", category: "calculator", icon: "📈", free: true },
   //{ slug: "clv-calculator-tool", name: "Customer Lifetime Value (CLV) Calculator", description: "Total value of a customer over time.", category: "calculator", icon: "💎", free: true },
@@ -809,5 +814,6 @@ export const categories: Category[] = [
   { slug: "developer", name: "Developer Tools", description: "Code formatters, validators, and dev utilities.", icon: "💻" },
   { slug: "visualization", name: "Visualization Tools", description: "Charts, graphs, timelines, and data visualization.", icon: "📊" },
   { slug: "productivity", name: "Productivity Tools", description: "Timers, trackers, and lifestyle utilities.", icon: "⚡" },
+  { slug: "health", name: "Health Tools", description: "BMI, BMR, calorie calculators and health utilities.", icon: "🍎" },
   { slug: "multimedia", name: "Multimedia Tools", description: "Audio, video, and browser API utilities.", icon: "🎥" },
 ];

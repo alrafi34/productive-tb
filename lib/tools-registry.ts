@@ -102,8 +102,20 @@ import { toolConfig as timeDurationCalculatorConfig } from "@/tools/time-duratio
 import { toolConfig as temperatureConversionScientificConfig } from "@/tools/temperature-conversion-scientific/config";
 import { toolConfig as ohmsLawCalculatorConfig } from "@/tools/ohms-law-calculator/config";
 import { toolConfig as cmToMeterConverterConfig } from "@/tools/centimeter-to-meter-converter/config";
+import { toolConfig as squareMeterToSquareFootConverterConfig } from "@/tools/square-meter-to-square-foot-converter/config";
 import { toolConfig as meterToKmConverterConfig } from "@/tools/meter-to-km-converter/config";
+import { toolConfig as inchToCmConverterConfig } from "@/tools/inch-to-cm-converter/config";
 import { averageCalculatorConfig } from "@/tools/average-calculator/config";
+import { scientificCalculatorConfig } from "@/tools/scientific-calculator/config";
+import { fractionCalculatorConfig } from "@/tools/fraction-calculator/config";
+import { toolConfig as exponentCalculatorConfig } from "@/tools/exponent-calculator/config";
+import { toolConfig as squareRootCalculatorConfig } from "@/tools/square-root-calculator/config";
+import { toolConfig as simpleInterestCalculatorConfig } from "@/tools/simple-interest-calculator/config";
+import { toolConfig as compoundInterestCalculatorConfig } from "@/tools/compound-interest-calculator/config";
+import { toolConfig as investmentReturnCalculatorConfig } from "@/tools/investment-return-calculator/config";
+import { toolConfig as gstVatCalculatorConfig } from "@/tools/gst-vat-calculator/config";
+import { toolConfig as salaryCalculatorConfig } from "@/tools/salary-calculator/config";
+import { toolConfig as bmrCalculatorConfig } from "@/tools/bmr-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -210,8 +222,20 @@ export const TOOLS_REGISTRY = {
   'temperature-conversion-scientific': temperatureConversionScientificConfig,
   'ohms-law-calculator': ohmsLawCalculatorConfig,
   'centimeter-to-meter-converter': cmToMeterConverterConfig,
+  'square-meter-to-square-foot-converter': squareMeterToSquareFootConverterConfig,
   'meter-to-km-converter': meterToKmConverterConfig,
+  'inch-to-cm-converter': inchToCmConverterConfig,
   'average-calculator': averageCalculatorConfig,
+  'scientific-calculator': scientificCalculatorConfig,
+  'fraction-calculator': fractionCalculatorConfig,
+  'exponent-calculator': exponentCalculatorConfig,
+  'square-root-calculator': squareRootCalculatorConfig,
+  'simple-interest-calculator': simpleInterestCalculatorConfig,
+  'compound-interest-calculator': compoundInterestCalculatorConfig,
+  'investment-return-calculator': investmentReturnCalculatorConfig,
+  'gst-vat-calculator': gstVatCalculatorConfig,
+  'salary-calculator': salaryCalculatorConfig,
+  'bmr-calculator': bmrCalculatorConfig,
 };
 
 
