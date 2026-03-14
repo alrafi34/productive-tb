@@ -23,8 +23,9 @@ export const metadata: Metadata = {
     default: `${siteConfig.name} - 100+ Free Online Tools`,
     template: `%s | ${siteConfig.name}`
   },
-  description: "Free online tools for productivity. Word counters, text formatters, image compressors, QR generators, and 100+ more utilities. No sign-up required.",
-  keywords: ["free online tools", "productivity tools", "word counter", "text tools", "image tools", "writing tools", "online utilities", "free web tools", "text formatter", "case converter"],
+  description: "Free online tools for writing, design, coding, and math. Word counter, image compressor, password generator, calculators & 100+ utilities. No sign-up needed.",
+  keywords: ["free online tools", "word counter", "image compressor", "password generator", "BMI calculator", "JSON validator", "CSS gradient generator", "text case converter", "base64 encoder", "markdown previewer", "color palette generator", "QR code generator", "developer tools", "writing tools", "productivity tools"],
+
   authors: [{ name: "Productive Toolbox Team" }],
   creator: "Productive Toolbox",
   publisher: "Productive Toolbox",
@@ -34,13 +35,13 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: siteConfig.name,
     title: `${siteConfig.name} - 100+ Free Online Tools`,
-    description: "Free online tools for productivity. Word counters, text formatters, image compressors, and more. No sign-up required.",
+    description: "Free online tools for writing, design, coding, and math. Word counter, image compressor, password generator, calculators & 100+ utilities. No sign-up needed.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Productive Toolbox" }]
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} - 100+ Free Online Tools`,
-    description: "Free online tools for productivity. No sign-up required.",
+    description: "100+ free online tools for writing, design, coding & math. No sign-up needed.",
     images: ["/og-image.png"]
   },
   robots: {
