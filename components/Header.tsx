@@ -46,9 +46,7 @@ export default function Header() {
               </svg>
             </button>
           )}
-          <Link href="/subscribe" className="bg-primary hover:bg-primary-hover text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors" style={{ fontFamily: "var(--font-heading)" }}>
-            Subscribe
-          </Link>
+
         </nav>
 
         {/* Mobile hamburger */}
@@ -85,13 +83,7 @@ export default function Header() {
               Search Tools
             </button>
           )}
-          <div className="px-6 py-4">
-            <Link href="/subscribe" onClick={() => setOpen(false)}
-              className="block text-center bg-primary hover:bg-primary-hover text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors"
-              style={{ fontFamily: "var(--font-heading)" }}>
-              Subscribe
-            </Link>
-          </div>
+
         </div>
       )}
     </header>
