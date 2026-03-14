@@ -7,9 +7,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <div className="flex items-center gap-2 text-white font-bold text-lg mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl">🧰</span>{siteConfig.name}
-            </div>
+            <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+              <img src="/favicon.svg" alt="" className="w-7 h-7" />
+              {siteConfig.name}
+            </Link>
             <p className="text-sm text-gray-500 leading-relaxed mb-5">Free micro-tools for everyday productivity. No sign-up, no paywalls.</p>
             <div className="flex gap-3">
               {[

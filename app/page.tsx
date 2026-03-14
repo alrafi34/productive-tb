@@ -79,7 +79,7 @@ export default function HomePage() {
                 </Link>
               </div>
               <div className="flex gap-8 mt-10">
-                {[["100+", "Free Tools"], ["50K+", "Happy Users"], ["0", "Sign-ups Needed"]].map(([val, label]) => (
+                {[["100+", "Free Tools"], ["5M+", "Happy Users"], ["0", "Sign-ups Needed"]].map(([val, label]) => (
                   <div key={label}>
                     <strong className="block text-2xl font-bold text-primary" style={{ fontFamily: "var(--font-heading)" }}>{val}</strong>
                     <span className="text-xs text-gray-400">{label}</span>
@@ -101,11 +101,11 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Popular Tools</h2>
             <p className="text-center text-gray-400 text-sm mb-12">The most-used tools by our community — free, fast, and no account needed.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tools.map(tool => <ToolCard key={tool.slug} tool={tool} />)}
+              {tools.slice(0, 12).map(tool => <ToolCard key={tool.slug} tool={tool} />)}
             </div>
             <div className="text-center mt-10">
               <Link href="/tools" className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-7 py-3 rounded-xl transition-colors text-sm" style={{ fontFamily: "var(--font-heading)" }}>
-                View All Tools →
+                More Tools →
               </Link>
             </div>
           </div>
@@ -140,9 +140,10 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
             <div>
-              <div className="flex items-center gap-2 text-white font-bold text-lg mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-                <span className="text-2xl">🧰</span>{siteConfig.name}
-              </div>
+              <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+                <img src="/favicon.svg" alt="" className="w-7 h-7" />
+                {siteConfig.name}
+              </Link>
               <p className="text-sm text-gray-500 leading-relaxed mb-5">Free micro-tools for everyday productivity. No sign-up, no paywalls.</p>
               <div className="flex gap-3">
                 {[
@@ -152,7 +153,7 @@ export default function HomePage() {
                 ].map(({ label, path }) => (
                   <a key={label} href="#" aria-label={label}
                     className="w-9 h-9 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d={path}/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d={path} /></svg>
                   </a>
                 ))}
               </div>
@@ -161,7 +162,7 @@ export default function HomePage() {
             <div>
               <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Tools</p>
               <ul className="space-y-2.5">
-                {[["writing","Writing Tools"],["image","Image Tools"],["math","Math Tools"],["creator","Creator Tools"]].map(([slug,label]) => (
+                {[["writing", "Writing Tools"], ["image", "Image Tools"], ["math", "Math Tools"], ["creator", "Creator Tools"]].map(([slug, label]) => (
                   <li key={slug}><Link href={`/tools/${slug}`} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
                 ))}
               </ul>
@@ -170,7 +171,7 @@ export default function HomePage() {
             <div>
               <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Company</p>
               <ul className="space-y-2.5">
-                {[["About","/about"],["Contact","/contact"],["Privacy Policy","/privacy"],["Terms of Use","/terms"]].map(([label,href]) => (
+                {[["About", "/about"], ["Contact", "/contact"], ["Privacy Policy", "/privacy"], ["Terms of Use", "/terms"]].map(([label, href]) => (
                   <li key={href}><Link href={href} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
                 ))}
               </ul>
@@ -192,7 +193,7 @@ export default function HomePage() {
           <div className="border-t border-gray-800 pt-6 flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs text-gray-600">© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
             <div className="flex gap-5">
-              {[["Privacy","/privacy"],["Terms","/terms"],["Contact","/contact"]].map(([label,href]) => (
+              {[["Privacy", "/privacy"], ["Terms", "/terms"], ["Contact", "/contact"]].map(([label, href]) => (
                 <Link key={href} href={href} className="text-xs text-gray-600 hover:text-primary transition-colors">{label}</Link>
               ))}
             </div>
@@ -206,43 +207,43 @@ export default function HomePage() {
 function HeroIllustration() {
   return (
     <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="210" cy="200" rx="180" ry="130" fill="#ede9fe" opacity="0.5"/>
-      <rect x="60" y="60" width="160" height="110" rx="14" fill="white" filter="url(#s)"/>
-      <rect x="60" y="60" width="160" height="36" rx="14" fill="#058554"/>
-      <rect x="60" y="82" width="160" height="14" fill="#058554"/>
+      <ellipse cx="210" cy="200" rx="180" ry="130" fill="#ede9fe" opacity="0.5" />
+      <rect x="60" y="60" width="160" height="110" rx="14" fill="white" filter="url(#s)" />
+      <rect x="60" y="60" width="160" height="36" rx="14" fill="#058554" />
+      <rect x="60" y="82" width="160" height="14" fill="#058554" />
       <text x="140" y="84" textAnchor="middle" fill="white" fontSize="11" fontFamily="system-ui" fontWeight="600">Word Counter</text>
-      <rect x="76" y="108" width="128" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="76" y="122" width="96" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="76" y="136" width="60" height="20" rx="6" fill="#058554"/>
+      <rect x="76" y="108" width="128" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="76" y="122" width="96" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="76" y="136" width="60" height="20" rx="6" fill="#058554" />
       <text x="106" y="150" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Count →</text>
-      <rect x="240" y="40" width="140" height="100" rx="14" fill="white" filter="url(#s)"/>
-      <rect x="255" y="58" width="40" height="40" rx="8" fill="#ede9fe"/>
+      <rect x="240" y="40" width="140" height="100" rx="14" fill="white" filter="url(#s)" />
+      <rect x="255" y="58" width="40" height="40" rx="8" fill="#ede9fe" />
       <text x="275" y="84" textAnchor="middle" fontSize="20">🖼️</text>
-      <rect x="305" y="62" width="60" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="305" y="76" width="44" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="255" y="108" width="110" height="20" rx="6" fill="#058554"/>
+      <rect x="305" y="62" width="60" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="305" y="76" width="44" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="255" y="108" width="110" height="20" rx="6" fill="#058554" />
       <text x="310" y="122" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Compress Image</text>
-      <rect x="100" y="190" width="130" height="110" rx="14" fill="white" filter="url(#s)"/>
+      <rect x="100" y="190" width="130" height="110" rx="14" fill="white" filter="url(#s)" />
       <text x="165" y="225" textAnchor="middle" fontSize="28">📱</text>
-      <rect x="116" y="240" width="98" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="116" y="254" width="70" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="116" y="270" width="98" height="20" rx="6" fill="#058554"/>
+      <rect x="116" y="240" width="98" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="116" y="254" width="70" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="116" y="270" width="98" height="20" rx="6" fill="#058554" />
       <text x="165" y="284" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Generate QR</text>
-      <rect x="255" y="160" width="130" height="100" rx="14" fill="white" filter="url(#s)"/>
-      <circle cx="285" cy="190" r="16" fill="#f59e0b"/>
-      <circle cx="305" cy="190" r="16" fill="#10b981" opacity="0.8"/>
-      <circle cx="325" cy="190" r="16" fill="#058554" opacity="0.8"/>
-      <rect x="271" y="214" width="98" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="271" y="228" width="70" height="8" rx="4" fill="#e5e7eb"/>
-      <rect x="271" y="242" width="98" height="16" rx="6" fill="#058554"/>
+      <rect x="255" y="160" width="130" height="100" rx="14" fill="white" filter="url(#s)" />
+      <circle cx="285" cy="190" r="16" fill="#f59e0b" />
+      <circle cx="305" cy="190" r="16" fill="#10b981" opacity="0.8" />
+      <circle cx="325" cy="190" r="16" fill="#058554" opacity="0.8" />
+      <rect x="271" y="214" width="98" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="271" y="228" width="70" height="8" rx="4" fill="#e5e7eb" />
+      <rect x="271" y="242" width="98" height="16" rx="6" fill="#058554" />
       <text x="320" y="254" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="600">Pick Color</text>
-      <rect x="30" y="180" width="56" height="24" rx="12" fill="#058554"/>
+      <rect x="30" y="180" width="56" height="24" rx="12" fill="#058554" />
       <text x="58" y="196" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="700">FREE</text>
-      <rect x="340" y="130" width="68" height="24" rx="12" fill="#10b981"/>
+      <rect x="340" y="130" width="68" height="24" rx="12" fill="#10b981" />
       <text x="374" y="146" textAnchor="middle" fill="white" fontSize="9" fontFamily="system-ui" fontWeight="700">100+ Tools</text>
       <defs>
         <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="2" stdDeviation="6" floodColor="#00000015"/>
+          <feDropShadow dx="0" dy="2" stdDeviation="6" floodColor="#00000015" />
         </filter>
       </defs>
     </svg>
