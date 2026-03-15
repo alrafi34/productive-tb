@@ -79,11 +79,23 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.svg" sizes="48x48" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
+        <meta httpEquiv="origin-trial" content="" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <Partytown debug={false} forward={["dataLayer.push"]} />
+        <Partytown 
+          debug={false} 
+          forward={["dataLayer.push"]} 
+          resolveUrl={(url) => {
+            if (url.hostname === 'www.googletagmanager.com') {
+              const proxyUrl = new URL('/gtm-proxy', location.origin);
+              proxyUrl.searchParams.append('id', url.searchParams.get('id') || '');
+              return proxyUrl.toString();
+            }
+            return url.toString();
+          }}
+        />
       </head>
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <NavigationProvider>

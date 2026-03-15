@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import ToolCard from "@/components/ToolCard";
 import { tools, categories } from "@/config/tools";
 import { siteConfig } from "@/config/site";
-import SearchSection from "@/components/SearchSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import SearchSection from "@/components/LazySearchSection";
+import TestimonialsSection from "@/components/LazyTestimonialsSection";
 
 export const metadata: Metadata = {
   title: "Productive Toolbox - 100+ Free Online Tools for Productivity",

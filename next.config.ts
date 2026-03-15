@@ -3,6 +3,9 @@ import { copyLibFiles } from "@builder.io/partytown/utils";
 import path from "path";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
   async headers() {
     return [
       {
