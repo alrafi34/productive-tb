@@ -14,9 +14,10 @@
 4. [Step-by-Step Integration](#step-by-step-integration)
 5. [Design System](#design-system)
 6. [SEO Strategy](#seo-strategy)
-7. [Testing Checklist](#testing-checklist)
-8. [Examples from Existing Tools](#examples-from-existing-tools)
-9. [Common Mistakes](#common-mistakes)
+7. [Performance Optimization](#performance-optimization)
+8. [Testing Checklist](#testing-checklist)
+9. [Examples from Existing Tools](#examples-from-existing-tools)
+10. [Common Mistakes](#common-mistakes)
 
 ---
 
@@ -653,6 +654,255 @@ Free online [tool] to [benefit 1], [benefit 2]. [Unique feature]. Perfect for [a
 
 ---
 
+## ⚡ Performance Optimization
+
+### Critical Performance Rules
+
+**Your tool MUST follow these rules to maintain 95+ mobile Lighthouse score:**
+
+#### 1. **Dynamic Imports Only** 🚨 CRITICAL
+
+**❌ NEVER do this:**
+```typescript
+// app/tools/[tool]/[subtool]/page.tsx
+import YourToolUI from "@/tools/your-tool-name/ui";  // ❌ Static import
+```
+
+**✅ ALWAYS do this:**
+```typescript
+// app/tools/[tool]/[subtool]/page.tsx
+const TOOL_COMPONENTS = {
+  'your-tool-name': dynamic(() => import('@/tools/your-tool-name/ui'), { ssr: false }),
+};
+```
+
+**Why:** Static imports load ALL tool code on EVERY page. Dynamic imports load ONLY the needed tool.
+- **Impact:** Reduces bundle from ~2MB → ~50KB per page
+- **Mobile Score:** +15-20 points
+
+---
+
+#### 2. **Client-Side Only Tools**
+
+All tool UI components MUST be client-side rendered:
+
+```typescript
+// tools/your-tool-name/ui.tsx
+"use client";  // ← REQUIRED on line 1
+
+import { useState } from "react";
+// ... rest of component
+```
+
+**And in the dynamic import:**
+```typescript
+dynamic(() => import('@/tools/your-tool-name/ui'), { 
+  ssr: false  // ← REQUIRED: prevents server-side rendering
+})
+```
+
+**Why:** Tools use browser APIs (localStorage, clipboard, canvas) that don't exist on the server.
+
+---
+
+#### 3. **Lazy Load Heavy Libraries**
+
+If your tool uses heavy libraries (Chart.js, D3.js, etc.), lazy load them:
+
+```typescript
+// ❌ BAD: Loads immediately
+import Chart from 'chart.js';
+
+// ✅ GOOD: Loads only when needed
+const [Chart, setChart] = useState<any>(null);
+
+useEffect(() => {
+  import('chart.js').then(module => setChart(module.default));
+}, []);
+```
+
+---
+
+#### 4. **Web Workers for Heavy Computation**
+
+For CPU-intensive tasks (image processing, large calculations), use Web Workers:
+
+```typescript
+// tools/your-tool-name/worker.ts
+self.onmessage = (e) => {
+  const result = heavyComputation(e.data);
+  self.postMessage(result);
+};
+
+// tools/your-tool-name/ui.tsx
+const worker = new Worker(new URL('./worker.ts', import.meta.url));
+worker.postMessage(data);
+worker.onmessage = (e) => setResult(e.data);
+```
+
+**Example:** See `tools/image-compressor/compression.worker.ts`
+
+---
+
+#### 5. **Optimize Images**
+
+If your tool displays images:
+
+```tsx
+// ❌ BAD
+<img src="/icon.png" />
+
+// ✅ GOOD
+<img 
+  src="/icon.png" 
+  loading="lazy"           // Lazy load below-fold images
+  width="48" 
+  height="48"              // Prevent layout shift
+  alt="Tool icon"
+/>
+
+// ✅ BEST (for above-fold images)
+<img 
+  src="/hero.png" 
+  loading="eager" 
+  fetchpriority="high"     // Prioritize critical images
+  width="800" 
+  height="600"
+  alt="Hero image"
+/>
+```
+
+---
+
+#### 6. **Debounce Real-Time Updates**
+
+For tools with real-time processing (like word counter), debounce updates:
+
+```typescript
+import { useState, useEffect } from "react";
+
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+  
+  return debouncedValue;
+}
+
+// Usage:
+const [input, setInput] = useState("");
+const debouncedInput = useDebounce(input, 300);
+
+useEffect(() => {
+  // Process only after user stops typing for 300ms
+  const result = processText(debouncedInput);
+  setOutput(result);
+}, [debouncedInput]);
+```
+
+---
+
+#### 7. **Minimize Re-renders**
+
+Use React.memo and useCallback for expensive components:
+
+```typescript
+import { memo, useCallback } from "react";
+
+const ExpensiveComponent = memo(({ data, onUpdate }) => {
+  // Only re-renders when data or onUpdate changes
+  return <div>{/* ... */}</div>;
+});
+
+function ParentComponent() {
+  const handleUpdate = useCallback((value) => {
+    // Stable function reference
+  }, []);
+  
+  return <ExpensiveComponent data={data} onUpdate={handleUpdate} />;
+}
+```
+
+---
+
+#### 8. **Avoid Large Dependencies**
+
+**❌ Avoid importing entire libraries:**
+```typescript
+import _ from 'lodash';  // Imports entire 70KB library
+```
+
+**✅ Import only what you need:**
+```typescript
+import debounce from 'lodash/debounce';  // Imports only 2KB
+```
+
+**✅ Or use native alternatives:**
+```typescript
+// Instead of lodash's _.uniq:
+const unique = [...new Set(array)];
+
+// Instead of lodash's _.groupBy:
+const grouped = array.reduce((acc, item) => {
+  (acc[item.category] = acc[item.category] || []).push(item);
+  return acc;
+}, {});
+```
+
+---
+
+### Performance Checklist for New Tools
+
+- [ ] Tool UI uses `"use client"` directive
+- [ ] Tool is registered with `dynamic()` import and `ssr: false`
+- [ ] No heavy libraries imported at top level
+- [ ] Real-time updates are debounced (if applicable)
+- [ ] Images have `loading` and size attributes
+- [ ] No unnecessary re-renders (use React DevTools Profiler)
+- [ ] Web Worker used for CPU-intensive tasks (if applicable)
+- [ ] Bundle size < 100KB (check with `npm run build`)
+
+---
+
+### Measuring Performance
+
+**Before deploying your tool:**
+
+```bash
+# 1. Build production bundle
+npm run build
+
+# 2. Start production server
+npm run start
+
+# 3. Test with Lighthouse
+# Open Chrome DevTools → Lighthouse → Mobile → Run
+# Target: 95+ score
+
+# 4. Check bundle size
+npm run build
+# Look for: "First Load JS" in build output
+# Target: < 100KB for tool pages
+```
+
+---
+
+### Performance Budget
+
+| Metric | Target | Max |
+|--------|--------|-----|
+| First Contentful Paint | < 1.0s | 1.5s |
+| Total Blocking Time | < 150ms | 300ms |
+| Largest Contentful Paint | < 1.5s | 2.5s |
+| Cumulative Layout Shift | < 0.1 | 0.25 |
+| JS Bundle Size | < 50KB | 100KB |
+| Mobile Lighthouse Score | 95+ | 90+ |
+
+---
+
 ## ✅ Testing Checklist
 
 ### Functionality
@@ -683,9 +933,18 @@ Free online [tool] to [benefit 1], [benefit 2]. [Unique feature]. Perfect for [a
 ### Registration
 - [ ] Added to `config/tools.ts` with correct category slug
 - [ ] Added to `lib/tools-registry.ts`
-- [ ] Added to TOOLS array in `app/tools/[tool]/[subtool]/page.tsx`
+- [ ] Added with `dynamic()` import in `app/tools/[tool]/[subtool]/page.tsx`
 - [ ] Category page shows the new tool card
 - [ ] Homepage search finds the new tool
+
+### Performance
+- [ ] Tool uses `"use client"` directive
+- [ ] Registered with `dynamic(() => import(...), { ssr: false })`
+- [ ] No heavy libraries imported at module level
+- [ ] Real-time updates debounced (if applicable)
+- [ ] Images optimized with loading attributes
+- [ ] Lighthouse mobile score 95+
+- [ ] Bundle size < 100KB
 
 ---
 
@@ -729,12 +988,15 @@ Free online [tool] to [benefit 1], [benefit 2]. [Unique feature]. Perfect for [a
 | Using wrong category slug | Check the 10-slug table in this guide |
 | Forgetting `lib/tools-registry.ts` update | RelatedTools component will silently fail |
 | Forgetting `[subtool]/page.tsx` update | Tool returns 404 |
+| **Static import instead of dynamic()** | **Use `dynamic(() => import(...), { ssr: false })`** |
+| **Importing heavy libraries at top level** | **Lazy load or use lighter alternatives** |
 | Slug mismatch across files | Use the same exact kebab-case slug everywhere |
 | No SEO content component | Page will rank poorly |
 | Missing `id` attributes on interactive elements | Breaks browser testing |
 | Keyword stuffing | Write naturally for humans |
 | No disabled state on buttons | Poor UX when input is empty |
 | Not using `style={{ fontFamily }}` | Wrong font renders |
+| **No debouncing on real-time updates** | **Add 300ms debounce to prevent lag** |
 
 ---
 

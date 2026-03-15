@@ -11,14 +11,17 @@
 ### For New Developers
 1. **[NEW_TOOL_INTEGRATION_GUIDE.md](./NEW_TOOL_INTEGRATION_GUIDE.md)** — Full step-by-step guide (start here)
 2. **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** — Copy-paste cheat sheet
-3. **[structure/Structure.md](./structure/Structure.md)** — Folder/file tree
-4. **[SEO_STRATEGY_ANALYSIS.md](./SEO_STRATEGY_ANALYSIS.md)** — SEO patterns and keyword strategy
+3. **[PERFORMANCE_OPTIMIZATION_GUIDE.md](../PERFORMANCE_OPTIMIZATION_GUIDE.md)** — Performance best practices
+4. **[structure/Structure.md](./structure/Structure.md)** — Folder/file tree
+5. **[SEO_STRATEGY_ANALYSIS.md](./SEO_STRATEGY_ANALYSIS.md)** — SEO patterns and keyword strategy
 
 ### For AI Assistants
 1. Read **NEW_TOOL_INTEGRATION_GUIDE.md** fully before writing any code
-2. Always use the two-level URL pattern: `/tools/[category]/[tool-slug]`
-3. Update all **3 registration files** (not just one)
-4. Reference existing tools for code patterns
+2. **CRITICAL:** Always use **dynamic imports** with `ssr: false` for tool components
+3. Always use the two-level URL pattern: `/tools/[category]/[tool-slug]`
+4. Update all **3 registration files** (not just one)
+5. Follow performance rules: debounce updates, lazy load libraries, optimize images
+6. Reference existing tools for code patterns
 
 ### For Content Writers
 1. **SEO_STRATEGY_ANALYSIS.md** — Keyword strategy and content guidelines
@@ -34,6 +37,7 @@
 | `README.md` | This index | 5 min |
 | `NEW_TOOL_INTEGRATION_GUIDE.md` | Full integration walkthrough (8 steps) | 20 min |
 | `QUICK_REFERENCE.md` | Copy-paste cheat sheet | 2 min |
+| `../PERFORMANCE_OPTIMIZATION_GUIDE.md` | Performance optimization techniques | 15 min |
 | `SEO_STRATEGY_ANALYSIS.md` | SEO strategy and keyword patterns | 30 min |
 | `structure/Structure.md` | Full folder/file directory tree | 5 min |
 | `seo/` | Per-tool SEO notes | As needed |
@@ -153,11 +157,11 @@ where `[tool]` = category slug and `[subtool]` = tool slug.
 ### Phase 2 — Create (45 min)
 - [ ] `tools/your-tool-name/config.ts`
 - [ ] `tools/your-tool-name/logic.ts`
-- [ ] `tools/your-tool-name/ui.tsx`
+- [ ] `tools/your-tool-name/ui.tsx` (with `"use client"` on line 1)
 - [ ] `tools/your-tool-name/seo-content.tsx`
 - [ ] `config/tools.ts` — add to tools array
 - [ ] `lib/tools-registry.ts` — add import + entry
-- [ ] `app/tools/[tool]/[subtool]/page.tsx` — add import + TOOLS entry
+- [ ] `app/tools/[tool]/[subtool]/page.tsx` — add **dynamic import** with `ssr: false`
 
 ### Phase 3 — Test (15 min)
 - [ ] Loads at `/tools/[category]/[slug]`
@@ -167,6 +171,8 @@ where `[tool]` = category slug and `[subtool]` = tool slug.
 - [ ] No console errors
 - [ ] SEO sections render
 - [ ] RelatedTools shows at bottom
+- [ ] **Lighthouse mobile score 95+**
+- [ ] **Bundle size < 100KB**
 
 ### Phase 4 — SEO (10 min)
 - [ ] Title < 60 chars with primary keyword
@@ -247,12 +253,15 @@ Content:     400+ words total in seo-content.tsx
 
 | Issue | Cause | Fix |
 |---|---|---|
-| Tool returns 404 | Not in TOOLS array | Update `[subtool]/page.tsx` |
+| Tool returns 404 | Not in TOOL_COMPONENTS | Update `[subtool]/page.tsx` with dynamic import |
 | RelatedTools empty | Not in registry | Update `lib/tools-registry.ts` |
 | Category page missing tool | Wrong slug in config/tools.ts | Fix category slug |
 | Redirect not working | Not in config/tools.ts | Add to tools array |
 | "use client" error | Hook in server component | Add to top of ui.tsx |
 | Fonts wrong | Missing `style={{ fontFamily }}` | Add font style props |
+| **Low Lighthouse score** | **Static imports** | **Use `dynamic()` with `ssr: false`** |
+| **Large bundle size** | **Heavy libraries** | **Lazy load or use lighter alternatives** |
+| **Slow performance** | **No debouncing** | **Add 300ms debounce to real-time updates** |
 
 ---
 

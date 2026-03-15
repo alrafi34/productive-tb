@@ -199,13 +199,25 @@ import { toolConfig as toolNameConfig } from "@/tools/tool-name/config";
 
 ### `app/tools/[tool]/[subtool]/page.tsx` — ⚠️ this is the ROUTING file
 
-```typescript
-// Top — imports:
-import { toolConfig as toolNameConfig } from "@/tools/tool-name/config";
-import ToolNameUI from "@/tools/tool-name/ui";
+**CRITICAL: Use dynamic imports for performance!**
 
-// In TOOLS array:
-{ config: toolNameConfig, Component: ToolNameUI },
+```typescript
+// Top — imports (use dynamic, NOT static):
+import dynamic from "next/dynamic";
+import { toolConfig as toolNameConfig } from "@/tools/tool-name/config";
+
+// Create dynamic component mapping:
+const TOOL_COMPONENTS = {
+  'tool-name': dynamic(() => import('@/tools/tool-name/ui'), { ssr: false }),
+};
+
+// DO NOT add to TOOLS array anymore - use dynamic lookup instead
+```
+
+**Why dynamic imports?**
+- Static imports load ALL 130+ tools on every page (~2MB)
+- Dynamic imports load ONLY the needed tool (~50KB)
+- **Impact:** +15-20 Lighthouse points, 97% bundle reduction
 ```
 
 ---
@@ -218,6 +230,62 @@ import ToolNameUI from "@/tools/tool-name/ui";
 /tools/writing/word-counter         → Individual tool page ← MAIN URL
 /tools/word-counter                 → Auto-redirects to /tools/writing/word-counter
 ```
+
+---
+
+## ⚡ Performance Rules
+
+### 🚨 CRITICAL: Dynamic Imports Only
+
+**Your tool MUST use dynamic imports to maintain 95+ mobile score.**
+
+```typescript
+// ❌ NEVER: Static import
+import ToolUI from "@/tools/tool-name/ui";
+
+// ✅ ALWAYS: Dynamic import
+const TOOL_COMPONENTS = {
+  'tool-name': dynamic(() => import('@/tools/tool-name/ui'), { ssr: false }),
+};
+```
+
+### Performance Checklist
+
+```
+[ ] "use client" on line 1 of ui.tsx
+[ ] Registered with dynamic() import + ssr: false
+[ ] No heavy libraries at top level
+[ ] Real-time updates debounced (300ms)
+[ ] Images have loading + size attributes
+[ ] Bundle size < 100KB
+[ ] Lighthouse mobile score 95+
+```
+
+### Quick Performance Tips
+
+1. **Debounce real-time updates:**
+```typescript
+const debouncedInput = useDebounce(input, 300);
+```
+
+2. **Lazy load heavy libraries:**
+```typescript
+useEffect(() => {
+  import('chart.js').then(m => setChart(m.default));
+}, []);
+```
+
+3. **Use Web Workers for heavy tasks:**
+```typescript
+const worker = new Worker(new URL('./worker.ts', import.meta.url));
+```
+
+4. **Optimize images:**
+```tsx
+<img src="/icon.png" loading="lazy" width="48" height="48" />
+```
+
+**Full guide:** See NEW_TOOL_INTEGRATION_GUIDE.md → Performance Optimization
 
 ---
 
@@ -300,9 +368,11 @@ Keywords:    primary, "free primary", "online primary", variations, long-tail (1
 
 | Error | Cause | Fix |
 |---|---|---|
-| 404 on tool URL | Not in TOOLS array | Update `[subtool]/page.tsx` |
+| 404 on tool URL | Not in TOOL_COMPONENTS | Update `[subtool]/page.tsx` with dynamic import |
 | RelatedTools blank | Not in tools-registry | Update `lib/tools-registry.ts` |
 | "use client" error | Server component using hooks | Add `"use client"` line 1 |
+| **Large bundle size** | **Static imports** | **Use `dynamic()` imports** |
+| **Low Lighthouse score** | **No ssr: false flag** | **Add `{ ssr: false }` to dynamic()** |
 | Wrong font rendering | Missing `style={{ fontFamily }}` | Add font style to elements |
 | Tool not in category | Wrong category slug | Check 10-category table |
 | Redirect not working | Not in `config/tools.ts` | Add to tools array |
