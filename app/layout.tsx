@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
-import Script from "next/script";
+//import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import NavigationProvider from "@/components/NavigationProvider";
@@ -88,7 +88,7 @@ export default function RootLayout({
           {children}
         </NavigationProvider>
         {/* Google Analytics */}
-        <Script
+        {/*<Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
@@ -99,7 +99,7 @@ export default function RootLayout({
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
-        </Script>
+        </Script> */}
       </body>
     </html>
   );
