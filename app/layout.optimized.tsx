@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import NavigationProvider from "@/components/NavigationProvider";
-
-const GA_MEASUREMENT_ID = "G-MW1V4JYC2D";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -88,19 +85,6 @@ export default function RootLayout({
         <NavigationProvider>
           {children}
         </NavigationProvider>
-        {/* Google Analytics - CHANGED TO lazyOnload */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
       </body>
     </html>
   );

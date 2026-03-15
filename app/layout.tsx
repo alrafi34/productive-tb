@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
-import Script from "next/script";
-import { Partytown } from "@builder.io/partytown/react";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import NavigationProvider from "@/components/NavigationProvider";
-
-const GA_MEASUREMENT_ID = "G-MW1V4JYC2D";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -84,35 +80,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <Partytown 
-          debug={false} 
-          forward={["dataLayer.push"]} 
-          resolveUrl={(url) => {
-            if (url.hostname === 'www.googletagmanager.com') {
-              const proxyUrl = new URL('/gtm-proxy', location.origin);
-              proxyUrl.searchParams.append('id', url.searchParams.get('id') || '');
-              return proxyUrl.toString();
-            }
-            return url.toString();
-          }}
-        />
       </head>
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <NavigationProvider>
           {children}
         </NavigationProvider>
-        <Script
-          src={`/gtm-proxy?id=${GA_MEASUREMENT_ID}`}
-          type="text/partytown"
-        />
-        <Script id="google-analytics" type="text/partytown">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
       </body>
     </html>
   );
