@@ -32,69 +32,35 @@ export async function compressImage(
   file: File,
   settings: CompressionSettings
 ): Promise<{ blob: Blob; width: number; height: number }> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const reader = new FileReader();
+  const bitmap = await createImageBitmap(file);
+  
+  let { width, height } = bitmap;
 
-    reader.onload = (e) => {
-      img.src = e.target?.result as string;
-    };
+  if (settings.maxWidth && width > settings.maxWidth) {
+    height = (height * settings.maxWidth) / width;
+    width = settings.maxWidth;
+  }
+  if (settings.maxHeight && height > settings.maxHeight) {
+    width = (width * settings.maxHeight) / height;
+    height = settings.maxHeight;
+  }
 
-    img.onload = () => {
-      try {
-        let { width, height } = img;
+  const canvas = new OffscreenCanvas(width, height);
+  const ctx = canvas.getContext('2d');
 
-        // Calculate new dimensions
-        if (settings.maxWidth && width > settings.maxWidth) {
-          height = (height * settings.maxWidth) / width;
-          width = settings.maxWidth;
-        }
-        if (settings.maxHeight && height > settings.maxHeight) {
-          width = (width * settings.maxHeight) / height;
-          height = settings.maxHeight;
-        }
+  if (!ctx) {
+    throw new Error('Failed to get canvas context');
+  }
 
-        // Create canvas
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d');
+  ctx.drawImage(bitmap, 0, 0, width, height);
+  bitmap.close();
 
-        if (!ctx) {
-          reject(new Error('Failed to get canvas context'));
-          return;
-        }
-
-        // Draw image
-        ctx.drawImage(img, 0, 0, width, height);
-
-        // Convert to blob
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              resolve({ blob, width, height });
-            } else {
-              reject(new Error('Failed to compress image'));
-            }
-          },
-          `image/${settings.format}`,
-          settings.quality / 100
-        );
-      } catch (error) {
-        reject(error);
-      }
-    };
-
-    img.onerror = () => {
-      reject(new Error('Failed to load image'));
-    };
-
-    reader.onerror = () => {
-      reject(new Error('Failed to read file'));
-    };
-
-    reader.readAsDataURL(file);
+  const blob = await canvas.convertToBlob({
+    type: `image/${settings.format}`,
+    quality: settings.quality / 100,
   });
+
+  return { blob, width, height };
 }
 
 export function isValidImageFile(file: File): boolean {

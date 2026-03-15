@@ -17,6 +17,7 @@ export type CompressionSettings = {
   maxHeight: number;
   format: 'jpeg' | 'png' | 'webp';
   maintainAspectRatio: boolean;
+  targetSizeKB: number;
 };
 
 export type CompressionPreset = 'high' | 'balanced' | 'maximum';
