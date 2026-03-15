@@ -3,6 +3,7 @@ import { Poppins, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import NavigationProvider from "@/components/NavigationProvider";
 
 const GA_MEASUREMENT_ID = "G-MW1V4JYC2D";
 
@@ -83,7 +84,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
-        {children}
+        <NavigationProvider>
+          {children}
+        </NavigationProvider>
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

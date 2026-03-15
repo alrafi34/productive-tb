@@ -73,6 +73,24 @@
     animation-delay: 0.2s;
   }
 
+  @keyframes loader-bar {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes loader-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-loader-bar {
+    animation: loader-bar 1.4s ease-in-out infinite;
+  }
+
+  .animate-loader-spin {
+    animation: loader-spin 0.8s linear infinite;
+  }
+
   /* carousel */
   .t-carousel-wrap {
     overflow: hidden;
