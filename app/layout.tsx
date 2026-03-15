@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
-//import Script from "next/script";
+import Script from "next/script";
+import { Partytown } from "@builder.io/partytown/react";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import NavigationProvider from "@/components/NavigationProvider";
@@ -82,24 +83,24 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        <Partytown debug={false} forward={["dataLayer.push"]} />
       </head>
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <NavigationProvider>
           {children}
         </NavigationProvider>
-        {/* Google Analytics */}
-        {/*<Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
+        <Script
+          src={`/gtm-proxy?id=${GA_MEASUREMENT_ID}`}
+          type="text/partytown"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" type="text/partytown">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
-        </Script> */}
+        </Script>
       </body>
     </html>
   );
