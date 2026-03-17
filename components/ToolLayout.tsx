@@ -16,7 +16,7 @@ export default function ToolLayout({ title, description, icon, category, childre
     <>
       <Header />
       <main className="min-h-screen bg-gray-50 py-12 px-6">
-        <article className="max-w-3xl mx-auto">
+        <article className="max-w-6xl mx-auto">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8" aria-label="Breadcrumb">

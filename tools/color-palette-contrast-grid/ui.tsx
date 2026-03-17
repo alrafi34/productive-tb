@@ -84,16 +84,16 @@ export default function ColorPaletteContrastGrid() {
 
   const ContrastCell = ({ result }: { result: ContrastResult }) => (
     <div
-      className="border border-gray-200 p-3 cursor-pointer hover:border-primary transition-colors min-h-24 flex flex-col justify-between"
+      className="border border-gray-200 p-2 sm:p-3 cursor-pointer hover:border-primary transition-colors min-h-20 sm:min-h-24 flex flex-col justify-between"
       style={{ 
         color: result.textColor, 
         backgroundColor: result.backgroundColor 
       }}
       onClick={() => setSelectedPair(result)}
     >
-      <div className="text-sm font-medium">{previewText}</div>
-      <div className="mt-2">
-        <div className={`inline-block px-2 py-1 rounded text-xs font-bold ${getWCAGColor(result.wcagLevel)}`}>
+      <div className="text-xs sm:text-sm font-medium truncate">{previewText}</div>
+      <div className="mt-1 sm:mt-2">
+        <div className={`inline-block px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-xs font-bold ${getWCAGColor(result.wcagLevel)}`}>
           {result.wcagLevel}
         </div>
         <div className="text-xs mt-1 opacity-75">
@@ -105,22 +105,16 @@ export default function ColorPaletteContrastGrid() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto p-6 space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-gray-900">Color Palette Contrast Grid</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Test WCAG contrast ratios for all text and background color combinations in your palette.
-          </p>
-        </div>
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 space-y-4 sm:space-y-6 lg:space-y-8">
 
-        <div className="grid lg:grid-cols-4 gap-8">
+
+        <div className="flex flex-col xl:grid xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {/* Controls Panel */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="xl:col-span-1 space-y-4 sm:space-y-6">
             {/* Palette Editor */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Color Palette</h3>
+            <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-semibold">Color Palette</h3>
                 <div className="flex gap-2">
                   <button
                     onClick={generateRandom}
@@ -139,25 +133,25 @@ export default function ColorPaletteContrastGrid() {
                 </div>
               </div>
               
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {palette.map((color) => (
                   <div key={color.id} className="flex items-center gap-2">
                     <input
                       type="color"
                       value={color.hex}
                       onChange={(e) => updateColor(color.id, e.target.value)}
-                      className="w-8 h-8 rounded border border-gray-300"
+                      className="w-6 h-6 sm:w-8 sm:h-8 rounded border border-gray-300 flex-shrink-0"
                     />
                     <input
                       type="text"
                       value={color.hex}
                       onChange={(e) => updateColor(color.id, e.target.value)}
-                      className="flex-1 px-2 py-1 text-sm border border-gray-300 rounded font-mono"
+                      className="flex-1 px-2 py-1 text-xs sm:text-sm border border-gray-300 rounded font-mono min-w-0"
                     />
                     {palette.length > 2 && (
                       <button
                         onClick={() => removeColor(color.id)}
-                        className="p-1 text-red-500 hover:bg-red-50 rounded"
+                        className="p-1 text-red-500 hover:bg-red-50 rounded flex-shrink-0"
                       >
                         <Minus className="w-3 h-3" />
                       </button>
@@ -168,14 +162,14 @@ export default function ColorPaletteContrastGrid() {
             </div>
 
             {/* Presets */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold mb-4">Presets</h3>
-              <div className="space-y-2">
+            <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Presets</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-2">
                 {palettePresets.map((preset) => (
                   <button
                     key={preset.id}
                     onClick={() => applyPreset(preset)}
-                    className="w-full text-left px-3 py-2 text-sm bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+                    className="w-full text-left px-3 py-2 text-xs sm:text-sm bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
                   >
                     {preset.name}
                   </button>
@@ -184,61 +178,63 @@ export default function ColorPaletteContrastGrid() {
             </div>
 
             {/* Settings */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Settings</h3>
+            <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <h3 className="text-base sm:text-lg font-semibold">Settings</h3>
               
               <div>
-                <label className="text-sm font-medium text-gray-700">Preview Text</label>
+                <label className="text-xs sm:text-sm font-medium text-gray-700">Preview Text</label>
                 <input
                   type="text"
                   value={previewText}
                   onChange={(e) => setPreviewText(e.target.value)}
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg"
+                  className="w-full mt-1 px-3 py-2 text-sm border border-gray-300 rounded-lg"
                 />
               </div>
 
-              <div>
-                <label className="text-sm font-medium text-gray-700">Text Size</label>
-                <div className="flex gap-2 mt-1">
-                  <button
-                    onClick={() => setTextSize('normal')}
-                    className={`flex-1 px-3 py-2 text-sm rounded-lg transition-colors ${
-                      textSize === 'normal' ? 'bg-primary text-white' : 'bg-gray-100'
-                    }`}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label className="text-xs sm:text-sm font-medium text-gray-700">Text Size</label>
+                  <div className="flex gap-1 mt-1">
+                    <button
+                      onClick={() => setTextSize('normal')}
+                      className={`flex-1 px-2 py-1.5 text-xs sm:text-sm rounded-lg transition-colors ${
+                        textSize === 'normal' ? 'bg-primary text-white' : 'bg-gray-100'
+                      }`}
+                    >
+                      Normal
+                    </button>
+                    <button
+                      onClick={() => setTextSize('large')}
+                      className={`flex-1 px-2 py-1.5 text-xs sm:text-sm rounded-lg transition-colors ${
+                        textSize === 'large' ? 'bg-primary text-white' : 'bg-gray-100'
+                      }`}
+                    >
+                      Large
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs sm:text-sm font-medium text-gray-700">Sort By</label>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as any)}
+                    className="w-full mt-1 px-2 py-1.5 text-xs sm:text-sm border border-gray-300 rounded-lg"
                   >
-                    Normal
-                  </button>
-                  <button
-                    onClick={() => setTextSize('large')}
-                    className={`flex-1 px-3 py-2 text-sm rounded-lg transition-colors ${
-                      textSize === 'large' ? 'bg-primary text-white' : 'bg-gray-100'
-                    }`}
-                  >
-                    Large
-                  </button>
+                    <option value="highest">Highest</option>
+                    <option value="lowest">Lowest</option>
+                    <option value="accessible">Accessible</option>
+                    <option value="fail">Failing</option>
+                  </select>
                 </div>
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-700">Sort By</label>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as any)}
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg"
-                >
-                  <option value="highest">Highest Contrast</option>
-                  <option value="lowest">Lowest Contrast</option>
-                  <option value="accessible">Accessible Only</option>
-                  <option value="fail">Failing Only</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-700">Filter</label>
+                <label className="text-xs sm:text-sm font-medium text-gray-700">Filter</label>
                 <select
                   value={filterBy}
                   onChange={(e) => setFilterBy(e.target.value as any)}
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg"
+                  className="w-full mt-1 px-3 py-2 text-sm border border-gray-300 rounded-lg"
                 >
                   <option value="all">All Combinations</option>
                   <option value="aaa">AAA Only</option>
@@ -251,33 +247,33 @@ export default function ColorPaletteContrastGrid() {
           </div>
 
           {/* Contrast Grid */}
-          <div className="lg:col-span-3 space-y-6">
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">
-                  Contrast Grid ({contrastResults.length} combinations)
+          <div className="xl:col-span-3 space-y-4 sm:space-y-6">
+            <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4">
+                <h3 className="text-base sm:text-lg font-semibold">
+                  Contrast Grid ({contrastResults.length})
                 </h3>
-                <div className="flex items-center gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-600 rounded"></div>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-600 rounded"></div>
                     <span>AAA</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded"></div>
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded"></div>
                     <span>AA</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-yellow-500 rounded"></div>
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded"></div>
                     <span>Large</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-red-500 rounded"></div>
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded"></div>
                     <span>Fail</span>
                   </div>
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4">
                 {contrastResults.map((result, index) => (
                   <ContrastCell key={index} result={result} />
                 ))}
@@ -286,37 +282,37 @@ export default function ColorPaletteContrastGrid() {
 
             {/* Inspector Panel */}
             {selectedPair && (
-              <div className="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold mb-4">Color Pair Inspector</h3>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Color Pair Inspector</h3>
                 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <div className="space-y-3">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         <div 
-                          className="w-8 h-8 rounded border border-gray-300"
+                          className="w-6 h-6 sm:w-8 sm:h-8 rounded border border-gray-300 flex-shrink-0"
                           style={{ backgroundColor: selectedPair.textColor }}
                         />
-                        <div>
-                          <div className="text-sm font-medium">Text Color</div>
-                          <div className="text-xs text-gray-600 font-mono">{selectedPair.textColor}</div>
+                        <div className="min-w-0">
+                          <div className="text-xs sm:text-sm font-medium">Text Color</div>
+                          <div className="text-xs text-gray-600 font-mono truncate">{selectedPair.textColor}</div>
                         </div>
                       </div>
                       
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         <div 
-                          className="w-8 h-8 rounded border border-gray-300"
+                          className="w-6 h-6 sm:w-8 sm:h-8 rounded border border-gray-300 flex-shrink-0"
                           style={{ backgroundColor: selectedPair.backgroundColor }}
                         />
-                        <div>
-                          <div className="text-sm font-medium">Background Color</div>
-                          <div className="text-xs text-gray-600 font-mono">{selectedPair.backgroundColor}</div>
+                        <div className="min-w-0">
+                          <div className="text-xs sm:text-sm font-medium">Background Color</div>
+                          <div className="text-xs text-gray-600 font-mono truncate">{selectedPair.backgroundColor}</div>
                         </div>
                       </div>
                       
                       <div className="pt-2 border-t">
-                        <div className="text-sm font-medium">Contrast Ratio</div>
-                        <div className="text-2xl font-bold text-primary">{selectedPair.ratio.toFixed(2)}:1</div>
+                        <div className="text-xs sm:text-sm font-medium">Contrast Ratio</div>
+                        <div className="text-xl sm:text-2xl font-bold text-primary">{selectedPair.ratio.toFixed(2)}:1</div>
                         <div className={`inline-block px-2 py-1 rounded text-xs font-bold mt-1 ${getWCAGColor(selectedPair.wcagLevel)}`}>
                           {selectedPair.wcagLevel}
                         </div>
@@ -325,13 +321,13 @@ export default function ColorPaletteContrastGrid() {
                   </div>
                   
                   <div>
-                    <div className="text-sm font-medium mb-2">CSS Code</div>
-                    <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
+                    <div className="text-xs sm:text-sm font-medium mb-2">CSS Code</div>
+                    <div className="bg-gray-900 text-green-400 p-2 sm:p-3 rounded font-mono text-xs sm:text-sm overflow-x-auto">
                       {generateColorPairCSS(selectedPair.textColor, selectedPair.backgroundColor)}
                     </div>
                     <button
                       onClick={() => copyCSS(generateColorPairCSS(selectedPair.textColor, selectedPair.backgroundColor))}
-                      className="flex items-center gap-2 mt-3 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+                      className="flex items-center justify-center gap-2 mt-3 bg-primary text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm w-full sm:w-auto"
                     >
                       <Copy className="w-4 h-4" />
                       {copiedCode ? 'Copied!' : 'Copy CSS'}
@@ -342,22 +338,22 @@ export default function ColorPaletteContrastGrid() {
             )}
 
             {/* Export Options */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold mb-4">Export Palette</h3>
-              <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Export Palette</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <button
                   onClick={() => copyCSS(generateCSSVariables(palette))}
-                  className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  className="flex items-center justify-center gap-2 bg-gray-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm"
                 >
                   <Copy className="w-4 h-4" />
-                  Copy CSS Variables
+                  <span className="truncate">Copy CSS Variables</span>
                 </button>
                 <button
                   onClick={() => copyCSS(generateSCSSVariables(palette))}
-                  className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  className="flex items-center justify-center gap-2 bg-gray-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm"
                 >
                   <Copy className="w-4 h-4" />
-                  Copy SCSS Variables
+                  <span className="truncate">Copy SCSS Variables</span>
                 </button>
               </div>
             </div>

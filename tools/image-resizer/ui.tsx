@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { ImageFile, ResizeSettings } from './types';
 import { 
-  resizeImage, 
   calculateAspectRatio, 
   getImageDimensions, 
   formatFileSize, 
@@ -12,6 +11,7 @@ import {
   resizeByPercentage,
   RESIZE_PRESETS
 } from './logic';
+import type { WorkerMessage, WorkerResponse } from './resize.worker';
 import ImageResizerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
 
@@ -25,7 +25,49 @@ export default function ImageResizerUI() {
     format: 'jpeg',
   });
   const [isDragging, setIsDragging] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const workerRef = useRef<Worker | null>(null);
+
+  useEffect(() => {
+    workerRef.current = new Worker(new URL('./resize.worker.ts', import.meta.url));
+    
+    workerRef.current.onmessage = (e: MessageEvent<WorkerResponse>) => {
+      const response = e.data;
+      
+      if ('error' in response) {
+        setImages(prev => prev.map(i => 
+          i.id === response.id 
+            ? { ...i, status: 'error', error: response.error } 
+            : i
+        ));
+      } else {
+        const resizedUrl = URL.createObjectURL(response.blob);
+        setImages(prev => prev.map(i => 
+          i.id === response.id 
+            ? { 
+                ...i, 
+                resizedUrl,
+                newWidth: response.width,
+                newHeight: response.height,
+                resizedSize: response.blob.size,
+                status: 'completed' 
+              } 
+            : i
+        ));
+      }
+      
+      setImages(prev => {
+        const stillProcessing = prev.some(img => img.status === 'processing');
+        if (!stillProcessing) setIsProcessing(false);
+        return prev;
+      });
+    };
+
+    return () => {
+      workerRef.current?.terminate();
+    };
+  }, []);
 
   const handleFiles = useCallback(async (files: FileList | null) => {
     if (!files) return;
@@ -37,11 +79,17 @@ export default function ImageResizerUI() {
     }
 
     const newImages: ImageFile[] = [];
+    let hasPngImages = false;
 
     for (const file of validFiles) {
       try {
         const dimensions = await getImageDimensions(file);
         const url = URL.createObjectURL(file);
+
+        // Check if any uploaded file is PNG
+        if (file.type === 'image/png') {
+          hasPngImages = true;
+        }
 
         newImages.push({
           id: Math.random().toString(36).substr(2, 9),
@@ -61,8 +109,13 @@ export default function ImageResizerUI() {
       }
     }
 
+    // Auto-set format to PNG if PNG images are uploaded to preserve transparency
+    if (hasPngImages && settings.format !== 'png') {
+      setSettings((prev) => ({ ...prev, format: 'png' }));
+    }
+
     setImages((prev) => [...prev, ...newImages]);
-  }, [settings.width, settings.height]);
+  }, [settings.width, settings.height, settings.format]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -89,10 +142,10 @@ export default function ImageResizerUI() {
     }
   }, [handleFiles]);
 
-  useState(() => {
+  useEffect(() => {
     document.addEventListener('paste', handlePaste as any);
     return () => document.removeEventListener('paste', handlePaste as any);
-  });
+  }, [handlePaste]);
 
   const updateDimensions = (width?: number, height?: number) => {
     if (settings.maintainAspectRatio && images.length > 0) {
@@ -124,61 +177,51 @@ export default function ImageResizerUI() {
     setSettings((prev) => ({ ...prev, width: newDims.width, height: newDims.height }));
   };
 
-  const resizeAllImages = async () => {
-    for (const image of images) {
-      await resizeSingleImage(image.id);
-    }
-  };
-
-  const resizeSingleImage = async (imageId: string) => {
-    setImages((prev) =>
-      prev.map((img) =>
-        img.id === imageId ? { ...img, status: 'processing' as const } : img
-      )
-    );
-
-    const image = images.find((img) => img.id === imageId);
-    if (!image) return;
-
-    try {
+  const resizeImages = useCallback((imagesToResize: ImageFile[]) => {
+    if (!workerRef.current || imagesToResize.length === 0) return;
+    
+    setIsProcessing(true);
+    
+    imagesToResize.forEach(img => {
+      setImages(prev => prev.map(i => 
+        i.id === img.id ? { ...i, status: 'processing' } : i
+      ));
+      
       let resizeSettings = { ...settings };
 
       if (settings.maintainAspectRatio) {
         const newDims = calculateAspectRatio(
-          image.originalWidth,
-          image.originalHeight,
+          img.originalWidth,
+          img.originalHeight,
           settings.width,
           undefined
         );
         resizeSettings = { ...settings, width: newDims.width, height: newDims.height };
       }
+      
+      const message: WorkerMessage = {
+        id: img.id,
+        file: img.file,
+        settings: {
+          width: resizeSettings.width,
+          height: resizeSettings.height,
+          quality: resizeSettings.quality,
+          format: resizeSettings.format,
+        },
+      };
+      
+      workerRef.current!.postMessage(message);
+    });
+  }, [settings]);
 
-      const { blob, width, height } = await resizeImage(image.file, resizeSettings);
-      const url = URL.createObjectURL(blob);
+  const resizeAllImages = () => {
+    const pendingImages = images.filter(img => img.status === 'pending');
+    resizeImages(pendingImages);
+  };
 
-      setImages((prev) =>
-        prev.map((img) =>
-          img.id === imageId
-            ? {
-                ...img,
-                resizedUrl: url,
-                newWidth: width,
-                newHeight: height,
-                resizedSize: blob.size,
-                status: 'completed' as const,
-              }
-            : img
-        )
-      );
-    } catch (error) {
-      setImages((prev) =>
-        prev.map((img) =>
-          img.id === imageId
-            ? { ...img, status: 'error' as const, error: 'Failed to resize image' }
-            : img
-        )
-      );
-    }
+  const resizeSingleImage = (imageId: string) => {
+    const image = images.find(img => img.id === imageId);
+    if (image) resizeImages([image]);
   };
 
   const downloadImage = (image: ImageFile) => {
@@ -363,9 +406,10 @@ export default function ImageResizerUI() {
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={resizeAllImages}
-                className="px-6 py-3 bg-[#058554] text-white rounded-lg hover:bg-[#047045] transition-colors font-medium"
+                disabled={isProcessing || !images.some(img => img.status === 'pending')}
+                className="px-6 py-3 bg-[#058554] text-white rounded-lg hover:bg-[#047045] disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
               >
-                Resize All Images
+                {isProcessing ? '⏳ Processing...' : 'Resize All Images'}
               </button>
               {images.some((img) => img.resizedUrl) && (
                 <button
@@ -377,7 +421,8 @@ export default function ImageResizerUI() {
               )}
               <button
                 onClick={clearAll}
-                className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+                disabled={isProcessing}
+                className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
               >
                 Clear All
               </button>
@@ -462,13 +507,18 @@ export default function ImageResizerUI() {
                     {image.status === 'pending' && (
                       <button
                         onClick={() => resizeSingleImage(image.id)}
-                        className="flex-1 px-4 py-2 bg-[#058554] text-white rounded-lg hover:bg-[#047045] transition-colors font-medium"
+                        disabled={isProcessing}
+                        className="flex-1 px-4 py-2 bg-[#058554] text-white rounded-lg hover:bg-[#047045] disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
                       >
                         Resize
                       </button>
                     )}
                     {image.status === 'processing' && (
-                      <div className="flex-1 px-4 py-2 bg-gray-200 text-gray-600 rounded-lg text-center font-medium">
+                      <div className="flex-1 px-4 py-2 bg-gray-200 text-gray-600 rounded-lg text-center font-medium flex items-center justify-center gap-2">
+                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
                         Processing...
                       </div>
                     )}

@@ -15,6 +15,11 @@ export default function NavigationProvider({ children }: { children: React.React
   // Simplified - removed searchParams dependency and complex event listeners
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
+      // Don't show loading if Ctrl+click, Cmd+click, or middle click (opens in new tab)
+      if (e.ctrlKey || e.metaKey || e.button === 1) {
+        return;
+      }
+      
       const target = e.target as HTMLElement;
       const link = target.closest("a");
       if (link?.href && !link.target && link.href.startsWith(window.location.origin)) {

@@ -9,57 +9,6 @@ export const RESIZE_PRESETS: ResizePreset[] = [
   { name: 'Facebook', width: 1200, height: 630, description: 'Facebook post' },
 ];
 
-export function resizeImage(
-  file: File,
-  settings: ResizeSettings
-): Promise<{ blob: Blob; width: number; height: number }> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      img.src = e.target?.result as string;
-    };
-
-    img.onload = () => {
-      try {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
-        if (!ctx) {
-          reject(new Error('Canvas context not available'));
-          return;
-        }
-
-        canvas.width = settings.width;
-        canvas.height = settings.height;
-
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(img, 0, 0, settings.width, settings.height);
-
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              resolve({ blob, width: settings.width, height: settings.height });
-            } else {
-              reject(new Error('Failed to create blob'));
-            }
-          },
-          `image/${settings.format}`,
-          settings.quality / 100
-        );
-      } catch (error) {
-        reject(error);
-      }
-    };
-
-    img.onerror = () => reject(new Error('Failed to load image'));
-    reader.onerror = () => reject(new Error('Failed to read file'));
-    reader.readAsDataURL(file);
-  });
-}
-
 export function calculateAspectRatio(
   originalWidth: number,
   originalHeight: number,
