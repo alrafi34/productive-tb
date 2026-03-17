@@ -43,6 +43,15 @@ export const metadata: Metadata = {
     description: "100+ free online tools for writing, design, coding & math. No sign-up needed.",
     images: ["/og-image.png"]
   },
+  icons: {
+    icon: [
+      { url: '/favicon.png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.png',
+    apple: '/favicon-180x180.png',
+  },
   robots: {
     index: true,
     follow: true,
@@ -74,8 +83,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.svg" sizes="48x48" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
         <meta httpEquiv="origin-trial" content="" />
         <script
           type="application/ld+json"

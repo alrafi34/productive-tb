@@ -141,7 +141,7 @@ export default function HomePage() {
 
             <div>
               <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-                <img src="/favicon.svg" alt="" className="w-7 h-7" />
+                <img src="/favicon.png" alt="" className="w-7 h-7" />
                 {siteConfig.name}
               </Link>
               <p className="text-sm text-gray-500 leading-relaxed mb-5">Free micro-tools for everyday productivity. No sign-up, no paywalls.</p>

@@ -37,6 +37,15 @@ export const metadata: Metadata = {
     description: "Free online tools for writing, design, coding, and math. Word counter, image compressor, password generator, calculators & 100+ utilities. No sign-up needed.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Productive Toolbox" }]
   },
+  icons: {
+    icon: [
+      { url: '/favicon.png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.png',
+    apple: '/favicon-180x180.png',
+  },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} - 100+ Free Online Tools`,
@@ -74,8 +83,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.svg" sizes="48x48" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

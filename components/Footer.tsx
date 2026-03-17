@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              <img src="/favicon.svg" alt="" className="w-7 h-7" />
+              <img src="/favicon.png" alt="" className="w-7 h-7" />
               {siteConfig.name}
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed mb-5">Free micro-tools for everyday productivity. No sign-up, no paywalls.</p>
@@ -20,7 +20,7 @@ export default function Footer() {
               ].map(({ label, path }) => (
                 <a key={label} href="#" aria-label={label}
                   className="w-9 h-9 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d={path}/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d={path} /></svg>
                 </a>
               ))}
             </div>
@@ -29,7 +29,7 @@ export default function Footer() {
           <div>
             <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Tools</p>
             <ul className="space-y-2.5">
-              {[["writing","Writing Tools"],["image","Image Tools"],["math","Math Tools"],["creator","Creator Tools"]].map(([slug,label]) => (
+              {[["writing", "Writing Tools"], ["image", "Image Tools"], ["math", "Math Tools"], ["creator", "Creator Tools"]].map(([slug, label]) => (
                 <li key={slug}><Link href={`/tools/${slug}`} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
               ))}
             </ul>
@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <p className="text-white text-sm font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Company</p>
             <ul className="space-y-2.5">
-              {[["About","/about"],["Contact","/contact"],["Privacy Policy","/privacy"],["Terms of Use","/terms"]].map(([label,href]) => (
+              {[["About", "/about"], ["Contact", "/contact"], ["Privacy Policy", "/privacy"], ["Terms of Use", "/terms"]].map(([label, href]) => (
                 <li key={href}><Link href={href} className="text-sm text-gray-500 hover:text-primary transition-colors">{label}</Link></li>
               ))}
             </ul>
@@ -60,7 +60,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-6 flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs text-gray-600">© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
           <div className="flex gap-5">
-            {[["Privacy","/privacy"],["Terms","/terms"],["Contact","/contact"]].map(([label,href]) => (
+            {[["Privacy", "/privacy"], ["Terms", "/terms"], ["Contact", "/contact"]].map(([label, href]) => (
               <Link key={href} href={href} className="text-xs text-gray-600 hover:text-primary transition-colors">{label}</Link>
             ))}
           </div>
