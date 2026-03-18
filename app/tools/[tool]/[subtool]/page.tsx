@@ -419,10 +419,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
-  if (!entry) return {};
+  const mappedCategory = tools.find((t) => t.slug === slug)?.category;
+  if (!entry || (mappedCategory && mappedCategory !== category)) return {};
 
-  const seo = entry.config.seo as any;
-  const canonicalUrl = `${siteConfig.url}/tools/${category}/${slug}`;
+  const seo = entry.config.seo as {
+    title: string;
+    description: string;
+    keywords?: string[];
+    openGraph?: {
+      title?: string;
+      description?: string;
+    };
+  };
+  const canonicalCategory = mappedCategory || category;
+  const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
   return {
     title: seo.title,
     description: seo.description,
@@ -451,10 +461,12 @@ export default async function ToolPage({
 }) {
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
-  if (!entry) notFound();
+  const mappedCategory = tools.find((t) => t.slug === slug)?.category;
+  if (!entry || (mappedCategory && mappedCategory !== category)) notFound();
   const { config, Component } = entry;
 
-  const canonicalUrl = `${siteConfig.url}/tools/${category}/${slug}`;
+  const canonicalCategory = mappedCategory || category;
+  const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -467,7 +479,7 @@ export default async function ToolPage({
     creator: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
   };
 
-  const catObj = categories.find(c => c.slug === category);
+  const catObj = categories.find(c => c.slug === canonicalCategory);
 
   return (
     <>

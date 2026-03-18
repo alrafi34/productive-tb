@@ -446,7 +446,7 @@ export default function DiscountCalculatorUI() {
       
       <RelatedTools
         currentTool="discount-calculator"
-        tools={['password-generator', 'word-counter', 'lorem-ipsum-generator']} // Add any related finance/utility tools here if applicable
+        tools={['percentage-calculator', 'percentage-increase-decrease-calculator', 'profit-margin-calculator']}
       />
     </>
   );

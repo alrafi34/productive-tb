@@ -395,7 +395,7 @@ Calculated via Productive Toolbox`;
       
       <RelatedTools
         currentTool="age-calculator"
-        tools={['percentage-calculator', 'discount-calculator', 'word-counter']}
+        tools={['date-difference-calculator', 'time-duration-calculator', 'bmi-calculator']}
       />
     </>
   );

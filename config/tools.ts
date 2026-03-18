@@ -41,7 +41,7 @@ export const tools: Tool[] = [
   // Math & Calculator Tools (23-26)
   { slug: "discount-calculator", name: "Discount Calculator", description: "Calculate price after discount.", category: "calculator", icon: "💰", free: true },
   { slug: "percentage-calculator", name: "Percentage Calculator", description: "Find percentage, increase, decrease.", category: "calculator", icon: "🔢", free: true },
-  { slug: "age-calculator", name: "Age Calculator", description: "Calculate age in years, months, days.", category: "calculator", icon: "🎂", free: true },
+  { slug: "age-calculator", name: "Age Calculator", description: "Calculate exact age, days lived, and next birthday from date of birth.", category: "calculator", icon: "🎂", free: true },
   { slug: "bmi-calculator", name: "BMI Calculator", description: "Body mass index.", category: "calculator", icon: "⚖️", free: true },
   
   // URL & QR Tools (27-30)

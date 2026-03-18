@@ -556,7 +556,7 @@ export default function PercentageCalculatorUI() {
       
       <RelatedTools
         currentTool="percentage-calculator"
-        tools={['discount-calculator', 'word-counter', 'hash-generator']}
+        tools={['percentage-increase-decrease', 'discount-calculator', 'tip-calculator']}
       />
     </>
   );
