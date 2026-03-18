@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Shuffle, Copy, Check, Download, Play, Pause, Code, Image as ImageIcon, Sparkles } from 'lucide-react';
-import { BlobValues, BackgroundType } from './types';
+import { BlobValues, BackgroundType, BlobAnimation } from './types';
 import {
   generateBorderRadius,
   generateRandomBlob,
@@ -38,7 +38,7 @@ export default function CSSBlobGeneratorUI() {
   const [blobSize, setBlobSize] = useState(300);
 
   // Animation
-  const [animation, setAnimation] = useState<any>(null);
+  const [animation, setAnimation] = useState<BlobAnimation | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationDuration, setAnimationDuration] = useState('8');
 
@@ -47,6 +47,7 @@ export default function CSSBlobGeneratorUI() {
 
   // Generate border-radius string
   const borderRadius = generateBorderRadius(values);
+  const animationMidBorderRadius = animation?.keyframes[1]?.borderRadius ?? borderRadius;
 
   // Update animation when values change
   useEffect(() => {
@@ -457,10 +458,9 @@ export default function CSSBlobGeneratorUI() {
                 <div
                   className="transition-all duration-300 flex-shrink-0"
                   style={{
-                    width: `min(${blobSize}px, 100%)`,
-                    height: `min(${blobSize}px, 100%)`,
+                    width: `min(${blobSize}px, 70vw)`,
+                    aspectRatio: '1 / 1',
                     maxWidth: '100%',
-                    maxHeight: '70vw',
                     background: getBackgroundStyle(),
                     borderRadius: borderRadius,
                     animation: isAnimating ? `blob-morph ${animationDuration}s ease-in-out infinite` : 'none'
@@ -489,13 +489,13 @@ export default function CSSBlobGeneratorUI() {
         </div>
 
         {/* Animation Keyframes */}
-        <style jsx>{`
+        <style jsx global>{`
           @keyframes blob-morph {
             0%, 100% {
               border-radius: ${borderRadius};
             }
             50% {
-              border-radius: ${generateBorderRadius(generateRandomBlob())};
+              border-radius: ${animationMidBorderRadius};
             }
           }
         `}</style>
