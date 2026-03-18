@@ -89,9 +89,9 @@ export default function CSSAnimationPreviewer() {
     ).join(' ');
 
     return (
-      <div className="bg-white p-4 rounded-lg border">
-        <h4 className="font-medium mb-2">Curve Visualization</h4>
-        <svg width="200" height="200" className="border border-gray-200">
+      <div className="bg-white p-3 sm:p-4 rounded-lg border">
+        <h4 className="font-medium mb-2 text-sm sm:text-base">Curve Visualization</h4>
+        <svg viewBox="0 0 200 200" className="w-full max-w-[200px] aspect-square border border-gray-200 mx-auto sm:mx-0">
           <defs>
             <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
               <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" strokeWidth="1"/>
@@ -108,33 +108,33 @@ export default function CSSAnimationPreviewer() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto p-6 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6 space-y-6 sm:space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900">CSS Animation Previewer</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">CSS Animation Previewer</h1>
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
           Test CSS timing functions and cubic-bezier curves with live animation preview and instant code generation.
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {/* Animation Preview */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6 min-w-0">
           {/* Preview Area */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold">Animation Preview</h3>
-              <div className="flex gap-2">
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
+              <h3 className="text-base sm:text-lg font-semibold">Animation Preview</h3>
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="flex items-center gap-2 px-3 py-1 text-sm bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                  className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
                 >
                   {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                   {isPlaying ? 'Pause' : 'Play'}
                 </button>
                 <button
                   onClick={replayAnimation}
-                  className="flex items-center gap-2 px-3 py-1 text-sm bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
                 >
                   <Play className="w-4 h-4" />
                   Replay
@@ -142,7 +142,7 @@ export default function CSSAnimationPreviewer() {
               </div>
             </div>
 
-            <div className="relative h-32 bg-gray-50 rounded-lg overflow-hidden">
+            <div className="relative h-28 sm:h-32 bg-gray-50 rounded-lg overflow-hidden">
               <div
                 key={animationKeyRef.current}
                 ref={animationElementRef}
@@ -153,22 +153,22 @@ export default function CSSAnimationPreviewer() {
           </div>
 
           {/* CSS Output */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold mb-4">Generated CSS</h3>
-            <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre">
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-semibold mb-4">Generated CSS</h3>
+            <div className="bg-gray-900 text-green-400 p-3 sm:p-4 rounded-lg font-mono text-xs sm:text-sm overflow-x-auto whitespace-pre">
               {generateAnimationCSS(settings, cubicBezier)}
             </div>
-            <div className="flex gap-2 mt-4">
+            <div className="flex flex-col sm:flex-row gap-2 mt-4">
               <button
                 onClick={copyCSS}
-                className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+                className="flex items-center justify-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm sm:text-base flex-1 sm:flex-none"
               >
                 <Copy className="w-4 h-4" />
                 {copiedCSS ? 'Copied!' : 'Copy CSS'}
               </button>
               <button
                 onClick={resetAnimation}
-                className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                className="flex items-center justify-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm sm:text-base flex-1 sm:flex-none"
               >
                 <RotateCcw className="w-4 h-4" />
                 Reset
@@ -178,16 +178,16 @@ export default function CSSAnimationPreviewer() {
         </div>
 
         {/* Controls Panel */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6 min-w-0">
           {/* Timing Function */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold mb-4">Timing Function</h3>
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-semibold mb-4">Timing Function</h3>
             <div className="space-y-3">
               {timingFunctions.map((func) => (
                 <button
                   key={func}
                   onClick={() => updateSetting('timingFunction', func)}
-                  className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
+                  className={`w-full text-left px-3 py-2 text-xs sm:text-sm rounded-lg transition-colors ${
                     settings.timingFunction === func 
                       ? 'bg-primary text-white' 
                       : 'bg-gray-50 hover:bg-gray-100'
@@ -201,9 +201,9 @@ export default function CSSAnimationPreviewer() {
 
           {/* Cubic Bezier Editor */}
           {settings.timingFunction === 'cubic-bezier' && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold mb-4">Cubic Bezier Editor</h3>
-              <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold mb-4">Cubic Bezier Editor</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="text-sm font-medium text-gray-700">X1</label>
                   <input
@@ -254,8 +254,8 @@ export default function CSSAnimationPreviewer() {
           )}
 
           {/* Animation Controls */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
-            <h3 className="text-lg font-semibold">Animation Controls</h3>
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 space-y-4">
+            <h3 className="text-base sm:text-lg font-semibold">Animation Controls</h3>
             
             <div>
               <label className="text-sm font-medium text-gray-700">Duration (seconds)</label>
@@ -330,14 +330,14 @@ export default function CSSAnimationPreviewer() {
           </div>
 
           {/* Presets */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold mb-4">Animation Presets</h3>
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-semibold mb-4">Animation Presets</h3>
             <div className="space-y-2">
               {animationPresets.map((preset) => (
                 <button
                   key={preset.name}
                   onClick={() => applyPreset(preset)}
-                  className="w-full text-left px-3 py-2 text-sm bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="w-full text-left px-3 py-2 text-xs sm:text-sm bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <div className="font-medium">{preset.name}</div>
                   <div className="text-xs text-gray-600">{preset.description}</div>

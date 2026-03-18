@@ -113,38 +113,38 @@ export default function CSSBlobGeneratorUI() {
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-2 flex-wrap">
+        <div className="flex justify-center gap-2">
           <button
             onClick={() => setActiveTab('generator')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-all text-sm sm:text-base ${
               activeTab === 'generator'
                 ? 'bg-[#058554] text-white shadow-lg'
                 : 'bg-white text-slate-700 hover:bg-slate-50'
             }`}
           >
-            <Sparkles className="w-5 h-5" />
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
             Generator
           </button>
           <button
             onClick={() => setActiveTab('animation')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-all text-sm sm:text-base ${
               activeTab === 'animation'
                 ? 'bg-[#058554] text-white shadow-lg'
                 : 'bg-white text-slate-700 hover:bg-slate-50'
             }`}
           >
-            <Play className="w-5 h-5" />
+            <Play className="w-4 h-4 sm:w-5 sm:h-5" />
             Animation
           </button>
           <button
             onClick={() => setActiveTab('export')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-all text-sm sm:text-base ${
               activeTab === 'export'
                 ? 'bg-[#058554] text-white shadow-lg'
                 : 'bg-white text-slate-700 hover:bg-slate-50'
             }`}
           >
-            <Download className="w-5 h-5" />
+            <Download className="w-4 h-4 sm:w-5 sm:h-5" />
             Export
           </button>
         </div>
@@ -388,7 +388,7 @@ export default function CSSBlobGeneratorUI() {
               {backgroundType === 'gradient' && (
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Gradient</label>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                     {GRADIENT_PRESETS.map((gradient, idx) => (
                       <button
                         key={idx}
@@ -409,7 +409,7 @@ export default function CSSBlobGeneratorUI() {
               {backgroundType === 'solid' && (
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Color</label>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                     {COLOR_PRESETS.map((color, idx) => (
                       <button
                         key={idx}
@@ -447,7 +447,7 @@ export default function CSSBlobGeneratorUI() {
               <h3 className="font-semibold text-slate-800">Live Preview</h3>
               
               <div 
-                className="flex items-center justify-center min-h-[400px] rounded-lg"
+                className="flex items-center justify-center min-h-[280px] sm:min-h-[400px] rounded-lg overflow-hidden p-4"
                 style={{
                   background: backgroundType === 'transparent' 
                     ? 'repeating-conic-gradient(#e2e8f0 0% 25%, transparent 0% 50%) 50% / 20px 20px'
@@ -455,10 +455,12 @@ export default function CSSBlobGeneratorUI() {
                 }}
               >
                 <div
-                  className="transition-all duration-300"
+                  className="transition-all duration-300 flex-shrink-0"
                   style={{
-                    width: `${blobSize}px`,
-                    height: `${blobSize}px`,
+                    width: `min(${blobSize}px, 100%)`,
+                    height: `min(${blobSize}px, 100%)`,
+                    maxWidth: '100%',
+                    maxHeight: '70vw',
                     background: getBackgroundStyle(),
                     borderRadius: borderRadius,
                     animation: isAnimating ? `blob-morph ${animationDuration}s ease-in-out infinite` : 'none'

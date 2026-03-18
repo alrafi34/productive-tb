@@ -26,7 +26,7 @@ export default function CSSBlobGeneratorSEOContent() {
         
         <div className="p-4 bg-slate-50 rounded-lg">
           <h3 className="font-semibold text-slate-800 mb-2">Border-Radius Syntax</h3>
-          <pre className="p-3 bg-white rounded font-mono text-sm border border-slate-200">
+          <pre className="p-3 bg-white rounded font-mono text-sm border border-slate-200 overflow-x-auto whitespace-pre-wrap break-all sm:whitespace-pre sm:break-normal">
 border-radius: TL TR BR BL / TL TR BR BL;
           </pre>
           <p className="text-sm mt-3">
@@ -37,7 +37,7 @@ border-radius: TL TR BR BL / TL TR BR BL;
 
         <div className="p-4 bg-slate-50 rounded-lg">
           <h3 className="font-semibold text-slate-800 mb-2">Example</h3>
-          <pre className="p-3 bg-white rounded font-mono text-sm border border-slate-200">
+          <pre className="p-3 bg-white rounded font-mono text-sm border border-slate-200 overflow-x-auto whitespace-pre-wrap break-all sm:whitespace-pre sm:break-normal">
 border-radius: 60% 40% 30% 70% / 50% 30% 70% 40%;
           </pre>
           <p className="text-sm mt-3">
