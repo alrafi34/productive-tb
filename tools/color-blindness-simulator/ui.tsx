@@ -129,14 +129,6 @@ export default function ColorBlindnessSimulator() {
         {/* SVG Filters */}
         <div dangerouslySetInnerHTML={{ __html: generateAllSVGFilters(state.intensity) }} />
 
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-gray-900">Color Blindness Simulator</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Preview how images and designs appear to people with different types of color vision deficiencies.
-          </p>
-        </div>
-
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Controls Panel */}
           <div className="lg:col-span-1 space-y-6">

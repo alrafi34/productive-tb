@@ -210,15 +210,6 @@ export default function RandomHexColorGenerator() {
         style={backgroundStyle}
       >
         <div className="max-w-7xl mx-auto p-6 space-y-8">
-          {/* Header */}
-          <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold" style={{ color: textColor }}>
-              Random Hex Color Generator
-            </h1>
-            <p className="text-lg opacity-90" style={{ color: textColor }}>
-              Press <kbd className="px-2 py-1 bg-black bg-opacity-20 rounded">SPACE</kbd> to generate new colors
-            </p>
-          </div>
 
           {/* Controls */}
           <div className="flex flex-wrap justify-center gap-4">

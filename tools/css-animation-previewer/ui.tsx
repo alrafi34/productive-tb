@@ -109,13 +109,6 @@ export default function CSSAnimationPreviewer() {
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6 space-y-6 sm:space-y-8">
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">CSS Animation Previewer</h1>
-        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-          Test CSS timing functions and cubic-bezier curves with live animation preview and instant code generation.
-        </p>
-      </div>
 
       <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {/* Animation Preview */}

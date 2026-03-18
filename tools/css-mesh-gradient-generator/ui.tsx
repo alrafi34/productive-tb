@@ -281,13 +281,6 @@ export default function CSSMeshGradientGenerator() {
   return (
     <>
       <div className="max-w-7xl mx-auto p-4 lg:p-6 space-y-6">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">CSS Mesh Gradient Generator</h1>
-          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
-            Create modern multi-color mesh gradient backgrounds with interactive editing and CSS code generation.
-          </p>
-        </div>
 
         {/* Main Canvas Section */}
         <div className="bg-white rounded-xl border border-gray-200 p-4 lg:p-6">
