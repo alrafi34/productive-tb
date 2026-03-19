@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Fuel Cost Calculator – Estimate Trip Cost Using MPG or km/L | Productive Toolbox",
-    description: "Free online Fuel Cost Calculator. Estimate trip fuel cost based on distance, fuel efficiency (MPG or km/L), and fuel price. Instant results with no signup required.",
+    title: "Fuel Cost Calculator - Estimate Gas and Trip Fuel Cost (MPG or km/L) | Productive Toolbox",
+    description: "Free fuel cost calculator for road trips and daily commutes. Calculate fuel needed, trip cost, and cost per mile or km using MPG or km/L in seconds.",
     keywords: [
       "fuel cost calculator",
       "trip cost calculator",
@@ -21,11 +21,16 @@ export const toolConfig = {
       "fuel price calculator",
       "distance fuel calculator",
       "vehicle fuel calculator",
-      "road trip cost calculator"
+      "road trip cost calculator",
+      "trip fuel estimator",
+      "cost per mile calculator",
+      "cost per km calculator",
+      "commute fuel calculator",
+      "gas budget planner"
     ],
     openGraph: {
-      title: "Fuel Cost Calculator - Estimate Trip Fuel Cost Instantly",
-      description: "Fast, accurate fuel cost calculator with support for MPG and km/L fuel efficiency systems.",
+      title: "Fuel Cost Calculator - Estimate Fuel Needed and Total Trip Cost",
+      description: "Plan travel budgets with a fast fuel calculator. Supports miles/MPG and km/L, plus cost-per-distance output and CSV history export.",
       type: "website",
       url: "/tools/fuel-cost-calculator"
     }
@@ -33,14 +38,11 @@ export const toolConfig = {
   features: [
     "Calculate fuel cost based on distance and efficiency",
     "Support for both MPG and km/L fuel efficiency systems",
-    "Real-time calculation as you type",
-    "Compare two vehicles side-by-side",
-    "Fuel price presets for quick selection",
-    "Range estimator based on fuel tank size",
+    "Total fuel needed and trip cost breakdown",
     "Cost per distance calculation",
-    "Export results to CSV and JSON",
+    "Currency selector for quick local estimation",
+    "Export calculation history to CSV",
     "LocalStorage history of calculations",
-    "Interactive sliders for quick adjustment",
     "Copy results to clipboard"
   ]
 };

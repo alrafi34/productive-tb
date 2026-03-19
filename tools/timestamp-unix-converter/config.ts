@@ -1,29 +1,34 @@
 export const toolConfig = {
   slug: "timestamp-unix-converter",
   name: "Unix Timestamp Converter",
-  description: "Convert Unix timestamps to human-readable dates and vice versa instantly.",
+  description: "Convert Unix timestamps to readable dates and convert dates to Unix seconds or milliseconds instantly.",
   category: "developer",
   icon: "⏱️",
   free: true,
   backend: false,
   seo: {
-    title: "Unix Timestamp Converter – Convert Epoch Time Instantly | Productive Toolbox",
-    description: "Convert Unix timestamps to human-readable dates and vice versa instantly. Fast, developer-friendly timestamp converter running entirely in your browser.",
+    title: "Unix Timestamp Converter (Epoch to Date & Date to Unix) | Productive Toolbox",
+    description: "Free Unix Timestamp Converter for epoch to date and date to Unix conversion. Auto-detects seconds/milliseconds with batch conversion, timezone views, and timestamp diff.",
     keywords: [
       "unix timestamp converter",
       "epoch time converter",
       "timestamp to date",
       "date to unix",
+      "date to unix timestamp",
+      "unix time converter",
+      "epoch converter",
+      "epoch to date",
       "unix epoch calculator",
-      "developer timestamp tool",
+      "unix time now",
+      "timestamp difference calculator",
       "iso 8601 to unix",
       "batch timestamp converter"
     ],
     openGraph: {
-      title: "Unix Timestamp Converter - Convert Epoch Time Instantly",
-      description: "Fast, developer-friendly timestamp converter running entirely in your browser.",
+      title: "Unix Timestamp Converter - Epoch to Date and Date to Unix",
+      description: "Convert Unix timestamps in seconds or milliseconds, compare timestamp differences, and batch-convert values directly in your browser.",
       type: "website",
-      url: "/tools/timestamp-unix-converter"
+      url: "/tools/calculator/timestamp-unix-converter"
     }
   },
   features: [

@@ -1,258 +1,286 @@
-import React from 'react';
+import React from "react";
 
 export default function AspectRatioCalculatorSEOContent() {
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8 text-slate-700" style={{ fontFamily: 'Inter, sans-serif' }}>
-      {/* Introduction */}
+    <div className="max-w-4xl mx-auto p-6 space-y-8 text-slate-700" style={{ fontFamily: "Inter, sans-serif" }}>
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          What is an Aspect Ratio Calculator?
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          Free Aspect Ratio Calculator for Images, Video, and Responsive Design
         </h2>
         <p className="leading-relaxed">
-          An aspect ratio calculator helps you determine the proportional relationship between width and height of images, 
-          videos, and screens. It automatically calculates missing dimensions based on a given aspect ratio, ensuring your 
-          content maintains proper proportions across different sizes and devices.
+          This free Aspect Ratio Calculator helps you calculate width and height instantly while keeping perfect proportions.
+          Whether you need a 16:9 calculator for YouTube, a 1:1 ratio for social posts, or a 9:16 size for short-form video,
+          this tool gives you accurate results in seconds. You can enter any two values and calculate the third, simplify
+          ratios like 1920:1080 to 16:9, and generate CSS for responsive layouts.
+        </p>
+        <p className="leading-relaxed">
+          If you searched for terms like image aspect ratio calculator, resolution calculator, video size calculator, or
+          aspect ratio converter, this page is built for that exact workflow. It combines calculator accuracy, visual
+          preview, image ratio detection, and CSS code generation in one place.
         </p>
       </section>
 
-      {/* How It Works */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          How Aspect Ratio Works
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          Why Aspect Ratio Matters
         </h2>
         <p className="leading-relaxed">
-          Aspect ratio is expressed as two numbers separated by a colon (e.g., 16:9). The first number represents width, 
-          and the second represents height. For example, a 16:9 ratio means for every 16 units of width, there are 9 units 
-          of height.
+          Aspect ratio is the proportional relationship between width and height. When ratio is preserved, your visuals stay
+          natural and undistorted. When ratio is broken, people notice stretched faces, squashed graphics, blurry upscales,
+          and layout jumps.
         </p>
-        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">For Designers</h3>
+            <p className="text-sm">
+              Keep posters, banners, thumbnails, and social creatives consistent across multiple platforms.
+            </p>
+          </div>
+          <div className="p-4 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">For Video Editors</h3>
+            <p className="text-sm">
+              Prepare exports for widescreen, vertical video, cinematic cuts, and ad placements without distortion.
+            </p>
+          </div>
+          <div className="p-4 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">For Developers</h3>
+            <p className="text-sm">
+              Prevent layout shift and generate clean responsive containers with modern CSS `aspect-ratio`.
+            </p>
+          </div>
+          <div className="p-4 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">For Social Teams</h3>
+            <p className="text-sm">
+              Match feed, story, reel, and short dimensions quickly for better platform-native presentation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          Why This Tool Is Better Than Typical Aspect Ratio Tools
+        </h2>
+        <p className="leading-relaxed">
+          Many online aspect ratio calculators only solve one step. This tool is built as a full workflow so you can go
+          from idea to final size faster, with fewer mistakes.
+        </p>
+        <div className="space-y-3">
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">1. All-in-One Workflow</h3>
+            <p className="text-sm">
+              Calculate dimensions, detect image ratio, convert resolutions, simulate resizing, and copy CSS from one page.
+            </p>
+          </div>
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">2. Fast and Accurate Real-Time Results</h3>
+            <p className="text-sm">
+              Instant calculations update as you type, reducing trial-and-error and manual spreadsheet work.
+            </p>
+          </div>
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">3. Built for Practical Output</h3>
+            <p className="text-sm">
+              You do not just get a number. You get a visual preview, simplified ratio, and implementation-ready CSS.
+            </p>
+          </div>
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">4. Privacy-First and Browser-Based</h3>
+            <p className="text-sm">
+              Calculations happen directly in your browser. No account setup, no unnecessary uploads to a server.
+            </p>
+          </div>
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">5. Useful for Both Beginners and Pros</h3>
+            <p className="text-sm">
+              Presets and guided UI help new users, while detailed controls and export options support advanced workflows.
+            </p>
+          </div>
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-2">6. Truly Free Utility</h3>
+            <p className="text-sm">
+              No feature lock for core functionality. You can calculate, convert, and copy outputs without paywall friction.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          Aspect Ratio Formula
+        </h2>
+        <p className="leading-relaxed">
+          Aspect ratio is written as width:height, for example 16:9 or 4:3.
+        </p>
         <div className="p-4 bg-slate-50 rounded-lg">
-          <h3 className="font-semibold text-slate-800 mb-2">Calculation Formula</h3>
+          <h3 className="font-semibold text-slate-800 mb-2">Core Equations</h3>
           <div className="space-y-2 text-sm font-mono">
-            <div>Height = (Width × Ratio Height) / Ratio Width</div>
-            <div>Width = (Height × Ratio Width) / Ratio Height</div>
+            <div>Height = (Width x Ratio Height) / Ratio Width</div>
+            <div>Width = (Height x Ratio Width) / Ratio Height</div>
           </div>
           <p className="text-sm mt-3">
-            Example: For 16:9 ratio with width 1920px<br/>
-            Height = (1920 × 9) / 16 = 1080px
+            Example with 16:9 ratio and width 2560:
+            <br />
+            Height = (2560 x 9) / 16 = 1440
           </p>
         </div>
       </section>
 
-      {/* Common Aspect Ratios */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Common Aspect Ratios
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          Common Aspect Ratios and Use Cases
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">📺 16:9 (HD Video)</h3>
-            <p className="text-sm">Standard for HD TVs, YouTube, and most modern displays. Used for 1080p, 4K content.</p>
+            <h3 className="font-semibold text-slate-800 mb-2">16:9</h3>
+            <p className="text-sm">Standard widescreen ratio for YouTube, TV, presentations, and most modern video.</p>
           </div>
           <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">⬛ 1:1 (Square)</h3>
-            <p className="text-sm">Perfect for Instagram posts, profile pictures, and social media thumbnails.</p>
+            <h3 className="font-semibold text-slate-800 mb-2">1:1</h3>
+            <p className="text-sm">Square format for social feed posts, profile images, and product thumbnails.</p>
           </div>
           <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">📱 9:16 (Vertical)</h3>
-            <p className="text-sm">Instagram Stories, TikTok, YouTube Shorts, and mobile-first content.</p>
+            <h3 className="font-semibold text-slate-800 mb-2">9:16</h3>
+            <p className="text-sm">Vertical format for short videos, stories, reels, and mobile-first content.</p>
           </div>
           <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">🖥️ 21:9 (Ultrawide)</h3>
-            <p className="text-sm">Ultrawide monitors, cinematic content, and immersive gaming displays.</p>
+            <h3 className="font-semibold text-slate-800 mb-2">4:5</h3>
+            <p className="text-sm">Popular portrait format for social platforms where vertical space improves visibility.</p>
           </div>
           <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">📷 3:2 (Photography)</h3>
-            <p className="text-sm">DSLR cameras, 35mm film, and professional photography standard.</p>
+            <h3 className="font-semibold text-slate-800 mb-2">3:2</h3>
+            <p className="text-sm">Classic photography ratio used in many cameras and print compositions.</p>
           </div>
           <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">🎬 4:3 (Classic)</h3>
-            <p className="text-sm">Old TV standard, vintage content, and some presentation formats.</p>
+            <h3 className="font-semibold text-slate-800 mb-2">21:9</h3>
+            <p className="text-sm">Cinematic ultrawide format often used in film, trailers, and large desktop displays.</p>
           </div>
         </div>
       </section>
 
-      {/* Features */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Key Features
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          Quick Size Reference for Common Platforms
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">🧮 Auto-Calculate</h3>
-            <p className="text-sm">Enter any two values and the third calculates automatically.</p>
-          </div>
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">👁️ Visual Preview</h3>
-            <p className="text-sm">See a live preview box that updates with your dimensions.</p>
-          </div>
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">🎚️ Resize Simulator</h3>
-            <p className="text-sm">Interactive slider to test different widths instantly.</p>
-          </div>
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">🎯 Preset Ratios</h3>
-            <p className="text-sm">Quick access to 8 common aspect ratios.</p>
-          </div>
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">📸 Image Upload</h3>
-            <p className="text-sm">Upload images to detect their aspect ratio automatically.</p>
-          </div>
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">💻 CSS Generator</h3>
-            <p className="text-sm">Generate modern and legacy CSS code instantly.</p>
-          </div>
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">🔄 Resolution Converter</h3>
-            <p className="text-sm">Convert resolutions between different aspect ratios.</p>
-          </div>
-          <div className="p-4 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">📊 Ratio Simplifier</h3>
-            <p className="text-sm">Automatically simplifies ratios (1920:1080 → 16:9).</p>
-          </div>
+        <p className="leading-relaxed">
+          Exact platform requirements can change, but these popular dimension targets are widely used as production baselines.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
+            <thead className="bg-slate-100 text-slate-800">
+              <tr>
+                <th className="text-left p-3 border-b border-slate-200">Use Case</th>
+                <th className="text-left p-3 border-b border-slate-200">Suggested Size</th>
+                <th className="text-left p-3 border-b border-slate-200">Ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-slate-200">
+                <td className="p-3">Full HD Video</td>
+                <td className="p-3">1920 x 1080</td>
+                <td className="p-3">16:9</td>
+              </tr>
+              <tr className="border-b border-slate-200">
+                <td className="p-3">4K UHD</td>
+                <td className="p-3">3840 x 2160</td>
+                <td className="p-3">16:9</td>
+              </tr>
+              <tr className="border-b border-slate-200">
+                <td className="p-3">Square Social Post</td>
+                <td className="p-3">1080 x 1080</td>
+                <td className="p-3">1:1</td>
+              </tr>
+              <tr className="border-b border-slate-200">
+                <td className="p-3">Portrait Social Post</td>
+                <td className="p-3">1080 x 1350</td>
+                <td className="p-3">4:5</td>
+              </tr>
+              <tr className="border-b border-slate-200">
+                <td className="p-3">Vertical Story / Short</td>
+                <td className="p-3">1080 x 1920</td>
+                <td className="p-3">9:16</td>
+              </tr>
+              <tr>
+                <td className="p-3">Classic Presentation</td>
+                <td className="p-3">1024 x 768</td>
+                <td className="p-3">4:3</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
-      {/* How to Use */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          How to Use
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          How to Use This Aspect Ratio Calculator
         </h2>
-        
         <div className="space-y-6">
           <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Basic Calculator</h3>
+            <h3 className="font-semibold text-slate-800 mb-2">Basic Calculator Workflow</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Enter width, height, or aspect ratio (any two values)</li>
-              <li>The third value calculates automatically</li>
-              <li>View the visual preview to see proportions</li>
-              <li>Use the resize simulator to test different sizes</li>
-              <li>Copy dimensions or export as JSON/TXT</li>
+              <li>Enter width, height, or ratio values.</li>
+              <li>Use any two inputs and the third value is calculated automatically.</li>
+              <li>Review the simplified ratio for clean reporting.</li>
+              <li>Use the preview box to confirm visual proportions.</li>
+              <li>Copy dimensions or export output as JSON or text.</li>
             </ol>
           </div>
-
           <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Using Presets</h3>
+            <h3 className="font-semibold text-slate-800 mb-2">Resolution Converter Workflow</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Click any preset ratio button (16:9, 4:3, etc.)</li>
-              <li>The aspect ratio field updates automatically</li>
-              <li>Height recalculates based on current width</li>
-              <li>Adjust width or height as needed</li>
+              <li>Open the converter tab and enter original dimensions.</li>
+              <li>Set a target ratio, such as 4:3, 1:1, or 9:16.</li>
+              <li>Run conversion to view the closest proportional output.</li>
+              <li>Apply the new dimensions in editing software or code.</li>
             </ol>
           </div>
-
           <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Image Upload</h3>
+            <h3 className="font-semibold text-slate-800 mb-2">Image Detection Workflow</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Switch to "Image Upload" tab</li>
-              <li>Click to upload or drag and drop an image</li>
-              <li>View detected dimensions and aspect ratio</li>
-              <li>Click "Use These Dimensions" to apply to calculator</li>
-            </ol>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Resolution Converter</h3>
-            <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Switch to "Converter" tab</li>
-              <li>Enter original width and height</li>
-              <li>Enter target aspect ratio</li>
-              <li>Click "Convert Resolution" to see new dimensions</li>
-            </ol>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">CSS Generation</h3>
-            <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Set your desired aspect ratio in the calculator</li>
-              <li>Scroll to "CSS Code" section</li>
-              <li>Choose modern (aspect-ratio) or legacy (padding-top)</li>
-              <li>Click copy button to copy code to clipboard</li>
-              <li>Paste into your CSS file</li>
+              <li>Upload an image file from your device.</li>
+              <li>Let the tool detect pixel dimensions and simplified ratio.</li>
+              <li>Push detected values back into the calculator for resizing.</li>
+              <li>Generate production-ready dimensions without manual inspection.</li>
             </ol>
           </div>
         </div>
       </section>
 
-      {/* Use Cases */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Common Use Cases
-        </h2>
-        <div className="space-y-3">
-          <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <h3 className="font-semibold text-blue-900 mb-2">🎬 Video Production</h3>
-            <p className="text-sm text-blue-800">
-              Calculate dimensions for YouTube videos, social media content, and video editing projects.
-            </p>
-          </div>
-
-          <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
-            <h3 className="font-semibold text-purple-900 mb-2">🎨 Graphic Design</h3>
-            <p className="text-sm text-purple-800">
-              Ensure images maintain proper proportions when resizing for different platforms.
-            </p>
-          </div>
-
-          <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-            <h3 className="font-semibold text-green-900 mb-2">💻 Web Development</h3>
-            <p className="text-sm text-green-800">
-              Generate responsive CSS for images, videos, and embedded content.
-            </p>
-          </div>
-
-          <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg">
-            <h3 className="font-semibold text-orange-900 mb-2">📱 Social Media</h3>
-            <p className="text-sm text-orange-800">
-              Create content with correct dimensions for Instagram, TikTok, YouTube, and other platforms.
-            </p>
-          </div>
-
-          <div className="p-4 bg-pink-50 border border-pink-200 rounded-lg">
-            <h3 className="font-semibold text-pink-900 mb-2">🖼️ Photography</h3>
-            <p className="text-sm text-pink-800">
-              Calculate print sizes and crop dimensions while maintaining aspect ratio.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CSS Examples */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
           CSS Implementation Examples
         </h2>
-        
         <div className="space-y-4">
           <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Modern Approach (aspect-ratio)</h3>
+            <h3 className="font-semibold text-slate-800 mb-2">Modern Responsive Container</h3>
             <pre className="p-4 bg-slate-900 text-green-400 rounded-lg text-sm overflow-x-auto">
-{`.video-container {
+{`.media-frame {
   aspect-ratio: 16 / 9;
   width: 100%;
-  overflow: hidden;
+  max-width: 1200px;
 }
 
-.video-container iframe {
+.media-frame img,
+.media-frame video,
+.media-frame iframe {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }`}
             </pre>
           </div>
-
           <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Legacy Approach (padding-top)</h3>
+            <h3 className="font-semibold text-slate-800 mb-2">Legacy Fallback Method</h3>
             <pre className="p-4 bg-slate-900 text-green-400 rounded-lg text-sm overflow-x-auto">
-{`.video-container {
+{`.media-frame {
   position: relative;
-  padding-top: 56.25%; /* 16:9 */
   width: 100%;
+  padding-top: 56.25%; /* 16:9 */
 }
 
-.video-container iframe {
+.media-frame > iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
 }`}
@@ -261,83 +289,87 @@ export default function AspectRatioCalculatorSEOContent() {
         </div>
       </section>
 
-      {/* Tips */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Pro Tips
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
+          Common Mistakes and How to Avoid Them
         </h2>
         <div className="space-y-3 text-sm">
-          <div className="flex gap-3">
-            <span className="text-[#058554] font-bold">✓</span>
-            <p><strong>Maintain quality:</strong> Always scale down, never up. Upscaling reduces image quality.</p>
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-1">Mixing Ratio and Resolution</h3>
+            <p>
+              Ratio is proportional shape (16:9). Resolution is total pixel size (1920 x 1080). Keep both concepts separate
+              when planning exports.
+            </p>
           </div>
-          <div className="flex gap-3">
-            <span className="text-[#058554] font-bold">✓</span>
-            <p><strong>Use presets:</strong> Start with common ratios (16:9, 1:1) for social media content.</p>
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-1">Upscaling Low-Resolution Assets</h3>
+            <p>
+              Increasing pixel size does not increase real detail. Use this calculator to plan scale-down workflows whenever possible.
+            </p>
           </div>
-          <div className="flex gap-3">
-            <span className="text-[#058554] font-bold">✓</span>
-            <p><strong>Test responsiveness:</strong> Use the resize simulator to see how content looks at different sizes.</p>
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-1">Ignoring Safe Zones in Vertical Content</h3>
+            <p>
+              Ratio correctness alone is not enough for social video. Keep critical text and branding away from UI overlays.
+            </p>
           </div>
-          <div className="flex gap-3">
-            <span className="text-[#058554] font-bold">✓</span>
-            <p><strong>Modern CSS:</strong> Use aspect-ratio property for cleaner, more maintainable code.</p>
-          </div>
-          <div className="flex gap-3">
-            <span className="text-[#058554] font-bold">✓</span>
-            <p><strong>Simplify ratios:</strong> Use simplified ratios (16:9 instead of 1920:1080) for clarity.</p>
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <h3 className="font-semibold text-slate-800 mb-1">Using Only One Platform Size</h3>
+            <p>
+              A format that works in one feed may crop badly elsewhere. Use converter mode to generate alternate outputs fast.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
+        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
           Frequently Asked Questions
         </h2>
         <div className="space-y-4">
           <div>
-            <h3 className="font-semibold text-slate-800 mb-1">What happens if I change the aspect ratio?</h3>
+            <h3 className="font-semibold text-slate-800 mb-1">What is the most common video aspect ratio?</h3>
             <p className="text-sm">
-              When you change the aspect ratio, the height automatically recalculates based on the current width to maintain 
-              the new proportions.
+              16:9 is the most common standard for modern video playback across web, streaming, and presentation contexts.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Can I use decimal aspect ratios?</h3>
+            <h3 className="font-semibold text-slate-800 mb-1">How do I calculate height from width and ratio?</h3>
             <p className="text-sm">
-              Yes! You can enter ratios like 2.39:1 or 1.618:1. The calculator handles both whole numbers and decimals.
+              Use Height = (Width x Ratio Height) / Ratio Width. This calculator does it instantly and updates all related outputs.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-slate-800 mb-1">What's the difference between aspect-ratio and padding-top CSS?</h3>
+            <h3 className="font-semibold text-slate-800 mb-1">Can this tool simplify ratios automatically?</h3>
             <p className="text-sm">
-              aspect-ratio is the modern CSS property with better browser support. padding-top is the legacy method using 
-              percentage padding for older browsers.
+              Yes. Enter dimensions like 3840 x 2160 and the tool simplifies to 16:9 automatically.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-slate-800 mb-1">How do I maintain aspect ratio when resizing images?</h3>
+            <h3 className="font-semibold text-slate-800 mb-1">Is this aspect ratio tool free?</h3>
             <p className="text-sm">
-              Enter your original dimensions, then use the resize simulator slider to find the new width. The height will 
-              automatically adjust to maintain the aspect ratio.
+              Yes. Core calculator, converter, presets, and CSS output are available without sign-up.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Can I upload images to detect their aspect ratio?</h3>
+            <h3 className="font-semibold text-slate-800 mb-1">Can I use this for responsive web design?</h3>
             <p className="text-sm">
-              Yes! Switch to the "Image Upload" tab, upload your image, and the tool will automatically detect and display 
-              its dimensions and aspect ratio.
+              Yes. Use generated CSS to maintain consistent media blocks and reduce layout shift on different screen sizes.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-slate-800 mb-1">Does image upload help detect unknown ratios?</h3>
+            <p className="text-sm">
+              Yes. Upload any image and the tool reads dimensions and calculated ratio so you can resize accurately.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Footer Note */}
       <section className="pt-6 border-t border-slate-200">
         <p className="text-sm text-slate-600 text-center">
-          This aspect ratio calculator is a free, browser-based tool for designers, developers, and content creators. 
-          All calculations happen locally with no server communication.
+          Productive Toolbox Aspect Ratio Calculator is a practical, high-accuracy utility for creators, marketers, and
+          developers who need fast dimension math, visual validation, and implementation-ready outputs in one tool.
         </p>
       </section>
     </div>

@@ -1,28 +1,37 @@
 export const toolConfig = {
   slug: "percentage-increase-decrease",
   name: "Percentage Increase/Decrease Calculator",
-  description: "Calculate percentage change between two numbers instantly with visual comparisons and batch processing.",
+  description: "Calculate percentage increase or decrease between two values with instant formulas, reverse lookup, multi-step simulation, batch analysis, and CSV export.",
   category: "finance",
   icon: "📊",
   free: true,
   backend: false,
   seo: {
-    title: "Percentage Increase / Decrease Calculator – Find Percent Change | Productive Toolbox",
-    description: "Calculate percentage increase or decrease instantly. Compare two numbers and see the exact percent change directly in your browser with visual indicators.",
+    title: "Percentage Increase/Decrease Calculator (Percent Change, Reverse & Batch) | Productive Toolbox",
+    description: "Free percentage increase/decrease calculator to find percent change between two numbers. Includes reverse percentage lookup, compounded multi-step simulation, batch comparisons, slider preview, and CSV export.",
     keywords: [
       "percentage increase calculator",
       "percentage decrease calculator",
       "percent change calculator",
-      "percentage difference",
-      "calculate decrease",
-      "calculate increase",
-      "percentage change tool"
+      "percentage change between two numbers",
+      "percentage difference calculator",
+      "percent increase formula",
+      "percent decrease formula",
+      "reverse percentage calculator",
+      "original value from final value",
+      "compounded percentage change calculator",
+      "multi step percentage calculator",
+      "batch percentage calculator",
+      "price increase calculator",
+      "salary increase calculator",
+      "growth rate calculator",
+      "online percent change tool"
     ],
     openGraph: {
-      title: "Percentage Increase / Decrease Calculator - Instant Percent Change",
-      description: "Fast, accurate percentage change calculator with visual indicators, batch processing, and multi-step simulation.",
+      title: "Percentage Increase/Decrease Calculator - Percent Change, Reverse, Batch",
+      description: "Compare old vs new values, calculate exact percent change, run multi-step simulations, and export batch results. Fast, accurate, and browser-based.",
       type: "website",
-      url: "/tools/percentage-increase-decrease"
+      url: "/tools/calculator/percentage-increase-decrease"
     }
   },
   features: [
