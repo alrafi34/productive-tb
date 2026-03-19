@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
@@ -8,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              <img src="/favicon.png" alt="" className="w-7 h-7" />
+              <Image src="/favicon.svg" alt="" width={28} height={28} className="w-7 h-7" />
               {siteConfig.name}
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed mb-5">Free micro-tools for everyday productivity. No sign-up, no paywalls.</p>
