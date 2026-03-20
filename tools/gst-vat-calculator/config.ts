@@ -7,25 +7,37 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "GST / VAT Calculator Online – Add or Remove Tax from Price | Productive Toolbox",
-    description: "Free online GST / VAT Calculator. Calculate tax-inclusive or tax-exclusive prices instantly. Add or remove tax from any price with real-time results entirely in your browser.",
+    title: "GST / VAT Calculator - Add or Remove Tax from Price Instantly",
+    description: "Free GST/VAT Calculator to add tax to base price or remove tax from tax-inclusive totals. Includes formulas, examples, FAQ, predefined rates, history, and CSV export.",
     keywords: [
       "gst calculator",
       "vat calculator",
       "tax calculator",
+      "gst vat calculator",
       "add tax calculator",
       "remove tax calculator",
       "inclusive tax calculator",
       "exclusive tax calculator",
+      "tax inclusive calculator",
+      "tax exclusive calculator",
+      "gst inclusive calculator",
+      "vat inclusive calculator",
+      "gst exclusive calculator",
+      "vat exclusive calculator",
+      "reverse tax calculator",
+      "price including tax calculator",
+      "price excluding tax calculator",
+      "sales tax calculator",
+      "gst percentage calculator",
+      "vat percentage calculator",
       "gst vat calculator online",
       "tax inclusive price calculator",
       "tax exclusive price calculator",
-      "sales tax calculator",
       "goods and services tax calculator"
     ],
     openGraph: {
-      title: "GST / VAT Calculator - Add or Remove Tax from Price",
-      description: "Calculate tax-inclusive or tax-exclusive prices instantly with our free GST/VAT calculator.",
+      title: "GST / VAT Calculator - Inclusive and Exclusive Tax Conversion",
+      description: "Calculate GST/VAT quickly with add/remove tax modes, predefined rates, and export-ready outputs.",
       type: "website",
       url: "/tools/gst-vat-calculator"
     }
@@ -36,8 +48,14 @@ export const toolConfig = {
     "Support for custom tax rates",
     "Predefined GST/VAT rates (5%, 12%, 18%, 28%)",
     "Real-time calculation as you type",
+    "Decimal precision control",
+    "Quick amount presets",
     "Copy results to clipboard",
+    "Save calculation history in browser",
+    "Export calculation to CSV",
+    "Reload previous calculations from history",
     "Mobile-responsive design",
-    "Save last calculation in browser"
+    "Save last calculation in browser",
+    "SEO-rich content with formulas, examples, and FAQ"
   ]
 };

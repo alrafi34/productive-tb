@@ -12,10 +12,19 @@ import {
   clearHistory,
   deleteHistoryEntry,
   ProfitMarginResult,
-  HistoryEntry
+  HistoryEntry,
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+
+const EMPTY_RESULT: ProfitMarginResult = {
+  grossProfit: 0,
+  grossMargin: 0,
+  netProfit: 0,
+  netMargin: 0,
+  isValid: false,
+  warnings: [],
+};
 
 export default function ProfitMarginCalculatorUI() {
   const [revenue, setRevenue] = useState<string>("1000");
@@ -27,44 +36,59 @@ export default function ProfitMarginCalculatorUI() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-    setHistory(getHistory());
+    const frame = window.requestAnimationFrame(() => {
+      setIsClient(true);
+      setHistory(getHistory());
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const rNum = parseFloat(revenue);
   const cNum = parseFloat(cogs);
-  const eNum = parseFloat(expenses);
+  const eNum = expenses.trim() === "" ? 0 : parseFloat(expenses);
 
-  const isValid = !isNaN(rNum) && !isNaN(cNum) && !isNaN(eNum) && rNum > 0 && cNum >= 0 && eNum >= 0;
+  const hasBaseInputs =
+    !Number.isNaN(rNum) &&
+    !Number.isNaN(cNum) &&
+    !Number.isNaN(eNum) &&
+    rNum > 0 &&
+    cNum >= 0 &&
+    eNum >= 0;
 
   const result: ProfitMarginResult = useMemo(() => {
-    if (!isValid) return {
-      grossProfit: 0,
-      grossMargin: 0,
-      netProfit: 0,
-      netMargin: 0,
-      isValid: false,
-      warnings: []
-    };
+    if (!hasBaseInputs) return EMPTY_RESULT;
     return calculateProfitMargin(rNum, cNum, eNum);
-  }, [rNum, cNum, eNum, isValid]);
+  }, [rNum, cNum, eNum, hasBaseInputs]);
+
+  const canUseResult = hasBaseInputs && result.isValid;
 
   const handleCopy = () => {
-    if (!isValid) return;
-    const text = `Revenue: $${formatCurrency(rNum, precision)}\nCOGS: $${formatCurrency(cNum, precision)}\nExpenses: $${formatCurrency(eNum, precision)}\n\nGross Profit: $${formatCurrency(result.grossProfit, precision)}\nGross Margin: ${formatPercentage(result.grossMargin, precision)}%\n\nNet Profit: $${formatCurrency(result.netProfit, precision)}\nNet Margin: ${formatPercentage(result.netMargin, precision)}%`;
+    if (!canUseResult) return;
+
+    const text = `Profit Margin Summary
+Revenue: $${formatCurrency(rNum, precision)}
+COGS: $${formatCurrency(cNum, precision)}
+Operating Expenses: $${formatCurrency(eNum, precision)}
+
+Gross Profit: $${formatCurrency(result.grossProfit, precision)}
+Gross Margin: ${formatPercentage(result.grossMargin, precision)}%
+Net Profit: $${formatCurrency(result.netProfit, precision)}
+Net Margin: ${formatPercentage(result.netMargin, precision)}%`;
+
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleDownloadCSV = () => {
-    if (!isValid) return;
+    if (!canUseResult) return;
     const csvContent = generateCSV(rNum, cNum, eNum, result);
     downloadCSV(csvContent);
   };
 
   const handleSaveToHistory = useCallback(() => {
-    if (!isValid) return;
+    if (!canUseResult) return;
 
     const entry: HistoryEntry = {
       id: crypto.randomUUID(),
@@ -75,12 +99,12 @@ export default function ProfitMarginCalculatorUI() {
       grossProfit: result.grossProfit,
       grossMargin: result.grossMargin,
       netProfit: result.netProfit,
-      netMargin: result.netMargin
+      netMargin: result.netMargin,
     };
 
     saveToHistory(entry);
     setHistory(getHistory());
-  }, [rNum, cNum, eNum, result, isValid]);
+  }, [rNum, cNum, eNum, result, canUseResult]);
 
   const handleClear = () => {
     setRevenue("");
@@ -104,213 +128,271 @@ export default function ProfitMarginCalculatorUI() {
     setHistory([]);
   };
 
+  const handleExample = (example: { revenue: number; cogs: number; expenses: number }) => {
+    setRevenue(example.revenue.toString());
+    setCogs(example.cogs.toString());
+    setExpenses(example.expenses.toString());
+  };
+
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-12">
-        {/* Header */}
-        <div className="bg-gradient-to-br from-emerald-600 to-teal-700 p-8 text-white relative">
-          <div className="relative z-10">
-            <h2 className="text-3xl font-black mb-2" style={{ fontFamily: "var(--font-heading)" }}>Profit Margin Calculator</h2>
-            <p className="text-emerald-100 opacity-90 font-medium">Calculate gross and net profit margins instantly.</p>
-          </div>
-          <div className="absolute right-0 top-0 opacity-10 p-4 transform translate-x-1/4 -translate-y-1/4 select-none pointer-events-none">
-            <span className="text-[180px] font-black leading-none italic">💰</span>
-          </div>
-        </div>
-
-        <div className="p-8">
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-10">
-            {/* Input Side */}
-            <div className="xl:col-span-5 space-y-6">
-              <div className="space-y-2">
-                <label className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] pl-1">Revenue</label>
-                <div className="relative group">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-xl font-bold text-gray-400">$</span>
-                  <input
-                    type="number"
-                    value={revenue}
-                    onChange={(e) => setRevenue(e.target.value)}
-                    className="w-full pl-12 pr-6 py-5 bg-gray-50 border-2 border-transparent rounded-2xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all text-2xl font-bold text-gray-800 shadow-sm"
-                    placeholder="e.g. 1000"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] pl-1">Cost of Goods Sold (COGS)</label>
-                <div className="relative group">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-xl font-bold text-gray-400">$</span>
-                  <input
-                    type="number"
-                    value={cogs}
-                    onChange={(e) => setCogs(e.target.value)}
-                    className="w-full pl-12 pr-6 py-5 bg-gray-50 border-2 border-transparent rounded-2xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all text-2xl font-bold text-gray-800 shadow-sm"
-                    placeholder="e.g. 600"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] pl-1">Operating Expenses (Optional)</label>
-                <div className="relative group">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-xl font-bold text-gray-400">$</span>
-                  <input
-                    type="number"
-                    value={expenses}
-                    onChange={(e) => setExpenses(e.target.value)}
-                    className="w-full pl-12 pr-6 py-5 bg-gray-50 border-2 border-transparent rounded-2xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all text-2xl font-bold text-gray-800 shadow-sm"
-                    placeholder="e.g. 200"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-xs font-black text-gray-400 uppercase tracking-widest pl-1">Output Precision</label>
-                <div className="flex gap-2">
-                  {[0, 2, 4].map(p => (
-                    <button
-                      key={p}
-                      onClick={() => setPrecision(p)}
-                      className={`flex-1 py-1.5 rounded-xl text-xs font-bold border transition-all ${precision === p ? 'bg-emerald-600 border-emerald-600 text-white shadow-lg' : 'bg-white border-gray-100 text-gray-500 hover:border-emerald-200'}`}
-                    >
-                      {p} Decimals
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {result.warnings.length > 0 && (
-                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-                  <p className="text-xs font-bold text-red-700">Warnings:</p>
-                  {result.warnings.map((warning, idx) => (
-                    <p key={idx} className="text-xs text-red-600 mt-1">• {warning}</p>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Result Side */}
-            <div className="xl:col-span-7">
-              <div className="bg-gray-50 p-8 rounded-[40px] border-2 border-dashed border-gray-200 h-full flex flex-col justify-center gap-8 relative overflow-hidden group">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 z-10">
-                  <div className="text-center space-y-1">
-                    <span className="text-[10px] font-black text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full uppercase tracking-widest mb-2 inline-block">Gross Profit</span>
-                    <h3 className="text-4xl font-black text-gray-900 leading-tight">
-                      ${isValid ? formatCurrency(result.grossProfit, precision) : "0"}
-                    </h3>
-                  </div>
-
-                  <div className="text-center space-y-1">
-                    <span className="text-[10px] font-black text-blue-600 bg-blue-100 px-3 py-1 rounded-full uppercase tracking-widest mb-2 inline-block">Gross Margin</span>
-                    <h3 className={`text-4xl font-black leading-tight ${result.grossMargin >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                      {isValid ? formatPercentage(result.grossMargin, precision) : "0"}%
-                    </h3>
-                  </div>
-
-                  <div className="text-center space-y-1">
-                    <span className="text-[10px] font-black text-purple-600 bg-purple-100 px-3 py-1 rounded-full uppercase tracking-widest mb-2 inline-block">Net Profit</span>
-                    <h3 className="text-4xl font-black text-gray-900 leading-tight">
-                      ${isValid ? formatCurrency(result.netProfit, precision) : "0"}
-                    </h3>
-                  </div>
-
-                  <div className="text-center space-y-1">
-                    <span className="text-[10px] font-black text-orange-600 bg-orange-100 px-3 py-1 rounded-full uppercase tracking-widest mb-2 inline-block">Net Margin</span>
-                    <h3 className={`text-4xl font-black leading-tight ${result.netMargin >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                      {isValid ? formatPercentage(result.netMargin, precision) : "0"}%
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3 justify-center pt-4 border-t border-gray-200">
-                  <button
-                    onClick={handleCopy}
-                    disabled={!isValid}
-                    className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-all ${copied ? 'bg-green-600 text-white' : 'bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed'}`}
-                  >
-                    {copied ? "✓ Copied" : "Copy Results"}
-                  </button>
-                  <button
-                    onClick={handleDownloadCSV}
-                    disabled={!isValid}
-                    className="px-6 py-2.5 rounded-xl font-bold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Download CSV
-                  </button>
-                  <button
-                    onClick={handleSaveToHistory}
-                    disabled={!isValid}
-                    className="px-6 py-2.5 rounded-xl font-bold text-sm bg-purple-600 hover:bg-purple-700 text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Save to History
-                  </button>
-                  <button
-                    onClick={handleClear}
-                    className="px-6 py-2.5 rounded-xl font-bold text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 transition-all"
-                  >
-                    Clear
-                  </button>
-                </div>
+    <div className="max-w-5xl mx-auto">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-gray-700">Revenue</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
+                <input
+                  type="number"
+                  value={revenue}
+                  onChange={(e) => setRevenue(e.target.value)}
+                  className="w-full pl-8 pr-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
+                  placeholder="e.g. 1000"
+                />
               </div>
             </div>
-          </div>
 
-          {/* History Section */}
-          {isClient && history.length > 0 && (
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-black text-gray-900">Calculation History</h3>
-                <button
-                  onClick={handleClearHistory}
-                  className="text-xs font-bold text-red-600 hover:text-red-700 transition-all"
-                >
-                  Clear All
-                </button>
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-gray-700">Cost of Goods Sold (COGS)</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
+                <input
+                  type="number"
+                  value={cogs}
+                  onChange={(e) => setCogs(e.target.value)}
+                  className="w-full pl-8 pr-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
+                  placeholder="e.g. 600"
+                />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {history.map((entry) => (
-                  <div key={entry.id} className="bg-gray-50 p-4 rounded-2xl border border-gray-200 hover:border-emerald-300 transition-all">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="text-xs text-gray-500">
-                        {new Date(entry.timestamp).toLocaleDateString()} {new Date(entry.timestamp).toLocaleTimeString()}
-                      </div>
-                      <button
-                        onClick={() => handleDeleteHistory(entry.id)}
-                        className="text-xs font-bold text-red-600 hover:text-red-700"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                    <div className="space-y-2 text-sm mb-3">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Revenue:</span>
-                        <span className="font-bold">${formatCurrency(entry.revenue, 2)}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Gross Margin:</span>
-                        <span className={`font-bold ${entry.grossMargin >= 0 ? 'text-green-600' : 'text-red-600'}`}>{formatPercentage(entry.grossMargin, 2)}%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Net Margin:</span>
-                        <span className={`font-bold ${entry.netMargin >= 0 ? 'text-green-600' : 'text-red-600'}`}>{formatPercentage(entry.netMargin, 2)}%</span>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => handleLoadHistory(entry)}
-                      className="w-full py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all"
-                    >
-                      Load
-                    </button>
-                  </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-gray-700">Operating Expenses (Optional)</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
+                <input
+                  type="number"
+                  value={expenses}
+                  onChange={(e) => setExpenses(e.target.value)}
+                  className="w-full pl-8 pr-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
+                  placeholder="e.g. 200"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Decimal Precision</label>
+              <div className="flex gap-2">
+                {[0, 2, 4].map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setPrecision(p)}
+                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                      precision === p
+                        ? "bg-primary border-primary text-white"
+                        : "bg-white border-gray-200 text-gray-600 hover:border-gray-300"
+                    }`}
+                  >
+                    {p}
+                  </button>
                 ))}
               </div>
             </div>
-          )}
+
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Quick Examples</label>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: "Retail", revenue: 10000, cogs: 7000, expenses: 1500 },
+                  { label: "SaaS", revenue: 25000, cogs: 5000, expenses: 9000 },
+                  { label: "Cafe", revenue: 6000, cogs: 2800, expenses: 2200 },
+                ].map((example) => (
+                  <button
+                    key={example.label}
+                    onClick={() => handleExample(example)}
+                    className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-gray-200 bg-white text-gray-700 hover:border-primary hover:text-primary transition-colors"
+                  >
+                    {example.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {result.warnings.length > 0 && (
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                <p className="text-xs font-bold text-amber-700 uppercase tracking-wider mb-2">Input Warning</p>
+                <ul className="space-y-1 text-sm text-amber-700">
+                  {result.warnings.map((warning, idx) => (
+                    <li key={idx}>{warning}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-4 h-full">
+            <div className="relative overflow-hidden p-7 rounded-3xl bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-primary/15 flex flex-col items-center justify-center text-center space-y-3 flex-grow shadow-inner">
+              <span className="text-xs font-bold uppercase tracking-wider text-primary/70">Net Profit Margin</span>
+              {canUseResult ? (
+                <>
+                  <h2 className={`text-5xl font-black leading-none ${result.netMargin >= 0 ? "text-emerald-600" : "text-red-600"}`}>
+                    {formatPercentage(result.netMargin, precision)}%
+                  </h2>
+                  <div className="w-full max-w-xs space-y-2">
+                    <div className="flex items-center justify-between text-sm text-gray-600 font-semibold">
+                      <span>Net Profit</span>
+                      <span className={result.netProfit >= 0 ? "text-emerald-600" : "text-red-600"}>
+                        ${formatCurrency(result.netProfit, precision)}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm text-gray-600 font-semibold">
+                      <span>Gross Profit</span>
+                      <span className={result.grossProfit >= 0 ? "text-emerald-600" : "text-red-600"}>
+                        ${formatCurrency(result.grossProfit, precision)}
+                      </span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <span className="text-2xl font-bold text-gray-300 italic">Enter values...</span>
+              )}
+              <div className="absolute -right-8 -bottom-6 text-8xl text-primary opacity-5 select-none font-black">%</div>
+            </div>
+
+            <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-3">
+              <div className="flex items-center justify-between text-xs text-gray-600">
+                <span className="font-semibold">Gross Margin</span>
+                <span className={`font-bold ${result.grossMargin >= 0 ? "text-emerald-600" : "text-red-600"}`}>
+                  {canUseResult ? `${formatPercentage(result.grossMargin, precision)}%` : "0.00%"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-gray-600">
+                <span className="font-semibold">Net Margin</span>
+                <span className={`font-bold ${result.netMargin >= 0 ? "text-emerald-600" : "text-red-600"}`}>
+                  {canUseResult ? `${formatPercentage(result.netMargin, precision)}%` : "0.00%"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-gray-600">
+                <span className="font-semibold">Formula</span>
+                <code className="bg-white px-2 py-1 rounded border border-gray-200">Margin = (Profit / Revenue) × 100</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-4 pt-6 border-t border-gray-100">
+          <button
+            onClick={handleCopy}
+            disabled={!canUseResult}
+            className="flex-1 min-w-[150px] px-6 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-2xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20 disabled:opacity-50"
+          >
+            {copied ? "Copied" : "Copy Summary"}
+          </button>
+
+          <button
+            onClick={handleDownloadCSV}
+            disabled={!canUseResult}
+            className="px-6 py-4 bg-gray-900 hover:bg-gray-800 text-white font-bold rounded-2xl transition-all disabled:opacity-50"
+          >
+            Download CSV
+          </button>
+
+          <button
+            onClick={handleSaveToHistory}
+            disabled={!canUseResult}
+            className="px-6 py-4 bg-white border-2 border-gray-100 hover:border-primary hover:text-primary text-gray-700 font-bold rounded-2xl transition-all disabled:opacity-50"
+          >
+            Save
+          </button>
+
+          <button
+            onClick={handleClear}
+            className="px-6 py-4 bg-white border-2 border-gray-100 hover:border-red-200 hover:text-red-500 text-gray-600 font-bold rounded-2xl transition-all"
+          >
+            Clear
+          </button>
         </div>
       </div>
 
+      {isClient && history.length > 0 && (
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <span className="p-1.5 bg-gray-100 rounded-lg">🕒</span>
+              Recent Calculations
+            </h3>
+            <button
+              onClick={handleClearHistory}
+              className="text-sm font-bold text-red-500 hover:text-red-600 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+            >
+              Clear History
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            {history.map((entry) => (
+              <div
+                key={entry.id}
+                className="group p-4 bg-gray-50/60 hover:bg-gray-50 rounded-2xl border border-transparent hover:border-gray-200 transition-all"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                    {new Date(entry.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                  </span>
+                  <button
+                    onClick={() => handleDeleteHistory(entry.id)}
+                    className="text-gray-400 hover:text-red-500 transition-colors"
+                    aria-label="Delete history item"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <div className="space-y-1.5 mb-4 text-sm">
+                  <div className="flex items-center justify-between text-gray-600">
+                    <span>Revenue</span>
+                    <span className="font-semibold text-gray-800">${formatCurrency(entry.revenue, 2)}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-gray-600">
+                    <span>Gross Margin</span>
+                    <span className={`font-semibold ${entry.grossMargin >= 0 ? "text-emerald-600" : "text-red-600"}`}>
+                      {formatPercentage(entry.grossMargin, 2)}%
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-gray-600">
+                    <span>Net Margin</span>
+                    <span className={`font-semibold ${entry.netMargin >= 0 ? "text-emerald-600" : "text-red-600"}`}>
+                      {formatPercentage(entry.netMargin, 2)}%
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleLoadHistory(entry)}
+                  className="w-full py-2 rounded-xl bg-white border border-gray-200 hover:border-primary hover:text-primary text-gray-700 text-xs font-bold transition-all"
+                >
+                  Load Values
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <ToolSEOContent />
-      <RelatedTools currentTool="profit-margin-calculator" tools={["discount-calculator", "percentage-calculator", "investment-return-calculator", "simple-interest-calculator", "compound-interest-calculator"]} />
+      <div className="mt-12">
+        <RelatedTools
+          currentTool="profit-margin-calculator"
+          tools={[
+            "discount-calculator",
+            "percentage-calculator",
+            "investment-return-calculator",
+            "simple-interest-calculator",
+            "compound-interest-calculator",
+          ]}
+        />
+      </div>
     </div>
   );
 }

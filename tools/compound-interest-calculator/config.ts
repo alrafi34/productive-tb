@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Compound Interest Calculator Online – See How Your Money Grows",
-    description: "Free online Compound Interest Calculator. Calculate future value, interest earned, and visualize growth over time. Instant results with charts, copy, and download functionality in your browser.",
+    title: "Compound Interest Calculator Online - Future Value, Growth, and Compounding",
+    description: "Free compound interest calculator to estimate future value and total interest earned. Compare compounding frequencies, view yearly growth, and export results as CSV.",
     keywords: [
       "compound interest calculator",
       "investment calculator",
@@ -16,11 +16,16 @@ export const toolConfig = {
       "compound growth calculator",
       "savings calculator",
       "interest rate calculator",
-      "financial planning tool"
+      "financial planning tool",
+      "compound annual growth calculator",
+      "monthly compound interest calculator",
+      "daily compounding calculator",
+      "interest growth calculator",
+      "investment growth projection"
     ],
     openGraph: {
-      title: "Compound Interest Calculator Online – See How Your Money Grows",
-      description: "Quick and accurate compound interest calculations with real-time updates and interactive growth charts.",
+      title: "Compound Interest Calculator Online - Compare Growth Scenarios",
+      description: "Calculate future value with annual, quarterly, monthly, or daily compounding and review yearly growth breakdowns.",
       type: "website",
       url: "/tools/compound-interest-calculator"
     }

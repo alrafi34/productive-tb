@@ -7,21 +7,30 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Investment ROI Calculator Online – Calculate Gain or Loss Percentage",
-    description: "Free online Investment ROI Calculator. Calculate gain, loss, and return on investment (ROI) instantly. Copy or download results entirely in your browser.",
+    title: "Investment Return (ROI) Calculator - Calculate Gain, Loss, and ROI Percentage",
+    description: "Free Investment Return (ROI) Calculator to measure gain/loss and return on investment percentage for stocks, crypto, real estate, and business scenarios. Includes formula, examples, FAQ, and CSV export.",
     keywords: [
       "investment calculator",
       "ROI calculator",
       "return on investment",
       "gain loss calculator",
-      "stock calculator",
-      "crypto calculator",
       "investment return calculator",
-      "profit loss calculator"
+      "return on investment calculator",
+      "roi percentage calculator",
+      "online roi calculator",
+      "stock roi calculator",
+      "crypto roi calculator",
+      "business roi calculator",
+      "profit loss calculator",
+      "investment profit calculator",
+      "investment performance calculator",
+      "roi formula calculator",
+      "stock calculator",
+      "crypto calculator"
     ],
     openGraph: {
-      title: "Investment ROI Calculator Online – Calculate Gain or Loss Percentage",
-      description: "Quick and accurate investment ROI calculations with real-time updates and instant results.",
+      title: "Investment Return (ROI) Calculator - Gain/Loss and ROI in Seconds",
+      description: "Calculate ROI for investments with real-time updates, scenario testing, local history, and downloadable CSV reports.",
       type: "website",
       url: "/tools/investment-return-calculator"
     }
@@ -29,15 +38,16 @@ export const toolConfig = {
   features: [
     "Real-time gain/loss calculations",
     "ROI percentage display",
-    "Color-coded results (green for gain, red for loss)",
+    "Quick scenarios for fast investment comparisons",
+    "Color-coded performance insights (profit vs loss)",
     "Multiple currency symbols ($, €, £, ¥)",
+    "Precision control for decimal output",
     "Copy results to clipboard",
     "Download calculation history as CSV",
-    "Calculation history with local storage",
+    "Local calculation history storage",
     "Input validation and error handling",
     "Mobile-friendly responsive design",
-    "Keyboard shortcuts (Enter to calculate, Esc to clear)",
-    "Tooltip hints for guidance",
-    "Precision control for decimal places"
+    "Keyboard shortcuts (Enter to save, Esc to clear)",
+    "SEO-rich content with formula, examples, and FAQ"
   ]
 };

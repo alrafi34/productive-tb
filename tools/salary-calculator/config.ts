@@ -7,24 +7,32 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Salary Calculator Online – Convert Annual to Hourly, Daily, Weekly, Monthly",
-    description: "Free online Salary Calculator. Convert annual salary to hourly, daily, weekly, and monthly rates instantly. Adjust work hours and days, copy results easily in your browser.",
+    title: "Salary Calculator - Convert Annual Salary to Hourly, Daily, Weekly, Monthly",
+    description: "Free Salary Calculator to convert annual salary into monthly, weekly, daily, and hourly pay with custom work hours and days. Includes formulas, examples, FAQ, and scenario comparison workflow.",
     keywords: [
       "salary calculator",
       "hourly rate calculator",
       "annual to hourly converter",
-      "wage calculator",
+      "annual salary to hourly",
       "salary converter",
+      "wage calculator",
+      "hourly pay calculator",
       "daily rate calculator",
       "weekly salary calculator",
       "monthly salary calculator",
+      "salary to hourly calculator",
+      "salary to daily calculator",
+      "salary to weekly calculator",
+      "salary comparison calculator",
+      "job offer comparison calculator",
       "freelance rate calculator",
-      "job offer calculator",
+      "contractor rate calculator",
+      "compensation calculator",
       "payroll calculator"
     ],
     openGraph: {
-      title: "Salary Calculator Online – Convert Annual to Hourly Rates",
-      description: "Quick and accurate salary calculations with customizable work hours and days.",
+      title: "Salary Calculator - Annual to Hourly, Daily, Weekly, Monthly",
+      description: "Calculate salary conversions instantly with schedule-aware inputs, multi-currency support, and history-based comparison.",
       type: "website",
       url: "/tools/salary-calculator"
     }
@@ -34,10 +42,14 @@ export const toolConfig = {
     "Customizable work hours per week",
     "Customizable work days per week",
     "Multiple currency support",
+    "Decimal precision control",
+    "Quick salary presets",
     "Copy results to clipboard",
+    "Copy full conversion summary",
+    "Save salary scenarios to local history",
     "Save preferred settings to local storage",
     "Mobile-friendly responsive design",
-    "Dark/light theme support",
+    "SEO-rich content with formulas, examples, and FAQ",
     "Instant calculations as you type"
   ]
 };

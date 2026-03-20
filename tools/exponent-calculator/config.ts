@@ -7,19 +7,25 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Exponent Calculator – Calculate Powers (x^y) Instantly",
-    description: "Free online exponent calculator. Quickly calculate powers (x^y), negative exponents, and fractional powers with instant results directly in your browser.",
+    title: "Exponent Calculator Online - Power (x^y), Negative, and Fractional Exponents",
+    description: "Free Exponent Calculator for x^y powers, negative exponents, and fractional powers. Get instant results, step expansion, precision control, and scientific notation.",
     keywords: [
       "exponent calculator",
       "power calculator",
+      "x to the power y calculator",
+      "x^y calculator",
       "calculate x to the y",
-      "math power tool",
+      "online exponent calculator",
+      "power of a number calculator",
       "negative exponent calculator",
-      "fractional exponent calculator"
+      "fractional exponent calculator",
+      "scientific notation calculator",
+      "math exponent rules",
+      "free power calculator"
     ],
     openGraph: {
-      title: "Exponent Calculator – Calculate Powers (x^y) Instantly",
-      description: "Quickly calculate powers with expansion steps and scientific notation support.",
+      title: "Exponent Calculator Online - Fast x^y Power Calculations",
+      description: "Calculate positive, negative, and fractional exponents instantly with steps, precision settings, and scientific notation.",
       type: "website",
       url: "/tools/exponent-calculator"
     }

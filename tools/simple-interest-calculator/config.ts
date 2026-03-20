@@ -7,19 +7,24 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Simple Interest Calculator Online – Calculate Interest Instantly",
-    description: "Free online Simple Interest Calculator. Compute basic interest and total amount instantly by entering principal, rate, and time. Copy results or calculate on mobile entirely in your browser.",
+    title: "Simple Interest Calculator Online - Interest, Total Amount, and Formula",
+    description: "Free Simple Interest Calculator to compute interest and total amount from principal, annual rate, and time. Supports years, months, and days with instant results.",
     keywords: [
       "simple interest calculator",
+      "simple interest formula",
       "calculate interest",
       "interest rate calculator",
-      "finance tool",
+      "principal interest calculator",
       "loan interest calculator",
-      "savings interest calculator"
+      "savings interest calculator",
+      "simple interest amount calculator",
+      "interest calculator with time",
+      "simple interest in months and days",
+      "online simple interest calculator"
     ],
     openGraph: {
-      title: "Simple Interest Calculator Online – Calculate Interest Instantly",
-      description: "Quick and accurate simple interest calculations with real-time updates and history features.",
+      title: "Simple Interest Calculator Online - Fast and Accurate Calculations",
+      description: "Calculate simple interest and total payable amount instantly with support for years, months, and days.",
       type: "website",
       url: "/tools/simple-interest-calculator"
     }
