@@ -1,220 +1,295 @@
+const faqItems = [
+  {
+    question: "What is a scientific calculator used for?",
+    answer:
+      "A scientific calculator handles advanced operations such as trigonometry, logarithms, powers, roots, and expression evaluation beyond basic arithmetic.",
+  },
+  {
+    question: "Does this calculator support degrees and radians?",
+    answer:
+      "Yes. You can switch between DEG and RAD modes for trigonometric and inverse-trigonometric calculations.",
+  },
+  {
+    question: "Which scientific functions are included?",
+    answer:
+      "The calculator includes sin, cos, tan, asin, acos, atan, log, ln, square root, powers, constants like pi and e, and factorial.",
+  },
+  {
+    question: "Can I calculate nested expressions with parentheses?",
+    answer:
+      "Yes. You can build expressions using parentheses and operators, then evaluate the complete formula in one step.",
+  },
+  {
+    question: "How is this better than very basic online calculators?",
+    answer:
+      "This tool combines scientific functions, angle mode control, memory operations, keyboard shortcuts, local history, and export in one workflow.",
+  },
+  {
+    question: "Does it keep calculation history?",
+    answer:
+      "Yes. The calculator stores history in your browser so you can review and reuse previous expressions quickly.",
+  },
+  {
+    question: "Can I use keyboard shortcuts?",
+    answer:
+      "Yes. Numeric keys, arithmetic operators, Enter, Escape, Backspace, and parentheses are supported for faster input.",
+  },
+  {
+    question: "Is my data sent to a server?",
+    answer:
+      "No. Calculations run client-side in your browser and history is stored locally on your device.",
+  },
+  {
+    question: "Can I export my history?",
+    answer:
+      "Yes. You can export your calculation history as JSON for backup, review, or workflow reuse.",
+  },
+  {
+    question: "Is this suitable for students and engineers?",
+    answer:
+      "Yes. It is useful for students, engineers, developers, and professionals who need quick scientific math operations without installing extra software.",
+  },
+];
+
+const howToSteps = [
+  "Select the angle mode (DEG or RAD).",
+  "Enter numbers, operators, and scientific functions.",
+  "Use parentheses for grouped expressions when needed.",
+  "Press equals to evaluate the full expression.",
+  "Use memory and history features for repeated calculations.",
+  "Copy result or export history for documentation.",
+];
+
+const strengths = [
+  {
+    title: "Complete scientific workflow",
+    text: "Unlike basic calculators with only arithmetic, this tool includes trigonometric, logarithmic, exponential, and factorial functions in one interface.",
+  },
+  {
+    title: "Fast keyboard-friendly input",
+    text: "Keyboard shortcuts plus clickable keys support both quick ad-hoc calculations and longer expression entry.",
+  },
+  {
+    title: "Practical memory and history",
+    text: "Memory operations and reusable history reduce repeated typing and help with multi-step technical calculations.",
+  },
+  {
+    title: "Private browser-side processing",
+    text: "No account required and no server-side processing for standard use cases, improving privacy and speed.",
+  },
+];
+
+const examples = [
+  {
+    title: "Trigonometry example",
+    expression: "sin(30) + cos(60)",
+    note: "In DEG mode, this evaluates to 1.",
+  },
+  {
+    title: "Logarithm example",
+    expression: "log(1000)",
+    note: "Returns 3 for base-10 logarithm.",
+  },
+  {
+    title: "Exponential example",
+    expression: "2^8",
+    note: "Returns 256 for power calculations.",
+  },
+  {
+    title: "Mixed expression example",
+    expression: "sqrt(49) + 10^2",
+    note: "Combines root and exponent operations in one calculation.",
+  },
+  {
+    title: "Inverse trig example",
+    expression: "asin(0.5)",
+    note: "Returns angle value in DEG or RAD based on selected mode.",
+  },
+  {
+    title: "Factorial example",
+    expression: "5!",
+    note: "Computes factorial for integer values.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Using DEG mode when your formula expects RAD (or vice versa).",
+  "Skipping parentheses in multi-step expressions.",
+  "Applying factorial to non-integer or negative values.",
+  "Ignoring domain limits for inverse trigonometric functions.",
+  "Rounding too early in chained technical calculations.",
+];
+
+const useCases = [
+  "Student homework checks for algebra, trigonometry, and calculus prep.",
+  "Engineering and physics quick calculations during problem solving.",
+  "Developer math validation while testing formulas or algorithms.",
+  "Business and analytics work needing logarithms, powers, and reusable steps.",
+];
+
 export default function ScientificCalculatorSEO() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use the scientific calculator",
+    description:
+      "Evaluate scientific expressions using trigonometric, logarithmic, exponential, and memory features.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
     <>
-      {/* How to Use Section */}
-      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          How to Use the Scientific Calculator
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Simple Instructions
-            </h3>
-            <ol className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">1</span>
-                <span><strong>Choose Your Mode:</strong> Toggle between Degrees and Radians mode for trigonometric calculations based on your needs.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">2</span>
-                <span><strong>Enter Your Expression:</strong> Click buttons or use your keyboard to input numbers, operators, and scientific functions.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">3</span>
-                <span><strong>Calculate:</strong> Press the equals button or Enter key to get instant results. All calculations happen in your browser.</span>
-              </li>
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Available Functions
-            </h3>
-            <ul className="space-y-2 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Trigonometric functions (sin, cos, tan, asin, acos, atan)
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Logarithmic functions (log base 10, natural log)
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Exponential operations (powers, square, e^x, 10^x)
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Mathematical constants (π, e) and square roots
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Memory functions (M+, M-, MR, MC) for storing values
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
 
-      {/* Examples Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Example Calculations
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-              <div className="text-sm font-semibold text-gray-700 mb-2">Trigonometry</div>
-              <div className="font-mono text-sm text-gray-600">
-                <div>sin(30) = 0.5</div>
-                <div>cos(60) = 0.5</div>
-                <div>tan(45) = 1</div>
+      <div className="mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Scientific Calculator Online for Advanced Math Expressions
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>Scientific Calculator</strong> is designed for users who need more than basic arithmetic.
+            It supports trigonometric functions, logarithms, exponentials, roots, factorial, constants, and expression-based evaluation.
+          </p>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            For users searching terms like "online scientific calculator", "trigonometry calculator", or "log calculator",
+            this page provides both practical interaction and deeper explanatory content to improve usability and indexing quality.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This Scientific Calculator Is Better Than Basic Alternatives
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
               </div>
-            </div>
-            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-              <div className="text-sm font-semibold text-gray-700 mb-2">Logarithms</div>
-              <div className="font-mono text-sm text-gray-600">
-                <div>log(100) = 2</div>
-                <div>ln(e) = 1</div>
-                <div>log(1000) = 3</div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Many tools stop at +, -, ×, ÷. This one is built for scientific workflows and repeat usage.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use the Scientific Calculator
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Example Scientific Calculations
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {examples.map((example) => (
+              <div key={example.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{example.title}</p>
+                <p className="mt-1 font-mono text-gray-700">{example.expression}</p>
+                <p className="mt-1">{example.note}</p>
               </div>
-            </div>
+            ))}
           </div>
-          <div className="space-y-4">
-            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-              <div className="text-sm font-semibold text-gray-700 mb-2">Powers & Roots</div>
-              <div className="font-mono text-sm text-gray-600">
-                <div>2^5 = 32</div>
-                <div>√(16) = 4</div>
-                <div>3^3 = 27</div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Common Mistakes to Avoid
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Who Should Use This Tool
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {useCases.map((useCase) => (
+              <li key={useCase} className="flex items-start gap-3">
+                <span className="mt-1 text-primary">+</span>
+                <span>{useCase}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
               </div>
-            </div>
-            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-              <div className="text-sm font-semibold text-gray-700 mb-2">Mixed Expressions</div>
-              <div className="font-mono text-sm text-gray-600">
-                <div>sin(30) + cos(60) = 1</div>
-                <div>2^3 × 5 = 40</div>
-                <div>√(25) + log(100) = 7</div>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              What is the difference between DEG and RAD mode?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              DEG (Degrees) mode is used for angle measurements in degrees (0-360°), while RAD (Radians) mode uses radians (0-2π). For most everyday calculations like sin(30°), use DEG mode. For advanced mathematics and calculus, RAD mode is preferred.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              How do I use memory functions?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Memory functions let you store values temporarily. M+ adds the current display to memory, M- subtracts it, MR recalls the stored value, and MC clears the memory. This is useful for complex calculations where you need to reuse intermediate results.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I use keyboard shortcuts?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Yes! You can type numbers (0-9), operators (+, -, *, /), parentheses, and decimal points directly. Press Enter or = to calculate, Escape to clear, and Backspace to delete the last character. This makes calculations much faster.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is my calculation data stored anywhere?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              All calculations are performed entirely in your browser using JavaScript. History is stored locally in your browser's localStorage and never sent to any server. Your data remains completely private and secure on your device.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Why Use Our Scientific Calculator?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center">
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>Lightning Fast</h3>
-            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              Instant calculations with no loading time. All processing happens locally in your browser for maximum speed.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">🎯</div>
-            <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>Advanced Functions</h3>
-            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              Complete set of scientific functions including trigonometry, logarithms, exponentials, and more for complex calculations.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">🔒</div>
-            <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>100% Private</h3>
-            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              No data is sent to any server. All calculations and history are stored locally on your device for complete privacy.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Perfect For
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center gap-2" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl">🎓</span> Students
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Solve homework problems, verify calculations, and learn mathematical concepts with instant feedback. Perfect for algebra, trigonometry, and calculus courses.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center gap-2" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl">👨‍🔬</span> Scientists & Engineers
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Perform quick calculations for experiments, formulas, and technical work. Access advanced functions without installing software.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center gap-2" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl">💻</span> Developers
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Verify numeric expressions, test algorithms, and debug mathematical logic in your code with a reliable calculation tool.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center gap-2" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl">📊</span> Professionals
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Handle financial calculations, statistical analysis, and data processing with advanced mathematical operations at your fingertips.
-            </p>
-          </div>
-        </div>
-      </section>
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Use This Scientific Calculator for Faster Technical Work
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            With advanced functions, angle mode switching, memory controls, history reuse, and browser-side speed,
+            this calculator is built to be a practical daily tool rather than a one-off basic calculator.
+          </p>
+          <p className="text-xs text-gray-500 mt-4" style={{ fontFamily: "var(--font-body)" }}>
+            Results are computational estimates and should be validated when used in high-stakes academic or engineering contexts.
+          </p>
+        </section>
+      </div>
     </>
   );
 }

@@ -210,7 +210,7 @@ export const tools: Tool[] = [
   //{ slug: "liter-to-ml-converter", name: "Liter to Milliliter Converter", description: "Convert L to ML.", category: "calculator", icon: "🥤", free: true },
   //{ slug: "sqm-to-sqft-converter", name: "Square Meter to Square Foot Converter", description: "Area unit conversion.", category: "calculator", icon: "🏠", free: true },
   //{ slug: "acre-to-hectare-converter", name: "Acre to Hectare Converter", description: "Large area unit conversion.", category: "calculator", icon: "🚜", free: true },
-  { slug: "scientific-calculator", name: "Scientific Calculator", description: "Advanced calculator with trigonometry, logarithms, powers, and mathematical functions.", category: "calculator", icon: "🔬", free: true },
+  { slug: "scientific-calculator", name: "Scientific Calculator", description: "Advanced scientific calculator with trig, logs, powers, and memory tools.", category: "calculator", icon: "🔬", free: true },
   { slug: "fraction-calculator", name: "Fraction Calculator", description: "Add, subtract, multiply, and divide fractions with automatic simplification.", category: "calculator", icon: "➗", free: true },
   { slug: "exponent-calculator", name: "Exponent Calculator", description: "Calculate powers (x to the y) instantly with support for negative and fractional exponents.", category: "calculator", icon: "🔢", free: true },
   { slug: "square-root-calculator", name: "Square Root Calculator", description: "Calculate the square root of any number instantly with precision control.", category: "math", icon: "√", free: true },

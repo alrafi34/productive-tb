@@ -1,32 +1,42 @@
 export const scientificCalculatorConfig = {
   slug: "scientific-calculator",
   name: "Scientific Calculator",
-  description: "Advanced scientific calculator with trigonometry, logarithms, powers, and mathematical functions",
+  description: "Advanced scientific calculator with trigonometry, logarithms, powers, memory, and history tools",
   category: "calculator",
   icon: "🔬",
   free: true,
   backend: false,
   seo: {
-    title: "Scientific Calculator Online – Advanced Math Functions Calculator | Productive Toolbox",
-    description: "Free online Scientific Calculator with trigonometry, logarithms, powers, and advanced math functions. Perform complex calculations instantly in your browser.",
+    title: "Scientific Calculator Online - Advanced Math Functions, Trig, Log, and Power",
+    description: "Free online Scientific Calculator with trigonometric functions, logarithms, powers, roots, memory controls, keyboard shortcuts, and local history export. Fast browser-based advanced math calculations.",
     keywords: [
       "scientific calculator",
+      "scientific calculator online",
       "online calculator",
       "trigonometry calculator",
       "logarithm calculator",
       "advanced calculator",
       "math calculator",
+      "scientific math calculator",
+      "engineering calculator",
+      "student scientific calculator",
       "sin cos tan calculator",
+      "inverse trigonometry calculator",
       "exponential calculator",
+      "factorial calculator",
+      "degrees radians calculator",
       "square root calculator",
       "power calculator",
+      "log ln calculator",
       "free scientific calculator",
       "browser calculator",
-      "math functions calculator"
+      "math functions calculator",
+      "expression calculator",
+      "calculator with memory"
     ],
     openGraph: {
-      title: "Scientific Calculator Online – Advanced Math Functions Calculator",
-      description: "Perform complex mathematical calculations with trigonometry, logarithms, powers, and more. 100% client-side processing.",
+      title: "Scientific Calculator Online - Advanced Functions with Memory and History",
+      description: "Perform advanced calculations with trig, logs, powers, angle modes, and exportable local history.",
       type: "website",
       url: "/tools/scientific-calculator"
     }
@@ -44,8 +54,8 @@ export const scientificCalculatorConfig = {
     "Keyboard support",
     "Copy result to clipboard",
     "Export history as JSON",
+    "Copy full expression to clipboard",
     "Responsive design for all devices",
-    "Dark/Light theme toggle",
     "100% client-side processing"
   ]
 };

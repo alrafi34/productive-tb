@@ -35,7 +35,7 @@
 - ✅ Copy result to clipboard
 - ✅ Export history as JSON
 - ✅ Random number generator
-- ✅ Dark/Light theme toggle
+- ✅ Consistent light-only interface
 - ✅ Error handling
 - ✅ Mobile responsive design
 
@@ -116,7 +116,7 @@ http://localhost:3000/tools/math/scientific-calculator
 
 1. **Instant Feedback**: Results appear immediately
 2. **Keyboard Support**: Full keyboard navigation
-3. **Visual Themes**: Light/Dark mode toggle
+3. **Visual Consistency**: Clean light UI for focused calculations
 4. **History Management**: Save and reload calculations
 5. **Memory Functions**: Store intermediate results
 6. **Error Handling**: Clear error messages

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   evaluateExpression,
   formatNumber,
@@ -9,13 +9,18 @@ import {
   clearHistory,
   exportHistoryAsJSON,
   generateRandomNumber,
-  toRadians,
-  toDegrees,
-  factorial
+  factorial,
 } from "./logic";
 import { AngleMode, CalculationHistory, MemoryState } from "./types";
 import ScientificCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+
+const SCIENTIFIC_ROWS = [
+  ["sin", "cos", "tan", "log", "ln"],
+  ["asin", "acos", "atan", "sqrt", "^"],
+  ["π", "e", "x²", "x!", "e^x"],
+  ["10^x", "(", ")", ".", "C"],
+] as const;
 
 export default function ScientificCalculatorUI() {
   const [display, setDisplay] = useState<string>("0");
@@ -23,393 +28,513 @@ export default function ScientificCalculatorUI() {
   const [angleMode, setAngleMode] = useState<AngleMode>("deg");
   const [memory, setMemory] = useState<MemoryState>({ value: 0 });
   const [history, setHistory] = useState<CalculationHistory[]>([]);
-  const [showHistory, setShowHistory] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [showHistory, setShowHistory] = useState<boolean>(true);
+  const [copied, setCopied] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  // Load history on mount
   useEffect(() => {
     setHistory(getHistory());
   }, []);
 
-  // Handle button click
-  const handleButtonClick = (value: string) => {
+  const currentExpr = useMemo(() => expression || display || "0", [expression, display]);
+
+  const appendToken = (value: string) => {
     setError("");
-    
-    if (display === "0" && !isNaN(Number(value))) {
-      setDisplay(value);
-      setExpression(value);
-    } else {
-      setDisplay(display + value);
-      setExpression(expression + value);
-    }
+    setExpression((prev) => {
+      if ((prev === "" || prev === "0") && /^\d$/.test(value)) {
+        setDisplay(value);
+        return value;
+      }
+
+      const next = prev ? `${prev}${value}` : value;
+      setDisplay(next);
+      return next;
+    });
   };
 
-  // Handle function button
-  const handleFunction = (fn: string) => {
+  const appendFunction = (fn: string) => {
     setError("");
-    const newExpr = expression + fn + "(";
-    setExpression(newExpr);
-    setDisplay(display + fn + "(");
+    setExpression((prev) => {
+      const next = `${prev}${fn}(`;
+      setDisplay(next);
+      return next;
+    });
   };
 
-  // Handle operator
-  const handleOperator = (op: string) => {
+  const appendOperator = (operator: string) => {
     setError("");
-    if (expression === "" || expression === "0") return;
-    setExpression(expression + op);
-    setDisplay(display + op);
+    setExpression((prev) => {
+      if (!prev && operator !== "-") return prev;
+
+      const normalized = prev || "0";
+      const next = /[+\-×÷^]$/.test(normalized)
+        ? `${normalized.slice(0, -1)}${operator}`
+        : `${normalized}${operator}`;
+      setDisplay(next);
+      return next;
+    });
   };
 
-  // Clear display
   const handleClear = () => {
     setDisplay("0");
     setExpression("");
     setError("");
   };
 
-  // Backspace
   const handleBackspace = () => {
-    if (display.length <= 1) {
-      setDisplay("0");
-      setExpression("");
-    } else {
-      setDisplay(display.slice(0, -1));
-      setExpression(expression.slice(0, -1));
-    }
+    setError("");
+    setExpression((prev) => {
+      if (!prev || prev.length <= 1) {
+        setDisplay("0");
+        return "";
+      }
+      const next = prev.slice(0, -1);
+      setDisplay(next);
+      return next;
+    });
   };
 
-  // Calculate result
-  const handleEquals = () => {
-    if (!expression || expression === "0") return;
+  const evaluateAndSet = (sourceExpr: string, saveHistoryItem = true) => {
+    const { result, error: evalError } = evaluateExpression(sourceExpr, angleMode);
 
-    const { result, error: evalError } = evaluateExpression(expression, angleMode);
-    
     if (evalError) {
       setError(evalError);
       return;
     }
 
-    const formattedResult = formatNumber(result);
-    setDisplay(formattedResult);
-    saveToHistory(expression, formattedResult);
-    setHistory(getHistory());
-    setExpression(formattedResult);
+    const formatted = formatNumber(result);
+    setDisplay(formatted);
+    setExpression(formatted);
+    setError("");
+
+    if (saveHistoryItem) {
+      saveToHistory(sourceExpr, formatted);
+      setHistory(getHistory());
+    }
   };
 
-  // Memory functions
+  const handleEquals = () => {
+    if (!currentExpr || currentExpr === "0") return;
+    evaluateAndSet(currentExpr, true);
+  };
+
+  const applyUnaryFunction = (operation: "x2" | "factorial" | "exp" | "tenPow") => {
+    const { result, error: evalError } = evaluateExpression(currentExpr, angleMode);
+
+    if (evalError) {
+      setError(evalError);
+      return;
+    }
+
+    let output = 0;
+    if (operation === "x2") {
+      output = result * result;
+    } else if (operation === "factorial") {
+      if (!Number.isInteger(result) || result < 0) {
+        setError("Factorial requires a non-negative integer");
+        return;
+      }
+      output = factorial(result);
+    } else if (operation === "exp") {
+      output = Math.exp(result);
+    } else {
+      output = Math.pow(10, result);
+    }
+
+    if (!Number.isFinite(output)) {
+      setError("Invalid calculation");
+      return;
+    }
+
+    const formatted = formatNumber(output);
+    setDisplay(formatted);
+    setExpression(formatted);
+    setError("");
+  };
+
+  const handleRandom = () => {
+    const randomValue = formatNumber(generateRandomNumber(0, 100));
+    setDisplay(randomValue);
+    setExpression(randomValue);
+    setError("");
+  };
+
   const handleMemoryAdd = () => {
-    const current = parseFloat(display) || 0;
-    setMemory({ value: memory.value + current });
+    const { result, error: evalError } = evaluateExpression(currentExpr, angleMode);
+    if (evalError) {
+      setError(evalError);
+      return;
+    }
+    setMemory((prev) => ({ value: prev.value + result }));
+    setError("");
   };
 
   const handleMemorySubtract = () => {
-    const current = parseFloat(display) || 0;
-    setMemory({ value: memory.value - current });
+    const { result, error: evalError } = evaluateExpression(currentExpr, angleMode);
+    if (evalError) {
+      setError(evalError);
+      return;
+    }
+    setMemory((prev) => ({ value: prev.value - result }));
+    setError("");
   };
 
   const handleMemoryRecall = () => {
-    setDisplay(memory.value.toString());
-    setExpression(memory.value.toString());
+    const recalled = formatNumber(memory.value);
+    setDisplay(recalled);
+    setExpression(recalled);
+    setError("");
   };
 
   const handleMemoryClear = () => {
     setMemory({ value: 0 });
   };
 
-  // Copy to clipboard
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopied(type);
+    setTimeout(() => setCopied(""), 1800);
   };
 
-  // Keyboard support
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key >= '0' && e.key <= '9') {
-        handleButtonClick(e.key);
-      } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
-        handleOperator(e.key === '*' ? '×' : e.key === '/' ? '÷' : e.key);
-      } else if (e.key === 'Enter' || e.key === '=') {
-        e.preventDefault();
-        handleEquals();
-      } else if (e.key === 'Escape') {
-        handleClear();
-      } else if (e.key === 'Backspace') {
-        e.preventDefault();
-        handleBackspace();
-      } else if (e.key === '.') {
-        handleButtonClick('.');
-      } else if (e.key === '(' || e.key === ')') {
-        handleButtonClick(e.key);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [display, expression, angleMode]);
-
-  // Load from history
   const loadFromHistory = (item: CalculationHistory) => {
     setExpression(item.expression);
     setDisplay(item.expression);
-    setShowHistory(false);
+    setShowHistory(true);
   };
 
-  // Clear all history
   const handleClearHistory = () => {
     clearHistory();
     setHistory([]);
   };
 
-  // Random number
-  const handleRandom = () => {
-    const rand = generateRandomNumber(0, 100);
-    const formatted = formatNumber(rand);
-    setDisplay(formatted);
-    setExpression(formatted);
-  };
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key >= "0" && e.key <= "9") {
+        appendToken(e.key);
+        return;
+      }
 
-  const buttonClass = `${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-900'} rounded-lg font-semibold transition-all active:scale-95 shadow-sm`;
-  const operatorClass = `${theme === 'dark' ? 'bg-orange-600 hover:bg-orange-500' : 'bg-orange-500 hover:bg-orange-600'} text-white rounded-lg font-semibold transition-all active:scale-95 shadow-sm`;
-  const functionClass = `${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-500' : 'bg-blue-500 hover:bg-blue-600'} text-white rounded-lg font-semibold text-sm transition-all active:scale-95 shadow-sm`;
+      if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+        appendOperator(e.key === "*" ? "×" : e.key === "/" ? "÷" : e.key);
+        return;
+      }
+
+      if (e.key === "Enter" || e.key === "=") {
+        e.preventDefault();
+        handleEquals();
+        return;
+      }
+
+      if (e.key === "Escape") {
+        handleClear();
+        return;
+      }
+
+      if (e.key === "Backspace") {
+        e.preventDefault();
+        handleBackspace();
+        return;
+      }
+
+      if (e.key === "." || e.key === "(" || e.key === ")") {
+        appendToken(e.key);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [currentExpr, angleMode]);
+
+  const baseBtn =
+    "rounded-lg font-semibold transition-all active:scale-95 shadow-sm border border-gray-200 bg-white text-gray-800 hover:bg-gray-50";
+  const operatorBtn =
+    "rounded-lg font-semibold transition-all active:scale-95 shadow-sm bg-orange-500 hover:bg-orange-600 text-white";
+  const functionBtn =
+    "rounded-lg font-semibold text-sm transition-all active:scale-95 shadow-sm bg-blue-500 hover:bg-blue-600 text-white";
 
   return (
     <>
       <div className="max-w-6xl mx-auto">
-        {/* Theme & Mode Controls */}
-        <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
-          <div className="flex gap-2">
-            <button
-              onClick={() => setAngleMode(angleMode === 'deg' ? 'rad' : 'deg')}
-              className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-                theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-white border border-gray-200 text-gray-900'
-              }`}
-            >
-              {angleMode === 'deg' ? '📐 DEG' : '📐 RAD'}
-            </button>
-            <button
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-                theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-white border border-gray-200 text-gray-900'
-              }`}
-            >
-              {theme === 'light' ? '🌙' : '☀️'}
-            </button>
-          </div>
-          
-          <button
-            onClick={() => setShowHistory(!showHistory)}
-            className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-              theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-white border border-gray-200 text-gray-900'
-            }`}
-          >
-            📜 History
-          </button>
-        </div>
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-900" style={{ fontFamily: "var(--font-heading)" }}>
+                Scientific Calculator
+              </h2>
+              <p className="text-sm text-gray-600 mt-1" style={{ fontFamily: "var(--font-body)" }}>
+                Advanced calculator with trigonometry, logs, exponents, memory, and keyboard support.
+              </p>
+            </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Calculator Panel */}
-          <div className="lg:col-span-2">
-            <div className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} rounded-xl border ${theme === 'dark' ? 'border-gray-700' : 'border-gray-100'} shadow-lg p-6`}>
-              
-              {/* Display */}
-              <div className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-6 mb-6 min-h-[120px] flex flex-col justify-end`}>
-                <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} mb-2 font-mono break-all min-h-[20px]`}>
-                  {expression || " "}
-                </div>
-                <div className={`text-4xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'} font-mono break-all`}>
-                  {display}
-                </div>
-                {error && (
-                  <div className="text-red-500 text-sm mt-2">⚠️ {error}</div>
-                )}
-              </div>
-
-              {/* Memory & Special Functions */}
-              <div className="grid grid-cols-5 gap-2 mb-4">
-                <button onClick={handleMemoryClear} className={functionClass + " py-2"}>MC</button>
-                <button onClick={handleMemoryRecall} className={functionClass + " py-2"}>MR</button>
-                <button onClick={handleMemoryAdd} className={functionClass + " py-2"}>M+</button>
-                <button onClick={handleMemorySubtract} className={functionClass + " py-2"}>M-</button>
-                <button onClick={handleRandom} className={functionClass + " py-2"}>RND</button>
-              </div>
-
-              {/* Scientific Functions */}
-              <div className="grid grid-cols-5 gap-2 mb-4">
-                <button onClick={() => handleFunction('sin')} className={functionClass + " py-3"}>sin</button>
-                <button onClick={() => handleFunction('cos')} className={functionClass + " py-3"}>cos</button>
-                <button onClick={() => handleFunction('tan')} className={functionClass + " py-3"}>tan</button>
-                <button onClick={() => handleFunction('log')} className={functionClass + " py-3"}>log</button>
-                <button onClick={() => handleFunction('ln')} className={functionClass + " py-3"}>ln</button>
-              </div>
-
-              <div className="grid grid-cols-5 gap-2 mb-4">
-                <button onClick={() => handleFunction('asin')} className={functionClass + " py-3"}>asin</button>
-                <button onClick={() => handleFunction('acos')} className={functionClass + " py-3"}>acos</button>
-                <button onClick={() => handleFunction('atan')} className={functionClass + " py-3"}>atan</button>
-                <button onClick={() => handleFunction('sqrt')} className={functionClass + " py-3"}>√</button>
-                <button onClick={() => handleButtonClick('^')} className={functionClass + " py-3"}>x^y</button>
-              </div>
-
-              {/* Constants & Special */}
-              <div className="grid grid-cols-5 gap-2 mb-4">
-                <button onClick={() => handleButtonClick('π')} className={functionClass + " py-3"}>π</button>
-                <button onClick={() => handleButtonClick('e')} className={functionClass + " py-3"}>e</button>
-                <button onClick={() => { const val = parseFloat(display); setDisplay(formatNumber(val * val)); setExpression((val * val).toString()); }} className={functionClass + " py-3"}>x²</button>
-                <button onClick={() => { const val = parseFloat(display); setDisplay(formatNumber(Math.pow(10, val))); setExpression(Math.pow(10, val).toString()); }} className={functionClass + " py-3"}>10^x</button>
-                <button onClick={() => { const val = parseFloat(display); setDisplay(formatNumber(Math.exp(val))); setExpression(Math.exp(val).toString()); }} className={functionClass + " py-3"}>e^x</button>
-              </div>
-
-              {/* Number Pad & Operators */}
-              <div className="grid grid-cols-4 gap-2">
-                <button onClick={handleClear} className="col-span-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-semibold py-4 transition-all active:scale-95 shadow-sm">C</button>
-                <button onClick={handleBackspace} className={operatorClass + " py-4"}>⌫</button>
-                <button onClick={() => handleOperator('÷')} className={operatorClass + " py-4"}>÷</button>
-
-                <button onClick={() => handleButtonClick('7')} className={buttonClass + " py-4 text-lg"}>7</button>
-                <button onClick={() => handleButtonClick('8')} className={buttonClass + " py-4 text-lg"}>8</button>
-                <button onClick={() => handleButtonClick('9')} className={buttonClass + " py-4 text-lg"}>9</button>
-                <button onClick={() => handleOperator('×')} className={operatorClass + " py-4"}>×</button>
-
-                <button onClick={() => handleButtonClick('4')} className={buttonClass + " py-4 text-lg"}>4</button>
-                <button onClick={() => handleButtonClick('5')} className={buttonClass + " py-4 text-lg"}>5</button>
-                <button onClick={() => handleButtonClick('6')} className={buttonClass + " py-4 text-lg"}>6</button>
-                <button onClick={() => handleOperator('-')} className={operatorClass + " py-4"}>-</button>
-
-                <button onClick={() => handleButtonClick('1')} className={buttonClass + " py-4 text-lg"}>1</button>
-                <button onClick={() => handleButtonClick('2')} className={buttonClass + " py-4 text-lg"}>2</button>
-                <button onClick={() => handleButtonClick('3')} className={buttonClass + " py-4 text-lg"}>3</button>
-                <button onClick={() => handleOperator('+')} className={operatorClass + " py-4"}>+</button>
-
-                <button onClick={() => handleButtonClick('0')} className={buttonClass + " py-4 text-lg"}>0</button>
-                <button onClick={() => handleButtonClick('.')} className={buttonClass + " py-4 text-lg"}>.</button>
-                <button onClick={() => handleButtonClick('(')} className={buttonClass + " py-4"}>(</button>
-                <button onClick={() => handleButtonClick(')')} className={buttonClass + " py-4"}>)</button>
-
-                <button onClick={handleEquals} className="col-span-4 bg-green-500 hover:bg-green-600 text-white rounded-lg font-bold py-4 text-xl transition-all active:scale-95 shadow-sm">=</button>
-              </div>
-
-              {/* Copy Button */}
+            <div className="flex items-center gap-2">
               <button
-                onClick={() => copyToClipboard(display)}
-                className={`w-full mt-4 ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} ${theme === 'dark' ? 'text-white' : 'text-gray-900'} rounded-lg font-semibold py-3 transition-colors`}
+                onClick={() => setAngleMode(angleMode === "deg" ? "rad" : "deg")}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold border transition-all ${
+                  angleMode === "deg"
+                    ? "bg-primary border-primary text-white"
+                    : "bg-white border-gray-200 text-gray-700 hover:border-gray-300"
+                }`}
               >
-                {copied ? '✓ Copied!' : '📋 Copy Result'}
+                {angleMode === "deg" ? "DEG" : "RAD"}
+              </button>
+              <button
+                onClick={() => setShowHistory((prev) => !prev)}
+                className="px-4 py-2 rounded-lg text-sm font-semibold border bg-white border-gray-200 text-gray-700 hover:border-gray-300"
+              >
+                {showHistory ? "Hide History" : "Show History"}
               </button>
             </div>
           </div>
 
-          {/* Side Panel */}
-          <div className="space-y-6">
-            {/* Memory Display */}
-            <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'} rounded-xl border shadow-sm p-6`}>
-              <h3 className={`text-sm font-semibold ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} mb-3`} style={{ fontFamily: "var(--font-heading)" }}>
-                Memory
-              </h3>
-              <div className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4`}>
-                <div className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'} font-mono`}>
-                  {formatNumber(memory.value)}
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+            <div className="xl:col-span-8">
+              <div className="rounded-2xl border border-gray-100 bg-white p-5">
+                <div className="rounded-xl p-5 mb-4 bg-gray-50 min-h-[120px] flex flex-col justify-end">
+                  <div className="text-xs text-gray-500 font-mono break-all min-h-[18px]">{expression || " "}</div>
+                  <div className="text-4xl font-black text-gray-900 font-mono break-all mt-1">{display}</div>
+                  {error && <div className="text-red-600 text-sm mt-2">{error}</div>}
                 </div>
-              </div>
-            </div>
 
-            {/* Quick Info */}
-            <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'} rounded-xl border shadow-sm p-6`}>
-              <h3 className={`text-sm font-semibold ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} mb-3`} style={{ fontFamily: "var(--font-heading)" }}>
-                Quick Reference
-              </h3>
-              <div className={`space-y-2 text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                <div className="flex justify-between">
-                  <span>π (Pi)</span>
-                  <span className="font-mono">3.14159...</span>
+                <div className="grid grid-cols-5 gap-2 mb-4">
+                  <button onClick={handleMemoryClear} className={`${functionBtn} py-2`}>MC</button>
+                  <button onClick={handleMemoryRecall} className={`${functionBtn} py-2`}>MR</button>
+                  <button onClick={handleMemoryAdd} className={`${functionBtn} py-2`}>M+</button>
+                  <button onClick={handleMemorySubtract} className={`${functionBtn} py-2`}>M-</button>
+                  <button onClick={handleRandom} className={`${functionBtn} py-2`}>RND</button>
                 </div>
-                <div className="flex justify-between">
-                  <span>e (Euler)</span>
-                  <span className="font-mono">2.71828...</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Mode</span>
-                  <span className="font-semibold">{angleMode === 'deg' ? 'Degrees' : 'Radians'}</span>
-                </div>
-              </div>
-            </div>
 
-            {/* History Panel */}
-            {showHistory && (
-              <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'} rounded-xl border shadow-sm p-6`}>
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className={`text-sm font-semibold ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: "var(--font-heading)" }}>
-                    History
-                  </h3>
-                  <div className="flex gap-2">
-                    {history.length > 0 && (
-                      <>
-                        <button
-                          onClick={() => exportHistoryAsJSON(history)}
-                          className="text-xs bg-blue-100 hover:bg-blue-200 text-blue-700 px-2 py-1 rounded font-semibold transition-colors"
-                        >
-                          Export
+                {SCIENTIFIC_ROWS.map((row, rowIdx) => (
+                  <div key={rowIdx} className="grid grid-cols-5 gap-2 mb-2">
+                    {row.map((item) => {
+                      if (item === "C") {
+                        return (
+                          <button
+                            key={item}
+                            onClick={handleClear}
+                            className="rounded-lg font-semibold transition-all active:scale-95 shadow-sm bg-red-500 hover:bg-red-600 text-white py-3"
+                          >
+                            C
+                          </button>
+                        );
+                      }
+
+                      if (item === "x²") {
+                        return (
+                          <button key={item} onClick={() => applyUnaryFunction("x2")} className={`${functionBtn} py-3`}>
+                            x²
+                          </button>
+                        );
+                      }
+
+                      if (item === "x!") {
+                        return (
+                          <button key={item} onClick={() => applyUnaryFunction("factorial")} className={`${functionBtn} py-3`}>
+                            x!
+                          </button>
+                        );
+                      }
+
+                      if (item === "e^x") {
+                        return (
+                          <button key={item} onClick={() => applyUnaryFunction("exp")} className={`${functionBtn} py-3`}>
+                            e^x
+                          </button>
+                        );
+                      }
+
+                      if (item === "10^x") {
+                        return (
+                          <button key={item} onClick={() => applyUnaryFunction("tenPow")} className={`${functionBtn} py-3`}>
+                            10^x
+                          </button>
+                        );
+                      }
+
+                      if (item === "(") {
+                        return (
+                          <button key={item} onClick={() => appendToken("(")} className={`${baseBtn} py-3`}>
+                            (
+                          </button>
+                        );
+                      }
+
+                      if (item === ")") {
+                        return (
+                          <button key={item} onClick={() => appendToken(")")} className={`${baseBtn} py-3`}>
+                            )
+                          </button>
+                        );
+                      }
+
+                      if (item === ".") {
+                        return (
+                          <button key={item} onClick={() => appendToken(".")} className={`${baseBtn} py-3`}>
+                            .
+                          </button>
+                        );
+                      }
+
+                      if (item === "^") {
+                        return (
+                          <button key={item} onClick={() => appendOperator("^")} className={`${functionBtn} py-3`}>
+                            x^y
+                          </button>
+                        );
+                      }
+
+                      if (["sin", "cos", "tan", "log", "ln", "asin", "acos", "atan", "sqrt"].includes(item)) {
+                        return (
+                          <button key={item} onClick={() => appendFunction(item)} className={`${functionBtn} py-3`}>
+                            {item === "sqrt" ? "√" : item}
+                          </button>
+                        );
+                      }
+
+                      return (
+                        <button key={item} onClick={() => appendToken(item)} className={`${functionBtn} py-3`}>
+                          {item}
                         </button>
-                        <button
-                          onClick={handleClearHistory}
-                          className="text-xs bg-red-100 hover:bg-red-200 text-red-700 px-2 py-1 rounded font-semibold transition-colors"
-                        >
-                          Clear
-                        </button>
-                      </>
-                    )}
+                      );
+                    })}
                   </div>
+                ))}
+
+                <div className="grid grid-cols-4 gap-2 mt-4">
+                  <button onClick={handleBackspace} className={`${operatorBtn} py-4`}>⌫</button>
+                  <button onClick={() => appendOperator("÷")} className={`${operatorBtn} py-4`}>÷</button>
+                  <button onClick={() => appendOperator("×")} className={`${operatorBtn} py-4`}>×</button>
+                  <button onClick={() => appendOperator("-")} className={`${operatorBtn} py-4`}>-</button>
+
+                  {["7", "8", "9"].map((num) => (
+                    <button key={num} onClick={() => appendToken(num)} className={`${baseBtn} py-4 text-lg`}>
+                      {num}
+                    </button>
+                  ))}
+                  <button onClick={() => appendOperator("+")} className={`${operatorBtn} py-4`}>+</button>
+
+                  {["4", "5", "6"].map((num) => (
+                    <button key={num} onClick={() => appendToken(num)} className={`${baseBtn} py-4 text-lg`}>
+                      {num}
+                    </button>
+                  ))}
+                  <button onClick={handleEquals} className="row-span-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-bold text-xl transition-all active:scale-95 shadow-sm">
+                    =
+                  </button>
+
+                  {["1", "2", "3"].map((num) => (
+                    <button key={num} onClick={() => appendToken(num)} className={`${baseBtn} py-4 text-lg`}>
+                      {num}
+                    </button>
+                  ))}
+
+                  <button onClick={() => appendToken("0")} className={`${baseBtn} py-4 text-lg col-span-2`}>
+                    0
+                  </button>
+                  <button onClick={() => appendToken(".")} className={`${baseBtn} py-4 text-lg`}>
+                    .
+                  </button>
                 </div>
 
-                <div className="space-y-2 max-h-96 overflow-y-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
+                  <button
+                    onClick={() => copyToClipboard(display, "result")}
+                    className={`py-3 rounded-lg font-semibold transition-all ${
+                      copied === "result"
+                        ? "bg-emerald-600 text-white"
+                        : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+                    }`}
+                  >
+                    {copied === "result" ? "Copied" : "Copy Result"}
+                  </button>
+                  <button
+                    onClick={() => copyToClipboard(currentExpr, "expr")}
+                    className={`py-3 rounded-lg font-semibold transition-all ${
+                      copied === "expr"
+                        ? "bg-emerald-600 text-white"
+                        : "bg-blue-50 border border-blue-100 text-blue-700 hover:bg-blue-100"
+                    }`}
+                  >
+                    {copied === "expr" ? "Copied" : "Copy Expression"}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="xl:col-span-4 flex flex-col gap-4">
+              <div className="rounded-xl border border-gray-100 p-4 bg-gray-50">
+                <p className="text-xs font-bold uppercase tracking-wide text-gray-500 mb-1">Memory Value</p>
+                <p className="text-2xl font-black text-gray-900 font-mono">{formatNumber(memory.value)}</p>
+              </div>
+
+              <div className="rounded-xl border border-gray-100 p-4 bg-white">
+                <p className="text-xs font-bold uppercase tracking-wide text-gray-500 mb-2">Quick Reference</p>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p>π = 3.1415926535</p>
+                  <p>e = 2.7182818284</p>
+                  <p>Mode: {angleMode === "deg" ? "Degrees" : "Radians"}</p>
+                  <p>Power operator: <code>^</code></p>
+                </div>
+              </div>
+
+              {showHistory && (
+                <div className="rounded-xl border border-gray-100 overflow-hidden bg-white">
+                  <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-100">
+                    <p className="text-sm font-semibold text-gray-800">History</p>
+                    <div className="flex gap-2">
+                      {history.length > 0 && (
+                        <>
+                          <button
+                            onClick={() => exportHistoryAsJSON(history)}
+                            className="text-xs px-2.5 py-1 rounded bg-blue-100 text-blue-700 font-semibold hover:bg-blue-200"
+                          >
+                            Export
+                          </button>
+                          <button
+                            onClick={handleClearHistory}
+                            className="text-xs px-2.5 py-1 rounded bg-red-100 text-red-700 font-semibold hover:bg-red-200"
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
                   {history.length > 0 ? (
-                    history.map((item) => (
-                      <div
-                        key={item.id}
-                        onClick={() => loadFromHistory(item)}
-                        className={`${theme === 'dark' ? 'bg-gray-900 hover:bg-gray-700' : 'bg-gray-50 hover:bg-gray-100'} rounded-lg p-3 cursor-pointer transition-colors`}
-                      >
-                        <div className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} font-mono mb-1 break-all`}>
-                          {item.expression}
-                        </div>
-                        <div className={`text-sm font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'} font-mono`}>
-                          = {item.result}
-                        </div>
-                      </div>
-                    ))
+                    <div className="divide-y divide-gray-100 max-h-80 overflow-y-auto">
+                      {history.map((item) => (
+                        <button
+                          key={item.id}
+                          onClick={() => loadFromHistory(item)}
+                          className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors"
+                        >
+                          <p className="text-xs text-gray-500 font-mono break-all">{item.expression}</p>
+                          <p className="text-sm font-semibold text-gray-900 font-mono mt-1">= {item.result}</p>
+                        </button>
+                      ))}
+                    </div>
                   ) : (
-                    <p className={`text-center py-8 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'} text-sm`}>
-                      No history yet
-                    </p>
+                    <div className="px-4 py-8 text-sm text-gray-500">No history yet.</div>
                   )}
                 </div>
-              </div>
-            )}
-          </div>
-        </div>
+              )}
 
-        {/* Keyboard Shortcuts Info */}
-        <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-blue-50 border-blue-200'} border rounded-xl p-4 mt-6`}>
-          <div className="flex items-start gap-3">
-            <span className="text-2xl">⌨️</span>
-            <div>
-              <h3 className={`font-semibold ${theme === 'dark' ? 'text-gray-200' : 'text-blue-900'} mb-1`}>Keyboard Shortcuts</h3>
-              <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-blue-800'}`}>
-                Numbers (0-9), Operators (+, -, *, /), Enter (=), Escape (Clear), Backspace, Parentheses ( )
-              </p>
+              <div className="rounded-xl border border-blue-200 p-4 bg-blue-50">
+                <p className="text-sm font-semibold text-blue-900">Keyboard Shortcuts</p>
+                <p className="text-xs text-blue-800 mt-1">
+                  Use `0-9`, `+`, `-`, `*`, `/`, `(`, `)`, `.`, `Enter`, `Esc`, and `Backspace`.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <ScientificCalculatorSEO />
-      
+
       <RelatedTools
         currentTool="scientific-calculator"
-        tools={['percentage-calculator', 'matrix-calculator', 'average-calculator']}
+        tools={["percentage-calculator", "matrix-calculator", "average-calculator"]}
       />
     </>
   );
