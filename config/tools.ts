@@ -225,7 +225,7 @@ export const tools: Tool[] = [
   { slug: "gst-vat-calculator", name: "GST / VAT Calculator", description: "Add or remove tax from price.", category: "calculator", icon: "🧾", free: true },
   { slug: "bmr-calculator", name: "BMR Calculator", description: "Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) instantly.", category: "health", icon: "🔥", free: true },
   { slug: "ideal-weight-calculator", name: "Ideal Weight Calculator", description: "Compare ideal body weight using multiple formulas.", category: "calculator", icon: "⚖️", free: true },
-  { slug: "body-fat-calculator", name: "Body Fat Calculator", description: "Estimate body fat percentage using US Navy or BMI methods with instant results.", category: "calculator", icon: "📏", free: true },
+  { slug: "body-fat-calculator", name: "Body Fat Calculator", description: "Estimate body fat percentage with US Navy and BMI methods.", category: "calculator", icon: "📏", free: true },
   { slug: "daily-calorie-calculator", name: "Daily Calorie Calculator", description: "Calories needed for maintenance or weight loss.", category: "calculator", icon: "🍎", free: true },
 
 

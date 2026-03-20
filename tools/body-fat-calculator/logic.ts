@@ -33,8 +33,8 @@ const CATEGORIES = [
     bg: 'bg-green-500' 
   },
   { 
-    male: { min: 25, max: 31 }, 
-    female: { min: 31, max: 36 }, 
+    male: { min: 24, max: 31 }, 
+    female: { min: 30, max: 36 }, 
     name: 'Average', 
     color: 'text-yellow-500', 
     bg: 'bg-yellow-500' 
@@ -51,16 +51,20 @@ const CATEGORIES = [
 // US Navy Method - Male
 export function calculateNavyMale(waistInches: number, neckInches: number, heightInches: number): number {
   if (waistInches <= 0 || neckInches <= 0 || heightInches <= 0) return 0;
+  if (waistInches <= neckInches) return 0;
   
   const bodyFat = 86.010 * Math.log10(waistInches - neckInches) - 70.041 * Math.log10(heightInches) + 36.76;
+  if (!Number.isFinite(bodyFat)) return 0;
   return Math.max(0, Math.min(50, bodyFat)); // Cap between 0-50%
 }
 
 // US Navy Method - Female
 export function calculateNavyFemale(waistInches: number, neckInches: number, hipInches: number, heightInches: number): number {
   if (waistInches <= 0 || neckInches <= 0 || hipInches <= 0 || heightInches <= 0) return 0;
+  if ((waistInches + hipInches) <= neckInches) return 0;
   
   const bodyFat = 163.205 * Math.log10(waistInches + hipInches - neckInches) - 97.684 * Math.log10(heightInches) - 78.387;
+  if (!Number.isFinite(bodyFat)) return 0;
   return Math.max(0, Math.min(50, bodyFat)); // Cap between 0-50%
 }
 
@@ -70,6 +74,7 @@ export function calculateBMIBodyFat(bmi: number, age: number, gender: 'male' | '
   
   const genderFactor = gender === 'male' ? 1 : 0;
   const bodyFat = (1.20 * bmi) + (0.23 * age) - (10.8 * genderFactor) - 5.4;
+  if (!Number.isFinite(bodyFat)) return 0;
   return Math.max(0, Math.min(50, bodyFat)); // Cap between 0-50%
 }
 
