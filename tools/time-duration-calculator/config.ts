@@ -7,21 +7,28 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Time Duration Calculator – Find Hours and Minutes Between Two Times | Productive Toolbox",
-    description: "Free online Time Duration Calculator. Calculate the difference between two times instantly, including hours, minutes, and optional seconds. Copy or export results entirely in your browser.",
+    title: "Time Duration Calculator – Calculate Hours, Minutes & Seconds Between Two Times | Productive Toolbox",
+    description:
+      "Free online Time Duration Calculator to calculate time difference between two times. Includes overnight shift support, optional seconds precision, total hours/minutes/seconds output, and one-click copy.",
     keywords: [
       "time duration calculator",
-      "calculate time difference",
-      "hours minutes calculator",
-      "time calculator",
-      "work hours calculator",
+      "time difference calculator",
+      "calculate time between two times",
+      "hours and minutes calculator",
       "elapsed time calculator",
-      "time difference between two times",
-      "overnight time calculator"
+      "work hours calculator",
+      "shift duration calculator",
+      "overnight time calculator",
+      "time interval calculator",
+      "time span calculator",
+      "hours calculator",
+      "minutes calculator",
+      "calculate elapsed time online",
+      "time tracking calculator"
     ],
     openGraph: {
       title: "Time Duration Calculator - Calculate Time Between Two Times",
-      description: "Fast, accurate time duration calculator with overnight support and seconds precision.",
+      description: "Fast and accurate time duration calculator with overnight handling, seconds precision, and detailed total output.",
       type: "website",
       url: "/tools/time-duration-calculator"
     }

@@ -7,21 +7,25 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Date Difference Calculator – Calculate Years, Months, Days Between Dates | Productive Toolbox",
-    description: "Free online Date Difference Calculator. Instantly compute the years, months, and days between two dates. Accurate leap year handling and mobile-friendly interface.",
+    title: "Date Difference Calculator (Years, Months, Days, Weeks) | Productive Toolbox",
+    description: "Free Date Difference Calculator to find exact time between two dates. Get years, months, days, total weeks, and total days with leap-year accuracy and optional time details.",
     keywords: [
       "date difference calculator",
+      "date duration calculator",
       "calculate days between dates",
+      "time between two dates",
       "age calculator",
       "date calculator",
       "time difference calculator",
       "days between dates",
-      "date duration calculator",
-      "years months days calculator"
+      "months between dates",
+      "years months days calculator",
+      "date countdown calculator",
+      "online date calculator free"
     ],
     openGraph: {
-      title: "Date Difference Calculator - Calculate Time Between Dates",
-      description: "Fast, accurate date difference calculator with leap year support and multiple output formats.",
+      title: "Date Difference Calculator - Exact Time Between Two Dates",
+      description: "Calculate years, months, days, weeks, and time difference between dates with accurate calendar logic.",
       type: "website",
       url: "/tools/date-difference-calculator"
     }

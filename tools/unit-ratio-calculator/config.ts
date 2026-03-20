@@ -7,21 +7,26 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Unit Ratio Calculator – Simplify Ratios Instantly Online | Productive Toolbox",
-    description: "Free Unit Ratio Calculator. Simplify ratios like 100:50 to 2:1 instantly. Supports multi-value ratios, decimal ratios, and equivalent ratio generation directly in your browser.",
+    title: "Unit Ratio Calculator - Simplify Ratios to Lowest Terms Online",
+    description: "Use our free Unit Ratio Calculator to simplify ratios instantly, including decimal and multi-value ratios. Get GCD steps, equivalent ratios, visual breakdowns, and CSV export.",
     keywords: [
       "ratio calculator",
+      "ratio to simplest form calculator",
       "simplify ratio",
       "ratio simplifier",
       "unit ratio calculator",
+      "unit ratio simplifier",
+      "simplest ratio calculator",
       "ratio converter",
       "equivalent ratios",
       "decimal ratio calculator",
-      "multi value ratio"
+      "multi value ratio",
+      "proportion calculator",
+      "ratio reduction tool"
     ],
     openGraph: {
-      title: "Unit Ratio Calculator - Simplify Ratios Instantly",
-      description: "Fast, accurate ratio calculator with support for decimals, multi-value ratios, and equivalent ratio generation.",
+      title: "Unit Ratio Calculator - Simplify Ratios to Lowest Terms",
+      description: "Fast and accurate ratio simplifier with decimal support, multi-value inputs, GCD steps, and equivalent ratio generation.",
       type: "website",
       url: "/tools/unit-ratio-calculator"
     }

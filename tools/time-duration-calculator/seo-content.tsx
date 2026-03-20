@@ -1,74 +1,286 @@
+const faqItems = [
+  {
+    question: "How is this time duration calculator better than many other calculators?",
+    answer:
+      "Many tools only return one value or fail on overnight ranges. This calculator gives live results, supports overnight shifts automatically, offers optional seconds precision, and shows detailed totals in hours, minutes, and seconds in one place.",
+  },
+  {
+    question: "Can I calculate time across midnight?",
+    answer:
+      "Yes. If your end time is earlier than your start time, the tool treats it as next-day time. For example, 22:30 to 06:15 is calculated as 7 hours and 45 minutes.",
+  },
+  {
+    question: "Does this tool support seconds?",
+    answer:
+      "Yes. Enable seconds precision to enter HH:MM:SS values and get second-level duration output for sports, production, lab work, and detailed timing tasks.",
+  },
+  {
+    question: "Can I use this as a work hours or shift duration calculator?",
+    answer:
+      "Yes. It works well for shift planning, attendance checks, overtime estimates, and daily time tracking. Quick presets and swap controls help speed up repeated calculations.",
+  },
+  {
+    question: "Is my time data stored or sent to a server?",
+    answer:
+      "Calculations are processed in your browser. Recent history is stored locally on your device for convenience, and your inputs are not required to be sent to a backend for calculation.",
+  },
+  {
+    question: "What time format should I use?",
+    answer:
+      "Use 24-hour format. Enter HH:MM for standard mode or HH:MM:SS when seconds precision is enabled.",
+  },
+  {
+    question: "Can I copy results quickly?",
+    answer:
+      "Yes. Use the copy button to copy the main duration result and paste it directly into timesheets, reports, chat messages, or planning notes.",
+  },
+];
+
+const howToSteps = [
+  "Enter your start time.",
+  "Enter your end time.",
+  "Enable seconds precision if needed.",
+  "Read instant duration plus total hours, minutes, and seconds.",
+  "Copy or save the result for later use.",
+];
+
 export default function TimeDurationCalculatorSEO() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to calculate time duration between two times",
+    description:
+      "Use this online time duration calculator to find hours, minutes, and seconds between start and end times, including overnight shifts.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
     <>
-      {/* How to Use Section */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          Time Duration Calculator: Calculate Hours, Minutes, and Seconds Between Two Times
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+          <p>
+            Use this free <strong>Time Duration Calculator</strong> to calculate the exact difference between two times in
+            seconds, minutes, and hours. Whether you need a simple <strong>hours and minutes calculator</strong>, an
+            <strong> elapsed time calculator</strong>, or an <strong>overnight shift time calculator</strong>, this tool gives
+            a clear answer instantly.
+          </p>
+          <p>
+            Unlike many basic time calculators, this page is built for practical daily use. You can switch seconds precision
+            on or off, swap start and end times in one click, copy results, and keep recent calculations ready for quick
+            reuse. It is helpful for payroll prep, shift tracking, class planning, sports timing, event schedules, and
+            productivity workflows.
+          </p>
+          <p>
+            If you are searching for terms like <strong>time difference between two times</strong>,
+            <strong> work hours calculator</strong>, <strong>shift duration calculator</strong>, or
+            <strong> calculate time interval online</strong>, this tool is designed to solve exactly that problem with a fast,
+            accurate, and privacy-friendly experience.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          How to Calculate Time Duration
+          Why This Time Duration Calculator Is Better Than Many Other Tools
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Built for real time-tracking scenarios
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Many calculators only handle same-day inputs clearly. This tool detects overnight ranges automatically, which is
+              essential for night shifts, late events, and cross-midnight schedules.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Instant output without friction
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Results update as you type, so you do not need extra steps to see the answer. This makes repeated calculations
+              faster when you are checking multiple time ranges.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              More useful output in one view
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              You get readable duration text plus total hours, total minutes, and total seconds at the same time. That is
+              useful for reports, timesheets, billing notes, and data entry workflows.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Privacy-first and no signup required
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              The calculation runs in your browser, and your recent entries stay local to your device. You can use the tool
+              instantly without account creation or unnecessary setup.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How to Calculate Time Duration Between Start and End Time
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Simple Instructions
+              Step-by-step guide
             </h3>
             <ol className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
               <li className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">1</span>
-                <span><strong>Enter Start Time:</strong> Use the time picker or type the start time in HH:MM format.</span>
+                <span><strong>Set the start time:</strong> Choose when the activity began.</span>
               </li>
               <li className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">2</span>
-                <span><strong>Enter End Time:</strong> Select or type the end time. The calculator handles overnight durations automatically.</span>
+                <span><strong>Set the end time:</strong> Choose when the activity finished.</span>
               </li>
               <li className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">3</span>
-                <span><strong>View Results:</strong> Duration is calculated instantly in hours, minutes, and optionally seconds.</span>
+                <span><strong>Enable seconds when needed:</strong> Use HH:MM:SS for precision tasks.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">4</span>
+                <span><strong>Read the results instantly:</strong> See formatted duration plus totals.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">5</span>
+                <span><strong>Copy or save your result:</strong> Reuse output in timesheets or plans.</span>
               </li>
             </ol>
           </div>
+
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              What You Can Do
+              Helpful built-in actions
             </h3>
-            <ul className="space-y-2 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            <ul className="space-y-2 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Calculate work hours and overtime
+                Swap start and end times instantly
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Handle overnight shifts automatically
+                Use quick presets such as work day and half day
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Include seconds for precise timing
+                Detect and mark overnight duration automatically
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Swap start and end times quickly
+                Keep recent calculations in local history
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Save and reload recent calculations
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Copy results to clipboard
+                Copy final duration with one click
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* Examples Section */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Example Calculations
+          Who Uses This Time Difference Calculator
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Employees and freelancers
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Calculate daily work duration, shift windows, and overtime-ready time intervals.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              HR and operations teams
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Validate schedule blocks and compare start/end ranges quickly during roster planning.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Students and educators
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Plan study sessions, exam duration, and class activity timings without manual calculations.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Event and meeting planners
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Measure segment lengths and schedule transitions for smoother event execution.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Sports and fitness users
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Use seconds precision to track workouts, intervals, lap timing, and training sessions.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              Anyone needing quick elapsed time math
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+              Replace manual subtraction with a reliable online duration calculator for daily productivity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Time Duration Examples
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-gray-50 rounded-lg p-5">
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Standard Work Day
+              Standard office shift
             </h3>
             <div className="space-y-2 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
               <div className="flex justify-between items-center">
@@ -88,7 +300,7 @@ export default function TimeDurationCalculatorSEO() {
 
           <div className="bg-gray-50 rounded-lg p-5">
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Overnight Shift
+              Overnight shift
             </h3>
             <div className="space-y-2 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
               <div className="flex justify-between items-center">
@@ -108,7 +320,7 @@ export default function TimeDurationCalculatorSEO() {
 
           <div className="bg-gray-50 rounded-lg p-5">
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Meeting Duration
+              Class or session block
             </h3>
             <div className="space-y-2 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
               <div className="flex justify-between items-center">
@@ -128,7 +340,7 @@ export default function TimeDurationCalculatorSEO() {
 
           <div className="bg-gray-50 rounded-lg p-5">
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Precise Timing
+              Seconds-precision timing
             </h3>
             <div className="space-y-2 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
               <div className="flex justify-between items-center">
@@ -141,138 +353,48 @@ export default function TimeDurationCalculatorSEO() {
               </div>
               <div className="flex justify-between items-center border-t border-gray-200 pt-2">
                 <span className="text-sm font-semibold">Duration:</span>
-                <span className="font-mono font-bold text-primary">2h 30m 15s</span>
+                <span className="font-mono font-bold text-primary">2 hours, 30 minutes, 15 seconds</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Calculation Logic and Accuracy
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+          <p>
+            The duration is calculated by converting start and end times into seconds, subtracting start from end, and then
+            converting the result back into hours, minutes, and seconds for display.
+          </p>
+          <p>
+            For overnight scenarios, if end time is earlier than start time, the tool adds 24 hours to complete the correct
+            next-day calculation. This prevents negative results and reflects real-world shift behavior.
+          </p>
+          <p>
+            When seconds precision is disabled, the result is shown at minute-level output; when enabled, the tool displays
+            full second-level detail for higher accuracy.
+          </p>
+        </div>
+      </section>
+
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Frequently Asked Questions
         </h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              How does the calculator handle overnight durations?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              When the end time is earlier than the start time, the calculator automatically assumes the end time is on the next day. For example, from 22:00 to 02:00 is calculated as 4 hours, not -20 hours. An overnight indicator appears when this happens.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I include seconds in my calculation?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Yes! Enable the "Include seconds precision" option to input times with seconds (HH:MM:SS format) and see results with second-level accuracy. This is useful for precise timing needs like sports events or scientific measurements.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              What formats can I use for time input?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              The calculator accepts standard 24-hour format (HH:MM or HH:MM:SS). You can use the time picker for easy selection or type directly. The tool validates your input and shows an error if the format is incorrect.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              How accurate are the calculations?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Calculations are precise to the second when seconds are enabled, or to the minute when disabled. The tool uses standard time arithmetic and handles all edge cases including midnight crossings and 24-hour boundaries correctly.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is my calculation data stored anywhere?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              No. All calculations happen entirely in your browser. The only data stored is your recent calculation history, which is saved locally in your browser's storage for your convenience. Nothing is sent to any server.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Why Use Our Time Calculator?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center">
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>Instant Results</h3>
-            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              Duration is calculated in real-time as you select times. No button clicks needed.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">🌙</div>
-            <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>Overnight Support</h3>
-            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              Automatically handles night shifts and durations that cross midnight without any extra steps.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">🔒</div>
-            <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>100% Private</h3>
-            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              All calculations run in your browser. Your time data never leaves your device.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Common Use Cases
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl mr-2">💼</span>
-              Work Hours Tracking
-            </h3>
-            <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Calculate daily work hours, overtime, and shift durations. Perfect for employees, freelancers, and managers tracking time.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl mr-2">🎬</span>
-              Event Planning
-            </h3>
-            <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Plan event schedules, calculate session lengths, and manage time slots for conferences, meetings, or performances.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl mr-2">🏃</span>
-              Sports & Fitness
-            </h3>
-            <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Track workout durations, race times, and training sessions. Use seconds precision for accurate athletic timing.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-2xl mr-2">📚</span>
-              Study & Education
-            </h3>
-            <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Calculate study session lengths, exam durations, and class times. Useful for students and educators managing schedules.
-            </p>
-          </div>
+          {faqItems.map((item) => (
+            <div key={item.question}>
+              <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                {item.question}
+              </h3>
+              <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                {item.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
     </>
