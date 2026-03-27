@@ -1,7 +1,7 @@
 export const hslColorSliderConfig = {
   name: 'HSL Color Slider',
   slug: 'hsl-color-slider',
-  description: 'Interactive HSL color picker with live preview, format conversion, and palette generation',
+  description: 'Interactive HSL color picker with live preview, format conversion, palette generation, and copy-ready values',
   category: 'design',
   icon: '🎨',
   free: true,
@@ -20,14 +20,33 @@ export const hslColorSliderConfig = {
     'Mobile-responsive design'
   ],
   seo: {
-    title: 'HSL Color Slider – Interactive Color Picker for Designers | Productive Toolbox',
-    description: 'Explore colors using interactive HSL sliders. Adjust hue, saturation, and lightness to generate HEX, RGB, and HSL colors instantly. Perfect for designers and developers.',
-    keywords: ['hsl color picker', 'color slider', 'hue saturation lightness', 'color converter', 'design tools', 'css colors', 'color palette generator'],
+    title: 'HSL Color Slider Online - Interactive Hue Saturation Lightness Picker',
+    description: 'Free HSL Color Slider to adjust hue, saturation, and lightness with live preview. Generate HSL, HEX, and RGB values, create harmony palettes, and copy production-ready color output.',
+    keywords: [
+      'hsl color picker',
+      'color slider',
+      'hue saturation lightness',
+      'color converter',
+      'design tools',
+      'css colors',
+      'color palette generator',
+      'hsl slider',
+      'hsl to hex',
+      'hsl to rgb',
+      'interactive color picker',
+      'ui color tool',
+      'color harmony generator',
+      'color scheme builder',
+      'web color picker',
+      'css color picker',
+      'design system color tool',
+      'online hsl picker'
+    ],
     openGraph: {
-      title: 'HSL Color Slider – Interactive Color Picker for Designers',
-      description: 'Explore colors using interactive HSL sliders. Adjust hue, saturation, and lightness to generate HEX, RGB, and HSL colors instantly.',
+      title: 'HSL Color Slider - Build Better Color Palettes with Live Preview',
+      description: 'Adjust HSL values, generate related palettes, and copy HSL, HEX, or RGB output instantly.',
       type: 'website',
-      url: '/tools/hsl-color-slider'
+      url: '/tools/design/hsl-color-slider'
     }
   }
 };

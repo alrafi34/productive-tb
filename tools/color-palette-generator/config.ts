@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "color-palette-generator",
   name: "Color Palette Generator",
-  description: "Generate beautiful color palettes instantly with analogous, complementary, triadic, and monochromatic schemes",
+  description: "Generate harmony-based color palettes with locking, contrast checks, and export-ready formats",
   category: "design",
   icon: "🎨",
   free: true,
   backend: false,
   seo: {
-    title: "Free Color Palette Generator - Create Beautiful Color Schemes | Productive Toolbox",
-    description: "Generate beautiful color palettes instantly. Free online color palette generator for designers and developers. Supports HEX, RGB, CSS export, and multiple color harmony algorithms.",
+    title: "Color Palette Generator Online - Create Harmony-Based Palettes Instantly",
+    description: "Free Color Palette Generator with analogous, complementary, triadic, monochromatic, tetradic, and random modes. Lock colors, check contrast accessibility, preview gradients, and export CSS/SCSS/JSON/Tailwind.",
     keywords: [
       "color palette generator",
       "color scheme generator",
@@ -18,6 +18,15 @@ export const toolConfig = {
       "complementary colors",
       "triadic colors",
       "monochromatic palette",
+      "tetradic color palette",
+      "random color palette generator",
+      "brand color palette generator",
+      "ui color palette generator",
+      "web design color palette",
+      "wcag contrast checker",
+      "palette exporter",
+      "css palette generator",
+      "tailwind color palette generator",
       "free palette generator",
       "online color palette",
       "css color palette",
@@ -27,21 +36,22 @@ export const toolConfig = {
       "color accessibility"
     ],
     openGraph: {
-      title: "Free Color Palette Generator - Create Beautiful Color Schemes",
-      description: "Generate beautiful color palettes instantly with multiple harmony algorithms. Free online tool for designers and developers.",
+      title: "Color Palette Generator - Build Accessible, Export-Ready Color Systems",
+      description: "Generate harmonious palettes with locking, contrast checks, gradients, and multi-format export.",
       type: "website",
-      url: "/color-palette-generator"
+      url: "/tools/design/color-palette-generator"
     }
   },
   features: [
-    "Multiple palette algorithms",
+    "Multiple color harmony algorithms",
     "Analogous, complementary, triadic palettes",
     "Monochromatic and tetradic schemes",
     "Random palette generation",
     "Lock individual colors",
-    "Contrast ratio checker",
-    "Export to CSS/SCSS/JSON",
+    "Contrast ratio and WCAG accessibility checker",
+    "Export to CSS/SCSS/JSON/Tailwind",
     "Gradient generator",
-    "Copy entire palette"
+    "Copy entire palette and individual color values",
+    "Client-side processing for fast and private usage"
   ]
 };

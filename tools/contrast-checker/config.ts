@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "contrast-checker",
   name: "Contrast Checker",
-  description: "Check WCAG accessibility standards.",
+  description: "Test text and background color contrast with live WCAG AA and AAA accessibility validation",
   category: "design",
   icon: "♿",
   free: true,
   backend: false,
   seo: {
-    title: "Free WCAG Contrast Checker - Test Color Accessibility Compliance | Productive Toolbox",
-    description: "Free online WCAG contrast checker. Test text and background colors for accessibility and ensure your design meets WCAG 2.1 AA and AAA standards instantly.",
+    title: "WCAG Contrast Checker Online - Test AA and AAA Color Accessibility",
+    description: "Free WCAG Contrast Checker for testing text and background color combinations. Get live contrast ratio results, AA and AAA pass status, and accessibility-focused color guidance.",
     keywords: [
       "wcag contrast checker",
       "color contrast checker",
@@ -24,13 +24,21 @@ export const toolConfig = {
       "web accessibility",
       "color contrast ratio",
       "accessibility compliance",
-      "contrast validator"
+      "contrast validator",
+      "wcag aa checker",
+      "wcag aaa checker",
+      "text background contrast",
+      "ui accessibility checker",
+      "a11y color checker",
+      "contrast ratio test",
+      "web contrast checker",
+      "design accessibility tool"
     ],
     openGraph: {
-      title: "Free WCAG Contrast Checker - Test Color Accessibility",
-      description: "Test color contrast ratios and ensure WCAG 2.1 compliance with our free accessibility checker tool.",
+      title: "WCAG Contrast Checker - Validate Color Accessibility Fast",
+      description: "Check contrast ratios instantly and verify WCAG AA or AAA compliance for text and UI color combinations.",
       type: "website",
-      url: "/contrast-checker"
+      url: "/tools/design/contrast-checker"
     }
   },
   features: [
@@ -40,6 +48,7 @@ export const toolConfig = {
     "Live text preview",
     "Multiple color format support",
     "Accessibility suggestions",
-    "Mobile responsive design"
+    "Mobile responsive design",
+    "Client-side processing for fast and private usage"
   ]
 };

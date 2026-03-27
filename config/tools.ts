@@ -29,7 +29,7 @@ export const tools: Tool[] = [
   { slug: "image-resizer", name: "Image Resizer", description: "Set custom width & height.", category: "image", icon: "📐", free: true },
   { slug: "base64-image-encoder", name: "Base64 Image Encoder", description: "Convert images to Base64 string.", category: "image", icon: "🔐", free: true },
   { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "Convert HEX, RGB, RGBA, and HSL color formats instantly.", category: "design", icon: "🎨", free: true },
-  { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate 3-5 color palettes.", category: "design", icon: "🌈", free: true },
+  { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate harmony-based palettes with export and contrast checks.", category: "design", icon: "🌈", free: true },
   { slug: "favicon-generator", name: "Favicon Generator", description: "Resize image to 16×16 or 32×32 for web.", category: "image", icon: "🌐", free: true },
   
   // Security & Password Tools (19-22)
@@ -62,13 +62,13 @@ export const tools: Tool[] = [
   { slug: "jwt-debugger", name: "JWT Debugger", description: "Decode and inspect JSON Web Tokens instantly.", category: "developer", icon: "🔐", free: true },
   
   // Design & CSS Tools (New)
-  { slug: "css-gradient-generator", name: "CSS Gradient Generator", description: "Visual slider to create linear-gradient code.", category: "design", icon: "🌈", free: true },
-  { slug: "css-box-shadow-generator", name: "CSS Box Shadow Generator", description: "Adjust blur, spread, color with sliders.", category: "design", icon: "📦", free: true },
-  { slug: "color-format-converter", name: "Color Format Converter", description: "Convert Hex, RGB, HSL, CMYK formats.", category: "design", icon: "🎨", free: true },
-  { slug: "css-glassmorphism-generator", name: "CSS Glassmorphism Generator", description: "Generate frosted glass effect code.", category: "design", icon: "🪟", free: true },
-  { slug: "svg-path-visualizer", name: "SVG Path Visualizer", description: "Paste SVG path and see shape rendered.", category: "design", icon: "🖌️", free: true },
+  { slug: "css-gradient-generator", name: "CSS Gradient Generator", description: "Create linear and radial gradients with copy-ready CSS.", category: "design", icon: "🌈", free: true },
+  { slug: "css-box-shadow-generator", name: "CSS Box Shadow Generator", description: "Build layered shadows with live preview and copy-ready CSS.", category: "design", icon: "📦", free: true },
+  { slug: "color-format-converter", name: "Color Format Converter", description: "Convert HEX, RGB, HSL, RGBA, HSLA, and CMYK instantly.", category: "design", icon: "🎨", free: true },
+  { slug: "css-glassmorphism-generator", name: "CSS Glassmorphism Generator", description: "Create frosted glass effects with live preview and copy-ready code.", category: "design", icon: "🪟", free: true },
+  { slug: "svg-path-visualizer", name: "SVG Path Visualizer", description: "Render and debug SVG path data with live preview.", category: "design", icon: "🖌️", free: true },
   { slug: "aspect-ratio-calculator", name: "Aspect Ratio Calculator", description: "Calculate dimensions based on aspect ratio.", category: "calculator", icon: "📐", free: true },
-  { slug: "contrast-checker", name: "Contrast Checker", description: "Check WCAG accessibility standards.", category: "design", icon: "♿", free: true },
+  { slug: "contrast-checker", name: "Contrast Checker", description: "Test WCAG AA and AAA color contrast accessibility.", category: "design", icon: "♿", free: true },
   
   // Math & Data Converters (New)
   { slug: "timestamp-unix-converter", name: "Timestamp/Unix Converter", description: "Convert Unix Epoch to human-readable dates.", category: "calculator", icon: "🕐", free: true },
@@ -96,10 +96,10 @@ export const tools: Tool[] = [
   
   // Design & Visuals (New)
   { slug: "golden-ratio-calculator", name: "Golden Ratio Calculator", description: "Split number into 1.618 golden ratio parts.", category: "calculator", icon: "✨", free: true },
-  { slug: "css-filter-tester", name: "CSS Filter Tester", description: "Sliders for grayscale, sepia, invert, blur.", category: "design", icon: "🎨", free: true },
-  { slug: "hsl-color-slider", name: "HSL Color Slider", description: "Visual way to understand Hue, Saturation, Lightness.", category: "design", icon: "🌈", free: true },
-  { slug: "neumorphism-generator", name: "Box Shadow Neumorphism Generator", description: "Create soft 3D UI effect.", category: "design", icon: "💎", free: true },
-  { slug: "css-animation-previewer", name: "CSS Animation Previewer", description: "Test ease-in, ease-out, cubic-bezier curves.", category: "design", icon: "🎬", free: true },
+  { slug: "css-filter-tester", name: "CSS Filter Tester", description: "Preview and tune CSS image filters with live sliders.", category: "design", icon: "🎨", free: true },
+  { slug: "hsl-color-slider", name: "HSL Color Slider", description: "Adjust hue, saturation, and lightness with live preview.", category: "design", icon: "🌈", free: true },
+  { slug: "neumorphism-generator", name: "Box Shadow Neumorphism Generator", description: "Create raised and pressed soft UI styles with live preview.", category: "design", icon: "💎", free: true },
+  { slug: "css-animation-previewer", name: "CSS Animation Previewer", description: "Preview easing and cubic-bezier animations with live controls.", category: "design", icon: "🎬", free: true },
   
   // Math, Finance & Logic (New)
   { slug: "percentage-increase-decrease", name: "Percentage Increase/Decrease", description: "Calculate % change between two numbers.", category: "calculator", icon: "📈", free: true },
@@ -139,7 +139,7 @@ export const tools: Tool[] = [
   { slug: "color-palette-extractor", name: "Color Palette Extractor", description: "Upload image to get 5 dominant colors.", category: "design", icon: "🎨", free: true },
   
   // Multimedia & Browser APIs (New)
-  { slug: "color-palette-contrast-grid", name: "Color Palette Contrast Grid", description: "Show readable text/background combinations.", category: "design", icon: "🔲", free: true },
+  { slug: "color-palette-contrast-grid", name: "Color Palette Contrast Grid", description: "Test all palette text/background pairs for WCAG contrast.", category: "design", icon: "🔲", free: true },
   
   // Advanced Developer Tools (New)
   

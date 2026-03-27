@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "color-format-converter",
   name: "Color Format Converter",
-  description: "Convert colors instantly between HEX, RGB, HSL, and CMYK formats with live preview and sliders",
+  description: "Convert HEX, RGB, RGBA, HSL, HSLA, and CMYK values with live preview, slider controls, and one-click copy",
   category: "design",
   icon: "🎨",
   free: true,
   backend: false,
   seo: {
-    title: "Free Color Format Converter - HEX, RGB, HSL, CMYK Online | Productive Toolbox",
-    description: "Convert colors instantly between HEX, RGB, HSL, and CMYK formats. Free online color converter with live preview, sliders, and copyable CSS values.",
+    title: "Color Format Converter Online - HEX RGB HSL HSLA RGBA CMYK",
+    description: "Free Color Format Converter for HEX, RGB, RGBA, HSL, HSLA, and CMYK. Get instant multi-format conversion, live preview, alpha control, and copy-ready color values.",
     keywords: [
       "color format converter",
       "hex to rgb",
@@ -22,13 +22,22 @@ export const toolConfig = {
       "free color converter",
       "online color converter",
       "css color converter",
-      "color format tool"
+      "color format tool",
+      "hex rgb hsl converter",
+      "rgba converter",
+      "hsla converter",
+      "hex to cmyk",
+      "web color converter",
+      "design color converter",
+      "color value converter",
+      "color picker converter",
+      "print color converter"
     ],
     openGraph: {
-      title: "Free Color Format Converter - HEX, RGB, HSL, CMYK Online",
-      description: "Convert colors instantly between all formats with live preview and instant copying. Free online tool for designers and developers.",
+      title: "Color Format Converter - Convert HEX RGB HSL RGBA HSLA and CMYK",
+      description: "Convert and copy color values instantly with live preview and practical controls for design and frontend workflows.",
       type: "website",
-      url: "/color-format-converter"
+      url: "/tools/design/color-format-converter"
     }
   },
   features: [
@@ -40,6 +49,7 @@ export const toolConfig = {
     "Opacity control",
     "Color history",
     "Quick gradient generator",
-    "Copy all formats"
+    "Copy all formats",
+    "Client-side processing for fast and private usage"
   ]
 };

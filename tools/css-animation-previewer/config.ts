@@ -1,7 +1,7 @@
 export const cssAnimationPreviewerConfig = {
   name: 'CSS Animation Previewer',
   slug: 'css-animation-previewer',
-  description: 'Test CSS timing functions and cubic-bezier curves with live animation preview and code generation',
+  description: 'Preview CSS timing functions and cubic-bezier curves with live playback and copy-ready animation code',
   category: 'design',
   icon: '🎬',
   free: true,
@@ -19,14 +19,33 @@ export const cssAnimationPreviewerConfig = {
     'Mobile-responsive design'
   ],
   seo: {
-    title: 'CSS Animation Previewer – Test Easing Functions & Cubic Bezier Curves | Productive Toolbox',
-    description: 'Preview CSS animations and easing curves visually. Test ease, ease-in, ease-out, and cubic-bezier timing functions with live animation preview.',
-    keywords: ['css animation previewer', 'easing functions', 'cubic bezier', 'timing functions', 'animation tester', 'css curves', 'web animation tool'],
+    title: 'CSS Animation Previewer Online - Easing and Cubic Bezier Tester',
+    description: 'Free CSS Animation Previewer with live timing function playback, cubic-bezier curve control, duration tuning, and instant copy-ready animation CSS output.',
+    keywords: [
+      'css animation previewer',
+      'easing functions',
+      'cubic bezier',
+      'timing functions',
+      'animation tester',
+      'css curves',
+      'web animation tool',
+      'cubic bezier editor',
+      'css easing generator',
+      'animation timing function tool',
+      'css motion preview',
+      'ui animation tool',
+      'frontend animation helper',
+      'keyframe timing preview',
+      'ease in out tester',
+      'animation curve visualizer',
+      'motion design css tool',
+      'interaction animation tester'
+    ],
     openGraph: {
-      title: 'CSS Animation Previewer – Test Easing Functions & Cubic Bezier Curves',
-      description: 'Preview CSS animations and easing curves visually. Generate ready-to-use CSS animation code instantly.',
+      title: 'CSS Animation Previewer - Tune Easing Curves with Live Playback',
+      description: 'Test timing functions and cubic-bezier curves visually, then copy production-ready CSS animation settings.',
       type: 'website',
-      url: '/tools/css-animation-previewer'
+      url: '/tools/design/css-animation-previewer'
     }
   }
 };

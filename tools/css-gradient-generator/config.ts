@@ -1,35 +1,43 @@
 export const toolConfig = {
   slug: "css-gradient-generator",
   name: "CSS Gradient Generator",
-  description: "Create beautiful linear and radial CSS gradients with live preview and instant code generation",
+  description: "Create linear and radial CSS gradients with editable stops, live preview, and copy-ready CSS code",
   category: "design",
   icon: "🌈",
   free: true,
   backend: false,
   seo: {
-    title: "Free CSS Gradient Generator - Linear & Radial Gradient Maker | Productive Toolbox",
-    description: "Create beautiful CSS gradients instantly. Free online gradient generator supporting linear and radial gradients with live preview, color stops, and CSS export.",
+    title: "CSS Gradient Generator Online - Linear and Radial Gradient Maker",
+    description: "Free CSS Gradient Generator with linear and radial modes, angle and shape controls, editable color stops, live preview, presets, and instant copy-ready CSS output.",
     keywords: [
       "css gradient generator",
       "linear gradient",
       "radial gradient",
       "gradient maker",
       "css gradient tool",
+      "online gradient generator",
+      "background gradient generator",
+      "gradient background maker",
+      "multi color gradient generator",
+      "gradient color stops",
+      "css gradient code generator",
+      "gradient preview tool",
+      "gradient presets",
+      "linear radial gradient tool",
+      "web gradient generator",
       "free gradient generator",
       "online gradient maker",
       "gradient css code",
       "background gradient",
       "color gradient",
       "gradient designer",
-      "web gradient tool",
-      "gradient presets",
       "gradient export"
     ],
     openGraph: {
-      title: "Free CSS Gradient Generator - Linear & Radial Gradient Maker",
-      description: "Create beautiful CSS gradients instantly with live preview and instant code generation. Free online tool for designers and developers.",
+      title: "CSS Gradient Generator - Build Linear and Radial Gradients Fast",
+      description: "Design gradients with live preview, stop editing, presets, and direct CSS copy for production workflows.",
       type: "website",
-      url: "/css-gradient-generator"
+      url: "/tools/design/css-gradient-generator"
     }
   },
   features: [
@@ -41,6 +49,7 @@ export const toolConfig = {
     "Random gradient generator",
     "Gradient presets",
     "Copy CSS code",
-    "Mobile responsive"
+    "Mobile responsive",
+    "Client-side processing for fast private usage"
   ]
 };

@@ -190,20 +190,50 @@ export const captureElementAsCanvas = async (element: HTMLElement): Promise<HTML
   return canvas;
 };
 
+const makeSvgPlaceholder = (
+  width: number,
+  height: number,
+  title: string,
+  subtitle: string,
+  start: string,
+  end: string
+): string => {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="${start}" />
+          <stop offset="100%" stop-color="${end}" />
+        </linearGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#g)" />
+      <rect x="20" y="20" width="${width - 40}" height="${height - 40}" rx="16" fill="rgba(255,255,255,0.18)" />
+      <text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="700">
+        ${title}
+      </text>
+      <text x="50%" y="61%" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.92)" font-family="Arial, sans-serif" font-size="15">
+        ${subtitle}
+      </text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+};
+
 export const sampleImages = [
   {
     name: 'Color Chart',
-    url: '/api/placeholder/400/300?text=Color+Chart',
+    url: makeSvgPlaceholder(640, 420, 'Color Chart', 'High contrast palette preview', '#2563eb', '#14b8a6'),
     description: 'Test with various colors'
   },
   {
     name: 'UI Dashboard',
-    url: '/api/placeholder/600/400?text=Dashboard+UI',
+    url: makeSvgPlaceholder(640, 420, 'Dashboard UI', 'Status cards and indicators', '#7c3aed', '#2563eb'),
     description: 'Sample dashboard interface'
   },
   {
     name: 'Data Visualization',
-    url: '/api/placeholder/500/350?text=Chart+Data',
+    url: makeSvgPlaceholder(640, 420, 'Chart Data', 'Bars, lines, and segments', '#ea580c', '#db2777'),
     description: 'Charts and graphs'
   }
 ];

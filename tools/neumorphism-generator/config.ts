@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "neumorphism-generator",
   name: "Neumorphism Generator",
-  description: "Create soft 3D UI effect.",
+  description: "Generate raised and pressed neumorphic UI styles with live preview and copy-ready CSS output",
   category: "design",
   icon: "💎",
   free: true,
   backend: false,
   seo: {
-    title: "Free Neumorphism Generator - Create Soft UI Box Shadow Effects | Productive Toolbox",
-    description: "Design neumorphic UI components with live preview and generate CSS box shadow code instantly. Free soft UI generator for designers and developers.",
+    title: "Neumorphism Generator Online - Create Soft UI Raised and Pressed Effects",
+    description: "Free Neumorphism Generator with live preview, raised and pressed modes, light direction controls, presets, and instant copy-ready CSS for modern soft UI design.",
     keywords: [
       "neumorphism generator",
       "soft ui generator",
@@ -24,13 +24,21 @@ export const toolConfig = {
       "neumorphism box shadow",
       "ui design tool",
       "css shadow generator",
-      "modern ui effects"
+      "modern ui effects",
+      "soft ui css generator",
+      "raised pressed ui generator",
+      "neumorphic button generator",
+      "neumorphism css code",
+      "soft shadow generator",
+      "box shadow soft ui tool",
+      "neumorphism design system",
+      "neumorphic card css"
     ],
     openGraph: {
-      title: "Free Neumorphism Generator - Create Soft UI Effects",
-      description: "Design beautiful neumorphic UI components with live preview and instant CSS code generation.",
+      title: "Neumorphism Generator - Build Soft UI Effects with Live Preview",
+      description: "Create raised and pressed neumorphic components quickly with copy-ready CSS output.",
       type: "website",
-      url: "/neumorphism-generator"
+      url: "/tools/design/neumorphism-generator"
     }
   },
   features: [
@@ -40,6 +48,7 @@ export const toolConfig = {
     "Dark mode support",
     "Ready-made presets",
     "One-click CSS copy",
-    "Mobile responsive"
+    "Mobile responsive",
+    "Client-side processing for fast and private usage"
   ]
 };

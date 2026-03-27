@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "svg-path-visualizer",
   name: "SVG Path Visualizer",
-  description: "Paste SVG path and see shape rendered.",
+  description: "Visualize and debug SVG path data with live preview, viewBox controls, and copy-ready output",
   category: "design",
   icon: "🖌️",
   free: true,
   backend: false,
   seo: {
-    title: "Free SVG Path Visualizer - Render and Debug SVG Paths Online | Productive Toolbox",
-    description: "Paste SVG path commands and instantly visualize the shape. Free SVG path visualizer with grid, control points, and live preview. Perfect for developers and designers.",
+    title: "SVG Path Visualizer Online - Render and Debug SVG Path Data",
+    description: "Free SVG Path Visualizer to inspect and debug d attribute commands with live preview, viewBox controls, stroke and fill settings, and copy-ready SVG output.",
     keywords: [
       "svg path visualizer",
       "svg path viewer",
@@ -24,13 +24,21 @@ export const toolConfig = {
       "svg path editor",
       "svg shape viewer",
       "svg path tester",
-      "svg path validator"
+      "svg path validator",
+      "svg d attribute visualizer",
+      "svg command visualizer",
+      "path data debugger",
+      "svg viewbox debugger",
+      "svg icon path tool",
+      "online svg debugger",
+      "path command tester",
+      "svg path inspector"
     ],
     openGraph: {
-      title: "Free SVG Path Visualizer - Render SVG Paths Instantly",
-      description: "Paste SVG path commands and see the rendered shape instantly with grid, styling controls, and live preview.",
+      title: "SVG Path Visualizer - Debug and Render Path Commands Instantly",
+      description: "Inspect SVG path data with live preview, path debugging controls, and implementation-ready output.",
       type: "website",
-      url: "/svg-path-visualizer"
+      url: "/tools/design/svg-path-visualizer"
     }
   },
   features: [
@@ -40,6 +48,7 @@ export const toolConfig = {
     "ViewBox adjustment",
     "Sample path library",
     "Copy SVG code",
-    "Mobile responsive"
+    "Mobile responsive",
+    "Client-side processing for fast and private usage"
   ]
 };

@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "css-glassmorphism-generator",
   name: "CSS Glassmorphism Generator",
-  description: "Generate frosted glass effect code with live preview.",
+  description: "Create frosted glass UI styles with live preview, adjustable blur, and copy-ready CSS or Tailwind code",
   category: "design",
   icon: "🪟",
   free: true,
   backend: false,
   seo: {
-    title: "Free CSS Glassmorphism Generator - Create Frosted Glass UI Effects | Productive Toolbox",
-    description: "Generate beautiful glassmorphism CSS effects with live preview. Free online frosted glass generator for UI designers and developers. Create modern glass UI instantly.",
+    title: "CSS Glassmorphism Generator Online - Frosted Glass UI Maker",
+    description: "Free CSS Glassmorphism Generator with live preview, blur and opacity controls, border and shadow tuning, presets, and copy-ready CSS or Tailwind output.",
     keywords: [
       "glassmorphism generator",
       "css glassmorphism",
@@ -24,13 +24,21 @@ export const toolConfig = {
       "css glass card",
       "modern ui effects",
       "glass morphism css",
-      "transparent glass css"
+      "transparent glass css",
+      "glassmorphism css generator",
+      "glass card generator",
+      "frosted ui generator",
+      "backdrop blur generator",
+      "tailwind glassmorphism generator",
+      "glassmorphism code generator",
+      "ui glass effect tool",
+      "glass design system"
     ],
     openGraph: {
-      title: "Free CSS Glassmorphism Generator - Create Frosted Glass Effects",
-      description: "Generate beautiful glassmorphism CSS effects with live preview and instant code generation.",
+      title: "CSS Glassmorphism Generator - Build Frosted UI Effects Fast",
+      description: "Create production-ready frosted glass styles with live preview and instant CSS or Tailwind copy.",
       type: "website",
-      url: "/css-glassmorphism-generator"
+      url: "/tools/design/css-glassmorphism-generator"
     }
   },
   features: [
@@ -38,8 +46,9 @@ export const toolConfig = {
     "Adjustable blur, opacity, and colors",
     "Custom background support",
     "Ready-made presets",
-    "One-click CSS code copy",
+    "One-click CSS and Tailwind code copy",
     "Border and shadow controls",
-    "Mobile responsive design"
+    "Mobile responsive design",
+    "Client-side processing for fast and private usage"
   ]
 };

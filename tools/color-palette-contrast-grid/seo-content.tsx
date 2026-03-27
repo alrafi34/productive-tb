@@ -1,290 +1,300 @@
-import React from 'react';
+const faqItems = [
+  {
+    question: "What is a color palette contrast grid?",
+    answer:
+      "A color palette contrast grid is a tool that checks every text and background combination in a palette and shows WCAG contrast ratios with pass or fail status.",
+  },
+  {
+    question: "Why is this contrast grid better than basic contrast checkers?",
+    answer:
+      "It evaluates entire palettes at once, not just single color pairs, so teams can validate full design systems faster.",
+  },
+  {
+    question: "What WCAG levels are included?",
+    answer:
+      "The grid evaluates combinations against common AA and AAA thresholds for normal and large text contexts.",
+  },
+  {
+    question: "Can I test both normal text and large text?",
+    answer:
+      "Yes. You can review contrast suitability for both standard body text and larger text use cases.",
+  },
+  {
+    question: "Why do some color pairs pass large text but fail normal text?",
+    answer:
+      "Large text has lower minimum contrast requirements, so some combinations become acceptable only at larger sizes.",
+  },
+  {
+    question: "Is this useful for design systems and token libraries?",
+    answer:
+      "Yes. It helps validate token combinations before shipping components and prevents accessibility regressions.",
+  },
+  {
+    question: "Can I export palette values after testing?",
+    answer:
+      "Yes. You can export tested palette data for CSS variables, SCSS, JSON, or related implementation workflows.",
+  },
+  {
+    question: "Does this tool help with accessibility-first workflows?",
+    answer:
+      "Yes. It supports design, development, and QA teams by making contrast decisions measurable and repeatable.",
+  },
+  {
+    question: "Is this tool free to use?",
+    answer: "Yes. The Color Palette Contrast Grid is free without account registration.",
+  },
+  {
+    question: "Does the tool send palette data to servers?",
+    answer:
+      "No. Contrast checks are handled client-side in the browser for speed and privacy.",
+  },
+];
+
+const howToSteps = [
+  "Add your palette colors manually or start from a preset.",
+  "Generate the contrast grid to evaluate all text and background pairs.",
+  "Filter by pass levels to focus on usable combinations.",
+  "Inspect specific pairs for ratio details and compliance context.",
+  "Export validated palette outputs for design and development use.",
+];
+
+const strengths = [
+  {
+    title: "Palette-wide validation",
+    text: "Test all combinations at once instead of repeating manual one-by-one checks.",
+  },
+  {
+    title: "Accessibility-focused workflow",
+    text: "Quickly identify which combinations meet practical WCAG thresholds for real interface text.",
+  },
+  {
+    title: "Design-to-code alignment",
+    text: "Move directly from tested palette decisions to implementation-ready exports.",
+  },
+  {
+    title: "Faster QA and review",
+    text: "Reduce regression risk by validating contrast early across full color systems.",
+  },
+];
+
+const complianceGuide = [
+  {
+    label: "AA for normal text",
+    value: "4.5:1 or higher",
+    note: "Common baseline for readable body text and standard UI labels.",
+  },
+  {
+    label: "AA for large text",
+    value: "3:1 or higher",
+    note: "Applies when text meets large-size criteria and remains clearly legible.",
+  },
+  {
+    label: "AAA for normal text",
+    value: "7:1 or higher",
+    note: "Higher readability target for stricter accessibility requirements.",
+  },
+  {
+    label: "AAA for large text",
+    value: "4.5:1 or higher",
+    note: "Enhanced large-text threshold for accessibility-focused products.",
+  },
+];
+
+const useCases = [
+  {
+    title: "Design token audits",
+    detail: "Validate semantic color tokens before publishing component library updates.",
+  },
+  {
+    title: "Brand palette evaluation",
+    detail: "Check brand color combinations for readability across marketing and product UI.",
+  },
+  {
+    title: "Theme system testing",
+    detail: "Compare light and dark theme palettes to avoid inaccessible text states.",
+  },
+  {
+    title: "Button and state validation",
+    detail: "Confirm hover, active, focus, and disabled states remain readable.",
+  },
+  {
+    title: "Accessibility QA workflows",
+    detail: "Provide measurable contrast evidence during release review and handoff.",
+  },
+  {
+    title: "Cross-team collaboration",
+    detail: "Give designers, developers, and QA shared pass or fail visibility for color choices.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Checking only primary text colors and skipping secondary or helper text states.",
+  "Evaluating colors in isolation without testing full palette combinations.",
+  "Assuming visual preference equals accessibility compliance.",
+  "Ignoring large-text vs normal-text threshold differences.",
+  "Skipping contrast checks after palette updates or theme changes.",
+];
 
 export default function ColorPaletteContrastGridSEOContent() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use the Color Palette Contrast Grid",
+    description:
+      "Build a palette, test all text-background combinations, filter accessible pairs, and export validated color values.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Understanding WCAG Color Contrast Standards
-        </h2>
-        <p className="text-gray-700 mb-4">
-          The Web Content Accessibility Guidelines (WCAG) define specific contrast ratios that ensure text is readable for users with visual impairments. These standards help create inclusive designs that work for everyone, including users with color blindness, low vision, or other visual disabilities.
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-6 mb-6">
-          <div className="bg-green-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-green-800 mb-2">AAA Level (7:1)</h3>
-            <p className="text-green-700 text-sm">
-              The highest standard for normal text. Provides excellent readability for all users.
-            </p>
-          </div>
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-blue-800 mb-2">AA Level (4.5:1)</h3>
-            <p className="text-blue-700 text-sm">
-              The minimum standard for normal text. Required for WCAG compliance in most cases.
-            </p>
-          </div>
-          <div className="bg-yellow-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-yellow-800 mb-2">Large Text (3:1)</h3>
-            <p className="text-yellow-700 text-sm">
-              Lower requirement for large text (18pt+ or 14pt+ bold). Easier to read at larger sizes.
-            </p>
-          </div>
-        </div>
-      </section>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          How to Use the Color Palette Contrast Grid
-        </h2>
-        <div className="space-y-4">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">1. Build Your Color Palette</h3>
-            <p className="text-gray-700 text-sm">
-              Add colors to your palette using the color picker or by entering HEX values. You can also use preset palettes from popular design systems like Material Design, Tailwind, or Bootstrap.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">2. Review the Contrast Grid</h3>
-            <p className="text-gray-700 text-sm">
-              The grid automatically shows every possible text and background color combination from your palette. Each cell displays the contrast ratio and WCAG compliance level with color-coded indicators.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">3. Filter and Sort Results</h3>
-            <p className="text-gray-700 text-sm">
-              Use the filter options to show only accessible combinations or sort by contrast ratio to find the best and worst performing pairs in your palette.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">4. Inspect Color Pairs</h3>
-            <p className="text-gray-700 text-sm">
-              Click on any grid cell to see detailed information about that color combination, including the exact contrast ratio and ready-to-use CSS code.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">5. Export Your Palette</h3>
-            <p className="text-gray-700 text-sm">
-              Export your color palette as CSS variables, SCSS variables, or design tokens for use in your development workflow.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          WCAG Compliance Levels Explained
-        </h2>
-        <div className="space-y-4">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Normal Text Requirements</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span>AAA Compliance:</span>
-                <span className="font-mono">≥ 7:1 contrast ratio</span>
-              </div>
-              <div className="flex justify-between">
-                <span>AA Compliance:</span>
-                <span className="font-mono">≥ 4.5:1 contrast ratio</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Minimum for large text:</span>
-                <span className="font-mono">≥ 3:1 contrast ratio</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Large Text Requirements</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span>AAA Compliance:</span>
-                <span className="font-mono">≥ 4.5:1 contrast ratio</span>
-              </div>
-              <div className="flex justify-between">
-                <span>AA Compliance:</span>
-                <span className="font-mono">≥ 3:1 contrast ratio</span>
-              </div>
-              <p className="text-gray-600 mt-2">
-                Large text is defined as 18pt (24px) or larger, or 14pt (18.5px) or larger if bold.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Color Contrast Calculation Method
-        </h2>
-        <div className="bg-purple-50 p-6 rounded-lg">
-          <h3 className="font-semibold text-purple-800 mb-2">Relative Luminance Formula</h3>
-          <p className="text-purple-700 mb-4">
-            Contrast ratios are calculated using the relative luminance of colors as defined by WCAG 2.1. The formula considers how the human eye perceives different colors and brightness levels.
+      <div className="mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Color Palette Contrast Grid for Accessibility-Ready Design Systems
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>Color Palette Contrast Grid</strong> helps you evaluate full color systems quickly.
+            Instead of checking a single pair at a time, you can validate all text and background combinations in one view.
           </p>
-          
-          <div className="bg-purple-100 p-4 rounded">
-            <h4 className="font-medium mb-2">Calculation Steps:</h4>
-            <ol className="text-sm space-y-1">
-              <li>1. Convert colors from HEX to RGB values</li>
-              <li>2. Calculate relative luminance for each color</li>
-              <li>3. Apply gamma correction for accurate perception</li>
-              <li>4. Calculate contrast ratio: (L1 + 0.05) / (L2 + 0.05)</li>
-              <li>5. Compare result against WCAG thresholds</li>
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Best Practices for Accessible Color Design
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Design System Planning</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Test all color combinations early in the design process</li>
-              <li>• Create a contrast matrix for your brand colors</li>
-              <li>• Document which combinations are safe to use</li>
-              <li>• Consider both light and dark mode variations</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Implementation Tips</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Use semantic color names in your CSS variables</li>
-              <li>• Test with actual content, not just placeholder text</li>
-              <li>• Consider users with different types of color blindness</li>
-              <li>• Provide alternative indicators beyond color alone</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Common Mistakes</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Relying only on color to convey information</li>
-              <li>• Not testing with different screen brightness levels</li>
-              <li>• Ignoring contrast in interactive states (hover, focus)</li>
-              <li>• Using low contrast for "subtle" design elements</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Testing Methods</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Use automated contrast checking tools</li>
-              <li>• Test with screen readers and assistive technology</li>
-              <li>• Simulate different types of color blindness</li>
-              <li>• Get feedback from users with visual impairments</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Popular Design System Color Palettes
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Material Design</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Google's Material Design system provides carefully tested color combinations with built-in accessibility considerations. The palette includes primary, secondary, and surface colors that work well together.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Tailwind CSS</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Tailwind's color palette offers a wide range of hues with multiple shades. The numbered system (50-900) makes it easy to find contrasting pairs within the same color family.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Bootstrap</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Bootstrap's semantic color system (primary, secondary, success, danger, etc.) provides meaningful color relationships that work well for UI components and messaging.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Legal and Compliance Considerations
-        </h2>
-        <div className="bg-red-50 p-6 rounded-lg">
-          <h3 className="font-semibold text-red-800 mb-2">Accessibility Requirements</h3>
-          <p className="text-red-700 mb-4">
-            Many jurisdictions require digital accessibility compliance for public websites and services. WCAG AA compliance is often the legal minimum standard.
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            It is built for designers, frontend developers, and accessibility reviewers who need reliable contrast decisions
+            before releasing themes, components, and brand palettes.
           </p>
-          
-          <div className="space-y-2 text-sm">
-            <div><strong>United States:</strong> Section 508, ADA compliance requirements</div>
-            <div><strong>European Union:</strong> EN 301 549 accessibility standard</div>
-            <div><strong>Canada:</strong> AODA (Accessibility for Ontarians with Disabilities Act)</div>
-            <div><strong>Australia:</strong> DDA (Disability Discrimination Act) requirements</div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Why do some color combinations show different results for normal vs. large text?</h3>
-            <p className="text-gray-700 text-sm">
-              WCAG recognizes that larger text is easier to read, so it has lower contrast requirements. Text that's 18pt+ (or 14pt+ bold) only needs a 3:1 ratio for AA compliance instead of 4.5:1.
-            </p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This Tool Is Better Than Basic Alternatives
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
+              </div>
+            ))}
           </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Should I always aim for AAA compliance?</h3>
-            <p className="text-gray-700 text-sm">
-              While AAA provides the best accessibility, AA compliance is usually sufficient and more practical. AAA can be challenging to achieve with brand colors and may limit design flexibility.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How do I handle brand colors that don't meet contrast requirements?</h3>
-            <p className="text-gray-700 text-sm">
-              Consider using brand colors for decorative elements and creating accessible variations for text. You can also use techniques like outlines, shadows, or background overlays to improve contrast.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Do these standards apply to images and icons?</h3>
-            <p className="text-gray-700 text-sm">
-              WCAG contrast requirements primarily apply to text. However, important graphical elements like icons that convey information should also meet contrast standards when possible.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Advanced Accessibility Techniques
-        </h2>
-        <div className="bg-indigo-50 p-6 rounded-lg">
-          <h3 className="font-semibold text-indigo-800 mb-2">Beyond Basic Contrast</h3>
-          <p className="text-indigo-700 mb-4">
-            While contrast ratios are important, comprehensive accessibility involves additional considerations:
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Many contrast checkers test one pair only. This tool is optimized for complete palette-level decisions.
           </p>
-          
-          <ul className="space-y-2 text-sm text-indigo-700">
-            <li>• <strong>Focus indicators:</strong> Ensure interactive elements have visible focus states</li>
-            <li>• <strong>Color independence:</strong> Don't rely solely on color to convey information</li>
-            <li>• <strong>Motion sensitivity:</strong> Provide options to reduce animations and transitions</li>
-            <li>• <strong>Text alternatives:</strong> Include alt text and ARIA labels where appropriate</li>
-            <li>• <strong>Keyboard navigation:</strong> Ensure all functionality is keyboard accessible</li>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use the Color Palette Contrast Grid
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            WCAG Contrast Targets at a Glance
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {complianceGuide.map((item) => (
+              <div key={item.label} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.label}</p>
+                <p className="mt-1 font-medium text-gray-700">{item.value}</p>
+                <p className="mt-1">{item.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Practical Use Cases
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {useCases.map((item) => (
+              <div key={item.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.title}</p>
+                <p className="mt-1">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Mistakes to Avoid in Palette Contrast Testing
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
           </ul>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Build More Accessible Color Systems with Full-Palette Contrast Visibility
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            With grid-level analysis, WCAG guidance, and export-ready outputs, this tool helps teams make faster,
+            evidence-based color decisions and reduce accessibility regressions.
+          </p>
+        </section>
+      </div>
+    </>
   );
 }

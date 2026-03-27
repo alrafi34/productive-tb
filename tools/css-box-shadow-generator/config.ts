@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "css-box-shadow-generator",
   name: "CSS Box Shadow Generator",
-  description: "Create beautiful CSS box shadows with live preview, multiple layers, and instant code generation",
+  description: "Generate layered CSS box shadows with live preview, inset controls, presets, and copy-ready code",
   category: "design",
   icon: "📦",
   free: true,
   backend: false,
   seo: {
-    title: "Free CSS Box Shadow Generator - Create Beautiful Shadows | Productive Toolbox",
-    description: "Design custom CSS box shadows with live preview. Free online box shadow generator with sliders, multiple layers, presets, and CSS export.",
+    title: "CSS Box Shadow Generator Online - Multi Layer Shadow Maker",
+    description: "Free CSS Box Shadow Generator with multi-layer control, inset shadows, blur and spread sliders, presets, and copy-ready box-shadow CSS for production UI work.",
     keywords: [
       "css box shadow generator",
       "box shadow",
@@ -22,13 +22,22 @@ export const toolConfig = {
       "inset shadow",
       "multiple shadows",
       "shadow presets",
-      "material design shadow"
+      "material design shadow",
+      "ui depth generator",
+      "box-shadow css",
+      "shadow css generator",
+      "neumorphism shadow generator",
+      "card shadow generator",
+      "button shadow css",
+      "design system shadow tool",
+      "shadow preview tool",
+      "layered shadow generator"
     ],
     openGraph: {
-      title: "Free CSS Box Shadow Generator - Create Beautiful Shadows",
-      description: "Design custom CSS box shadows with live preview and instant code generation. Free online tool for designers and developers.",
+      title: "CSS Box Shadow Generator - Build Layered Shadows with Live Preview",
+      description: "Create production-ready box-shadow CSS with presets, inset control, multi-layer editing, and instant copy output.",
       type: "website",
-      url: "/css-box-shadow-generator"
+      url: "/tools/design/css-box-shadow-generator"
     }
   },
   features: [
@@ -40,6 +49,7 @@ export const toolConfig = {
     "Inset shadow support",
     "Shadow presets",
     "Copy CSS code",
-    "Background color picker"
+    "Background color preview",
+    "Client-side processing for fast and private usage"
   ]
 };

@@ -1,277 +1,303 @@
-import React from 'react';
+const faqItems = [
+  {
+    question: "What is a CSS animation previewer?",
+    answer:
+      "A CSS animation previewer is a tool that lets you test animation timing functions and easing curves visually, then copy production-ready CSS values.",
+  },
+  {
+    question: "Why is this animation previewer better than basic easing tools?",
+    answer:
+      "It combines live animation playback, cubic-bezier editing, preset curves, duration controls, and copy-ready output in one workflow.",
+  },
+  {
+    question: "What are CSS timing functions?",
+    answer:
+      "Timing functions control how animation speed changes over time, such as linear, ease-in, ease-out, and custom cubic-bezier curves.",
+  },
+  {
+    question: "When should I use linear timing?",
+    answer:
+      "Use linear when motion should remain constant, such as progress indicators, rotations, and continuous background effects.",
+  },
+  {
+    question: "When should I use ease-in or ease-out?",
+    answer:
+      "Ease-in is useful for elements accelerating into motion, while ease-out works well for elements settling naturally into place.",
+  },
+  {
+    question: "What does cubic-bezier do?",
+    answer:
+      "Cubic-bezier lets you define custom acceleration and deceleration curves with four control values for precise motion behavior.",
+  },
+  {
+    question: "Can I use this tool for UI micro-interactions?",
+    answer:
+      "Yes. It is ideal for hover states, modal transitions, button feedback, and onboarding animations.",
+  },
+  {
+    question: "Can I copy generated CSS directly into my project?",
+    answer:
+      "Yes. You can copy animation timing and related CSS settings directly for immediate implementation.",
+  },
+  {
+    question: "Is this tool free?",
+    answer: "Yes. The CSS animation previewer is free to use without account registration.",
+  },
+  {
+    question: "Does this tool process animation data on a server?",
+    answer:
+      "No. Animation preview and curve calculations are handled client-side for speed and privacy.",
+  },
+];
+
+const howToSteps = [
+  "Choose a base timing function or select cubic-bezier mode.",
+  "Adjust duration, delay, and iteration settings for realistic playback.",
+  "Fine tune curve values until motion feels smooth and intentional.",
+  "Test the result with different animation types and distances.",
+  "Copy the generated CSS and use it in your project styles.",
+];
+
+const strengths = [
+  {
+    title: "Motion-first workflow",
+    text: "Preview animation behavior visually before writing or tweaking raw CSS values.",
+  },
+  {
+    title: "Custom curve precision",
+    text: "Edit cubic-bezier values with immediate playback to reach brand-consistent motion style.",
+  },
+  {
+    title: "Faster implementation handoff",
+    text: "Copy-ready CSS removes guesswork between design intent and frontend execution.",
+  },
+  {
+    title: "Practical for real interfaces",
+    text: "Designed for micro-interactions, component transitions, and UX motion systems.",
+  },
+];
+
+const timingGuide = [
+  {
+    name: "linear",
+    use: "Best for constant speed motion such as loaders, continuous loops, and progress visuals.",
+  },
+  {
+    name: "ease",
+    use: "General-purpose default for natural movement where no special behavior is needed.",
+  },
+  {
+    name: "ease-in",
+    use: "Works well for incoming or accelerating actions that should start gently.",
+  },
+  {
+    name: "ease-out",
+    use: "Ideal for exits and settling animations where movement should feel smooth at the end.",
+  },
+  {
+    name: "ease-in-out",
+    use: "Balanced option for transitions that should start and end softly.",
+  },
+  {
+    name: "cubic-bezier",
+    use: "Use for tailored motion language, expressive brand moments, or advanced interaction patterns.",
+  },
+];
+
+const useCases = [
+  {
+    title: "Button and card interactions",
+    detail: "Tune hover and click feedback for smoother, more responsive UI behavior.",
+  },
+  {
+    title: "Modal and drawer transitions",
+    detail: "Create controlled entrance and exit animations that feel intentional, not abrupt.",
+  },
+  {
+    title: "Navigation and tab movement",
+    detail: "Define consistent timing for menus, tabs, and panel switching.",
+  },
+  {
+    title: "Onboarding and walkthroughs",
+    detail: "Use clear motion rhythm to guide users through multi-step product tours.",
+  },
+  {
+    title: "Design system motion tokens",
+    detail: "Standardize reusable easing and duration presets across component libraries.",
+  },
+  {
+    title: "Data and dashboard animations",
+    detail: "Apply purposeful easing to chart updates, counters, and state changes.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Using the same easing for every interaction regardless of context.",
+  "Choosing very long durations that make the interface feel sluggish.",
+  "Overusing aggressive bounce curves in professional workflows.",
+  "Ignoring reduced-motion preferences for accessibility-sensitive users.",
+  "Skipping tests on lower-powered mobile devices.",
+];
 
 export default function CSSAnimationPreviewerSEOContent() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use the CSS Animation Previewer",
+    description:
+      "Preview timing functions and cubic-bezier curves live, refine motion behavior, and copy implementation-ready CSS animation settings.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Understanding CSS Animation Timing Functions
-        </h2>
-        <p className="text-gray-700 mb-4">
-          CSS timing functions control the acceleration and deceleration of animations over time. They define how intermediate values are calculated during a transition, creating different visual effects from linear motion to complex easing curves.
-        </p>
-        
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-blue-800 mb-2">Built-in Functions</h3>
-            <p className="text-blue-700 text-sm">
-              CSS provides several predefined timing functions like ease, ease-in, ease-out, and linear for common animation patterns.
-            </p>
-          </div>
-          <div className="bg-green-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-green-800 mb-2">Custom Curves</h3>
-            <p className="text-green-700 text-sm">
-              Cubic-bezier functions allow you to create custom easing curves for unique animation effects and brand-specific motion.
-            </p>
-          </div>
-        </div>
-      </section>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          CSS Timing Functions Explained
-        </h2>
-        <div className="space-y-4">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">linear</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Creates constant speed animation with no acceleration or deceleration. Perfect for loading indicators and continuous rotations.
-            </p>
-            <code className="bg-gray-200 px-2 py-1 rounded text-sm">animation-timing-function: linear;</code>
-          </div>
-          
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">ease</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Default timing function. Starts slowly, accelerates in the middle, then slows down at the end. Natural feeling motion.
-            </p>
-            <code className="bg-gray-200 px-2 py-1 rounded text-sm">animation-timing-function: ease;</code>
-          </div>
-          
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">ease-in</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Starts slowly and accelerates towards the end. Great for elements entering the viewport or appearing.
-            </p>
-            <code className="bg-gray-200 px-2 py-1 rounded text-sm">animation-timing-function: ease-in;</code>
-          </div>
-          
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">ease-out</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Starts quickly and decelerates towards the end. Perfect for elements settling into place or coming to rest.
-            </p>
-            <code className="bg-gray-200 px-2 py-1 rounded text-sm">animation-timing-function: ease-out;</code>
-          </div>
-          
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">ease-in-out</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Combines ease-in and ease-out. Starts slowly, accelerates in the middle, then decelerates. Smooth, natural motion.
-            </p>
-            <code className="bg-gray-200 px-2 py-1 rounded text-sm">animation-timing-function: ease-in-out;</code>
-          </div>
-          
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">cubic-bezier()</h3>
-            <p className="text-gray-700 text-sm mb-2">
-              Custom timing function defined by four control points. Allows complete control over animation acceleration and timing.
-            </p>
-            <code className="bg-gray-200 px-2 py-1 rounded text-sm">animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);</code>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          How to Use the Animation Previewer
-        </h2>
-        <div className="space-y-4">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">1. Select Timing Function</h3>
-            <p className="text-gray-700 text-sm">
-              Choose from built-in timing functions or select "cubic-bezier" to create custom curves. Watch the animation preview update in real-time.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">2. Adjust Animation Properties</h3>
-            <p className="text-gray-700 text-sm">
-              Control duration, delay, iteration count, and direction using the sliders and dropdowns. See how each property affects the animation behavior.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">3. Edit Cubic Bezier Curves</h3>
-            <p className="text-gray-700 text-sm">
-              When using cubic-bezier, adjust the four control points to create custom easing curves. The graph visualization helps you understand the curve shape.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">4. Try Different Animation Types</h3>
-            <p className="text-gray-700 text-sm">
-              Test your timing functions with various animation types: translate, scale, rotate, fade, bounce, and slide to see how they behave differently.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">5. Copy Generated CSS</h3>
-            <p className="text-gray-700 text-sm">
-              Once satisfied with your animation, copy the generated CSS code including keyframes and paste it into your project.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Understanding Cubic Bezier Curves
-        </h2>
-        <div className="bg-purple-50 p-6 rounded-lg">
-          <p className="text-purple-700 mb-4">
-            Cubic bezier curves are defined by four points: two endpoints (always 0,0 and 1,1) and two control points that you can adjust. The control points determine the curve's shape and thus the animation's acceleration pattern.
+      <div className="mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            CSS Animation Previewer for Smoother Motion and Cleaner Frontend Handoff
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>CSS Animation Previewer</strong> helps you design motion with timing precision before implementation.
+            It is built for designers and developers who need predictable, high-quality animation behavior across products.
           </p>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <h4 className="font-semibold text-purple-800 mb-2">Control Point 1 (x1, y1)</h4>
-              <p className="text-purple-700 text-sm">
-                Controls the initial acceleration. Higher y1 values create faster starts, while lower values create slower starts.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-purple-800 mb-2">Control Point 2 (x2, y2)</h4>
-              <p className="text-purple-700 text-sm">
-                Controls the final deceleration. Higher y2 values create abrupt stops, while lower values create gradual endings.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            Instead of testing blind values in code, you can preview easing behavior instantly, adjust curves visually,
+            and export animation settings that are ready for production.
+          </p>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Popular Animation Presets
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Material Design Standard</h3>
-            <p className="text-gray-700 text-sm mb-2">cubic-bezier(0.4, 0, 0.2, 1)</p>
-            <p className="text-gray-600 text-xs">Google's standard easing for smooth, natural motion</p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This Tool Is Better Than Basic Alternatives
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
+              </div>
+            ))}
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Ease Out Strong</h3>
-            <p className="text-gray-700 text-sm mb-2">cubic-bezier(0.215, 0.61, 0.355, 1)</p>
-            <p className="text-gray-600 text-xs">Strong deceleration for dramatic effect</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Bounce</h3>
-            <p className="text-gray-700 text-sm mb-2">cubic-bezier(0.68, -0.55, 0.265, 1.55)</p>
-            <p className="text-gray-600 text-xs">Playful bouncing effect with overshoot</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Elastic</h3>
-            <p className="text-gray-700 text-sm mb-2">cubic-bezier(0.175, 0.885, 0.32, 1.275)</p>
-            <p className="text-gray-600 text-xs">Elastic spring-like motion</p>
-          </div>
-        </div>
-      </section>
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Many easing demos show a curve only. This tool focuses on real animation behavior and implementation quality.
+          </p>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Practical Applications
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">User Interface</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Button hover and click animations</li>
-              <li>• Modal and dropdown entrance effects</li>
-              <li>• Page transition animations</li>
-              <li>• Loading and progress indicators</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Micro-interactions</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Form field focus states</li>
-              <li>• Icon transformations</li>
-              <li>• Notification appearances</li>
-              <li>• Scroll-triggered animations</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Brand Experience</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Logo animations and reveals</li>
-              <li>• Hero section entrance effects</li>
-              <li>• Product showcase animations</li>
-              <li>• Call-to-action emphasis</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Data Visualization</h3>
-            <ul className="text-gray-700 space-y-1 text-sm">
-              <li>• Chart and graph animations</li>
-              <li>• Counter and number animations</li>
-              <li>• Progress bar fills</li>
-              <li>• Data point transitions</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use the CSS Animation Previewer
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Animation Performance Tips
-        </h2>
-        <div className="bg-yellow-50 p-6 rounded-lg">
-          <ul className="space-y-2 text-gray-700">
-            <li>• <strong>Use transform and opacity:</strong> These properties are hardware-accelerated and perform better than animating layout properties</li>
-            <li>• <strong>Avoid animating expensive properties:</strong> Properties like width, height, and top/left can cause layout recalculations</li>
-            <li>• <strong>Use will-change property:</strong> Hint to the browser which properties will be animated for better optimization</li>
-            <li>• <strong>Keep animations under 16ms:</strong> Target 60fps by ensuring each frame renders in under 16 milliseconds</li>
-            <li>• <strong>Test on mobile devices:</strong> Mobile devices have less processing power, so test performance on actual devices</li>
-            <li>• <strong>Use CSS instead of JavaScript:</strong> CSS animations are often more performant than JavaScript-based animations</li>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Timing Function Guide for UI Motion
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {timingGuide.map((item) => (
+              <div key={item.name} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.name}</p>
+                <p className="mt-1">{item.use}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Practical Use Cases
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {useCases.map((item) => (
+              <div key={item.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.title}</p>
+                <p className="mt-1">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Mistakes to Avoid in CSS Animation Timing
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">What's the difference between animation and transition?</h3>
-            <p className="text-gray-700 text-sm">
-              Transitions occur between two states (like hover effects), while animations can have multiple keyframes and run independently of state changes.
-            </p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can I use cubic-bezier values outside 0-1 range?</h3>
-            <p className="text-gray-700 text-sm">
-              Yes! Y values can go outside 0-1 to create overshoot effects (bounce, elastic). X values should stay within 0-1 for proper timing.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How do I choose the right timing function?</h3>
-            <p className="text-gray-700 text-sm">
-              Consider the context: ease-out for elements entering, ease-in for elements leaving, ease-in-out for continuous motion, and custom curves for brand-specific effects.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Are CSS animations better than JavaScript animations?</h3>
-            <p className="text-gray-700 text-sm">
-              CSS animations are often more performant and run on the compositor thread, but JavaScript gives you more control and can handle complex logic.
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Create Better Motion Systems with Consistent Easing and Timing
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            With live curve testing, realistic playback, and copy-ready CSS output, this tool helps teams ship smoother
+            interactions and maintain a consistent motion language across products.
+          </p>
+        </section>
+      </div>
+    </>
   );
 }
