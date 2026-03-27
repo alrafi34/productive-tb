@@ -1,155 +1,274 @@
+const faqItems = [
+  {
+    question: "What is a HEX to RGB converter?",
+    answer:
+      "A HEX to RGB converter transforms hexadecimal color codes like #FF5733 into RGB values such as rgb(255, 87, 51) for CSS, design tools, and development workflows.",
+  },
+  {
+    question: "Can I also convert RGB to HEX?",
+    answer:
+      "Yes. This tool supports reverse conversion from RGB sliders back to HEX, so you can move between design and code formats quickly.",
+  },
+  {
+    question: "Does this converter support RGBA and HSL formats?",
+    answer:
+      "Yes. You can view RGB, RGBA, HSL, and HSLA outputs, including alpha transparency controls for CSS usage.",
+  },
+  {
+    question: "Why use this tool instead of a basic color converter?",
+    answer:
+      "This page combines conversion, color picker, sliders, palette generation, and gradient output in one interface, reducing tool switching during design work.",
+  },
+  {
+    question: "Can I copy converted color codes instantly?",
+    answer:
+      "Yes. Each format includes one-click copy actions to speed up workflow for CSS, Tailwind, design systems, and UI implementation.",
+  },
+  {
+    question: "Do I need to include the # symbol in HEX input?",
+    answer:
+      "You can enter HEX with or without #. The tool normalizes valid input and displays standard format output.",
+  },
+  {
+    question: "Is shorthand HEX like #FFF supported?",
+    answer:
+      "Yes. Shorthand HEX values are supported and expanded internally for accurate conversion.",
+  },
+  {
+    question: "Can this help build color palettes for UI design?",
+    answer:
+      "Yes. The palette generator creates lighter, darker, and complementary variants to help build practical color systems quickly.",
+  },
+  {
+    question: "Is this HEX to RGB converter free?",
+    answer:
+      "Yes. The tool is fully free and runs directly in your browser with no account required.",
+  },
+  {
+    question: "Does this tool send my color data to a server?",
+    answer:
+      "No. Conversions run in-browser for fast and private usage.",
+  },
+];
+
+const howToSteps = [
+  "Enter a HEX code or choose a color with the picker.",
+  "Adjust R, G, B sliders if you want manual tuning.",
+  "Set alpha to preview RGBA and HSLA transparency.",
+  "Copy HEX, RGB, RGBA, HSL, or HSLA with one click.",
+  "Use generated palette swatches for design exploration.",
+  "Copy the gradient CSS snippet for immediate use in stylesheets.",
+];
+
+const strengths = [
+  {
+    title: "Multi-format output in one place",
+    text: "You get HEX, RGB, RGBA, HSL, and HSLA together, which is more practical than single-format converters.",
+  },
+  {
+    title: "Design workflow ready",
+    text: "Palette and gradient helpers support real UI/UX and frontend workflows, not just one-off code conversion.",
+  },
+  {
+    title: "Fast copy actions",
+    text: "Built-in copy buttons reduce repetitive manual formatting and speed up implementation.",
+  },
+  {
+    title: "Visual + numeric control",
+    text: "Color picker plus sliders gives both intuitive selection and precise numerical tuning.",
+  },
+];
+
+const examples = [
+  {
+    title: "Brand color conversion",
+    input: "#1D4ED8",
+    output: "Convert to RGB/RGBA and HSL for design tokens and CSS variables.",
+  },
+  {
+    title: "Transparency for overlays",
+    input: "RGBA with alpha 0.35",
+    output: "Build readable hero overlays and modal backgrounds quickly.",
+  },
+  {
+    title: "Palette extension",
+    input: "Generate lighter and darker shades",
+    output: "Create button states, borders, and hover variants from one base color.",
+  },
+  {
+    title: "Gradient setup",
+    input: "Base color + complementary",
+    output: "Copy a production-ready linear-gradient declaration.",
+  },
+  {
+    title: "RGB to HEX migration",
+    input: "Set RGB sliders from existing project values",
+    output: "Get standardized HEX codes for design system consistency.",
+  },
+  {
+    title: "Quick QA checks",
+    input: "Compare multiple output formats side by side",
+    output: "Validate color format consistency across CSS and design files.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Using 3-digit and 6-digit HEX interchangeably without validation.",
+  "Forgetting alpha when replicating transparent UI layers.",
+  "Copying RGB values where HEX format is required by tooling.",
+  "Ignoring HSL when hue/saturation tuning would be faster.",
+  "Skipping palette consistency for hover/active UI states.",
+];
+
 export default function HexToRgbSEOContent() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use the HEX to RGB converter",
+    description:
+      "Convert HEX color values to RGB, RGBA, HSL, and HSLA with palette and gradient support.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
     <>
-      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          How to Use the HEX to RGB Converter Tool
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3">
-              Quick Start Guide
-            </h3>
-            <ol className="space-y-3 text-gray-600">
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">1</span>
-                <span>Enter a HEX color code (e.g., #FF5733) or use the color picker to select a color visually</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">2</span>
-                <span>Adjust RGB sliders (0-255) to fine-tune your color or convert RGB to HEX</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">3</span>
-                <span>View instant conversions in RGB, RGBA, HSL, and HSLA formats with live preview</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">4</span>
-                <span>Click copy buttons to copy any color format to your clipboard for use in CSS</span>
-              </li>
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3">
-              Key Features
-            </h3>
-            <ul className="space-y-2 text-gray-600">
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Instant HEX to RGB conversion
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                RGB to HEX reverse conversion
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Interactive color picker
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                RGB sliders for precise control
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Opacity/alpha channel control
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Automatic palette generation
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                CSS gradient generator
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is a HEX to RGB converter?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              A HEX to RGB converter is a free online tool that transforms hexadecimal color codes (like #FF5733) into RGB format (rgb(255, 87, 51)). This color converter is essential for web developers and designers who need to work with different color formats in CSS, HTML, and design software.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              How do I convert HEX to RGB?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Simply enter your HEX color code (with or without the # symbol) into the input field. The tool instantly converts it to RGB format. You can also use the color picker to select colors visually, and the converter will display both HEX and RGB values automatically.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I convert RGB to HEX with this tool?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes! This tool supports reverse conversion from RGB to HEX. Use the RGB sliders to set your red (0-255), green (0-255), and blue (0-255) values, and the tool will automatically generate the corresponding HEX color code.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What color formats does this converter support?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Our color converter supports HEX, RGB, RGBA (with opacity), HSL, and HSLA formats. All conversions happen instantly in your browser, and you can copy any format to your clipboard with one click for use in CSS, design tools, or code.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Is this HEX to RGB converter free to use?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes, this online color converter is completely free with no registration required. It runs 100% in your browser with no backend, ensuring your privacy and providing instant conversions without any limitations.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is the palette generator feature?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              The palette generator automatically creates color variations from your selected color, including lighter and darker shades, plus complementary colors. This is perfect for designers creating color schemes and UI/UX professionals building design systems.
-            </p>
-          </div>
-        </div>
-      </section>
+      <div className="mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            HEX to RGB Converter Online for Designers and Developers
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>HEX to RGB Converter</strong> helps you convert color codes instantly between HEX, RGB,
+            RGBA, HSL, and HSLA formats. It is designed for practical frontend and design-system workflows where quick
+            format conversion and copy-friendly output are essential.
+          </p>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            Users searching for terms like "hex to rgb converter", "color code converter", and "hex to rgba" typically
+            need fast conversion plus real design context. This page combines conversion, palette generation, gradient output,
+            usage examples, and FAQ depth to improve usability and indexing quality.
+          </p>
+        </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Why Use Our HEX to RGB Converter?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center">
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Instant Conversion</h3>
-            <p className="text-gray-600 text-sm">Real-time color conversion with live preview as you type or adjust sliders</p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This HEX to RGB Converter Is Better Than Basic Alternatives
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">🎨</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Designer Tools</h3>
-            <p className="text-gray-600 text-sm">Built-in palette generator and gradient creator for professional workflows</p>
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Many tools only convert one value at a time. This one is built for complete color workflow speed.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use the HEX to RGB Converter
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Real Workflow Examples
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {examples.map((example) => (
+              <div key={example.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{example.title}</p>
+                <p className="mt-1">{example.input}</p>
+                <p className="mt-1 font-medium text-gray-700">{example.output}</p>
+              </div>
+            ))}
           </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">📱</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Mobile Friendly</h3>
-            <p className="text-gray-600 text-sm">Fully responsive design works perfectly on desktop, tablet, and mobile devices</p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Mistakes to Avoid in Color Conversion
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Use This Tool for Faster, Cleaner Color Workflows
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            This converter is built for practical implementation: quick color conversion, palette generation, gradient export,
+            and instant copy actions. It provides stronger workflow value than single-output converters and supports real-world
+            UI design and frontend development needs.
+          </p>
+        </section>
+      </div>
     </>
   );
 }

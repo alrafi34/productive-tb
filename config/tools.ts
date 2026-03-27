@@ -28,7 +28,7 @@ export const tools: Tool[] = [
   { slug: "image-compressor", name: "Image Compressor", description: "Reduce JPG/PNG size in browser.", category: "image", icon: "🖼️", free: true },
   { slug: "image-resizer", name: "Image Resizer", description: "Set custom width & height.", category: "image", icon: "📐", free: true },
   { slug: "base64-image-encoder", name: "Base64 Image Encoder", description: "Convert images to Base64 string.", category: "image", icon: "🔐", free: true },
-  { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "For designers and devs.", category: "design", icon: "🎨", free: true },
+  { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "Convert HEX, RGB, RGBA, and HSL color formats instantly.", category: "design", icon: "🎨", free: true },
   { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate 3-5 color palettes.", category: "design", icon: "🌈", free: true },
   { slug: "favicon-generator", name: "Favicon Generator", description: "Resize image to 16×16 or 32×32 for web.", category: "image", icon: "🌐", free: true },
   

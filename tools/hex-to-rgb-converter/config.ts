@@ -1,14 +1,14 @@
 export const toolConfig = {
   slug: "hex-to-rgb-converter",
   name: "HEX to RGB Converter",
-  description: "Convert HEX colors to RGB, RGBA, HSL instantly with color picker, sliders, and palette generator",
+  description: "Convert HEX to RGB, RGBA, HSL, and HSLA instantly with palette and gradient helpers",
   category: "design",
   icon: "🎨",
   free: true,
   backend: false,
   seo: {
-    title: "Free HEX to RGB Converter - Color Code Converter Tool | Productive Toolbox",
-    description: "Convert HEX colors to RGB, RGBA, and HSL instantly in your browser. Free online color converter with color picker, sliders, and palette generator for designers and developers.",
+    title: "HEX to RGB Converter Online - Convert HEX, RGB, RGBA, HSL, and HSLA",
+    description: "Free HEX to RGB Converter with color picker, RGB sliders, alpha control, palette generation, and gradient CSS output. Convert and copy HEX, RGB, RGBA, HSL, and HSLA instantly.",
     keywords: [
       "hex to rgb",
       "hex to rgb converter",
@@ -18,19 +18,26 @@ export const toolConfig = {
       "color code converter",
       "hex to rgba",
       "hex to hsl",
+      "hex to hsla",
+      "rgb to hsl converter",
+      "css color converter",
+      "web color converter",
+      "design color converter",
+      "frontend color converter",
+      "hex color picker",
+      "rgba converter",
+      "hsl converter",
+      "color palette generator",
+      "gradient css generator",
       "free color converter",
       "online color converter",
-      "color picker tool",
-      "palette generator",
-      "gradient generator",
-      "css color converter",
-      "web color converter"
+      "color picker tool"
     ],
     openGraph: {
-      title: "Free HEX to RGB Converter - Instant Color Code Converter",
-      description: "Convert HEX colors to RGB, RGBA, and HSL instantly. Free online tool with color picker, sliders, and palette generator.",
+      title: "HEX to RGB Converter - Full Color Format Conversion Tool",
+      description: "Convert HEX, RGB, RGBA, HSL, and HSLA with instant copy, palette generation, and gradient-ready output.",
       type: "website",
-      url: "/hex-to-rgb-converter"
+      url: "/tools/design/hex-to-rgb-converter"
     }
   },
   features: [
@@ -38,10 +45,11 @@ export const toolConfig = {
     "RGB to HEX reverse conversion",
     "Interactive color picker",
     "RGB sliders (0-255)",
-    "Opacity control",
+    "Opacity and alpha control",
     "HSL/HSLA output",
-    "Palette generator",
-    "Gradient generator",
-    "Copy to clipboard"
+    "Color palette generator",
+    "Gradient CSS generator",
+    "One-click copy for all color formats",
+    "Client-side processing for fast private conversion"
   ]
 };
