@@ -138,6 +138,16 @@ import { toolConfig as idealWeightCalculatorConfig } from "@/tools/ideal-weight-
 import { toolConfig as bodyFatCalculatorConfig } from "@/tools/body-fat-calculator/config";
 import { toolConfig as dailyCalorieCalculatorConfig } from "@/tools/daily-calorie-calculator/config";
 import { powerConsumptionCalculatorConfig } from "@/tools/power-consumption-calculator/config";
+import { toolConfig as cssFlexboxPlaygroundConfig } from "@/tools/css-flexbox-playground/config";
+import { qrCodeGeneratorConfig } from "@/tools/qr-code-generator/config";
+import { toolConfig as jsonFormatterConfig } from "@/tools/json-formatter/config";
+import { toolConfig as readingTimeCalculatorConfig } from "@/tools/reading-time-calculator/config";
+import { toolConfig as pxToRemConverterConfig } from "@/tools/px-to-rem-converter/config";
+import { toolConfig as habitTrackerConfig } from "@/tools/habit-tracker/config";
+import { toolConfig as decisionWheelConfig } from "@/tools/decision-wheel/config";
+import { toolConfig as timeZoneConverterConfig } from "@/tools/time-zone-converter/config";
+import { htmlEntityEncoderConfig } from "@/tools/html-entity-encoder/config";
+import { toolConfig as mockDataGeneratorConfig } from "@/tools/mock-data-generator/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -272,6 +282,16 @@ const IdealWeightCalculatorUI = dynamic(() => import("@/tools/ideal-weight-calcu
 const BodyFatCalculatorUI = dynamic(() => import("@/tools/body-fat-calculator/ui"));
 const DailyCalorieCalculatorUI = dynamic(() => import("@/tools/daily-calorie-calculator/ui"));
 const PowerConsumptionCalculatorUI = dynamic(() => import("@/tools/power-consumption-calculator/ui"));
+const CSSFlexboxPlaygroundUI = dynamic(() => import("@/tools/css-flexbox-playground/ui"));
+const QRCodeGeneratorUI = dynamic(() => import("@/tools/qr-code-generator/ui"));
+const JSONFormatterUI = dynamic(() => import("@/tools/json-formatter/ui"));
+const ReadingTimeCalculatorUI = dynamic(() => import("@/tools/reading-time-calculator/ui"));
+const PxToRemConverterUI = dynamic(() => import("@/tools/px-to-rem-converter/ui"));
+const HabitTrackerUI = dynamic(() => import("@/tools/habit-tracker/ui"));
+const DecisionWheelUI = dynamic(() => import("@/tools/decision-wheel/ui"));
+const TimeZoneConverterUI = dynamic(() => import("@/tools/time-zone-converter/ui"));
+const HTMLEntityEncoderUI = dynamic(() => import("@/tools/html-entity-encoder/ui"));
+const MockDataGeneratorUI = dynamic(() => import("@/tools/mock-data-generator/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -407,10 +427,21 @@ const TOOLS = [
   { config: bodyFatCalculatorConfig, Component: BodyFatCalculatorUI },
   { config: dailyCalorieCalculatorConfig, Component: DailyCalorieCalculatorUI },
   { config: powerConsumptionCalculatorConfig, Component: PowerConsumptionCalculatorUI },
+  { config: cssFlexboxPlaygroundConfig, Component: CSSFlexboxPlaygroundUI },
+  { config: qrCodeGeneratorConfig, Component: QRCodeGeneratorUI },
+  { config: jsonFormatterConfig, Component: JSONFormatterUI },
+  { config: readingTimeCalculatorConfig, Component: ReadingTimeCalculatorUI },
+  { config: pxToRemConverterConfig, Component: PxToRemConverterUI },
+  { config: habitTrackerConfig, Component: HabitTrackerUI },
+  { config: decisionWheelConfig, Component: DecisionWheelUI },
+  { config: timeZoneConverterConfig, Component: TimeZoneConverterUI },
+  { config: htmlEntityEncoderConfig, Component: HTMLEntityEncoderUI },
+  { config: mockDataGeneratorConfig, Component: MockDataGeneratorUI },
 ];
 
 
 export const dynamicParams = true;
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const popularTools = [
@@ -419,9 +450,10 @@ export async function generateStaticParams() {
     "markdown-previewer", "color-palette-generator", "hex-to-rgb-converter",
     "percentage-calculator", "age-calculator", "lorem-ipsum-generator",
     "text-reverser", "image-resizer", "url-encoder-decoder",
-    "timestamp-unix-converter", "random-number-generator", "discount-calculator"
+    "timestamp-unix-converter", "random-number-generator", "discount-calculator",
+    "html-entity-encoder", "mock-data-generator"
   ];
-
+  
   return popularTools.flatMap((slug) => {
     const tool = tools.find((t) => t.slug === slug);
     return tool ? [{ tool: tool.category, subtool: slug }] : [];
@@ -436,7 +468,9 @@ export async function generateMetadata({
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
   const mappedCategory = tools.find((t) => t.slug === slug)?.category;
-  if (!entry || (mappedCategory && mappedCategory !== category)) return {};
+  if (!entry || (mappedCategory && mappedCategory !== category)) {
+    return {};
+  }
 
   const seo = entry.config.seo as {
     title: string;
@@ -478,11 +512,13 @@ export default async function ToolPage({
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
   const mappedCategory = tools.find((t) => t.slug === slug)?.category;
-  if (!entry || (mappedCategory && mappedCategory !== category)) notFound();
+  if (!entry || (mappedCategory && mappedCategory !== category)) {
+    notFound();
+  }
   const { config, Component } = entry;
-
   const canonicalCategory = mappedCategory || category;
   const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
+  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -496,7 +532,7 @@ export default async function ToolPage({
   };
 
   const catObj = categories.find(c => c.slug === canonicalCategory);
-
+  
   return (
     <>
       <script

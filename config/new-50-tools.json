@@ -1,0 +1,512 @@
+[
+  {
+    "slug": "qr-code-generator",
+    "name": "QR Code Generator",
+    "description": "Generate scannable QR codes for URLs, text, or contact info. Download as PNG.",
+    "category": "creator",
+    "icon": "📱",
+    "free": true,
+    "priority": 1,
+    "why": "Extremely high search volume. Pure front-end via qrcode.js. One of the most used online tools globally."
+  },
+  {
+    "slug": "css-flexbox-playground",
+    "name": "CSS Flexbox Playground",
+    "description": "Visually configure flexbox properties with live preview and copy-ready CSS output.",
+    "category": "design",
+    "icon": "🎯",
+    "free": true,
+    "priority": 1,
+    "why": "Developers google flexbox properties daily. Interactive playground captures that audience with high engagement."
+  },
+  {
+    "slug": "json-formatter",
+    "name": "JSON Formatter & Beautifier",
+    "description": "Beautify or minify JSON, highlight syntax errors, and explore nested structure with tree view.",
+    "category": "developer",
+    "icon": "📝",
+    "free": true,
+    "priority": 1,
+    "why": "Top 3 most searched developer tools. Every API developer needs this constantly."
+  },
+  {
+    "slug": "reading-time-calculator",
+    "name": "Reading Time Calculator",
+    "description": "Paste article text to estimate reading time at multiple WPM speeds. Perfect for bloggers.",
+    "category": "writing",
+    "icon": "⏱️",
+    "free": true,
+    "priority": 1,
+    "why": "Content creators and bloggers need this. High shareability. Real-time calculation on paste."
+  },
+  {
+    "slug": "px-to-rem-converter",
+    "name": "PX to REM Converter",
+    "description": "Convert pixel values to rem/em units with configurable base font size.",
+    "category": "design",
+    "icon": "📏",
+    "free": true,
+    "priority": 1,
+    "why": "Every web developer converts px to rem. Tiny tool, massive daily use."
+  },
+  {
+    "slug": "habit-tracker",
+    "name": "Habit Tracker",
+    "description": "Track daily habits with streaks and progress visualization using localStorage — no account needed.",
+    "category": "productivity",
+    "icon": "✅",
+    "free": true,
+    "priority": 1,
+    "why": "Habit tracking is viral. localStorage persistence makes it feel like an app. Very high return visitor rate."
+  },
+  {
+    "slug": "decision-wheel",
+    "name": "Decision Wheel Spinner",
+    "description": "Add custom options and spin the wheel to randomly pick one. Perfect for decisions or team picks.",
+    "category": "productivity",
+    "icon": "🎡",
+    "free": true,
+    "priority": 1,
+    "why": "Highly shareable and fun. Canvas-based spinning animation. Huge engagement and viral potential."
+  },
+  {
+    "slug": "time-zone-converter",
+    "name": "Time Zone Converter",
+    "description": "Convert time between world cities instantly. See multiple time zones side by side.",
+    "category": "productivity",
+    "icon": "🌍",
+    "free": true,
+    "priority": 1,
+    "why": "Remote teams constantly need this. Solves a real daily pain point with zero friction."
+  },
+  {
+    "slug": "html-entity-encoder",
+    "name": "HTML Entity Encoder / Decoder",
+    "description": "Convert HTML special characters like <, >, & to safe entities and back.",
+    "category": "developer",
+    "icon": "🏷️",
+    "free": true,
+    "priority": 2,
+    "why": "Web developers need this when writing HTML strings inside JS. Fast copy-paste utility."
+  },
+  {
+    "slug": "mock-data-generator",
+    "name": "Mock Data Generator",
+    "description": "Generate fake names, emails, phone numbers, addresses, and dates for testing and prototyping.",
+    "category": "developer",
+    "icon": "🎭",
+    "free": true,
+    "priority": 1,
+    "why": "Every developer testing forms or APIs needs fake data. Extremely high utility and searchability."
+  },
+  {
+    "slug": "css-triangle-generator",
+    "name": "CSS Triangle Generator",
+    "description": "Create pure CSS triangles for tooltips, arrows, and card decorations with live preview.",
+    "category": "design",
+    "icon": "🔺",
+    "free": true,
+    "priority": 2,
+    "why": "CSS triangles are tricky to memorize. This saves devs time with an interactive generator."
+  },
+  {
+    "slug": "placeholder-image-generator",
+    "name": "Placeholder Image Generator",
+    "description": "Generate SVG/Canvas placeholder images with custom size, color, and text for UI mockups.",
+    "category": "design",
+    "icon": "🖼️",
+    "free": true,
+    "priority": 2,
+    "why": "UI designers and devs use placeholder images constantly during prototyping. Quick generator with download."
+  },
+  {
+    "slug": "font-pairer",
+    "name": "Google Font Pairer",
+    "description": "Preview two Google Fonts side by side with custom sample text. Find your perfect font combo.",
+    "category": "design",
+    "icon": "🔤",
+    "free": true,
+    "priority": 1,
+    "why": "Font pairing is a common design task. Google Fonts API free. High engagement via typography selection."
+  },
+  {
+    "slug": "cron-expression-generator",
+    "name": "Cron Expression Generator",
+    "description": "Build cron schedules visually with dropdowns and see human-readable description instantly.",
+    "category": "developer",
+    "icon": "⏰",
+    "free": true,
+    "priority": 1,
+    "why": "Developers hate writing cron from memory. Visual builder solves a real pain daily for backend devs."
+  },
+  {
+    "slug": "user-agent-parser",
+    "name": "User Agent Parser",
+    "description": "Detect and display current browser name, version, OS, device type from the User-Agent string.",
+    "category": "developer",
+    "icon": "🌐",
+    "free": true,
+    "priority": 2,
+    "why": "QA testers and devs use this to debug browser compatibility. Instant value with no input needed on load."
+  },
+  {
+    "slug": "screen-resolution-checker",
+    "name": "Screen Resolution Checker",
+    "description": "Display current viewport, screen resolution, DPR, and orientation. Useful for responsive debugging.",
+    "category": "developer",
+    "icon": "📱",
+    "free": true,
+    "priority": 2,
+    "why": "QA testers need to note resolutions for bug reports. Loads instantly and shows data immediately."
+  },
+  {
+    "slug": "http-status-code-lookup",
+    "name": "HTTP Status Code Lookup",
+    "description": "Searchable encyclopedia of all HTTP status codes with descriptions, use cases, and examples.",
+    "category": "developer",
+    "icon": "🔍",
+    "free": true,
+    "priority": 2,
+    "why": "Developers look up HTTP codes constantly. Searchable reference beats MDN for quick lookups."
+  },
+  {
+    "slug": "svg-pattern-generator",
+    "name": "SVG Pattern Generator",
+    "description": "Generate repeating SVG patterns (dots, lines, cross, grid) for CSS backgrounds with color controls.",
+    "category": "design",
+    "icon": "🔲",
+    "free": true,
+    "priority": 2,
+    "why": "Background patterns are hard to create manually. SVG output works anywhere. High visual appeal."
+  },
+  {
+    "slug": "emoji-search-copy",
+    "name": "Emoji Search & Copy",
+    "description": "Search over 3,000 emojis by name, category, or keyword. Click to copy instantly.",
+    "category": "creator",
+    "icon": "😀",
+    "free": true,
+    "priority": 1,
+    "why": "Emoji search is extremely popular. High daily use for content creators, marketers, developers."
+  },
+  {
+    "slug": "ascii-art-generator",
+    "name": "ASCII Art Generator",
+    "description": "Convert text or images into ASCII character art. Choose font styles and density.",
+    "category": "creator",
+    "icon": "🎨",
+    "free": true,
+    "priority": 2,
+    "why": "Fun and viral — people love sharing ASCII art in chats. High engagement with visual output."
+  },
+  {
+    "slug": "voice-to-text-notepad",
+    "name": "Voice-to-Text Notepad",
+    "description": "Click a button and speak — transcribe voice to text using the browser's Web Speech API. Download notes.",
+    "category": "productivity",
+    "icon": "🎤",
+    "free": true,
+    "priority": 1,
+    "why": "Dictation tool without any backend or API cost. Real-time transcription is highly impressive and useful."
+  },
+  {
+    "slug": "text-to-speech-preview",
+    "name": "Text-to-Speech Preview",
+    "description": "Convert any text to speech using browser voices. Choose language, pitch, rate, and voice.",
+    "category": "multimedia",
+    "icon": "🔊",
+    "free": true,
+    "priority": 2,
+    "why": "Uses free Web Speech API. Useful for accessibility testing and content previewing. No API cost."
+  },
+  {
+    "slug": "daily-checklist",
+    "name": "Daily To-Do Checklist",
+    "description": "A persistent daily checklist stored in localStorage. Add, check, and reset tasks every day.",
+    "category": "productivity",
+    "icon": "📝",
+    "free": true,
+    "priority": 1,
+    "why": "People return to productivity tools daily. localStorage persistence = return visitor. High retention."
+  },
+  {
+    "slug": "password-entropy-calculator",
+    "name": "Password Entropy Calculator",
+    "description": "Calculate password strength in mathematical bits of entropy. Shows time to crack and recommendations.",
+    "category": "security",
+    "icon": "📊",
+    "free": true,
+    "priority": 2,
+    "why": "Security content ranks well. Unique angle on password strength beyond basic meters."
+  },
+  {
+    "slug": "drawing-pad",
+    "name": "Drawing Pad",
+    "description": "Freehand drawing whiteboard with color pickers, brush sizes, eraser, and PNG export.",
+    "category": "creator",
+    "icon": "✏️",
+    "free": true,
+    "priority": 2,
+    "why": "Canvas drawing is highly engaging. Saves as PNG. Kids, teachers, and designers all use this."
+  },
+  {
+    "slug": "reading-speed-tester",
+    "name": "Reading Speed Tester",
+    "description": "Time yourself reading a standard passage and get your WPM score with comprehension level.",
+    "category": "productivity",
+    "icon": "📖",
+    "free": true,
+    "priority": 2,
+    "why": "Interactive and shows personalized results. High shareability ('I read 350 WPM!'). Easy to spend time on."
+  },
+  {
+    "slug": "url-sanitizer",
+    "name": "URL Tracker Remover",
+    "description": "Paste any URL to strip UTM parameters, fbclid, gclid, and other tracking tokens automatically.",
+    "category": "security",
+    "icon": "🧹",
+    "free": true,
+    "priority": 1,
+    "why": "Privacy-focused tools are growing. Real daily pain point — nobody wants to share tracking links."
+  },
+  {
+    "slug": "base32-encoder",
+    "name": "Base32 Encoder / Decoder",
+    "description": "Encode and decode text using Base32 — used in 2FA secrets and legacy systems.",
+    "category": "developer",
+    "icon": "🔐",
+    "free": true,
+    "priority": 3,
+    "why": "Niche but highly searched by devs working with TOTP/2FA authentication systems."
+  },
+  {
+    "slug": "social-media-post-preview",
+    "name": "Social Media Post Preview",
+    "description": "See how your text looks as a Twitter/X post, LinkedIn update, or Instagram caption before publishing.",
+    "category": "creator",
+    "icon": "📱",
+    "free": true,
+    "priority": 1,
+    "why": "Content creators need to preview character limits. Solves a real problem for marketers and influencers."
+  },
+  {
+    "slug": "pixel-art-grid",
+    "name": "Pixel Art Creator",
+    "description": "Color a 16×16 or 32×32 pixel grid to create retro pixel art. Export as PNG or CSS grid code.",
+    "category": "creator",
+    "icon": "🎮",
+    "free": true,
+    "priority": 2,
+    "why": "Highly fun and viral. Pixel art is trending. Unique export to CSS feature sets it apart."
+  },
+  {
+    "slug": "csv-to-json-converter",
+    "name": "CSV to JSON Converter",
+    "description": "Parse CSV text or files into structured JSON. Preview table, download JSON, copy to clipboard.",
+    "category": "developer",
+    "icon": "📋",
+    "free": true,
+    "priority": 1,
+    "why": "Data engineers and analysts need this constantly. One of the top searched developer tool conversions."
+  },
+  {
+    "slug": "git-command-builder",
+    "name": "Git Command Builder",
+    "description": "Select Git operations from dropdowns and get the exact CLI command with explanation.",
+    "category": "developer",
+    "icon": "🐙",
+    "free": true,
+    "priority": 2,
+    "why": "Beginners and intermediate devs constantly look up Git commands. Interactive builder is better than docs."
+  },
+  {
+    "slug": "working-days-calculator",
+    "name": "Working Days Calculator",
+    "description": "Calculate business days between two dates, excluding weekends and optionally public holidays.",
+    "category": "productivity",
+    "icon": "📆",
+    "free": true,
+    "priority": 2,
+    "why": "Project managers and HR teams use this constantly. Real-world utility with high search volume."
+  },
+  {
+    "slug": "meditation-breather",
+    "name": "Breathing Exercise Timer",
+    "description": "Animated visual guide for box breathing, 4-7-8, and other techniques to reduce stress.",
+    "category": "productivity",
+    "icon": "🧘",
+    "free": true,
+    "priority": 2,
+    "why": "Wellness tools are growing. The animation is visually impressive. High session time and return visitors."
+  },
+  {
+    "slug": "timeline-creator",
+    "name": "Visual Timeline Creator",
+    "description": "Add events with dates to build a shareable visual horizontal or vertical timeline. Export as PNG.",
+    "category": "visualization",
+    "icon": "📅",
+    "free": true,
+    "priority": 2,
+    "why": "Students and project managers need timelines. Few free front-end-only timeline tools exist."
+  },
+  {
+    "slug": "simple-budgeter",
+    "name": "Simple Budget Planner",
+    "description": "Add income and expense entries and see remaining balance, spending chart, and category breakdown.",
+    "category": "productivity",
+    "icon": "💰",
+    "free": true,
+    "priority": 1,
+    "why": "Personal finance tools are evergreen. localStorage persistence. High return visitor rate."
+  },
+  {
+    "slug": "html-boilerplate-generator",
+    "name": "HTML Boilerplate Generator",
+    "description": "Configure options (charset, meta tags, CSS reset, JS) and download a ready-to-use HTML5 template.",
+    "category": "developer",
+    "icon": "📄",
+    "free": true,
+    "priority": 2,
+    "why": "Every new web project starts with a boilerplate. Interactive configurator beats copy-paste from memory."
+  },
+  {
+    "slug": "js-keycode-finder",
+    "name": "JavaScript KeyCode Finder",
+    "description": "Press any key to instantly see event.key, event.code, keyCode, and charCode values.",
+    "category": "developer",
+    "icon": "⌨️",
+    "free": true,
+    "priority": 2,
+    "why": "Devs look up keycodes constantly when handling keyboard events. Instant interactive tool."
+  },
+  {
+    "slug": "image-metadata-exif-viewer",
+    "name": "Image EXIF Metadata Viewer",
+    "description": "Upload a JPG to view embedded EXIF data: camera model, GPS coordinates, ISO, shutter speed.",
+    "category": "image",
+    "icon": "📸",
+    "free": true,
+    "priority": 2,
+    "why": "Privacy-conscious users and photographers both need this. Pure browser-side EXIF reading."
+  },
+  {
+    "slug": "prime-number-checker",
+    "name": "Prime Number Checker",
+    "description": "Check if any number is prime and find all prime numbers up to N using the Sieve of Eratosthenes.",
+    "category": "math",
+    "icon": "🔢",
+    "free": true,
+    "priority": 3,
+    "why": "Students and math enthusiasts search for this. Simple but educational with a visualized sieve."
+  },
+  {
+    "slug": "fibonacci-sequence-generator",
+    "name": "Fibonacci Sequence Generator",
+    "description": "Generate Fibonacci numbers up to N terms with animated display and golden ratio visualization.",
+    "category": "math",
+    "icon": "🌀",
+    "free": true,
+    "priority": 3,
+    "why": "Educational and visual. Students and curious learners find this tool delightful."
+  },
+  {
+    "slug": "yaml-to-json-converter",
+    "name": "YAML to JSON Converter",
+    "description": "Paste YAML data and instantly convert it to valid JSON with syntax highlighting and error checking.",
+    "category": "developer",
+    "icon": "🔄",
+    "free": true,
+    "priority": 1,
+    "why": "DevOps and backend developers work with YAML configs constantly and need JSON conversion."
+  },
+  {
+    "slug": "webcam-photo-booth",
+    "name": "Webcam Photo Booth",
+    "description": "Apply real-time CSS/canvas filters to live webcam feed and capture photos. Download as PNG.",
+    "category": "multimedia",
+    "icon": "📹",
+    "free": true,
+    "priority": 2,
+    "why": "Fun and highly engaging. Uses browser camera API with zero backend. People love visual interaction."
+  },
+  {
+    "slug": "audio-visualizer",
+    "name": "Audio Visualizer",
+    "description": "Upload an audio file or use your microphone to see a real-time frequency bar chart visualization.",
+    "category": "multimedia",
+    "icon": "🎵",
+    "free": true,
+    "priority": 2,
+    "why": "Visually stunning. Uses Web Audio API. Musicians and creators find this fascinating."
+  },
+  {
+    "slug": "video-frame-extractor",
+    "name": "Video Frame Extractor",
+    "description": "Load a video file, scrub to any moment, and save the current frame as a PNG image.",
+    "category": "multimedia",
+    "icon": "🎬",
+    "free": true,
+    "priority": 2,
+    "why": "Content creators need screenshots from videos without video editing software. Pure browser API."
+  },
+  {
+    "slug": "rot13-cipher",
+    "name": "ROT13 Cipher Encoder",
+    "description": "Encode and decode text using the classic ROT13 substitution cipher. Also supports Caesar shift.",
+    "category": "security",
+    "icon": "🔄",
+    "free": true,
+    "priority": 3,
+    "why": "Historical cipher tool. Great for puzzles, games, and learning cryptography basics."
+  },
+  {
+    "slug": "disposable-note",
+    "name": "Disposable Secure Note",
+    "description": "Write a note that is automatically wiped when you close the tab. Nothing is saved or sent anywhere.",
+    "category": "security",
+    "icon": "🗑️",
+    "free": true,
+    "priority": 2,
+    "why": "Privacy-focused users love truly ephemeral notes. Unique value proposition for sensitive temporary writing."
+  },
+  {
+    "slug": "random-id-generator",
+    "name": "UUID / CUID Generator",
+    "description": "Generate UUIDs (v1, v4), CUIDs, and NanoIDs for testing. Copy single or bulk output.",
+    "category": "developer",
+    "icon": "🆔",
+    "free": true,
+    "priority": 1,
+    "why": "Developers need unique IDs for testing databases and APIs. High daily developer traffic."
+  },
+  {
+    "slug": "sql-query-formatter",
+    "name": "SQL Query Formatter",
+    "description": "Beautify and format messy SQL queries with syntax highlighting, indentation, and keyword casing.",
+    "category": "developer",
+    "icon": "🗄️",
+    "free": true,
+    "priority": 1,
+    "why": "Database developers write SQL constantly. Formatting tools save time and reduce errors."
+  },
+  {
+    "slug": "dice-roller",
+    "name": "Dice Roller Simulator",
+    "description": "Roll custom dice sets (D4, D6, D8, D12, D20) with animated 3D roll effect and history log.",
+    "category": "creator",
+    "icon": "🎲",
+    "free": true,
+    "priority": 2,
+    "why": "Tabletop RPG players, board game enthusiasts, and teachers all use this. Highly engaging animation."
+  },
+  {
+    "slug": "css-button-generator",
+    "name": "CSS Button Style Generator",
+    "description": "Design a button visually with color, border-radius, shadow, and hover effects. Get copy-ready CSS.",
+    "category": "design",
+    "icon": "🔘",
+    "free": true,
+    "priority": 1,
+    "why": "Web developers spend time on button styling. Live preview + one-click copy is extremely useful."
+  }
+]

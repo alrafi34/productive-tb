@@ -116,6 +116,11 @@ import { toolConfig as investmentReturnCalculatorConfig } from "@/tools/investme
 import { toolConfig as gstVatCalculatorConfig } from "@/tools/gst-vat-calculator/config";
 import { toolConfig as salaryCalculatorConfig } from "@/tools/salary-calculator/config";
 import { toolConfig as bmrCalculatorConfig } from "@/tools/bmr-calculator/config";
+import { qrCodeGeneratorConfig } from "@/tools/qr-code-generator/config";
+import { toolConfig as jsonFormatterConfig } from "@/tools/json-formatter/config";
+import { toolConfig as readingTimeCalculatorConfig } from "@/tools/reading-time-calculator/config";
+import { toolConfig as habitTrackerConfig } from "@/tools/habit-tracker/config";
+import { htmlEntityEncoderConfig } from "@/tools/html-entity-encoder/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -236,6 +241,11 @@ export const TOOLS_REGISTRY = {
   'gst-vat-calculator': gstVatCalculatorConfig,
   'salary-calculator': salaryCalculatorConfig,
   'bmr-calculator': bmrCalculatorConfig,
+  'qr-code-generator': qrCodeGeneratorConfig,
+  'json-formatter': jsonFormatterConfig,
+  'reading-time-calculator': readingTimeCalculatorConfig,
+  'habit-tracker': habitTrackerConfig,
+  'html-entity-encoder': htmlEntityEncoderConfig,
 };
 
 
