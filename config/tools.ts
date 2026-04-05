@@ -269,7 +269,7 @@ export const tools: Tool[] = [
 
   // ── New 50 Tools ── (Creator)
   { slug: "qr-code-generator", name: "QR Code Generator", description: "Create custom scannable QR codes for links, text, WiFi, and contact data.", category: "creator", icon: "📱", free: true },
-  { slug: "emoji-search-copy", name: "Emoji Search & Copy", description: "Search over 3,000 emojis by name, category, or keyword. Click to copy instantly.", category: "creator", icon: "😀", free: true },
+  //{ slug: "emoji-search-copy", name: "Emoji Search & Copy", description: "Search over 3,000 emojis by name, category, or keyword. Click to copy instantly.", category: "creator", icon: "😀", free: true },
   { slug: "ascii-art-generator", name: "ASCII Art Generator", description: "Convert text or images into ASCII character art. Choose font styles and density.", category: "creator", icon: "🎨", free: true },
   { slug: "drawing-pad", name: "Drawing Pad", description: "Freehand drawing whiteboard with color pickers, brush sizes, eraser, and PNG export.", category: "creator", icon: "✏️", free: true },
   { slug: "social-media-post-preview", name: "Social Media Post Preview", description: "See how your text looks as a Twitter/X post, LinkedIn update, or Instagram caption before publishing.", category: "creator", icon: "📱", free: true },

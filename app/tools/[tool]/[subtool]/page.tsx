@@ -148,6 +148,18 @@ import { toolConfig as decisionWheelConfig } from "@/tools/decision-wheel/config
 import { toolConfig as timeZoneConverterConfig } from "@/tools/time-zone-converter/config";
 import { htmlEntityEncoderConfig } from "@/tools/html-entity-encoder/config";
 import { toolConfig as mockDataGeneratorConfig } from "@/tools/mock-data-generator/config";
+import { toolConfig as cssTriangleGeneratorConfig } from "@/tools/css-triangle-generator/config";
+import { toolConfig as placeholderImageGeneratorConfig } from "@/tools/placeholder-image-generator/config";
+import { toolConfig as cronExpressionGeneratorConfig } from "@/tools/cron-expression-generator/config";
+import { toolConfig as fontPairerConfig } from "@/tools/font-pairer/config";
+import { toolConfig as userAgentParserConfig } from "@/tools/user-agent-parser/config";
+import { toolConfig as screenResolutionCheckerConfig } from "@/tools/screen-resolution-checker/config";
+import { toolConfig as httpStatusCodeLookupConfig } from "@/tools/http-status-code-lookup/config";
+import { toolConfig as svgPatternGeneratorConfig } from "@/tools/svg-pattern-generator/config";
+import { asciiArtGeneratorConfig } from "@/tools/ascii-art-generator/config";
+import { toolConfig as voiceToTextNotepadConfig } from "@/tools/voice-to-text-notepad/config";
+import { toolConfig as textToSpeechPreviewConfig } from "@/tools/text-to-speech-preview/config";
+import { toolConfig as urlSanitizerConfig } from "@/tools/url-sanitizer/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -292,6 +304,18 @@ const DecisionWheelUI = dynamic(() => import("@/tools/decision-wheel/ui"));
 const TimeZoneConverterUI = dynamic(() => import("@/tools/time-zone-converter/ui"));
 const HTMLEntityEncoderUI = dynamic(() => import("@/tools/html-entity-encoder/ui"));
 const MockDataGeneratorUI = dynamic(() => import("@/tools/mock-data-generator/ui"));
+const CSSTriangleGeneratorUI = dynamic(() => import("@/tools/css-triangle-generator/ui"));
+const PlaceholderImageGeneratorUI = dynamic(() => import("@/tools/placeholder-image-generator/ui"));
+const CronExpressionGeneratorUI = dynamic(() => import("@/tools/cron-expression-generator/ui"));
+const FontPairerUI = dynamic(() => import("@/tools/font-pairer/ui"));
+const UserAgentParserUI = dynamic(() => import("@/tools/user-agent-parser/ui"));
+const ScreenResolutionCheckerUI = dynamic(() => import("@/tools/screen-resolution-checker/ui"));
+const HttpStatusCodeLookupUI = dynamic(() => import("@/tools/http-status-code-lookup/ui"));
+const SVGPatternGeneratorUI = dynamic(() => import("@/tools/svg-pattern-generator/ui"));
+const AsciiArtGeneratorUI = dynamic(() => import("@/tools/ascii-art-generator/ui"));
+const VoiceToTextNotepadUI = dynamic(() => import("@/tools/voice-to-text-notepad/ui"));
+const TextToSpeechPreviewUI = dynamic(() => import("@/tools/text-to-speech-preview/ui"));
+const URLSanitizerUI = dynamic(() => import("@/tools/url-sanitizer/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -437,6 +461,18 @@ const TOOLS = [
   { config: timeZoneConverterConfig, Component: TimeZoneConverterUI },
   { config: htmlEntityEncoderConfig, Component: HTMLEntityEncoderUI },
   { config: mockDataGeneratorConfig, Component: MockDataGeneratorUI },
+  { config: cssTriangleGeneratorConfig, Component: CSSTriangleGeneratorUI },
+  { config: placeholderImageGeneratorConfig, Component: PlaceholderImageGeneratorUI },
+  { config: cronExpressionGeneratorConfig, Component: CronExpressionGeneratorUI },
+  { config: fontPairerConfig, Component: FontPairerUI },
+  { config: userAgentParserConfig, Component: UserAgentParserUI },
+  { config: screenResolutionCheckerConfig, Component: ScreenResolutionCheckerUI },
+  { config: httpStatusCodeLookupConfig, Component: HttpStatusCodeLookupUI },
+  { config: svgPatternGeneratorConfig, Component: SVGPatternGeneratorUI },
+  { config: asciiArtGeneratorConfig, Component: AsciiArtGeneratorUI },
+  { config: voiceToTextNotepadConfig, Component: VoiceToTextNotepadUI },
+  { config: textToSpeechPreviewConfig, Component: TextToSpeechPreviewUI },
+  { config: urlSanitizerConfig, Component: URLSanitizerUI },
 ];
 
 
@@ -451,7 +487,7 @@ export async function generateStaticParams() {
     "percentage-calculator", "age-calculator", "lorem-ipsum-generator",
     "text-reverser", "image-resizer", "url-encoder-decoder",
     "timestamp-unix-converter", "random-number-generator", "discount-calculator",
-    "html-entity-encoder", "mock-data-generator"
+    "html-entity-encoder", "mock-data-generator", "font-pairer", "screen-resolution-checker"
   ];
   
   return popularTools.flatMap((slug) => {
@@ -472,15 +508,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const seo = entry.config.seo as {
-    title: string;
-    description: string;
-    keywords?: string[];
-    openGraph?: {
-      title?: string;
-      description?: string;
-    };
-  };
+  const seo = entry.config.seo as any;
   const canonicalCategory = mappedCategory || category;
   const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
   return {

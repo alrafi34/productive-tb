@@ -121,6 +121,15 @@ import { toolConfig as jsonFormatterConfig } from "@/tools/json-formatter/config
 import { toolConfig as readingTimeCalculatorConfig } from "@/tools/reading-time-calculator/config";
 import { toolConfig as habitTrackerConfig } from "@/tools/habit-tracker/config";
 import { htmlEntityEncoderConfig } from "@/tools/html-entity-encoder/config";
+import { toolConfig as cssTriangleGeneratorConfig } from "@/tools/css-triangle-generator/config";
+import { toolConfig as placeholderImageGeneratorConfig } from "@/tools/placeholder-image-generator/config";
+import { toolConfig as cronExpressionGeneratorConfig } from "@/tools/cron-expression-generator/config";
+import { toolConfig as fontPairerConfig } from "@/tools/font-pairer/config";
+import { toolConfig as screenResolutionCheckerConfig } from "@/tools/screen-resolution-checker/config";
+import { toolConfig as httpStatusCodeLookupConfig } from "@/tools/http-status-code-lookup/config";
+import { toolConfig as svgPatternGeneratorConfig } from "@/tools/svg-pattern-generator/config";
+import { config as asciiArtGeneratorConfig } from "@/tools/ascii-art-generator/config";
+import { toolConfig as voiceToTextNotepadConfig } from "@/tools/voice-to-text-notepad/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -246,6 +255,15 @@ export const TOOLS_REGISTRY = {
   'reading-time-calculator': readingTimeCalculatorConfig,
   'habit-tracker': habitTrackerConfig,
   'html-entity-encoder': htmlEntityEncoderConfig,
+  'css-triangle-generator': cssTriangleGeneratorConfig,
+  'placeholder-image-generator': placeholderImageGeneratorConfig,
+  'cron-expression-generator': cronExpressionGeneratorConfig,
+  'font-pairer': fontPairerConfig,
+  'screen-resolution-checker': screenResolutionCheckerConfig,
+  'http-status-code-lookup': httpStatusCodeLookupConfig,
+  'svg-pattern-generator': svgPatternGeneratorConfig,
+  'ascii-art-generator': asciiArtGeneratorConfig,
+  'voice-to-text-notepad': voiceToTextNotepadConfig,
 };
 
 

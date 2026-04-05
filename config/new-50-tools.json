@@ -179,16 +179,7 @@
     "priority": 2,
     "why": "Background patterns are hard to create manually. SVG output works anywhere. High visual appeal."
   },
-  {
-    "slug": "emoji-search-copy",
-    "name": "Emoji Search & Copy",
-    "description": "Search over 3,000 emojis by name, category, or keyword. Click to copy instantly.",
-    "category": "creator",
-    "icon": "😀",
-    "free": true,
-    "priority": 1,
-    "why": "Emoji search is extremely popular. High daily use for content creators, marketers, developers."
-  },
+
   {
     "slug": "ascii-art-generator",
     "name": "ASCII Art Generator",
