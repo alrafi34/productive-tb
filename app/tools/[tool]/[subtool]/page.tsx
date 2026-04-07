@@ -160,6 +160,19 @@ import { asciiArtGeneratorConfig } from "@/tools/ascii-art-generator/config";
 import { toolConfig as voiceToTextNotepadConfig } from "@/tools/voice-to-text-notepad/config";
 import { toolConfig as textToSpeechPreviewConfig } from "@/tools/text-to-speech-preview/config";
 import { toolConfig as urlSanitizerConfig } from "@/tools/url-sanitizer/config";
+import { base32EncoderConfig } from "@/tools/base32-encoder/config";
+import { toolConfig as socialMediaPostPreviewConfig } from "@/tools/social-media-post-preview/config";
+import { toolConfig as pixelArtGridConfig } from "@/tools/pixel-art-grid/config";
+import { toolConfig as csvToJsonConverterConfig } from "@/tools/csv-to-json-converter/config";
+import { toolConfig as workingDaysCalculatorConfig } from "@/tools/working-days-calculator/config";
+import { toolConfig as timelineCreatorConfig } from "@/tools/timeline-creator/config";
+import { toolConfig as primeNumberCheckerConfig } from "@/tools/prime-number-checker/config";
+import { toolConfig as yamlToJsonConverterConfig } from "@/tools/yaml-to-json-converter/config";
+import { toolConfig as audioVisualizerConfig } from "@/tools/audio-visualizer/config";
+import { toolConfig as videoFrameExtractorConfig } from "@/tools/video-frame-extractor/config";
+import { randomIDGeneratorConfig } from "@/tools/random-id-generator/config";
+import { toolConfig as cssButtonGeneratorConfig } from "@/tools/css-button-generator/config";
+import { toolConfig as diceRollerConfig } from "@/tools/dice-roller/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -316,6 +329,19 @@ const AsciiArtGeneratorUI = dynamic(() => import("@/tools/ascii-art-generator/ui
 const VoiceToTextNotepadUI = dynamic(() => import("@/tools/voice-to-text-notepad/ui"));
 const TextToSpeechPreviewUI = dynamic(() => import("@/tools/text-to-speech-preview/ui"));
 const URLSanitizerUI = dynamic(() => import("@/tools/url-sanitizer/ui"));
+const Base32EncoderUI = dynamic(() => import("@/tools/base32-encoder/ui"));
+const SocialMediaPostPreviewUI = dynamic(() => import("@/tools/social-media-post-preview/ui"));
+const PixelArtGridUI = dynamic(() => import("@/tools/pixel-art-grid/ui"));
+const CSVToJsonConverterUI = dynamic(() => import("@/tools/csv-to-json-converter/ui"));
+const WorkingDaysCalculatorUI = dynamic(() => import("@/tools/working-days-calculator/ui"));
+const TimelineCreatorUI = dynamic(() => import("@/tools/timeline-creator/ui"));
+const PrimeNumberCheckerUI = dynamic(() => import("@/tools/prime-number-checker/ui"));
+const YAMLToJSONConverterUI = dynamic(() => import("@/tools/yaml-to-json-converter/ui"));
+const AudioVisualizerUI = dynamic(() => import("@/tools/audio-visualizer/ui"));
+const VideoFrameExtractorUI = dynamic(() => import("@/tools/video-frame-extractor/ui"));
+const RandomIDGeneratorUI = dynamic(() => import("@/tools/random-id-generator/ui"));
+const CSSButtonGeneratorUI = dynamic(() => import("@/tools/css-button-generator/ui"));
+const DiceRollerUI = dynamic(() => import("@/tools/dice-roller/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -473,6 +499,19 @@ const TOOLS = [
   { config: voiceToTextNotepadConfig, Component: VoiceToTextNotepadUI },
   { config: textToSpeechPreviewConfig, Component: TextToSpeechPreviewUI },
   { config: urlSanitizerConfig, Component: URLSanitizerUI },
+  { config: base32EncoderConfig, Component: Base32EncoderUI },
+  { config: socialMediaPostPreviewConfig, Component: SocialMediaPostPreviewUI },
+  { config: pixelArtGridConfig, Component: PixelArtGridUI },
+  { config: csvToJsonConverterConfig, Component: CSVToJsonConverterUI },
+  { config: workingDaysCalculatorConfig, Component: WorkingDaysCalculatorUI },
+  { config: timelineCreatorConfig, Component: TimelineCreatorUI },
+  { config: primeNumberCheckerConfig, Component: PrimeNumberCheckerUI },
+  { config: yamlToJsonConverterConfig, Component: YAMLToJSONConverterUI },
+  { config: audioVisualizerConfig, Component: AudioVisualizerUI },
+  { config: videoFrameExtractorConfig, Component: VideoFrameExtractorUI },
+  { config: randomIDGeneratorConfig, Component: RandomIDGeneratorUI },
+  { config: cssButtonGeneratorConfig, Component: CSSButtonGeneratorUI },
+  { config: diceRollerConfig, Component: DiceRollerUI },
 ];
 
 
@@ -487,7 +526,8 @@ export async function generateStaticParams() {
     "percentage-calculator", "age-calculator", "lorem-ipsum-generator",
     "text-reverser", "image-resizer", "url-encoder-decoder",
     "timestamp-unix-converter", "random-number-generator", "discount-calculator",
-    "html-entity-encoder", "mock-data-generator", "font-pairer", "screen-resolution-checker"
+    "html-entity-encoder", "mock-data-generator", "font-pairer", "screen-resolution-checker",
+    "csv-to-json-converter", "timeline-creator", "audio-visualizer", "video-frame-extractor"
   ];
   
   return popularTools.flatMap((slug) => {
@@ -504,7 +544,7 @@ export async function generateMetadata({
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
   const mappedCategory = tools.find((t) => t.slug === slug)?.category;
-  if (!entry || (mappedCategory && mappedCategory !== category)) {
+  if (!entry) {
     return {};
   }
 
@@ -540,7 +580,7 @@ export default async function ToolPage({
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
   const mappedCategory = tools.find((t) => t.slug === slug)?.category;
-  if (!entry || (mappedCategory && mappedCategory !== category)) {
+  if (!entry) {
     notFound();
   }
   const { config, Component } = entry;

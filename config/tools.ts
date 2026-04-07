@@ -282,7 +282,7 @@ export const tools: Tool[] = [
   { slug: "time-zone-converter", name: "Time Zone Converter", description: "Convert time between world cities instantly. See multiple time zones side by side.", category: "productivity", icon: "🌍", free: true },
   { slug: "daily-checklist", name: "Daily To-Do Checklist", description: "A persistent daily checklist stored in localStorage. Add, check, and reset tasks every day.", category: "productivity", icon: "📝", free: true },
   { slug: "voice-to-text-notepad", name: "Voice-to-Text Notepad", description: "Click a button and speak — transcribe voice to text using the browser's Web Speech API. Download notes.", category: "productivity", icon: "🎤", free: true },
-  { slug: "working-days-calculator", name: "Working Days Calculator", description: "Calculate business days between two dates, excluding weekends and optionally public holidays.", category: "productivity", icon: "📆", free: true },
+  { slug: "working-days-calculator", name: "Working Days Calculator", description: "Calculate business days between two dates with flexible weekend configurations (1 or 2 days) and optional public holidays.", category: "productivity", icon: "📆", free: true },
   { slug: "meditation-breather", name: "Breathing Exercise Timer", description: "Animated visual guide for box breathing, 4-7-8, and other techniques to reduce stress.", category: "productivity", icon: "🧘", free: true },
   { slug: "simple-budgeter", name: "Simple Budget Planner", description: "Add income and expense entries and see remaining balance, spending chart, and category breakdown.", category: "productivity", icon: "💰", free: true },
 

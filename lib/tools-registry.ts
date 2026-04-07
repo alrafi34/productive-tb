@@ -130,6 +130,16 @@ import { toolConfig as httpStatusCodeLookupConfig } from "@/tools/http-status-co
 import { toolConfig as svgPatternGeneratorConfig } from "@/tools/svg-pattern-generator/config";
 import { config as asciiArtGeneratorConfig } from "@/tools/ascii-art-generator/config";
 import { toolConfig as voiceToTextNotepadConfig } from "@/tools/voice-to-text-notepad/config";
+import { base32EncoderConfig } from "@/tools/base32-encoder/config";
+import { toolConfig as pixelArtGridConfig } from "@/tools/pixel-art-grid/config";
+import { toolConfig as csvToJsonConverterConfig } from "@/tools/csv-to-json-converter/config";
+import { toolConfig as workingDaysCalculatorConfig } from "@/tools/working-days-calculator/config";
+import { toolConfig as timelineCreatorConfig } from "@/tools/timeline-creator/config";
+import { toolConfig as yamlToJsonConverterConfig } from "@/tools/yaml-to-json-converter/config";
+import { toolConfig as audioVisualizerConfig } from "@/tools/audio-visualizer/config";
+import { randomIDGeneratorConfig } from "@/tools/random-id-generator/config";
+import { toolConfig as cssButtonGeneratorConfig } from "@/tools/css-button-generator/config";
+import { toolConfig as diceRollerConfig } from "@/tools/dice-roller/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -264,6 +274,16 @@ export const TOOLS_REGISTRY = {
   'svg-pattern-generator': svgPatternGeneratorConfig,
   'ascii-art-generator': asciiArtGeneratorConfig,
   'voice-to-text-notepad': voiceToTextNotepadConfig,
+  'base32-encoder': base32EncoderConfig,
+  'pixel-art-grid': pixelArtGridConfig,
+  'csv-to-json-converter': csvToJsonConverterConfig,
+  'working-days-calculator': workingDaysCalculatorConfig,
+  'timeline-creator': timelineCreatorConfig,
+  'yaml-to-json-converter': yamlToJsonConverterConfig,
+  'audio-visualizer': audioVisualizerConfig,
+  'random-id-generator': randomIDGeneratorConfig,
+  'css-button-generator': cssButtonGeneratorConfig,
+  'dice-roller': diceRollerConfig,
 };
 
 
