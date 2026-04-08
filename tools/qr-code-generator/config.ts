@@ -1,0 +1,63 @@
+export const qrCodeGeneratorConfig = {
+  slug: "qr-code-generator",
+  name: "QR Code Generator",
+  description: "Generate customizable QR codes for URLs, text, WiFi, email, and phone with instant PNG export",
+  category: "creator",
+  icon: "📱",
+  free: true,
+  backend: false,
+  seo: {
+    title: "QR Code Generator Online - Create Custom QR Codes and Download PNG",
+    description: "Free QR Code Generator for URLs, text, WiFi, email, and phone data. Customize size, colors, error correction, and export high-quality PNG codes instantly.",
+    keywords: [
+      "QR code generator",
+      "free QR code generator",
+      "create QR code online",
+      "QR code maker",
+      "download QR code PNG",
+      "QR code creator",
+      "generate QR code",
+      "QR code tool",
+      "custom QR code",
+      "QR code scanner",
+      "WiFi QR code",
+      "URL QR code",
+      "text QR code",
+      "email QR code",
+      "phone QR code",
+      "QR code customizer",
+      "dynamic-looking qr style",
+      "custom qr code png",
+      "qr code for business cards",
+      "qr code for menu",
+      "qr code for wifi sharing",
+      "scannable qr creator",
+      "online qr code maker",
+      "high resolution qr code",
+      "qr code download tool"
+    ],
+    openGraph: {
+      title: "QR Code Generator - Build and Download Scannable QR Codes Fast",
+      description: "Create customizable QR codes with live preview and export-ready PNG output for print and digital use.",
+      type: "website",
+      url: "/tools/creator/qr-code-generator"
+    }
+  },
+  features: [
+    "Instant QR code generation",
+    "Real-time preview while typing",
+    "Customizable size (128px - 1024px)",
+    "Error correction levels (L, M, Q, H)",
+    "Custom foreground and background colors",
+    "Download as high-quality PNG",
+    "Copy QR image to clipboard",
+    "Smart input detection (URL, email, phone)",
+    "WiFi QR code generator",
+    "QR code history (last 10)",
+    "100% client-side generation",
+    "No server storage",
+    "Mobile-optimized interface",
+    "Keyboard shortcuts (Ctrl+Enter to generate)",
+    "Privacy-first local processing"
+  ]
+};

@@ -116,6 +116,30 @@ import { toolConfig as investmentReturnCalculatorConfig } from "@/tools/investme
 import { toolConfig as gstVatCalculatorConfig } from "@/tools/gst-vat-calculator/config";
 import { toolConfig as salaryCalculatorConfig } from "@/tools/salary-calculator/config";
 import { toolConfig as bmrCalculatorConfig } from "@/tools/bmr-calculator/config";
+import { qrCodeGeneratorConfig } from "@/tools/qr-code-generator/config";
+import { toolConfig as jsonFormatterConfig } from "@/tools/json-formatter/config";
+import { toolConfig as readingTimeCalculatorConfig } from "@/tools/reading-time-calculator/config";
+import { toolConfig as habitTrackerConfig } from "@/tools/habit-tracker/config";
+import { htmlEntityEncoderConfig } from "@/tools/html-entity-encoder/config";
+import { toolConfig as cssTriangleGeneratorConfig } from "@/tools/css-triangle-generator/config";
+import { toolConfig as placeholderImageGeneratorConfig } from "@/tools/placeholder-image-generator/config";
+import { toolConfig as cronExpressionGeneratorConfig } from "@/tools/cron-expression-generator/config";
+import { toolConfig as fontPairerConfig } from "@/tools/font-pairer/config";
+import { toolConfig as screenResolutionCheckerConfig } from "@/tools/screen-resolution-checker/config";
+import { toolConfig as httpStatusCodeLookupConfig } from "@/tools/http-status-code-lookup/config";
+import { toolConfig as svgPatternGeneratorConfig } from "@/tools/svg-pattern-generator/config";
+import { config as asciiArtGeneratorConfig } from "@/tools/ascii-art-generator/config";
+import { toolConfig as voiceToTextNotepadConfig } from "@/tools/voice-to-text-notepad/config";
+import { base32EncoderConfig } from "@/tools/base32-encoder/config";
+import { toolConfig as pixelArtGridConfig } from "@/tools/pixel-art-grid/config";
+import { toolConfig as csvToJsonConverterConfig } from "@/tools/csv-to-json-converter/config";
+import { toolConfig as workingDaysCalculatorConfig } from "@/tools/working-days-calculator/config";
+import { toolConfig as timelineCreatorConfig } from "@/tools/timeline-creator/config";
+import { toolConfig as yamlToJsonConverterConfig } from "@/tools/yaml-to-json-converter/config";
+import { toolConfig as audioVisualizerConfig } from "@/tools/audio-visualizer/config";
+import { randomIDGeneratorConfig } from "@/tools/random-id-generator/config";
+import { toolConfig as cssButtonGeneratorConfig } from "@/tools/css-button-generator/config";
+import { toolConfig as diceRollerConfig } from "@/tools/dice-roller/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -236,6 +260,30 @@ export const TOOLS_REGISTRY = {
   'gst-vat-calculator': gstVatCalculatorConfig,
   'salary-calculator': salaryCalculatorConfig,
   'bmr-calculator': bmrCalculatorConfig,
+  'qr-code-generator': qrCodeGeneratorConfig,
+  'json-formatter': jsonFormatterConfig,
+  'reading-time-calculator': readingTimeCalculatorConfig,
+  'habit-tracker': habitTrackerConfig,
+  'html-entity-encoder': htmlEntityEncoderConfig,
+  'css-triangle-generator': cssTriangleGeneratorConfig,
+  'placeholder-image-generator': placeholderImageGeneratorConfig,
+  'cron-expression-generator': cronExpressionGeneratorConfig,
+  'font-pairer': fontPairerConfig,
+  'screen-resolution-checker': screenResolutionCheckerConfig,
+  'http-status-code-lookup': httpStatusCodeLookupConfig,
+  'svg-pattern-generator': svgPatternGeneratorConfig,
+  'ascii-art-generator': asciiArtGeneratorConfig,
+  'voice-to-text-notepad': voiceToTextNotepadConfig,
+  'base32-encoder': base32EncoderConfig,
+  'pixel-art-grid': pixelArtGridConfig,
+  'csv-to-json-converter': csvToJsonConverterConfig,
+  'working-days-calculator': workingDaysCalculatorConfig,
+  'timeline-creator': timelineCreatorConfig,
+  'yaml-to-json-converter': yamlToJsonConverterConfig,
+  'audio-visualizer': audioVisualizerConfig,
+  'random-id-generator': randomIDGeneratorConfig,
+  'css-button-generator': cssButtonGeneratorConfig,
+  'dice-roller': diceRollerConfig,
 };
 
 

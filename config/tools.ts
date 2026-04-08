@@ -230,6 +230,77 @@ export const tools: Tool[] = [
 
 
   // Advanced Calculators (Statistics, Chemistry, Electronics, etc.)
+
+  // ── New 50 Tools ── (Writing & Content)
+  { slug: "reading-time-calculator", name: "Reading Time Calculator", description: "Paste article text to estimate reading time at multiple WPM speeds. Perfect for bloggers.", category: "writing", icon: "⏱️", free: true },
+  { slug: "html-entity-encoder", name: "HTML Entity Encoder / Decoder", description: "Convert HTML special characters like <, >, & to safe entities and back.", category: "writing", icon: "🏷️", free: true },
+  { slug: "reading-speed-tester", name: "Reading Speed Tester", description: "Time yourself reading a standard passage and get your WPM score with comprehension level.", category: "productivity", icon: "📖", free: true },
+
+  // ── New 50 Tools ── (Design)
+  { slug: "css-flexbox-playground", name: "CSS Flexbox Playground", description: "Visually configure flexbox properties with live preview and copy-ready CSS output.", category: "design", icon: "🎯", free: true },
+  { slug: "px-to-rem-converter", name: "PX to REM Converter", description: "Convert pixel values to rem/em units with configurable base font size.", category: "design", icon: "📏", free: true },
+  { slug: "css-triangle-generator", name: "CSS Triangle Generator", description: "Create pure CSS triangles for tooltips, arrows, and card decorations with live preview.", category: "design", icon: "🔺", free: true },
+  { slug: "placeholder-image-generator", name: "Placeholder Image Generator", description: "Generate SVG/Canvas placeholder images with custom size, color, and text for UI mockups.", category: "design", icon: "🖼️", free: true },
+  { slug: "font-pairer", name: "Google Font Pairer", description: "Preview two Google Fonts side by side with custom sample text. Find your perfect font combo.", category: "design", icon: "🔤", free: true },
+  { slug: "svg-pattern-generator", name: "SVG Pattern Generator", description: "Generate repeating SVG patterns (dots, lines, cross, grid) for CSS backgrounds with color controls.", category: "design", icon: "🔲", free: true },
+  { slug: "css-button-generator", name: "CSS Button Style Generator", description: "Design a button visually with color, border-radius, shadow, and hover effects. Get copy-ready CSS.", category: "design", icon: "🔘", free: true },
+
+  // ── New 50 Tools ── (Developer)
+  { slug: "json-formatter", name: "JSON Formatter & Beautifier", description: "Beautify or minify JSON, highlight syntax errors, and explore nested structure with tree view.", category: "developer", icon: "📝", free: true },
+  { slug: "mock-data-generator", name: "Mock Data Generator", description: "Generate fake names, emails, phone numbers, addresses, and dates for testing and prototyping.", category: "developer", icon: "🎭", free: true },
+  { slug: "cron-expression-generator", name: "Cron Expression Generator", description: "Build cron schedules visually with dropdowns and see human-readable description instantly.", category: "developer", icon: "⏰", free: true },
+  { slug: "user-agent-parser", name: "User Agent Parser", description: "Detect and display current browser name, version, OS, device type from the User-Agent string.", category: "developer", icon: "🌐", free: true },
+  { slug: "screen-resolution-checker", name: "Screen Resolution Checker", description: "Display current viewport, screen resolution, DPR, and orientation. Useful for responsive debugging.", category: "developer", icon: "📱", free: true },
+  { slug: "http-status-code-lookup", name: "HTTP Status Code Lookup", description: "Searchable encyclopedia of all HTTP status codes with descriptions, use cases, and examples.", category: "developer", icon: "🔍", free: true },
+  { slug: "base32-encoder", name: "Base32 Encoder / Decoder", description: "Encode and decode text using Base32 — used in 2FA secrets and legacy systems.", category: "developer", icon: "🔐", free: true },
+  { slug: "csv-to-json-converter", name: "CSV to JSON Converter", description: "Parse CSV text or files into structured JSON. Preview table, download JSON, copy to clipboard.", category: "developer", icon: "📋", free: true },
+  { slug: "git-command-builder", name: "Git Command Builder", description: "Select Git operations from dropdowns and get the exact CLI command with explanation.", category: "developer", icon: "🐙", free: true },
+  { slug: "html-boilerplate-generator", name: "HTML Boilerplate Generator", description: "Configure options (charset, meta tags, CSS reset, JS) and download a ready-to-use HTML5 template.", category: "developer", icon: "📄", free: true },
+  { slug: "js-keycode-finder", name: "JavaScript KeyCode Finder", description: "Press any key to instantly see event.key, event.code, keyCode, and charCode values.", category: "developer", icon: "⌨️", free: true },
+  { slug: "yaml-to-json-converter", name: "YAML to JSON Converter", description: "Paste YAML data and instantly convert it to valid JSON with syntax highlighting and error checking.", category: "developer", icon: "🔄", free: true },
+  { slug: "random-id-generator", name: "UUID / CUID Generator", description: "Generate UUIDs (v1, v4), CUIDs, and NanoIDs for testing. Copy single or bulk output.", category: "developer", icon: "🆔", free: true },
+  { slug: "sql-query-formatter", name: "SQL Query Formatter", description: "Beautify and format messy SQL queries with syntax highlighting, indentation, and keyword casing.", category: "developer", icon: "🗄️", free: true },
+
+  // ── New 50 Tools ── (Security)
+  { slug: "password-entropy-calculator", name: "Password Entropy Calculator", description: "Calculate password strength in mathematical bits of entropy. Shows time to crack and recommendations.", category: "security", icon: "📊", free: true },
+  { slug: "url-sanitizer", name: "URL Tracker Remover", description: "Paste any URL to strip UTM parameters, fbclid, gclid, and other tracking tokens automatically.", category: "security", icon: "🧹", free: true },
+  { slug: "rot13-cipher", name: "ROT13 Cipher Encoder", description: "Encode and decode text using the classic ROT13 substitution cipher. Also supports Caesar shift.", category: "security", icon: "🔄", free: true },
+  { slug: "disposable-note", name: "Disposable Secure Note", description: "Write a note that is automatically wiped when you close the tab. Nothing is saved or sent anywhere.", category: "security", icon: "🗑️", free: true },
+
+  // ── New 50 Tools ── (Creator)
+  { slug: "qr-code-generator", name: "QR Code Generator", description: "Create custom scannable QR codes for links, text, WiFi, and contact data.", category: "creator", icon: "📱", free: true },
+  //{ slug: "emoji-search-copy", name: "Emoji Search & Copy", description: "Search over 3,000 emojis by name, category, or keyword. Click to copy instantly.", category: "creator", icon: "😀", free: true },
+  { slug: "ascii-art-generator", name: "ASCII Art Generator", description: "Convert text or images into ASCII character art. Choose font styles and density.", category: "creator", icon: "🎨", free: true },
+  { slug: "drawing-pad", name: "Drawing Pad", description: "Freehand drawing whiteboard with color pickers, brush sizes, eraser, and PNG export.", category: "creator", icon: "✏️", free: true },
+  { slug: "social-media-post-preview", name: "Social Media Post Preview", description: "See how your text looks as a Twitter/X post, LinkedIn update, or Instagram caption before publishing.", category: "creator", icon: "📱", free: true },
+  { slug: "pixel-art-grid", name: "Pixel Art Creator", description: "Color a 16×16 or 32×32 pixel grid to create retro pixel art. Export as PNG or CSS grid code.", category: "creator", icon: "🎮", free: true },
+  { slug: "dice-roller", name: "Dice Roller Simulator", description: "Roll custom dice sets (D4, D6, D8, D12, D20) with animated roll effect and history log.", category: "creator", icon: "🎲", free: true },
+
+  // ── New 50 Tools ── (Productivity)
+  { slug: "habit-tracker", name: "Habit Tracker", description: "Track daily habits with streaks and progress visualization using localStorage — no account needed.", category: "productivity", icon: "✅", free: true },
+  { slug: "decision-wheel", name: "Decision Wheel Spinner", description: "Add custom options and spin the wheel to randomly pick one. Perfect for decisions or team picks.", category: "productivity", icon: "🎡", free: true },
+  { slug: "time-zone-converter", name: "Time Zone Converter", description: "Convert time between world cities instantly. See multiple time zones side by side.", category: "productivity", icon: "🌍", free: true },
+  { slug: "daily-checklist", name: "Daily To-Do Checklist", description: "A persistent daily checklist stored in localStorage. Add, check, and reset tasks every day.", category: "productivity", icon: "📝", free: true },
+  { slug: "voice-to-text-notepad", name: "Voice-to-Text Notepad", description: "Click a button and speak — transcribe voice to text using the browser's Web Speech API. Download notes.", category: "productivity", icon: "🎤", free: true },
+  { slug: "working-days-calculator", name: "Working Days Calculator", description: "Calculate business days between two dates with flexible weekend configurations (1 or 2 days) and optional public holidays.", category: "productivity", icon: "📆", free: true },
+  { slug: "meditation-breather", name: "Breathing Exercise Timer", description: "Animated visual guide for box breathing, 4-7-8, and other techniques to reduce stress.", category: "productivity", icon: "🧘", free: true },
+  { slug: "simple-budgeter", name: "Simple Budget Planner", description: "Add income and expense entries and see remaining balance, spending chart, and category breakdown.", category: "productivity", icon: "💰", free: true },
+
+  // ── New 50 Tools ── (Visualization)
+  { slug: "timeline-creator", name: "Visual Timeline Creator", description: "Add events with dates to build a shareable visual horizontal or vertical timeline. Export as PNG.", category: "visualization", icon: "📅", free: true },
+
+  // ── New 50 Tools ── (Math)
+  { slug: "prime-number-checker", name: "Prime Number Checker", description: "Check if any number is prime and find all prime numbers up to N using the Sieve of Eratosthenes.", category: "math", icon: "🔢", free: true },
+  { slug: "fibonacci-sequence-generator", name: "Fibonacci Sequence Generator", description: "Generate Fibonacci numbers up to N terms with animated display and golden ratio visualization.", category: "math", icon: "🌀", free: true },
+
+  // ── New 50 Tools ── (Image)
+  { slug: "image-metadata-exif-viewer", name: "Image EXIF Metadata Viewer", description: "Upload a JPG to view embedded EXIF data: camera model, GPS coordinates, ISO, shutter speed.", category: "image", icon: "📸", free: true },
+
+  // ── New 50 Tools ── (Multimedia)
+  { slug: "text-to-speech-preview", name: "Text-to-Speech Preview", description: "Convert any text to speech using browser voices. Choose language, pitch, rate, and voice.", category: "multimedia", icon: "🔊", free: true },
+  { slug: "webcam-photo-booth", name: "Webcam Photo Booth", description: "Apply real-time CSS/canvas filters to live webcam feed and capture photos. Download as PNG.", category: "multimedia", icon: "📹", free: true },
+  { slug: "audio-visualizer", name: "Audio Visualizer", description: "Upload an audio file or use your microphone to see a real-time frequency bar chart visualization.", category: "multimedia", icon: "🎵", free: true },
+  { slug: "video-frame-extractor", name: "Video Frame Extractor", description: "Load a video file, scrub to any moment, and save the current frame as a PNG image.", category: "multimedia", icon: "🎬", free: true },
 ];
 
 export const categories: Category[] = [
