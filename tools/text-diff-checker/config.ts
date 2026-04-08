@@ -25,8 +25,8 @@ export const textDiffCheckerConfig = {
     "frontend diff tool"
   ],
   seo: {
-    title: "Free Text Diff Checker – Compare and Highlight Differences Online | Productive Toolbox",
-    description: "Compare two text blocks online and highlight differences instantly. Supports word, line, and character-level comparison, ignore case, whitespace, and download results. Fully frontend and responsive.",
+    title: "Text Diff Checker Online - Compare Text Changes Instantly",
+    description: "Free Text Diff Checker to compare two text versions by line, word, or character. Use side-by-side or inline view, apply ignore-case/whitespace filters, and export diff results.",
     keywords: [
       "text diff checker",
       "compare text",
@@ -45,11 +45,22 @@ export const textDiffCheckerConfig = {
       "text merger",
       "diff highlight",
       "text tool",
-      "frontend diff tool"
+      "frontend diff tool",
+      "text difference checker",
+      "compare two texts online",
+      "line by line diff tool",
+      "word diff checker",
+      "character diff checker",
+      "side by side text compare",
+      "inline diff viewer",
+      "document difference checker",
+      "text revision comparison tool"
     ],
     openGraph: {
-      title: "Free Text Diff Checker – Compare and Highlight Differences",
-      description: "Compare text blocks with advanced options like ignore case, whitespace, and multiple comparison levels. 100% free and private."
+      title: "Text Diff Checker - Compare and Export Text Differences",
+      description: "Detect additions and removals with multi-level comparison, visual views, and export-ready output.",
+      type: "website",
+      url: "/tools/writing/text-diff-checker"
     }
   }
 };

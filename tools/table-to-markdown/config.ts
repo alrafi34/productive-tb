@@ -25,8 +25,8 @@ export const tableToMarkdownConfig = {
     "markdown syntax"
   ],
   seo: {
-    title: "Free Table to Markdown Converter – Convert Spreadsheet Tables to Markdown | Productive Toolbox",
-    description: "Convert spreadsheet tables from Excel, Google Sheets, CSV, or TSV into clean Markdown tables instantly. Copy or download Markdown with alignment support.",
+    title: "Table to Markdown Converter Online - Convert CSV, TSV, and Sheets Data Fast",
+    description: "Free Table to Markdown converter with delimiter auto-detect, custom headers, column alignment, escape options, and live preview. Copy or download clean .md output.",
     keywords: [
       "table to markdown",
       "markdown table",
@@ -45,11 +45,22 @@ export const tableToMarkdownConfig = {
       "spreadsheet to markdown",
       "data converter",
       "frontend converter",
-      "markdown syntax"
+      "markdown syntax",
+      "convert table to markdown online",
+      "markdown table alignment",
+      "csv table to markdown",
+      "tab separated to markdown",
+      "pipe table to markdown",
+      "markdown table formatter",
+      "markdown table with headers",
+      "github markdown table generator",
+      "documentation table converter"
     ],
     openGraph: {
-      title: "Free Table to Markdown Converter – Convert Spreadsheet Tables",
-      description: "Convert Excel, Google Sheets, CSV, or TSV tables to Markdown format with alignment support. 100% free and private."
+      title: "Table to Markdown Converter - Structured Markdown Tables from Spreadsheet Data",
+      description: "Convert spreadsheet and delimited data into markdown tables with alignment, formatting, and preview controls.",
+      type: "website",
+      url: "/tools/writing/table-to-markdown"
     }
   }
 };

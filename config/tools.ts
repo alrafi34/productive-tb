@@ -16,13 +16,13 @@ export type Category = {
 
 export const tools: Tool[] = [
   // Writing & Content Tools (1-10)
-  { slug: "word-counter", name: "Word Counter", description: "Count words, characters, paragraphs.", category: "writing", icon: "📝", free: true },
-  { slug: "sentence-case-converter", name: "Sentence Case Converter", description: "Uppercase, lowercase, title case, sentence case.", category: "writing", icon: "🔡", free: true },
-  { slug: "paragraph-formatter", name: "Paragraph Formatter", description: "Remove extra spaces, line breaks.", category: "writing", icon: "📝", free: true },
-  { slug: "keyword-density-checker", name: "Keyword Density Checker", description: "See how often words appear in text.", category: "writing", icon: "🔍", free: true },
-  { slug: "text-reverser", name: "Text Reverser Tool", description: "Reverse letters or words in text.", category: "writing", icon: "🔄", free: true },
-  { slug: "text-to-clipboard", name: "Text to Clipboard Copy", description: "Quickly copy text.", category: "writing", icon: "📋", free: true },
-  { slug: "word-frequency-counter", name: "Word Frequency Counter", description: "Shows most used words.", category: "writing", icon: "📊", free: true },
+  { slug: "word-counter", name: "Word Counter", description: "Count words, characters, sentences, paragraphs, and reading time.", category: "writing", icon: "📝", free: true },
+  { slug: "sentence-case-converter", name: "Sentence Case Converter", description: "Convert text to uppercase, lowercase, title case, or sentence case.", category: "writing", icon: "🔡", free: true },
+  { slug: "paragraph-formatter", name: "Paragraph Formatter", description: "Clean text by fixing spaces, line breaks, and paragraph structure.", category: "writing", icon: "📝", free: true },
+  { slug: "keyword-density-checker", name: "Keyword Density Checker", description: "Analyze keyword frequency and density percentages for SEO writing.", category: "writing", icon: "🔍", free: true },
+  { slug: "text-reverser", name: "Text Reverser Tool", description: "Reverse letters, words, sentences, or paragraph order instantly.", category: "writing", icon: "🔄", free: true },
+  { slug: "text-to-clipboard", name: "Text to Clipboard Copy", description: "Copy one or multiple text blocks in plain, HTML, or Markdown format.", category: "writing", icon: "📋", free: true },
+  { slug: "word-frequency-counter", name: "Word Frequency Counter", description: "Analyze word counts, percentages, and repeated terms in text.", category: "writing", icon: "📊", free: true },
   
   // Image & Design Tools (11-18)
   { slug: "image-compressor", name: "Image Compressor", description: "Reduce JPG/PNG size in browser.", category: "image", icon: "🖼️", free: true },
@@ -47,13 +47,13 @@ export const tools: Tool[] = [
   // URL & QR Tools (27-30)
   
   // Text & Writing Utilities (New)
-  { slug: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", description: "Generate placeholder text for designers.", category: "writing", icon: "📄", free: true },
-  { slug: "markdown-previewer", name: "Markdown Previewer", description: "Convert Markdown to styled HTML in real-time.", category: "writing", icon: "📋", free: true },
-  { slug: "remove-duplicate-lines", name: "Remove Duplicate Lines", description: "Clean up lists by removing identical entries.", category: "writing", icon: "🧹", free: true },
-  { slug: "find-and-replace", name: "Find and Replace", description: "Swap specific words across large text blocks.", category: "writing", icon: "🔍", free: true },
-  { slug: "text-diff-checker", name: "Text Diff Checker", description: "Compare two text blocks and highlight differences.", category: "writing", icon: "🔀", free: true },
-  { slug: "bionic-reading-converter", name: "Bionic Reading Converter", description: "Bold first letters of words for fast reading.", category: "writing", icon: "👁️", free: true },
-  { slug: "whitespace-remover", name: "White Space Remover", description: "Strip leading, trailing, or double spaces.", category: "writing", icon: "🧽", free: true },
+  { slug: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", description: "Generate placeholder paragraphs, sentences, or words with copy and download support.", category: "writing", icon: "📄", free: true },
+  { slug: "markdown-previewer", name: "Markdown Previewer", description: "Preview Markdown as HTML with live rendering, file load, and export options.", category: "writing", icon: "📋", free: true },
+  { slug: "remove-duplicate-lines", name: "Remove Duplicate Lines", description: "Deduplicate line-based text with case, whitespace, and sort controls.", category: "writing", icon: "🧹", free: true },
+  { slug: "find-and-replace", name: "Find and Replace", description: "Search and replace text with regex, batch rules, and preview controls.", category: "writing", icon: "🔍", free: true },
+  { slug: "text-diff-checker", name: "Text Diff Checker", description: "Compare text versions by line, word, or character with visual diff output.", category: "writing", icon: "🔀", free: true },
+  { slug: "bionic-reading-converter", name: "Bionic Reading Converter", description: "Convert text into adjustable bionic-style emphasis with export options.", category: "writing", icon: "👁️", free: true },
+  { slug: "whitespace-remover", name: "White Space Remover", description: "Clean leading/trailing spaces, extra gaps, tabs, and empty lines.", category: "writing", icon: "🧽", free: true },
   
   // Developer & Coding Helpers (New)
   { slug: "json-validator", name: "JSON Validator", description: "Check JSON for syntax errors.", category: "developer", icon: "✅", free: true },
@@ -80,14 +80,14 @@ export const tools: Tool[] = [
   // File & Image Micro-tools (New)
   { slug: "image-to-grayscale", name: "Image to Grayscale", description: "Apply grayscale filter to images.", category: "image", icon: "⚫", free: true },
   { slug: "hash-generator", name: "Hash Generator", description: "Generate MD5, SHA-1, SHA-256 hashes.", category: "security", icon: "#️⃣", free: true },
-  { slug: "table-to-markdown", name: "Table to Markdown", description: "Convert spreadsheet tables to Markdown.", category: "writing", icon: "📊", free: true },
+  { slug: "table-to-markdown", name: "Table to Markdown", description: "Convert CSV, TSV, or spreadsheet data into aligned markdown tables.", category: "writing", icon: "📊", free: true },
   
   // Advanced Text & Writing (New)
-  { slug: "anagram-finder", name: "Anagram Finder", description: "Check if two strings contain same letters.", category: "writing", icon: "🔤", free: true },
-  { slug: "palindrome-checker", name: "Palindrome Checker", description: "Validate if word reads same backward.", category: "writing", icon: "🔄", free: true },
-  { slug: "text-to-slug-converter", name: "Text-to-Slug Converter", description: "Turn text into URL-friendly slugs.", category: "writing", icon: "🔗", free: true },
-  { slug: "morse-code-translator", name: "Morse Code Translator", description: "Convert text to dots/dashes and back.", category: "writing", icon: "📡", free: true },
-  { slug: "upside-down-text-generator", name: "Upside-Down Text Generator", description: "Flip text using Unicode characters.", category: "writing", icon: "🙃", free: true },
+  { slug: "anagram-finder", name: "Anagram Finder", description: "Check single or bulk words for anagrams with detailed letter analysis.", category: "writing", icon: "🔤", free: true },
+  { slug: "palindrome-checker", name: "Palindrome Checker", description: "Check single or bulk text for palindromes with rule-based filtering.", category: "writing", icon: "🔄", free: true },
+  { slug: "text-to-slug-converter", name: "Text-to-Slug Converter", description: "Convert single or bulk titles into SEO-friendly URL slugs.", category: "writing", icon: "🔗", free: true },
+  { slug: "morse-code-translator", name: "Morse Code Translator", description: "Translate text and Morse code with audio playback and custom symbol settings.", category: "writing", icon: "📡", free: true },
+  { slug: "upside-down-text-generator", name: "Upside-Down Text Generator", description: "Flip, mirror, and decode Unicode text with preset styles.", category: "writing", icon: "🙃", free: true },
   { slug: "zalgo-text-generator", name: "Zalgo Text Generator", description: "Add glitch decorations to text.", category: "writing", icon: "👾", free: true },
   { slug: "nato-phonetic-converter", name: "NATO Phonetic Alphabet Converter", description: "Convert text to NATO phonetic alphabet.", category: "writing", icon: "📻", free: true },
   { slug: "random-name-picker", name: "Random Name Picker", description: "Randomly select winner from a list.", category: "writing", icon: "🎰", free: true },

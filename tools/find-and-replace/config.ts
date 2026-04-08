@@ -25,8 +25,8 @@ export const findAndReplaceConfig = {
     "frontend text tool"
   ],
   seo: {
-    title: "Free Find and Replace Tool – Edit Text Instantly Online | Productive Toolbox",
-    description: "Quickly find and replace words or phrases in text online. Supports match case, whole words, regex, real-time preview, copy, and download. Fully frontend, fast, and user-friendly.",
+    title: "Find and Replace Online - Advanced Text Search and Replace Tool",
+    description: "Free Find and Replace tool with regex support, batch replacements, preview mode, match-case controls, and file upload. Edit text faster and export results instantly.",
     keywords: [
       "find and replace",
       "text search",
@@ -45,11 +45,22 @@ export const findAndReplaceConfig = {
       "text finder",
       "string replace",
       "text modifier",
-      "frontend text tool"
+      "frontend text tool",
+      "find replace online",
+      "regex find and replace",
+      "batch text replacer",
+      "search and replace tool",
+      "replace all text",
+      "whole word replace",
+      "match case replace",
+      "text replacement utility",
+      "online text editor replace"
     ],
     openGraph: {
-      title: "Free Find and Replace Tool – Edit Text Instantly",
-      description: "Find and replace text with advanced options like regex, match case, and whole words. 100% free and private."
+      title: "Find and Replace Tool - Regex, Batch, and Preview Replacement",
+      description: "Search and replace text with advanced controls, preview mode, and file-based workflows.",
+      type: "website",
+      url: "/tools/writing/find-and-replace"
     }
   }
 };

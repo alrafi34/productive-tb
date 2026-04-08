@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Text to Clipboard Tool - Copy Text Instantly Online | Productive Toolbox",
-    description: "Quickly copy text, code, or generated content to your clipboard with one click. Supports plain text, HTML, Markdown, batch copy, and more. Fully frontend and responsive.",
+    title: "Text to Clipboard Tool Online - Copy Text Blocks in One Click",
+    description: "Free Text to Clipboard tool for one-click copy, multi-block management, copy-all workflow, and plain/HTML/Markdown output. Ideal for writing and documentation tasks.",
     keywords: [
       "text to clipboard",
       "copy text online",
@@ -27,13 +27,22 @@ export const toolConfig = {
       "batch copy text",
       "copy multiple texts",
       "clipboard utility",
-      "text copy online"
+      "text copy online",
+      "copy all text blocks",
+      "markdown clipboard copy",
+      "html clipboard copy",
+      "line number copy tool",
+      "text snippet manager",
+      "one click text copier",
+      "browser clipboard tool",
+      "copy snippets online",
+      "text block copy tool"
     ],
     openGraph: {
-      title: "Free Text to Clipboard Tool - Copy Text Instantly",
-      description: "Copy any text to clipboard with one click. Supports multiple formats and batch copying.",
+      title: "Text to Clipboard - Copy Snippets and Text Blocks Instantly",
+      description: "Copy text in plain, markdown, or HTML format with one-click and copy-all options.",
       type: "website",
-      url: "/text-to-clipboard"
+      url: "/tools/writing/text-to-clipboard"
     }
   },
   features: [

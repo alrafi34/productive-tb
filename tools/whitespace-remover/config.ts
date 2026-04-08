@@ -25,8 +25,8 @@ export const whitespaceRemoverConfig = {
     "text processor"
   ],
   seo: {
-    title: "Free White Space Remover Tool – Clean Up Text Online Instantly | Productive Toolbox",
-    description: "Remove extra spaces from text instantly online. Strip leading, trailing, or multiple spaces, remove empty lines, and clean tabs. Fully frontend, fast, and user-friendly.",
+    title: "White Space Remover Online - Clean Extra Spaces and Tabs Instantly",
+    description: "Free White Space Remover to clean leading/trailing spaces, collapse multiple spaces, remove empty lines, and convert tabs. Export cleaned text in TXT, MD, or CSV.",
     keywords: [
       "whitespace remover",
       "remove spaces",
@@ -45,11 +45,22 @@ export const whitespaceRemoverConfig = {
       "format text",
       "clean whitespace",
       "frontend text tool",
-      "text processor"
+      "text processor",
+      "remove trailing spaces",
+      "remove leading spaces",
+      "strip whitespace online",
+      "text whitespace cleaner",
+      "tab to spaces converter",
+      "spaces to tabs converter",
+      "remove empty lines online",
+      "text cleanup utility",
+      "whitespace formatter tool"
     ],
     openGraph: {
-      title: "Free White Space Remover Tool – Clean Up Text Instantly",
-      description: "Remove leading, trailing, and multiple spaces from text with advanced options. 100% free and private."
+      title: "White Space Remover - Clean and Normalize Text Formatting",
+      description: "Remove unwanted spaces and tabs with configurable cleanup rules and export-ready output.",
+      type: "website",
+      url: "/tools/writing/whitespace-remover"
     }
   }
 };

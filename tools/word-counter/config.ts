@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Word Counter Tool - Count Words, Characters & Reading Time | Productive Toolbox",
-    description: "Free online word counter tool to count words, characters, sentences, paragraphs, and estimate reading time. Perfect for writers, students, and content creators.",
+    title: "Word Counter Online - Count Words, Characters, and Reading Time",
+    description: "Free Word Counter to measure words, characters, sentences, paragraphs, and estimated reading time in real time. Ideal for essays, blogs, and content writing workflows.",
     keywords: [
       "word counter",
       "character counter",
@@ -24,13 +24,22 @@ export const toolConfig = {
       "text statistics",
       "content writing tools",
       "essay word count",
-      "document word counter"
+      "document word counter",
+      "online word count tool",
+      "word counter with character count",
+      "reading time estimator",
+      "blog word counter",
+      "academic word counter",
+      "paragraph and sentence counter",
+      "seo writing word counter",
+      "text length checker",
+      "copywriting word counter"
     ],
     openGraph: {
-      title: "Free Word Counter Tool - Count Words & Characters Online",
-      description: "Instantly count words, characters, sentences, and paragraphs. Get reading time estimates for your content. Free online tool for writers and students.",
+      title: "Word Counter - Check Text Length, Structure, and Reading Time",
+      description: "Count words, characters, sentences, and paragraphs instantly with live reading-time estimation.",
       type: "website",
-      url: "/word-counter"
+      url: "/tools/writing/word-counter"
     }
   },
   features: [

@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Sentence Case Converter - Uppercase, Lowercase, Title Case | Productive Toolbox",
-    description: "Free online sentence case converter tool. Instantly convert text to uppercase, lowercase, title case, or sentence case. Perfect for writers and content creators.",
+    title: "Sentence Case Converter Online - Uppercase, Lowercase, Title Case Tool",
+    description: "Free Sentence Case Converter for uppercase, lowercase, title case, and sentence case formatting. Instantly transform text for writing, editing, and publishing workflows.",
     keywords: [
       "sentence case converter",
       "uppercase converter",
@@ -24,13 +24,21 @@ export const toolConfig = {
       "capitalize text",
       "text converter",
       "case changer",
-      "text case tool"
+      "text case tool",
+      "change text case online",
+      "case conversion tool",
+      "title case formatter",
+      "sentence case tool",
+      "text capitalization tool",
+      "content formatting tool",
+      "writing case converter",
+      "copy paste case converter"
     ],
     openGraph: {
-      title: "Free Sentence Case Converter - Transform Text Case Online",
-      description: "Instantly convert text between uppercase, lowercase, title case, and sentence case. Free online tool for writers and content creators.",
+      title: "Sentence Case Converter - Transform Text Case Instantly",
+      description: "Convert text between uppercase, lowercase, title case, and sentence case in one click.",
       type: "website",
-      url: "/sentence-case-converter"
+      url: "/tools/writing/sentence-case-converter"
     }
   },
   features: [

@@ -1,160 +1,303 @@
-import React from 'react';
-import RelatedTools from '@/components/RelatedTools';
+const faqItems = [
+  {
+    question: "What is a table to markdown converter?",
+    answer:
+      "A table to markdown converter transforms spreadsheet-like rows and columns into valid markdown table syntax that works in GitHub, docs, and markdown editors.",
+  },
+  {
+    question: "What input formats are supported?",
+    answer:
+      "You can paste data from Excel or Google Sheets, upload TXT/CSV/TSV files, and process tab, comma, pipe, or multi-space separated text.",
+  },
+  {
+    question: "How does delimiter auto-detection work?",
+    answer:
+      "The tool checks your first row and detects tab, pipe, comma, or space-based separation to parse columns quickly without manual setup.",
+  },
+  {
+    question: "Can I define my own headers?",
+    answer:
+      "Yes. You can use the first row as header, auto-generate headers, or provide custom header labels for each column.",
+  },
+  {
+    question: "Can I control markdown alignment for each column?",
+    answer:
+      "Yes. You can set left, center, or right alignment per column, and the tool generates proper markdown separator syntax.",
+  },
+  {
+    question: "Does it handle markdown special characters?",
+    answer:
+      "Yes. Enable escape mode to prevent markdown symbols from breaking table formatting in rendered output.",
+  },
+  {
+    question: "Can I wrap cell values in backticks?",
+    answer:
+      "Yes. Backtick wrapping is available for code-oriented tables and technical documentation workflows.",
+  },
+  {
+    question: "Why is this tool better than basic converters?",
+    answer:
+      "It combines flexible parsing, header strategies, per-column alignment, pretty formatting, escaping, backtick mode, preview, and export in one focused workflow.",
+  },
+  {
+    question: "Can I preview the output before copying?",
+    answer:
+      "Yes. The tool shows both markdown source and rendered HTML table preview so you can validate layout before publishing.",
+  },
+  {
+    question: "Is this table to markdown tool private?",
+    answer:
+      "Yes. Conversion runs in your browser, so your table content is not sent to external servers.",
+  },
+];
+
+const howToSteps = [
+  "Paste table data or upload a TXT, CSV, or TSV file.",
+  "Select delimiter mode (auto, tab, comma, pipe, or multi-space).",
+  "Choose header mode: first-row, no-header, or custom headers.",
+  "Set column alignments and optional formatting options.",
+  "Convert to markdown, review source and preview, then copy or download.",
+];
+
+const strengths = [
+  {
+    title: "Accurate parsing from real data sources",
+    text: "Handle spreadsheet and delimited text with auto-detection plus manual delimiter control.",
+  },
+  {
+    title: "Header and structure flexibility",
+    text: "Switch between first-row headers, generated headers, or custom labels based on your dataset.",
+  },
+  {
+    title: "Publishing-ready formatting controls",
+    text: "Tune alignment, readability format, escaping, and backticks before sending output to docs platforms.",
+  },
+  {
+    title: "Faster validation workflow",
+    text: "Compare markdown source with rendered preview and export when everything looks correct.",
+  },
+];
+
+const optionGuide = [
+  {
+    option: "Header Mode",
+    use: "Decide whether first row is a header, auto-generate headers, or set custom names.",
+  },
+  {
+    option: "Delimiter Control",
+    use: "Use auto-detection or force tab/comma/pipe/space parsing for consistent column splitting.",
+  },
+  {
+    option: "Column Alignments",
+    use: "Assign left, center, or right alignment to each column in final markdown syntax.",
+  },
+  {
+    option: "Pretty Format",
+    use: "Create cleaner fixed-width markdown source that is easier to read and maintain.",
+  },
+  {
+    option: "Escape Special Characters",
+    use: "Protect markdown tables from rendering issues caused by symbols like pipes and brackets.",
+  },
+  {
+    option: "Wrap in Backticks",
+    use: "Render each cell as inline code to preserve technical values and literal strings.",
+  },
+];
+
+const useCases = [
+  {
+    title: "GitHub README tables",
+    detail: "Convert spreadsheet snippets into markdown tables for repositories and open-source docs.",
+  },
+  {
+    title: "Technical documentation",
+    detail: "Prepare API references, config matrices, and product specs in markdown-first docs systems.",
+  },
+  {
+    title: "Content operations",
+    detail: "Move structured data from sheet-based workflows into CMS or publishing pipelines.",
+  },
+  {
+    title: "Knowledge-base updates",
+    detail: "Standardize internal tables for wiki pages, runbooks, and team documentation.",
+  },
+  {
+    title: "Report publishing",
+    detail: "Quickly publish tables from CSV exports into markdown reports and summaries.",
+  },
+  {
+    title: "Developer handoff",
+    detail: "Share aligned, readable markdown tables for pull requests and architecture notes.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Using the wrong delimiter when source rows contain mixed separators.",
+  "Treating data rows as headers by accident and losing first-row values.",
+  "Skipping escape mode for content that contains markdown control symbols.",
+  "Forgetting alignment review for number-heavy columns that should be right-aligned.",
+  "Copying output without checking rendered preview for structural issues.",
+];
 
 export default function SEOContent() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to convert a table to markdown",
+    description:
+      "Paste or upload table data, configure delimiter and formatting options, then convert to markdown table syntax.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
-    <div className="max-w-4xl mx-auto space-y-12">
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Table to Markdown Converter</h2>
-        <ol className="space-y-3 text-gray-700">
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">1.</span>
-            <span><strong>Paste your table data:</strong> Copy a table from Excel, Google Sheets, or any spreadsheet application and paste it into the input area. You can also upload CSV, TSV, or TXT files.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">2.</span>
-            <span><strong>Configure settings:</strong> Choose header mode (first row, no header, or custom), select delimiter type (auto-detect, tab, comma, pipe, or space), and enable formatting options.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">3.</span>
-            <span><strong>Set column alignments:</strong> For each column, choose left, center, or right alignment. This controls how the Markdown table will be formatted.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">4.</span>
-            <span><strong>Convert to Markdown:</strong> Click "Convert to Markdown" to generate the table. View the Markdown code and rendered preview simultaneously.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">5.</span>
-            <span><strong>Copy or download:</strong> Copy the Markdown to clipboard or download as a .md file for use in documentation, GitHub, or any Markdown editor.</span>
-          </li>
-        </ol>
-      </section>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">What is a Table to Markdown Converter?</h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          A Table to Markdown Converter is a specialized tool that transforms spreadsheet data into Markdown table syntax. Markdown tables are widely used in documentation, README files, GitHub, GitLab, forums, and content management systems that support Markdown formatting. This tool eliminates the tedious manual process of creating Markdown tables by automatically parsing your data and generating properly formatted Markdown syntax.
-        </p>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          Our converter runs entirely in your browser, ensuring complete privacy as no data is sent to any server. It intelligently detects delimiters (tabs, commas, pipes, or spaces) to parse your table data correctly, supports multiple header modes including custom headers, and offers advanced formatting options like column alignment, pretty formatting with fixed widths, special character escaping, and backtick wrapping for code tables.
-        </p>
-        <p className="text-gray-700 leading-relaxed">
-          Whether you're creating documentation, writing README files, preparing content for GitHub wikis, or formatting data for any Markdown-supported platform, this tool provides instant conversion with full control over formatting. The live preview feature lets you see exactly how your table will render, and the statistics dashboard shows row count, column count, and total cells for verification.
-        </p>
-      </section>
+      <div className="max-w-4xl mx-auto mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Table to Markdown Converter for Faster Documentation and Cleaner Publishing Workflows
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>Table to Markdown Converter</strong> helps you turn spreadsheet-style data into valid markdown tables in seconds.
+            It is designed for documentation teams, developers, content editors, and anyone publishing structured data in markdown.
+          </p>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            Instead of manually writing separators and alignment markers, you can parse, format, preview, and export from one interface.
+          </p>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Use Cases</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">📚 Documentation</h3>
-            <p className="text-sm text-gray-700">Create tables for technical documentation, API references, and user guides in Markdown format.</p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This Tool Performs Better Than Basic Online Converters
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">💻 GitHub README</h3>
-            <p className="text-sm text-gray-700">Format tables for GitHub README files, wikis, and issue templates with proper Markdown syntax.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">📊 Data Presentation</h3>
-            <p className="text-sm text-gray-700">Convert spreadsheet data into Markdown tables for blog posts, articles, and content platforms.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">📝 Note Taking</h3>
-            <p className="text-sm text-gray-700">Create formatted tables in Markdown-based note-taking apps like Obsidian, Notion, or Joplin.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">🔧 Configuration Files</h3>
-            <p className="text-sm text-gray-700">Format configuration tables for YAML, TOML, or Markdown-based config documentation.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">📈 Reports</h3>
-            <p className="text-sm text-gray-700">Convert data tables from Excel or Google Sheets into Markdown for reports and presentations.</p>
-          </div>
-        </div>
-      </section>
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Many converters only generate basic output. This one gives full control needed for real documentation standards.
+          </p>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Benefits</h2>
-        <ul className="space-y-2 text-gray-700">
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Instant Conversion:</strong> Convert tables in seconds with automatic delimiter detection.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>100% Privacy:</strong> All processing happens in your browser - no data uploaded to servers.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Multiple Input Methods:</strong> Paste from Excel/Sheets, upload CSV/TSV files, or type manually.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Column Alignment Control:</strong> Set left, center, or right alignment for each column independently.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Pretty Formatting:</strong> Generate clean, readable Markdown with fixed column widths.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Live Preview:</strong> See both Markdown code and rendered table simultaneously.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Flexible Headers:</strong> Use first row, auto-generate, or provide custom headers.</span>
-          </li>
-        </ul>
-      </section>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use Table to Markdown
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">How does the tool detect table columns?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              The tool uses intelligent delimiter detection to identify columns in your data. When set to "Auto Detect", it analyzes the first line to determine whether your data uses tabs (most common from Excel/Sheets), commas (CSV format), pipes (already formatted tables), or multiple spaces (text-aligned tables). You can also manually select the delimiter if auto-detection doesn't work correctly. The tool handles quoted CSV values properly, so commas within quotes won't be treated as delimiters. For best results, ensure your data has consistent delimiters throughout all rows.
-            </p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Conversion Option Guide
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {optionGuide.map((item) => (
+              <div key={item.option} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.option}</p>
+                <p className="mt-1">{item.use}</p>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between the header modes?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              "First Row is Header" treats the first line of your data as column headers, which is the most common scenario when copying from spreadsheets. "No Header (Auto-generate)" creates generic headers like "Column 1", "Column 2", etc., and treats all your data (including the first row) as table content - useful when your data doesn't have headers. "Custom Headers" lets you define your own header names while treating all input data as table rows. This is perfect when you want different header names than what's in your source data or when you need to add headers to headerless data with specific names.
-            </p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Practical Use Cases
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {useCases.map((item) => (
+              <div key={item.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.title}</p>
+                <p className="mt-1">{item.detail}</p>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">How do column alignments work in Markdown?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Column alignment in Markdown is controlled by colons in the separator row. Left alignment uses `:---` (colon on left), center alignment uses `:---:` (colons on both sides), and right alignment uses `---:` (colon on right). The tool lets you set alignment for each column independently through dropdown menus. Left alignment is default and best for text, center alignment works well for short values or symbols, and right alignment is ideal for numbers. The alignment affects how the table renders in Markdown viewers, GitHub, documentation sites, and other platforms that support Markdown tables.
-            </p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Common Table Conversion Mistakes to Avoid
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">What does "Pretty Format" do?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Pretty Format creates visually aligned Markdown tables with fixed column widths, making the raw Markdown code easier to read and edit. It calculates the maximum width needed for each column (including headers and all data rows) and pads cells with spaces to create uniform columns. This results in Markdown that looks like a proper table even in plain text editors. When disabled, the tool generates compact Markdown with minimal spacing, which is functionally identical but less readable in source form. Pretty formatting is recommended for documentation and files you'll edit manually, while compact format is fine for automated generation or when file size matters.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">When should I use "Escape Special Chars" or "Wrap in Backticks"?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              "Escape Special Chars" adds backslashes before Markdown special characters (like *, _, [, ], |, etc.) to prevent them from being interpreted as Markdown formatting. Use this when your table contains text with these characters that should be displayed literally. "Wrap in Backticks" surrounds each cell with backticks (`), which is useful for code tables, technical documentation, or when you want to preserve exact formatting and prevent any Markdown interpretation. Backticks also give cells a monospace font and gray background in most Markdown renderers. Use escaping for mixed content and backticks for code/technical data.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my data secure when using this tool?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Absolutely! This tool runs entirely in your browser using client-side JavaScript. Your table data never leaves your device or gets uploaded to any server. All parsing, conversion, and formatting operations happen locally on your computer. This makes it completely safe for converting sensitive data, proprietary information, confidential reports, or any private content. You can even use this tool offline once the page has loaded. The tool doesn't store any data, use cookies for tracking, or send analytics about your content. Your privacy is guaranteed by the architecture of the tool itself - there's simply no mechanism for your data to leave your device.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <RelatedTools currentTool="table-to-markdown" tools={["text-diff-checker", "markdown-previewer", "remove-duplicate-lines", "whitespace-remover"]} />
-    </div>
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Convert Spreadsheet Data into Reliable Markdown Tables Without Manual Formatting
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            With delimiter intelligence, alignment control, header flexibility, and preview-first validation, this tool helps
+            you publish cleaner markdown tables faster across technical and content workflows.
+          </p>
+        </section>
+      </div>
+    </>
   );
 }

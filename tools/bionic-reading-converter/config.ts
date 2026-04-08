@@ -25,8 +25,8 @@ export const bionicReadingConverterConfig = {
     "reading improvement"
   ],
   seo: {
-    title: "Free Bionic Reading Converter – Boost Your Reading Speed Online | Productive Toolbox",
-    description: "Convert your text into Bionic Reading style instantly. Bold the first part of words for faster reading, with adjustable settings, live preview, copy, and download. Fully frontend and responsive.",
+    title: "Bionic Reading Converter Online - Convert Text with Adjustable Emphasis",
+    description: "Free Bionic Reading Converter with adjustable bold percentage, small-word filtering, preview controls, and HTML/TXT/Markdown export. Convert text and copy results instantly.",
     keywords: [
       "bionic reading",
       "speed reading",
@@ -45,11 +45,22 @@ export const bionicReadingConverterConfig = {
       "text processor",
       "reading converter",
       "frontend text tool",
-      "reading improvement"
+      "reading improvement",
+      "bionic text converter",
+      "bionic reading generator",
+      "bold word converter",
+      "reading format converter",
+      "bionic markdown converter",
+      "bionic html export",
+      "focus reading tool",
+      "reading text formatter",
+      "adaptive reading converter"
     ],
     openGraph: {
-      title: "Free Bionic Reading Converter – Boost Your Reading Speed",
-      description: "Convert text to Bionic Reading style with adjustable bold percentage, font options, and live preview. 100% free and private."
+      title: "Bionic Reading Converter - Adjustable Text Emphasis and Export",
+      description: "Convert text to bionic style with customizable settings and export-ready output formats.",
+      type: "website",
+      url: "/tools/writing/bionic-reading-converter"
     }
   }
 };

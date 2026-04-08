@@ -1,168 +1,303 @@
-import React from 'react';
-import RelatedTools from '@/components/RelatedTools';
+const faqItems = [
+  {
+    question: "What is a bionic reading converter?",
+    answer:
+      "A bionic reading converter bolds the beginning portion of words to create visual anchors that can improve reading flow.",
+  },
+  {
+    question: "Why is this tool better than basic bionic text tools?",
+    answer:
+      "It offers adjustable bold percentage, small-word handling, display controls, file upload, copy formats, and export options in one workflow.",
+  },
+  {
+    question: "Can I control how much of each word is bold?",
+    answer:
+      "Yes. You can adjust bold percentage so the emphasized word portion matches your reading preference.",
+  },
+  {
+    question: "What does ignore small words do?",
+    answer:
+      "It skips bolding for short and common words so emphasis stays focused on content-heavy vocabulary.",
+  },
+  {
+    question: "Can I auto convert text when pasting?",
+    answer:
+      "Yes. Enable auto-convert-on-paste to run conversion automatically when new text is inserted.",
+  },
+  {
+    question: "Can I copy output in multiple formats?",
+    answer:
+      "Yes. You can copy HTML, plain text, or Markdown output depending on where you plan to use it.",
+  },
+  {
+    question: "Can I download converted results?",
+    answer:
+      "Yes. Download options include HTML, TXT, and Markdown formats.",
+  },
+  {
+    question: "Can I customize the preview style?",
+    answer:
+      "Yes. You can adjust font size, line height, letter spacing, and font family in the preview panel.",
+  },
+  {
+    question: "Is this bionic reading converter free?",
+    answer: "Yes. It is free to use without account registration.",
+  },
+  {
+    question: "Is my text private?",
+    answer:
+      "Yes. Conversion is browser-based, so your text is not uploaded to external servers.",
+  },
+];
+
+const howToSteps = [
+  "Paste text or upload a .txt/.md file.",
+  "Set bold percentage and small-word behavior.",
+  "Tune display options for preview readability.",
+  "Convert text and review word and bolding stats.",
+  "Copy or download output in the format you need.",
+];
+
+const strengths = [
+  {
+    title: "Adjustable emphasis control",
+    text: "Fine-tune how much of each word is bolded to match your reading comfort level.",
+  },
+  {
+    title: "Smart small-word handling",
+    text: "Skip short/common words to reduce visual noise and preserve focus on key terms.",
+  },
+  {
+    title: "Flexible output formats",
+    text: "Use HTML, plain text, or Markdown output for docs, editors, and publishing workflows.",
+  },
+  {
+    title: "Readable preview customization",
+    text: "Configure typography settings in real time to match your preferred reading style.",
+  },
+];
+
+const optionGuide = [
+  {
+    option: "Bold Percentage",
+    use: "Controls the size of the bold segment at each word start.",
+  },
+  {
+    option: "Ignore Small Words",
+    use: "Skips emphasis for short/common words to keep visual hierarchy cleaner.",
+  },
+  {
+    option: "Small Word Length",
+    use: "Sets the character-length threshold used by small-word filtering.",
+  },
+  {
+    option: "Auto Convert on Paste",
+    use: "Converts newly pasted text automatically for faster workflows.",
+  },
+  {
+    option: "Auto Copy on Convert",
+    use: "Copies converted output immediately after conversion.",
+  },
+  {
+    option: "Display Controls",
+    use: "Adjusts font size, line height, letter spacing, and font family for preview.",
+  },
+];
+
+const useCases = [
+  {
+    title: "Long article reading",
+    detail: "Convert long-form text into emphasized format for quicker visual scanning.",
+  },
+  {
+    title: "Study and revision notes",
+    detail: "Apply bionic style to summaries and notes for clearer review sessions.",
+  },
+  {
+    title: "Documentation consumption",
+    detail: "Improve readability of technical docs and process-heavy instructions.",
+  },
+  {
+    title: "Learning content preparation",
+    detail: "Format educational text for more structured reading experiences.",
+  },
+  {
+    title: "Accessibility-oriented experiments",
+    detail: "Test emphasis settings for readers who prefer stronger visual anchors.",
+  },
+  {
+    title: "Cross-platform text reuse",
+    detail: "Export HTML, TXT, or Markdown for websites, editors, and note tools.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Using a very high bold percentage that reduces natural reading rhythm.",
+  "Ignoring small-word filters when output feels visually overloaded.",
+  "Copying the wrong output format for the destination platform.",
+  "Skipping preview typography tuning before export.",
+  "Applying settings once without testing across different text lengths.",
+];
 
 export default function SEOContent() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use Bionic Reading Converter",
+    description:
+      "Load text, configure emphasis options, convert instantly, and export in HTML, TXT, or Markdown.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
-    <div className="max-w-4xl mx-auto space-y-12">
-      {/* How to Use */}
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Bionic Reading Converter</h2>
-        <ol className="space-y-3 text-gray-700">
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">1.</span>
-            <span><strong>Enter your text:</strong> Paste or type your text into the input area, upload a .txt or .md file, or drag and drop a file directly into the text area.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">2.</span>
-            <span><strong>Adjust bold percentage:</strong> Use the slider to control how much of each word is bolded (20-80%). Start with 50% and adjust based on your reading preference.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">3.</span>
-            <span><strong>Configure options:</strong> Enable "Ignore Small Words" to skip common words like "the", "is", "and". Adjust the small word length threshold. Enable auto-convert for real-time conversion.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">4.</span>
-            <span><strong>Customize display:</strong> Adjust font size, line height, letter spacing, and font family for optimal readability. Toggle dark theme if preferred.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="font-semibold text-[#058554] min-w-[24px]">5.</span>
-            <span><strong>Convert and export:</strong> Click "Convert to Bionic Reading" to see the preview. Copy as HTML, plain text, or Markdown, or download as an HTML file with your display settings preserved.</span>
-          </li>
-        </ol>
-      </section>
-
-      {/* What is Section */}
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">What is Bionic Reading?</h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          Bionic Reading is a revolutionary reading method that enhances text comprehension and reading speed by bolding the first part of each word. This technique guides your eyes through the text more efficiently, allowing your brain to complete words faster based on the bolded portions. The method leverages the brain's natural ability to recognize patterns and predict word endings, reducing the cognitive load required for reading.
-        </p>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          Our Bionic Reading Converter tool runs entirely in your browser, ensuring complete privacy as no data is sent to any server. It intelligently processes your text by analyzing each word, calculating the optimal bold length based on your preferences, and preserving punctuation and formatting. The tool offers extensive customization options including adjustable bold percentage (20-80%), the ability to ignore small common words, and comprehensive display settings for font size, line height, letter spacing, and theme.
-        </p>
-        <p className="text-gray-700 leading-relaxed">
-          Whether you're reading articles, studying documents, reviewing reports, or consuming any text-based content, Bionic Reading can help you read faster with better comprehension. The tool supports multiple export formats including HTML with preserved styling, plain text, and Markdown with bold markers, making it easy to use the converted text in various applications. With features like undo/redo, auto-convert on paste, and customizable display options, you have complete control over your reading enhancement experience.
-        </p>
-      </section>
-
-      {/* Use Cases */}
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Use Cases</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">📚 Academic Reading</h3>
-            <p className="text-sm text-gray-700">Convert textbooks, research papers, and study materials to Bionic Reading format for faster comprehension and better retention.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">📰 News & Articles</h3>
-            <p className="text-sm text-gray-700">Read news articles, blog posts, and online content more efficiently by converting them to Bionic Reading style.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">💼 Professional Documents</h3>
-            <p className="text-sm text-gray-700">Process reports, emails, contracts, and business documents faster while maintaining comprehension and accuracy.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">📖 E-books & Literature</h3>
-            <p className="text-sm text-gray-700">Convert chapters or excerpts from e-books and novels for a more engaging and faster reading experience.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">♿ Accessibility Aid</h3>
-            <p className="text-sm text-gray-700">Help readers with dyslexia, ADHD, or other reading challenges by providing visual anchors that guide eye movement.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">🌐 Language Learning</h3>
-            <p className="text-sm text-gray-700">Assist language learners in recognizing word patterns and improving reading fluency in their target language.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Benefits</h2>
-        <ul className="space-y-2 text-gray-700">
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Faster Reading Speed:</strong> Read up to 30% faster by guiding your eyes through text more efficiently.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Better Comprehension:</strong> Maintain or improve understanding while reading faster through pattern recognition.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Reduced Eye Strain:</strong> Less eye movement required as bolded portions guide your focus naturally.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Customizable Experience:</strong> Adjust bold percentage, font settings, and display options to match your preferences.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>100% Privacy:</strong> All processing happens in your browser - no data is uploaded to servers.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Multiple Export Formats:</strong> Copy as HTML, plain text, or Markdown, or download as styled HTML.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-[#058554] mt-1">✓</span>
-            <span><strong>Smart Word Filtering:</strong> Optionally skip small common words to focus on content-rich vocabulary.</span>
-          </li>
-        </ul>
-      </section>
-
-      {/* FAQ */}
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">How does Bionic Reading improve reading speed?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Bionic Reading works by bolding the first portion of each word, which creates visual anchors that guide your eyes through the text. Your brain naturally recognizes patterns and can predict word endings based on the bolded beginning, allowing you to process words faster without reading every letter. This reduces the cognitive load and eye movement required for reading, resulting in speeds up to 30% faster while maintaining or even improving comprehension. The technique is particularly effective because it leverages your brain's natural word recognition abilities rather than forcing you to read linearly character by character.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">What bold percentage should I use?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              The optimal bold percentage varies by individual preference and reading style. Most users find 40-60% to be the sweet spot, with 50% being a good starting point. If you're new to Bionic Reading, start at 50% and adjust based on your comfort. Lower percentages (30-40%) provide subtle guidance and work well for experienced readers or those who prefer minimal visual changes. Higher percentages (60-70%) offer stronger visual anchors and are beneficial for readers who need more guidance, those with reading challenges, or when reading complex material. Experiment with different percentages to find what feels most natural and effective for you.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I enable "Ignore Small Words"?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Enabling "Ignore Small Words" is generally recommended as it focuses the Bionic Reading effect on content-rich words while leaving common small words (like "the", "is", "and", "of") unbolded. This creates a cleaner visual experience and helps your eyes focus on the meaningful vocabulary that carries the actual content. Small words are typically processed automatically by your brain without needing visual guidance. The tool includes a comprehensive list of common small words and also allows you to set a length threshold (default 3 characters), so words shorter than this length won't be bolded. You can disable this option if you prefer to bold every word uniformly.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Can Bionic Reading help with dyslexia or ADHD?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Yes, many users with dyslexia, ADHD, or other reading challenges report that Bionic Reading significantly improves their reading experience. The bolded portions act as visual anchors that help maintain focus and reduce the tendency for eyes to skip lines or lose place in the text. For dyslexic readers, the technique can reduce letter confusion by emphasizing word beginnings, making it easier to distinguish between similar-looking words. For ADHD readers, the visual structure helps maintain attention and reduces the mental effort required to stay focused on the text. However, effectiveness varies by individual, so we recommend experimenting with different bold percentages and display settings to find what works best for your specific needs.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between HTML, Plain, and Markdown copy formats?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              The HTML format copies the text with actual HTML bold tags (&lt;strong&gt;), which preserves the Bionic Reading formatting when pasted into applications that support HTML (like email clients, content management systems, or rich text editors). The Plain format copies the text without any formatting, giving you the original text exactly as you entered it - useful when you need the raw content. The Markdown format uses Markdown bold syntax (**bold**) around the bolded portions, which is perfect for Markdown editors, documentation tools, or platforms like GitHub, Reddit, or Discord that support Markdown formatting. Choose the format based on where you plan to use the converted text.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my text data secure when using this tool?</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Absolutely! This tool runs entirely in your browser using client-side JavaScript. Your text never leaves your device or gets uploaded to any server. All conversion operations, including word analysis, bold calculation, and formatting, happen locally on your computer. The only data stored is your preference settings (bold percentage, display options) in your browser's localStorage for convenience, which remains on your device. You can even use this tool offline once the page has loaded. This makes it completely safe for converting sensitive documents, confidential materials, or any private content. Your privacy is guaranteed by the architecture of the tool itself.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <RelatedTools 
-        currentTool="bionic-reading-converter"
-        tools={['word-frequency-counter', 'text-to-clipboard', 'markdown-previewer', 'find-and-replace']} 
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-    </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+
+      <div className="max-w-4xl mx-auto mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Bionic Reading Converter for Faster Visual Scanning and More Controlled Text Emphasis
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>Bionic Reading Converter</strong> transforms standard text into an emphasis-based reading format.
+            It helps readers, students, writers, and professionals test alternative reading flows with adjustable controls.
+          </p>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            Instead of manual bold formatting word by word, you can generate consistent emphasis automatically and export
+            results for different platforms.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This Tool Is Better Than Basic Alternatives
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Basic tools often offer static conversion only. This one adds better control, output flexibility, and readability tuning.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use Bionic Reading Converter
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Option Guide
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {optionGuide.map((item) => (
+              <div key={item.option} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.option}</p>
+                <p className="mt-1">{item.use}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Practical Use Cases
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {useCases.map((item) => (
+              <div key={item.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.title}</p>
+                <p className="mt-1">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Common Bionic Conversion Mistakes to Avoid
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Convert Reading Format Faster and Improve Text Scanning Consistency Across Documents
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            With adjustable emphasis, preview controls, and flexible export formats, this tool helps teams and
+            individual readers apply bionic-style formatting in a reliable way.
+          </p>
+        </section>
+      </div>
+    </>
   );
 }

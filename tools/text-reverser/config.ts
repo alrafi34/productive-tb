@@ -7,7 +7,35 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Text Reverser Tool - Reverse Letters, Words & Sentences | Productive Toolbox",
-    description: "Reverse text letters, word order, sentences, or paragraphs instantly with our free online text reverser. Support for Unicode and multiple languages.",
+    title: "Text Reverser Online - Reverse Letters, Words, Sentences, Paragraphs",
+    description: "Free Text Reverser to flip letters, reverse word order, reverse each word, and reorder sentences or paragraphs instantly. Copy or download results in seconds.",
+    keywords: [
+      "text reverser",
+      "reverse text tool",
+      "reverse letters",
+      "reverse words",
+      "reverse each word",
+      "reverse sentence order",
+      "reverse paragraph order",
+      "mirror text generator",
+      "text manipulation tool",
+      "online text reverser",
+      "free reverse text",
+      "word reverser",
+      "sentence reverser",
+      "paragraph reverser",
+      "reverse string online",
+      "copy reversed text",
+      "download reversed text",
+      "creative text tool",
+      "text transformation tool",
+      "reverse writing tool"
+    ],
+    openGraph: {
+      title: "Text Reverser - Reverse Text in Multiple Modes",
+      description: "Transform text with letter, word, sentence, and paragraph reversal modes. Fast, free, and browser-based.",
+      type: "website",
+      url: "/tools/writing/text-reverser"
+    }
   }
 };

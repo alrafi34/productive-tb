@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Online Markdown Previewer - Convert Markdown to HTML in Real-Time | Productive Toolbox",
-    description: "Convert your Markdown text to styled HTML instantly. Live preview, syntax highlighting, copy, and download features. Fully frontend, responsive, and easy to use.",
+    title: "Markdown Previewer Online - Convert Markdown to HTML Instantly",
+    description: "Free Markdown Previewer with live rendering, split or preview-only layout, .md file loading, and MD/HTML export. Copy rendered output and validate formatting faster.",
     keywords: [
       "markdown previewer",
       "markdown to html",
@@ -27,21 +27,31 @@ export const toolConfig = {
       "markdown formatter",
       "markdown to html online",
       "markdown editor free",
-      "markdown preview online"
+      "markdown preview online",
+      "markdown live renderer",
+      "readme markdown preview",
+      "online markdown viewer",
+      "markdown html export",
+      "markdown file preview",
+      "markdown documentation tool",
+      "markdown rendering tool",
+      "md to html converter",
+      "markdown preview and export"
     ],
     openGraph: {
-      title: "Free Markdown Previewer - Convert Markdown to HTML",
-      description: "Convert Markdown to styled HTML instantly with live preview and syntax highlighting.",
+      title: "Markdown Previewer - Live Markdown to HTML Rendering",
+      description: "Preview Markdown in real time, copy rendered output, and export MD or HTML files.",
       type: "website",
-      url: "/markdown-previewer"
+      url: "/tools/writing/markdown-previewer"
     }
   },
   features: [
     "Real-time Markdown to HTML conversion",
-    "Syntax highlighting for code blocks",
-    "Light and dark themes",
+    "Split view and preview-only mode",
+    "Markdown file (.md) loading",
+    "Live stats for words, lines, headings, links, and code blocks",
     "Copy HTML to clipboard",
     "Download as HTML or Markdown",
-    "Split view and preview modes"
+    "No registration required"
   ]
 };

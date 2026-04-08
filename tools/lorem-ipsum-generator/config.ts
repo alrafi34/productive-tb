@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Lorem Ipsum Generator - Generate Placeholder Text Instantly | Productive Toolbox",
-    description: "Generate placeholder text for designers, developers, or writers. Customize paragraphs, sentences, and words with advanced options, live preview, and download features. Completely free and runs in your browser.",
+    title: "Lorem Ipsum Generator Online - Placeholder Text for Design and Development",
+    description: "Free Lorem Ipsum Generator for paragraphs, sentences, or words. Configure randomization modes, add custom words, include HTML, and copy or download output instantly.",
     keywords: [
       "lorem ipsum generator",
       "placeholder text generator",
@@ -27,13 +27,22 @@ export const toolConfig = {
       "fake text generator",
       "sample text generator",
       "lorem ipsum html",
-      "lorem ipsum download"
+      "lorem ipsum download",
+      "dummy paragraph generator",
+      "website placeholder text",
+      "wireframe placeholder content",
+      "design mockup text generator",
+      "random filler text generator",
+      "html lorem ipsum generator",
+      "lorem ipsum sentences generator",
+      "lorem ipsum words generator",
+      "custom lorem ipsum generator"
     ],
     openGraph: {
-      title: "Free Lorem Ipsum Generator - Generate Placeholder Text",
-      description: "Generate customizable placeholder text instantly. Free online tool for designers and developers.",
+      title: "Lorem Ipsum Generator - Create Placeholder Text with Flexible Output",
+      description: "Generate paragraphs, sentences, or words with configurable options and quick copy/download actions.",
       type: "website",
-      url: "/lorem-ipsum-generator"
+      url: "/tools/writing/lorem-ipsum-generator"
     }
   },
   features: [

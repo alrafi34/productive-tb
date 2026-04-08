@@ -25,8 +25,8 @@ export const anagramFinderConfig = {
     'multi-word anagram finder'
   ],
   seo: {
-    title: 'Free Anagram Finder - Check If Two Words Are Anagrams Online | Productive Toolbox',
-    description: 'Quickly check if two words or phrases are anagrams. Supports ignore spaces, punctuation, and case with instant results, letter frequency analysis, and bulk checking. Free online anagram checker.',
+    title: 'Anagram Finder Online - Check Words and Phrases with Bulk Matching',
+    description: 'Free Anagram Finder with single and bulk checking, letter frequency analysis, similarity scoring, and configurable ignore rules. Copy or download result reports instantly.',
     keywords: [
       'anagram finder',
       'anagram checker',
@@ -45,11 +45,20 @@ export const anagramFinderConfig = {
       'letter sorting tool',
       'anagram validator',
       'bulk anagram checker',
-      'multi-word anagram finder'
+      'multi-word anagram finder',
+      'anagram checker for phrases',
+      'anagram similarity calculator',
+      'bulk word anagram check',
+      'letter match analyzer',
+      'anagram frequency checker',
+      'find anagrams online free',
+      'word puzzle anagram tool'
     ],
     openGraph: {
-      title: 'Free Anagram Finder - Check If Two Words Are Anagrams Online',
-      description: 'Quickly check if two words or phrases are anagrams with instant results, letter frequency analysis, and bulk checking. 100% free and private.'
+      title: 'Anagram Finder - Single and Bulk Anagram Checking with Letter Analysis',
+      description: 'Compare words and phrases with advanced ignore rules, frequency insights, and result export options.',
+      type: 'website',
+      url: '/tools/writing/anagram-finder'
     }
   }
 };

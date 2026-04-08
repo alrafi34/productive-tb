@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Keyword Density Checker - Analyze Word Frequency & SEO | Productive Toolbox",
-    description: "Free online keyword density checker to analyze word frequency, calculate keyword density percentage, and optimize your content for SEO. Perfect for writers, marketers, and SEO professionals.",
+    title: "Keyword Density Checker Online - Analyze Word Frequency for SEO",
+    description: "Free Keyword Density Checker to measure word frequency and keyword percentages. Analyze overused terms, track target keywords, and optimize SEO content faster.",
     keywords: [
       "keyword density checker",
       "word frequency counter",
@@ -24,13 +24,22 @@ export const toolConfig = {
       "text keyword analysis",
       "content writing tools",
       "keyword research tool",
-      "word occurrence counter"
+      "word occurrence counter",
+      "keyword percentage checker",
+      "keyword stuffing checker",
+      "content seo checker",
+      "target keyword tracker",
+      "keyword analyzer online",
+      "seo content optimization tool",
+      "free seo keyword tool",
+      "word repetition checker",
+      "on-page seo writing tool"
     ],
     openGraph: {
-      title: "Free Keyword Density Checker - Analyze Word Frequency Online",
-      description: "Instantly analyze keyword density and word frequency in your text. Optimize content for SEO with detailed statistics and visualizations. Free online tool.",
+      title: "Keyword Density Checker - Analyze and Optimize SEO Keywords",
+      description: "Check keyword density, track target terms, and spot overused words instantly with exportable results.",
       type: "website",
-      url: "/keyword-density-checker"
+      url: "/tools/writing/keyword-density-checker"
     }
   },
   features: [

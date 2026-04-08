@@ -25,8 +25,8 @@ export const removeDuplicateLinesConfig = {
     "frontend text tool"
   ],
   seo: {
-    title: "Free Remove Duplicate Lines Tool – Clean Up Text Instantly Online | Productive Toolbox",
-    description: "Quickly remove duplicate lines from text or lists online. Supports ignore case, trim spaces, sort, reverse, randomize, and download. Fully frontend, fast, and user-friendly.",
+    title: "Remove Duplicate Lines Online - Clean Repeated Text Entries Instantly",
+    description: "Free Remove Duplicate Lines tool to deduplicate text lists with case handling, whitespace trim, empty-line removal, sorting, and duplicate-only mode. Copy or download cleaned output quickly.",
     keywords: [
       "remove duplicate lines",
       "text cleaner",
@@ -45,11 +45,22 @@ export const removeDuplicateLinesConfig = {
       "remove repeated lines",
       "text editor",
       "batch text processing",
-      "frontend text tool"
+      "frontend text tool",
+      "line deduplication tool",
+      "remove duplicate text entries",
+      "unique line extractor",
+      "list dedupe online",
+      "csv line deduplicator",
+      "remove repeated rows text",
+      "duplicate line cleaner",
+      "text list cleaner online",
+      "keep only duplicate lines"
     ],
     openGraph: {
-      title: "Free Remove Duplicate Lines Tool – Clean Up Text Instantly",
-      description: "Remove duplicate lines from text with advanced options like ignore case, trim spaces, and sorting. 100% free and private."
+      title: "Remove Duplicate Lines Tool - Deduplicate Lists with Advanced Controls",
+      description: "Clean repeated lines from text quickly with matching, sorting, and copy/download options.",
+      type: "website",
+      url: "/tools/writing/remove-duplicate-lines"
     }
   }
 };
