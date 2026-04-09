@@ -88,9 +88,9 @@ export const tools: Tool[] = [
   { slug: "text-to-slug-converter", name: "Text-to-Slug Converter", description: "Convert single or bulk titles into SEO-friendly URL slugs.", category: "writing", icon: "🔗", free: true },
   { slug: "morse-code-translator", name: "Morse Code Translator", description: "Translate text and Morse code with audio playback and custom symbol settings.", category: "writing", icon: "📡", free: true },
   { slug: "upside-down-text-generator", name: "Upside-Down Text Generator", description: "Flip, mirror, and decode Unicode text with preset styles.", category: "writing", icon: "🙃", free: true },
-  { slug: "zalgo-text-generator", name: "Zalgo Text Generator", description: "Add glitch decorations to text.", category: "writing", icon: "👾", free: true },
-  { slug: "nato-phonetic-converter", name: "NATO Phonetic Alphabet Converter", description: "Convert text to NATO phonetic alphabet.", category: "writing", icon: "📻", free: true },
-  { slug: "random-name-picker", name: "Random Name Picker", description: "Randomly select winner from a list.", category: "writing", icon: "🎰", free: true },
+  { slug: "zalgo-text-generator", name: "Zalgo Text Generator", description: "Generate or remove Unicode glitch text with preset and custom distortion controls.", category: "writing", icon: "👾", free: true },
+  { slug: "nato-phonetic-converter", name: "NATO Phonetic Alphabet Converter", description: "Convert text to/from NATO phonetic alphabet with realtime, audio, and export tools.", category: "writing", icon: "📻", free: true },
+  { slug: "random-name-picker", name: "Random Name Picker", description: "Run fair random winner draws with duplicate control, multi-pick, and export history.", category: "writing", icon: "🎰", free: true },
   
   // Developer & System Tools (New)
   
@@ -110,7 +110,7 @@ export const tools: Tool[] = [
   
   // Privacy & Security (New)
   { slug: "password-strength-meter", name: "Password Strength Meter", description: "Score password based on entropy and length.", category: "security", icon: "🔐", free: true },
-  { slug: "leetspeak-converter", name: "Leetspeak (1337) Converter", description: "Turn text into 1337 speak.", category: "writing", icon: "🤖", free: true },
+  { slug: "leetspeak-converter", name: "Leetspeak (1337) Converter", description: "Encode and decode 1337 text with presets, intensity, and random variation options.", category: "writing", icon: "🤖", free: true },
   
   // Visualization & Data (New)
   { slug: "pie-chart-maker", name: "Pie Chart Maker", description: "Render dynamic SVG/Canvas pie charts.", category: "visualization", icon: "📊", free: true },
@@ -133,7 +133,7 @@ export const tools: Tool[] = [
   { slug: "gradient-text-generator", name: "Gradient Text Generator", description: "Generate background-clip: text CSS code.", category: "design", icon: "🌈", free: true },
   
   // Misc & Utility (New)
-  { slug: "list-prefix-suffix", name: "List Item Prefix/Suffix", description: "Add character to every line of list.", category: "writing", icon: "📝", free: true },
+  { slug: "list-prefix-suffix", name: "List Item Prefix/Suffix", description: "Bulk format list lines with custom prefix/suffix, numbering, and cleanup options.", category: "writing", icon: "📝", free: true },
   { slug: "unit-ratio-calculator", name: "Unit Ratio Calculator", description: "Simplify ratios like 100:50 to 2:1 instantly.", category: "calculator", icon: "⚖️", free: true },
   { slug: "date-difference-calculator", name: "Date Difference Calculator", description: "Calculate years, months, days between two dates.", category: "calculator", icon: "📅", free: true },
   { slug: "color-palette-extractor", name: "Color Palette Extractor", description: "Upload image to get 5 dominant colors.", category: "design", icon: "🎨", free: true },
@@ -232,8 +232,8 @@ export const tools: Tool[] = [
   // Advanced Calculators (Statistics, Chemistry, Electronics, etc.)
 
   // ── New 50 Tools ── (Writing & Content)
-  { slug: "reading-time-calculator", name: "Reading Time Calculator", description: "Paste article text to estimate reading time at multiple WPM speeds. Perfect for bloggers.", category: "writing", icon: "⏱️", free: true },
-  { slug: "html-entity-encoder", name: "HTML Entity Encoder / Decoder", description: "Convert HTML special characters like <, >, & to safe entities and back.", category: "writing", icon: "🏷️", free: true },
+  { slug: "reading-time-calculator", name: "Reading Time Calculator", description: "Estimate read and speaking duration with multi-speed profiles, custom WPM, and badge-ready output.", category: "writing", icon: "⏱️", free: true },
+  { slug: "html-entity-encoder", name: "HTML Entity Encoder / Decoder", description: "Encode/decode HTML entities with named, decimal, hex, and auto-detect modes.", category: "writing", icon: "🏷️", free: true },
   { slug: "reading-speed-tester", name: "Reading Speed Tester", description: "Time yourself reading a standard passage and get your WPM score with comprehension level.", category: "productivity", icon: "📖", free: true },
 
   // ── New 50 Tools ── (Design)

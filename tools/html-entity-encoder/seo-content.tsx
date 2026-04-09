@@ -1,139 +1,310 @@
-import React from "react";
+const faqItems = [
+  {
+    question: "What is an HTML entity encoder and decoder?",
+    answer:
+      "It converts special HTML characters into safe entity codes and can also decode entity codes back to readable text.",
+  },
+  {
+    question: "Why is this tool better than basic HTML entity converters?",
+    answer:
+      "It supports encode, decode, and auto-detect modes, three entity formats, live conversion, history, export, and keyboard shortcuts in one workflow.",
+  },
+  {
+    question: "What characters are encoded by default?",
+    answer:
+      "Core special characters include ampersand, less-than, greater-than, double quote, and single quote.",
+  },
+  {
+    question: "What is the difference between named, decimal, and hex entities?",
+    answer:
+      "Named entities use labels like amp and lt, decimal entities use numeric codes, and hex entities use hexadecimal numeric codes.",
+  },
+  {
+    question: "What does auto mode do in this tool?",
+    answer:
+      "Auto mode detects whether input already contains entities and decides whether to decode or encode accordingly.",
+  },
+  {
+    question: "Can I decode mixed entity formats in one input?",
+    answer:
+      "Yes. The decoder handles named, decimal, and hex entity patterns in the same text.",
+  },
+  {
+    question: "Does this tool support large text?",
+    answer:
+      "Yes. It uses debounced transformation for larger inputs to keep interaction responsive.",
+  },
+  {
+    question: "Can I copy, export, and re-use results quickly?",
+    answer:
+      "Yes. You can copy output instantly and export transformed text as a TXT file.",
+  },
+  {
+    question: "Does this tool keep conversion history?",
+    answer:
+      "Yes. It stores a recent local history list so you can reload previous transformations.",
+  },
+  {
+    question: "Is my text private while using this tool?",
+    answer:
+      "Yes. Processing is client-side in your browser and does not require server-side conversion.",
+  },
+];
+
+const howToSteps = [
+  "Paste raw HTML text or entity-encoded text into the input panel.",
+  "Choose mode: Encode, Decode, or Auto detect.",
+  "Select entity type: Named, Decimal, or Hex for encoding output.",
+  "Review transformed output, entity counts, and detected mode details.",
+  "Copy output, export as TXT, or swap panels for follow-up conversion.",
+];
+
+const strengths = [
+  {
+    title: "Three conversion modes in one interface",
+    text: "Run manual encode/decode or use smart auto detection without switching tools.",
+  },
+  {
+    title: "Multiple entity formats",
+    text: "Generate named, decimal, or hex entity output depending on your integration needs.",
+  },
+  {
+    title: "Fast operational workflow",
+    text: "Use swap, copy, export, and keyboard shortcuts for repetitive encoding tasks.",
+  },
+  {
+    title: "Local history and privacy-first behavior",
+    text: "Keep recent transformations locally and process text entirely in browser context.",
+  },
+];
+
+const optionGuide = [
+  {
+    option: "Encode Mode",
+    use: "Convert special HTML characters into entity-safe output.",
+  },
+  {
+    option: "Decode Mode",
+    use: "Turn entity codes back into readable symbols and text.",
+  },
+  {
+    option: "Auto Mode",
+    use: "Auto-detect whether input should be encoded or decoded.",
+  },
+  {
+    option: "Named Entities",
+    use: "Produce readable entity tokens commonly used in templates and markup output.",
+  },
+  {
+    option: "Decimal Entities",
+    use: "Generate numeric decimal entity codes for compatibility workflows.",
+  },
+  {
+    option: "Hex Entities",
+    use: "Generate hexadecimal entity forms for low-level or parser-specific use cases.",
+  },
+  {
+    option: "History Panel",
+    use: "Review and reload prior transformations quickly.",
+  },
+  {
+    option: "Swap and Export",
+    use: "Reverse direction instantly or export output as TXT for downstream tasks.",
+  },
+];
+
+const useCases = [
+  {
+    title: "Escaping HTML in CMS and forms",
+    detail: "Convert user-provided markup-sensitive text into safer display representations.",
+  },
+  {
+    title: "Template and frontend debugging",
+    detail: "Inspect encoded output and decode payloads while diagnosing rendering issues.",
+  },
+  {
+    title: "API and JSON payload preparation",
+    detail: "Encode markup-sensitive fragments before embedding in structured text responses.",
+  },
+  {
+    title: "Documentation and tutorials",
+    detail: "Show literal HTML examples in guides without the browser interpreting tags.",
+  },
+  {
+    title: "Migration and cleanup tasks",
+    detail: "Decode legacy entity content or normalize mixed entity styles.",
+  },
+  {
+    title: "Security hygiene workflows",
+    detail: "Use encoding as one layer of output escaping in broader sanitization strategies.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Relying on encoding alone as complete XSS protection without context-aware sanitization.",
+  "Encoding content multiple times and creating unreadable double-escaped output.",
+  "Using the wrong entity format for your target parser or rendering environment.",
+  "Skipping decode checks when troubleshooting broken text from external sources.",
+  "Forgetting auto mode may switch direction based on detected entity patterns.",
+];
 
 export default function HTMLEntityEncoderSEOContent() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use the HTML entity encoder and decoder",
+    description:
+      "Paste text, choose mode and entity type, transform content, then copy, export, or swap results.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
-    <div className="mt-12 space-y-8 text-gray-700">
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          What is HTML Entity Encoding?
-        </h2>
-        <p className="mb-4">
-          HTML entity encoding converts special characters into safe, displayable representations. This is essential when embedding HTML inside JavaScript strings, JSON responses, or database fields to prevent parsing errors and XSS vulnerabilities.
-        </p>
-        <p>
-          Common characters like <code className="bg-gray-100 px-2 py-1 rounded">&lt;</code>, <code className="bg-gray-100 px-2 py-1 rounded">&gt;</code>, <code className="bg-gray-100 px-2 py-1 rounded">&amp;</code>, <code className="bg-gray-100 px-2 py-1 rounded">"</code>, and <code className="bg-gray-100 px-2 py-1 rounded">'</code> are encoded to prevent the browser from interpreting them as HTML markup.
-        </p>
-      </section>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Entity Types
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Named Entities</h3>
-            <p className="mb-2">Human-readable entity names:</p>
-            <code className="block bg-gray-100 p-3 rounded mb-2 font-mono text-sm">
-              &lt; = &amp;lt;<br />
-              &gt; = &amp;gt;<br />
-              &amp; = &amp;amp;<br />
-              " = &amp;quot;<br />
-              ' = &amp;#39;
-            </code>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Decimal Entities</h3>
-            <p className="mb-2">Character codes in decimal format:</p>
-            <code className="block bg-gray-100 p-3 rounded mb-2 font-mono text-sm">
-              &lt; = &amp;#60;<br />
-              &gt; = &amp;#62;<br />
-              &amp; = &amp;#38;
-            </code>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Hexadecimal Entities</h3>
-            <p className="mb-2">Character codes in hexadecimal format:</p>
-            <code className="block bg-gray-100 p-3 rounded mb-2 font-mono text-sm">
-              &lt; = &amp;#x3C;<br />
-              &gt; = &amp;#x3E;<br />
-              &amp; = &amp;#x26;
-            </code>
-          </div>
-        </div>
-      </section>
+      <div className="max-w-4xl mx-auto mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            HTML Entity Encoder / Decoder for Reliable Escaping, Fast Decoding, and Safer Content Workflows
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>HTML Entity Encoder / Decoder</strong> helps you convert special HTML characters into safe entities and decode entities back into readable text.
+            It is useful for frontend developers, technical writers, CMS operators, and anyone working with markup-sensitive strings.
+          </p>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            Instead of juggling separate utilities, you can encode, decode, auto-detect, track history, and export output in one streamlined tool.
+          </p>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Use Cases
-        </h2>
-        <ul className="list-disc list-inside space-y-2">
-          <li>Embedding HTML inside JavaScript strings</li>
-          <li>Storing HTML in JSON responses</li>
-          <li>Preventing XSS attacks in web applications</li>
-          <li>Displaying HTML code in documentation</li>
-          <li>Storing HTML in database fields safely</li>
-          <li>Creating HTML email templates</li>
-          <li>Debugging HTML rendering issues</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Features
-        </h2>
-        <ul className="list-disc list-inside space-y-2">
-          <li>Encode HTML to safe entities (named, decimal, or hex)</li>
-          <li>Decode HTML entities back to readable characters</li>
-          <li>Auto-detect mode for smart encoding/decoding</li>
-          <li>Live real-time transformation</li>
-          <li>Character and entity counters</li>
-          <li>Swap input/output for quick reversal</li>
-          <li>Copy to clipboard with feedback</li>
-          <li>Transformation history (last 20)</li>
-          <li>Export results as text file</li>
-          <li>Keyboard shortcuts for power users</li>
-          <li>100% client-side processing (no backend)</li>
-          <li>Mobile responsive design</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Examples
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Example 1: Basic HTML</h3>
-            <div className="bg-gray-50 p-4 rounded border border-gray-200">
-              <p className="text-sm mb-2"><strong>Input:</strong></p>
-              <code className="block bg-white p-2 rounded mb-3 font-mono text-sm border border-gray-200">
-                &lt;div&gt;Hello &amp; Welcome&lt;/div&gt;
-              </code>
-              <p className="text-sm mb-2"><strong>Output (Named):</strong></p>
-              <code className="block bg-white p-2 rounded font-mono text-sm border border-gray-200">
-                &amp;lt;div&amp;gt;Hello &amp;amp; Welcome&amp;lt;/div&amp;gt;
-              </code>
-            </div>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This Tool Is Better Than Basic HTML Entity Tools
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
+              </div>
+            ))}
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Example 2: Comparison Operators</h3>
-            <div className="bg-gray-50 p-4 rounded border border-gray-200">
-              <p className="text-sm mb-2"><strong>Input:</strong></p>
-              <code className="block bg-white p-2 rounded mb-3 font-mono text-sm border border-gray-200">
-                5 &gt; 3 &amp;&amp; 2 &lt; 4
-              </code>
-              <p className="text-sm mb-2"><strong>Output (Decimal):</strong></p>
-              <code className="block bg-white p-2 rounded font-mono text-sm border border-gray-200">
-                5 &amp;#62; 3 &amp;#38;&amp;#38; 2 &amp;#60; 4
-              </code>
-            </div>
-          </div>
-        </div>
-      </section>
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Basic converters often only encode one format. This tool supports multi-format conversion plus operational utilities.
+          </p>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips & Best Practices
-        </h2>
-        <ul className="list-disc list-inside space-y-2">
-          <li><strong>Use Named Entities:</strong> Most readable and widely supported</li>
-          <li><strong>Use Decimal/Hex for Special Characters:</strong> When named entities aren't available</li>
-          <li><strong>Always Encode User Input:</strong> Prevent XSS attacks in web applications</li>
-          <li><strong>Decode Before Display:</strong> Browsers automatically decode entities in HTML</li>
-          <li><strong>Test in Context:</strong> Verify encoding works in your specific use case</li>
-          <li><strong>Use Auto-Detect:</strong> Let the tool intelligently choose encode or decode</li>
-        </ul>
-      </section>
-    </div>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use the HTML Entity Encoder / Decoder
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Option Guide
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {optionGuide.map((item) => (
+              <div key={item.option} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.option}</p>
+                <p className="mt-1">{item.use}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Practical Use Cases
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {useCases.map((item) => (
+              <div key={item.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.title}</p>
+                <p className="mt-1">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Common Mistakes to Avoid
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Encode and Decode HTML Entities Faster with Multi-Mode Control and Local History
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            With auto detection, format flexibility, and export-ready output, this tool supports safer and more efficient text handling than minimal one-direction entity encoders.
+          </p>
+        </section>
+      </div>
+    </>
   );
 }

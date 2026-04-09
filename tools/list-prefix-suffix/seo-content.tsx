@@ -1,145 +1,310 @@
+const faqItems = [
+  {
+    question: "What is a list prefix and suffix tool?",
+    answer:
+      "A list prefix and suffix tool adds custom text before and after each line in a multi-line list automatically.",
+  },
+  {
+    question: "Why is this tool better than basic line editors?",
+    answer:
+      "It combines templates, numbering controls, cleanup options, random emoji mode, undo support, and export actions in one fast workflow.",
+  },
+  {
+    question: "Can I add both a prefix and a suffix at the same time?",
+    answer:
+      "Yes. You can apply both together to generate formats like bullet labels, wrapped values, or delimiter-ready lines.",
+  },
+  {
+    question: "How does numbering work in this tool?",
+    answer:
+      "You can enable numbering, define a starting number, and choose separators such as dot, parenthesis, dash, or colon.",
+  },
+  {
+    question: "What do remove empty lines and trim spaces do?",
+    answer:
+      "Remove empty lines drops blank rows, while trim spaces cleans leading and trailing whitespace before formatting.",
+  },
+  {
+    question: "Can I format lists using templates like markdown and checklist?",
+    answer:
+      "Yes. Quick templates include markdown bullet, numbered list, checklist, quote, code comment, and CSV formatting.",
+  },
+  {
+    question: "What is random emoji mode?",
+    answer:
+      "Random emoji mode decorates each line with random emoji prefix and suffix pairs for creative list output.",
+  },
+  {
+    question: "Can I undo formatted output and return to original text?",
+    answer:
+      "Yes. The tool stores your original input so you can revert quickly with Undo.",
+  },
+  {
+    question: "Can I copy or download the formatted list?",
+    answer:
+      "Yes. You can copy output directly or download it as a TXT file.",
+  },
+  {
+    question: "Is my list data private?",
+    answer:
+      "Yes. Processing happens in your browser, so your list content is not sent to external servers for formatting.",
+  },
+];
+
+const howToSteps = [
+  "Paste or type list items with one item per line.",
+  "Choose a quick template or enter custom prefix and suffix text.",
+  "Enable optional numbering and adjust start value or separator.",
+  "Apply cleanup rules such as remove empty lines and trim spaces.",
+  "Copy or download the final formatted list for your workflow.",
+];
+
+const strengths = [
+  {
+    title: "Template-first list formatting",
+    text: "Use built-in presets to convert plain lines into markdown, checklist, quote, code comment, or CSV patterns instantly.",
+  },
+  {
+    title: "Detailed numbering control",
+    text: "Set custom start numbers and separator styles to match documentation, reports, or structured exports.",
+  },
+  {
+    title: "Input cleanup before formatting",
+    text: "Remove empty rows and trim spaces so output stays clean and consistent for publishing or processing.",
+  },
+  {
+    title: "Productive output workflow",
+    text: "Use real-time conversion, undo safety, copy, and file download without leaving the page.",
+  },
+];
+
+const optionGuide = [
+  {
+    option: "Quick Templates",
+    use: "Apply markdown bullet, numbered list, checklist, quote, code comment, or CSV presets in one click.",
+  },
+  {
+    option: "Prefix",
+    use: "Add custom text to the beginning of each line, such as bullet symbols or comment markers.",
+  },
+  {
+    option: "Suffix",
+    use: "Append characters like commas, semicolons, or tags to each line automatically.",
+  },
+  {
+    option: "Enable Numbering",
+    use: "Attach sequential numbering before each formatted line.",
+  },
+  {
+    option: "Number Start and Separator",
+    use: "Control numbering format using custom start values and separator styles.",
+  },
+  {
+    option: "Remove Empty Lines",
+    use: "Exclude blank lines to prevent visual gaps in output.",
+  },
+  {
+    option: "Trim Spaces",
+    use: "Normalize extra whitespace around list items before transformation.",
+  },
+  {
+    option: "Random Emojis",
+    use: "Generate playful list output with random emoji wrappers per line.",
+  },
+];
+
+const useCases = [
+  {
+    title: "Markdown and documentation prep",
+    detail: "Convert raw lists into clean bullets, numbered steps, and checklist blocks for READMEs and docs.",
+  },
+  {
+    title: "Code and config editing",
+    detail: "Prefix lines with comments or suffix with delimiters for script, JSON-like, or config workflows.",
+  },
+  {
+    title: "CSV-style text preparation",
+    detail: "Append separators quickly when building structured line-based data.",
+  },
+  {
+    title: "Content operations",
+    detail: "Standardize list formatting for blogs, newsletters, and social publishing pipelines.",
+  },
+  {
+    title: "Task and planning lists",
+    detail: "Generate checklists and ordered steps for project management and team workflows.",
+  },
+  {
+    title: "Bulk text cleanup",
+    detail: "Trim and normalize inconsistent list input before reuse in downstream tools.",
+  },
+];
+
+const mistakesToAvoid = [
+  "Applying numbering and a numbering-style prefix simultaneously when only one format is needed.",
+  "Leaving blank lines in place when compact output is required.",
+  "Skipping trim spaces and carrying hidden spacing issues into exports.",
+  "Forgetting Undo exists before re-pasting original input.",
+  "Using random emoji mode for machine-readable output that expects plain text.",
+];
+
 export default function SEOContent() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use list prefix suffix tool",
+    description:
+      "Paste list items, set prefix and suffix rules, apply optional numbering and cleanup, then copy or download formatted output.",
+    step: howToSteps.map((step) => ({
+      "@type": "HowToStep",
+      text: step,
+    })),
+  };
+
   return (
     <>
-      {/* How to Use */}
-      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          How to Use the List Prefix/Suffix Tool
-        </h2>
-        <div className="space-y-4 text-gray-600">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Step 1: Enter Your List</h3>
-            <p>Type or paste your list items into the input area, with one item per line. The tool supports lists of any length.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Step 2: Choose a Template or Customize</h3>
-            <p>Select a quick template (Markdown Bullet, Numbered List, Checklist, etc.) or manually enter custom prefix and suffix characters.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Step 3: Configure Options</h3>
-            <p>Enable numbering if needed, choose number format, and toggle options like removing empty lines or trimming spaces.</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Step 4: Copy or Download</h3>
-            <p>Copy the formatted list to your clipboard or download it as a text file for use in your projects.</p>
-          </div>
-        </div>
-      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
 
-      {/* What is List Prefix/Suffix Tool */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          What is a List Prefix/Suffix Tool?
-        </h2>
-        <div className="space-y-4 text-gray-600">
-          <p>
-            A List Prefix/Suffix Tool is a text formatting utility that automatically adds custom characters or text to the 
-            beginning (prefix) or end (suffix) of every line in a list. This tool eliminates the need for manual, repetitive 
-            editing when formatting large lists.
+      <div className="max-w-4xl mx-auto mt-12 space-y-8">
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            List Prefix/Suffix Tool for Faster Bulk Formatting, Cleaner Output, and Better Reuse
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            This free <strong>List Prefix/Suffix Tool</strong> helps you add custom text before or after every line in a list instantly.
+            It is useful for developers, writers, analysts, and teams that need consistent line-based formatting.
           </p>
-          <p>
-            For example, if you have a plain list of items and need to convert it to a markdown bullet list, the tool can 
-            instantly add "- " to the beginning of each line. Similarly, you can add semicolons, commas, or any custom 
-            characters to the end of each line for CSV formatting or code generation.
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            Instead of editing lines one by one, you can apply templates, numbering, cleanup rules, and export-ready formatting in seconds.
           </p>
-          <p>
-            The tool is particularly useful for developers, writers, content creators, and anyone who works with structured 
-            text data. It supports advanced features like automatic numbering, empty line removal, and space trimming to 
-            ensure clean, consistent output.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Use Cases */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Common Use Cases for List Prefix/Suffix Tool
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Markdown Formatting</h3>
-            <p className="text-gray-600">
-              Quickly convert plain lists into markdown bullet points, numbered lists, or checklists for documentation and README files.
-            </p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Why This Tool Is Better Than Basic Prefix/Suffix Editors
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((point) => (
+              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {point.text}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Code Generation</h3>
-            <p className="text-gray-600">
-              Add code comments, array elements, or SQL values to multiple lines at once, saving time in development workflows.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">CSV and Data Formatting</h3>
-            <p className="text-gray-600">
-              Prepare data for spreadsheets by adding commas, semicolons, or other delimiters to create CSV-compatible formats.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Content Creation</h3>
-            <p className="text-gray-600">
-              Format lists for blog posts, articles, and social media content with consistent styling and numbering.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Task Management</h3>
-            <p className="text-gray-600">
-              Create checklists for project management tools, to-do lists, and task tracking systems with checkbox formatting.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Email and Communication</h3>
-            <p className="text-gray-600">
-              Format lists for professional emails, reports, and presentations with proper numbering and bullet points.
-            </p>
-          </div>
-        </div>
-      </section>
+          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
+            Simple tools usually add text only. This tool adds templates, cleanup, numbering, and undo-safe workflow controls.
+          </p>
+        </section>
 
-      {/* FAQ */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I add both prefix and suffix at the same time?
-            </h3>
-            <p className="text-gray-600">
-              Yes! You can add both a prefix and suffix to each line simultaneously. For example, you can add "- " as a prefix 
-              and ";" as a suffix to create "- Item;". The tool also supports numbering in combination with prefixes and suffixes.
-            </p>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            How to Use the List Prefix/Suffix Tool
+          </h2>
+          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {howToSteps.map((step, index) => (
+              <li key={step} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Option Guide
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {optionGuide.map((item) => (
+              <div key={item.option} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.option}</p>
+                <p className="mt-1">{item.use}</p>
+              </div>
+            ))}
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How does the numbering feature work?
-            </h3>
-            <p className="text-gray-600">
-              When you enable numbering, the tool automatically adds sequential numbers to each line. You can customize the 
-              starting number (e.g., start at 0 or 5) and choose the separator format (dot, parenthesis, dash, or colon). 
-              Numbers are added before any prefix text.
-            </p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Practical Use Cases
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
+            {useCases.map((item) => (
+              <div key={item.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
+                <p className="font-semibold text-gray-900">{item.title}</p>
+                <p className="mt-1">{item.detail}</p>
+              </div>
+            ))}
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What does the "Remove Empty Lines" option do?
-            </h3>
-            <p className="text-gray-600">
-              This option automatically filters out any blank lines from your input before applying prefixes and suffixes. 
-              It's useful when you have inconsistent spacing in your list and want a clean, compact output without gaps.
-            </p>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Common Mistakes to Avoid
+          </h2>
+          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            {mistakesToAvoid.map((mistake) => (
+              <li key={mistake} className="flex items-start gap-3">
+                <span className="mt-1 text-red-500">-</span>
+                <span>{mistake}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I undo changes if I make a mistake?
-            </h3>
-            <p className="text-gray-600">
-              Yes! The tool saves your original input when you first convert it. Click the "Undo" button to restore your 
-              original list and start over with different formatting options.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            Format Lists Faster with Template Presets, Numbering Precision, and Reliable Cleanup
+          </h2>
+          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            With structured formatting controls, live output, and quick export support, this tool helps you process list data more efficiently than basic add-prefix utilities.
+          </p>
+        </section>
+      </div>
     </>
   );
 }

@@ -1,14 +1,15 @@
 export const toolConfig = {
   slug: "reading-time-calculator",
   name: "Reading Time Calculator",
-  description: "Paste article text to estimate reading time at multiple WPM speeds. Perfect for bloggers.",
+  description: "Estimate reading and speaking time with multi-speed profiles, custom WPM, and rich text stats.",
   category: "writing",
   icon: "⏱️",
   free: true,
   backend: false,
   seo: {
-    title: "Free Reading Time Calculator - Estimate Blog Reading Time Instantly | Productive Toolbox",
-    description: "Paste your article to instantly calculate reading time based on multiple reading speeds. Perfect for bloggers, writers, and content creators.",
+    title: "Reading Time Calculator Online - Estimate Article and Blog Read Duration Instantly",
+    description:
+      "Free Reading Time Calculator with multiple speed profiles, custom WPM, speaking-time estimates, text analytics, and copy-ready read-time badges.",
     keywords: [
       "reading time calculator",
       "blog reading time estimator",
@@ -22,15 +23,16 @@ export const toolConfig = {
       "reading speed calculator",
       "content duration estimator",
       "text reading time",
-      "writing tools",
-      "blogger tools",
-      "content creator tools"
+      "speaking time calculator",
+      "reading time badge",
+      "custom wpm calculator"
     ],
     openGraph: {
-      title: "Free Reading Time Calculator - Estimate Blog Reading Time",
-      description: "Instantly calculate reading time for your articles and blog posts. Get estimates for multiple reading speeds. Free online tool for content creators.",
+      title: "Reading Time Calculator - Multi-Speed Read and Speaking Time Estimator",
+      description:
+        "Estimate reading duration across reader types, customize WPM, and copy publish-ready results for your content.",
       type: "website",
-      url: "/reading-time-calculator"
+      url: "/tools/writing/reading-time-calculator"
     }
   },
   features: [
