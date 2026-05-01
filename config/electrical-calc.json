@@ -1,0 +1,599 @@
+{
+  "tools": [
+    {
+      "title": "Ohm's Law Calculator",
+      "slug": "ohm's-law-calculator",
+      "description": "Calculate voltage, current, or resistance using Ohm’s Law (V = IR).",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Power Calculator (Electrical)",
+      "slug": "power-calculator-electrical",
+      "description": "Compute electrical power (P = VI).",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Energy Consumption Calculator",
+      "slug": "energy-consumption-calculator",
+      "description": "Calculate energy usage in kWh.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Electric Bill Calculator",
+      "slug": "electric-bill-calculator",
+      "description": "Estimate electricity bill based on usage.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Voltage Divider Calculator",
+      "slug": "voltage-divider-calculator",
+      "description": "Determine output voltage in resistor divider circuits.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Resistor Color Code Calculator",
+      "slug": "resistor-color-code-calculator",
+      "description": "Decode resistor color bands into resistance values.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Series Resistor Calculator",
+      "slug": "series-resistor-calculator",
+      "description": "Calculate total resistance in series.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Parallel Resistor Calculator",
+      "slug": "parallel-resistor-calculator",
+      "description": "Compute equivalent resistance in parallel circuits.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Capacitor Calculator",
+      "slug": "capacitor-calculator",
+      "description": "Calculate capacitance and stored charge.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Capacitor Charge Time Calculator",
+      "slug": "capacitor-charge-time-calculator",
+      "description": "Determine charging time in RC circuits.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Inductor Calculator",
+      "slug": "inductor-calculator",
+      "description": "Compute inductance and related properties.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Inductive Reactance Calculator",
+      "slug": "inductive-reactance-calculator",
+      "description": "Calculate XL = 2πfL.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Capacitive Reactance Calculator",
+      "slug": "capacitive-reactance-calculator",
+      "description": "Calculate XC = 1/(2πfC).",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Impedance Calculator",
+      "slug": "impedance-calculator",
+      "description": "Determine impedance in AC circuits.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Phase Angle Calculator",
+      "slug": "phase-angle-calculator",
+      "description": "Calculate phase angle between voltage and current.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Power Factor Calculator",
+      "slug": "power-factor-calculator",
+      "description": "Compute power factor in AC systems.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Real Power Calculator",
+      "slug": "real-power-calculator",
+      "description": "Calculate real power in AC circuits.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Reactive Power Calculator",
+      "slug": "reactive-power-calculator",
+      "description": "Determine reactive power (VAR).",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Apparent Power Calculator",
+      "slug": "apparent-power-calculator",
+      "description": "Compute apparent power (VA).",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Three Phase Power Calculator",
+      "slug": "three-phase-power-calculator",
+      "description": "Calculate power in 3-phase systems.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Transformer Turns Ratio Calculator",
+      "slug": "transformer-turns-ratio-calculator",
+      "description": "Determine voltage ratio using turns ratio.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Transformer Efficiency Calculator",
+      "slug": "transformer-efficiency-calculator",
+      "description": "Calculate transformer efficiency.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Transformer Current Calculator",
+      "slug": "transformer-current-calculator",
+      "description": "Compute primary and secondary currents.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Battery Capacity Calculator",
+      "slug": "battery-capacity-calculator",
+      "description": "Estimate battery capacity in Ah.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Battery Backup Time Calculator",
+      "slug": "battery-backup-time-calculator",
+      "description": "Calculate how long a battery lasts.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Battery Charging Time Calculator",
+      "slug": "battery-charging-time-calculator",
+      "description": "Determine time required to charge battery.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "LED Resistor Calculator",
+      "slug": "led-resistor-calculator",
+      "description": "Calculate resistor needed for LED circuits.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Diode Calculator",
+      "slug": "diode-calculator",
+      "description": "Analyze diode voltage drop and current.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Zener Diode Calculator",
+      "slug": "zener-diode-calculator",
+      "description": "Calculate voltage regulation using Zener diode.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Transistor Bias Calculator",
+      "slug": "transistor-bias-calculator",
+      "description": "Determine transistor biasing values.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Amplifier Gain Calculator",
+      "slug": "amplifier-gain-calculator",
+      "description": "Calculate voltage or current gain.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Op-Amp Calculator",
+      "slug": "op-amp-calculator",
+      "description": "Analyze operational amplifier circuits.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "RC Time Constant Calculator",
+      "slug": "rc-time-constant-calculator",
+      "description": "Calculate time constant (τ = RC).",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "RL Time Constant Calculator",
+      "slug": "rl-time-constant-calculator",
+      "description": "Determine RL circuit time constant.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "RLC Resonance Calculator",
+      "slug": "rlc-resonance-calculator",
+      "description": "Calculate resonant frequency.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Frequency Calculator",
+      "slug": "frequency-calculator",
+      "description": "Calculate frequency from time period.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Wavelength Calculator",
+      "slug": "wavelength-calculator",
+      "description": "Compute wavelength of signals.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Signal Attenuation Calculator",
+      "slug": "signal-attenuation-calculator",
+      "description": "Determine signal loss in circuits.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Decibel (dB) Calculator",
+      "slug": "decibel-db-calculator",
+      "description": "Convert gain/loss to decibels.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Fuse Rating Calculator",
+      "slug": "fuse-rating-calculator",
+      "description": "Calculate proper fuse rating.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Circuit Breaker Calculator",
+      "slug": "circuit-breaker-calculator",
+      "description": "Determine breaker size for circuits.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Wire Size Calculator",
+      "slug": "wire-size-calculator",
+      "description": "Select proper wire gauge for load.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Voltage Drop Calculator",
+      "slug": "voltage-drop-calculator",
+      "description": "Calculate voltage drop in wires.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Cable Length Calculator",
+      "slug": "cable-length-calculator",
+      "description": "Determine required cable length.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Earthing Resistance Calculator",
+      "slug": "earthing-resistance-calculator",
+      "description": "Compute grounding resistance.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "House Wiring Load Calculator",
+      "slug": "house-wiring-load-calculator",
+      "description": "Estimate total electrical load in a house.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Room Lighting Calculator",
+      "slug": "room-lighting-calculator",
+      "description": "Calculate number of lights needed.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Fan Power Consumption Calculator",
+      "slug": "fan-power-consumption-calculator",
+      "description": "Estimate power used by fans.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Air Conditioner Power Calculator",
+      "slug": "air-conditioner-power-calculator",
+      "description": "Calculate AC unit power usage.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Solar Panel Calculator",
+      "slug": "solar-panel-calculator",
+      "description": "Estimate solar panel requirements.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Solar Battery Calculator",
+      "slug": "solar-battery-calculator",
+      "description": "Determine battery storage for solar systems.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Solar Inverter Calculator",
+      "slug": "solar-inverter-calculator",
+      "description": "Calculate inverter size for solar.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Inverter Load Calculator",
+      "slug": "inverter-load-calculator",
+      "description": "Estimate inverter load capacity.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Generator Size Calculator",
+      "slug": "generator-size-calculator",
+      "description": "Determine generator size needed.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Electric Motor Power Calculator",
+      "slug": "electric-motor-power-calculator",
+      "description": "Calculate motor power requirements.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Motor Efficiency Calculator",
+      "slug": "motor-efficiency-calculator",
+      "description": "Compute efficiency of electric motors.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Motor Speed Calculator",
+      "slug": "motor-speed-calculator",
+      "description": "Determine RPM of motor.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Slip Calculator",
+      "slug": "slip-calculator",
+      "description": "Calculate slip in induction motors.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Relay Calculator",
+      "slug": "relay-calculator",
+      "description": "Analyze relay coil and switching parameters.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "PWM Duty Cycle Calculator",
+      "slug": "pwm-duty-cycle-calculator",
+      "description": "Calculate PWM duty cycle.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "ADC Resolution Calculator",
+      "slug": "adc-resolution-calculator",
+      "description": "Determine ADC resolution.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "DAC Output Calculator",
+      "slug": "dac-output-calculator",
+      "description": "Compute analog output from digital input.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Logic Gate Calculator",
+      "slug": "logic-gate-calculator",
+      "description": "Evaluate digital logic outputs.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Binary to Decimal Calculator",
+      "slug": "binary-to-decimal-calculator",
+      "description": "Convert binary to decimal.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Decimal to Binary Calculator",
+      "slug": "decimal-to-binary-calculator",
+      "description": "Convert decimal to binary.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Clock Frequency Calculator",
+      "slug": "clock-frequency-calculator",
+      "description": "Calculate clock frequency.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Data Rate Calculator",
+      "slug": "data-rate-calculator",
+      "description": "Compute data transmission rate.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Antenna Length Calculator",
+      "slug": "antenna-length-calculator",
+      "description": "Determine antenna length for frequency.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "RF Power Calculator",
+      "slug": "rf-power-calculator",
+      "description": "Calculate RF signal power.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Lightning Protection Calculator",
+      "slug": "lightning-protection-calculator",
+      "description": "Estimate protection requirements.",
+      "priority": 3,
+      "category": "electrical"
+    },
+    {
+      "title": "Power Loss Calculator",
+      "slug": "power-loss-calculator",
+      "description": "Calculate losses in electrical systems.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "UPS Load Calculator",
+      "slug": "ups-load-calculator",
+      "description": "Estimate UPS capacity.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "UPS Backup Calculator",
+      "slug": "ups-backup-calculator",
+      "description": "Determine backup time of UPS.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Current Divider Calculator",
+      "slug": "current-divider-calculator",
+      "description": "Calculate current distribution.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Short Circuit Current Calculator",
+      "slug": "short-circuit-current-calculator",
+      "description": "Estimate short circuit current.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Electrical Efficiency Calculator",
+      "slug": "electrical-efficiency-calculator",
+      "description": "Compute system efficiency.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "Power Density Calculator",
+      "slug": "power-density-calculator",
+      "description": "Calculate power per unit area.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Heat Dissipation Calculator",
+      "slug": "heat-dissipation-calculator",
+      "description": "Determine heat generated in circuits.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Heatsink Calculator",
+      "slug": "heatsink-calculator",
+      "description": "Estimate heatsink requirements.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Ground Fault Current Calculator",
+      "slug": "ground-fault-current-calculator",
+      "description": "Calculate ground fault current.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Arc Flash Calculator",
+      "slug": "arc-flash-calculator",
+      "description": "Estimate arc flash hazard.",
+      "priority": 3,
+      "category": "electrical"
+    },
+    {
+      "title": "Power Supply Calculator",
+      "slug": "power-supply-calculator",
+      "description": "Determine PSU requirements.",
+      "priority": 1,
+      "category": "electrical"
+    },
+    {
+      "title": "SMPS Calculator",
+      "slug": "smps-calculator",
+      "description": "Analyze switching power supply.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Voltage Regulation Calculator",
+      "slug": "voltage-regulation-calculator",
+      "description": "Calculate voltage regulation.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Frequency Response Calculator",
+      "slug": "frequency-response-calculator",
+      "description": "Analyze system frequency response.",
+      "priority": 3,
+      "category": "electrical"
+    }
+  ]
+}

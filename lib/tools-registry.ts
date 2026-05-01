@@ -140,6 +140,78 @@ import { toolConfig as audioVisualizerConfig } from "@/tools/audio-visualizer/co
 import { randomIDGeneratorConfig } from "@/tools/random-id-generator/config";
 import { toolConfig as cssButtonGeneratorConfig } from "@/tools/css-button-generator/config";
 import { toolConfig as diceRollerConfig } from "@/tools/dice-roller/config";
+import { floorAreaCalculatorConfig } from "@/tools/floor-area-calculator/config";
+import { plotAreaCalculatorConfig } from "@/tools/plot-area-calculator/config";
+import { roomAreaCalculatorConfig } from "@/tools/room-area-calculator/config";
+import { roomVolumeCalculatorConfig } from "@/tools/room-volume-calculator/config";
+import { wallAreaCalculatorConfig } from "@/tools/wall-area-calculator/config";
+import { paintRequiredCalculatorConfig } from "@/tools/paint-required-calculator/config";
+import { tileQuantityCalculatorConfig } from "@/tools/tile-quantity-calculator/config";
+import { brickCalculatorConfig } from "@/tools/brick-calculator/config";
+import { cementCalculatorConfig } from "@/tools/cement-calculator/config";
+import { sandCalculatorConfig } from "@/tools/sand-calculator/config";
+import { concreteMixRatioCalculatorConfig } from "@/tools/concrete-mix-ratio-calculator/config";
+import { concreteVolumeCalculatorConfig } from "@/tools/concrete-volume-calculator/config";
+import { slabConcreteCalculatorConfig } from "@/tools/slab-concrete-calculator/config";
+import { foundationDepthCalculatorConfig } from "@/tools/foundation-depth-calculator/config";
+import { rebarWeightCalculatorConfig } from "@/tools/rebar-weight-calculator/config";
+import { rebarSpacingCalculatorConfig } from "@/tools/rebar-spacing-calculator/config";
+import { steelQuantityCalculatorConfig } from "@/tools/steel-quantity-calculator/config";
+import { beamLoadCalculatorConfig } from "@/tools/beam-load-calculator/config";
+import { columnLoadCalculatorConfig } from "@/tools/column-load-calculator/config";
+import { slabLoadCalculatorConfig } from "@/tools/slab-load-calculator/config";
+import { footingSizeCalculatorConfig } from "@/tools/footing-size-calculator/config";
+import { structuralLoadCalculatorConfig } from "@/tools/structural-load-calculator/config";
+import { liveLoadCalculatorConfig } from "@/tools/live-load-calculator/config";
+import { roofAreaCalculatorConfig } from "@/tools/roof-area-calculator/config";
+import { roofPitchCalculatorConfig } from "@/tools/roof-pitch-calculator/config";
+import { rafterLengthCalculatorConfig } from "@/tools/rafter-length-calculator/config";
+import { staircaseCalculatorConfig } from "@/tools/staircase-calculator/config";
+import { stepRiseRunCalculatorConfig } from "@/tools/step-rise-run-calculator/config";
+import { windowAreaCalculatorConfig } from "@/tools/window-area-calculator/config";
+import { doorAreaCalculatorConfig } from "@/tools/door-area-calculator/config";
+import { ventilationCalculatorConfig } from "@/tools/ventilation-calculator/config";
+import { airChangeRateCalculatorConfig } from "@/tools/air-change-rate-calculator/config";
+import { lightingLoadCalculatorConfig } from "@/tools/lighting-load-calculator/config";
+import { electricalLoadCalculatorBuildingConfig } from "@/tools/electrical-load-calculator-building/config";
+import { hvacLoadCalculatorConfig } from "@/tools/hvac-load-calculator/config";
+import { coolingLoadCalculatorArchitectureConfig } from "@/tools/cooling-load-calculator-architecture/config";
+import { heatLossCalculatorBuildingConfig } from "@/tools/heat-loss-calculator-building/config";
+import { insulationThicknessCalculatorConfig } from "@/tools/insulation-thickness-calculator/config";
+import { acousticSoundproofingCalculatorConfig } from "@/tools/acoustic-soundproofing-calculator/config";
+import { roomAcousticsCalculatorConfig } from "@/tools/room-acoustics-calculator/config";
+import { escalationCostCalculatorConfig } from "@/tools/escalation-cost-calculator/config";
+import { constructionCostEstimatorConfig } from "@/tools/construction-cost-estimator/config";
+import { materialCostCalculatorConfig } from "@/tools/material-cost-calculator/config";
+import { laborCostCalculatorConfig } from "@/tools/labor-cost-calculator/config";
+import { projectTimelineCalculatorConfig } from "@/tools/project-timeline-calculator/config";
+import { workforceRequirementCalculatorConfig } from "@/tools/workforce-requirement-calculator/config";
+import { excavationVolumeCalculatorConfig } from "@/tools/excavation-volume-calculator/config";
+import { soilBearingCapacityCalculatorConfig } from "@/tools/soil-bearing-capacity-calculator/config";
+import { soilCompactionCalculatorConfig } from "@/tools/soil-compaction-calculator/config";
+import { retainingWallCalculatorConfig } from "@/tools/retaining-wall-calculator/config";
+import { slopeStabilityCalculatorConfig } from "@/tools/slope-stability-calculator/config";
+import { drainageFlowCalculatorConfig } from "@/tools/drainage-flow-calculator/config";
+import { rainwaterHarvestingCalculatorConfig } from "@/tools/rainwater-harvesting-calculator/config";
+import { septicTankSizeCalculatorConfig } from "@/tools/septic-tank-size-calculator/config";
+import { waterTankCapacityCalculatorConfig } from "@/tools/water-tank-capacity-calculator/config";
+import { plumbingPipeSizeCalculatorConfig } from "@/tools/plumbing-pipe-size-calculator/config";
+import { waterFlowRateCalculatorConfig } from "@/tools/water-flow-rate-calculator/config";
+import { fireSafetyLoadCalculatorConfig } from "@/tools/fire-safety-load-calculator/config";
+import { emergencyExitWidthCalculatorConfig } from "@/tools/emergency-exit-width-calculator/config";
+import { parkingSpaceCalculatorConfig } from "@/tools/parking-space-calculator/config";
+import { buildingHeightCalculatorConfig } from "@/tools/building-height-calculator/config";
+import { sunlightExposureCalculatorConfig } from "@/tools/sunlight-exposure-calculator/config";
+import { shadowLengthCalculatorConfig } from "@/tools/shadow-length-calculator/config";
+import { facadeAreaCalculatorConfig } from "@/tools/facade-area-calculator/config";
+import { claddingMaterialCalculatorConfig } from "@/tools/cladding-material-calculator/config";
+import { glassPanelSizeCalculatorConfig } from "@/tools/glass-panel-size-calculator/config";
+import { curtainWallCalculatorConfig } from "@/tools/curtain-wall-calculator/config";
+import { elevationDesignCalculatorConfig } from "@/tools/elevation-design-calculator/config";
+import { volumeCalculatorArchitectureConfig } from "@/tools/3d-volume-calculator-architecture/config";
+import { floorFinishCalculatorConfig } from "@/tools/floor-finish-calculator/config";
+import { skirtingMaterialCalculatorConfig } from "@/tools/skirting-material-calculator/config";
+import { interiorSpaceOptimizationCalculatorConfig } from "@/tools/interior-space-optimization-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -284,6 +356,78 @@ export const TOOLS_REGISTRY = {
   'random-id-generator': randomIDGeneratorConfig,
   'css-button-generator': cssButtonGeneratorConfig,
   'dice-roller': diceRollerConfig,
+  'floor-area-calculator': floorAreaCalculatorConfig,
+  'plot-area-calculator': plotAreaCalculatorConfig,
+  'room-area-calculator': roomAreaCalculatorConfig,
+  'room-volume-calculator': roomVolumeCalculatorConfig,
+  'wall-area-calculator': wallAreaCalculatorConfig,
+  'paint-required-calculator': paintRequiredCalculatorConfig,
+  'tile-quantity-calculator': tileQuantityCalculatorConfig,
+  'brick-calculator': brickCalculatorConfig,
+  'cement-calculator': cementCalculatorConfig,
+  'sand-calculator': sandCalculatorConfig,
+  'concrete-mix-ratio-calculator': concreteMixRatioCalculatorConfig,
+  'concrete-volume-calculator': concreteVolumeCalculatorConfig,
+  'slab-concrete-calculator': slabConcreteCalculatorConfig,
+  'foundation-depth-calculator': foundationDepthCalculatorConfig,
+  'rebar-weight-calculator': rebarWeightCalculatorConfig,
+  'rebar-spacing-calculator': rebarSpacingCalculatorConfig,
+  'steel-quantity-calculator': steelQuantityCalculatorConfig,
+  'beam-load-calculator': beamLoadCalculatorConfig,
+  'column-load-calculator': columnLoadCalculatorConfig,
+  'slab-load-calculator': slabLoadCalculatorConfig,
+  'footing-size-calculator': footingSizeCalculatorConfig,
+  'structural-load-calculator': structuralLoadCalculatorConfig,
+  'live-load-calculator': liveLoadCalculatorConfig,
+  'roof-area-calculator': roofAreaCalculatorConfig,
+  'roof-pitch-calculator': roofPitchCalculatorConfig,
+  'rafter-length-calculator': rafterLengthCalculatorConfig,
+  'staircase-calculator': staircaseCalculatorConfig,
+  'step-rise-run-calculator': stepRiseRunCalculatorConfig,
+  'window-area-calculator': windowAreaCalculatorConfig,
+  'door-area-calculator': doorAreaCalculatorConfig,
+  'ventilation-calculator': ventilationCalculatorConfig,
+  'air-change-rate-calculator': airChangeRateCalculatorConfig,
+  'lighting-load-calculator': lightingLoadCalculatorConfig,
+  'electrical-load-calculator-building': electricalLoadCalculatorBuildingConfig,
+  'hvac-load-calculator': hvacLoadCalculatorConfig,
+  'cooling-load-calculator-architecture': coolingLoadCalculatorArchitectureConfig,
+  'heat-loss-calculator-building': heatLossCalculatorBuildingConfig,
+  'insulation-thickness-calculator': insulationThicknessCalculatorConfig,
+  'acoustic-soundproofing-calculator': acousticSoundproofingCalculatorConfig,
+  'room-acoustics-calculator': roomAcousticsCalculatorConfig,
+  'escalation-cost-calculator': escalationCostCalculatorConfig,
+  'construction-cost-estimator': constructionCostEstimatorConfig,
+  'material-cost-calculator': materialCostCalculatorConfig,
+  'labor-cost-calculator': laborCostCalculatorConfig,
+  'project-timeline-calculator': projectTimelineCalculatorConfig,
+  'workforce-requirement-calculator': workforceRequirementCalculatorConfig,
+  'excavation-volume-calculator': excavationVolumeCalculatorConfig,
+  'soil-bearing-capacity-calculator': soilBearingCapacityCalculatorConfig,
+  'soil-compaction-calculator': soilCompactionCalculatorConfig,
+  'retaining-wall-calculator': retainingWallCalculatorConfig,
+  'slope-stability-calculator': slopeStabilityCalculatorConfig,
+  'drainage-flow-calculator': drainageFlowCalculatorConfig,
+  'rainwater-harvesting-calculator': rainwaterHarvestingCalculatorConfig,
+  'septic-tank-size-calculator': septicTankSizeCalculatorConfig,
+  'water-tank-capacity-calculator': waterTankCapacityCalculatorConfig,
+  'plumbing-pipe-size-calculator': plumbingPipeSizeCalculatorConfig,
+  'water-flow-rate-calculator': waterFlowRateCalculatorConfig,
+  'fire-safety-load-calculator': fireSafetyLoadCalculatorConfig,
+  'emergency-exit-width-calculator': emergencyExitWidthCalculatorConfig,
+  'parking-space-calculator': parkingSpaceCalculatorConfig,
+  'building-height-calculator': buildingHeightCalculatorConfig,
+  'sunlight-exposure-calculator': sunlightExposureCalculatorConfig,
+  'shadow-length-calculator': shadowLengthCalculatorConfig,
+  'facade-area-calculator': facadeAreaCalculatorConfig,
+  'cladding-material-calculator': claddingMaterialCalculatorConfig,
+  'glass-panel-size-calculator': glassPanelSizeCalculatorConfig,
+  'curtain-wall-calculator': curtainWallCalculatorConfig,
+  'elevation-design-calculator': elevationDesignCalculatorConfig,
+  '3d-volume-calculator-architecture': volumeCalculatorArchitectureConfig,
+  'floor-finish-calculator': floorFinishCalculatorConfig,
+  'skirting-material-calculator': skirtingMaterialCalculatorConfig,
+  'interior-space-optimization-calculator': interiorSpaceOptimizationCalculatorConfig,
 };
 
 

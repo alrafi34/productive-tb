@@ -1,0 +1,564 @@
+{
+  "tools": [
+    {
+      "title": "Binary to Decimal Calculator",
+      "slug": "binary-to-decimal-calculator",
+      "description": "Convert binary numbers to decimal.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Decimal to Binary Calculator",
+      "slug": "decimal-to-binary-calculator",
+      "description": "Convert decimal numbers to binary.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Binary to Hex Calculator",
+      "slug": "binary-to-hex-calculator",
+      "description": "Convert binary to hexadecimal.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Hex to Binary Calculator",
+      "slug": "hex-to-binary-calculator",
+      "description": "Convert hexadecimal to binary.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Octal to Decimal Calculator",
+      "slug": "octal-to-decimal-calculator",
+      "description": "Convert octal numbers to decimal.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Bitwise AND Calculator",
+      "slug": "bitwise-and-calculator",
+      "description": "Perform bitwise AND operation.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Bitwise OR Calculator",
+      "slug": "bitwise-or-calculator",
+      "description": "Perform bitwise OR operation.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Bitwise XOR Calculator",
+      "slug": "bitwise-xor-calculator",
+      "description": "Perform bitwise XOR operation.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Bitwise NOT Calculator",
+      "slug": "bitwise-not-calculator",
+      "description": "Perform bitwise NOT operation.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Bit Shift Calculator",
+      "slug": "bit-shift-calculator",
+      "description": "Perform left and right bit shifts.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Subnet Calculator",
+      "slug": "subnet-calculator",
+      "description": "Calculate subnet mask, network, and hosts.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "IP Range Calculator",
+      "slug": "ip-range-calculator",
+      "description": "Determine IP address range.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "CIDR Calculator",
+      "slug": "cidr-calculator",
+      "description": "Calculate CIDR notation details.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Bandwidth Calculator",
+      "slug": "bandwidth-calculator",
+      "description": "Estimate bandwidth usage.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Data Transfer Calculator",
+      "slug": "data-transfer-calculator",
+      "description": "Calculate transfer time based on speed.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Time Complexity Calculator",
+      "slug": "time-complexity-calculator",
+      "description": "Estimate Big-O complexity growth.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Space Complexity Calculator",
+      "slug": "space-complexity-calculator",
+      "description": "Analyze memory usage growth.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Algorithm Efficiency Calculator",
+      "slug": "algorithm-efficiency-calculator",
+      "description": "Compare algorithm efficiency.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Hash Function Calculator",
+      "slug": "hash-function-calculator",
+      "description": "Generate simple hash values.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Checksum Calculator",
+      "slug": "checksum-calculator",
+      "description": "Compute checksum for data validation.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Base64 Encode Calculator",
+      "slug": "base64-encode-calculator",
+      "description": "Encode text to Base64.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Base64 Decode Calculator",
+      "slug": "base64-decode-calculator",
+      "description": "Decode Base64 to text.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "URL Encode Calculator",
+      "slug": "url-encode-calculator",
+      "description": "Encode URL strings.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "URL Decode Calculator",
+      "slug": "url-decode-calculator",
+      "description": "Decode URL strings.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "JWT Decoder Calculator",
+      "slug": "jwt-decoder-calculator",
+      "description": "Decode JWT tokens locally.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "UUID Generator",
+      "slug": "uuid-generator",
+      "description": "Generate unique identifiers.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Password Strength Calculator",
+      "slug": "password-strength-calculator",
+      "description": "Evaluate password strength.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Password Entropy Calculator",
+      "slug": "password-entropy-calculator",
+      "description": "Calculate entropy of passwords.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Regex Tester Calculator",
+      "slug": "regex-tester-calculator",
+      "description": "Test regex patterns.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "JSON Formatter",
+      "slug": "json-formatter",
+      "description": "Format and validate JSON.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "JSON Minifier",
+      "slug": "json-minifier",
+      "description": "Minify JSON data.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "XML Formatter",
+      "slug": "xml-formatter",
+      "description": "Format XML data.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "CSV to JSON Converter",
+      "slug": "csv-to-json-converter",
+      "description": "Convert CSV data to JSON.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Markdown to HTML Converter",
+      "slug": "markdown-to-html-converter",
+      "description": "Convert markdown to HTML.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "HTML to Markdown Converter",
+      "slug": "html-to-markdown-converter",
+      "description": "Convert HTML to markdown.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Color Code Converter",
+      "slug": "color-code-converter",
+      "description": "Convert HEX, RGB, HSL values.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Contrast Ratio Calculator",
+      "slug": "contrast-ratio-calculator",
+      "description": "Calculate accessibility contrast.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Image Size Calculator",
+      "slug": "image-size-calculator",
+      "description": "Estimate image file size.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Aspect Ratio Calculator",
+      "slug": "aspect-ratio-calculator",
+      "description": "Calculate aspect ratios.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "File Size Converter",
+      "slug": "file-size-converter",
+      "description": "Convert file sizes (KB, MB, GB).",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Download Time Calculator",
+      "slug": "download-time-calculator",
+      "description": "Estimate download time.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "CPU Usage Calculator",
+      "slug": "cpu-usage-calculator",
+      "description": "Estimate CPU usage percentage.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Memory Usage Calculator",
+      "slug": "memory-usage-calculator",
+      "description": "Calculate RAM usage.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Latency Calculator",
+      "slug": "latency-calculator",
+      "description": "Estimate network latency.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Throughput Calculator",
+      "slug": "throughput-calculator",
+      "description": "Calculate system throughput.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Database Query Cost Calculator",
+      "slug": "database-query-cost-calculator",
+      "description": "Estimate query execution cost.",
+      "priority": 3,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Index Efficiency Calculator",
+      "slug": "index-efficiency-calculator",
+      "description": "Evaluate database indexing.",
+      "priority": 3,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Encryption Key Size Calculator",
+      "slug": "encryption-key-size-calculator",
+      "description": "Estimate key strength.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Hash Rate Calculator",
+      "slug": "hash-rate-calculator",
+      "description": "Compute hash performance.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "AI Token Cost Calculator",
+      "slug": "ai-token-cost-calculator",
+      "description": "Estimate cost per token usage.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "AI Prompt Length Calculator",
+      "slug": "ai-prompt-length-calculator",
+      "description": "Calculate token length.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Model Accuracy Calculator",
+      "slug": "model-accuracy-calculator",
+      "description": "Compute accuracy from predictions.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Precision Recall Calculator",
+      "slug": "precision-recall-calculator",
+      "description": "Calculate precision and recall.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "F1 Score Calculator",
+      "slug": "f1-score-calculator",
+      "description": "Compute F1 score.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Confusion Matrix Calculator",
+      "slug": "confusion-matrix-calculator",
+      "description": "Generate confusion matrix metrics.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Loss Function Calculator",
+      "slug": "loss-function-calculator",
+      "description": "Compute loss values.",
+      "priority": 3,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Learning Rate Scheduler Calculator",
+      "slug": "learning-rate-scheduler-calculator",
+      "description": "Estimate learning rate decay.",
+      "priority": 3,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Gradient Descent Calculator",
+      "slug": "gradient-descent-calculator",
+      "description": "Simulate gradient descent steps.",
+      "priority": 3,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Neural Network Parameter Calculator",
+      "slug": "neural-network-parameter-calculator",
+      "description": "Calculate model parameters.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Dataset Split Calculator",
+      "slug": "dataset-split-calculator",
+      "description": "Split dataset into train/test.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Pagination Calculator",
+      "slug": "pagination-calculator",
+      "description": "Calculate page offsets.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "API Rate Limit Calculator",
+      "slug": "api-rate-limit-calculator",
+      "description": "Estimate API limits.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Cache Hit Ratio Calculator",
+      "slug": "cache-hit-ratio-calculator",
+      "description": "Calculate cache performance.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Load Balancer Calculator",
+      "slug": "load-balancer-calculator",
+      "description": "Distribute traffic load.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Docker Resource Calculator",
+      "slug": "docker-resource-calculator",
+      "description": "Estimate container resources.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Cloud Cost Calculator",
+      "slug": "cloud-cost-calculator",
+      "description": "Estimate cloud usage cost.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Version Number Comparator",
+      "slug": "version-number-comparator",
+      "description": "Compare semantic versions.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Unix Timestamp Converter",
+      "slug": "unix-timestamp-converter",
+      "description": "Convert timestamps.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Cron Expression Calculator",
+      "slug": "cron-expression-calculator",
+      "description": "Parse cron schedules.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Time Zone Converter",
+      "slug": "time-zone-converter",
+      "description": "Convert between time zones.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Sorting Algorithm Time Estimator",
+      "slug": "sorting-algorithm-time-estimator",
+      "description": "Estimate sorting time.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Search Algorithm Calculator",
+      "slug": "search-algorithm-calculator",
+      "description": "Compare search performance.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Graph Density Calculator",
+      "slug": "graph-density-calculator",
+      "description": "Compute graph density.",
+      "priority": 2,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Tree Height Calculator",
+      "slug": "tree-height-calculator",
+      "description": "Calculate tree height.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Stack Operation Calculator",
+      "slug": "stack-operation-calculator",
+      "description": "Simulate stack operations.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Queue Operation Calculator",
+      "slug": "queue-operation-calculator",
+      "description": "Simulate queue operations.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Probability Calculator (CS)",
+      "slug": "probability-calculator-cs",
+      "description": "Compute probabilities.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Combinatorics Calculator",
+      "slug": "combinatorics-calculator",
+      "description": "Calculate permutations and combinations.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Random Number Generator",
+      "slug": "random-number-generator",
+      "description": "Generate random values.",
+      "priority": 1,
+      "category": "cse-ai"
+    },
+    {
+      "title": "Monte Carlo Simulation Calculator",
+      "slug": "monte-carlo-simulation-calculator",
+      "description": "Run simple simulations.",
+      "priority": 3,
+      "category": "cse-ai"
+    }
+  ]
+}

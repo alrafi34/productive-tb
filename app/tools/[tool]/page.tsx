@@ -9,16 +9,23 @@ import { siteConfig } from "@/config/site";
 
 /* ─── Category accent colours ─── */
 const categoryAccent: Record<string, { badge: string; icon: string }> = {
-  developer:     { badge: "bg-blue-100 text-blue-700",      icon: "bg-blue-50 border-blue-100"      },
-  writing:       { badge: "bg-emerald-100 text-emerald-700",icon: "bg-emerald-50 border-emerald-100"},
-  design:        { badge: "bg-pink-100 text-pink-700",      icon: "bg-pink-50 border-pink-100"      },
-  security:      { badge: "bg-red-100 text-red-700",        icon: "bg-red-50 border-red-100"        },
-  image:         { badge: "bg-amber-100 text-amber-700",    icon: "bg-amber-50 border-amber-100"    },
-  creator:       { badge: "bg-orange-100 text-orange-700",  icon: "bg-orange-50 border-orange-100"  },
-  visualization: { badge: "bg-cyan-100 text-cyan-700",      icon: "bg-cyan-50 border-cyan-100"      },
-  productivity:  { badge: "bg-lime-100 text-lime-700",      icon: "bg-lime-50 border-lime-100"      },
-  multimedia:    { badge: "bg-indigo-100 text-indigo-700",  icon: "bg-indigo-50 border-indigo-100"  },
-  calculator:    { badge: "bg-teal-100 text-teal-700",      icon: "bg-teal-50 border-teal-100"      },
+  developer:        { badge: "bg-blue-100 text-blue-700",      icon: "bg-blue-50 border-blue-100"      },
+  writing:          { badge: "bg-emerald-100 text-emerald-700",icon: "bg-emerald-50 border-emerald-100"},
+  design:           { badge: "bg-pink-100 text-pink-700",      icon: "bg-pink-50 border-pink-100"      },
+  security:         { badge: "bg-red-100 text-red-700",        icon: "bg-red-50 border-red-100"        },
+  image:            { badge: "bg-amber-100 text-amber-700",    icon: "bg-amber-50 border-amber-100"    },
+  creator:          { badge: "bg-orange-100 text-orange-700",  icon: "bg-orange-50 border-orange-100"  },
+  visualization:    { badge: "bg-cyan-100 text-cyan-700",      icon: "bg-cyan-50 border-cyan-100"      },
+  productivity:     { badge: "bg-lime-100 text-lime-700",      icon: "bg-lime-50 border-lime-100"      },
+  multimedia:       { badge: "bg-indigo-100 text-indigo-700",  icon: "bg-indigo-50 border-indigo-100"  },
+  calculator:       { badge: "bg-teal-100 text-teal-700",      icon: "bg-teal-50 border-teal-100"      },
+  electrical:       { badge: "bg-yellow-100 text-yellow-700",  icon: "bg-yellow-50 border-yellow-100"  },
+  land:             { badge: "bg-green-100 text-green-700",    icon: "bg-green-50 border-green-100"    },
+  architecture:     { badge: "bg-stone-100 text-stone-700",    icon: "bg-stone-50 border-stone-100"    },
+  mechanical:       { badge: "bg-slate-100 text-slate-700",    icon: "bg-slate-50 border-slate-100"    },
+  "computer-science": { badge: "bg-purple-100 text-purple-700",icon: "bg-purple-50 border-purple-100"  },
+  marketing:        { badge: "bg-rose-100 text-rose-700",      icon: "bg-rose-50 border-rose-100"      },
+  "data-analytics": { badge: "bg-sky-100 text-sky-700",        icon: "bg-sky-50 border-sky-100"        },
 };
 const defaultAccent = { badge: "bg-gray-100 text-gray-700", icon: "bg-gray-50 border-gray-100" };
 

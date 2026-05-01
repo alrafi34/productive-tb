@@ -173,6 +173,78 @@ import { toolConfig as videoFrameExtractorConfig } from "@/tools/video-frame-ext
 import { randomIDGeneratorConfig } from "@/tools/random-id-generator/config";
 import { toolConfig as cssButtonGeneratorConfig } from "@/tools/css-button-generator/config";
 import { toolConfig as diceRollerConfig } from "@/tools/dice-roller/config";
+import { floorAreaCalculatorConfig } from "@/tools/floor-area-calculator/config";
+import { plotAreaCalculatorConfig } from "@/tools/plot-area-calculator/config";
+import { roomAreaCalculatorConfig } from "@/tools/room-area-calculator/config";
+import { roomVolumeCalculatorConfig } from "@/tools/room-volume-calculator/config";
+import { wallAreaCalculatorConfig } from "@/tools/wall-area-calculator/config";
+import { paintRequiredCalculatorConfig } from "@/tools/paint-required-calculator/config";
+import { tileQuantityCalculatorConfig } from "@/tools/tile-quantity-calculator/config";
+import { brickCalculatorConfig } from "@/tools/brick-calculator/config";
+import { cementCalculatorConfig } from "@/tools/cement-calculator/config";
+import { sandCalculatorConfig } from "@/tools/sand-calculator/config";
+import { concreteMixRatioCalculatorConfig } from "@/tools/concrete-mix-ratio-calculator/config";
+import { concreteVolumeCalculatorConfig } from "@/tools/concrete-volume-calculator/config";
+import { slabConcreteCalculatorConfig } from "@/tools/slab-concrete-calculator/config";
+import { foundationDepthCalculatorConfig } from "@/tools/foundation-depth-calculator/config";
+import { rebarWeightCalculatorConfig } from "@/tools/rebar-weight-calculator/config";
+import { rebarSpacingCalculatorConfig } from "@/tools/rebar-spacing-calculator/config";
+import { steelQuantityCalculatorConfig } from "@/tools/steel-quantity-calculator/config";
+import { beamLoadCalculatorConfig } from "@/tools/beam-load-calculator/config";
+import { columnLoadCalculatorConfig } from "@/tools/column-load-calculator/config";
+import { slabLoadCalculatorConfig } from "@/tools/slab-load-calculator/config";
+import { footingSizeCalculatorConfig } from "@/tools/footing-size-calculator/config";
+import { structuralLoadCalculatorConfig } from "@/tools/structural-load-calculator/config";
+import { liveLoadCalculatorConfig } from "@/tools/live-load-calculator/config";
+import { roofAreaCalculatorConfig } from "@/tools/roof-area-calculator/config";
+import { roofPitchCalculatorConfig } from "@/tools/roof-pitch-calculator/config";
+import { rafterLengthCalculatorConfig } from "@/tools/rafter-length-calculator/config";
+import { staircaseCalculatorConfig } from "@/tools/staircase-calculator/config";
+import { stepRiseRunCalculatorConfig } from "@/tools/step-rise-run-calculator/config";
+import { windowAreaCalculatorConfig } from "@/tools/window-area-calculator/config";
+import { doorAreaCalculatorConfig } from "@/tools/door-area-calculator/config";
+import { ventilationCalculatorConfig } from "@/tools/ventilation-calculator/config";
+import { airChangeRateCalculatorConfig } from "@/tools/air-change-rate-calculator/config";
+import { lightingLoadCalculatorConfig } from "@/tools/lighting-load-calculator/config";
+import { electricalLoadCalculatorBuildingConfig } from "@/tools/electrical-load-calculator-building/config";
+import { hvacLoadCalculatorConfig } from "@/tools/hvac-load-calculator/config";
+import { coolingLoadCalculatorArchitectureConfig } from "@/tools/cooling-load-calculator-architecture/config";
+import { heatLossCalculatorBuildingConfig } from "@/tools/heat-loss-calculator-building/config";
+import { insulationThicknessCalculatorConfig } from "@/tools/insulation-thickness-calculator/config";
+import { acousticSoundproofingCalculatorConfig } from "@/tools/acoustic-soundproofing-calculator/config";
+import { roomAcousticsCalculatorConfig } from "@/tools/room-acoustics-calculator/config";
+import { escalationCostCalculatorConfig } from "@/tools/escalation-cost-calculator/config";
+import { constructionCostEstimatorConfig } from "@/tools/construction-cost-estimator/config";
+import { materialCostCalculatorConfig } from "@/tools/material-cost-calculator/config";
+import { laborCostCalculatorConfig } from "@/tools/labor-cost-calculator/config";
+import { projectTimelineCalculatorConfig } from "@/tools/project-timeline-calculator/config";
+import { workforceRequirementCalculatorConfig } from "@/tools/workforce-requirement-calculator/config";
+import { excavationVolumeCalculatorConfig } from "@/tools/excavation-volume-calculator/config";
+import { soilBearingCapacityCalculatorConfig } from "@/tools/soil-bearing-capacity-calculator/config";
+import { soilCompactionCalculatorConfig } from "@/tools/soil-compaction-calculator/config";
+import { retainingWallCalculatorConfig } from "@/tools/retaining-wall-calculator/config";
+import { slopeStabilityCalculatorConfig } from "@/tools/slope-stability-calculator/config";
+import { drainageFlowCalculatorConfig } from "@/tools/drainage-flow-calculator/config";
+import { rainwaterHarvestingCalculatorConfig } from "@/tools/rainwater-harvesting-calculator/config";
+import { septicTankSizeCalculatorConfig } from "@/tools/septic-tank-size-calculator/config";
+import { waterTankCapacityCalculatorConfig } from "@/tools/water-tank-capacity-calculator/config";
+import { plumbingPipeSizeCalculatorConfig } from "@/tools/plumbing-pipe-size-calculator/config";
+import { waterFlowRateCalculatorConfig } from "@/tools/water-flow-rate-calculator/config";
+import { fireSafetyLoadCalculatorConfig } from "@/tools/fire-safety-load-calculator/config";
+import { emergencyExitWidthCalculatorConfig } from "@/tools/emergency-exit-width-calculator/config";
+import { parkingSpaceCalculatorConfig } from "@/tools/parking-space-calculator/config";
+import { buildingHeightCalculatorConfig } from "@/tools/building-height-calculator/config";
+import { sunlightExposureCalculatorConfig } from "@/tools/sunlight-exposure-calculator/config";
+import { shadowLengthCalculatorConfig } from "@/tools/shadow-length-calculator/config";
+import { facadeAreaCalculatorConfig } from "@/tools/facade-area-calculator/config";
+import { claddingMaterialCalculatorConfig } from "@/tools/cladding-material-calculator/config";
+import { glassPanelSizeCalculatorConfig } from "@/tools/glass-panel-size-calculator/config";
+import { curtainWallCalculatorConfig } from "@/tools/curtain-wall-calculator/config";
+import { elevationDesignCalculatorConfig } from "@/tools/elevation-design-calculator/config";
+import { volumeCalculatorArchitectureConfig } from "@/tools/3d-volume-calculator-architecture/config";
+import { floorFinishCalculatorConfig } from "@/tools/floor-finish-calculator/config";
+import { skirtingMaterialCalculatorConfig } from "@/tools/skirting-material-calculator/config";
+import { interiorSpaceOptimizationCalculatorConfig } from "@/tools/interior-space-optimization-calculator/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -342,6 +414,78 @@ const VideoFrameExtractorUI = dynamic(() => import("@/tools/video-frame-extracto
 const RandomIDGeneratorUI = dynamic(() => import("@/tools/random-id-generator/ui"));
 const CSSButtonGeneratorUI = dynamic(() => import("@/tools/css-button-generator/ui"));
 const DiceRollerUI = dynamic(() => import("@/tools/dice-roller/ui"));
+const FloorAreaCalculatorUI = dynamic(() => import("@/tools/floor-area-calculator/ui"));
+const PlotAreaCalculatorUI = dynamic(() => import("@/tools/plot-area-calculator/ui"));
+const RoomAreaCalculatorUI = dynamic(() => import("@/tools/room-area-calculator/ui"));
+const RoomVolumeCalculatorUI = dynamic(() => import("@/tools/room-volume-calculator/ui"));
+const WallAreaCalculatorUI = dynamic(() => import("@/tools/wall-area-calculator/ui"));
+const PaintRequiredCalculatorUI = dynamic(() => import("@/tools/paint-required-calculator/ui"));
+const TileQuantityCalculatorUI = dynamic(() => import("@/tools/tile-quantity-calculator/ui"));
+const BrickCalculatorUI = dynamic(() => import("@/tools/brick-calculator/ui"));
+const CementCalculatorUI = dynamic(() => import("@/tools/cement-calculator/ui"));
+const SandCalculatorUI = dynamic(() => import("@/tools/sand-calculator/ui"));
+const ConcreteMixRatioCalculatorUI = dynamic(() => import("@/tools/concrete-mix-ratio-calculator/ui"));
+const ConcreteVolumeCalculatorUI = dynamic(() => import("@/tools/concrete-volume-calculator/ui"));
+const SlabConcreteCalculatorUI = dynamic(() => import("@/tools/slab-concrete-calculator/ui"));
+const FoundationDepthCalculatorUI = dynamic(() => import("@/tools/foundation-depth-calculator/ui"));
+const RebarWeightCalculatorUI = dynamic(() => import("@/tools/rebar-weight-calculator/ui"));
+const RebarSpacingCalculatorUI = dynamic(() => import("@/tools/rebar-spacing-calculator/ui"));
+const SteelQuantityCalculatorUI = dynamic(() => import("@/tools/steel-quantity-calculator/ui"));
+const BeamLoadCalculatorUI = dynamic(() => import("@/tools/beam-load-calculator/ui"));
+const ColumnLoadCalculatorUI = dynamic(() => import("@/tools/column-load-calculator/ui"));
+const SlabLoadCalculatorUI = dynamic(() => import("@/tools/slab-load-calculator/ui"));
+const FootingSizeCalculatorUI = dynamic(() => import("@/tools/footing-size-calculator/ui"));
+const StructuralLoadCalculatorUI = dynamic(() => import("@/tools/structural-load-calculator/ui"));
+const LiveLoadCalculatorUI = dynamic(() => import("@/tools/live-load-calculator/ui"));
+const RoofAreaCalculatorUI = dynamic(() => import("@/tools/roof-area-calculator/ui"));
+const RoofPitchCalculatorUI = dynamic(() => import("@/tools/roof-pitch-calculator/ui"));
+const RafterLengthCalculatorUI = dynamic(() => import("@/tools/rafter-length-calculator/ui"));
+const StaircaseCalculatorUI = dynamic(() => import("@/tools/staircase-calculator/ui"));
+const StepRiseRunCalculatorUI = dynamic(() => import("@/tools/step-rise-run-calculator/ui"));
+const WindowAreaCalculatorUI = dynamic(() => import("@/tools/window-area-calculator/ui"));
+const DoorAreaCalculatorUI = dynamic(() => import("@/tools/door-area-calculator/ui"));
+const VentilationCalculatorUI = dynamic(() => import("@/tools/ventilation-calculator/ui"));
+const AirChangeRateCalculatorUI = dynamic(() => import("@/tools/air-change-rate-calculator/ui"));
+const LightingLoadCalculatorUI = dynamic(() => import("@/tools/lighting-load-calculator/ui"));
+const ElectricalLoadCalculatorBuildingUI = dynamic(() => import("@/tools/electrical-load-calculator-building/ui"));
+const HVACLoadCalculatorUI = dynamic(() => import("@/tools/hvac-load-calculator/ui"));
+const CoolingLoadCalculatorArchitectureUI = dynamic(() => import("@/tools/cooling-load-calculator-architecture/ui"));
+const HeatLossCalculatorBuildingUI = dynamic(() => import("@/tools/heat-loss-calculator-building/ui"));
+const InsulationThicknessCalculatorUI = dynamic(() => import("@/tools/insulation-thickness-calculator/ui"));
+const AcousticSoundproofingCalculatorUI = dynamic(() => import("@/tools/acoustic-soundproofing-calculator/ui"));
+const RoomAcousticsCalculatorUI = dynamic(() => import("@/tools/room-acoustics-calculator/ui"));
+const EscalationCostCalculatorUI = dynamic(() => import("@/tools/escalation-cost-calculator/ui"));
+const ConstructionCostEstimatorUI = dynamic(() => import("@/tools/construction-cost-estimator/ui"));
+const MaterialCostCalculatorUI = dynamic(() => import("@/tools/material-cost-calculator/ui"));
+const LaborCostCalculatorUI = dynamic(() => import("@/tools/labor-cost-calculator/ui"));
+const ProjectTimelineCalculatorUI = dynamic(() => import("@/tools/project-timeline-calculator/ui"));
+const WorkforceRequirementCalculatorUI = dynamic(() => import("@/tools/workforce-requirement-calculator/ui"));
+const ExcavationVolumeCalculatorUI = dynamic(() => import("@/tools/excavation-volume-calculator/ui"));
+const SoilBearingCapacityCalculatorUI = dynamic(() => import("@/tools/soil-bearing-capacity-calculator/ui"));
+const SoilCompactionCalculatorUI = dynamic(() => import("@/tools/soil-compaction-calculator/ui"));
+const RetainingWallCalculatorUI = dynamic(() => import("@/tools/retaining-wall-calculator/ui"));
+const SlopeStabilityCalculatorUI = dynamic(() => import("@/tools/slope-stability-calculator/ui"));
+const DrainageFlowCalculatorUI = dynamic(() => import("@/tools/drainage-flow-calculator/ui"));
+const RainwaterHarvestingCalculatorUI = dynamic(() => import("@/tools/rainwater-harvesting-calculator/ui"));
+const SepticTankSizeCalculatorUI = dynamic(() => import("@/tools/septic-tank-size-calculator/ui"));
+const WaterTankCapacityCalculatorUI = dynamic(() => import("@/tools/water-tank-capacity-calculator/ui"));
+const PlumbingPipeSizeCalculatorUI = dynamic(() => import("@/tools/plumbing-pipe-size-calculator/ui"));
+const WaterFlowRateCalculatorUI = dynamic(() => import("@/tools/water-flow-rate-calculator/ui"));
+const FireSafetyLoadCalculatorUI = dynamic(() => import("@/tools/fire-safety-load-calculator/ui"));
+const EmergencyExitWidthCalculatorUI = dynamic(() => import("@/tools/emergency-exit-width-calculator/ui"));
+const ParkingSpaceCalculatorUI = dynamic(() => import("@/tools/parking-space-calculator/ui"));
+const BuildingHeightCalculatorUI = dynamic(() => import("@/tools/building-height-calculator/ui"));
+const SunlightExposureCalculatorUI = dynamic(() => import("@/tools/sunlight-exposure-calculator/ui"));
+const ShadowLengthCalculatorUI = dynamic(() => import("@/tools/shadow-length-calculator/ui"));
+const FacadeAreaCalculatorUI = dynamic(() => import("@/tools/facade-area-calculator/ui"));
+const CladdingMaterialCalculatorUI = dynamic(() => import("@/tools/cladding-material-calculator/ui"));
+const GlassPanelSizeCalculatorUI = dynamic(() => import("@/tools/glass-panel-size-calculator/ui"));
+const CurtainWallCalculatorUI = dynamic(() => import("@/tools/curtain-wall-calculator/ui"));
+const ElevationDesignCalculatorUI = dynamic(() => import("@/tools/elevation-design-calculator/ui"));
+const VolumeCalculatorArchitectureUI = dynamic(() => import("@/tools/3d-volume-calculator-architecture/ui"));
+const FloorFinishCalculatorUI = dynamic(() => import("@/tools/floor-finish-calculator/ui"));
+const SkirtingMaterialCalculatorUI = dynamic(() => import("@/tools/skirting-material-calculator/ui"));
+const InteriorSpaceOptimizationCalculatorUI = dynamic(() => import("@/tools/interior-space-optimization-calculator/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -512,6 +656,78 @@ const TOOLS = [
   { config: randomIDGeneratorConfig, Component: RandomIDGeneratorUI },
   { config: cssButtonGeneratorConfig, Component: CSSButtonGeneratorUI },
   { config: diceRollerConfig, Component: DiceRollerUI },
+  { config: floorAreaCalculatorConfig, Component: FloorAreaCalculatorUI },
+  { config: plotAreaCalculatorConfig, Component: PlotAreaCalculatorUI },
+  { config: roomAreaCalculatorConfig, Component: RoomAreaCalculatorUI },
+  { config: roomVolumeCalculatorConfig, Component: RoomVolumeCalculatorUI },
+  { config: wallAreaCalculatorConfig, Component: WallAreaCalculatorUI },
+  { config: paintRequiredCalculatorConfig, Component: PaintRequiredCalculatorUI },
+  { config: tileQuantityCalculatorConfig, Component: TileQuantityCalculatorUI },
+  { config: brickCalculatorConfig, Component: BrickCalculatorUI },
+  { config: cementCalculatorConfig, Component: CementCalculatorUI },
+  { config: sandCalculatorConfig, Component: SandCalculatorUI },
+  { config: concreteMixRatioCalculatorConfig, Component: ConcreteMixRatioCalculatorUI },
+  { config: concreteVolumeCalculatorConfig, Component: ConcreteVolumeCalculatorUI },
+  { config: slabConcreteCalculatorConfig, Component: SlabConcreteCalculatorUI },
+  { config: foundationDepthCalculatorConfig, Component: FoundationDepthCalculatorUI },
+  { config: rebarWeightCalculatorConfig, Component: RebarWeightCalculatorUI },
+  { config: rebarSpacingCalculatorConfig, Component: RebarSpacingCalculatorUI },
+  { config: steelQuantityCalculatorConfig, Component: SteelQuantityCalculatorUI },
+  { config: beamLoadCalculatorConfig, Component: BeamLoadCalculatorUI },
+  { config: columnLoadCalculatorConfig, Component: ColumnLoadCalculatorUI },
+  { config: slabLoadCalculatorConfig, Component: SlabLoadCalculatorUI },
+  { config: footingSizeCalculatorConfig, Component: FootingSizeCalculatorUI },
+  { config: structuralLoadCalculatorConfig, Component: StructuralLoadCalculatorUI },
+  { config: liveLoadCalculatorConfig, Component: LiveLoadCalculatorUI },
+  { config: roofAreaCalculatorConfig, Component: RoofAreaCalculatorUI },
+  { config: roofPitchCalculatorConfig, Component: RoofPitchCalculatorUI },
+  { config: rafterLengthCalculatorConfig, Component: RafterLengthCalculatorUI },
+  { config: staircaseCalculatorConfig, Component: StaircaseCalculatorUI },
+  { config: stepRiseRunCalculatorConfig, Component: StepRiseRunCalculatorUI },
+  { config: windowAreaCalculatorConfig, Component: WindowAreaCalculatorUI },
+  { config: doorAreaCalculatorConfig, Component: DoorAreaCalculatorUI },
+  { config: ventilationCalculatorConfig, Component: VentilationCalculatorUI },
+  { config: airChangeRateCalculatorConfig, Component: AirChangeRateCalculatorUI },
+  { config: lightingLoadCalculatorConfig, Component: LightingLoadCalculatorUI },
+  { config: electricalLoadCalculatorBuildingConfig, Component: ElectricalLoadCalculatorBuildingUI },
+  { config: hvacLoadCalculatorConfig, Component: HVACLoadCalculatorUI },
+  { config: coolingLoadCalculatorArchitectureConfig, Component: CoolingLoadCalculatorArchitectureUI },
+  { config: heatLossCalculatorBuildingConfig, Component: HeatLossCalculatorBuildingUI },
+  { config: insulationThicknessCalculatorConfig, Component: InsulationThicknessCalculatorUI },
+  { config: acousticSoundproofingCalculatorConfig, Component: AcousticSoundproofingCalculatorUI },
+  { config: roomAcousticsCalculatorConfig, Component: RoomAcousticsCalculatorUI },
+  { config: escalationCostCalculatorConfig, Component: EscalationCostCalculatorUI },
+  { config: constructionCostEstimatorConfig, Component: ConstructionCostEstimatorUI },
+  { config: materialCostCalculatorConfig, Component: MaterialCostCalculatorUI },
+  { config: laborCostCalculatorConfig, Component: LaborCostCalculatorUI },
+  { config: projectTimelineCalculatorConfig, Component: ProjectTimelineCalculatorUI },
+  { config: workforceRequirementCalculatorConfig, Component: WorkforceRequirementCalculatorUI },
+  { config: excavationVolumeCalculatorConfig, Component: ExcavationVolumeCalculatorUI },
+  { config: soilBearingCapacityCalculatorConfig, Component: SoilBearingCapacityCalculatorUI },
+  { config: soilCompactionCalculatorConfig, Component: SoilCompactionCalculatorUI },
+  { config: retainingWallCalculatorConfig, Component: RetainingWallCalculatorUI },
+  { config: slopeStabilityCalculatorConfig, Component: SlopeStabilityCalculatorUI },
+  { config: drainageFlowCalculatorConfig, Component: DrainageFlowCalculatorUI },
+  { config: rainwaterHarvestingCalculatorConfig, Component: RainwaterHarvestingCalculatorUI },
+  { config: septicTankSizeCalculatorConfig, Component: SepticTankSizeCalculatorUI },
+  { config: waterTankCapacityCalculatorConfig, Component: WaterTankCapacityCalculatorUI },
+  { config: plumbingPipeSizeCalculatorConfig, Component: PlumbingPipeSizeCalculatorUI },
+  { config: waterFlowRateCalculatorConfig, Component: WaterFlowRateCalculatorUI },
+  { config: fireSafetyLoadCalculatorConfig, Component: FireSafetyLoadCalculatorUI },
+  { config: emergencyExitWidthCalculatorConfig, Component: EmergencyExitWidthCalculatorUI },
+  { config: parkingSpaceCalculatorConfig, Component: ParkingSpaceCalculatorUI },
+  { config: buildingHeightCalculatorConfig, Component: BuildingHeightCalculatorUI },
+  { config: sunlightExposureCalculatorConfig, Component: SunlightExposureCalculatorUI },
+  { config: shadowLengthCalculatorConfig, Component: ShadowLengthCalculatorUI },
+  { config: facadeAreaCalculatorConfig, Component: FacadeAreaCalculatorUI },
+  { config: claddingMaterialCalculatorConfig, Component: CladdingMaterialCalculatorUI },
+  { config: glassPanelSizeCalculatorConfig, Component: GlassPanelSizeCalculatorUI },
+  { config: curtainWallCalculatorConfig, Component: CurtainWallCalculatorUI },
+  { config: elevationDesignCalculatorConfig, Component: ElevationDesignCalculatorUI },
+  { config: volumeCalculatorArchitectureConfig, Component: VolumeCalculatorArchitectureUI },
+  { config: floorFinishCalculatorConfig, Component: FloorFinishCalculatorUI },
+  { config: skirtingMaterialCalculatorConfig, Component: SkirtingMaterialCalculatorUI },
+  { config: interiorSpaceOptimizationCalculatorConfig, Component: InteriorSpaceOptimizationCalculatorUI },
 ];
 
 

@@ -1,0 +1,550 @@
+{
+  "tools": [
+    {
+      "title": "Floor Area Calculator",
+      "slug": "floor-area-calculator",
+      "description": "Calculate total built-up floor area of a building.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Plot Area Calculator",
+      "slug": "plot-area-calculator",
+      "description": "Compute total land or plot area.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Room Area Calculator",
+      "slug": "room-area-calculator",
+      "description": "Calculate area of a room from dimensions.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Room Volume Calculator",
+      "slug": "room-volume-calculator",
+      "description": "Compute volume of interior spaces.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Wall Area Calculator",
+      "slug": "wall-area-calculator",
+      "description": "Calculate surface area of walls for construction.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Paint Required Calculator",
+      "slug": "paint-required-calculator",
+      "description": "Estimate paint needed for walls.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Tile Quantity Calculator",
+      "slug": "tile-quantity-calculator",
+      "description": "Calculate number of tiles required.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Brick Calculator",
+      "slug": "brick-calculator",
+      "description": "Estimate number of bricks needed for walls.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Cement Calculator",
+      "slug": "cement-calculator",
+      "description": "Calculate cement required for construction.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Sand Calculator",
+      "slug": "sand-calculator",
+      "description": "Estimate sand required for building work.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Concrete Mix Ratio Calculator",
+      "slug": "concrete-mix-ratio-calculator",
+      "description": "Calculate concrete proportions.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Concrete Volume Calculator",
+      "slug": "concrete-volume-calculator",
+      "description": "Compute concrete volume needed.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Slab Concrete Calculator",
+      "slug": "slab-concrete-calculator",
+      "description": "Estimate concrete for slab construction.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Foundation Depth Calculator",
+      "slug": "foundation-depth-calculator",
+      "description": "Determine foundation depth requirement.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Footing Size Calculator",
+      "slug": "footing-size-calculator",
+      "description": "Calculate footing dimensions.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Rebar Weight Calculator",
+      "slug": "rebar-weight-calculator",
+      "description": "Calculate weight of reinforcement bars.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Rebar Spacing Calculator",
+      "slug": "rebar-spacing-calculator",
+      "description": "Determine spacing of reinforcement bars.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Steel Quantity Calculator",
+      "slug": "steel-quantity-calculator",
+      "description": "Estimate steel required for structure.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Beam Load Calculator",
+      "slug": "beam-load-calculator",
+      "description": "Calculate load on beams.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Column Load Calculator",
+      "slug": "column-load-calculator",
+      "description": "Determine load capacity of columns.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Slab Load Calculator",
+      "slug": "slab-load-calculator",
+      "description": "Compute slab load capacity.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Structural Load Calculator",
+      "slug": "structural-load-calculator",
+      "description": "Estimate total structural load.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Live Load Calculator",
+      "slug": "live-load-calculator",
+      "description": "Calculate live load in buildings.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Dead Load Calculator",
+      "slug": "dead-load-calculator",
+      "description": "Compute dead load of structures.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Roof Area Calculator",
+      "slug": "roof-area-calculator",
+      "description": "Calculate roof surface area.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Roof Pitch Calculator",
+      "slug": "roof-pitch-calculator",
+      "description": "Determine roof slope angle.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Rafter Length Calculator",
+      "slug": "rafter-length-calculator",
+      "description": "Calculate rafter length.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Staircase Calculator",
+      "slug": "staircase-calculator",
+      "description": "Compute step dimensions for stairs.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Step Rise and Run Calculator",
+      "slug": "step-rise-and-run-calculator",
+      "description": "Calculate staircase geometry.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Window Area Calculator",
+      "slug": "window-area-calculator",
+      "description": "Calculate total window area.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Door Area Calculator",
+      "slug": "door-area-calculator",
+      "description": "Compute door opening area.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Ventilation Calculator",
+      "slug": "ventilation-calculator",
+      "description": "Estimate airflow requirements.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Air Change Rate Calculator",
+      "slug": "air-change-rate-calculator",
+      "description": "Calculate air changes per hour.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Lighting Load Calculator",
+      "slug": "lighting-load-calculator",
+      "description": "Estimate lighting power requirement.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Electrical Load Calculator (Building)",
+      "slug": "electrical-load-calculator-building",
+      "description": "Calculate total building electrical load.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "HVAC Load Calculator",
+      "slug": "hvac-load-calculator",
+      "description": "Estimate heating and cooling load.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Cooling Load Calculator (Architecture)",
+      "slug": "cooling-load-calculator-architecture",
+      "description": "Calculate cooling requirement for buildings.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Heat Loss Calculator (Building)",
+      "slug": "heat-loss-calculator-building",
+      "description": "Estimate heat loss from structure.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Insulation Thickness Calculator",
+      "slug": "insulation-thickness-calculator",
+      "description": "Determine insulation requirements.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Acoustic Soundproofing Calculator",
+      "slug": "acoustic-soundproofing-calculator",
+      "description": "Estimate sound insulation needs.",
+      "priority": 3,
+      "category": "architecture"
+    },
+    {
+      "title": "Room Acoustics Calculator",
+      "slug": "room-acoustics-calculator",
+      "description": "Analyze sound behavior in rooms.",
+      "priority": 3,
+      "category": "architecture"
+    },
+    {
+      "title": "Escalation Cost Calculator",
+      "slug": "escalation-cost-calculator",
+      "description": "Estimate construction cost increase.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Construction Cost Estimator",
+      "slug": "construction-cost-estimator",
+      "description": "Calculate total building cost.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Material Cost Calculator",
+      "slug": "material-cost-calculator",
+      "description": "Estimate cost of materials.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Labor Cost Calculator",
+      "slug": "labor-cost-calculator",
+      "description": "Compute labor cost for construction.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Project Timeline Calculator",
+      "slug": "project-timeline-calculator",
+      "description": "Estimate construction duration.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Workforce Requirement Calculator",
+      "slug": "workforce-requirement-calculator",
+      "description": "Calculate number of workers needed.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Excavation Volume Calculator",
+      "slug": "excavation-volume-calculator",
+      "description": "Compute earth excavation volume.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Soil Bearing Capacity Calculator",
+      "slug": "soil-bearing-capacity-calculator",
+      "description": "Determine soil strength.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Soil Compaction Calculator",
+      "slug": "soil-compaction-calculator",
+      "description": "Estimate compaction level.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Retaining Wall Calculator",
+      "slug": "retaining-wall-calculator",
+      "description": "Calculate retaining wall dimensions.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Slope Stability Calculator",
+      "slug": "slope-stability-calculator",
+      "description": "Analyze slope stability.",
+      "priority": 3,
+      "category": "architecture"
+    },
+    {
+      "title": "Drainage Flow Calculator",
+      "slug": "drainage-flow-calculator",
+      "description": "Estimate water drainage flow.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Rainwater Harvesting Calculator",
+      "slug": "rainwater-harvesting-calculator",
+      "description": "Calculate water collection capacity.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Septic Tank Size Calculator",
+      "slug": "septic-tank-size-calculator",
+      "description": "Determine septic tank capacity.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Water Tank Capacity Calculator",
+      "slug": "water-tank-capacity-calculator",
+      "description": "Calculate water storage size.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Plumbing Pipe Size Calculator",
+      "slug": "plumbing-pipe-size-calculator",
+      "description": "Determine pipe diameter requirements.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Water Flow Rate Calculator (Building)",
+      "slug": "water-flow-rate-calculator-building",
+      "description": "Calculate water flow in plumbing.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Fire Safety Load Calculator",
+      "slug": "fire-safety-load-calculator",
+      "description": "Estimate fire load in buildings.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Emergency Exit Width Calculator",
+      "slug": "emergency-exit-width-calculator",
+      "description": "Calculate evacuation requirements.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Parking Space Calculator",
+      "slug": "parking-space-calculator",
+      "description": "Determine parking capacity.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Building Height Calculator",
+      "slug": "building-height-calculator",
+      "description": "Calculate allowable building height.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Sunlight Exposure Calculator",
+      "slug": "sunlight-exposure-calculator",
+      "description": "Analyze sunlight on buildings.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Shadow Length Calculator",
+      "slug": "shadow-length-calculator",
+      "description": "Calculate shadow projection.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Facade Area Calculator",
+      "slug": "facade-area-calculator",
+      "description": "Compute exterior surface area.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Cladding Material Calculator",
+      "slug": "cladding-material-calculator",
+      "description": "Estimate facade cladding materials.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Glass Panel Size Calculator",
+      "slug": "glass-panel-size-calculator",
+      "description": "Calculate glass dimensions.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Curtain Wall Calculator",
+      "slug": "curtain-wall-calculator",
+      "description": "Estimate curtain wall system size.",
+      "priority": 3,
+      "category": "architecture"
+    },
+    {
+      "title": "Elevation Design Calculator",
+      "slug": "elevation-design-calculator",
+      "description": "Compute building elevation proportions.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "3D Volume Calculator (Architecture)",
+      "slug": "3d-volume-calculator-architecture",
+      "description": "Calculate building 3D volume.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Floor Finish Calculator",
+      "slug": "floor-finish-calculator",
+      "description": "Estimate finishing materials.",
+      "priority": 1,
+      "category": "architecture"
+    },
+    {
+      "title": "Skirting Material Calculator",
+      "slug": "skirting-material-calculator",
+      "description": "Calculate skirting requirements.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Interior Space Optimization Calculator",
+      "slug": "interior-space-optimization-calculator",
+      "description": "Optimize room layout efficiency.",
+      "priority": 3,
+      "category": "architecture"
+    },
+    {
+      "title": "Furniture Layout Calculator",
+      "slug": "furniture-layout-calculator",
+      "description": "Plan furniture placement efficiency.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Green Building Score Calculator",
+      "slug": "green-building-score-calculator",
+      "description": "Estimate eco-friendly building score.",
+      "priority": 3,
+      "category": "architecture"
+    },
+    {
+      "title": "Energy Efficiency Calculator (Building)",
+      "slug": "energy-efficiency-calculator-building",
+      "description": "Calculate building energy efficiency.",
+      "priority": 2,
+      "category": "architecture"
+    },
+    {
+      "title": "Carbon Footprint Calculator (Construction)",
+      "slug": "carbon-footprint-calculator-construction",
+      "description": "Estimate CO2 emissions from materials.",
+      "priority": 3,
+      "category": "architecture"
+    },
+    {
+      "title": "Sustainability Index Calculator",
+      "slug": "sustainability-index-calculator",
+      "description": "Evaluate building sustainability.",
+      "priority": 3,
+      "category": "architecture"
+    }
+  ]
+}

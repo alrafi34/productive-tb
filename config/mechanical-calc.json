@@ -1,0 +1,704 @@
+{
+  "tools": [
+    {
+      "title": "Torque Calculator",
+      "slug": "torque-calculator",
+      "description": "Calculate torque using force and distance (Torque = Force × Distance).",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Force Calculator",
+      "slug": "force-calculator",
+      "description": "Compute force using mass and acceleration (F = ma).",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Work Calculator",
+      "slug": "work-calculator",
+      "description": "Determine work done using force and displacement.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Power Calculator",
+      "slug": "power-calculator",
+      "description": "Calculate power using work and time or force and velocity.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Kinetic Energy Calculator",
+      "slug": "kinetic-energy-calculator",
+      "description": "Compute kinetic energy of a moving object.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Potential Energy Calculator",
+      "slug": "potential-energy-calculator",
+      "description": "Calculate gravitational potential energy.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Momentum Calculator",
+      "slug": "momentum-calculator",
+      "description": "Determine momentum using mass and velocity.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Velocity Calculator",
+      "slug": "velocity-calculator",
+      "description": "Calculate velocity using displacement and time.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Acceleration Calculator",
+      "slug": "acceleration-calculator",
+      "description": "Compute acceleration using change in velocity over time.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Friction Force Calculator",
+      "slug": "friction-force-calculator",
+      "description": "Calculate frictional force using coefficient and normal force.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Stress Calculator",
+      "slug": "stress-calculator",
+      "description": "Determine stress using force and area.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Strain Calculator",
+      "slug": "strain-calculator",
+      "description": "Compute strain as deformation ratio.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Young’s Modulus Calculator",
+      "slug": "young’s-modulus-calculator",
+      "description": "Calculate Young’s modulus from stress and strain.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Shear Stress Calculator",
+      "slug": "shear-stress-calculator",
+      "description": "Determine shear stress on surfaces.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Bending Stress Calculator",
+      "slug": "bending-stress-calculator",
+      "description": "Calculate bending stress in beams.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Beam Deflection Calculator",
+      "slug": "beam-deflection-calculator",
+      "description": "Compute beam deflection under load.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Moment of Inertia Calculator",
+      "slug": "moment-of-inertia-calculator",
+      "description": "Calculate area moment of inertia.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Section Modulus Calculator",
+      "slug": "section-modulus-calculator",
+      "description": "Determine section modulus for beams.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Factor of Safety Calculator",
+      "slug": "factor-of-safety-calculator",
+      "description": "Calculate safety factor for materials.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Thermal Stress Calculator",
+      "slug": "thermal-stress-calculator",
+      "description": "Compute stress due to temperature change.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Gear Ratio Calculator",
+      "slug": "gear-ratio-calculator",
+      "description": "Determine gear ratio using teeth count.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Belt Length Calculator",
+      "slug": "belt-length-calculator",
+      "description": "Calculate belt length for pulley systems.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Spring Force Calculator",
+      "slug": "spring-force-calculator",
+      "description": "Compute spring force using Hooke’s Law.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Shaft Torque Calculator",
+      "slug": "shaft-torque-calculator",
+      "description": "Calculate torque transmitted by shaft.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Bearing Life Calculator",
+      "slug": "bearing-life-calculator",
+      "description": "Estimate bearing life based on load.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Clutch Torque Calculator",
+      "slug": "clutch-torque-calculator",
+      "description": "Determine clutch torque capacity.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Flywheel Energy Storage Calculator",
+      "slug": "flywheel-energy-storage-calculator",
+      "description": "Calculate energy stored in flywheel.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Ideal Gas Law Calculator",
+      "slug": "ideal-gas-law-calculator",
+      "description": "Compute variables using PV = nRT.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Heat Transfer Calculator",
+      "slug": "heat-transfer-calculator",
+      "description": "Calculate heat transfer rate.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Thermal Efficiency Calculator",
+      "slug": "thermal-efficiency-calculator",
+      "description": "Determine efficiency of engines.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Specific Heat Calculator",
+      "slug": "specific-heat-calculator",
+      "description": "Compute heat required for temperature change.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Heat Exchanger Effectiveness Calculator",
+      "slug": "heat-exchanger-effectiveness-calculator",
+      "description": "Evaluate heat exchanger performance.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Reynolds Number Calculator",
+      "slug": "reynolds-number-calculator",
+      "description": "Determine flow regime in fluids.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Flow Rate Calculator",
+      "slug": "flow-rate-calculator",
+      "description": "Calculate volumetric or mass flow rate.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Bernoulli Equation Calculator",
+      "slug": "bernoulli-equation-calculator",
+      "description": "Apply Bernoulli principle to fluids.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Pressure Drop Calculator",
+      "slug": "pressure-drop-calculator",
+      "description": "Calculate pressure loss in pipes.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Pipe Velocity Calculator",
+      "slug": "pipe-velocity-calculator",
+      "description": "Determine velocity of fluid in pipe.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Cutting Speed Calculator",
+      "slug": "cutting-speed-calculator",
+      "description": "Calculate machining cutting speed.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Material Removal Rate Calculator",
+      "slug": "material-removal-rate-calculator",
+      "description": "Compute MRR in machining.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Surface Finish Calculator",
+      "slug": "surface-finish-calculator",
+      "description": "Estimate machining surface finish.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Angular Velocity Calculator",
+      "slug": "angular-velocity-calculator",
+      "description": "Calculate angular velocity.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Centripetal Force Calculator",
+      "slug": "centripetal-force-calculator",
+      "description": "Compute centripetal force.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Angular Acceleration Calculator",
+      "slug": "angular-acceleration-calculator",
+      "description": "Determine angular acceleration.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Rotational Kinetic Energy Calculator",
+      "slug": "rotational-kinetic-energy-calculator",
+      "description": "Compute rotational energy.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Mechanical Advantage Calculator",
+      "slug": "mechanical-advantage-calculator",
+      "description": "Calculate machine efficiency.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Efficiency Calculator (Mechanical)",
+      "slug": "efficiency-calculator-mechanical",
+      "description": "Determine mechanical efficiency.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Impulse Calculator",
+      "slug": "impulse-calculator",
+      "description": "Calculate impulse using force and time.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Coefficient of Restitution Calculator",
+      "slug": "coefficient-of-restitution-calculator",
+      "description": "Analyze collision elasticity.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Projectile Motion Calculator",
+      "slug": "projectile-motion-calculator",
+      "description": "Analyze projectile trajectory.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Inclined Plane Calculator",
+      "slug": "inclined-plane-calculator",
+      "description": "Calculate forces on inclined plane.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Shear Force Calculator",
+      "slug": "shear-force-calculator",
+      "description": "Determine shear force.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Bending Moment Calculator",
+      "slug": "bending-moment-calculator",
+      "description": "Calculate bending moment.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Column Buckling Calculator",
+      "slug": "column-buckling-calculator",
+      "description": "Compute buckling load.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Torsion Calculator",
+      "slug": "torsion-calculator",
+      "description": "Analyze torsional stress.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Deflection Angle Calculator",
+      "slug": "deflection-angle-calculator",
+      "description": "Determine beam slope.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Elastic Potential Energy Calculator",
+      "slug": "elastic-potential-energy-calculator",
+      "description": "Compute stored elastic energy.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Hydraulic Pressure Calculator",
+      "slug": "hydraulic-pressure-calculator",
+      "description": "Calculate hydraulic pressure.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Hydraulic Power Calculator",
+      "slug": "hydraulic-power-calculator",
+      "description": "Determine hydraulic power.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Pump Efficiency Calculator",
+      "slug": "pump-efficiency-calculator",
+      "description": "Evaluate pump efficiency.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Compressor Power Calculator",
+      "slug": "compressor-power-calculator",
+      "description": "Compute compressor power.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Nozzle Flow Calculator",
+      "slug": "nozzle-flow-calculator",
+      "description": "Analyze nozzle flow.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Orifice Flow Calculator",
+      "slug": "orifice-flow-calculator",
+      "description": "Calculate orifice flow rate.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Venturi Flow Calculator",
+      "slug": "venturi-flow-calculator",
+      "description": "Determine Venturi flow.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Drag Force Calculator",
+      "slug": "drag-force-calculator",
+      "description": "Compute drag force.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Lift Force Calculator",
+      "slug": "lift-force-calculator",
+      "description": "Calculate lift force.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Mach Number Calculator",
+      "slug": "mach-number-calculator",
+      "description": "Determine Mach number.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Specific Gravity Calculator",
+      "slug": "specific-gravity-calculator",
+      "description": "Compute relative density.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Viscosity Calculator",
+      "slug": "viscosity-calculator",
+      "description": "Calculate fluid viscosity.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Bulk Modulus Calculator",
+      "slug": "bulk-modulus-calculator",
+      "description": "Determine compressibility.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Poisson Ratio Calculator",
+      "slug": "poisson-ratio-calculator",
+      "description": "Compute Poisson ratio.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Thermal Expansion Calculator",
+      "slug": "thermal-expansion-calculator",
+      "description": "Calculate expansion due to heat.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Heat Flux Calculator",
+      "slug": "heat-flux-calculator",
+      "description": "Compute heat flux.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Conduction Heat Transfer Calculator",
+      "slug": "conduction-heat-transfer-calculator",
+      "description": "Analyze conduction heat transfer.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Convection Heat Transfer Calculator",
+      "slug": "convection-heat-transfer-calculator",
+      "description": "Calculate convection heat transfer.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Radiation Heat Transfer Calculator",
+      "slug": "radiation-heat-transfer-calculator",
+      "description": "Determine radiation heat transfer.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Log Mean Temperature Difference Calculator",
+      "slug": "log-mean-temperature-difference-calculator",
+      "description": "Compute LMTD.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Entropy Calculator",
+      "slug": "entropy-calculator",
+      "description": "Calculate entropy change.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Enthalpy Calculator",
+      "slug": "enthalpy-calculator",
+      "description": "Determine enthalpy.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Boiler Efficiency Calculator",
+      "slug": "boiler-efficiency-calculator",
+      "description": "Evaluate boiler efficiency.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Refrigeration COP Calculator",
+      "slug": "refrigeration-cop-calculator",
+      "description": "Calculate COP.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Air Density Calculator",
+      "slug": "air-density-calculator",
+      "description": "Compute air density.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Fan Power Calculator",
+      "slug": "fan-power-calculator",
+      "description": "Determine fan power.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Cooling Load Calculator",
+      "slug": "cooling-load-calculator",
+      "description": "Estimate cooling needs.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Welding Heat Input Calculator",
+      "slug": "welding-heat-input-calculator",
+      "description": "Calculate welding heat input.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Tool Life Calculator",
+      "slug": "tool-life-calculator",
+      "description": "Estimate tool life.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Chip Thickness Calculator",
+      "slug": "chip-thickness-calculator",
+      "description": "Calculate chip thickness.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Lathe Speed Calculator",
+      "slug": "lathe-speed-calculator",
+      "description": "Determine lathe speed.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Drilling Speed Calculator",
+      "slug": "drilling-speed-calculator",
+      "description": "Calculate drilling speed.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Feed Rate Calculator",
+      "slug": "feed-rate-calculator",
+      "description": "Compute feed rate.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Surface Speed Calculator",
+      "slug": "surface-speed-calculator",
+      "description": "Calculate surface speed.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Tolerance Stack-Up Calculator",
+      "slug": "tolerance-stack-up-calculator",
+      "description": "Analyze tolerance accumulation.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Fit Clearance Calculator",
+      "slug": "fit-clearance-calculator",
+      "description": "Determine fit clearance.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Thread Pitch Calculator",
+      "slug": "thread-pitch-calculator",
+      "description": "Calculate thread pitch.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Bolt Load Calculator",
+      "slug": "bolt-load-calculator",
+      "description": "Determine bolt load.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Weld Strength Calculator",
+      "slug": "weld-strength-calculator",
+      "description": "Compute weld strength.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Fatigue Life Calculator",
+      "slug": "fatigue-life-calculator",
+      "description": "Estimate fatigue life.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Creep Rate Calculator",
+      "slug": "creep-rate-calculator",
+      "description": "Calculate creep rate.",
+      "priority": 3,
+      "category": "mechanical"
+    },
+    {
+      "title": "Damping Ratio Calculator",
+      "slug": "damping-ratio-calculator",
+      "description": "Determine damping ratio.",
+      "priority": 2,
+      "category": "mechanical"
+    },
+    {
+      "title": "Natural Frequency Calculator",
+      "slug": "natural-frequency-calculator",
+      "description": "Compute natural frequency.",
+      "priority": 1,
+      "category": "mechanical"
+    },
+    {
+      "title": "Vibration Amplitude Calculator",
+      "slug": "vibration-amplitude-calculator",
+      "description": "Calculate vibration amplitude.",
+      "priority": 2,
+      "category": "mechanical"
+    }
+  ]
+}

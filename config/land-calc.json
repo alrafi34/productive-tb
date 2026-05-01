@@ -1,0 +1,536 @@
+{
+  "tools": [
+    {
+      "title": "Land Area Calculator (Square Feet)",
+      "slug": "land-area-calculator-square-feet",
+      "description": "Calculate land area in square feet from dimensions.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Land Area Calculator (Square Meter)",
+      "slug": "land-area-calculator-square-meter",
+      "description": "Convert and calculate land area in square meters.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Acre to Square Feet Converter",
+      "slug": "acre-to-square-feet-converter",
+      "description": "Convert acres into square feet.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Square Feet to Acre Converter",
+      "slug": "square-feet-to-acre-converter",
+      "description": "Convert square feet into acres.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Hectare to Acre Converter",
+      "slug": "hectare-to-acre-converter",
+      "description": "Convert hectares into acres.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Acre to Hectare Converter",
+      "slug": "acre-to-hectare-converter",
+      "description": "Convert acres into hectares.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Katha Land Calculator",
+      "slug": "katha-land-calculator",
+      "description": "Calculate land in katha units (South Asia).",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Bigha Land Calculator",
+      "slug": "bigha-land-calculator",
+      "description": "Calculate land in bigha system.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Decimal Land Calculator",
+      "slug": "decimal-land-calculator",
+      "description": "Convert decimal land measurement.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Gonda Land Calculator",
+      "slug": "gonda-land-calculator",
+      "description": "Regional land unit calculator.",
+      "priority": 2,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Perch to Acre Calculator",
+      "slug": "perch-to-acre-calculator",
+      "description": "Convert perch to acres.",
+      "priority": 2,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Dismil to Acre Converter",
+      "slug": "dismil-to-acre-converter",
+      "description": "Convert dismil into acres.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Land Price Calculator",
+      "slug": "land-price-calculator",
+      "description": "Calculate total land cost based on rate.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Price per Square Feet Calculator",
+      "slug": "price-per-square-feet-calculator",
+      "description": "Calculate land price per sq ft.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Land Valuation Calculator",
+      "slug": "land-valuation-calculator",
+      "description": "Estimate total property value.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Plot Division Calculator",
+      "slug": "plot-division-calculator",
+      "description": "Divide land into equal plots.",
+      "priority": 1,
+      "category": "plot-planning"
+    },
+    {
+      "title": "Plot Size Optimizer",
+      "slug": "plot-size-optimizer",
+      "description": "Optimize land subdivision planning.",
+      "priority": 2,
+      "category": "plot-planning"
+    },
+    {
+      "title": "Boundary Length Calculator",
+      "slug": "boundary-length-calculator",
+      "description": "Calculate boundary perimeter.",
+      "priority": 1,
+      "category": "plot-planning"
+    },
+    {
+      "title": "Fence Material Calculator",
+      "slug": "fence-material-calculator",
+      "description": "Estimate fencing material needed.",
+      "priority": 1,
+      "category": "plot-planning"
+    },
+    {
+      "title": "Wall Boundary Cost Calculator",
+      "slug": "wall-boundary-cost-calculator",
+      "description": "Estimate boundary wall cost.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Survey Area Calculator",
+      "slug": "survey-area-calculator",
+      "description": "Calculate surveyed land area.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "GPS Land Area Calculator",
+      "slug": "gps-land-area-calculator",
+      "description": "Estimate land area using coordinates.",
+      "priority": 2,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Polygon Area Calculator",
+      "slug": "polygon-area-calculator",
+      "description": "Calculate area of irregular land shapes.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Triangle Land Area Calculator",
+      "slug": "triangle-land-area-calculator",
+      "description": "Calculate triangular plot area.",
+      "priority": 1,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Trapezoid Land Calculator",
+      "slug": "trapezoid-land-calculator",
+      "description": "Calculate trapezoid land area.",
+      "priority": 2,
+      "category": "land-survey"
+    },
+    {
+      "title": "Land Slope Calculator",
+      "slug": "land-slope-calculator",
+      "description": "Calculate slope gradient of land.",
+      "priority": 2,
+      "category": "topography"
+    },
+    {
+      "title": "Elevation Difference Calculator",
+      "slug": "elevation-difference-calculator",
+      "description": "Compute height difference in land.",
+      "priority": 2,
+      "category": "topography"
+    },
+    {
+      "title": "Contour Interval Calculator",
+      "slug": "contour-interval-calculator",
+      "description": "Calculate contour spacing.",
+      "priority": 2,
+      "category": "topography"
+    },
+    {
+      "title": "Topographic Area Calculator",
+      "slug": "topographic-area-calculator",
+      "description": "Analyze terrain surface area.",
+      "priority": 3,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Soil Volume Calculator",
+      "slug": "soil-volume-calculator",
+      "description": "Calculate soil excavation volume.",
+      "priority": 1,
+      "category": "earthwork"
+    },
+    {
+      "title": "Earth Filling Calculator",
+      "slug": "earth-filling-calculator",
+      "description": "Estimate fill material needed.",
+      "priority": 1,
+      "category": "earthwork"
+    },
+    {
+      "title": "Cut and Fill Calculator",
+      "slug": "cut-and-fill-calculator",
+      "description": "Balance excavation and filling.",
+      "priority": 2,
+      "category": "earthwork"
+    },
+    {
+      "title": "Excavation Cost Calculator",
+      "slug": "excavation-cost-calculator",
+      "description": "Estimate digging cost.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Land Registration Cost Calculator",
+      "slug": "land-registration-cost-calculator",
+      "description": "Estimate legal registration fees.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Stamp Duty Calculator",
+      "slug": "stamp-duty-calculator",
+      "description": "Calculate stamp duty tax.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Property Tax Calculator",
+      "slug": "property-tax-calculator",
+      "description": "Estimate yearly property tax.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Capital Gain Tax Calculator",
+      "slug": "capital-gain-tax-calculator",
+      "description": "Calculate profit tax on land sale.",
+      "priority": 2,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Mortgage Loan Calculator",
+      "slug": "mortgage-loan-calculator",
+      "description": "Calculate monthly loan payments.",
+      "priority": 1,
+      "category": "land-finance"
+    },
+    {
+      "title": "Home Loan EMI Calculator",
+      "slug": "home-loan-emi-calculator",
+      "description": "Compute EMI for property loan.",
+      "priority": 1,
+      "category": "land-finance"
+    },
+    {
+      "title": "Down Payment Calculator",
+      "slug": "down-payment-calculator",
+      "description": "Calculate upfront payment.",
+      "priority": 1,
+      "category": "land-finance"
+    },
+    {
+      "title": "Loan Interest Calculator (Property)",
+      "slug": "loan-interest-calculator-property",
+      "description": "Calculate interest on land loans.",
+      "priority": 1,
+      "category": "land-finance"
+    },
+    {
+      "title": "Rental Yield Calculator",
+      "slug": "rental-yield-calculator",
+      "description": "Calculate return from rental property.",
+      "priority": 1,
+      "category": "land-finance"
+    },
+    {
+      "title": "ROI Real Estate Calculator",
+      "slug": "roi-real-estate-calculator",
+      "description": "Estimate return on property investment.",
+      "priority": 1,
+      "category": "land-finance"
+    },
+    {
+      "title": "Property Appreciation Calculator",
+      "slug": "property-appreciation-calculator",
+      "description": "Estimate land value growth.",
+      "priority": 1,
+      "category": "land-finance"
+    },
+    {
+      "title": "Agricultural Land Yield Calculator",
+      "slug": "agricultural-land-yield-calculator",
+      "description": "Estimate crop yield per land area.",
+      "priority": 1,
+      "category": "agriculture"
+    },
+    {
+      "title": "Crop Profit Calculator",
+      "slug": "crop-profit-calculator",
+      "description": "Calculate profit from farming land.",
+      "priority": 1,
+      "category": "agriculture"
+    },
+    {
+      "title": "Fertilizer Requirement Calculator",
+      "slug": "fertilizer-requirement-calculator",
+      "description": "Estimate fertilizer needed.",
+      "priority": 1,
+      "category": "agriculture"
+    },
+    {
+      "title": "Irrigation Water Calculator",
+      "slug": "irrigation-water-calculator",
+      "description": "Calculate water requirement for land.",
+      "priority": 1,
+      "category": "agriculture"
+    },
+    {
+      "title": "Well Depth Calculator",
+      "slug": "well-depth-calculator",
+      "description": "Estimate water well depth.",
+      "priority": 2,
+      "category": "water-management"
+    },
+    {
+      "title": "Water Table Depth Calculator",
+      "slug": "water-table-depth-calculator",
+      "description": "Calculate groundwater level.",
+      "priority": 2,
+      "category": "water-management"
+    },
+    {
+      "title": "Drainage System Calculator",
+      "slug": "drainage-system-calculator",
+      "description": "Design land drainage flow.",
+      "priority": 1,
+      "category": "water-management"
+    },
+    {
+      "title": "Rainwater Runoff Calculator",
+      "slug": "rainwater-runoff-calculator",
+      "description": "Estimate water runoff from land.",
+      "priority": 1,
+      "category": "water-management"
+    },
+    {
+      "title": "Land Leveling Calculator",
+      "slug": "land-leveling-calculator",
+      "description": "Calculate leveling volume.",
+      "priority": 1,
+      "category": "earthwork"
+    },
+    {
+      "title": "Soil Compaction Ratio Calculator",
+      "slug": "soil-compaction-ratio-calculator",
+      "description": "Calculate compaction efficiency.",
+      "priority": 2,
+      "category": "earthwork"
+    },
+    {
+      "title": "Road Length Across Land Calculator",
+      "slug": "road-length-across-land-calculator",
+      "description": "Plan road layout in land.",
+      "priority": 2,
+      "category": "infrastructure"
+    },
+    {
+      "title": "Access Path Calculator",
+      "slug": "access-path-calculator",
+      "description": "Design access routes on land.",
+      "priority": 2,
+      "category": "infrastructure"
+    },
+    {
+      "title": "Plot Shape Optimizer",
+      "slug": "plot-shape-optimizer",
+      "description": "Optimize land shape usage.",
+      "priority": 2,
+      "category": "plot-planning"
+    },
+    {
+      "title": "Land Utilization Calculator",
+      "slug": "land-utilization-calculator",
+      "description": "Calculate usable vs unused land.",
+      "priority": 1,
+      "category": "land-development"
+    },
+    {
+      "title": "Building Coverage Ratio Calculator",
+      "slug": "building-coverage-ratio-calculator",
+      "description": "Calculate land coverage by building.",
+      "priority": 1,
+      "category": "construction-planning"
+    },
+    {
+      "title": "Floor Area Ratio (FAR) Calculator",
+      "slug": "floor-area-ratio-far-calculator",
+      "description": "Compute FAR for construction rules.",
+      "priority": 1,
+      "category": "construction-planning"
+    },
+    {
+      "title": "Setback Distance Calculator",
+      "slug": "setback-distance-calculator",
+      "description": "Calculate building setback rules.",
+      "priority": 2,
+      "category": "land-survey"
+    },
+    {
+      "title": "Zoning Compliance Calculator",
+      "slug": "zoning-compliance-calculator",
+      "description": "Check zoning rule compliance.",
+      "priority": 2,
+      "category": "construction-planning"
+    },
+    {
+      "title": "Land Density Calculator",
+      "slug": "land-density-calculator",
+      "description": "Calculate population or building density.",
+      "priority": 2,
+      "category": "construction-planning"
+    },
+    {
+      "title": "Urban Planning Calculator",
+      "slug": "urban-planning-calculator",
+      "description": "Analyze land usage for city planning.",
+      "priority": 3,
+      "category": "construction-planning"
+    },
+    {
+      "title": "Green Space Ratio Calculator",
+      "slug": "green-space-ratio-calculator",
+      "description": "Calculate environmental land ratio.",
+      "priority": 2,
+      "category": "construction-planning"
+    },
+    {
+      "title": "Parking Area Requirement Calculator",
+      "slug": "parking-area-requirement-calculator",
+      "description": "Estimate parking space needed.",
+      "priority": 1,
+      "category": "construction-planning"
+    },
+    {
+      "title": "Solar Land Usage Calculator",
+      "slug": "solar-land-usage-calculator",
+      "description": "Calculate land needed for solar farm.",
+      "priority": 2,
+      "category": "renewable-energy"
+    },
+    {
+      "title": "Wind Farm Land Calculator",
+      "slug": "wind-farm-land-calculator",
+      "description": "Estimate land for wind turbines.",
+      "priority": 3,
+      "category": "renewable-energy"
+    },
+    {
+      "title": "Boundary Dispute Area Calculator",
+      "slug": "boundary-dispute-area-calculator",
+      "description": "Compare disputed land area.",
+      "priority": 2,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Map Scale Calculator",
+      "slug": "map-scale-calculator",
+      "description": "Convert map scale to real distance.",
+      "priority": 1,
+      "category": "land-survey"
+    },
+    {
+      "title": "Distance Between Points Calculator",
+      "slug": "distance-between-points-calculator",
+      "description": "Calculate distance on land coordinates.",
+      "priority": 1,
+      "category": "land-survey"
+    },
+    {
+      "title": "Bearing Angle Calculator",
+      "slug": "bearing-angle-calculator",
+      "description": "Calculate direction between points.",
+      "priority": 2,
+      "category": "land-survey"
+    },
+    {
+      "title": "Land Registration Area Verification",
+      "slug": "land-registration-area-verification",
+      "description": "Verify official land area records.",
+      "priority": 2,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Parcel ID Area Calculator",
+      "slug": "parcel-id-area-calculator",
+      "description": "Match parcel ID with land area.",
+      "priority": 3,
+      "category": "land-measurement"
+    },
+    {
+      "title": "Subdivision Cost Calculator",
+      "slug": "subdivision-cost-calculator",
+      "description": "Estimate cost of dividing land.",
+      "priority": 1,
+      "category": "land-valuation"
+    },
+    {
+      "title": "Land Development Cost Calculator",
+      "slug": "land-development-cost-calculator",
+      "description": "Calculate full land development cost.",
+      "priority": 1,
+      "category": "land-valuation"
+    }
+  ]
+}

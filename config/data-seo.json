@@ -1,0 +1,578 @@
+{
+  "tools": [
+    {
+      "title": "CTR Calculator",
+      "slug": "ctr-calculator",
+      "description": "Calculate click-through rate (CTR = Clicks / Impressions).",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Conversion Rate Calculator",
+      "slug": "conversion-rate-calculator",
+      "description": "Compute conversion rate from visitors.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Bounce Rate Calculator",
+      "slug": "bounce-rate-calculator",
+      "description": "Calculate bounce rate percentage.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "ROI Calculator (Marketing)",
+      "slug": "roi-calculator-marketing",
+      "description": "Calculate return on investment.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Cost Per Click (CPC) Calculator",
+      "slug": "cost-per-click-cpc-calculator",
+      "description": "Calculate cost per click.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Cost Per Acquisition (CPA) Calculator",
+      "slug": "cost-per-acquisition-cpa-calculator",
+      "description": "Calculate cost per acquisition.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Customer Lifetime Value Calculator",
+      "slug": "customer-lifetime-value-calculator",
+      "description": "Estimate CLV of customers.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Revenue Growth Calculator",
+      "slug": "revenue-growth-calculator",
+      "description": "Calculate business growth rate.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Profit Margin Calculator",
+      "slug": "profit-margin-calculator",
+      "description": "Calculate profit margin percentage.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Break Even Calculator",
+      "slug": "break-even-calculator",
+      "description": "Determine break-even point.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Keyword Density Calculator",
+      "slug": "keyword-density-calculator",
+      "description": "Calculate keyword density in content.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "SEO Score Calculator",
+      "slug": "seo-score-calculator",
+      "description": "Estimate SEO optimization score.",
+      "priority": 2,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Page Speed Score Calculator",
+      "slug": "page-speed-score-calculator",
+      "description": "Estimate performance score.",
+      "priority": 2,
+      "category": "data-analytics"
+    },
+    {
+      "title": "Backlink Ratio Calculator",
+      "slug": "backlink-ratio-calculator",
+      "description": "Analyze backlink ratio.",
+      "priority": 2,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Domain Authority Estimator",
+      "slug": "domain-authority-estimator",
+      "description": "Estimate domain authority score.",
+      "priority": 2,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Impressions Calculator",
+      "slug": "impressions-calculator",
+      "description": "Estimate impressions from data.",
+      "priority": 1,
+      "category": "social-media"
+    },
+    {
+      "title": "Engagement Rate Calculator",
+      "slug": "engagement-rate-calculator",
+      "description": "Calculate engagement rate.",
+      "priority": 1,
+      "category": "social-media"
+    },
+    {
+      "title": "Social Media Reach Calculator",
+      "slug": "social-media-reach-calculator",
+      "description": "Estimate reach metrics.",
+      "priority": 1,
+      "category": "social-media"
+    },
+    {
+      "title": "Ad Frequency Calculator",
+      "slug": "ad-frequency-calculator",
+      "description": "Calculate ad frequency.",
+      "priority": 2,
+      "category": "social-media"
+    },
+    {
+      "title": "CPM Calculator",
+      "slug": "cpm-calculator",
+      "description": "Calculate cost per thousand impressions.",
+      "priority": 1,
+      "category": "social-media"
+    },
+    {
+      "title": "Data Growth Calculator",
+      "slug": "data-growth-calculator",
+      "description": "Estimate data growth over time.",
+      "priority": 1,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Storage Requirement Calculator",
+      "slug": "storage-requirement-calculator",
+      "description": "Calculate storage needs.",
+      "priority": 1,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Data Transfer Cost Calculator",
+      "slug": "data-transfer-cost-calculator",
+      "description": "Estimate data transfer costs.",
+      "priority": 1,
+      "category": "data-engineering"
+    },
+    {
+      "title": "ETL Throughput Calculator",
+      "slug": "etl-throughput-calculator",
+      "description": "Calculate ETL pipeline throughput.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Data Pipeline Latency Calculator",
+      "slug": "data-pipeline-latency-calculator",
+      "description": "Estimate pipeline delay.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Mean Calculator",
+      "slug": "mean-calculator",
+      "description": "Compute average value.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Median Calculator",
+      "slug": "median-calculator",
+      "description": "Find median of dataset.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Mode Calculator",
+      "slug": "mode-calculator",
+      "description": "Find most frequent value.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Standard Deviation Calculator",
+      "slug": "standard-deviation-calculator",
+      "description": "Calculate data variability.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Variance Calculator",
+      "slug": "variance-calculator",
+      "description": "Compute variance of dataset.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Z-Score Calculator",
+      "slug": "z-score-calculator",
+      "description": "Calculate standard score.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Correlation Coefficient Calculator",
+      "slug": "correlation-coefficient-calculator",
+      "description": "Compute correlation between variables.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Regression Calculator",
+      "slug": "regression-calculator",
+      "description": "Perform linear regression.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Moving Average Calculator",
+      "slug": "moving-average-calculator",
+      "description": "Calculate moving averages.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Exponential Smoothing Calculator",
+      "slug": "exponential-smoothing-calculator",
+      "description": "Smooth data trends.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Sample Size Calculator",
+      "slug": "sample-size-calculator",
+      "description": "Determine required sample size.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Confidence Interval Calculator",
+      "slug": "confidence-interval-calculator",
+      "description": "Calculate confidence intervals.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "A/B Test Calculator",
+      "slug": "a-b-test-calculator",
+      "description": "Analyze A/B test results.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "P-Value Calculator",
+      "slug": "p-value-calculator",
+      "description": "Calculate statistical significance.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Chi-Square Calculator",
+      "slug": "chi-square-calculator",
+      "description": "Perform chi-square test.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Data Normalization Calculator",
+      "slug": "data-normalization-calculator",
+      "description": "Normalize dataset values.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Min-Max Scaling Calculator",
+      "slug": "min-max-scaling-calculator",
+      "description": "Scale values between ranges.",
+      "priority": 1,
+      "category": "statistics"
+    },
+    {
+      "title": "Log Transformation Calculator",
+      "slug": "log-transformation-calculator",
+      "description": "Apply log transformation.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Precision Calculator",
+      "slug": "precision-calculator",
+      "description": "Calculate precision metric.",
+      "priority": 1,
+      "category": "machine-learning"
+    },
+    {
+      "title": "Recall Calculator",
+      "slug": "recall-calculator",
+      "description": "Calculate recall metric.",
+      "priority": 1,
+      "category": "machine-learning"
+    },
+    {
+      "title": "F1 Score Calculator",
+      "slug": "f1-score-calculator",
+      "description": "Compute F1 score.",
+      "priority": 1,
+      "category": "machine-learning"
+    },
+    {
+      "title": "ROC AUC Calculator",
+      "slug": "roc-auc-calculator",
+      "description": "Calculate ROC AUC score.",
+      "priority": 2,
+      "category": "machine-learning"
+    },
+    {
+      "title": "Confusion Matrix Analyzer",
+      "slug": "confusion-matrix-analyzer",
+      "description": "Analyze classification results.",
+      "priority": 1,
+      "category": "machine-learning"
+    },
+    {
+      "title": "Clustering Distance Calculator",
+      "slug": "clustering-distance-calculator",
+      "description": "Calculate cluster distances.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Data Compression Ratio Calculator",
+      "slug": "data-compression-ratio-calculator",
+      "description": "Compute compression efficiency.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Encoding Efficiency Calculator",
+      "slug": "encoding-efficiency-calculator",
+      "description": "Measure encoding performance.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Time Series Forecast Calculator",
+      "slug": "time-series-forecast-calculator",
+      "description": "Predict future values.",
+      "priority": 3,
+      "category": "time-series"
+    },
+    {
+      "title": "Seasonality Index Calculator",
+      "slug": "seasonality-index-calculator",
+      "description": "Analyze seasonal patterns.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Traffic Growth Calculator",
+      "slug": "traffic-growth-calculator",
+      "description": "Estimate website traffic growth.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Organic vs Paid Ratio Calculator",
+      "slug": "organic-vs-paid-ratio-calculator",
+      "description": "Compare traffic sources.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Keyword Difficulty Estimator",
+      "slug": "keyword-difficulty-estimator",
+      "description": "Estimate keyword difficulty.",
+      "priority": 2,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "SERP CTR Estimator",
+      "slug": "serp-ctr-estimator",
+      "description": "Estimate CTR based on ranking.",
+      "priority": 2,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Page Rank Estimator",
+      "slug": "page-rank-estimator",
+      "description": "Estimate page ranking.",
+      "priority": 2,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Ad Spend Calculator",
+      "slug": "ad-spend-calculator",
+      "description": "Calculate advertising budget.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Marketing ROI Calculator",
+      "slug": "marketing-roi-calculator",
+      "description": "Evaluate campaign ROI.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Lead Conversion Funnel Calculator",
+      "slug": "lead-conversion-funnel-calculator",
+      "description": "Analyze funnel conversion.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Churn Rate Calculator",
+      "slug": "churn-rate-calculator",
+      "description": "Calculate customer churn.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Retention Rate Calculator",
+      "slug": "retention-rate-calculator",
+      "description": "Calculate retention percentage.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Session Duration Calculator",
+      "slug": "session-duration-calculator",
+      "description": "Calculate average session time.",
+      "priority": 1,
+      "category": "analytics"
+    },
+    {
+      "title": "Click Heatmap Density Calculator",
+      "slug": "click-heatmap-density-calculator",
+      "description": "Analyze click distribution.",
+      "priority": 3,
+      "category": "analytics"
+    },
+    {
+      "title": "Scroll Depth Calculator",
+      "slug": "scroll-depth-calculator",
+      "description": "Measure user scroll behavior.",
+      "priority": 2,
+      "category": "analytics"
+    },
+    {
+      "title": "Big Data Throughput Calculator",
+      "slug": "big-data-throughput-calculator",
+      "description": "Estimate processing throughput.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Cluster Utilization Calculator",
+      "slug": "cluster-utilization-calculator",
+      "description": "Calculate resource usage.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Hadoop Storage Calculator",
+      "slug": "hadoop-storage-calculator",
+      "description": "Estimate Hadoop storage needs.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Spark Job Time Calculator",
+      "slug": "spark-job-time-calculator",
+      "description": "Estimate Spark job duration.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Data Partition Calculator",
+      "slug": "data-partition-calculator",
+      "description": "Calculate partition size.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Query Optimization Calculator",
+      "slug": "query-optimization-calculator",
+      "description": "Estimate query improvement.",
+      "priority": 3,
+      "category": "analytics"
+    },
+    {
+      "title": "Index Size Calculator",
+      "slug": "index-size-calculator",
+      "description": "Estimate database index size.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "Cache Efficiency Calculator",
+      "slug": "cache-efficiency-calculator",
+      "description": "Calculate cache performance.",
+      "priority": 2,
+      "category": "data-engineering"
+    },
+    {
+      "title": "User Growth Rate Calculator",
+      "slug": "user-growth-rate-calculator",
+      "description": "Calculate user growth.",
+      "priority": 1,
+      "category": "analytics"
+    },
+    {
+      "title": "Viral Coefficient Calculator",
+      "slug": "viral-coefficient-calculator",
+      "description": "Measure virality factor.",
+      "priority": 2,
+      "category": "social-media"
+    },
+    {
+      "title": "Email Open Rate Calculator",
+      "slug": "email-open-rate-calculator",
+      "description": "Calculate email open rate.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Email Click Rate Calculator",
+      "slug": "email-click-rate-calculator",
+      "description": "Calculate email CTR.",
+      "priority": 1,
+      "category": "marketing-seo"
+    },
+    {
+      "title": "Data Sampling Calculator",
+      "slug": "data-sampling-calculator",
+      "description": "Calculate sampling size.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Outlier Detection Calculator",
+      "slug": "outlier-detection-calculator",
+      "description": "Identify outliers.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Histogram Bin Calculator",
+      "slug": "histogram-bin-calculator",
+      "description": "Determine histogram bins.",
+      "priority": 2,
+      "category": "statistics"
+    },
+    {
+      "title": "Percentile Calculator",
+      "slug": "percentile-calculator",
+      "description": "Compute percentiles.",
+      "priority": 1,
+      "category": "statistics"
+    }
+  ]
+}
