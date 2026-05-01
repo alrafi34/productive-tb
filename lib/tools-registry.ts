@@ -216,6 +216,7 @@ import { furnitureLayoutCalculatorConfig } from "@/tools/furniture-layout-calcul
 import { energyEfficiencyCalculatorBuildingConfig } from "@/tools/energy-efficiency-calculator-building/config";
 import { greenBuildingScoreCalculatorConfig } from "@/tools/green-building-score-calculator/config";
 import { sustainabilityIndexCalculatorConfig } from "@/tools/sustainability-index-calculator/config";
+import { carbonFootprintCalculatorConstructionConfig } from "@/tools/carbon-footprint-calculator-construction/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -435,6 +436,7 @@ export const TOOLS_REGISTRY = {
   'furniture-layout-calculator': furnitureLayoutCalculatorConfig,
   'energy-efficiency-calculator-building': energyEfficiencyCalculatorBuildingConfig,
   'green-building-score-calculator': greenBuildingScoreCalculatorConfig,
+  'carbon-footprint-calculator-construction': carbonFootprintCalculatorConstructionConfig,
   'sustainability-index-calculator': sustainabilityIndexCalculatorConfig,
 };
 

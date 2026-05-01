@@ -247,6 +247,7 @@ import { skirtingMaterialCalculatorConfig } from "@/tools/skirting-material-calc
 import { interiorSpaceOptimizationCalculatorConfig } from "@/tools/interior-space-optimization-calculator/config";
 import { furnitureLayoutCalculatorConfig } from "@/tools/furniture-layout-calculator/config";
 import { energyEfficiencyCalculatorBuildingConfig } from "@/tools/energy-efficiency-calculator-building/config";
+import { carbonFootprintCalculatorConstructionConfig } from "@/tools/carbon-footprint-calculator-construction/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -490,6 +491,7 @@ const SkirtingMaterialCalculatorUI = dynamic(() => import("@/tools/skirting-mate
 const InteriorSpaceOptimizationCalculatorUI = dynamic(() => import("@/tools/interior-space-optimization-calculator/ui"));
 const FurnitureLayoutCalculatorUI = dynamic(() => import("@/tools/furniture-layout-calculator/ui"));
 const EnergyEfficiencyCalculatorBuildingUI = dynamic(() => import("@/tools/energy-efficiency-calculator-building/ui"));
+const CarbonFootprintCalculatorConstructionUI = dynamic(() => import("@/tools/carbon-footprint-calculator-construction/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -734,6 +736,7 @@ const TOOLS = [
   { config: interiorSpaceOptimizationCalculatorConfig, Component: InteriorSpaceOptimizationCalculatorUI },
   { config: furnitureLayoutCalculatorConfig, Component: FurnitureLayoutCalculatorUI },
   { config: energyEfficiencyCalculatorBuildingConfig, Component: EnergyEfficiencyCalculatorBuildingUI },
+  { config: carbonFootprintCalculatorConstructionConfig, Component: CarbonFootprintCalculatorConstructionUI },
 ];
 
 
