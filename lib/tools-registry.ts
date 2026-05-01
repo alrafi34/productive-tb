@@ -212,6 +212,10 @@ import { volumeCalculatorArchitectureConfig } from "@/tools/3d-volume-calculator
 import { floorFinishCalculatorConfig } from "@/tools/floor-finish-calculator/config";
 import { skirtingMaterialCalculatorConfig } from "@/tools/skirting-material-calculator/config";
 import { interiorSpaceOptimizationCalculatorConfig } from "@/tools/interior-space-optimization-calculator/config";
+import { furnitureLayoutCalculatorConfig } from "@/tools/furniture-layout-calculator/config";
+import { energyEfficiencyCalculatorBuildingConfig } from "@/tools/energy-efficiency-calculator-building/config";
+import { greenBuildingScoreCalculatorConfig } from "@/tools/green-building-score-calculator/config";
+import { sustainabilityIndexCalculatorConfig } from "@/tools/sustainability-index-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -428,6 +432,10 @@ export const TOOLS_REGISTRY = {
   'floor-finish-calculator': floorFinishCalculatorConfig,
   'skirting-material-calculator': skirtingMaterialCalculatorConfig,
   'interior-space-optimization-calculator': interiorSpaceOptimizationCalculatorConfig,
+  'furniture-layout-calculator': furnitureLayoutCalculatorConfig,
+  'energy-efficiency-calculator-building': energyEfficiencyCalculatorBuildingConfig,
+  'green-building-score-calculator': greenBuildingScoreCalculatorConfig,
+  'sustainability-index-calculator': sustainabilityIndexCalculatorConfig,
 };
 
 
