@@ -101,6 +101,7 @@ import { toolConfig as dateDifferenceCalculatorConfig } from "@/tools/date-diffe
 import { toolConfig as timeDurationCalculatorConfig } from "@/tools/time-duration-calculator/config";
 import { toolConfig as temperatureConversionScientificConfig } from "@/tools/temperature-conversion-scientific/config";
 import { toolConfig as ohmsLawCalculatorConfig } from "@/tools/ohms-law-calculator/config";
+import { voltageDividerCalculatorConfig } from "@/tools/voltage-divider-calculator/config";
 import { toolConfig as cmToMeterConverterConfig } from "@/tools/centimeter-to-meter-converter/config";
 import { toolConfig as squareMeterToSquareFootConverterConfig } from "@/tools/square-meter-to-square-foot-converter/config";
 import { toolConfig as meterToKmConverterConfig } from "@/tools/meter-to-km-converter/config";
@@ -217,6 +218,40 @@ import { energyEfficiencyCalculatorBuildingConfig } from "@/tools/energy-efficie
 import { greenBuildingScoreCalculatorConfig } from "@/tools/green-building-score-calculator/config";
 import { sustainabilityIndexCalculatorConfig } from "@/tools/sustainability-index-calculator/config";
 import { carbonFootprintCalculatorConstructionConfig } from "@/tools/carbon-footprint-calculator-construction/config";
+import { parallelResistorCalculatorConfig } from "@/tools/parallel-resistor-calculator/config";
+import { electricBillCalculatorConfig } from "@/tools/electric-bill-calculator/config";
+import { energyConsumptionCalculatorConfig } from "@/tools/energy-consumption-calculator/config";
+import { powerCalculatorElectricalConfig } from "@/tools/power-calculator-electrical/config";
+import { capacitorCalculatorConfig } from "@/tools/capacitor-calculator/config";
+import { seriesResistorCalculatorConfig } from "@/tools/series-resistor-calculator/config";
+import { capacitiveReactanceCalculatorConfig } from "@/tools/capacitive-reactance-calculator/config";
+import { inductiveReactanceCalculatorConfig } from "@/tools/inductive-reactance-calculator/config";
+import { inductorCalculatorConfig } from "@/tools/inductor-calculator/config";
+import { capacitorChargeTimeCalculatorConfig } from "@/tools/capacitor-charge-time-calculator/config";
+import { resistorColorCodeCalculatorConfig } from "@/tools/resistor-color-code-calculator/config";
+import { impedanceCalculatorConfig } from "@/tools/impedance-calculator/config";
+import { phaseAngleCalculatorConfig } from "@/tools/phase-angle-calculator/config";
+import { powerFactorCalculatorConfig } from "@/tools/power-factor-calculator/config";
+import { realPowerCalculatorConfig } from "@/tools/real-power-calculator/config";
+import { apparentPowerCalculatorConfig } from "@/tools/apparent-power-calculator/config";
+import { reactivePowerCalculatorConfig } from "@/tools/reactive-power-calculator/config";
+import { toolConfig as threePhasePowerCalculatorConfig } from "@/tools/three-phase-power-calculator/config";
+import { toolConfig as transformerTurnsRatioCalculatorConfig } from "@/tools/transformer-turns-ratio-calculator/config";
+import { toolConfig as transformerEfficiencyCalculatorConfig } from "@/tools/transformer-efficiency-calculator/config";
+import { toolConfig as transformerCurrentCalculatorConfig } from "@/tools/transformer-current-calculator/config";
+import { toolConfig as batteryCapacityCalculatorConfig } from "@/tools/battery-capacity-calculator/config";
+import { toolConfig as batteryBackupTimeCalculatorConfig } from "@/tools/battery-backup-time-calculator/config";
+import { toolConfig as batteryChargingTimeCalculatorConfig } from "@/tools/battery-charging-time-calculator/config";
+import { toolConfig as ledResistorCalculatorConfig } from "@/tools/led-resistor-calculator/config";
+import { toolConfig as diodeCalculatorConfig } from "@/tools/diode-calculator/config";
+import { toolConfig as zenerDiodeCalculatorConfig } from "@/tools/zener-diode-calculator/config";
+import { toolConfig as transistorBiasCalculatorConfig } from "@/tools/transistor-bias-calculator/config";
+import { clockFrequencyCalculatorConfig } from "@/tools/clock-frequency-calculator/config";
+import { dataRateCalculatorConfig } from "@/tools/data-rate-calculator/config";
+import { antennaLengthCalculatorConfig } from "@/tools/antenna-length-calculator/config";
+import { rfPowerCalculatorConfig } from "@/tools/rf-power-calculator/config";
+import { lightningProtectionCalculatorConfig } from "@/tools/lightning-protection-calculator/config";
+import { powerLossCalculatorConfig } from "@/tools/power-loss-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -322,6 +357,7 @@ export const TOOLS_REGISTRY = {
   'time-duration-calculator': timeDurationCalculatorConfig,
   'temperature-conversion-scientific': temperatureConversionScientificConfig,
   'ohms-law-calculator': ohmsLawCalculatorConfig,
+  'voltage-divider-calculator': voltageDividerCalculatorConfig,
   'centimeter-to-meter-converter': cmToMeterConverterConfig,
   'square-meter-to-square-foot-converter': squareMeterToSquareFootConverterConfig,
   'meter-to-km-converter': meterToKmConverterConfig,
@@ -437,7 +473,41 @@ export const TOOLS_REGISTRY = {
   'energy-efficiency-calculator-building': energyEfficiencyCalculatorBuildingConfig,
   'green-building-score-calculator': greenBuildingScoreCalculatorConfig,
   'carbon-footprint-calculator-construction': carbonFootprintCalculatorConstructionConfig,
+  'parallel-resistor-calculator': parallelResistorCalculatorConfig,
+  'electric-bill-calculator': electricBillCalculatorConfig,
+  'energy-consumption-calculator': energyConsumptionCalculatorConfig,
+  'capacitor-calculator': capacitorCalculatorConfig,
+  'series-resistor-calculator': seriesResistorCalculatorConfig,
+  'capacitive-reactance-calculator': capacitiveReactanceCalculatorConfig,
+  'inductive-reactance-calculator': inductiveReactanceCalculatorConfig,
+  'inductor-calculator': inductorCalculatorConfig,
+  'capacitor-charge-time-calculator': capacitorChargeTimeCalculatorConfig,
+  'resistor-color-code-calculator': resistorColorCodeCalculatorConfig,
   'sustainability-index-calculator': sustainabilityIndexCalculatorConfig,
+  'power-calculator-electrical': powerCalculatorElectricalConfig,
+  'impedance-calculator': impedanceCalculatorConfig,
+  'phase-angle-calculator': phaseAngleCalculatorConfig,
+  'power-factor-calculator': powerFactorCalculatorConfig,
+  'real-power-calculator': realPowerCalculatorConfig,
+  'apparent-power-calculator': apparentPowerCalculatorConfig,
+  'reactive-power-calculator': reactivePowerCalculatorConfig,
+  'three-phase-power-calculator': threePhasePowerCalculatorConfig,
+  'transformer-turns-ratio-calculator': transformerTurnsRatioCalculatorConfig,
+  'transformer-efficiency-calculator': transformerEfficiencyCalculatorConfig,
+  'transformer-current-calculator': transformerCurrentCalculatorConfig,
+  'battery-capacity-calculator': batteryCapacityCalculatorConfig,
+  'battery-backup-time-calculator': batteryBackupTimeCalculatorConfig,
+  'battery-charging-time-calculator': batteryChargingTimeCalculatorConfig,
+  'led-resistor-calculator': ledResistorCalculatorConfig,
+  'diode-calculator': diodeCalculatorConfig,
+  'zener-diode-calculator': zenerDiodeCalculatorConfig,
+  'transistor-bias-calculator': transistorBiasCalculatorConfig,
+  'clock-frequency-calculator': clockFrequencyCalculatorConfig,
+  'data-rate-calculator': dataRateCalculatorConfig,
+  'antenna-length-calculator': antennaLengthCalculatorConfig,
+  'rf-power-calculator': rfPowerCalculatorConfig,
+  'lightning-protection-calculator': lightningProtectionCalculatorConfig,
+  'power-loss-calculator': powerLossCalculatorConfig,
 };
 
 

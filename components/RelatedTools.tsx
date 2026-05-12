@@ -36,12 +36,14 @@ export default function RelatedTools({ currentTool, tools: slugs, title = "Relat
               className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 hover:border-[#058554] hover:-translate-y-1"
             >
               <div className="flex items-start gap-4">
-                <div className="text-4xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  {tool!.icon}
-                </div>
+                {(tool as any).icon && (
+                  <div className="text-4xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    {(tool as any).icon}
+                  </div>
+                )}
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-[#058554] transition-colors">
-                    {tool!.name}
+                    {(tool as any).name || (tool as any).title}
                   </h3>
                   <p className="text-sm text-gray-600 line-clamp-2">
                     {tool!.description}

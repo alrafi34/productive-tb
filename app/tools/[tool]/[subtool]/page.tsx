@@ -248,6 +248,10 @@ import { interiorSpaceOptimizationCalculatorConfig } from "@/tools/interior-spac
 import { furnitureLayoutCalculatorConfig } from "@/tools/furniture-layout-calculator/config";
 import { energyEfficiencyCalculatorBuildingConfig } from "@/tools/energy-efficiency-calculator-building/config";
 import { carbonFootprintCalculatorConstructionConfig } from "@/tools/carbon-footprint-calculator-construction/config";
+import { powerCalculatorElectricalConfig } from "@/tools/power-calculator-electrical/config";
+import { electricBillCalculatorConfig } from "@/tools/electric-bill-calculator/config";
+import { parallelResistorCalculatorConfig } from "@/tools/parallel-resistor-calculator/config";
+import { resistorColorCodeCalculatorConfig } from "@/tools/resistor-color-code-calculator/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -492,6 +496,10 @@ const InteriorSpaceOptimizationCalculatorUI = dynamic(() => import("@/tools/inte
 const FurnitureLayoutCalculatorUI = dynamic(() => import("@/tools/furniture-layout-calculator/ui"));
 const EnergyEfficiencyCalculatorBuildingUI = dynamic(() => import("@/tools/energy-efficiency-calculator-building/ui"));
 const CarbonFootprintCalculatorConstructionUI = dynamic(() => import("@/tools/carbon-footprint-calculator-construction/ui"));
+const ElectricBillCalculatorUI = dynamic(() => import("@/tools/electric-bill-calculator/ui"));
+const PowerCalculatorElectricalUI = dynamic(() => import("@/tools/power-calculator-electrical/ui"));
+const ParallelResistorCalculatorUI = dynamic(() => import("@/tools/parallel-resistor-calculator/ui"));
+const ResistorColorCodeCalculatorUI = dynamic(() => import("@/tools/resistor-color-code-calculator/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -737,6 +745,10 @@ const TOOLS = [
   { config: furnitureLayoutCalculatorConfig, Component: FurnitureLayoutCalculatorUI },
   { config: energyEfficiencyCalculatorBuildingConfig, Component: EnergyEfficiencyCalculatorBuildingUI },
   { config: carbonFootprintCalculatorConstructionConfig, Component: CarbonFootprintCalculatorConstructionUI },
+  { config: electricBillCalculatorConfig, Component: ElectricBillCalculatorUI },
+  { config: powerCalculatorElectricalConfig, Component: PowerCalculatorElectricalUI },
+  { config: parallelResistorCalculatorConfig, Component: ParallelResistorCalculatorUI },
+  { config: resistorColorCodeCalculatorConfig, Component: ResistorColorCodeCalculatorUI },
 ];
 
 
@@ -773,24 +785,31 @@ export async function generateMetadata({
     return {};
   }
 
-  const seo = entry.config.seo as any;
+  const config = entry.config as any;
+  const seo = config.seo || {};
   const canonicalCategory = mappedCategory || category;
   const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
+  
+  // Fallback to config properties if seo is not defined
+  const title = seo.title || config.name || slug;
+  const description = seo.description || config.description || '';
+  const keywords = seo.keywords || config.keywords || [];
+  
   return {
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords,
+    title,
+    description,
+    keywords,
     openGraph: {
-      title: seo.openGraph?.title || seo.title,
-      description: seo.openGraph?.description || seo.description,
+      title: seo.openGraph?.title || seo.og?.title || title,
+      description: seo.openGraph?.description || seo.og?.description || description,
       type: "website",
       url: canonicalUrl,
       siteName: siteConfig.name,
     },
     twitter: {
       card: "summary_large_image",
-      title: seo.openGraph?.title || seo.title,
-      description: seo.openGraph?.description || seo.description,
+      title: seo.openGraph?.title || seo.og?.title || title,
+      description: seo.openGraph?.description || seo.og?.description || description,
     },
     alternates: { canonical: canonicalUrl },
     robots: { index: true, follow: true },
@@ -812,11 +831,16 @@ export default async function ToolPage({
   const canonicalCategory = mappedCategory || category;
   const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
   
+  // Handle both name and title properties
+  const toolName = (config as any).name || (config as any).title || slug;
+  const toolDescription = (config as any).description || '';
+  const toolIcon = (config as any).icon;
+  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: `${config.name} Tool`,
-    description: config.description,
+    name: `${toolName} Tool`,
+    description: toolDescription,
     url: canonicalUrl,
     applicationCategory: "UtilityApplication",
     operatingSystem: "Any",
@@ -832,7 +856,7 @@ export default async function ToolPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ToolLayout title={config.name} description={config.description} icon={config.icon} category={catObj}>
+      <ToolLayout title={toolName} description={toolDescription} icon={toolIcon} category={catObj}>
         <Component />
       </ToolLayout>
     </>
