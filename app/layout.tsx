@@ -3,6 +3,7 @@ import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import NavigationProvider from "@/components/NavigationProvider";
 
 const poppins = Poppins({
@@ -94,6 +95,7 @@ export default function RootLayout({
           {children}
         </NavigationProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
