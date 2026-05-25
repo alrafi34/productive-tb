@@ -252,6 +252,8 @@ import { antennaLengthCalculatorConfig } from "@/tools/antenna-length-calculator
 import { rfPowerCalculatorConfig } from "@/tools/rf-power-calculator/config";
 import { lightningProtectionCalculatorConfig } from "@/tools/lightning-protection-calculator/config";
 import { powerLossCalculatorConfig } from "@/tools/power-loss-calculator/config";
+import { upsLoadCalculatorConfig } from "@/tools/ups-load-calculator/config";
+import { upsBackupCalculatorConfig } from "@/tools/ups-backup-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -508,6 +510,8 @@ export const TOOLS_REGISTRY = {
   'rf-power-calculator': rfPowerCalculatorConfig,
   'lightning-protection-calculator': lightningProtectionCalculatorConfig,
   'power-loss-calculator': powerLossCalculatorConfig,
+  'ups-load-calculator': upsLoadCalculatorConfig,
+  'ups-backup-calculator': upsBackupCalculatorConfig,
 };
 
 
