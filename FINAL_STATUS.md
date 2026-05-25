@@ -7,10 +7,10 @@
 ## 📊 Your Current Performance
 
 ### PageSpeed Insights Results
-- **Performance Score**: 95+ ✅
-- **Main Thread Blocking**: 0ms ✅
-- **Total Blocking Time**: ~50ms (87% reduction) ✅
-- **Analytics Tracking**: Fully functional ✅
+- **Performance Score**: 95+ 
+- **Main Thread Blocking**: 0ms 
+- **Total Blocking Time**: ~50ms (87% reduction) 
+- **Analytics Tracking**: Fully functional 
 
 ### Deprecation Warnings (2)
 - ⚠️ SharedStorage
