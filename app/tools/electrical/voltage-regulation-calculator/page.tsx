@@ -1,0 +1,1 @@
+export { default, metadata } from "@/tools/voltage-regulation-calculator/page";

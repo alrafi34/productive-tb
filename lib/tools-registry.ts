@@ -254,6 +254,11 @@ import { lightningProtectionCalculatorConfig } from "@/tools/lightning-protectio
 import { powerLossCalculatorConfig } from "@/tools/power-loss-calculator/config";
 import { upsLoadCalculatorConfig } from "@/tools/ups-load-calculator/config";
 import { upsBackupCalculatorConfig } from "@/tools/ups-backup-calculator/config";
+import { heatDissipationCalculatorConfig } from "@/tools/heat-dissipation-calculator/config";
+import { heatsinkCalculatorConfig } from "@/tools/heatsink-calculator/config";
+import { groundFaultCurrentCalculatorConfig } from "@/tools/ground-fault-current-calculator/config";
+import { voltageRegulationCalculatorConfig } from "@/tools/voltage-regulation-calculator/config";
+import { frequencyResponseCalculatorConfig } from "@/tools/frequency-response-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -512,6 +517,11 @@ export const TOOLS_REGISTRY = {
   'power-loss-calculator': powerLossCalculatorConfig,
   'ups-load-calculator': upsLoadCalculatorConfig,
   'ups-backup-calculator': upsBackupCalculatorConfig,
+  'heat-dissipation-calculator': heatDissipationCalculatorConfig,
+  'heatsink-calculator': heatsinkCalculatorConfig,
+  'ground-fault-current-calculator': groundFaultCurrentCalculatorConfig,
+  'voltage-regulation-calculator': voltageRegulationCalculatorConfig,
+  'frequency-response-calculator': frequencyResponseCalculatorConfig,
 };
 
 

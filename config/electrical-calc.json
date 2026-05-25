@@ -549,6 +549,13 @@
     {
       "title": "Heatsink Calculator",
       "slug": "heatsink-calculator",
+      "description": "Calculate thermal resistance and cooling requirements.",
+      "priority": 2,
+      "category": "electrical"
+    },
+    {
+      "title": "Heatsink Calculator",
+      "slug": "heatsink-calculator",
       "description": "Estimate heatsink requirements.",
       "priority": 2,
       "category": "electrical"
@@ -563,8 +570,8 @@
     {
       "title": "Arc Flash Calculator",
       "slug": "arc-flash-calculator",
-      "description": "Estimate arc flash hazard.",
-      "priority": 3,
+      "description": "Calculate arc flash hazard levels, incident energy, and PPE requirements for electrical safety assessment.",
+      "priority": 1,
       "category": "electrical"
     },
     {
