@@ -260,6 +260,10 @@ import { hectareToAcreConverterConfig } from "@/tools/hectare-to-acre-converter/
 import { acreToHectareConverterConfig } from "@/tools/acre-to-hectare-converter/config";
 import { kathaLandCalculatorConfig } from "@/tools/katha-land-calculator/config";
 import { bighaLandCalculatorConfig } from "@/tools/bigha-land-calculator/config";
+import { decimalLandCalculatorConfig } from "@/tools/decimal-land-calculator/config";
+import { landPriceCalculatorConfig } from "@/tools/land-price-calculator/config";
+import { pricePerSquareFeetCalculatorConfig } from "@/tools/price-per-square-feet-calculator/config";
+import { landValuationCalculatorConfig } from "@/tools/land-valuation-calculator/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -516,6 +520,10 @@ const HectareToAcreConverterUI = dynamic(() => import("@/tools/hectare-to-acre-c
 const AcreToHectareConverterUI = dynamic(() => import("@/tools/acre-to-hectare-converter/ui"));
 const KathaLandCalculatorUI = dynamic(() => import("@/tools/katha-land-calculator/ui"));
 const BighaLandCalculatorUI = dynamic(() => import("@/tools/bigha-land-calculator/ui"));
+const DecimalLandCalculatorUI = dynamic(() => import("@/tools/decimal-land-calculator/ui"));
+const LandPriceCalculatorUI = dynamic(() => import("@/tools/land-price-calculator/ui"));
+const PricePerSquareFeetCalculatorUI = dynamic(() => import("@/tools/price-per-square-feet-calculator/ui"));
+const LandValuationCalculatorUI = dynamic(() => import("@/tools/land-valuation-calculator/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -773,6 +781,10 @@ const TOOLS = [
   { config: acreToHectareConverterConfig, Component: AcreToHectareConverterUI },
   { config: kathaLandCalculatorConfig, Component: KathaLandCalculatorUI },
   { config: bighaLandCalculatorConfig, Component: BighaLandCalculatorUI },
+  { config: decimalLandCalculatorConfig, Component: DecimalLandCalculatorUI },
+  { config: landPriceCalculatorConfig, Component: LandPriceCalculatorUI },
+  { config: pricePerSquareFeetCalculatorConfig, Component: PricePerSquareFeetCalculatorUI },
+  { config: landValuationCalculatorConfig, Component: LandValuationCalculatorUI },
 ];
 
 
