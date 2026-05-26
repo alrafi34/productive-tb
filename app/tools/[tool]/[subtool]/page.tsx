@@ -252,6 +252,14 @@ import { powerCalculatorElectricalConfig } from "@/tools/power-calculator-electr
 import { electricBillCalculatorConfig } from "@/tools/electric-bill-calculator/config";
 import { parallelResistorCalculatorConfig } from "@/tools/parallel-resistor-calculator/config";
 import { resistorColorCodeCalculatorConfig } from "@/tools/resistor-color-code-calculator/config";
+import { landAreaCalculatorConfig } from "@/tools/land-area-calculator/config";
+import { landAreaCalculatorSquareMeterConfig } from "@/tools/land-area-calculator-square-meter/config";
+import { acreToSquareFeetConverterConfig } from "@/tools/acre-to-square-feet-converter/config";
+import { squareFeetToAcreConverterConfig } from "@/tools/square-feet-to-acre-converter/config";
+import { hectareToAcreConverterConfig } from "@/tools/hectare-to-acre-converter/config";
+import { acreToHectareConverterConfig } from "@/tools/acre-to-hectare-converter/config";
+import { kathaLandCalculatorConfig } from "@/tools/katha-land-calculator/config";
+import { bighaLandCalculatorConfig } from "@/tools/bigha-land-calculator/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -500,6 +508,14 @@ const ElectricBillCalculatorUI = dynamic(() => import("@/tools/electric-bill-cal
 const PowerCalculatorElectricalUI = dynamic(() => import("@/tools/power-calculator-electrical/ui"));
 const ParallelResistorCalculatorUI = dynamic(() => import("@/tools/parallel-resistor-calculator/ui"));
 const ResistorColorCodeCalculatorUI = dynamic(() => import("@/tools/resistor-color-code-calculator/ui"));
+const LandAreaCalculatorUI = dynamic(() => import("@/tools/land-area-calculator/ui"));
+const LandAreaCalculatorSquareMeterUI = dynamic(() => import("@/tools/land-area-calculator-square-meter/ui"));
+const AcreToSquareFeetConverterUI = dynamic(() => import("@/tools/acre-to-square-feet-converter/ui"));
+const SquareFeetToAcreConverterUI = dynamic(() => import("@/tools/square-feet-to-acre-converter/ui"));
+const HectareToAcreConverterUI = dynamic(() => import("@/tools/hectare-to-acre-converter/ui"));
+const AcreToHectareConverterUI = dynamic(() => import("@/tools/acre-to-hectare-converter/ui"));
+const KathaLandCalculatorUI = dynamic(() => import("@/tools/katha-land-calculator/ui"));
+const BighaLandCalculatorUI = dynamic(() => import("@/tools/bigha-land-calculator/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -749,6 +765,14 @@ const TOOLS = [
   { config: powerCalculatorElectricalConfig, Component: PowerCalculatorElectricalUI },
   { config: parallelResistorCalculatorConfig, Component: ParallelResistorCalculatorUI },
   { config: resistorColorCodeCalculatorConfig, Component: ResistorColorCodeCalculatorUI },
+  { config: landAreaCalculatorConfig, Component: LandAreaCalculatorUI },
+  { config: landAreaCalculatorSquareMeterConfig, Component: LandAreaCalculatorSquareMeterUI },
+  { config: acreToSquareFeetConverterConfig, Component: AcreToSquareFeetConverterUI },
+  { config: squareFeetToAcreConverterConfig, Component: SquareFeetToAcreConverterUI },
+  { config: hectareToAcreConverterConfig, Component: HectareToAcreConverterUI },
+  { config: acreToHectareConverterConfig, Component: AcreToHectareConverterUI },
+  { config: kathaLandCalculatorConfig, Component: KathaLandCalculatorUI },
+  { config: bighaLandCalculatorConfig, Component: BighaLandCalculatorUI },
 ];
 
 
