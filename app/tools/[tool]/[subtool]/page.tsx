@@ -264,6 +264,13 @@ import { decimalLandCalculatorConfig } from "@/tools/decimal-land-calculator/con
 import { landPriceCalculatorConfig } from "@/tools/land-price-calculator/config";
 import { pricePerSquareFeetCalculatorConfig } from "@/tools/price-per-square-feet-calculator/config";
 import { landValuationCalculatorConfig } from "@/tools/land-valuation-calculator/config";
+import { propertyAppreciationCalculatorConfig } from "@/tools/property-appreciation-calculator/config";
+import { fertilizerRequirementCalculatorConfig } from "@/tools/fertilizer-requirement-calculator/config";
+import { irrigationWaterCalculatorConfig } from "@/tools/irrigation-water-calculator/config";
+import { rainwaterRunoffCalculatorConfig } from "@/tools/rainwater-runoff-calculator/config";
+import { soilCompactionRatioCalculatorConfig } from "@/tools/soil-compaction-ratio-calculator/config";
+import { mapScaleCalculatorConfig } from "@/tools/map-scale-calculator/config";
+import { landDevelopmentCostCalculatorConfig } from "@/tools/land-development-cost-calculator/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -524,6 +531,13 @@ const DecimalLandCalculatorUI = dynamic(() => import("@/tools/decimal-land-calcu
 const LandPriceCalculatorUI = dynamic(() => import("@/tools/land-price-calculator/ui"));
 const PricePerSquareFeetCalculatorUI = dynamic(() => import("@/tools/price-per-square-feet-calculator/ui"));
 const LandValuationCalculatorUI = dynamic(() => import("@/tools/land-valuation-calculator/ui"));
+const PropertyAppreciationCalculatorUI = dynamic(() => import("@/tools/property-appreciation-calculator/ui"));
+const FertilizerRequirementCalculatorUI = dynamic(() => import("@/tools/fertilizer-requirement-calculator/ui"));
+const IrrigationWaterCalculatorUI = dynamic(() => import("@/tools/irrigation-water-calculator/ui"));
+const RainwaterRunoffCalculatorUI = dynamic(() => import("@/tools/rainwater-runoff-calculator/ui"));
+const SoilCompactionRatioCalculatorUI = dynamic(() => import("@/tools/soil-compaction-ratio-calculator/ui"));
+const MapScaleCalculatorUI = dynamic(() => import("@/tools/map-scale-calculator/ui"));
+const LandDevelopmentCostCalculatorUI = dynamic(() => import("@/tools/land-development-cost-calculator/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -785,6 +799,13 @@ const TOOLS = [
   { config: landPriceCalculatorConfig, Component: LandPriceCalculatorUI },
   { config: pricePerSquareFeetCalculatorConfig, Component: PricePerSquareFeetCalculatorUI },
   { config: landValuationCalculatorConfig, Component: LandValuationCalculatorUI },
+  { config: propertyAppreciationCalculatorConfig, Component: PropertyAppreciationCalculatorUI },
+  { config: fertilizerRequirementCalculatorConfig, Component: FertilizerRequirementCalculatorUI },
+  { config: irrigationWaterCalculatorConfig, Component: IrrigationWaterCalculatorUI },
+  { config: rainwaterRunoffCalculatorConfig, Component: RainwaterRunoffCalculatorUI },
+  { config: soilCompactionRatioCalculatorConfig, Component: SoilCompactionRatioCalculatorUI },
+  { config: mapScaleCalculatorConfig, Component: MapScaleCalculatorUI },
+  { config: landDevelopmentCostCalculatorConfig, Component: LandDevelopmentCostCalculatorUI },
 ];
 
 

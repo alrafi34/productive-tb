@@ -254,6 +254,19 @@ import { lightningProtectionCalculatorConfig } from "@/tools/lightning-protectio
 import { powerLossCalculatorConfig } from "@/tools/power-loss-calculator/config";
 import { decimalLandCalculatorConfig } from "@/tools/decimal-land-calculator/config";
 import { landPriceCalculatorConfig } from "@/tools/land-price-calculator/config";
+import { surveyAreaCalculatorConfig } from "@/tools/survey-area-calculator/config";
+import { polygonAreaCalculatorConfig } from "@/tools/polygon-area-calculator/config";
+import { triangleLandAreaCalculatorConfig } from "@/tools/triangle-land-area-calculator/config";
+import { trapezoidLandCalculatorConfig } from "@/tools/trapezoid-land-calculator/config";
+import { soilVolumeCalculatorConfig } from "@/tools/soil-volume-calculator/config";
+import { earthFillingCalculatorConfig } from "@/tools/earth-filling-calculator/config";
+import { excavationCostCalculatorConfig } from "@/tools/excavation-cost-calculator/config";
+import { mortgageLoanCalculatorConfig } from "@/tools/mortgage-loan-calculator/config";
+import { homeLoanEmiCalculatorConfig } from "@/tools/home-loan-emi-calculator/config";
+import { downPaymentCalculatorConfig } from "@/tools/down-payment-calculator/config";
+import { loanInterestCalculatorPropertyConfig } from "@/tools/loan-interest-calculator-property/config";
+import { rentalYieldCalculatorConfig } from "@/tools/rental-yield-calculator/config";
+import { roiRealEstateCalculatorConfig } from "@/tools/roi-real-estate-calculator/config";
 import { pricePerSquareFeetCalculatorConfig } from "@/tools/price-per-square-feet-calculator/config";
 import { landValuationCalculatorConfig } from "@/tools/land-valuation-calculator/config";
 import { upsLoadCalculatorConfig } from "@/tools/ups-load-calculator/config";
@@ -263,6 +276,8 @@ import { heatsinkCalculatorConfig } from "@/tools/heatsink-calculator/config";
 import { groundFaultCurrentCalculatorConfig } from "@/tools/ground-fault-current-calculator/config";
 import { voltageRegulationCalculatorConfig } from "@/tools/voltage-regulation-calculator/config";
 import { frequencyResponseCalculatorConfig } from "@/tools/frequency-response-calculator/config";
+import { propertyAppreciationCalculatorConfig } from "@/tools/property-appreciation-calculator/config";
+import { fertilizerRequirementCalculatorConfig } from "@/tools/fertilizer-requirement-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -521,6 +536,19 @@ export const TOOLS_REGISTRY = {
   'power-loss-calculator': powerLossCalculatorConfig,
   'decimal-land-calculator': decimalLandCalculatorConfig,
   'land-price-calculator': landPriceCalculatorConfig,
+  'survey-area-calculator': surveyAreaCalculatorConfig,
+  'polygon-area-calculator': polygonAreaCalculatorConfig,
+  'triangle-land-area-calculator': triangleLandAreaCalculatorConfig,
+  'trapezoid-land-calculator': trapezoidLandCalculatorConfig,
+  'soil-volume-calculator': soilVolumeCalculatorConfig,
+  'earth-filling-calculator': earthFillingCalculatorConfig,
+  'excavation-cost-calculator': excavationCostCalculatorConfig,
+  'mortgage-loan-calculator': mortgageLoanCalculatorConfig,
+  'home-loan-emi-calculator': homeLoanEmiCalculatorConfig,
+  'down-payment-calculator': downPaymentCalculatorConfig,
+  'loan-interest-calculator-property': loanInterestCalculatorPropertyConfig,
+  'rental-yield-calculator': rentalYieldCalculatorConfig,
+  'roi-real-estate-calculator': roiRealEstateCalculatorConfig,
   'price-per-square-feet-calculator': pricePerSquareFeetCalculatorConfig,
   'land-valuation-calculator': landValuationCalculatorConfig,
   'ups-load-calculator': upsLoadCalculatorConfig,
@@ -530,6 +558,8 @@ export const TOOLS_REGISTRY = {
   'ground-fault-current-calculator': groundFaultCurrentCalculatorConfig,
   'voltage-regulation-calculator': voltageRegulationCalculatorConfig,
   'frequency-response-calculator': frequencyResponseCalculatorConfig,
+  'property-appreciation-calculator': propertyAppreciationCalculatorConfig,
+  'fertilizer-requirement-calculator': fertilizerRequirementCalculatorConfig,
 };
 
 
