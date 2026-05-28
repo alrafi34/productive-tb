@@ -1,0 +1,37 @@
+export const centripetalForceCalculatorConfig = {
+  name: "Centripetal Force Calculator",
+  slug: "centripetal-force-calculator",
+  description: "Calculate centripetal force instantly using mass, velocity, and radius (F = mv²/r) or angular velocity (F = mrω²). Real-time results, step-by-step breakdown, and unit conversion for physics and engineering.",
+  category: "mechanical",
+  icon: "🌀",
+  free: true,
+  seo: {
+    title: "Free Centripetal Force Calculator – Calculate Circular Motion Force Online",
+    description: "Calculate centripetal force instantly using mass, velocity, and radius. Get real-time results, step-by-step explanations, formulas, and unit conversions for physics and engineering.",
+    keywords: [
+      "centripetal force calculator",
+      "circular motion calculator",
+      "centripetal acceleration calculator",
+      "physics force calculator",
+      "F=mv2/r calculator",
+      "angular velocity force calculator",
+      "mechanics calculator",
+      "force in circular motion",
+      "centripetal force formula",
+      "online physics calculator",
+    ],
+    og: {
+      title: "Free Centripetal Force Calculator – Calculate Circular Motion Force Online",
+      description: "Calculate centripetal force instantly using mass, velocity, and radius. Get real-time results, step-by-step explanations, formulas, and unit conversions for physics and engineering.",
+      url: "https://www.engineeringcalcs.com/tools/mechanical/centripetal-force-calculator",
+    },
+  },
+  relatedTools: [
+    "force-calculator",
+    "torque-calculator",
+    "angular-velocity-calculator",
+    "kinetic-energy-calculator",
+    "spring-force-calculator",
+    "velocity-calculator",
+  ],
+};

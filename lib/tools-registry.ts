@@ -278,6 +278,21 @@ import { voltageRegulationCalculatorConfig } from "@/tools/voltage-regulation-ca
 import { frequencyResponseCalculatorConfig } from "@/tools/frequency-response-calculator/config";
 import { propertyAppreciationCalculatorConfig } from "@/tools/property-appreciation-calculator/config";
 import { fertilizerRequirementCalculatorConfig } from "@/tools/fertilizer-requirement-calculator/config";
+import { torqueCalculatorConfig } from "@/tools/torque-calculator/config";
+import { forceCalculatorConfig } from "@/tools/force-calculator/config";
+import { angularVelocityCalculatorConfig } from "@/tools/angular-velocity-calculator/config";
+import { springForceCalculatorConfig } from "@/tools/spring-force-calculator/config";
+import { centripetalForceCalculatorConfig } from "@/tools/centripetal-force-calculator/config";
+import { kineticEnergyCalculatorConfig } from "@/tools/kinetic-energy-calculator/config";
+import { toolConfig as beamDeflectionCalculatorConfig } from "@/tools/beam-deflection-calculator/config";
+import { reynoldsNumberCalculatorConfig } from "@/tools/reynolds-number-calculator/config";
+import { flowRateCalculatorConfig } from "@/tools/flow-rate-calculator/config";
+import { velocityCalculatorConfig } from "@/tools/velocity-calculator/config";
+import { accelerationCalculatorConfig } from "@/tools/acceleration-calculator/config";
+import { pressureDropCalculatorConfig } from "@/tools/pressure-drop-calculator/config";
+import { bernoulliEquationCalculatorConfig } from "@/tools/bernoulli-equation-calculator/config";
+import { stressCalculatorConfig } from "@/tools/stress-calculator/config";
+import { thermalExpansionCalculatorConfig } from "@/tools/thermal-expansion-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -560,6 +575,21 @@ export const TOOLS_REGISTRY = {
   'frequency-response-calculator': frequencyResponseCalculatorConfig,
   'property-appreciation-calculator': propertyAppreciationCalculatorConfig,
   'fertilizer-requirement-calculator': fertilizerRequirementCalculatorConfig,
+  'torque-calculator': torqueCalculatorConfig,
+  'force-calculator': forceCalculatorConfig,
+  'angular-velocity-calculator': angularVelocityCalculatorConfig,
+  'spring-force-calculator': springForceCalculatorConfig,
+  'centripetal-force-calculator': centripetalForceCalculatorConfig,
+  'kinetic-energy-calculator': kineticEnergyCalculatorConfig,
+  'beam-deflection-calculator': beamDeflectionCalculatorConfig,
+  'reynolds-number-calculator': reynoldsNumberCalculatorConfig,
+  'flow-rate-calculator': flowRateCalculatorConfig,
+  'velocity-calculator': velocityCalculatorConfig,
+  'acceleration-calculator': accelerationCalculatorConfig,
+  'pressure-drop-calculator': pressureDropCalculatorConfig,
+  'bernoulli-equation-calculator': bernoulliEquationCalculatorConfig,
+  'stress-calculator': stressCalculatorConfig,
+  'thermal-expansion-calculator': thermalExpansionCalculatorConfig,
 };
 
 
