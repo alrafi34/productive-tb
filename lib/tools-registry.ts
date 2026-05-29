@@ -293,6 +293,11 @@ import { pressureDropCalculatorConfig } from "@/tools/pressure-drop-calculator/c
 import { bernoulliEquationCalculatorConfig } from "@/tools/bernoulli-equation-calculator/config";
 import { stressCalculatorConfig } from "@/tools/stress-calculator/config";
 import { thermalExpansionCalculatorConfig } from "@/tools/thermal-expansion-calculator/config";
+import { frictionForceCalculatorConfig } from "@/tools/friction-force-calculator/config";
+import { bendingMomentCalculatorConfig } from "@/tools/bending-moment-calculator/config";
+import { naturalFrequencyCalculatorConfig } from "@/tools/natural-frequency-calculator/config";
+import { toolConfig as pumpEfficiencyCalculatorConfig } from "@/tools/pump-efficiency-calculator/config";
+import { hydraulicPressureCalculatorConfig } from "@/tools/hydraulic-pressure-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -590,6 +595,11 @@ export const TOOLS_REGISTRY = {
   'bernoulli-equation-calculator': bernoulliEquationCalculatorConfig,
   'stress-calculator': stressCalculatorConfig,
   'thermal-expansion-calculator': thermalExpansionCalculatorConfig,
+  'friction-force-calculator': frictionForceCalculatorConfig,
+  'bending-moment-calculator': bendingMomentCalculatorConfig,
+  'natural-frequency-calculator': naturalFrequencyCalculatorConfig,
+  'pump-efficiency-calculator': pumpEfficiencyCalculatorConfig,
+  'hydraulic-pressure-calculator': hydraulicPressureCalculatorConfig,
 };
 
 
