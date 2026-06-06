@@ -182,6 +182,7 @@ export function saveToHistory(inputs: RefrigerationCOPInputs, result: COPResult)
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? (JSON.parse(raw) as HistoryEntry[]) : [];

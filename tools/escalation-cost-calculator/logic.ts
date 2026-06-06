@@ -234,6 +234,7 @@ export function saveToHistory(calculation: EscalationCalculation): void {
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];

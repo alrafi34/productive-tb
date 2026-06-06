@@ -273,6 +273,7 @@ export function saveToHistory(inputs: GeneratorInputs, result: GeneratorResult):
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem(HISTORY_KEY);

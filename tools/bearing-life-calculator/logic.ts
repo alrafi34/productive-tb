@@ -159,7 +159,7 @@ export function formatRevs(n: number): string {
 }
 
 // ── Debounce ───────────────────────────────────────────────────────────────
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
   return function (this: unknown, ...args: Parameters<T>) {
     clearTimeout(timer);
@@ -185,6 +185,7 @@ export function saveToHistory(inputs: BearingInputs, result: BearingResult): voi
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     return JSON.parse(localStorage.getItem(LS_KEY) ?? "[]");
   } catch { return []; }

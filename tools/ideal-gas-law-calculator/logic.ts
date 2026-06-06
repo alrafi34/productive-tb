@@ -209,9 +209,9 @@ export function calculate(inputs: GasInputs): GasResult {
 }
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, ms: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): T {
   let timer: ReturnType<typeof setTimeout>;
-  return ((...args: unknown[]) => {
+  return ((...args: any[]) => {
     clearTimeout(timer);
     timer = setTimeout(() => fn(...args), ms);
   }) as T;
@@ -238,6 +238,7 @@ export function saveToHistory(inputs: GasInputs, result: GasResult): void {
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? JSON.parse(raw) : [];

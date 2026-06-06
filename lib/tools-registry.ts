@@ -312,6 +312,19 @@ import { columnBucklingCalculatorConfig } from "@/tools/column-buckling-calculat
 import { bearingLifeCalculatorConfig } from "@/tools/bearing-life-calculator/config";
 import { fatigueLifeCalculatorConfig } from "@/tools/fatigue-life-calculator/config";
 import { toolConfig as refrigerationCOPCalculatorConfig } from "@/tools/refrigeration-cop-calculator/config";
+import { subnetCalculatorConfig } from "@/tools/subnet-calculator/config";
+import { toolConfig as downloadTimeCalculatorConfig } from "@/tools/download-time-calculator/config";
+import { toolConfig as latencyCalculatorConfig } from "@/tools/latency-calculator/config";
+import { toolConfig as aiTokenCostCalculatorConfig } from "@/tools/ai-token-cost-calculator/config";
+import { toolConfig as aiPromptLengthCalculatorConfig } from "@/tools/ai-prompt-length-calculator/config";
+import { toolConfig as modelAccuracyCalculatorConfig } from "@/tools/model-accuracy-calculator/config";
+import { toolConfig as precisionRecallCalculatorConfig } from "@/tools/precision-recall-calculator/config";
+import { toolConfig as f1ScoreCalculatorConfig } from "@/tools/f1-score-calculator/config";
+import { ipRangeCalculatorConfig } from "@/tools/ip-range-calculator/config";
+import { cidrCalculatorConfig } from "@/tools/cidr-calculator/config";
+import { bandwidthCalculatorConfig } from "@/tools/bandwidth-calculator/config";
+import { dataTransferCalculatorConfig } from "@/tools/data-transfer-calculator/config";
+import { timeComplexityCalculatorConfig } from "@/tools/time-complexity-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -628,6 +641,19 @@ export const TOOLS_REGISTRY = {
   'bearing-life-calculator': bearingLifeCalculatorConfig,
   'fatigue-life-calculator': fatigueLifeCalculatorConfig,
   'refrigeration-cop-calculator': refrigerationCOPCalculatorConfig,
+  'subnet-calculator': subnetCalculatorConfig,
+  'download-time-calculator': downloadTimeCalculatorConfig,
+  'latency-calculator': latencyCalculatorConfig,
+  'ai-token-cost-calculator': aiTokenCostCalculatorConfig,
+  'ai-prompt-length-calculator': aiPromptLengthCalculatorConfig,
+  'model-accuracy-calculator': modelAccuracyCalculatorConfig,
+  'precision-recall-calculator': precisionRecallCalculatorConfig,
+  'f1-score-calculator': f1ScoreCalculatorConfig,
+  'ip-range-calculator': ipRangeCalculatorConfig,
+  'cidr-calculator': cidrCalculatorConfig,
+  'bandwidth-calculator': bandwidthCalculatorConfig,
+  'data-transfer-calculator': dataTransferCalculatorConfig,
+  'time-complexity-calculator': timeComplexityCalculatorConfig,
 };
 
 

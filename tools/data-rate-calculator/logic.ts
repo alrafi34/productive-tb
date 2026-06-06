@@ -493,6 +493,7 @@ export function saveToHistory(inputs: DataRateInputs, result: DataRateResult): v
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];

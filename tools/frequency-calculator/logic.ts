@@ -289,6 +289,7 @@ export function saveToHistory(inputs: FrequencyInputs, result: FrequencyResult):
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];

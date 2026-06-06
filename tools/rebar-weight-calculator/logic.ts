@@ -97,6 +97,7 @@ export const saveToHistory = (calculation: RebarCalculation): void => {
 
 // Get history
 export const getHistory = (): CalculationHistory[] => {
+  if (typeof window === 'undefined') return [];
   try {
     const saved = localStorage.getItem('rebar-weight-calculator-history');
     return saved ? JSON.parse(saved) : [];

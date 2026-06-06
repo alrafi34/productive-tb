@@ -162,7 +162,7 @@ export function fmtLiters(v: number): string {
 }
 
 // ── Debounce ─────────────────────────────────────────────────────────────────
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
   return function (this: unknown, ...args: Parameters<T>) {
     clearTimeout(timer);
@@ -187,6 +187,7 @@ export function saveToHistory(inputs: CalculatorInputs, result: CalculationResul
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? JSON.parse(raw) : [];

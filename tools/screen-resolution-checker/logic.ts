@@ -102,6 +102,7 @@ export function saveToHistory(metrics: DeviceMetrics): void {
 }
 
 export function getHistory(): MetricsHistory[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem("screen-metrics-history");
     return stored ? JSON.parse(stored) : [];

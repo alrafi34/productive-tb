@@ -239,7 +239,7 @@ export function fmtFlow(v: number): string {
 }
 
 // ── Debounce ────────────────────────────────────────────────────────────────
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
   return function (this: unknown, ...args: Parameters<T>) {
     clearTimeout(timer);
@@ -264,6 +264,7 @@ export function saveToHistory(inputs: DrainageInputs, result: DrainageResult): v
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? JSON.parse(raw) : [];
@@ -282,6 +283,7 @@ export function saveConfig(inputs: DrainageInputs): void {
 }
 
 export function loadConfig(): DrainageInputs | null {
+  if (typeof window === 'undefined') return null as any;
   try {
     const raw = localStorage.getItem(CONFIG_KEY);
     return raw ? JSON.parse(raw) : null;

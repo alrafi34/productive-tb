@@ -155,6 +155,7 @@ export const generateCodeFormats = (result: ClampResult, property: string) => {
 
 // Local storage utilities
 export const saveConfigToStorage = (config: ClampConfig) => {
+  if (typeof window === 'undefined') return [];
   try {
     const saved = JSON.parse(localStorage.getItem('clamp-generator-configs') || '[]');
     const updated = [config, ...saved.filter((c: ClampConfig) => 
@@ -169,6 +170,7 @@ export const saveConfigToStorage = (config: ClampConfig) => {
 };
 
 export const loadConfigsFromStorage = (): ClampConfig[] => {
+  if (typeof window === 'undefined') return [];
   try {
     return JSON.parse(localStorage.getItem('clamp-generator-configs') || '[]');
   } catch (error) {
@@ -178,6 +180,7 @@ export const loadConfigsFromStorage = (): ClampConfig[] => {
 };
 
 export const saveLastConfig = (config: ClampConfig) => {
+  if (typeof window === 'undefined') return [];
   try {
     localStorage.setItem('clamp-generator-last', JSON.stringify(config));
   } catch (error) {

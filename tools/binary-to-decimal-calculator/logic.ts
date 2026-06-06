@@ -134,6 +134,7 @@ export function saveToHistory(binary: string, decimal: number): void {
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem(HISTORY_KEY);

@@ -271,6 +271,13 @@ import { rainwaterRunoffCalculatorConfig } from "@/tools/rainwater-runoff-calcul
 import { soilCompactionRatioCalculatorConfig } from "@/tools/soil-compaction-ratio-calculator/config";
 import { mapScaleCalculatorConfig } from "@/tools/map-scale-calculator/config";
 import { landDevelopmentCostCalculatorConfig } from "@/tools/land-development-cost-calculator/config";
+import { subnetCalculatorConfig } from "@/tools/subnet-calculator/config";
+import { ipRangeCalculatorConfig } from "@/tools/ip-range-calculator/config";
+import { cidrCalculatorConfig } from "@/tools/cidr-calculator/config";
+import { bandwidthCalculatorConfig } from "@/tools/bandwidth-calculator/config";
+import { dataTransferCalculatorConfig } from "@/tools/data-transfer-calculator/config";
+import { timeComplexityCalculatorConfig } from "@/tools/time-complexity-calculator/config";
+import { fileSizeConverterConfig } from "@/tools/file-size-converter/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -538,6 +545,13 @@ const RainwaterRunoffCalculatorUI = dynamic(() => import("@/tools/rainwater-runo
 const SoilCompactionRatioCalculatorUI = dynamic(() => import("@/tools/soil-compaction-ratio-calculator/ui"));
 const MapScaleCalculatorUI = dynamic(() => import("@/tools/map-scale-calculator/ui"));
 const LandDevelopmentCostCalculatorUI = dynamic(() => import("@/tools/land-development-cost-calculator/ui"));
+const SubnetCalculatorUI = dynamic(() => import("@/tools/subnet-calculator/ui"));
+const IpRangeCalculatorUI = dynamic(() => import("@/tools/ip-range-calculator/ui"));
+const CidrCalculatorUI = dynamic(() => import("@/tools/cidr-calculator/ui"));
+const BandwidthCalculatorUI = dynamic(() => import("@/tools/bandwidth-calculator/ui"));
+const DataTransferCalculatorUI = dynamic(() => import("@/tools/data-transfer-calculator/ui"));
+const TimeComplexityCalculatorUI = dynamic(() => import("@/tools/time-complexity-calculator/ui"));
+const FileSizeConverterUI = dynamic(() => import("@/tools/file-size-converter/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -806,6 +820,13 @@ const TOOLS = [
   { config: soilCompactionRatioCalculatorConfig, Component: SoilCompactionRatioCalculatorUI },
   { config: mapScaleCalculatorConfig, Component: MapScaleCalculatorUI },
   { config: landDevelopmentCostCalculatorConfig, Component: LandDevelopmentCostCalculatorUI },
+  { config: subnetCalculatorConfig, Component: SubnetCalculatorUI },
+  { config: ipRangeCalculatorConfig, Component: IpRangeCalculatorUI },
+  { config: cidrCalculatorConfig, Component: CidrCalculatorUI },
+  { config: bandwidthCalculatorConfig, Component: BandwidthCalculatorUI },
+  { config: dataTransferCalculatorConfig, Component: DataTransferCalculatorUI },
+  { config: timeComplexityCalculatorConfig, Component: TimeComplexityCalculatorUI },
+  { config: fileSizeConverterConfig, Component: FileSizeConverterUI },
 ];
 
 

@@ -135,6 +135,7 @@ export function saveFavoriteCities(cities: City[]): void {
 }
 
 export function loadFavoriteCities(): City[] {
+  if (typeof window === 'undefined') return [];
   try {
     const saved = localStorage.getItem("tz-favorites");
     return saved ? JSON.parse(saved) : [];
@@ -148,6 +149,7 @@ export function saveSelectedCities(cities: City[]): void {
 }
 
 export function loadSelectedCities(): City[] {
+  if (typeof window === 'undefined') return [];
   try {
     const saved = localStorage.getItem("tz-selected");
     return saved ? JSON.parse(saved) : [];

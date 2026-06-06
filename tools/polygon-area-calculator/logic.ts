@@ -157,9 +157,9 @@ export function smartFormat(value: number): string {
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
 
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
-  return ((...args: unknown[]) => {
+  return ((...args: any[]) => {
     clearTimeout(timer);
     timer = setTimeout(() => fn(...args), delay);
   }) as T;
@@ -195,6 +195,7 @@ export function saveToHistory(
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const s = localStorage.getItem(HISTORY_KEY);
     return s ? JSON.parse(s) : [];
@@ -212,6 +213,7 @@ export function autosave(points: Point[]): void {
 }
 
 export function loadAutosave(): Point[] | null {
+  if (typeof window === 'undefined') return null as any;
   try {
     const s = localStorage.getItem(AUTOSAVE_KEY);
     return s ? JSON.parse(s) : null;

@@ -296,6 +296,7 @@ export function saveToHistory(inputs: VoltageDropInputs, result: VoltageDropResu
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -387,6 +388,7 @@ export function saveSettings(settings: Partial<VoltageDropInputs>): void {
 }
 
 export function loadSettings(): Partial<VoltageDropInputs> {
+  if (typeof window === 'undefined') return {};
   try {
     const stored = localStorage.getItem(SETTINGS_KEY);
     return stored ? JSON.parse(stored) : {};

@@ -251,6 +251,7 @@ export function saveToHistory(inputs: LightingInputs, result: LightingResult): v
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -329,6 +330,7 @@ export function saveSettings(settings: Partial<LightingInputs>): void {
 }
 
 export function loadSettings(): Partial<LightingInputs> {
+  if (typeof window === 'undefined') return {};
   try {
     const stored = localStorage.getItem(SETTINGS_KEY);
     return stored ? JSON.parse(stored) : {};

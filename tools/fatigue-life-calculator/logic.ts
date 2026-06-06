@@ -337,6 +337,7 @@ export function saveToHistory(
 }
 
 export function getHistory() {
+  if (typeof window === 'undefined') return [];
   try {
     return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
   } catch {
@@ -425,7 +426,7 @@ export function downloadFile(
 }
 
 // ─── Debounce ─────────────────────────────────────────────────────────────────
-export function debounce<T extends (...args: unknown[]) => void>(
+export function debounce<T extends (...args: any[]) => any>(
   fn: T,
   delay: number
 ): (...args: Parameters<T>) => void {

@@ -124,6 +124,7 @@ export function saveToLocalStorage(key: string, grid: PixelGrid) {
 }
 
 export function loadFromLocalStorage(key: string): PixelGrid | null {
+  if (typeof window === 'undefined') return null as any;
   try {
     const stored = localStorage.getItem(key);
     if (stored) {

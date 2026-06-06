@@ -228,7 +228,7 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
 
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
   return function (...args: Parameters<T>) {
     clearTimeout(timer);
@@ -256,6 +256,7 @@ export function saveToHistory(inputs: CalculatorInputs, result: CalculationResul
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
   } catch {

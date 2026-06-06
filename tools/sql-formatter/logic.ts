@@ -202,6 +202,7 @@ export function analyzeSQL(input: string): {
 }
 
 export function saveToHistory(sql: string): void {
+  if (typeof window === 'undefined') return;
   try {
     const history = JSON.parse(localStorage.getItem("sqlFormatterHistory") || "[]");
     const entry = {

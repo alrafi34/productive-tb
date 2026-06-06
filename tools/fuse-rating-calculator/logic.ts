@@ -213,6 +213,7 @@ export function saveToHistory(inputs: FuseInputs, result: FuseResult): void {
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -309,6 +310,7 @@ export function saveSettings(settings: Partial<FuseInputs>): void {
 }
 
 export function loadSettings(): Partial<FuseInputs> {
+  if (typeof window === 'undefined') return {};
   try {
     const stored = localStorage.getItem(SETTINGS_KEY);
     return stored ? JSON.parse(stored) : {};

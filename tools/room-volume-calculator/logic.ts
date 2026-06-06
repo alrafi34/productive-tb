@@ -197,6 +197,7 @@ export function saveToHistory(result: CalculationResult): void {
 
 // Get history from localStorage
 export function getHistory(): CalculationHistory[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem('room-volume-calculator-history');
     if (stored) {

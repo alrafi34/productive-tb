@@ -138,6 +138,7 @@ export function saveToHistory(parsed: ParsedUserAgent): void {
 }
 
 export function getHistory(): UAHistory[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem('ua-parser-history');
     return stored ? JSON.parse(stored) : [];

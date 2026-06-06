@@ -147,9 +147,9 @@ export function convertToSqm(area: number, unit: AreaUnit): number {
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
 
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, ms: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): T {
   let timer: ReturnType<typeof setTimeout>;
-  return ((...args: unknown[]) => {
+  return ((...args: any[]) => {
     clearTimeout(timer);
     timer = setTimeout(() => fn(...args), ms);
   }) as T;
@@ -315,6 +315,7 @@ export function saveToHistory(inputs: CalculatorInputs, result: CalculationResul
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
   } catch {

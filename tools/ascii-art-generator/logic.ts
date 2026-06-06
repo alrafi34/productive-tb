@@ -115,6 +115,7 @@ export function saveToHistory(config: AsciiConfig, output: string): void {
 }
 
 export function getHistory(): AsciiHistory[] {
+  if (typeof window === 'undefined') return [];
   try {
     const data = localStorage.getItem(HISTORY_KEY);
     return data ? JSON.parse(data) : [];

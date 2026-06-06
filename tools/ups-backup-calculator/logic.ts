@@ -226,6 +226,7 @@ export function saveToHistory(inputs: UPSBackupInputs, result: UPSBackupResult):
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -262,6 +263,7 @@ export function saveScenario(name: string, inputs: UPSBackupInputs): void {
 }
 
 export function getScenarios(): Scenario[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(SCENARIOS_KEY);
     return stored ? JSON.parse(stored) : [];

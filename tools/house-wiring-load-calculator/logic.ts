@@ -203,6 +203,7 @@ export function saveToHistory(inputs: LoadCalculatorInputs, result: LoadCalculat
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -299,6 +300,7 @@ export function saveAppliances(appliances: Appliance[]): void {
 }
 
 export function loadAppliances(): Appliance[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(APPLIANCES_KEY);
     return stored ? JSON.parse(stored) : [];

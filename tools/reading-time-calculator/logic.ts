@@ -50,7 +50,7 @@ export const READING_SPEEDS = {
   speed: { wpm: 300, label: "Speed Reader" }
 };
 
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: any[]) => any>(
   func: T,
   delay: number
 ): (...args: Parameters<T>) => void {

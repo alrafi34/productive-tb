@@ -112,6 +112,7 @@ export function convertXmlToJson(
 }
 
 export function saveToHistory(xml: string): void {
+  if (typeof window === 'undefined') return;
   try {
     const history = JSON.parse(localStorage.getItem("xmlToJsonHistory") || "[]");
     const entry = {

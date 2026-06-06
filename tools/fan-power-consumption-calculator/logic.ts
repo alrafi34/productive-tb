@@ -212,6 +212,7 @@ export function saveToHistory(inputs: FanConsumptionInputs, result: FanConsumpti
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem(HISTORY_KEY);

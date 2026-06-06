@@ -211,6 +211,7 @@ export function saveToHistory(entry: Omit<HistoryEntry, 'id' | 'timestamp'>): vo
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem('urlSanitizerHistory');
     return stored ? JSON.parse(stored) : [];

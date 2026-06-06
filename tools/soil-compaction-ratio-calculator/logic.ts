@@ -154,9 +154,9 @@ export function fmt(n: number, decimals = 2): string {
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
 
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, ms: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): T {
   let timer: ReturnType<typeof setTimeout>;
-  return ((...args: unknown[]) => {
+  return ((...args: any[]) => {
     clearTimeout(timer);
     timer = setTimeout(() => fn(...args), ms);
   }) as T;

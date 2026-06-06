@@ -191,6 +191,7 @@ export const saveToHistory = (calculation: LiveLoadCalculation): void => {
 
 // Get history
 export const getHistory = (): CalculationHistory[] => {
+  if (typeof window === 'undefined') return [];
   try {
     const saved = localStorage.getItem('live-load-calculator-history');
     return saved ? JSON.parse(saved) : [];

@@ -186,6 +186,7 @@ export function saveToLocalStorage(key: string, value: any): void {
 }
 
 export function loadFromLocalStorage(key: string): any {
+  if (typeof window === 'undefined') return null as any;
   try {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;

@@ -231,6 +231,7 @@ export function saveToHistory(inputs: HeatsinkInputs, result: HeatsinkResult): v
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];

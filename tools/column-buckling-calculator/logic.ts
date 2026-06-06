@@ -84,7 +84,7 @@ function fromNewtons(n: number, unit: LoadUnit): number {
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function debounce<T extends (...args: any[]) => void>(fn: T, ms: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): T {
   let timer: ReturnType<typeof setTimeout>;
   return ((...args: Parameters<T>) => {
     clearTimeout(timer);
@@ -242,6 +242,7 @@ export function saveToHistory(inputs: BucklingInputs, result: BucklingResult): v
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? (JSON.parse(raw) as HistoryEntry[]) : [];

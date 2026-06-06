@@ -162,6 +162,7 @@ export const saveToHistory = (calculation: SandCalculation): void => {
 
 // Get history
 export const getHistory = (): CalculationHistory[] => {
+  if (typeof window === 'undefined') return [];
   try {
     const saved = localStorage.getItem('sand-calculator-history');
     return saved ? JSON.parse(saved) : [];

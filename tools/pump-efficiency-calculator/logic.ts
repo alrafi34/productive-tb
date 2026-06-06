@@ -189,7 +189,7 @@ export function fmt(value: number, decimals = 2): string {
 
 // ── Debounce ─────────────────────────────────────────────────────────────────
 
-export function debounce<T extends (...args: unknown[]) => unknown>(
+export function debounce<T extends (...args: any[]) => unknown>(
   fn: T,
   delay: number
 ): (...args: Parameters<T>) => void {
@@ -226,6 +226,7 @@ export function saveToHistory(
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     if (typeof window === "undefined") return [];
     const stored = localStorage.getItem(HISTORY_KEY);

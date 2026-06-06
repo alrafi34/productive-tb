@@ -121,9 +121,9 @@ export function fmtCF(value: number, currency: Currency): string {
   return `${value >= 0 ? "+" : "−"}${sym}${Math.abs(value).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 }
 
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
-  return ((...args: unknown[]) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); }) as T;
+  return ((...args: any[]) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); }) as T;
 }
 
 const HISTORY_KEY = "roi-real-estate-calculator-history";
@@ -139,6 +139,7 @@ export function saveToHistory(inputs: CalculatorInputs, result: CalculationResul
   } catch { /* ignore */ }
 }
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try { const s = localStorage.getItem(HISTORY_KEY); return s ? JSON.parse(s) : []; } catch { return []; }
 }
 export function clearHistory(): void {

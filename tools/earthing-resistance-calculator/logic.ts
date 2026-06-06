@@ -289,6 +289,7 @@ export function saveToHistory(inputs: EarthingInputs, result: EarthingResult): v
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -383,6 +384,7 @@ export function saveSettings(settings: Partial<EarthingInputs>): void {
 }
 
 export function loadSettings(): Partial<EarthingInputs> {
+  if (typeof window === 'undefined') return {};
   try {
     const stored = localStorage.getItem(SETTINGS_KEY);
     return stored ? JSON.parse(stored) : {};

@@ -207,9 +207,9 @@ export function validatePositive(val: string, label: string): string | null {
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
 
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
-  return function (...args: unknown[]) {
+  return function (...args: any[]) {
     clearTimeout(timer);
     timer = setTimeout(() => fn(...args), delay);
   } as T;
@@ -362,6 +362,7 @@ export function saveToHistory(mode: CalcMode, result: FlowResult, label: string)
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? JSON.parse(raw) : [];

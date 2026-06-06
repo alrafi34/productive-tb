@@ -107,6 +107,7 @@ export function saveCurrentNote(content: string): void {
 }
 
 export function loadCurrentNote(): string {
+  if (typeof window === 'undefined') return '' as any;
   try {
     return localStorage.getItem(STORAGE_KEYS.CURRENT_NOTE) || '';
   } catch (error) {
@@ -124,6 +125,7 @@ export function saveSettings(settings: NotepadSettings): void {
 }
 
 export function loadSettings(): NotepadSettings {
+  if (typeof window === 'undefined') return null as any;
   try {
     const saved = localStorage.getItem(STORAGE_KEYS.SETTINGS);
     if (saved) {
@@ -161,6 +163,7 @@ export function saveNote(content: string): SavedNote {
 }
 
 export function getSavedNotes(): SavedNote[] {
+  if (typeof window === 'undefined') return [];
   try {
     const saved = localStorage.getItem(STORAGE_KEYS.SAVED_NOTES);
     return saved ? JSON.parse(saved) : [];

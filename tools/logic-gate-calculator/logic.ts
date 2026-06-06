@@ -209,6 +209,7 @@ export function saveToHistory(inputs: LogicGateInputs, result: LogicGateResult):
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem(HISTORY_KEY);

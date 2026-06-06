@@ -183,6 +183,7 @@ export function saveToHistory(inputs: DecibelInputs, result: DecibelResult): voi
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -284,6 +285,7 @@ export function saveMode(mode: CalculationMode): void {
 }
 
 export function loadMode(): CalculationMode {
+  if (typeof window === 'undefined') return '' as any;
   try {
     const stored = localStorage.getItem(MODE_KEY);
     return (stored as CalculationMode) || 'power_to_db';

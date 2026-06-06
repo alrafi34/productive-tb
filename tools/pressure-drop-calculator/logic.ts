@@ -228,7 +228,7 @@ export function fmtPressure(pa: number): string {
 }
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
-export function debounce<T extends (...args: unknown[]) => void>(
+export function debounce<T extends (...args: any[]) => any>(
   fn: T,
   ms: number
 ): (...args: Parameters<T>) => void {
@@ -263,6 +263,7 @@ export function saveToHistory(
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? JSON.parse(raw) : [];

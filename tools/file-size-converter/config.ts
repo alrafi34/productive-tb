@@ -1,0 +1,32 @@
+export const fileSizeConverterConfig = {
+  slug: "file-size-converter",
+  name: "File Size Converter",
+  description: "Convert file sizes instantly between Bytes, KB, MB, GB, TB, and PB using binary (1024) or decimal (1000) standards.",
+  category: "computer-science",
+  icon: "💾",
+  free: true,
+  seo: {
+    title: "Free File Size Converter – Convert KB, MB, GB, TB Online",
+    description: "Convert file sizes instantly between Bytes, KB, MB, GB, TB, and PB. Supports binary (1024) and decimal (1000) conversions with real-time results. Free online tool.",
+    keywords: [
+      "file size converter",
+      "KB to MB converter",
+      "MB to GB converter",
+      "GB to TB converter",
+      "storage unit converter",
+      "byte converter",
+      "convert file size online",
+      "binary vs decimal file size",
+      "KiB MiB GiB converter",
+      "digital storage converter",
+      "file size calculator",
+      "data size converter",
+    ],
+    openGraph: {
+      title: "Free File Size Converter – Convert KB, MB, GB, TB Online",
+      description: "Instantly convert file sizes between Bytes, KB, MB, GB, TB, and PB. Binary and decimal standards supported.",
+      type: "website",
+      url: "https://www.engineeringcalcs.com/tools/computer-science/file-size-converter",
+    },
+  },
+};

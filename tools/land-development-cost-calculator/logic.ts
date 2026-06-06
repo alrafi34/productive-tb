@@ -58,9 +58,9 @@ export function fmtNum(value: number, decimals = 2): string {
   });
 }
 
-export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
   let timer: ReturnType<typeof setTimeout>;
-  return function (...args: unknown[]) {
+  return function (...args: any[]) {
     clearTimeout(timer);
     timer = setTimeout(() => fn(...args), delay);
   } as T;
@@ -85,6 +85,7 @@ export function saveToHistory(inputs: CalculatorInputs, result: CalculationResul
 }
 
 export function getHistory() {
+  if (typeof window === 'undefined') return [];
   try {
     return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
   } catch {
@@ -105,6 +106,7 @@ export function saveScenario(label: string, inputs: CalculatorInputs, result: Ca
 }
 
 export function getScenarios() {
+  if (typeof window === 'undefined') return [];
   try {
     return JSON.parse(localStorage.getItem(SCENARIOS_KEY) || "[]");
   } catch {
@@ -128,6 +130,7 @@ export function autoSave(inputs: CalculatorInputs): void {
 }
 
 export function loadAutoSave(): CalculatorInputs | null {
+  if (typeof window === 'undefined') return null as any;
   try {
     const raw = localStorage.getItem(AUTOSAVE_KEY);
     return raw ? JSON.parse(raw) : null;

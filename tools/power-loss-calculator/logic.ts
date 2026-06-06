@@ -315,6 +315,7 @@ export function saveToHistory(inputs: PowerLossInputs, result: PowerLossResult):
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];

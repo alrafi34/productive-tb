@@ -135,6 +135,7 @@ export function analyzeToken(decoded: JWTDecoded): TokenAnalysis {
 }
 
 export function saveToHistory(token: string, decoded: JWTDecoded): void {
+  if (typeof window === 'undefined') return;
   try {
     const history = JSON.parse(localStorage.getItem("jwtDebuggerHistory") || "[]");
     const entry = {

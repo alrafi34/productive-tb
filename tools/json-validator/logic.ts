@@ -98,6 +98,7 @@ export function getErrorContext(input: string, position?: number): { line: numbe
 }
 
 export function saveToHistory(json: string): void {
+  if (typeof window === 'undefined') return;
   try {
     const history = JSON.parse(localStorage.getItem("jsonValidatorHistory") || "[]");
     const entry = {

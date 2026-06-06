@@ -244,6 +244,7 @@ export function saveToHistory(inputs: VoltageRegulationInputs, result: VoltageRe
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? JSON.parse(stored) : [];

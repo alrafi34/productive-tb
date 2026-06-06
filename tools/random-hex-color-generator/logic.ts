@@ -126,6 +126,7 @@ ${colors.map((color, index) => `        '${colorNames[index] || `color-${index +
 
 // LocalStorage helpers
 export const saveToHistory = (colors: ColorData[]): void => {
+  if (typeof window === 'undefined') return;
   try {
     const history = getHistory();
     const newColors = colors.map(c => c.hex);
@@ -137,6 +138,7 @@ export const saveToHistory = (colors: ColorData[]): void => {
 };
 
 export const getHistory = (): string[] => {
+  if (typeof window === 'undefined') return [];
   try {
     const history = localStorage.getItem('color-generator-history');
     return history ? JSON.parse(history) : [];

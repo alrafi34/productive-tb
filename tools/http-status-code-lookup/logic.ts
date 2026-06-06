@@ -286,6 +286,7 @@ export function saveToRecent(code: HttpStatusCode): void {
 }
 
 export function getRecentCodes(): RecentCode[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem('http-codes-recent');
     return stored ? JSON.parse(stored) : [];

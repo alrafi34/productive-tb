@@ -198,6 +198,7 @@ export function saveToHistory(inputs: SolarInverterInputs, result: SolarInverter
 }
 
 export function getHistory(): HistoryEntry[] {
+  if (typeof window === 'undefined') return [];
   try {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem(HISTORY_KEY);
