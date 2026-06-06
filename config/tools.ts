@@ -532,6 +532,7 @@ export const tools: Tool[] = [
   { slug: "momentum-calculator", name: "Momentum Calculator", description: "Determine momentum using mass and velocity.", category: "mechanical", icon: "🏃", free: true },
   { slug: "friction-force-calculator", name: "Friction Force Calculator", description: "Calculate frictional force using coefficient and normal force.", category: "mechanical", icon: "🛑", free: true },
   { slug: "bending-moment-calculator", name: "Bending Moment Calculator", description: "Calculate bending moment.", category: "mechanical", icon: "📐", free: true },
+  { slug: "column-buckling-calculator", name: "Column Buckling Calculator", description: "Compute critical buckling load (Pcr) of structural columns using Euler's formula.", category: "mechanical", icon: "🏗️", free: true },
   { slug: "natural-frequency-calculator", name: "Natural Frequency Calculator", description: "Compute natural frequency.", category: "mechanical", icon: "📊", free: true },
   { slug: "pump-efficiency-calculator", name: "Pump Efficiency Calculator", description: "Evaluate pump efficiency.", category: "mechanical", icon: "💧", free: true },
   { slug: "hydraulic-pressure-calculator", name: "Hydraulic Pressure Calculator", description: "Calculate hydraulic pressure.", category: "mechanical", icon: "💧", free: true },
@@ -547,9 +548,8 @@ export const tools: Tool[] = [
   { slug: "feed-rate-calculator", name: "Feed Rate Calculator", description: "Compute feed rate.", category: "mechanical", icon: "⚙️", free: true },
   { slug: "drag-force-calculator", name: "Drag Force Calculator", description: "Compute drag force.", category: "mechanical", icon: "💨", free: true },
   { slug: "mach-number-calculator", name: "Mach Number Calculator", description: "Determine Mach number.", category: "mechanical", icon: "🚀", free: true },
-  { slug: "column-buckling-calculator", name: "Column Buckling Calculator", description: "Compute buckling load.", category: "mechanical", icon: "📏", free: true },
   { slug: "bearing-life-calculator", name: "Bearing Life Calculator", description: "Estimate bearing life based on load.", category: "mechanical", icon: "⚙️", free: true },
-  { slug: "fatigue-life-calculator", name: "Fatigue Life Calculator", description: "Estimate fatigue life.", category: "mechanical", icon: "📊", free: true },
+  { slug: "fatigue-life-calculator", name: "Fatigue Life Calculator", description: "Estimate fatigue life and cycles to failure using the Basquin equation, S-N curve method, and Miner's Rule.", category: "mechanical", icon: "⚙️", free: true },
   { slug: "refrigeration-cop-calculator", name: "Refrigeration COP Calculator", description: "Calculate COP.", category: "mechanical", icon: "❄️", free: true },
   { slug: "angular-velocity-calculator", name: "Angular Velocity Calculator", description: "Calculate angular velocity.", category: "mechanical", icon: "🔄", free: true },
 

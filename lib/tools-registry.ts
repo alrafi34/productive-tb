@@ -298,6 +298,20 @@ import { bendingMomentCalculatorConfig } from "@/tools/bending-moment-calculator
 import { naturalFrequencyCalculatorConfig } from "@/tools/natural-frequency-calculator/config";
 import { toolConfig as pumpEfficiencyCalculatorConfig } from "@/tools/pump-efficiency-calculator/config";
 import { hydraulicPressureCalculatorConfig } from "@/tools/hydraulic-pressure-calculator/config";
+import { idealGasLawCalculatorConfig } from "@/tools/ideal-gas-law-calculator/config";
+import { thermalEfficiencyCalculatorConfig } from "@/tools/thermal-efficiency-calculator/config";
+import { specificHeatCalculatorConfig } from "@/tools/specific-heat-calculator/config";
+import { boltLoadCalculatorConfig } from "@/tools/bolt-load-calculator/config";
+import { threadPitchCalculatorConfig } from "@/tools/thread-pitch-calculator/config";
+import { cuttingSpeedCalculatorConfig } from "@/tools/cutting-speed-calculator/config";
+import { latheSpeedCalculatorConfig } from "@/tools/lathe-speed-calculator/config";
+import { feedRateCalculatorConfig } from "@/tools/feed-rate-calculator/config";
+import { dragForceCalculatorConfig } from "@/tools/drag-force-calculator/config";
+import { machNumberCalculatorConfig } from "@/tools/mach-number-calculator/config";
+import { columnBucklingCalculatorConfig } from "@/tools/column-buckling-calculator/config";
+import { bearingLifeCalculatorConfig } from "@/tools/bearing-life-calculator/config";
+import { fatigueLifeCalculatorConfig } from "@/tools/fatigue-life-calculator/config";
+import { toolConfig as refrigerationCOPCalculatorConfig } from "@/tools/refrigeration-cop-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -596,10 +610,24 @@ export const TOOLS_REGISTRY = {
   'stress-calculator': stressCalculatorConfig,
   'thermal-expansion-calculator': thermalExpansionCalculatorConfig,
   'friction-force-calculator': frictionForceCalculatorConfig,
+  'drag-force-calculator': dragForceCalculatorConfig,
+  'mach-number-calculator': machNumberCalculatorConfig,
   'bending-moment-calculator': bendingMomentCalculatorConfig,
   'natural-frequency-calculator': naturalFrequencyCalculatorConfig,
   'pump-efficiency-calculator': pumpEfficiencyCalculatorConfig,
   'hydraulic-pressure-calculator': hydraulicPressureCalculatorConfig,
+  'ideal-gas-law-calculator': idealGasLawCalculatorConfig,
+  'thermal-efficiency-calculator': thermalEfficiencyCalculatorConfig,
+  'specific-heat-calculator': specificHeatCalculatorConfig,
+  'bolt-load-calculator': boltLoadCalculatorConfig,
+  'thread-pitch-calculator': threadPitchCalculatorConfig,
+  'cutting-speed-calculator': cuttingSpeedCalculatorConfig,
+  'lathe-speed-calculator': latheSpeedCalculatorConfig,
+  'feed-rate-calculator': feedRateCalculatorConfig,
+  'column-buckling-calculator': columnBucklingCalculatorConfig,
+  'bearing-life-calculator': bearingLifeCalculatorConfig,
+  'fatigue-life-calculator': fatigueLifeCalculatorConfig,
+  'refrigeration-cop-calculator': refrigerationCOPCalculatorConfig,
 };
 
 

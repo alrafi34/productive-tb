@@ -1,0 +1,37 @@
+export const latheSpeedCalculatorConfig = {
+  name: "Lathe Speed Calculator",
+  slug: "lathe-speed-calculator",
+  description: "Calculate optimal lathe spindle speed (RPM) using workpiece diameter, cutting speed, and material type. Supports metric and imperial units.",
+  category: "mechanical",
+  icon: "⚙️",
+  free: true,
+  seo: {
+    title: "Free Lathe Speed Calculator – Calculate Spindle RPM Online",
+    description: "Calculate lathe spindle speed instantly using diameter, cutting speed, and material type. Supports metric and imperial units for machinists, CNC operators, and engineers.",
+    keywords: [
+      "lathe speed calculator",
+      "spindle speed calculator",
+      "lathe RPM calculator",
+      "machining speed calculator",
+      "CNC speed calculator",
+      "surface speed RPM calculator",
+      "metal cutting speed calculator",
+      "lathe cutting speed",
+      "RPM formula machining",
+      "turning speed calculator",
+    ],
+    og: {
+      title: "Free Lathe Speed Calculator – Calculate Spindle RPM Online",
+      description: "Calculate lathe spindle speed instantly using diameter, cutting speed, and material type. Supports metric and imperial units.",
+      url: "https://www.productivetoolbox.com/tools/mechanical/lathe-speed-calculator",
+    },
+  },
+  relatedTools: [
+    "cutting-speed-calculator",
+    "torque-calculator",
+    "gear-ratio-calculator",
+    "angular-velocity-calculator",
+    "thread-pitch-calculator",
+    "feed-rate-calculator",
+  ],
+};
