@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -29,6 +30,14 @@ const PRESETS = [
 ];
 
 export default function CidrCalculatorUI() {
+  return (
+    <Suspense>
+      <CidrCalculatorInner />
+    </Suspense>
+  );
+}
+
+function CidrCalculatorInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 

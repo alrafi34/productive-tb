@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { FileSizeUnit, SpeedUnit, DownloadInputs, HistoryEntry } from "./types";
@@ -27,6 +28,14 @@ const SIZE_UNITS: FileSizeUnit[] = ["KB", "MB", "GB", "TB"];
 const SPEED_UNITS: SpeedUnit[] = ["Kbps", "Mbps", "Gbps"];
 
 export default function DownloadTimeCalculatorUI() {
+  return (
+    <Suspense>
+      <DownloadTimeCalculatorInner />
+    </Suspense>
+  );
+}
+
+function DownloadTimeCalculatorInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 

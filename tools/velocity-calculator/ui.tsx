@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { VelocityInputs, VelocityResult, HistoryEntry, DisplacementUnit, TimeUnit, Precision } from "./types";
@@ -41,6 +42,14 @@ const DEFAULT_INPUTS: VelocityInputs = {
 };
 
 export default function VelocityCalculatorUI() {
+  return (
+    <Suspense>
+      <VelocityCalculatorInner />
+    </Suspense>
+  );
+}
+
+function VelocityCalculatorInner() {
   const router       = useRouter();
   const searchParams = useSearchParams();
 

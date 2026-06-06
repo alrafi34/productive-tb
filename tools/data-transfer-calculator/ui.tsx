@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -39,6 +40,14 @@ const SIZE_PRESETS = [
 ];
 
 export default function DataTransferCalculatorUI() {
+  return (
+    <Suspense>
+      <DataTransferCalculatorInner />
+    </Suspense>
+  );
+}
+
+function DataTransferCalculatorInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
