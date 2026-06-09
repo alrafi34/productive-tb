@@ -570,7 +570,7 @@ export const tools: Tool[] = [
   { slug: "precision-recall-calculator", name: "Precision Recall Calculator", description: "Calculate precision and recall metrics.", category: "computer-science", icon: "📊", free: true },
   { slug: "f1-score-calculator", name: "F1 Score Calculator", description: "Compute F1 score.", category: "computer-science", icon: "📊", free: true },
   { slug: "confusion-matrix-calculator", name: "Confusion Matrix Calculator", description: "Generate confusion matrix metrics.", category: "computer-science", icon: "📊", free: true },
-  { slug: "dataset-split-calculator", name: "Dataset Split Calculator", description: "Split dataset into train/test.", category: "computer-science", icon: "📊", free: true },
+  { slug: "dataset-split-calculator", name: "Dataset Split Calculator", description: "Split datasets into train, validation, and test sets for machine learning.", category: "computer-science", icon: "✂️", free: true },
   { slug: "cloud-cost-calculator", name: "Cloud Cost Calculator", description: "Estimate cloud usage cost.", category: "computer-science", icon: "☁️", free: true },
   { slug: "combinatorics-calculator", name: "Combinatorics Calculator", description: "Calculate permutations and combinations.", category: "computer-science", icon: "🔢", free: true },
 

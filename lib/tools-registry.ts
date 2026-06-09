@@ -325,6 +325,9 @@ import { cidrCalculatorConfig } from "@/tools/cidr-calculator/config";
 import { bandwidthCalculatorConfig } from "@/tools/bandwidth-calculator/config";
 import { dataTransferCalculatorConfig } from "@/tools/data-transfer-calculator/config";
 import { timeComplexityCalculatorConfig } from "@/tools/time-complexity-calculator/config";
+import { toolConfig as datasetSplitCalculatorConfig } from "@/tools/dataset-split-calculator/config";
+import { toolConfig as cloudCostCalculatorConfig } from "@/tools/cloud-cost-calculator/config";
+import { toolConfig as combinatoricsCalculatorConfig } from "@/tools/combinatorics-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -654,6 +657,9 @@ export const TOOLS_REGISTRY = {
   'bandwidth-calculator': bandwidthCalculatorConfig,
   'data-transfer-calculator': dataTransferCalculatorConfig,
   'time-complexity-calculator': timeComplexityCalculatorConfig,
+  'dataset-split-calculator': datasetSplitCalculatorConfig,
+  'cloud-cost-calculator': cloudCostCalculatorConfig,
+  'combinatorics-calculator': combinatoricsCalculatorConfig,
 };
 
 
