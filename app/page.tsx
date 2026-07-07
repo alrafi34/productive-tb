@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Productive Toolbox - 100+ Free Online Tools",
     description: "Free online tools for productivity. Word counters, text formatters, image tools, and more.",
     url: siteConfig.url,
-    images: [{ url: "/og-home.png", width: 1200, height: 630 }]
+    images: [{ url: "/og?title=Productive+Toolbox&subtitle=438%2B+Free+Online+Tools+%E2%80%94+No+Sign-up+Required", width: 1200, height: 630 }]
   }
 };
 
@@ -80,7 +80,7 @@ export default function HomePage() {
                 </Link>
               </div>
               <div className="flex gap-8 mt-10">
-                {[["100+", "Free Tools"], ["5M+", "Happy Users"], ["0", "Sign-ups Needed"]].map(([val, label]) => (
+                {[["438+", "Free Tools"], ["100%", "Browser-Based"], ["0", "Sign-ups Needed"]].map(([val, label]) => (
                   <div key={label}>
                     <strong className="block text-2xl font-bold text-primary" style={{ fontFamily: "var(--font-heading)" }}>{val}</strong>
                     <span className="text-xs text-gray-400">{label}</span>

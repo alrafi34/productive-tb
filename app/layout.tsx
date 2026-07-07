@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} - 100+ Free Online Tools`,
     description: "Free online tools for writing, design, coding, and math. Word counter, image compressor, password generator, calculators & 100+ utilities. No sign-up needed.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Productive Toolbox" }]
+    images: [{ url: "/og?title=Productive+Toolbox", width: 1200, height: 630, alt: "Productive Toolbox" }]
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} - 100+ Free Online Tools`,
     description: "100+ free online tools for writing, design, coding & math. No sign-up needed.",
-    images: ["/og-image.png"]
+    images: ["/og?title=Productive+Toolbox"]
   },
   icons: {
     icon: [
@@ -72,10 +72,6 @@ const organizationSchema = {
   url: siteConfig.url,
   logo: `${siteConfig.url}/logo.png`,
   description: "Free online tools for productivity",
-  sameAs: [
-    "https://twitter.com/productivetoolbox",
-    "https://github.com/productivetoolbox"
-  ]
 };
 
 export default function RootLayout({
