@@ -443,4 +443,34 @@ Run through this before marking a tool done.
 - [ ] Check GSC impressions for the tool URL 2–4 weeks post-deploy
 
 
+---
+
+## Part 10 — Tools Already Done (Do Not Redo)
+
+| Tool | seo-content.tsx | config schema | Notes |
+|------|----------------|---------------|-------|
+| `profit-margin-calculator-marketing` | ✅ full 7-section | ✅ faq + howToSteps | Standard |
+| `cost-per-click-cpc-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Standard |
+| `cost-per-acquisition-cpa-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Standard |
+| `customer-lifetime-value-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Standard |
+| `break-even-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Standard |
+| `age-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Schema moved from seo-content to config |
+
+Update this table every time you complete a tool.
+
+---
+
+## Quick Reference — Most Common Mistakes
+
+1. **Writing schema in seo-content.tsx** — put `faq` and `howToSteps` in `config.ts` only. The page injects them automatically.
+2. **Vague use cases** — every scenario needs specific inputs, specific numbers, specific outputs.
+3. **One-sentence steps** — each step needs 2–3 sentences explaining what to do and why.
+4. **HTML/JSX in `faq.a` fields** — plain text only. No `<strong>`, no `**`, no `\n`.
+5. **Mismatched word counts** — Tier 1 tools need 800–1,500 words. Check with `wc -w` after writing.
+6. **Missing relatedTools** — every config needs 4–6 slugs or the internal linking sidebar is empty.
+7. **Title over 60 chars** — truncates in Google. Count before saving.
+8. **Description under 130 chars** — leaves Google to auto-generate a snippet, which is usually worse.
+
+---
+
 *Last updated: July 2026 · See also: SEO_GROWTH_AUDIT.md, CHECKLIST_1M.md*

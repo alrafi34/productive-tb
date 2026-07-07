@@ -42,16 +42,6 @@ export default function BmiCalculatorSEO() {
     },
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
-
   const howToSteps = [
     ["Select your unit system", "Choose Metric (kg and cm) or Imperial (lb, ft, in) using the toggle at the top of the calculator. The inputs and outputs update instantly — you can switch at any time without re-entering values."],
     ["Enter your height", "Type your height in the height field. In metric mode, enter centimetres (e.g. 175). In imperial mode, enter feet and inches separately (e.g. 5 ft 9 in)."],
@@ -62,19 +52,8 @@ export default function BmiCalculatorSEO() {
     ["Use the weight simulator", "Drag the simulator slider to explore how your BMI would change at different weights. This is useful for setting a realistic weight goal — you can see the BMI impact of losing or gaining 5, 10, or 20 kg/lbs."],
   ];
 
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to Calculate BMI Online",
-    description: "Select metric or imperial units, enter height and weight, and instantly get BMI, category, healthy weight range, and ideal weight estimates.",
-    step: howToSteps.map(([name, text]) => ({ "@type": "HowToStep", name, text })),
-  };
-
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
 
       {/* ── 1. Introduction ── */}
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

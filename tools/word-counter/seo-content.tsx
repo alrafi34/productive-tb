@@ -42,19 +42,6 @@ export default function WordCounterSEOContent() {
     },
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
-  };
-
   const howToSteps = [
     ["Paste or type your text", "Click inside the editor and paste text from your clipboard (Ctrl+V / Cmd+V) or start typing directly. The counter updates with every keystroke — no submit button needed."],
     ["Read the live metric panel", "Check the word count, character count (with and without spaces), sentence count, paragraph count, and estimated reading time — all displayed at once above or beside the editor."],
@@ -63,28 +50,8 @@ export default function WordCounterSEOContent() {
     ["Copy the final content", "Once your text meets its target length and structure, copy it from the editor and paste it into your publishing destination — Google Docs, WordPress, email client, or anywhere else."],
   ];
 
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to Use the Word Counter Online",
-    description: "Paste text, check word and character counts in real time, compare against a target, and copy the final content.",
-    step: howToSteps.map(([name, text]) => ({
-      "@type": "HowToStep",
-      name,
-      text,
-    })),
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       {/* ── 1. Introduction ── */}
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

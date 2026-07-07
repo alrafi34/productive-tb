@@ -35,10 +35,10 @@
 > Expand these 15 tools to 800–1,500 words first. Highest search volume, fastest path to ranking.
 
 - [x] `word-counter` — target: "word counter online" (550K/mo)
-- [ ] `bmi-calculator` — target: "bmi calculator" (1.2M/mo)
-- [ ] `age-calculator` — target: "age calculator" (450K/mo)
-- [ ] `password-generator` — target: "password generator" (400K/mo)
-- [ ] `percentage-calculator` — target: "percentage calculator" (300K/mo)
+- [x] `bmi-calculator` — target: "bmi calculator" (1.2M/mo)
+- [x] `age-calculator` — target: "age calculator" (450K/mo)
+- [x] `password-generator` — target: "password generator" (400K/mo)
+- [x] `percentage-calculator` — target: "percentage calculator" (300K/mo)
 - [ ] `loan-emi-calculator` — target: "emi calculator" (800K/mo)
 - [ ] `qr-code-generator` — target: "qr code generator free" (250K/mo)
 - [ ] `image-compressor` — target: "compress image online" (200K/mo)
