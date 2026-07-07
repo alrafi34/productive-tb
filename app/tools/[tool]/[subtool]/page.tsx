@@ -944,6 +944,33 @@ export default async function ToolPage({
     creator: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
   };
 
+  // FAQPage schema — populated from config.seo.faq if present
+  const faqItems: { q: string; a: string }[] = (config as any).seo?.faq ?? [];
+  const faqSchema = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  } : null;
+
+  // HowTo schema — populated from config.seo.howToSteps if present
+  const howToSteps: { name: string; text: string }[] = (config as any).seo?.howToSteps ?? [];
+  const howToSchema = howToSteps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use ${toolName}`,
+    description: toolDescription,
+    step: howToSteps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null;
+
   const catObj = categories.find(c => c.slug === canonicalCategory);
   
   return (
@@ -952,6 +979,18 @@ export default async function ToolPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        />
+      )}
       <ToolLayout title={toolName} description={toolDescription} icon={toolIcon} category={catObj}>
         <Component />
       </ToolLayout>

@@ -1014,3 +1014,112 @@ Use Ahrefs or Semrush to analyze the top 3 backlinks for each competitor — the
 ---
 
 *Document maintained by the Productive Toolbox team. Last updated July 2026.*
+
+## Appendix C — Rich Schema Implementation Guide
+
+> **Read this every time you add SEO content to a new tool.**  
+> The `seo-content.tsx` file provides visible content for users. The config `faq` and `howToSteps` arrays provide structured data for Google rich results. Both must be done together for full SEO benefit.
+
+---
+
+### How It Works
+
+The tool page at `app/tools/[tool]/[subtool]/page.tsx` automatically reads two optional arrays from each tool's `config.seo` and injects them as JSON-LD `<script>` tags:
+
+| Config field | Schema type generated | Google rich result |
+|---|---|---|
+| `config.seo.faq` | `FAQPage` | Expandable FAQ in search results (doubles listing size) |
+| `config.seo.howToSteps` | `HowTo` | Step-by-step rich result in search |
+
+If the arrays are absent, nothing is rendered — fully backward compatible.
+
+---
+
+### Step-by-Step: Adding Schema to a Tool
+
+**1. Expand the tool's `seo-content.tsx`** with the full 7-section format (Introduction, How It Works, Step-by-Step, Use Cases, Tips, Formula/Reference, FAQ, Who Uses This).
+
+**2. Add `faq` and `howToSteps` to the tool's `config.ts`** inside the `seo` object:
+
+```typescript
+// tools/your-tool-name/config.ts
+export const yourToolConfig = {
+  slug: "your-tool-name",
+  name: "Your Tool Name",
+  description: "...",
+  category: "marketing",
+  icon: "🔧",
+  free: true,
+  seo: {
+    title: "...",
+    description: "...",
+    keywords: [...],
+    openGraph: { ... },
+
+    // ── ADD THESE ──────────────────────────────────────────
+
+    howToSteps: [
+      {
+        name: "Step title (short, noun phrase)",
+        text: "Full explanation of what the user does in this step. 1–3 sentences. Match the steps shown in seo-content.tsx section 3.",
+      },
+      // 4–6 steps total
+    ],
+
+    faq: [
+      {
+        q: "Question exactly as shown in seo-content.tsx FAQ section",
+        a: "Answer text — plain string, no JSX, no HTML tags. 2–5 sentences. Match the answers in seo-content.tsx.",
+      },
+      // 8–10 items total
+    ],
+
+  },
+};
+```
+
+**3. Deploy.** The schema is live automatically — no other files need touching.
+
+---
+
+### Content Rules for `faq` and `howToSteps`
+
+**`faq` items:**
+- `q` must be a complete question (ends with `?`)
+- `a` must be plain text — no HTML, no markdown, no JSX
+- Minimum 8 items, maximum 10 (Google shows a max of 10 in rich results)
+- Match the questions already written in the `seo-content.tsx` FAQ section — do not invent new ones
+- Each answer should be 2–5 sentences, self-contained without needing context from other answers
+
+**`howToSteps` items:**
+- `name` should be a short noun phrase: "Enter Fixed Costs", "Select Currency", "Read Results"
+- `text` should be 1–3 sentences explaining what the user does and why
+- 4–6 steps is the ideal range
+- Match the steps in the `seo-content.tsx` section 3 (How to Use)
+
+---
+
+### Tools With Schema Already Implemented
+
+| Tool | `howToSteps` | `faq` |
+|---|---|---|
+| `cost-per-click-cpc-calculator` | ✅ 6 steps | ✅ 10 items |
+| `cost-per-acquisition-cpa-calculator` | ✅ 6 steps | ✅ 10 items |
+| `customer-lifetime-value-calculator` | ✅ 5 steps | ✅ 10 items |
+| `profit-margin-calculator-marketing` | ✅ 6 steps | ✅ 10 items |
+| `break-even-calculator` | ✅ 6 steps | ✅ 10 items |
+
+All other tools: schema pending — add when `seo-content.tsx` is expanded.
+
+---
+
+### Verifying Schema After Deploy
+
+1. Go to [search.google.com/rich-results](https://search.google.com/rich-results)
+2. Enter the full tool URL (e.g. `https://productivetoolbox.com/tools/marketing/cost-per-click-cpc-calculator`)
+3. Run the test — should show **FAQPage** and **HowTo** detected alongside SoftwareApplication
+4. Rich results typically appear in Google Search within 1–4 weeks after the next crawl
+
+---
+
+*Document maintained by the Productive Toolbox team. Last updated July 2026.*
