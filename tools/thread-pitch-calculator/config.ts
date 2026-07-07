@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const threadPitchCalculatorConfig = {
   name: "Thread Pitch Calculator",
   slug: "thread-pitch-calculator",
@@ -27,7 +29,7 @@ export const threadPitchCalculatorConfig = {
     og: {
       title: "Free Thread Pitch Calculator – Metric & Imperial TPI Calculator",
       description: "Calculate thread pitch instantly for metric and imperial threads. Convert TPI, measure thread spacing, calculate lead, and identify thread types online for free.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/thread-pitch-calculator",
+      url: `${siteConfig.url}/tools/mechanical/thread-pitch-calculator`,
     },
   },
   relatedTools: [

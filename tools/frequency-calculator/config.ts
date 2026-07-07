@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const frequencyCalculatorConfig = {
   name: "Frequency Calculator",
   description: "Calculate frequency from time period or time period from frequency instantly. Convert between Hz, kHz, MHz and seconds, milliseconds, microseconds.",
@@ -22,7 +24,7 @@ export const frequencyCalculatorConfig = {
     og: {
       title: "Frequency Calculator – Free Time Period & Frequency Converter",
       description: "Calculate frequency from time period or time period from frequency instantly. Supports Hz, kHz, MHz and seconds, milliseconds, microseconds.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/frequency-calculator",
+      url: `${siteConfig.url}/tools/electrical/frequency-calculator`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const landPriceCalculatorConfig = {
   name: "Land Price Calculator",
   slug: "land-price-calculator",
@@ -25,7 +27,7 @@ export const landPriceCalculatorConfig = {
     og: {
       title: "Land Price Calculator – Calculate Property Cost Instantly",
       description: "Calculate total land cost instantly using area size and rate per unit. Supports acre, decimal, katha, bigha, square feet, and more.",
-      url: "https://www.engineeringcalcs.com/tools/land/land-price-calculator",
+      url: `${siteConfig.url}/tools/land/land-price-calculator`,
     },
   },
 };

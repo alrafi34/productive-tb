@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const fileSizeConverterConfig = {
   slug: "file-size-converter",
   name: "File Size Converter",
@@ -26,7 +28,7 @@ export const fileSizeConverterConfig = {
       title: "Free File Size Converter – Convert KB, MB, GB, TB Online",
       description: "Instantly convert file sizes between Bytes, KB, MB, GB, TB, and PB. Binary and decimal standards supported.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/file-size-converter",
+      url: `${siteConfig.url}/tools/computer-science/file-size-converter`,
     },
   },
 };

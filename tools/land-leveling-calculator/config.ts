@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const landLevelingCalculatorConfig = {
   name: "Land Leveling Calculator",
   slug: "land-leveling-calculator",
@@ -23,7 +25,7 @@ export const landLevelingCalculatorConfig = {
     og: {
       title: "Free Land Leveling Calculator – Calculate Cut & Fill Volume Online",
       description: "Calculate land leveling volume instantly. Estimate cut and fill earthwork, grading requirements, and leveling volume for construction, farming, and landscaping projects.",
-      url: "https://www.engineeringcalcs.com/tools/land/land-leveling-calculator",
+      url: `${siteConfig.url}/tools/land/land-leveling-calculator`,
     },
   },
 };

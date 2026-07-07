@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const arcFlashCalculatorConfig = {
   name: "Arc Flash Calculator",
   description: "Calculate arc flash hazard levels, incident energy, and PPE requirements for electrical safety assessment.",
@@ -22,7 +24,7 @@ export const arcFlashCalculatorConfig = {
     og: {
       title: "Arc Flash Calculator – Electrical Safety Risk Assessment",
       description: "Calculate arc flash hazard levels instantly. Real-time calculations with PPE recommendations for electrical safety.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/arc-flash-calculator",
+      url: `${siteConfig.url}/tools/electrical/arc-flash-calculator`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const mapScaleCalculatorConfig = {
   name: "Map Scale Calculator",
   slug: "map-scale-calculator",
@@ -25,7 +27,7 @@ export const mapScaleCalculatorConfig = {
     og: {
       title: "Free Map Scale Calculator – Convert Map Distance to Real Distance",
       description: "Calculate real-world distance from map scale instantly. Convert map measurements using scales like 1:1000, 1:50000, and more.",
-      url: "https://www.engineeringcalcs.com/tools/land/map-scale-calculator",
+      url: `${siteConfig.url}/tools/land/map-scale-calculator`,
     },
   },
 };

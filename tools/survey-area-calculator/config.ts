@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const surveyAreaCalculatorConfig = {
   name: "Survey Area Calculator",
   slug: "survey-area-calculator",
@@ -23,7 +25,7 @@ export const surveyAreaCalculatorConfig = {
     og: {
       title: "Free Survey Area Calculator – Calculate Land Area Online",
       description: "Calculate surveyed land area instantly online. Supports square feet, meters, acres, hectares, polygon coordinates, and multiple plot types with real-time conversions.",
-      url: "https://www.engineeringcalcs.com/tools/land/survey-area-calculator",
+      url: `${siteConfig.url}/tools/land/survey-area-calculator`,
     },
   },
 };

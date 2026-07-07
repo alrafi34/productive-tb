@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const toolConfig = {
   name: "Refrigeration COP Calculator",
   description:
@@ -32,7 +34,7 @@ export const toolConfig = {
         "Free Refrigeration COP Calculator – Calculate Coefficient of Performance Online",
       description:
         "Calculate refrigeration COP instantly using cooling effect, power input, or Carnot refrigeration formulas. Free online engineering calculator.",
-      url: "https://www.productivetoolbox.com/tools/mechanical/refrigeration-cop-calculator",
+      url: `${siteConfig.url}/tools/mechanical/refrigeration-cop-calculator`,
     },
   },
 };

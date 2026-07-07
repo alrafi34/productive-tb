@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const velocityCalculatorConfig = {
   name: "Velocity Calculator",
   slug: "velocity-calculator",
@@ -27,7 +29,7 @@ export const velocityCalculatorConfig = {
       title: "Free Velocity Calculator Online",
       description: "Calculate velocity instantly using displacement and time with automatic unit conversion and real-time results.",
       type: "website",
-      url: "https://productivetoolbox.com/tools/mechanical/velocity-calculator",
+      url: `${siteConfig.url}/tools/mechanical/velocity-calculator`,
     },
   },
   relatedTools: [

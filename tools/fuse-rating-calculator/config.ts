@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const fuseRatingCalculatorConfig = {
   name: "Fuse Rating Calculator",
   description: "Calculate the correct fuse rating for electrical circuits and devices. Get instant recommendations with safety margins based on power, voltage, or current.",
@@ -27,7 +29,7 @@ export const fuseRatingCalculatorConfig = {
     og: {
       title: "Fuse Rating Calculator – Find Correct Fuse Size Instantly",
       description: "Calculate the correct fuse rating for any electrical circuit using power, voltage, or current. Free online tool with safety recommendations.",
-      url: "https://www.yoursite.com/tools/electrical/fuse-rating-calculator"
+      url: `${siteConfig.url}/tools/electrical/fuse-rating-calculator`
     }
   }
 };

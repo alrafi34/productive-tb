@@ -587,7 +587,7 @@ export const tools: Tool[] = [
   { slug: "break-even-calculator", name: "Break Even Calculator", description: "Determine break-even point.", category: "marketing", icon: "⚖️", free: true },
   { slug: "keyword-density-calculator-seo", name: "Keyword Density Calculator", description: "Calculate keyword density in content.", category: "marketing", icon: "🔍", free: true },
   { slug: "seo-score-calculator", name: "SEO Score Calculator", description: "Estimate SEO optimization score.", category: "marketing", icon: "📊", free: true },
-  { slug: "backlink-ratio-calculator", name: "Backlink Ratio Calculator", description: "Analyze backlink ratio.", category: "marketing", icon: "🔗", free: true },
+  { slug: "backlink-ratio-calculator", name: "Backlink Ratio Calculator", description: "Analyze follow vs nofollow ratios, anchor text distribution, domain diversity, and backlink profile health. Free browser-based SEO backlink analysis tool.", category: "marketing", icon: "🔗", free: true },
   { slug: "domain-authority-estimator", name: "Domain Authority Estimator", description: "Estimate domain authority score.", category: "marketing", icon: "🌐", free: true },
   { slug: "impressions-calculator", name: "Impressions Calculator", description: "Estimate impressions from data.", category: "marketing", icon: "👁️", free: true },
   { slug: "engagement-rate-calculator", name: "Engagement Rate Calculator", description: "Calculate engagement rate.", category: "marketing", icon: "💬", free: true },

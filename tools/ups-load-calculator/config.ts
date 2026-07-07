@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const upsLoadCalculatorConfig = {
   name: "UPS Load Calculator",
   description: "Calculate required UPS capacity based on connected devices. Estimate total power load, convert watts to VA, and get instant UPS sizing recommendations with safety margins.",
@@ -22,7 +24,7 @@ export const upsLoadCalculatorConfig = {
     og: {
       title: "UPS Load Calculator – Calculate Required UPS Capacity",
       description: "Calculate total power load and get instant UPS sizing recommendations. Free online tool with device presets and safety margins.",
-      url: "https://www.productive-tb.com/tools/electrical/ups-load-calculator",
+      url: `${siteConfig.url}/tools/electrical/ups-load-calculator`,
     },
   },
 };

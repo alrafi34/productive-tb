@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const aiPromptLengthCalculatorConfig = {
   slug: "ai-prompt-length-calculator",
   name: "AI Prompt Length Calculator",
@@ -24,7 +26,7 @@ export const aiPromptLengthCalculatorConfig = {
       title: "AI Prompt Length Calculator – Count Tokens, Words & Prompt Size",
       description: "Calculate AI prompt length, token count, and context window usage for ChatGPT, Claude, Gemini, and other AI models instantly.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/ai-prompt-length-calculator",
+      url: `${siteConfig.url}/tools/computer-science/ai-prompt-length-calculator`,
     },
   },
   relatedTools: [

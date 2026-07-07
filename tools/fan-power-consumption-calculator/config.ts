@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const fanPowerConsumptionCalculatorConfig = {
   name: "Fan Power Consumption Calculator",
   description: "Calculate electricity consumption and cost for fans. Estimate daily, monthly, and yearly energy usage with instant results.",
@@ -27,7 +29,7 @@ export const fanPowerConsumptionCalculatorConfig = {
     og: {
       title: "Fan Power Consumption Calculator – Estimate Electricity Cost of Fans Online",
       description: "Free online fan power consumption calculator. Calculate fan electricity consumption and monthly cost instantly.",
-      url: "https://www.yoursite.com/tools/electrical/fan-power-consumption-calculator"
+      url: `${siteConfig.url}/tools/electrical/fan-power-consumption-calculator`
     }
   }
 };

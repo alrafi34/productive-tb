@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const landValuationCalculatorConfig = {
   name: "Land Valuation Calculator",
   slug: "land-valuation-calculator",
@@ -25,7 +27,7 @@ export const landValuationCalculatorConfig = {
     og: {
       title: "Land Valuation Calculator – Estimate Property Value Online",
       description: "Calculate land value instantly using area size, unit price, and extra costs. Supports Katha, Acre, Decimal, Sq Ft, and more.",
-      url: "https://www.engineeringcalcs.com/tools/land/land-valuation-calculator",
+      url: `${siteConfig.url}/tools/land/land-valuation-calculator`,
     },
   },
 };

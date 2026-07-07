@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const wallBoundaryCostCalculatorConfig = {
   name: "Wall Boundary Cost Calculator",
   slug: "wall-boundary-cost-calculator",
@@ -21,7 +23,7 @@ export const wallBoundaryCostCalculatorConfig = {
     og: {
       title: "Wall Boundary Cost Calculator – Estimate Boundary Wall Construction Cost",
       description: "Calculate the estimated cost of building a boundary wall instantly. Estimate material, labor, plaster, gate, and total construction cost online for free.",
-      url: "https://www.engineeringcalcs.com/tools/land/wall-boundary-cost-calculator",
+      url: `${siteConfig.url}/tools/land/wall-boundary-cost-calculator`,
     },
   },
 };

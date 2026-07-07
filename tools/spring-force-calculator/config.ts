@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const springForceCalculatorConfig = {
   name: "Spring Force Calculator",
   slug: "spring-force-calculator",
@@ -25,7 +27,7 @@ export const springForceCalculatorConfig = {
     og: {
       title: "Spring Force Calculator – Hooke's Law Force Calculator Online",
       description: "Calculate spring force instantly using Hooke's Law. Enter spring constant and displacement to compute force with step-by-step explanation and unit conversion.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/spring-force-calculator",
+      url: `${siteConfig.url}/tools/mechanical/spring-force-calculator`,
     },
   },
   relatedTools: [

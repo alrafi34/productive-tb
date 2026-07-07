@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const opAmpCalculatorConfig = {
   name: "Op-Amp Calculator",
   description: "Calculate gain and output voltage for operational amplifier circuits including inverting, non-inverting, voltage follower, and summing amplifier configurations.",
@@ -22,7 +24,7 @@ export const opAmpCalculatorConfig = {
     og: {
       title: "Op-Amp Calculator – Free Operational Amplifier Tool",
       description: "Calculate gain and output voltage for op-amp circuits. Supports inverting, non-inverting, voltage follower, and summing amplifier configurations.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/op-amp-calculator",
+      url: `${siteConfig.url}/tools/electrical/op-amp-calculator`,
     },
   },
 };

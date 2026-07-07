@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const flowRateCalculatorConfig = {
   name: "Flow Rate Calculator",
   slug: "flow-rate-calculator",
@@ -28,7 +30,7 @@ export const flowRateCalculatorConfig = {
       title: "Free Flow Rate Calculator Online – Volumetric & Mass Flow Rate",
       description:
         "Calculate volumetric and mass flow rate instantly using engineering formulas. Supports pipe flow, fluid velocity, unit conversion, and real-time calculations online.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/flow-rate-calculator",
+      url: `${siteConfig.url}/tools/mechanical/flow-rate-calculator`,
     },
   },
   relatedTools: [

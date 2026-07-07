@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const acreToSquareFeetConverterConfig = {
   name: "Acre to Square Feet Converter",
   slug: "acre-to-square-feet-converter",
@@ -23,7 +25,7 @@ export const acreToSquareFeetConverterConfig = {
     og: {
       title: "Acre to Square Feet Converter – Convert Acres to Sq Ft Instantly",
       description: "Convert acres to square feet instantly. Free online acreage calculator with real-time results and precision control.",
-      url: "https://www.engineeringcalcs.com/tools/land/acre-to-square-feet-converter",
+      url: `${siteConfig.url}/tools/land/acre-to-square-feet-converter`,
     },
   },
 };

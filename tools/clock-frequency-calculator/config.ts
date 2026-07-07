@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const clockFrequencyCalculatorConfig = {
   name: "Clock Frequency Calculator",
   description: "Calculate clock frequency, period, cycles, and execution time for digital electronics, microcontrollers, and embedded systems. Instant results with step-by-step calculations.",
@@ -22,7 +24,7 @@ export const clockFrequencyCalculatorConfig = {
     og: {
       title: "Clock Frequency Calculator – Digital Electronics & Embedded Systems Tool",
       description: "Calculate clock frequency, period, cycles, and execution time for digital circuits. Supports Hz, kHz, MHz, GHz with instant results.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/clock-frequency-calculator",
+      url: `${siteConfig.url}/tools/electrical/clock-frequency-calculator`,
     },
   },
 };

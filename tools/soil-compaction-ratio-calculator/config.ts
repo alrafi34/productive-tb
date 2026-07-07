@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const soilCompactionRatioCalculatorConfig = {
   name: "Soil Compaction Ratio Calculator",
   slug: "soil-compaction-ratio-calculator",
@@ -25,7 +27,7 @@ export const soilCompactionRatioCalculatorConfig = {
       title: "Soil Compaction Ratio Calculator – Free Engineering Tool",
       description:
         "Calculate soil compaction ratio instantly. Compare field dry density with maximum dry density for quality control.",
-      url: "https://www.engineeringcalcs.com/tools/land/soil-compaction-ratio-calculator",
+      url: `${siteConfig.url}/tools/land/soil-compaction-ratio-calculator`,
     },
   },
   relatedTools: [

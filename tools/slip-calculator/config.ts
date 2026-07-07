@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const slipCalculatorConfig = {
   name: "Slip Calculator",
   description: "Calculate slip in induction motors using synchronous speed and rotor speed.",
@@ -22,7 +24,7 @@ export const slipCalculatorConfig = {
     og: {
       title: "Slip Calculator – Calculate Induction Motor Slip Online",
       description: "Calculate slip in induction motors instantly using synchronous and rotor speed. Get detailed analysis and interpretation.",
-      url: "https://www.yoursite.com/tools/electrical/slip-calculator"
+      url: `${siteConfig.url}/tools/electrical/slip-calculator`
     }
   }
 };

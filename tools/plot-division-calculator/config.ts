@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const plotDivisionCalculatorConfig = {
   name: "Plot Division Calculator",
   slug: "plot-division-calculator",
@@ -23,7 +25,7 @@ export const plotDivisionCalculatorConfig = {
     og: {
       title: "Plot Division Calculator – Divide Land into Equal Plots Online",
       description: "Calculate and divide land into equal plots instantly. Enter land size, dimensions, and plot count to plan subdivisions with visual layouts.",
-      url: "https://www.engineeringcalcs.com/tools/land/plot-division-calculator",
+      url: `${siteConfig.url}/tools/land/plot-division-calculator`,
     },
   },
 };

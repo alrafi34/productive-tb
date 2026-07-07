@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const reynoldsNumberCalculatorConfig = {
   name: "Reynolds Number Calculator",
   slug: "reynolds-number-calculator",
@@ -28,7 +30,7 @@ export const reynoldsNumberCalculatorConfig = {
       title: "Reynolds Number Calculator – Determine Fluid Flow Regime Online",
       description:
         "Calculate Reynolds Number instantly online. Determine whether fluid flow is laminar, transitional, or turbulent using velocity, density, viscosity, and diameter.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/reynolds-number-calculator",
+      url: `${siteConfig.url}/tools/mechanical/reynolds-number-calculator`,
     },
   },
   relatedTools: [

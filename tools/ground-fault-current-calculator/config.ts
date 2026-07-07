@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const groundFaultCurrentCalculatorConfig = {
   name: "Ground Fault Current Calculator",
   description: "Calculate ground fault current instantly using voltage and impedance. Free online electrical engineering calculator for fault analysis, safety design, and industrial applications.",
@@ -22,7 +24,7 @@ export const groundFaultCurrentCalculatorConfig = {
     og: {
       title: "Ground Fault Current Calculator – Fast Electrical Fault Current Tool",
       description: "Calculate ground fault current instantly using voltage and impedance. Professional electrical engineering calculator for safety analysis.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/ground-fault-current-calculator",
+      url: `${siteConfig.url}/tools/electrical/ground-fault-current-calculator`,
     },
   },
 };

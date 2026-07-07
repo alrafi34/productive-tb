@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const timeComplexityCalculatorConfig = {
   slug: "time-complexity-calculator",
   name: "Time Complexity Calculator",
@@ -26,7 +28,7 @@ export const timeComplexityCalculatorConfig = {
       title: "Free Time Complexity Calculator – Estimate Big-O Growth Online",
       description: "Analyze and estimate algorithm time complexity instantly. Learn Big-O notation with visual graphs, comparisons, and real-world examples.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/time-complexity-calculator",
+      url: `${siteConfig.url}/tools/computer-science/time-complexity-calculator`,
     },
   },
 };

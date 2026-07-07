@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const landAreaCalculatorSquareMeterConfig = {
   name: "Land Area Calculator (Square Meter)",
   slug: "land-area-calculator-square-meter",
@@ -23,7 +25,7 @@ export const landAreaCalculatorSquareMeterConfig = {
     og: {
       title: "Land Area Calculator (Square Meter) – Convert Land Units Online",
       description: "Calculate and convert land area into square meters instantly. Convert square feet, acres, hectares, and more with real-time results.",
-      url: "https://www.engineeringcalcs.com/tools/land/land-area-calculator-square-meter",
+      url: `${siteConfig.url}/tools/land/land-area-calculator-square-meter`,
     },
   },
 };

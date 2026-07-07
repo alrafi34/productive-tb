@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const landAreaCalculatorConfig = {
   name: "Land Area Calculator (Square Feet)",
   slug: "land-area-calculator-square-feet",
@@ -23,7 +25,7 @@ export const landAreaCalculatorConfig = {
     og: {
       title: "Land Area Calculator (Square Feet) – Calculate Property Size Online",
       description: "Calculate land area in square feet instantly from length and width. Free online land area calculator with feet, meter, and yard conversion.",
-      url: "https://www.engineeringcalcs.com/tools/land/land-area-calculator-square-feet",
+      url: `${siteConfig.url}/tools/land/land-area-calculator-square-feet`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const toolConfig = {
   name: "Pump Efficiency Calculator",
   description:
@@ -32,7 +34,7 @@ export const toolConfig = {
         "Pump Efficiency Calculator – Calculate Pump Performance Online",
       description:
         "Free online pump efficiency calculator. Calculate hydraulic power and pump efficiency instantly using flow rate, head, power, and fluid density.",
-      url: "https://www.productivtoolbox.com/tools/mechanical/pump-efficiency-calculator",
+      url: `${siteConfig.url}/tools/mechanical/pump-efficiency-calculator`,
     },
   },
 };

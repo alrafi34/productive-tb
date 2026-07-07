@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const subdivisionCostCalculatorConfig = {
   name: "Subdivision Cost Calculator",
   slug: "subdivision-cost-calculator",
@@ -21,7 +23,7 @@ export const subdivisionCostCalculatorConfig = {
     og: {
       title: "Subdivision Cost Calculator – Estimate Land Division Cost Online",
       description: "Estimate subdivision costs instantly with our free Subdivision Cost Calculator. Calculate legal fees, permits, surveying, utilities, roads, and cost per plot online.",
-      url: "https://www.engineeringcalcs.com/tools/land/subdivision-cost-calculator",
+      url: `${siteConfig.url}/tools/land/subdivision-cost-calculator`,
     },
   },
 };

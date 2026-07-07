@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const centripetalForceCalculatorConfig = {
   name: "Centripetal Force Calculator",
   slug: "centripetal-force-calculator",
@@ -23,7 +25,7 @@ export const centripetalForceCalculatorConfig = {
     og: {
       title: "Free Centripetal Force Calculator – Calculate Circular Motion Force Online",
       description: "Calculate centripetal force instantly using mass, velocity, and radius. Get real-time results, step-by-step explanations, formulas, and unit conversions for physics and engineering.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/centripetal-force-calculator",
+      url: `${siteConfig.url}/tools/mechanical/centripetal-force-calculator`,
     },
   },
   relatedTools: [

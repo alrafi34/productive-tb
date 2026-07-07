@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const frequencyResponseCalculatorConfig = {
   name: "Frequency Response Calculator",
   description: "Analyze frequency response of systems with real-time Bode plots. Enter transfer functions and visualize magnitude and phase response instantly in your browser.",
@@ -22,7 +24,7 @@ export const frequencyResponseCalculatorConfig = {
     og: {
       title: "Frequency Response Calculator – Bode Plot & System Analysis",
       description: "Analyze frequency response with real-time Bode plots. Visualize magnitude and phase response instantly.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/frequency-response-calculator",
+      url: `${siteConfig.url}/tools/electrical/frequency-response-calculator`,
     },
   },
 };

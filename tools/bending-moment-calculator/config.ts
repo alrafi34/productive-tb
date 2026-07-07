@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const bendingMomentCalculatorConfig = {
   name: "Bending Moment Calculator",
   slug: "bending-moment-calculator",
@@ -31,7 +33,7 @@ export const bendingMomentCalculatorConfig = {
       title: "Free Bending Moment Calculator – Beam Moment Calculator Online",
       description:
         "Calculate bending moment instantly for simply supported, cantilever, and fixed beams. Free online beam bending moment calculator with formulas, diagrams, and step-by-step solutions.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/bending-moment-calculator",
+      url: `${siteConfig.url}/tools/mechanical/bending-moment-calculator`,
     },
   },
   relatedTools: [

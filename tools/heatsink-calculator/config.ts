@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const heatsinkCalculatorConfig = {
   name: "Heatsink Calculator",
   description: "Calculate heatsink thermal resistance and cooling requirements for electronic components. Estimate required heatsink size and verify thermal design for CPUs, MOSFETs, and power electronics.",
@@ -22,7 +24,7 @@ export const heatsinkCalculatorConfig = {
     og: {
       title: "Heatsink Calculator – Calculate Thermal Resistance for Electronics",
       description: "Estimate heatsink requirements and thermal resistance for electronic components. Free online calculator for thermal design.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/heatsink-calculator",
+      url: `${siteConfig.url}/tools/electrical/heatsink-calculator`,
     },
   },
 };

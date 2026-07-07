@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const cuttingSpeedCalculatorConfig = {
   name: "Cutting Speed Calculator",
   slug: "cutting-speed-calculator",
@@ -28,7 +30,7 @@ export const cuttingSpeedCalculatorConfig = {
     og: {
       title: "Free Cutting Speed Calculator – Machining Speed & RPM Calculator Online",
       description: "Calculate machining cutting speed, spindle RPM, feed rate, and machining time instantly. Free online calculator for CNC, milling, turning, and drilling operations.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/cutting-speed-calculator",
+      url: `${siteConfig.url}/tools/mechanical/cutting-speed-calculator`,
     },
   },
   relatedTools: [

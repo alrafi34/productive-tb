@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const fatigueLifeCalculatorConfig = {
   name: "Fatigue Life Calculator",
   slug: "fatigue-life-calculator",
@@ -28,7 +30,7 @@ export const fatigueLifeCalculatorConfig = {
       title: "Fatigue Life Calculator – Estimate Cycles to Failure Online",
       description:
         "Free fatigue life calculator for engineers. Estimate cycles to failure using S-N curves, Basquin equation, and fatigue stress analysis instantly online.",
-      url: "https://www.productivetoolbox.com/tools/mechanical/fatigue-life-calculator",
+      url: `${siteConfig.url}/tools/mechanical/fatigue-life-calculator`,
     },
   },
   relatedTools: [

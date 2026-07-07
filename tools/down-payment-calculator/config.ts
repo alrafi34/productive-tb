@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const downPaymentCalculatorConfig = {
   name: "Down Payment Calculator",
   slug: "down-payment-calculator",
@@ -20,7 +22,7 @@ export const downPaymentCalculatorConfig = {
     og: {
       title: "Down Payment Calculator – Calculate Upfront Payment Instantly",
       description: "Calculate upfront down payment, remaining financing, and monthly payment estimates for property, land, or vehicle purchases.",
-      url: "https://www.engineeringcalcs.com/tools/land/down-payment-calculator",
+      url: `${siteConfig.url}/tools/land/down-payment-calculator`,
     },
   },
 };

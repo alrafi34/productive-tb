@@ -278,6 +278,12 @@ import { bandwidthCalculatorConfig } from "@/tools/bandwidth-calculator/config";
 import { dataTransferCalculatorConfig } from "@/tools/data-transfer-calculator/config";
 import { timeComplexityCalculatorConfig } from "@/tools/time-complexity-calculator/config";
 import { fileSizeConverterConfig } from "@/tools/file-size-converter/config";
+import { ctrCalculatorConfig } from "@/tools/ctr-calculator/config";
+import { conversionRateCalculatorConfig } from "@/tools/conversion-rate-calculator/config";
+import { bounceRateCalculatorConfig } from "@/tools/bounce-rate-calculator/config";
+import { roiCalculatorMarketingConfig } from "@/tools/roi-calculator-marketing/config";
+import { costPerClickCpcCalculatorConfig } from "@/tools/cost-per-click-cpc-calculator/config";
+import { backlinkRatioCalculatorConfig } from "@/tools/backlink-ratio-calculator/config";
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
@@ -552,6 +558,12 @@ const BandwidthCalculatorUI = dynamic(() => import("@/tools/bandwidth-calculator
 const DataTransferCalculatorUI = dynamic(() => import("@/tools/data-transfer-calculator/ui"));
 const TimeComplexityCalculatorUI = dynamic(() => import("@/tools/time-complexity-calculator/ui"));
 const FileSizeConverterUI = dynamic(() => import("@/tools/file-size-converter/ui"));
+const CTRCalculatorUI = dynamic(() => import("@/tools/ctr-calculator/ui"));
+const ConversionRateCalculatorUI = dynamic(() => import("@/tools/conversion-rate-calculator/ui"));
+const BounceRateCalculatorUI = dynamic(() => import("@/tools/bounce-rate-calculator/ui"));
+const ROICalculatorMarketingUI = dynamic(() => import("@/tools/roi-calculator-marketing/ui"));
+const CPCCalculatorUI = dynamic(() => import("@/tools/cost-per-click-cpc-calculator/ui"));
+const BacklinkRatioCalculatorUI = dynamic(() => import("@/tools/backlink-ratio-calculator/ui"));
 
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
@@ -827,6 +839,12 @@ const TOOLS = [
   { config: dataTransferCalculatorConfig, Component: DataTransferCalculatorUI },
   { config: timeComplexityCalculatorConfig, Component: TimeComplexityCalculatorUI },
   { config: fileSizeConverterConfig, Component: FileSizeConverterUI },
+  { config: ctrCalculatorConfig, Component: CTRCalculatorUI },
+  { config: conversionRateCalculatorConfig, Component: ConversionRateCalculatorUI },
+  { config: bounceRateCalculatorConfig, Component: BounceRateCalculatorUI },
+  { config: roiCalculatorMarketingConfig, Component: ROICalculatorMarketingUI },
+  { config: costPerClickCpcCalculatorConfig, Component: CPCCalculatorUI },
+  { config: backlinkRatioCalculatorConfig,  Component: BacklinkRatioCalculatorUI },
 ];
 
 

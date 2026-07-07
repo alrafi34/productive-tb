@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const machNumberCalculatorConfig = {
   name: "Mach Number Calculator",
   slug: "mach-number-calculator",
@@ -28,7 +30,7 @@ export const machNumberCalculatorConfig = {
       title: "Free Mach Number Calculator – Calculate Mach Speed Online",
       description:
         "Calculate Mach number instantly using speed and temperature. Determine subsonic, supersonic, and hypersonic speeds with this free online Mach Number Calculator.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/mach-number-calculator",
+      url: `${siteConfig.url}/tools/mechanical/mach-number-calculator`,
     },
   },
   relatedTools: [

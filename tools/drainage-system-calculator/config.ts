@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const drainageSystemCalculatorConfig = {
   name: "Drainage System Calculator",
   slug: "drainage-system-calculator",
@@ -26,7 +28,7 @@ export const drainageSystemCalculatorConfig = {
       title: "Drainage System Calculator – Free Land Drainage Flow Design Tool",
       description: "Calculate peak runoff, pipe capacity, and drainage requirements instantly. Free engineering tool for civil engineers, agricultural planners, and land developers.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/land/drainage-system-calculator",
+      url: `${siteConfig.url}/tools/land/drainage-system-calculator`,
     },
   },
   relatedTools: [

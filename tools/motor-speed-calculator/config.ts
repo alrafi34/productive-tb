@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const motorSpeedCalculatorConfig = {
   name: "Motor Speed Calculator",
   description: "Calculate motor speed (RPM) from frequency, number of poles, and slip percentage.",
@@ -22,7 +24,7 @@ export const motorSpeedCalculatorConfig = {
     og: {
       title: "Motor Speed Calculator – Calculate RPM from Frequency & Poles",
       description: "Calculate motor speed (RPM) instantly using frequency, number of poles, and slip percentage. Get synchronous and actual motor speeds.",
-      url: "https://www.yoursite.com/tools/electrical/motor-speed-calculator"
+      url: `${siteConfig.url}/tools/electrical/motor-speed-calculator`
     }
   }
 };

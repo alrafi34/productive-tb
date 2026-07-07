@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const columnBucklingCalculatorConfig = {
   name: "Column Buckling Calculator",
   slug: "column-buckling-calculator",
@@ -25,7 +27,7 @@ export const columnBucklingCalculatorConfig = {
     og: {
       title: "Column Buckling Calculator – Calculate Critical Buckling Load Online",
       description: "Free online column buckling calculator using Euler's formula. Compute Pcr, choose end conditions, compare materials, and get instant engineering results.",
-      url: "https://www.productivebox.com/tools/mechanical/column-buckling-calculator",
+      url: `${siteConfig.url}/tools/mechanical/column-buckling-calculator`,
     },
   },
   relatedTools: [

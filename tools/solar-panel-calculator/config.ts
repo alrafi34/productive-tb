@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const solarPanelCalculatorConfig = {
   name: "Solar Panel Calculator",
   description: "Calculate solar system size, number of panels needed, and energy production. Estimate requirements based on electricity usage and location.",
@@ -27,7 +29,7 @@ export const solarPanelCalculatorConfig = {
     og: {
       title: "Solar Panel Calculator – Estimate Solar System Size & Panels Instantly",
       description: "Free online solar panel calculator. Calculate how many solar panels you need based on your electricity usage and sunlight hours.",
-      url: "https://www.yoursite.com/tools/electrical/solar-panel-calculator"
+      url: `${siteConfig.url}/tools/electrical/solar-panel-calculator`
     }
   }
 };

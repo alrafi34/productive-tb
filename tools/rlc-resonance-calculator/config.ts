@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const rlcResonanceCalculatorConfig = {
   name: "RLC Resonance Calculator",
   description: "Calculate the resonant frequency of RLC circuits instantly using f₀ = 1/(2π√LC) with unit conversion and circuit analysis.",
@@ -27,7 +29,7 @@ export const rlcResonanceCalculatorConfig = {
     og: {
       title: "RLC Resonance Calculator – Calculate Resonant Frequency Online",
       description: "Free online RLC resonance calculator. Calculate f₀ = 1/(2π√LC) with instant results, unit conversions, and circuit analysis for electrical engineering.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/rlc-resonance-calculator",
+      url: `${siteConfig.url}/tools/electrical/rlc-resonance-calculator`,
     },
   },
 };

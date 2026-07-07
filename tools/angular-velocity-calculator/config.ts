@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const angularVelocityCalculatorConfig = {
   name: "Angular Velocity Calculator",
   slug: "angular-velocity-calculator",
@@ -28,7 +30,7 @@ export const angularVelocityCalculatorConfig = {
       title: "Angular Velocity Calculator – Free Online Mechanical Calculator",
       description:
         "Calculate angular velocity instantly using RPM, frequency, displacement, radius, or period formulas. Free online angular velocity calculator with unit conversions and step-by-step explanations.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/angular-velocity-calculator",
+      url: `${siteConfig.url}/tools/mechanical/angular-velocity-calculator`,
     },
   },
   relatedTools: [

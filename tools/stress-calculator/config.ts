@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const stressCalculatorConfig = {
   name: "Stress Calculator",
   slug: "stress-calculator",
@@ -25,7 +27,7 @@ export const stressCalculatorConfig = {
     og: {
       title: "Free Stress Calculator Online – Calculate Mechanical Stress Instantly",
       description: "Calculate mechanical stress instantly using force and area. Free online stress calculator with engineering unit conversion for MPa, psi, Pa, ksi, and more.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/stress-calculator",
+      url: `${siteConfig.url}/tools/mechanical/stress-calculator`,
     },
   },
   relatedTools: [

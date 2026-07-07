@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const wavelengthCalculatorConfig = {
   name: "Wavelength Calculator",
   description: "Calculate wavelength from frequency using λ = v/f. Supports multiple frequency units and propagation mediums for electromagnetic waves.",
@@ -27,7 +29,7 @@ export const wavelengthCalculatorConfig = {
     og: {
       title: "Wavelength Calculator – Calculate Signal Wavelength from Frequency",
       description: "Free online wavelength calculator. Calculate λ = v/f with instant results for electromagnetic waves, RF signals, and more.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/wavelength-calculator",
+      url: `${siteConfig.url}/tools/electrical/wavelength-calculator`,
     },
   },
 };

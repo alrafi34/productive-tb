@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const downloadTimeCalculatorConfig = {
   slug: "download-time-calculator",
   name: "Download Time Calculator",
@@ -23,7 +25,7 @@ export const downloadTimeCalculatorConfig = {
       title: "Download Time Calculator – Estimate File Download Speed & Time",
       description: "Calculate how long downloads take based on file size and internet speed. Estimate download time instantly for games, movies, software, and large files.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/download-time-calculator",
+      url: `${siteConfig.url}/tools/computer-science/download-time-calculator`,
     },
   },
   relatedTools: [

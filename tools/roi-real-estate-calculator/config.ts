@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const roiRealEstateCalculatorConfig = {
   name: "ROI Real Estate Calculator",
   slug: "roi-real-estate-calculator",
@@ -20,7 +22,7 @@ export const roiRealEstateCalculatorConfig = {
     og: {
       title: "ROI Real Estate Calculator – Estimate Property Investment Returns",
       description: "Calculate real estate ROI instantly. Estimate rental income, cash flow, appreciation, and property investment returns.",
-      url: "https://www.engineeringcalcs.com/tools/land/roi-real-estate-calculator",
+      url: `${siteConfig.url}/tools/land/roi-real-estate-calculator`,
     },
   },
 };

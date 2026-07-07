@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const naturalFrequencyCalculatorConfig = {
   name: "Natural Frequency Calculator",
   slug: "natural-frequency-calculator",
@@ -25,7 +27,7 @@ export const naturalFrequencyCalculatorConfig = {
     og: {
       title: "Free Natural Frequency Calculator – Mechanical Vibration Frequency Tool",
       description: "Calculate natural frequency instantly using spring-mass and pendulum formulas. Free mechanical engineering calculator with unit conversion and step-by-step explanation.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/natural-frequency-calculator",
+      url: `${siteConfig.url}/tools/mechanical/natural-frequency-calculator`,
     },
   },
   relatedTools: [

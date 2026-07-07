@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const rentalYieldCalculatorConfig = {
   name: "Rental Yield Calculator",
   slug: "rental-yield-calculator",
@@ -21,7 +23,7 @@ export const rentalYieldCalculatorConfig = {
     og: {
       title: "Free Rental Yield Calculator – Calculate Property Rental ROI Online",
       description: "Calculate rental yield, ROI, cash flow, and property profitability instantly. Free rental yield calculator for rental property investment analysis.",
-      url: "https://www.engineeringcalcs.com/tools/land/rental-yield-calculator",
+      url: `${siteConfig.url}/tools/land/rental-yield-calculator`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const bernoulliEquationCalculatorConfig = {
   name: "Bernoulli Equation Calculator",
   slug: "bernoulli-equation-calculator",
@@ -31,7 +33,7 @@ export const bernoulliEquationCalculatorConfig = {
       title: "Bernoulli Equation Calculator – Fluid Pressure & Velocity Solver",
       description:
         "Calculate fluid pressure, velocity, and height using the Bernoulli Equation Calculator. Solve fluid mechanics problems instantly with step-by-step explanations and unit conversion.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/bernoulli-equation-calculator",
+      url: `${siteConfig.url}/tools/mechanical/bernoulli-equation-calculator`,
     },
   },
   relatedTools: [

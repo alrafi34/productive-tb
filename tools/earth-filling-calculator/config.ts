@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const earthFillingCalculatorConfig = {
   name: "Earth Filling Calculator",
   slug: "earth-filling-calculator",
@@ -22,7 +24,7 @@ export const earthFillingCalculatorConfig = {
     og: {
       title: "Earth Filling Calculator – Calculate Fill Material Volume Instantly",
       description: "Calculate earth fill material required for construction, land filling, ponds, and foundations. Estimate cubic feet, cubic meters, truckloads, and cost instantly.",
-      url: "https://www.engineeringcalcs.com/tools/land/earth-filling-calculator",
+      url: `${siteConfig.url}/tools/land/earth-filling-calculator`,
     },
   },
 };

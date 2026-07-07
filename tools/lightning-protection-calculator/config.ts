@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const lightningProtectionCalculatorConfig = {
   name: "Lightning Protection Calculator",
   description: "Estimate lightning protection requirements for buildings based on height, area, and risk level. Get instant safety recommendations for electrical protection systems.",
@@ -22,7 +24,7 @@ export const lightningProtectionCalculatorConfig = {
     og: {
       title: "Lightning Protection Calculator – Building Risk Assessment",
       description: "Estimate lightning protection requirements for buildings. Calculate risk scores and get safety recommendations instantly.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/lightning-protection-calculator",
+      url: `${siteConfig.url}/tools/electrical/lightning-protection-calculator`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const currentDividerCalculatorConfig = {
   name: "Current Divider Calculator",
   description: "Calculate current distribution in parallel circuits instantly. Free Current Divider Calculator for electrical engineering students and professionals.",
@@ -22,7 +24,7 @@ export const currentDividerCalculatorConfig = {
     og: {
       title: "Current Divider Calculator – Parallel Circuit Current Calculator",
       description: "Calculate current distribution in parallel circuits instantly. Real-time calculations with step-by-step analysis.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/current-divider-calculator",
+      url: `${siteConfig.url}/tools/electrical/current-divider-calculator`,
     },
   },
 };

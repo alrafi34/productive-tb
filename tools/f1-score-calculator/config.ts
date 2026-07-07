@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const f1ScoreCalculatorConfig = {
   slug: "f1-score-calculator",
   name: "F1 Score Calculator",
@@ -23,7 +25,7 @@ export const f1ScoreCalculatorConfig = {
       title: "Free F1 Score Calculator – Calculate Precision, Recall & F1 Score Online",
       description: "Calculate F1 score from confusion matrix or precision/recall values instantly. Free online ML evaluation tool.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/f1-score-calculator",
+      url: `${siteConfig.url}/tools/computer-science/f1-score-calculator`,
     },
   },
   relatedTools: [

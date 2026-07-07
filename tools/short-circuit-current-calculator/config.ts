@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const shortCircuitCurrentCalculatorConfig = {
   name: "Short Circuit Current Calculator",
   description: "Calculate fault current levels in electrical systems for circuit breaker selection, protective relay settings, and safety analysis.",
@@ -22,7 +24,7 @@ export const shortCircuitCurrentCalculatorConfig = {
     og: {
       title: "Short Circuit Current Calculator – Electrical Fault Current Tool",
       description: "Calculate short circuit current instantly using voltage and impedance values. Professional electrical engineering tool with real-time calculations.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/short-circuit-current-calculator",
+      url: `${siteConfig.url}/tools/electrical/short-circuit-current-calculator`,
     },
   },
 };

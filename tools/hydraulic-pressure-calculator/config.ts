@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const hydraulicPressureCalculatorConfig = {
   name: "Hydraulic Pressure Calculator",
   slug: "hydraulic-pressure-calculator",
@@ -28,7 +30,7 @@ export const hydraulicPressureCalculatorConfig = {
       title: "Hydraulic Pressure Calculator – Calculate Pressure, Force & Area Online",
       description:
         "Free hydraulic pressure calculator for engineers and technicians. Calculate hydraulic pressure, force, piston area, and diameter instantly with PSI, bar, Pa, and MPa conversions.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/hydraulic-pressure-calculator",
+      url: `${siteConfig.url}/tools/mechanical/hydraulic-pressure-calculator`,
     },
   },
   relatedTools: [

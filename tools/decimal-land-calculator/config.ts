@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const decimalLandCalculatorConfig = {
   name: "Decimal Land Calculator",
   slug: "decimal-land-calculator",
@@ -25,7 +27,7 @@ export const decimalLandCalculatorConfig = {
     og: {
       title: "Decimal Land Calculator – Convert Decimal, Acre, Katha & Bigha Online",
       description: "Convert decimal land measurement instantly into acre, katha, bigha, square feet, square meter, hectare, and more.",
-      url: "https://www.engineeringcalcs.com/tools/land/decimal-land-calculator",
+      url: `${siteConfig.url}/tools/land/decimal-land-calculator`,
     },
   },
 };

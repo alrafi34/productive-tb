@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const torqueCalculatorConfig = {
   name: "Torque Calculator",
   slug: "torque-calculator",
@@ -25,7 +27,7 @@ export const torqueCalculatorConfig = {
     og: {
       title: "Free Torque Calculator – Calculate Torque Online (Nm, lb-ft)",
       description: "Calculate torque instantly using force and distance. Supports Newtons, pounds-force, meters, feet, angle correction, and real-time results.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/torque-calculator",
+      url: `${siteConfig.url}/tools/mechanical/torque-calculator`,
     },
   },
   relatedTools: [

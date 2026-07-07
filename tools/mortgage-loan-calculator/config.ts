@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const mortgageLoanCalculatorConfig = {
   name: "Mortgage Loan Calculator",
   slug: "mortgage-loan-calculator",
@@ -21,7 +23,7 @@ export const mortgageLoanCalculatorConfig = {
     og: {
       title: "Mortgage Loan Calculator – Calculate Monthly Mortgage Payments Online",
       description: "Free mortgage loan calculator to estimate monthly mortgage payments, total interest, amortization schedule, and loan payoff.",
-      url: "https://www.engineeringcalcs.com/tools/land/mortgage-loan-calculator",
+      url: `${siteConfig.url}/tools/land/mortgage-loan-calculator`,
     },
   },
 };

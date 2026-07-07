@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const boltLoadCalculatorConfig = {
   name: "Bolt Load Calculator",
   slug: "bolt-load-calculator",
@@ -28,7 +30,7 @@ export const boltLoadCalculatorConfig = {
     og: {
       title: "Bolt Load Calculator – Free Online Bolt Preload & Stress Calculator",
       description: "Calculate bolt load, preload force, clamp load, tensile stress, and safety factor instantly. Supports metric and imperial bolt grades.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/bolt-load-calculator",
+      url: `${siteConfig.url}/tools/mechanical/bolt-load-calculator`,
     },
   },
   relatedTools: [

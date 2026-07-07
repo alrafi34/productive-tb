@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const kineticEnergyCalculatorConfig = {
   name: "Kinetic Energy Calculator",
   slug: "kinetic-energy-calculator",
@@ -23,7 +25,7 @@ export const kineticEnergyCalculatorConfig = {
     og: {
       title: "Free Kinetic Energy Calculator – Calculate Motion Energy Online",
       description: "Calculate kinetic energy instantly using mass and velocity. Free online kinetic energy calculator with unit conversion, formulas, and step-by-step explanations.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/kinetic-energy-calculator",
+      url: `${siteConfig.url}/tools/mechanical/kinetic-energy-calculator`,
     },
   },
   relatedTools: [

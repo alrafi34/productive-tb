@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const generatorSizeCalculatorConfig = {
   name: "Generator Size Calculator",
   description: "Calculate appropriate generator capacity (kVA/kW) for electrical loads. Estimate generator size based on appliances, safety margin, and power factor with instant results.",
@@ -27,7 +29,7 @@ export const generatorSizeCalculatorConfig = {
     og: {
       title: "Generator Size Calculator – Calculate kVA & kW Capacity Instantly",
       description: "Free online generator size calculator. Calculate required generator capacity for your electrical loads.",
-      url: "https://www.yoursite.com/tools/electrical/generator-size-calculator"
+      url: `${siteConfig.url}/tools/electrical/generator-size-calculator`
     }
   }
 };

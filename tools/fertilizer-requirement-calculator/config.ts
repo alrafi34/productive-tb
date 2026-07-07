@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const fertilizerRequirementCalculatorConfig = {
   name: "Fertilizer Requirement Calculator",
   slug: "fertilizer-requirement-calculator",
@@ -23,7 +25,7 @@ export const fertilizerRequirementCalculatorConfig = {
     og: {
       title: "Fertilizer Requirement Calculator – Estimate Fertilizer for Crops Online",
       description: "Calculate fertilizer requirements instantly for crops based on land size, crop type, and nutrient needs. Free agricultural calculator.",
-      url: "https://www.engineeringcalcs.com/tools/agriculture/fertilizer-requirement-calculator",
+      url: `${siteConfig.url}/tools/land/fertilizer-requirement-calculator`,
     },
   },
 };

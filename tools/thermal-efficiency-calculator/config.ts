@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const thermalEfficiencyCalculatorConfig = {
   name: "Thermal Efficiency Calculator",
   description: "Calculate thermal efficiency of engines, heat engines, turbines, and thermodynamic systems. Supports Carnot efficiency, basic thermal efficiency, and power-based calculations.",
@@ -22,7 +24,7 @@ export const thermalEfficiencyCalculatorConfig = {
     og: {
       title: "Thermal Efficiency Calculator – Calculate Engine Efficiency Online",
       description: "Calculate thermal efficiency instantly for engines, heat engines, turbines, and thermodynamic systems. Free online tool with step-by-step solutions.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/thermal-efficiency-calculator",
+      url: `${siteConfig.url}/tools/mechanical/thermal-efficiency-calculator`,
     },
   },
 };

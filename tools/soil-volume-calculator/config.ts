@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const soilVolumeCalculatorConfig = {
   name: "Soil Volume Calculator",
   slug: "soil-volume-calculator",
@@ -22,7 +24,7 @@ export const soilVolumeCalculatorConfig = {
     og: {
       title: "Soil Volume Calculator – Free Excavation & Earthwork Volume Tool",
       description: "Calculate soil excavation volume instantly for construction, landscaping, trenches, and earthwork projects. Free online soil volume calculator with unit conversion.",
-      url: "https://www.engineeringcalcs.com/tools/land/soil-volume-calculator",
+      url: `${siteConfig.url}/tools/land/soil-volume-calculator`,
     },
   },
 };

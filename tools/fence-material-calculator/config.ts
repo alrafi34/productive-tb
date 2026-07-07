@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const fenceMaterialCalculatorConfig = {
   name: "Fence Material Calculator",
   slug: "fence-material-calculator",
@@ -21,7 +23,7 @@ export const fenceMaterialCalculatorConfig = {
     og: {
       title: "Fence Material Calculator – Estimate Fence Panels, Posts & Materials",
       description: "Calculate fence materials instantly. Estimate fence panels, posts, concrete, and rails for wood, vinyl, chain link, and metal fencing.",
-      url: "https://www.engineeringcalcs.com/tools/land/fence-material-calculator",
+      url: `${siteConfig.url}/tools/land/fence-material-calculator`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const voltageRegulationCalculatorConfig = {
   name: "Voltage Regulation Calculator",
   description: "Calculate voltage regulation of electrical systems (transformers and power distribution lines) using standard engineering formulas.",
@@ -22,7 +24,7 @@ export const voltageRegulationCalculatorConfig = {
     og: {
       title: "Voltage Regulation Calculator – Free Electrical Engineering Tool",
       description: "Calculate voltage regulation instantly. Real-time calculations for transformers and power systems.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/voltage-regulation-calculator",
+      url: `${siteConfig.url}/tools/electrical/voltage-regulation-calculator`,
     },
   },
 };

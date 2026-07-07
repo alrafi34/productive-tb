@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const irrigationWaterCalculatorConfig = {
   name: "Irrigation Water Calculator",
   slug: "irrigation-water-calculator",
@@ -23,7 +25,7 @@ export const irrigationWaterCalculatorConfig = {
     og: {
       title: "Irrigation Water Calculator – Calculate Farm Water Requirement Online",
       description: "Calculate irrigation water requirement for crops instantly. Estimate daily water needs based on land size, crop type, soil, climate, and irrigation method.",
-      url: "https://www.engineeringcalcs.com/tools/land/irrigation-water-calculator",
+      url: `${siteConfig.url}/tools/land/irrigation-water-calculator`,
     },
   },
 };

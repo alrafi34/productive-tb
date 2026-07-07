@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const idealGasLawCalculatorConfig = {
   name: "Ideal Gas Law Calculator",
   slug: "ideal-gas-law-calculator",
@@ -28,7 +30,7 @@ export const idealGasLawCalculatorConfig = {
       title: "Ideal Gas Law Calculator (PV = nRT) – Free Online Scientific Calculator",
       description:
         "Calculate pressure, volume, temperature, or moles instantly using the Ideal Gas Law equation (PV = nRT). Supports scientific units, conversions, and real-time results.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/ideal-gas-law-calculator",
+      url: `${siteConfig.url}/tools/mechanical/ideal-gas-law-calculator`,
     },
   },
   relatedTools: [

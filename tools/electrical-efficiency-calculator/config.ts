@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const electricalEfficiencyCalculatorConfig = {
   name: "Electrical Efficiency Calculator",
   description: "Calculate system efficiency by comparing output power vs input power. Get instant results with efficiency analysis and power loss calculations.",
@@ -22,7 +24,7 @@ export const electricalEfficiencyCalculatorConfig = {
     og: {
       title: "Electrical Efficiency Calculator – Calculate Power System Efficiency",
       description: "Calculate electrical system efficiency instantly. Free online tool with real-time calculations and efficiency analysis.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/electrical-efficiency-calculator",
+      url: `${siteConfig.url}/tools/electrical/electrical-efficiency-calculator`,
     },
   },
 };

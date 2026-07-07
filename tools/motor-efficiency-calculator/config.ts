@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const motorEfficiencyCalculatorConfig = {
   name: "Motor Efficiency Calculator",
   description: "Calculate electric motor efficiency from input and output power. Get instant efficiency percentage, power losses, and performance rating with real-time results.",
@@ -27,7 +29,7 @@ export const motorEfficiencyCalculatorConfig = {
     og: {
       title: "Motor Efficiency Calculator – Calculate Electric Motor Efficiency Online",
       description: "Free online motor efficiency calculator. Calculate efficiency percentage from input and output power with instant results.",
-      url: "https://www.yoursite.com/tools/electrical/motor-efficiency-calculator"
+      url: `${siteConfig.url}/tools/electrical/motor-efficiency-calculator`
     }
   }
 };

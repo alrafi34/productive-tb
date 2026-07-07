@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const antennaLengthCalculatorConfig = {
   name: "Antenna Length Calculator",
   description: "Calculate optimal antenna length from frequency for RF engineering, IoT, and wireless communication. Supports quarter-wave, half-wave, and full-wave antennas.",
@@ -22,7 +24,7 @@ export const antennaLengthCalculatorConfig = {
     og: {
       title: "Antenna Length Calculator – RF Engineering & Wireless Design Tool",
       description: "Calculate antenna length from frequency instantly. Supports Hz, kHz, MHz, GHz with quarter, half, and full-wave options.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/antenna-length-calculator",
+      url: `${siteConfig.url}/tools/electrical/antenna-length-calculator`,
     },
   },
 };

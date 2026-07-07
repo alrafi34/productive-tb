@@ -328,6 +328,19 @@ import { timeComplexityCalculatorConfig } from "@/tools/time-complexity-calculat
 import { toolConfig as datasetSplitCalculatorConfig } from "@/tools/dataset-split-calculator/config";
 import { toolConfig as cloudCostCalculatorConfig } from "@/tools/cloud-cost-calculator/config";
 import { toolConfig as combinatoricsCalculatorConfig } from "@/tools/combinatorics-calculator/config";
+import { ctrCalculatorConfig } from "@/tools/ctr-calculator/config";
+import { conversionRateCalculatorConfig } from "@/tools/conversion-rate-calculator/config";
+import { bounceRateCalculatorConfig } from "@/tools/bounce-rate-calculator/config";
+import { roiCalculatorMarketingConfig } from "@/tools/roi-calculator-marketing/config";
+import { costPerClickCpcCalculatorConfig } from "@/tools/cost-per-click-cpc-calculator/config";
+import { costPerAcquisitionCpaCalculatorConfig } from "@/tools/cost-per-acquisition-cpa-calculator/config";
+import { customerLifetimeValueCalculatorConfig } from "@/tools/customer-lifetime-value-calculator/config";
+import { revenueGrowthCalculatorConfig } from "@/tools/revenue-growth-calculator/config";
+import { profitMarginCalculatorMarketingConfig } from "@/tools/profit-margin-calculator-marketing/config";
+import { breakEvenCalculatorConfig } from "@/tools/break-even-calculator/config";
+import { keywordDensityCalculatorSeoConfig } from "@/tools/keyword-density-calculator-seo/config";
+import { seoScoreCalculatorConfig } from "@/tools/seo-score-calculator/config";
+import { backlinkRatioCalculatorConfig } from "@/tools/backlink-ratio-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -660,6 +673,19 @@ export const TOOLS_REGISTRY = {
   'dataset-split-calculator': datasetSplitCalculatorConfig,
   'cloud-cost-calculator': cloudCostCalculatorConfig,
   'combinatorics-calculator': combinatoricsCalculatorConfig,
+  'ctr-calculator': ctrCalculatorConfig,
+  'conversion-rate-calculator': conversionRateCalculatorConfig,
+  'bounce-rate-calculator': bounceRateCalculatorConfig,
+  'roi-calculator-marketing': roiCalculatorMarketingConfig,
+  'cost-per-click-cpc-calculator': costPerClickCpcCalculatorConfig,
+  'cost-per-acquisition-cpa-calculator': costPerAcquisitionCpaCalculatorConfig,
+  'customer-lifetime-value-calculator': customerLifetimeValueCalculatorConfig,
+  'revenue-growth-calculator': revenueGrowthCalculatorConfig,
+  'profit-margin-calculator-marketing': profitMarginCalculatorMarketingConfig,
+  'break-even-calculator': breakEvenCalculatorConfig,
+  'keyword-density-calculator-seo': keywordDensityCalculatorSeoConfig,
+  'seo-score-calculator': seoScoreCalculatorConfig,
+  'backlink-ratio-calculator': backlinkRatioCalculatorConfig,
 };
 
 

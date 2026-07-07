@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const heatTransferCalculatorConfig = {
   name: "Heat Transfer Calculator",
   slug: "heat-transfer-calculator",
@@ -28,7 +30,7 @@ export const heatTransferCalculatorConfig = {
       title: "Free Heat Transfer Calculator – Conduction, Convection & Radiation",
       description:
         "Calculate heat transfer rate instantly using conduction, convection, or radiation formulas. Free online heat transfer calculator with formulas, unit conversion, and engineering breakdowns.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/heat-transfer-calculator",
+      url: `${siteConfig.url}/tools/mechanical/heat-transfer-calculator`,
     },
   },
   relatedTools: [

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const subnetCalculatorConfig = {
   slug: "subnet-calculator",
   name: "Subnet Calculator",
@@ -26,7 +28,7 @@ export const subnetCalculatorConfig = {
       title: "Free Subnet Calculator – Calculate CIDR, Network Address & Hosts Online",
       description: "Calculate subnet masks, CIDR notation, broadcast address, network range, and usable hosts instantly.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/subnet-calculator",
+      url: `${siteConfig.url}/tools/computer-science/subnet-calculator`,
     },
   },
 };

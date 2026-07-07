@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const momentOfInertiaCalculatorConfig = {
   name: "Moment of Inertia Calculator",
   slug: "moment-of-inertia-calculator",
@@ -26,7 +28,7 @@ export const momentOfInertiaCalculatorConfig = {
     og: {
       title: "Moment of Inertia Calculator – Area Moment of Inertia for Engineering",
       description: "Calculate area moment of inertia instantly for rectangles, circles, hollow sections, beams, and structural shapes. Free engineering calculator with formulas and diagrams.",
-      url: "https://www.productivtb.com/tools/mechanical/moment-of-inertia-calculator",
+      url: `${siteConfig.url}/tools/mechanical/moment-of-inertia-calculator`,
     },
   },
   relatedTools: [

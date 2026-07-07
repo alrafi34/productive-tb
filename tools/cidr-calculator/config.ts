@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const cidrCalculatorConfig = {
   slug: "cidr-calculator",
   name: "CIDR Calculator",
@@ -28,7 +30,7 @@ export const cidrCalculatorConfig = {
       title: "Free CIDR Calculator Online – IP Subnet Calculator & CIDR Tool",
       description: "Calculate CIDR notation, subnet masks, IP ranges, broadcast addresses, and usable hosts instantly. Free online CIDR calculator for networking, DevOps, cloud, and cybersecurity.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/cidr-calculator",
+      url: `${siteConfig.url}/tools/computer-science/cidr-calculator`,
     },
   },
 };

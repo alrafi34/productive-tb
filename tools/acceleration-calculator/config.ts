@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const accelerationCalculatorConfig = {
   name: "Acceleration Calculator",
   slug: "acceleration-calculator",
@@ -27,7 +29,7 @@ export const accelerationCalculatorConfig = {
       title: "Free Acceleration Calculator Online",
       description: "Calculate acceleration instantly using velocity and time with automatic unit conversion and real-time results.",
       type: "website",
-      url: "https://productivetoolbox.com/tools/mechanical/acceleration-calculator",
+      url: `${siteConfig.url}/tools/mechanical/acceleration-calculator`,
     },
   },
   relatedTools: [

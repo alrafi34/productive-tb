@@ -1,0 +1,497 @@
+"use client";
+
+import { useState, useEffect, useCallback, useRef } from "react";
+import {
+  calculateGrowth, validateInputs, formatCurrency, formatNumber, parseNumber,
+  saveHistory, getHistory, clearHistory, debounce, buildShareUrl, parseShareParams,
+  CURRENCIES,
+  type RevenueGrowthResult, type HistoryEntry,
+} from "./logic";
+import RevenueGrowthCalculatorSEO from "./seo-content";
+import RelatedTools from "@/components/RelatedTools";
+
+const PRESETS = [
+  { label: "25% Growth",    previous: "10000",  current: "12500"  },
+  { label: "50% Growth",    previous: "50000",  current: "75000"  },
+  { label: "100% Growth",   previous: "20000",  current: "40000"  },
+  { label: "−10% Decline",  previous: "8500",   current: "7650"   },
+  { label: "2% Slow",       previous: "100000", current: "102000" },
+];
+
+const PERF_STYLES: Record<RevenueGrowthResult["performanceLevel"], { bg: string; text: string; border: string; dot: string }> = {
+  excellent: { bg: "bg-green-50",  text: "text-green-700",  border: "border-green-200",  dot: "bg-green-500"  },
+  strong:    { bg: "bg-blue-50",   text: "text-blue-700",   border: "border-blue-200",   dot: "bg-blue-500"   },
+  moderate:  { bg: "bg-yellow-50", text: "text-yellow-700", border: "border-yellow-200", dot: "bg-yellow-500" },
+  low:       { bg: "bg-orange-50", text: "text-orange-700", border: "border-orange-200", dot: "bg-orange-400" },
+  decline:   { bg: "bg-red-50",    text: "text-red-700",    border: "border-red-200",    dot: "bg-red-500"    },
+};
+
+const STATUS_COLORS: Record<RevenueGrowthResult["status"], string> = {
+  positive: "text-green-600",
+  neutral:  "text-gray-500",
+  negative: "text-red-500",
+};
+
+export default function RevenueGrowthCalculatorUI() {
+  const [previous, setPrevious]   = useState("10000");
+  const [current, setCurrent]     = useState("12500");
+  const [currency, setCurrency]   = useState("USD");
+  const [decimals, setDecimals]   = useState(2);
+  const [result, setResult]       = useState<RevenueGrowthResult | null>(null);
+  const [prevError, setPrevError] = useState<string | null>(null);
+  const [currError, setCurrError] = useState<string | null>(null);
+  const [copied, setCopied]       = useState(false);
+  const [shareCopied, setShare]   = useState(false);
+  const [showHistory, setShowHist]= useState(false);
+  const [history, setHistData]    = useState<HistoryEntry[]>([]);
+  const prevRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setHistData(getHistory());
+    const shared = parseShareParams();
+    if (shared) {
+      setPrevious(shared.previous);
+      setCurrent(shared.current);
+      setCurrency(shared.currency);
+    } else {
+      prevRef.current?.focus();
+    }
+  }, []);
+
+  const run = useCallback(
+    debounce((prev: string, curr: string, cur: string, dp: number) => {
+      const { previousError: pe, currentError: ce } = validateInputs(prev, curr);
+      setPrevError(pe); setCurrError(ce);
+      if (pe || ce) { setResult(null); return; }
+      const pv = parseNumber(prev); const cv = parseNumber(curr);
+      if (pv === null || cv === null) { setResult(null); return; }
+      setResult(calculateGrowth(pv, cv, cur, dp));
+    }, 120),
+    []
+  );
+
+  useEffect(() => { run(previous, current, currency, decimals); }, [previous, current, currency, decimals, run]);
+
+  const handleSwap = () => { setPrevious(current); setCurrent(previous); };
+  const handleReset = () => {
+    setPrevious("10000"); setCurrent("12500"); setResult(null);
+    setPrevError(null); setCurrError(null); prevRef.current?.focus();
+  };
+
+  const handleCopyResult = () => {
+    if (!result) return;
+    navigator.clipboard.writeText(result.growthFormatted);
+    setCopied(true); setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleCopyFull = () => {
+    if (!result) return;
+    const text = [
+      "Revenue Growth Report", "======================",
+      `Previous Revenue: ${formatCurrency(result.previous, result.currency, decimals)}`,
+      `Current Revenue:  ${formatCurrency(result.current, result.currency, decimals)}`,
+      `Difference:       ${result.differenceFormatted}`,
+      `Growth Rate:      ${result.growthFormatted}`,
+      `Status:           ${result.statusLabel}`,
+    ].join("\n");
+    navigator.clipboard.writeText(text);
+    setCopied(true); setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDownloadTxt = () => {
+    if (!result) return;
+    const text = [
+      "Revenue Growth Report", "======================", "",
+      `Previous Revenue: ${formatCurrency(result.previous, result.currency, decimals)}`,
+      `Current Revenue:  ${formatCurrency(result.current, result.currency, decimals)}`,
+      `Difference:       ${result.differenceFormatted}`,
+      `Formula:          ${result.formula}`,
+      `Growth Rate:      ${result.growthFormatted}`,
+      `Status:           ${result.statusLabel}`,
+      `Assessment:       ${result.performanceLabel}`, "",
+      result.interpretation, "",
+      "Generated by Productive Toolbox",
+    ].join("\n");
+    const blob = new Blob([text], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `revenue_growth_${result.previous}_${result.current}.txt`;
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+
+  const handleDownloadCsv = () => {
+    if (!result) return;
+    const csv = [
+      "Previous Revenue,Current Revenue,Difference,Growth Rate,Status,Assessment",
+      [
+        formatCurrency(result.previous, result.currency, decimals),
+        formatCurrency(result.current, result.currency, decimals),
+        result.differenceFormatted,
+        result.growthFormatted,
+        result.statusLabel,
+        result.performanceLabel,
+      ].join(","),
+    ].join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `revenue_growth_${result.previous}_${result.current}.csv`;
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+
+  const handleShare = () => {
+    if (!result) return;
+    navigator.clipboard.writeText(buildShareUrl(result.previous, result.current, result.currency));
+    setShare(true); setTimeout(() => setShare(false), 2000);
+  };
+
+  const handleSave = () => {
+    if (!result) return;
+    saveHistory({ previous: result.previous, current: result.current, currency: result.currency, result });
+    setHistData(getHistory());
+  };
+
+  const sym = CURRENCIES[currency]?.symbol ?? "$";
+  const perfStyle = result ? PERF_STYLES[result.performanceLevel] : null;
+
+  return (
+    <>
+      <div className="max-w-5xl mx-auto space-y-6">
+
+        {/* Info Banner */}
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3">
+          <span className="text-xl mt-0.5">📈</span>
+          <div>
+            <h3 className="text-sm font-semibold text-blue-900" style={{ fontFamily: "var(--font-heading)" }}>
+              Revenue Growth Calculator
+            </h3>
+            <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
+              Enter previous and current revenue to instantly calculate your growth rate. All calculations run locally in your browser.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-6">
+
+          {/* ── Left column ── */}
+          <div className="lg:col-span-4 space-y-5">
+
+            {/* Input Panel */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-4">
+              <h3 className="text-sm font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
+                Revenue Data
+              </h3>
+
+              {/* Previous Revenue */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="rg-prev">
+                  Previous Revenue ({sym})
+                </label>
+                <input
+                  ref={prevRef}
+                  id="rg-prev" type="number" min="0" value={previous}
+                  onChange={(e) => setPrevious(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && run(previous, current, currency, decimals)}
+                  className={`w-full px-3 py-2.5 border-2 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm ${prevError ? "border-red-300" : "border-gray-200"}`}
+                  placeholder="10000" aria-label="Previous revenue" inputMode="decimal"
+                />
+                {prevError && <p className="text-xs text-red-600 mt-1" role="alert">{prevError}</p>}
+                <p className="text-xs text-gray-400 mt-1">Revenue from the earlier period</p>
+              </div>
+
+              {/* Swap button */}
+              <div className="flex justify-center">
+                <button
+                  onClick={handleSwap}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg text-xs font-medium transition-colors"
+                  aria-label="Swap previous and current values"
+                >
+                  ⇅ Swap Values
+                </button>
+              </div>
+
+              {/* Current Revenue */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="rg-curr">
+                  Current Revenue ({sym})
+                </label>
+                <input
+                  id="rg-curr" type="number" min="0" value={current}
+                  onChange={(e) => setCurrent(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && run(previous, current, currency, decimals)}
+                  className={`w-full px-3 py-2.5 border-2 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm ${currError ? "border-red-300" : "border-gray-200"}`}
+                  placeholder="12500" aria-label="Current revenue" inputMode="decimal"
+                />
+                {currError && <p className="text-xs text-red-600 mt-1" role="alert">{currError}</p>}
+                <p className="text-xs text-gray-400 mt-1">Revenue from the current period</p>
+              </div>
+
+              {/* Currency */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="rg-currency">Currency</label>
+                <select id="rg-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}
+                  className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white">
+                  {Object.entries(CURRENCIES).map(([code, { label }]) => (
+                    <option key={code} value={code}>{label}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Decimal Places */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="rg-decimal">Decimal Places</label>
+                <select id="rg-decimal" value={decimals} onChange={(e) => setDecimals(Number(e.target.value))}
+                  className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white">
+                  {[0, 1, 2, 3].map((d) => (
+                    <option key={d} value={d}>{d} decimal{d !== 1 ? "s" : ""}</option>
+                  ))}
+                </select>
+              </div>
+
+              <p className="text-xs text-gray-400">
+                Press <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs font-mono">Enter</kbd> to recalculate
+              </p>
+
+              {/* Action buttons */}
+              <div className="space-y-2 pt-1">
+                <button onClick={handleReset}
+                  className="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors">
+                  Reset
+                </button>
+                <div className="grid grid-cols-2 gap-2">
+                  <button onClick={handleDownloadTxt} disabled={!result}
+                    className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Export TXT
+                  </button>
+                  <button onClick={handleDownloadCsv} disabled={!result}
+                    className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Export CSV
+                  </button>
+                </div>
+                <button onClick={() => setShowHist(!showHistory)}
+                  className="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors">
+                  {showHistory ? "Hide" : "Show"} History
+                </button>
+              </div>
+            </div>
+
+            {/* Result Card */}
+            <div className="bg-primary rounded-xl border border-primary shadow-lg shadow-primary/20 p-5 text-white">
+              <p className="text-primary-100 text-xs font-semibold uppercase tracking-wider mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                Result
+              </p>
+              {result ? (
+                <>
+                  <div className={`text-4xl font-bold font-mono mb-0.5 tabular-nums ${result.status === "negative" ? "text-red-200" : ""}`}>
+                    {result.growthFormatted}
+                  </div>
+                  <div className="text-sm text-primary-100 mb-2">revenue growth</div>
+                  {perfStyle && (
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${perfStyle.bg} ${perfStyle.text} ${perfStyle.border} border`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${perfStyle.dot}`} />{result.performanceLabel}
+                      </span>
+                    </div>
+                  )}
+                  <div className="border-t border-white/20 pt-3 space-y-1 text-sm mb-4">
+                    <div className="flex justify-between">
+                      <span className="text-primary-100">Previous</span>
+                      <span className="font-semibold font-mono">{formatCurrency(result.previous, result.currency, decimals)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-primary-100">Current</span>
+                      <span className="font-semibold font-mono">{formatCurrency(result.current, result.currency, decimals)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-primary-100">Difference</span>
+                      <span className={`font-semibold font-mono ${result.status === "negative" ? "text-red-200" : ""}`}>
+                        {result.differenceFormatted}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <button onClick={handleCopyResult}
+                      className="w-full bg-white text-primary font-semibold py-2 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+                      {copied ? "✓ Copied!" : "Copy Growth Rate"}
+                    </button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button onClick={handleCopyFull}
+                        className="border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-xs">
+                        Copy All
+                      </button>
+                      <button onClick={handleShare}
+                        className="border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-xs">
+                        {shareCopied ? "✓ Copied!" : "Share URL"}
+                      </button>
+                    </div>
+                    <button onClick={handleSave}
+                      className="w-full border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-sm">
+                      Save to History
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="text-primary-100 text-sm">
+                  {prevError || currError ? "Fix the errors above to calculate" : "Enter revenue values to calculate growth"}
+                </div>
+              )}
+            </div>
+
+          </div>
+
+          {/* ── Right column ── */}
+          <div className="lg:col-span-8 space-y-5">
+
+            {/* Quick Examples */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+              <h3 className="text-sm font-semibold text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+                Quick Examples
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {PRESETS.map((p) => {
+                  const active = previous === p.previous && current === p.current;
+                  return (
+                    <button key={p.label}
+                      onClick={() => { setPrevious(p.previous); setCurrent(p.current); prevRef.current?.focus(); }}
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${active ? "bg-primary text-white border-primary" : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"}`}>
+                      {p.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Interpretation */}
+            {result && perfStyle && (
+              <div className={`rounded-xl border p-5 ${perfStyle.bg} ${perfStyle.border}`}>
+                <p className={`text-xs font-semibold mb-1 ${perfStyle.text}`}>Interpretation</p>
+                <p className={`text-sm ${perfStyle.text}`}>{result.interpretation}</p>
+              </div>
+            )}
+
+            {/* Calculation Breakdown */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+              <div className="p-5 border-b border-gray-100 bg-gray-50/50">
+                <h3 className="font-semibold text-gray-800 text-sm" style={{ fontFamily: "var(--font-heading)" }}>
+                  Calculation Breakdown
+                </h3>
+              </div>
+              {result ? (
+                <div className="divide-y divide-gray-50">
+                  {[
+                    { label: "Previous Revenue", value: formatCurrency(result.previous, result.currency, decimals) },
+                    { label: "Current Revenue",  value: formatCurrency(result.current, result.currency, decimals) },
+                    { label: "Formula",          value: result.formula },
+                    { label: "Revenue Difference", value: result.differenceFormatted,
+                      colorClass: STATUS_COLORS[result.status] },
+                    { label: "Growth Rate",      value: result.growthFormatted, highlight: true,
+                      colorClass: result.status !== "neutral" ? STATUS_COLORS[result.status] : undefined },
+                    { label: "Status",           value: result.statusLabel },
+                    { label: "Assessment",       value: result.performanceLabel },
+                  ].map(({ label, value, highlight, colorClass }) => (
+                    <div key={label} className="flex items-center justify-between px-5 py-3 hover:bg-gray-50 transition-colors">
+                      <span className="text-sm text-gray-600">{label}</span>
+                      <span className={`text-sm font-semibold font-mono ${highlight ? "text-base" : ""} ${colorClass ?? "text-gray-900"}`}>
+                        {value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-8 text-center text-gray-400 text-sm">
+                  {prevError || currError ? prevError || currError : "Enter values above to see the breakdown"}
+                </div>
+              )}
+            </div>
+
+            {/* Performance Reference */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+              <div className="p-5 border-b border-gray-100 bg-gray-50/50">
+                <h3 className="font-semibold text-gray-800 text-sm" style={{ fontFamily: "var(--font-heading)" }}>
+                  Growth Rate Reference
+                </h3>
+              </div>
+              <div className="divide-y divide-gray-50">
+                {([
+                  { level: "excellent" as const, label: "Excellent", range: "≥ 50%",     desc: "Exceptional growth — scale aggressively" },
+                  { level: "strong"    as const, label: "Strong",    range: "20% – 49%",  desc: "Above average — increase investment" },
+                  { level: "moderate"  as const, label: "Moderate",  range: "5% – 19%",   desc: "Healthy, sustainable growth" },
+                  { level: "low"       as const, label: "Slow",      range: "0% – 4%",    desc: "Growing but sluggish — optimize channels" },
+                  { level: "decline"   as const, label: "Decline",   range: "< 0%",       desc: "Revenue decreased — investigate causes" },
+                ] as { level: RevenueGrowthResult["performanceLevel"]; label: string; range: string; desc: string }[]).map(({ level, label, range, desc }) => {
+                  const s = PERF_STYLES[level];
+                  const isActive = result?.performanceLevel === level;
+                  return (
+                    <div key={level} className={`flex items-center justify-between px-5 py-3 transition-colors ${isActive ? "bg-primary/5" : "hover:bg-gray-50"}`}>
+                      <div className="flex items-center gap-3">
+                        <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold ${s.bg} ${s.text} ${s.border} border`}>
+                          <span className={`w-1.5 h-1.5 rounded-full ${s.dot}`} />{label}
+                        </span>
+                        <span className="text-xs text-gray-500">{desc}</span>
+                      </div>
+                      <span className="text-xs font-mono font-semibold text-gray-700">{range}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="text-xs text-gray-400 px-5 py-3 border-t border-gray-50">
+                * Growth benchmarks vary by business stage, industry, and market conditions.
+              </p>
+            </div>
+
+            {/* History */}
+            {showHistory && (
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="p-4 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
+                  <h3 className="font-semibold text-gray-800 text-sm" style={{ fontFamily: "var(--font-heading)" }}>
+                    Calculation History
+                  </h3>
+                  {history.length > 0 && (
+                    <button onClick={() => { if (confirm("Clear all history?")) { clearHistory(); setHistData([]); } }}
+                      className="text-xs text-red-600 hover:text-red-700 font-medium">
+                      Clear All
+                    </button>
+                  )}
+                </div>
+                <div className="divide-y divide-gray-50 max-h-72 overflow-y-auto">
+                  {history.length === 0 ? (
+                    <div className="p-6 text-center text-gray-400 text-sm">No saved calculations yet</div>
+                  ) : history.map((entry) => (
+                    <div key={entry.id}
+                      onClick={() => { setPrevious(String(entry.previous)); setCurrent(String(entry.current)); setCurrency(entry.currency); setShowHist(false); }}
+                      className="p-4 hover:bg-gray-50 cursor-pointer transition-colors">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-mono text-sm font-semibold text-gray-900">
+                          {formatCurrency(entry.previous, entry.currency)} → {formatCurrency(entry.current, entry.currency)}
+                        </span>
+                        <span className="text-xs text-gray-400">{new Date(entry.timestamp).toLocaleString("en-US")}</span>
+                      </div>
+                      <div className={`text-xs font-mono font-semibold ${STATUS_COLORS[entry.result.status]}`}>
+                        {entry.result.growthFormatted} · {entry.result.statusLabel}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </div>
+        </div>
+      </div>
+
+      <RevenueGrowthCalculatorSEO />
+
+      <RelatedTools
+        currentTool="revenue-growth-calculator"
+        tools={[
+          "roi-calculator-marketing",
+          "cost-per-acquisition-cpa-calculator",
+          "customer-lifetime-value-calculator",
+          "investment-return-calculator",
+          "profit-margin-calculator",
+          "conversion-rate-calculator",
+        ]}
+      />
+    </>
+  );
+}

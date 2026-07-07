@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const propertyAppreciationCalculatorConfig = {
   name: "Property Appreciation Calculator",
   slug: "property-appreciation-calculator",
@@ -23,7 +25,7 @@ export const propertyAppreciationCalculatorConfig = {
     og: {
       title: "Property Appreciation Calculator – Estimate Real Estate Growth",
       description: "Calculate future land and property value growth instantly using appreciation rates. Estimate real estate investment returns with year-by-year projections.",
-      url: "https://www.engineeringcalcs.com/tools/land/property-appreciation-calculator",
+      url: `${siteConfig.url}/tools/land/property-appreciation-calculator`,
     },
   },
 };

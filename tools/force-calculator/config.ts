@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const forceCalculatorConfig = {
   name: "Force Calculator",
   slug: "force-calculator",
@@ -23,7 +25,7 @@ export const forceCalculatorConfig = {
     og: {
       title: "Force Calculator (F = ma) – Calculate Force Online Instantly",
       description: "Free online Force Calculator using Newton's Second Law (F = ma). Calculate force instantly using mass and acceleration with formulas, unit conversion, and step-by-step explanations.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/force-calculator",
+      url: `${siteConfig.url}/tools/mechanical/force-calculator`,
     },
   },
   relatedTools: [

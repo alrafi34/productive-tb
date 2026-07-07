@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const powerDensityCalculatorConfig = {
   name: "Power Density Calculator",
   description: "Calculate power density (W/m²) from power and area inputs. Get instant results with density analysis and safety recommendations.",
@@ -22,7 +24,7 @@ export const powerDensityCalculatorConfig = {
     og: {
       title: "Power Density Calculator – Calculate W/m² Instantly Online",
       description: "Calculate power density easily with this free online calculator. Enter power and area to get instant W/m² results with safety analysis.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/power-density-calculator",
+      url: `${siteConfig.url}/tools/electrical/power-density-calculator`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const excavationCostCalculatorConfig = {
   name: "Excavation Cost Calculator",
   slug: "excavation-cost-calculator",
@@ -21,7 +23,7 @@ export const excavationCostCalculatorConfig = {
     og: {
       title: "Free Excavation Cost Calculator – Estimate Digging Cost Online",
       description: "Calculate excavation and digging costs instantly. Estimate land excavation, trenching, foundation digging, and soil removal costs with real-time calculations.",
-      url: "https://www.engineeringcalcs.com/tools/land/excavation-cost-calculator",
+      url: `${siteConfig.url}/tools/land/excavation-cost-calculator`,
     },
   },
 };

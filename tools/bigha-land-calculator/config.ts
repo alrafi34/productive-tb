@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const bighaLandCalculatorConfig = {
   name: "Bigha Land Calculator",
   slug: "bigha-land-calculator",
@@ -23,7 +25,7 @@ export const bighaLandCalculatorConfig = {
     og: {
       title: "Bigha Land Calculator – Convert Bigha, Katha, Decimal & Acre Online",
       description: "Free Bigha Land Calculator with instant multi-unit conversion. Supports Bangladesh, West Bengal, Assam, and Nepal regional standards.",
-      url: "https://www.engineeringcalcs.com/tools/land/bigha-land-calculator",
+      url: `${siteConfig.url}/tools/land/bigha-land-calculator`,
     },
   },
 };

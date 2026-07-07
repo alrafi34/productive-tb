@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const bandwidthCalculatorConfig = {
   slug: "bandwidth-calculator",
   name: "Bandwidth Calculator",
@@ -26,7 +28,7 @@ export const bandwidthCalculatorConfig = {
       title: "Bandwidth Calculator – Estimate Internet Usage, Speed & Data Transfer",
       description: "Free online bandwidth calculator to estimate internet usage, transfer speed, monthly traffic, streaming data consumption, and bandwidth requirements instantly.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/bandwidth-calculator",
+      url: `${siteConfig.url}/tools/computer-science/bandwidth-calculator`,
     },
   },
 };

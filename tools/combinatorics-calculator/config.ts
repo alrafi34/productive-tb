@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const combinatoricsCalculatorConfig = {
   slug: "combinatorics-calculator",
   name: "Combinatorics Calculator",
@@ -26,7 +28,7 @@ export const combinatoricsCalculatorConfig = {
       title: "Free Combinatorics Calculator – Permutation & Combination Calculator",
       description: "Instantly calculate permutations, combinations, factorials, and circular arrangements with step-by-step formulas. Free online math tool.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/combinatorics-calculator",
+      url: `${siteConfig.url}/tools/computer-science/combinatorics-calculator`,
     },
   },
   relatedTools: [

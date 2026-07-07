@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const feedRateCalculatorConfig = {
   name: "Feed Rate Calculator",
   slug: "feed-rate-calculator",
@@ -28,7 +30,7 @@ export const feedRateCalculatorConfig = {
     og: {
       title: "Free Feed Rate Calculator – CNC & Machining Feed Speed Calculator",
       description: "Calculate CNC machining feed rate instantly using RPM, flutes, and chip load. Free online feed rate calculator for milling, drilling, and machining operations.",
-      url: "https://www.productivetoolbox.com/tools/mechanical/feed-rate-calculator",
+      url: `${siteConfig.url}/tools/mechanical/feed-rate-calculator`,
     },
   },
   relatedTools: [

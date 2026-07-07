@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const polygonAreaCalculatorConfig = {
   name: "Polygon Area Calculator",
   slug: "polygon-area-calculator",
@@ -23,7 +25,7 @@ export const polygonAreaCalculatorConfig = {
     og: {
       title: "Polygon Area Calculator – Calculate Irregular Land Area Online",
       description: "Calculate irregular polygon land area instantly using coordinates or interactive plotting. Free online polygon area calculator for land measurement and surveying.",
-      url: "https://www.engineeringcalcs.com/tools/land/polygon-area-calculator",
+      url: `${siteConfig.url}/tools/land/polygon-area-calculator`,
     },
   },
 };

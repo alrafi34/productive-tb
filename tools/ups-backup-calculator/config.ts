@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const upsBackupCalculatorConfig = {
   name: "UPS Backup Calculator",
   description: "Calculate how long your UPS will run based on battery capacity and load power.",
@@ -22,7 +24,7 @@ export const upsBackupCalculatorConfig = {
     og: {
       title: "UPS Backup Calculator – Calculate Battery Backup Time",
       description: "Estimate how long your UPS will run based on battery capacity and connected load. Free online calculator with instant results.",
-      url: "https://www.productive-tb.com/tools/electrical/ups-backup-calculator",
+      url: `${siteConfig.url}/tools/electrical/ups-backup-calculator`,
     },
   },
 };

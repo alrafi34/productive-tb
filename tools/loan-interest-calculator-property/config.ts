@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const loanInterestCalculatorPropertyConfig = {
   name: "Loan Interest Calculator (Property)",
   slug: "loan-interest-calculator-property",
@@ -21,7 +23,7 @@ export const loanInterestCalculatorPropertyConfig = {
     og: {
       title: "Loan Interest Calculator for Property & Land – Free EMI Calculator",
       description: "Calculate property and land loan interest instantly. Estimate EMI, repayment amount, amortization schedule, and total interest.",
-      url: "https://www.engineeringcalcs.com/tools/land/loan-interest-calculator-property",
+      url: `${siteConfig.url}/tools/land/loan-interest-calculator-property`,
     },
   },
 };

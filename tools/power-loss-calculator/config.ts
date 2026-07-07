@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const powerLossCalculatorConfig = {
   name: "Power Loss Calculator",
   description: "Calculate electrical power loss using voltage, current, and resistance. Get instant results with efficiency estimation and real-time calculations for electrical systems.",
@@ -22,7 +24,7 @@ export const powerLossCalculatorConfig = {
     og: {
       title: "Power Loss Calculator – Electrical Power & Efficiency",
       description: "Calculate electrical power loss instantly. Real-time calculations with efficiency estimation for electrical systems.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/power-loss-calculator",
+      url: `${siteConfig.url}/tools/electrical/power-loss-calculator`,
     },
   },
 };

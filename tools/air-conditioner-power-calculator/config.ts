@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const airConditionerPowerCalculatorConfig = {
   name: "Air Conditioner Power Calculator",
   description: "Calculate AC electricity consumption and cost. Estimate daily, monthly, and yearly energy usage with instant results.",
@@ -27,7 +29,7 @@ export const airConditionerPowerCalculatorConfig = {
     og: {
       title: "Air Conditioner Power Calculator – Estimate AC Electricity Cost Online",
       description: "Free online air conditioner power consumption calculator. Calculate AC electricity consumption and monthly cost instantly.",
-      url: "https://www.yoursite.com/tools/electrical/air-conditioner-power-calculator"
+      url: `${siteConfig.url}/tools/electrical/air-conditioner-power-calculator`
     }
   }
 };

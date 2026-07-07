@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const triangleLandAreaCalculatorConfig = {
   name: "Triangle Land Area Calculator",
   slug: "triangle-land-area-calculator",
@@ -23,7 +25,7 @@ export const triangleLandAreaCalculatorConfig = {
     og: {
       title: "Triangle Land Area Calculator – Calculate Triangular Plot Area Online",
       description: "Calculate triangular land area instantly using base & height or Heron's formula. Free triangle land area calculator with unit conversion.",
-      url: "https://www.engineeringcalcs.com/tools/land/triangle-land-area-calculator",
+      url: `${siteConfig.url}/tools/land/triangle-land-area-calculator`,
     },
   },
 };

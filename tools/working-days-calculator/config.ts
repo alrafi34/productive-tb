@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const toolConfig = {
   name: "Working Days Calculator",
   slug: "working-days-calculator",
@@ -14,7 +16,7 @@ export const toolConfig = {
       title: "Working Days Calculator – Business Days Between Dates",
       description: "Calculate the number of working days between two dates with flexible weekend options. Choose 1-day or 2-day weekends and exclude holidays with this free business days calculator.",
       type: "website",
-      url: "https://productivetoolbox.com/tools/productivity/working-days-calculator"
+      url: `${siteConfig.url}/tools/productivity/working-days-calculator`
     }
   }
 };

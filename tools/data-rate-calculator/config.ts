@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const dataRateCalculatorConfig = {
   name: "Data Rate Calculator",
   description: "Calculate data transmission rate, transfer speed, and bandwidth for networks and communication systems. Instant results with unit conversion.",
@@ -22,7 +24,7 @@ export const dataRateCalculatorConfig = {
     og: {
       title: "Data Rate Calculator – Network Speed & Data Transfer Tool",
       description: "Calculate data transmission rate and network speed instantly. Supports Bytes, KB, MB, GB with automatic unit conversion.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/data-rate-calculator",
+      url: `${siteConfig.url}/tools/electrical/data-rate-calculator`,
     },
   },
 };

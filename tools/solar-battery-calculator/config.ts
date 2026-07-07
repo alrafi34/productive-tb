@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const solarBatteryCalculatorConfig = {
   name: "Solar Battery Calculator",
   description: "Calculate required battery capacity for solar systems. Estimate battery size based on daily load, backup days, and system specifications.",
@@ -27,7 +29,7 @@ export const solarBatteryCalculatorConfig = {
     og: {
       title: "Solar Battery Calculator – Size Your Solar Battery System Instantly",
       description: "Free online solar battery calculator. Calculate required battery capacity for solar systems based on daily load and backup requirements.",
-      url: "https://www.yoursite.com/tools/electrical/solar-battery-calculator"
+      url: `${siteConfig.url}/tools/electrical/solar-battery-calculator`
     }
   }
 };

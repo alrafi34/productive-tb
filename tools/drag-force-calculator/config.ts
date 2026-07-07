@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const dragForceCalculatorConfig = {
   name: "Drag Force Calculator",
   slug: "drag-force-calculator",
@@ -25,7 +27,7 @@ export const dragForceCalculatorConfig = {
     og: {
       title: "Free Drag Force Calculator – Calculate Air & Fluid Resistance Online",
       description: "Calculate drag force instantly using velocity, drag coefficient, fluid density, and area. Free online drag force calculator for engineering, physics, and aerodynamics.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/drag-force-calculator",
+      url: `${siteConfig.url}/tools/mechanical/drag-force-calculator`,
     },
   },
   relatedTools: [

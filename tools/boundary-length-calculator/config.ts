@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const boundaryLengthCalculatorConfig = {
   name: "Boundary Length Calculator",
   slug: "boundary-length-calculator",
@@ -22,7 +24,7 @@ export const boundaryLengthCalculatorConfig = {
     og: {
       title: "Free Boundary Length Calculator – Calculate Plot Perimeter Online",
       description: "Calculate total boundary length or perimeter instantly for plots, land, rooms, or property boundaries. Fast and accurate.",
-      url: "https://www.engineeringcalcs.com/tools/land/boundary-length-calculator",
+      url: `${siteConfig.url}/tools/land/boundary-length-calculator`,
     },
   },
 };

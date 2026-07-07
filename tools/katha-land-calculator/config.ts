@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const kathaLandCalculatorConfig = {
   name: "Katha Land Calculator",
   slug: "katha-land-calculator",
@@ -23,7 +25,7 @@ export const kathaLandCalculatorConfig = {
     og: {
       title: "Katha Land Calculator – Convert Katha, Decimal, Bigha & Acre Online",
       description: "Calculate and convert land area instantly using Katha units with Bangladesh, India, and Nepal regional standards.",
-      url: "https://www.engineeringcalcs.com/tools/land/katha-land-calculator",
+      url: `${siteConfig.url}/tools/land/katha-land-calculator`,
     },
   },
 };

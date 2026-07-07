@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const landDevelopmentCostCalculatorConfig = {
   name: "Land Development Cost Calculator",
   slug: "land-development-cost-calculator",
@@ -21,7 +23,7 @@ export const landDevelopmentCostCalculatorConfig = {
     og: {
       title: "Land Development Cost Calculator – Estimate Property Development Expenses",
       description: "Calculate total land development cost instantly. Estimate road, utility, legal, labor, drainage, and infrastructure expenses with a free online calculator.",
-      url: "https://www.engineeringcalcs.com/tools/land/land-development-cost-calculator",
+      url: `${siteConfig.url}/tools/land/land-development-cost-calculator`,
     },
   },
 };

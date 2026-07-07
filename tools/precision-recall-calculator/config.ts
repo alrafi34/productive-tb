@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const precisionRecallCalculatorConfig = {
   slug: "precision-recall-calculator",
   name: "Precision Recall Calculator",
@@ -23,7 +25,7 @@ export const precisionRecallCalculatorConfig = {
       title: "Precision Recall Calculator – Free ML Metrics Calculator Online",
       description: "Instantly calculate precision, recall, F1 score, accuracy, and specificity from TP, FP, FN, TN values.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/precision-recall-calculator",
+      url: `${siteConfig.url}/tools/computer-science/precision-recall-calculator`,
     },
   },
   relatedTools: [

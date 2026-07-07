@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const dacOutputCalculatorConfig = {
   name: "DAC Output Calculator",
   description: "Calculate analog output voltage from digital input value instantly. Supports unipolar and bipolar DAC configurations for microcontroller, audio, and signal processing applications.",
@@ -27,7 +29,7 @@ export const dacOutputCalculatorConfig = {
     og: {
       title: "DAC Output Calculator – Convert Digital Value to Analog Voltage",
       description: "Free online DAC output calculator. Calculate analog voltage from digital input instantly with real-time results.",
-      url: "https://www.yoursite.com/tools/electrical/dac-output-calculator"
+      url: `${siteConfig.url}/tools/electrical/dac-output-calculator`
     }
   }
 };

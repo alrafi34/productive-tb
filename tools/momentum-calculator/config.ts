@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const momentumCalculatorConfig = {
   name: "Momentum Calculator",
   slug: "momentum-calculator",
@@ -25,7 +27,7 @@ export const momentumCalculatorConfig = {
     og: {
       title: "Momentum Calculator – Calculate Momentum Online Instantly",
       description: "Free online Momentum Calculator. Calculate momentum using mass and velocity with unit conversion, instant results, and step-by-step explanations.",
-      url: "https://productivetoolbox.com/tools/mechanical/momentum-calculator",
+      url: `${siteConfig.url}/tools/mechanical/momentum-calculator`,
     },
   },
   relatedTools: [

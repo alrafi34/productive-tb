@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const hectareToAcreConverterConfig = {
   name: "Hectare to Acre Converter",
   slug: "hectare-to-acre-converter",
@@ -23,7 +25,7 @@ export const hectareToAcreConverterConfig = {
     og: {
       title: "Hectare to Acre Converter – Convert Hectares to Acres Instantly",
       description: "Convert hectares into acres instantly. Free online land area converter with real-time results and precision control.",
-      url: "https://www.engineeringcalcs.com/tools/land/hectare-to-acre-converter",
+      url: `${siteConfig.url}/tools/land/hectare-to-acre-converter`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const rfPowerCalculatorConfig = {
   name: "RF Power Calculator",
   description: "Calculate and convert RF signal power between Watts, dBm, and dBW. Includes voltage-to-power conversion for RF engineering and wireless systems.",
@@ -22,7 +24,7 @@ export const rfPowerCalculatorConfig = {
     og: {
       title: "RF Power Calculator – Watts, dBm, dBW Converter",
       description: "Calculate and convert RF signal power instantly. Supports Watts, dBm, dBW with voltage-to-power conversion.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/rf-power-calculator",
+      url: `${siteConfig.url}/tools/electrical/rf-power-calculator`,
     },
   },
 };

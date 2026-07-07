@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const confusionMatrixCalculatorConfig = {
   slug: "confusion-matrix-calculator",
   name: "Confusion Matrix Calculator",
@@ -25,7 +27,7 @@ export const confusionMatrixCalculatorConfig = {
       title: "Free Confusion Matrix Calculator – Calculate Accuracy, Precision & Recall",
       description: "Instantly calculate all confusion matrix metrics: accuracy, precision, recall, F1 score, MCC, and more. Free online ML evaluation tool.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/confusion-matrix-calculator",
+      url: `${siteConfig.url}/tools/computer-science/confusion-matrix-calculator`,
     },
   },
   relatedTools: [

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const aiTokenCostCalculatorConfig = {
   slug: "ai-token-cost-calculator",
   name: "AI Token Cost Calculator",
@@ -24,7 +26,7 @@ export const aiTokenCostCalculatorConfig = {
       title: "AI Token Cost Calculator – Estimate OpenAI, Claude & Gemini API Costs",
       description: "Calculate AI API token costs instantly for OpenAI, Claude, Gemini, and custom models. Free online token cost estimator.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/ai-token-cost-calculator",
+      url: `${siteConfig.url}/tools/computer-science/ai-token-cost-calculator`,
     },
   },
   relatedTools: [

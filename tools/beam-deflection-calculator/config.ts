@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const beamDeflectionCalculatorConfig = {
   name: "Beam Deflection Calculator",
   slug: "beam-deflection-calculator",
@@ -26,7 +28,7 @@ export const beamDeflectionCalculatorConfig = {
       title: "Free Beam Deflection Calculator – Calculate Beam Bending Online",
       description: "Instant beam deflection, slope, reactions, bending moment, and shear force calculations. Supports steel, aluminum, concrete, wood, and custom materials.",
       type: "website",
-      url: "https://www.productivetoolbox.com/tools/mechanical/beam-deflection-calculator",
+      url: `${siteConfig.url}/tools/mechanical/beam-deflection-calculator`,
     },
   },
   relatedTools: [

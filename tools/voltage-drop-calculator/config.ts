@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const voltageDropCalculatorConfig = {
   name: "Voltage Drop Calculator",
   description: "Calculate voltage loss across electrical wires based on current, length, wire size, and material. Ensure safe and efficient electrical installations.",
@@ -27,7 +29,7 @@ export const voltageDropCalculatorConfig = {
     og: {
       title: "Voltage Drop Calculator – Calculate Wire Voltage Loss Instantly",
       description: "Free online voltage drop calculator for copper and aluminum wires. Calculate voltage loss for single-phase, three-phase, and DC systems.",
-      url: "https://www.yoursite.com/tools/electrical/voltage-drop-calculator"
+      url: `${siteConfig.url}/tools/electrical/voltage-drop-calculator`
     }
   }
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const latheSpeedCalculatorConfig = {
   name: "Lathe Speed Calculator",
   slug: "lathe-speed-calculator",
@@ -23,7 +25,7 @@ export const latheSpeedCalculatorConfig = {
     og: {
       title: "Free Lathe Speed Calculator – Calculate Spindle RPM Online",
       description: "Calculate lathe spindle speed instantly using diameter, cutting speed, and material type. Supports metric and imperial units.",
-      url: "https://www.productivetoolbox.com/tools/mechanical/lathe-speed-calculator",
+      url: `${siteConfig.url}/tools/mechanical/lathe-speed-calculator`,
     },
   },
   relatedTools: [

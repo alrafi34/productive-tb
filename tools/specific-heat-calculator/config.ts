@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const specificHeatCalculatorConfig = {
   name: "Specific Heat Calculator",
   slug: "specific-heat-calculator",
@@ -28,7 +30,7 @@ export const specificHeatCalculatorConfig = {
       title: "Specific Heat Calculator – Calculate Heat Energy Online (Q = mcΔT)",
       description:
         "Calculate heat energy, specific heat capacity, mass, or temperature change instantly using Q = m × c × ΔT. Free online calculator with material presets, unit conversion, and step-by-step solutions.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/specific-heat-calculator",
+      url: `${siteConfig.url}/tools/mechanical/specific-heat-calculator`,
     },
   },
   relatedTools: [

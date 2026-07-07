@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const rcTimeConstantCalculatorConfig = {
   name: "RC Time Constant Calculator",
   description: "Calculate the time constant (τ = RC) of resistor-capacitor circuits instantly with unit conversion and charging curve analysis.",
@@ -27,7 +29,7 @@ export const rcTimeConstantCalculatorConfig = {
     og: {
       title: "RC Time Constant Calculator – Calculate τ = RC Instantly",
       description: "Free online RC time constant calculator. Calculate τ = RC with instant results, unit conversions, and charging curve analysis for electrical circuits.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/rc-time-constant-calculator",
+      url: `${siteConfig.url}/tools/electrical/rc-time-constant-calculator`,
     },
   },
 };

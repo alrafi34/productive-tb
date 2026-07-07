@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const rainwaterRunoffCalculatorConfig = {
   name: "Rainwater Runoff Calculator",
   slug: "rainwater-runoff-calculator",
@@ -23,7 +25,7 @@ export const rainwaterRunoffCalculatorConfig = {
     og: {
       title: "Free Rainwater Runoff Calculator – Estimate Water Runoff Online",
       description: "Calculate rainwater runoff instantly using rainfall, land area, and surface type. Estimate stormwater runoff, drainage needs, and rainwater collection online for free.",
-      url: "https://www.productivetb.com/tools/land/rainwater-runoff-calculator",
+      url: `${siteConfig.url}/tools/land/rainwater-runoff-calculator`,
     },
   },
 };

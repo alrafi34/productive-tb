@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const relayCalculatorConfig = {
   name: "Relay Calculator",
   description: "Calculate relay coil current, power consumption, transistor base resistor, and verify load safety. Essential tool for relay driver circuit design with microcontrollers.",
@@ -27,7 +29,7 @@ export const relayCalculatorConfig = {
     og: {
       title: "Relay Calculator – Coil Current, Power & Transistor Driver Analysis",
       description: "Free online relay calculator. Calculate coil current, power, transistor base resistor, and verify load safety instantly.",
-      url: "https://www.yoursite.com/tools/electrical/relay-calculator"
+      url: `${siteConfig.url}/tools/electrical/relay-calculator`
     }
   }
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const roomLightingCalculatorConfig = {
   name: "Room Lighting Calculator",
   description: "Calculate the optimal number of lights needed for any room based on size, purpose, and lighting standards using lux levels.",
@@ -27,7 +29,7 @@ export const roomLightingCalculatorConfig = {
     og: {
       title: "Room Lighting Calculator – Calculate Lights Needed for Any Room",
       description: "Free online room lighting calculator. Calculate how many lights you need based on room size, lux levels, and bulb lumens.",
-      url: "https://www.yoursite.com/tools/electrical/room-lighting-calculator"
+      url: `${siteConfig.url}/tools/electrical/room-lighting-calculator`
     }
   }
 };

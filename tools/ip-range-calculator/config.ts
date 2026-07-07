@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const ipRangeCalculatorConfig = {
   slug: "ip-range-calculator",
   name: "IP Range Calculator",
@@ -26,7 +28,7 @@ export const ipRangeCalculatorConfig = {
       title: "Free IP Range Calculator – Calculate Subnet, CIDR & Host Range Online",
       description: "Calculate IP ranges instantly using CIDR or subnet mask. Find network address, broadcast address, host range, usable IPs, wildcard mask, and subnet details online for free.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/ip-range-calculator",
+      url: `${siteConfig.url}/tools/computer-science/ip-range-calculator`,
     },
   },
 };

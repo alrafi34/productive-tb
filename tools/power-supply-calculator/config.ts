@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const powerSupplyCalculatorConfig = {
   name: "Power Supply Calculator",
   description: "Calculate recommended PSU wattage for PC builds based on components. Get accurate power consumption estimates for gaming and workstation systems.",
@@ -22,7 +24,7 @@ export const powerSupplyCalculatorConfig = {
     og: {
       title: "Power Supply Calculator – Find Recommended PSU Wattage for PC Builds",
       description: "Calculate your PC power supply requirements instantly. Get accurate PSU wattage recommendations for gaming and workstation builds.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/power-supply-calculator",
+      url: `${siteConfig.url}/tools/electrical/power-supply-calculator`,
     },
   },
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const adcResolutionCalculatorConfig = {
   name: "ADC Resolution Calculator",
   description: "Calculate ADC step size, quantization levels, and digital output values instantly. Essential for microcontroller projects, data acquisition systems, and embedded electronics design.",
@@ -27,7 +29,7 @@ export const adcResolutionCalculatorConfig = {
     og: {
       title: "ADC Resolution Calculator – Calculate Step Size & Quantization Levels",
       description: "Free online ADC resolution calculator. Calculate step size, quantization levels, and digital output values instantly with real-time results.",
-      url: "https://www.yoursite.com/tools/electrical/adc-resolution-calculator"
+      url: `${siteConfig.url}/tools/electrical/adc-resolution-calculator`
     }
   }
 };

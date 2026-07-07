@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const thermalExpansionCalculatorConfig = {
   name: "Thermal Expansion Calculator",
   slug: "thermal-expansion-calculator",
@@ -28,7 +30,7 @@ export const thermalExpansionCalculatorConfig = {
       title: "Free Thermal Expansion Calculator",
       description:
         "Calculate material expansion due to temperature changes instantly with formulas and engineering explanations.",
-      url: "https://productivetoolbox.com/tools/mechanical/thermal-expansion-calculator",
+      url: `${siteConfig.url}/tools/mechanical/thermal-expansion-calculator`,
     },
   },
   relatedTools: [

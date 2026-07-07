@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const smpsCalculatorConfig = {
   name: "SMPS Calculator",
   description: "Calculate switching power supply parameters including output power, efficiency, input current, and load analysis for power supply design.",
@@ -22,7 +24,7 @@ export const smpsCalculatorConfig = {
     og: {
       title: "SMPS Calculator – Switch Mode Power Supply Power & Efficiency",
       description: "Calculate SMPS output power, input power, efficiency, and current instantly. Professional switching power supply calculator.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/smps-calculator",
+      url: `${siteConfig.url}/tools/electrical/smps-calculator`,
     },
   },
 };

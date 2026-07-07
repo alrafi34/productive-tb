@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const logicGateCalculatorConfig = {
   name: "Logic Gate Calculator",
   description: "Evaluate digital logic gates (AND, OR, NOT, NAND, NOR, XOR, XNOR) with instant results, interactive truth tables, and real-time output visualization.",
@@ -27,7 +29,7 @@ export const logicGateCalculatorConfig = {
     og: {
       title: "Logic Gate Calculator – Evaluate AND, OR, XOR, NAND Gates Online",
       description: "Free online logic gate calculator. Evaluate digital logic gates instantly with interactive truth tables and real-time results.",
-      url: "https://www.yoursite.com/tools/electrical/logic-gate-calculator"
+      url: `${siteConfig.url}/tools/electrical/logic-gate-calculator`
     }
   }
 };

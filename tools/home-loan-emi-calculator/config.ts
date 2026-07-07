@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const homeLoanEmiCalculatorConfig = {
   name: "Home Loan EMI Calculator",
   slug: "home-loan-emi-calculator",
@@ -21,7 +23,7 @@ export const homeLoanEmiCalculatorConfig = {
     og: {
       title: "Home Loan EMI Calculator – Calculate Mortgage EMI Online Free",
       description: "Calculate your home loan EMI instantly. Estimate monthly payments, interest, total repayment, and view amortization schedules online.",
-      url: "https://www.engineeringcalcs.com/tools/land/home-loan-emi-calculator",
+      url: `${siteConfig.url}/tools/land/home-loan-emi-calculator`,
     },
   },
 };

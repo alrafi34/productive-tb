@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const amplifierGainCalculatorConfig = {
   name: "Amplifier Gain Calculator",
   description: "Calculate voltage gain, current gain, power gain, and gain in decibels (dB) for electronic amplifiers with instant results.",
@@ -27,7 +29,7 @@ export const amplifierGainCalculatorConfig = {
     og: {
       title: "Amplifier Gain Calculator – Voltage, Current & dB Gain",
       description: "Calculate amplifier gain instantly. Find voltage gain, current gain, power gain, and decibel (dB) gain with this fast, free online calculator.",
-      url: "https://www.calculatorhut.com/tools/electrical/amplifier-gain-calculator",
+      url: `${siteConfig.url}/tools/electrical/amplifier-gain-calculator`,
     },
   },
 };

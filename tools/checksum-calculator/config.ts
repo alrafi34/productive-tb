@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const toolConfig = {
   slug: "checksum-calculator",
   name: "Checksum Calculator",
@@ -28,7 +30,7 @@ export const toolConfig = {
       title: "Free Checksum Calculator Online – MD5, SHA-256, SHA-512 Hash Generator",
       description: "Calculate checksums for text or files using MD5, SHA-1, SHA-256, SHA-512, CRC32, Adler-32. 100% browser-based, no uploads.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/checksum-calculator",
+      url: `${siteConfig.url}/tools/computer-science/checksum-calculator`,
     },
   },
 };

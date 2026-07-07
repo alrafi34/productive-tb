@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const pricePerSquareFeetCalculatorConfig = {
   name: "Price per Square Feet Calculator",
   slug: "price-per-square-feet-calculator",
@@ -25,7 +27,7 @@ export const pricePerSquareFeetCalculatorConfig = {
     og: {
       title: "Price per Square Feet Calculator – Calculate Land Price per Sq Ft Online",
       description: "Calculate land price per square foot instantly. Supports decimal, acre, katha, bigha, square meter, and more.",
-      url: "https://www.engineeringcalcs.com/tools/land/price-per-square-feet-calculator",
+      url: `${siteConfig.url}/tools/land/price-per-square-feet-calculator`,
     },
   },
 };

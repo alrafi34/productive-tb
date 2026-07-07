@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const modelAccuracyCalculatorConfig = {
   slug: "model-accuracy-calculator",
   name: "Model Accuracy Calculator",
@@ -23,7 +25,7 @@ export const modelAccuracyCalculatorConfig = {
       title: "Model Accuracy Calculator – Free ML Accuracy Checker Online",
       description: "Calculate machine learning model accuracy instantly. Compare actual vs predicted labels and evaluate AI classification performance.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/model-accuracy-calculator",
+      url: `${siteConfig.url}/tools/computer-science/model-accuracy-calculator`,
     },
   },
   relatedTools: [

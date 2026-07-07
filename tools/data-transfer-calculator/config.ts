@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const dataTransferCalculatorConfig = {
   slug: "data-transfer-calculator",
   name: "Data Transfer Calculator",
@@ -26,7 +28,7 @@ export const dataTransferCalculatorConfig = {
       title: "Data Transfer Calculator – Calculate Upload & Download Time Online",
       description: "Calculate transfer time instantly based on file size and internet speed. Estimate upload, download, backup, or network transfer duration using Mbps, Gbps, MB/s, GB, TB, and more.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/data-transfer-calculator",
+      url: `${siteConfig.url}/tools/computer-science/data-transfer-calculator`,
     },
   },
 };

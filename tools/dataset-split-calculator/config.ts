@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const datasetSplitCalculatorConfig = {
   slug: "dataset-split-calculator",
   name: "Dataset Split Calculator",
@@ -25,7 +27,7 @@ export const datasetSplitCalculatorConfig = {
       title: "Free Dataset Split Calculator – Train Test Validation Split Tool",
       description: "Instantly calculate training, validation, and testing dataset splits with custom ratios or percentages. Free online ML dataset split tool.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/dataset-split-calculator",
+      url: `${siteConfig.url}/tools/computer-science/dataset-split-calculator`,
     },
   },
   relatedTools: [

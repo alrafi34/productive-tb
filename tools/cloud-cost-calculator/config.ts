@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const cloudCostCalculatorConfig = {
   slug: "cloud-cost-calculator",
   name: "Cloud Cost Calculator",
@@ -26,7 +28,7 @@ export const cloudCostCalculatorConfig = {
       title: "Free Cloud Cost Calculator – Estimate AWS, GCP & Azure Pricing",
       description: "Estimate cloud infrastructure costs instantly with real-time breakdowns. Compare AWS, Google Cloud, Azure, DigitalOcean, Vercel, and more.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/cloud-cost-calculator",
+      url: `${siteConfig.url}/tools/computer-science/cloud-cost-calculator`,
     },
   },
   relatedTools: [

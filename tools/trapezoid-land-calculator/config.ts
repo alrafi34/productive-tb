@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const trapezoidLandCalculatorConfig = {
   name: "Trapezoid Land Calculator",
   slug: "trapezoid-land-calculator",
@@ -22,7 +24,7 @@ export const trapezoidLandCalculatorConfig = {
     og: {
       title: "Free Trapezoid Land Calculator – Calculate Trapezoid Area Online",
       description: "Calculate trapezoid land area instantly using accurate formulas. Enter top base, bottom base, and height to measure land area online with automatic unit conversion.",
-      url: "https://www.engineeringcalcs.com/tools/land/trapezoid-land-calculator",
+      url: `${siteConfig.url}/tools/land/trapezoid-land-calculator`,
     },
   },
 };

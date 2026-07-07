@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const frictionForceCalculatorConfig = {
   name: "Friction Force Calculator",
   slug: "friction-force-calculator",
@@ -25,7 +27,7 @@ export const frictionForceCalculatorConfig = {
     og: {
       title: "Friction Force Calculator – Calculate Friction Force Online (F = μN)",
       description: "Calculate friction force instantly using coefficient of friction and normal force. Free online friction force calculator with static/kinetic modes, surface presets, and step-by-step explanations.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/friction-force-calculator",
+      url: `${siteConfig.url}/tools/mechanical/friction-force-calculator`,
     },
   },
   relatedTools: [

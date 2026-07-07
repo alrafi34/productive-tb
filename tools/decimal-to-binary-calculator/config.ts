@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const decimalToBinaryCalculatorConfig = {
   name: "Decimal to Binary Calculator",
   description: "Convert decimal numbers (base-10) to binary (base-2) instantly with step-by-step explanation. Perfect for students, developers, and anyone learning number systems.",
@@ -27,7 +29,7 @@ export const decimalToBinaryCalculatorConfig = {
     og: {
       title: "Decimal to Binary Calculator – Convert Decimal to Binary Instantly",
       description: "Free online decimal to binary calculator. Convert decimal numbers with step-by-step explanation instantly.",
-      url: "https://www.yoursite.com/tools/electrical/decimal-to-binary-calculator"
+      url: `${siteConfig.url}/tools/electrical/decimal-to-binary-calculator`
     }
   }
 };

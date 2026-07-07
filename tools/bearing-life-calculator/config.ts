@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const bearingLifeCalculatorConfig = {
   name: "Bearing Life Calculator",
   slug: "bearing-life-calculator",
@@ -25,7 +27,7 @@ export const bearingLifeCalculatorConfig = {
     og: {
       title: "Bearing Life Calculator – L10 Bearing Life Calculation Online",
       description: "Calculate bearing life instantly using ISO L10 formulas. Estimate operating hours, revolutions, and years for ball and roller bearings with reliability adjustments.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/bearing-life-calculator",
+      url: `${siteConfig.url}/tools/mechanical/bearing-life-calculator`,
     },
   },
   relatedTools: [

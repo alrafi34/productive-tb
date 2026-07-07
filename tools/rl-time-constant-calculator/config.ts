@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const rlTimeConstantCalculatorConfig = {
   name: "RL Time Constant Calculator",
   description: "Calculate the time constant (τ = L/R) of resistor-inductor circuits instantly with unit conversion and current rise/decay analysis.",
@@ -27,7 +29,7 @@ export const rlTimeConstantCalculatorConfig = {
     og: {
       title: "RL Time Constant Calculator – Calculate τ = L/R Instantly",
       description: "Free online RL time constant calculator. Calculate τ = L/R with instant results, unit conversions, and current rise/decay analysis for electrical circuits.",
-      url: "https://www.engineeringcalcs.com/tools/electrical/rl-time-constant-calculator",
+      url: `${siteConfig.url}/tools/electrical/rl-time-constant-calculator`,
     },
   },
 };

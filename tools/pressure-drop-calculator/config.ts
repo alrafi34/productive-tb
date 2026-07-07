@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const pressureDropCalculatorConfig = {
   name: "Pressure Drop Calculator",
   slug: "pressure-drop-calculator",
@@ -31,7 +33,7 @@ export const pressureDropCalculatorConfig = {
       title: "Pressure Drop Calculator – Pipe Pressure Loss Calculator Online",
       description:
         "Calculate pressure drop in pipes instantly using pipe length, diameter, flow rate, fluid type, and material. Free online pressure loss calculator for HVAC, plumbing, and engineering.",
-      url: "https://www.engineeringcalcs.com/tools/mechanical/pressure-drop-calculator",
+      url: `${siteConfig.url}/tools/mechanical/pressure-drop-calculator`,
     },
   },
   relatedTools: [

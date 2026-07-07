@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const houseWiringLoadCalculatorConfig = {
   name: "House Wiring Load Calculator",
   description: "Calculate total electrical load for your house by adding appliances. Get instant recommendations for circuit breakers and wiring capacity.",
@@ -27,7 +29,7 @@ export const houseWiringLoadCalculatorConfig = {
     og: {
       title: "House Wiring Load Calculator – Estimate Electrical Load Online",
       description: "Calculate total house electrical load easily. Estimate wattage, current, and breaker size for safe wiring.",
-      url: "https://www.yoursite.com/tools/electrical/house-wiring-load-calculator"
+      url: `${siteConfig.url}/tools/electrical/house-wiring-load-calculator`
     }
   }
 };

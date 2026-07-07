@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const decibelCalculatorConfig = {
   name: "Decibel (dB) Calculator",
   description: "Convert gain or loss ratios to decibels (dB) and vice versa. Supports power-based and amplitude-based calculations for electronics, audio, and RF engineering.",
@@ -27,7 +29,7 @@ export const decibelCalculatorConfig = {
     og: {
       title: "Decibel (dB) Calculator – Convert Gain & Loss Instantly",
       description: "Convert power, voltage, or signal ratios to decibels (dB) instantly. Free online dB calculator with real-time results and formulas.",
-      url: "https://www.yoursite.com/tools/electrical/decibel-db-calculator"
+      url: `${siteConfig.url}/tools/electrical/decibel-db-calculator`
     }
   }
 };

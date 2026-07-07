@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const latencyCalculatorConfig = {
   slug: "latency-calculator",
   name: "Latency Calculator",
@@ -24,7 +26,7 @@ export const latencyCalculatorConfig = {
       title: "Free Latency Calculator – Estimate Network Delay & Ping Online",
       description: "Calculate network latency, ping, RTT, transmission delay, and propagation delay instantly. Free online tool for networking, gaming, cloud, and DevOps.",
       type: "website",
-      url: "https://www.engineeringcalcs.com/tools/computer-science/latency-calculator",
+      url: `${siteConfig.url}/tools/computer-science/latency-calculator`,
     },
   },
   relatedTools: [
