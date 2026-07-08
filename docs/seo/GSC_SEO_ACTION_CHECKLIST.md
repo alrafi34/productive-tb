@@ -24,30 +24,24 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ## Tier 1 — Do This Week (Score > 200, Massive Lost Traffic)
 
-### 1. `land/decimal-land-calculator` ✅ DONE — July 2026
+### 1. `land/decimal-land-calculator` ✅ DONE — July 2026 (Indexed)
 - **Impressions:** 4,917 | **CTR:** 0.33% | **Position:** 9.04 | **Score:** 542
 - **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with correct `toolConfig` export, title (58 chars), description (151 chars), 25 keywords (shotok, decimal to acre, 1 acre to decimal clusters), 10 FAQ, 5 howToSteps, 6 relatedTools.
 - **Monitor:** Check GSC position in 3–4 weeks. Target: move from pos 9 to pos 5–6 and CTR from 0.33% to 4–6%.
 
 ---
 
-### 2. `architecture/shadow-length-calculator` ✅ DONE — July 2026
+### 2. `architecture/shadow-length-calculator` ✅ DONE — July 2026 (Indexed)
 - **Impressions:** 3,136 | **CTR:** 0.80% | **Position:** 6.64 | **Score:** 469
 - **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with `toolConfig` export, title (60 chars), description (148 chars), 25 keywords anchored to GSC queries, 10 FAQ, 5 howToSteps, 6 relatedTools. Reference tables: shadow length by angle + winter solstice noon angles by latitude.
 - **Monitor:** CTR at position 6–7 should move from 0.8% toward 5–7%. Check GSC in 2–3 weeks.
 
 ---
 
-### 3. `architecture/parking-space-calculator`
+### 3. `architecture/parking-space-calculator` ✅ DONE — July 2026
 - **Impressions:** 3,609 | **CTR:** 0.97% | **Position:** 9.24 | **Score:** 387
-- **Clicks lost per day (est.):** ~22 (at 7% CTR = 253 clicks/28 days vs actual 35)
-- **Status:** Position 9 — nearly page 1, CTR is low
-- **Top queries:** `parking space calculator` (9 imp), `parking lot layout calculator` (15 imp), `parking lot calculator`, `parking area calculator`, `parking demand calculator`, `car parking calculator`, `parking lot spacing`, `parking demand calculator`
-- **Action required:**
-  - [ ] Rewrite `seo-content.tsx` — full 8-section standard
-  - [ ] Update title → include "parking lot" variant (higher volume than "parking space")
-  - [ ] Update description → name specific outputs: stall count, dimensions, layout, ADA compliance
-  - [ ] Add keywords: `parking lot layout calculator`, `parking area calculator`, `parking demand calculator`, `car parking calculator`, `parking lot spacing calculator`, `parking stall calculator`
+- **Completed:** Full 8-section seo-content.tsx. config.ts rebuilt with title (55 chars), description (165 chars), 25 keywords, 10 FAQ, 6 howToSteps, 6 relatedTools. Reference tables: stall dimensions, stalls-per-area, parking ratios by use type.
+- **Monitor:** Target CTR from 0.97% to 5–7% at position 9. Check in 3 weeks.
 
 ---
 
@@ -60,16 +54,10 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ---
 
-### 5. `electrical/air-conditioner-power-calculator`
+### 5. `electrical/air-conditioner-power-calculator` ✅ DONE — July 2026
 - **Impressions:** 2,301 | **CTR:** 0.30% | **Position:** 9.59 | **Score:** 239
-- **Clicks lost per day (est.):** ~17 (at 7% CTR = 161 clicks/28 days vs actual 7)
-- **Status:** Position 9–10, nearly page 1, CTR is critically low
-- **Top queries:** `air conditioner power calculator`, `how much kva generator is required for 1.5 ton ac`, `1 ton ac watt calculator`, `ac cost calculator`, `ac cable size calculator`
-- **Action required:**
-  - [ ] Rewrite `seo-content.tsx` — full 8-section standard
-  - [ ] Update title → include "AC power consumption" or "ton to kW"
-  - [ ] Update description → name specific outputs: watts, kWh, monthly cost, running cost
-  - [ ] Add keywords: `ac power consumption calculator`, `1 ton ac watt calculator`, `air conditioner running cost`, `kva for air conditioner`, `ac electricity calculator`
+- **Completed:** Full 8-section seo-content.tsx. config.ts with og + openGraph keys (dedicated page.tsx), title (52 chars), description (159 chars), 25 keywords, 10 FAQ, 5 howToSteps. Reference tables: watts by tonnage × EER, monthly cost table.
+- **Monitor:** Target CTR from 0.30% to 4–6% at position 9–10. Check in 3 weeks.
 
 ---
 
@@ -82,21 +70,17 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ---
 
-### 7. `land/land-price-calculator` ✅ DONE — July 2026
+### 7. `land/land-price-calculator` ✅ DONE — July 2026 (Indexed)
 - **Impressions:** 2,060 | **CTR:** 0.39% | **Position:** 9.68 | **Score:** 212
 - **Completed:** Full 8-section seo-content.tsx rewrite. config.ts updated with title (57 chars), description (155 chars), 25 GSC-anchored keywords, 10 FAQ, 5 howToSteps, 6 relatedTools.
 - **Monitor:** At position 9–10, target CTR improvement from 0.39% to 4–6% within 3 weeks of deploy.
 
 ---
 
-### 8. `electrical/electric-motor-power-calculator`
+### 8. `electrical/electric-motor-power-calculator` ✅ DONE — July 2026
 - **Impressions:** 3,288 | **CTR:** 0.46% | **Position:** 15.68 | **Score:** 209
-- **Clicks lost per day (est.):** ~16 (at 8% CTR at pos 15 = 263 clicks/28 days vs actual 15)
-- **Top queries:** `motor kw`, `motor power formula`, `calculating motor power`, `motor power calculation`, `electric motor calculator`, `motor power consumption`, `motor efficiency`, `motor hp`, `kw to torque`
-- **Action required:**
-  - [ ] Rewrite `seo-content.tsx` — full 8-section standard
-  - [ ] Update title → include "motor power" and "kW" explicitly
-  - [ ] Add keywords: `motor power calculator`, `electric motor kw calculator`, `motor power formula`, `motor efficiency calculator`, `calculate motor power`, `motor hp to kw`
+- **Completed:** Full 8-section seo-content.tsx. config.ts with og + openGraph keys (dedicated page.tsx), title (60 chars), description (156 chars), 25 keywords, 10 FAQ, 5 howToSteps. Reference tables: HP→kW→FLC, torque at common speeds.
+- **Monitor:** Target move from position 15 to <10, CTR from 0.46% to 3–5%. Check in 4 weeks.
 
 ---
 
@@ -307,7 +291,9 @@ These tools have healthy CTR. Any SEO changes should be additive, not structural
 WEEK 1  → ✅ decimal-land-calculator (done)
            ✅ shadow-length-calculator (done)
            ✅ land-price-calculator (done)
-WEEK 2  → parking-space-calculator, air-conditioner-power-calculator, electric-motor-power-calculator
+WEEK 2  → ✅ parking-space-calculator (done)
+           ✅ air-conditioner-power-calculator (done)
+           ✅ electric-motor-power-calculator (done)
 WEEK 3  → hectare-to-acre-converter + acre-to-hectare-converter (do as a pair)
            acre-to-square-feet-converter + square-feet-to-acre-converter (do as a pair)
 WEEK 4  → price-per-square-feet-calculator, css-box-shadow-generator, text-reverser

@@ -460,6 +460,9 @@ Run through this before marking a tool done.
 | `decimal-land-calculator` | ✅ full 8-section | ✅ faq + howToSteps | Shotok unit coverage, toolConfig export fixed July 2026 |
 | `shadow-length-calculator` | ✅ full 8-section | ✅ faq + howToSteps | toolConfig export fixed, latitude reference table added July 2026 |
 | `land-price-calculator` | ✅ full 8-section | ✅ faq + howToSteps | Multi-currency, comparison mode documented July 2026 |
+| `parking-space-calculator` | ✅ full 8-section | ✅ faq + howToSteps | ADA table, parking ratios by use type July 2026 |
+| `air-conditioner-power-calculator` | ✅ full 8-section | ✅ og + openGraph | Watts×EER table, generator sizing July 2026 |
+| `electric-motor-power-calculator` | ✅ full 8-section | ✅ og + openGraph | HP→FLC table, torque reference table July 2026 |
 
 Update this table every time you complete a tool.
 
