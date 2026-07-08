@@ -455,6 +455,11 @@ Run through this before marking a tool done.
 | `customer-lifetime-value-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Standard |
 | `break-even-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Standard |
 | `age-calculator` | ✅ full 7-section | ✅ faq + howToSteps | Schema moved from seo-content to config |
+| `keyword-density-checker` | ✅ full 8-section | ✅ faq + howToSteps | GSC title/desc/keywords updated July 2026 |
+| `word-counter` | ✅ full 8-section | ✅ faq + howToSteps | GSC title/desc/keywords updated July 2026 |
+| `decimal-land-calculator` | ✅ full 8-section | ✅ faq + howToSteps | Shotok unit coverage, toolConfig export fixed July 2026 |
+| `shadow-length-calculator` | ✅ full 8-section | ✅ faq + howToSteps | toolConfig export fixed, latitude reference table added July 2026 |
+| `land-price-calculator` | ✅ full 8-section | ✅ faq + howToSteps | Multi-currency, comparison mode documented July 2026 |
 
 Update this table every time you complete a tool.
 

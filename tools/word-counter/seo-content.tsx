@@ -60,19 +60,20 @@ export default function WordCounterSEOContent() {
         </h2>
         <div className="prose-style space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>word counter online</strong> is a free writing tool that measures your text in real time and
-            reports the metrics that matter most before publishing: total words, characters (with and without spaces),
-            sentences, paragraphs, and estimated reading time. Unlike the word count feature buried in Microsoft Word
-            or Google Docs, a browser-based tool works on <em>any text from any source</em> — drafted emails, pasted
-            web content, social media copy, or raw notes — without needing to open a document editor.
+            A <strong>word counter online</strong> is a free writing tool that lets you <strong>count words</strong> in
+            real time and reports the metrics that matter most before publishing: total words, characters (with and
+            without spaces), sentences, paragraphs, and estimated reading time. Unlike the word count feature buried
+            in Microsoft Word or Google Docs, a browser-based tool works on <em>any text from any source</em> —
+            drafted emails, pasted web content, social media copy, or raw notes — without needing to open a document
+            editor.
           </p>
           <p>
             The problem that writers, students, SEO professionals, and marketers run into is simple: nearly every
-            writing context has a length requirement, and those requirements vary wildly. An academic essay has a
-            strict word floor and ceiling. An SEO blog post needs to compete on length with top-ranking pages. A
-            LinkedIn post performs best under 1,300 characters. A tweet must stay under 280. Checking all of these
-            manually — by copying text into different tools or relying on document editors — breaks workflow and wastes
-            time.
+            writing context has a length requirement, and those requirements vary wildly. An academic <strong>essay
+            word counter</strong> check has a strict word floor and ceiling. An SEO blog post needs to compete on
+            length with top-ranking pages. A LinkedIn post performs best under 1,300 characters. A tweet must stay
+            under 280. Checking all of these manually — by copying text into different tools or relying on document
+            editors — breaks workflow and wastes time.
           </p>
           <p>
             This tool solves that by combining five core text metrics in a single interface that updates as you type.
@@ -115,7 +116,7 @@ export default function WordCounterSEOContent() {
       {/* ── 3. Step-by-Step Usage ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          How to Use the Word Counter Online
+          How to Use the Word Counter to Count Words Online
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div>
@@ -157,7 +158,7 @@ export default function WordCounterSEOContent() {
       {/* ── 4. Use Cases ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Real-World Use Cases
+          Real-World Use Cases: Essays, SEO, and More
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {[
