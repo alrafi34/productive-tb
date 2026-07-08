@@ -34,7 +34,7 @@ export default function DecimalLandCalculatorUI() {
   const [inputs, setInputs] = useState<CalculatorInputs>({
     value: "",
     fromUnit: "decimal",
-    region: "bangladesh",
+    region: "global",
     precision: 4,
   });
   const [result, setResult] = useState<ConversionResult | null>(null);
@@ -74,7 +74,7 @@ export default function DecimalLandCalculatorUI() {
   };
 
   const handleReset = () => {
-    setInputs({ value: "", fromUnit: "decimal", region: "bangladesh", precision: 4 });
+    setInputs({ value: "", fromUnit: "decimal", region: "global", precision: 4 });
     setResult(null);
     setError(null);
     inputRef.current?.focus();
