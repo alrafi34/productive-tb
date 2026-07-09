@@ -5,6 +5,18 @@ export default function WordCounterSEOContent() {
       a: "A word counter is an online tool that analyzes a block of text and reports key writing metrics — total words, characters (with and without spaces), sentences, paragraphs, and estimated reading time. Unlike the word count feature built into Microsoft Word or Google Docs, a browser-based word counter works on any text from any source: copied web content, draft emails, social media posts, or raw notes — without needing to open a document editor.",
     },
     {
+      q: "Can this tool work as a character counter and letter counter?",
+      a: "Yes. In addition to word count, this tool displays a full character counter — showing total characters both with and without spaces — making it a free letter counter online as well. Use the with-spaces count for platform character limits like Twitter (280), LinkedIn (3,000), and SMS (160). Use the without-spaces count for programming character fields and database constraints where whitespace is excluded from the limit.",
+    },
+    {
+      q: "How do I count words in Google Docs?",
+      a: "In Google Docs, go to Tools > Word count (or press Ctrl+Shift+C on Windows / Cmd+Shift+C on Mac) to see word, character, and page counts for the full document or a selected range. For text outside Google Docs — copied from web pages, emails, PDFs, or other sources — paste it into this word counter for an instant count without opening Docs. You can also enable 'Display word count while typing' in the same menu to keep a live count visible in the corner of your document.",
+    },
+    {
+      q: "How many pages is 1,000 words?",
+      a: "At standard formatting (12pt Times New Roman or Arial, double-spaced, 1-inch margins), 1,000 words equals approximately 4 pages. Single-spaced, the same 1,000 words produces about 2 pages. 500 words is roughly 1 page double-spaced; 250 words fills about half a page. These are estimates — actual page count depends on font size, line spacing, margin width, and paragraph spacing. For academic submissions, always verify using your institution's formatting requirements.",
+    },
+    {
       q: "How does word count affect SEO?",
       a: "Word count is not a direct Google ranking factor, but content length correlates strongly with rankings because longer content tends to cover a topic more thoroughly. Most pages that rank on page 1 for competitive keywords have 1,000–2,500 words. For blog posts and pillar pages, 1,500–2,500 words is the commonly recommended target. For product pages and landing pages, 300–800 words is typically enough. Use this tool to check your article length before publishing and compare it against the top-ranking pages for your target keyword.",
     },
@@ -40,6 +52,14 @@ export default function WordCounterSEOContent() {
       q: "How do I count words in a PDF?",
       a: "To count words in a PDF, open the PDF in your browser or a PDF viewer, select all text (Ctrl+A or Cmd+A), copy it (Ctrl+C or Cmd+C), then paste it into this word counter. The tool will instantly report the word count, character count, and reading time for the entire document. Note that PDFs with scanned images instead of selectable text will not have copyable content — in that case you'll need an OCR tool first.",
     },
+    {
+      q: "How do I use this as a paragraph counter?",
+      a: "This tool counts paragraphs automatically alongside words, characters, and sentences — no extra steps needed. Paste your text and the paragraph count appears in the metrics panel immediately. A paragraph is counted as any block of text separated by one or more blank lines. This is useful for checking article structure, verifying section length balance, and ensuring long-form content is broken up for readability.",
+    },
+    {
+      q: "How many words should a speech or presentation be?",
+      a: "For public speaking, the average adult speaks at 125–150 words per minute. A 5-minute speech needs approximately 625–750 words. A 10-minute presentation runs 1,250–1,500 words. A 20-minute keynote is around 2,500–3,000 words. Paste your speech script into this word counter, check the word count, and divide by your speaking pace to estimate delivery time. The reading time estimate (at 200 wpm) also gives a useful lower bound.",
+    },
   ];
 
   const howToSteps = [
@@ -60,20 +80,24 @@ export default function WordCounterSEOContent() {
         </h2>
         <div className="prose-style space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>word counter online</strong> is a free writing tool that lets you <strong>count words</strong> in
-            real time and reports the metrics that matter most before publishing: total words, characters (with and
-            without spaces), sentences, paragraphs, and estimated reading time. Unlike the word count feature buried
-            in Microsoft Word or Google Docs, a browser-based tool works on <em>any text from any source</em> —
-            drafted emails, pasted web content, social media copy, or raw notes — without needing to open a document
-            editor.
+            A <strong>word counter online</strong> is a free writing tool that lets you <strong>count words</strong> and
+            check your <strong>character count</strong> in real time — reporting the metrics that matter most before
+            publishing: total words, characters (with and without spaces), sentences, paragraphs, and estimated reading
+            time. It is also a <strong>word count counter</strong> and <strong>paragraph counter</strong> in one:
+            every metric updates instantly as you type or paste, with no submit button and no server round-trip.
+            Unlike the word count feature buried in Microsoft Word or Google Docs, a browser-based tool works on
+            <em> any text from any source</em> — drafted emails, pasted web content, social media copy, PDFs, or raw
+            notes — without needing to open a document editor. It also functions as a <strong>letter counter online</strong>:
+            paste any text and the character count updates instantly alongside the word count.
           </p>
           <p>
             The problem that writers, students, SEO professionals, and marketers run into is simple: nearly every
             writing context has a length requirement, and those requirements vary wildly. An academic <strong>essay
-            word counter</strong> check has a strict word floor and ceiling. An SEO blog post needs to compete on
+            word counter</strong> check has a strict word floor and ceiling. A <strong>personal statement word counter
+            </strong> check is critical before submitting university applications. An SEO blog post needs to compete on
             length with top-ranking pages. A LinkedIn post performs best under 1,300 characters. A tweet must stay
-            under 280. Checking all of these manually — by copying text into different tools or relying on document
-            editors — breaks workflow and wastes time.
+            under 280. And for PDFs, reports, or documents outside Google Docs, a standalone <strong>word counter
+            pdf</strong> paste-in workflow is faster than any document editor.
           </p>
           <p>
             This tool solves that by combining five core text metrics in a single interface that updates as you type.
@@ -243,7 +267,7 @@ export default function WordCounterSEOContent() {
       {/* ── 6. Platform Word & Character Limits Reference Table ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Platform Word &amp; Character Limits Reference
+          Platform Word &amp; Character Limits — Words to Pages Reference
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -272,6 +296,10 @@ export default function WordCounterSEOContent() {
                 ["Undergraduate essay (typical)", "1,500–3,000", "Words", "Varies by course and level"],
                 ["SEO blog post (competitive)", "1,500–2,500", "Words", "Match top-3 competitor length for target keyword"],
                 ["Long-form pillar page", "3,000–6,000+", "Words", "Comprehensive topic coverage for link attraction"],
+                ["250 words → pages", "~1 page", "Double-spaced, 12pt", "Standard academic formatting estimate"],
+                ["500 words → pages", "~1–2 pages", "Double-spaced, 12pt", "Half page single-spaced; 1 page double-spaced"],
+                ["1,000 words → pages", "~4 pages", "Double-spaced, 12pt", "~2 pages single-spaced"],
+                ["2,000 words → pages", "~8 pages", "Double-spaced, 12pt", "~4 pages single-spaced"],
               ].map(([platform, limit, type, notes]) => (
                 <tr key={platform} className="hover:bg-gray-50">
                   <td className="py-2.5 px-4 font-semibold text-gray-800 text-xs">{platform}</td>

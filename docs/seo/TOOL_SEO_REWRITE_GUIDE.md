@@ -467,6 +467,12 @@ Run through this before marking a tool done.
 | `acre-to-hectare-converter` | ✅ full 8-section | ✅ og + openGraph | 15-row bidirectional ref table, cross-linked July 2026 |
 | `price-per-square-feet-calculator` | ✅ full 8-section | ✅ og + openGraph | Per sq ft + per sq m output, unit table July 2026 |
 | `fuel-cost-calculator` | ✅ full 8-section | ✅ howToSteps + faq | Imperial + Metric ref tables, export name fixed July 2026 |
+| `wire-size-calculator` | ✅ full 8-section | ✅ faq + howToSteps | AWG/mm² ampacity table + max run length table, July 2026 |
+| `acre-to-square-feet-converter` | ✅ full 8-section | ✅ faq + howToSteps | 15-row bidirectional ref table, cross-linked to sq-ft-to-acre, July 2026 |
+| `square-feet-to-acre-converter` | ✅ full 8-section | ✅ faq + howToSteps | 15-row bidirectional ref table, cross-linked to acre-to-sq-ft, July 2026 |
+| `discount-calculator` | ✅ full 8-section | ✅ faq + howToSteps | Discount% table + stacked discount combined-rate table, inline schema removed, July 2026 |
+| `css-box-shadow-generator` | ✅ full 8-section | ✅ faq + howToSteps | 12-row shadow pattern reference table, inline schema removed, July 2026 |
+| `capacitive-reactance-calculator` | ✅ seo-content preserved | ✅ title + desc + keywords + faq + howToSteps | Formula added to title/desc, 25 keywords, 10 FAQ, 5 howToSteps, 6 relatedTools, July 2026 |
 
 Update this table every time you complete a tool.
 

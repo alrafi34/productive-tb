@@ -113,62 +113,46 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ---
 
-### 13. `electrical/wire-size-calculator`
+### 13. `electrical/wire-size-calculator` ✅ DONE — July 2026
 - **Impressions:** 2,593 | **CTR:** 0% | **Position:** 45.27 | **Score:** 57
-- **Top queries:** `wire size calculator`, `electrical cable size calculator`, `cable size calculator`, `wire gauge calculator`, `cable sizing calculator`, `wire size calculation`
-- **Note:** Position 45 = page 5. Content rewrite required before title/description will help.
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite — this is a position problem, not a CTR problem
-  - [ ] Add formula reference table: AWG/mm² sizing by ampacity and length
-  - [ ] Keywords: `wire size calculator`, `cable size calculator`, `electrical wire gauge calculator`, `cable sizing`
+- **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with title (52 chars), description (155 chars), 25 keywords anchored to GSC queries (`wire size calculator`, `cable size calculator`, `wire gauge calculator`, `cable sizing calculator`), 10 FAQ, 6 howToSteps, 6 relatedTools. Two reference tables: AWG/mm² ampacity by application + max one-way run length by wire size and circuit amperage (240V copper, 3% VD limit).
+- **Monitor:** Position 45 → target pos 15–20 within 6–8 weeks of index. Content depth was the blocker, not CTR.
 
 ---
 
-### 14. `land/acre-to-square-feet-converter`
+### 14. `land/acre-to-square-feet-converter` ✅ DONE — July 2026
 - **Impressions:** 1,373 | **CTR:** 0% | **Position:** 33.08 | **Score:** 41
-- **Top queries:** `0.25 acres to sq ft`, `acres to square feet`, `square feet to acres`, `10890 sq ft to acres`
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite with conversion reference table (common acre values in sq ft)
-  - [ ] Do alongside `square-feet-to-acre-converter` (1,068 imp, pos 39.38)
+- **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with title (51 chars), description (150 chars), 25 keywords anchored to GSC queries (`0.25 acres to sq ft`, `acres to square feet`, `square feet to acres`, `10890 sq ft to acres`), 10 FAQ, 6 howToSteps, 6 relatedTools including cross-link to `square-feet-to-acre-converter`. Two 15-row bidirectional reference tables: acres→sq ft and sq ft→acres.
+- **Monitor:** Target move from pos 33 to pos 10–15 within 4–6 weeks.
 
 ---
 
-### 15. `land/square-feet-to-acre-converter`
+### 15. `land/square-feet-to-acre-converter` ✅ DONE — July 2026
 - **Impressions:** 1,068 | **CTR:** 0% | **Position:** 39.38 | **Score:** 27
-- **Action required:** Same as #14 — do both together
+- **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with title (52 chars), description (155 chars), 25 keywords anchored to GSC queries (`square feet to acres`, `10890 square feet to acres`, `sq ft to acres`), 10 FAQ, 6 howToSteps, 6 relatedTools cross-linking to `acre-to-square-feet-converter`. Two 15-row bidirectional reference tables: sq ft→acres and acres→sq ft.
+- **Monitor:** Target move from pos 39 to pos 10–15 within 4–6 weeks.
 
 ---
 
-### 16. `calculator/discount-calculator`
+### 16. `calculator/discount-calculator` ✅ DONE — July 2026
 - **Impressions:** 627 | **CTR:** 0% | **Position:** 15.96 | **Score:** 39
-- **Status:** Position 15–16, near page 2 — good leverage
-- **Top queries:** `discount calculator` (73 imp)
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite — this is a Tier 2 tool per TOOL_SEO_REWRITE_GUIDE.md (120k searches/mo)
-  - [ ] Already listed in guide as priority — do now
+- **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with title (56 chars), description (131 chars), 25 keywords anchored to `discount calculator`, `percent off calculator`, `sale price calculator` clusters, 10 FAQ, 6 howToSteps, 6 relatedTools. Two reference tables: sale price by discount% at $100 original + stacked discount true combined rate table. Inline JSON-LD schema removed from seo-content.tsx — faq and howToSteps moved to config.ts.
+- **Monitor:** At position 16, one content push could reach page 1. Target CTR 3–5% within 3–4 weeks.
 
 ---
 
-### 17. `design/css-box-shadow-generator`
+### 17. `design/css-box-shadow-generator` ✅ DONE — July 2026
 - **Impressions:** 515 | **CTR:** 0% | **Position:** 12.1 | **Score:** 43
-- **Status:** Position 12 — near page 1, meaningful leverage
-- **Top queries:** `css box shadow generator` (52 imp), `box shadow css generator`, `box shadow generator`, `css box-shadow generator`, `css shadow generator`, `shadow box generator`
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite
-  - [ ] Title: include both "box shadow" and "css shadow generator"
-  - [ ] Quick win potential — pos 12 means a content push could reach page 1
+- **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with title (51 chars), description (150 chars), 25 keywords covering all GSC query variants (`css box shadow generator`, `box shadow generator`, `box shadow css generator`, `css shadow generator`, `shadow box generator`), 10 FAQ with full 2–5 sentence answers (replaced 1-sentence stubs), 6 howToSteps, 6 relatedTools. Reference table: 12 common shadow patterns with CSS values and use cases. Inline JSON-LD schema removed from seo-content.tsx — faq and howToSteps moved to config.ts.
+- **Monitor:** At position 12, content depth push should reach page 1. Target CTR 3–6% within 2–3 weeks.
 
 ---
 
-### 18. `electrical/capacitive-reactance-calculator`
+### 18. `electrical/capacitive-reactance-calculator` ✅ DONE — July 2026
 - **Impressions:** 431 | **CTR:** 0% | **Position:** 8.21 | **Score:** 52
-- **Status:** Position 8 — on page 1, CTR is 0%. This means the title/description is completely misaligned
-- **Top queries:** `capacitive reactance formula xc = 1/(2πfc)` (33+ imp in multiple variations)
-- **Root cause:** Users are searching the formula itself, not the tool name — content is found but clicks aren't earned
-- **Action required:**
-  - [ ] Update title to include the formula: "Capacitive Reactance Calculator — Xc = 1/(2πfC) Formula"
-  - [ ] Update description to confirm it calculates Xc from frequency and capacitance
-  - [ ] This is primarily a title/description fix, not a full rewrite
+- **Completed:** Title updated to include the formula — `"Capacitive Reactance Calculator — Xc = 1/(2πfC) Formula"` (55 chars). Description updated to lead with the formula and confirm inputs/outputs (155 chars). Keywords array rebuilt to 25 terms anchored to the exact GSC queries (`xc = 1/(2πfc)`, `capacitive reactance formula`, `1/(2πfc) calculator`). Added 10 FAQ, 5 howToSteps, and 6 relatedTools to config.ts (all were missing). seo-content.tsx preserved — existing content already has formula, examples, and comparison table.
+- **Root cause was title/description mismatch:** Users searching the formula weren't seeing it reflected in the SERP snippet. Formula now appears in title, description, and keywords.
+- **Monitor:** At position 8 (page 1), CTR should improve from 0% to 3–8% within 2–3 weeks of index.
 
 ---
 
@@ -285,10 +269,13 @@ WEEK 2  → ✅ parking-space-calculator (done)
            ✅ air-conditioner-power-calculator (done)
            ✅ electric-motor-power-calculator (done)
 WEEK 3  → ✅ hectare-to-acre-converter + acre-to-hectare-converter (done as pair)
-           acre-to-square-feet-converter + square-feet-to-acre-converter (do as a pair)
-WEEK 4  → price-per-square-feet-calculator, css-box-shadow-generator, text-reverser
-WEEK 5  → discount-calculator, wire-size-calculator, capacitive-reactance-calculator
-WEEK 6  → bandwidth-calculator, matrix-calculator, fuel-cost-calculator
+           ✅ acre-to-square-feet-converter + wire-size-calculator (done — July 2026)
+WEEK 4  → ✅ square-feet-to-acre-converter (done — July 2026)
+           ✅ discount-calculator (done — July 2026)
+           ✅ css-box-shadow-generator (done — July 2026)
+WEEK 5  → ✅ capacitive-reactance-calculator (title/desc/keywords fix — July 2026)
+           text-reverser
+WEEK 6  → bandwidth-calculator, matrix-calculator
 ONGOING → bmi-calculator, solar-panel-calculator, cloud-cost-calculator (long-term)
 ```
 

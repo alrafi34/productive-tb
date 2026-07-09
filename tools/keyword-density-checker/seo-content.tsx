@@ -5,6 +5,14 @@ export default function KeywordDensityCheckerSEO() {
       a: "A keyword density checker is a text analysis tool that measures how frequently each word appears in a piece of content and expresses it as a percentage of the total word count. For example, if the word 'SEO' appears 8 times in a 400-word article, its keyword density is 2%. This tells you whether a term is used proportionally — enough for topical clarity, but not so often that it reads as forced repetition.",
     },
     {
+      q: "What is a word density checker?",
+      a: "A word density checker and a keyword density checker are the same type of tool — both measure how often each individual word appears relative to the total word count, expressed as a percentage. 'Word density' is the broader term covering all words in the text; 'keyword density' typically refers specifically to the density of SEO target terms. This tool functions as both: it analyzes every word's density and lets you isolate specific target keywords for focused tracking.",
+    },
+    {
+      q: "Can this tool detect keyword stuffing?",
+      a: "Yes. The keyword stuffing checker functionality flags any word with a density above 5% as potentially overused. Keyword stuffing — repeating a term unnaturally often to manipulate search rankings — typically shows up as densities of 6–15% or higher. The flag is a review trigger: paste your text, look for red-flagged terms, read the surrounding sentences, and decide whether the repetition is natural or mechanical. Google penalizes content where keyword stuffing is detectable to a reader.",
+    },
+    {
       q: "How is keyword density calculated?",
       a: "Keyword density is calculated by dividing the number of times a keyword appears by the total number of words in the text, then multiplying by 100. The formula is: Density (%) = (Keyword Count ÷ Total Word Count) × 100. This tool applies that formula to every word in your text simultaneously and displays the results ranked by frequency.",
     },
@@ -57,21 +65,22 @@ export default function KeywordDensityCheckerSEO() {
       {/* ── 1. Introduction ── */}
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          What Is a Keyword Density Checker Tool?
+          What Is a Keyword Density Checker?
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>keyword density checker tool</strong> is a free online SEO analyzer that measures how
+            A <strong>keyword density checker</strong> is a free online SEO tool that measures how
             frequently each word appears in your text and expresses it as a percentage of the total word count.
-            It answers a question every SEO writer eventually asks: <em>am I using my target keywords enough — or too much?</em>
+            It answers the question every SEO writer eventually asks: <em>am I using my target keywords enough — or too much?</em>
           </p>
           <p>
             The calculation is straightforward, but reading the results usefully requires filtering. Without stop-word
-            removal, the results are dominated by "the," "and," "is," and other common words that carry no SEO weight.
-            Without minimum word length controls, short prefixes and fragments clutter the table. Without target
-            keyword tracking, you have to manually scan hundreds of rows to find the three terms you actually care about.
-            This <strong>keyword density analyzer</strong> handles all of that in one workflow — paste your text, check
-            your <strong>word density</strong>, and get export-ready results in seconds.
+            removal, the results are dominated by "the," "and," "is," and other words that carry no SEO weight.
+            Without minimum word length controls, short fragments clutter the table. Without target keyword tracking,
+            you have to manually scan hundreds of rows to find the three terms you actually care about.
+            This <strong>word density checker</strong> handles all of that in one workflow — paste your text,
+            check keyword and word density instantly, spot <strong>keyword stuffing</strong> before it goes live,
+            and get export-ready results in seconds.
           </p>
           <p>
             Built for <strong>SEO writers, content strategists, copyeditors, agency teams, and bloggers</strong> who
@@ -85,7 +94,7 @@ export default function KeywordDensityCheckerSEO() {
       {/* ── 2. How It Works ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          How Keyword Density Analysis Works
+          How Keyword Density and Word Density Analysis Works
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
@@ -133,11 +142,12 @@ export default function KeywordDensityCheckerSEO() {
               {[
                 "Real-time keyword density analysis as you type",
                 "Word count, keyword count, and density % for every term",
+                "Word density checker — frequency ranked by count and %",
+                "Keyword stuffing checker — overuse flags above 5% density",
                 "Stop-word filtering to surface meaningful keywords",
                 "Case-sensitive mode for brand and acronym precision",
                 "Minimum word length control",
                 "Target keyword tracking and highlighting",
-                "Overuse flags for terms above 5% density",
                 "Visual bar chart of top keywords",
                 "Sortable results table",
                 "Export to CSV and JSON",
