@@ -38,14 +38,14 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ---
 
-### 3. `architecture/parking-space-calculator` ✅ DONE — July 2026
+### 3. `architecture/parking-space-calculator` ✅ DONE — July 2026 (Indexed)
 - **Impressions:** 3,609 | **CTR:** 0.97% | **Position:** 9.24 | **Score:** 387
 - **Completed:** Full 8-section seo-content.tsx. config.ts rebuilt with title (55 chars), description (165 chars), 25 keywords, 10 FAQ, 6 howToSteps, 6 relatedTools. Reference tables: stall dimensions, stalls-per-area, parking ratios by use type.
 - **Monitor:** Target CTR from 0.97% to 5–7% at position 9. Check in 3 weeks.
 
 ---
 
-### 4. `writing/keyword-density-checker`
+### 4. `writing/keyword-density-checker` (Indexed)
 - **Impressions:** 11,901 | **CTR:** 0% | **Position:** 32.01 | **Score:** 372
 - **Status:** ✅ seo-content.tsx rewritten. config.ts title/description/keywords updated (July 2026)
 - **Remaining action:**
@@ -54,14 +54,14 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ---
 
-### 5. `electrical/air-conditioner-power-calculator` ✅ DONE — July 2026
+### 5. `electrical/air-conditioner-power-calculator` ✅ DONE — July 2026 (Indexed)
 - **Impressions:** 2,301 | **CTR:** 0.30% | **Position:** 9.59 | **Score:** 239
 - **Completed:** Full 8-section seo-content.tsx. config.ts with og + openGraph keys (dedicated page.tsx), title (52 chars), description (159 chars), 25 keywords, 10 FAQ, 5 howToSteps. Reference tables: watts by tonnage × EER, monthly cost table.
 - **Monitor:** Target CTR from 0.30% to 4–6% at position 9–10. Check in 3 weeks.
 
 ---
 
-### 6. `writing/word-counter`
+### 6. `writing/word-counter` (Indexed)
 - **Impressions:** 7,892 | **CTR:** 0% | **Position:** 35.23 | **Score:** 224
 - **Status:** ✅ seo-content.tsx already full 8-section. Title/description/keywords updated (July 2026)
 - **Remaining action:**
@@ -77,7 +77,7 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ---
 
-### 8. `electrical/electric-motor-power-calculator` ✅ DONE — July 2026
+### 8. `electrical/electric-motor-power-calculator` ✅ DONE — July 2026 (Indexed)
 - **Impressions:** 3,288 | **CTR:** 0.46% | **Position:** 15.68 | **Score:** 209
 - **Completed:** Full 8-section seo-content.tsx. config.ts with og + openGraph keys (dedicated page.tsx), title (60 chars), description (156 chars), 25 keywords, 10 FAQ, 5 howToSteps. Reference tables: HP→kW→FLC, torque at common speeds.
 - **Monitor:** Target move from position 15 to <10, CTR from 0.46% to 3–5%. Check in 4 weeks.
@@ -86,40 +86,30 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ## Tier 2 — Do Next (Score 40–200, High Impressions Wasted)
 
-### 9. `land/hectare-to-acre-converter`
+### 9. `land/hectare-to-acre-converter` ✅ DONE — July 2026
 - **Impressions:** 3,680 | **CTR:** 0.03% | **Position:** 30.4 | **Score:** 121
-- **Top queries:** `hectare to acre`, `ha to acre`, `1 hectare to acre`, `hectares to acres`, `0.5 hectares to acres`, `convert hectares to acres`, `acres to hectares` (hundreds of variants)
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite with conversion reference table (all common ha↔acre values)
-  - [ ] Update title: "Hectare to Acre Converter — Free ha to Acres Calculator Online"
-  - [ ] Keywords: focus on both directions (`ha to acres`, `acres to hectares`, `hectare to acre converter`)
-  - [ ] Note: `acre-to-hectare-converter` (2,424 imp, pos 27.74) is a separate page — do both together
+- **Completed:** Full 8-section seo-content.tsx. config.ts rebuilt with title (55 chars), description (156 chars), 25 keywords covering both ha→ac and ac→ha queries, 10 FAQ, 6 howToSteps, 6 relatedTools. Reference tables: 15-row ha→ac + 15-row ac→ha bidirectional.
+- **Monitor:** Target move from pos 30 to pos 10–15 within 4–6 weeks. CTR target 3–6%.
 
 ---
 
-### 10. `land/acre-to-hectare-converter`
+### 10. `land/acre-to-hectare-converter` ✅ DONE — July 2026
 - **Impressions:** 2,424 | **CTR:** 0% | **Position:** 27.74 | **Score:** 87
-- **Top queries:** Same cluster as above — `acres to hectares`, `acre to hectare`, `convert acre to hectare`
-- **Action required:** Same as #9 — do both converter pages together, cross-link them
+- **Completed:** Full 8-section seo-content.tsx. config.ts rebuilt with title (55 chars), description (156 chars), 25 keywords (ac-first direction), 10 FAQ, 6 howToSteps, 6 relatedTools cross-linking to hectare-to-acre-converter.
+- **Monitor:** Target move from pos 27 to pos 10–15 within 4–6 weeks.
 
 ---
 
-### 11. `land/price-per-square-feet-calculator`
+### 11. `land/price-per-square-feet-calculator` ✅ DONE — July 2026
 - **Impressions:** 970 | **CTR:** 0% | **Position:** 10.69 | **Score:** 91
-- **Status:** Position 10–11, right on the page 1/2 border — highest leverage of any Tier 2 tool
-- **Top queries:** `land price calculator per square feet`, `land price per square meter calculator uk`, `price to subdivide land`, `land rate calculator`
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite
-  - [ ] Title: lead with "price per square foot" (US) AND "per square meter" (international)
-  - [ ] This is a quick win — position 10.69 means one good content update could flip it to page 1
+- **Completed:** Full 8-section seo-content.tsx (outputs both per-sq-ft and per-sq-m). config.ts rebuilt with title (54 chars), description (152 chars), 25 keywords anchored to GSC queries, 10 FAQ, 6 howToSteps, 6 relatedTools. Unit conversion table in section 2.
+- **Monitor:** At position 10.69, one push from page 1. Target CTR 3–6% within 3 weeks.
 
 ---
 
-### 12. `calculator/fuel-cost-calculator`
+### 12. `calculator/fuel-cost-calculator` ✅ DONE — July 2026
 - **Impressions:** 1,128 | **CTR:** 0% | **Position:** 17.52 | **Score:** 64
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite — currently no SEO content visible in GSC
-  - [ ] Title/description update
+- **Completed:** Full 8-section seo-content.tsx (export name kept as ToolSEOContent to match ui.tsx import). config.ts rebuilt with title (60 chars), description (151 chars), 25 keywords, 10 FAQ, 6 howToSteps, 6 relatedTools. Reference tables: cost/100 miles (Imperial) + cost/100 km (Metric).
 
 ---
 
@@ -294,7 +284,7 @@ WEEK 1  → ✅ decimal-land-calculator (done)
 WEEK 2  → ✅ parking-space-calculator (done)
            ✅ air-conditioner-power-calculator (done)
            ✅ electric-motor-power-calculator (done)
-WEEK 3  → hectare-to-acre-converter + acre-to-hectare-converter (do as a pair)
+WEEK 3  → ✅ hectare-to-acre-converter + acre-to-hectare-converter (done as pair)
            acre-to-square-feet-converter + square-feet-to-acre-converter (do as a pair)
 WEEK 4  → price-per-square-feet-calculator, css-box-shadow-generator, text-reverser
 WEEK 5  → discount-calculator, wire-size-calculator, capacitive-reactance-calculator

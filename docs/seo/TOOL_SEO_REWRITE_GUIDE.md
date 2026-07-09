@@ -463,6 +463,10 @@ Run through this before marking a tool done.
 | `parking-space-calculator` | ✅ full 8-section | ✅ faq + howToSteps | ADA table, parking ratios by use type July 2026 |
 | `air-conditioner-power-calculator` | ✅ full 8-section | ✅ og + openGraph | Watts×EER table, generator sizing July 2026 |
 | `electric-motor-power-calculator` | ✅ full 8-section | ✅ og + openGraph | HP→FLC table, torque reference table July 2026 |
+| `hectare-to-acre-converter` | ✅ full 8-section | ✅ og + openGraph | 15-row bidirectional ref table, July 2026 |
+| `acre-to-hectare-converter` | ✅ full 8-section | ✅ og + openGraph | 15-row bidirectional ref table, cross-linked July 2026 |
+| `price-per-square-feet-calculator` | ✅ full 8-section | ✅ og + openGraph | Per sq ft + per sq m output, unit table July 2026 |
+| `fuel-cost-calculator` | ✅ full 8-section | ✅ howToSteps + faq | Imperial + Metric ref tables, export name fixed July 2026 |
 
 Update this table every time you complete a tool.
 
