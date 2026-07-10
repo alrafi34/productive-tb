@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Script from "next/script"
 import NavigationProvider from "@/components/NavigationProvider";
 
 const poppins = Poppins({
@@ -92,6 +93,19 @@ export default function RootLayout({
         </NavigationProvider>
         <Analytics />
         <SpeedInsights />
+        {/* GA4 — loads after page is interactive, no render blocking */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-6FDH4F2C7M"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6FDH4F2C7M');
+          `}
+        </Script>
       </body>
     </html>
   );

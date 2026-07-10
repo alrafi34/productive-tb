@@ -156,54 +156,43 @@ Both are required. Title/description alone won't help a page stuck at position 3
 
 ---
 
-### 19. `land/katha-land-calculator`
+### 19. `land/katha-land-calculator` ✅ DONE — July 2026
 - **Impressions:** 435 | **CTR:** 0% | **Position:** 8.87 | **Score:** 49
-- **Status:** Position 9 — on page 1, CTR is 0%
-- **Top queries:** `kata land` (20 imp)
-- **Action required:**
-  - [ ] Check if "katha" is spelled consistently in title/content (some queries use "kata")
-  - [ ] Full seo-content.tsx rewrite with regional unit reference table
+- **Completed:** Full 8-section seo-content.tsx rewrite. Both "katha" and "kata" spellings covered throughout intro, FAQ, and keyword array. config.ts rebuilt with title (76 chars), description (145 chars), 24 keywords leading with `katha land calculator` and `kata land calculator`, 10 FAQ, 5 howToSteps, 6 relatedTools. Regional standards table (Bangladesh 720 sq ft, West Bengal 720 sq ft, Bihar 1,361.25 sq ft, Nepal 3,645 sq ft) + 8-row Katha→Decimal/Sq Ft/Sq Meter/Acre conversion table (Bangladesh standard).
+- **Root cause was spelling coverage + zero content depth:** At position 9 with 0% CTR, the SERP snippet wasn't reflecting regional context or spelling variants. Now both "kata" and "katha" are in title and intro, and content depth covers cross-region comparison use cases.
+- **Monitor:** At position 9 (page 1), CTR should move from 0% to 3–6% within 2–3 weeks of index.
 
 ---
 
-### 20. `computer-science/bandwidth-calculator`
+### 20. `computer-science/bandwidth-calculator` ✅ DONE — July 2026
 - **Impressions:** 1,750 | **CTR:** 0.34% | **Position:** 40.14 | **Score:** 43
-- **Top queries:** `bandwidth calculator`, `calculate bandwidth`, `bandwidth usage estimator`, `data bandwidth calculator`, `network bandwidth calculator`, `business bandwidth calculator`
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite — position 40 is a content depth problem
-  - [ ] Needs formula table, use case scenarios, and FAQ on bandwidth types
+- **Completed:** Full 8-section seo-content.tsx rewrite. config.ts rebuilt with title (80 chars), description (148 chars), 23 keywords covering all GSC query variants (`bandwidth calculator`, `calculate bandwidth`, `business bandwidth calculator`, `bandwidth usage estimator`, `network bandwidth calculator`, `data bandwidth calculator`), 10 FAQ, 5 howToSteps, 5 relatedTools. Reference tables: file transfer time by connection speed (6 file sizes × 5 speeds) + streaming bandwidth by quality tier (480p through 4K HDR with GB/hr, min speed, and monthly usage at 2 and 4 hrs/day). Four formula blocks for all calculation modes (Transfer Time, Website Traffic, Streaming, Multi-User). Six detailed use cases with specific numbers.
+- **Root cause was content depth:** Position 40 = page 4–5. Title/description alone won't fix this — content depth was the blocker. Full 8-section rewrite with formula reference and use case scenarios targets a move to page 1–2.
+- **Monitor:** Target move from pos 40 to pos 15–20 within 4–6 weeks of index. CTR target 2–4% once on page 2.
 
 ---
 
-### 21. `writing/text-reverser`
+### 21. `writing/text-reverser` ✅ DONE — July 2026
 - **Impressions:** 350 | **CTR:** 0% | **Position:** 8.77 | **Score:** 40
-- **Status:** Position 9 — page 1, 0% CTR
-- **Top queries:** `text reverser`, `text reverser online`, `sentence reverser`, `word reverser`, `upside down text decoder online`
-- **Root cause:** Tool name likely matches, but title/description may not match "sentence reverser" or "word reverser" variants
-- **Action required:**
-  - [ ] Update title to cover all variants: "Text Reverser — Reverse Words, Sentences & Text Online"
-  - [ ] Update description to name all modes
-  - [ ] Full seo-content.tsx rewrite
+- **Completed:** Full 8-section seo-content.tsx rewrite. Inline JSON-LD schema removed from seo-content (moved to config). Title updated to cover all query variants: "Text Reverser — Reverse Words, Sentences & Text Online". Config rebuilt with 22 keywords covering `text reverser`, `text reverser online`, `word reverser`, `sentence reverser`, `upside down text decoder online`, `reverse each word`, and long-tail variants. 10 FAQ with full 2–5 sentence answers (replaced 1-sentence stubs), 5 howToSteps, 5 relatedTools. Mode reference table (section 6) documents all 5 modes with input/output examples and best-for guidance.
+- **Root cause was title/description variant coverage + content depth:** At position 9 with 0% CTR, the SERP snippet listed only "text reverser" without mentioning "sentence reverser", "word reverser", or "upside down text decoder" variants. All variants now appear in title, intro paragraph, and keywords array.
+- **Monitor:** At position 9 (page 1), CTR should move from 0% to 3–7% within 2–3 weeks of index.
 
 ---
 
-### 22. `calculator/matrix-calculator`
+### 22. `calculator/matrix-calculator` ✅ DONE — July 2026
 - **Impressions:** 1,063 | **CTR:** 0% | **Position:** 39.9 | **Score:** 27
-- **Top queries:** `matrix calculator`, `online matrix calculator`, `matrices calculator`, `matrix operations calculator`, `matrix calculation`, `matrix calc`, `matrix solver`
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite — position 40 requires content depth
-  - [ ] Include operation reference table: addition, multiplication, determinant, inverse, transpose
+- **Completed:** Full 8-section seo-content.tsx rewrite replacing the prose-heavy original. Config rebuilt with `siteConfig` import, 23 keywords covering `matrix calculator`, `online matrix calculator`, `matrices calculator`, `matrix operations calculator`, `matrix solver`, `matrix calc`, and operation-specific long-tail variants. 10 FAQ, 5 howToSteps, 5 relatedTools. Section 6 includes two reference tables: operation rules with dimension requirements and result dimensions + worked examples table for all 6 operations.
+- **Root cause was content depth:** Position 40 = page 4. The old content was a long feature-list doc with no formula explanations, 1-sentence use cases, and only 5 FAQ items. The rewrite adds formula block, worked examples, 6 specific use cases, tips/mistakes, and 10 FAQ targeting the GSC query cluster.
+- **Monitor:** Target move from pos 40 to pos 15–20 within 4–6 weeks of index.
 
 ---
 
-### 23. `computer-science/cloud-cost-calculator`
+### 23. `computer-science/cloud-cost-calculator` ✅ DONE — July 2026
 - **Impressions:** 1,934 | **CTR:** 0% | **Position:** 70.21 | **Score:** 28
-- **Top queries:** `cloud cost`, `cloud pricing calculator`, `cloud computing cost`, `cloud services pricing`, `gcp cost calculator`, `aws cloud pricing`, `cloud migration cost calculator`
-- **Note:** Position 70 = page 7. This needs a major content overhaul before any CTR improvements are possible.
-- **Action required:**
-  - [ ] Full seo-content.tsx rewrite — this is a long-term play (position 70 = months of work)
-  - [ ] Include provider comparison table (AWS vs GCP vs Azure pricing benchmarks)
-  - [ ] Lower priority for immediate CTR gains, but high long-term value
+- **Completed:** Full 8-section seo-content.tsx rewrite. Config rebuilt with keywords as array (was a string — fixed), 23 keywords covering `cloud cost calculator`, `cloud pricing calculator`, `gcp cost calculator`, `aws cloud pricing`, `cloud migration cost calculator`, `aws vs gcp cost comparison`, and all top GSC query variants. 10 FAQ, 5 howToSteps, 5 relatedTools, og + openGraph keys. `toolConfig` export preserved. Section 6 includes two reference tables: provider overview (9 providers with best-for, pricing model, egress rate) + cost by budget scale table. 6 use cases with specific dollar amounts. Tips/mistakes section covers egress oversight, reserved vs on-demand comparison pitfalls, and managed service premiums.
+- **Root cause was content depth + no intro/use-cases:** Position 70 = page 7. Long-term play — content depth is the only lever available at this position. Title/description fixes alone won't move a page-7 result.
+- **Monitor:** Target move from pos 70 to pos 30–40 within 6–8 weeks of index. Full page-1 ranking is a 3–6 month timeline given the competition density for cloud cost queries.
 
 ---
 
@@ -274,9 +263,12 @@ WEEK 4  → ✅ square-feet-to-acre-converter (done — July 2026)
            ✅ discount-calculator (done — July 2026)
            ✅ css-box-shadow-generator (done — July 2026)
 WEEK 5  → ✅ capacitive-reactance-calculator (title/desc/keywords fix — July 2026)
-           text-reverser
-WEEK 6  → bandwidth-calculator, matrix-calculator
-ONGOING → bmi-calculator, solar-panel-calculator, cloud-cost-calculator (long-term)
+           ✅ katha-land-calculator (full 8-section rewrite — July 2026)
+           ✅ bandwidth-calculator (full 8-section rewrite — July 2026)
+           ✅ text-reverser (full 8-section rewrite — July 2026)
+WEEK 6  → ✅ matrix-calculator (full 8-section rewrite — July 2026)
+           ✅ cloud-cost-calculator (full 8-section rewrite — July 2026)
+ONGOING → bmi-calculator, solar-panel-calculator, cloud-cost-calculator position climb (long-term)
 ```
 
 ---

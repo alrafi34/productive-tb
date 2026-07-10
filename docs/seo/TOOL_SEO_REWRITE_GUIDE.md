@@ -473,6 +473,11 @@ Run through this before marking a tool done.
 | `discount-calculator` | ✅ full 8-section | ✅ faq + howToSteps | Discount% table + stacked discount combined-rate table, inline schema removed, July 2026 |
 | `css-box-shadow-generator` | ✅ full 8-section | ✅ faq + howToSteps | 12-row shadow pattern reference table, inline schema removed, July 2026 |
 | `capacitive-reactance-calculator` | ✅ seo-content preserved | ✅ title + desc + keywords + faq + howToSteps | Formula added to title/desc, 25 keywords, 10 FAQ, 5 howToSteps, 6 relatedTools, July 2026 |
+| `katha-land-calculator` | ✅ full 8-section | ✅ faq + howToSteps + relatedTools | Both "katha" and "kata" spellings covered, regional standards table (BD/WB/Bihar/Nepal), 24 keywords, 10 FAQ, 5 howToSteps, 6 relatedTools, July 2026 |
+| `bandwidth-calculator` | ✅ full 8-section | ✅ faq + howToSteps + relatedTools | 4 formula blocks (Transfer Time/Website/Streaming/Multi-User), transfer time table 6×5, streaming bitrate table 6 tiers, 6 use cases with specific numbers, 23 keywords, 10 FAQ, 5 howToSteps, July 2026 |
+| `text-reverser` | ✅ full 8-section | ✅ faq + howToSteps + relatedTools | Inline JSON-LD removed, title covers word/sentence/upside-down variants, mode reference table 5 rows, 22 keywords, 10 FAQ, 5 howToSteps, 5 relatedTools, July 2026 |
+| `matrix-calculator` | ✅ full 8-section | ✅ faq + howToSteps + relatedTools | Replaced prose-heavy original, operation rules table + worked examples table, siteConfig import added, 23 keywords, 10 FAQ, 5 howToSteps, 5 relatedTools, July 2026 |
+| `cloud-cost-calculator` | ✅ full 8-section | ✅ faq + howToSteps + relatedTools | keywords fixed from string to array, provider overview table (9 providers), budget scale table, 6 use cases with specific $ amounts, toolConfig export preserved, 23 keywords, 10 FAQ, 5 howToSteps, July 2026 |
 
 Update this table every time you complete a tool.
 
