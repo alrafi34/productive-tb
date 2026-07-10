@@ -592,12 +592,11 @@ export default function CTRCalculatorUI() {
       <RelatedTools
         currentTool="ctr-calculator"
         tools={[
-          "percentage-calculator",
-          "discount-calculator",
-          "investment-return-calculator",
-          "gst-vat-calculator",
-          "salary-calculator",
-          "simple-interest-calculator",
+          "cost-per-click-cpc-calculator",
+          "cost-per-acquisition-cpa-calculator",
+          "conversion-rate-calculator",
+          "keyword-density-checker",
+          "profit-margin-calculator-marketing",
         ]}
       />
     </>

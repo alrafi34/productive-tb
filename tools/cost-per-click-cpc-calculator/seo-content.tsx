@@ -8,7 +8,7 @@ export default function CPCCalculatorSEO() {
         </h2>
         <div className="prose-style space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>Cost Per Click (CPC) calculator</strong> tells you exactly how much you are paying for every visitor your paid ads deliver. It takes two numbers — total ad spend and total clicks — and produces the single metric that determines whether your paid acquisition channel is economically viable: average CPC. It answers the question every advertiser, marketing manager, and founder needs to answer before scaling a campaign: <em>how much does one click cost, and is that sustainable?</em>
+            A <strong>CPC calculator</strong> — short for <strong>cost per click calculator</strong> — tells you exactly how much you are paying for every visitor your paid ads deliver. It takes two numbers — total ad spend and total clicks — and produces the single metric that determines whether your pay per click advertising channel is economically viable: average CPC. It answers the question every Google Ads advertiser, media buyer, and founder needs to answer before scaling a campaign: <em>how much does one click cost, and is that sustainable?</em>
           </p>
           <p>
             CPC is the foundation of performance marketing economics. It sits at the start of a conversion funnel calculation that flows from clicks → leads → customers → revenue. Without a clear CPC figure, you cannot calculate Cost Per Lead, Cost Per Acquisition, or Return on Ad Spend — the metrics that determine whether a channel is profitable or not. A campaign generating 10,000 clicks sounds impressive; a CPC of $0.18 and a CPC of $12.50 on those same 10,000 clicks represent completely different business realities.
@@ -223,7 +223,10 @@ export default function CPCCalculatorSEO() {
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Average CPC Benchmarks by Industry &amp; Platform
         </h2>
-        <div className="overflow-x-auto">
+
+        {/* Industry × Platform table */}
+        <h3 className="text-base font-semibold text-gray-700 mb-3">Average CPC by Industry — Google Ads, Meta &amp; LinkedIn</h3>
+        <div className="overflow-x-auto mb-8">
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b-2 border-gray-200">
@@ -235,16 +238,16 @@ export default function CPCCalculatorSEO() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {[
-                ["Legal / Attorneys",       "$6–$100+",  "$1.32",    "$4–$8",    ],
-                ["Finance & Insurance",     "$3–$15",    "$3.77",    "$5–$10",   ],
-                ["Health & Medical",        "$2–$7",     "$1.32",    "$3–$6",    ],
-                ["Technology / SaaS",       "$1–$6",     "$1.27",    "$5–$12",   ],
-                ["Ecommerce (General)",     "$0.50–$2",  "$0.45",    "N/A",      ],
-                ["Education",              "$1–$4",     "$1.06",    "$3–$7",    ],
-                ["Travel & Hospitality",   "$0.50–$3",  "$0.63",    "$2–$5",    ],
-                ["Real Estate",            "$1–$5",     "$1.81",    "$3–$6",    ],
-                ["B2B / Professional Svcs","$2–$8",     "$2.52",    "$5–$15",   ],
-                ["Retail / Fashion",       "$0.50–$2",  "$0.45",    "N/A",      ],
+                ["Legal / Attorneys",        "$6–$100+",   "$1.32",  "$4–$8"   ],
+                ["Finance & Insurance",      "$3–$15",     "$3.77",  "$5–$10"  ],
+                ["Health & Medical",         "$2–$7",      "$1.32",  "$3–$6"   ],
+                ["Technology / SaaS",        "$1–$6",      "$1.27",  "$5–$12"  ],
+                ["Ecommerce (General)",      "$0.50–$2",   "$0.45",  "N/A"     ],
+                ["Education",               "$1–$4",      "$1.06",  "$3–$7"   ],
+                ["Travel & Hospitality",    "$0.50–$3",   "$0.63",  "$2–$5"   ],
+                ["Real Estate",             "$1–$5",      "$1.81",  "$3–$6"   ],
+                ["B2B / Professional Svcs", "$2–$8",      "$2.52",  "$5–$15"  ],
+                ["Retail / Fashion",        "$0.50–$2",   "$0.45",  "N/A"     ],
               ].map(([industry, google, meta, linkedin]) => (
                 <tr key={industry} className="hover:bg-gray-50">
                   <td className="py-2.5 px-4 font-semibold text-gray-800">{industry}</td>
@@ -256,7 +259,43 @@ export default function CPCCalculatorSEO() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-gray-400 mt-4">* Benchmarks are approximate industry averages. Actual CPC varies by keyword, targeting, quality score, bid strategy, geographic market, and competition level. LinkedIn CPC is not applicable for most B2C ecommerce and retail campaigns.</p>
+
+        {/* Platform-level average CPC reference */}
+        <h3 className="text-base font-semibold text-gray-700 mb-3">Average CPC by Ad Platform</h3>
+        <div className="overflow-x-auto mb-4">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-3 px-4 font-semibold text-gray-700">Platform</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-700">Avg CPC Range</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-700">Bidding Model</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-700">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["Google Search Ads",   "$1–$10+",      "Keyword auction (CPC/CPA/tROAS)", "High-intent search traffic"],
+                ["Google Display",      "$0.30–$1.50",  "Impression-based or CPC",         "Brand awareness, retargeting"],
+                ["Meta (Facebook/IG)",  "$0.40–$3.00",  "Auction (CPC/CPM/CPA)",           "B2C, ecommerce, audience targeting"],
+                ["LinkedIn Ads",        "$5–$15+",      "CPC or CPM auction",              "B2B, professional targeting"],
+                ["Amazon Sponsored",    "$0.75–$2.50",  "Keyword/product auction (CPC)",   "Product discovery, purchase intent"],
+                ["Microsoft (Bing)",    "$1–$8",        "Keyword auction (CPC)",           "Lower competition, older demographics"],
+                ["YouTube Ads",         "$0.05–$0.30",  "CPV or CPC",                      "Video awareness, retargeting"],
+                ["TikTok Ads",          "$0.10–$1.00",  "CPM or CPC auction",              "Gen Z, short-form video"],
+                ["Taboola / Outbrain",  "$0.15–$0.80",  "CPC (content discovery)",         "Native content, awareness"],
+                ["Reddit Ads",          "$0.75–$2.50",  "CPC or CPM",                      "Niche communities, tech audiences"],
+              ].map(([platform, cpc, model, use]) => (
+                <tr key={platform} className="hover:bg-gray-50">
+                  <td className="py-2.5 px-4 font-semibold text-primary">{platform}</td>
+                  <td className="py-2.5 px-4 font-mono font-semibold">{cpc}</td>
+                  <td className="py-2.5 px-4 text-xs text-gray-500">{model}</td>
+                  <td className="py-2.5 px-4 text-xs text-gray-600">{use}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400 mt-2">* Benchmarks are approximate industry averages as of mid-2026. Actual CPC varies by keyword, targeting, quality score, bid strategy, geographic market, and competition level.</p>
       </section>
 
       {/* ── 7. FAQ ── */}
@@ -301,6 +340,14 @@ export default function CPCCalculatorSEO() {
             {
               q: "How is CPC different on search vs. display vs. social ads?",
               a: "Search CPC (Google Search, Microsoft Ads) is driven by keyword auction competition and user intent. Users are actively searching for something, so purchase intent is high — justifying higher CPCs. Display CPC (Google Display Network, programmatic) is generally much lower because ads appear on third-party sites to users not actively searching; intent is lower and click-through rates are minimal. Social CPC (Meta, LinkedIn, TikTok) falls between the two — targeting is demographic and behavioural rather than intent-based, with CPCs varying widely by audience quality and platform.",
+            },
+            {
+              q: "What is the average cost per click by industry?",
+              a: "Average CPC varies dramatically by industry. Legal and attorney keywords on Google Search can exceed $100 per click for competitive terms — the highest of any industry. Finance and insurance average $3–$15. Healthcare averages $2–$7. Technology and SaaS averages $1–$6. Ecommerce and retail average $0.50–$2. These ranges apply to Google Search Ads. Facebook and LinkedIn CPCs follow different patterns — Facebook typically runs $0.40–$3.00 across most industries, while LinkedIn averages $5–$15 due to its professional audience targeting premium.",
+            },
+            {
+              q: "What is Amazon CPC and how does it differ from Google Ads CPC?",
+              a: "Amazon CPC refers to the cost per click for Amazon Sponsored Products, Sponsored Brands, and Sponsored Display ads. Amazon's average CPC ranges from $0.75 to $2.50, typically lower than Google Search because users searching on Amazon are already in a buying mindset — intent is extremely high and converting. Google Ads CPC varies more widely ($0.50–$100+) because it covers the full purchase funnel from awareness to high-intent searches. Amazon PPC is keyword-auction based like Google, but bids compete specifically for product page placement rather than external website traffic.",
             },
             {
               q: "Is my data private when using this calculator?",
