@@ -341,6 +341,20 @@ import { breakEvenCalculatorConfig } from "@/tools/break-even-calculator/config"
 import { keywordDensityCalculatorSeoConfig } from "@/tools/keyword-density-calculator-seo/config";
 import { seoScoreCalculatorConfig } from "@/tools/seo-score-calculator/config";
 import { backlinkRatioCalculatorConfig } from "@/tools/backlink-ratio-calculator/config";
+import { domainAuthorityEstimatorConfig } from "@/tools/domain-authority-estimator/config";
+import { impressionsCalculatorConfig } from "@/tools/impressions-calculator/config";
+import { socialMediaReachCalculatorConfig } from "@/tools/social-media-reach-calculator/config";
+import { engagementRateCalculatorConfig } from "@/tools/engagement-rate-calculator/config";
+import { adFrequencyCalculatorConfig } from "@/tools/ad-frequency-calculator/config";
+import { cpmCalculatorConfig } from "@/tools/cpm-calculator/config";
+import { trafficGrowthCalculatorConfig } from "@/tools/traffic-growth-calculator/config";
+import { serpCtrEstimatorConfig } from "@/tools/serp-ctr-estimator/config";
+import { pageRankEstimatorConfig } from "@/tools/page-rank-estimator/config";
+import { marketingRoiCalculatorConfig } from "@/tools/marketing-roi-calculator/config";
+import { leadConversionFunnelCalculatorConfig } from "@/tools/lead-conversion-funnel-calculator/config";
+import { organicVsPaidRatioCalculatorConfig } from "@/tools/organic-vs-paid-ratio-calculator/config";
+import { keywordDifficultyEstimatorConfig } from "@/tools/keyword-difficulty-estimator/config";
+import { adSpendCalculatorConfig } from "@/tools/ad-spend-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -686,6 +700,20 @@ export const TOOLS_REGISTRY = {
   'keyword-density-calculator-seo': keywordDensityCalculatorSeoConfig,
   'seo-score-calculator': seoScoreCalculatorConfig,
   'backlink-ratio-calculator': backlinkRatioCalculatorConfig,
+  'domain-authority-estimator': domainAuthorityEstimatorConfig,
+  'impressions-calculator': impressionsCalculatorConfig,
+  'social-media-reach-calculator': socialMediaReachCalculatorConfig,
+  'engagement-rate-calculator': engagementRateCalculatorConfig,
+  'ad-frequency-calculator': adFrequencyCalculatorConfig,
+  'cpm-calculator': cpmCalculatorConfig,
+  'traffic-growth-calculator': trafficGrowthCalculatorConfig,
+  'organic-vs-paid-ratio-calculator': organicVsPaidRatioCalculatorConfig,
+  'serp-ctr-estimator': serpCtrEstimatorConfig,
+  'page-rank-estimator': pageRankEstimatorConfig,
+  'marketing-roi-calculator': marketingRoiCalculatorConfig,
+  'lead-conversion-funnel-calculator': leadConversionFunnelCalculatorConfig,
+  'keyword-difficulty-estimator': keywordDifficultyEstimatorConfig,
+  'ad-spend-calculator': adSpendCalculatorConfig,
 };
 
 
