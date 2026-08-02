@@ -394,6 +394,21 @@ import { rocAucCalculatorConfig } from "@/tools/roc-auc-calculator/config";
 import { confusionMatrixAnalyzerConfig } from "@/tools/confusion-matrix-analyzer/config";
 import { clusteringDistanceCalculatorConfig } from "@/tools/clustering-distance-calculator/config";
 import { dataCompressionRatioCalculatorConfig } from "@/tools/data-compression-ratio-calculator/config";
+import { encodingEfficiencyCalculatorConfig } from "@/tools/encoding-efficiency-calculator/config";
+import { seasonalityIndexCalculatorConfig } from "@/tools/seasonality-index-calculator/config";
+import { hadoopStorageCalculatorConfig } from "@/tools/hadoop-storage-calculator/config";
+import { dataPartitionCalculatorConfig } from "@/tools/data-partition-calculator/config";
+import { indexSizeCalculatorConfig } from "@/tools/index-size-calculator/config";
+import { cacheEfficiencyCalculatorConfig } from "@/tools/cache-efficiency-calculator/config";
+import { timeSeriesForecastCalculatorConfig } from "@/tools/time-series-forecast-calculator/config";
+import { bigDataThroughputCalculatorConfig } from "@/tools/big-data-throughput-calculator/config";
+import { clusterUtilizationCalculatorConfig } from "@/tools/cluster-utilization-calculator/config";
+import { sparkJobTimeCalculatorConfig } from "@/tools/spark-job-time-calculator/config";
+import { queryOptimizationCalculatorConfig } from "@/tools/query-optimization-calculator/config";
+import { dataSamplingCalculatorConfig } from "@/tools/data-sampling-calculator/config";
+import { percentileCalculatorConfig } from "@/tools/percentile-calculator/config";
+import { histogramBinCalculatorConfig } from "@/tools/histogram-bin-calculator/config";
+import { outlierDetectionCalculatorConfig } from "@/tools/outlier-detection-calculator/config";
 import { minMaxScalingCalculatorConfig } from "@/tools/min-max-scaling-calculator/config";
 
 export const TOOLS_REGISTRY = {
@@ -794,6 +809,21 @@ export const TOOLS_REGISTRY = {
   'confusion-matrix-analyzer': confusionMatrixAnalyzerConfig,
   'clustering-distance-calculator': clusteringDistanceCalculatorConfig,
   'data-compression-ratio-calculator': dataCompressionRatioCalculatorConfig,
+  'encoding-efficiency-calculator': encodingEfficiencyCalculatorConfig,
+  'seasonality-index-calculator': seasonalityIndexCalculatorConfig,
+  'hadoop-storage-calculator': hadoopStorageCalculatorConfig,
+  'data-partition-calculator': dataPartitionCalculatorConfig,
+  'index-size-calculator': indexSizeCalculatorConfig,
+  'cache-efficiency-calculator': cacheEfficiencyCalculatorConfig,
+  'time-series-forecast-calculator': timeSeriesForecastCalculatorConfig,
+  'big-data-throughput-calculator': bigDataThroughputCalculatorConfig,
+  'cluster-utilization-calculator': clusterUtilizationCalculatorConfig,
+  'spark-job-time-calculator': sparkJobTimeCalculatorConfig,
+  'query-optimization-calculator': queryOptimizationCalculatorConfig,
+  'data-sampling-calculator': dataSamplingCalculatorConfig,
+  'percentile-calculator': percentileCalculatorConfig,
+  'histogram-bin-calculator': histogramBinCalculatorConfig,
+  'outlier-detection-calculator': outlierDetectionCalculatorConfig,
 };
 
 
