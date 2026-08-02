@@ -352,9 +352,49 @@ import { serpCtrEstimatorConfig } from "@/tools/serp-ctr-estimator/config";
 import { pageRankEstimatorConfig } from "@/tools/page-rank-estimator/config";
 import { marketingRoiCalculatorConfig } from "@/tools/marketing-roi-calculator/config";
 import { leadConversionFunnelCalculatorConfig } from "@/tools/lead-conversion-funnel-calculator/config";
+import { retentionRateCalculatorConfig } from "@/tools/retention-rate-calculator/config";
 import { organicVsPaidRatioCalculatorConfig } from "@/tools/organic-vs-paid-ratio-calculator/config";
 import { keywordDifficultyEstimatorConfig } from "@/tools/keyword-difficulty-estimator/config";
 import { adSpendCalculatorConfig } from "@/tools/ad-spend-calculator/config";
+import { churnRateCalculatorConfig } from "@/tools/churn-rate-calculator/config";
+import { viralCoefficientCalculatorConfig } from "@/tools/viral-coefficient-calculator/config";
+import { pageSpeedScoreCalculatorConfig } from "@/tools/page-speed-score-calculator/config";
+import { sessionDurationCalculatorConfig } from "@/tools/session-duration-calculator/config";
+import { clickHeatmapDensityCalculatorConfig } from "@/tools/click-heatmap-density-calculator/config";
+import { storageRequirementCalculatorConfig } from "@/tools/storage-requirement-calculator/config";
+import { dataTransferCostCalculatorConfig } from "@/tools/data-transfer-cost-calculator/config";
+import { dataPipelineLatencyCalculatorConfig } from "@/tools/data-pipeline-latency-calculator/config";
+import { medianCalculatorConfig } from "@/tools/median-calculator/config";
+import { standardDeviationCalculatorConfig } from "@/tools/standard-deviation-calculator/config";
+import { correlationCoefficientCalculatorConfig } from "@/tools/correlation-coefficient-calculator/config";
+import { regressionCalculatorConfig } from "@/tools/regression-calculator/config";
+import { movingAverageCalculatorConfig } from "@/tools/moving-average-calculator/config";
+import { exponentialSmoothingCalculatorConfig } from "@/tools/exponential-smoothing-calculator/config";
+import { emailOpenRateCalculatorConfig } from "@/tools/email-open-rate-calculator/config";
+import { emailClickRateCalculatorConfig } from "@/tools/email-click-rate-calculator/config";
+import { scrollDepthCalculatorConfig } from "@/tools/scroll-depth-calculator/config";
+import { userGrowthRateCalculatorConfig } from "@/tools/user-growth-rate-calculator/config";
+import { dataGrowthCalculatorConfig } from "@/tools/data-growth-calculator/config";
+import { etlThroughputCalculatorConfig } from "@/tools/etl-throughput-calculator/config";
+import { meanCalculatorConfig } from "@/tools/mean-calculator/config";
+import { modeCalculatorConfig } from "@/tools/mode-calculator/config";
+import { varianceCalculatorConfig } from "@/tools/variance-calculator/config";
+import { zScoreCalculatorConfig } from "@/tools/z-score-calculator/config";
+import { sampleSizeCalculatorConfig } from "@/tools/sample-size-calculator/config";
+import { abTestCalculatorConfig } from "@/tools/a-b-test-calculator/config";
+import { chiSquareCalculatorConfig } from "@/tools/chi-square-calculator/config";
+import { confidenceIntervalCalculatorConfig } from "@/tools/confidence-interval-calculator/config";
+import { pValueCalculatorConfig } from "@/tools/p-value-calculator/config";
+import { dataNormalizationCalculatorConfig } from "@/tools/data-normalization-calculator/config";
+import { logTransformationCalculatorConfig } from "@/tools/log-transformation-calculator/config";
+import { precisionCalculatorConfig } from "@/tools/precision-calculator/config";
+import { recallCalculatorConfig } from "@/tools/recall-calculator/config";
+import { f1ScoreCalculatorAnalyticsConfig } from "@/tools/f1-score-calculator-analytics/config";
+import { rocAucCalculatorConfig } from "@/tools/roc-auc-calculator/config";
+import { confusionMatrixAnalyzerConfig } from "@/tools/confusion-matrix-analyzer/config";
+import { clusteringDistanceCalculatorConfig } from "@/tools/clustering-distance-calculator/config";
+import { dataCompressionRatioCalculatorConfig } from "@/tools/data-compression-ratio-calculator/config";
+import { minMaxScalingCalculatorConfig } from "@/tools/min-max-scaling-calculator/config";
 
 export const TOOLS_REGISTRY = {
   'word-counter': wordCounterConfig,
@@ -712,8 +752,48 @@ export const TOOLS_REGISTRY = {
   'page-rank-estimator': pageRankEstimatorConfig,
   'marketing-roi-calculator': marketingRoiCalculatorConfig,
   'lead-conversion-funnel-calculator': leadConversionFunnelCalculatorConfig,
+  'retention-rate-calculator': retentionRateCalculatorConfig,
   'keyword-difficulty-estimator': keywordDifficultyEstimatorConfig,
   'ad-spend-calculator': adSpendCalculatorConfig,
+  'churn-rate-calculator': churnRateCalculatorConfig,
+  'viral-coefficient-calculator': viralCoefficientCalculatorConfig,
+  'page-speed-score-calculator': pageSpeedScoreCalculatorConfig,
+  'session-duration-calculator': sessionDurationCalculatorConfig,
+  'click-heatmap-density-calculator': clickHeatmapDensityCalculatorConfig,
+  'storage-requirement-calculator': storageRequirementCalculatorConfig,
+  'data-transfer-cost-calculator': dataTransferCostCalculatorConfig,
+  'data-pipeline-latency-calculator': dataPipelineLatencyCalculatorConfig,
+  'median-calculator': medianCalculatorConfig,
+  'standard-deviation-calculator': standardDeviationCalculatorConfig,
+  'correlation-coefficient-calculator': correlationCoefficientCalculatorConfig,
+  'regression-calculator': regressionCalculatorConfig,
+  'moving-average-calculator': movingAverageCalculatorConfig,
+  'exponential-smoothing-calculator': exponentialSmoothingCalculatorConfig,
+  'email-open-rate-calculator': emailOpenRateCalculatorConfig,
+  'email-click-rate-calculator': emailClickRateCalculatorConfig,
+  'scroll-depth-calculator': scrollDepthCalculatorConfig,
+  'user-growth-rate-calculator': userGrowthRateCalculatorConfig,
+  'data-growth-calculator': dataGrowthCalculatorConfig,
+  'etl-throughput-calculator': etlThroughputCalculatorConfig,
+  'mean-calculator': meanCalculatorConfig,
+  'mode-calculator': modeCalculatorConfig,
+  'variance-calculator': varianceCalculatorConfig,
+  'z-score-calculator': zScoreCalculatorConfig,
+  'sample-size-calculator': sampleSizeCalculatorConfig,
+  'a-b-test-calculator': abTestCalculatorConfig,
+  'chi-square-calculator': chiSquareCalculatorConfig,
+  'confidence-interval-calculator': confidenceIntervalCalculatorConfig,
+  'p-value-calculator': pValueCalculatorConfig,
+  'data-normalization-calculator': dataNormalizationCalculatorConfig,
+  'log-transformation-calculator': logTransformationCalculatorConfig,
+  'min-max-scaling-calculator': minMaxScalingCalculatorConfig,
+  'precision-calculator': precisionCalculatorConfig,
+  'recall-calculator': recallCalculatorConfig,
+  'f1-score-calculator-analytics': f1ScoreCalculatorAnalyticsConfig,
+  'roc-auc-calculator': rocAucCalculatorConfig,
+  'confusion-matrix-analyzer': confusionMatrixAnalyzerConfig,
+  'clustering-distance-calculator': clusteringDistanceCalculatorConfig,
+  'data-compression-ratio-calculator': dataCompressionRatioCalculatorConfig,
 };
 
 
