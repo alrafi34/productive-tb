@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const transformerCurrentCalculatorConfig = {
   name: "Transformer Current Calculator",
   slug: "transformer-current-calculator",
@@ -13,25 +15,57 @@ export const transformerCurrentCalculatorConfig = {
     "three phase current",
     "power to current conversion",
     "electrical current calculator",
-    "transformer load calculator"
+    "transformer load calculator",
+    "transformer current formula calculator",
+    "calculate transformer current",
+    "full load current calculator",
+    "motor current calculator",
+    "3 phase current from kw",
+    "free transformer current calculator",
+    "electrical engineering calculator",
   ],
   seo: {
-    title: "Transformer Current Calculator – Calculate Primary & Secondary Current",
-    description: "Free online transformer current calculator. Calculate primary and secondary current for single-phase and three-phase systems instantly with accurate formulas.",
-    keywords: "transformer current calculator, electrical current, single phase, three phase, power factor, current calculation",
-    og: {
-      title: "Transformer Current Calculator – Free Electrical Tool",
-      description: "Calculate transformer current instantly for single and three-phase systems. Free tool for engineers and students.",
+    title: "Transformer Current Calculator — Primary & Secondary A | Productive Toolbox",
+    description: "Calculate transformer primary and secondary current for single-phase and three-phase systems. Free calculator with power factor support.",
+    keywords: "transformer current calculator, single phase current, three phase current, full load current calculator, motor current calculator",
+    openGraph: {
+      title: "Transformer Current Calculator — Primary & Secondary A",
+      description: "Calculate transformer and circuit current for single-phase and three-phase systems from power, voltage, and power factor.",
       type: "website",
-      url: "/tools/electrical/transformer-current-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/transformer-current-calculator`,
+    },
+    og: {
+      title: "Transformer Current Calculator — Primary & Secondary A",
+      description: "Calculate transformer and circuit current for single-phase and three-phase systems from power, voltage, and power factor.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/transformer-current-calculator`,
+    },
+    howToSteps: [
+      { name: "Select Single-Phase or Three-Phase", text: "Choose the system configuration matching your transformer or circuit." },
+      { name: "Enter Power", text: "Input the real power in watts (W) that the transformer or load draws." },
+      { name: "Enter Voltage", text: "Input the line voltage in volts (V)." },
+      { name: "Enter Power Factor", text: "Input the load's power factor as a decimal between 0 and 1." },
+      { name: "Read the Calculated Current", text: "View primary, secondary, and (for three-phase) line current from the same inputs." },
+    ],
+    faq: [
+      { q: "What is a transformer current calculator?", a: "A free online tool that computes transformer or circuit current from power, voltage, and power factor, for single-phase or three-phase systems." },
+      { q: "What is the formula for single-phase current?", a: "I = P ÷ (V × PF). A 5,000W load at 230V, PF 0.9 draws I = 5,000 ÷ (230 × 0.9) ≈ 24.15A." },
+      { q: "What is the formula for three-phase current?", a: "I = P ÷ (√3 × V × PF). A 10,000W load at 400V, PF 0.85 draws I = 10,000 ÷ (1.732 × 400 × 0.85) ≈ 16.98A." },
+      { q: "Why is three-phase current lower than single-phase for the same power?", a: "Three-phase power is delivered across three conductors; the √3 factor reflects that shared delivery, giving lower per-line current for the same total power." },
+      { q: "What is the difference between primary and secondary current?", a: "Primary current is at the source-connected winding; secondary is at the load-connected winding. Their ratio is the inverse of the voltage/turns ratio." },
+      { q: "How do I calculate motor current from kW rating?", a: "Convert kW to W, then I = P ÷ (√3 × V × PF) for three-phase. A 15kW motor at 415V, PF 0.85 draws ≈24.55A." },
+      { q: "Why does power factor affect calculated current?", a: "Lower power factor means more current is needed for the same real power, since PF appears in the denominator of the current formula." },
+      { q: "How do I choose single-phase or three-phase mode?", a: "Single-phase for residential/light commercial loads (110-240V). Three-phase for industrial motors and commercial buildings (380-480V)." },
+      { q: "How does this relate to cable and breaker sizing?", a: "This gives base continuous current. Real sizing applies a 1.25× continuous-load margin and ambient/derating factors on top." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, voltage, and power factor values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "transformer-turns-ratio-calculator",
     "transformer-efficiency-calculator",
     "three-phase-power-calculator",
-    "power-factor-calculator"
-  ]
+    "wire-size-calculator",
+  ],
 };
 
 export const toolConfig = transformerCurrentCalculatorConfig;

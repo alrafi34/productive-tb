@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const transformerTurnsRatioCalculatorConfig = {
   name: "Transformer Turns Ratio Calculator",
   slug: "transformer-turns-ratio-calculator",
@@ -14,25 +16,58 @@ export const transformerTurnsRatioCalculatorConfig = {
     "electrical engineering calculator",
     "transformer design calculator",
     "step up transformer calculator",
-    "step down transformer calculator"
+    "step down transformer calculator",
+    "transformer turns ratio formula",
+    "calculate transformer turns ratio",
+    "primary secondary turns calculator",
+    "transformer voltage calculator",
+    "transformer current ratio calculator",
+    "free transformer calculator",
+    "np ns vp vs calculator",
   ],
   seo: {
-    title: "Transformer Turns Ratio Calculator – Calculate Voltage & Current Ratio",
-    description: "Free online transformer turns ratio calculator. Calculate voltage ratio, current ratio, and turns ratio instantly. Perfect for electrical engineers, students, and technicians.",
-    keywords: "transformer calculator, turns ratio, voltage ratio, current ratio, electrical engineering, transformer design",
-    og: {
-      title: "Transformer Turns Ratio Calculator – Free Electrical Tool",
-      description: "Calculate transformer turns ratio, voltage ratio, and current ratio instantly. Free tool for engineers and students.",
+    title: "Transformer Turns Ratio Calculator — Voltage & Current Ratio | Productive Toolbox",
+    description: "Calculate transformer turns ratio, voltage ratio, and current ratio from primary and secondary values. Free calculator with presets.",
+    keywords: "transformer calculator, turns ratio calculator, voltage ratio calculator, step up transformer calculator, step down transformer calculator, transformer formula",
+    openGraph: {
+      title: "Transformer Turns Ratio Calculator — Voltage & Current Ratio",
+      description: "Calculate turns ratio, voltage ratio, and current ratio for transformers, solving from any combination of primary and secondary values.",
       type: "website",
-      url: "/tools/electrical/transformer-turns-ratio-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/transformer-turns-ratio-calculator`,
+    },
+    og: {
+      title: "Transformer Turns Ratio Calculator — Voltage & Current Ratio",
+      description: "Calculate turns ratio, voltage ratio, and current ratio for transformers, solving from any combination of primary and secondary values.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/transformer-turns-ratio-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Known Voltage Values", text: "Input primary voltage, secondary voltage, or both, depending on what you know." },
+      { name: "Enter Known Turns Values", text: "Input primary turns, secondary turns, or both, if known from a specification or nameplate." },
+      { name: "Provide at Least Two Known Values", text: "The calculator needs both voltages, both turns counts, or one voltage plus both turns counts." },
+      { name: "Read the Ratios", text: "View turns ratio, voltage ratio, and current ratio in both decimal and x:1 format." },
+      { name: "Check Calculated Missing Values", text: "See any derived voltage or turns values the calculator computed from your inputs." },
+    ],
+    faq: [
+      { q: "What is a transformer turns ratio calculator?", a: "A free online tool that computes the relationship between a transformer's primary and secondary windings — turns ratio, voltage ratio, and current ratio — from any workable combination of known values." },
+      { q: "What is the transformer turns ratio formula?", a: "Turns Ratio = Np ÷ Ns = Vp ÷ Vs = Is ÷ Ip. A transformer with 1,000 primary and 500 secondary turns has a 2:1 ratio (step-down)." },
+      { q: "How do I calculate secondary voltage from turns ratio?", a: "Vs = Vp ÷ (Np ÷ Ns). With Np=1,150, Ns=60, Vp=230V: turns ratio = 19.17, so Vs = 230 ÷ 19.17 ≈ 12V." },
+      { q: "Why does current increase when voltage decreases in a step-down transformer?", a: "Power is conserved: Vp × Ip ≈ Vs × Is. Halving voltage roughly doubles current — the current ratio is the inverse of the voltage ratio." },
+      { q: "What is the difference between a step-up and step-down transformer?", a: "Step-down has Np > Ns, lowering secondary voltage. Step-up has Np < Ns, raising secondary voltage — used in transmission to reduce line losses." },
+      { q: "What is a 1:1 isolation transformer used for?", a: "Same voltage on both sides but electrical isolation between primary and secondary circuits, only magnetically coupled — used for safety and noise reduction." },
+      { q: "How do I calculate turns ratio if I only know two voltages?", a: "Turns Ratio = Vp ÷ Vs directly, since voltage ratio equals turns ratio in an ideal transformer." },
+      { q: "Can I calculate turns needed if I know one winding's turns and both voltages?", a: "Yes. Calculate turns ratio = Vp ÷ Vs, then the other winding's turns = known turns ÷ or × turns ratio, depending on which side is known." },
+      { q: "How is turns ratio used in power distribution transformers?", a: "Utility transformers step 11kV down to 415V using a large turns ratio — roughly 26.5:1 — to convert transmission voltage to usable distribution levels." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage and turns values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "voltage-divider-calculator",
     "power-factor-calculator",
     "impedance-calculator",
-    "ohms-law-calculator"
-  ]
+    "ohms-law-calculator",
+    "three-phase-power-calculator",
+  ],
 };
 
 export const toolConfig = transformerTurnsRatioCalculatorConfig;

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const apparentPowerCalculatorConfig = {
   name: "Apparent Power Calculator",
   slug: "apparent-power-calculator",
@@ -13,24 +15,57 @@ export const apparentPowerCalculatorConfig = {
     "electrical power calculator",
     "voltage current calculator",
     "power calculation tool",
-    "electrical engineering calculator"
+    "electrical engineering calculator",
+    "apparent power formula calculator",
+    "s = vi calculator",
+    "calculate apparent power",
+    "kva calculator",
+    "va to kva calculator",
+    "generator sizing calculator",
+    "free apparent power calculator",
   ],
   seo: {
-    title: "Apparent Power Calculator (VA) – Free Electrical Calculator Online",
-    description: "Calculate apparent power (VA) instantly using voltage and current. Free online electrical calculator for engineers, students, and electricians. Fast, accurate, and browser-based.",
-    keywords: "apparent power calculator, VA calculator, electrical power calculator, voltage current calculator, electrical engineering tool",
-    og: {
-      title: "Apparent Power Calculator – Calculate VA Instantly",
-      description: "Calculate apparent power (VA) from voltage and current with instant results. Free tool for electrical engineers and students.",
+    title: "Apparent Power Calculator — S = V × I (VA) Calculator | Productive Toolbox",
+    description: "Calculate apparent power (VA) instantly from voltage and current. Free calculator for generator, UPS, and cable sizing decisions.",
+    keywords: "apparent power calculator, VA calculator, volt ampere calculator, kva calculator, electrical power calculator, generator sizing calculator",
+    openGraph: {
+      title: "Apparent Power Calculator — S = V × I (VA) Calculator",
+      description: "Calculate apparent power (VA/kVA) from voltage and current for generator, UPS, transformer, and cable sizing.",
       type: "website",
-      url: "/tools/electrical/apparent-power-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/apparent-power-calculator`,
+    },
+    og: {
+      title: "Apparent Power Calculator — S = V × I (VA) Calculator",
+      description: "Calculate apparent power (VA/kVA) from voltage and current for generator, UPS, transformer, and cable sizing.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/apparent-power-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Voltage", text: "Input the supply voltage in volts (V) for the circuit or load." },
+      { name: "Enter Current", text: "Input the current drawn by the load in amps (A)." },
+      { name: "Read the Apparent Power Result", text: "View apparent power in VA, automatically formatted to kVA or MVA for larger values." },
+      { name: "Review the Step-by-Step Calculation", text: "See how voltage and current combine using S = V × I." },
+      { name: "Apply a Preset", text: "Use a built-in preset spanning residential circuits to industrial three-phase and DC loads." },
+    ],
+    faq: [
+      { q: "What is an apparent power calculator?", a: "A free online tool that computes the total power a supply must deliver to an AC circuit, using S = V × I, measured in volt-amperes (VA)." },
+      { q: "What is the formula for apparent power?", a: "S = V × I. A 230V circuit drawing 10A has apparent power of S = 230 × 10 = 2,300VA (2.3kVA)." },
+      { q: "What is the difference between apparent power and real power?", a: "Apparent power (VA) is total power delivered, S = V × I. Real power (W) is useful work, P = V × I × PF. Equal only at unity power factor." },
+      { q: "Why is apparent power used for sizing generators, transformers, and cables?", a: "These components must carry the full current a load draws, which is exactly what S = V × I measures, independent of power factor." },
+      { q: "How do I convert apparent power to real power?", a: "P = S × PF. A 2,300VA circuit at PF 0.8 has real power of P = 2,300 × 0.8 = 1,840W." },
+      { q: "Why does apparent power matter for utility billing?", a: "Many commercial/industrial tariffs bill demand charges based on kVA rather than kW, since infrastructure must be sized for full current draw, not just useful power." },
+      { q: "How do I calculate apparent power for three-phase?", a: "S = √3 × V_line × I_line for a balanced three-phase system. Multiply the single-phase result by √3 (≈1.732)." },
+      { q: "What is the maximum current for a given apparent power rating?", a: "I = S ÷ V. A 1,500VA device on 120V draws a maximum of 1,500 ÷ 120 = 12.5A." },
+      { q: "Why is apparent power always ≥ real power?", a: "Apparent power is the hypotenuse of the power triangle (S² = P² + Q²), always at least as large as either leg. PF = P/S can never exceed 1.0." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage and current values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "real-power-calculator",
+    "reactive-power-calculator",
     "power-factor-calculator",
-    "voltage-divider-calculator"
-  ]
+    "three-phase-power-calculator",
+  ],
 };
 
 export const toolConfig = apparentPowerCalculatorConfig;

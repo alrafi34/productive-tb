@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const zenerDiodeCalculatorConfig = {
   name: "Zener Diode Calculator",
   slug: "zener-diode-calculator",
@@ -13,25 +15,56 @@ export const zenerDiodeCalculatorConfig = {
     "voltage regulation calculator",
     "zener power dissipation",
     "circuit design calculator",
-    "electronics calculator"
+    "electronics calculator",
+    "zener diode formula calculator",
+    "shunt regulator calculator",
+    "calculate zener current",
+    "zener series resistor calculator",
+    "free zener diode calculator",
+    "zener diode circuit design",
   ],
   seo: {
-    title: "Zener Diode Calculator – Voltage Regulator Circuit Calculator Online",
-    description: "Free Zener diode calculator. Calculate voltage regulation, current, and power dissipation instantly. Perfect for circuit design with step-by-step calculations and real-time results.",
-    keywords: "zener diode calculator, voltage regulator calculator, zener current calculation, electronics calculator, circuit design tool",
-    og: {
-      title: "Zener Diode Calculator – Free Electrical Tool",
-      description: "Calculate Zener diode voltage regulation parameters instantly. Free tool for circuit design and analysis.",
+    title: "Zener Diode Calculator — Voltage Regulator Circuit Tool | Productive Toolbox",
+    description: "Calculate Zener diode voltage regulation, current, and power dissipation for shunt regulator circuit design. Free calculator.",
+    keywords: "zener diode calculator, voltage regulator calculator, zener current calculation, zener power dissipation, shunt regulator calculator",
+    openGraph: {
+      title: "Zener Diode Calculator — Voltage Regulator Circuit Tool",
+      description: "Calculate total, load, and Zener current, power dissipation, and regulation status for a Zener diode shunt regulator circuit.",
       type: "website",
-      url: "/tools/electrical/zener-diode-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/zener-diode-calculator`,
+    },
+    og: {
+      title: "Zener Diode Calculator — Voltage Regulator Circuit Tool",
+      description: "Calculate total, load, and Zener current, power dissipation, and regulation status for a Zener diode shunt regulator circuit.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/zener-diode-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Input Voltage", text: "Input the unregulated supply voltage feeding the circuit." },
+      { name: "Enter Zener Voltage", text: "Input the Zener diode's rated breakdown voltage." },
+      { name: "Enter Series Resistor Value", text: "Input the resistor connecting input voltage to the Zener and load." },
+      { name: "Enter Load Resistance or Current", text: "Input the load's resistance or its current directly if known." },
+      { name: "Review Results and Regulation Status", text: "See current and power breakdown, plus whether the circuit is stable, warning, or unstable." },
+    ],
+    faq: [
+      { q: "What is a Zener diode calculator?", a: "A free online tool that analyzes a Zener shunt regulator circuit, computing total current, load current, Zener current, power dissipation, and regulation status." },
+      { q: "How does a Zener diode voltage regulator work?", a: "A series resistor feeds input voltage to a reverse-biased Zener diode with the load in parallel. The Zener holds a nearly constant voltage as long as enough current flows to stay in its breakdown region." },
+      { q: "What is the formula for Zener circuit current?", a: "I_total = (Vin−Vz)÷Rs. IL = Vz÷RL. Iz = I_total−IL. For Vin=12V, Vz=5.1V, Rs=220Ω, RL=1,000Ω: Iz ≈ 26.3mA." },
+      { q: "Why does the Zener need a minimum current?", a: "Below the minimum (often ~5mA), the diode's voltage becomes unstable and no longer reliably holds its rated Zener voltage." },
+      { q: "What happens if the load draws too much current?", a: "Zener current drops toward zero or negative, meaning the Zener stops conducting and regulation fails — output voltage sags and varies with load." },
+      { q: "How do I calculate Zener power dissipation?", a: "Pz = Vz × Iz. A 5.1V Zener at 26.3mA dissipates ≈0.134W — must stay below the diode's max rating (often 0.5W)." },
+      { q: "How do I size the series resistor?", a: "Size so minimum load current keeps Zener current above its minimum, and maximum load current keeps Zener power below its rated maximum — check both extremes." },
+      { q: "Why use a Zener regulator instead of a linear IC?", a: "Simple and cheap but inefficient (resistor always dissipates power) with poor load regulation — best for low-current reference or protection circuits, not general power supplies." },
+      { q: "What does 'unstable' or 'warning' status mean?", a: "'Unstable' means Zener current is below minimum or negative (regulation failed). 'Warning' means power exceeds maximum rating. 'Stable' means both constraints are satisfied." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, resistance, and current values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "diode-calculator",
     "led-resistor-calculator",
     "voltage-divider-calculator",
-    "ohms-law-calculator"
-  ]
+    "ohms-law-calculator",
+  ],
 };
 
 export const toolConfig = zenerDiodeCalculatorConfig;

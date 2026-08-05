@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const energyConsumptionCalculatorConfig = {
   name: "Energy Consumption Calculator",
   slug: "energy-consumption-calculator",
@@ -8,28 +10,68 @@ export const energyConsumptionCalculatorConfig = {
   featured: false,
   keywords: [
     "energy consumption calculator",
-    "kWh calculator",
+    "kwh calculator",
     "electricity usage calculator",
     "power consumption calculator",
     "energy cost estimator",
     "electricity bill calculator",
     "appliance energy calculator",
-    "wattage calculator"
+    "wattage calculator",
+    "kilowatt hour calculator",
+    "calculate electricity cost",
+    "appliance power consumption calculator",
+    "home energy usage calculator",
+    "electricity cost calculator per appliance",
+    "how much electricity does my appliance use",
+    "monthly electricity cost calculator",
+    "watts to kwh calculator",
+    "electricity usage estimator",
+    "power to energy calculator",
+    "free energy calculator",
+    "household energy calculator",
   ],
   seo: {
-    title: "Energy Consumption Calculator – Calculate kWh & Electricity Cost Online",
-    description: "Calculate energy consumption in kWh easily. Estimate electricity costs for appliances using power, time, and usage. Free online energy calculator with multiple appliances support.",
-    keywords: "energy consumption calculator, kWh calculator, electricity usage calculator, power consumption calculator, energy cost estimator, electricity bill calculator",
-    og: {
-      title: "Energy Consumption Calculator – Free kWh & Cost Estimation Tool",
-      description: "Calculate energy consumption and estimate electricity costs instantly with detailed breakdowns and export options.",
+    title: "Energy Consumption Calculator — Free kWh & Cost Calculator | Productive Toolbox",
+    description: "Calculate energy consumption in kWh and estimate electricity costs for any appliance. Free calculator with presets, multi-device support, and history.",
+    keywords: "energy consumption calculator, kwh calculator, electricity usage calculator, power consumption calculator, energy cost estimator, appliance energy calculator",
+    openGraph: {
+      title: "Energy Consumption Calculator — Free kWh & Cost Calculator",
+      description: "Calculate kWh energy use and electricity cost for any appliance. Multi-device support, appliance presets, CSV export, and calculation history.",
       type: "website",
-      url: "/tools/electrical/energy-consumption-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/energy-consumption-calculator`,
+    },
+    og: {
+      title: "Energy Consumption Calculator — Free kWh & Cost Calculator",
+      description: "Calculate kWh energy use and electricity cost for any appliance. Multi-device support, appliance presets, CSV export, and calculation history.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/energy-consumption-calculator`,
+    },
+    howToSteps: [
+      { name: "Add an Appliance", text: "Click add appliance, or choose from built-in presets covering lighting, cooling, kitchen, and entertainment devices with typical wattage pre-filled." },
+      { name: "Enter Power Rating", text: "Type the appliance's wattage from its nameplate or manual, or use the auto-filled preset value." },
+      { name: "Set Daily Usage Time", text: "Enter hours and minutes of typical daily use, plus quantity if you have more than one of the same device." },
+      { name: "Enter Your Electricity Rate", text: "Input your cost per kWh from a recent electricity bill so the cost estimate matches your actual utility pricing." },
+      { name: "Review Daily, Monthly, and Yearly Totals", text: "The results panel shows combined energy in kWh and cost across all appliances, plus the largest single contributor." },
+    ],
+    faq: [
+      { q: "What is an energy consumption calculator?", a: "A free online tool that converts an appliance's power rating and usage time into kilowatt-hours (kWh) and estimated electricity cost, for one device or a full appliance list." },
+      { q: "How is energy consumption calculated?", a: "Energy (kWh) = Power (W) × Time (hours) ÷ 1000. A 1,500W kettle running 0.5 hours uses 1,500 × 0.5 ÷ 1000 = 0.75 kWh. Multiply by quantity, then by rate per kWh for cost." },
+      { q: "What is a kilowatt-hour (kWh)?", a: "A kilowatt-hour is the energy used by a 1,000-watt load running for one hour — the unit electricity providers bill on. A 100W device running 10 hours also uses 1 kWh." },
+      { q: "What is a typical electricity rate to use?", a: "Rates vary by location and provider, typically $0.10-$0.35 per kWh. In the US the national average is around $0.12-$0.17 per kWh — check a recent bill for your exact rate." },
+      { q: "How do I calculate energy for multiple appliances?", a: "Add each appliance with its own power, hours, minutes, and quantity. The calculator sums them into combined daily, monthly, and yearly totals and flags the largest contributor." },
+      { q: "What is the difference between running wattage and rated wattage?", a: "Rated wattage on a nameplate is usually the maximum draw. Compressor-based appliances like refrigerators and ACs cycle on and off, so average running wattage is often 30-50% lower than the nameplate figure." },
+      { q: "How much does it cost to run an air conditioner for a month?", a: "A 1,800W unit running 8 hours/day uses 14.4 kWh/day, or 432 kWh/month. At $0.14/kWh that's about $60.48/month — enter your unit's actual wattage and hours for a precise figure." },
+      { q: "Why does my calculated cost not match my electricity bill?", a: "Bills include fixed service charges, taxes, and sometimes tiered or time-of-use rates. This calculator estimates only the variable energy cost of the appliances you enter." },
+      { q: "How can I reduce my appliance energy consumption?", a: "Replace incandescent lighting with LEDs (about 80% less energy), reduce AC and water heater run time, unplug standby devices, and run washing machines and dishwashers with full loads." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your appliance list, power ratings, and electricity rate are never transmitted to any server." },
+    ],
   },
   relatedTools: [
-    "ohms-law-calculator",
+    "electric-bill-calculator",
     "power-calculator-electrical",
-    "electric-bill-calculator"
-  ]
+    "ohms-law-calculator",
+    "air-conditioner-power-calculator",
+    "solar-panel-calculator",
+    "wire-size-calculator",
+  ],
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const batteryCapacityCalculatorConfig = {
   name: "Battery Capacity Calculator",
   slug: "battery-capacity-calculator",
@@ -13,25 +15,57 @@ export const batteryCapacityCalculatorConfig = {
     "battery backup calculator",
     "solar battery calculator",
     "battery size calculator",
-    "inverter battery calculator"
+    "inverter battery calculator",
+    "battery capacity formula calculator",
+    "calculate battery ah needed",
+    "watt hours to amp hours calculator",
+    "lifepo4 battery calculator",
+    "lithium battery capacity calculator",
+    "free battery capacity calculator",
+    "solar battery sizing calculator",
   ],
   seo: {
-    title: "Battery Capacity Calculator – Calculate Ah, Wh & Backup Time",
-    description: "Free online battery capacity calculator. Calculate required battery size in Ah and Wh for backup power, solar systems, inverters, and electronics with instant results.",
-    keywords: "battery capacity calculator, Ah calculator, Wh calculator, battery backup, solar battery sizing, inverter battery",
-    og: {
-      title: "Battery Capacity Calculator – Free Electrical Tool",
-      description: "Calculate battery capacity instantly for backup power, solar systems, and electronics. Free tool with Ah and Wh calculations.",
+    title: "Battery Capacity Calculator — Ah & Wh Sizing Tool | Productive Toolbox",
+    description: "Calculate required battery capacity in Ah and Wh for backup power and solar systems. Free calculator with efficiency adjustment.",
+    keywords: "battery capacity calculator, Ah calculator, Wh calculator, battery backup calculator, solar battery calculator, battery size calculator",
+    openGraph: {
+      title: "Battery Capacity Calculator — Ah & Wh Sizing Tool",
+      description: "Calculate required battery capacity in Ah and Wh from load power, voltage, and runtime, with efficiency adjustment by battery type.",
       type: "website",
-      url: "/tools/electrical/battery-capacity-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/battery-capacity-calculator`,
+    },
+    og: {
+      title: "Battery Capacity Calculator — Ah & Wh Sizing Tool",
+      description: "Calculate required battery capacity in Ah and Wh from load power, voltage, and runtime, with efficiency adjustment by battery type.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/battery-capacity-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Load Power", text: "Input the total power in watts (W) that the connected equipment draws." },
+      { name: "Enter Battery Voltage", text: "Input the nominal battery voltage — commonly 12V, 24V, or 48V." },
+      { name: "Enter Desired Runtime", text: "Input how many hours the load needs to run on battery power." },
+      { name: "Select Battery Type", text: "Choose lead-acid, lithium-ion, or LiFePO4 — each has a different default efficiency." },
+      { name: "Read the Required Capacity", text: "View ideal and efficiency-adjusted capacity (Ah), plus energy (Wh) and discharge current (A)." },
+    ],
+    faq: [
+      { q: "What is a battery capacity calculator?", a: "A free online tool that computes required battery size in Ah and Wh to power a load for a target runtime, adjusted for battery type efficiency." },
+      { q: "What is the formula for battery capacity?", a: "Energy (Wh) = Power × Runtime. Capacity (Ah) = Energy ÷ Voltage. A 100W load for 5 hours at 12V needs 500Wh, or 41.67Ah ideal." },
+      { q: "Why do I need to adjust for efficiency?", a: "Real systems lose energy to internal resistance and conversion losses. Adjusted Capacity = Ideal ÷ Efficiency. At 80% efficiency, 41.67Ah becomes 52.08Ah." },
+      { q: "What efficiency should I use for different battery types?", a: "Lead-acid ~80%, lithium-ion ~90%, LiFePO4 ~95% — LiFePO4 is among the most efficient common chemistries." },
+      { q: "How do I calculate discharge current?", a: "Current (A) = Power ÷ Voltage. A 300W load on 24V draws 12.5A — check this against the battery's max discharge rating." },
+      { q: "Why does battery voltage matter for sizing?", a: "Higher voltage needs fewer Ah for the same power and runtime, since Ah = Wh ÷ V — larger systems often use 24V or 48V to reduce Ah and current." },
+      { q: "How much capacity for an 8-hour LED backup?", a: "60W at 12V for 8 hours: 480Wh, 40Ah ideal, 50Ah adjusted at 80% lead-acid efficiency." },
+      { q: "Should I size to exactly the calculated capacity?", a: "No, add 20-30% margin — regularly discharging to 100% shortens cycle life, especially for lead-acid batteries." },
+      { q: "How is this different from a battery backup time calculator?", a: "This solves for required capacity given a target runtime. A backup time calculator solves the reverse: how long an existing battery lasts under a load." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, voltage, runtime, and battery type are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "battery-backup-time-calculator",
     "battery-charging-time-calculator",
+    "solar-battery-calculator",
     "energy-consumption-calculator",
-    "solar-battery-calculator"
-  ]
+  ],
 };
 
 export const toolConfig = batteryCapacityCalculatorConfig;

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const electricBillCalculatorConfig = {
   name: "Electric Bill Calculator",
   slug: "electric-bill-calculator",
@@ -8,27 +10,67 @@ export const electricBillCalculatorConfig = {
   featured: false,
   keywords: [
     "electric bill calculator",
+    "electricity bill calculator",
     "electricity cost calculator",
-    "power consumption calculator",
-    "kWh cost calculator",
+    "kwh cost calculator",
     "energy bill estimator",
     "electricity bill estimator",
-    "utility bill calculator"
+    "utility bill calculator",
+    "tiered electricity rate calculator",
+    "slab rate electricity calculator",
+    "flat rate electricity calculator",
+    "electricity tariff calculator",
+    "calculate electricity bill from units",
+    "bangladesh electricity bill calculator",
+    "india electricity bill calculator",
+    "electricity bill calculator with tax",
+    "monthly electricity bill calculator",
+    "free electric bill calculator",
+    "electricity bill breakdown calculator",
+    "commercial electricity bill calculator",
+    "kwh to bill calculator",
   ],
   seo: {
-    title: "Electric Bill Calculator – Estimate Your Electricity Cost Instantly",
-    description: "Calculate your electricity bill easily using our free electric bill calculator. Support for slab rates, taxes, and detailed cost breakdown. Fast, accurate, and easy to use.",
-    keywords: "electric bill calculator, electricity cost calculator, power consumption calculator, kWh cost calculator, energy bill estimator",
-    og: {
-      title: "Electric Bill Calculator – Free Electricity Cost Estimator",
-      description: "Estimate your electricity bill instantly with detailed breakdown and export options.",
+    title: "Electric Bill Calculator — Flat & Tiered Rate Calculator | Productive Toolbox",
+    description: "Calculate your electricity bill with flat or tiered rates, service charges, and tax. Free calculator with multi-currency support and tariff presets.",
+    keywords: "electric bill calculator, electricity bill calculator, electricity cost calculator, kwh cost calculator, tiered electricity rate calculator, utility bill calculator",
+    openGraph: {
+      title: "Electric Bill Calculator — Flat & Tiered Rate Calculator",
+      description: "Estimate your electricity bill with flat or tiered slab rates, service charges, and tax. Multi-currency support and built-in tariff presets.",
       type: "website",
-      url: "/tools/calculator/electric-bill-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/electric-bill-calculator`,
+    },
+    og: {
+      title: "Electric Bill Calculator — Flat & Tiered Rate Calculator",
+      description: "Estimate your electricity bill with flat or tiered slab rates, service charges, and tax. Multi-currency support and built-in tariff presets.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/electric-bill-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Your Consumption", text: "Input your electricity usage in kWh for the billing period, found on a past bill or meter reading difference." },
+      { name: "Select a Billing Type", text: "Choose Flat Rate for a single price per unit, or Tiered (Slab) for different rates across consumption bands." },
+      { name: "Set Your Rates", text: "Enter the flat rate per kWh, or configure each tiered band's minimum, maximum, and rate — or start from a built-in preset." },
+      { name: "Add Fixed Charges and Tax", text: "Enter service charge, meter charge, and tax percentage so the total matches your actual bill structure." },
+      { name: "Review the Breakdown", text: "See cost per tier, the subtotal, tax amount, and final total bill in your selected currency." },
+    ],
+    faq: [
+      { q: "What is an electric bill calculator?", a: "A free online tool that estimates total electricity cost from kWh usage, billing type, and charges. Supports flat-rate billing and tiered (slab) billing, plus service charges, meter charges, and tax." },
+      { q: "How is an electricity bill calculated?", a: "Flat rate: Total = (Units × Rate) + Service Charge + Meter Charge + Tax. Tiered: each consumption band is charged at its own rate and summed before fixed charges and tax are added." },
+      { q: "What is the difference between flat rate and tiered (slab) billing?", a: "Flat rate charges the same price per kWh regardless of usage. Tiered billing splits usage into bands charged at increasing rates, so heavier consumption costs progressively more per unit." },
+      { q: "How do I find my electricity consumption in kWh?", a: "Check your bill for the 'Units Consumed' or 'kWh Used' figure, or read your meter at the start and end of a period and subtract the two readings." },
+      { q: "What is the difference between kW and kWh?", a: "kW measures power — the rate of electricity use at a given moment. kWh measures energy used over time, and is what your bill is based on. A 1kW appliance running 1 hour uses 1 kWh." },
+      { q: "Why do utilities use tiered billing instead of a flat rate?", a: "Tiered billing keeps electricity affordable for low-usage households while discouraging excessive consumption, since each additional usage band raises the marginal per-unit cost." },
+      { q: "What are service charges and meter charges?", a: "A service charge is a fixed monthly fee for grid maintenance and account administration. A meter charge covers meter reading and upkeep. Both are added on top of energy cost before tax." },
+      { q: "Can I use this for commercial billing?", a: "Yes. Enter your commercial flat rate or set up the slab structure from your utility's commercial tariff schedule. Demand charges, if any, are not modeled separately." },
+      { q: "How accurate is this calculator compared to my actual bill?", a: "It applies the exact rates and charges you enter, matching your utility's math closely. Small differences can come from rounding, extra regulatory fees, or mid-cycle rate changes." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your usage figures, rate structure, and history are never transmitted to any server." },
+    ],
   },
   relatedTools: [
-    "percentage-calculator",
-    "discount-calculator",
-    "tip-calculator"
-  ]
+    "energy-consumption-calculator",
+    "power-calculator-electrical",
+    "solar-panel-calculator",
+    "air-conditioner-power-calculator",
+    "wire-size-calculator",
+  ],
 };

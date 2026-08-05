@@ -1,241 +1,310 @@
 export default function TransformerEfficiencyCalculatorSEO() {
+  const faqItems = [
+    {
+      q: "What is a transformer efficiency calculator?",
+      a: "A transformer efficiency calculator is a free online tool that computes how much of the power fed into a transformer actually reaches the output, expressed as a percentage. It supports three calculation paths: from input and output power directly, from voltage, current, and power factor plus output power, or from output power and known losses.",
+    },
+    {
+      q: "What is the formula for transformer efficiency?",
+      a: "Efficiency (η) = (Output Power ÷ Input Power) × 100. For example, a transformer with 1,000W input and 950W output has efficiency η = (950 ÷ 1,000) × 100 = 95%. The remaining 5% (50W) is lost as heat in the windings and core.",
+    },
+    {
+      q: "How do I calculate transformer losses?",
+      a: "Losses = Input Power − Output Power. A transformer with 1,000W input and 950W output has losses of 50W. Alternatively, if you know output power and losses directly, Input Power = Output Power + Losses.",
+    },
+    {
+      q: "What is a good transformer efficiency?",
+      a: "98% or above is excellent (typical of modern high-efficiency distribution transformers), 95-97% is very good, 90-94% is good, 85-89% is fair, 80-84% is poor, and below 80% is very poor and likely due for replacement. Even small percentage differences matter at scale — a large distribution transformer running continuously at 95% versus 98% efficiency wastes significantly more energy as heat over a year.",
+    },
+    {
+      q: "What causes power losses in a transformer?",
+      a: "Two main types: copper losses (I²R heating in the winding resistance, which scale with the square of load current) and core losses (hysteresis and eddy current losses in the iron core, which are roughly constant regardless of load). Copper losses dominate at high load; core losses dominate at light load, which is why transformer efficiency typically peaks somewhere in the middle of the rated load range, not at maximum load.",
+    },
+    {
+      q: "How do I calculate input power from voltage, current, and power factor?",
+      a: "Input Power = Voltage × Current × Power Factor. For a transformer measured at 230V, 5A, with a power factor of 0.95: Input Power = 230 × 5 × 0.95 = 1,092.5W. Combined with a known output power, this lets you find efficiency without measuring input power directly.",
+    },
+    {
+      q: "Why does transformer efficiency vary with load?",
+      a: "At light load, core losses (which are roughly constant) make up a larger share of the smaller total power, lowering efficiency. At very heavy load, copper losses (which scale with current squared) grow disproportionately, also lowering efficiency. Peak efficiency typically occurs somewhere around 50-75% of rated load, where the two loss types roughly balance.",
+    },
+    {
+      q: "Why do utilities care about distribution transformer efficiency?",
+      a: "Distribution transformers run continuously, 24 hours a day, often for decades — so even a small efficiency improvement compounds into substantial energy savings over the transformer's lifetime. This is why utilities increasingly specify high-efficiency (amorphous core or low-loss silicon steel) transformers for new grid installations despite a higher upfront cost.",
+    },
+    {
+      q: "Can transformer efficiency exceed 100%?",
+      a: "No. A transformer cannot output more power than it receives — doing so would violate conservation of energy. If a calculation returns efficiency above 100%, it indicates a measurement error, incorrect input values, or output power mistakenly entered as larger than input power.",
+    },
+    {
+      q: "Is my data private when using this calculator?",
+      a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, current, and loss values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+    },
+  ];
+
+  const howToSteps: [string, string][] = [
+    ["Select a calculation mode", "Choose to calculate from input and output power directly, from voltage/current/power factor plus output power, or from output power and known losses."],
+    ["Enter your known values", "Depending on the mode, enter input power and output power in watts, or voltage, current, and power factor, or output power and losses."],
+    ["Read the efficiency result", "The calculator returns efficiency as a percentage, calculated using η = (Output Power ÷ Input Power) × 100."],
+    ["Review calculated losses", "See the power lost as heat, calculated as Input Power − Output Power, in watts."],
+    ["Check the efficiency rating", "View a rating from Excellent to Very Poor based on standard transformer efficiency benchmarks."],
+    ["Apply a preset or export results", "Use a built-in preset spanning high-efficiency to aging transformers, or export the full calculation as a text file."],
+  ];
+
   return (
-    <div className="mt-16 max-w-4xl mx-auto space-y-12 pb-12">
-      
-      {/* Main Content Section */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          About Transformer Efficiency Calculator
+    <>
+      {/* ── 1. Introduction ── */}
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          What Is a Transformer Efficiency Calculator?
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          The <strong>Transformer Efficiency Calculator</strong> is a fast, browser-based electrical engineering utility that calculates transformer efficiency based on input power, output power, voltage, current, or losses. This free online tool helps students, engineers, and technicians quickly determine transformer performance and energy losses.
-        </p>
-        <p className="text-gray-700 leading-relaxed">
-          By providing instant calculations with efficiency ratings and step-by-step explanations, this calculator is essential for transformer evaluation, energy audits, system optimization, and educational learning.
-        </p>
-      </section>
-
-      {/* Formula Section */}
-      <section className="bg-blue-50 border border-blue-100 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-3">
-          Transformer Efficiency Formula
-        </h3>
-        <div className="bg-white p-4 rounded-lg border border-blue-200 font-mono text-sm mb-4">
-          Efficiency (η) = (Output Power / Input Power) × 100%
-        </div>
-        <p className="text-gray-700 text-sm mb-3">
-          Alternative formula using losses:
-        </p>
-        <div className="bg-white p-4 rounded-lg border border-blue-200 font-mono text-sm mb-4">
-          Efficiency (η) = Output Power / (Output Power + Losses) × 100%
-        </div>
-        <p className="text-gray-700 text-sm">
-          Where losses include copper losses (I²R) and iron losses (hysteresis and eddy currents).
-        </p>
-      </section>
-
-      {/* Examples */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Real-World Examples
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6 not-prose">
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 1: High Efficiency Transformer</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> Input = 1000W, Output = 980W</p>
-              <p><strong>Output:</strong> Efficiency = 98%</p>
-              <p><strong>Losses:</strong> 20W</p>
-              <p className="text-xs text-gray-600 mt-2">Modern transformer with excellent efficiency.</p>
-            </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 2: Standard Transformer</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> Output = 950W, Losses = 50W</p>
-              <p><strong>Output:</strong> Efficiency = 95%</p>
-              <p><strong>Input Power:</strong> 1000W</p>
-              <p className="text-xs text-gray-600 mt-2">Typical power transformer efficiency.</p>
-            </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 3: Using Voltage & Current</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> V = 220V, I = 5A, PF = 1, Output = 1000W</p>
-              <p><strong>Calculated Input:</strong> 1100W</p>
-              <p><strong>Output:</strong> Efficiency ≈ 90.91%</p>
-              <p className="text-xs text-gray-600 mt-2">Calculated from electrical parameters.</p>
-            </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 4: Old Transformer</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> Input = 1000W, Output = 850W</p>
-              <p><strong>Output:</strong> Efficiency = 85%</p>
-              <p><strong>Losses:</strong> 150W</p>
-              <p className="text-xs text-gray-600 mt-2">Poor efficiency - replacement recommended.</p>
-            </div>
-          </div>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            A <strong>transformer efficiency calculator</strong> computes how much of the power fed into a
+            transformer actually reaches the output, expressed as a percentage. Efficiency is calculated as
+            η = (Output Power ÷ Input Power) × 100 — the remainder is lost as heat in the windings (copper
+            losses) and core (iron losses), which is why transformers, like all real electrical equipment,
+            never reach exactly 100% efficiency.
+          </p>
+          <p>
+            Transformer efficiency questions come in different forms depending on what data you actually
+            have available — sometimes you have direct input and output power readings, sometimes you only
+            have a voltage and current measurement on the primary side plus a known output rating, and
+            sometimes you know the manufacturer's rated losses figure rather than measured power. This tool
+            handles all three starting points and derives efficiency, input power, and losses consistently
+            regardless of which data set you begin with.
+          </p>
+          <p>
+            Built for <strong>electrical engineers evaluating transformer performance, utility engineers
+            comparing distribution transformer options, and facility managers</strong> assessing whether an
+            aging transformer needs replacement. Includes six built-in presets from high-efficiency modern
+            units to older transformers needing replacement, full step-by-step derivation, and text export
+            — free and entirely browser-based.
+          </p>
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Common Use Cases
+      {/* ── 2. How It Works ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          The Transformer Efficiency Formula
         </h2>
-        <ul className="space-y-2 text-gray-700">
-          <li>✓ <strong>Transformer Evaluation:</strong> Assess transformer performance and condition</li>
-          <li>✓ <strong>Energy Audits:</strong> Calculate energy losses and potential savings</li>
-          <li>✓ <strong>System Optimization:</strong> Identify inefficient transformers for replacement</li>
-          <li>✓ <strong>Cost Analysis:</strong> Estimate operating costs based on efficiency</li>
-          <li>✓ <strong>Maintenance Planning:</strong> Monitor efficiency degradation over time</li>
-          <li>✓ <strong>Educational Learning:</strong> Understand transformer losses and efficiency</li>
-          <li>✓ <strong>Exam Preparation:</strong> Practice efficiency calculations for tests</li>
-          <li>✓ <strong>Equipment Selection:</strong> Compare transformer specifications</li>
-          <li>✓ <strong>Compliance Verification:</strong> Ensure transformers meet efficiency standards</li>
-        </ul>
-      </section>
-
-      {/* Important Considerations */}
-      <section className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">
-          Understanding Transformer Losses
-        </h3>
-        <div className="space-y-3 text-gray-700 text-sm">
-          <p><strong>Copper Losses (I²R):</strong> Resistive losses in windings that vary with load. Higher current means higher copper losses. These are also called load losses or variable losses.</p>
-          <p><strong>Iron Losses:</strong> Core losses including hysteresis (magnetic domain friction) and eddy currents (circulating currents in core). These are constant regardless of load and are also called no-load losses or fixed losses.</p>
-          <p><strong>Efficiency vs Load:</strong> Transformer efficiency varies with load. Maximum efficiency typically occurs at 50-70% of rated load where copper losses equal iron losses. Efficiency drops at very light loads (iron losses dominate) and very heavy loads (copper losses dominate).</p>
-          <p><strong>Temperature Effects:</strong> Winding resistance increases with temperature, increasing copper losses. Operating temperature affects efficiency, especially at high loads.</p>
-          <p><strong>Typical Efficiency Ranges:</strong> Small transformers (100VA-1kVA): 85-95%, Medium transformers (10-100kVA): 95-98%, Large power transformers (&gt;1MVA): 98-99.5%.</p>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
+            <p className="text-sm font-medium text-gray-500 mb-3">Core Formulas</p>
+            <div className="space-y-1.5 font-mono text-sm text-gray-900">
+              <p><span className="font-semibold">Efficiency (η)</span> = (Output Power ÷ Input Power) × 100</p>
+              <p><span className="font-semibold">Losses</span> = Input Power − Output Power</p>
+              <p><span className="font-semibold">Input Power (from V/I)</span> = Voltage × Current × PF</p>
+              <p className="text-gray-500 text-xs mt-2">Example: 1,000W input, 950W output</p>
+              <p className="text-gray-500 text-xs">η = (950 ÷ 1,000) × 100 = <span className="text-green-600 font-semibold">95%</span>, losses = 50W</p>
+            </div>
+          </div>
+          <ul className="space-y-1 ml-4 list-disc text-gray-600">
+            <li><strong>Copper losses</strong> — I²R heating in windings, scales with current squared, dominates at high load</li>
+            <li><strong>Core (iron) losses</strong> — hysteresis and eddy currents, roughly constant regardless of load</li>
+            <li><strong>Peak efficiency</strong> — typically occurs around 50-75% of rated load, where loss types balance</li>
+            <li>Efficiency can never exceed 100% — output power can never exceed input power</li>
+          </ul>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Benefits of Using This Calculator
+      {/* ── 3. Step-by-Step ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How to Use the Transformer Efficiency Calculator
         </h2>
-        <ul className="space-y-2 text-gray-700">
-          <li>✓ <strong>Multiple Input Methods:</strong> Calculate using power, voltage/current, or losses</li>
-          <li>✓ <strong>Instant Results:</strong> Get immediate efficiency calculations</li>
-          <li>✓ <strong>Efficiency Ratings:</strong> Automatic performance classification</li>
-          <li>✓ <strong>Power Breakdown:</strong> See input, output, and loss distribution</li>
-          <li>✓ <strong>Step-by-Step Calculations:</strong> Understand the math behind results</li>
-          <li>✓ <strong>Preset Examples:</strong> Quick access to common transformer types</li>
-          <li>✓ <strong>History Tracking:</strong> Save and compare multiple calculations</li>
-          <li>✓ <strong>Export Reports:</strong> Generate detailed calculation reports</li>
-          <li>✓ <strong>Visual Indicators:</strong> Efficiency bar and color-coded ratings</li>
-          <li>✓ <strong>Free & Browser-Based:</strong> No installation required</li>
-        </ul>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
+            <ol className="space-y-4 text-gray-600 leading-relaxed">
+              {howToSteps.map(([title, desc], i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                  <span><strong>{title}:</strong> {desc}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Provides</h3>
+            <ul className="space-y-2 text-gray-600">
+              {[
+                "Real-time calculation as you type",
+                "Three calculation modes for different known data",
+                "Efficiency percentage and power losses in watts",
+                "Automatic efficiency rating (Excellent to Very Poor)",
+                "Full step-by-step derivation",
+                "Six built-in presets across efficiency levels",
+                "Calculation history (saved locally)",
+                "Export calculation as a text file",
+                "No signup required",
+              ].map((f, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <span className="text-green-500 flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+      {/* ── 4. Use Cases ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Real-World Use Cases
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Direct Power Measurement Efficiency Check",
+              scenario: "An engineer measures a transformer with 1,000W input power and 950W output power using bench meters. The calculator returns η = 95% and losses of 50W, rated 'Very Good' — confirming the unit performs within its nameplate specification before installation.",
+            },
+            {
+              title: "Efficiency from Primary-Side Measurements",
+              scenario: "A technician can only measure the primary side of an installed transformer at 230V, 5A, with a power factor of 0.95, knowing the load draws 1,000W. Using Voltage-Current mode, the calculator computes input power of 1,092.5W, giving an efficiency of 91.5% — useful when a direct input power meter isn't available.",
+            },
+            {
+              title: "Manufacturer Loss Specification Verification",
+              scenario: "An engineer verifying a transformer datasheet listing 4,850W output and 150W rated losses uses Output-Losses mode to confirm input power of 5,000W and efficiency of 97% — matching the manufacturer's claimed distribution transformer efficiency rating.",
+            },
+            {
+              title: "Old Transformer Replacement Justification",
+              scenario: "A facility manager evaluates an aging 1,000W-rated transformer measured at 850W output, giving 150W losses and 85% efficiency — rated 'Fair' by the calculator, well below the 95%+ typical of modern units, supporting a business case for replacement based on ongoing energy waste.",
+            },
+            {
+              title: "Industrial Transformer Load Efficiency",
+              scenario: "An engineer checking a 10,000W industrial transformer measures 9,600W output, for 400W losses and 96% efficiency — rated 'Very Good', confirming the unit is operating efficiently at its current load point before scaling up facility demand.",
+            },
+            {
+              title: "Efficiency Comparison for Procurement Decision",
+              scenario: "A procurement team compares two transformer quotes: one rated 1,000W in/980W out (98% efficiency, 'Excellent') versus another rated 1,000W in/950W out (95%, 'Very Good'). The calculator's loss figures (20W versus 50W) quantify the annual energy cost difference to justify the higher-efficiency unit's premium price.",
+            },
+          ].map(({ title, scenario }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">{scenario}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 5. Tips & Mistakes ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Tips &amp; Common Mistakes
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Measure efficiency at the transformer's typical operating load, not just at full rated load — efficiency varies with load level, and peak efficiency usually sits around 50-75% of rated capacity, not at maximum.",
+                "For continuous-duty transformers like utility distribution units, small efficiency differences (even 1-2%) matter enormously over a multi-decade service life — factor lifetime energy cost, not just purchase price, into procurement decisions.",
+                "When direct input power measurement isn't available, use the voltage-current-power factor mode as a reliable substitute, since it only requires accessible primary-side measurements.",
+                "Compare a transformer's rated losses (from its datasheet) against your own measured or calculated losses periodically — a growing gap over time can indicate insulation degradation or core issues worth investigating.",
+                "Remember that copper losses scale with current squared while core losses stay roughly constant — a transformer running well below its rated capacity most of the time will have most of its losses coming from the core, not the windings.",
+              ].map((tip, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Entering output power greater than input power. This is physically impossible for a passive transformer and always indicates a measurement or unit error rather than an unusually efficient unit.",
+                "Forgetting power factor when calculating input power from voltage and current. Using just V × I (apparent power) instead of V × I × PF (real power) overstates input power for any load with a power factor below 1.0.",
+                "Assuming a transformer's efficiency is the same at every load level. Efficiency measured at 20% load can differ meaningfully from efficiency at 100% load — always note the load condition alongside any efficiency figure you report.",
+                "Comparing efficiency ratings across transformers of very different power ratings without context. A tiny transformer's percentage efficiency is often naturally lower than a large one's, since fixed core losses represent a larger share of a smaller total power.",
+                "Ignoring efficiency degradation over a transformer's service life. Insulation aging, core lamination issues, and loose connections can gradually reduce efficiency below the original nameplate rating — periodic re-measurement catches this drift.",
+              ].map((mistake, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
+                  <span>{mistake}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Reference Table ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Transformer Efficiency Rating Reference
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Efficiency</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Rating</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Typical Example</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["≥98%", "Excellent", "Modern amorphous-core distribution transformer"],
+                ["95-97%", "Very Good", "Standard modern power transformer"],
+                ["90-94%", "Good", "Typical industrial-duty transformer"],
+                ["85-89%", "Fair", "Small or older transformer design"],
+                ["80-84%", "Poor", "Aging transformer, efficiency degrading"],
+                ["<80%", "Very Poor", "Likely candidate for replacement"],
+              ].map(([eff, rating, example]) => (
+                <tr key={eff} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-mono font-semibold text-primary text-xs">{eff}</td>
+                  <td className="py-2 px-3 font-semibold text-green-600 text-xs">{rating}</td>
+                  <td className="py-2 px-3 text-gray-600 text-xs">{example}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400 mt-2">* Ratings are general guidelines — always compare against the specific transformer class and its own rated specifications.</p>
+      </section>
+
+      {/* ── 7. FAQ ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is a good transformer efficiency?
-            </h3>
-            <p className="text-gray-700">
-              Modern power transformers typically achieve 95-99% efficiency. Small transformers (under 1kVA) may have 85-95% efficiency. Distribution transformers usually exceed 98%. Anything below 90% for power transformers indicates potential issues or obsolescence.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Why can't transformers be 100% efficient?
-            </h3>
-            <p className="text-gray-700">
-              All transformers have losses due to winding resistance (copper losses) and magnetic core properties (iron losses). Even with the best materials and design, some energy is always converted to heat. The laws of thermodynamics prevent 100% efficiency in any real device.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How do I measure transformer efficiency?
-            </h3>
-            <p className="text-gray-700">
-              Measure input power (primary side) and output power (secondary side) using wattmeters or power analyzers. Efficiency = (Output Power / Input Power) × 100%. For accurate results, ensure proper load conditions and allow the transformer to reach thermal equilibrium.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What causes transformer efficiency to decrease over time?
-            </h3>
-            <p className="text-gray-700">
-              Aging causes insulation degradation, increased winding resistance, core deterioration, and contaminated cooling oil. These factors increase losses and reduce efficiency. Regular maintenance and monitoring can help identify declining efficiency before failure occurs.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              At what load is transformer efficiency maximum?
-            </h3>
-            <p className="text-gray-700">
-              Maximum efficiency occurs when copper losses equal iron losses, typically at 50-70% of rated load. Operating transformers near this point optimizes energy efficiency. However, transformers are designed to operate safely at any load up to their rating.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How much money can high-efficiency transformers save?
-            </h3>
-            <p className="text-gray-700">
-              A 2% efficiency improvement on a 1000kVA transformer running 24/7 can save approximately $3,500-$7,000 annually (depending on electricity rates). Over a 20-year lifespan, this represents significant savings that often justify replacing older, less efficient units.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What are copper and iron losses?
-            </h3>
-            <p className="text-gray-700">
-              Copper losses (I²R losses) occur in windings due to resistance and vary with load current. Iron losses occur in the magnetic core from hysteresis and eddy currents, remaining constant regardless of load. Total losses = copper losses + iron losses.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Can transformer efficiency exceed 100%?
-            </h3>
-            <p className="text-gray-700">
-              No, efficiency above 100% violates the law of energy conservation. If calculations show &gt;100%, there&apos;s a measurement error, incorrect power factor consideration, or the output power measurement includes reactive power instead of real power. Always verify measurements and calculations.
-            </p>
-          </div>
+          {faqItems.map(({ q, a }, i) => (
+            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Related Topics */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Related Electrical Topics
+      {/* ── 8. Who Uses This ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Who Uses This Transformer Efficiency Calculator?
         </h2>
-        <div className="grid md:grid-cols-2 gap-4 not-prose text-sm">
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Power Factor</h4>
-            <p className="text-gray-600">Relationship between real and apparent power affecting efficiency</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Energy Conservation</h4>
-            <p className="text-gray-600">Strategies to reduce transformer losses and improve efficiency</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Load Management</h4>
-            <p className="text-gray-600">Optimizing transformer loading for maximum efficiency</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Thermal Management</h4>
-            <p className="text-gray-600">Cooling systems and temperature effects on transformer performance</p>
-          </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { icon: "⚡", title: "Electrical Engineers", desc: "Evaluate transformer performance during design, testing, and commissioning of power systems." },
+            { icon: "🏭", title: "Utility Engineers", desc: "Compare distribution transformer efficiency options to minimize lifetime energy losses across the grid." },
+            { icon: "🏢", title: "Facility Managers", desc: "Assess whether aging transformers justify replacement based on quantified energy loss and efficiency decline." },
+            { icon: "🔧", title: "Maintenance Technicians", desc: "Verify transformer performance against nameplate ratings during periodic testing and inspection." },
+            { icon: "📊", title: "Energy Auditors", desc: "Quantify transformer losses as part of facility-wide energy efficiency assessments." },
+            { icon: "🎓", title: "Electrical Engineering Students", desc: "Learn transformer loss mechanisms and verify efficiency calculation homework problems." },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <div className="text-2xl mb-2">{icon}</div>
+              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
         </div>
       </section>
-
-    </div>
+    </>
   );
 }

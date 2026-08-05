@@ -1,301 +1,306 @@
 export default function SeriesResistorCalculatorSEO() {
-  return (
-    <div className="mt-12 space-y-8 text-gray-700">
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          What is a Series Resistor Calculator?
-        </h2>
-        <p className="mb-4">
-          A <strong>Series Resistor Calculator</strong> is a tool that calculates the total resistance of resistors connected in series. In a series circuit, resistors are connected end-to-end, and the total resistance is simply the sum of all individual resistances.
-        </p>
-        <p>
-          This calculator is essential for electronics students, electrical engineers, hobbyists working with Arduino and IoT projects, repair technicians, and educators who need to quickly verify circuit designs.
-        </p>
-      </section>
+  const faqItems = [
+    {
+      q: "What is a series resistor calculator?",
+      a: "A series resistor calculator is a free online tool that adds together any number of resistors connected end-to-end in a single loop to find the total resistance. Enter each resistor's value in ohms, kilohms, or megohms, and the calculator sums them and displays the total in all three unit scales.",
+    },
+    {
+      q: "What is the formula for resistors in series?",
+      a: "R_total = R1 + R2 + R3 + ... + Rn. Resistance simply adds when resistors are connected in a single chain with no branching, because the same current flows through each one and each contributes its full resistance to opposing that current. For example, three resistors of 100Ω, 220Ω, and 330Ω in series give a total of 100 + 220 + 330 = 650Ω.",
+    },
+    {
+      q: "Why does resistance add in series but not in parallel?",
+      a: "In a series circuit, the same current must pass through every resistor in the chain, so each one's resistance adds directly to the total opposition to that current. In a parallel circuit, current can take multiple paths simultaneously, so more resistors in parallel create more paths and lower the total resistance instead of raising it — the two configurations use entirely different formulas.",
+    },
+    {
+      q: "How do I combine resistors to get a value not available off the shelf?",
+      a: "Add two or more standard E12 or E24 series resistors in series until their sum is close to your target. For example, if you need 150Ω exactly and don't have one in stock, a 100Ω and a 47Ω resistor in series give 147Ω, close enough for most non-critical applications.",
+    },
+    {
+      q: "Does the order of resistors in a series chain matter?",
+      a: "No. Addition is commutative, so R1 + R2 + R3 gives the same total regardless of which physical position each resistor occupies in the chain. Order can matter for other reasons in a real circuit, such as heat distribution or where a voltage-divider tap point is needed, but it never changes the total resistance value.",
+    },
+    {
+      q: "How do I calculate voltage drop across each resistor in a series chain?",
+      a: "Since the same current flows through every resistor in series, use Ohm's Law (V = I × R) for each one individually once you know the total current. First find total current as I = V_source ÷ R_total, then multiply that current by each individual resistor's value to get its share of the voltage drop.",
+    },
+    {
+      q: "What happens if one resistor fails open in a series circuit?",
+      a: "If any single resistor in a series chain fails open (goes to infinite resistance), the entire circuit is broken and no current flows through any part of the chain — this is the same principle behind why old-style series-wired string lights go completely dark when one bulb burns out.",
+    },
+    {
+      q: "Can I add resistors with different tolerances together?",
+      a: "Yes, but the combined tolerance is a weighted average based on each resistor's contribution to the total, not simply the tolerance of the largest resistor. For close estimates, a 100Ω ±5% resistor in series with a 1kΩ ±1% resistor produces a combined tolerance dominated by the 1kΩ resistor's contribution, since it makes up most of the total resistance.",
+    },
+    {
+      q: "How many resistors can I add with this calculator?",
+      a: "There's no fixed limit — add resistors one at a time or paste a bulk list of comma- or newline-separated values to calculate the total for a large chain at once. The calculator sums however many valid, nonzero values you provide.",
+    },
+    {
+      q: "Is my data private when using this calculator?",
+      a: "Yes. All calculations run entirely in your browser using JavaScript. Your resistor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+    },
+  ];
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Series Resistance Formula
+  const howToSteps: [string, string][] = [
+    ["Add your first resistor", "Enter a resistance value and select its unit — Ω, kΩ, or MΩ. Add as many resistors as your series chain contains."],
+    ["Use bulk input for long chains (optional)", "Paste a comma- or newline-separated list of values to add many resistors at once instead of entering them one by one."],
+    ["Select common E12 values (optional)", "Pick from the built-in list of standard resistor values (10Ω through 1MΩ) if you're working with off-the-shelf components."],
+    ["Read the total resistance", "The result updates instantly, showing the sum of all entered resistors in your chosen output unit."],
+    ["Check the unit conversions", "View the same total automatically converted across Ω, kΩ, and MΩ so you can read it in whichever scale is most convenient."],
+    ["Save or export the result", "Save the calculation to history, or export the full list of resistors and total as a text file for documentation."],
+  ];
+
+  return (
+    <>
+      {/* ── 1. Introduction ── */}
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          What Is a Series Resistor Calculator?
         </h2>
-        <p className="mb-4">
-          The formula for calculating total resistance in a series circuit is:
-        </p>
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-          <p className="font-mono text-center text-lg">
-            <strong>R<sub>total</sub> = R<sub>1</sub> + R<sub>2</sub> + R<sub>3</sub> + ... + R<sub>n</sub></strong>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            A <strong>series resistor calculator</strong> adds together any number of resistors connected
+            end-to-end in a single chain to find the total resistance. Enter each resistor's value in ohms,
+            kilohms, or megohms, and the calculator sums them instantly and displays the total across all
+            three unit scales.
+          </p>
+          <p>
+            The math is straightforward addition, but real circuits rarely use a tidy two or three resistors
+            — a chain of a dozen mismatched values in mixed units (some in Ω, some in kΩ) is where manual
+            addition becomes tedious and error-prone. This tool converts everything to a common base unit
+            before summing, so mixed-unit chains never produce a wrong total, and a bulk-paste option handles
+            long lists in one step.
+          </p>
+          <p>
+            Built for <strong>electronics students verifying homework, hobbyists building circuits with
+            standard E12 resistor values, and electricians and technicians</strong> who need a fast total
+            resistance figure without reaching for a calculator app and doing unit conversion by hand.
+            Supports unlimited resistors, bulk input, common value presets, and text export — free and
+            entirely browser-based.
           </p>
         </div>
-        <p className="mb-4">
-          Where:
-        </p>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>R<sub>total</sub></strong> is the total resistance in the series circuit</li>
-          <li><strong>R<sub>1</sub>, R<sub>2</sub>, R<sub>3</sub>, ..., R<sub>n</sub></strong> are the individual resistor values</li>
-        </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Example Calculations
+      {/* ── 2. How It Works ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          The Series Resistance Formula
         </h2>
-        
-        <div className="space-y-4">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Example 1: Three Resistors</h3>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Given:</strong> R<sub>1</sub> = 100Ω, R<sub>2</sub> = 220Ω, R<sub>3</sub> = 330Ω
-            </p>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Formula:</strong> R<sub>total</sub> = R<sub>1</sub> + R<sub>2</sub> + R<sub>3</sub>
-            </p>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Calculation:</strong> R<sub>total</sub> = 100 + 220 + 330 = 650Ω
-            </p>
-            <p className="text-sm font-semibold text-primary">
-              <strong>Result:</strong> 650Ω or 0.65kΩ
-            </p>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
+            <p className="text-sm font-medium text-gray-500 mb-3">Core Formula</p>
+            <div className="space-y-1.5 font-mono text-sm text-gray-900">
+              <p><span className="font-semibold">R_total</span> = R1 + R2 + R3 + ... + Rn</p>
+              <p className="text-gray-500 text-xs mt-2">Example: 100Ω + 220Ω + 330Ω</p>
+              <p className="text-gray-500 text-xs">R_total = <span className="text-green-600 font-semibold">650Ω</span></p>
+            </div>
           </div>
+          <ul className="space-y-1 ml-4 list-disc text-gray-600">
+            <li><strong>Series connection</strong> — resistors joined end-to-end in a single loop, sharing the same current</li>
+            <li><strong>Total resistance always increases</strong> — adding any resistor to a series chain raises R_total</li>
+            <li><strong>Order-independent</strong> — the sum is the same regardless of the physical arrangement of resistors in the chain</li>
+            <li>This calculator handles the series case only — for resistors in parallel, use the parallel resistor calculator instead (see related tools)</li>
+          </ul>
+        </div>
+      </section>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Example 2: Kilo-ohm Resistors</h3>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Given:</strong> R<sub>1</sub> = 1kΩ, R<sub>2</sub> = 2kΩ, R<sub>3</sub> = 3kΩ
-            </p>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Calculation:</strong> R<sub>total</sub> = 1 + 2 + 3 = 6kΩ
-            </p>
-            <p className="text-sm font-semibold text-primary">
-              <strong>Result:</strong> 6kΩ or 6000Ω
-            </p>
+      {/* ── 3. Step-by-Step ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How to Use the Series Resistor Calculator
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
+            <ol className="space-y-4 text-gray-600 leading-relaxed">
+              {howToSteps.map(([title, desc], i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                  <span><strong>{title}:</strong> {desc}</span>
+                </li>
+              ))}
+            </ol>
           </div>
-
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Example 3: Mixed Values</h3>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Given:</strong> R<sub>1</sub> = 10Ω, R<sub>2</sub> = 0Ω (wire), R<sub>3</sub> = 5Ω
-            </p>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Calculation:</strong> R<sub>total</sub> = 10 + 0 + 5 = 15Ω
-            </p>
-            <p className="text-sm font-semibold text-primary">
-              <strong>Result:</strong> 15Ω
-            </p>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Provides</h3>
+            <ul className="space-y-2 text-gray-600">
+              {[
+                "Real-time calculation as you type",
+                "Unlimited resistors per chain",
+                "Bulk input via comma or newline-separated list",
+                "Built-in E12 standard resistor value presets",
+                "Automatic Ω, kΩ, MΩ unit conversion",
+                "Calculation history (saved locally)",
+                "Export result as a text file",
+                "100% browser-based — no data sent to server",
+                "No signup required",
+              ].map((f, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <span className="text-green-500 flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Understanding Series Circuits
+      {/* ── 4. Use Cases ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Real-World Use Cases
         </h2>
-        <p className="mb-4">
-          In a <strong>series circuit</strong>, components are connected in a single path, so the same current flows through all components. Key characteristics include:
-        </p>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Same Current:</strong> The current is the same through all resistors</li>
-          <li><strong>Voltage Divides:</strong> The total voltage is divided across the resistors</li>
-          <li><strong>Resistance Adds:</strong> Total resistance increases with each added resistor</li>
-          <li><strong>Single Path:</strong> If one component fails, the entire circuit breaks</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Resistance Units
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse border border-gray-300">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left">Unit</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Symbol</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Value in Ohms</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Common Use</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Ohm</td>
-                <td className="border border-gray-300 px-4 py-2">Ω</td>
-                <td className="border border-gray-300 px-4 py-2">1</td>
-                <td className="border border-gray-300 px-4 py-2">Low resistance values</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">Kilo-ohm</td>
-                <td className="border border-gray-300 px-4 py-2">kΩ</td>
-                <td className="border border-gray-300 px-4 py-2">1,000</td>
-                <td className="border border-gray-300 px-4 py-2">Medium resistance values</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Mega-ohm</td>
-                <td className="border border-gray-300 px-4 py-2">MΩ</td>
-                <td className="border border-gray-300 px-4 py-2">1,000,000</td>
-                <td className="border border-gray-300 px-4 py-2">High resistance values</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Common Resistor Values (E12 Series)
-        </h2>
-        <p className="mb-4">
-          Standard resistor values follow the E12 series (12 values per decade):
-        </p>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-          {[10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82].map(value => (
-            <div key={value} className="bg-gray-100 border border-gray-300 rounded p-2 text-center text-sm font-mono">
-              {value}
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Building a Non-Standard Resistance Value",
+              scenario: "A hobbyist needs exactly 150Ω but only has E12 series resistors on hand. Entering 100Ω and 47Ω into the calculator returns a total of 147Ω — close enough for their LED current-limiting application, avoiding a special order for a single non-standard part.",
+            },
+            {
+              title: "LED Series Resistor Combination Check",
+              scenario: "An electronics student is adding a series resistor to protect an LED but wants to confirm the combined resistance of an existing 220Ω resistor plus a new 100Ω resistor they're adding. The calculator returns 320Ω total, which they use with Ohm's Law to verify the LED's current stays within its rated 20mA limit at 12V.",
+            },
+            {
+              title: "Homework Verification for a Series Circuit",
+              scenario: "A student solving a textbook problem with five resistors (220Ω, 470Ω, 1kΩ, 2.2kΩ, 4.7kΩ) in series enters all five values into the calculator, which returns 8.39kΩ — matching their hand-calculated answer and confirming they added the mixed units correctly.",
+            },
+            {
+              title: "Potentiometer Wiper Range Extension",
+              scenario: "A circuit designer wants to limit a 10kΩ potentiometer's minimum resistance to avoid a dead short at one extreme. Adding a fixed 470Ω resistor in series with the pot, the calculator confirms the total resistance range becomes 470Ω to 10.47kΩ instead of 0Ω to 10kΩ.",
+            },
+            {
+              title: "Bulk Resistor Bank Verification",
+              scenario: "A technician testing a resistor bank pastes 12 measured values (from a multimeter) into the bulk input field — ranging from 98Ω to 105Ω — and the calculator returns a total of 1.224kΩ, which they compare against the bank's rated 1.2kΩ ±5% total to confirm it's within tolerance.",
+            },
+            {
+              title: "Speaker Crossover Resistor Chain",
+              scenario: "An audio hobbyist building a passive speaker attenuator combines a 10Ω and a 3.3Ω resistor in series ahead of a tweeter. The calculator confirms the total series resistance of 13.3Ω, which they use alongside the tweeter's impedance to calculate the expected attenuation in dB.",
+            },
+          ].map(({ title, scenario }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">{scenario}</p>
             </div>
           ))}
         </div>
-        <p className="mt-4 text-sm text-gray-600">
-          These values are multiplied by powers of 10 (e.g., 10Ω, 100Ω, 1kΩ, 10kΩ, 100kΩ, 1MΩ)
-        </p>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          How to Use This Calculator
+      {/* ── 5. Tips & Mistakes ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Tips &amp; Common Mistakes
         </h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Add Resistors:</strong> Click "Add Resistor" to add input fields for each resistor</li>
-          <li><strong>Enter Values:</strong> Input the resistance value and select the unit (Ω, kΩ, or MΩ)</li>
-          <li><strong>Bulk Input (Optional):</strong> Use the bulk input field to paste multiple values separated by commas or newlines</li>
-          <li><strong>View Results:</strong> The total resistance is calculated instantly as you type</li>
-          <li><strong>Convert Units:</strong> See the result in different units automatically</li>
-          <li><strong>Copy or Export:</strong> Save your calculation for future reference</li>
-        </ol>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Use the bulk input option when working from a spreadsheet or multimeter log of measured values — pasting a comma- or newline-separated list is far faster than adding rows one at a time.",
+                "When you need a specific non-standard resistance, try combining two E12 values first before ordering a custom part. Many odd target values can be hit within a few percent using two off-the-shelf resistors in series.",
+                "Remember that combined tolerance is dominated by whichever resistor contributes the largest share of the total resistance — pairing a tight-tolerance resistor with a much larger loose-tolerance one doesn't meaningfully tighten the overall result.",
+                "Add a small series resistor in front of a potentiometer if you need to guarantee a non-zero minimum resistance at one end of its travel — this calculator confirms the new floor and ceiling of the adjustable range.",
+                "Export the calculation to text whenever you're documenting a build, so the exact resistor values and total are on record if you need to replicate or troubleshoot the circuit later.",
+              ].map((tip, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Applying the series formula to resistors that are actually wired in parallel. Series resistance always adds and increases the total; parallel resistance uses a reciprocal formula and always decreases the total — mixing these up gives a wildly wrong answer.",
+                "Entering a value in the wrong unit column, such as typing \"470\" intending kΩ but leaving the unit set to Ω. This produces a total that's off by a factor of 1,000 and is easy to miss if you don't check the unit dropdown for each entry.",
+                "Forgetting that one failed-open resistor breaks the entire series chain. If a circuit built from this calculator's total suddenly reads infinite resistance or has no current flow, check each individual resistor rather than assuming a design error.",
+                "Assuming combined tolerance is simply the tolerance of the tightest resistor in the chain. The combined percentage tolerance is weighted by each resistor's share of the total resistance, not just the label on the most precise part.",
+                "Ignoring power rating when combining resistors for a high-current application. Adding resistance in series does spread out the power dissipation, but each individual resistor still needs to handle its own share of I²R heating.",
+              ].map((mistake, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
+                  <span>{mistake}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Series vs Parallel Resistors
+      {/* ── 6. Reference Table ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Common E12 Resistor Value Combinations
         </h2>
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse border border-gray-300">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left">Aspect</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Series</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Parallel</th>
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Target</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Combination</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Actual Total</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Formula</td>
-                <td className="border border-gray-300 px-4 py-2">R<sub>total</sub> = R<sub>1</sub> + R<sub>2</sub> + R<sub>3</sub></td>
-                <td className="border border-gray-300 px-4 py-2">1/R<sub>total</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> + 1/R<sub>3</sub></td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">Current</td>
-                <td className="border border-gray-300 px-4 py-2">Same through all</td>
-                <td className="border border-gray-300 px-4 py-2">Divides among branches</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Voltage</td>
-                <td className="border border-gray-300 px-4 py-2">Divides across resistors</td>
-                <td className="border border-gray-300 px-4 py-2">Same across all</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">Total Resistance</td>
-                <td className="border border-gray-300 px-4 py-2">Increases</td>
-                <td className="border border-gray-300 px-4 py-2">Decreases</td>
-              </tr>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["150Ω", "100Ω + 47Ω", "147Ω"],
+                ["1kΩ", "470Ω + 470Ω + 47Ω", "987Ω"],
+                ["2kΩ", "1kΩ + 1kΩ", "2kΩ"],
+                ["3.3kΩ", "2.2kΩ + 1kΩ + 100Ω", "3.3kΩ"],
+                ["10kΩ", "4.7kΩ + 4.7kΩ + 470Ω + 100Ω", "9.97kΩ"],
+                ["100kΩ", "47kΩ + 47kΩ + 4.7kΩ + 1kΩ", "99.7kΩ"],
+              ].map(([target, combo, total]) => (
+                <tr key={target} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-semibold text-primary text-xs">{target}</td>
+                  <td className="py-2 px-3 font-mono text-gray-700 text-xs">{combo}</td>
+                  <td className="py-2 px-3 font-mono text-green-600 font-semibold text-xs">{total}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
+        <p className="text-xs text-gray-400 mt-2">* Combinations use standard E12 series values. Actual measured resistance will vary within each resistor's tolerance band.</p>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Benefits of Using This Calculator
-        </h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Instant Results:</strong> Calculate total resistance in real-time</li>
-          <li><strong>Multiple Resistors:</strong> Add as many resistors as needed</li>
-          <li><strong>Unit Conversion:</strong> Automatic conversion between Ω, kΩ, and MΩ</li>
-          <li><strong>Bulk Input:</strong> Paste multiple values at once</li>
-          <li><strong>No Installation:</strong> Works entirely in your browser</li>
-          <li><strong>History Tracking:</strong> Save and review past calculations</li>
-          <li><strong>Educational:</strong> Perfect for learning electronics</li>
-          <li><strong>Professional:</strong> Quick calculations for circuit design</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Applications of Series Resistors
-        </h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Voltage Dividers:</strong> Creating specific voltage levels</li>
-          <li><strong>Current Limiting:</strong> Protecting LEDs and other components</li>
-          <li><strong>Biasing Circuits:</strong> Setting operating points for transistors</li>
-          <li><strong>Pull-up/Pull-down Resistors:</strong> Digital logic circuits</li>
-          <li><strong>Sensor Circuits:</strong> Thermistors and photoresistors</li>
-          <li><strong>Filter Circuits:</strong> RC and RL filters</li>
-          <li><strong>Timing Circuits:</strong> 555 timer and oscillator circuits</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+      {/* ── 7. FAQ ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Frequently Asked Questions
         </h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What happens when resistors are connected in series?</h3>
-            <p className="text-gray-700">
-              When resistors are connected in series, the total resistance increases. The same current flows through all resistors, but the voltage is divided across them proportionally to their resistance values.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How do I read resistor color codes?</h3>
-            <p className="text-gray-700">
-              Resistor color codes use colored bands to indicate resistance values. The first two bands represent digits, the third is a multiplier, and the fourth (if present) is tolerance. Use a resistor color code calculator for easy decoding.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I mix different unit values?</h3>
-            <p className="text-gray-700">
-              Yes! This calculator automatically converts all values to a common unit before calculating. You can enter some resistors in Ω, others in kΩ, and the calculator will handle the conversion.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What if one resistor is much larger than the others?</h3>
-            <p className="text-gray-700">
-              In a series circuit, the largest resistor dominates the total resistance. If one resistor is significantly larger, it will determine most of the circuit's behavior.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How accurate is this calculator?</h3>
-            <p className="text-gray-700">
-              This calculator provides mathematically accurate results based on the formula R<sub>total</sub> = R<sub>1</sub> + R<sub>2</sub> + ... However, real-world resistors have tolerances (typically ±5% or ±1%), so actual measured values may vary slightly.
-            </p>
-          </div>
+        <div className="space-y-6">
+          {faqItems.map(({ q, a }, i) => (
+            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Who Should Use This Calculator?
+      {/* ── 8. Who Uses This ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Who Uses This Series Resistor Calculator?
         </h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Students:</strong> Learning electronics and circuit theory</li>
-          <li><strong>Engineers:</strong> Designing and analyzing electronic circuits</li>
-          <li><strong>Hobbyists:</strong> Building Arduino, Raspberry Pi, and IoT projects</li>
-          <li><strong>Technicians:</strong> Troubleshooting and repairing electronic equipment</li>
-          <li><strong>Teachers:</strong> Demonstrating series circuit calculations in class</li>
-          <li><strong>Makers:</strong> Prototyping and testing circuit designs</li>
-        </ul>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { icon: "🎓", title: "Electronics Students", desc: "Verify homework and lab problems involving multiple resistors in series without manual unit conversion errors." },
+            { icon: "🔌", title: "Electronics Hobbyists", desc: "Combine standard E12 resistor values to hit a non-standard target resistance without ordering a custom part." },
+            { icon: "🔧", title: "Technicians", desc: "Verify measured resistor bank totals against rated specifications during testing and quality checks." },
+            { icon: "⚡", title: "Electrical Engineers", desc: "Quickly total resistor chains during circuit design and prototyping without switching to a separate calculator." },
+            { icon: "🎛️", title: "Audio Hobbyists", desc: "Calculate series resistance for passive attenuators, crossovers, and speaker impedance matching networks." },
+            { icon: "🏭", title: "Quality Control Teams", desc: "Bulk-check resistor bank measurements against design tolerance using the multi-value input option." },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <div className="text-2xl mb-2">{icon}</div>
+              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
       </section>
-    </div>
+    </>
   );
 }

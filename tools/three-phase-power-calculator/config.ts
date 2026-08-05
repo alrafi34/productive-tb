@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const threePhasePowerCalculatorConfig = {
   name: "Three Phase Power Calculator",
   slug: "three-phase-power-calculator",
@@ -14,25 +16,60 @@ export const threePhasePowerCalculatorConfig = {
     "industrial power calculator",
     "electrical power calculator",
     "motor power calculator",
-    "generator sizing calculator"
+    "generator sizing calculator",
+    "3 phase power formula calculator",
+    "sqrt 3 power calculator",
+    "calculate three phase power",
+    "three phase current from kw",
+    "three phase voltage calculator",
+    "motor full load current calculator",
+    "free three phase calculator",
+    "electrical engineering calculator",
   ],
   seo: {
-    title: "Three Phase Power Calculator – Calculate Electrical Power Online",
-    description: "Free online three-phase power calculator. Calculate kW, kVA, kVAR, current, and voltage in 3-phase AC systems instantly. Perfect for engineers, electricians, and students.",
-    keywords: "three phase power calculator, 3 phase calculator, electrical power, kW kVA kVAR, industrial power, motor power, generator sizing",
-    og: {
-      title: "Three Phase Power Calculator – Free Electrical Engineering Tool",
-      description: "Calculate three-phase electrical power instantly including kW, kVA, and kVAR. Free tool for engineers, electricians, and students.",
+    title: "Three-Phase Power Calculator — kW, kVA & kVAR Calculator | Productive Toolbox",
+    description: "Calculate three-phase power (kW), apparent power (kVA), current, and voltage using the √3 formula. Free calculator for engineers.",
+    keywords: "three phase power calculator, 3 phase power calculator, kW kVA calculator, three phase current calculator, motor power calculator, generator sizing calculator",
+    openGraph: {
+      title: "Three-Phase Power Calculator — kW, kVA & kVAR Calculator",
+      description: "Calculate three-phase real power, apparent power, reactive power, current, or voltage using √3 formulas, with full step-by-step derivation.",
       type: "website",
-      url: "/tools/electrical/three-phase-power-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/three-phase-power-calculator`,
+    },
+    og: {
+      title: "Three-Phase Power Calculator — kW, kVA & kVAR Calculator",
+      description: "Calculate three-phase real power, apparent power, reactive power, current, or voltage using √3 formulas, with full step-by-step derivation.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/three-phase-power-calculator`,
+    },
+    howToSteps: [
+      { name: "Select a Calculation Mode", text: "Choose to calculate Power, Current, or Voltage, depending on which value you don't already know." },
+      { name: "Enter Your Known Values", text: "Enter line voltage, line current, or power, along with power factor, depending on the selected mode." },
+      { name: "Enter Frequency for Reference", text: "Input system frequency (50Hz or 60Hz) for documentation purposes." },
+      { name: "Read the Calculated Result", text: "View the requested value plus real power (kW), apparent power (kVA), and reactive power (kVAR)." },
+      { name: "Review the Step-by-Step Derivation", text: "See exactly how √3, voltage, current, and power factor combine at each stage." },
+    ],
+    faq: [
+      { q: "What is a three-phase power calculator?", a: "A free online tool that computes real power (kW), apparent power (kVA), and reactive power (kVAR) for balanced three-phase AC systems, solving for power, current, or voltage." },
+      { q: "What is the formula for three-phase power?", a: "P = √3 × V × I × PF ÷ 1000 (kW). A 415V, 10A system with PF 0.8 gives P = 1.732 × 415 × 10 × 0.8 ÷ 1000 = 5.75kW." },
+      { q: "Why does three-phase power use a √3 factor?", a: "The three line voltages/currents are 120° apart in phase; the vector sum simplifies to √3 × V × I. Omitting √3 underestimates power by about 42%." },
+      { q: "What is the difference between line voltage and phase voltage?", a: "Line voltage is between two line conductors; phase voltage is between one line and neutral. In star connection, line voltage = phase voltage × √3." },
+      { q: "How do I calculate current from a motor's kW rating?", a: "I = P × 1000 ÷ (√3 × V × PF). A 15kW motor at 415V, PF 0.85 draws I ≈ 24.55A." },
+      { q: "How do I calculate required voltage from power and current?", a: "V = P × 1000 ÷ (√3 × I × PF), useful for verifying expected supply voltage under a known load." },
+      { q: "Why is power factor needed for three-phase calculations?", a: "PF separates real power (useful work, kW) from apparent power (total demand, kVA), just as in single-phase circuits. Motors typically run 0.80-0.95 PF at full load." },
+      { q: "Does frequency (50Hz vs 60Hz) affect the power calculation?", a: "No, power depends on voltage, current, and PF, not frequency directly — but standard voltages differ by region (400-415V/50Hz vs 480V/60Hz)." },
+      { q: "How do I size a generator for a three-phase load?", a: "Calculate apparent power (kVA) using S = √3 × V × I ÷ 1000, since generators are rated in kVA. Add margin for motor starting surge current." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, power, and power factor values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "power-factor-calculator",
     "apparent-power-calculator",
     "real-power-calculator",
-    "reactive-power-calculator"
-  ]
+    "reactive-power-calculator",
+    "electric-motor-power-calculator",
+    "wire-size-calculator",
+  ],
 };
 
 export const toolConfig = threePhasePowerCalculatorConfig;

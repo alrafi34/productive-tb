@@ -1,277 +1,307 @@
 export default function ParallelResistorCalculatorSEO() {
+  const faqItems = [
+    {
+      q: "What is a parallel resistor calculator?",
+      a: "A parallel resistor calculator is a free online tool that computes the equivalent resistance of two or more resistors connected side by side across the same two nodes. Enter each resistor's value in ohms, kilohms, or megohms, and the calculator applies the reciprocal formula to return a single equivalent resistance value, always lower than the smallest individual resistor.",
+    },
+    {
+      q: "What is the formula for resistors in parallel?",
+      a: "1/R_total = 1/R1 + 1/R2 + 1/R3 + ... + 1/Rn. For exactly two resistors, this simplifies to R_total = (R1 × R2) ÷ (R1 + R2). For example, a 100Ω and a 220Ω resistor in parallel give R_total = (100 × 220) ÷ (100 + 220) = 22,000 ÷ 320 = 68.75Ω.",
+    },
+    {
+      q: "Why is equivalent parallel resistance always lower than the smallest resistor?",
+      a: "Parallel resistors give current multiple paths to flow through simultaneously, and each additional path makes it overall easier for current to get through — reducing total opposition. The equivalent resistance is always lower than the smallest individual resistor in the group, since even a single very small resistor already provides a low-resistance path that the total can't exceed.",
+    },
+    {
+      q: "What happens when I put two equal resistors in parallel?",
+      a: "Two equal resistors in parallel give exactly half the value of one: R_total = R ÷ 2. For example, two 100Ω resistors in parallel equal 50Ω. This is a common technique for halving a resistance value or doubling a resistor's effective power rating, since the power is now shared between two components.",
+    },
+    {
+      q: "How do I calculate current split between parallel resistors?",
+      a: "Current divides inversely to resistance — the branch with lower resistance carries more current. Use the current divider rule: I1 = I_total × R2 ÷ (R1 + R2) for the current through R1, where I_total is the total current entering the parallel combination and R2 is the other resistor's value.",
+    },
+    {
+      q: "How do I combine resistors in parallel to get a value not available off the shelf?",
+      a: "Try common E12 resistor pairs and check the result against your target. Two 100Ω resistors in parallel give 50Ω; a 100Ω and a 150Ω give 60Ω; three equal 300Ω resistors in parallel give 100Ω. This calculator lets you test combinations instantly rather than working out the reciprocal math by hand each time.",
+    },
+    {
+      q: "Does adding more resistors in parallel always lower the total resistance?",
+      a: "Yes. Every additional resistor added in parallel creates one more path for current, which always lowers the total, or in the theoretical limit of an infinite resistor leaves it unchanged — it never raises it. This is the opposite behavior from a series circuit, where every additional resistor always raises the total.",
+    },
+    {
+      q: "How is parallel resistance different from series resistance?",
+      a: "Series resistors share the same current and their resistances simply add together, always increasing the total. Parallel resistors share the same voltage across each branch but split the current, and their combined resistance is found using the reciprocal formula, always decreasing the total below the smallest individual value.",
+    },
+    {
+      q: "How many resistors can I calculate in parallel at once?",
+      a: "There's no fixed limit — add resistors one at a time, and the calculator sums their reciprocals as you go. You can also use shorthand notation like 4.7k or 1M when entering values, which the calculator parses automatically without a separate unit dropdown for quick entries.",
+    },
+    {
+      q: "Is my data private when using this calculator?",
+      a: "Yes. All calculations run entirely in your browser using JavaScript. Your resistor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+    },
+  ];
+
+  const howToSteps: [string, string][] = [
+    ["Add your first resistor", "Enter a resistance value and select its unit — Ω, kΩ, or MΩ — or use shorthand like 4.7k or 1M."],
+    ["Add additional resistors", "Add every resistor connected in parallel across the same two nodes. There's no limit on how many you can include."],
+    ["Choose your output unit", "Select whether you want the equivalent resistance displayed in Ω, kΩ, or MΩ."],
+    ["Read the equivalent resistance", "The result updates instantly using the reciprocal formula, always lower than the smallest resistor you entered."],
+    ["Remove or edit resistors as needed", "Adjust any value or remove a resistor to instantly see how the equivalent resistance changes."],
+    ["Save or review calculation history", "Save the result for later reference, or revisit past calculations saved locally in your browser."],
+  ];
+
   return (
-    <div className="mt-12 max-w-4xl mx-auto space-y-12">
-      
-      {/* Introduction */}
-      <section className="prose prose-slate max-w-none">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Parallel Resistor Calculator – Find Equivalent Resistance Instantly</h2>
-        
-        <p className="text-lg text-gray-700 leading-relaxed">
-          Calculate the equivalent resistance of resistors connected in parallel with this free online tool. 
-          Perfect for electrical engineering students, circuit designers, hobbyists, and technicians working 
-          with Arduino, IoT, and DIY electronics projects.
-        </p>
-      </section>
-
-      {/* What is Parallel Resistance */}
-      <section className="bg-blue-50 rounded-xl p-8 border border-blue-100">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">What is Parallel Resistance?</h3>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          When resistors are connected in parallel, the total resistance decreases. This is because current 
-          has multiple paths to flow through, reducing the overall opposition to current flow.
-        </p>
-        <div className="bg-white rounded-lg p-4 border border-blue-200">
-          <p className="text-sm text-blue-900 font-mono">
-            <strong>Formula:</strong> 1/R<sub>total</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> + 1/R<sub>3</sub> + ... + 1/R<sub>n</sub>
+    <>
+      {/* ── 1. Introduction ── */}
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          What Is a Parallel Resistor Calculator?
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            A <strong>parallel resistor calculator</strong> computes the equivalent resistance of two or
+            more resistors connected side by side across the same two nodes. Enter each resistor's value in
+            ohms, kilohms, or megohms, and the calculator applies the reciprocal formula to return a single
+            equivalent value — always lower than the smallest individual resistor in the group.
           </p>
-          <p className="text-sm text-blue-900 font-mono mt-2">
-            <strong>Or:</strong> R<sub>total</sub> = 1 / (1/R<sub>1</sub> + 1/R<sub>2</sub> + ... + 1/R<sub>n</sub>)
+          <p>
+            The reciprocal formula (1/R_total = 1/R1 + 1/R2 + ... + 1/Rn) is more error-prone to compute by
+            hand than the simple addition used for series resistors, since it requires inverting each value,
+            summing the reciprocals, and inverting again — a multi-step process where a single arithmetic
+            slip produces a wrong answer that isn't obviously wrong. This tool performs the full reciprocal
+            calculation instantly for any number of resistors, and also accepts shorthand entry like "4.7k".
+          </p>
+          <p>
+            Built for <strong>electronics students verifying textbook problems, hobbyists combining
+            standard resistor values to hit a target, and electrical engineers</strong> checking equivalent
+            resistance during circuit analysis. No signup, unlimited resistors, and instant real-time results
+            — entirely browser-based.
           </p>
         </div>
       </section>
 
-      {/* How to Use */}
-      <section className="prose prose-slate max-w-none">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">How to Use This Calculator</h3>
-        <div className="grid md:grid-cols-2 gap-4 not-prose">
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">Enter Resistor Values</h4>
-                <p className="text-sm text-gray-600">Input resistance values for each resistor (minimum 1, maximum 20)</p>
-              </div>
+      {/* ── 2. How It Works ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          The Parallel Resistance Formula
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
+            <p className="text-sm font-medium text-gray-500 mb-3">Core Formulas</p>
+            <div className="space-y-1.5 font-mono text-sm text-gray-900">
+              <p><span className="font-semibold">General (any n)</span>: 1/R_total = 1/R1 + 1/R2 + ... + 1/Rn</p>
+              <p><span className="font-semibold">Two resistors</span>: R_total = (R1 × R2) ÷ (R1 + R2)</p>
+              <p><span className="font-semibold">n equal resistors</span>: R_total = R ÷ n</p>
+              <p className="text-gray-500 text-xs mt-2">Example: 100Ω and 220Ω in parallel</p>
+              <p className="text-gray-500 text-xs">R_total = (100 × 220) ÷ 320 = <span className="text-green-600 font-semibold">68.75Ω</span></p>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">Select Units</h4>
-                <p className="text-sm text-gray-600">Choose from Ohms (Ω), Kiloohms (kΩ), or Megaohms (MΩ)</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">Get Instant Results</h4>
-                <p className="text-sm text-gray-600">See equivalent resistance calculated automatically in real-time</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">Save & Export</h4>
-                <p className="text-sm text-gray-600">Copy results or save to history for future reference</p>
-              </div>
-            </div>
-          </div>
+          <ul className="space-y-1 ml-4 list-disc text-gray-600">
+            <li><strong>Parallel connection</strong> — resistors sharing the same two nodes, so each sees the same voltage</li>
+            <li><strong>Total resistance always decreases</strong> — adding any resistor in parallel lowers R_total below the smallest individual value</li>
+            <li><strong>Two-resistor shortcut</strong> — the product-over-sum formula avoids reciprocal math for the common two-resistor case</li>
+            <li>This calculator handles the parallel case only — for resistors in series, use the series resistor calculator instead (see related tools)</li>
+          </ul>
         </div>
       </section>
 
-      {/* Examples */}
-      <section className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-8 border border-green-100">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">Real-World Examples</h3>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-3">Example 1</h4>
-            <div className="space-y-2 text-sm">
-              <p className="text-gray-600"><strong>Input:</strong></p>
-              <p className="font-mono text-gray-800">R1 = 10Ω<br/>R2 = 20Ω</p>
-              <p className="text-gray-600 mt-3"><strong>Output:</strong></p>
-              <p className="font-mono text-emerald-600 font-bold">R<sub>total</sub> = 6.67Ω</p>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-3">Example 2</h4>
-            <div className="space-y-2 text-sm">
-              <p className="text-gray-600"><strong>Input:</strong></p>
-              <p className="font-mono text-gray-800">R1 = 100Ω<br/>R2 = 100Ω</p>
-              <p className="text-gray-600 mt-3"><strong>Output:</strong></p>
-              <p className="font-mono text-emerald-600 font-bold">R<sub>total</sub> = 50Ω</p>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-3">Example 3</h4>
-            <div className="space-y-2 text-sm">
-              <p className="text-gray-600"><strong>Input:</strong></p>
-              <p className="font-mono text-gray-800">R1 = 5Ω<br/>R2 = 10Ω<br/>R3 = 20Ω</p>
-              <p className="text-gray-600 mt-3"><strong>Output:</strong></p>
-              <p className="font-mono text-emerald-600 font-bold">R<sub>total</sub> ≈ 2.86Ω</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Key Features */}
-      <section className="prose prose-slate max-w-none">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Key Features</h3>
-        <div className="grid md:grid-cols-2 gap-4 not-prose">
-          {[
-            { icon: "⚡", title: "Real-Time Calculation", desc: "Instant results as you type with 150ms debouncing" },
-            { icon: "🔢", title: "Multiple Units", desc: "Support for Ω, kΩ, and MΩ with automatic conversion" },
-            { icon: "➕", title: "Dynamic Inputs", desc: "Add up to 20 resistors with easy add/remove controls" },
-            { icon: "📝", title: "Smart Input", desc: "Enter values like 10k or 1M for quick input" },
-            { icon: "💾", title: "History Management", desc: "Save and reload previous calculations" },
-            { icon: "📋", title: "Copy Results", desc: "One-click copy to clipboard" },
-            { icon: "⌨️", title: "Keyboard Shortcuts", desc: "Esc to clear, Ctrl+Enter to add resistor" },
-            { icon: "📱", title: "Mobile Friendly", desc: "Responsive design works on all devices" }
-          ].map((feature, index) => (
-            <div key={index} className="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
-              <span className="text-2xl">{feature.icon}</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">{feature.title}</h4>
-                <p className="text-xs text-gray-600">{feature.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Understanding the Formula */}
-      <section className="bg-gray-50 rounded-xl p-8 border border-gray-200">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Understanding the Formula</h3>
-        <div className="space-y-4">
+      {/* ── 3. Step-by-Step ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How to Use the Parallel Resistor Calculator
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Why Does Resistance Decrease?</h4>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              In a parallel circuit, current has multiple paths to flow through. Each additional resistor 
-              provides another path, making it easier for current to flow and thus reducing total resistance.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Step-by-Step Calculation</h4>
-            <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
-              <li>Calculate the reciprocal (1/R) of each resistor value</li>
-              <li>Add all the reciprocals together</li>
-              <li>Take the reciprocal of the sum to get total resistance</li>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
+            <ol className="space-y-4 text-gray-600 leading-relaxed">
+              {howToSteps.map(([title, desc], i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                  <span><strong>{title}:</strong> {desc}</span>
+                </li>
+              ))}
             </ol>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-gray-300">
-            <p className="text-sm font-mono text-gray-800">
-              <strong>Example:</strong> R1 = 10Ω, R2 = 20Ω<br/>
-              1/R<sub>total</sub> = 1/10 + 1/20 = 0.1 + 0.05 = 0.15<br/>
-              R<sub>total</sub> = 1/0.15 = 6.67Ω
-            </p>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Provides</h3>
+            <ul className="space-y-2 text-gray-600">
+              {[
+                "Real-time calculation as you type",
+                "Unlimited resistors per parallel group",
+                "Shorthand entry support (e.g. 4.7k, 1M)",
+                "Automatic Ω, kΩ, MΩ unit conversion",
+                "Reciprocal formula applied automatically for any count",
+                "Calculation history (saved locally)",
+                "Add, edit, or remove resistors instantly",
+                "100% browser-based — no data sent to server",
+                "No signup required",
+              ].map((f, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <span className="text-green-500 flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Common Applications */}
-      <section className="prose prose-slate max-w-none">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Common Applications</h3>
-        <div className="grid md:grid-cols-2 gap-6 not-prose">
-          <div className="bg-white rounded-lg p-6 border-l-4 border-blue-500">
-            <h4 className="font-bold text-gray-900 mb-2">Current Dividers</h4>
-            <p className="text-sm text-gray-600">
-              Parallel resistors are used to divide current between multiple branches in a circuit.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg p-6 border-l-4 border-green-500">
-            <h4 className="font-bold text-gray-900 mb-2">Load Balancing</h4>
-            <p className="text-sm text-gray-600">
-              Distribute power across multiple resistive loads to prevent overheating.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg p-6 border-l-4 border-purple-500">
-            <h4 className="font-bold text-gray-900 mb-2">Precision Resistors</h4>
-            <p className="text-sm text-gray-600">
-              Combine standard resistor values to achieve non-standard resistance values.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg p-6 border-l-4 border-orange-500">
-            <h4 className="font-bold text-gray-900 mb-2">LED Arrays</h4>
-            <p className="text-sm text-gray-600">
-              Calculate current-limiting resistors for parallel LED configurations.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="prose prose-slate max-w-none">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
-        <div className="space-y-4 not-prose">
+      {/* ── 4. Use Cases ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Real-World Use Cases
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
           {[
             {
-              q: "What happens when resistors are connected in parallel?",
-              a: "The total resistance decreases because current has multiple paths to flow through. The equivalent resistance is always less than the smallest resistor in the parallel combination."
+              title: "Halving a Resistance Value",
+              scenario: "A hobbyist needs a 50Ω resistor but only has 100Ω in stock. Entering two 100Ω resistors into the calculator confirms the parallel combination gives exactly 50Ω, letting them build the value from parts on hand instead of ordering a new part.",
             },
             {
-              q: "Can I use this calculator for more than 2 resistors?",
-              a: "Yes! You can add up to 20 resistors. The calculator automatically handles any number of parallel resistors using the same formula."
+              title: "Doubling a Resistor's Power Rating",
+              scenario: "A technician needs a 1/2-watt equivalent resistor but only has 1/4-watt 220Ω parts. Placing two 220Ω 1/4-watt resistors in parallel, the calculator confirms the combined resistance is 110Ω while the power handling doubles to roughly 1/2 watt, since the current now splits evenly between two resistors.",
             },
             {
-              q: "What if all resistors have the same value?",
-              a: "For n identical resistors of value R in parallel, the total resistance is simply R/n. For example, two 100Ω resistors in parallel give 50Ω."
+              title: "Homework Verification for a Parallel Circuit",
+              scenario: "A student solving a textbook problem with three resistors (100Ω, 220Ω, 330Ω) in parallel enters all three into the calculator, which returns 56.34Ω — matching their hand-calculated reciprocal sum and confirming they inverted and summed correctly.",
             },
             {
-              q: "How do I enter values in kiloohms or megaohms?",
-              a: "You can either select the unit from the dropdown or use shorthand notation: type '10k' for 10kΩ or '1M' for 1MΩ, and the calculator will automatically convert it."
+              title: "Speaker Impedance Matching",
+              scenario: "An audio hobbyist wiring two 8Ω speakers in parallel for a single amplifier channel checks the resulting load. The calculator confirms 8Ω || 8Ω = 4Ω, which they verify is within the amplifier's rated minimum load impedance before connecting the speakers.",
             },
             {
-              q: "Why is parallel resistance always smaller?",
-              a: "Adding resistors in parallel provides additional paths for current flow, which reduces the overall opposition to current. Think of it like adding more lanes to a highway – traffic flows more easily."
+              title: "Custom Resistance for a Sensor Bias Network",
+              scenario: "An engineer needs 68.75Ω for a sensor bias resistor but doesn't have that exact value available. Testing a 100Ω and 220Ω combination in the calculator confirms it produces exactly 68.75Ω, matching the design requirement without a custom part order.",
             },
             {
-              q: "Can I save my calculations?",
-              a: "Yes! Click 'Save to History' to store your calculation. The tool keeps your last 10 calculations in browser storage for easy access."
-            }
-          ].map((faq, index) => (
-            <div key={index} className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-              <h4 className="font-semibold text-gray-900 mb-2 flex items-start gap-2">
-                <span className="text-primary">Q:</span>
-                {faq.q}
-              </h4>
-              <p className="text-sm text-gray-700 pl-6">{faq.a}</p>
+              title: "Multiple Pull-Up Resistor Bank Check",
+              scenario: "A hardware designer has four 10kΩ pull-up resistors accidentally wired in parallel on a shared bus line instead of one per device. Entering four 10kΩ values into the calculator returns 2.5kΩ combined — much lower than intended — helping them identify the wiring error before it causes excess current draw on the bus.",
+            },
+          ].map(({ title, scenario }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">{scenario}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Tips */}
-      <section className="bg-yellow-50 rounded-xl p-8 border border-yellow-200">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Pro Tips</h3>
-        <ul className="space-y-3">
-          {[
-            "Use keyboard shortcuts: Press Esc to clear all, Ctrl+Enter to add a new resistor",
-            "For quick calculations with standard values, use shorthand: 4.7k, 10k, 1M",
-            "The calculator works offline – no internet connection required after loading",
-            "Save frequently used combinations to history for quick access later",
-            "Double-check your units – mixing Ω, kΩ, and MΩ is common but the calculator handles it automatically"
-          ].map((tip, index) => (
-            <li key={index} className="flex items-start gap-3 text-sm text-gray-700">
-              <span className="text-yellow-600 mt-0.5">💡</span>
-              <span>{tip}</span>
-            </li>
-          ))}
-        </ul>
+      {/* ── 5. Tips & Mistakes ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Tips &amp; Common Mistakes
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Use the shorthand entry (like 4.7k or 1M) for quick multi-resistor comparisons — it's faster than opening a unit dropdown for every single value when you're testing several combinations rapidly.",
+                "Remember that n equal resistors in parallel always give R/n — a fast mental check before relying on the full calculation, and a useful trick for both halving resistance and multiplying power handling.",
+                "When paralleling resistors for higher power handling, use resistors with matched tolerance and value. Mismatched resistors in parallel don't share current equally, so the tighter-tolerance resistor ends up carrying more than its intended share.",
+                "For quick two-resistor combinations, the product-over-sum shortcut R_total = (R1 × R2) ÷ (R1 + R2) is faster to compute by hand than the full reciprocal formula — use it as a sanity check against this calculator's result.",
+                "If you're trying to hit an exact target resistance, test a few common E12 pairs in the calculator rather than solving the reciprocal equation algebraically — it's faster to iterate than to derive the exact pair from scratch.",
+              ].map((tip, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Adding resistances directly instead of using the reciprocal formula. Parallel resistors do not simply add — a 100Ω and 220Ω in parallel is 68.75Ω, not 320Ω, which is the series-circuit answer for the same two values.",
+                "Forgetting that equivalent parallel resistance can never exceed the smallest individual resistor. If your hand calculation returns a value larger than the smallest resistor in the group, there's an arithmetic error somewhere in the reciprocal sum.",
+                "Assuming current splits equally between parallel branches with different resistance values. Current divides inversely to resistance — the lower-resistance branch always carries more current, proportionally more as the mismatch grows.",
+                "Paralleling resistors with very different power ratings expecting even heat distribution. Even with matched resistance, mismatched wattage ratings mean one resistor may be pushed near its limit while the other has headroom to spare.",
+                "Confusing this calculator's parallel formula with the series formula when checking a circuit. Always confirm whether the resistors share both terminals (parallel) or are chained end-to-end (series) before picking which calculator to use.",
+              ].map((mistake, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
+                  <span>{mistake}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
 
-      {/* Related Tools */}
-      <section className="bg-gradient-to-r from-primary/5 to-blue-50 rounded-xl p-8 border border-primary/20">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Related Electrical Calculators</h3>
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            { name: "Series Resistor Calculator", desc: "Calculate total resistance in series" },
-            { name: "Ohm's Law Calculator", desc: "Calculate V, I, or R using V=IR" },
-            { name: "Voltage Divider Calculator", desc: "Determine output voltage in divider circuits" },
-            { name: "LED Resistor Calculator", desc: "Find current-limiting resistor for LEDs" },
-            { name: "Power Calculator", desc: "Calculate electrical power (P=VI)" },
-            { name: "Resistor Color Code", desc: "Decode resistor color bands" }
-          ].map((tool, index) => (
-            <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-primary hover:shadow-md transition-all cursor-pointer">
-              <h4 className="font-semibold text-gray-900 text-sm mb-1">{tool.name}</h4>
-              <p className="text-xs text-gray-600">{tool.desc}</p>
+      {/* ── 6. Reference Table ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Common Parallel Combinations
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">R1</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">R2</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Equivalent</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["100Ω", "100Ω", "50Ω"],
+                ["100Ω", "220Ω", "68.75Ω"],
+                ["220Ω", "330Ω", "132Ω"],
+                ["1kΩ", "1kΩ", "500Ω"],
+                ["4.7kΩ", "10kΩ", "3.2kΩ"],
+                ["8Ω", "8Ω", "4Ω"],
+              ].map(([r1, r2, eq]) => (
+                <tr key={`${r1}-${r2}`} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-mono text-gray-700 text-xs">{r1}</td>
+                  <td className="py-2 px-3 font-mono text-gray-700 text-xs">{r2}</td>
+                  <td className="py-2 px-3 font-mono text-green-600 font-semibold text-xs">{eq}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400 mt-2">* All values calculated with R_total = (R1 × R2) ÷ (R1 + R2). Add more resistors in the tool above for larger groups.</p>
+      </section>
+
+      {/* ── 7. FAQ ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-6">
+          {faqItems.map(({ q, a }, i) => (
+            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
             </div>
           ))}
         </div>
       </section>
 
-    </div>
+      {/* ── 8. Who Uses This ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Who Uses This Parallel Resistor Calculator?
+        </h2>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { icon: "🎓", title: "Electronics Students", desc: "Verify homework and lab problems involving multiple resistors in parallel using the reciprocal formula." },
+            { icon: "🔌", title: "Electronics Hobbyists", desc: "Combine standard resistor values to hit non-standard targets or double a resistor's effective power rating." },
+            { icon: "⚡", title: "Electrical Engineers", desc: "Quickly check equivalent resistance during circuit analysis and design without manual reciprocal math." },
+            { icon: "🎛️", title: "Audio Hobbyists", desc: "Calculate combined speaker impedance when wiring multiple drivers in parallel on a single amplifier channel." },
+            { icon: "🔧", title: "Technicians", desc: "Spot wiring errors where components were unintentionally paralleled instead of run independently." },
+            { icon: "🏭", title: "Hardware Designers", desc: "Verify bias and pull-up resistor networks where multiple resistors share the same two nodes." },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <div className="text-2xl mb-2">{icon}</div>
+              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

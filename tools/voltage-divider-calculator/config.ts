@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const voltageDividerCalculatorConfig = {
   name: "Voltage Divider Calculator",
   slug: "voltage-divider-calculator",
@@ -13,24 +15,62 @@ export const voltageDividerCalculatorConfig = {
     "electronics calculator",
     "voltage calculator",
     "resistor calculator",
-    "circuit calculator"
+    "circuit calculator",
+    "voltage divider formula calculator",
+    "vin to vout calculator",
+    "arduino voltage divider calculator",
+    "esp32 voltage divider calculator",
+    "resistor voltage divider calculator",
+    "calculate voltage divider output",
+    "voltage divider ratio calculator",
+    "how to calculate voltage divider",
+    "r1 r2 voltage divider calculator",
+    "free voltage divider calculator",
+    "online voltage divider calculator",
   ],
   seo: {
-    title: "Voltage Divider Calculator – Calculate Vout Instantly Online",
-    description: "Free online voltage divider calculator. Quickly calculate output voltage (Vout) using resistor values and input voltage with step-by-step explanation.",
-    keywords: "voltage divider calculator, vout calculator, resistor divider formula, electronics calculator, ohm law tools",
-    og: {
-      title: "Voltage Divider Calculator – Calculate Output Voltage",
-      description: "Calculate voltage divider output instantly with step-by-step explanation. Free tool for electronics engineers and students.",
+    title: "Voltage Divider Calculator — Calculate Vout Instantly | Productive Toolbox",
+    description: "Calculate voltage divider output (Vout), current, and power dissipation from Vin, R1, and R2. Free calculator with presets and step-by-step results.",
+    keywords: "voltage divider calculator, vout calculator, resistor divider formula, electronics calculator, arduino voltage divider calculator, resistor calculator",
+    openGraph: {
+      title: "Voltage Divider Calculator — Calculate Vout Instantly",
+      description: "Calculate output voltage, current, and power dissipation for a two-resistor voltage divider. Step-by-step breakdown and built-in presets.",
       type: "website",
-      url: "/tools/electrical/voltage-divider-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/voltage-divider-calculator`,
+    },
+    og: {
+      title: "Voltage Divider Calculator — Calculate Vout Instantly",
+      description: "Calculate output voltage, current, and power dissipation for a two-resistor voltage divider. Step-by-step breakdown and built-in presets.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/voltage-divider-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Input Voltage (Vin)", text: "Type the supply voltage feeding the divider circuit, in volts." },
+      { name: "Enter R1 (Top Resistor)", text: "Input the resistance between the input voltage and the output tap point, in Ω, kΩ, or MΩ." },
+      { name: "Enter R2 (Bottom Resistor)", text: "Input the resistance between the output tap point and ground. Vout is measured across this resistor." },
+      { name: "Read the Output Voltage and Ratio", text: "View Vout, the R2 ÷ (R1 + R2) ratio, and a full step-by-step breakdown of the calculation." },
+      { name: "Check Current and Power Dissipation", text: "Review the current through the divider and power dissipated in each resistor to confirm wattage ratings are sufficient." },
+    ],
+    faq: [
+      { q: "What is a voltage divider calculator?", a: "A free online tool that computes the output voltage (Vout) of a two-resistor divider circuit from Vin, R1, and R2, along with current draw and power dissipated in each resistor." },
+      { q: "What is the voltage divider formula?", a: "Vout = Vin × R2 ÷ (R1 + R2). Example: Vin = 12V, R1 = 4.7kΩ, R2 = 3.3kΩ gives Vout = 12 × 3,300 ÷ 8,000 = 4.95V." },
+      { q: "Which resistor is R1 and which is R2?", a: "R1 is the top resistor between Vin and the output tap. R2 is the bottom resistor between the output tap and ground. Vout is measured across R2." },
+      { q: "How do I choose resistor values for a specific output voltage?", a: "Set R2 ÷ (R1 + R2) equal to your target Vout ÷ Vin, then pick a total resistance high enough to limit current but low enough to stay stiff against the connected load." },
+      { q: "How much current flows through a voltage divider?", a: "Current (A) = Vin ÷ (R1 + R2). A 12V input across 8kΩ total resistance draws 1.5mA continuously, even with no load connected." },
+      { q: "Why does a voltage divider's output sag under load?", a: "The standard formula assumes no load draws current from the output. Connecting a load in parallel with R2 lowers its effective value, pulling Vout below the no-load calculation." },
+      { q: "Can I use a voltage divider to step down power?", a: "No. A resistive divider wastes power as heat and cannot supply meaningful current without significant voltage sag. Use a voltage regulator or buck converter for power conversion instead." },
+      { q: "How do I calculate power dissipation in divider resistors?", a: "Power (W) = Current² × Resistance. With 1.5mA through a 4.7kΩ resistor: Power = 0.0015² × 4,700 = 0.0106W (10.6mW)." },
+      { q: "What ratio do I need for an Arduino or ESP32 ADC?", a: "Arduino reads up to 5V; ESP32 up to about 3.3V. To read a 12V source on a 5V ADC, use a ratio of 5/12 = 0.417 — R1 = 4.7kΩ, R2 = 3.3kΩ gives Vout = 4.95V." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage and resistor values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "ohms-law-calculator",
-    "power-consumption-calculator",
-    "resistor-color-code-calculator"
-  ]
+    "series-resistor-calculator",
+    "parallel-resistor-calculator",
+    "resistor-color-code-calculator",
+    "voltage-drop-calculator",
+  ],
 };
 
 export const toolConfig = voltageDividerCalculatorConfig;

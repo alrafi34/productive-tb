@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const inductorCalculatorConfig = {
   name: "Inductor Calculator",
   slug: "inductor-calculator",
@@ -14,22 +16,56 @@ export const inductorCalculatorConfig = {
     "air-core coil calculator",
     "inductive reactance calculator",
     "XL calculator",
-    "electrical engineering calculator"
+    "electrical engineering calculator",
+    "coil inductance calculator",
+    "solenoid inductance formula",
+    "calculate inductance from turns",
+    "inductive reactance formula calculator",
+    "rf coil calculator",
+    "wind coil inductance calculator",
+    "free inductor calculator",
+    "inductance formula calculator",
   ],
   seo: {
-    title: "Inductor Calculator – Calculate Inductance & Reactance Online",
-    description: "Free online inductor calculator. Compute inductance for solenoids and air-core coils, calculate inductive reactance with formulas and step-by-step explanations.",
-    keywords: "inductor calculator, inductance formula, coil inductance calculator, reactance calculator, electrical engineering tools, solenoid calculator",
-    og: {
-      title: "Inductor Calculator – Free Inductance Calculation Tool",
-      description: "Calculate inductance and inductive reactance instantly with unit conversion and detailed steps.",
+    title: "Inductor Calculator — Coil Inductance & Reactance Tool | Productive Toolbox",
+    description: "Calculate coil inductance for solenoids and air-core coils, plus inductive reactance. Free calculator with formulas and step-by-step results.",
+    keywords: "inductor calculator, inductance calculator, coil inductance, solenoid calculator, inductive reactance calculator, air-core coil calculator",
+    openGraph: {
+      title: "Inductor Calculator — Coil Inductance & Reactance Tool",
+      description: "Calculate solenoid and air-core coil inductance, plus inductive reactance (XL), with full step-by-step formula derivation.",
       type: "website",
-      url: "/tools/electrical/inductor-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/inductor-calculator`,
+    },
+    og: {
+      title: "Inductor Calculator — Coil Inductance & Reactance Tool",
+      description: "Calculate solenoid and air-core coil inductance, plus inductive reactance (XL), with full step-by-step formula derivation.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/inductor-calculator`,
+    },
+    howToSteps: [
+      { name: "Select a Calculation Mode", text: "Choose Solenoid Inductance, Air-Core Coil Inductance, or Inductive Reactance." },
+      { name: "Enter Winding Parameters", text: "For inductance modes, input turns, coil length, and area or radius, plus core material — air, iron, or custom permeability." },
+      { name: "Enter Inductance and Frequency", text: "For reactance mode, input a known inductance and the frequency to evaluate reactance at." },
+      { name: "Read the Result and Formula", text: "View the computed value along with the exact formula and every intermediate substitution." },
+      { name: "Review the Step-by-Step Derivation", text: "See a full breakdown of the calculation for verification or reference." },
+    ],
+    faq: [
+      { q: "What is an inductor calculator?", a: "A free online tool that computes coil inductance from winding parameters (turns, area, length, core material), or calculates inductive reactance from inductance and frequency." },
+      { q: "What is the formula for solenoid inductance?", a: "L = (μ × N² × A) ÷ l. An air-core solenoid with 100 turns, 1cm² area, and 10cm length gives L ≈ 1.26µH." },
+      { q: "What is the formula for air-core coil inductance?", a: "L ≈ (μ₀ × N² × π × r²) ÷ l, using radius instead of area. Most accurate when coil length is several times the diameter." },
+      { q: "What is the formula for inductive reactance?", a: "XL = 2πfL. A 10µH inductor at 1MHz gives XL = 2π × 1,000,000 × 0.00001 ≈ 62.8Ω." },
+      { q: "Why does adding a magnetic core increase inductance?", a: "Core materials like iron have much higher permeability (μ) than air, which directly multiplies inductance in the L = (μN²A)/l formula." },
+      { q: "Why does inductance scale with the square of turns?", a: "Each turn's flux links with every other turn, so N turns produce N times the flux linking N times, giving an N² relationship. Doubling turns quadruples inductance." },
+      { q: "How is inductive reactance different from resistance?", a: "Resistance dissipates energy as heat at any frequency including DC. Inductive reactance opposes changing current without dissipating energy, is zero at DC, and increases linearly with frequency." },
+      { q: "Why does inductive reactance increase with frequency?", a: "An inductor's back-EMF is proportional to the rate of change of current. Higher frequency means faster current changes, increasing back-EMF and reactance proportionally (XL = 2πfL)." },
+      { q: "How accurate is the air-core formula for real coils?", a: "Most accurate for long, thin solenoids where length is several times the diameter. Short, fat coils need a correction like Wheeler's approximation due to end-fringing effects." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your coil parameters, inductance, and frequency values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "capacitor-calculator",
     "capacitive-reactance-calculator",
-    "ohms-law-calculator"
-  ]
+    "inductive-reactance-calculator",
+    "ohms-law-calculator",
+  ],
 };

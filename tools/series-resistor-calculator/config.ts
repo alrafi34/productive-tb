@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const seriesResistorCalculatorConfig = {
   name: "Series Resistor Calculator",
   slug: "series-resistor-calculator",
@@ -13,22 +15,58 @@ export const seriesResistorCalculatorConfig = {
     "electronics calculator",
     "resistor calculator",
     "series circuit calculator",
-    "resistance calculator"
+    "resistance calculator",
+    "resistors in series calculator",
+    "series resistance formula calculator",
+    "add resistors calculator",
+    "total resistance in series circuit",
+    "calculate series resistance",
+    "e12 resistor calculator",
+    "multiple resistor calculator",
+    "series resistance formula",
+    "free resistor calculator",
+    "online resistance calculator",
   ],
   seo: {
-    title: "Series Resistor Calculator – Calculate Total Resistance Online",
-    description: "Quickly calculate total resistance in a series circuit. Enter multiple resistor values, get instant results, and convert between ohms, kilo-ohms, and mega-ohms.",
-    keywords: "series resistor calculator, total resistance calculator, ohms calculator, electronics calculator, resistor calculator, series circuit",
-    og: {
-      title: "Series Resistor Calculator – Free Total Resistance Tool",
-      description: "Calculate total resistance in series circuits instantly with multiple resistor support and unit conversion.",
+    title: "Series Resistor Calculator — Total Resistance Calculator | Productive Toolbox",
+    description: "Calculate total resistance for resistors in series. Free calculator with bulk input, unit conversion, and E12 standard value presets.",
+    keywords: "series resistor calculator, total resistance calculator, ohms calculator, resistors in series calculator, resistance calculator, electronics calculator",
+    openGraph: {
+      title: "Series Resistor Calculator — Total Resistance Calculator",
+      description: "Add any number of resistors in series to find total resistance. Bulk input, E12 value presets, and automatic Ω/kΩ/MΩ conversion.",
       type: "website",
-      url: "/tools/electrical/series-resistor-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/series-resistor-calculator`,
+    },
+    og: {
+      title: "Series Resistor Calculator — Total Resistance Calculator",
+      description: "Add any number of resistors in series to find total resistance. Bulk input, E12 value presets, and automatic Ω/kΩ/MΩ conversion.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/series-resistor-calculator`,
+    },
+    howToSteps: [
+      { name: "Add Your First Resistor", text: "Enter a resistance value and select its unit — Ω, kΩ, or MΩ. Add as many resistors as your series chain contains." },
+      { name: "Use Bulk Input for Long Chains", text: "Paste a comma- or newline-separated list of values to add many resistors at once." },
+      { name: "Select Common E12 Values", text: "Pick from the built-in list of standard resistor values if working with off-the-shelf components." },
+      { name: "Read the Total Resistance", text: "The result updates instantly, showing the sum of all entered resistors in your chosen output unit." },
+      { name: "Check Unit Conversions", text: "View the same total automatically converted across Ω, kΩ, and MΩ." },
+    ],
+    faq: [
+      { q: "What is a series resistor calculator?", a: "A free online tool that adds together any number of resistors connected end-to-end to find total resistance, converting between ohms, kilohms, and megohms automatically." },
+      { q: "What is the formula for resistors in series?", a: "R_total = R1 + R2 + R3 + ... + Rn. Resistance adds directly because the same current flows through each resistor in the chain. Example: 100Ω + 220Ω + 330Ω = 650Ω." },
+      { q: "Why does resistance add in series but not in parallel?", a: "In series, the same current passes through every resistor, so each adds directly to total opposition. In parallel, current splits across multiple paths, so more resistors lower the total instead." },
+      { q: "How do I combine resistors to get a value not available off the shelf?", a: "Add two or more standard E12/E24 resistors in series until the sum is close to your target. A 100Ω and 47Ω in series give 147Ω, close to a 150Ω target." },
+      { q: "Does the order of resistors in a series chain matter?", a: "No. Addition is commutative — R1 + R2 + R3 gives the same total regardless of physical position in the chain." },
+      { q: "How do I calculate voltage drop across each resistor in series?", a: "Find total current as I = V_source ÷ R_total, then multiply that current by each individual resistor's value to get its share of the voltage drop, using Ohm's Law." },
+      { q: "What happens if one resistor fails open in a series circuit?", a: "The entire circuit is broken and no current flows through any part of the chain, since a single open point stops current everywhere in a series loop." },
+      { q: "Can I add resistors with different tolerances together?", a: "Yes, but combined tolerance is weighted by each resistor's share of the total resistance, not simply the tolerance of the largest resistor." },
+      { q: "How many resistors can I add with this calculator?", a: "There's no fixed limit — add resistors one at a time or paste a bulk list of comma- or newline-separated values for a large chain at once." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your resistor values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "parallel-resistor-calculator",
     "ohms-law-calculator",
-    "voltage-divider-calculator"
-  ]
+    "voltage-divider-calculator",
+    "resistor-color-code-calculator",
+  ],
 };

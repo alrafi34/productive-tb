@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const parallelResistorCalculatorConfig = {
   slug: "parallel-resistor-calculator",
   name: "Parallel Resistor Calculator",
@@ -13,22 +15,56 @@ export const parallelResistorCalculatorConfig = {
     "electrical calculator",
     "circuit calculator",
     "parallel resistance tool",
-    "electronics calculator"
+    "electronics calculator",
+    "resistors in parallel calculator",
+    "parallel resistance formula",
+    "calculate parallel resistance",
+    "total resistance parallel circuit",
+    "reciprocal resistance calculator",
+    "resistor combination calculator",
+    "free parallel resistor calculator",
+    "online resistance calculator",
   ],
   seo: {
-    title: "Parallel Resistor Calculator – Find Equivalent Resistance Instantly",
-    description: "Calculate equivalent resistance for parallel circuits instantly. Enter multiple resistor values, get real-time results, and simplify electrical calculations online for free.",
-    keywords: "parallel resistor calculator, equivalent resistance calculator, resistors in parallel formula, electrical calculator, circuit calculator",
-    og: {
-      title: "Parallel Resistor Calculator – Free Online Tool",
-      description: "Calculate equivalent resistance for parallel resistor circuits instantly with support for multiple units.",
+    title: "Parallel Resistor Calculator — Equivalent Resistance Tool | Productive Toolbox",
+    description: "Calculate equivalent resistance for resistors in parallel instantly. Free calculator with unlimited resistors and shorthand value entry.",
+    keywords: "parallel resistor calculator, equivalent resistance calculator, resistors in parallel formula, resistors in parallel calculator, circuit calculator",
+    openGraph: {
+      title: "Parallel Resistor Calculator — Equivalent Resistance Tool",
+      description: "Calculate equivalent resistance for any number of resistors in parallel using the reciprocal formula. Free and browser-based.",
       type: "website",
-      url: "/tools/electrical/parallel-resistor-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/parallel-resistor-calculator`,
+    },
+    og: {
+      title: "Parallel Resistor Calculator — Equivalent Resistance Tool",
+      description: "Calculate equivalent resistance for any number of resistors in parallel using the reciprocal formula. Free and browser-based.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/parallel-resistor-calculator`,
+    },
+    howToSteps: [
+      { name: "Add Your First Resistor", text: "Enter a resistance value and select its unit — Ω, kΩ, or MΩ — or use shorthand like 4.7k or 1M." },
+      { name: "Add Additional Resistors", text: "Add every resistor connected in parallel across the same two nodes." },
+      { name: "Choose Your Output Unit", text: "Select whether you want the equivalent resistance displayed in Ω, kΩ, or MΩ." },
+      { name: "Read the Equivalent Resistance", text: "The result updates instantly using the reciprocal formula, always lower than the smallest resistor entered." },
+      { name: "Edit or Remove Resistors", text: "Adjust any value or remove a resistor to instantly see how the equivalent resistance changes." },
+    ],
+    faq: [
+      { q: "What is a parallel resistor calculator?", a: "A free online tool that computes the equivalent resistance of two or more resistors connected across the same two nodes, using the reciprocal formula, always lower than the smallest resistor." },
+      { q: "What is the formula for resistors in parallel?", a: "1/R_total = 1/R1 + 1/R2 + ... + 1/Rn. For two resistors: R_total = (R1 × R2) ÷ (R1 + R2). Example: 100Ω and 220Ω give 68.75Ω." },
+      { q: "Why is parallel resistance always lower than the smallest resistor?", a: "Parallel resistors give current multiple simultaneous paths, reducing total opposition. The equivalent can never exceed the smallest individual resistor in the group." },
+      { q: "What happens when I put two equal resistors in parallel?", a: "R_total = R ÷ 2. Two 100Ω resistors in parallel equal 50Ω — a common way to halve resistance or double effective power rating." },
+      { q: "How do I calculate current split between parallel resistors?", a: "Current divides inversely to resistance. I1 = I_total × R2 ÷ (R1 + R2) gives the current through R1, where R2 is the other branch's value." },
+      { q: "How do I combine resistors in parallel to get a non-standard value?", a: "Test common E12 pairs against your target. Two 100Ω give 50Ω; a 100Ω and 150Ω give 60Ω; three 300Ω resistors give 100Ω." },
+      { q: "Does adding more resistors in parallel always lower total resistance?", a: "Yes. Every added resistor creates another current path, always lowering or leaving unchanged the total — never raising it, unlike series circuits." },
+      { q: "How is parallel resistance different from series resistance?", a: "Series resistors share current and simply add, increasing the total. Parallel resistors share voltage and use the reciprocal formula, decreasing the total." },
+      { q: "How many resistors can I calculate in parallel at once?", a: "There's no fixed limit. Shorthand notation like 4.7k or 1M can be used for quick entry without a separate unit dropdown." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your resistor values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "series-resistor-calculator",
     "ohms-law-calculator",
-    "voltage-divider-calculator"
-  ]
+    "voltage-divider-calculator",
+    "resistor-color-code-calculator",
+  ],
 };

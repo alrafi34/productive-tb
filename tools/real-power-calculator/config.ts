@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const realPowerCalculatorConfig = {
   name: "Real Power Calculator",
   slug: "real-power-calculator",
@@ -13,24 +15,57 @@ export const realPowerCalculatorConfig = {
     "electrical power formula",
     "power factor calculator",
     "watts calculator",
-    "electrical engineering calculator"
+    "electrical engineering calculator",
+    "real power formula calculator",
+    "p = v i pf calculator",
+    "calculate real power",
+    "active power formula",
+    "true power calculator",
+    "watts from volts amps pf",
+    "free real power calculator",
   ],
   seo: {
-    title: "Real Power Calculator – AC Power Formula Calculator Online",
-    description: "Calculate real power in AC circuits instantly using voltage, current, and power factor. Free online electrical calculator for students and engineers.",
-    keywords: "real power calculator, AC power calculator, electrical power formula, power factor calculator, watts calculator online",
-    og: {
-      title: "Real Power Calculator – Calculate Active Power in AC Circuits",
-      description: "Calculate real power instantly with voltage, current, and power factor. Free tool for electrical engineers and students.",
+    title: "Real Power Calculator — P = V × I × PF Calculator | Productive Toolbox",
+    description: "Calculate real (active) power in AC circuits from voltage, current, and power factor. Free calculator with apparent and reactive power.",
+    keywords: "real power calculator, active power calculator, AC power calculator, electrical power formula, watts calculator, true power calculator",
+    openGraph: {
+      title: "Real Power Calculator — P = V × I × PF Calculator",
+      description: "Calculate real power (watts) from voltage, current, and power factor, along with apparent and reactive power in the same result.",
       type: "website",
-      url: "/tools/electrical/real-power-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/real-power-calculator`,
+    },
+    og: {
+      title: "Real Power Calculator — P = V × I × PF Calculator",
+      description: "Calculate real power (watts) from voltage, current, and power factor, along with apparent and reactive power in the same result.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/real-power-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Voltage", text: "Input the supply voltage in volts (V) applied to the load." },
+      { name: "Enter Current", text: "Input the current drawn by the load in amps (A)." },
+      { name: "Enter Power Factor", text: "Input the load's power factor as a decimal between 0 and 1 — 1.0 for purely resistive loads." },
+      { name: "Read the Real Power Result", text: "View real power in watts, calculated instantly using P = V × I × PF." },
+      { name: "Review Apparent and Reactive Power", text: "See apparent power (S = V × I) and reactive power (Q = √(S² - P²)) from the same inputs." },
+    ],
+    faq: [
+      { q: "What is a real power calculator?", a: "A free online tool that computes the actual useful power (P) consumed by an AC load from voltage, current, and power factor, measured in watts." },
+      { q: "What is the formula for real power?", a: "P = V × I × PF. A load at 230V, 5A, PF 0.8 gives P = 230 × 5 × 0.8 = 920W." },
+      { q: "What is the difference between real, apparent, and reactive power?", a: "Real power (P, watts) is useful work. Apparent power (S = V × I, VA) is total power drawn. Reactive power (Q, VAR) is non-working power. S² = P² + Q²." },
+      { q: "Why is real power lower than apparent power for most loads?", a: "Most loads aren't purely resistive, so power factor is below 1.0. Since P = V × I × PF, any PF below 1.0 makes real power lower than apparent power." },
+      { q: "How do I calculate power factor from real and apparent power?", a: "PF = P ÷ S, where S = V × I. For P = 920W and S = 1,150VA, PF = 920 ÷ 1,150 = 0.8." },
+      { q: "What is the real power of a purely resistive load?", a: "Power factor equals 1.0, so P = V × I exactly. A 120V heater at 10A has real power of exactly 1,200W with zero reactive power." },
+      { q: "How does real power relate to my electricity bill?", a: "Most utility bills charge based on real power over time (kWh), not apparent power — which is why poor power factor can draw more current than billed energy suggests." },
+      { q: "Can real power ever exceed apparent power?", a: "No. Since P = S × PF and PF can never exceed 1.0, real power can never be greater than apparent power. They're equal only when PF = 1.0." },
+      { q: "How do I calculate real power for a motor?", a: "Use rated voltage, current, and power factor: P = V × I × PF. For three-phase, multiply the per-phase result by √3 for total real power." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, and power factor values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
-    "voltage-divider-calculator",
+    "power-factor-calculator",
+    "reactive-power-calculator",
+    "apparent-power-calculator",
     "impedance-calculator",
-    "phase-angle-calculator"
-  ]
+  ],
 };
 
 export const toolConfig = realPowerCalculatorConfig;

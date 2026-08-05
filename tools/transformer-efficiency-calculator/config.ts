@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const transformerEfficiencyCalculatorConfig = {
   name: "Transformer Efficiency Calculator",
   slug: "transformer-efficiency-calculator",
@@ -13,25 +15,57 @@ export const transformerEfficiencyCalculatorConfig = {
     "power loss calculator",
     "electrical efficiency",
     "transformer performance calculator",
-    "energy efficiency calculator"
+    "energy efficiency calculator",
+    "transformer efficiency formula calculator",
+    "calculate transformer efficiency",
+    "transformer power loss formula",
+    "transformer copper losses calculator",
+    "transformer core losses calculator",
+    "free transformer efficiency calculator",
+    "electrical engineering calculator",
   ],
   seo: {
-    title: "Transformer Efficiency Calculator – Calculate Power Loss & Efficiency",
-    description: "Free online transformer efficiency calculator. Calculate efficiency using input/output power, voltage, current, or losses. Instant results with step-by-step calculations.",
-    keywords: "transformer efficiency calculator, power loss, electrical efficiency, transformer performance, energy calculator",
-    og: {
-      title: "Transformer Efficiency Calculator – Free Electrical Tool",
-      description: "Calculate transformer efficiency instantly with multiple input methods. Free tool for engineers and students.",
+    title: "Transformer Efficiency Calculator — Power Loss & η Tool | Productive Toolbox",
+    description: "Calculate transformer efficiency and power losses from input/output power, voltage, or losses. Free calculator with efficiency ratings.",
+    keywords: "transformer efficiency calculator, transformer losses calculator, power loss calculator, electrical efficiency, transformer performance calculator",
+    openGraph: {
+      title: "Transformer Efficiency Calculator — Power Loss & η Tool",
+      description: "Calculate transformer efficiency (η) and power losses from input/output power, voltage and current, or known losses, with efficiency ratings.",
       type: "website",
-      url: "/tools/electrical/transformer-efficiency-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/transformer-efficiency-calculator`,
+    },
+    og: {
+      title: "Transformer Efficiency Calculator — Power Loss & η Tool",
+      description: "Calculate transformer efficiency (η) and power losses from input/output power, voltage and current, or known losses, with efficiency ratings.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/transformer-efficiency-calculator`,
+    },
+    howToSteps: [
+      { name: "Select a Calculation Mode", text: "Choose input/output power, voltage/current/power factor plus output power, or output power plus losses." },
+      { name: "Enter Your Known Values", text: "Enter power in watts, or voltage, current, and power factor, or output power and losses, depending on the mode." },
+      { name: "Read the Efficiency Result", text: "View efficiency as a percentage, calculated using η = (Output Power ÷ Input Power) × 100." },
+      { name: "Review Calculated Losses", text: "See power lost as heat, calculated as Input Power − Output Power." },
+      { name: "Check the Efficiency Rating", text: "View a rating from Excellent to Very Poor based on standard transformer efficiency benchmarks." },
+    ],
+    faq: [
+      { q: "What is a transformer efficiency calculator?", a: "A free online tool that computes how much power fed into a transformer reaches the output, from input/output power, voltage/current, or known losses." },
+      { q: "What is the formula for transformer efficiency?", a: "η = (Output Power ÷ Input Power) × 100. A transformer with 1,000W input and 950W output has η = 95%." },
+      { q: "How do I calculate transformer losses?", a: "Losses = Input Power − Output Power. 1,000W input and 950W output gives 50W losses." },
+      { q: "What is a good transformer efficiency?", a: "98%+ is excellent, 95-97% very good, 90-94% good, 85-89% fair, 80-84% poor, below 80% very poor and likely needing replacement." },
+      { q: "What causes power losses in a transformer?", a: "Copper losses (I²R heating, scales with current squared) and core losses (hysteresis/eddy currents, roughly constant regardless of load)." },
+      { q: "How do I calculate input power from voltage, current, and power factor?", a: "Input Power = Voltage × Current × Power Factor. 230V, 5A, PF 0.95 gives Input Power = 1,092.5W." },
+      { q: "Why does transformer efficiency vary with load?", a: "Core losses dominate at light load; copper losses dominate at heavy load. Peak efficiency typically occurs around 50-75% of rated load." },
+      { q: "Why do utilities care about distribution transformer efficiency?", a: "These run continuously for decades, so small efficiency gains compound into large lifetime energy savings, justifying higher upfront cost for efficient units." },
+      { q: "Can transformer efficiency exceed 100%?", a: "No. Output power can never exceed input power. A result above 100% indicates a measurement or input error." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, voltage, current, and loss values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "transformer-turns-ratio-calculator",
+    "transformer-current-calculator",
     "power-factor-calculator",
-    "energy-consumption-calculator",
-    "three-phase-power-calculator"
-  ]
+    "three-phase-power-calculator",
+  ],
 };
 
 export const toolConfig = transformerEfficiencyCalculatorConfig;

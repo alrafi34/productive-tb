@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const inductiveReactanceCalculatorConfig = {
   name: "Inductive Reactance Calculator",
   slug: "inductive-reactance-calculator",
@@ -13,22 +15,55 @@ export const inductiveReactanceCalculatorConfig = {
     "2πfL calculator",
     "electronics calculator",
     "inductor impedance calculator",
-    "reactance calculator"
+    "reactance calculator",
+    "xl reactance formula calculator",
+    "calculate inductive reactance",
+    "inductor reactance calculator",
+    "reactance vs frequency calculator",
+    "ac inductor calculator",
+    "free reactance calculator",
+    "inductive reactance formula",
   ],
   seo: {
-    title: "Inductive Reactance Calculator (XL) – Calculate 2πfL Instantly",
-    description: "Free online inductive reactance calculator. Quickly calculate XL using frequency and inductance with unit conversion, step-by-step explanation, and instant results.",
-    keywords: "inductive reactance calculator, XL calculator, AC circuit calculator, 2πfL calculator, electronics calculator, inductor impedance",
-    og: {
-      title: "Inductive Reactance Calculator – Free XL Calculation Tool",
-      description: "Calculate inductive reactance instantly with frequency and inductance inputs, unit conversion, and detailed steps.",
+    title: "Inductive Reactance Calculator — XL = 2πfL Calculator | Productive Toolbox",
+    description: "Calculate inductive reactance (XL) from frequency and inductance instantly. Free calculator with step-by-step formulas and presets.",
+    keywords: "inductive reactance calculator, XL calculator, AC circuit calculator, 2πfL calculator, reactance calculator, inductor impedance calculator",
+    openGraph: {
+      title: "Inductive Reactance Calculator — XL = 2πfL Calculator",
+      description: "Calculate inductive reactance (XL) from frequency and inductance with full step-by-step formula derivation and unit conversion.",
       type: "website",
-      url: "/tools/electrical/inductive-reactance-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/inductive-reactance-calculator`,
+    },
+    og: {
+      title: "Inductive Reactance Calculator — XL = 2πfL Calculator",
+      description: "Calculate inductive reactance (XL) from frequency and inductance with full step-by-step formula derivation and unit conversion.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/inductive-reactance-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Frequency", text: "Input the AC signal frequency, choosing Hz, kHz, or MHz." },
+      { name: "Enter Inductance", text: "Input the inductor's value, choosing H, mH, µH, or nH." },
+      { name: "Read the Inductive Reactance", text: "View XL in ohms, calculated instantly using XL = 2πfL." },
+      { name: "Review the Step-by-Step Derivation", text: "See the full calculation broken into each substitution step." },
+      { name: "Apply a Preset", text: "Use a built-in preset spanning power-line frequencies through RF frequencies to explore how reactance scales." },
+    ],
+    faq: [
+      { q: "What is an inductive reactance calculator?", a: "A free online tool that computes the opposition an inductor presents to AC using XL = 2πfL, from frequency and inductance, with a full step-by-step derivation." },
+      { q: "What is the formula for inductive reactance?", a: "XL = 2πfL. A 10mH inductor at 60Hz gives XL = 2π × 60 × 0.01 = 3.77Ω; at 1kHz it gives 62.8Ω." },
+      { q: "Why does inductive reactance increase with frequency?", a: "An inductor's back-EMF is proportional to the rate of change of current. Higher frequency means faster current changes, increasing back-EMF and reactance proportionally." },
+      { q: "What is the difference between inductive reactance and resistance?", a: "Resistance dissipates energy as heat at any frequency including DC. Inductive reactance opposes changing current without dissipating heat, is zero at DC, and scales linearly with frequency." },
+      { q: "What is the inductive reactance at 0 Hz (DC)?", a: "Zero. Since XL = 2πfL, f = 0 makes reactance zero — an ideal inductor behaves like a plain wire at DC, aside from its winding resistance." },
+      { q: "How do I find the resonant frequency of an LC circuit?", a: "Resonance occurs when XL equals XC, at f = 1 ÷ (2π√(LC)). Compare this calculator's XL against a capacitive reactance calculator's XC at the same frequency to check for resonance." },
+      { q: "How does inductive reactance affect current in an AC circuit?", a: "I = V ÷ XL in a purely inductive circuit. A 120V, 60Hz supply across a 100mH inductor (XL = 37.7Ω) draws about 3.18A." },
+      { q: "Why do power transformers and RF chokes use different reactance considerations?", a: "Power transformers run at low fixed frequencies (50/60Hz) needing high inductance for meaningful reactance. RF chokes run at much higher frequencies, needing far less inductance for the same reactance." },
+      { q: "How is inductive reactance used in filter design?", a: "In an LC filter, XL increases with frequency, progressively blocking higher frequencies. Combined with a capacitor's decreasing reactance, this creates precise frequency-dependent filtering." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your frequency and inductance values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "capacitive-reactance-calculator",
     "impedance-calculator",
-    "inductor-calculator"
-  ]
+    "inductor-calculator",
+    "ohms-law-calculator",
+  ],
 };

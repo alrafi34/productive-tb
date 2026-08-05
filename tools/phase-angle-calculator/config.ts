@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const phaseAngleCalculatorConfig = {
   name: "Phase Angle Calculator",
   slug: "phase-angle-calculator",
@@ -13,24 +15,58 @@ export const phaseAngleCalculatorConfig = {
     "electrical phase angle",
     "reactance calculator",
     "impedance phase",
-    "voltage current phase"
+    "voltage current phase",
+    "phase angle formula calculator",
+    "calculate phase angle",
+    "phase angle from power factor",
+    "phase angle from impedance",
+    "arctan phase angle calculator",
+    "arccos power factor calculator",
+    "free phase angle calculator",
+    "electrical engineering calculator",
   ],
   seo: {
-    title: "Phase Angle Calculator – Calculate AC Circuit Phase Angle Online",
-    description: "Free online phase angle calculator. Calculate phase angle between voltage and current using power, impedance, or power factor with instant results.",
-    keywords: "phase angle calculator, power factor, AC circuits, electrical engineering, reactance, impedance calculator",
-    og: {
-      title: "Phase Angle Calculator – AC Circuit Analysis Tool",
-      description: "Calculate phase angle instantly using power values, impedance, or power factor. Free tool for electrical engineers and students.",
+    title: "Phase Angle Calculator — AC Voltage & Current Phase Tool | Productive Toolbox",
+    description: "Calculate AC circuit phase angle from power, impedance, or power factor. Free calculator with step-by-step formulas and presets.",
+    keywords: "phase angle calculator, power factor calculator, AC circuit calculator, electrical phase angle, impedance phase, voltage current phase",
+    openGraph: {
+      title: "Phase Angle Calculator — AC Voltage & Current Phase Tool",
+      description: "Calculate the phase angle between voltage and current from power, resistance/reactance, or power factor, with full step-by-step derivation.",
       type: "website",
-      url: "/tools/electrical/phase-angle-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/phase-angle-calculator`,
+    },
+    og: {
+      title: "Phase Angle Calculator — AC Voltage & Current Phase Tool",
+      description: "Calculate the phase angle between voltage and current from power, resistance/reactance, or power factor, with full step-by-step derivation.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/phase-angle-calculator`,
+    },
+    howToSteps: [
+      { name: "Select a Calculation Mode", text: "Choose to calculate phase angle from power (P & S), from impedance (R & X), or directly from power factor." },
+      { name: "Enter Your Known Values", text: "Enter real and apparent power, resistance and reactance, or a power factor between 0 and 1, depending on mode." },
+      { name: "Read the Phase Angle Result", text: "View phase angle in degrees and radians, plus the corresponding power factor." },
+      { name: "Review the Step-by-Step Derivation", text: "See exactly how the inputs were substituted into the formula for the selected mode." },
+      { name: "Apply a Preset", text: "Use built-in presets covering unity power factor, typical motor loads, and common R-X combinations." },
+    ],
+    faq: [
+      { q: "What is a phase angle calculator?", a: "A free online tool that computes the phase difference (φ) between voltage and current in an AC circuit, from power, impedance, or power factor." },
+      { q: "What is the formula for phase angle from power values?", a: "φ = arccos(P ÷ S). A load with 1,000W real and 1,250VA apparent power gives φ = arccos(0.8) = 36.87°." },
+      { q: "What is the formula for phase angle from resistance and reactance?", a: "φ = arctan(X ÷ R). R = 10Ω, X = 10Ω gives φ = arctan(1) = 45°, meaning voltage leads current by 45° in this inductive circuit." },
+      { q: "How is phase angle related to power factor?", a: "PF = cos(φ). 0° gives PF = 1.0 (unity). 90° gives PF = 0. 36.87° gives PF = 0.8, common for lightly loaded induction motors." },
+      { q: "What does a positive vs negative phase angle mean?", a: "Positive means voltage leads current (inductive, e.g. motors). Negative means current leads voltage (capacitive, e.g. correction capacitors)." },
+      { q: "What is the maximum possible phase angle?", a: "90°, in a purely reactive circuit with zero resistance. Real circuits always have some resistance, so practical angles are lower." },
+      { q: "How do I calculate phase angle from a nameplate power factor?", a: "Use power factor mode: enter the rated PF (e.g. 0.85) and the calculator returns φ = arccos(0.85) = 31.79° directly." },
+      { q: "Why does phase angle matter for electricity billing?", a: "Many tariffs penalize low power factor (large phase angle) since more current is drawn than the real power alone requires. Correction capacitors reduce phase angle toward zero." },
+      { q: "Can phase angle be calculated for three-phase systems the same way?", a: "The same formulas apply per phase in a balanced three-phase system. Unbalanced systems need each phase analyzed separately." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, impedance, and power factor values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "power-factor-calculator",
     "impedance-calculator",
-    "inductive-reactance-calculator"
-  ]
+    "inductive-reactance-calculator",
+    "apparent-power-calculator",
+  ],
 };
 
 export const toolConfig = phaseAngleCalculatorConfig;

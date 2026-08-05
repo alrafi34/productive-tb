@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const reactivePowerCalculatorConfig = {
   name: "Reactive Power Calculator",
   slug: "reactive-power-calculator",
@@ -13,24 +15,56 @@ export const reactivePowerCalculatorConfig = {
     "power factor calculator",
     "AC power calculation tool",
     "phase angle calculator",
-    "electrical engineering calculator"
+    "electrical engineering calculator",
+    "reactive power formula calculator",
+    "q = vi sin calculator",
+    "calculate reactive power",
+    "kvar calculator",
+    "reactive power from phase angle",
+    "free reactive power calculator",
   ],
   seo: {
-    title: "Reactive Power Calculator – Calculate VAR Instantly Online",
-    description: "Free reactive power calculator to compute VAR from voltage, current, and phase angle. Fast, accurate, and fully browser-based electrical engineering tool.",
-    keywords: "reactive power calculator, VAR calculator, electrical calculator online, power factor calculator, AC power calculation tool",
-    og: {
-      title: "Reactive Power Calculator – Calculate VAR in AC Circuits",
-      description: "Calculate reactive power instantly with voltage, current, and phase angle. Free tool for electrical engineers and students.",
+    title: "Reactive Power Calculator — Q = V × I × sin(θ) Tool | Productive Toolbox",
+    description: "Calculate reactive power (VAR) in AC circuits from voltage, current, and phase angle. Free calculator with real and apparent power.",
+    keywords: "reactive power calculator, VAR calculator, kvar calculator, power factor calculator, AC power calculation tool, phase angle calculator",
+    openGraph: {
+      title: "Reactive Power Calculator — Q = V × I × sin(θ) Tool",
+      description: "Calculate reactive power (VAR/kVAR) from voltage, current, and phase angle, along with real power, apparent power, and power factor.",
       type: "website",
-      url: "/tools/electrical/reactive-power-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/reactive-power-calculator`,
+    },
+    og: {
+      title: "Reactive Power Calculator — Q = V × I × sin(θ) Tool",
+      description: "Calculate reactive power (VAR/kVAR) from voltage, current, and phase angle, along with real power, apparent power, and power factor.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/reactive-power-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Voltage", text: "Input the supply voltage in volts (V) applied to the circuit." },
+      { name: "Enter Current", text: "Input the current flowing through the circuit in amps (A)." },
+      { name: "Enter Phase Angle", text: "Input the phase angle between voltage and current in degrees (0-90°)." },
+      { name: "Read the Reactive Power Result", text: "View reactive power in VAR and kVAR, calculated using Q = V × I × sin(θ)." },
+      { name: "Review Real and Apparent Power", text: "See real power (P = V×I×cos(θ)) and apparent power (S = V×I) from the same inputs." },
+    ],
+    faq: [
+      { q: "What is a reactive power calculator?", a: "A free online tool that computes non-working power (Q) in an AC circuit from voltage, current, and phase angle, in VAR, along with real and apparent power." },
+      { q: "What is the formula for reactive power?", a: "Q = V × I × sin(θ). A load at 230V, 10A, 30° phase angle gives Q = 230 × 10 × 0.5 = 1,150 VAR." },
+      { q: "What is the difference between reactive, real, and apparent power?", a: "Real power (P = V×I×cos(θ)) does useful work. Reactive power (Q = V×I×sin(θ)) is non-working, stored/released power. Apparent power (S = V×I) is their vector sum: S² = P² + Q²." },
+      { q: "Is reactive power 'wasted' energy?", a: "Not exactly — it oscillates between source and circuit without net transfer, but still requires supply infrastructure to be sized larger than real power alone would need." },
+      { q: "What is the reactive power at 0° phase angle?", a: "Zero, since sin(0°) = 0. A purely resistive load has no reactive power — all supplied power is real power." },
+      { q: "What is the maximum reactive power for given V and I?", a: "At 90° phase angle, sin(90°) = 1, giving Q = V × I (equal to apparent power), with real power at zero — purely reactive." },
+      { q: "How do I convert reactive power from VAR to kVAR?", a: "Divide by 1,000. 1,150 VAR = 1.15 kVAR. Industrial reactive power is typically reported in kVAR." },
+      { q: "Why is reactive power important for power factor correction?", a: "Correction capacitors supply reactive power locally to offset inductive loads. Knowing existing Q (from this tool) plus a target power factor determines the correction capacitance needed." },
+      { q: "How does phase angle affect reactive power?", a: "Larger phase angles produce more reactive power for the same V and I, since sin(θ) grows from 0 at 0° to 1 at 90° — heavily inductive loads have larger angles." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, and phase angle values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "real-power-calculator",
+    "apparent-power-calculator",
     "power-factor-calculator",
-    "phase-angle-calculator"
-  ]
+    "phase-angle-calculator",
+  ],
 };
 
 export const toolConfig = reactivePowerCalculatorConfig;

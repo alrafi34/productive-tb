@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const powerFactorCalculatorConfig = {
   name: "Power Factor Calculator",
   slug: "power-factor-calculator",
@@ -13,24 +15,58 @@ export const powerFactorCalculatorConfig = {
     "kW to kVA calculator",
     "reactive power calculator",
     "AC power calculator",
-    "power triangle calculator"
+    "power triangle calculator",
+    "power factor formula calculator",
+    "calculate power factor",
+    "real power apparent power calculator",
+    "power factor correction calculator",
+    "power factor efficiency calculator",
+    "kva to kw power factor",
+    "free power factor calculator",
+    "electrical engineering calculator",
   ],
   seo: {
-    title: "Power Factor Calculator – Calculate PF Instantly Online",
-    description: "Free online power factor calculator. Calculate power factor (PF) using real power (kW) and apparent power (kVA) with instant results, efficiency rating, and step-by-step explanation.",
-    keywords: "power factor calculator, PF calculator, electrical efficiency, kW kVA calculator, reactive power, AC power systems",
-    og: {
-      title: "Power Factor Calculator – Free Electrical Efficiency Tool",
-      description: "Calculate power factor instantly with real and apparent power inputs. Get efficiency ratings, reactive power, and phase angle calculations.",
+    title: "Power Factor Calculator — PF, Reactive Power & Phase Angle | Productive Toolbox",
+    description: "Calculate power factor (PF), reactive power, and phase angle from real and apparent power. Free calculator with efficiency ratings.",
+    keywords: "power factor calculator, PF calculator, electrical efficiency calculator, reactive power calculator, kW to kVA calculator, power triangle calculator",
+    openGraph: {
+      title: "Power Factor Calculator — PF, Reactive Power & Phase Angle",
+      description: "Calculate power factor, reactive power (kVAR), and phase angle from real and apparent power, with an automatic efficiency rating.",
       type: "website",
-      url: "/tools/electrical/power-factor-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/power-factor-calculator`,
+    },
+    og: {
+      title: "Power Factor Calculator — PF, Reactive Power & Phase Angle",
+      description: "Calculate power factor, reactive power (kVAR), and phase angle from real and apparent power, with an automatic efficiency rating.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/power-factor-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Real Power (P)", text: "Input the real power consumed by the system in kilowatts (kW), from a utility bill or power meter." },
+      { name: "Enter Apparent Power (S)", text: "Input the apparent power drawn from the supply in kilovolt-amperes (kVA)." },
+      { name: "Read the Power Factor", text: "View power factor as both a decimal and a percentage, calculated instantly." },
+      { name: "Review Reactive Power and Phase Angle", text: "See reactive power (kVAR) and phase angle, both derived from the same P and S inputs." },
+      { name: "Check the Efficiency Rating", text: "View an Excellent, Good, Fair, or Poor rating based on standard power factor thresholds." },
+    ],
+    faq: [
+      { q: "What is a power factor calculator?", a: "A free online tool that computes power factor (PF) from real power (kW) and apparent power (kVA), plus reactive power (kVAR), phase angle, and an efficiency rating." },
+      { q: "What is the formula for power factor?", a: "PF = P ÷ S. A system with 8.5kW real power and 10kVA apparent power has PF = 8.5 ÷ 10 = 0.85 (85%)." },
+      { q: "What is a good power factor?", a: "0.95+ is excellent, 0.85-0.94 is good, 0.70-0.84 is fair, below 0.70 is poor. Many utilities apply billing penalties below 0.90-0.95." },
+      { q: "What is the difference between real, apparent, and reactive power?", a: "Real power (P, kW) is useful work. Apparent power (S, kVA) is total power drawn. Reactive power (Q, kVAR) is non-working power: Q = √(S² - P²)." },
+      { q: "Why is power factor always between 0 and 1?", a: "Apparent power is always the larger or equal quantity in S² = P² + Q², so PF = P/S can never exceed 1.0. PF = 1.0 only occurs in a purely resistive circuit." },
+      { q: "How do I calculate reactive power from power factor?", a: "Find S = P ÷ PF, then Q = √(S² - P²). For P=8.5kW, PF=0.85: S=10kVA, Q=√(100-72.25)≈5.27kVAR." },
+      { q: "Why do utilities charge penalties for low power factor?", a: "Low power factor means more current is drawn than the real power justifies, forcing higher-capacity infrastructure. Tariffs often include a penalty clause to recover this cost." },
+      { q: "What causes a low power factor?", a: "Inductive loads — motors, transformers, lighting ballasts, welding equipment. Lightly loaded motors are especially prone since magnetizing current stays roughly constant as load drops." },
+      { q: "How do I improve a poor power factor?", a: "Power factor correction capacitors supply reactive power locally, reducing what the utility must deliver. Sizing requires the existing reactive power (from this calculator) and a target PF." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your real power, apparent power, and results are never transmitted to any server." },
+    ],
   },
   relatedTools: [
-    "impedance-calculator",
     "phase-angle-calculator",
-    "energy-consumption-calculator"
-  ]
+    "reactive-power-calculator",
+    "apparent-power-calculator",
+    "real-power-calculator",
+  ],
 };
 
 export const toolConfig = powerFactorCalculatorConfig;

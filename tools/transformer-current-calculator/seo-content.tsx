@@ -1,250 +1,310 @@
 export default function TransformerCurrentCalculatorSEO() {
+  const faqItems = [
+    {
+      q: "What is a transformer current calculator?",
+      a: "A transformer current calculator is a free online tool that computes the current a transformer's winding carries from its rated power, voltage, and power factor. It supports both single-phase (I = P ÷ (V × PF)) and three-phase (I = P ÷ (√3 × V × PF)) systems, and returns apparent power alongside the calculated current.",
+    },
+    {
+      q: "What is the formula for single-phase transformer current?",
+      a: "I = P ÷ (V × PF), where I is current in amps, P is real power in watts, V is voltage in volts, and PF is power factor. For example, a 5,000W load at 230V with power factor 0.9 draws I = 5,000 ÷ (230 × 0.9) = 5,000 ÷ 207 ≈ 24.15A.",
+    },
+    {
+      q: "What is the formula for three-phase transformer current?",
+      a: "I = P ÷ (√3 × V × PF), where √3 ≈ 1.7321 accounts for the three-phase relationship between line conductors. For example, a 10,000W load at 400V with power factor 0.85 draws I = 10,000 ÷ (1.732 × 400 × 0.85) = 10,000 ÷ 588.9 ≈ 16.98A.",
+    },
+    {
+      q: "Why is three-phase current lower than single-phase current for the same power?",
+      a: "Three-phase power is delivered across three conductors simultaneously rather than one, and the √3 factor in the denominator reflects that shared delivery — for the same total power and voltage, three-phase current per line is lower than the equivalent single-phase current would be, which is one reason three-phase distribution is more efficient for higher power loads.",
+    },
+    {
+      q: "What is the difference between primary current and secondary current?",
+      a: "Primary current flows in the winding connected to the power source; secondary current flows in the winding delivering output to the load. Their ratio is the inverse of the voltage ratio (Ip/Is = Ns/Np) — a step-down transformer has lower primary current and higher secondary current for the same power, since power is conserved across the turns ratio.",
+    },
+    {
+      q: "How do I calculate current for a three-phase motor from its kW rating?",
+      a: "Convert kW to W (multiply by 1,000), then apply I = P ÷ (√3 × V × PF). A 15kW motor at 415V with power factor 0.85 draws I = 15,000 ÷ (1.732 × 415 × 0.85) ≈ 24.55A — this full-load current figure is what's used for cable and overload relay sizing.",
+    },
+    {
+      q: "Why does power factor affect the calculated current?",
+      a: "Power factor separates real power (useful work) from apparent power (total current-carrying demand). A lower power factor means more current is needed to deliver the same real power, since PF appears in the denominator of the current formula — a load with PF 0.7 draws proportionally more current than the same wattage load at PF 0.95.",
+    },
+    {
+      q: "How do I choose between single-phase and three-phase mode?",
+      a: "Use single-phase mode for residential circuits and most household and light commercial equipment (typically 110-240V). Use three-phase mode for industrial motors, commercial buildings, and heavier equipment typically running at 380-480V line voltage across three conductors.",
+    },
+    {
+      q: "How does this calculator's current relate to cable and breaker sizing?",
+      a: "The calculated current is the continuous full-load current the winding or circuit must carry, but real-world cable and breaker sizing typically applies a safety margin (commonly 1.25× for continuous loads) on top of this base figure, and accounts for ambient temperature and installation method derating factors that this calculator doesn't include.",
+    },
+    {
+      q: "Is my data private when using this calculator?",
+      a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, and power factor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+    },
+  ];
+
+  const howToSteps: [string, string][] = [
+    ["Select single-phase or three-phase", "Choose the system configuration matching your transformer or circuit — single-phase for most residential loads, three-phase for industrial and commercial systems."],
+    ["Enter power", "Input the real power in watts (W) that the transformer or load draws."],
+    ["Enter voltage", "Input the line voltage in volts (V) — line-to-neutral for single-phase, line-to-line for three-phase."],
+    ["Enter power factor", "Input the load's power factor as a decimal between 0 and 1."],
+    ["Read the calculated current", "View primary current, secondary current, and (for three-phase) line current, all derived from the same inputs."],
+    ["Apply a preset or export results", "Use a built-in preset for common residential and industrial systems, or export the full calculation as text or JSON."],
+  ];
+
   return (
-    <div className="mt-16 max-w-4xl mx-auto space-y-12 pb-12">
-      
-      {/* Main Content Section */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          About Transformer Current Calculator
+    <>
+      {/* ── 1. Introduction ── */}
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          What Is a Transformer Current Calculator?
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          The <strong>Transformer Current Calculator</strong> is a fast, browser-based electrical utility that calculates primary and secondary current values for transformers in both single-phase and three-phase systems. This free online tool helps electrical engineers, students, and technicians quickly determine current requirements based on power, voltage, and power factor.
-        </p>
-        <p className="text-gray-700 leading-relaxed">
-          By providing instant calculations with step-by-step explanations, this calculator is essential for transformer sizing, load analysis, circuit design, and educational learning.
-        </p>
-      </section>
-
-      {/* Formula Section */}
-      <section className="bg-blue-50 border border-blue-100 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-3">
-          Current Calculation Formulas
-        </h3>
-        <div className="space-y-3">
-          <div className="bg-white p-4 rounded-lg border border-blue-200">
-            <div className="font-semibold text-gray-900 mb-2">Single Phase</div>
-            <div className="font-mono text-sm">I = P / (V × PF)</div>
-          </div>
-          <div className="bg-white p-4 rounded-lg border border-blue-200">
-            <div className="font-semibold text-gray-900 mb-2">Three Phase</div>
-            <div className="font-mono text-sm">I = P / (√3 × V × PF)</div>
-          </div>
-        </div>
-        <p className="text-gray-700 text-sm mt-4 mb-3">
-          Where:
-        </p>
-        <ul className="text-gray-700 text-sm space-y-1">
-          <li><strong>I</strong> = Current (Amperes)</li>
-          <li><strong>P</strong> = Power (Watts)</li>
-          <li><strong>V</strong> = Voltage (Volts)</li>
-          <li><strong>PF</strong> = Power Factor (0 to 1)</li>
-          <li><strong>√3</strong> = 1.732 (for three-phase systems)</li>
-        </ul>
-      </section>
-
-      {/* Examples */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Real-World Examples
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6 not-prose">
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 1: Residential Single Phase</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> P = 5000W, V = 230V, PF = 0.9</p>
-              <p><strong>Calculation:</strong> I = 5000 / (230 × 0.9)</p>
-              <p><strong>Output:</strong> Current ≈ 24.15 A</p>
-              <p className="text-xs text-gray-600 mt-2">Typical household load calculation.</p>
-            </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 2: Industrial Three Phase</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> P = 10000W, V = 400V, PF = 0.85</p>
-              <p><strong>Calculation:</strong> I = 10000 / (1.732 × 400 × 0.85)</p>
-              <p><strong>Output:</strong> Current ≈ 16.99 A</p>
-              <p className="text-xs text-gray-600 mt-2">Industrial motor load.</p>
-            </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 3: US Residential</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> P = 2000W, V = 120V, PF = 0.9</p>
-              <p><strong>Calculation:</strong> I = 2000 / (120 × 0.9)</p>
-              <p><strong>Output:</strong> Current ≈ 18.52 A</p>
-              <p className="text-xs text-gray-600 mt-2">US 120V household circuit.</p>
-            </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-2">Example 4: Large Industrial Load</h3>
-            <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Input:</strong> P = 50000W, V = 415V, PF = 0.85</p>
-              <p><strong>Calculation:</strong> I = 50000 / (1.732 × 415 × 0.85)</p>
-              <p><strong>Output:</strong> Current ≈ 81.76 A</p>
-              <p className="text-xs text-gray-600 mt-2">Heavy industrial equipment.</p>
-            </div>
-          </div>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            A <strong>transformer current calculator</strong> computes the current a transformer's winding
+            or circuit carries from its rated power, voltage, and power factor. It supports both
+            single-phase (I = P ÷ (V × PF)) and three-phase (I = P ÷ (√3 × V × PF)) systems, returning
+            current alongside apparent power for cable, breaker, and protection device sizing.
+          </p>
+          <p>
+            The formula differs meaningfully between single-phase and three-phase systems — three-phase
+            introduces the √3 factor accounting for the 120-degree phase relationship between line
+            conductors, and using the single-phase formula on a three-phase system produces a current figure
+            that's off by that same factor. This tool applies the correct formula for whichever
+            configuration you select, and shows both primary and secondary current derived from the same
+            power and voltage inputs.
+          </p>
+          <p>
+            Built for <strong>electricians sizing cables and overload protection, electrical engineers
+            verifying transformer and motor current ratings, and facility managers</strong> assessing
+            circuit loading. Includes six built-in presets spanning residential to heavy industrial systems,
+            full step-by-step derivation, and text and JSON export — free and entirely browser-based.
+          </p>
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Common Use Cases
+      {/* ── 2. How It Works ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          Transformer Current Formulas
         </h2>
-        <ul className="space-y-2 text-gray-700">
-          <li>✓ <strong>Transformer Sizing:</strong> Determine current requirements for transformer selection</li>
-          <li>✓ <strong>Cable Sizing:</strong> Calculate current to select appropriate wire gauge</li>
-          <li>✓ <strong>Circuit Breaker Selection:</strong> Size protective devices based on load current</li>
-          <li>✓ <strong>Load Analysis:</strong> Assess current draw for electrical system design</li>
-          <li>✓ <strong>Motor Calculations:</strong> Determine motor current for three-phase systems</li>
-          <li>✓ <strong>Power Distribution:</strong> Calculate current in distribution systems</li>
-          <li>✓ <strong>Educational Learning:</strong> Understand current calculations in AC systems</li>
-          <li>✓ <strong>Exam Preparation:</strong> Practice electrical engineering calculations</li>
-          <li>✓ <strong>Field Verification:</strong> Quick current estimation for troubleshooting</li>
-        </ul>
-      </section>
-
-      {/* Important Considerations */}
-      <section className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">
-          Important Design Considerations
-        </h3>
-        <div className="space-y-3 text-gray-700 text-sm">
-          <p><strong>Power Factor Impact:</strong> Power factor significantly affects current draw. A lower power factor means higher current for the same real power, requiring larger cables and transformers. Most industrial loads have power factors between 0.7 and 0.95.</p>
-          <p><strong>Starting Current:</strong> Motors and inductive loads draw 5-7 times rated current during startup. Size circuit breakers and cables to handle starting current, not just running current.</p>
-          <p><strong>Voltage Drop:</strong> Long cable runs cause voltage drop, which increases current draw. Account for voltage drop when sizing cables and transformers for distant loads.</p>
-          <p><strong>Harmonic Distortion:</strong> Non-linear loads (VFDs, rectifiers, LED drivers) introduce harmonics that increase RMS current beyond what simple formulas predict. Use true RMS meters for accurate measurements.</p>
-          <p><strong>Temperature Derating:</strong> Cable ampacity decreases with temperature. Apply derating factors for ambient temperature, bundling, and installation method when sizing cables.</p>
-          <p><strong>Safety Margins:</strong> Always add 20-25% safety margin to calculated current when sizing equipment. This accounts for future expansion, transient loads, and ensures equipment operates within safe limits.</p>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
+            <p className="text-sm font-medium text-gray-500 mb-3">Core Formulas</p>
+            <div className="space-y-1.5 font-mono text-sm text-gray-900">
+              <p><span className="font-semibold">Single-phase</span>: I = P ÷ (V × PF)</p>
+              <p><span className="font-semibold">Three-phase</span>: I = P ÷ (√3 × V × PF)</p>
+              <p><span className="font-semibold">Apparent Power</span>: S = P ÷ PF</p>
+              <p className="text-gray-500 text-xs mt-2">Example (3-phase): P = 10,000W, V = 400V, PF = 0.85</p>
+              <p className="text-gray-500 text-xs">I = 10,000 ÷ (1.732 × 400 × 0.85) = <span className="text-green-600 font-semibold">≈16.98A</span></p>
+            </div>
+          </div>
+          <ul className="space-y-1 ml-4 list-disc text-gray-600">
+            <li><strong>√3 ≈ 1.7321</strong> — used only for three-phase calculations, not single-phase</li>
+            <li><strong>Lower PF → higher current</strong> — power factor sits in the denominator, so lower PF means more current for the same power</li>
+            <li><strong>Primary vs. secondary current</strong> — related by the inverse of the transformer's voltage ratio</li>
+            <li>Use single-phase mode for most residential circuits; three-phase for industrial and commercial systems</li>
+          </ul>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Benefits of Using This Calculator
+      {/* ── 3. Step-by-Step ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How to Use the Transformer Current Calculator
         </h2>
-        <ul className="space-y-2 text-gray-700">
-          <li>✓ <strong>Instant Results:</strong> Get immediate current calculations</li>
-          <li>✓ <strong>Single & Three Phase:</strong> Support for both system types</li>
-          <li>✓ <strong>Power Factor Adjustment:</strong> Interactive slider for easy PF changes</li>
-          <li>✓ <strong>Voltage Suggestions:</strong> Quick access to common voltage values</li>
-          <li>✓ <strong>Step-by-Step Calculations:</strong> Understand the math behind results</li>
-          <li>✓ <strong>Preset Examples:</strong> Common system configurations for quick testing</li>
-          <li>✓ <strong>History Tracking:</strong> Save and compare multiple calculations</li>
-          <li>✓ <strong>Export Options:</strong> Generate text and JSON reports</li>
-          <li>✓ <strong>Real-Time Updates:</strong> Live calculation as you type</li>
-          <li>✓ <strong>Free & Browser-Based:</strong> No installation required</li>
-        </ul>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
+            <ol className="space-y-4 text-gray-600 leading-relaxed">
+              {howToSteps.map(([title, desc], i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                  <span><strong>{title}:</strong> {desc}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Provides</h3>
+            <ul className="space-y-2 text-gray-600">
+              {[
+                "Real-time calculation as you type",
+                "Single-phase and three-phase mode support",
+                "Primary, secondary, and line current results",
+                "Apparent power (VA) calculation",
+                "Full step-by-step derivation",
+                "Six built-in presets (residential, industrial, motor)",
+                "Calculation history (saved locally)",
+                "Export as text or JSON file",
+                "No signup required",
+              ].map((f, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <span className="text-green-500 flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+      {/* ── 4. Use Cases ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Real-World Use Cases
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Residential Single-Phase Circuit Sizing",
+              scenario: "An electrician calculating current for a 5,000W single-phase load at 230V with power factor 0.9 uses the calculator to find I = 5,000 ÷ (230 × 0.9) ≈ 24.15A — used to confirm the circuit needs at least a 25A or 32A breaker with appropriately rated cable.",
+            },
+            {
+              title: "US Residential Panel Load Check",
+              scenario: "An electrician verifying a 2,000W load at 120V with power factor 0.9 calculates I = 2,000 ÷ (120 × 0.9) ≈ 18.5A — confirming the circuit fits within a standard 20A residential branch circuit with margin.",
+            },
+            {
+              title: "Industrial Three-Phase Transformer Current",
+              scenario: "An engineer sizing cables for a 10,000W three-phase load at 400V with power factor 0.85 calculates I = 10,000 ÷ (1.732 × 400 × 0.85) ≈ 16.98A per line, used to select appropriately rated three-phase cable and protection.",
+            },
+            {
+              title: "Commercial Building Supply Current",
+              scenario: "A facility manager verifying a 15,000W three-phase commercial supply at 415V, power factor 0.9, calculates I ≈ 23.4A per line — cross-checking this against the building's installed switchgear rating to confirm adequate capacity.",
+            },
+            {
+              title: "Three-Phase Motor Full-Load Current",
+              scenario: "An electrician sizing an overload relay for a 7,500W three-phase motor at 400V with power factor 0.8 calculates I ≈ 13.53A full-load current, setting the overload relay to approximately 104% of this figure per standard practice.",
+            },
+            {
+              title: "Large Industrial Load Cable Selection",
+              scenario: "An engineer sizing cable for a 50,000W heavy industrial load at 415V, power factor 0.85, calculates I ≈ 81.85A per line — used to select cable with sufficient ampacity plus the standard continuous-load safety margin.",
+            },
+          ].map(({ title, scenario }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">{scenario}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 5. Tips & Mistakes ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Tips &amp; Common Mistakes
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Apply the standard 1.25× continuous-load safety factor on top of this calculator's result when sizing cables and breakers for loads that run continuously for three hours or more.",
+                "Use the motor's rated power factor from its nameplate, not an assumed value, for full-load current calculations used in overload relay and cable sizing — power factor varies meaningfully between motor types and sizes.",
+                "For three-phase systems, always confirm whether your voltage figure is line-to-line (which this calculator expects) or line-to-neutral — using the wrong one skews the result by a factor of √3.",
+                "Cross-check calculated current against a clamp meter reading when commissioning new equipment — a significant mismatch usually points to an incorrect power factor assumption or measurement error.",
+                "When comparing single-phase and three-phase options for the same total power, remember three-phase draws less current per line — useful context when deciding whether to specify a three-phase supply for a large load.",
+              ].map((tip, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Using the single-phase formula for a three-phase system, or vice versa. This produces a current figure off by a factor of √3 (about 1.732) — always match the formula to the actual system configuration.",
+                "Forgetting power factor entirely and using I = P ÷ V. This calculates the current as if power factor were 1.0, understating actual current draw for any load with a power factor below unity.",
+                "Assuming this calculator's result already includes cable derating and safety margins. It computes the base continuous current from power, voltage, and power factor — additional factors for ambient temperature, grouping, and continuous-load margin need to be applied separately per applicable electrical codes.",
+                "Confusing primary and secondary current when working with a transformer rather than a simple load. Primary current relates to secondary current by the inverse of the turns/voltage ratio, not by the same formula applied twice with the same voltage.",
+                "Using nominal voltage when actual supply voltage differs meaningfully. Since current is inversely proportional to voltage, a 5% low supply voltage increases actual current draw by roughly 5% for the same power.",
+              ].map((mistake, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
+                  <span>{mistake}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Reference Table ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Common System Current Reference
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">System</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Power / Voltage</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Phase / PF</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Current</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["Residential (EU)", "5,000W / 230V", "1-phase / 0.9", "24.15 A"],
+                ["Residential (US)", "2,000W / 120V", "1-phase / 0.9", "18.52 A"],
+                ["Industrial 3-phase", "10,000W / 400V", "3-phase / 0.85", "16.98 A"],
+                ["Commercial 3-phase", "15,000W / 415V", "3-phase / 0.9", "23.20 A"],
+                ["3-phase motor", "7,500W / 400V", "3-phase / 0.8", "13.53 A"],
+                ["Large industrial load", "50,000W / 415V", "3-phase / 0.85", "81.85 A"],
+              ].map(([sys, pv, ppf, i]) => (
+                <tr key={sys} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-semibold text-primary text-xs">{sys}</td>
+                  <td className="py-2 px-3 font-mono text-gray-700 text-xs">{pv}</td>
+                  <td className="py-2 px-3 font-mono text-gray-600 text-xs">{ppf}</td>
+                  <td className="py-2 px-3 font-mono text-green-600 font-semibold text-xs">{i}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400 mt-2">* Single-phase: I = P ÷ (V × PF). Three-phase: I = P ÷ (√3 × V × PF). Add safety margins for cable/breaker sizing per applicable codes.</p>
+      </section>
+
+      {/* ── 7. FAQ ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is the difference between single-phase and three-phase current?
-            </h3>
-            <p className="text-gray-700">
-              Single-phase systems use one alternating current, while three-phase systems use three currents offset by 120 degrees. Three-phase systems are more efficient for high-power applications and use the √3 factor in calculations. For the same power, three-phase systems draw less current per conductor.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Why is power factor important in current calculations?
-            </h3>
-            <p className="text-gray-700">
-              Power factor represents the ratio of real power to apparent power. A lower power factor means more current is needed to deliver the same real power, increasing losses and requiring larger cables and transformers. Improving power factor reduces current draw and energy costs.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How do I measure actual transformer current?
-            </h3>
-            <p className="text-gray-700">
-              Use a clamp meter or current transformer (CT) to measure current on the primary or secondary conductors. For three-phase systems, measure all three phases as they may be unbalanced. Always use proper safety equipment and follow electrical safety procedures.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What current should I use for cable sizing?
-            </h3>
-            <p className="text-gray-700">
-              Use the calculated continuous current plus a 25% safety margin. For motors, use 125% of full-load current. Consider starting current, ambient temperature, cable bundling, and installation method. Consult electrical codes (NEC, IEC) for specific requirements.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Why is three-phase current lower than single-phase for the same power?
-            </h3>
-            <p className="text-gray-700">
-              Three-phase systems distribute power across three conductors more efficiently. The √3 factor (1.732) in the denominator reduces current per conductor. This is why industrial facilities use three-phase power - it requires smaller cables and transformers for the same power delivery.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is a typical power factor for different loads?
-            </h3>
-            <p className="text-gray-700">
-              Resistive loads (heaters): 1.0, Inductive motors: 0.7-0.9, Fluorescent lights: 0.5-0.95 (with/without correction), LED drivers: 0.5-0.95, Computers/electronics: 0.6-0.9, Welders: 0.5-0.7. Power factor correction capacitors can improve these values to 0.95 or higher.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Can I use this calculator for DC systems?
-            </h3>
-            <p className="text-gray-700">
-              For DC systems, use the single-phase formula with power factor = 1.0, which simplifies to I = P / V. DC systems don&apos;t have power factor or phase considerations, making calculations simpler than AC systems.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What safety margins should I add to calculated current?
-            </h3>
-            <p className="text-gray-700">
-              Add 20-25% for general loads, 25-30% for motor circuits (to handle starting current), and 30-40% for future expansion. Electrical codes often require 125% of continuous load current for conductor sizing. Always consult local electrical codes for specific requirements.
-            </p>
-          </div>
+          {faqItems.map(({ q, a }, i) => (
+            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Related Topics */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Related Electrical Topics
+      {/* ── 8. Who Uses This ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Who Uses This Transformer Current Calculator?
         </h2>
-        <div className="grid md:grid-cols-2 gap-4 not-prose text-sm">
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Cable Ampacity</h4>
-            <p className="text-gray-600">Current-carrying capacity of conductors based on size and installation</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Circuit Protection</h4>
-            <p className="text-gray-600">Sizing breakers and fuses based on load current</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Power Factor Correction</h4>
-            <p className="text-gray-600">Using capacitors to improve power factor and reduce current</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-2">Motor Starting</h4>
-            <p className="text-gray-600">Understanding inrush current and starting methods</p>
-          </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { icon: "🔧", title: "Electricians", desc: "Size cables, breakers, and overload protection devices for single-phase and three-phase circuits." },
+            { icon: "⚡", title: "Electrical Engineers", desc: "Verify transformer and motor current ratings during power distribution system design." },
+            { icon: "🏭", title: "Facility Managers", desc: "Check circuit loading against installed switchgear capacity for commercial and industrial supplies." },
+            { icon: "🏗️", title: "Project Engineers", desc: "Calculate expected current draw for new equipment during electrical system planning." },
+            { icon: "🎓", title: "Electrical Engineering Students", desc: "Learn single-phase versus three-phase current calculations through worked examples." },
+            { icon: "🔌", title: "Panel Builders", desc: "Confirm current ratings when specifying components for motor control centers and distribution panels." },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <div className="text-2xl mb-2">{icon}</div>
+              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
         </div>
       </section>
-
-    </div>
+    </>
   );
 }

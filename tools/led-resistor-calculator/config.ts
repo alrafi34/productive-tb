@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const ledResistorCalculatorConfig = {
   name: "LED Resistor Calculator",
   slug: "led-resistor-calculator",
@@ -13,25 +15,57 @@ export const ledResistorCalculatorConfig = {
     "ohms law LED",
     "LED current limiting resistor",
     "LED resistor value",
-    "calculate LED resistor"
+    "calculate LED resistor",
+    "led resistor formula calculator",
+    "led series resistor calculator",
+    "how to calculate led resistor",
+    "led forward voltage calculator",
+    "led resistor value chart",
+    "free led resistor calculator",
+    "arduino led resistor calculator",
   ],
   seo: {
-    title: "LED Resistor Calculator – Calculate Resistor for LED Circuits Online",
-    description: "Free LED resistor calculator. Calculate the correct resistor value for LED circuits using supply voltage, forward voltage, and current. Instant results with power rating and standard resistor suggestions.",
-    keywords: "LED resistor calculator, resistor for LED, LED circuit calculator, ohms law calculator LED, how to calculate LED resistor",
-    og: {
-      title: "LED Resistor Calculator – Free Electrical Tool",
-      description: "Calculate LED resistor values instantly for any circuit. Free tool with standard resistor recommendations and power ratings.",
+    title: "LED Resistor Calculator — Current-Limiting Resistor Tool | Productive Toolbox",
+    description: "Calculate the correct current-limiting resistor for LED circuits. Free calculator with standard resistor values and power ratings.",
+    keywords: "LED resistor calculator, resistor for LED, LED circuit calculator, LED current limiting resistor, calculate LED resistor",
+    openGraph: {
+      title: "LED Resistor Calculator — Current-Limiting Resistor Tool",
+      description: "Calculate the correct resistor for LED circuits from supply voltage, forward voltage, and current, with standard resistor values and power ratings.",
       type: "website",
-      url: "/tools/electrical/led-resistor-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/led-resistor-calculator`,
+    },
+    og: {
+      title: "LED Resistor Calculator — Current-Limiting Resistor Tool",
+      description: "Calculate the correct resistor for LED circuits from supply voltage, forward voltage, and current, with standard resistor values and power ratings.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/led-resistor-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Supply Voltage", text: "Input the voltage source powering the LED circuit, such as 5V or 9V." },
+      { name: "Enter LED Forward Voltage", text: "Input the LED's forward voltage or use a preset for common colors." },
+      { name: "Enter Desired LED Current", text: "Input the target current in milliamps — 20mA is standard for common indicator LEDs." },
+      { name: "Enter Number of LEDs in Series", text: "Input how many identical LEDs share the same current-limiting resistor." },
+      { name: "Read Resistance and Power", text: "View the calculated resistance, nearest standard E24 resistor value, and required power rating." },
+    ],
+    faq: [
+      { q: "What is an LED resistor calculator?", a: "A free online tool that computes the current-limiting resistor needed to safely power LEDs, returning resistance, nearest standard value, and power rating." },
+      { q: "What is the formula for an LED resistor?", a: "R = (Vs − N × Vf) ÷ If. A red LED (Vf 2.0V, 20mA) on 5V needs R = (5 − 2.0) ÷ 0.02 = 150Ω." },
+      { q: "Why does an LED need a current-limiting resistor?", a: "LEDs have a steep current-voltage curve with no natural current limit — without a resistor they draw excessive current and burn out quickly." },
+      { q: "What is LED forward voltage and why does it vary by color?", a: "The voltage drop when conducting, set by the semiconductor bandgap. Red/yellow ~1.8-2.2V, green ~2.0-2.2V, blue/white ~3.0-3.4V." },
+      { q: "How do I calculate the resistor for multiple LEDs in series?", a: "R = (Vs − N×Vf) ÷ If. Three red LEDs (2.0V each) on 9V at 20mA need R = (9 − 6.0) ÷ 0.02 = 150Ω." },
+      { q: "Why isn't the calculated resistance a standard value?", a: "Resistors come in standard series (E24) rather than arbitrary values. Round up slightly for safety — higher resistance only reduces current a bit." },
+      { q: "How do I calculate the resistor's power rating?", a: "P = I² × R. A 150Ω resistor at 20mA dissipates 0.06W — use a resistor rated at least 2x this for safety margin." },
+      { q: "What LED current should I use if unknown?", a: "20mA is standard for common 3mm/5mm indicator LEDs. Always check the datasheet for high-power or specialty LEDs." },
+      { q: "Can I use a higher resistance to dim an LED?", a: "Yes, higher resistance reduces current and brightness. Lower resistance increases both but risks exceeding maximum rated current." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, and LED count values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "ohms-law-calculator",
     "voltage-divider-calculator",
     "series-resistor-calculator",
-    "parallel-resistor-calculator"
-  ]
+    "parallel-resistor-calculator",
+  ],
 };
 
 export const toolConfig = ledResistorCalculatorConfig;

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const impedanceCalculatorConfig = {
   name: "Impedance Calculator",
   slug: "impedance-calculator",
@@ -13,22 +15,56 @@ export const impedanceCalculatorConfig = {
     "reactance calculator",
     "electrical impedance",
     "series circuit calculator",
-    "RLC calculator"
+    "RLC calculator",
+    "impedance formula calculator",
+    "calculate impedance",
+    "ac impedance calculator",
+    "z = sqrt r2 x2 calculator",
+    "impedance and phase angle calculator",
+    "rlc circuit impedance calculator",
+    "free impedance calculator",
+    "electrical engineering calculator",
   ],
   seo: {
-    title: "Impedance Calculator – Calculate AC Circuit Impedance (Z) Instantly",
-    description: "Free online impedance calculator. Calculate impedance in AC circuits using resistance (R), inductive reactance (XL), and capacitive reactance (XC) with instant results and step-by-step explanations.",
-    keywords: "impedance calculator, AC circuit calculator, Z calculator, reactance calculator, electrical impedance, series circuit calculator, RLC calculator",
-    og: {
-      title: "Impedance Calculator – Free AC Circuit Impedance Tool",
-      description: "Calculate impedance instantly with resistance and reactance inputs, unit conversion, phase angle, and detailed calculation steps.",
+    title: "Impedance Calculator — AC Circuit Impedance (Z) Calculator | Productive Toolbox",
+    description: "Calculate AC circuit impedance (Z), phase angle, and circuit type from resistance and reactance. Free calculator with step-by-step formulas.",
+    keywords: "impedance calculator, AC circuit calculator, Z calculator, reactance calculator, RLC calculator, electrical impedance",
+    openGraph: {
+      title: "Impedance Calculator — AC Circuit Impedance (Z) Calculator",
+      description: "Calculate impedance, net reactance, phase angle, and circuit type from resistance, inductive, and capacitive reactance.",
       type: "website",
-      url: "/tools/electrical/impedance-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/impedance-calculator`,
+    },
+    og: {
+      title: "Impedance Calculator — AC Circuit Impedance (Z) Calculator",
+      description: "Calculate impedance, net reactance, phase angle, and circuit type from resistance, inductive, and capacitive reactance.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/impedance-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Resistance (R)", text: "Input the circuit's resistance value, choosing Ω, kΩ, or MΩ." },
+      { name: "Enter Inductive Reactance (XL)", text: "Input inductive reactance, calculated as XL = 2πfL if not already known." },
+      { name: "Enter Capacitive Reactance (XC)", text: "Input capacitive reactance, calculated as XC = 1/(2πfC) if not already known." },
+      { name: "Read Impedance and Phase Angle", text: "View total impedance (Z), net reactance, and the phase angle between voltage and current." },
+      { name: "Check the Circuit Classification", text: "See whether the circuit is inductive, capacitive, resistive, or resonant." },
+    ],
+    faq: [
+      { q: "What is an impedance calculator?", a: "A free online tool that computes total opposition to current (Z) in an AC circuit from resistance, inductive reactance, and capacitive reactance, along with phase angle and circuit type." },
+      { q: "What is the formula for impedance?", a: "Z = √(R² + (XL - XC)²). With R = 10Ω, XL = 15Ω, XC = 5Ω: net reactance = 10Ω, so Z = √(100+100) ≈ 14.14Ω." },
+      { q: "What is the difference between impedance and resistance?", a: "Resistance is fixed opposition dissipating energy as heat, independent of frequency. Impedance combines resistance and frequency-dependent reactance, and introduces a phase shift between voltage and current." },
+      { q: "How do I calculate the phase angle from impedance?", a: "θ = arctan(X ÷ R), where X is net reactance. For R=10Ω, X=10Ω: θ = arctan(1) = 45°. Positive means inductive, negative means capacitive." },
+      { q: "What does it mean when a circuit is 'resonant'?", a: "XL equals XC, net reactance is zero, impedance equals resistance alone (Z=R), and phase angle is 0° — the circuit behaves as purely resistive." },
+      { q: "How do I know if a circuit is inductive or capacitive?", a: "If XL > XC, net reactance is positive and the circuit is inductive. If XC > XL, it's capacitive. If equal, the circuit is resonant." },
+      { q: "Why can't I just add resistance and reactance together?", a: "Resistance and reactance are 90 degrees out of phase, so they combine as perpendicular vector components: Z = √(R² + X²), not simple addition." },
+      { q: "How do I calculate current from impedance and voltage?", a: "I = V ÷ Z. For 120V across Z = 14.14Ω, current ≈ 8.49A, out of phase with voltage by the circuit's phase angle." },
+      { q: "Why does impedance matter for speaker and amplifier matching?", a: "Speakers present frequency-dependent impedance due to voice coil inductance and crossover capacitance. Matching to the amplifier's rated impedance affects power transfer and prevents overheating." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your resistance, reactance, and impedance values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "inductive-reactance-calculator",
     "capacitive-reactance-calculator",
-    "phase-angle-calculator"
-  ]
+    "phase-angle-calculator",
+    "ohms-law-calculator",
+  ],
 };

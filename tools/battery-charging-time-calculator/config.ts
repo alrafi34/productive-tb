@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const batteryChargingTimeCalculatorConfig = {
   name: "Battery Charging Time Calculator",
   slug: "battery-charging-time-calculator",
@@ -13,25 +15,56 @@ export const batteryChargingTimeCalculatorConfig = {
     "battery charge calculator",
     "amp hour charging calculator",
     "phone charging time",
-    "car battery charging time"
+    "car battery charging time",
+    "battery charging time formula",
+    "calculate charging time",
+    "mah charging time calculator",
+    "power bank charging time calculator",
+    "how long to charge phone battery",
+    "free battery charging calculator",
   ],
   seo: {
-    title: "Battery Charging Time Calculator – Estimate Charging Time Instantly",
-    description: "Free battery charging time calculator. Calculate how long it takes to charge your battery using capacity, current, and efficiency. Instant results for phones, laptops, car batteries, and more.",
-    keywords: "battery charging time calculator, charging time formula, battery charge calculator, how long to charge battery, amp hour calculator",
-    og: {
-      title: "Battery Charging Time Calculator – Free Electrical Tool",
-      description: "Calculate battery charging time instantly for phones, laptops, car batteries, and power banks. Free tool with real-time calculations.",
+    title: "Battery Charging Time Calculator — Charge Time Estimator | Productive Toolbox",
+    description: "Calculate battery charging time from capacity, charger current, and efficiency. Free calculator for phones, laptops, and car batteries.",
+    keywords: "battery charging time calculator, how long to charge battery, charging time formula, phone charging time, car battery charging time",
+    openGraph: {
+      title: "Battery Charging Time Calculator — Charge Time Estimator",
+      description: "Calculate how long it takes to charge a battery from capacity, charger current, efficiency, and start/end percentage.",
       type: "website",
-      url: "/tools/electrical/battery-charging-time-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/battery-charging-time-calculator`,
+    },
+    og: {
+      title: "Battery Charging Time Calculator — Charge Time Estimator",
+      description: "Calculate how long it takes to charge a battery from capacity, charger current, efficiency, and start/end percentage.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/battery-charging-time-calculator`,
+    },
+    howToSteps: [
+      { name: "Enter Battery Capacity", text: "Input the battery's rated capacity in mAh or Ah." },
+      { name: "Enter Charging Current", text: "Input the charger's rated output current in amps (A)." },
+      { name: "Enter Charging Efficiency", text: "Input expected efficiency — typically 85-90% for phone/tablet chargers, 75-85% for car chargers." },
+      { name: "Set Start and End Charge Percentage", text: "Input the battery's current level and target level, such as 20% to 80%." },
+      { name: "Read the Charging Time Result", text: "View charging time in hours plus a formatted hours-and-minutes figure." },
+    ],
+    faq: [
+      { q: "What is a battery charging time calculator?", a: "A free online tool that estimates how long it takes to charge a battery from a starting to target percentage, using capacity, charger current, and efficiency." },
+      { q: "What is the formula for battery charging time?", a: "Effective Capacity = Total × (Charge Range ÷ 100). Ideal Time = Effective Capacity ÷ Current. Actual Time = Ideal Time ÷ Efficiency. 4Ah battery, 80% range, 2A charger, 85% efficiency ≈ 1.88 hours." },
+      { q: "Why does charging take longer than the ideal calculation?", a: "Charging isn't 100% efficient — energy is lost as heat during conversion. Phone chargers run ~85-90% efficient; car chargers ~75-85%." },
+      { q: "Why doesn't charging speed stay constant from 0% to 100%?", a: "Most lithium chargers use constant-current charging up to ~80%, then a tapering constant-voltage phase for the final 20% — this calculator assumes a constant average rate." },
+      { q: "How do I convert between mAh and Ah?", a: "1 Ah = 1,000 mAh. A 4,000mAh battery is 4Ah — this calculator converts automatically." },
+      { q: "How long does it take to charge a smartphone?", a: "A 4,000mAh battery from 20% to 100% with a 2A charger at 85% efficiency takes about 1.88 hours." },
+      { q: "How long does it take to charge a car battery?", a: "A 60Ah battery, full range, with a 10A charger at 80% efficiency takes about 7.5 hours." },
+      { q: "Does a higher-current charger always charge faster?", a: "Generally yes, but the battery's maximum safe charge rate (C-rate) sets a practical ceiling beyond which excess current just generates heat." },
+      { q: "Why should I avoid always charging to 100%?", a: "Regularly charging lithium batteries to 100% and discharging to 0% accelerates capacity fade compared to a moderate range like 20-80%." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your capacity, current, and percentage values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
     "battery-capacity-calculator",
     "battery-backup-time-calculator",
     "energy-consumption-calculator",
-    "power-calculator-electrical"
-  ]
+    "power-calculator-electrical",
+  ],
 };
 
 export const toolConfig = batteryChargingTimeCalculatorConfig;

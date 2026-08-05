@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const capacitorCalculatorConfig = {
   name: "Capacitor Calculator",
   slug: "capacitor-calculator",
@@ -14,22 +16,58 @@ export const capacitorCalculatorConfig = {
     "electronics calculator",
     "capacitor charge calculator",
     "capacitor energy calculator",
-    "farad calculator"
+    "farad calculator",
+    "capacitor voltage calculator",
+    "q = cv calculator",
+    "capacitor energy formula calculator",
+    "calculate capacitor charge",
+    "calculate stored energy capacitor",
+    "capacitance calculator online",
+    "how to calculate capacitor energy",
+    "free capacitor calculator",
+    "capacitor formula calculator",
   ],
   seo: {
-    title: "Capacitor Calculator – Calculate Charge, Voltage, Energy Online",
-    description: "Free capacitor calculator to compute charge, voltage, capacitance, and stored energy instantly. Includes formulas, unit conversion, and step-by-step explanations.",
-    keywords: "capacitor calculator, capacitance formula, charge calculation, energy in capacitor, electronics calculator, farad calculator",
-    og: {
-      title: "Capacitor Calculator – Free Charge, Voltage & Energy Tool",
-      description: "Calculate capacitor charge, voltage, capacitance, and energy with instant results and detailed explanations.",
+    title: "Capacitor Calculator — Charge, Voltage & Energy | Productive Toolbox",
+    description: "Calculate capacitor charge, capacitance, voltage, and stored energy with step-by-step formulas. Free calculator with unit conversion. No signup.",
+    keywords: "capacitor calculator, capacitance formula, charge calculation, energy in capacitor, capacitor energy calculator, farad calculator",
+    openGraph: {
+      title: "Capacitor Calculator — Charge, Voltage & Energy",
+      description: "Calculate capacitor charge, capacitance, voltage, and stored energy with full step-by-step formulas and unit conversion.",
       type: "website",
-      url: "/tools/electrical/capacitor-calculator"
-    }
+      url: `${siteConfig.url}/tools/electrical/capacitor-calculator`,
+    },
+    og: {
+      title: "Capacitor Calculator — Charge, Voltage & Energy",
+      description: "Calculate capacitor charge, capacitance, voltage, and stored energy with full step-by-step formulas and unit conversion.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/capacitor-calculator`,
+    },
+    howToSteps: [
+      { name: "Select Calculation Mode", text: "Choose Charge, Capacitance, Voltage, or Energy. The calculator asks only for the values needed to solve that mode." },
+      { name: "Enter Known Values", text: "Type in capacitance, voltage, or charge as required, choosing the appropriate unit prefix for each." },
+      { name: "Read Result and Formula", text: "View the computed value along with the exact formula used — Q = CV, C = Q/V, V = Q/C, or E = ½CV²." },
+      { name: "Review Step-by-Step Derivation", text: "Every calculation includes a full breakdown of each substitution for verification or study." },
+      { name: "Check Unit Conversions", text: "The result is shown across relevant unit prefixes automatically." },
+    ],
+    faq: [
+      { q: "What is a capacitor calculator?", a: "A free online tool that solves the relationships between charge (Q), capacitance (C), voltage (V), and stored energy (E) in a capacitor, with step-by-step derivation and unit conversion." },
+      { q: "What is the formula for capacitor charge?", a: "Q = C × V. A 100µF capacitor at 12V stores Q = 0.0001 × 12 = 0.0012 coulombs (1.2mC)." },
+      { q: "What is the formula for energy stored in a capacitor?", a: "E = ½ × C × V². A 100µF capacitor at 12V stores E = 0.5 × 0.0001 × 144 = 0.0072 joules (7.2mJ). Doubling voltage quadruples energy." },
+      { q: "How do I calculate capacitance from charge and voltage?", a: "C = Q ÷ V. A capacitor storing 50µC at 5V has capacitance C = 0.00005 ÷ 5 = 10µF." },
+      { q: "How do I calculate voltage across a capacitor?", a: "V = Q ÷ C. A 200µF capacitor holding 0.002 coulombs has voltage V = 0.002 ÷ 0.0002 = 10V." },
+      { q: "Why does doubling voltage quadruple stored energy?", a: "Because E = ½CV² includes voltage squared. Doubling V multiplies V² by four, so energy increases fourfold for the same capacitance." },
+      { q: "What is the difference between charge and stored energy?", a: "Charge (Q, coulombs) scales linearly with voltage (Q = CV). Stored energy (E, joules) scales with voltage squared (E = ½CV²) — twice the voltage means twice the charge but four times the energy." },
+      { q: "How do capacitor unit prefixes relate to each other?", a: "1F = 1,000mF = 1,000,000µF = 1,000,000,000nF = 1,000,000,000,000pF. Most practical capacitors range from picofarads to thousands of microfarads." },
+      { q: "Why is my result shown in scientific notation?", a: "Capacitor values span many orders of magnitude, so very small or large results use scientific notation for readability, alongside conversions across standard unit prefixes." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your capacitance, voltage, charge, and energy values are never transmitted to any server." },
+    ],
   },
   relatedTools: [
+    "capacitive-reactance-calculator",
+    "capacitor-charge-time-calculator",
     "ohms-law-calculator",
     "voltage-divider-calculator",
-    "energy-consumption-calculator"
-  ]
+    "inductor-calculator",
+  ],
 };

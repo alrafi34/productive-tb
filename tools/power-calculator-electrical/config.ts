@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export const powerCalculatorElectricalConfig = {
   name: "Power Calculator (Electrical)",
   slug: "power-calculator-electrical",
@@ -7,27 +9,73 @@ export const powerCalculatorElectricalConfig = {
   color: "#058554",
   featured: false,
   keywords: [
-    "power calculator",
     "electrical power calculator",
-    "P = VI calculator",
-    "voltage current calculator",
-    "ohms law calculator",
-    "electrical calculator"
+    "power calculator",
+    "power calculator watts volts amps",
+    "p = v x i calculator",
+    "voltage current power calculator",
+    "calculate power from voltage and current",
+    "watts calculator",
+    "volts amps watts calculator",
+    "power formula calculator",
+    "electrical power formula",
+    "calculate voltage from power and current",
+    "calculate current from power and voltage",
+    "ohms law power calculator",
+    "power voltage current calculator",
+    "free power calculator",
+    "online power calculator",
+    "dc power calculator",
+    "ac power calculator",
+    "watt calculator online",
+    "how to calculate electrical power",
+    "electrical calculator online",
+    "calculate wattage from volts and amps",
+    "p=vi calculator",
+    "power calculator no signup",
   ],
   seo: {
-    title: "Electrical Power Calculator – Calculate P = V × I Instantly",
-    description: "Quickly calculate electrical power, voltage, or current using P = V × I. Free online electrical calculator with unit conversion and real-time results.",
-    keywords: "power calculator, electrical power calculator, P = VI calculator, voltage current calculator, ohms law calculator",
-    og: {
-      title: "Electrical Power Calculator – P = V × I Calculator",
-      description: "Calculate electrical power, voltage, or current instantly with unit conversion and real-time results.",
+    title: "Electrical Power Calculator — Watts, Volts & Amps Calculator | Productive Toolbox",
+    description: "Calculate electrical power, voltage, or current instantly using P = V × I. Free online calculator with unit conversion, presets, and history. No signup.",
+    keywords: "electrical power calculator, power calculator, power calculator watts volts amps, p = v x i calculator, voltage current power calculator, watts calculator, power formula calculator",
+    openGraph: {
+      title: "Electrical Power Calculator — Watts, Volts & Amps Calculator",
+      description: "Calculate electrical power, voltage, or current instantly using P = V × I. Unit conversion, voltage presets, and calculation history — free and browser-based.",
       type: "website",
-      url: "/tools/electrical/power-calculator-electrical"
-    }
+      url: `${siteConfig.url}/tools/electrical/power-calculator-electrical`,
+    },
+    og: {
+      title: "Electrical Power Calculator — Watts, Volts & Amps Calculator",
+      description: "Calculate electrical power, voltage, or current instantly using P = V × I. Unit conversion, voltage presets, and calculation history — free and browser-based.",
+      type: "website",
+      url: `${siteConfig.url}/tools/electrical/power-calculator-electrical`,
+    },
+    howToSteps: [
+      { name: "Select Calculation Mode", text: "Choose whether to solve for Power, Voltage, or Current. The calculator hides the field you're solving for and asks only for the two values you already know." },
+      { name: "Enter Known Values", text: "Type in the two values you have. Results calculate instantly as you type." },
+      { name: "Select Units", text: "Choose units for voltage (V, mV, kV), current (A, mA), and power (W, mW, kW). The calculator converts internally so units never need to match." },
+      { name: "Apply a Voltage Preset", text: "Optionally apply one of six built-in voltage presets — USB, automotive, industrial, or regional household voltages — to skip manual entry." },
+      { name: "Read, Copy, or Export Results", text: "View the calculated result and its breakdown, then copy it to your clipboard, save it to calculation history, or export it as a text file." },
+    ],
+    faq: [
+      { q: "What is an electrical power calculator?", a: "An electrical power calculator is a free online tool that solves P = V × I for power, voltage, or current when you know the other two values. It supports V, mV, kV, A, mA, W, mW, and kW unit scales." },
+      { q: "How do I calculate power from voltage and current?", a: "Multiply voltage by current: Power (W) = Voltage (V) × Current (A). For example, 12V at 2A gives 12 × 2 = 24W. This applies directly to DC circuits and resistive AC loads with a power factor of 1.0." },
+      { q: "How much power do common household devices use?", a: "An LED bulb uses 5-15W, a laptop charger 45-65W, a microwave 800-1,200W, and a space heater 1,500-2,200W. Enter a device's rated voltage and measured current in Power mode to verify its actual draw." },
+      { q: "What is the difference between power, voltage, and current?", a: "Voltage is the electrical potential difference that pushes current through a circuit, measured in volts. Current is the rate of electron flow, measured in amperes. Power is the rate of energy conversion, measured in watts, and equals voltage times current." },
+      { q: "How do I calculate current if I only know power and voltage?", a: "Divide power by voltage: Current (A) = Power (W) ÷ Voltage (V). A 2,200W heater on a 220V circuit draws 2,200 ÷ 220 = 10A. Select Current mode and enter the power and voltage values." },
+      { q: "Can I use this calculator for AC circuits?", a: "Yes for purely resistive AC loads, where P = V × I applies exactly as in DC. For inductive or capacitive loads like motors and transformers, real power is P = V × I × PF; multiply this calculator's result by the load's power factor for accurate AC figures." },
+      { q: "Can I use this calculator for three-phase power?", a: "No, this calculator is built for single-phase circuits. Three-phase power uses P = √3 × V × I × PF, a 1.732 multiplier for the phase relationship between conductors. Using this tool's result for a three-phase load underestimates power by about 42%." },
+      { q: "What is the difference between this calculator and Ohm's Law?", a: "This calculator solves P = V × I for power. Ohm's Law is V = I × R, relating voltage, current, and resistance. The two combine when resistance is known: P = I²R or P = V²/R." },
+      { q: "Why do I get a division-by-zero error?", a: "The calculator blocks calculations that would divide by zero, which is mathematically undefined. This happens if current is 0 while solving for voltage, or voltage is 0 while solving for current. Enter nonzero values for both known fields." },
+      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, and power values are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+    ],
   },
   relatedTools: [
     "ohms-law-calculator",
     "voltage-drop-calculator",
-    "electrical-load-calculator-building"
-  ]
+    "electrical-load-calculator-building",
+    "wire-size-calculator",
+    "three-phase-power-calculator",
+    "reactive-power-calculator",
+  ],
 };
