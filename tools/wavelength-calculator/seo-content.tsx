@@ -1,353 +1,285 @@
 export default function WavelengthCalculatorSEO() {
+  const faqItems = [
+    { q: "What is a wavelength calculator?", a: "A wavelength calculator is a tool that computes the physical length of one full wave cycle from its frequency and propagation speed, using λ = v/f. It works for any wave type — electromagnetic (radio, WiFi, light) or mechanical (sound) — as long as you know the frequency and the speed the wave travels at in its medium." },
+    { q: "How is wavelength calculated?", a: "Wavelength is calculated as λ = v/f, where v is the wave's propagation speed in meters per second and f is the frequency in Hertz. For a 100 MHz FM radio signal traveling through air at 299,702,547 m/s, the wavelength is 299,702,547 ÷ 100,000,000, which equals approximately 2.997 meters." },
+    { q: "Why does the calculator ask for a propagation medium?", a: "Wave speed is not constant — it depends on what the wave is traveling through. Electromagnetic waves move at the speed of light in vacuum (299,792,458 m/s), fractionally slower in air, and considerably slower in water or along a copper conductor. Since wavelength depends directly on speed, selecting the correct medium is necessary for an accurate result." },
+    { q: "Why is wavelength shorter in water or copper than in air?", a: "When a wave enters a denser or more resistive medium, its propagation speed drops while its frequency stays fixed. Since λ = v/f, a lower speed at the same frequency produces a shorter wavelength. This is why the same 2.4 GHz signal has a wavelength of about 12.5 cm in air but would be noticeably shorter traveling through water." },
+    { q: "Can I use this calculator for sound waves?", a: "Yes. Select Custom Speed and enter the speed of sound for your medium — approximately 343 m/s in air at 20°C, 1,480 m/s in water, or 5,120 m/s in steel. The λ = v/f formula applies to any wave type, not just electromagnetic ones, so sound wavelength calculations work the same way." },
+    { q: "What is the wavelength of 2.4 GHz WiFi?", a: "A 2.4 GHz WiFi signal traveling through air has a wavelength of approximately 12.49 centimeters, calculated as 299,702,547 m/s divided by 2,400,000,000 Hz. This is why 2.4 GHz WiFi antennas are commonly built around 6.2 cm (a quarter-wavelength) or 12.5 cm (a half-wavelength)." },
+    { q: "How do I calculate antenna length from wavelength?", a: "Common antenna designs use fractions of the wavelength: a quarter-wave monopole is λ/4, and a half-wave dipole is λ/2. For 2.4 GHz WiFi with a wavelength of about 12.5 cm, a quarter-wave antenna would be roughly 3.1 cm before accounting for the antenna's velocity factor, which typically shortens the physical length by 5-10% relative to free-space calculation." },
+    { q: "What is the difference between wavelength and frequency?", a: "Frequency is how many wave cycles occur per second, measured in Hertz. Wavelength is the physical distance one complete cycle covers, measured in meters. They are inversely linked through the wave speed — higher frequency always means shorter wavelength for a wave traveling at a fixed speed, and vice versa." },
+    { q: "Why does the result show conversions in km, m, cm, and mm?", a: "Wavelengths span an enormous range depending on frequency — AM radio wavelengths are hundreds of meters long, while 5G millimeter-wave signals are barely a centimeter. Showing the same result in multiple units at once lets you immediately pick the most readable scale, whether you're sizing a broadcast tower or a chip-scale antenna." },
+    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your frequency values, medium selection, and calculation history are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+  ];
+
+  const howToSteps: [string, string][] = [
+    ["Enter the frequency", "Type the frequency value into the input box. This is the number of wave cycles per second for the signal you're analyzing — for example, 2.4 for a WiFi band or 100 for FM radio."],
+    ["Select the frequency unit", "Choose Hz, kHz, MHz, or GHz to match how your frequency value is normally expressed. The calculator converts your input to Hz internally before applying the formula."],
+    ["Choose the propagation medium", "Select vacuum, air, water, copper, or a custom speed. Each medium has a different wave propagation speed, which directly changes the calculated wavelength."],
+    ["Enter a custom speed if needed", "If your wave travels through a medium not listed — such as sound in steel or a fiber-optic core — select Custom Speed and enter the propagation speed in meters per second."],
+    ["Read the wavelength result", "The calculator instantly returns the wavelength using λ = v/f, along with the same value converted to kilometers, meters, centimeters, and millimeters so you can pick the most readable scale."],
+    ["Save, copy, or export", "Copy the result to your clipboard, save the calculation to your history for later reference, or export a full text report including the formula and step-by-step working."],
+  ];
+
   return (
-    <div className="mt-12 space-y-8 text-gray-700">
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          What is Wavelength?
+    <>
+      {/* ── 1. Introduction ── */}
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          What Is a Wavelength Calculator?
         </h2>
-        <p className="mb-4">
-          Wavelength (λ, lambda) is the distance between successive crests, troughs, or identical 
-          points of a wave. It's a fundamental property of all waves, including electromagnetic waves 
-          (light, radio, microwaves), sound waves, and water waves. Wavelength is inversely proportional 
-          to frequency: as frequency increases, wavelength decreases.
-        </p>
-        <p>
-          For electromagnetic waves traveling through a medium, wavelength is calculated using the 
-          formula: <strong>λ = v / f</strong>, where λ is wavelength in meters, v is the wave speed 
-          in meters per second, and f is frequency in hertz. In vacuum, electromagnetic waves travel 
-          at the speed of light (c ≈ 299,792,458 m/s).
-        </p>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            A <strong>wavelength calculator</strong> is a free online tool that converts a wave's frequency
+            into its physical wavelength using the formula λ = v/f. It answers a question that comes up
+            constantly in RF and antenna work: <em>if a signal oscillates at this frequency, how long, in
+            meters or centimeters, is one full cycle of that wave?</em>
+          </p>
+          <p>
+            The tricky part isn't the division — it's that wave speed (v) is not a universal constant.
+            Electromagnetic waves travel at the speed of light in vacuum, fractionally slower through air,
+            and considerably slower through water or along a copper conductor. Get the medium wrong and the
+            wavelength result is wrong too, even with the correct frequency. This{" "}
+            <strong>frequency to wavelength calculator</strong> handles the unit conversion (Hz through GHz)
+            and lets you pick the correct propagation speed for vacuum, air, water, copper, or any custom
+            medium.
+          </p>
+          <p>
+            This tool is built for <strong>RF engineers and antenna designers sizing dipole and monopole
+            elements, network engineers evaluating WiFi and cellular signal behavior, radio hobbyists and
+            amateur radio operators building homebrew antennas, physics students studying the electromagnetic
+            spectrum, and audio engineers working with sound wave propagation</strong>. Results are shown
+            simultaneously in kilometers, meters, centimeters, and millimeters, with calculation history and
+            a text export — free, browser-based, no signup required.
+          </p>
+        </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Wavelength Formula
+      {/* ── 2. How It Works ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          How Wavelength Calculation Works
         </h2>
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-4">
-          <p className="text-center text-xl font-mono font-bold text-blue-900 mb-2">
-            λ = v / f
-          </p>
-          <div className="text-sm text-blue-800 space-y-1">
-            <p><strong>Where:</strong></p>
-            <ul className="list-disc list-inside ml-4 space-y-1">
-              <li>λ (lambda) = Wavelength in meters (m)</li>
-              <li>v = Wave speed in meters per second (m/s)</li>
-              <li>f = Frequency in hertz (Hz)</li>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
+            <p className="text-sm font-medium text-gray-500 mb-2">Core Formula</p>
+            <div className="space-y-1 font-mono text-sm text-gray-900">
+              <p><span className="font-semibold">λ</span> = v ÷ f</p>
+              <p className="text-gray-500 text-xs mt-2">λ = wavelength (meters) · v = wave propagation speed (m/s) · f = frequency (Hz)</p>
+            </div>
+          </div>
+          <ul className="space-y-1 ml-4 list-disc text-gray-600">
+            <li><strong>Frequency normalization:</strong> input in Hz, kHz, MHz, or GHz is converted internally to a base Hz value before the formula is applied</li>
+            <li><strong>Vacuum speed:</strong> 299,792,458 m/s — the speed of light, c, and the fastest any electromagnetic wave can travel</li>
+            <li><strong>Air speed:</strong> ≈ 299,702,547 m/s — about 99.97% of c, close enough to vacuum that most RF work uses it interchangeably with free-space calculations</li>
+            <li><strong>Water speed:</strong> ≈ 225,000,000 m/s — about 75% of c, relevant for underwater communication and sonar-adjacent RF work</li>
+            <li><strong>Copper speed:</strong> ≈ 200,000,000 m/s — about 67% of c, an approximation for electrical signal propagation along copper conductors</li>
+            <li><strong>Custom speed:</strong> enter any propagation speed directly — needed for sound waves, fiber optics, or any medium not in the preset list</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* ── 3. Step-by-Step ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How to Use the Wavelength Calculator
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
+            <ol className="space-y-4 text-gray-600 leading-relaxed">
+              {howToSteps.map(([title, desc], i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                  <span><strong>{title}:</strong> {desc}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Tool Provides</h3>
+            <ul className="space-y-2 text-gray-600">
+              {[
+                "Real-time calculation as you type",
+                "Hz, kHz, MHz, and GHz frequency units",
+                "Five propagation media — vacuum, air, water, copper, custom",
+                "Simultaneous results in km, m, cm, and mm",
+                "Full formula and step-by-step breakdown",
+                "Six built-in presets (WiFi, FM, AM, microwave, 5G)",
+                "Calculation history (last 20 entries)",
+                "Export results as a text report",
+                "Copy result to clipboard",
+                "100% browser-based — no data sent to a server",
+                "No registration required",
+              ].map((f, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <span className="text-green-500 flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-        <p className="mb-2">
-          <strong>Alternative forms:</strong>
-        </p>
-        <ul className="list-disc list-inside ml-4 space-y-1">
-          <li>f = v / λ (Calculate frequency from wavelength)</li>
-          <li>v = f × λ (Calculate wave speed)</li>
-          <li>For light in vacuum: λ = c / f (where c = 299,792,458 m/s)</li>
-        </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          How to Calculate Wavelength
+      {/* ── 4. Use Cases ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Real-World Use Cases
         </h2>
-        <ol className="list-decimal list-inside space-y-3 ml-4">
-          <li>
-            <strong>Identify the frequency</strong> - Determine the frequency of the wave in Hz, 
-            kHz, MHz, or GHz
-          </li>
-          <li>
-            <strong>Determine the propagation medium</strong> - Identify whether the wave travels 
-            through vacuum, air, water, or another medium
-          </li>
-          <li>
-            <strong>Find the wave speed</strong> - Use the speed of light for electromagnetic waves 
-            in vacuum/air, or the appropriate speed for other mediums
-          </li>
-          <li>
-            <strong>Convert frequency to Hz</strong> - Convert the frequency to hertz if it's in 
-            kHz, MHz, or GHz
-          </li>
-          <li>
-            <strong>Apply the formula</strong> - Divide the wave speed by the frequency: λ = v / f
-          </li>
-          <li>
-            <strong>Convert to appropriate units</strong> - Express the result in meters, centimeters, 
-            millimeters, or kilometers as appropriate
-          </li>
-        </ol>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Sizing a 2.4 GHz WiFi Antenna",
+              scenario: "A hobbyist is building a homebrew WiFi antenna for a 2.4 GHz router. Entering 2.4 GHz with the medium set to Air, the calculator returns a wavelength of 12.49 cm. Dividing by four gives a target quarter-wave monopole length of about 3.12 cm, which they trim slightly shorter to account for the antenna wire's velocity factor.",
+            },
+            {
+              title: "Comparing 5G Millimeter-Wave to 4G LTE",
+              scenario: "A network engineer is explaining coverage differences between 4G LTE (700 MHz) and 5G mmWave (28 GHz) to a client. At 700 MHz in air, the calculator returns a 428 mm (0.428 m) wavelength; at 28 GHz, it returns just 10.7 mm. The engineer uses this 40x difference to explain why mmWave 5G has much shorter range and worse building penetration.",
+            },
+            {
+              title: "FM Broadcast Tower Antenna Design",
+              scenario: "A broadcast engineer is designing a half-wave dipole antenna for a 100 MHz FM station. The calculator returns a wavelength of 2.997 meters in air. A half-wave dipole target length is 1.4985 meters, which the engineer uses as the starting point before fine-tuning for the specific antenna material and mounting height.",
+            },
+            {
+              title: "Microwave Oven Cavity Sizing",
+              scenario: "An appliance engineer is verifying the resonant cavity dimensions for a 2.45 GHz microwave oven magnetron. Entering 2.45 GHz with Air selected, the calculator returns a 12.24 cm wavelength — close to the internal cavity dimensions the design must accommodate to sustain standing waves that heat food evenly.",
+            },
+            {
+              title: "Underwater Acoustic Signal Planning",
+              scenario: "A marine engineer is estimating the wavelength of a 50 kHz sonar pulse traveling through seawater. Selecting Custom Speed and entering 1,500 m/s (typical seawater sound speed) with 50 kHz frequency, the calculator returns a 3 cm wavelength — information used to estimate the sonar's target resolution limit.",
+            },
+            {
+              title: "AM Radio Ground-Plane Antenna",
+              scenario: "A radio hobbyist wants to build a ground-plane antenna for a 1 MHz AM station. Entering 1 MHz with Air selected, the calculator returns a wavelength of 299.7 meters — explaining why practical AM antennas use loaded coils and shortened radiators rather than a true quarter-wave (about 75 meters) vertical.",
+            },
+          ].map(({ title, scenario }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">{scenario}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Wave Speeds in Different Mediums
+      {/* ── 5. Tips & Mistakes ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Tips &amp; Common Mistakes
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "For antenna design, treat the calculator's result as a free-space starting point, not a final measurement. Real antennas have a velocity factor (typically 0.90-0.98 for wire, lower for PCB traces) that shortens the physical length below the theoretical wavelength fraction.",
+                "Use Air rather than Vacuum for any terrestrial RF work. The difference is only 0.03%, but selecting Air is the technically correct choice since virtually no signal you're designing for actually travels through a vacuum.",
+                "When working with sound, remember speed varies significantly with temperature and medium — 343 m/s in air at 20°C changes to about 331 m/s at 0°C. Use the custom speed field with the value appropriate to your actual operating temperature.",
+                "Compare wavelengths across frequency bands to build intuition fast: doubling the frequency always halves the wavelength, since v stays constant for a given medium. This shortcut avoids needing the calculator for quick mental estimates.",
+                "For fiber-optic or waveguide calculations, don't use the free-space speed of light. Enter a custom speed equal to c divided by the material's refractive index — for typical optical fiber (n ≈ 1.5), that's about 200,000,000 m/s.",
+                "Save each frequency you check to history when comparing a spectrum of signals (like 2.4 GHz vs 5 GHz vs 6 GHz WiFi bands) so you can review all the wavelengths side by side instead of recalculating.",
+              ].map((tip, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Don't leave the medium set to Vacuum for antenna design in air. The 0.03% speed difference is negligible for most purposes, but using the wrong medium out of habit can compound with other small errors in a tight design.",
+                "Don't forget to select GHz instead of MHz for modern wireless frequencies. Entering '2.4' with the unit left on MHz calculates the wavelength for 2.4 MHz — a 125-meter wavelength — instead of the intended 2.4 GHz WiFi band, a difference of a thousand-fold.",
+                "Don't assume wavelength in a new medium scales the same way frequency does. Frequency never changes when a wave crosses into a different medium — only wave speed and wavelength change, and they change proportionally to each other, not to frequency.",
+                "Don't use the free-space wavelength directly as your final antenna length. Skipping the velocity factor correction is one of the most common reasons a homebrew antenna is detuned from its target frequency after being built.",
+                "Don't confuse wavelength with the range or reach of a signal. A longer wavelength (lower frequency) typically travels farther and penetrates obstacles better, but wavelength itself is a physical measurement of one cycle's length, not a measure of signal strength or distance covered.",
+              ].map((mistake, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
+                  <span>{mistake}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Reference Table ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Frequency ↔ Wavelength Reference Table (In Air)
         </h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left">Medium</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Speed (m/s)</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">% of c</th>
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200 bg-gray-50">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Frequency</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Wavelength</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Typical Application</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Vacuum</td>
-                <td className="border border-gray-300 px-4 py-2">299,792,458</td>
-                <td className="border border-gray-300 px-4 py-2">100%</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">Air (sea level)</td>
-                <td className="border border-gray-300 px-4 py-2">~299,702,547</td>
-                <td className="border border-gray-300 px-4 py-2">~99.97%</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Water</td>
-                <td className="border border-gray-300 px-4 py-2">~225,000,000</td>
-                <td className="border border-gray-300 px-4 py-2">~75%</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">Glass</td>
-                <td className="border border-gray-300 px-4 py-2">~200,000,000</td>
-                <td className="border border-gray-300 px-4 py-2">~67%</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Copper (electrical)</td>
-                <td className="border border-gray-300 px-4 py-2">~200,000,000</td>
-                <td className="border border-gray-300 px-4 py-2">~67%</td>
-              </tr>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["1 MHz", "299.7 m", "AM broadcast radio"],
+                ["100 MHz", "2.997 m", "FM broadcast radio"],
+                ["700 MHz", "0.428 m (42.8 cm)", "4G LTE low band"],
+                ["900 MHz", "0.333 m (33.3 cm)", "GSM cellular / ISM band"],
+                ["2.4 GHz", "12.49 cm", "WiFi 2.4 GHz / Bluetooth"],
+                ["2.45 GHz", "12.24 cm", "Microwave oven (ISM band)"],
+                ["5 GHz", "5.99 cm", "WiFi 5 GHz band"],
+                ["28 GHz", "10.7 mm", "5G millimeter-wave"],
+              ].map(([f, w, use]) => (
+                <tr key={f} className="hover:bg-gray-50">
+                  <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{f}</td>
+                  <td className="py-1.5 px-3 font-mono text-gray-900 text-xs">{w}</td>
+                  <td className="py-1.5 px-3 text-gray-500 text-xs">{use}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
+        <p className="text-xs text-gray-400 mt-3">* Wavelength calculated using air propagation speed (299,702,547 m/s). Values rounded for display.</p>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Common Applications
-        </h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Antenna design</strong> - Antenna length is typically λ/4 or λ/2 for optimal performance</li>
-          <li><strong>RF circuit design</strong> - Transmission line length affects impedance matching</li>
-          <li><strong>Wireless communication</strong> - WiFi, cellular, and satellite systems</li>
-          <li><strong>Radar systems</strong> - Wavelength determines resolution and range</li>
-          <li><strong>Spectroscopy</strong> - Analyzing light wavelengths to identify materials</li>
-          <li><strong>Fiber optics</strong> - Different wavelengths for data transmission</li>
-          <li><strong>Medical imaging</strong> - X-rays, ultrasound, and MRI use different wavelengths</li>
-          <li><strong>Astronomy</strong> - Observing celestial objects at various wavelengths</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Example Calculations
-        </h2>
-        
-        <div className="space-y-4">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Example 1: WiFi 2.4 GHz</h3>
-            <p className="text-sm mb-2">
-              <strong>Given:</strong> Frequency = 2.4 GHz, Medium = Air
-            </p>
-            <p className="text-sm mb-2">
-              <strong>Calculation:</strong><br />
-              f = 2.4 GHz = 2,400,000,000 Hz<br />
-              v = 299,702,547 m/s (speed in air)<br />
-              λ = 299,702,547 / 2,400,000,000<br />
-              λ ≈ 0.1249 meters ≈ 12.49 cm
-            </p>
-            <p className="text-sm">
-              <strong>Result:</strong> Wavelength ≈ 12.5 cm
-            </p>
-          </div>
-
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Example 2: FM Radio (100 MHz)</h3>
-            <p className="text-sm mb-2">
-              <strong>Given:</strong> Frequency = 100 MHz, Medium = Air
-            </p>
-            <p className="text-sm mb-2">
-              <strong>Calculation:</strong><br />
-              f = 100 MHz = 100,000,000 Hz<br />
-              v = 299,702,547 m/s<br />
-              λ = 299,702,547 / 100,000,000<br />
-              λ ≈ 2.997 meters
-            </p>
-            <p className="text-sm">
-              <strong>Result:</strong> Wavelength ≈ 3 meters
-            </p>
-          </div>
-
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Example 3: 5G mmWave (28 GHz)</h3>
-            <p className="text-sm mb-2">
-              <strong>Given:</strong> Frequency = 28 GHz, Medium = Air
-            </p>
-            <p className="text-sm mb-2">
-              <strong>Calculation:</strong><br />
-              f = 28 GHz = 28,000,000,000 Hz<br />
-              v = 299,702,547 m/s<br />
-              λ = 299,702,547 / 28,000,000,000<br />
-              λ ≈ 0.0107 meters ≈ 10.7 mm
-            </p>
-            <p className="text-sm">
-              <strong>Result:</strong> Wavelength ≈ 10.7 mm
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Electromagnetic Spectrum
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Wavelength Range</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Frequency Range</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Radio Waves</td>
-                <td className="border border-gray-300 px-4 py-2">&gt; 1 mm</td>
-                <td className="border border-gray-300 px-4 py-2">&lt; 300 GHz</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">Microwaves</td>
-                <td className="border border-gray-300 px-4 py-2">1 mm - 1 m</td>
-                <td className="border border-gray-300 px-4 py-2">300 MHz - 300 GHz</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Infrared</td>
-                <td className="border border-gray-300 px-4 py-2">700 nm - 1 mm</td>
-                <td className="border border-gray-300 px-4 py-2">300 GHz - 430 THz</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">Visible Light</td>
-                <td className="border border-gray-300 px-4 py-2">380 - 700 nm</td>
-                <td className="border border-gray-300 px-4 py-2">430 - 790 THz</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Ultraviolet</td>
-                <td className="border border-gray-300 px-4 py-2">10 - 380 nm</td>
-                <td className="border border-gray-300 px-4 py-2">790 THz - 30 PHz</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="border border-gray-300 px-4 py-2">X-rays</td>
-                <td className="border border-gray-300 px-4 py-2">0.01 - 10 nm</td>
-                <td className="border border-gray-300 px-4 py-2">30 PHz - 30 EHz</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 px-4 py-2">Gamma Rays</td>
-                <td className="border border-gray-300 px-4 py-2">&lt; 0.01 nm</td>
-                <td className="border border-gray-300 px-4 py-2">&gt; 30 EHz</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+      {/* ── 7. FAQ ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Frequently Asked Questions
         </h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What is the relationship between wavelength and frequency?
-            </h3>
-            <p className="text-gray-700">
-              Wavelength and frequency are inversely proportional: as frequency increases, wavelength 
-              decreases, and vice versa. This relationship is expressed by λ = v/f, where v is the 
-              constant wave speed. For electromagnetic waves in vacuum, higher frequency waves (like 
-              X-rays) have shorter wavelengths, while lower frequency waves (like radio) have longer 
-              wavelengths.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why does wavelength change in different mediums?
-            </h3>
-            <p className="text-gray-700">
-              When a wave enters a different medium, its speed changes but its frequency remains 
-              constant. Since λ = v/f, a change in speed (v) results in a change in wavelength (λ). 
-              For example, light slows down when entering water, causing its wavelength to decrease 
-              while its frequency stays the same.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How do I calculate antenna length from wavelength?
-            </h3>
-            <p className="text-gray-700">
-              Common antenna lengths are fractions of the wavelength: quarter-wave (λ/4), half-wave 
-              (λ/2), or full-wave (λ). For example, a quarter-wave antenna for 2.4 GHz WiFi would be 
-              approximately 3.1 cm (12.5 cm / 4). The exact length may need adjustment based on the 
-              antenna design and surrounding environment.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What is the wavelength of visible light?
-            </h3>
-            <p className="text-gray-700">
-              Visible light wavelengths range from approximately 380 nm (violet) to 700 nm (red). 
-              Blue light is around 450-495 nm, green is 495-570 nm, yellow is 570-590 nm, orange is 
-              590-620 nm, and red is 620-700 nm. These tiny wavelengths correspond to frequencies in 
-              the hundreds of terahertz.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I use this calculator for sound waves?
-            </h3>
-            <p className="text-gray-700">
-              Yes, but you'll need to use the custom speed option and enter the speed of sound in your 
-              medium. Sound travels at approximately 343 m/s in air at 20°C, 1,480 m/s in water, and 
-              5,120 m/s in steel. The formula λ = v/f applies to all types of waves, not just 
-              electromagnetic waves.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why is wavelength important in wireless communication?
-            </h3>
-            <p className="text-gray-700">
-              Wavelength determines many practical aspects of wireless systems: antenna size (typically 
-              λ/4 or λ/2), signal penetration through obstacles (longer wavelengths penetrate better), 
-              diffraction around objects, and the physical spacing of antenna elements in arrays. It 
-              also affects how signals interact with the environment and propagate over distance.
-            </p>
-          </div>
+        <div className="space-y-6">
+          {faqItems.map(({ q, a }, i) => (
+            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Tips for Using the Wavelength Calculator
+      {/* ── 8. Who Uses This ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Who Uses This Wavelength Calculator?
         </h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li>Always ensure your frequency value is positive and non-zero</li>
-          <li>Use the appropriate frequency unit (Hz, kHz, MHz, GHz) to avoid conversion errors</li>
-          <li>Select the correct propagation medium for accurate results</li>
-          <li>Use presets for common frequencies like WiFi, FM radio, and 5G</li>
-          <li>Save calculations to history for future reference</li>
-          <li>Export results for documentation and sharing</li>
-          <li>Remember that wavelength in air is very close to wavelength in vacuum</li>
-          <li>For antenna design, consider the velocity factor of the transmission line</li>
-          <li>Account for the refractive index when calculating wavelength in optical fibers</li>
-          <li>Use the custom speed option for specialized applications or non-standard mediums</li>
-        </ul>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { icon: "📡", title: "RF & Antenna Engineers", desc: "Size dipole, monopole, and Yagi antenna elements as a starting point before applying velocity-factor corrections for the final build." },
+            { icon: "🌐", title: "Network Engineers", desc: "Compare WiFi, cellular, and satellite frequency bands to explain range, penetration, and interference behavior in real-world deployments." },
+            { icon: "📻", title: "Radio Hobbyists", desc: "Calculate wavelengths for homebrew AM, FM, and amateur radio antennas, ground planes, and transmission line matching sections." },
+            { icon: "🎓", title: "Physics & Electronics Students", desc: "Work through λ = v/f exercises across the electromagnetic spectrum, from radio waves to visible light, and check homework answers instantly." },
+            { icon: "🔬", title: "Research & Lab Technicians", desc: "Verify wavelength assumptions for spectroscopy, fiber-optic, and microwave cavity experiments using custom propagation speeds." },
+            { icon: "🎚️", title: "Audio & Acoustics Engineers", desc: "Estimate sound wavelengths in air, water, or solid materials for room acoustics, sonar, and ultrasonic sensor design work." },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <div className="text-2xl mb-2">{icon}</div>
+              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
       </section>
-    </div>
+    </>
   );
 }

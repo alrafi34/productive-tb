@@ -1,475 +1,322 @@
 export default function RoomLightingCalculatorSEO() {
+  const faqItems = [
+    { q: "What is a room lighting calculator?", a: "A room lighting calculator is a free online tool that determines how many light fixtures or bulbs a room needs based on its floor area, its intended use, and the light output (lumens) of the bulbs you plan to install. It uses the lumen method — a standard lighting-design formula that converts room area and a target illumination level (lux) into a required lumen total, then divides by your bulb's lumen rating to get a fixture count." },
+    { q: "How is the number of lights calculated?", a: "The calculator multiplies room area in square meters by the recommended lux level for the room type to get total lumens required, then divides that by the lumen output of a single bulb and rounds up to the nearest whole fixture. Lights Needed = ceil((Width × Length in m² × Lux Level) ÷ Lumens per Light). The result is then checked against the achieved lux to flag under-lit or over-lit outcomes." },
+    { q: "What is a good lux level for my room?", a: "It depends entirely on the room's function. Bedrooms and hallways need only 100 lux for comfortable ambient lighting, living and dining rooms typically use 150 lux, bathrooms and garages need 200-300 lux for task visibility, and kitchens and offices need 300-400 lux for detailed work. These are general residential and light-commercial guidelines — specialized spaces like photography studios or retail displays often need custom lux values well outside this range." },
+    { q: "What is the difference between lumens and lux?", a: "Lumens measure the total light output produced by a single bulb — a fixed number printed on the packaging regardless of room size. Lux measures illumination density: how many lumens actually land on each square meter of floor or work surface. The same 800-lumen bulb produces a high lux reading in a small closet and a much lower lux reading spread across a large open room, which is why room area is central to the calculation." },
+    { q: "Should I enter room dimensions in feet or meters?", a: "Use whichever unit matches how you measured the room — the calculator converts automatically. If you select feet, the tool converts your width and length to square meters internally before applying the lux formula, since lux is internationally defined as lumens per square meter. Entering feet dimensions while assuming a metric lux target (or vice versa) without letting the tool convert is the most common source of an inaccurate light count." },
+    { q: "What does 'over-lit' or 'under-lit' mean in the results?", a: "Because the calculator always rounds the raw fixture count up to a whole number, the achieved lux after rounding rarely matches the target exactly. If the achieved lux comes in more than 10% below the target, the room is flagged under-lit; if it exceeds the target by more than 30%, it is flagged over-lit — usually the result of a small room needing 'less than one' bulb but requiring at least one full fixture. Optimal means the achieved lux lands within that band." },
+    { q: "How does ceiling height affect the lighting calculation?", a: "The core lumen-method formula in this calculator is based on floor area and does not adjust automatically for ceiling height, but height still matters in practice. Light spreads out and loses intensity over a longer throw distance, so rooms with ceilings above roughly 2.4 m (8 ft) should add 10-20% more lumens per light, or select a higher lux target, to compensate for fixtures mounted further from the work surface." },
+    { q: "Can I use this calculator for a room with a custom lighting requirement?", a: "Yes. Selecting 'Custom' as the room type unlocks a direct lux input field, letting you enter any illumination target instead of the built-in residential and office presets. This is useful for spaces like photography studios, retail product displays, workshops with detailed assembly work, or any room where the standard 100-400 lux range from the presets doesn't apply." },
+    { q: "How do I compare LED, CFL, halogen, and incandescent bulbs in the calculator?", a: "Enter the lumen rating printed on the bulb packaging into the Lumens per Light field — the calculator's built-in bulb type shortcuts fill this in automatically for common wattage-equivalent bulbs (for example, an LED rated at 800 lumens replaces a 60W incandescent that also produces about 800 lumens). Comparing bulbs by lumens rather than watts is essential because an LED uses roughly 85% less wattage than an incandescent for the same light output." },
+    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your room dimensions, lux selections, and bulb specifications are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+  ];
+
+  const howToSteps: [string, string][] = [
+    ["Enter room dimensions", "Type the width and length of the room. Measure wall to wall for the most accurate area — the calculator multiplies these two values to get floor area before applying the lighting formula."],
+    ["Select feet or meters", "Choose the unit that matches how you measured. The calculator converts feet-based dimensions to square meters internally, since the lux standard is always expressed as lumens per square meter."],
+    ["Choose the room type", "Pick from bedroom, living room, kitchen, office, bathroom, dining room, hallway, or garage — each carries a standard recommended lux level. Select 'Custom' to enter your own target lux for specialized spaces."],
+    ["Enter lumens per light", "Type the lumen output printed on your bulb's packaging, or open the bulb type panel to apply a common LED, CFL, halogen, or incandescent preset automatically."],
+    ["Read the fixture count and status", "The calculator returns the number of lights needed, the lux actually achieved once that count is rounded up, and a status of under-lit, optimal, or over-lit so you know whether to adjust bulb output or fixture count."],
+    ["Save, copy, or export the result", "Save the calculation to your local history for later reference, copy a summary to the clipboard, or export a full text report listing every step of the calculation for a lighting plan or purchase order."],
+  ];
+
   return (
-    <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
-        
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">What is Room Lighting Calculation?</h2>
-          <p className="text-gray-700 leading-relaxed">
-            Room lighting calculation determines the optimal number of light fixtures or bulbs needed to properly illuminate 
-            a space based on its size, purpose, and lighting standards. The calculation uses lux (illumination level) standards 
-            and converts them into the number of lights required based on lumen output. Proper lighting ensures comfort, 
-            productivity, safety, and energy efficiency while avoiding under-lighting or over-lighting.
+    <>
+      {/* ── 1. Introduction ── */}
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          What Is a Room Lighting Calculator?
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            A <strong>room lighting calculator</strong> is a free online tool that determines how many light
+            fixtures a room needs by combining its floor area with the recommended illumination level (lux) for
+            that room's purpose. It answers the question every homeowner and designer eventually asks:{" "}
+            <em>how many lights do I actually need for this room?</em>
           </p>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Room Lighting Formula</h2>
-          
-          <div className="space-y-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h3 className="font-semibold text-blue-900 mb-2">Basic Formula</h3>
-              <p className="text-blue-800 font-mono text-lg mb-2">Number of Lights = (Area × Lux) / Lumens per Light</p>
-              <p className="text-sm text-blue-700">
-                This formula calculates the total lumens required and divides by the output of each light fixture.
-              </p>
-            </div>
-
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-              <h3 className="font-semibold text-purple-900 mb-2">Step-by-Step Calculation</h3>
-              <ol className="text-sm text-purple-700 space-y-2 list-decimal list-inside">
-                <li>Calculate room area: Area = Width × Length</li>
-                <li>Determine required lux level based on room type</li>
-                <li>Calculate total lumens needed: Total Lumens = Area × Lux</li>
-                <li>Divide by lumens per bulb: Lights = Total Lumens / Lumens per Bulb</li>
-                <li>Round up to nearest whole number</li>
-              </ol>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <h3 className="font-semibold text-green-900 mb-2">Key Terms</h3>
-              <ul className="text-sm text-green-700 space-y-1 list-disc list-inside">
-                <li><strong>Lux (lx)</strong> = Illumination level (lumens per square meter)</li>
-                <li><strong>Lumen (lm)</strong> = Total light output from a bulb</li>
-                <li><strong>Area</strong> = Room size in square meters or square feet</li>
-                <li><strong>Lights</strong> = Number of fixtures or bulbs needed</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Standard Lux Levels by Room Type</h2>
-          
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Room Type</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Lux Level</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Purpose</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Bedroom</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">100 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Soft, relaxing lighting</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Hallway/Corridor</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">100 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Basic navigation lighting</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Living Room</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">150 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Comfortable ambient lighting</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Dining Room</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">150 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Ambient dining lighting</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Bathroom</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">200 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Clear task lighting</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Kitchen</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">300 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Bright task lighting</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Garage/Workshop</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">300 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Bright work area lighting</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">Office/Study</td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">400 lux</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">Bright work lighting</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Bulb Types and Lumen Output</h2>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">LED Bulbs (Most Efficient)</h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">LED 60W Equivalent (9W)</span>
-                  <span className="font-mono text-gray-900">800 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">LED 75W Equivalent (12W)</span>
-                  <span className="font-mono text-gray-900">1100 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">LED 100W Equivalent (16W)</span>
-                  <span className="font-mono text-gray-900">1600 lm</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">CFL Bulbs (Compact Fluorescent)</h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">CFL 60W Equivalent (13W)</span>
-                  <span className="font-mono text-gray-900">800 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">CFL 75W Equivalent (18W)</span>
-                  <span className="font-mono text-gray-900">1100 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">CFL 100W Equivalent (23W)</span>
-                  <span className="font-mono text-gray-900">1600 lm</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Halogen Bulbs</h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Halogen 60W (43W)</span>
-                  <span className="font-mono text-gray-900">900 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Halogen 75W (53W)</span>
-                  <span className="font-mono text-gray-900">1200 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Halogen 100W (72W)</span>
-                  <span className="font-mono text-gray-900">1800 lm</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Incandescent Bulbs (Traditional)</h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Incandescent 60W</span>
-                  <span className="font-mono text-gray-900">800 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Incandescent 75W</span>
-                  <span className="font-mono text-gray-900">1100 lm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Incandescent 100W</span>
-                  <span className="font-mono text-gray-900">1600 lm</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <p className="text-sm text-gray-600 mt-3">
-            Note: LED bulbs are the most energy-efficient option, using 80-90% less energy than incandescent bulbs 
-            while producing the same amount of light.
+          <p>
+            Guessing at fixture counts leads to two common outcomes — a dim room that strains the eyes during
+            evening tasks, or an over-lit space that wastes electricity and creates glare. This tool applies the
+            lumen method used in professional lighting design: it converts your room's area and target lux into
+            a total lumen requirement, divides by your bulb's rated output, and rounds up to a practical fixture
+            count — then checks whether that count actually lands within a comfortable range of the target.
           </p>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Calculation Examples</h2>
-          
-          <div className="space-y-4">
-            <div className="border-l-4 border-blue-500 pl-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Example 1: Small Bedroom</h3>
-              <p className="text-sm text-gray-700 mb-2">
-                10 ft × 10 ft bedroom, 800 lumen LED bulbs
-              </p>
-              <div className="text-sm font-mono bg-gray-50 p-3 rounded space-y-1">
-                <div>Area = 10 × 10 = 100 sq ft = 9.29 m²</div>
-                <div>Lux Level = 100 lux (bedroom standard)</div>
-                <div>Total Lumens = 9.29 × 100 = 929 lm</div>
-                <div>Lights = 929 / 800 = 1.16</div>
-                <div className="text-green-600 font-bold">Result: 2 lights needed ✓</div>
-              </div>
-            </div>
-
-            <div className="border-l-4 border-purple-500 pl-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Example 2: Living Room</h3>
-              <p className="text-sm text-gray-700 mb-2">
-                15 ft × 20 ft living room, 1100 lumen LED bulbs
-              </p>
-              <div className="text-sm font-mono bg-gray-50 p-3 rounded space-y-1">
-                <div>Area = 15 × 20 = 300 sq ft = 27.87 m²</div>
-                <div>Lux Level = 150 lux (living room standard)</div>
-                <div>Total Lumens = 27.87 × 150 = 4180 lm</div>
-                <div>Lights = 4180 / 1100 = 3.8</div>
-                <div className="text-green-600 font-bold">Result: 4 lights needed ✓</div>
-              </div>
-            </div>
-
-            <div className="border-l-4 border-green-500 pl-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Example 3: Home Office</h3>
-              <p className="text-sm text-gray-700 mb-2">
-                10 ft × 12 ft office, 1100 lumen LED bulbs
-              </p>
-              <div className="text-sm font-mono bg-gray-50 p-3 rounded space-y-1">
-                <div>Area = 10 × 12 = 120 sq ft = 11.15 m²</div>
-                <div>Lux Level = 400 lux (office standard)</div>
-                <div>Total Lumens = 11.15 × 400 = 4460 lm</div>
-                <div>Lights = 4460 / 1100 = 4.05</div>
-                <div className="text-green-600 font-bold">Result: 5 lights needed ✓</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Factors Affecting Lighting Requirements</h2>
-          
-          <div className="space-y-3 text-gray-700">
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">•</span>
-              <div>
-                <strong>Room Purpose:</strong> Task-oriented rooms (offices, kitchens) need more light than relaxation spaces (bedrooms).
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">•</span>
-              <div>
-                <strong>Natural Light:</strong> Rooms with large windows may need fewer artificial lights during daytime.
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">•</span>
-              <div>
-                <strong>Wall Colors:</strong> Light-colored walls reflect more light, while dark walls absorb light and may require more fixtures.
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">•</span>
-              <div>
-                <strong>Ceiling Height:</strong> Higher ceilings may require more powerful lights or additional fixtures.
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">•</span>
-              <div>
-                <strong>Age of Occupants:</strong> Older adults typically need 2-3 times more light than younger people for the same tasks.
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">•</span>
-              <div>
-                <strong>Fixture Type:</strong> Recessed lights, pendants, and surface-mounted fixtures distribute light differently.
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">•</span>
-              <div>
-                <strong>Light Distribution:</strong> Directional lights (spotlights) vs. omnidirectional lights (bulbs) affect coverage.
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Lighting Design Best Practices</h2>
-          
-          <div className="space-y-3">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 text-xl">✓</span>
-                <div>
-                  <h3 className="font-semibold text-green-900 mb-1">Layer Your Lighting</h3>
-                  <p className="text-sm text-green-800">
-                    Combine ambient (general), task (focused), and accent (decorative) lighting for flexibility and visual interest.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 text-xl">✓</span>
-                <div>
-                  <h3 className="font-semibold text-green-900 mb-1">Use Dimmers</h3>
-                  <p className="text-sm text-green-800">
-                    Install dimmer switches to adjust lighting levels for different activities and times of day, saving energy.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 text-xl">✓</span>
-                <div>
-                  <h3 className="font-semibold text-green-900 mb-1">Consider Color Temperature</h3>
-                  <p className="text-sm text-green-800">
-                    Warm white (2700-3000K) for living spaces, neutral white (3500-4100K) for kitchens, cool white (5000-6500K) for offices.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 text-xl">✓</span>
-                <div>
-                  <h3 className="font-semibold text-green-900 mb-1">Distribute Evenly</h3>
-                  <p className="text-sm text-green-800">
-                    Space lights evenly to avoid dark spots and shadows. For recessed lights, space them 4-6 feet apart.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 text-xl">✓</span>
-                <div>
-                  <h3 className="font-semibold text-green-900 mb-1">Choose Energy-Efficient Bulbs</h3>
-                  <p className="text-sm text-green-800">
-                    LED bulbs use 75-80% less energy than incandescent and last 25 times longer, saving money over time.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Lighting Mistakes to Avoid</h2>
-          
-          <div className="space-y-3">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-red-600 text-xl">✗</span>
-                <div>
-                  <h3 className="font-semibold text-red-900 mb-1">Relying on a Single Central Light</h3>
-                  <p className="text-sm text-red-800">
-                    One ceiling light creates harsh shadows. Use multiple light sources for better coverage and ambiance.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-red-600 text-xl">✗</span>
-                <div>
-                  <h3 className="font-semibold text-red-900 mb-1">Ignoring Task Lighting</h3>
-                  <p className="text-sm text-red-800">
-                    Work areas, reading nooks, and kitchen counters need dedicated task lighting beyond general illumination.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-red-600 text-xl">✗</span>
-                <div>
-                  <h3 className="font-semibold text-red-900 mb-1">Using Wrong Color Temperature</h3>
-                  <p className="text-sm text-red-800">
-                    Cool white in bedrooms feels harsh; warm white in offices can feel dim. Match color temperature to room purpose.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <div className="flex items-start gap-2">
-                <span className="text-red-600 text-xl">✗</span>
-                <div>
-                  <h3 className="font-semibold text-red-900 mb-1">Over-Lighting or Under-Lighting</h3>
-                  <p className="text-sm text-red-800">
-                    Too much light wastes energy and causes glare; too little strains eyes. Use this calculator for optimal levels.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between lumens and lux?</h3>
-              <p className="text-sm text-gray-700">
-                Lumens measure the total light output from a bulb, while lux measures illumination level (lumens per square meter) 
-                on a surface. A 1000-lumen bulb in a small room creates higher lux than the same bulb in a large room.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I find the lumen rating of my bulbs?</h3>
-              <p className="text-sm text-gray-700">
-                Check the bulb packaging or the bulb itself. Modern bulbs are required to display lumen output. For older 
-                incandescent bulbs, use these approximations: 60W ≈ 800lm, 75W ≈ 1100lm, 100W ≈ 1600lm.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Should I use the same lux level throughout my home?</h3>
-              <p className="text-sm text-gray-700">
-                No. Different rooms have different lighting needs. Bedrooms need soft lighting (100 lux), while offices need 
-                bright lighting (400 lux). Use the room type selector in this calculator for appropriate standards.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use fewer high-lumen bulbs instead of more low-lumen bulbs?</h3>
-              <p className="text-sm text-gray-700">
-                While the total lumens may be the same, using more fixtures with lower-lumen bulbs typically provides better 
-                light distribution and reduces harsh shadows. However, fewer high-lumen fixtures can work well with proper placement.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How does ceiling height affect lighting requirements?</h3>
-              <p className="text-sm text-gray-700">
-                Higher ceilings require more light because the distance from the light source to the floor increases. For ceilings 
-                above 10 feet, consider increasing the number of lights by 10-20% or using higher-lumen bulbs.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Are LED bulbs really worth the higher upfront cost?</h3>
-              <p className="text-sm text-gray-700">
-                Yes. LED bulbs use 75-80% less energy and last 15-25 times longer than incandescent bulbs. A typical LED bulb 
-                saves $50-$100 in electricity costs over its lifetime, far exceeding the initial price difference.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
-          <p className="text-sm text-blue-800 leading-relaxed">
-            This calculator provides the minimum number of lights needed for adequate illumination. For better light distribution 
-            and ambiance, consider adding 1-2 extra fixtures or using a combination of ceiling lights, wall sconces, and lamps. 
-            Always install dimmer switches for flexibility in adjusting light levels to suit different activities and moods.
+          <p>
+            Built for <strong>homeowners planning a renovation, interior and lighting designers specifying
+            fixture counts, electricians quoting installation jobs, architects sizing lighting plans, and
+            renters trying to improve a poorly lit apartment</strong>. Supports feet and meters, eight built-in
+            room-type presets plus a custom lux mode, common bulb-type shortcuts, calculation history, and a
+            downloadable report. Browser-based, free, no signup required.
           </p>
-        </section>
+        </div>
+      </section>
 
-      </div>
-    </div>
+      {/* ── 2. How It Works ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          How Room Lighting Calculation Works
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
+            <p className="text-sm font-medium text-gray-500 mb-2">Core Formula</p>
+            <div className="space-y-1 font-mono text-sm text-gray-900">
+              <p><span className="font-semibold">Area (m²)</span> = Width × Length (converted to meters if entered in feet)</p>
+              <p><span className="font-semibold">Total Lumens Required</span> = Area (m²) × Lux Level</p>
+              <p><span className="font-semibold">Lights Needed</span> = ceil(Total Lumens Required ÷ Lumens per Light)</p>
+              <p><span className="font-semibold">Lux Achieved</span> = (Lights Needed × Lumens per Light) ÷ Area (m²)</p>
+              <p className="text-gray-500 text-xs mt-2">Example: 15 ft × 20 ft living room (150 lux, 1,100 lm bulbs) → 27.87 m² × 150 = <span className="text-green-600 font-semibold">4,181 lm required → 4 lights → 157.9 lux achieved</span></p>
+            </div>
+          </div>
+          <ul className="space-y-1 ml-4 list-disc text-gray-600">
+            <li><strong>Lux (lx)</strong> — illumination density, measured in lumens per square meter; this is the target the calculator solves for</li>
+            <li><strong>Lumens (lm)</strong> — the total light output of a single bulb, printed on its packaging regardless of room size</li>
+            <li><strong>Room type presets</strong> — standard lux levels from 100 (bedroom, hallway) to 400 (office) built into the tool, or a custom lux value for specialized spaces</li>
+            <li><strong>Rounding behavior</strong> — the fixture count always rounds up, so achieved lux is checked separately and flagged as under-lit (more than 10% below target), optimal, or over-lit (more than 30% above target)</li>
+            <li><strong>Unit conversion</strong> — feet-based dimensions are converted to square meters automatically since lux is internationally defined per square meter, not per square foot</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* ── 3. Step-by-Step ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How to Use the Room Lighting Calculator
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
+            <ol className="space-y-4 text-gray-600 leading-relaxed">
+              {howToSteps.map(([title, desc], i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                  <span><strong>{title}:</strong> {desc}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Tool Provides</h3>
+            <ul className="space-y-2 text-gray-600">
+              {[
+                "Real-time recalculation as you type",
+                "8 built-in room-type lux presets plus custom lux",
+                "Quick preset rooms (bedroom, living room, kitchen, office, bathroom, garage)",
+                "Common bulb-type shortcuts (LED, CFL, halogen, incandescent)",
+                "Feet and meters unit support",
+                "Under-lit / optimal / over-lit status check",
+                "Calculation history (last 20 entries, saved locally)",
+                "Export full calculation as a text report",
+                "Copy result to clipboard",
+                "100% browser-based — no data sent to any server",
+                "No signup required",
+              ].map((f, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <span className="text-green-500 flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. Use Cases ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Real-World Use Cases
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Small Bedroom — Rounding to Over-Lit",
+              scenario: "A homeowner is fitting a 10 ft × 10 ft bedroom (100 sq ft = 9.29 m²) with 800-lumen LED bulbs. At the bedroom standard of 100 lux, the room needs only 929 total lumens — technically 1.16 bulbs. The calculator rounds up to 2 lights, delivering 1,600 lumens and 172 lux achieved, 72% above target. The tool flags this over-lit, so the homeowner adds a dimmer switch instead of removing a fixture entirely.",
+            },
+            {
+              title: "Living Room — Optimal Fit",
+              scenario: "An interior designer is specifying fixtures for a 15 ft × 20 ft living room (27.87 m²) at the standard 150 lux, using 1,100-lumen LED bulbs. Total lumens required is 4,181; dividing by 1,100 and rounding up gives 4 lights, delivering 4,400 lumens and 157.9 lux achieved — just 5.3% above target. The design is confirmed optimal and specified as-is for the client.",
+            },
+            {
+              title: "Home Office — Task Lighting Check",
+              scenario: "A remote worker is lighting a 10 ft × 12 ft home office (11.15 m²) at the office standard of 400 lux with 1,100-lumen bulbs. Total lumens required is 4,459; dividing by 1,100 gives 4.05, rounded up to 5 lights, delivering 5,500 lumens and 493 lux achieved — 23% above target but still within the optimal band. The extra headroom is useful for close detail work at a desk.",
+            },
+            {
+              title: "Kitchen — Bright Task Lighting",
+              scenario: "A homeowner is planning recessed lighting for a 12 ft × 12 ft kitchen (13.38 m²) at the kitchen standard of 300 lux using 1,100-lumen LEDs. Total lumens required is 4,014; dividing by 1,100 and rounding up gives 4 lights, delivering 4,400 lumens and 329 lux — 9.6% above target and comfortably optimal for food prep and reading labels.",
+            },
+            {
+              title: "Photography Studio — Custom Lux Mode",
+              scenario: "A photographer is lighting a 15 ft × 12 ft studio space (16.72 m²) that needs far more light than any residential preset. Using Custom mode at 500 lux with 1,600-lumen bulbs, total lumens required is 8,361; dividing by 1,600 and rounding up gives 6 lights, delivering 9,600 lumens and 574 lux achieved — 14.8% above target, comfortably optimal for consistent product photography.",
+            },
+            {
+              title: "Garage Workshop — Precise Match",
+              scenario: "A DIYer is wiring a 20 ft × 20 ft garage workshop (37.16 m²) at the garage standard of 300 lux using 1,600-lumen LED shop lights. Total lumens required is 11,148; dividing by 1,600 and rounding up gives 7 lights, delivering 11,200 lumens and 301.4 lux achieved — within 0.5% of the target, one of the closest possible matches the rounding method can produce.",
+            },
+          ].map(({ title, scenario }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">{scenario}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 5. Tips & Mistakes ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Tips &amp; Common Mistakes
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Always compare bulbs by lumens, never watts. An LED rated at 800 lumens produces the same brightness as a 60W incandescent that also outputs about 800 lumens, but uses roughly 85% less electricity — the wattage number tells you nothing about how bright a modern bulb actually is.",
+                "If the result comes back over-lit for a small room, don't assume you need fewer fixtures — a single bulb is often already 'too much' for a tiny space at the target lux. Add a dimmer switch instead of leaving the room permanently under-served by only one fixture.",
+                "For open-plan spaces that combine a kitchen and dining or living area, calculate each zone separately with its own lux target and sum the fixture counts, rather than averaging one lux value across the whole footprint.",
+                "Rooms with ceilings above roughly 2.4 m (8 ft) spread light over a longer throw distance before it reaches the floor. Compensate by entering a higher lumens-per-light value or targeting a higher lux level than the standard preset.",
+                "Dark walls and ceilings absorb 20–30% more light than light-colored surfaces reflect back into the room. In a room with dark paint or exposed dark wood, add one extra fixture beyond the raw calculation or move to the next brighter bulb preset.",
+                "Use Custom lux mode for anything outside standard residential or office use — retail product displays, art studios, and detailed workshop benches often need 500 lux or more, well above the built-in presets.",
+              ].map((tip, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
+              {[
+                "Don't mix feet dimensions with a metric lux assumption without letting the calculator convert units. Lux is always lumens per square meter — entering square footage directly against a lux target overstates the required lumens by roughly 10.76×.",
+                "Don't rely on a single central ceiling fixture rated at the full lumen total. Real rooms need light distributed across multiple points to avoid dark corners and harsh shadows, even when one very bright bulb would satisfy the raw lumen math.",
+                "Don't ignore an under-lit warning because 'it looks fine during the day.' The calculator's lux target reflects evening and artificial-lighting conditions — daylight through windows isn't part of the formula and shouldn't be used to justify skipping fixtures.",
+                "Don't apply one lux standard across an entire multi-purpose room. A kitchen island needs 300 lux for food prep while an adjoining breakfast nook only needs 150 lux — treating the whole space as one zone either overlights the seating area or underlights the counter.",
+                "Don't forget to re-check the calculation after switching bulb brands. Two bulbs marketed as '60W equivalent' can differ in actual lumen output by 10–15% between manufacturers — always use the lumen figure printed on that specific product's packaging.",
+              ].map((mistake, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
+                  <span>{mistake}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Reference Tables ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Lux Level and Bulb Output Reference Tables
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Standard Lux Levels by Room Type</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-gray-200 bg-gray-50">
+                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Room Type</th>
+                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Lux</th>
+                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Purpose</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    ["Bedroom", "100", "Soft, relaxing lighting"],
+                    ["Hallway/Corridor", "100", "Basic navigation lighting"],
+                    ["Living Room", "150", "Comfortable ambient lighting"],
+                    ["Dining Room", "150", "Ambient dining lighting"],
+                    ["Bathroom", "200", "Clear task lighting"],
+                    ["Kitchen", "300", "Bright task lighting"],
+                    ["Garage/Workshop", "300", "Bright work area lighting"],
+                    ["Office/Study", "400", "Bright work lighting"],
+                  ].map(([type, lux, purpose]) => (
+                    <tr key={type} className="hover:bg-gray-50">
+                      <td className="py-1.5 px-3 font-medium text-gray-700 text-xs">{type}</td>
+                      <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{lux} lux</td>
+                      <td className="py-1.5 px-3 text-gray-500 text-xs">{purpose}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-3">* Standard residential and light-commercial guidelines. Specialized spaces (studios, retail displays) should use Custom lux mode.</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Bulb Lumen Output</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-gray-200 bg-gray-50">
+                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Bulb</th>
+                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Lumens</th>
+                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Watts</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    ["LED 60W Equivalent", "800 lm", "9W"],
+                    ["LED 75W Equivalent", "1,100 lm", "12W"],
+                    ["LED 100W Equivalent", "1,600 lm", "16W"],
+                    ["CFL 60W Equivalent", "800 lm", "13W"],
+                    ["CFL 75W Equivalent", "1,100 lm", "18W"],
+                    ["Halogen 60W", "900 lm", "43W"],
+                    ["Incandescent 60W", "800 lm", "60W"],
+                    ["Incandescent 100W", "1,600 lm", "100W"],
+                  ].map(([bulb, lm, w]) => (
+                    <tr key={bulb} className="hover:bg-gray-50">
+                      <td className="py-1.5 px-3 font-medium text-gray-700 text-xs">{bulb}</td>
+                      <td className="py-1.5 px-3 font-mono font-semibold text-green-600 text-xs">{lm}</td>
+                      <td className="py-1.5 px-3 font-mono text-gray-600 text-xs">{w}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-3">* LED and CFL bulbs match incandescent lumen output at a fraction of the wattage — always compare by lumens, not watts.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. FAQ ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-6">
+          {faqItems.map(({ q, a }, i) => (
+            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 8. Who Uses This ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Who Uses This Room Lighting Calculator?
+        </h2>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { icon: "🏠", title: "Homeowners & DIYers", desc: "Plan fixture counts for a renovation or new build before buying bulbs. Compare LED, CFL, and halogen options by lumens to avoid an under-lit or wastefully bright room." },
+            { icon: "🎨", title: "Interior & Lighting Designers", desc: "Specify fixture quantities per room quickly during client proposals. Use custom lux mode for accent lighting or spaces outside standard residential guidelines." },
+            { icon: "⚡", title: "Electricians", desc: "Confirm fixture counts and circuit loads before quoting an installation job. Export a text report to attach to a customer estimate or job file." },
+            { icon: "🏗️", title: "Architects & Building Designers", desc: "Verify that a floor plan's lighting allowance meets code-adjacent illumination guidelines for each room type during early design review." },
+            { icon: "🏢", title: "Facility & Office Managers", desc: "Check whether existing office lighting meets the 400 lux task-lighting standard, and calculate how many additional fixtures are needed after a layout change." },
+            { icon: "🔑", title: "Renters & Small Space Dwellers", desc: "Improve a poorly lit apartment room with plug-in lamps and fixtures sized correctly for the space, without needing an electrician for a quick lighting fix." },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <div className="text-2xl mb-2">{icon}</div>
+              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
