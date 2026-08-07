@@ -1,38 +1,110 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
-import F1ScoreCalculatorUI from "@/tools/f1-score-calculator/ui";
-import { toolConfig } from "@/tools/f1-score-calculator/config";
+import { siteConfig } from "@/config/site";
+import { categories } from "@/config/tools";
+import { toolConfig as config } from "@/tools/f1-score-calculator/config";
+
+const F1ScoreCalculatorUI = dynamic(() => import("@/tools/f1-score-calculator/ui"));
+
+const canonicalUrl = `${siteConfig.url}/tools/computer-science/f1-score-calculator`;
+
+const seo = (config as any).seo ?? {};
+const toolName = (config as any).name;
+const toolDescription = (config as any).description ?? "";
+const ogTitle = seo.openGraph?.title ?? seo.og?.title ?? seo.title;
+const ogDescription = seo.openGraph?.description ?? seo.og?.description ?? seo.description;
+// `+` rather than %20 so these URLs stay identical to what is already indexed.
+const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName).replace(/%20/g, "+")}`;
 
 export const metadata: Metadata = {
-  title: toolConfig.seo.title,
-  description: toolConfig.seo.description,
-  keywords: toolConfig.seo.keywords,
+  title: seo.title,
+  description: seo.description,
+  keywords: seo.keywords,
   openGraph: {
-    images: [{ url: "/og?title=F1+Score+Calculator", width: 1200, height: 630, alt: "F1 Score Calculator" }],
-    title: toolConfig.seo.og.title,
-    description: toolConfig.seo.og.description,
+    title: ogTitle,
+    description: ogDescription,
     type: "website",
-    url: toolConfig.seo.og.url,
+    url: canonicalUrl,
+    siteName: siteConfig.name,
+    images: [{ url: ogImage, width: 1200, height: 630, alt: toolName }],
   },
   twitter: {
     card: "summary_large_image",
-    title: toolConfig.seo.og.title,
-    description: toolConfig.seo.og.description,
-    images: ["/og?title=F1+Score+Calculator"],
+    title: ogTitle,
+    description: ogDescription,
+    images: [ogImage],
   },
-  alternates: {
-    canonical: toolConfig.seo.og.url,
-  },
+  alternates: { canonical: canonicalUrl },
+  robots: { index: true, follow: true },
 };
 
 export default function F1ScoreCalculatorPage() {
+  const catObj = categories.find((c) => c.slug === "computer-science");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `${toolName} Tool`,
+    description: toolDescription,
+    url: canonicalUrl,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    creator: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+  };
+
+  const faqItems: { q: string; a: string }[] = seo.faq ?? [];
+  const faqSchema = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  } : null;
+
+  const howToSteps: { name: string; text: string }[] = seo.howToSteps ?? [];
+  const howToSchema = howToSteps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use ${toolName}`,
+    description: toolDescription,
+    step: howToSteps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null;
+
   return (
-    <ToolLayout
-      title={toolConfig.name}
-      description={toolConfig.description}
-      icon={toolConfig.icon}
-    >
-      <F1ScoreCalculatorUI />
-    </ToolLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        />
+      )}
+      <ToolLayout
+        title={toolName}
+        description={toolDescription}
+        icon={(config as any).icon}
+        category={catObj}
+      >
+        <F1ScoreCalculatorUI />
+      </ToolLayout>
+    </>
   );
 }
