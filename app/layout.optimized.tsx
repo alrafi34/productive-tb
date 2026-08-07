@@ -71,10 +71,6 @@ const organizationSchema = {
   url: siteConfig.url,
   logo: `${siteConfig.url}/logo.png`,
   description: "Free online tools for productivity",
-  sameAs: [
-    "https://twitter.com/productivetoolbox",
-    "https://github.com/productivetoolbox"
-  ]
 };
 
 export default function RootLayout({

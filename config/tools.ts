@@ -219,7 +219,6 @@ export const tools: Tool[] = [
   { slug: "simple-interest-calculator", name: "Simple Interest Calculator", description: "Calculate simple interest and total amount based on principal, rate, and time instantly.", category: "calculator", icon: "💰", free: true },
   { slug: "compound-interest-calculator", name: "Compound Interest Calculator", description: "Calculate compound interest and visualize investment growth over time.", category: "calculator", icon: "📈", free: true },
   { slug: "investment-return-calculator", name: "Investment Return (ROI) Calculator", description: "Calculate gain or loss percentage.", category: "calculator", icon: "💹", free: true },
-  { slug: "profit-margin-calculator", name: "Profit Margin Calculator", description: "Find gross and net profit margins.", category: "calculator", icon: "💰", free: true },
   { slug: "salary-calculator", name: "Salary Calculator", description: "Convert annual salary to hourly, monthly, weekly.", category: "calculator", icon: "💸", free: true },
   { slug: "gst-vat-calculator", name: "GST / VAT Calculator", description: "Add or remove tax from price.", category: "calculator", icon: "🧾", free: true },
   { slug: "bmr-calculator", name: "BMR Calculator", description: "Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) instantly.", category: "health", icon: "🔥", free: true },
@@ -233,7 +232,6 @@ export const tools: Tool[] = [
   // ── New 50 Tools ── (Writing & Content)
   { slug: "reading-time-calculator", name: "Reading Time Calculator", description: "Estimate read and speaking duration with multi-speed profiles, custom WPM, and badge-ready output.", category: "writing", icon: "⏱️", free: true },
   { slug: "html-entity-encoder", name: "HTML Entity Encoder / Decoder", description: "Encode/decode HTML entities with named, decimal, hex, and auto-detect modes.", category: "writing", icon: "🏷️", free: true },
-  { slug: "reading-speed-tester", name: "Reading Speed Tester", description: "Time yourself reading a standard passage and get your WPM score with comprehension level.", category: "productivity", icon: "📖", free: true },
 
   // ── New 50 Tools ── (Design)
   { slug: "css-flexbox-playground", name: "CSS Flexbox Playground", description: "Visually configure flexbox properties with live preview and copy-ready CSS output.", category: "design", icon: "🎯", free: true },
@@ -253,24 +251,16 @@ export const tools: Tool[] = [
   { slug: "http-status-code-lookup", name: "HTTP Status Code Lookup", description: "Searchable encyclopedia of all HTTP status codes with descriptions, use cases, and examples.", category: "developer", icon: "🔍", free: true },
   { slug: "base32-encoder", name: "Base32 Encoder / Decoder", description: "Encode and decode text using Base32 — used in 2FA secrets and legacy systems.", category: "developer", icon: "🔐", free: true },
   { slug: "csv-to-json-converter", name: "CSV to JSON Converter", description: "Parse CSV text or files into structured JSON. Preview table, download JSON, copy to clipboard.", category: "developer", icon: "📋", free: true },
-  { slug: "git-command-builder", name: "Git Command Builder", description: "Select Git operations from dropdowns and get the exact CLI command with explanation.", category: "developer", icon: "🐙", free: true },
-  { slug: "html-boilerplate-generator", name: "HTML Boilerplate Generator", description: "Configure options (charset, meta tags, CSS reset, JS) and download a ready-to-use HTML5 template.", category: "developer", icon: "📄", free: true },
-  { slug: "js-keycode-finder", name: "JavaScript KeyCode Finder", description: "Press any key to instantly see event.key, event.code, keyCode, and charCode values.", category: "developer", icon: "⌨️", free: true },
   { slug: "yaml-to-json-converter", name: "YAML to JSON Converter", description: "Paste YAML data and instantly convert it to valid JSON with syntax highlighting and error checking.", category: "developer", icon: "🔄", free: true },
   { slug: "random-id-generator", name: "UUID / CUID Generator", description: "Generate UUIDs (v1, v4), CUIDs, and NanoIDs for testing. Copy single or bulk output.", category: "developer", icon: "🆔", free: true },
-  { slug: "sql-query-formatter", name: "SQL Query Formatter", description: "Beautify and format messy SQL queries with syntax highlighting, indentation, and keyword casing.", category: "developer", icon: "🗄️", free: true },
 
   // ── New 50 Tools ── (Security)
-  { slug: "password-entropy-calculator", name: "Password Entropy Calculator", description: "Calculate password strength in mathematical bits of entropy. Shows time to crack and recommendations.", category: "security", icon: "📊", free: true },
   { slug: "url-sanitizer", name: "URL Tracker Remover", description: "Paste any URL to strip UTM parameters, fbclid, gclid, and other tracking tokens automatically.", category: "security", icon: "🧹", free: true },
-  { slug: "rot13-cipher", name: "ROT13 Cipher Encoder", description: "Encode and decode text using the classic ROT13 substitution cipher. Also supports Caesar shift.", category: "security", icon: "🔄", free: true },
-  { slug: "disposable-note", name: "Disposable Secure Note", description: "Write a note that is automatically wiped when you close the tab. Nothing is saved or sent anywhere.", category: "security", icon: "🗑️", free: true },
 
   // ── New 50 Tools ── (Creator)
   { slug: "qr-code-generator", name: "QR Code Generator", description: "Create custom scannable QR codes for links, text, WiFi, and contact data.", category: "creator", icon: "📱", free: true },
   //{ slug: "emoji-search-copy", name: "Emoji Search & Copy", description: "Search over 3,000 emojis by name, category, or keyword. Click to copy instantly.", category: "creator", icon: "😀", free: true },
   { slug: "ascii-art-generator", name: "ASCII Art Generator", description: "Convert text or images into ASCII character art. Choose font styles and density.", category: "creator", icon: "🎨", free: true },
-  { slug: "drawing-pad", name: "Drawing Pad", description: "Freehand drawing whiteboard with color pickers, brush sizes, eraser, and PNG export.", category: "creator", icon: "✏️", free: true },
   { slug: "social-media-post-preview", name: "Social Media Post Preview", description: "See how your text looks as a Twitter/X post, LinkedIn update, or Instagram caption before publishing.", category: "creator", icon: "📱", free: true },
   { slug: "pixel-art-grid", name: "Pixel Art Creator", description: "Color a 16×16 or 32×32 pixel grid to create retro pixel art. Export as PNG or CSS grid code.", category: "creator", icon: "🎮", free: true },
   { slug: "dice-roller", name: "Dice Roller Simulator", description: "Roll custom dice sets (D4, D6, D8, D12, D20) with animated roll effect and history log.", category: "creator", icon: "🎲", free: true },
@@ -279,25 +269,19 @@ export const tools: Tool[] = [
   { slug: "habit-tracker", name: "Habit Tracker", description: "Track daily habits with streaks and progress visualization using localStorage — no account needed.", category: "productivity", icon: "✅", free: true },
   { slug: "decision-wheel", name: "Decision Wheel Spinner", description: "Add custom options and spin the wheel to randomly pick one. Perfect for decisions or team picks.", category: "productivity", icon: "🎡", free: true },
   { slug: "time-zone-converter", name: "Time Zone Converter", description: "Convert time between world cities instantly. See multiple time zones side by side.", category: "productivity", icon: "🌍", free: true },
-  { slug: "daily-checklist", name: "Daily To-Do Checklist", description: "A persistent daily checklist stored in localStorage. Add, check, and reset tasks every day.", category: "productivity", icon: "📝", free: true },
   { slug: "voice-to-text-notepad", name: "Voice-to-Text Notepad", description: "Click a button and speak — transcribe voice to text using the browser's Web Speech API. Download notes.", category: "productivity", icon: "🎤", free: true },
   { slug: "working-days-calculator", name: "Working Days Calculator", description: "Calculate business days between two dates with flexible weekend configurations (1 or 2 days) and optional public holidays.", category: "productivity", icon: "📆", free: true },
-  { slug: "meditation-breather", name: "Breathing Exercise Timer", description: "Animated visual guide for box breathing, 4-7-8, and other techniques to reduce stress.", category: "productivity", icon: "🧘", free: true },
-  { slug: "simple-budgeter", name: "Simple Budget Planner", description: "Add income and expense entries and see remaining balance, spending chart, and category breakdown.", category: "productivity", icon: "💰", free: true },
 
   // ── New 50 Tools ── (Visualization)
   { slug: "timeline-creator", name: "Visual Timeline Creator", description: "Add events with dates to build a shareable visual horizontal or vertical timeline. Export as PNG.", category: "visualization", icon: "📅", free: true },
 
   // ── New 50 Tools ── (Math)
   { slug: "prime-number-checker", name: "Prime Number Checker", description: "Check if any number is prime and find all prime numbers up to N using the Sieve of Eratosthenes.", category: "math", icon: "🔢", free: true },
-  { slug: "fibonacci-sequence-generator", name: "Fibonacci Sequence Generator", description: "Generate Fibonacci numbers up to N terms with animated display and golden ratio visualization.", category: "math", icon: "🌀", free: true },
 
   // ── New 50 Tools ── (Image)
-  { slug: "image-metadata-exif-viewer", name: "Image EXIF Metadata Viewer", description: "Upload a JPG to view embedded EXIF data: camera model, GPS coordinates, ISO, shutter speed.", category: "image", icon: "📸", free: true },
 
   // ── New 50 Tools ── (Multimedia)
   { slug: "text-to-speech-preview", name: "Text-to-Speech Preview", description: "Convert any text to speech using browser voices. Choose language, pitch, rate, and voice.", category: "multimedia", icon: "🔊", free: true },
-  { slug: "webcam-photo-booth", name: "Webcam Photo Booth", description: "Apply real-time CSS/canvas filters to live webcam feed and capture photos. Download as PNG.", category: "multimedia", icon: "📹", free: true },
   { slug: "audio-visualizer", name: "Audio Visualizer", description: "Upload an audio file or use your microphone to see a real-time frequency bar chart visualization.", category: "multimedia", icon: "🎵", free: true },
   { slug: "video-frame-extractor", name: "Video Frame Extractor", description: "Load a video file, scrub to any moment, and save the current frame as a PNG image.", category: "multimedia", icon: "🎬", free: true },
 
@@ -353,7 +337,6 @@ export const tools: Tool[] = [
   { slug: "solar-panel-calculator", name: "Solar Panel Calculator", description: "Estimate solar panel requirements.", category: "electrical", icon: "☀️", free: true },
   { slug: "solar-battery-calculator", name: "Solar Battery Calculator", description: "Determine battery storage for solar systems.", category: "electrical", icon: "🔋", free: true },
   { slug: "solar-inverter-calculator", name: "Solar Inverter Calculator", description: "Calculate inverter size for solar.", category: "electrical", icon: "⚡", free: true },
-  { slug: "inverter-load-calculator", name: "Inverter Load Calculator", description: "Estimate inverter load capacity.", category: "electrical", icon: "🔌", free: true },
   { slug: "generator-size-calculator", name: "Generator Size Calculator", description: "Determine generator size needed.", category: "electrical", icon: "⚡", free: true },
   { slug: "electric-motor-power-calculator", name: "Electric Motor Power Calculator", description: "Calculate motor power requirements.", category: "electrical", icon: "⚙️", free: true },
   { slug: "motor-efficiency-calculator", name: "Motor Efficiency Calculator", description: "Compute efficiency of electric motors.", category: "electrical", icon: "📊", free: true },
@@ -364,8 +347,6 @@ export const tools: Tool[] = [
   { slug: "adc-resolution-calculator", name: "ADC Resolution Calculator", description: "Determine ADC resolution.", category: "electrical", icon: "📊", free: true },
   { slug: "dac-output-calculator", name: "DAC Output Calculator", description: "Compute analog output from digital input.", category: "electrical", icon: "📊", free: true },
   { slug: "logic-gate-calculator", name: "Logic Gate Calculator", description: "Evaluate digital logic outputs.", category: "electrical", icon: "🔌", free: true },
-  { slug: "binary-to-decimal-calculator-elec", name: "Binary to Decimal Calculator", description: "Convert binary to decimal.", category: "electrical", icon: "🔢", free: true },
-  { slug: "decimal-to-binary-calculator-elec", name: "Decimal to Binary Calculator", description: "Convert decimal to binary.", category: "electrical", icon: "🔢", free: true },
   { slug: "clock-frequency-calculator", name: "Clock Frequency Calculator", description: "Calculate clock frequency.", category: "electrical", icon: "⏱️", free: true },
   { slug: "data-rate-calculator", name: "Data Rate Calculator", description: "Compute data transmission rate.", category: "electrical", icon: "📊", free: true },
   { slug: "antenna-length-calculator", name: "Antenna Length Calculator", description: "Determine antenna length for frequency.", category: "electrical", icon: "📡", free: true },
@@ -450,12 +431,11 @@ export const tools: Tool[] = [
   { slug: "slab-load-calculator", name: "Slab Load Calculator", description: "Compute slab load capacity.", category: "architecture", icon: "📊", free: true },
   { slug: "structural-load-calculator", name: "Structural Load Calculator", description: "Estimate total structural load.", category: "architecture", icon: "⚖️", free: true },
   { slug: "live-load-calculator", name: "Live Load Calculator", description: "Calculate live load in buildings.", category: "architecture", icon: "👥", free: true },
-  { slug: "dead-load-calculator", name: "Dead Load Calculator", description: "Compute dead load of structures.", category: "architecture", icon: "🏗️", free: true },
+  { slug: "green-building-score-calculator", name: "Green Building Score Calculator", description: "Estimate eco-friendly building score.", category: "architecture", icon: "🌱", free: true },
   { slug: "roof-area-calculator", name: "Roof Area Calculator", description: "Calculate roof surface area.", category: "architecture", icon: "🏠", free: true },
   { slug: "roof-pitch-calculator", name: "Roof Pitch Calculator", description: "Determine roof slope angle.", category: "architecture", icon: "📐", free: true },
   { slug: "rafter-length-calculator", name: "Rafter Length Calculator", description: "Calculate rafter length.", category: "architecture", icon: "📏", free: true },
   { slug: "staircase-calculator", name: "Staircase Calculator", description: "Compute step dimensions for stairs.", category: "architecture", icon: "🪜", free: true },
-  { slug: "step-rise-and-run-calculator", name: "Step Rise and Run Calculator", description: "Calculate staircase geometry.", category: "architecture", icon: "📐", free: true },
   { slug: "window-area-calculator", name: "Window Area Calculator", description: "Calculate total window area.", category: "architecture", icon: "🪟", free: true },
   { slug: "door-area-calculator", name: "Door Area Calculator", description: "Compute door opening area.", category: "architecture", icon: "🚪", free: true },
   { slug: "ventilation-calculator", name: "Ventilation Calculator", description: "Estimate airflow requirements.", category: "architecture", icon: "💨", free: true },
@@ -484,7 +464,6 @@ export const tools: Tool[] = [
   { slug: "septic-tank-size-calculator", name: "Septic Tank Size Calculator", description: "Determine septic tank capacity.", category: "architecture", icon: "🚽", free: true },
   { slug: "water-tank-capacity-calculator", name: "Water Tank Capacity Calculator", description: "Calculate water storage size.", category: "architecture", icon: "💧", free: true },
   { slug: "plumbing-pipe-size-calculator", name: "Plumbing Pipe Size Calculator", description: "Determine pipe diameter requirements.", category: "architecture", icon: "🔧", free: true },
-  { slug: "water-flow-rate-calculator-building", name: "Water Flow Rate Calculator (Building)", description: "Calculate water flow in plumbing.", category: "architecture", icon: "💧", free: true },
   { slug: "fire-safety-load-calculator", name: "Fire Safety Load Calculator", description: "Estimate fire load in buildings.", category: "architecture", icon: "🔥", free: true },
   { slug: "emergency-exit-width-calculator", name: "Emergency Exit Width Calculator", description: "Calculate evacuation requirements.", category: "architecture", icon: "🚪", free: true },
   { slug: "parking-space-calculator", name: "Parking Space Calculator", description: "Determine parking capacity.", category: "architecture", icon: "🅿️", free: true },
@@ -501,7 +480,6 @@ export const tools: Tool[] = [
   { slug: "skirting-material-calculator", name: "Skirting Material Calculator", description: "Calculate skirting requirements.", category: "architecture", icon: "📏", free: true },
   { slug: "interior-space-optimization-calculator", name: "Interior Space Optimization Calculator", description: "Optimize room layout efficiency.", category: "architecture", icon: "📐", free: true },
   { slug: "furniture-layout-calculator", name: "Furniture Layout Calculator", description: "Plan furniture placement efficiency.", category: "architecture", icon: "🛋️", free: true },
-  { slug: "green-building-score-calculator", name: "Green Building Score Calculator", description: "Estimate eco-friendly building score.", category: "architecture", icon: "🌱", free: true },
   { slug: "energy-efficiency-calculator-building", name: "Energy Efficiency Calculator (Building)", description: "Calculate building energy efficiency.", category: "architecture", icon: "⚡", free: true },
   { slug: "carbon-footprint-calculator-construction", name: "Carbon Footprint Calculator (Construction)", description: "Estimate CO2 emissions from materials.", category: "architecture", icon: "🌍", free: true },
   { slug: "sustainability-index-calculator", name: "Sustainability Index Calculator", description: "Evaluate building sustainability.", category: "architecture", icon: "♻️", free: true },
@@ -538,7 +516,6 @@ export const tools: Tool[] = [
   // Tier 3 — Solid traffic
   { slug: "thermal-efficiency-calculator", name: "Thermal Efficiency Calculator", description: "Determine efficiency of engines.", category: "mechanical", icon: "📊", free: true },
   { slug: "specific-heat-calculator", name: "Specific Heat Calculator", description: "Compute heat required for temperature change.", category: "mechanical", icon: "🌡️", free: true },
-  { slug: "youngs-modulus-calculator", name: "Young's Modulus Calculator", description: "Calculate Young's modulus from stress and strain.", category: "mechanical", icon: "📊", free: true },
   { slug: "bolt-load-calculator", name: "Bolt Load Calculator", description: "Determine bolt load.", category: "mechanical", icon: "🔩", free: true },
   { slug: "thread-pitch-calculator", name: "Thread Pitch Calculator", description: "Calculate thread pitch.", category: "mechanical", icon: "🔩", free: true },
   { slug: "cutting-speed-calculator", name: "Cutting Speed Calculator", description: "Calculate machining cutting speed.", category: "mechanical", icon: "🔪", free: true },
@@ -566,7 +543,6 @@ export const tools: Tool[] = [
   { slug: "ai-prompt-length-calculator", name: "AI Prompt Length Calculator", description: "Calculate token length.", category: "computer-science", icon: "📏", free: true },
   { slug: "model-accuracy-calculator", name: "Model Accuracy Calculator", description: "Compute accuracy from predictions.", category: "computer-science", icon: "🎯", free: true },
   { slug: "precision-recall-calculator", name: "Precision Recall Calculator", description: "Calculate precision and recall metrics.", category: "computer-science", icon: "📊", free: true },
-  { slug: "f1-score-calculator", name: "F1 Score Calculator", description: "Compute F1 score.", category: "computer-science", icon: "📊", free: true },
   { slug: "confusion-matrix-calculator", name: "Confusion Matrix Calculator", description: "Generate confusion matrix metrics.", category: "computer-science", icon: "📊", free: true },
   { slug: "dataset-split-calculator", name: "Dataset Split Calculator", description: "Split datasets into train, validation, and test sets for machine learning.", category: "computer-science", icon: "✂️", free: true },
   { slug: "cloud-cost-calculator", name: "Cloud Cost Calculator", description: "Estimate cloud usage cost.", category: "computer-science", icon: "☁️", free: true },
@@ -576,7 +552,6 @@ export const tools: Tool[] = [
   { slug: "ctr-calculator", name: "CTR Calculator", description: "Calculate click-through rate (CTR = Clicks / Impressions).", category: "marketing", icon: "📊", free: true },
   { slug: "conversion-rate-calculator", name: "Conversion Rate Calculator", description: "Compute conversion rate from visitors.", category: "marketing", icon: "📈", free: true },
   { slug: "bounce-rate-calculator", name: "Bounce Rate Calculator", description: "Calculate bounce rate percentage.", category: "marketing", icon: "📉", free: true },
-  { slug: "roi-calculator-marketing", name: "ROI Calculator (Marketing)", description: "Calculate return on investment.", category: "marketing", icon: "💰", free: true },
   { slug: "cost-per-click-cpc-calculator", name: "Cost Per Click (CPC) Calculator", description: "Calculate cost per click.", category: "marketing", icon: "💵", free: true },
   { slug: "cost-per-acquisition-cpa-calculator", name: "Cost Per Acquisition (CPA) Calculator", description: "Calculate cost per acquisition.", category: "marketing", icon: "💰", free: true },
   { slug: "customer-lifetime-value-calculator", name: "Customer Lifetime Value Calculator", description: "Estimate CLV of customers.", category: "marketing", icon: "👥", free: true },
@@ -657,6 +632,17 @@ export const tools: Tool[] = [
   { slug: "outlier-detection-calculator", name: "Outlier Detection Calculator", description: "Identify outliers using the IQR rule, Z-Score method, Modified Z-Score (MAD), percentile bounds, or a custom threshold — with dot plot, box plot, and histogram visualizations.", category: "data-analytics", icon: "🔍", free: true },
   { slug: "histogram-bin-calculator", name: "Histogram Bin Calculator", description: "Determine the optimal number of histogram bins using Sturges', Rice, Square Root, Freedman-Diaconis, or Scott's rule, with an interactive bar chart.", category: "data-analytics", icon: "📊", free: true },
   { slug: "percentile-calculator", name: "Percentile Calculator", description: "Calculate any percentile of a dataset using linear interpolation, with quartiles, IQR, common percentile table, and interactive visualization.", category: "data-analytics", icon: "📊", free: true },
+
+  // Implemented tools that were previously missing from this registry —
+  // metadata taken from each tool's own config.ts.
+  { slug: "dithering-filter", name: "Dithering Image Filter", description: "Convert images to retro pixelated black-and-white using dithering algorithms.", category: "image", icon: "🎨", free: true },
+  { slug: "duotone-filter", name: "Duotone Image Filter", description: "Apply a two-colour gradient map to images for modern artistic effects.", category: "image", icon: "🖼️", free: true },
+  { slug: "exif-remover", name: "EXIF Data Remover", description: "Strip EXIF metadata from images — remove location, camera, and device data before sharing.", category: "image", icon: "🔒", free: true },
+  { slug: "regex-tester", name: "RegEx Tester", description: "Test regular expressions with live highlighting, capture groups, and replacement preview.", category: "developer", icon: "🔍", free: true },
+  { slug: "sql-formatter", name: "SQL Formatter", description: "Format, beautify, and minify SQL queries with syntax highlighting and multiple dialect support.", category: "developer", icon: "🗄️", free: true },
+  { slug: "step-rise-run-calculator", name: "Step Rise and Run Calculator", description: "Calculate stair rise, run, and number of steps for safe and comfortable staircase design.", category: "architecture", icon: "📐", free: true },
+  { slug: "water-flow-rate-calculator", name: "Water Flow Rate Calculator", description: "Calculate water flow rate, velocity, and pipe diameter for plumbing and building services design.", category: "architecture", icon: "💧", free: true },
+  { slug: "timer-stopwatch", name: "Stopwatch & Timer", description: "High-precision stopwatch and countdown timer with lap tracking and multi-timer support.", category: "productivity", icon: "⏱️", free: true },
 ];
 
 export const categories: Category[] = [

@@ -196,6 +196,7 @@ import { slabLoadCalculatorConfig } from "@/tools/slab-load-calculator/config";
 import { footingSizeCalculatorConfig } from "@/tools/footing-size-calculator/config";
 import { structuralLoadCalculatorConfig } from "@/tools/structural-load-calculator/config";
 import { liveLoadCalculatorConfig } from "@/tools/live-load-calculator/config";
+import { greenBuildingScoreCalculatorConfig } from "@/tools/green-building-score-calculator/config";
 import { roofAreaCalculatorConfig } from "@/tools/roof-area-calculator/config";
 import { roofPitchCalculatorConfig } from "@/tools/roof-pitch-calculator/config";
 import { rafterLengthCalculatorConfig } from "@/tools/rafter-length-calculator/config";
@@ -476,6 +477,7 @@ const SlabLoadCalculatorUI = dynamic(() => import("@/tools/slab-load-calculator/
 const FootingSizeCalculatorUI = dynamic(() => import("@/tools/footing-size-calculator/ui"));
 const StructuralLoadCalculatorUI = dynamic(() => import("@/tools/structural-load-calculator/ui"));
 const LiveLoadCalculatorUI = dynamic(() => import("@/tools/live-load-calculator/ui"));
+const GreenBuildingScoreCalculatorUI = dynamic(() => import("@/tools/green-building-score-calculator/ui"));
 const RoofAreaCalculatorUI = dynamic(() => import("@/tools/roof-area-calculator/ui"));
 const RoofPitchCalculatorUI = dynamic(() => import("@/tools/roof-pitch-calculator/ui"));
 const RafterLengthCalculatorUI = dynamic(() => import("@/tools/rafter-length-calculator/ui"));
@@ -757,6 +759,7 @@ const TOOLS = [
   { config: footingSizeCalculatorConfig, Component: FootingSizeCalculatorUI },
   { config: structuralLoadCalculatorConfig, Component: StructuralLoadCalculatorUI },
   { config: liveLoadCalculatorConfig, Component: LiveLoadCalculatorUI },
+  { config: greenBuildingScoreCalculatorConfig, Component: GreenBuildingScoreCalculatorUI },
   { config: roofAreaCalculatorConfig, Component: RoofAreaCalculatorUI },
   { config: roofPitchCalculatorConfig, Component: RoofPitchCalculatorUI },
   { config: rafterLengthCalculatorConfig, Component: RafterLengthCalculatorUI },

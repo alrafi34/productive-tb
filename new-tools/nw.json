@@ -1,0 +1,643 @@
+[
+  {
+    "id": 1,
+    "category": "AI, LLM & Prompt Tools",
+    "name": "AI Token & Cost Calculator",
+    "slug": "ai-token-cost-calculator",
+    "description": "Calculates exact token counts and estimated API costs for popular LLMs (GPT-4o, Claude 3.5 Sonnet, Llama 3) in real-time.",
+    "target_audience": "AI developers, prompt engineers, content creators, and agencies standardizing LLM usage costs.",
+    "how_to_build": {
+      "tech_stack": [
+        "HTML5",
+        "CSS3 / Tailwind",
+        "JavaScript (ES6+)",
+        "js-tiktoken / gpt-tokenizer"
+      ],
+      "core_logic": "Integrate client-side tokenizers like 'js-tiktoken' or lightweight BPE algorithms. Maintain a local JSON lookup dictionary for price-per-1k-tokens across different models (Input vs Output). Calculate token length on every 'input' event and multiply by rates.",
+      "key_features": [
+        "Model selector dropdown",
+        "Live token counter",
+        "Input vs Output cost breakdown",
+        "Multi-currency support (USD/EUR/GBP)"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "category": "AI, LLM & Prompt Tools",
+    "name": "AI Prompt Anonymizer / PII Scrubber",
+    "slug": "ai-prompt-anonymizer",
+    "description": "Scubs emails, phone numbers, IP addresses, credit cards, and names from text prompts before sending them to AI models.",
+    "target_audience": "Enterprise workers, lawyers, healthcare workers, and GDPR-conscious European users.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS",
+        "Regex engine",
+        "Compromise.js (NLP)"
+      ],
+      "core_logic": "Use regex patterns for structural PII (emails, IPs, SSNs, phone numbers, credit card Luhn validation). Use a lightweight NLP library like Compromise.js to detect Proper Nouns (names, organizations). Replace matched strings with tokens like [NAME_1], [EMAIL_1] and provide a 'Copy Clean Prompt' button.",
+      "key_features": [
+        "Custom redaction tags",
+        "Toggle specific PII types",
+        "Reversion dictionary export",
+        "Zero server network calls"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "category": "AI, LLM & Prompt Tools",
+    "name": "AI Text Diff & Revision Inspector",
+    "slug": "ai-text-diff-inspector",
+    "description": "Highlights side-by-side or inline structural differences, hallucinated additions, and omitted words between original drafts and AI outputs.",
+    "target_audience": "Editors, copywriters, academics, and proofreaders comparing LLM iterations.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "diff / diff2html library",
+        "CSS Custom Themes"
+      ],
+      "core_logic": "Import the popular client-side 'diff' library (jsdiff). Accept Text A (Original) and Text B (AI Output). Run 'Diff.diffWords()' or 'Diff.diffLines()'. Render colored additions (green) and deletions (red) in a split or unified visual pane.",
+      "key_features": [
+        "Word/Char/Line level diff",
+        "Side-by-side vs Unified view",
+        "Copy clean merged result",
+        "Export diff report"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "category": "AI, LLM & Prompt Tools",
+    "name": "Prompt Markdown & System Prompt Formatter",
+    "slug": "prompt-markdown-formatter",
+    "description": "Transforms messy raw text prompts into clean, structured Markdown or XML-tagged system prompts (e.g., <context>, <rules>, <output_format>).",
+    "target_audience": "Prompt engineers, AI developers, and automation builders.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "Prettier standalone",
+        "Monaco Editor / CodeMirror (optional)"
+      ],
+      "core_logic": "Accept unstructured text or section inputs. Provide templates for XML-style prompt structure (<instructions>, <context>, <examples>). Auto-indent, clean trailing whitespace, and wrap variable placeholders (e.g. {{variable}}).",
+      "key_features": [
+        "XML/Markdown toggle",
+        "One-click copy to clipboard",
+        "Pre-built prompt framework templates (e.g., CO-STAR)",
+        "Variable detector"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "category": "AI, LLM & Prompt Tools",
+    "name": "AI Buzzword & Overuse Detector",
+    "slug": "ai-buzzword-detector",
+    "description": "Scans text for stereotypical AI-generated words and phrases (e.g. 'delve', 'testament', 'tapestry', 'pivotal', 'game-changer') and flags them.",
+    "target_audience": "SEO writers, blog editors, marketing professionals, and students aiming for natural language.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "Regex",
+        "HTML ContentEditable / Overlay DOM"
+      ],
+      "core_logic": "Maintain an array of known AI-overused words and transitional phrases. Scan text on keyup/paste using regex with word boundaries (\\b). Highlight matches inline with CSS markers and show an AI Density Score percentage.",
+      "key_features": [
+        "AI density score %",
+        "One-click synonym replacement recommendations",
+        "Custom vocabulary list",
+        "Download flagged report"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "category": "Content Creator & Remote Work Tools",
+    "name": "LinkedIn Post Preview & Break Formatter",
+    "slug": "linkedin-post-preview-formatter",
+    "description": "Formats LinkedIn posts with proper line breaks, emojis, and previews exactly where the '...see more' fold will appear on desktop and mobile.",
+    "target_audience": "LinkedIn creators, ghostwriters, founders, and digital marketers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "CSS Mobile/Desktop Device Frames"
+      ],
+      "core_logic": "Measure character limits and line breaks. Emulate LinkedIn's truncation threshold (approx. 140-210 characters depending on screen width/lines). Render live SVG phone/desktop mockups updating dynamically.",
+      "key_features": [
+        "See More line indicator",
+        "Unicode bold/italic text converter",
+        "Emoji picker",
+        "Hashtag counter"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "category": "Content Creator & Remote Work Tools",
+    "name": "Bionic Reading Text Converter",
+    "slug": "bionic-reading-converter",
+    "description": "Converts plain text into Bionic Reading format by bolding the first few letters of every word to facilitate faster reading comprehension.",
+    "target_audience": "Students, researchers, speed readers, and people with ADHD/dyslexia.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS",
+        "CSS Styling"
+      ],
+      "core_logic": "Split text by spaces and words. For each word, calculate fixation points (e.g. Math.ceil(word.length * 0.4)). Wrap the first half in <b> tags and the remaining in <span>. Output formatted HTML or Rich Text.",
+      "key_features": [
+        "Adjustable fixation length",
+        "Saccade frequency slider",
+        "Dark/Light reader mode",
+        "Export as EPUB/HTML/PDF"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "category": "Content Creator & Remote Work Tools",
+    "name": "TikTok & YouTube Shorts Script Timer",
+    "slug": "shorts-script-timer",
+    "description": "Calculates the exact duration of a spoken video script based on average speaking pace (slow, conversational, fast, fast-caption style).",
+    "target_audience": "Short-form video creators, YouTubers, podcasters, and advertisers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "Web Speech API (SpeechSynthesis)"
+      ],
+      "core_logic": "Count words and estimated pauses based on punctuation (commas = 0.3s, periods = 0.6s). Divide total words by WPM (Words Per Minute) settings (e.g., 130 WPM conversational, 160 WPM fast). Optionally use Web Speech API to test-read it aloud.",
+      "key_features": [
+        "WPM slider",
+        "Punctuation pause calculation",
+        "Built-in teleprompter mode",
+        "Word count & character count"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "category": "Content Creator & Remote Work Tools",
+    "name": "Social Media Bio Link Decorator & Safety Checker",
+    "slug": "social-bio-decorator",
+    "description": "Generates fancy unicode fonts for Instagram/X bios while testing for characters that trigger spam filters or accessibility screen reader issues.",
+    "target_audience": "Influencers, marketers, brand managers, and social media managers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "Unicode Character Mapping Table"
+      ],
+      "core_logic": "Map ASCII character codes to specific Unicode mathematical blocks (Bold, Script, Fraktur, Monospace, Fullwidth). Check against accessibility guidelines (flag invisible/unsupported glyphs).",
+      "key_features": [
+        "15+ font styles",
+        "Screen reader accessibility warning indicator",
+        "Bio character limit tracker",
+        "Copy button"
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "category": "Content Creator & Remote Work Tools",
+    "name": "UTC / Remote Team Time-Zone Visualizer Strip",
+    "slug": "utc-team-timezone-visualizer",
+    "description": "Provides an interactive visual timeline comparing overlapping working hours across multiple global time zones (EST, PST, CET, UTC, GMT, IST).",
+    "target_audience": "Remote workers, distributed engineering teams, digital nomads, and project managers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "Luxon / Day.js with Timezone plugin",
+        "CSS Grid / Canvas"
+      ],
+      "core_logic": "Convert local time or target meeting time to UTC using Luxon/Day.js. Render a 24-hour horizontal bar for each selected city/timezone. Highlight green for working hours (9 AM - 5 PM), yellow for early/late, red for sleeping.",
+      "key_features": [
+        "Drag-to-select time overlap",
+        "Custom city presets",
+        "Copy shareable URL hash with time configurations",
+        "iCal meeting link generator"
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "category": "Developer & CSS Utilities",
+    "name": "Tailwind & CSS Fluid Typography Generator",
+    "slug": "fluid-typography-generator",
+    "description": "Generates responsive CSS clamp() and Tailwind CSS config utility classes for fluid typography and spacing scaling seamlessly between viewports.",
+    "target_audience": "Frontend developers, UI/UX designers, and web agencies.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "Math calculations",
+        "CSS Output Formatter"
+      ],
+      "core_logic": "Calculate linear interpolation formula: preferred = minSize + (maxSize - minSize) * ((100vw - minViewport) / (maxViewport - minViewport)). Convert to clamp(min, calc(...), max) in rem units.",
+      "key_features": [
+        "Tailwind v3/v4 config export",
+        "Vanilla CSS snippet",
+        "Interactive visual viewport scaling preview slider",
+        "REM/PX unit converter"
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "category": "Developer & CSS Utilities",
+    "name": "SVG Optimizer & Clean-up Tool",
+    "slug": "svg-optimizer-cleaner",
+    "description": "Strips useless metadata, editor comments, hidden groups, and converts inline styling in SVG files to minimize file size on the client side.",
+    "target_audience": "Web developers, UI designers, and performance optimization engineers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "SVGO browser build / DOMParser"
+      ],
+      "core_logic": "Use a compiled browser build of SVGO (SVG Optimizer) or custom DOMParser sanitization rules. Remove <metadata>, comments, XML declarations, unused IDs, and collapse empty groups. Output optimized code + percentage savings.",
+      "key_features": [
+        "Visual before/after comparison",
+        "Code view with syntax highlighting",
+        "Copy raw inline SVG code",
+        "Batch file processing"
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "category": "Developer & CSS Utilities",
+    "name": "JSON to TypeScript & Zod Schema Converter",
+    "slug": "json-to-typescript-zod",
+    "description": "Instantly parses raw JSON strings and generates strongly typed TypeScript interfaces or Zod validation schemas.",
+    "target_audience": "TypeScript developers, full-stack engineers, and API integrators.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "quicktype-core (browser build) or custom tree walker"
+      ],
+      "core_logic": "Parse JSON using JSON.parse(). Recursively traverse objects and arrays. Infer data types (string, number, boolean, array, optional/nullable). Construct TypeScript interface or z.object({...}) code blocks.",
+      "key_features": [
+        "Zod / TypeScript / TypeBox output toggles",
+        "Handle nested objects & arrays",
+        "CamelCase / PascalCase property auto-formatting",
+        "Error highlighting for invalid JSON"
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "category": "Developer & CSS Utilities",
+    "name": "Conventional Git Commit Message Formatter",
+    "slug": "conventional-git-commit-formatter",
+    "description": "Interactive form to generate standard Conventional Commits (feat, fix, docs, chore, refactor) with breaking change warnings.",
+    "target_audience": "Software developers, open-source contributors, and DevOps engineers.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS",
+        "Tailwind CSS"
+      ],
+      "core_logic": "Provide dropdowns for Type (feat, fix, refactor), Scope, Short Summary, Long Description, and Breaking Changes footer. Concatenate into standard format: type(scope): summary\\n\\nbody\\n\\nBREAKING CHANGE: ....",
+      "key_features": [
+        "Character counter for commit title (50 char rule)",
+        "Pre-filled commit scopes",
+        "Copy terminal command git commit -m \"...\"",
+        "Local storage history"
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "category": "Developer & CSS Utilities",
+    "name": "OpenGraph (OG) Meta Image & Card Tester",
+    "slug": "opengraph-meta-card-tester",
+    "description": "Simulates how social media links will render on Twitter/X, LinkedIn, Facebook, Slack, and Discord without needing public domain deployment.",
+    "target_audience": "SEO specialists, web developers, content marketers, and bloggers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "HTML5 DOMParser",
+        "CSS Flexbox Card Mockups"
+      ],
+      "core_logic": "Accept HTML input or raw meta tag strings. Parse <meta property=\"og:image\">, <meta name=\"twitter:title\">, etc. Extract values and populate pre-styled preview cards matching Twitter, LinkedIn, and Facebook layouts.",
+      "key_features": [
+        "Simulates 5 major social networks",
+        "Aspect ratio validation check (1200x630)",
+        "Missing tag warning alerts",
+        "Meta tag HTML code generator"
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "category": "Developer & CSS Utilities",
+    "name": "Color Blindness Simulator for Web Images",
+    "slug": "color-blindness-image-simulator",
+    "description": "Applies SVG accessibility color matrix filters on uploaded images to simulate Protanopia, Deuteranopia, Tritanopia, and Achromatopsia.",
+    "target_audience": "UI/UX designers, accessibility (a11y) auditors, and graphic artists.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "HTML5 Canvas",
+        "SVG FeColorMatrix Filters"
+      ],
+      "core_logic": "Upload image into Canvas. Apply SVG <feColorMatrix> filter values based on standard color blindness color transformation matrices (e.g., Brettel/Machado algorithms).",
+      "key_features": [
+        "Side-by-side original vs simulated preview",
+        "Supports 8 color vision deficiency types",
+        "Export simulated image",
+        "100% Client-side Canvas rendering"
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "category": "Privacy, Security & Data Cleaning Tools",
+    "name": "EXIF Metadata Stripper & Image Sanitizer",
+    "slug": "exif-metadata-stripper",
+    "description": "Removes GPS location coordinates, camera models, dates, and copyright metadata from images before publishing online.",
+    "target_audience": "Privacy advocates, journalists, social media users, and photographers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "exif-js / piexifjs library",
+        "HTML5 Canvas"
+      ],
+      "core_logic": "Read image file using FileReader API. Draw image to HTML5 Canvas (which strips native EXIF metadata automatically) and export via canvas.toDataURL('image/jpeg'), or rewrite binary headers to strip EXIF tags.",
+      "key_features": [
+        "Shows detected EXIF data before stripping",
+        "Batch image processing",
+        "Download cleaned PNG/WebP/JPEG",
+        "Zero data sent to server"
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "category": "Privacy, Security & Data Cleaning Tools",
+    "name": "CSV & JSON Data Anonymizer",
+    "slug": "csv-json-data-anonymizer",
+    "description": "Hashes or replaces sensitive user data (Names, Emails, Phone numbers) in CSV/JSON datasets with mock data while preserving structure.",
+    "target_audience": "Data analysts, software testers, QA engineers, and database administrators.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "PapaParse (CSV)",
+        "CryptoJS (SHA-256)"
+      ],
+      "core_logic": "Parse CSV with PapaParse or JSON with JSON.parse(). Allow user to select target columns. Apply SHA-256 hashing, masking (e.g. j***@gmail.com), or synthetic fake data substitution.",
+      "key_features": [
+        "Column-by-column anonymization settings",
+        "SHA-256 / MD5 hashing",
+        "Export clean CSV/JSON",
+        "Process large files browser-side"
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "category": "Privacy, Security & Data Cleaning Tools",
+    "name": "Offline Base64 Image & Data URI Converter",
+    "slug": "offline-base64-converter",
+    "description": "Converts files and images to Base64 data strings and vice versa, completely offline in the browser.",
+    "target_audience": "Frontend developers, email template developers, and web creators.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS",
+        "FileReader API"
+      ],
+      "core_logic": "Use FileReader.readAsDataURL() for File to Base64 encoding. Use Regex parsing and atob() or Blob URLs for Base64 to File decoding.",
+      "key_features": [
+        "Copy as CSS background-image",
+        "Copy as HTML <img> tag",
+        "File size overhead indicator",
+        "Download decoded file"
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "category": "Privacy, Security & Data Cleaning Tools",
+    "name": "JWT (JSON Web Token) Offline Decoder",
+    "slug": "jwt-offline-decoder",
+    "description": "Decodes and inspects JSON Web Tokens (Header, Payload, Expiration Date) without leaking sensitive Auth tokens to third-party sites.",
+    "target_audience": "Backend developers, security researchers, and frontend engineers.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS"
+      ],
+      "core_logic": "Split JWT string by '.' into 3 parts (Header, Payload, Signature). Decode Base64Url strings using atob(). Parse JSON payload and format timestamp (exp, iat) into human-readable date strings.",
+      "key_features": [
+        "Token expiration indicator (Active/Expired)",
+        "Formatted JSON viewer",
+        "Copy individual payload fields",
+        "No server requests"
+      ]
+    }
+  },
+  {
+    "id": 21,
+    "category": "Daily Business & Utility Tools",
+    "name": "PDF Page Organizer & Splitter (WASM)",
+    "slug": "pdf-page-organizer",
+    "description": "Reorder, delete, rotate, or extract specific pages from PDF documents entirely in the browser using WebAssembly / pdf-lib.",
+    "target_audience": "Office workers, students, lawyers, and administrative staff.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "pdf-lib library",
+        "pdfjs-dist (for page thumbnail rendering)"
+      ],
+      "core_logic": "Load PDF via pdfjs-dist to render canvas thumbnails. Allow HTML5 Drag-and-Drop to reorder or delete pages. Reconstruct new PDF document using pdf-lib and output downloadable Blob.",
+      "key_features": [
+        "Visual thumbnail grid",
+        "Drag & Drop page reordering",
+        "Page rotation (90°, 180°, 270°)",
+        "Fast browser assembly"
+      ]
+    }
+  },
+  {
+    "id": 22,
+    "category": "Daily Business & Utility Tools",
+    "name": "Markdown to Rich Text Clipboard Converter",
+    "slug": "markdown-to-rich-text-clipboard",
+    "description": "Converts Markdown text into formatted Rich Text that pastes perfectly with headings, bold text, lists, and tables into Google Docs or Notion.",
+    "target_audience": "Content managers, technical writers, bloggers, and project managers.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "marked.js library",
+        "Clipboard API (navigator.clipboard.write)"
+      ],
+      "core_logic": "Parse raw Markdown using marked.parse() to output HTML string. Use navigator.clipboard.write() with Blob(['text/html'], {type: 'text/html'}) to write formatted rich text to OS system clipboard.",
+      "key_features": [
+        "Live side-by-side preview",
+        "One-click copy rich text button",
+        "Custom inline styling",
+        "Table support"
+      ]
+    }
+  },
+  {
+    "id": 23,
+    "category": "Daily Business & Utility Tools",
+    "name": "Readability Score & Grade Level Calculator",
+    "slug": "readability-score-calculator",
+    "description": "Calculates Flesch-Kincaid Grade Level, Gunning Fog Index, and Coleman-Liau Index to determine reading age readability.",
+    "target_audience": "SEO copywriters, marketers, academics, and technical documentation writers.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS",
+        "Syllable counter algorithm"
+      ],
+      "core_logic": "Count total sentences, words, and syllables (using regex patterns for vowel groups). Calculate Flesch Reading Ease score: 206.835 - 1.015*(totalWords/totalSentences) - 84.6*(totalSyllables/totalWords).",
+      "key_features": [
+        "Multiple readability formulas",
+        "Target audience age breakdown",
+        "Sentence length highlight",
+        "Hard-to-read word counter"
+      ]
+    }
+  },
+  {
+    "id": 24,
+    "category": "Daily Business & Utility Tools",
+    "name": "Client-Side Micro Invoice Generator",
+    "slug": "micro-invoice-generator",
+    "description": "Simple invoice builder for freelancers with automatic tax calculation, logo upload, and offline PDF generation.",
+    "target_audience": "Freelancers, contractors, consultants, and small business owners.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "jspdf / html2pdf.js",
+        "LocalStorage API"
+      ],
+      "core_logic": "Maintain line items, quantity, price, discount, and tax rate in state. Compute grand total. Use LocalStorage to save business profile/logo. Render HTML template and export to PDF via jspdf.",
+      "key_features": [
+        "Multi-currency support",
+        "Auto tax/VAT calculation",
+        "Save company info in local browser",
+        "Download print-ready PDF"
+      ]
+    }
+  },
+  {
+    "id": 25,
+    "category": "Daily Business & Utility Tools",
+    "name": "ASCII Folder Tree Structure Generator",
+    "slug": "ascii-folder-tree-generator",
+    "description": "Converts indented folder/file lists into clean ASCII tree structures (├── src / └── index.js) for GitHub Readmes.",
+    "target_audience": "Developers, technical writers, open-source maintainers.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS"
+      ],
+      "core_logic": "Parse indented text lines into dynamic tree objects based on space/tab indentation level. Recursively output ASCII glyph connectors (├──, └──, │   ).",
+      "key_features": [
+        "Folder vs File icon customization",
+        "Tab-indentation parser",
+        "Copy clean ASCII code block",
+        "Pre-built sample templates"
+      ]
+    }
+  },
+  {
+    "id": 26,
+    "category": "Micro-Design & UX Utility",
+    "name": "CSS Glassmorphism & Neumorphism Generator",
+    "slug": "css-glassmorphism-generator",
+    "description": "Visual UI generator to tweak backdrop blur, transparency, borders, and shadows for modern glass/neumorphic UI elements.",
+    "target_audience": "UI designers, frontend developers, and web creators.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "CSS Custom Properties / Color Pickers"
+      ],
+      "core_logic": "Provide range sliders for backdrop-filter: blur(), background: rgba(), border, and box-shadow. Apply values real-time to preview card and produce CSS snippet.",
+      "key_features": [
+        "Live background image picker",
+        "Cross-browser prefix fallback support",
+        "One-click copy CSS/Tailwind classes",
+        "Dark/Light preview background"
+      ]
+    }
+  },
+  {
+    "id": 27,
+    "category": "Micro-Design & UX Utility",
+    "name": "Aspect Ratio & Pixel Dimensions Calculator",
+    "slug": "aspect-ratio-calculator",
+    "description": "Calculates missing width/height pixel dimensions based on standard aspect ratios (16:9, 4:3, 1:1, 9:16) or custom ratios.",
+    "target_audience": "Video editors, graphic designers, web developers, and digital marketers.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS"
+      ],
+      "core_logic": "Formula: (New Width / Original Width) * Original Height = New Height. Recalculate dynamically on input change using Greatest Common Divisor (GCD) for simplified ratio reductions.",
+      "key_features": [
+        "Common aspect ratio presets",
+        "GCD simplification indicator",
+        "Visual frame dimension box",
+        "Copy dimension pair"
+      ]
+    }
+  },
+  {
+    "id": 28,
+    "category": "Micro-Design & UX Utility",
+    "name": "CSS Gradient Generator with Noise Texture",
+    "slug": "css-noise-gradient-generator",
+    "description": "Generates modern linear/radial CSS gradients overlaid with subtle SVG noise grain textures.",
+    "target_audience": "Web designers, frontend developers, and landing page creators.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "HTML5 Canvas / SVG feTurbulence"
+      ],
+      "core_logic": "Combine CSS linear-gradient string with a Base64-encoded SVG noise background filter generated via <feTurbulence type=\"fractalNoise\">.",
+      "key_features": [
+        "Multi-stop color picker",
+        "Noise opacity & frequency controls",
+        "Export raw CSS background rule",
+        "Preset color palettes"
+      ]
+    }
+  },
+  {
+    "id": 29,
+    "category": "Micro-Design & UX Utility",
+    "name": "Micro-SVG Wave & Section Divider Generator",
+    "slug": "svg-wave-divider-generator",
+    "description": "Generates customizable SVG wave curves, slants, and step section dividers for landing page section transitions.",
+    "target_audience": "Web designers, Tailwind developers, and WordPress builders.",
+    "how_to_build": {
+      "tech_stack": [
+        "JavaScript",
+        "SVG Bezier path calculation Math"
+      ],
+      "core_logic": "Use cubic Bezier curves (d=\"M 0 100 C ...\"). Adjust control point coordinates dynamically using UI sliders for height, waves count, and complexity.",
+      "key_features": [
+        "Flip horizontal/vertical",
+        "Live color fill selector",
+        "Copy SVG markup / HTML embed code",
+        "Invert wave orientation"
+      ]
+    }
+  },
+  {
+    "id": 30,
+    "category": "Micro-Design & UX Utility",
+    "name": "SEO Text-to-Slug & URL Sanitizer",
+    "slug": "text-to-slug-sanitizer",
+    "description": "Converts titles or text in multiple languages into clean, SEO-optimized, lowercase, hyphen-separated URL slugs.",
+    "target_audience": "SEO managers, bloggers, content managers, and developers.",
+    "how_to_build": {
+      "tech_stack": [
+        "Vanilla JS"
+      ],
+      "core_logic": "Normalize unicode string using String.prototype.normalize('NFD'). Strip diacritical accents, remove special non-alphanumeric characters, convert spaces/underscores to hyphens, and lowercase.",
+      "key_features": [
+        "Multi-language accent normalization",
+        "Stop words filter toggle (a, the, in, and)",
+        "Max character length limit",
+        "Copy slug button"
+      ]
+    }
+  }
+]

@@ -319,7 +319,6 @@ import { toolConfig as aiTokenCostCalculatorConfig } from "@/tools/ai-token-cost
 import { toolConfig as aiPromptLengthCalculatorConfig } from "@/tools/ai-prompt-length-calculator/config";
 import { toolConfig as modelAccuracyCalculatorConfig } from "@/tools/model-accuracy-calculator/config";
 import { toolConfig as precisionRecallCalculatorConfig } from "@/tools/precision-recall-calculator/config";
-import { toolConfig as f1ScoreCalculatorConfig } from "@/tools/f1-score-calculator/config";
 import { ipRangeCalculatorConfig } from "@/tools/ip-range-calculator/config";
 import { cidrCalculatorConfig } from "@/tools/cidr-calculator/config";
 import { bandwidthCalculatorConfig } from "@/tools/bandwidth-calculator/config";
@@ -331,7 +330,6 @@ import { toolConfig as combinatoricsCalculatorConfig } from "@/tools/combinatori
 import { ctrCalculatorConfig } from "@/tools/ctr-calculator/config";
 import { conversionRateCalculatorConfig } from "@/tools/conversion-rate-calculator/config";
 import { bounceRateCalculatorConfig } from "@/tools/bounce-rate-calculator/config";
-import { roiCalculatorMarketingConfig } from "@/tools/roi-calculator-marketing/config";
 import { costPerClickCpcCalculatorConfig } from "@/tools/cost-per-click-cpc-calculator/config";
 import { costPerAcquisitionCpaCalculatorConfig } from "@/tools/cost-per-acquisition-cpa-calculator/config";
 import { customerLifetimeValueCalculatorConfig } from "@/tools/customer-lifetime-value-calculator/config";
@@ -733,7 +731,6 @@ export const TOOLS_REGISTRY = {
   'ai-prompt-length-calculator': aiPromptLengthCalculatorConfig,
   'model-accuracy-calculator': modelAccuracyCalculatorConfig,
   'precision-recall-calculator': precisionRecallCalculatorConfig,
-  'f1-score-calculator': f1ScoreCalculatorConfig,
   'ip-range-calculator': ipRangeCalculatorConfig,
   'cidr-calculator': cidrCalculatorConfig,
   'bandwidth-calculator': bandwidthCalculatorConfig,
@@ -745,7 +742,6 @@ export const TOOLS_REGISTRY = {
   'ctr-calculator': ctrCalculatorConfig,
   'conversion-rate-calculator': conversionRateCalculatorConfig,
   'bounce-rate-calculator': bounceRateCalculatorConfig,
-  'roi-calculator-marketing': roiCalculatorMarketingConfig,
   'cost-per-click-cpc-calculator': costPerClickCpcCalculatorConfig,
   'cost-per-acquisition-cpa-calculator': costPerAcquisitionCpaCalculatorConfig,
   'customer-lifetime-value-calculator': customerLifetimeValueCalculatorConfig,
