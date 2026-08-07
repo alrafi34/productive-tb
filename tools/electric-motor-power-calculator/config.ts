@@ -9,8 +9,8 @@ export const electricMotorPowerCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Electric Motor Power Calculator — Motor kW, Current & Torque",
-    description: "Calculate motor power in kW or HP, full-load current, torque, and efficiency. Free motor power calculator for 3-phase and single-phase AC motors. No signup.",
+    title: "Motor Power Calculator — HP, kW, 3 Phase",
+    description: "Convert motor power between HP and kW and find current draw for single-phase and three-phase motors at any voltage, efficiency and power factor.",
     keywords: [
       "electric motor power calculator",
       "motor power calculator",

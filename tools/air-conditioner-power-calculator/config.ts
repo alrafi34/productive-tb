@@ -9,8 +9,8 @@ export const airConditionerPowerCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Air Conditioner Power Calculator — AC Wattage & Cost",
-    description: "Calculate AC power consumption in watts, monthly electricity cost, and generator size from tonnage and EER. Free AC power calculator, browser-based, no signup.",
+    title: "AC Power Consumption Calculator (Watts)",
+    description: "Find how many watts your air conditioner uses and what it costs to run. Enter BTU or tonnage, hours per day and your electricity rate.",
     keywords: [
       "air conditioner power calculator",
       "ac power consumption calculator",

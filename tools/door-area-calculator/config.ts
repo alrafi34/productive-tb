@@ -17,8 +17,8 @@ export const doorAreaCalculatorConfig = {
     "material estimation"
   ],
   seo: {
-    title: "Door Area Calculator – Calculate Door Opening Size Instantly",
-    description: "Easily calculate door area using height and width in feet, meters, or inches. Fast, accurate, and free online door area calculator for construction and design.",
+    title: "Door Area Calculator — Sq Ft & Sq M",
+    description: "Calculate door area in square feet and square metres for single, double and sliding doors. For painting, glazing and material take-offs.",
     keywords: "door area calculator, calculate door size, door opening area, construction calculator, area calculator",
     og: {
       title: "Door Area Calculator – Free Online Tool",

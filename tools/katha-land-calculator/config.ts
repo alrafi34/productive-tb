@@ -16,8 +16,8 @@ export const kathaLandCalculatorConfig = {
     "price-per-square-feet-calculator",
   ],
   seo: {
-    title: "Katha Land Calculator — Free Katha to Decimal & Sq Ft Converter",
-    description: "Convert Katha to Decimal, Bigha, Acre, Square Feet, and more. Free land calculator for Bangladesh, West Bengal, Bihar, and Nepal. Browser-based, no signup.",
+    title: "Katha to Sq Ft Calculator — BD, WB, Bihar",
+    description: "Katha size varies by region — 720 sq ft in Bangladesh and West Bengal, 1,361.25 sq ft in Bihar. Convert to Sq Ft, Decimal, Bigha and Acre.",
     keywords: [
       "katha land calculator",
       "kata land calculator",

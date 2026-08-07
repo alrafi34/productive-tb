@@ -9,8 +9,8 @@ export const pricePerSquareFeetCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Price per Square Foot Calculator — Land Rate per Sq Ft",
-    description: "Calculate land price per square foot and per square meter from total price and area. Supports Decimal, Acre, Katha, Bigha, and Hectare. Free, no signup.",
+    title: "Price per Square Foot Calculator — Free",
+    description: "Calculate price per square foot from total price and area, or work backwards to total cost. Converts between sq ft, sq m, Decimal and Katha.",
     keywords: [
       "price per square foot calculator",
       "price per square feet calculator",

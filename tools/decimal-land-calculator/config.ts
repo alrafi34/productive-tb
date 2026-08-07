@@ -9,8 +9,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Decimal Land Calculator — Free Shotok to Decimal Converter",
-    description: "Convert Decimal (Shotok) to Acre, Katha, Bigha, and Sq Feet instantly. Free land calculator for Bangladesh, India, and Nepal. Browser-based, no signup.",
+    title: "Decimal to Katha, Bigha & Sq Ft Converter",
+    description: "Convert Decimal (Shotok) to Katha, Bigha, Acre and Square Feet. 1 Decimal = 435.6 sq ft. Regional presets for Bangladesh, West Bengal, Bihar and Nepal.",
     keywords: [
       "decimal land calculator",
       "shotok to decimal",

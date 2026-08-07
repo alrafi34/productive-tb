@@ -9,8 +9,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Shadow Length Calculator — Free Sun Shadow Calculator Online",
-    description: "Calculate shadow length from object height and sun angle. Free sun shadow calculator for architects, solar installers, and photographers. No signup.",
+    title: "Shadow Length Calculator by Time & Date",
+    description: "Calculate shadow length from object height, latitude, date and time of day. For site planning, solar access studies and building setback checks.",
     keywords: [
       "shadow length calculator",
       "sun shadow calculator",

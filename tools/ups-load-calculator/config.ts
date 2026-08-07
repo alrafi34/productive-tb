@@ -7,8 +7,8 @@ export const upsLoadCalculatorConfig = {
   category: "electrical",
   slug: "ups-load-calculator",
   seo: {
-    title: "UPS Load Calculator – Calculate Required UPS Capacity Online | Free Tool",
-    description: "Free UPS load calculator to estimate total power consumption and find the right UPS size. Calculate watts to VA instantly with smart recommendations and safety margins for office, home, and data center use.",
+    title: "UPS Load & Backup Time Calculator",
+    description: "Size a UPS for your load and estimate runtime from battery capacity. Enter appliance wattage, battery Ah and voltage to get backup hours.",
     keywords: [
       "ups load calculator",
       "ups size calculator",
