@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: bighaLandCalculatorConfig.seo.description,
   keywords: bighaLandCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Bigha+Land+Calculator", width: 1200, height: 630, alt: "Bigha Land Calculator" }],
     title: bighaLandCalculatorConfig.seo.og.title,
     description: bighaLandCalculatorConfig.seo.og.description,
     type: "website",
     url: bighaLandCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: bighaLandCalculatorConfig.seo.og.title,
+    description: bighaLandCalculatorConfig.seo.og.description,
+    images: ["/og?title=Bigha+Land+Calculator"],
   },
   alternates: {
     canonical: bighaLandCalculatorConfig.seo.og.url,

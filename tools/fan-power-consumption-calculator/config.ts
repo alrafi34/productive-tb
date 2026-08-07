@@ -7,7 +7,7 @@ export const fanPowerConsumptionCalculatorConfig = {
   category: "electrical",
   slug: "fan-power-consumption-calculator",
   seo: {
-    title: "Fan Power Consumption Calculator — Free Electricity Cost | Productive Toolbox",
+    title: "Fan Power Consumption Calculator — Free Electricity Cost",
     description: "Calculate fan electricity use and cost instantly. Enter wattage, usage hours, and tariff for daily, monthly, and yearly kWh and cost. Free, browser-based.",
     keywords: [
       "fan power consumption calculator",

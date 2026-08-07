@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "URL Tracker Remover – Clean UTM Parameters & Tracking Links | Productive Toolbox",
+    title: "URL Tracker Remover – Clean UTM Parameters & Tracking Links",
     description: "Free online URL tracker remover. Strip UTM parameters, fbclid, gclid and other tracking tokens from URLs instantly. Privacy-focused link cleaning tool.",
     keywords: [
       "url tracker remover",

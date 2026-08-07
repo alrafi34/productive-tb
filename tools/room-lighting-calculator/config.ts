@@ -7,7 +7,7 @@ export const roomLightingCalculatorConfig = {
   category: "electrical",
   slug: "room-lighting-calculator",
   seo: {
-    title: "Room Lighting Calculator — Free Lux Calculator Online | Productive Toolbox",
+    title: "Room Lighting Calculator — Free Lux Calculator Online",
     description: "Calculate how many lights a room needs using lux and lumens. Enter dimensions, room type, and bulb output for accurate results. Free, browser-based.",
     keywords: [
       "room lighting calculator",

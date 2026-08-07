@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: loanInterestCalculatorPropertyConfig.seo.description,
   keywords: loanInterestCalculatorPropertyConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Loan+Interest+Calculator+(Property)", width: 1200, height: 630, alt: "Loan Interest Calculator (Property)" }],
     title: loanInterestCalculatorPropertyConfig.seo.og.title,
     description: loanInterestCalculatorPropertyConfig.seo.og.description,
     type: "website",
     url: loanInterestCalculatorPropertyConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: loanInterestCalculatorPropertyConfig.seo.og.title,
+    description: loanInterestCalculatorPropertyConfig.seo.og.description,
+    images: ["/og?title=Loan+Interest+Calculator+(Property)"],
   },
   alternates: {
     canonical: loanInterestCalculatorPropertyConfig.seo.og.url,

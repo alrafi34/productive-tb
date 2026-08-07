@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: momentOfInertiaCalculatorConfig.seo.description,
   keywords: momentOfInertiaCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Moment+of+Inertia+Calculator", width: 1200, height: 630, alt: "Moment of Inertia Calculator" }],
     title: momentOfInertiaCalculatorConfig.seo.og.title,
     description: momentOfInertiaCalculatorConfig.seo.og.description,
     type: "website",
     url: momentOfInertiaCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: momentOfInertiaCalculatorConfig.seo.og.title,
+    description: momentOfInertiaCalculatorConfig.seo.og.description,
+    images: ["/og?title=Moment+of+Inertia+Calculator"],
   },
   alternates: {
     canonical: momentOfInertiaCalculatorConfig.seo.og.url,

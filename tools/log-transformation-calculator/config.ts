@@ -16,7 +16,7 @@ export const logTransformationCalculatorConfig = {
     "variance-calculator",
   ],
   seo: {
-    title: "Log Transformation Calculator — Free Natural Log, Log10 & Log2 Tool | Productive Toolbox",
+    title: "Log Transformation Calculator — Free Natural Log, Log10 & Log2 Tool",
     description: "Transform datasets instantly using natural log (ln), log10, log2, or any custom base. Supports bulk calculations, summary statistics, and CSV/JSON export. Free, browser-based.",
     keywords: [
       "log transformation calculator",

@@ -25,7 +25,7 @@ export const ledResistorCalculatorConfig = {
     "arduino led resistor calculator",
   ],
   seo: {
-    title: "LED Resistor Calculator — Current-Limiting Resistor Tool | Productive Toolbox",
+    title: "LED Resistor Calculator — Current-Limiting Resistor Tool",
     description: "Calculate the correct current-limiting resistor for LED circuits. Free calculator with standard resistor values and power ratings.",
     keywords: "LED resistor calculator, resistor for LED, LED circuit calculator, LED current limiting resistor, calculate LED resistor",
     openGraph: {

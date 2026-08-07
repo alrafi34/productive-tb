@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: signalAttenuationCalculatorConfig.seo.description,
   keywords: signalAttenuationCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Signal+Attenuation+Calculator", width: 1200, height: 630, alt: "Signal Attenuation Calculator" }],
     title: signalAttenuationCalculatorConfig.seo.og.title,
     description: signalAttenuationCalculatorConfig.seo.og.description,
     type: "website",
     url: signalAttenuationCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: signalAttenuationCalculatorConfig.seo.og.title,
+    description: signalAttenuationCalculatorConfig.seo.og.description,
+    images: ["/og?title=Signal+Attenuation+Calculator"],
   },
   alternates: {
     canonical: signalAttenuationCalculatorConfig.seo.og.url,

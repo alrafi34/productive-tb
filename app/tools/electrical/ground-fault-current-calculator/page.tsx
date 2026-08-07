@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: groundFaultCurrentCalculatorConfig.seo.description,
   keywords: groundFaultCurrentCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Ground+Fault+Current+Calculator", width: 1200, height: 630, alt: "Ground Fault Current Calculator" }],
     title: groundFaultCurrentCalculatorConfig.seo.og.title,
     description: groundFaultCurrentCalculatorConfig.seo.og.description,
     url: groundFaultCurrentCalculatorConfig.seo.og.url,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: groundFaultCurrentCalculatorConfig.seo.og.title,
+    description: groundFaultCurrentCalculatorConfig.seo.og.description,
+    images: ["/og?title=Ground+Fault+Current+Calculator"],
   },
 };
 

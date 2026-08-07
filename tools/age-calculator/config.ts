@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Age Calculator — Free Online Age Calculator from Date of Birth | Productive Toolbox",
+    title: "Age Calculator — Free Online Age Calculator from Date of Birth",
     description: "Free age calculator from date of birth. Get exact age in years, months, and days, total days lived, next birthday countdown, milestones, and zodiac sign. No sign-up, 100% browser-based.",
     keywords: [
       "age calculator",

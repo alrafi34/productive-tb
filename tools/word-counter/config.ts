@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Word Counter & Character Counter — Free Online Tool | Productive Toolbox",
+    title: "Word Counter & Character Counter — Free Online Tool",
     description: "Count words and characters instantly — free online word count counter. Works for essays, PDFs, and Google Docs. Paragraph counter included. No sign-up.",
     keywords: [
       // 500K/mo — primary

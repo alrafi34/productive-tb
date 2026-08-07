@@ -28,7 +28,7 @@ export const capacitorCalculatorConfig = {
     "capacitor formula calculator",
   ],
   seo: {
-    title: "Capacitor Calculator — Charge, Voltage & Energy | Productive Toolbox",
+    title: "Capacitor Calculator — Charge, Voltage & Energy",
     description: "Calculate capacitor charge, capacitance, voltage, and stored energy with step-by-step formulas. Free calculator with unit conversion. No signup.",
     keywords: "capacitor calculator, capacitance formula, charge calculation, energy in capacitor, capacitor energy calculator, farad calculator",
     openGraph: {

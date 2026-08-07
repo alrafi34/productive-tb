@@ -6,7 +6,7 @@ export const toolConfig = {
   icon: "🎡",
   keywords: ["decision wheel", "spin the wheel", "random picker", "wheel of names", "decision maker", "spinner"],
   seo: {
-    title: "Decision Wheel Spinner – Spin the Wheel to Pick a Random Option | Productive Toolbox",
+    title: "Decision Wheel Spinner – Spin the Wheel to Pick a Random Option",
     description: "Create a custom decision wheel, add your options, and spin the wheel to randomly choose a winner. Perfect for games, classrooms, team picks, and fun decisions.",
     keywords: ["decision wheel", "spin the wheel", "random picker wheel", "wheel of names", "random decision maker", "spinner wheel online"],
     openGraph: {

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: fanPowerConsumptionCalculatorConfig.seo.description,
   keywords: fanPowerConsumptionCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Fan+Power+Consumption+Calculator", width: 1200, height: 630, alt: "Fan Power Consumption Calculator" }],
     title: fanPowerConsumptionCalculatorConfig.seo.og.title,
     description: fanPowerConsumptionCalculatorConfig.seo.og.description,
     type: "website",
     url: fanPowerConsumptionCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: fanPowerConsumptionCalculatorConfig.seo.og.title,
+    description: fanPowerConsumptionCalculatorConfig.seo.og.description,
+    images: ["/og?title=Fan+Power+Consumption+Calculator"],
   },
   alternates: {
     canonical: fanPowerConsumptionCalculatorConfig.seo.og.url,

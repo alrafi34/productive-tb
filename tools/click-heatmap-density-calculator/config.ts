@@ -16,7 +16,7 @@ export const clickHeatmapDensityCalculatorConfig = {
     "engagement-rate-calculator",
   ],
   seo: {
-    title: "Click Heatmap Density Calculator — Free Interactive Heatmap Generator | Productive Toolbox",
+    title: "Click Heatmap Density Calculator — Free Interactive Heatmap Generator",
     description: "Visualize user click distribution with this free Click Heatmap Density Calculator. Upload screenshots, import click coordinates, generate interactive heatmaps, analyze hotspots, export PNG, SVG, CSV, and JSON. Runs entirely in your browser.",
     keywords: [
       "click heatmap",

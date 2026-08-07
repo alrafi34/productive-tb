@@ -24,7 +24,7 @@ export const batteryBackupTimeCalculatorConfig = {
     "free battery backup calculator",
   ],
   seo: {
-    title: "Battery Backup Time Calculator — UPS Runtime Tool | Productive Toolbox",
+    title: "Battery Backup Time Calculator — UPS Runtime Tool",
     description: "Calculate battery backup time for UPS, inverter, and solar systems from voltage, capacity, and load. Free calculator with presets.",
     keywords: "battery backup time calculator, UPS runtime calculator, inverter backup time, battery life calculator, solar battery runtime, backup time estimator",
     openGraph: {

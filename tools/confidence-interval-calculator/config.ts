@@ -16,7 +16,7 @@ export const confidenceIntervalCalculatorConfig = {
     "mean-calculator",
   ],
   seo: {
-    title: "Confidence Interval Calculator — Free Statistics Calculator Online | Productive Toolbox",
+    title: "Confidence Interval Calculator — Free Statistics Calculator Online",
     description: "Calculate confidence intervals instantly for a mean or proportion. Enter your sample data to get margin of error, Z/t critical values, and required sample size. Free, browser-based.",
     keywords: [
       "confidence interval calculator",

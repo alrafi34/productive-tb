@@ -26,7 +26,7 @@ export const impedanceCalculatorConfig = {
     "electrical engineering calculator",
   ],
   seo: {
-    title: "Impedance Calculator — AC Circuit Impedance (Z) Calculator | Productive Toolbox",
+    title: "Impedance Calculator — AC Circuit Impedance (Z) Calculator",
     description: "Calculate AC circuit impedance (Z), phase angle, and circuit type from resistance and reactance. Free calculator with step-by-step formulas.",
     keywords: "impedance calculator, AC circuit calculator, Z calculator, reactance calculator, RLC calculator, electrical impedance",
     openGraph: {

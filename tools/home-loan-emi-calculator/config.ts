@@ -9,7 +9,7 @@ export const homeLoanEmiCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Home Loan EMI Calculator — Free Mortgage Calculator Online | Productive Toolbox",
+    title: "Home Loan EMI Calculator — Free Mortgage Calculator Online",
     description: "Calculate home loan EMI instantly. Get monthly payment, total interest, full amortization schedule, and compare two loan scenarios. Free, no signup, browser-based.",
     keywords: [
       "home loan EMI calculator",

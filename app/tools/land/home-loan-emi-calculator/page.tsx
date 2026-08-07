@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: homeLoanEmiCalculatorConfig.seo.description,
   keywords: homeLoanEmiCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Home+Loan+EMI+Calculator", width: 1200, height: 630, alt: "Home Loan EMI Calculator" }],
     title: homeLoanEmiCalculatorConfig.seo.og.title,
     description: homeLoanEmiCalculatorConfig.seo.og.description,
     type: "website",
     url: homeLoanEmiCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeLoanEmiCalculatorConfig.seo.og.title,
+    description: homeLoanEmiCalculatorConfig.seo.og.description,
+    images: ["/og?title=Home+Loan+EMI+Calculator"],
   },
   alternates: {
     canonical: homeLoanEmiCalculatorConfig.seo.og.url,

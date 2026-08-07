@@ -7,7 +7,7 @@ export const regexTesterConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "RegEx Tester Online — Test & Debug Regular Expressions Instantly | Productive Toolbox",
+    title: "RegEx Tester Online — Test & Debug Regular Expressions Instantly",
     description: "Free online RegEx tester. Instantly test regular expressions, highlight matches, view capture groups, and preview replacements directly in your browser. No uploads or servers required.",
     keywords: [
       "regex tester",

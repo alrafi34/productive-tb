@@ -27,7 +27,7 @@ export const inductorCalculatorConfig = {
     "inductance formula calculator",
   ],
   seo: {
-    title: "Inductor Calculator — Coil Inductance & Reactance Tool | Productive Toolbox",
+    title: "Inductor Calculator — Coil Inductance & Reactance Tool",
     description: "Calculate coil inductance for solenoids and air-core coils, plus inductive reactance. Free calculator with formulas and step-by-step results.",
     keywords: "inductor calculator, inductance calculator, coil inductance, solenoid calculator, inductive reactance calculator, air-core coil calculator",
     openGraph: {

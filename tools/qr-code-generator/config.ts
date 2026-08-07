@@ -9,7 +9,7 @@ export const qrCodeGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "QR Code Generator — Free QR Code Maker Online | Productive Toolbox",
+    title: "QR Code Generator — Free QR Code Maker Online",
     description: "Create QR codes for URLs, WiFi, email, phone, and text. Customise size, colours, and error correction. Download PNG instantly. Free, no signup, browser-based.",
     keywords: [
       "qr code generator",

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: wavelengthCalculatorConfig.seo.description,
   keywords: wavelengthCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Wavelength+Calculator", width: 1200, height: 630, alt: "Wavelength Calculator" }],
     title: wavelengthCalculatorConfig.seo.og.title,
     description: wavelengthCalculatorConfig.seo.og.description,
     type: "website",
     url: wavelengthCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: wavelengthCalculatorConfig.seo.og.title,
+    description: wavelengthCalculatorConfig.seo.og.description,
+    images: ["/og?title=Wavelength+Calculator"],
   },
   alternates: {
     canonical: wavelengthCalculatorConfig.seo.og.url,

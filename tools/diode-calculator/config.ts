@@ -25,7 +25,7 @@ export const diodeCalculatorConfig = {
     "electronics calculator",
   ],
   seo: {
-    title: "Diode Calculator — Voltage Drop, Current & Resistor Tool | Productive Toolbox",
+    title: "Diode Calculator — Voltage Drop, Current & Resistor Tool",
     description: "Calculate diode voltage drop, current, and resistor values for silicon, germanium, Schottky, and LED circuits. Free calculator.",
     keywords: "diode calculator, voltage drop calculator, diode current calculator, silicon diode calculator, schottky diode calculator, diode circuit calculator",
     openGraph: {

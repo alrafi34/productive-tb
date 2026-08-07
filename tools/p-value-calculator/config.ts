@@ -16,7 +16,7 @@ export const pValueCalculatorConfig = {
     "sample-size-calculator",
   ],
   seo: {
-    title: "P-Value Calculator — Free Statistical Significance Calculator | Productive Toolbox",
+    title: "P-Value Calculator — Free Statistical Significance Calculator",
     description: "Calculate p-values online for Z-tests, T-tests, Chi-Square, F-tests, and correlation. Get instant statistical significance, hypothesis decisions, and interpretation. Free, browser-based.",
     keywords: [
       "p value calculator",

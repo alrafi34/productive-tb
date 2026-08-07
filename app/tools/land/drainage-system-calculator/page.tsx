@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: drainageSystemCalculatorConfig.seo.description,
   keywords: drainageSystemCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Drainage+System+Calculator", width: 1200, height: 630, alt: "Drainage System Calculator" }],
     title: drainageSystemCalculatorConfig.seo.og.title,
     description: drainageSystemCalculatorConfig.seo.og.description,
     type: "website",
     url: drainageSystemCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: drainageSystemCalculatorConfig.seo.og.title,
+    description: drainageSystemCalculatorConfig.seo.og.description,
+    images: ["/og?title=Drainage+System+Calculator"],
   },
   alternates: {
     canonical: drainageSystemCalculatorConfig.seo.og.url,

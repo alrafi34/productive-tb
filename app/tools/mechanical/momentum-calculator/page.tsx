@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: momentumCalculatorConfig.seo.description,
   keywords: momentumCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Momentum+Calculator", width: 1200, height: 630, alt: "Momentum Calculator" }],
     title: momentumCalculatorConfig.seo.og.title,
     description: momentumCalculatorConfig.seo.og.description,
     type: "website",
     url: momentumCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: momentumCalculatorConfig.seo.og.title,
+    description: momentumCalculatorConfig.seo.og.description,
+    images: ["/og?title=Momentum+Calculator"],
   },
   alternates: {
     canonical: momentumCalculatorConfig.seo.og.url,

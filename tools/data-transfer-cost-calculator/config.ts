@@ -16,7 +16,7 @@ export const dataTransferCostCalculatorConfig = {
     "click-heatmap-density-calculator",
   ],
   seo: {
-    title: "Data Transfer Cost Calculator — Estimate Cloud Bandwidth & Egress Costs | Productive Toolbox",
+    title: "Data Transfer Cost Calculator — Estimate Cloud Bandwidth & Egress Costs",
     description: "Estimate cloud data transfer, bandwidth, and egress costs instantly. Calculate transfer pricing for GB, TB, PB, binary or decimal units, monthly usage, and multiple currencies using this free online Data Transfer Cost Calculator.",
     keywords: [
       "data transfer cost calculator",

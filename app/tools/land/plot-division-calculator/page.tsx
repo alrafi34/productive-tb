@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: plotDivisionCalculatorConfig.seo.description,
   keywords: plotDivisionCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Plot+Division+Calculator", width: 1200, height: 630, alt: "Plot Division Calculator" }],
     title: plotDivisionCalculatorConfig.seo.og.title,
     description: plotDivisionCalculatorConfig.seo.og.description,
     type: "website",
     url: plotDivisionCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: plotDivisionCalculatorConfig.seo.og.title,
+    description: plotDivisionCalculatorConfig.seo.og.description,
+    images: ["/og?title=Plot+Division+Calculator"],
   },
   alternates: {
     canonical: plotDivisionCalculatorConfig.seo.og.url,

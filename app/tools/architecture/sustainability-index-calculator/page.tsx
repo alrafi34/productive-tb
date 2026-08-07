@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: sustainabilityIndexCalculatorConfig.seo.description,
   keywords: sustainabilityIndexCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Sustainability+Index+Calculator", width: 1200, height: 630, alt: "Sustainability Index Calculator" }],
     title: sustainabilityIndexCalculatorConfig.seo.og.title,
     description: sustainabilityIndexCalculatorConfig.seo.og.description,
     type: "website",
     url: sustainabilityIndexCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: sustainabilityIndexCalculatorConfig.seo.og.title,
+    description: sustainabilityIndexCalculatorConfig.seo.og.description,
+    images: ["/og?title=Sustainability+Index+Calculator"],
   },
 };
 

@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Fuel Cost Calculator — Free Gas & Trip Cost Estimator Online | Productive Toolbox",
+    title: "Fuel Cost Calculator — Free Gas & Trip Cost Estimator Online",
     description: "Calculate fuel needed and total trip cost from distance, MPG or km/L, and fuel price. Free fuel cost calculator for road trips and commutes. No signup.",
     keywords: [
       "fuel cost calculator",

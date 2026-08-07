@@ -16,7 +16,7 @@ export const precisionCalculatorConfig = {
     "correlation-coefficient-calculator",
   ],
   seo: {
-    title: "Precision Calculator — Free Machine Learning Precision Tool | Productive Toolbox",
+    title: "Precision Calculator — Free Machine Learning Precision Tool",
     description: "Calculate Precision instantly using the standard ML formula. Enter True Positive and False Positive values for precision, percentage, and interpretation. Free, browser-based.",
     keywords: [
       "precision calculator",

@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Time Duration Calculator – Calculate Hours, Minutes & Seconds Between Two Times | Productive Toolbox",
+    title: "Time Duration Calculator – Calculate Hours, Minutes & Seconds Between Two Times",
     description:
       "Free online Time Duration Calculator to calculate time difference between two times. Includes overnight shift support, optional seconds precision, total hours/minutes/seconds output, and one-click copy.",
     keywords: [

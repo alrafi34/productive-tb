@@ -26,7 +26,7 @@ export const parallelResistorCalculatorConfig = {
     "online resistance calculator",
   ],
   seo: {
-    title: "Parallel Resistor Calculator — Equivalent Resistance Tool | Productive Toolbox",
+    title: "Parallel Resistor Calculator — Equivalent Resistance Tool",
     description: "Calculate equivalent resistance for resistors in parallel instantly. Free calculator with unlimited resistors and shorthand value entry.",
     keywords: "parallel resistor calculator, equivalent resistance calculator, resistors in parallel formula, resistors in parallel calculator, circuit calculator",
     openGraph: {

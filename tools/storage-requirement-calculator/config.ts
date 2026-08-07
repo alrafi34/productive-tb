@@ -16,7 +16,7 @@ export const storageRequirementCalculatorConfig = {
     "click-heatmap-density-calculator",
   ],
   seo: {
-    title: "Storage Requirement Calculator — Free Disk Space, Backup & Cloud Storage Tool | Productive Toolbox",
+    title: "Storage Requirement Calculator — Free Disk Space, Backup & Cloud Storage Tool",
     description: "Calculate storage requirements for files, backups, databases, cloud storage, CCTV, websites, media libraries, and servers. Estimate disk space, storage growth, costs, and recommended drive sizes instantly using our free online Storage Requirement Calculator.",
     keywords: [
       "storage requirement calculator",

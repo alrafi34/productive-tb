@@ -7,7 +7,7 @@ export const decibelCalculatorConfig = {
   category: "electrical",
   slug: "decibel-db-calculator",
   seo: {
-    title: "Decibel (dB) Calculator — Free Gain & Loss Converter | Productive Toolbox",
+    title: "Decibel (dB) Calculator — Free Gain & Loss Converter",
     description: "Convert power and voltage ratios to decibels (dB) and back instantly. Real-time results, formulas, and step-by-step steps. Free, browser-based, no signup.",
     keywords: [
       "decibel calculator",

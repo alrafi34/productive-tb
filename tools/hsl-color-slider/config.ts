@@ -29,7 +29,7 @@ export const hslColorSliderConfig = {
     "color-format-converter",
   ],
   seo: {
-    title: "HSL Color Slider — Free Online Hue Saturation Lightness Picker | Productive Toolbox",
+    title: "HSL Color Slider — Free Online Hue Saturation Lightness Picker",
     description: "Free HSL color slider with live preview. Adjust hue, saturation, and lightness to generate HSL, HEX, and RGB values, build harmony palettes, and copy production-ready CSS colors. No sign-up, browser-based.",
     keywords: [
       "hsl color slider",

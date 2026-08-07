@@ -7,7 +7,7 @@ export const randomIDGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "UUID / CUID Generator — Generate Unique IDs Online | Productive Toolbox",
+    title: "UUID / CUID Generator — Generate Unique IDs Online",
     description: "Generate UUIDs (v1, v4), CUIDs, and NanoIDs instantly in your browser. Bulk generation up to 10,000 IDs with multiple output formats (JSON, SQL, CSV).",
     keywords: [
       "uuid generator",

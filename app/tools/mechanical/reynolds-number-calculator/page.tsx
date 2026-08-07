@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: reynoldsNumberCalculatorConfig.seo.description,
   keywords: reynoldsNumberCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Reynolds+Number+Calculator", width: 1200, height: 630, alt: "Reynolds Number Calculator" }],
     title: reynoldsNumberCalculatorConfig.seo.og.title,
     description: reynoldsNumberCalculatorConfig.seo.og.description,
     type: "website",
     url: reynoldsNumberCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: reynoldsNumberCalculatorConfig.seo.og.title,
+    description: reynoldsNumberCalculatorConfig.seo.og.description,
+    images: ["/og?title=Reynolds+Number+Calculator"],
   },
   alternates: {
     canonical: reynoldsNumberCalculatorConfig.seo.og.url,

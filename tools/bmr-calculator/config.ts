@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "BMR Calculator Online – Estimate Basal Metabolic Rate Instantly | Productive Toolbox",
+    title: "BMR Calculator Online – Estimate Basal Metabolic Rate Instantly",
     description: "Free online BMR Calculator. Estimate your Basal Metabolic Rate and Total Daily Energy Expenditure based on weight, height, age, gender, and activity level. Results update instantly in your browser.",
     keywords: [
       "bmr calculator",

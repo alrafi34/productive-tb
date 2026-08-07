@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: subdivisionCostCalculatorConfig.seo.description,
   keywords: subdivisionCostCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Subdivision+Cost+Calculator", width: 1200, height: 630, alt: "Subdivision Cost Calculator" }],
     title: subdivisionCostCalculatorConfig.seo.og.title,
     description: subdivisionCostCalculatorConfig.seo.og.description,
     type: "website",
     url: subdivisionCostCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: subdivisionCostCalculatorConfig.seo.og.title,
+    description: subdivisionCostCalculatorConfig.seo.og.description,
+    images: ["/og?title=Subdivision+Cost+Calculator"],
   },
   alternates: {
     canonical: subdivisionCostCalculatorConfig.seo.og.url,

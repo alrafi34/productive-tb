@@ -26,7 +26,7 @@ export const transformerTurnsRatioCalculatorConfig = {
     "np ns vp vs calculator",
   ],
   seo: {
-    title: "Transformer Turns Ratio Calculator — Voltage & Current Ratio | Productive Toolbox",
+    title: "Transformer Turns Ratio Calculator — Voltage & Current Ratio",
     description: "Calculate transformer turns ratio, voltage ratio, and current ratio from primary and secondary values. Free calculator with presets.",
     keywords: "transformer calculator, turns ratio calculator, voltage ratio calculator, step up transformer calculator, step down transformer calculator, transformer formula",
     openGraph: {

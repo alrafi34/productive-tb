@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: stressCalculatorConfig.seo.description,
   keywords: stressCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Stress+Calculator", width: 1200, height: 630, alt: "Stress Calculator" }],
     title: stressCalculatorConfig.seo.og.title,
     description: stressCalculatorConfig.seo.og.description,
     type: "website",
     url: stressCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: stressCalculatorConfig.seo.og.title,
+    description: stressCalculatorConfig.seo.og.description,
+    images: ["/og?title=Stress+Calculator"],
   },
   alternates: {
     canonical: stressCalculatorConfig.seo.og.url,

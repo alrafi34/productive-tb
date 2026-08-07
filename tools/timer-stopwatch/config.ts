@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Stopwatch & Countdown Timer – High Precision Online Timer | Productive Toolbox",
+    title: "Stopwatch & Countdown Timer – High Precision Online Timer",
     description: "Use a high-precision stopwatch and countdown timer directly in your browser. Track lap times and manage multiple timers instantly.",
     keywords: [
       "online stopwatch",

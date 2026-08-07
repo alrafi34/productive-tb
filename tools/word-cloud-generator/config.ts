@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Word Cloud Generator - Create Visual Word Clouds Online | Productive Toolbox",
+    title: "Free Word Cloud Generator - Create Visual Word Clouds Online",
     description: "Generate beautiful word clouds from any text instantly. Customize fonts, colors, rotation, and export as PNG or SVG. 100% browser-based, no backend required.",
     keywords: [
       "word cloud generator",

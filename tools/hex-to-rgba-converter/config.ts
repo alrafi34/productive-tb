@@ -7,7 +7,7 @@ export const hexToRgbaConverterConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "HEX to RGBA Converter with Alpha Slider - Free Online Tool | Productive Toolbox",
+    title: "HEX to RGBA Converter with Alpha Slider - Free Online Tool",
     description: "Convert HEX colors to RGBA instantly with alpha transparency slider, live preview, gradient generator, opacity scales, and ready-to-use CSS utilities. Perfect for designers and developers.",
     keywords: [
       "hex to rgba converter",

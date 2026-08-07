@@ -24,7 +24,7 @@ export const zenerDiodeCalculatorConfig = {
     "zener diode circuit design",
   ],
   seo: {
-    title: "Zener Diode Calculator — Voltage Regulator Circuit Tool | Productive Toolbox",
+    title: "Zener Diode Calculator — Voltage Regulator Circuit Tool",
     description: "Calculate Zener diode voltage regulation, current, and power dissipation for shunt regulator circuit design. Free calculator.",
     keywords: "zener diode calculator, voltage regulator calculator, zener current calculation, zener power dissipation, shunt regulator calculator",
     openGraph: {

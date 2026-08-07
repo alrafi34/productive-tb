@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: flowRateCalculatorConfig.seo.description,
   keywords: flowRateCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Flow+Rate+Calculator", width: 1200, height: 630, alt: "Flow Rate Calculator" }],
     title: flowRateCalculatorConfig.seo.og.title,
     description: flowRateCalculatorConfig.seo.og.description,
     type: "website",
     url: flowRateCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: flowRateCalculatorConfig.seo.og.title,
+    description: flowRateCalculatorConfig.seo.og.description,
+    images: ["/og?title=Flow+Rate+Calculator"],
   },
   alternates: {
     canonical: flowRateCalculatorConfig.seo.og.url,

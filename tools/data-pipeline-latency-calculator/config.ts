@@ -16,7 +16,7 @@ export const dataPipelineLatencyCalculatorConfig = {
     "data-transfer-cost-calculator",
   ],
   seo: {
-    title: "Data Pipeline Latency Calculator — Free ETL, Streaming & Processing Delay Estimator | Productive Toolbox",
+    title: "Data Pipeline Latency Calculator — Free ETL, Streaming & Processing Delay Estimator",
     description: "Estimate end-to-end data pipeline latency online. Calculate ETL delays, streaming latency, Kafka processing time, warehouse loading time, sequential and parallel execution delays instantly using this free browser-based calculator.",
     keywords: [
       "data pipeline latency calculator",

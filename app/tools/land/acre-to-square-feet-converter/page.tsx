@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: acreToSquareFeetConverterConfig.seo.description,
   keywords: acreToSquareFeetConverterConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Acre+to+Square+Feet+Converter", width: 1200, height: 630, alt: "Acre to Square Feet Converter" }],
     title: acreToSquareFeetConverterConfig.seo.og.title,
     description: acreToSquareFeetConverterConfig.seo.og.description,
     type: "website",
     url: acreToSquareFeetConverterConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: acreToSquareFeetConverterConfig.seo.og.title,
+    description: acreToSquareFeetConverterConfig.seo.og.description,
+    images: ["/og?title=Acre+to+Square+Feet+Converter"],
   },
   alternates: {
     canonical: acreToSquareFeetConverterConfig.seo.og.url,

@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Glassmorphism Layer Tester - Test Backdrop Filter Blur Effects | Productive Toolbox",
+    title: "Free Glassmorphism Layer Tester - Test Backdrop Filter Blur Effects",
     description: "Design glassmorphism UI layers visually. Adjust blur, transparency, borders, and shadows with live preview and export-ready CSS. Test on multiple backgrounds instantly.",
     keywords: [
       "glassmorphism generator",

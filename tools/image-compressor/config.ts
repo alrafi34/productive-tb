@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Image Compressor - Reduce JPG, PNG, WebP Size Online | Productive Toolbox",
+    title: "Free Image Compressor - Reduce JPG, PNG, WebP Size Online",
     description: "Free online image compressor to reduce JPG, PNG, and WebP file sizes instantly. Compress images in your browser with no upload. Perfect for web optimization.",
     keywords: [
       "image compressor",

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: threadPitchCalculatorConfig.seo.description,
   keywords: threadPitchCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Thread+Pitch+Calculator", width: 1200, height: 630, alt: "Thread Pitch Calculator" }],
     title: threadPitchCalculatorConfig.seo.og.title,
     description: threadPitchCalculatorConfig.seo.og.description,
     type: "website",
     url: threadPitchCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: threadPitchCalculatorConfig.seo.og.title,
+    description: threadPitchCalculatorConfig.seo.og.description,
+    images: ["/og?title=Thread+Pitch+Calculator"],
   },
   alternates: {
     canonical: threadPitchCalculatorConfig.seo.og.url,

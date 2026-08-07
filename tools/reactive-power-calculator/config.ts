@@ -24,7 +24,7 @@ export const reactivePowerCalculatorConfig = {
     "free reactive power calculator",
   ],
   seo: {
-    title: "Reactive Power Calculator — Q = V × I × sin(θ) Tool | Productive Toolbox",
+    title: "Reactive Power Calculator — Q = V × I × sin(θ) Tool",
     description: "Calculate reactive power (VAR) in AC circuits from voltage, current, and phase angle. Free calculator with real and apparent power.",
     keywords: "reactive power calculator, VAR calculator, kvar calculator, power factor calculator, AC power calculation tool, phase angle calculator",
     openGraph: {

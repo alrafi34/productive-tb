@@ -16,7 +16,7 @@ export const retentionRateCalculatorConfig = {
     "revenue-growth-calculator",
   ],
   seo: {
-    title: "Retention Rate Calculator — Free Customer & Employee Retention Tool | Productive Toolbox",
+    title: "Retention Rate Calculator — Free Customer & Employee Retention Tool",
     description: "Calculate customer, employee, user, subscriber, or membership retention rate instantly using the standard formula. Get performance ratings, benchmarks, and downloadable reports — free and browser-based.",
     keywords: [
       "retention rate calculator",

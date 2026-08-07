@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Pomodoro Timer Online – 25/5 Focus Timer with Notifications | Productive Toolbox",
+    title: "Free Pomodoro Timer Online – 25/5 Focus Timer with Notifications",
     description: "Use a free online Pomodoro Timer to boost productivity. Track 25-minute focus sessions and 5-minute breaks with desktop notifications, sound alerts, and cycle tracking directly in your browser.",
     keywords: [
       "pomodoro timer",

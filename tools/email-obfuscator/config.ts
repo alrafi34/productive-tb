@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Email Obfuscator - Protect Emails from Spam Bots | Productive Toolbox",
+    title: "Free Email Obfuscator - Protect Emails from Spam Bots",
     description: "Encode email addresses into HTML character codes to prevent spam scraping. Generate obfuscated email snippets instantly with multiple encoding methods.",
     keywords: [
       "email obfuscator",

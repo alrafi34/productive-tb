@@ -16,7 +16,7 @@ export const medianCalculatorConfig = {
     "session-duration-calculator",
   ],
   seo: {
-    title: "Free Median Calculator Online — Find the Median of Any Dataset Instantly | Productive Toolbox",
+    title: "Free Median Calculator Online — Find the Median of Any Dataset Instantly",
     description: "Calculate the median of any dataset instantly with this free online Median Calculator. Supports comma, space, newline, CSV, and TXT inputs with step-by-step explanations, sorted results, and downloadable reports.",
     keywords: [
       "median calculator",

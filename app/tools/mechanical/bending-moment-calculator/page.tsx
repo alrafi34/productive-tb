@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: bendingMomentCalculatorConfig.seo.description,
   keywords: bendingMomentCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Bending+Moment+Calculator", width: 1200, height: 630, alt: "Bending Moment Calculator" }],
     title: bendingMomentCalculatorConfig.seo.og.title,
     description: bendingMomentCalculatorConfig.seo.og.description,
     type: "website",
     url: bendingMomentCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: bendingMomentCalculatorConfig.seo.og.title,
+    description: bendingMomentCalculatorConfig.seo.og.description,
+    images: ["/og?title=Bending+Moment+Calculator"],
   },
   alternates: {
     canonical: bendingMomentCalculatorConfig.seo.og.url,

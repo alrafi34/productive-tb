@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: roiRealEstateCalculatorConfig.seo.description,
   keywords: roiRealEstateCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=ROI+Real+Estate+Calculator", width: 1200, height: 630, alt: "ROI Real Estate Calculator" }],
     title: roiRealEstateCalculatorConfig.seo.og.title,
     description: roiRealEstateCalculatorConfig.seo.og.description,
     type: "website",
     url: roiRealEstateCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: roiRealEstateCalculatorConfig.seo.og.title,
+    description: roiRealEstateCalculatorConfig.seo.og.description,
+    images: ["/og?title=ROI+Real+Estate+Calculator"],
   },
   alternates: {
     canonical: roiRealEstateCalculatorConfig.seo.og.url,

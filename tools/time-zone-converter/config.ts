@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Time Zone Converter – Compare World Clocks Instantly | Productive Toolbox",
+    title: "Free Time Zone Converter – Compare World Clocks Instantly",
     description: "Convert time between world cities instantly. Compare multiple time zones side by side and schedule global meetings without confusion.",
     keywords: [
       "time zone converter",

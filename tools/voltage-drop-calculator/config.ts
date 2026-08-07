@@ -7,7 +7,7 @@ export const voltageDropCalculatorConfig = {
   category: "electrical",
   slug: "voltage-drop-calculator",
   seo: {
-    title: "Voltage Drop Calculator — Free Wire Voltage Loss Calculator | Productive Toolbox",
+    title: "Voltage Drop Calculator — Free Wire Voltage Loss Calculator",
     description: "Calculate voltage drop in copper or aluminum wires for single-phase, three-phase, or DC. Get drop %, final voltage, and power loss instantly. Free, browser-based.",
     keywords: [
       "voltage drop calculator",

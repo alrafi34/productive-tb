@@ -19,7 +19,7 @@ export const randomHexColorGeneratorConfig = {
     'Smooth animations and transitions'
   ],
   seo: {
-    title: 'Random Hex Color Generator – Press Space for Color Inspiration | Productive Toolbox',
+    title: 'Random Hex Color Generator – Press Space for Color Inspiration',
     description: 'Generate random hex colors instantly. Press spacebar to create color palettes, copy HEX, RGB, and HSL values for design inspiration.',
     keywords: ['random color generator', 'hex color generator', 'color palette generator', 'design inspiration', 'color picker'],
     openGraph: {

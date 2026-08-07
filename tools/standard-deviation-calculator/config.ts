@@ -16,7 +16,7 @@ export const standardDeviationCalculatorConfig = {
     "session-duration-calculator",
   ],
   seo: {
-    title: "Free Standard Deviation Calculator Online | Sample & Population Statistics | Productive Toolbox",
+    title: "Free Standard Deviation Calculator Online | Sample & Population Statistics",
     description: "Calculate sample and population standard deviation instantly. Analyze datasets with variance, mean, median, range, quartiles, histograms, and downloadable reports using this free online Standard Deviation Calculator.",
     keywords: [
       "standard deviation calculator",

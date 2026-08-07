@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: electricMotorPowerCalculatorConfig.seo.description,
   keywords: electricMotorPowerCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Electric+Motor+Power+Calculator", width: 1200, height: 630, alt: "Electric Motor Power Calculator" }],
     title: electricMotorPowerCalculatorConfig.seo.og.title,
     description: electricMotorPowerCalculatorConfig.seo.og.description,
     type: "website",
     url: electricMotorPowerCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: electricMotorPowerCalculatorConfig.seo.og.title,
+    description: electricMotorPowerCalculatorConfig.seo.og.description,
+    images: ["/og?title=Electric+Motor+Power+Calculator"],
   },
   alternates: {
     canonical: electricMotorPowerCalculatorConfig.seo.og.url,

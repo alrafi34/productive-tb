@@ -7,7 +7,7 @@ export const wavelengthCalculatorConfig = {
   category: "electrical",
   slug: "wavelength-calculator",
   seo: {
-    title: "Wavelength Calculator — Free Frequency to Wavelength Tool | Productive Toolbox",
+    title: "Wavelength Calculator — Free Frequency to Wavelength Tool",
     description: "Calculate wavelength from frequency using λ = v/f. Supports Hz to GHz and vacuum, air, water, copper, or custom speed. Free, browser-based, no signup.",
     keywords: [
       "wavelength calculator",

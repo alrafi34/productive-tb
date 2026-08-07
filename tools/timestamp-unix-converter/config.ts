@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Unix Timestamp Converter (Epoch to Date & Date to Unix) | Productive Toolbox",
+    title: "Unix Timestamp Converter (Epoch to Date & Date to Unix)",
     description: "Free Unix Timestamp Converter for epoch to date and date to Unix conversion. Auto-detects seconds/milliseconds with batch conversion, timezone views, and timestamp diff.",
     keywords: [
       "unix timestamp converter",

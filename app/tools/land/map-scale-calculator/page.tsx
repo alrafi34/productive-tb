@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: mapScaleCalculatorConfig.seo.description,
   keywords: mapScaleCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Map+Scale+Calculator", width: 1200, height: 630, alt: "Map Scale Calculator" }],
     title: mapScaleCalculatorConfig.seo.og.title,
     description: mapScaleCalculatorConfig.seo.og.description,
     type: "website",
     url: mapScaleCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: mapScaleCalculatorConfig.seo.og.title,
+    description: mapScaleCalculatorConfig.seo.og.description,
+    images: ["/og?title=Map+Scale+Calculator"],
   },
   alternates: {
     canonical: mapScaleCalculatorConfig.seo.og.url,

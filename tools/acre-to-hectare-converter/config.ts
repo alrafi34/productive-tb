@@ -9,7 +9,7 @@ export const acreToHectareConverterConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Acre to Hectare Converter — Free Acres to ha Calculator | Productive Toolbox",
+    title: "Acre to Hectare Converter — Free Acres to ha Calculator",
     description: "Convert acres to hectares instantly. Free acres to ha calculator with full reference table, reverse conversion, and common values. Browser-based, no signup.",
     keywords: [
       "acre to hectare converter",

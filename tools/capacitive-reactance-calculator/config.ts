@@ -7,7 +7,7 @@ export const capacitiveReactanceCalculatorConfig = {
   color: "#058554",
   featured: false,
   seo: {
-    title: "Capacitive Reactance Calculator — Xc = 1/(2πfC) Formula | Productive Toolbox",
+    title: "Capacitive Reactance Calculator — Xc = 1/(2πfC) Formula",
     description: "Free capacitive reactance calculator using Xc = 1/(2πfC). Enter frequency and capacitance, get XC instantly with unit conversion and step-by-step solution.",
     keywords: [
       // Primary — exact GSC queries

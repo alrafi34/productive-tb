@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Percentage Increase/Decrease Calculator — Free Online | Productive Toolbox",
+    title: "Percentage Increase/Decrease Calculator — Free Online",
     description: "Calculate percent change between two numbers instantly. Includes reverse percentage, multi-step compounding simulation, batch list analysis, and CSV export. Free, browser-based.",
     keywords: [
       "percentage increase calculator",

@@ -26,7 +26,7 @@ export const phaseAngleCalculatorConfig = {
     "electrical engineering calculator",
   ],
   seo: {
-    title: "Phase Angle Calculator — AC Voltage & Current Phase Tool | Productive Toolbox",
+    title: "Phase Angle Calculator — AC Voltage & Current Phase Tool",
     description: "Calculate AC circuit phase angle from power, impedance, or power factor. Free calculator with step-by-step formulas and presets.",
     keywords: "phase angle calculator, power factor calculator, AC circuit calculator, electrical phase angle, impedance phase, voltage current phase",
     openGraph: {

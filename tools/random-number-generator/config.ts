@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Random Number Generator – Generate Numbers Instantly | Productive Toolbox",
+    title: "Random Number Generator – Generate Numbers Instantly",
     description: "Generate random numbers within a custom range instantly. Supports unique numbers, decimals, secure randomness, random picker, and multiple results.",
     keywords: [
       "random number generator",

@@ -15,7 +15,7 @@ export const roiCalculatorMarketingConfig = {
     "break-even-calculator",
   ],
   seo: {
-    title: "ROI Calculator — Free Return on Investment Formula Calculator | Productive Toolbox",
+    title: "ROI Calculator — Free Return on Investment Formula Calculator",
     description: "Calculate ROI instantly using the formula ((Revenue − Investment) ÷ Investment) × 100. Free ROI calculator for marketing campaigns, Google Ads, email, and business investments.",
     keywords: [
       "roi calculator",

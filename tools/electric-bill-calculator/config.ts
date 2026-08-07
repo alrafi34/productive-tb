@@ -31,7 +31,7 @@ export const electricBillCalculatorConfig = {
     "kwh to bill calculator",
   ],
   seo: {
-    title: "Electric Bill Calculator — Flat & Tiered Rate Calculator | Productive Toolbox",
+    title: "Electric Bill Calculator — Flat & Tiered Rate Calculator",
     description: "Calculate your electricity bill with flat or tiered rates, service charges, and tax. Free calculator with multi-currency support and tariff presets.",
     keywords: "electric bill calculator, electricity bill calculator, electricity cost calculator, kwh cost calculator, tiered electricity rate calculator, utility bill calculator",
     openGraph: {

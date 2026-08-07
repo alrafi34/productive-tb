@@ -17,7 +17,7 @@ export const circuitBreakerCalculatorConfig = {
     "circuit protection calculator"
   ],
   seo: {
-    title: "Circuit Breaker Calculator — Free Breaker Size Calculator | Productive Toolbox",
+    title: "Circuit Breaker Calculator — Free Breaker Size Calculator",
     description: "Calculate the correct circuit breaker size from load, voltage, and phase type. Get NEC 125% continuous load sizing and wire gauge tips. Free, no signup.",
     keywords: [
       "circuit breaker calculator",

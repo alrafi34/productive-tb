@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free AES Text Encryptor - Secure Client-Side Encryption Tool | Productive Toolbox",
+    title: "Free AES Text Encryptor - Secure Client-Side Encryption Tool",
     description: "Encrypt and decrypt text securely using AES-GCM and Web Crypto API. All encryption happens in your browser with no server required. Free online encryption tool.",
     keywords: [
       "aes encryption",

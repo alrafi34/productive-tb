@@ -15,7 +15,7 @@ export const conversionRateCalculatorConfig = {
     "break-even-calculator",
   ],
   seo: {
-    title: "Conversion Rate Calculator — Free CVR Calculator Online | Productive Toolbox",
+    title: "Conversion Rate Calculator — Free CVR Calculator Online",
     description: "Calculate conversion rate instantly from visitors and conversions. Free CVR calculator for ecommerce, Google Ads, SaaS, email, and landing pages. Benchmarks by industry included.",
     keywords: [
       "conversion rate calculator",

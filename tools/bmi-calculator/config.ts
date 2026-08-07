@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "BMI Calculator — Free Body Mass Index Calculator Online | Productive Toolbox",
+    title: "BMI Calculator — Free Body Mass Index Calculator Online",
     description: "Free BMI calculator with metric and imperial support. Instantly calculate your Body Mass Index, BMI category, healthy weight range, and ideal weight. No sign-up, 100% browser-based.",
     keywords: [
       "bmi calculator",

@@ -18,7 +18,7 @@ export const signalAttenuationCalculatorConfig = {
     "transmission line loss"
   ],
   seo: {
-    title: "Signal Attenuation Calculator — Free dB Loss Calculator | Productive Toolbox",
+    title: "Signal Attenuation Calculator — Free dB Loss Calculator",
     description: "Calculate signal attenuation in dB using power, voltage, or distance. Get instant dB loss and signal loss percentage. Free, browser-based, no signup.",
     keywords: [
       "signal attenuation calculator",

@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Image Resizer - Resize JPG, PNG, WebP Online | Productive Toolbox",
+    title: "Free Image Resizer - Resize JPG, PNG, WebP Online",
     description: "Free online image resizer to resize images to custom width and height. Maintain aspect ratio, batch resize, and download instantly. Works with JPG, PNG, and WebP formats.",
     keywords: [
       "image resizer",

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: toolConfig.seo.description,
   keywords: toolConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Confusion+Matrix+Calculator", width: 1200, height: 630, alt: "Confusion Matrix Calculator" }],
     title: toolConfig.seo.og.title,
     description: toolConfig.seo.og.description,
     type: "website",
     url: toolConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: toolConfig.seo.og.title,
+    description: toolConfig.seo.og.description,
+    images: ["/og?title=Confusion+Matrix+Calculator"],
   },
   alternates: {
     canonical: toolConfig.seo.og.url,

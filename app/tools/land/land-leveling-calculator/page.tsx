@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: landLevelingCalculatorConfig.seo.description,
   keywords: landLevelingCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Land+Leveling+Calculator", width: 1200, height: 630, alt: "Land Leveling Calculator" }],
     title: landLevelingCalculatorConfig.seo.og.title,
     description: landLevelingCalculatorConfig.seo.og.description,
     type: "website",
     url: landLevelingCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: landLevelingCalculatorConfig.seo.og.title,
+    description: landLevelingCalculatorConfig.seo.og.description,
+    images: ["/og?title=Land+Leveling+Calculator"],
   },
   alternates: {
     canonical: landLevelingCalculatorConfig.seo.og.url,

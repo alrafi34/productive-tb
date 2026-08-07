@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Pie Chart Maker Online – Create Pie Charts Instantly | Productive Toolbox",
+    title: "Pie Chart Maker Online – Create Pie Charts Instantly",
     description: "Free online Pie Chart Maker. Create dynamic pie charts from your data instantly using SVG or Canvas. Customize colors, labels, and export charts as PNG or SVG.",
     keywords: [
       "pie chart maker",

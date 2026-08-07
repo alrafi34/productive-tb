@@ -16,7 +16,7 @@ export const leadConversionFunnelCalculatorConfig = {
     "roi-calculator-marketing",
   ],
   seo: {
-    title: "Lead Conversion Funnel Calculator — Free Funnel Analyzer Online | Productive Toolbox",
+    title: "Lead Conversion Funnel Calculator — Free Funnel Analyzer Online",
     description: "Calculate lead conversion rates, drop-off percentages, and overall funnel efficiency. Build a custom funnel, visualize it live, detect bottlenecks, and export reports — free and browser-based.",
     keywords: [
       "lead conversion funnel calculator",

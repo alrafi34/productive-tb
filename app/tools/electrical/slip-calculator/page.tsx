@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: slipCalculatorConfig.seo.description,
   keywords: slipCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Slip+Calculator", width: 1200, height: 630, alt: "Slip Calculator" }],
     title: slipCalculatorConfig.seo.og.title,
     description: slipCalculatorConfig.seo.og.description,
     type: "website",
     url: slipCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: slipCalculatorConfig.seo.og.title,
+    description: slipCalculatorConfig.seo.og.description,
+    images: ["/og?title=Slip+Calculator"],
   },
   alternates: {
     canonical: slipCalculatorConfig.seo.og.url,

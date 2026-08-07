@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Flowchart Logic Mapper - Create Interactive Flowcharts Online | Productive Toolbox",
+    title: "Free Flowchart Logic Mapper - Create Interactive Flowcharts Online",
     description: "Create interactive flowcharts with drag-and-drop boxes and arrows. Map processes, algorithms, and workflows entirely in your browser. No backend required.",
     keywords: [
       "flowchart maker",

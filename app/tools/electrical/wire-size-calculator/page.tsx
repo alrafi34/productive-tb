@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: wireSizeCalculatorConfig.seo.description,
   keywords: wireSizeCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Wire+Size+Calculator", width: 1200, height: 630, alt: "Wire Size Calculator" }],
     title: wireSizeCalculatorConfig.seo.og.title,
     description: wireSizeCalculatorConfig.seo.og.description,
     type: "website",
     url: wireSizeCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: wireSizeCalculatorConfig.seo.og.title,
+    description: wireSizeCalculatorConfig.seo.og.description,
+    images: ["/og?title=Wire+Size+Calculator"],
   },
   alternates: {
     canonical: wireSizeCalculatorConfig.seo.og.url,

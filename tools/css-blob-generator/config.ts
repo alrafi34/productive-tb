@@ -7,7 +7,7 @@ export const cssBlobGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "CSS Border-Radius Blob Maker – Create Organic, Non-Round Shapes | Productive Toolbox",
+    title: "CSS Border-Radius Blob Maker – Create Organic, Non-Round Shapes",
     description: "Generate organic CSS blob shapes instantly using border-radius. Includes random blobs, animation generator, SVG export, and responsive CSS output.",
     keywords: [
       "css blob generator",

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: generatorSizeCalculatorConfig.seo.description,
   keywords: generatorSizeCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Generator+Size+Calculator", width: 1200, height: 630, alt: "Generator Size Calculator" }],
     title: generatorSizeCalculatorConfig.seo.og.title,
     description: generatorSizeCalculatorConfig.seo.og.description,
     type: "website",
     url: generatorSizeCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: generatorSizeCalculatorConfig.seo.og.title,
+    description: generatorSizeCalculatorConfig.seo.og.description,
+    images: ["/og?title=Generator+Size+Calculator"],
   },
   alternates: {
     canonical: generatorSizeCalculatorConfig.seo.og.url,

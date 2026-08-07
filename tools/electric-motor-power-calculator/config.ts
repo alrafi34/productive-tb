@@ -9,7 +9,7 @@ export const electricMotorPowerCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Electric Motor Power Calculator — Motor kW, Current & Torque | Productive Toolbox",
+    title: "Electric Motor Power Calculator — Motor kW, Current & Torque",
     description: "Calculate motor power in kW or HP, full-load current, torque, and efficiency. Free motor power calculator for 3-phase and single-phase AC motors. No signup.",
     keywords: [
       "electric motor power calculator",

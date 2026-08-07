@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: apparentPowerCalculatorConfig.seo.description,
   keywords: apparentPowerCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Apparent+Power+Calculator", width: 1200, height: 630, alt: "Apparent Power Calculator" }],
     title: apparentPowerCalculatorConfig.seo.og.title,
     description: apparentPowerCalculatorConfig.seo.og.description,
     type: "website",
     url: apparentPowerCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: apparentPowerCalculatorConfig.seo.og.title,
+    description: apparentPowerCalculatorConfig.seo.og.description,
+    images: ["/og?title=Apparent+Power+Calculator"],
   },
 };
 

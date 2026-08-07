@@ -5,7 +5,7 @@ export const toolConfig = {
   icon: "📱",
   category: "creator",
   seo: {
-    title: "Social Media Post Preview – Twitter, LinkedIn, Instagram | Productive Toolbox",
+    title: "Social Media Post Preview – Twitter, LinkedIn, Instagram",
     description: "Preview how your text will look on Twitter/X, LinkedIn, or Instagram before posting. Check character limits, formatting, hashtags, and mentions instantly with this free tool.",
     keywords: "social media post preview, tweet preview tool, linkedin post preview, instagram caption preview, character limit checker, social media writing tool",
     openGraph: {

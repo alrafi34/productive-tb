@@ -7,7 +7,7 @@ export const opAmpCalculatorConfig = {
   category: "electrical",
   slug: "op-amp-calculator",
   seo: {
-    title: "Op-Amp Calculator — Free Op-Amp Gain Calculator Online | Productive Toolbox",
+    title: "Op-Amp Calculator — Free Op-Amp Gain Calculator Online",
     description: "Calculate op-amp gain and output voltage instantly. Supports inverting, non-inverting, follower, and summing amplifiers. Free, browser-based.",
     keywords: [
       "op amp calculator",

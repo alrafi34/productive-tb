@@ -7,7 +7,7 @@ export const rlcResonanceCalculatorConfig = {
   category: "electrical",
   slug: "rlc-resonance-calculator",
   seo: {
-    title: "RLC Resonance Calculator — Free Resonant Frequency Tool | Productive Toolbox",
+    title: "RLC Resonance Calculator — Free Resonant Frequency Tool",
     description: "Calculate RLC resonant frequency instantly with f₀ = 1/(2π√LC). Get quality factor, bandwidth, and impedance at resonance. Free, browser-based, no signup.",
     keywords: [
       "rlc resonance calculator",

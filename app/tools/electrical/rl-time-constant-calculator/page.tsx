@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: rlTimeConstantCalculatorConfig.seo.description,
   keywords: rlTimeConstantCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=RL+Time+Constant+Calculator", width: 1200, height: 630, alt: "RL Time Constant Calculator" }],
     title: rlTimeConstantCalculatorConfig.seo.og.title,
     description: rlTimeConstantCalculatorConfig.seo.og.description,
     type: "website",
     url: rlTimeConstantCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: rlTimeConstantCalculatorConfig.seo.og.title,
+    description: rlTimeConstantCalculatorConfig.seo.og.description,
+    images: ["/og?title=RL+Time+Constant+Calculator"],
   },
   alternates: {
     canonical: rlTimeConstantCalculatorConfig.seo.og.url,

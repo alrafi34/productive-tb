@@ -7,7 +7,7 @@ export const aspectRatioCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Aspect Ratio Calculator – Calculate Image & Video Dimensions | Productive Toolbox",
+    title: "Aspect Ratio Calculator – Calculate Image & Video Dimensions",
     description: "Free online aspect ratio calculator to calculate width and height, convert resolutions, detect image ratio, simplify proportions, and generate responsive CSS.",
     keywords: [
       "aspect ratio calculator",

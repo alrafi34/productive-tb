@@ -7,7 +7,7 @@ export const textEncryptDecryptConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Text Encrypt & Decrypt Tool — ROT13 & Base64 Online | Productive Toolbox",
+    title: "Text Encrypt & Decrypt Tool — ROT13 & Base64 Online",
     description: "Encrypt or decrypt text instantly using ROT13, Base64, Base32, and binary. Fast, front-end-only tool with live preview, copy buttons, history, and export functionality.",
     keywords: [
       "text encrypt",

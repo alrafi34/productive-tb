@@ -15,7 +15,7 @@ export const bounceRateCalculatorConfig = {
     "seo-score-calculator",
   ],
   seo: {
-    title: "Bounce Rate Calculator — Free Bounce Rate Formula Tool Online | Productive Toolbox",
+    title: "Bounce Rate Calculator — Free Bounce Rate Formula Tool Online",
     description: "Calculate bounce rate instantly using the formula: (single-page sessions ÷ total sessions) × 100. Free bounce rate calculator for Google Analytics, GA4, SEO, and web analytics.",
     keywords: [
       "bounce rate calculator",

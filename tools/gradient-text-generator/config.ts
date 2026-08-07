@@ -19,7 +19,7 @@ export const gradientTextGeneratorConfig = {
     'Mobile-responsive design'
   ],
   seo: {
-    title: 'Gradient Text Generator – Create CSS Background Clip Text Effects | Productive Toolbox',
+    title: 'Gradient Text Generator – Create CSS Background Clip Text Effects',
     description: 'Generate gradient text using CSS background-clip. Create linear, radial, and conic gradient text with live preview and copyable CSS.',
     keywords: ['gradient text generator', 'css background clip', 'gradient text css', 'text effects', 'css gradient', 'web design tool'],
     openGraph: {

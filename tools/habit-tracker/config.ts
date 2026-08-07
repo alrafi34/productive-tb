@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Habit Tracker Online – Track Daily Habits & Build Streaks | Productive Toolbox",
+    title: "Free Habit Tracker Online – Track Daily Habits & Build Streaks",
     description: "Track daily habits, build streaks, and visualize progress with this free browser-based habit tracker. No signup required. Your habits are saved locally in your browser.",
     keywords: [
       "habit tracker",

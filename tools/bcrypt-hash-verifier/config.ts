@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Bcrypt Hash Verifier - Check Password Against Bcrypt Hash | Productive Toolbox",
+    title: "Free Bcrypt Hash Verifier - Check Password Against Bcrypt Hash",
     description: "Verify if a password matches a Bcrypt hash instantly in your browser. Secure client-side verification with hash metadata analysis. No server required.",
     keywords: [
       "bcrypt verifier",

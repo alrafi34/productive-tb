@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Venn Diagram Maker - Create 2 or 3 Circle Diagrams Online | Productive Toolbox",
+    title: "Free Venn Diagram Maker - Create 2 or 3 Circle Diagrams Online",
     description: "Create interactive Venn diagrams with 2 or 3 circles. Customize colors, labels, and transparency. Export as PNG or SVG entirely in your browser.",
     keywords: [
       "venn diagram maker",

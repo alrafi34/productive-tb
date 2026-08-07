@@ -15,7 +15,7 @@ export const bandwidthCalculatorConfig = {
     "network-speed-converter",
   ],
   seo: {
-    title: "Bandwidth Calculator — Free Network Bandwidth & Transfer Time Calculator | Productive Toolbox",
+    title: "Bandwidth Calculator — Free Network Bandwidth & Transfer Time Calculator",
     description: "Calculate file transfer time, monthly website bandwidth, streaming data usage, and multi-user network capacity. Free, browser-based, no signup required.",
     keywords: [
       "bandwidth calculator",

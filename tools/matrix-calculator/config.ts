@@ -16,7 +16,7 @@ export const matrixCalculatorConfig = {
     "confusion-matrix-calculator",
   ],
   seo: {
-    title: "Matrix Calculator — Free Online Matrix Operations Tool | Productive Toolbox",
+    title: "Matrix Calculator — Free Online Matrix Operations Tool",
     description: "Calculate matrix addition, multiplication, determinant, inverse, and transpose instantly. Free online matrix calculator with CSV export. Browser-based, no signup.",
     keywords: [
       "matrix calculator",

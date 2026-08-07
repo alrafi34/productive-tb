@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Keyword Density Checker — Free Word Density Tool Online | Productive Toolbox",
+    title: "Keyword Density Checker — Free Word Density Tool Online",
     description: "Check keyword and word density instantly. Track target keywords, flag overused terms, export CSV. Free keyword density checker — browser-based, no signup.",
     keywords: [
       // Primary — 500/mo (Google Ads Keyword Planner, May 2026)

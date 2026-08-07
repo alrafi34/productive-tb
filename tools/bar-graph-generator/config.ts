@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Bar Graph Generator - Create Bar Charts Online | Productive Toolbox",
+    title: "Free Bar Graph Generator - Create Bar Charts Online",
     description: "Generate beautiful bar charts from table data instantly. Customize colors, labels, and export as PNG or SVG. 100% browser-based, no backend required.",
     keywords: [
       "bar graph generator",

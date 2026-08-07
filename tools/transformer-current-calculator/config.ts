@@ -25,7 +25,7 @@ export const transformerCurrentCalculatorConfig = {
     "electrical engineering calculator",
   ],
   seo: {
-    title: "Transformer Current Calculator — Primary & Secondary A | Productive Toolbox",
+    title: "Transformer Current Calculator — Primary & Secondary A",
     description: "Calculate transformer primary and secondary current for single-phase and three-phase systems. Free calculator with power factor support.",
     keywords: "transformer current calculator, single phase current, three phase current, full load current calculator, motor current calculator",
     openGraph: {

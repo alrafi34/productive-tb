@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: fenceMaterialCalculatorConfig.seo.description,
   keywords: fenceMaterialCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Fence+Material+Calculator", width: 1200, height: 630, alt: "Fence Material Calculator" }],
     title: fenceMaterialCalculatorConfig.seo.og.title,
     description: fenceMaterialCalculatorConfig.seo.og.description,
     type: "website",
     url: fenceMaterialCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: fenceMaterialCalculatorConfig.seo.og.title,
+    description: fenceMaterialCalculatorConfig.seo.og.description,
+    images: ["/og?title=Fence+Material+Calculator"],
   },
   alternates: {
     canonical: fenceMaterialCalculatorConfig.seo.og.url,

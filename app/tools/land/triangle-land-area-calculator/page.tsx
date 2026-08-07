@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: triangleLandAreaCalculatorConfig.seo.description,
   keywords: triangleLandAreaCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Triangle+Land+Area+Calculator", width: 1200, height: 630, alt: "Triangle Land Area Calculator" }],
     title: triangleLandAreaCalculatorConfig.seo.og.title,
     description: triangleLandAreaCalculatorConfig.seo.og.description,
     type: "website",
     url: triangleLandAreaCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: triangleLandAreaCalculatorConfig.seo.og.title,
+    description: triangleLandAreaCalculatorConfig.seo.og.description,
+    images: ["/og?title=Triangle+Land+Area+Calculator"],
   },
   alternates: {
     canonical: triangleLandAreaCalculatorConfig.seo.og.url,

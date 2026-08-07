@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Image Steganography Tool - Hide Secret Messages in Images | Productive Toolbox",
+    title: "Free Image Steganography Tool - Hide Secret Messages in Images",
     description: "Hide secret text inside images using steganography directly in your browser. Encode and decode hidden messages without uploading files. 100% client-side processing.",
     keywords: [
       "steganography tool",

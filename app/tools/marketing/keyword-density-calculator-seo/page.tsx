@@ -8,8 +8,13 @@ export const metadata: Metadata = {
   description: config.seo.description,
   keywords: config.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Keyword+Density+Calculator", width: 1200, height: 630, alt: "Keyword Density Calculator" }],
     ...config.seo.openGraph,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og?title=Keyword+Density+Calculator"],
   },
   alternates: {
     canonical: config.seo.openGraph.url,

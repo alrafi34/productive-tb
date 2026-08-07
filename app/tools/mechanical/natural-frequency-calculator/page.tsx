@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: naturalFrequencyCalculatorConfig.seo.description,
   keywords: naturalFrequencyCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Natural+Frequency+Calculator", width: 1200, height: 630, alt: "Natural Frequency Calculator" }],
     title: naturalFrequencyCalculatorConfig.seo.og.title,
     description: naturalFrequencyCalculatorConfig.seo.og.description,
     type: "website",
     url: naturalFrequencyCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: naturalFrequencyCalculatorConfig.seo.og.title,
+    description: naturalFrequencyCalculatorConfig.seo.og.description,
+    images: ["/og?title=Natural+Frequency+Calculator"],
   },
   alternates: {
     canonical: naturalFrequencyCalculatorConfig.seo.og.url,

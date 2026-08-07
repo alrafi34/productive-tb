@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Pattern Noise Generator — Free Grain Texture Tool Online | Productive Toolbox",
+    title: "Pattern Noise Generator — Free Grain Texture Tool Online",
     description: "Generate grain and noise textures for UI backgrounds. Export seamless PNG, WebP, SVG, or CSS code. Free pattern noise generator — browser-based, no signup.",
     keywords: [
       "pattern noise generator",

@@ -7,7 +7,7 @@ export const amplifierGainCalculatorConfig = {
   category: "electrical",
   slug: "amplifier-gain-calculator",
   seo: {
-    title: "Amplifier Gain Calculator — Free Gain & dB Calculator | Productive Toolbox",
+    title: "Amplifier Gain Calculator — Free Gain & dB Calculator",
     description: "Calculate amplifier gain instantly. Get voltage, current, or power gain and dB values for any amplifier stage. Free, browser-based, no signup.",
     keywords: [
       "amplifier gain calculator",

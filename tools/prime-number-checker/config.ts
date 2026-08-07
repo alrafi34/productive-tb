@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Prime Number Checker – Check Prime Numbers Instantly | Productive Toolbox",
+    title: "Prime Number Checker – Check Prime Numbers Instantly",
     description: "Check if a number is prime and generate all prime numbers up to N using the Sieve of Eratosthenes algorithm. Fast, educational, and interactive with visualization.",
     keywords: [
       "prime number checker",

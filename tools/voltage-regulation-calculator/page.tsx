@@ -8,12 +8,14 @@ export const metadata: Metadata = {
   description: voltageRegulationCalculatorConfig.seo.description,
   keywords: voltageRegulationCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Voltage+Regulation+Calculator", width: 1200, height: 630, alt: "Voltage Regulation Calculator" }],
     title: voltageRegulationCalculatorConfig.seo.og.title,
     description: voltageRegulationCalculatorConfig.seo.og.description,
     url: voltageRegulationCalculatorConfig.seo.og.url,
     type: "website",
   },
   twitter: {
+    images: ["/og?title=Voltage+Regulation+Calculator"],
     card: "summary_large_image",
     title: voltageRegulationCalculatorConfig.seo.og.title,
     description: voltageRegulationCalculatorConfig.seo.og.description,

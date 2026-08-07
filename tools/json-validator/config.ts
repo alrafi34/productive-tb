@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "JSON Validator — Free Online JSON Validator & Formatter | Productive Toolbox",
+    title: "JSON Validator — Free Online JSON Validator & Formatter",
     description: "Validate JSON syntax instantly with line-number error reporting. Format with 2 or 4-space indent, minify for production, and analyse depth and size. Free, browser-based, no upload.",
     keywords: [
       "json validator",

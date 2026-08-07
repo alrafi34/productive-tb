@@ -852,21 +852,18 @@ const TOOLS = [
 
 
 export const dynamicParams = true;
-export const revalidate = 3600;
 
+/* Tool pages are static content. Hourly revalidation bought nothing and
+   multiplied cold renders, which Googlebot pays for in TTFB. */
+export const revalidate = 86400;
+
+/* Pre-render every tool this route serves, rather than a hand-picked list.
+   The previous 27-slug list was written before any traffic data existed and
+   missed the highest-ranking pages entirely; deriving the params from TOOLS
+   means the set can no longer drift away from what is actually routable. */
 export async function generateStaticParams() {
-  const popularTools = [
-    "word-counter", "image-compressor", "password-generator", "bmi-calculator",
-    "json-validator", "css-gradient-generator", "base64-encoder-decoder",
-    "markdown-previewer", "color-palette-generator", "hex-to-rgb-converter",
-    "percentage-calculator", "age-calculator", "lorem-ipsum-generator",
-    "text-reverser", "image-resizer", "url-encoder-decoder",
-    "timestamp-unix-converter", "random-number-generator", "discount-calculator",
-    "html-entity-encoder", "mock-data-generator", "font-pairer", "screen-resolution-checker",
-    "csv-to-json-converter", "timeline-creator", "audio-visualizer", "video-frame-extractor"
-  ];
-  
-  return popularTools.flatMap((slug) => {
+  return TOOLS.flatMap((entry) => {
+    const slug = entry.config.slug;
     const tool = tools.find((t) => t.slug === slug);
     return tool ? [{ tool: tool.category, subtool: slug }] : [];
   });
@@ -893,7 +890,13 @@ export async function generateMetadata({
   const title = seo.title || config.name || slug;
   const description = seo.description || config.description || '';
   const keywords = seo.keywords || config.keywords || [];
-  
+
+  /* Next replaces the parent `openGraph`/`twitter` objects wholesale rather
+     than deep-merging them, so the root layout's image is lost unless each
+     tool sets its own. Without this every share fell back to a generic card. */
+  const toolName = config.name || config.title || slug;
+  const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName)}`;
+
   return {
     title,
     description,
@@ -904,11 +907,13 @@ export async function generateMetadata({
       type: "website",
       url: canonicalUrl,
       siteName: siteConfig.name,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: toolName }],
     },
     twitter: {
       card: "summary_large_image",
       title: seo.openGraph?.title || seo.og?.title || title,
       description: seo.openGraph?.description || seo.og?.description || description,
+      images: [ogImage],
     },
     alternates: { canonical: canonicalUrl },
     robots: { index: true, follow: true },
@@ -975,7 +980,7 @@ export default async function ToolPage({
   } : null;
 
   const catObj = categories.find(c => c.slug === canonicalCategory);
-  
+
   return (
     <>
       <script

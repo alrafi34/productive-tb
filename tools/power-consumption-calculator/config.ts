@@ -7,7 +7,7 @@ export const powerConsumptionCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Power Consumption Calculator Online – Estimate Electric Bill by Appliance Usage | Productive Toolbox",
+    title: "Power Consumption Calculator Online – Estimate Electric Bill by Appliance Usage",
     description: "Free online Power Consumption Calculator. Add appliances, set wattage and usage hours, input electricity rate, and instantly calculate daily, monthly, and yearly electricity costs entirely in your browser.",
     keywords: [
       "power consumption calculator",

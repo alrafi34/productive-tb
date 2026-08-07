@@ -25,7 +25,7 @@ export const apparentPowerCalculatorConfig = {
     "free apparent power calculator",
   ],
   seo: {
-    title: "Apparent Power Calculator — S = V × I (VA) Calculator | Productive Toolbox",
+    title: "Apparent Power Calculator — S = V × I (VA) Calculator",
     description: "Calculate apparent power (VA) instantly from voltage and current. Free calculator for generator, UPS, and cable sizing decisions.",
     keywords: "apparent power calculator, VA calculator, volt ampere calculator, kva calculator, electrical power calculator, generator sizing calculator",
     openGraph: {

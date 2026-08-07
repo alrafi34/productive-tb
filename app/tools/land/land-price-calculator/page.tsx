@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: landPriceCalculatorConfig.seo.description,
   keywords: landPriceCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Land+Price+Calculator", width: 1200, height: 630, alt: "Land Price Calculator" }],
     title: landPriceCalculatorConfig.seo.og.title,
     description: landPriceCalculatorConfig.seo.og.description,
     type: "website",
     url: landPriceCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: landPriceCalculatorConfig.seo.og.title,
+    description: landPriceCalculatorConfig.seo.og.description,
+    images: ["/og?title=Land+Price+Calculator"],
   },
   alternates: {
     canonical: landPriceCalculatorConfig.seo.og.url,

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: boltLoadCalculatorConfig.seo.description,
   keywords: boltLoadCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Bolt+Load+Calculator", width: 1200, height: 630, alt: "Bolt Load Calculator" }],
     title: boltLoadCalculatorConfig.seo.og.title,
     description: boltLoadCalculatorConfig.seo.og.description,
     type: "website",
     url: boltLoadCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: boltLoadCalculatorConfig.seo.og.title,
+    description: boltLoadCalculatorConfig.seo.og.description,
+    images: ["/og?title=Bolt+Load+Calculator"],
   },
   alternates: {
     canonical: boltLoadCalculatorConfig.seo.og.url,

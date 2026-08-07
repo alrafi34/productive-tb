@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free File Hash Generator - SHA-256 Checksum Calculator | Productive Toolbox",
+    title: "Free File Hash Generator - SHA-256 Checksum Calculator",
     description: "Generate SHA-256, SHA-1, SHA-512 fingerprints of files instantly in your browser. Verify file integrity without uploading anything. 100% client-side processing.",
     keywords: [
       "file hash generator",

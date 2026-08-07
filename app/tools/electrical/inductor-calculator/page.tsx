@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: inductorCalculatorConfig.seo.description,
   keywords: inductorCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Inductor+Calculator", width: 1200, height: 630, alt: "Inductor Calculator" }],
     title: inductorCalculatorConfig.seo.og.title,
     description: inductorCalculatorConfig.seo.og.description,
     type: "website",
     url: inductorCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: inductorCalculatorConfig.seo.og.title,
+    description: inductorCalculatorConfig.seo.og.description,
+    images: ["/og?title=Inductor+Calculator"],
   },
 };
 

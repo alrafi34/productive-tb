@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Visual Timeline Creator - Build & Export Timelines Online | Productive Toolbox",
+    title: "Free Visual Timeline Creator - Build & Export Timelines Online",
     description: "Create beautiful visual timelines online for projects, history events, or roadmaps. Add dates, customize layout, and export timelines as PNG images instantly for free.",
     keywords: [
       "timeline creator",

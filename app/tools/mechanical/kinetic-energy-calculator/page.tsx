@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: kineticEnergyCalculatorConfig.seo.description,
   keywords: kineticEnergyCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Kinetic+Energy+Calculator", width: 1200, height: 630, alt: "Kinetic Energy Calculator" }],
     title: kineticEnergyCalculatorConfig.seo.og.title,
     description: kineticEnergyCalculatorConfig.seo.og.description,
     type: "website",
     url: kineticEnergyCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: kineticEnergyCalculatorConfig.seo.og.title,
+    description: kineticEnergyCalculatorConfig.seo.og.description,
+    images: ["/og?title=Kinetic+Energy+Calculator"],
   },
   alternates: {
     canonical: kineticEnergyCalculatorConfig.seo.og.url,

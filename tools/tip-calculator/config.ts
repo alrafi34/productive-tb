@@ -7,7 +7,7 @@ export const tipCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Tip Calculator — Split Bills & Calculate Tips Instantly | Productive Toolbox",
+    title: "Tip Calculator — Split Bills & Calculate Tips Instantly",
     description: "Free online Tip Calculator. Calculate tips, split bills between multiple people, and see per-person costs instantly. Fast, mobile-friendly, and runs entirely in your browser.",
     keywords: [
       "tip calculator",

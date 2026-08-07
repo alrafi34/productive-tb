@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Discount Calculator — Free Percent Off Calculator Online | Productive Toolbox",
+    title: "Discount Calculator — Free Percent Off Calculator Online",
     description: "Calculate sale price with percent off or fixed discounts. Stacked coupons, tax, reverse pricing, batch CSV export. Free, no signup.",
     keywords: [
       // Primary

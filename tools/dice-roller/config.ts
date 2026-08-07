@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Dice Roller Simulator – Roll D4, D6, D8, D12, D20 Dice Online | Productive Toolbox",
+    title: "Dice Roller Simulator – Roll D4, D6, D8, D12, D20 Dice Online",
     description: "Roll virtual dice instantly with animated effects. Supports D4, D6, D8, D10, D12, and D20 dice with history tracking and totals. Perfect for tabletop RPGs and board games.",
     keywords: [
       "dice roller",

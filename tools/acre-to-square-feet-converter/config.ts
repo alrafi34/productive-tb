@@ -8,7 +8,7 @@ export const acreToSquareFeetConverterConfig = {
   icon: "🔄",
   free: true,
   seo: {
-    title: "Acre to Square Feet Converter — Free Acres to Sq Ft | Productive Toolbox",
+    title: "Acre to Square Feet Converter — Free Acres to Sq Ft",
     description: "Convert acres to square feet instantly. 1 acre = 43,560 sq ft. Full reference table, common values, precision control. Free, browser-based, no signup.",
     keywords: [
       "acre to square feet",

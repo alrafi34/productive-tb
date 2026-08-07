@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: propertyAppreciationCalculatorConfig.seo.description,
   keywords: propertyAppreciationCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Property+Appreciation+Calculator", width: 1200, height: 630, alt: "Property Appreciation Calculator" }],
     title: propertyAppreciationCalculatorConfig.seo.og.title,
     description: propertyAppreciationCalculatorConfig.seo.og.description,
     type: "website",
     url: propertyAppreciationCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: propertyAppreciationCalculatorConfig.seo.og.title,
+    description: propertyAppreciationCalculatorConfig.seo.og.description,
+    images: ["/og?title=Property+Appreciation+Calculator"],
   },
   alternates: {
     canonical: propertyAppreciationCalculatorConfig.seo.og.url,

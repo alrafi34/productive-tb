@@ -189,6 +189,7 @@ export const saveLastConfig = (config: ClampConfig) => {
 };
 
 export const loadLastConfig = (): ClampConfig | null => {
+  if (typeof window === 'undefined') return null;
   try {
     const saved = localStorage.getItem('clamp-generator-last');
     return saved ? JSON.parse(saved) : null;

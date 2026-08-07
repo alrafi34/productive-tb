@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Roman Numeral Converter – Convert Numbers to Roman Numerals Online | Productive Toolbox",
+    title: "Roman Numeral Converter – Convert Numbers to Roman Numerals Online",
     description: "Free online Roman Numeral Converter. Convert numbers to Roman numerals and Roman numerals back to numbers instantly. Fast, accurate, and works entirely in your browser.",
     keywords: [
       "roman numeral converter",

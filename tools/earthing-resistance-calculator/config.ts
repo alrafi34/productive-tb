@@ -7,7 +7,7 @@ export const earthingResistanceCalculatorConfig = {
   category: "electrical",
   slug: "earthing-resistance-calculator",
   seo: {
-    title: "Earthing Resistance Calculator — Free Ground Rod Resistance Tool | Productive Toolbox",
+    title: "Earthing Resistance Calculator — Free Ground Rod Resistance Tool",
     description: "Calculate earthing resistance from soil resistivity, rod length, and diameter with full step-by-step formulas. Free, browser-based, no signup required.",
     keywords: [
       "earthing resistance calculator",

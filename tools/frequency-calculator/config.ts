@@ -7,7 +7,7 @@ export const frequencyCalculatorConfig = {
   category: "electrical",
   slug: "frequency-calculator",
   seo: {
-    title: "Frequency Calculator — Free Frequency to Period Converter | Productive Toolbox",
+    title: "Frequency Calculator — Free Frequency to Period Converter",
     description: "Calculate frequency from time period or time period from frequency instantly. Convert Hz, kHz, MHz and s, ms, µs online. Free, browser-based, no signup.",
     keywords: [
       "frequency calculator",

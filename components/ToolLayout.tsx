@@ -12,8 +12,34 @@ type Props = {
 };
 
 export default function ToolLayout({ title, description, icon, category, children }: Props) {
+  /* BreadcrumbList mirroring the visual breadcrumb below — Google requires the
+     two to match. Emitted here so every tool page gets it, whether it is served
+     by the dynamic [tool]/[subtool] route or its own route file. The final item
+     carries no `item` URL, which is correct for the current page. */
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: siteConfig.name, item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Tools", item: `${siteConfig.url}/tools` },
+      ...(category
+        ? [{
+            "@type": "ListItem",
+            position: 3,
+            name: category.name,
+            item: `${siteConfig.url}/tools/${category.slug}`,
+          }]
+        : []),
+      { "@type": "ListItem", position: category ? 4 : 3, name: title },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header />
       <main className="min-h-screen bg-gray-50 py-12 px-6">
         <article className="max-w-6xl mx-auto">

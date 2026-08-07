@@ -24,7 +24,7 @@ export const batteryChargingTimeCalculatorConfig = {
     "free battery charging calculator",
   ],
   seo: {
-    title: "Battery Charging Time Calculator — Charge Time Estimator | Productive Toolbox",
+    title: "Battery Charging Time Calculator — Charge Time Estimator",
     description: "Calculate battery charging time from capacity, charger current, and efficiency. Free calculator for phones, laptops, and car batteries.",
     keywords: "battery charging time calculator, how long to charge battery, charging time formula, phone charging time, car battery charging time",
     openGraph: {

@@ -7,7 +7,7 @@ export const wifiPasswordGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "WiFi Password Generator – Secure & Easy WiFi Passwords | Productive Toolbox",
+    title: "WiFi Password Generator – Secure & Easy WiFi Passwords",
     description: "Generate strong and secure WiFi passwords instantly. Customize length, complexity, and generate memorable or fully random passwords for home networks. Fast, front-end only tool with router compatibility validation.",
     keywords: [
       "wifi password generator",

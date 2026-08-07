@@ -45,7 +45,7 @@ export async function generateMetadata({
 
   const count = tools.filter(t => t.category === slug).length;
   return {
-    title: `${cat.name} – ${count} Free Online Tools | Productive Toolbox`,
+    title: `${cat.name} – ${count} Free Online Tools`,
     description: `Explore ${count} free ${cat.name.toLowerCase()} directly in your browser. ${cat.description}`,
     openGraph: {
       title: `${cat.name} – Productive Toolbox`,

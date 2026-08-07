@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: bernoulliEquationCalculatorConfig.seo.description,
   keywords: bernoulliEquationCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Bernoulli+Equation+Calculator", width: 1200, height: 630, alt: "Bernoulli Equation Calculator" }],
     title: bernoulliEquationCalculatorConfig.seo.og.title,
     description: bernoulliEquationCalculatorConfig.seo.og.description,
     type: "website",
     url: bernoulliEquationCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: bernoulliEquationCalculatorConfig.seo.og.title,
+    description: bernoulliEquationCalculatorConfig.seo.og.description,
+    images: ["/og?title=Bernoulli+Equation+Calculator"],
   },
   alternates: {
     canonical: bernoulliEquationCalculatorConfig.seo.og.url,

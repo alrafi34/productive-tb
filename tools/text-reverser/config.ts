@@ -16,7 +16,7 @@ export const toolConfig = {
     "character-counter",
   ],
   seo: {
-    title: "Text Reverser — Reverse Words, Sentences & Text Online | Productive Toolbox",
+    title: "Text Reverser — Reverse Words, Sentences & Text Online",
     description: "Reverse letters, words, sentences, or paragraphs instantly. Free online text reverser with 5 modes — word reverser, sentence reverser, and more. No signup.",
     keywords: [
       "text reverser",

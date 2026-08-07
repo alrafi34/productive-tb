@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: wallBoundaryCostCalculatorConfig.seo.description,
   keywords: wallBoundaryCostCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Wall+Boundary+Cost+Calculator", width: 1200, height: 630, alt: "Wall Boundary Cost Calculator" }],
     title: wallBoundaryCostCalculatorConfig.seo.og.title,
     description: wallBoundaryCostCalculatorConfig.seo.og.description,
     type: "website",
     url: wallBoundaryCostCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: wallBoundaryCostCalculatorConfig.seo.og.title,
+    description: wallBoundaryCostCalculatorConfig.seo.og.description,
+    images: ["/og?title=Wall+Boundary+Cost+Calculator"],
   },
   alternates: {
     canonical: wallBoundaryCostCalculatorConfig.seo.og.url,

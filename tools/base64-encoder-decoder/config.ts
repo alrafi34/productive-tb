@@ -7,7 +7,7 @@ export const base64EncoderDecoderConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Base64 Encoder/Decoder Online — Encode & Decode Base64 Instantly | Productive Toolbox",
+    title: "Base64 Encoder/Decoder Online — Encode & Decode Base64 Instantly",
     description: "Free online Base64 encoder and decoder. Convert text to Base64 or decode Base64 back to text instantly in your browser. No uploads or servers required. Supports file upload, auto-detect, and history.",
     keywords: [
       "base64 encoder",

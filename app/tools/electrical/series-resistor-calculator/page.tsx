@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: seriesResistorCalculatorConfig.seo.description,
   keywords: seriesResistorCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Series+Resistor+Calculator", width: 1200, height: 630, alt: "Series Resistor Calculator" }],
     title: seriesResistorCalculatorConfig.seo.og.title,
     description: seriesResistorCalculatorConfig.seo.og.description,
     type: "website",
     url: seriesResistorCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: seriesResistorCalculatorConfig.seo.og.title,
+    description: seriesResistorCalculatorConfig.seo.og.description,
+    images: ["/og?title=Series+Resistor+Calculator"],
   },
 };
 

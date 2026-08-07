@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Shadow Length Calculator — Free Sun Shadow Calculator Online | Productive Toolbox",
+    title: "Shadow Length Calculator — Free Sun Shadow Calculator Online",
     description: "Calculate shadow length from object height and sun angle. Free sun shadow calculator for architects, solar installers, and photographers. No signup.",
     keywords: [
       "shadow length calculator",

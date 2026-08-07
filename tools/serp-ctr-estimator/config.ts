@@ -16,7 +16,7 @@ export const serpCtrEstimatorConfig = {
     "backlink-ratio-calculator",
   ],
   seo: {
-    title: "SERP CTR Estimator — Free Organic Click-Through Rate Tool Online | Productive Toolbox",
+    title: "SERP CTR Estimator — Free Organic Click-Through Rate Tool Online",
     description: "Estimate organic CTR and expected clicks by Google ranking position. Compare current vs. target rankings, visualize the CTR curve, and calculate traffic opportunity. Free, browser-based, no signup.",
     keywords: [
       "serp ctr estimator",

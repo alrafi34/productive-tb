@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: gearRatioCalculatorConfig.seo.description,
   keywords: gearRatioCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Gear+Ratio+Calculator", width: 1200, height: 630, alt: "Gear Ratio Calculator" }],
     title: gearRatioCalculatorConfig.seo.og.title,
     description: gearRatioCalculatorConfig.seo.og.description,
     type: "website",
     url: gearRatioCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: gearRatioCalculatorConfig.seo.og.title,
+    description: gearRatioCalculatorConfig.seo.og.description,
+    images: ["/og?title=Gear+Ratio+Calculator"],
   },
   alternates: {
     canonical: gearRatioCalculatorConfig.seo.og.url,

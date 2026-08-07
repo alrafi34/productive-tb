@@ -16,7 +16,7 @@ export const pageRankEstimatorConfig = {
     "traffic-growth-calculator",
   ],
   seo: {
-    title: "Page Rank Estimator — Free SEO Ranking Potential Tool Online | Productive Toolbox",
+    title: "Page Rank Estimator — Free SEO Ranking Potential Tool Online",
     description: "Estimate your page's Google ranking potential with a weighted SEO score. Analyze on-page, content, technical SEO, UX, and authority signals, and get prioritized recommendations. Free, browser-based.",
     keywords: [
       "page rank estimator",

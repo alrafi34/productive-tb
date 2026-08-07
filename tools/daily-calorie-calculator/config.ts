@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Daily Calorie Calculator – Calculate Your Daily Calorie Needs | Productive Toolbox",
+    title: "Daily Calorie Calculator – Calculate Your Daily Calorie Needs",
     description: "Calculate your daily calorie requirements for weight maintenance, loss, or gain. Get personalized recommendations based on age, gender, activity level, and goals.",
     keywords: [
       "daily calorie calculator",

@@ -7,7 +7,7 @@ export const rlTimeConstantCalculatorConfig = {
   category: "electrical",
   slug: "rl-time-constant-calculator",
   seo: {
-    title: "RL Time Constant Calculator — Free τ = L/R Tool Online | Productive Toolbox",
+    title: "RL Time Constant Calculator — Free τ = L/R Tool Online",
     description: "Calculate RL time constant instantly with τ = L / R. Enter inductance and resistance to get current rise/decay times in s, ms, µs, ns. Free, browser-based.",
     keywords: [
       "rl time constant calculator",

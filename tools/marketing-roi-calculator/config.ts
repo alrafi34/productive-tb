@@ -16,7 +16,7 @@ export const marketingRoiCalculatorConfig = {
     "customer-lifetime-value-calculator",
   ],
   seo: {
-    title: "Marketing ROI Calculator — Free Campaign Return on Investment Tool | Productive Toolbox",
+    title: "Marketing ROI Calculator — Free Campaign Return on Investment Tool",
     description: "Calculate marketing ROI instantly from campaign cost and revenue. Measure net profit, profit ratio, and performance, compare campaigns, and export reports — free and browser-based.",
     keywords: [
       "marketing roi calculator",

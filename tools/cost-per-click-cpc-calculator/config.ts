@@ -15,7 +15,7 @@ export const costPerClickCpcCalculatorConfig = {
     "customer-lifetime-value-calculator",
   ],
   seo: {
-    title: "CPC Calculator — Free Cost Per Click Calculator for Google Ads & PPC | Productive Toolbox",
+    title: "CPC Calculator — Free Cost Per Click Calculator for Google Ads & PPC",
     description: "Calculate Cost Per Click (CPC) instantly from ad spend and clicks. Free CPC calculator for Google Ads, Facebook, LinkedIn, Amazon PPC. Average CPC benchmarks by industry included.",
     keywords: [
       "cpc calculator",

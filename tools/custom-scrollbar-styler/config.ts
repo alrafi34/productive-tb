@@ -7,7 +7,7 @@ export const customScrollbarStylerConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Custom Scrollbar Styler – Design CSS Scrollbars Visually | Productive Toolbox",
+    title: "Custom Scrollbar Styler – Design CSS Scrollbars Visually",
     description: "Design custom CSS scrollbars visually with live preview. Generate WebKit and Firefox scrollbar styles instantly with presets and effects. Free online tool.",
     keywords: [
       "custom scrollbar css",

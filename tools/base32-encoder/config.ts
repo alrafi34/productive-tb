@@ -7,7 +7,7 @@ export const base32EncoderConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Base32 Encoder/Decoder Online — Encode & Decode Base32 Instantly | Productive Toolbox",
+    title: "Base32 Encoder/Decoder Online — Encode & Decode Base32 Instantly",
     description: "Free online Base32 encoder and decoder. Convert text to Base32 or decode Base32 back to text instantly in your browser. Perfect for 2FA secrets, TOTP authentication, and developer workflows.",
     keywords: [
       "base32 encoder",

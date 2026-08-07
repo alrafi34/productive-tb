@@ -16,7 +16,7 @@ export const sessionDurationCalculatorConfig = {
     "impressions-calculator",
   ],
   seo: {
-    title: "Session Duration Calculator — Free Average Session Time Tool | Productive Toolbox",
+    title: "Session Duration Calculator — Free Average Session Time Tool",
     description: "Calculate average session duration instantly using total session time and number of sessions. Supports hours, minutes, seconds, bulk calculations, CSV export, JSON export, and live results. Free online Session Duration Calculator.",
     keywords: [
       "session duration calculator",

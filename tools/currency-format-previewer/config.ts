@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Currency Format Previewer - Intl Number & Money Formatter by Locale | Productive Toolbox",
+    title: "Currency Format Previewer - Intl Number & Money Formatter by Locale",
     description: "Free online currency format previewer for developers and global businesses. Test locale-aware money formatting, accounting style, decimal precision, grouping, and Intl.NumberFormat output instantly.",
     keywords: [
       "currency formatter",

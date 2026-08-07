@@ -7,7 +7,7 @@ export const averageCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Average Calculator Online - Find Mean of Numbers Instantly | Productive Toolbox",
+    title: "Average Calculator Online - Find Mean of Numbers Instantly",
     description: "Use our free Average Calculator to calculate mean from numbers, marks, prices, and datasets in seconds. Paste comma, space, or line-separated values and export results as CSV.",
     keywords: [
       "average calculator",

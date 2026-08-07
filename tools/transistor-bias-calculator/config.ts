@@ -16,7 +16,7 @@ export const transistorBiasCalculatorConfig = {
     "amplifier design"
   ],
   seo: {
-    title: "Transistor Bias Calculator — Free BJT Q-Point Tool | Productive Toolbox",
+    title: "Transistor Bias Calculator — Free BJT Q-Point Tool",
     description: "Calculate BJT transistor bias instantly. Enter Vcc and resistors to get Vce, Ic, Ib, and operating region. Free, browser-based, no signup.",
     keywords: [
       "transistor bias calculator",

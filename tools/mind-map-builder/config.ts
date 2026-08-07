@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Mind Map Builder - Create Interactive Mind Maps Online | Productive Toolbox",
+    title: "Free Mind Map Builder - Create Interactive Mind Maps Online",
     description: "Build beautiful mind maps with drag-and-drop nodes and connections. Export as PNG, SVG, or JSON. 100% browser-based, no backend required.",
     keywords: [
       "mind map builder",

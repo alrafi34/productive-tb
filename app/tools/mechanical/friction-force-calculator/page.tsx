@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: frictionForceCalculatorConfig.seo.description,
   keywords: frictionForceCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Friction+Force+Calculator", width: 1200, height: 630, alt: "Friction Force Calculator" }],
     title: frictionForceCalculatorConfig.seo.og.title,
     description: frictionForceCalculatorConfig.seo.og.description,
     type: "website",
     url: frictionForceCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: frictionForceCalculatorConfig.seo.og.title,
+    description: frictionForceCalculatorConfig.seo.og.description,
+    images: ["/og?title=Friction+Force+Calculator"],
   },
   alternates: {
     canonical: frictionForceCalculatorConfig.seo.og.url,

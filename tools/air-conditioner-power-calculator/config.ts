@@ -9,7 +9,7 @@ export const airConditionerPowerCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Air Conditioner Power Calculator — AC Wattage & Cost | Productive Toolbox",
+    title: "Air Conditioner Power Calculator — AC Wattage & Cost",
     description: "Calculate AC power consumption in watts, monthly electricity cost, and generator size from tonnage and EER. Free AC power calculator, browser-based, no signup.",
     keywords: [
       "air conditioner power calculator",

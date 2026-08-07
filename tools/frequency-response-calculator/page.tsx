@@ -8,12 +8,14 @@ export const metadata: Metadata = {
   description: frequencyResponseCalculatorConfig.seo.description,
   keywords: frequencyResponseCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Frequency+Response+Calculator", width: 1200, height: 630, alt: "Frequency Response Calculator" }],
     title: frequencyResponseCalculatorConfig.seo.og.title,
     description: frequencyResponseCalculatorConfig.seo.og.description,
     url: frequencyResponseCalculatorConfig.seo.og.url,
     type: "website",
   },
   twitter: {
+    images: ["/og?title=Frequency+Response+Calculator"],
     card: "summary_large_image",
     title: frequencyResponseCalculatorConfig.seo.og.title,
     description: frequencyResponseCalculatorConfig.seo.og.description,

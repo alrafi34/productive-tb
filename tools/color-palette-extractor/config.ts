@@ -7,7 +7,7 @@ export const colorPaletteExtractorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Color Palette Extractor – Get Dominant Colors from Images | Productive Toolbox",
+    title: "Color Palette Extractor – Get Dominant Colors from Images",
     description: "Upload an image and instantly extract the top 5 dominant colors. Generate palettes, gradients, CSS variables, and accessibility checks. Free online tool.",
     keywords: [
       "color palette extractor",

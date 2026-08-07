@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: soilVolumeCalculatorConfig.seo.description,
   keywords: soilVolumeCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Soil+Volume+Calculator", width: 1200, height: 630, alt: "Soil Volume Calculator" }],
     title: soilVolumeCalculatorConfig.seo.og.title,
     description: soilVolumeCalculatorConfig.seo.og.description,
     type: "website",
     url: soilVolumeCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: soilVolumeCalculatorConfig.seo.og.title,
+    description: soilVolumeCalculatorConfig.seo.og.description,
+    images: ["/og?title=Soil+Volume+Calculator"],
   },
   alternates: {
     canonical: soilVolumeCalculatorConfig.seo.og.url,

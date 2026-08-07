@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: latheSpeedCalculatorConfig.seo.description,
   keywords: latheSpeedCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Lathe+Speed+Calculator", width: 1200, height: 630, alt: "Lathe Speed Calculator" }],
     title: latheSpeedCalculatorConfig.seo.og.title,
     description: latheSpeedCalculatorConfig.seo.og.description,
     type: "website",
     url: latheSpeedCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: latheSpeedCalculatorConfig.seo.og.title,
+    description: latheSpeedCalculatorConfig.seo.og.description,
+    images: ["/og?title=Lathe+Speed+Calculator"],
   },
   alternates: {
     canonical: latheSpeedCalculatorConfig.seo.og.url,

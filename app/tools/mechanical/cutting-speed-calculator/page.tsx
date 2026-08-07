@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: cuttingSpeedCalculatorConfig.seo.description,
   keywords: cuttingSpeedCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Cutting+Speed+Calculator", width: 1200, height: 630, alt: "Cutting Speed Calculator" }],
     title: cuttingSpeedCalculatorConfig.seo.og.title,
     description: cuttingSpeedCalculatorConfig.seo.og.description,
     type: "website",
     url: cuttingSpeedCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: cuttingSpeedCalculatorConfig.seo.og.title,
+    description: cuttingSpeedCalculatorConfig.seo.og.description,
+    images: ["/og?title=Cutting+Speed+Calculator"],
   },
   alternates: {
     canonical: cuttingSpeedCalculatorConfig.seo.og.url,

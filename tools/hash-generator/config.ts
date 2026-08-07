@@ -7,7 +7,7 @@ export const hashGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Hash Generator — MD5, SHA-1 & SHA-256 Online Tool | Productive Toolbox",
+    title: "Hash Generator — MD5, SHA-1 & SHA-256 Online Tool",
     description: "Generate MD5, SHA-1, or SHA-256 hashes instantly in your browser. Front-end-only tool with live output, file hashing, bulk processing, and copy/export options.",
     keywords: [
       "hash generator",

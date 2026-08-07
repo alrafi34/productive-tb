@@ -17,7 +17,7 @@ export const cableLengthCalculatorConfig = {
     "cable installation calculator"
   ],
   seo: {
-    title: "Cable Length Calculator — Free Wire & Cable Length Tool Online | Productive Toolbox",
+    title: "Cable Length Calculator — Free Wire & Cable Length Tool Online",
     description: "Calculate total cable length instantly with slack, bend allowance, and installation factor. Get results in meters and feet. Free, browser-based, no signup.",
     keywords: [
       "cable length calculator",

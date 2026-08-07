@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: opAmpCalculatorConfig.seo.description,
   keywords: opAmpCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Op-Amp+Calculator", width: 1200, height: 630, alt: "Op-Amp Calculator" }],
     title: opAmpCalculatorConfig.seo.og.title,
     description: opAmpCalculatorConfig.seo.og.description,
     type: "website",
     url: opAmpCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: opAmpCalculatorConfig.seo.og.title,
+    description: opAmpCalculatorConfig.seo.og.description,
+    images: ["/og?title=Op-Amp+Calculator"],
   },
   alternates: {
     canonical: opAmpCalculatorConfig.seo.og.url,

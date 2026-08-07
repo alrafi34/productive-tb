@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free IP Address Masker & CIDR Calculator - Subnet Practice Tool | Productive Toolbox",
+    title: "Free IP Address Masker & CIDR Calculator - Subnet Practice Tool",
     description: "Free online IP address masker and CIDR calculator. Convert IPs to CIDR notation, calculate network ranges, practice subnetting exercises. Perfect for network students and IT professionals.",
     keywords: [
       "ip address masker",

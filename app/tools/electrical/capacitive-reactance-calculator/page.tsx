@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: capacitiveReactanceCalculatorConfig.seo.description,
   keywords: capacitiveReactanceCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Capacitive+Reactance+Calculator", width: 1200, height: 630, alt: "Capacitive Reactance Calculator" }],
     title: capacitiveReactanceCalculatorConfig.seo.og.title,
     description: capacitiveReactanceCalculatorConfig.seo.og.description,
     type: "website",
     url: capacitiveReactanceCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: capacitiveReactanceCalculatorConfig.seo.og.title,
+    description: capacitiveReactanceCalculatorConfig.seo.og.description,
+    images: ["/og?title=Capacitive+Reactance+Calculator"],
   },
 };
 

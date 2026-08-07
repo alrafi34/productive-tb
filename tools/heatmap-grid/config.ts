@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Heatmap Grid Generator - Visualize Density Interactively | Productive Toolbox",
+    title: "Free Heatmap Grid Generator - Visualize Density Interactively",
     description: "Create interactive heatmap grids by clicking cells to visualize density with color intensity. Customize grid size, colors, and export as PNG or SVG entirely in your browser.",
     keywords: [
       "heatmap grid",

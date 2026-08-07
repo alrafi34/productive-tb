@@ -25,7 +25,7 @@ export const inductiveReactanceCalculatorConfig = {
     "inductive reactance formula",
   ],
   seo: {
-    title: "Inductive Reactance Calculator — XL = 2πfL Calculator | Productive Toolbox",
+    title: "Inductive Reactance Calculator — XL = 2πfL Calculator",
     description: "Calculate inductive reactance (XL) from frequency and inductance instantly. Free calculator with step-by-step formulas and presets.",
     keywords: "inductive reactance calculator, XL calculator, AC circuit calculator, 2πfL calculator, reactance calculator, inductor impedance calculator",
     openGraph: {

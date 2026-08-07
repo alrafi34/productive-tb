@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: hydraulicPressureCalculatorConfig.seo.description,
   keywords: hydraulicPressureCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Hydraulic+Pressure+Calculator", width: 1200, height: 630, alt: "Hydraulic Pressure Calculator" }],
     title: hydraulicPressureCalculatorConfig.seo.og.title,
     description: hydraulicPressureCalculatorConfig.seo.og.description,
     type: "website",
     url: hydraulicPressureCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: hydraulicPressureCalculatorConfig.seo.og.title,
+    description: hydraulicPressureCalculatorConfig.seo.og.description,
+    images: ["/og?title=Hydraulic+Pressure+Calculator"],
   },
   alternates: {
     canonical: hydraulicPressureCalculatorConfig.seo.og.url,

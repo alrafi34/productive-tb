@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: shortCircuitCurrentCalculatorConfig.seo.description,
   keywords: shortCircuitCurrentCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Short+Circuit+Current+Calculator", width: 1200, height: 630, alt: "Short Circuit Current Calculator" }],
     title: shortCircuitCurrentCalculatorConfig.seo.og.title,
     description: shortCircuitCurrentCalculatorConfig.seo.og.description,
     url: shortCircuitCurrentCalculatorConfig.seo.og.url,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: shortCircuitCurrentCalculatorConfig.seo.og.title,
+    description: shortCircuitCurrentCalculatorConfig.seo.og.description,
+    images: ["/og?title=Short+Circuit+Current+Calculator"],
   },
 };
 

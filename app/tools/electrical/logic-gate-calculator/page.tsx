@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: logicGateCalculatorConfig.seo.description,
   keywords: logicGateCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Logic+Gate+Calculator", width: 1200, height: 630, alt: "Logic Gate Calculator" }],
     title: logicGateCalculatorConfig.seo.og.title,
     description: logicGateCalculatorConfig.seo.og.description,
     type: "website",
     url: logicGateCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: logicGateCalculatorConfig.seo.og.title,
+    description: logicGateCalculatorConfig.seo.og.description,
+    images: ["/og?title=Logic+Gate+Calculator"],
   },
   alternates: {
     canonical: logicGateCalculatorConfig.seo.og.url,

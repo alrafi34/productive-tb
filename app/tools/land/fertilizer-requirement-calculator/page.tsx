@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: fertilizerRequirementCalculatorConfig.seo.description,
   keywords: fertilizerRequirementCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Fertilizer+Requirement+Calculator", width: 1200, height: 630, alt: "Fertilizer Requirement Calculator" }],
     title: fertilizerRequirementCalculatorConfig.seo.og.title,
     description: fertilizerRequirementCalculatorConfig.seo.og.description,
     type: "website",
     url: fertilizerRequirementCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: fertilizerRequirementCalculatorConfig.seo.og.title,
+    description: fertilizerRequirementCalculatorConfig.seo.og.description,
+    images: ["/og?title=Fertilizer+Requirement+Calculator"],
   },
   alternates: {
     canonical: fertilizerRequirementCalculatorConfig.seo.og.url,

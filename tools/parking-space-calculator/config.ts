@@ -9,7 +9,7 @@ export const parkingSpaceCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Parking Space Calculator — Free Parking Lot Layout Tool | Productive Toolbox",
+    title: "Parking Space Calculator — Free Parking Lot Layout Tool",
     description: "Calculate parking stall count from lot area or required area from stall count. Free parking lot calculator with ADA, 90°/60°/45° layouts, and demand mode. No signup.",
     keywords: [
       "parking space calculator",

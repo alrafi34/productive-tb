@@ -7,7 +7,7 @@ export const fuseRatingCalculatorConfig = {
   category: "electrical",
   slug: "fuse-rating-calculator",
   seo: {
-    title: "Fuse Rating Calculator — Free Fuse Size Calculator Online | Productive Toolbox",
+    title: "Fuse Rating Calculator — Free Fuse Size Calculator Online",
     description: "Calculate the correct fuse rating from power, voltage, or current. Get fast/slow blow recommendations with safety margin. Free, browser-based, no signup.",
     keywords: [
       "fuse rating calculator",

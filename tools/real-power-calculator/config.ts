@@ -25,7 +25,7 @@ export const realPowerCalculatorConfig = {
     "free real power calculator",
   ],
   seo: {
-    title: "Real Power Calculator — P = V × I × PF Calculator | Productive Toolbox",
+    title: "Real Power Calculator — P = V × I × PF Calculator",
     description: "Calculate real (active) power in AC circuits from voltage, current, and power factor. Free calculator with apparent and reactive power.",
     keywords: "real power calculator, active power calculator, AC power calculator, electrical power formula, watts calculator, true power calculator",
     openGraph: {

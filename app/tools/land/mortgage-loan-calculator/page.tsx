@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: mortgageLoanCalculatorConfig.seo.description,
   keywords: mortgageLoanCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Mortgage+Loan+Calculator", width: 1200, height: 630, alt: "Mortgage Loan Calculator" }],
     title: mortgageLoanCalculatorConfig.seo.og.title,
     description: mortgageLoanCalculatorConfig.seo.og.description,
     type: "website",
     url: mortgageLoanCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: mortgageLoanCalculatorConfig.seo.og.title,
+    description: mortgageLoanCalculatorConfig.seo.og.description,
+    images: ["/og?title=Mortgage+Loan+Calculator"],
   },
   alternates: {
     canonical: mortgageLoanCalculatorConfig.seo.og.url,

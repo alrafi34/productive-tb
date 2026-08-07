@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: surveyAreaCalculatorConfig.seo.description,
   keywords: surveyAreaCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Survey+Area+Calculator", width: 1200, height: 630, alt: "Survey Area Calculator" }],
     title: surveyAreaCalculatorConfig.seo.og.title,
     description: surveyAreaCalculatorConfig.seo.og.description,
     type: "website",
     url: surveyAreaCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: surveyAreaCalculatorConfig.seo.og.title,
+    description: surveyAreaCalculatorConfig.seo.og.description,
+    images: ["/og?title=Survey+Area+Calculator"],
   },
   alternates: {
     canonical: surveyAreaCalculatorConfig.seo.og.url,

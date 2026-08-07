@@ -27,7 +27,7 @@ export const threePhasePowerCalculatorConfig = {
     "electrical engineering calculator",
   ],
   seo: {
-    title: "Three-Phase Power Calculator — kW, kVA & kVAR Calculator | Productive Toolbox",
+    title: "Three-Phase Power Calculator — kW, kVA & kVAR Calculator",
     description: "Calculate three-phase power (kW), apparent power (kVA), current, and voltage using the √3 formula. Free calculator for engineers.",
     keywords: "three phase power calculator, 3 phase power calculator, kW kVA calculator, three phase current calculator, motor power calculator, generator sizing calculator",
     openGraph: {

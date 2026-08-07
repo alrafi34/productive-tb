@@ -25,7 +25,7 @@ export const transformerEfficiencyCalculatorConfig = {
     "electrical engineering calculator",
   ],
   seo: {
-    title: "Transformer Efficiency Calculator — Power Loss & η Tool | Productive Toolbox",
+    title: "Transformer Efficiency Calculator — Power Loss & η Tool",
     description: "Calculate transformer efficiency and power losses from input/output power, voltage, or losses. Free calculator with efficiency ratings.",
     keywords: "transformer efficiency calculator, transformer losses calculator, power loss calculator, electrical efficiency, transformer performance calculator",
     openGraph: {

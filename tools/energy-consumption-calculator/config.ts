@@ -31,7 +31,7 @@ export const energyConsumptionCalculatorConfig = {
     "household energy calculator",
   ],
   seo: {
-    title: "Energy Consumption Calculator — Free kWh & Cost Calculator | Productive Toolbox",
+    title: "Energy Consumption Calculator — Free kWh & Cost Calculator",
     description: "Calculate energy consumption in kWh and estimate electricity costs for any appliance. Free calculator with presets, multi-device support, and history.",
     keywords: "energy consumption calculator, kwh calculator, electricity usage calculator, power consumption calculator, energy cost estimator, appliance energy calculator",
     openGraph: {

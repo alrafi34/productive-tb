@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "URL Encoder / Decoder Online – Encode & Decode URLs Instantly | Productive Toolbox",
+    title: "URL Encoder / Decoder Online – Encode & Decode URLs Instantly",
     description: "Free online URL encoder and decoder. Convert special characters to percent encoding (%xx) or decode encoded URLs instantly in your browser. No server required.",
     keywords: [
       "url encoder",

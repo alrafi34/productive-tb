@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: kathaLandCalculatorConfig.seo.description,
   keywords: kathaLandCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Katha+Land+Calculator", width: 1200, height: 630, alt: "Katha Land Calculator" }],
     title: kathaLandCalculatorConfig.seo.og.title,
     description: kathaLandCalculatorConfig.seo.og.description,
     type: "website",
     url: kathaLandCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: kathaLandCalculatorConfig.seo.og.title,
+    description: kathaLandCalculatorConfig.seo.og.description,
+    images: ["/og?title=Katha+Land+Calculator"],
   },
   alternates: {
     canonical: kathaLandCalculatorConfig.seo.og.url,

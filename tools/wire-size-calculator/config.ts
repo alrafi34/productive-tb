@@ -7,7 +7,7 @@ export const wireSizeCalculatorConfig = {
   color: "#058554",
   featured: false,
   seo: {
-    title: "Wire Size Calculator — Free Cable Sizing Tool Online | Productive Toolbox",
+    title: "Wire Size Calculator — Free Cable Sizing Tool Online",
     description: "Calculate wire size for any circuit. Enter current, voltage, and distance to get cable size in mm² and AWG with voltage drop analysis. Free, browser-based.",
     keywords: [
       "wire size calculator",

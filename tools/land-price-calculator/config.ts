@@ -9,7 +9,7 @@ export const landPriceCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Land Price Calculator — Free Land Value Calculator Online | Productive Toolbox",
+    title: "Land Price Calculator — Free Land Value Calculator Online",
     description: "Calculate total land price from area and rate per unit. Free land value calculator for Decimal, Acre, Katha, Bigha, and Sq Feet. Multi-currency, no signup.",
     keywords: [
       "land price calculator",

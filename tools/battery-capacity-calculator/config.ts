@@ -25,7 +25,7 @@ export const batteryCapacityCalculatorConfig = {
     "solar battery sizing calculator",
   ],
   seo: {
-    title: "Battery Capacity Calculator — Ah & Wh Sizing Tool | Productive Toolbox",
+    title: "Battery Capacity Calculator — Ah & Wh Sizing Tool",
     description: "Calculate required battery capacity in Ah and Wh for backup power and solar systems. Free calculator with efficiency adjustment.",
     keywords: "battery capacity calculator, Ah calculator, Wh calculator, battery backup calculator, solar battery calculator, battery size calculator",
     openGraph: {

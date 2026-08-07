@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Loan EMI Calculator - Monthly Payment, Interest & Amortization Schedule | Productive Toolbox",
+    title: "Loan EMI Calculator - Monthly Payment, Interest & Amortization Schedule",
     description: "Free Loan EMI Calculator with amortization schedule, loan comparison, and extra payment simulator. Estimate monthly EMI, total interest, and total repayment instantly.",
     keywords: [
       "emi calculator",

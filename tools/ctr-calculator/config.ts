@@ -15,7 +15,7 @@ export const ctrCalculatorConfig = {
     "profit-margin-calculator-marketing",
   ],
   seo: {
-    title: "CTR Calculator — Free Click Through Rate Calculator Online | Productive Toolbox",
+    title: "CTR Calculator — Free Click Through Rate Calculator Online",
     description: "Calculate click-through rate (CTR) instantly from clicks and impressions. Free CTR calculator for Google Ads, Facebook, SEO, email, and Amazon PPC. Benchmarks by channel included.",
     keywords: [
       "ctr calculator",

@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Decimal Land Calculator — Free Shotok to Decimal Converter | Productive Toolbox",
+    title: "Decimal Land Calculator — Free Shotok to Decimal Converter",
     description: "Convert Decimal (Shotok) to Acre, Katha, Bigha, and Sq Feet instantly. Free land calculator for Bangladesh, India, and Nepal. Browser-based, no signup.",
     keywords: [
       "decimal land calculator",

@@ -7,7 +7,7 @@ export const passwordStrengthMeterConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Password Strength Meter — Evaluate Password Security Online | Productive Toolbox",
+    title: "Password Strength Meter — Evaluate Password Security Online",
     description: "Check your password strength instantly using entropy, length, and character diversity. Front-end-only tool with live feedback, crack time estimation, and improvement suggestions.",
     keywords: [
       "password strength meter",

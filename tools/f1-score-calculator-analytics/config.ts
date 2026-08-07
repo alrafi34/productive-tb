@@ -16,7 +16,7 @@ export const f1ScoreCalculatorAnalyticsConfig = {
     "correlation-coefficient-calculator",
   ],
   seo: {
-    title: "F1 Score Calculator — Free Precision & Recall Tool | Productive Toolbox",
+    title: "F1 Score Calculator — Free Precision & Recall Tool",
     description: "Calculate F1 Score instantly using Precision & Recall or a Confusion Matrix (TP, FP, FN). Free online F1 Score Calculator with step-by-step calculations and rating.",
     keywords: [
       "f1 score calculator",

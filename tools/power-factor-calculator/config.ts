@@ -26,7 +26,7 @@ export const powerFactorCalculatorConfig = {
     "electrical engineering calculator",
   ],
   seo: {
-    title: "Power Factor Calculator — PF, Reactive Power & Phase Angle | Productive Toolbox",
+    title: "Power Factor Calculator — PF, Reactive Power & Phase Angle",
     description: "Calculate power factor (PF), reactive power, and phase angle from real and apparent power. Free calculator with efficiency ratings.",
     keywords: "power factor calculator, PF calculator, electrical efficiency calculator, reactive power calculator, kW to kVA calculator, power triangle calculator",
     openGraph: {

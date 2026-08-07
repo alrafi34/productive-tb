@@ -35,7 +35,7 @@ export const powerCalculatorElectricalConfig = {
     "power calculator no signup",
   ],
   seo: {
-    title: "Electrical Power Calculator — Watts, Volts & Amps Calculator | Productive Toolbox",
+    title: "Electrical Power Calculator — Watts, Volts & Amps Calculator",
     description: "Calculate electrical power, voltage, or current instantly using P = V × I. Free online calculator with unit conversion, presets, and history. No signup.",
     keywords: "electrical power calculator, power calculator, power calculator watts volts amps, p = v x i calculator, voltage current power calculator, watts calculator, power formula calculator",
     openGraph: {

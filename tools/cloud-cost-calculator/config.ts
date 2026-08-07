@@ -16,7 +16,7 @@ export const cloudCostCalculatorConfig = {
     "data-transfer-calculator",
   ],
   seo: {
-    title: "Cloud Cost Calculator — Free AWS, GCP & Azure Pricing Estimator | Productive Toolbox",
+    title: "Cloud Cost Calculator — Free AWS, GCP & Azure Pricing Estimator",
     description: "Estimate cloud infrastructure costs across AWS, GCP, Azure, DigitalOcean, and more. Compare providers, model compute, storage, and egress. Free, browser-based.",
     keywords: [
       "cloud cost calculator",

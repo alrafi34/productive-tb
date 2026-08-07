@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: polygonAreaCalculatorConfig.seo.description,
   keywords: polygonAreaCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Polygon+Area+Calculator", width: 1200, height: 630, alt: "Polygon Area Calculator" }],
     title: polygonAreaCalculatorConfig.seo.og.title,
     description: polygonAreaCalculatorConfig.seo.og.description,
     type: "website",
     url: polygonAreaCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: polygonAreaCalculatorConfig.seo.og.title,
+    description: polygonAreaCalculatorConfig.seo.og.description,
+    images: ["/og?title=Polygon+Area+Calculator"],
   },
   alternates: {
     canonical: polygonAreaCalculatorConfig.seo.og.url,

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: forceCalculatorConfig.seo.description,
   keywords: forceCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Force+Calculator", width: 1200, height: 630, alt: "Force Calculator" }],
     title: forceCalculatorConfig.seo.og.title,
     description: forceCalculatorConfig.seo.og.description,
     type: "website",
     url: forceCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: forceCalculatorConfig.seo.og.title,
+    description: forceCalculatorConfig.seo.og.description,
+    images: ["/og?title=Force+Calculator"],
   },
   alternates: {
     canonical: forceCalculatorConfig.seo.og.url,

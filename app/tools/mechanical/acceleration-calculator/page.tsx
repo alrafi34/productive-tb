@@ -9,10 +9,17 @@ export const metadata: Metadata = {
   description: accelerationCalculatorConfig.seo.description,
   keywords: accelerationCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Acceleration+Calculator", width: 1200, height: 630, alt: "Acceleration Calculator" }],
     title: accelerationCalculatorConfig.seo.og.title,
     description: accelerationCalculatorConfig.seo.og.description,
     type: "website",
     url: accelerationCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: accelerationCalculatorConfig.seo.og.title,
+    description: accelerationCalculatorConfig.seo.og.description,
+    images: ["/og?title=Acceleration+Calculator"],
   },
   alternates: {
     canonical: accelerationCalculatorConfig.seo.og.url,

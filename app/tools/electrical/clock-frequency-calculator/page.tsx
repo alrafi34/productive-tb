@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: clockFrequencyCalculatorConfig.seo.description,
   keywords: clockFrequencyCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Clock+Frequency+Calculator", width: 1200, height: 630, alt: "Clock Frequency Calculator" }],
     title: clockFrequencyCalculatorConfig.seo.og.title,
     description: clockFrequencyCalculatorConfig.seo.og.description,
     type: "website",
     url: clockFrequencyCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: clockFrequencyCalculatorConfig.seo.og.title,
+    description: clockFrequencyCalculatorConfig.seo.og.description,
+    images: ["/og?title=Clock+Frequency+Calculator"],
   },
   alternates: {
     canonical: clockFrequencyCalculatorConfig.seo.og.url,

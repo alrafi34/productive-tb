@@ -19,7 +19,7 @@ export const colorBlindnessSimulatorConfig = {
     'Mobile-responsive design'
   ],
   seo: {
-    title: 'Color Blindness Simulator – Preview Designs for Accessibility | Productive Toolbox',
+    title: 'Color Blindness Simulator – Preview Designs for Accessibility',
     description: 'Simulate color blindness to test your designs for accessibility. Preview Protanopia, Deuteranopia, Tritanopia, and more using real-time filters.',
     keywords: ['color blindness simulator', 'accessibility testing', 'color vision deficiency', 'design accessibility', 'protanopia', 'deuteranopia'],
     openGraph: {

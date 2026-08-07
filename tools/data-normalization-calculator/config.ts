@@ -16,7 +16,7 @@ export const dataNormalizationCalculatorConfig = {
     "variance-calculator",
   ],
   seo: {
-    title: "Data Normalization Calculator — Free Min-Max, Z-Score & More | Productive Toolbox",
+    title: "Data Normalization Calculator — Free Min-Max, Z-Score & More",
     description: "Normalize datasets instantly using Min-Max, Z-Score, Mean Normalization, Decimal Scaling, Unit Vector, and Robust Scaling. Free online calculator with charts and CSV/JSON export.",
     keywords: [
       "data normalization calculator",

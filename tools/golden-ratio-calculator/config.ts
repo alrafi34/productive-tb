@@ -7,7 +7,7 @@ export const goldenRatioCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Golden Ratio Calculator – Split Values Using 1.618 | Productive Toolbox",
+    title: "Golden Ratio Calculator – Split Values Using 1.618",
     description: "Calculate golden ratio proportions instantly. Split numbers into 61.8% and 38.2%, generate golden layouts, typography scales, and responsive CSS.",
     keywords: [
       "golden ratio calculator",

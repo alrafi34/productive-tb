@@ -28,7 +28,7 @@ export const seriesResistorCalculatorConfig = {
     "online resistance calculator",
   ],
   seo: {
-    title: "Series Resistor Calculator — Total Resistance Calculator | Productive Toolbox",
+    title: "Series Resistor Calculator — Total Resistance Calculator",
     description: "Calculate total resistance for resistors in series. Free calculator with bulk input, unit conversion, and E12 standard value presets.",
     keywords: "series resistor calculator, total resistance calculator, ohms calculator, resistors in series calculator, resistance calculator, electronics calculator",
     openGraph: {

@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description: config.seo.description,
   keywords: config.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=CPM+Calculator", width: 1200, height: 630, alt: "CPM Calculator" }],
     title: config.seo.openGraph.title,
     description: config.seo.openGraph.description,
     type: "website",
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
   },
   twitter: {
+    images: ["/og?title=CPM+Calculator"],
     card: "summary_large_image",
     title: config.seo.openGraph.title,
     description: config.seo.openGraph.description,

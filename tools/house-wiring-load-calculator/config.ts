@@ -7,7 +7,7 @@ export const houseWiringLoadCalculatorConfig = {
   category: "electrical",
   slug: "house-wiring-load-calculator",
   seo: {
-    title: "House Wiring Load Calculator — Free Electrical Load & Breaker Tool | Productive Toolbox",
+    title: "House Wiring Load Calculator — Free Electrical Load & Breaker Tool",
     description: "Calculate total house electrical load, current, and breaker size instantly with a 34-item appliance library and diversity factor. Free, browser-based.",
     keywords: [
       "house wiring load calculator",

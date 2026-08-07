@@ -16,7 +16,7 @@ export const pageSpeedScoreCalculatorConfig = {
     "download-time-calculator",
   ],
   seo: {
-    title: "Page Speed Score Calculator — Free Core Web Vitals Estimator | Productive Toolbox",
+    title: "Page Speed Score Calculator — Free Core Web Vitals Estimator",
     description: "Estimate your website's performance score instantly using Core Web Vitals. Enter LCP, INP, CLS, TBT, FCP, and Speed Index to calculate an estimated Page Speed score with optimization recommendations.",
     keywords: [
       "page speed calculator",

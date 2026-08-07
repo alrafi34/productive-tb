@@ -27,7 +27,7 @@ export const capacitorChargeTimeCalculatorConfig = {
     "capacitor discharge time calculator",
   ],
   seo: {
-    title: "Capacitor Charge Time Calculator — RC Time Constant Tool | Productive Toolbox",
+    title: "Capacitor Charge Time Calculator — RC Time Constant Tool",
     description: "Calculate capacitor charge time and RC time constant for any target percentage. Free calculator with step-by-step formulas and presets.",
     keywords: "RC circuit calculator, capacitor charge time, time constant calculator, capacitor charge time calculator, 555 timer calculator, tau calculator",
     openGraph: {

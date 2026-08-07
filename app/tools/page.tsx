@@ -6,7 +6,7 @@ import { tools, categories } from "@/config/tools";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "All Tool Categories – Browse 500+ Free Online Utilities | Productive Toolbox",
+  title: "All Tool Categories – Browse 500+ Free Online Utilities",
   description:
     "Browse our complete library of 500+ free online tools organized by category. Math calculators, developer utilities, writing tools, design helpers, and much more. No sign-up required.",
   openGraph: {

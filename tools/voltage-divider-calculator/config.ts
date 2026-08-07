@@ -29,7 +29,7 @@ export const voltageDividerCalculatorConfig = {
     "online voltage divider calculator",
   ],
   seo: {
-    title: "Voltage Divider Calculator — Calculate Vout Instantly | Productive Toolbox",
+    title: "Voltage Divider Calculator — Calculate Vout Instantly",
     description: "Calculate voltage divider output (Vout), current, and power dissipation from Vin, R1, and R2. Free calculator with presets and step-by-step results.",
     keywords: "voltage divider calculator, vout calculator, resistor divider formula, electronics calculator, arduino voltage divider calculator, resistor calculator",
     openGraph: {

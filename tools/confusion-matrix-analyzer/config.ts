@@ -16,7 +16,7 @@ export const confusionMatrixAnalyzerConfig = {
     "correlation-coefficient-calculator",
   ],
   seo: {
-    title: "Confusion Matrix Analyzer — Free Accuracy, Precision & F1 Tool | Productive Toolbox",
+    title: "Confusion Matrix Analyzer — Free Accuracy, Precision & F1 Tool",
     description: "Analyze binary and multi-class classification results with a live confusion matrix. Calculate accuracy, precision, recall, specificity, F1, and MCC instantly. Free, browser-based.",
     keywords: [
       "confusion matrix analyzer",

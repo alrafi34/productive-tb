@@ -7,7 +7,7 @@ export const binaryHexDecimalConverterConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Binary/Hex/Decimal Converter — Convert Between Number Bases Instantly | Productive Toolbox",
+    title: "Binary/Hex/Decimal Converter — Convert Between Number Bases Instantly",
     description: "Free online Binary, Hexadecimal, and Decimal converter. Instantly convert numbers between different bases with bit visualization, grouping, and signed/unsigned modes. 100% client-side processing.",
     keywords: [
       "binary converter",

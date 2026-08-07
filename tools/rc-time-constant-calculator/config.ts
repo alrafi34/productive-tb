@@ -7,7 +7,7 @@ export const rcTimeConstantCalculatorConfig = {
   category: "electrical",
   slug: "rc-time-constant-calculator",
   seo: {
-    title: "RC Time Constant Calculator — Free τ = RC Tool Online | Productive Toolbox",
+    title: "RC Time Constant Calculator — Free τ = RC Tool Online",
     description: "Calculate RC time constant instantly with τ = R × C. Enter resistance and capacitance to get charging times in s, ms, µs, ns. Free, browser-based.",
     keywords: [
       "rc time constant calculator",

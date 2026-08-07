@@ -7,7 +7,7 @@ export const cssKeyframeAnimatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "CSS Keyframe Animator – Visual Timeline Animation Generator | Productive Toolbox",
+    title: "CSS Keyframe Animator – Visual Timeline Animation Generator",
     description: "Create CSS @keyframes animations visually using a timeline editor. Generate production-ready CSS with live preview, presets, and export options. Free online tool.",
     keywords: [
       "css keyframe animator",

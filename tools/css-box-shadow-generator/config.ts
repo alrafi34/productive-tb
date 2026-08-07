@@ -7,7 +7,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "CSS Box Shadow Generator — Free Online Shadow Maker | Productive Toolbox",
+    title: "CSS Box Shadow Generator — Free Online Shadow Maker",
     description: "Generate CSS box-shadow code visually with live preview. Multi-layer shadows, inset support, neumorphism presets, and one-click copy. Free, no signup.",
     keywords: [
       // Primary — GSC top queries

@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: pressureDropCalculatorConfig.seo.description,
   keywords: pressureDropCalculatorConfig.seo.keywords,
   openGraph: {
+    images: [{ url: "/og?title=Pressure+Drop+Calculator", width: 1200, height: 630, alt: "Pressure Drop Calculator" }],
     title: pressureDropCalculatorConfig.seo.og.title,
     description: pressureDropCalculatorConfig.seo.og.description,
     type: "website",
     url: pressureDropCalculatorConfig.seo.og.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pressureDropCalculatorConfig.seo.og.title,
+    description: pressureDropCalculatorConfig.seo.og.description,
+    images: ["/og?title=Pressure+Drop+Calculator"],
   },
   alternates: {
     canonical: pressureDropCalculatorConfig.seo.og.url,
