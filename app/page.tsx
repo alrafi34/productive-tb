@@ -534,7 +534,7 @@ export default function HomePage() {
         <TestimonialsSection />
 
         {/* ═══ 9 · FAQ ═══ */}
-        <section className="py-20 sm:py-24 px-6 border-t border-slate-100">
+        <section id="faq" className="py-20 sm:py-24 px-6 border-t border-slate-100 scroll-mt-20">
           <div className="max-w-3xl mx-auto">
             <SectionHead eyebrow="Questions" title="Before you start" sub="" />
 

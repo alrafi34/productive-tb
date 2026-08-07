@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import { tools } from "@/config/tools";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
@@ -18,14 +19,21 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+/* Derived from the registry so the count never drifts out of date.
+   Safe to import here: layout is server-only, so the catalogue is
+   never shipped to the browser. */
+const TOTAL_TOOLS = tools.length;
+
+const SITE_DESCRIPTION = `${TOTAL_TOOLS} free online calculators and tools for electrical, structural, mechanical, land and data work — plus everyday text, image and developer utilities. Runs in your browser. No sign-up needed.`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} - 100+ Free Online Tools`,
+    default: `${siteConfig.name} - ${TOTAL_TOOLS} Free Engineering & Technical Calculators`,
     template: `%s | ${siteConfig.name}`
   },
-  description: "Free online tools for writing, design, coding, and math. Word counter, image compressor, password generator, calculators & 100+ utilities. No sign-up needed.",
-  keywords: ["free online tools", "word counter", "image compressor", "password generator", "BMI calculator", "JSON validator", "CSS gradient generator", "text case converter", "base64 encoder", "markdown previewer", "color palette generator", "QR code generator", "developer tools", "writing tools", "productivity tools"],
+  description: SITE_DESCRIPTION,
+  keywords: ["free online calculators", "engineering calculators", "electrical calculator", "voltage drop calculator", "wire size calculator", "beam load calculator", "structural calculator", "construction calculator", "mechanical engineering calculator", "torque calculator", "land area calculator", "data analytics calculator", "statistics calculator", "developer tools", "word counter", "free online tools"],
 
   authors: [{ name: "Productive Toolbox Team" }],
   creator: "Productive Toolbox",
@@ -35,14 +43,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} - 100+ Free Online Tools`,
-    description: "Free online tools for writing, design, coding, and math. Word counter, image compressor, password generator, calculators & 100+ utilities. No sign-up needed.",
+    title: `${siteConfig.name} - ${TOTAL_TOOLS} Free Engineering & Technical Calculators`,
+    description: SITE_DESCRIPTION,
     images: [{ url: "/og?title=Productive+Toolbox", width: 1200, height: 630, alt: "Productive Toolbox" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} - 100+ Free Online Tools`,
-    description: "100+ free online tools for writing, design, coding & math. No sign-up needed.",
+    title: `${siteConfig.name} - ${TOTAL_TOOLS} Free Engineering & Technical Calculators`,
+    description: `${TOTAL_TOOLS} free engineering, construction and data calculators. Runs in your browser. No sign-up needed.`,
     images: ["/og?title=Productive+Toolbox"]
   },
   icons: {
