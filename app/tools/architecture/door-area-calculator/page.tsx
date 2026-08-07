@@ -14,7 +14,8 @@ const toolName = (config as any).name;
 const toolDescription = (config as any).description ?? "";
 const ogTitle = seo.openGraph?.title ?? seo.og?.title ?? seo.title;
 const ogDescription = seo.openGraph?.description ?? seo.og?.description ?? seo.description;
-const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName)}`;
+// `+` rather than %20 so these URLs stay identical to what is already indexed.
+const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName).replace(/%20/g, "+")}`;
 
 export const metadata: Metadata = {
   title: seo.title,
@@ -35,7 +36,10 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   alternates: { canonical: canonicalUrl },
-  robots: { index: true, follow: true },
+  // No `robots` key on purpose. The root layout sets robots.googleBot with
+  // max-image-preview:large and max-snippet:-1, and Next replaces the parent
+  // robots object wholesale rather than merging — declaring a bare
+  // { index, follow } here would silently drop those two directives.
 };
 
 export default function DoorAreaCalculatorPage() {

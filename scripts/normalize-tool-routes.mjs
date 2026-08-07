@@ -14,6 +14,7 @@
  *     that already had a canonical were emitting
  *   - the og image keeps `+` space encoding so existing image URLs do not move
  *   - routes whose UI needs useSearchParams keep their <Suspense> boundary
+ *   - robots is left unset so the layout's googleBot directives survive
  *
  * Usage: node scripts/normalize-tool-routes.mjs [--only <file-list.txt>] [--dry]
  */
@@ -106,7 +107,10 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   alternates: { canonical: canonicalUrl },
-  robots: { index: true, follow: true },
+  // No \`robots\` key on purpose. The root layout sets robots.googleBot with
+  // max-image-preview:large and max-snippet:-1, and Next replaces the parent
+  // robots object wholesale rather than merging — declaring a bare
+  // { index, follow } here would silently drop those two directives.
 };
 
 export default function ${pascal(slug)}Page() {

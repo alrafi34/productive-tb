@@ -36,7 +36,10 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   alternates: { canonical: canonicalUrl },
-  robots: { index: true, follow: true },
+  // No `robots` key on purpose. The root layout sets robots.googleBot with
+  // max-image-preview:large and max-snippet:-1, and Next replaces the parent
+  // robots object wholesale rather than merging — declaring a bare
+  // { index, follow } here would silently drop those two directives.
 };
 
 export default function CableLengthCalculatorPage() {

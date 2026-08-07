@@ -1,39 +1,113 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
-import TorqueCalculatorUI from "@/tools/torque-calculator/ui";
-import { torqueCalculatorConfig } from "@/tools/torque-calculator/config";
+import { siteConfig } from "@/config/site";
+import { categories } from "@/config/tools";
+import { torqueCalculatorConfig as config } from "@/tools/torque-calculator/config";
+
+const TorqueCalculatorUI = dynamic(() => import("@/tools/torque-calculator/ui"));
+
+const canonicalUrl = `${siteConfig.url}/tools/mechanical/torque-calculator`;
+
+const seo = (config as any).seo ?? {};
+const toolName = (config as any).name;
+const toolDescription = (config as any).description ?? "";
+const ogTitle = seo.openGraph?.title ?? seo.og?.title ?? seo.title;
+const ogDescription = seo.openGraph?.description ?? seo.og?.description ?? seo.description;
+// `+` rather than %20 so these URLs stay identical to what is already indexed.
+const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName).replace(/%20/g, "+")}`;
 
 export const metadata: Metadata = {
-  title: torqueCalculatorConfig.seo.title,
-  description: torqueCalculatorConfig.seo.description,
-  keywords: torqueCalculatorConfig.seo.keywords,
+  title: seo.title,
+  description: seo.description,
+  keywords: seo.keywords,
   openGraph: {
-    images: [{ url: "/og?title=Torque+Calculator", width: 1200, height: 630, alt: "Torque Calculator" }],
-    title: torqueCalculatorConfig.seo.og.title,
-    description: torqueCalculatorConfig.seo.og.description,
+    title: ogTitle,
+    description: ogDescription,
     type: "website",
-    url: torqueCalculatorConfig.seo.og.url,
+    url: canonicalUrl,
+    siteName: siteConfig.name,
+    images: [{ url: ogImage, width: 1200, height: 630, alt: toolName }],
   },
   twitter: {
     card: "summary_large_image",
-    title: torqueCalculatorConfig.seo.og.title,
-    description: torqueCalculatorConfig.seo.og.description,
-    images: ["/og?title=Torque+Calculator"],
+    title: ogTitle,
+    description: ogDescription,
+    images: [ogImage],
   },
-  alternates: {
-    canonical: torqueCalculatorConfig.seo.og.url,
-  },
+  alternates: { canonical: canonicalUrl },
+  // No `robots` key on purpose. The root layout sets robots.googleBot with
+  // max-image-preview:large and max-snippet:-1, and Next replaces the parent
+  // robots object wholesale rather than merging — declaring a bare
+  // { index, follow } here would silently drop those two directives.
 };
 
 export default function TorqueCalculatorPage() {
+  const catObj = categories.find((c) => c.slug === "mechanical");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `${toolName} Tool`,
+    description: toolDescription,
+    url: canonicalUrl,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    creator: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+  };
+
+  const faqItems: { q: string; a: string }[] = seo.faq ?? [];
+  const faqSchema = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  } : null;
+
+  const howToSteps: { name: string; text: string }[] = seo.howToSteps ?? [];
+  const howToSchema = howToSteps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use ${toolName}`,
+    description: toolDescription,
+    step: howToSteps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null;
+
   return (
-    <ToolLayout
-      title={torqueCalculatorConfig.name}
-      description={torqueCalculatorConfig.description}
-      icon={torqueCalculatorConfig.icon}
-      category={{ slug: "mechanical", name: "Mechanical Engineering" }}
-    >
-      <TorqueCalculatorUI />
-    </ToolLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        />
+      )}
+      <ToolLayout
+        title={toolName}
+        description={toolDescription}
+        icon={(config as any).icon}
+        category={catObj}
+      >
+        <TorqueCalculatorUI />
+      </ToolLayout>
+    </>
   );
 }

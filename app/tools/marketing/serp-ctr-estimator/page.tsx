@@ -2,45 +2,54 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
 import { siteConfig } from "@/config/site";
-import { serpCtrEstimatorConfig as config } from "@/tools/serp-ctr-estimator/config";
 import { categories } from "@/config/tools";
+import { serpCtrEstimatorConfig as config } from "@/tools/serp-ctr-estimator/config";
 
-const SERPCTREstimatorUI = dynamic(
-  () => import("@/tools/serp-ctr-estimator/ui")
-);
+const SERPCTREstimatorUI = dynamic(() => import("@/tools/serp-ctr-estimator/ui"));
 
 const canonicalUrl = `${siteConfig.url}/tools/marketing/serp-ctr-estimator`;
 
+const seo = (config as any).seo ?? {};
+const toolName = (config as any).name;
+const toolDescription = (config as any).description ?? "";
+const ogTitle = seo.openGraph?.title ?? seo.og?.title ?? seo.title;
+const ogDescription = seo.openGraph?.description ?? seo.og?.description ?? seo.description;
+// `+` rather than %20 so these URLs stay identical to what is already indexed.
+const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName).replace(/%20/g, "+")}`;
+
 export const metadata: Metadata = {
-  title: config.seo.title,
-  description: config.seo.description,
-  keywords: config.seo.keywords,
+  title: seo.title,
+  description: seo.description,
+  keywords: seo.keywords,
   openGraph: {
-    images: [{ url: "/og?title=SERP+CTR+Estimator", width: 1200, height: 630, alt: "SERP CTR Estimator" }],
-    title: config.seo.openGraph.title,
-    description: config.seo.openGraph.description,
+    title: ogTitle,
+    description: ogDescription,
     type: "website",
     url: canonicalUrl,
     siteName: siteConfig.name,
+    images: [{ url: ogImage, width: 1200, height: 630, alt: toolName }],
   },
   twitter: {
-    images: ["/og?title=SERP+CTR+Estimator"],
     card: "summary_large_image",
-    title: config.seo.openGraph.title,
-    description: config.seo.openGraph.description,
+    title: ogTitle,
+    description: ogDescription,
+    images: [ogImage],
   },
   alternates: { canonical: canonicalUrl },
-  robots: { index: true, follow: true },
+  // No `robots` key on purpose. The root layout sets robots.googleBot with
+  // max-image-preview:large and max-snippet:-1, and Next replaces the parent
+  // robots object wholesale rather than merging — declaring a bare
+  // { index, follow } here would silently drop those two directives.
 };
 
-export default function SERPCTREstimatorPage() {
+export default function SerpCtrEstimatorPage() {
   const catObj = categories.find((c) => c.slug === "marketing");
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: `${config.name} Tool`,
-    description: config.description,
+    name: `${toolName} Tool`,
+    description: toolDescription,
     url: canonicalUrl,
     applicationCategory: "UtilityApplication",
     operatingSystem: "Any",
@@ -48,26 +57,30 @@ export default function SERPCTREstimatorPage() {
     creator: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
   };
 
-  const faqLd = {
+  const faqItems: { q: string; a: string }[] = seo.faq ?? [];
+  const faqSchema = faqItems.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: config.seo.faq.map((f) => ({
+    mainEntity: faqItems.map(({ q, a }) => ({
       "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
     })),
-  };
+  } : null;
 
-  const howToLd = {
+  const howToSteps: { name: string; text: string }[] = seo.howToSteps ?? [];
+  const howToSchema = howToSteps.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: `How to Use the ${config.name}`,
-    step: config.seo.howToSteps.map((s) => ({
+    name: `How to use ${toolName}`,
+    description: toolDescription,
+    step: howToSteps.map((s, i) => ({
       "@type": "HowToStep",
+      position: i + 1,
       name: s.name,
       text: s.text,
     })),
-  };
+  } : null;
 
   return (
     <>
@@ -75,18 +88,22 @@ export default function SERPCTREstimatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
-      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        />
+      )}
       <ToolLayout
-        title={config.name}
-        description={config.description}
-        icon={config.icon}
+        title={toolName}
+        description={toolDescription}
+        icon={(config as any).icon}
         category={catObj}
       >
         <SERPCTREstimatorUI />

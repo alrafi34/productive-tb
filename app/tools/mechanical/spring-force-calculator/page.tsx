@@ -1,39 +1,113 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
-import SpringForceCalculatorUI from "@/tools/spring-force-calculator/ui";
-import { springForceCalculatorConfig } from "@/tools/spring-force-calculator/config";
+import { siteConfig } from "@/config/site";
+import { categories } from "@/config/tools";
+import { springForceCalculatorConfig as config } from "@/tools/spring-force-calculator/config";
+
+const SpringForceCalculatorUI = dynamic(() => import("@/tools/spring-force-calculator/ui"));
+
+const canonicalUrl = `${siteConfig.url}/tools/mechanical/spring-force-calculator`;
+
+const seo = (config as any).seo ?? {};
+const toolName = (config as any).name;
+const toolDescription = (config as any).description ?? "";
+const ogTitle = seo.openGraph?.title ?? seo.og?.title ?? seo.title;
+const ogDescription = seo.openGraph?.description ?? seo.og?.description ?? seo.description;
+// `+` rather than %20 so these URLs stay identical to what is already indexed.
+const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName).replace(/%20/g, "+")}`;
 
 export const metadata: Metadata = {
-  title: springForceCalculatorConfig.seo.title,
-  description: springForceCalculatorConfig.seo.description,
-  keywords: springForceCalculatorConfig.seo.keywords,
+  title: seo.title,
+  description: seo.description,
+  keywords: seo.keywords,
   openGraph: {
-    images: [{ url: "/og?title=Spring+Force+Calculator", width: 1200, height: 630, alt: "Spring Force Calculator" }],
-    title: springForceCalculatorConfig.seo.og.title,
-    description: springForceCalculatorConfig.seo.og.description,
+    title: ogTitle,
+    description: ogDescription,
     type: "website",
-    url: springForceCalculatorConfig.seo.og.url,
+    url: canonicalUrl,
+    siteName: siteConfig.name,
+    images: [{ url: ogImage, width: 1200, height: 630, alt: toolName }],
   },
   twitter: {
     card: "summary_large_image",
-    title: springForceCalculatorConfig.seo.og.title,
-    description: springForceCalculatorConfig.seo.og.description,
-    images: ["/og?title=Spring+Force+Calculator"],
+    title: ogTitle,
+    description: ogDescription,
+    images: [ogImage],
   },
-  alternates: {
-    canonical: springForceCalculatorConfig.seo.og.url,
-  },
+  alternates: { canonical: canonicalUrl },
+  // No `robots` key on purpose. The root layout sets robots.googleBot with
+  // max-image-preview:large and max-snippet:-1, and Next replaces the parent
+  // robots object wholesale rather than merging — declaring a bare
+  // { index, follow } here would silently drop those two directives.
 };
 
 export default function SpringForceCalculatorPage() {
+  const catObj = categories.find((c) => c.slug === "mechanical");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `${toolName} Tool`,
+    description: toolDescription,
+    url: canonicalUrl,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    creator: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+  };
+
+  const faqItems: { q: string; a: string }[] = seo.faq ?? [];
+  const faqSchema = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  } : null;
+
+  const howToSteps: { name: string; text: string }[] = seo.howToSteps ?? [];
+  const howToSchema = howToSteps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use ${toolName}`,
+    description: toolDescription,
+    step: howToSteps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null;
+
   return (
-    <ToolLayout
-      title={springForceCalculatorConfig.name}
-      description={springForceCalculatorConfig.description}
-      icon={springForceCalculatorConfig.icon}
-      category={{ slug: "mechanical", name: "Mechanical Engineering" }}
-    >
-      <SpringForceCalculatorUI />
-    </ToolLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        />
+      )}
+      <ToolLayout
+        title={toolName}
+        description={toolDescription}
+        icon={(config as any).icon}
+        category={catObj}
+      >
+        <SpringForceCalculatorUI />
+      </ToolLayout>
+    </>
   );
 }

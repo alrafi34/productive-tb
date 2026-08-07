@@ -1,39 +1,113 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
-import MomentOfInertiaCalculatorUI from "@/tools/moment-of-inertia-calculator/ui";
-import { momentOfInertiaCalculatorConfig } from "@/tools/moment-of-inertia-calculator/config";
+import { siteConfig } from "@/config/site";
+import { categories } from "@/config/tools";
+import { momentOfInertiaCalculatorConfig as config } from "@/tools/moment-of-inertia-calculator/config";
+
+const MomentOfInertiaCalculatorUI = dynamic(() => import("@/tools/moment-of-inertia-calculator/ui"));
+
+const canonicalUrl = `${siteConfig.url}/tools/mechanical/moment-of-inertia-calculator`;
+
+const seo = (config as any).seo ?? {};
+const toolName = (config as any).name;
+const toolDescription = (config as any).description ?? "";
+const ogTitle = seo.openGraph?.title ?? seo.og?.title ?? seo.title;
+const ogDescription = seo.openGraph?.description ?? seo.og?.description ?? seo.description;
+// `+` rather than %20 so these URLs stay identical to what is already indexed.
+const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName).replace(/%20/g, "+")}`;
 
 export const metadata: Metadata = {
-  title: momentOfInertiaCalculatorConfig.seo.title,
-  description: momentOfInertiaCalculatorConfig.seo.description,
-  keywords: momentOfInertiaCalculatorConfig.seo.keywords,
+  title: seo.title,
+  description: seo.description,
+  keywords: seo.keywords,
   openGraph: {
-    images: [{ url: "/og?title=Moment+of+Inertia+Calculator", width: 1200, height: 630, alt: "Moment of Inertia Calculator" }],
-    title: momentOfInertiaCalculatorConfig.seo.og.title,
-    description: momentOfInertiaCalculatorConfig.seo.og.description,
+    title: ogTitle,
+    description: ogDescription,
     type: "website",
-    url: momentOfInertiaCalculatorConfig.seo.og.url,
+    url: canonicalUrl,
+    siteName: siteConfig.name,
+    images: [{ url: ogImage, width: 1200, height: 630, alt: toolName }],
   },
   twitter: {
     card: "summary_large_image",
-    title: momentOfInertiaCalculatorConfig.seo.og.title,
-    description: momentOfInertiaCalculatorConfig.seo.og.description,
-    images: ["/og?title=Moment+of+Inertia+Calculator"],
+    title: ogTitle,
+    description: ogDescription,
+    images: [ogImage],
   },
-  alternates: {
-    canonical: momentOfInertiaCalculatorConfig.seo.og.url,
-  },
+  alternates: { canonical: canonicalUrl },
+  // No `robots` key on purpose. The root layout sets robots.googleBot with
+  // max-image-preview:large and max-snippet:-1, and Next replaces the parent
+  // robots object wholesale rather than merging — declaring a bare
+  // { index, follow } here would silently drop those two directives.
 };
 
 export default function MomentOfInertiaCalculatorPage() {
+  const catObj = categories.find((c) => c.slug === "mechanical");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `${toolName} Tool`,
+    description: toolDescription,
+    url: canonicalUrl,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    creator: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+  };
+
+  const faqItems: { q: string; a: string }[] = seo.faq ?? [];
+  const faqSchema = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  } : null;
+
+  const howToSteps: { name: string; text: string }[] = seo.howToSteps ?? [];
+  const howToSchema = howToSteps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use ${toolName}`,
+    description: toolDescription,
+    step: howToSteps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null;
+
   return (
-    <ToolLayout
-      title={momentOfInertiaCalculatorConfig.name}
-      description={momentOfInertiaCalculatorConfig.description}
-      icon={momentOfInertiaCalculatorConfig.icon}
-      category={{ slug: "mechanical", name: "Mechanical Engineering" }}
-    >
-      <MomentOfInertiaCalculatorUI />
-    </ToolLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        />
+      )}
+      <ToolLayout
+        title={toolName}
+        description={toolDescription}
+        icon={(config as any).icon}
+        category={catObj}
+      >
+        <MomentOfInertiaCalculatorUI />
+      </ToolLayout>
+    </>
   );
 }
