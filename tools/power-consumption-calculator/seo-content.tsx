@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Power Consumption Calculator Online – Estimate Electric Bill by Appliance Usage | Productive Toolbox",
@@ -34,7 +35,9 @@ export default function PowerConsumptionCalculatorSEO() {
     "@type": "WebApplication",
     "name": "Power Consumption Calculator",
     "description": "Free online Power Consumption Calculator. Add appliances, set wattage and usage hours, input electricity rate, and instantly calculate daily, monthly, and yearly electricity costs entirely in your browser.",
-    "url": "https://www.productivetoolbox.com/tools/calculator/power-consumption-calculator",
+    // Must match the page's canonical, which is non-www. A www URL here
+    // contradicts the canonical tag and keeps the duplicate alive.
+    "url": `${siteConfig.url}/tools/calculator/power-consumption-calculator`,
     "applicationCategory": "UtilityApplication",
     "offers": {
       "@type": "Offer",
