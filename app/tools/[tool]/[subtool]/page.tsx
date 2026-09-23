@@ -7,7 +7,6 @@ import { tools, categories } from "@/config/tools";
 
 import { toolConfig as wordCounterConfig } from "@/tools/word-counter/config";
 import { toolConfig as sentenceCaseConfig } from "@/tools/sentence-case-converter/config";
-import { toolConfig as paragraphFormatterConfig } from "@/tools/paragraph-formatter/config";
 import { toolConfig as keywordDensityConfig } from "@/tools/keyword-density-checker/config";
 import { toolConfig as textReverserConfig } from "@/tools/text-reverser/config";
 import { toolConfig as wordFrequencyConfig } from "@/tools/word-frequency-counter/config";
@@ -47,7 +46,6 @@ import { toolConfig as cssGlassmorphismGeneratorConfig } from "@/tools/css-glass
 import { toolConfig as svgPathVisualizerConfig } from "@/tools/svg-path-visualizer/config";
 import { toolConfig as contrastCheckerConfig } from "@/tools/contrast-checker/config";
 import { toolConfig as neumorphismGeneratorConfig } from "@/tools/neumorphism-generator/config";
-import { hslColorSliderConfig } from "@/tools/hsl-color-slider/config";
 import { cssFilterTesterConfig } from "@/tools/css-filter-tester/config";
 import { cssAnimationPreviewerConfig } from "@/tools/css-animation-previewer/config";
 import { gradientTextGeneratorConfig } from "@/tools/gradient-text-generator/config";
@@ -59,7 +57,6 @@ import { cssCursorStylePreviewerConfig } from "@/tools/css-cursor-style-previewe
 import { cssClampGeneratorConfig } from "@/tools/css-clamp-generator/config";
 import { hexToRgbaConverterConfig } from "@/tools/hex-to-rgba-converter/config";
 import { passwordGeneratorConfig } from "@/tools/password-generator/config";
-import { wifiPasswordGeneratorConfig } from "@/tools/wifi-password-generator/config";
 import { textEncryptDecryptConfig } from "@/tools/text-encrypt-decrypt/config";
 import { usernameGeneratorConfig } from "@/tools/username-generator/config";
 import { hashGeneratorConfig } from "@/tools/hash-generator/config";
@@ -222,7 +219,6 @@ import { projectTimelineCalculatorConfig } from "@/tools/project-timeline-calcul
 import { workforceRequirementCalculatorConfig } from "@/tools/workforce-requirement-calculator/config";
 import { excavationVolumeCalculatorConfig } from "@/tools/excavation-volume-calculator/config";
 import { soilBearingCapacityCalculatorConfig } from "@/tools/soil-bearing-capacity-calculator/config";
-import { soilCompactionCalculatorConfig } from "@/tools/soil-compaction-calculator/config";
 import { retainingWallCalculatorConfig } from "@/tools/retaining-wall-calculator/config";
 import { slopeStabilityCalculatorConfig } from "@/tools/slope-stability-calculator/config";
 import { drainageFlowCalculatorConfig } from "@/tools/drainage-flow-calculator/config";
@@ -235,7 +231,6 @@ import { fireSafetyLoadCalculatorConfig } from "@/tools/fire-safety-load-calcula
 import { emergencyExitWidthCalculatorConfig } from "@/tools/emergency-exit-width-calculator/config";
 import { parkingSpaceCalculatorConfig } from "@/tools/parking-space-calculator/config";
 import { buildingHeightCalculatorConfig } from "@/tools/building-height-calculator/config";
-import { sunlightExposureCalculatorConfig } from "@/tools/sunlight-exposure-calculator/config";
 import { shadowLengthCalculatorConfig } from "@/tools/shadow-length-calculator/config";
 import { facadeAreaCalculatorConfig } from "@/tools/facade-area-calculator/config";
 import { claddingMaterialCalculatorConfig } from "@/tools/cladding-material-calculator/config";
@@ -288,7 +283,6 @@ import { backlinkRatioCalculatorConfig } from "@/tools/backlink-ratio-calculator
 
 const WordCounterUI = dynamic(() => import("@/tools/word-counter/ui"));
 const SentenceCaseConverterUI = dynamic(() => import("@/tools/sentence-case-converter/ui"));
-const ParagraphFormatterUI = dynamic(() => import("@/tools/paragraph-formatter/ui"));
 const KeywordDensityCheckerUI = dynamic(() => import("@/tools/keyword-density-checker/ui"));
 const TextReverserUI = dynamic(() => import("@/tools/text-reverser/ui"));
 const WordFrequencyCounterUI = dynamic(() => import("@/tools/word-frequency-counter/ui"));
@@ -328,7 +322,6 @@ const GlassmorphismGeneratorUI = dynamic(() => import("@/tools/css-glassmorphism
 const SVGPathVisualizerUI = dynamic(() => import("@/tools/svg-path-visualizer/ui"));
 const ContrastCheckerUI = dynamic(() => import("@/tools/contrast-checker/ui"));
 const NeumorphismGeneratorUI = dynamic(() => import("@/tools/neumorphism-generator/ui"));
-const HSLColorSliderUI = dynamic(() => import("@/tools/hsl-color-slider/ui"));
 const CSSFilterTesterUI = dynamic(() => import("@/tools/css-filter-tester/ui"));
 const CSSAnimationPreviewerUI = dynamic(() => import("@/tools/css-animation-previewer/ui"));
 const GradientTextGeneratorUI = dynamic(() => import("@/tools/gradient-text-generator/ui"));
@@ -340,7 +333,6 @@ const CSSCursorStylePreviewerUI = dynamic(() => import("@/tools/css-cursor-style
 const CSSClampGeneratorUI = dynamic(() => import("@/tools/css-clamp-generator/ui"));
 const HexToRgbaConverterUI = dynamic(() => import("@/tools/hex-to-rgba-converter/ui"));
 const PasswordGeneratorUI = dynamic(() => import("@/tools/password-generator/ui"));
-const WiFiPasswordGeneratorUI = dynamic(() => import("@/tools/wifi-password-generator/ui"));
 const TextEncryptDecryptUI = dynamic(() => import("@/tools/text-encrypt-decrypt/ui"));
 const UsernameGeneratorUI = dynamic(() => import("@/tools/username-generator/ui"));
 const HashGeneratorUI = dynamic(() => import("@/tools/hash-generator/ui"));
@@ -503,7 +495,6 @@ const ProjectTimelineCalculatorUI = dynamic(() => import("@/tools/project-timeli
 const WorkforceRequirementCalculatorUI = dynamic(() => import("@/tools/workforce-requirement-calculator/ui"));
 const ExcavationVolumeCalculatorUI = dynamic(() => import("@/tools/excavation-volume-calculator/ui"));
 const SoilBearingCapacityCalculatorUI = dynamic(() => import("@/tools/soil-bearing-capacity-calculator/ui"));
-const SoilCompactionCalculatorUI = dynamic(() => import("@/tools/soil-compaction-calculator/ui"));
 const RetainingWallCalculatorUI = dynamic(() => import("@/tools/retaining-wall-calculator/ui"));
 const SlopeStabilityCalculatorUI = dynamic(() => import("@/tools/slope-stability-calculator/ui"));
 const DrainageFlowCalculatorUI = dynamic(() => import("@/tools/drainage-flow-calculator/ui"));
@@ -516,7 +507,6 @@ const FireSafetyLoadCalculatorUI = dynamic(() => import("@/tools/fire-safety-loa
 const EmergencyExitWidthCalculatorUI = dynamic(() => import("@/tools/emergency-exit-width-calculator/ui"));
 const ParkingSpaceCalculatorUI = dynamic(() => import("@/tools/parking-space-calculator/ui"));
 const BuildingHeightCalculatorUI = dynamic(() => import("@/tools/building-height-calculator/ui"));
-const SunlightExposureCalculatorUI = dynamic(() => import("@/tools/sunlight-exposure-calculator/ui"));
 const ShadowLengthCalculatorUI = dynamic(() => import("@/tools/shadow-length-calculator/ui"));
 const FacadeAreaCalculatorUI = dynamic(() => import("@/tools/facade-area-calculator/ui"));
 const CladdingMaterialCalculatorUI = dynamic(() => import("@/tools/cladding-material-calculator/ui"));
@@ -570,7 +560,6 @@ const BacklinkRatioCalculatorUI = dynamic(() => import("@/tools/backlink-ratio-c
 const TOOLS = [
   { config: wordCounterConfig, Component: WordCounterUI },
   { config: sentenceCaseConfig, Component: SentenceCaseConverterUI },
-  { config: paragraphFormatterConfig, Component: ParagraphFormatterUI },
   { config: keywordDensityConfig, Component: KeywordDensityCheckerUI },
   { config: textReverserConfig, Component: TextReverserUI },
   { config: wordFrequencyConfig, Component: WordFrequencyCounterUI },
@@ -610,7 +599,6 @@ const TOOLS = [
   { config: svgPathVisualizerConfig, Component: SVGPathVisualizerUI },
   { config: contrastCheckerConfig, Component: ContrastCheckerUI },
   { config: neumorphismGeneratorConfig, Component: NeumorphismGeneratorUI },
-  { config: hslColorSliderConfig, Component: HSLColorSliderUI },
   { config: cssFilterTesterConfig, Component: CSSFilterTesterUI },
   { config: cssAnimationPreviewerConfig, Component: CSSAnimationPreviewerUI },
   { config: gradientTextGeneratorConfig, Component: GradientTextGeneratorUI },
@@ -622,7 +610,6 @@ const TOOLS = [
   { config: cssClampGeneratorConfig, Component: CSSClampGeneratorUI },
   { config: hexToRgbaConverterConfig, Component: HexToRgbaConverterUI },
   { config: passwordGeneratorConfig, Component: PasswordGeneratorUI },
-  { config: wifiPasswordGeneratorConfig, Component: WiFiPasswordGeneratorUI },
   { config: textEncryptDecryptConfig, Component: TextEncryptDecryptUI },
   { config: usernameGeneratorConfig, Component: UsernameGeneratorUI },
   { config: hashGeneratorConfig, Component: HashGeneratorUI },
@@ -785,7 +772,6 @@ const TOOLS = [
   { config: workforceRequirementCalculatorConfig, Component: WorkforceRequirementCalculatorUI },
   { config: excavationVolumeCalculatorConfig, Component: ExcavationVolumeCalculatorUI },
   { config: soilBearingCapacityCalculatorConfig, Component: SoilBearingCapacityCalculatorUI },
-  { config: soilCompactionCalculatorConfig, Component: SoilCompactionCalculatorUI },
   { config: retainingWallCalculatorConfig, Component: RetainingWallCalculatorUI },
   { config: slopeStabilityCalculatorConfig, Component: SlopeStabilityCalculatorUI },
   { config: drainageFlowCalculatorConfig, Component: DrainageFlowCalculatorUI },
@@ -798,7 +784,6 @@ const TOOLS = [
   { config: emergencyExitWidthCalculatorConfig, Component: EmergencyExitWidthCalculatorUI },
   { config: parkingSpaceCalculatorConfig, Component: ParkingSpaceCalculatorUI },
   { config: buildingHeightCalculatorConfig, Component: BuildingHeightCalculatorUI },
-  { config: sunlightExposureCalculatorConfig, Component: SunlightExposureCalculatorUI },
   { config: shadowLengthCalculatorConfig, Component: ShadowLengthCalculatorUI },
   { config: facadeAreaCalculatorConfig, Component: FacadeAreaCalculatorUI },
   { config: claddingMaterialCalculatorConfig, Component: CladdingMaterialCalculatorUI },
