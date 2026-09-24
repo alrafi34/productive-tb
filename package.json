@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/check-tools.mjs && next build",
+    "check:tools": "node scripts/check-tools.mjs",
     "start": "next start",
     "lint": "eslint"
   },

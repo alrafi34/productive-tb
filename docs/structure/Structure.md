@@ -61,7 +61,7 @@ productive-tb/
 │   └── ... (704 tool entries mapped)
 │
 ├── lib/
-│   └── tools-registry.ts                  # Centralized tool registry (used by RelatedTools component)
+│   └── search-tools.ts                    # Search ranking shared by hero + header search
 │
 ├── public/
 │   ├── favicon.svg

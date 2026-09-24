@@ -62,7 +62,7 @@ productive-tb/
 │
 ├── components/
 │   ├── ToolLayout.tsx                   # Shared wrapper: breadcrumb + H1 + icon
-│   ├── RelatedTools.tsx                 # Related tools section (uses lib/tools-registry.ts)
+│   ├── RelatedTools.tsx                 # Related tools section (reads config/tools.ts)
 │   ├── CategoryToolsGrid.tsx            # Filterable tool grid for category pages
 │   ├── Header.tsx / Footer.tsx
 │   └── ...
@@ -79,7 +79,7 @@ productive-tb/
 │       └── seo-content.tsx             # How-To, FAQ, Why sections
 │
 ├── lib/
-│   └── tools-registry.ts               # Registry used by RelatedTools component
+│   └── search-tools.ts                 # Search ranking shared by hero + header search
 │
 └── docs/                                # You are here
 ```
@@ -160,7 +160,7 @@ where `[tool]` = category slug and `[subtool]` = tool slug.
 - [ ] `tools/your-tool-name/ui.tsx` (with `"use client"` on line 1)
 - [ ] `tools/your-tool-name/seo-content.tsx`
 - [ ] `config/tools.ts` — add to tools array
-- [ ] `lib/tools-registry.ts` — add import + entry
+- [ ] `pnpm check:tools` passes
 - [ ] `app/tools/[tool]/[subtool]/page.tsx` — add **dynamic import** with `ssr: false`
 
 ### Phase 3 — Test (15 min)
@@ -254,7 +254,7 @@ Content:     400+ words total in seo-content.tsx
 | Issue | Cause | Fix |
 |---|---|---|
 | Tool returns 404 | Not in TOOL_COMPONENTS | Update `[subtool]/page.tsx` with dynamic import |
-| RelatedTools empty | Not in registry | Update `lib/tools-registry.ts` |
+| RelatedTools card missing | Slug not in config/tools.ts | Add it; run `pnpm check:tools` |
 | Category page missing tool | Wrong slug in config/tools.ts | Fix category slug |
 | Redirect not working | Not in config/tools.ts | Add to tools array |
 | "use client" error | Hook in server component | Add to top of ui.tsx |
