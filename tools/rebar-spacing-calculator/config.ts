@@ -2,7 +2,7 @@ export const rebarSpacingCalculatorConfig = {
   name: "Rebar Spacing Calculator",
   slug: "rebar-spacing-calculator",
   category: "architecture",
-  description: "Calculate spacing between reinforcement bars or determine number of bars needed. Free online rebar spacing calculator for construction and engineering.",
+  description: "Calculate rebar spacing or the number of bars for a slab, wall or beam — in inches or mm, with #3–#8 bar sizes and ACI 318 minimum and maximum spacing checks.",
   icon: "📏",
   color: "#058554",
   featured: false,
@@ -18,7 +18,7 @@ export const rebarSpacingCalculatorConfig = {
   ],
   seo: {
     title: "Rebar Spacing Calculator – Calculate Reinforcement Bar Spacing Instantly",
-    description: "Easily calculate rebar spacing and number of bars for construction projects. Fast, accurate, and free online tool for engineers and architects.",
+    description: "Free rebar spacing calculator in inches or mm. Find bar spacing or bar count, pick #3–#8 bars, and check clear spacing against ACI 318 limits.",
     keywords: "rebar spacing calculator, reinforcement bar spacing, civil engineering calculator, bar spacing formula, construction calculator",
     og: {
       title: "Rebar Spacing Calculator – Free Online Tool",

@@ -358,7 +358,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "reactive-power-calculator": "2026-08-07",
   "reading-time-calculator": "2026-04-09",
   "real-power-calculator": "2026-08-07",
-  "rebar-spacing-calculator": "2026-05-01",
+  "rebar-spacing-calculator": "2026-09-24",
   "rebar-weight-calculator": "2026-05-01",
   "refrigeration-cop-calculator": "2026-07-07",
   "regex-tester": "2026-08-07",

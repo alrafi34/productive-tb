@@ -12,10 +12,28 @@ import {
   exportToText,
   downloadFile,
   formatNumber,
-  convertFromMm
+  convertFromMm,
+  convertToMm,
+  DEFAULT_AGGREGATE_MM
 } from "./logic";
 import RebarSpacingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+
+/* Common bar sizes. US bars are named by eighths of an inch (#4 = 4/8 in). */
+const US_BARS = [
+  { label: "#3", inch: 0.375 }, { label: "#4", inch: 0.5 }, { label: "#5", inch: 0.625 },
+  { label: "#6", inch: 0.75 }, { label: "#7", inch: 0.875 }, { label: "#8", inch: 1.0 },
+];
+const METRIC_BARS_MM = [10, 12, 16, 20, 25, 32];
+
+/* Switching units converts what is typed rather than reinterpreting it —
+   1000 mm must not silently become 1000 in. */
+const convertInput = (value: string, from: Unit, to: Unit): string => {
+  const n = parseFloat(value);
+  if (value === "" || isNaN(n) || from === to) return value;
+  const mm = convertToMm(n, from);
+  return String(+convertFromMm(mm, to).toFixed(to === "inch" ? 3 : 1));
+};
 
 export default function RebarSpacingCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("spacing");
@@ -29,6 +47,9 @@ export default function RebarSpacingCalculatorUI() {
   
   // Bars mode inputs
   const [desiredSpacing, setDesiredSpacing] = useState("");
+
+  // Optional: max aggregate size for the ACI minimum-spacing check (blank = 3/4 in)
+  const [aggregate, setAggregate] = useState("");
   
   // Results
   const [calculation, setCalculation] = useState<SpacingCalculation | null>(null);
@@ -39,6 +60,8 @@ export default function RebarSpacingCalculatorUI() {
 
   // Calculate in real-time
   useEffect(() => {
+    const agg = parseFloat(aggregate);
+    const aggregateMm = !isNaN(agg) && agg > 0 ? convertToMm(agg, unit) : DEFAULT_AGGREGATE_MM;
     const w = parseFloat(width);
     const dia = parseFloat(barDiameter);
     const cover = parseFloat(clearCover);
@@ -52,7 +75,7 @@ export default function RebarSpacingCalculatorUI() {
         setCalculation(result);
         
         if (result && result.clearSpacing !== undefined) {
-          setValidityCheck(checkSpacingValidity(result.clearSpacing, result.barDiameter));
+          setValidityCheck(checkSpacingValidity(result.clearSpacing, result.barDiameter, result.spacing!, aggregateMm, unit));
         }
       } else {
         setCalculation(null);
@@ -67,14 +90,14 @@ export default function RebarSpacingCalculatorUI() {
         setCalculation(result);
         
         if (result && result.clearSpacing !== undefined) {
-          setValidityCheck(checkSpacingValidity(result.clearSpacing, result.barDiameter));
+          setValidityCheck(checkSpacingValidity(result.clearSpacing, result.barDiameter, result.spacing!, aggregateMm, unit));
         }
       } else {
         setCalculation(null);
         setValidityCheck(null);
       }
     }
-  }, [mode, width, numberOfBars, desiredSpacing, barDiameter, clearCover, unit]);
+  }, [mode, width, numberOfBars, desiredSpacing, barDiameter, clearCover, aggregate, unit]);
 
   const handleReset = () => {
     setWidth("");
@@ -82,16 +105,36 @@ export default function RebarSpacingCalculatorUI() {
     setDesiredSpacing("");
     setBarDiameter("");
     setClearCover("");
+    setAggregate("");
     setCalculation(null);
     setValidityCheck(null);
   };
 
   const handleUseDefaults = () => {
-    setWidth("1000");
-    setNumberOfBars("5");
-    setDesiredSpacing("150");
-    setBarDiameter("16");
-    setClearCover("40");
+    if (unit === "inch") {
+      // 4 ft wide slab strip, #5 bars at 12 in max, 1.5 in cover
+      setWidth("48");
+      setNumberOfBars("5");
+      setDesiredSpacing("12");
+      setBarDiameter("0.625");
+      setClearCover("1.5");
+    } else {
+      setWidth("1000");
+      setNumberOfBars("5");
+      setDesiredSpacing("150");
+      setBarDiameter("16");
+      setClearCover("40");
+    }
+  };
+
+  const handleUnitChange = (next: Unit) => {
+    if (next === unit) return;
+    setWidth(v => convertInput(v, unit, next));
+    setDesiredSpacing(v => convertInput(v, unit, next));
+    setBarDiameter(v => convertInput(v, unit, next));
+    setClearCover(v => convertInput(v, unit, next));
+    setAggregate(v => convertInput(v, unit, next));
+    setUnit(next);
   };
 
   const handleSwapMode = () => {
@@ -199,7 +242,7 @@ export default function RebarSpacingCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Unit</label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
-                    onClick={() => setUnit("mm")}
+                    onClick={() => handleUnitChange("mm")}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                       unit === "mm"
                         ? "bg-primary text-white"
@@ -209,7 +252,7 @@ export default function RebarSpacingCalculatorUI() {
                     Millimeters
                   </button>
                   <button
-                    onClick={() => setUnit("inch")}
+                    onClick={() => handleUnitChange("inch")}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                       unit === "inch"
                         ? "bg-primary text-white"
@@ -382,10 +425,34 @@ export default function RebarSpacingCalculatorUI() {
                     value={barDiameter}
                     onChange={(e) => setBarDiameter(e.target.value)}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder={unit === 'mm' ? '16' : '0.63'}
+                    placeholder={unit === 'mm' ? '16' : '0.625'}
                     min="0"
                     step="0.1"
                   />
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {unit === "inch"
+                      ? US_BARS.map(b => (
+                          <button
+                            key={b.label}
+                            type="button"
+                            onClick={() => setBarDiameter(String(b.inch))}
+                            className="px-2.5 py-1 text-xs font-semibold rounded-md bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                            title={`${b.label} bar — ${b.inch} in`}
+                          >
+                            {b.label}
+                          </button>
+                        ))
+                      : METRIC_BARS_MM.map(d => (
+                          <button
+                            key={d}
+                            type="button"
+                            onClick={() => setBarDiameter(String(d))}
+                            className="px-2.5 py-1 text-xs font-semibold rounded-md bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                          >
+                            {d} mm
+                          </button>
+                        ))}
+                  </div>
                 </div>
 
                 <div>
@@ -397,10 +464,26 @@ export default function RebarSpacingCalculatorUI() {
                     value={clearCover}
                     onChange={(e) => setClearCover(e.target.value)}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder={unit === 'mm' ? '40' : '1.57'}
+                    placeholder={unit === 'mm' ? '40' : '1.5'}
                     min="0"
                     step="0.1"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Max Aggregate Size ({unit}) <span className="font-normal text-gray-400">— optional</span>
+                  </label>
+                  <input
+                    type="number"
+                    value={aggregate}
+                    onChange={(e) => setAggregate(e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                    placeholder={unit === 'mm' ? '19 (default)' : '0.75 (default)'}
+                    min="0"
+                    step="0.1"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">Used for the ACI 318 minimum clear spacing check (4/3 × aggregate).</p>
                 </div>
               </div>
 
