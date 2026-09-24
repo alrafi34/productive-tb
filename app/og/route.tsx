@@ -165,6 +165,14 @@ export async function GET(req: NextRequest) {
         />
       </div>
     ),
-    { width: 1200, height: 630 }
+    {
+      width: 1200,
+      height: 630,
+      /* GSC listed /og?title=… URLs under "Crawled – currently not indexed":
+         Googlebot was spending crawls on share images as if they were pages.
+         noindex only stops indexing — the image still loads, so social
+         previews (which fetch it directly) are unaffected. */
+      headers: { "X-Robots-Tag": "noindex" },
+    }
   );
 }
