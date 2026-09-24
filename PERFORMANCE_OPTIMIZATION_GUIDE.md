@@ -26,8 +26,8 @@ import ImageCompressorUI from "@/tools/image-compressor/ui";
 
 // ✅ AFTER: Dynamic imports (loads ONLY needed tool)
 const TOOL_COMPONENTS = {
-  'word-counter': dynamic(() => import('@/tools/word-counter/ui'), { ssr: false }),
-  'image-compressor': dynamic(() => import('@/tools/image-compressor/ui'), { ssr: false }),
+  'word-counter': dynamic(() => import('@/tools/word-counter/ui')),
+  'image-compressor': dynamic(() => import('@/tools/image-compressor/ui')),
 };
 ```
 
@@ -95,7 +95,7 @@ mv app/tools/[tool]/[subtool]/page.optimized.tsx app/tools/[tool]/[subtool]/page
 - ✅ Added dynamic imports with code splitting
 - ✅ Removed `force-dynamic`
 - ✅ Added `generateStaticParams` for top 20 tools
-- ✅ Set `ssr: false` for client-only tools
+- ~~Set `ssr: false` for client-only tools~~ — superseded: tools must server-render (#26)
 
 ---
 
@@ -307,7 +307,8 @@ Check `globals.css` for low-contrast text:
 
 2. ❌ **Don't import heavy libraries globally**
    - Import chart.js, d3.js only in tools that need them
-   - Use dynamic imports with `ssr: false`
+   - Lazy-load them with `await import()` inside an effect/handler, or `dynamic()` on the
+     chart component alone — never `ssr: false` on a whole tool UI (#26)
 
 3. ❌ **Don't fetch data client-side**
    - Use Server Components for data fetching

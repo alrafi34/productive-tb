@@ -47,8 +47,8 @@ const TOOLS = [
 import dynamic from "next/dynamic";
 
 const TOOL_COMPONENTS: Record<string, any> = {
-  'word-counter': dynamic(() => import('@/tools/word-counter/ui'), { ssr: false }),
-  'image-compressor': dynamic(() => import('@/tools/image-compressor/ui'), { ssr: false }),
+  'word-counter': dynamic(() => import('@/tools/word-counter/ui')),
+  'image-compressor': dynamic(() => import('@/tools/image-compressor/ui')),
   // ... all other tools
 };
 
@@ -60,18 +60,23 @@ return <Component />;
 ```
 
 **Impact:**
-- Bundle size: 2MB → 50KB (97% reduction)
+- ⚠️ Measured in #3: tools on the shared `[subtool]` route still ship ~1.8 MB; a dedicated
+  route (`app/tools/<category>/<slug>/page.tsx`) ships ~210 KB. Prefer dedicated routes.
 - Mobile score: +15-20 points
 - Load time: 3.2s → 1.5s (53% faster)
 
 ---
 
-### Rule #2: Client-Side Only Rendering
+### Rule #2: Client Components Still Render on the Server
 
 **All tool UI components MUST:**
 
 1. Have `"use client"` directive on line 1
-2. Be imported with `ssr: false` flag
+2. **Still render on the server.** `"use client"` does not mean "browser only" — Next
+   server-renders client components too, and that HTML is what Google indexes.
+   **Never** pass `{ ssr: false }` to `dynamic()` for a tool UI, and never gate the whole
+   render on a `mounted` flag or `useSearchParams()`: any of these leaves crawlers with an
+   empty page (see issue #26 — 9 tools served ~170 words until it was fixed).
 
 ```typescript
 // tools/your-tool-name/ui.tsx
@@ -80,23 +85,32 @@ return <Component />;
 import { useState } from "react";
 
 export default function YourToolUI() {
-  // Component code
+  const [value, setValue] = useState("");      // server-safe defaults only
+  const [copied, setCopied] = useState(false);
+
+  // ✅ Browser APIs (clipboard, localStorage, window, URL params) inside event
+  //    handlers or effects — ❌ never at the top level of the render.
+  const handleCopy = () => {
+    navigator.clipboard.writeText(value);
+    setCopied(true);
+  };
+
+  // Render the full tool + <SEOContent /> + <RelatedTools /> unconditionally —
+  // no `if (!mounted) return null`.
 }
 ```
 
 ```typescript
-// app/tools/[tool]/[subtool]/page.tsx
-const TOOL_COMPONENTS = {
-  'your-tool-name': dynamic(() => import('@/tools/your-tool-name/ui'), { 
-    ssr: false  // ← REQUIRED: prevents server-side rendering
-  }),
-};
+// the route file
+const YourToolUI = dynamic(() => import("@/tools/your-tool-name/ui"));  // no ssr: false
 ```
 
 **Why?**
-- Tools use browser APIs (localStorage, clipboard, canvas)
-- These APIs don't exist on the server
-- SSR would cause hydration errors
+- Tools use browser APIs (localStorage, clipboard, canvas) — touch them only inside
+  `useEffect` or event handlers, so the server render never needs them
+- Browser-only *values* (current time, screen size, random IDs) start empty on the server
+  and fill in after mount; the layout and SEO content render either way
+- Verify with `curl` (not devtools): the tool's FAQ text must be in the served HTML
 
 ---
 
@@ -406,7 +420,8 @@ Before submitting a new tool, verify:
 
 ### Code Quality
 - [ ] `"use client"` directive on line 1 of ui.tsx
-- [ ] Tool registered with `dynamic()` import and `ssr: false`
+- [ ] Tool registered with `dynamic()` import — **without** `ssr: false`
+- [ ] `curl` of the page shows the tool's FAQ / SEO text in the HTML
 - [ ] No heavy libraries imported at module level
 - [ ] Real-time updates are debounced (300ms)
 - [ ] No unnecessary re-renders (use React DevTools Profiler)

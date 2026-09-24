@@ -133,7 +133,7 @@ pnpm start
 
 **Changes:**
 - ✅ Removed 130+ static imports
-- ✅ Added dynamic imports with `ssr: false`
+- ✅ Added dynamic imports (the original `ssr: false` was wrong and has been dropped — tools must server-render, see #26)
 - ✅ Removed `export const dynamic = "force-dynamic"`
 - ✅ Added `generateStaticParams` for top 20 tools
 - ✅ Changed from TOOLS array to TOOL_COMPONENTS object
@@ -149,7 +149,7 @@ const TOOLS = [{ config: wordCounterConfig, Component: WordCounterUI }];
 **After:**
 ```typescript
 const TOOL_COMPONENTS = {
-  'word-counter': dynamic(() => import('@/tools/word-counter/ui'), { ssr: false }),
+  'word-counter': dynamic(() => import('@/tools/word-counter/ui')),
 };
 ```
 
@@ -217,7 +217,7 @@ After implementation, verify:
 **Fix:**
 ```typescript
 // Make sure paths are correct
-dynamic(() => import('@/tools/word-counter/ui'), { ssr: false })
+dynamic(() => import('@/tools/word-counter/ui'))
 //                    ↑ Should match your folder structure
 ```
 
@@ -230,7 +230,7 @@ dynamic(() => import('@/tools/word-counter/ui'), { ssr: false })
 **Fix:** Add to TOOL_COMPONENTS in `page.tsx`:
 ```typescript
 const TOOL_COMPONENTS = {
-  'your-tool-slug': dynamic(() => import('@/tools/your-tool-slug/ui'), { ssr: false }),
+  'your-tool-slug': dynamic(() => import('@/tools/your-tool-slug/ui')),
 };
 ```
 

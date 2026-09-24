@@ -669,36 +669,62 @@ import YourToolUI from "@/tools/your-tool-name/ui";  // ❌ Static import
 ```typescript
 // app/tools/[tool]/[subtool]/page.tsx
 const TOOL_COMPONENTS = {
-  'your-tool-name': dynamic(() => import('@/tools/your-tool-name/ui'), { ssr: false }),
+  'your-tool-name': dynamic(() => import('@/tools/your-tool-name/ui')),
 };
 ```
 
 **Why:** Static imports load ALL tool code on EVERY page. Dynamic imports load ONLY the needed tool.
-- **Impact:** Reduces bundle from ~2MB → ~50KB per page
-- **Mobile Score:** +15-20 points
+
+> ⚠️ Even with `dynamic()`, every tool in the shared `[subtool]/page.tsx` route still ships
+> ~1.8 MB of JS (measured in #3). A **dedicated route** — `app/tools/<category>/<slug>/page.tsx`,
+> copied from any existing one — ships ~210 KB. Prefer it for new tools (#14).
 
 ---
 
-#### 2. **Client-Side Only Tools**
+#### 2. **Client Components That Still Server-Render**
 
-All tool UI components MUST be client-side rendered:
+**All tool UI components MUST:**
+
+1. Have `"use client"` directive on line 1
+2. **Still render on the server.** `"use client"` does not mean "browser only" — Next
+   server-renders client components too, and that HTML is what Google indexes.
+   **Never** pass `{ ssr: false }` to `dynamic()` for a tool UI, and never gate the whole
+   render on a `mounted` flag or `useSearchParams()`: any of these leaves crawlers with an
+   empty page (see issue #26 — 9 tools served ~170 words until it was fixed).
 
 ```typescript
 // tools/your-tool-name/ui.tsx
 "use client";  // ← REQUIRED on line 1
 
 import { useState } from "react";
-// ... rest of component
+
+export default function YourToolUI() {
+  const [value, setValue] = useState("");      // server-safe defaults only
+  const [copied, setCopied] = useState(false);
+
+  // ✅ Browser APIs (clipboard, localStorage, window, URL params) inside event
+  //    handlers or effects — ❌ never at the top level of the render.
+  const handleCopy = () => {
+    navigator.clipboard.writeText(value);
+    setCopied(true);
+  };
+
+  // Render the full tool + <SEOContent /> + <RelatedTools /> unconditionally —
+  // no `if (!mounted) return null`.
+}
 ```
 
-**And in the dynamic import:**
 ```typescript
-dynamic(() => import('@/tools/your-tool-name/ui'), { 
-  ssr: false  // ← REQUIRED: prevents server-side rendering
-})
+// the route file
+const YourToolUI = dynamic(() => import("@/tools/your-tool-name/ui"));  // no ssr: false
 ```
 
-**Why:** Tools use browser APIs (localStorage, clipboard, canvas) that don't exist on the server.
+**Why?**
+- Tools use browser APIs (localStorage, clipboard, canvas) — touch them only inside
+  `useEffect` or event handlers, so the server render never needs them
+- Browser-only *values* (current time, screen size, random IDs) start empty on the server
+  and fill in after mount; the layout and SEO content render either way
+- Verify with `curl` (not devtools): the tool's FAQ text must be in the served HTML
 
 ---
 
@@ -854,7 +880,7 @@ const grouped = array.reduce((acc, item) => {
 ### Performance Checklist for New Tools
 
 - [ ] Tool UI uses `"use client"` directive
-- [ ] Tool is registered with `dynamic()` import and `ssr: false`
+- [ ] Tool is registered with a `dynamic()` import — **without** `ssr: false`
 - [ ] No heavy libraries imported at top level
 - [ ] Real-time updates are debounced (if applicable)
 - [ ] Images have `loading` and size attributes
@@ -936,7 +962,8 @@ npm run build
 
 ### Performance
 - [ ] Tool uses `"use client"` directive
-- [ ] Registered with `dynamic(() => import(...), { ssr: false })`
+- [ ] Registered with `dynamic(() => import(...))` — no `ssr: false`
+- [ ] `curl` of the page shows the tool's FAQ / SEO text in the HTML
 - [ ] No heavy libraries imported at module level
 - [ ] Real-time updates debounced (if applicable)
 - [ ] Images optimized with loading attributes
@@ -985,7 +1012,8 @@ npm run build
 | Using wrong category slug | Check the 10-slug table in this guide |
 | Forgetting the `config/tools.ts` entry | `pnpm check:tools` / `pnpm build` fails; tool missing from sitemap, search and RelatedTools |
 | Forgetting `[subtool]/page.tsx` update | Tool returns 404 |
-| **Static import instead of dynamic()** | **Use `dynamic(() => import(...), { ssr: false })`** |
+| **Static import instead of dynamic()** | **Use `dynamic(() => import(...))`** |
+| **`ssr: false`, a `mounted` gate or `useSearchParams()` around the whole UI** | **Google sees an empty page — render on the server, use browser APIs in `useEffect`** |
 | **Importing heavy libraries at top level** | **Lazy load or use lighter alternatives** |
 | Slug mismatch across files | Use the same exact kebab-case slug everywhere |
 | No SEO content component | Page will rank poorly |

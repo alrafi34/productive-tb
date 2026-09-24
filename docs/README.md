@@ -17,7 +17,7 @@
 
 ### For AI Assistants
 1. Read **NEW_TOOL_INTEGRATION_GUIDE.md** fully before writing any code
-2. **CRITICAL:** Always use **dynamic imports** with `ssr: false` for tool components
+2. **CRITICAL:** Use **dynamic imports** for tool components — but **never `ssr: false`**: tools must render on the server or Google indexes an empty page (#26)
 3. Always use the two-level URL pattern: `/tools/[category]/[tool-slug]`
 4. Update all **3 registration files** (not just one)
 5. Follow performance rules: debounce updates, lazy load libraries, optimize images
@@ -161,7 +161,7 @@ where `[tool]` = category slug and `[subtool]` = tool slug.
 - [ ] `tools/your-tool-name/seo-content.tsx`
 - [ ] `config/tools.ts` — add to tools array
 - [ ] `pnpm check:tools` passes
-- [ ] `app/tools/[tool]/[subtool]/page.tsx` — add **dynamic import** with `ssr: false`
+- [ ] Route — prefer a dedicated `app/tools/<category>/<slug>/page.tsx`; either way a **dynamic import without `ssr: false`**
 
 ### Phase 3 — Test (15 min)
 - [ ] Loads at `/tools/[category]/[slug]`
@@ -259,7 +259,7 @@ Content:     400+ words total in seo-content.tsx
 | Redirect not working | Not in config/tools.ts | Add to tools array |
 | "use client" error | Hook in server component | Add to top of ui.tsx |
 | Fonts wrong | Missing `style={{ fontFamily }}` | Add font style props |
-| **Low Lighthouse score** | **Static imports** | **Use `dynamic()` with `ssr: false`** |
+| **Low Lighthouse score** | **Static imports** | **Use `dynamic()` (never with `ssr: false`)** |
 | **Large bundle size** | **Heavy libraries** | **Lazy load or use lighter alternatives** |
 | **Slow performance** | **No debouncing** | **Add 300ms debounce to real-time updates** |
 
