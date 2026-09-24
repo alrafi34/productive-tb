@@ -1,8 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { FileSizeUnit, SpeedUnit, DownloadInputs, HistoryEntry } from "./types";
 import {
   calculateDownloadTime,
@@ -28,27 +27,16 @@ const SIZE_UNITS: FileSizeUnit[] = ["KB", "MB", "GB", "TB"];
 const SPEED_UNITS: SpeedUnit[] = ["Kbps", "Mbps", "Gbps"];
 
 export default function DownloadTimeCalculatorUI() {
-  return (
-    <Suspense>
-      <DownloadTimeCalculatorInner />
-    </Suspense>
-  );
-}
-
-function DownloadTimeCalculatorInner() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  /* URL params are applied after mount instead of via useSearchParams(), which
+     opts the whole tool out of server rendering and left crawlers with an
+     empty page. The server renders the defaults; a shared link then fills in. */
+  const [urlLoaded, setUrlLoaded] = useState(false);
 
-  // Initialise from URL query params (shareable URLs)
-  const initSize = searchParams.get("size") || "5";
-  const initSizeUnit = (searchParams.get("unit") as FileSizeUnit) || "GB";
-  const initSpeed = searchParams.get("speed") || "50";
-  const initSpeedUnit = (searchParams.get("speedUnit") as SpeedUnit) || "Mbps";
-
-  const [fileSize, setFileSize] = useState(initSize);
-  const [fileSizeUnit, setFileSizeUnit] = useState<FileSizeUnit>(initSizeUnit);
-  const [speed, setSpeed] = useState(initSpeed);
-  const [speedUnit, setSpeedUnit] = useState<SpeedUnit>(initSpeedUnit);
+  const [fileSize, setFileSize] = useState("5");
+  const [fileSizeUnit, setFileSizeUnit] = useState<FileSizeUnit>("GB");
+  const [speed, setSpeed] = useState("50");
+  const [speedUnit, setSpeedUnit] = useState<SpeedUnit>("Mbps");
   const [efficiency, setEfficiency] = useState(0.9);
 
   const [result, setResult] = useState<ReturnType<typeof calculateDownloadTime>>(null);
@@ -60,6 +48,13 @@ function DownloadTimeCalculatorInner() {
   const fileSizeRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const size = q.get("size"), unit = q.get("unit"), sp = q.get("speed"), spUnit = q.get("speedUnit");
+    if (size) setFileSize(size);
+    if (unit && SIZE_UNITS.includes(unit as FileSizeUnit)) setFileSizeUnit(unit as FileSizeUnit);
+    if (sp) setSpeed(sp);
+    if (spUnit && SPEED_UNITS.includes(spUnit as SpeedUnit)) setSpeedUnit(spUnit as SpeedUnit);
+    setUrlLoaded(true);
     setHistory(getHistory());
     fileSizeRef.current?.focus();
   }, []);
@@ -99,7 +94,7 @@ function DownloadTimeCalculatorInner() {
 
   // ── Shareable URL ────────────────────────────────────────────────────────
   useEffect(() => {
-    if (!fileSize || !speed) return;
+    if (!urlLoaded || !fileSize || !speed) return;
     const p = new URLSearchParams({
       size: fileSize,
       unit: fileSizeUnit,
@@ -107,7 +102,7 @@ function DownloadTimeCalculatorInner() {
       speedUnit,
     });
     router.replace(`?${p.toString()}`, { scroll: false });
-  }, [fileSize, fileSizeUnit, speed, speedUnit]);
+  }, [urlLoaded, fileSize, fileSizeUnit, speed, speedUnit]);
 
   // ── Handlers ─────────────────────────────────────────────────────────────
   const handleReset = () => {
