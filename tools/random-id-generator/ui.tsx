@@ -59,19 +59,6 @@ export default function RandomIDGeneratorUI() {
     }
   };
 
-  if (!mounted) {
-    return (
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="h-20 bg-gray-100 rounded-lg animate-pulse" />
-            <div className="h-20 bg-gray-100 rounded-lg animate-pulse" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="max-w-4xl mx-auto space-y-6">

@@ -1,8 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   calculate,
   isValidIp,
@@ -30,25 +29,16 @@ const PRESETS = [
 ];
 
 export default function CidrCalculatorUI() {
-  return (
-    <Suspense>
-      <CidrCalculatorInner />
-    </Suspense>
-  );
-}
-
-function CidrCalculatorInner() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  /* URL params are applied after mount instead of via useSearchParams(), which
+     opts the whole tool out of server rendering and left crawlers with an
+     empty page. The server renders the defaults; a shared link then fills in. */
+  const [urlLoaded, setUrlLoaded] = useState(false);
 
-  const initIp = searchParams.get("ip") || "192.168.1.1";
-  const initCidr = parseInt(searchParams.get("cidr") || "24", 10);
-  const safeCidr = isNaN(initCidr) ? 24 : Math.min(32, Math.max(0, initCidr));
-
-  const [cidrInput, setCidrInput] = useState(`${initIp}/${safeCidr}`);
-  const [ip, setIp] = useState(initIp);
-  const [cidr, setCidr] = useState(safeCidr);
-  const [maskInput, setMaskInput] = useState(intToIp(subnetMaskFromCidr(safeCidr)));
+  const [cidrInput, setCidrInput] = useState("192.168.1.1/24");
+  const [ip, setIp] = useState("192.168.1.1");
+  const [cidr, setCidr] = useState(24);
+  const [maskInput, setMaskInput] = useState(intToIp(subnetMaskFromCidr(24)));
   const [result, setResult] = useState<CidrResult | null>(null);
   const [inputError, setInputError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -60,6 +50,16 @@ function CidrCalculatorInner() {
   const ipRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const qIp = q.get("ip"), qCidr = parseInt(q.get("cidr") ?? "", 10);
+    if (qIp || !isNaN(qCidr)) {
+      const nextIp = qIp || "192.168.1.1";
+      const nextCidr = isNaN(qCidr) ? 24 : Math.min(32, Math.max(0, qCidr));
+      setIp(nextIp);
+      setCidr(nextCidr);
+      setCidrInput(`${nextIp}/${nextCidr}`);
+    }
+    setUrlLoaded(true);
     setHistory(getHistory());
     cidrRef.current?.focus();
   }, []);
@@ -86,10 +86,10 @@ function CidrCalculatorInner() {
   }, [ip, cidr, run]);
 
   useEffect(() => {
-    if (!isValidIp(ip)) return;
+    if (!urlLoaded || !isValidIp(ip)) return;
     const params = new URLSearchParams({ ip, cidr: String(cidr) });
     router.replace(`?${params.toString()}`, { scroll: false });
-  }, [ip, cidr]);
+  }, [urlLoaded, ip, cidr]);
 
   const handleCidrInput = (val: string) => {
     setCidrInput(val);

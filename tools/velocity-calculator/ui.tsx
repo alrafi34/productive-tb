@@ -1,8 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { VelocityInputs, VelocityResult, HistoryEntry, DisplacementUnit, TimeUnit, Precision } from "./types";
 import {
   calculate,
@@ -42,36 +41,12 @@ const DEFAULT_INPUTS: VelocityInputs = {
 };
 
 export default function VelocityCalculatorUI() {
-  return (
-    <Suspense>
-      <VelocityCalculatorInner />
-    </Suspense>
-  );
-}
-
-function VelocityCalculatorInner() {
   const router       = useRouter();
-  const searchParams = useSearchParams();
-
-  // ── Initialise from URL query params ──────────────────────────────────
-  const getInitialInputs = (): VelocityInputs => {
-    const d  = searchParams.get("d");
-    const t  = searchParams.get("t");
-    const du = searchParams.get("du") as DisplacementUnit | null;
-    const tu = searchParams.get("tu") as TimeUnit | null;
-    if (d && t) {
-      return {
-        displacement:     d,
-        displacementUnit: du && ALL_DISPLACEMENT_UNITS.includes(du) ? du : "m",
-        time:             t,
-        timeUnit:         tu && ALL_TIME_UNITS.includes(tu) ? tu : "s",
-        precision:        2,
-      };
-    }
-    return DEFAULT_INPUTS;
-  };
-
-  const [inputs,      setInputs]      = useState<VelocityInputs>(getInitialInputs);
+  /* URL params are applied after mount instead of via useSearchParams(), which
+     opts the whole tool out of server rendering and left crawlers with an
+     empty page. The server renders the defaults; a shared link then fills in. */
+  const [urlLoaded,   setUrlLoaded]   = useState(false);
+  const [inputs,      setInputs]      = useState<VelocityInputs>(DEFAULT_INPUTS);
   const [result,      setResult]      = useState<VelocityResult | null>(null);
   const [dispErr,     setDispErr]     = useState<string | null>(null);
   const [timeErr,     setTimeErr]     = useState<string | null>(null);
@@ -82,7 +57,23 @@ function VelocityCalculatorInner() {
   const [history,     setHistory]     = useState<HistoryEntry[]>([]);
   const dispRef = useRef<HTMLInputElement>(null);
 
+  // ── Initialise from URL query params ──────────────────────────────────
   useEffect(() => {
+    const q  = new URLSearchParams(window.location.search);
+    const d  = q.get("d");
+    const t  = q.get("t");
+    const du = q.get("du") as DisplacementUnit | null;
+    const tu = q.get("tu") as TimeUnit | null;
+    if (d && t) {
+      setInputs({
+        displacement:     d,
+        displacementUnit: du && ALL_DISPLACEMENT_UNITS.includes(du) ? du : "m",
+        time:             t,
+        timeUnit:         tu && ALL_TIME_UNITS.includes(tu) ? tu : "s",
+        precision:        2,
+      });
+    }
+    setUrlLoaded(true);
     setHistory(getHistory());
     dispRef.current?.focus();
   }, []);
@@ -104,6 +95,7 @@ function VelocityCalculatorInner() {
 
   // ── Sync URL query params ────────────────────────────────────────────────
   useEffect(() => {
+    if (!urlLoaded) return;
     const params = new URLSearchParams({
       d:  inputs.displacement,
       t:  inputs.time,
@@ -111,7 +103,7 @@ function VelocityCalculatorInner() {
       tu: inputs.timeUnit,
     });
     router.replace(`?${params.toString()}`, { scroll: false });
-  }, [inputs.displacement, inputs.time, inputs.displacementUnit, inputs.timeUnit]);
+  }, [urlLoaded, inputs.displacement, inputs.time, inputs.displacementUnit, inputs.timeUnit]);
 
   // ── Handlers ─────────────────────────────────────────────────────────────
   const handlePreset = (p: typeof PRESETS[0]) => {

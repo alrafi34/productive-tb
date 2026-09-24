@@ -1,8 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   calculate,
   isValidIp,
@@ -29,23 +28,15 @@ const PRESETS = [
 ];
 
 export default function IpRangeCalculatorUI() {
-  return (
-    <Suspense>
-      <IpRangeCalculatorInner />
-    </Suspense>
-  );
-}
-
-function IpRangeCalculatorInner() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  /* URL params are applied after mount instead of via useSearchParams(), which
+     opts the whole tool out of server rendering and left crawlers with an
+     empty page. The server renders the defaults; a shared link then fills in. */
+  const [urlLoaded, setUrlLoaded] = useState(false);
 
-  const initIp = searchParams.get("ip") || "192.168.1.10";
-  const initCidr = parseInt(searchParams.get("cidr") || "24", 10);
-
-  const [ip, setIp] = useState(initIp);
-  const [cidr, setCidr] = useState(isNaN(initCidr) ? 24 : Math.min(32, Math.max(0, initCidr)));
-  const [maskInput, setMaskInput] = useState(intToIp(subnetMaskFromCidr(isNaN(initCidr) ? 24 : Math.min(32, Math.max(0, initCidr)))));
+  const [ip, setIp] = useState("192.168.1.10");
+  const [cidr, setCidr] = useState(24);
+  const [maskInput, setMaskInput] = useState(intToIp(subnetMaskFromCidr(24)));
   const [result, setResult] = useState<IpRangeResult | null>(null);
   const [ipError, setIpError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -55,6 +46,11 @@ function IpRangeCalculatorInner() {
   const ipRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const qIp = q.get("ip"), qCidr = parseInt(q.get("cidr") ?? "", 10);
+    if (qIp) setIp(qIp);
+    if (!isNaN(qCidr)) setCidr(Math.min(32, Math.max(0, qCidr)));
+    setUrlLoaded(true);
     setHistory(getHistory());
     ipRef.current?.focus();
   }, []);
@@ -83,10 +79,10 @@ function IpRangeCalculatorInner() {
 
   // Update shareable URL
   useEffect(() => {
-    if (!isValidIp(ip)) return;
+    if (!urlLoaded || !isValidIp(ip)) return;
     const params = new URLSearchParams({ ip, cidr: String(cidr) });
     router.replace(`?${params.toString()}`, { scroll: false });
-  }, [ip, cidr]);
+  }, [urlLoaded, ip, cidr]);
 
   const handleMaskInput = (val: string) => {
     setMaskInput(val);

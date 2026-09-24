@@ -1,8 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   calculateTransfer,
   formatDuration,
@@ -40,26 +39,16 @@ const SIZE_PRESETS = [
 ];
 
 export default function DataTransferCalculatorUI() {
-  return (
-    <Suspense>
-      <DataTransferCalculatorInner />
-    </Suspense>
-  );
-}
-
-function DataTransferCalculatorInner() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  /* URL params are applied after mount instead of via useSearchParams(), which
+     opts the whole tool out of server rendering and left crawlers with an
+     empty page. The server renders the defaults; a shared link then fills in. */
+  const [urlLoaded, setUrlLoaded] = useState(false);
 
-  const initSize = searchParams.get("size") || "100";
-  const initSizeUnit = searchParams.get("unit") || "GB";
-  const initSpeed = searchParams.get("speed") || "100";
-  const initSpeedUnit = searchParams.get("speedUnit") || "Mbps";
-
-  const [dataSize, setDataSize] = useState(initSize);
-  const [dataSizeUnit, setDataSizeUnit] = useState(initSizeUnit);
-  const [speed, setSpeed] = useState(initSpeed);
-  const [speedUnit, setSpeedUnit] = useState(initSpeedUnit);
+  const [dataSize, setDataSize] = useState("100");
+  const [dataSizeUnit, setDataSizeUnit] = useState("GB");
+  const [speed, setSpeed] = useState("100");
+  const [speedUnit, setSpeedUnit] = useState("Mbps");
   const [transferType, setTransferType] = useState("Download");
   const [efficiency, setEfficiency] = useState(10);
   const [result, setResult] = useState<TransferResult | null>(null);
@@ -70,6 +59,13 @@ function DataTransferCalculatorInner() {
   const sizeRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const size = q.get("size"), unit = q.get("unit"), sp = q.get("speed"), spUnit = q.get("speedUnit");
+    if (size) setDataSize(size);
+    if (unit) setDataSizeUnit(unit);
+    if (sp) setSpeed(sp);
+    if (spUnit) setSpeedUnit(spUnit);
+    setUrlLoaded(true);
     setHistory(getHistory());
     sizeRef.current?.focus();
   }, []);
@@ -91,10 +87,10 @@ function DataTransferCalculatorInner() {
 
   // Shareable URL
   useEffect(() => {
-    if (!dataSize || !speed) return;
+    if (!urlLoaded || !dataSize || !speed) return;
     const p = new URLSearchParams({ size: dataSize, unit: dataSizeUnit, speed, speedUnit });
     router.replace(`?${p.toString()}`, { scroll: false });
-  }, [dataSize, dataSizeUnit, speed, speedUnit]);
+  }, [urlLoaded, dataSize, dataSizeUnit, speed, speedUnit]);
 
   const buildText = (): string => {
     if (!result) return "";

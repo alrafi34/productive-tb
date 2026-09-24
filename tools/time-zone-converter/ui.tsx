@@ -130,8 +130,6 @@ export default function TimeZoneConverterUI() {
     useCurrentTime();
   };
 
-  if (!isMounted) return null;
-
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Input Panel */}

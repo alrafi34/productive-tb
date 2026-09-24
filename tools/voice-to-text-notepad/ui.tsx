@@ -29,7 +29,9 @@ import RelatedTools from '@/components/RelatedTools';
 
 export default function VoiceToTextNotepadUI() {
   const [text, setText] = useState('');
-  const [isSupported, setIsSupported] = useState(false);
+  /* null until checked in the browser. Starting at false made the server
+     render the "not supported" error as the page's main content. */
+  const [isSupported, setIsSupported] = useState<boolean | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -276,7 +278,7 @@ export default function VoiceToTextNotepadUI() {
     readingTime: estimateReadingTime(text)
   };
 
-  if (!isSupported) {
+  if (isSupported === false) {
     return (
       <div className="max-w-4xl mx-auto">
         <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
@@ -292,6 +294,7 @@ export default function VoiceToTextNotepadUI() {
           </div>
         </div>
         <VoiceToTextNotepadSEOContent />
+        <RelatedTools currentTool="voice-to-text-notepad" tools={["word-counter", "text-to-clipboard", "reading-time-calculator"]} />
       </div>
     );
   }

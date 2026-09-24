@@ -73,16 +73,21 @@ export default function ScreenResolutionCheckerUI() {
     setHistory([]);
   }, []);
 
-  if (!metrics) return null;
-
-  const formatted = formatMetrics(metrics);
-  const metricsArray = Object.entries(formatted);
+  /* Metrics only exist in the browser. Render everything else on the server
+     (returning null here left crawlers with an empty page) and fill the grid
+     in after mount. */
+  const metricsArray = metrics ? Object.entries(formatMetrics(metrics)) : [];
 
   return (
     <>
       <div className="max-w-5xl mx-auto space-y-6">
         {/* Main Metrics Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {!metrics && (
+            <div className="sm:col-span-2 lg:col-span-3 bg-white rounded-xl border border-gray-100 p-4 text-sm text-gray-500">
+              Detecting your screen resolution, viewport and pixel ratio…
+            </div>
+          )}
           {metricsArray.map(([key, value]) => (
             <div
               key={key}
