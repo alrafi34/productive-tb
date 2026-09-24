@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "node scripts/check-tools.mjs && next build",
     "check:tools": "node scripts/check-tools.mjs",
+    "content-dates": "node scripts/content-dates.mjs",
     "start": "next start",
     "lint": "eslint"
   },
