@@ -18,10 +18,10 @@ touch tools/your-tool-name/logic.ts
 touch tools/your-tool-name/ui.tsx
 touch tools/your-tool-name/seo-content.tsx
 
-# 3. Update 3 existing files:
+# 3. Update 2 existing files:
 #    config/tools.ts                       — add entry to tools[] array
-#    lib/tools-registry.ts                 — add import + registry entry
 #    app/tools/[tool]/[subtool]/page.tsx   — add import + TOOLS[] entry
+#    then: pnpm check:tools                — catalogue/route drift check
 
 # 4. Test
 pnpm dev
@@ -187,15 +187,11 @@ export default function ToolSEOContent() {
 { slug: "tool-name", name: "Tool Name", description: "Brief.", category: "writing", icon: "🔧", free: true },
 ```
 
-### `lib/tools-registry.ts` — needed by RelatedTools
+### `pnpm check:tools` — catalogue drift check
 
-```typescript
-// Top — import:
-import { toolConfig as toolNameConfig } from "@/tools/tool-name/config";
-
-// In TOOLS_REGISTRY object:
-"tool-name": toolNameConfig,
-```
+Fails if a tool folder is missing from `config/tools.ts`, or a registered tool has no
+route. Runs automatically at the start of `pnpm build`. RelatedTools reads
+`config/tools.ts` directly — there is no separate registry.
 
 ### `app/tools/[tool]/[subtool]/page.tsx` — ⚠️ this is the ROUTING file
 
@@ -349,7 +345,7 @@ Keywords:    primary, "free primary", "online primary", variations, long-tail (1
 [ ] Folder created: tools/your-tool-name/
 [ ] 4 files created: config.ts, logic.ts, ui.tsx, seo-content.tsx
 [ ] config/tools.ts updated (correct category slug!)
-[ ] lib/tools-registry.ts updated
+[ ] pnpm check:tools passes
 [ ] app/tools/[tool]/[subtool]/page.tsx updated
 [ ] "use client" on first line of ui.tsx
 [ ] RelatedTools rendered last in ui.tsx
@@ -369,7 +365,7 @@ Keywords:    primary, "free primary", "online primary", variations, long-tail (1
 | Error | Cause | Fix |
 |---|---|---|
 | 404 on tool URL | Not in TOOL_COMPONENTS | Update `[subtool]/page.tsx` with dynamic import |
-| RelatedTools blank | Not in tools-registry | Update `lib/tools-registry.ts` |
+| RelatedTools card missing | Slug not in config/tools.ts | Add it; run `pnpm check:tools` |
 | "use client" error | Server component using hooks | Add `"use client"` line 1 |
 | **Large bundle size** | **Static imports** | **Use `dynamic()` imports** |
 | **Low Lighthouse score** | **No ssr: false flag** | **Add `{ ssr: false }` to dynamic()** |

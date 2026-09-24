@@ -39,12 +39,15 @@ tools/your-tool-name/
   └── seo-content.tsx   ← SEO sections (How-To, FAQ, Benefits)
 ```
 
-### Files to Update (3)
+### Files to Update (2)
 ```
 config/tools.ts                          ← Register tool in the list + pick category
-lib/tools-registry.ts                    ← Add to centralized registry (used by RelatedTools)
 app/tools/[tool]/[subtool]/page.tsx      ← Add import + entry in TOOLS array
 ```
+
+`config/tools.ts` is the single source of truth for the catalogue: sitemap, search,
+category pages and RelatedTools all read it. `pnpm check:tools` (also run by
+`pnpm build`) fails if a tool folder is missing from it or a registered tool has no route.
 
 ---
 
@@ -78,7 +81,7 @@ productive-tb/
 │       └── seo-content.tsx
 │
 └── lib/
-    └── tools-registry.ts                # Used by RelatedTools component
+    └── search-tools.ts                  # Search ranking shared by hero + header search
 ```
 
 ---
@@ -469,22 +472,16 @@ export const tools: Tool[] = [
 
 ---
 
-### Step 7: Register in `lib/tools-registry.ts`
+### Step 7: Run the catalogue check
 
-This registry is used by the `RelatedTools` component to resolve tool slugs to data.
-
-```typescript
-// lib/tools-registry.ts
-
-// 1. Add import at the top
-import { toolConfig as yourToolConfig } from "@/tools/your-tool-name/config";
-
-// 2. Add to TOOLS_REGISTRY object
-export const TOOLS_REGISTRY = {
-  // ... existing entries ...
-  "your-tool-name": yourToolConfig,
-};
+```bash
+pnpm check:tools
 ```
+
+It fails if your tool folder's config slug is missing from `config/tools.ts`, or if the
+registered slug is not served at `/tools/<category>/<slug>`. The same check runs at the
+start of `pnpm build`, so a drifted catalogue cannot deploy. `RelatedTools` needs no
+separate registration — it reads `config/tools.ts`.
 
 ---
 
@@ -506,7 +503,7 @@ const TOOLS = [
 ];
 ```
 
-> ⚠️ **Both `lib/tools-registry.ts` AND `app/tools/[tool]/[subtool]/page.tsx` must be updated.** Missing either one will cause a 404 or broken RelatedTools.
+> ⚠️ **Both `config/tools.ts` AND a route must be updated.** Missing the route causes a 404; missing the registry entry hides the tool from sitemap, search and RelatedTools. `pnpm check:tools` catches both.
 
 ---
 
@@ -932,7 +929,7 @@ npm run build
 
 ### Registration
 - [ ] Added to `config/tools.ts` with correct category slug
-- [ ] Added to `lib/tools-registry.ts`
+- [ ] `pnpm check:tools` passes
 - [ ] Added with `dynamic()` import in `app/tools/[tool]/[subtool]/page.tsx`
 - [ ] Category page shows the new tool card
 - [ ] Homepage search finds the new tool
@@ -986,7 +983,7 @@ npm run build
 |---|---|
 | Missing `"use client"` in ui.tsx | Add as the very first line |
 | Using wrong category slug | Check the 10-slug table in this guide |
-| Forgetting `lib/tools-registry.ts` update | RelatedTools component will silently fail |
+| Forgetting the `config/tools.ts` entry | `pnpm check:tools` / `pnpm build` fails; tool missing from sitemap, search and RelatedTools |
 | Forgetting `[subtool]/page.tsx` update | Tool returns 404 |
 | **Static import instead of dynamic()** | **Use `dynamic(() => import(...), { ssr: false })`** |
 | **Importing heavy libraries at top level** | **Lazy load or use lighter alternatives** |
