@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
 import { siteConfig } from "@/config/site";
@@ -838,6 +838,14 @@ const TOOLS = [
 
 export const dynamicParams = true;
 
+/* The registry decides a tool's category; tools missing from it fall back to
+   their own config. Never trust the URL segment — this route matches any
+   /tools/<anything>/<slug>, and using that segment made unregistered tools
+   self-canonicalise under every category. */
+function canonicalCategoryFor(entry: (typeof TOOLS)[number], slug: string): string | undefined {
+  return tools.find((t) => t.slug === slug)?.category ?? (entry.config as any).category;
+}
+
 /* Tool pages are static content. Hourly revalidation bought nothing and
    multiplied cold renders, which Googlebot pays for in TTFB. */
 export const revalidate = 86400;
@@ -861,14 +869,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
-  const mappedCategory = tools.find((t) => t.slug === slug)?.category;
   if (!entry) {
     return {};
   }
 
   const config = entry.config as any;
   const seo = config.seo || {};
-  const canonicalCategory = mappedCategory || category;
+  const canonicalCategory = canonicalCategoryFor(entry, slug) ?? category;
   const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
   
   // Fallback to config properties if seo is not defined
@@ -915,12 +922,14 @@ export default async function ToolPage({
 }) {
   const { tool: category, subtool: slug } = await params;
   const entry = TOOLS.find(t => t.config.slug === slug);
-  const mappedCategory = tools.find((t) => t.slug === slug)?.category;
   if (!entry) {
     notFound();
   }
   const { config, Component } = entry;
-  const canonicalCategory = mappedCategory || category;
+  const canonicalCategory = canonicalCategoryFor(entry, slug) ?? category;
+  if (canonicalCategory !== category) {
+    permanentRedirect(`/tools/${canonicalCategory}/${slug}`);
+  }
   const canonicalUrl = `${siteConfig.url}/tools/${canonicalCategory}/${slug}`;
   
   // Handle both name and title properties

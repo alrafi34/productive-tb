@@ -534,7 +534,7 @@ export default function RainwaterRunoffCalculatorUI() {
           "irrigation-water-calculator",
           "water-tank-capacity-calculator",
           "drainage-flow-calculator",
-          "land-area-calculator",
+          "land-area-calculator-square-feet",
         ]}
       />
     </>

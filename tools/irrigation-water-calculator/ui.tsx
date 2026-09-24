@@ -494,7 +494,7 @@ export default function IrrigationWaterCalculatorUI() {
         currentTool="irrigation-water-calculator"
         tools={[
           "fertilizer-requirement-calculator",
-          "land-area-calculator",
+          "land-area-calculator-square-feet",
           "rainwater-harvesting-calculator",
           "water-tank-capacity-calculator",
         ]}

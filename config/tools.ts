@@ -256,6 +256,12 @@ export const tools: Tool[] = [
 
   // ── New 50 Tools ── (Security)
   { slug: "url-sanitizer", name: "URL Tracker Remover", description: "Paste any URL to strip UTM parameters, fbclid, gclid, and other tracking tokens automatically.", category: "security", icon: "🧹", free: true },
+  { slug: "text-encryptor-aes", name: "AES Text Encryptor", description: "Encrypt and decrypt text with AES-GCM using the browser's Web Crypto API.", category: "security", icon: "🔐", free: true },
+  { slug: "bcrypt-hash-verifier", name: "Bcrypt Hash Verifier", description: "Check whether a password matches a bcrypt hash, locally in your browser.", category: "security", icon: "🔐", free: true },
+  { slug: "email-obfuscator", name: "Email Obfuscator", description: "Encode email addresses as HTML character codes to hide them from spam bots.", category: "security", icon: "📧", free: true },
+  { slug: "file-hash-generator", name: "File Hash Generator", description: "Generate SHA-256 fingerprints of files without uploading them.", category: "security", icon: "🔑", free: true },
+  { slug: "sri-generator", name: "SRI Hash Generator", description: "Generate Subresource Integrity hashes and ready-to-use tags for CDN scripts and stylesheets.", category: "security", icon: "🔐", free: true },
+  { slug: "steganography-tool", name: "Steganography Tool", description: "Hide secret messages inside images using LSB steganography.", category: "security", icon: "🖼️", free: true },
 
   // ── New 50 Tools ── (Creator)
   { slug: "qr-code-generator", name: "QR Code Generator", description: "Create custom scannable QR codes for links, text, WiFi, and contact data.", category: "creator", icon: "📱", free: true },
@@ -369,6 +375,7 @@ export const tools: Tool[] = [
   { slug: "frequency-response-calculator", name: "Frequency Response Calculator", description: "Analyze system frequency response.", category: "electrical", icon: "📊", free: true },
 
   // ── Land & Surveying Tools (38 tools) ──
+  { slug: "land-area-calculator-square-feet", name: "Land Area Calculator (Square Feet)", description: "Calculate land area in square feet from length and width, with feet, meter and yard inputs.", category: "land", icon: "📐", free: true },
   { slug: "land-area-calculator-square-meter", name: "Land Area Calculator (Square Meter)", description: "Convert and calculate land area in square meters.", category: "land", icon: "📐", free: true },
   { slug: "acre-to-square-feet-converter", name: "Acre to Square Feet Converter", description: "Convert acres into square feet.", category: "land", icon: "🔄", free: true },
   { slug: "square-feet-to-acre-converter", name: "Square Feet to Acre Converter", description: "Convert square feet into acres.", category: "land", icon: "🔄", free: true },
