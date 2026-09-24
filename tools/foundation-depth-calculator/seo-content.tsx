@@ -1,184 +1,114 @@
+const BEARING: [string, string, string, string][] = [
+  ["Crystalline bedrock", "—", "12,000", "574.6"],
+  ["Sedimentary and foliated rock", "—", "4,000", "191.5"],
+  ["Sandy gravel and/or gravel", "GW, GP", "3,000", "143.6"],
+  ["Sand, silty sand, clayey sand, silty gravel, clayey gravel", "SW, SP, SM, SC, GM, GC", "2,000", "95.8"],
+  ["Clay, sandy clay, silty clay, clayey silt, silt, sandy silt", "CL, ML, MH, CH", "1,500", "71.8"],
+];
+
 export default function FoundationDepthCalculatorSEO() {
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
       <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">About Foundation Depth Calculator</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">About the Foundation Depth Calculator</h2>
         <p className="text-gray-700 leading-relaxed mb-4">
-          The Foundation Depth Calculator is a professional engineering tool designed to help civil engineers, architects, and construction professionals determine the required depth of building foundations based on multiple critical factors including soil type, load conditions, frost depth, groundwater level, and safety requirements.
+          This calculator answers the two questions a residential footing has to satisfy: <strong>how deep</strong> its
+          bottom must sit below grade, and <strong>how wide</strong> it must be to carry its load. It follows the
+          International Residential Code (IRC) minimums and presumptive soil bearing values used across most of the US,
+          with a metric mode for the same rules.
         </p>
         <p className="text-gray-700 leading-relaxed">
-          This calculator uses established geotechnical engineering principles to provide accurate foundation depth estimates, taking into account soil bearing capacity, environmental conditions, and structural safety factors. It's an essential tool for preliminary foundation design and planning.
+          Depth and width are governed by different things. Depth is set by frost and the code minimum — not by load.
+          Load and soil strength set the width. Treating one as the other is the most common mistake in footing
+          estimates.
         </p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Foundation Depth Calculator</h2>
-        <ol className="list-decimal list-inside space-y-2 text-gray-700">
-          <li><strong>Select Soil Type:</strong> Choose from clay, sand, silt, gravel, or rock based on your site conditions</li>
-          <li><strong>Enter Load:</strong> Input the expected load on the foundation in kN/m²</li>
-          <li><strong>Set Frost Depth:</strong> Enter the local frost penetration depth in meters or feet</li>
-          <li><strong>Choose Groundwater Level:</strong> Select low, medium, or high based on site conditions</li>
-          <li><strong>Select Safety Factor:</strong> Choose appropriate safety factor (1.5, 2.0, or 2.5)</li>
-          <li><strong>Pick Foundation Type:</strong> Select from shallow, strip, raft, or pile foundation</li>
-          <li><strong>Review Results:</strong> Get instant calculation with safety status and engineering notes</li>
-        </ol>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Understanding Soil Bearing Capacity</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-          <h3 className="font-semibold text-gray-900 mb-2">Default Bearing Capacities:</h3>
-          <ul className="space-y-1 text-gray-700">
-            <li><strong>Clay:</strong> 75 kN/m² - Soft to medium clay soil</li>
-            <li><strong>Sand:</strong> 150 kN/m² - Compact sand with good drainage</li>
-            <li><strong>Silt:</strong> 100 kN/m² - Fine-grained soil</li>
-            <li><strong>Gravel:</strong> 300 kN/m² - Coarse gravel with excellent bearing</li>
-            <li><strong>Rock:</strong> 1000 kN/m² - Solid rock with highest capacity</li>
-          </ul>
-        </div>
-        <p className="text-gray-700 leading-relaxed">
-          Soil bearing capacity is the ability of soil to support loads from structures. The calculator uses standard values but also allows you to input custom bearing capacity values for more accurate site-specific calculations.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Factors in Foundation Depth</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">1. Soil Type and Bearing Capacity</h3>
-            <p className="text-gray-700">
-              Different soil types have varying load-bearing capacities. Weaker soils like clay require deeper foundations to distribute loads effectively, while rock can support structures with shallower foundations.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">2. Frost Depth</h3>
-            <p className="text-gray-700">
-              Foundations must extend below the frost line to prevent heaving and structural damage from freeze-thaw cycles. The calculator ensures the foundation depth meets or exceeds local frost penetration requirements.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">3. Groundwater Level</h3>
-            <p className="text-gray-700">
-              High groundwater levels reduce soil bearing capacity and require deeper foundations. The calculator applies appropriate adjustments (10-15%) based on water table conditions.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">4. Safety Factor</h3>
-            <p className="text-gray-700">
-              Safety factors account for uncertainties in soil properties and loading conditions. Higher safety factors (2.5) are recommended for critical structures, while standard buildings typically use 2.0.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Foundation Types</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Shallow Foundation</h3>
-            <p className="text-sm text-gray-700">
-              Used when soil has adequate bearing capacity near the surface. Includes spread footings and mat foundations. Most economical option for stable soil conditions.
-            </p>
-          </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Strip Footing</h3>
-            <p className="text-sm text-gray-700">
-              Continuous foundation supporting load-bearing walls. Distributes loads along the length of walls. Common in residential construction.
-            </p>
-          </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Raft Foundation</h3>
-            <p className="text-sm text-gray-700">
-              Large concrete slab covering entire building area. Distributes loads over maximum area. Ideal for weak soils or heavy structures.
-            </p>
-          </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">Pile Foundation</h3>
-            <p className="text-sm text-gray-700">
-              Deep foundation transferring loads to stronger soil layers or bedrock. Used when surface soil is inadequate. Requires specialized equipment.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Calculation Formula</h2>
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <p className="text-gray-800 font-mono text-sm mb-2">
-            Depth = max(Frost Depth, (Load / Bearing Capacity) × Safety Factor) × Adjustments
-          </p>
-          <p className="text-sm text-gray-700 mt-2">
-            Where adjustments include water level factors (1.0-1.15) and foundation type factors (0.95-1.2)
-          </p>
-        </div>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Practical Applications</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">How Depth Is Determined</h2>
         <ul className="list-disc list-inside space-y-2 text-gray-700">
-          <li>Residential building foundation design</li>
-          <li>Commercial structure preliminary planning</li>
-          <li>Foundation cost estimation</li>
-          <li>Site feasibility studies</li>
-          <li>Geotechnical engineering assessments</li>
-          <li>Construction project planning</li>
-          <li>Building permit applications</li>
-          <li>Foundation repair and retrofitting</li>
+          <li>
+            <strong>At least 12 in below undisturbed ground</strong> for exterior footings (IRC R403.1.4).
+          </li>
+          <li>
+            <strong>Below the frost line</strong> (R403.1.4.1). Soil that freezes under a footing expands and lifts it —
+            frost heave. The frost depth is set by your local building department (IRC Table R301.2(1)); across the US it
+            ranges from effectively zero along the Gulf Coast to 48–60 in or more in the northern states.
+          </li>
+          <li>
+            The required depth is the <strong>greater of the two</strong>. Frost-protected shallow foundations (R403.3),
+            which use rigid insulation to raise the frost line, are the main exception.
+          </li>
         </ul>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Important Considerations</h2>
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-          <p className="text-gray-800 font-semibold mb-2">⚠️ Professional Consultation Required</p>
-          <p className="text-sm text-gray-700">
-            This calculator provides preliminary estimates based on simplified engineering principles. Actual foundation design must be performed by licensed structural engineers and geotechnical professionals who can conduct site-specific soil testing and analysis. Local building codes and regulations must be followed.
-          </p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">How Width Is Determined</h2>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+          <p className="text-sm text-gray-700 mb-2"><strong>Wall footing:</strong> Width = Wall load per foot (plf) ÷ Allowable bearing (psf)</p>
+          <p className="text-sm text-gray-700"><strong>Column footing:</strong> Area = Column load (lb) ÷ Allowable bearing (psf); side = √Area</p>
+        </div>
+        <p className="text-gray-700">
+          Footings must also be at least <strong>12 in wide</strong> and <strong>6 in thick</strong> (IRC R403.1.1), so a
+          light load on good soil is governed by the minimum rather than the formula. Widths are rounded up to the next
+          ¼ in — a footing is never sized smaller than the load needs.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Presumptive Soil Bearing Values</h2>
+        <p className="text-gray-700 mb-4">
+          Without a geotechnical report, the IRC allows these allowable bearing pressures (Table R401.4.1). They already
+          include a margin of safety, so they are used directly — not divided by a further safety factor.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm border border-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-3 py-2 text-left border-b">Soil</th>
+                <th className="px-3 py-2 text-left border-b">USCS</th>
+                <th className="px-3 py-2 text-left border-b">psf</th>
+                <th className="px-3 py-2 text-left border-b">kPa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {BEARING.map(([soil, uscs, psf, kpa]) => (
+                <tr key={soil} className="border-b last:border-0">
+                  <td className="px-3 py-2">{soil}</td>
+                  <td className="px-3 py-2 text-gray-500">{uscs}</td>
+                  <td className="px-3 py-2 font-semibold">{psf}</td>
+                  <td className="px-3 py-2">{kpa}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What is the minimum foundation depth?</h3>
-            <p className="text-gray-700">
-              Minimum foundation depth is typically determined by local frost depth requirements, usually ranging from 0.6m to 1.5m (2-5 feet) depending on climate zone. The calculator ensures foundations meet or exceed this minimum.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How does soil type affect foundation depth?</h3>
-            <p className="text-gray-700">
-              Weaker soils like clay require deeper foundations to distribute loads over a larger area, while stronger soils like rock can support structures with shallower foundations. The calculator automatically adjusts depth based on soil bearing capacity.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What safety factor should I use?</h3>
-            <p className="text-gray-700">
-              Standard buildings typically use a safety factor of 2.0. Use 1.5 for temporary structures or when soil properties are well-known. Use 2.5 for critical structures like hospitals or when soil conditions are uncertain.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this for all foundation types?</h3>
-            <p className="text-gray-700">
-              The calculator supports shallow foundations, strip footings, raft foundations, and pile foundations. Each type has different depth requirements and load distribution characteristics that are factored into the calculations.
-            </p>
-          </div>
-        </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Worked Example</h2>
+        <p className="text-gray-700 mb-2">
+          An exterior wall carrying 2,800 plf on silty sand (2,000 psf) where the local frost depth is 36 in:
+        </p>
+        <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <li>Depth = greater of 12 in and 36 in = <strong>36 in (3 ft)</strong> to the bottom of the footing — frost governs</li>
+          <li>Width = 2,800 ÷ 2,000 = 1.4 ft = 16.8 in, rounded up to <strong>17 in</strong> — load governs over the 12 in minimum</li>
+        </ul>
+        <p className="text-gray-700 mt-2">The same wall on clay (1,500 psf) needs 2,800 ÷ 1,500 = 1.87 ft, or 22.5 in.</p>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Benefits of Using This Calculator</h2>
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">When You Need an Engineer</h2>
         <ul className="list-disc list-inside space-y-2 text-gray-700">
-          <li>Instant foundation depth calculations with real-time updates</li>
-          <li>Considers multiple critical factors (soil, load, frost, water)</li>
-          <li>Provides safety status assessment (safe, risky, critical)</li>
-          <li>Includes engineering notes and recommendations</li>
-          <li>Supports both metric and imperial units</li>
-          <li>Export results for documentation and reporting</li>
-          <li>Save calculation history for project tracking</li>
-          <li>Free to use with no registration required</li>
+          <li><strong>Expansive soils</strong> — clays with a plasticity index of 15 or more need special design (IRC R403.1.8).</li>
+          <li><strong>Fill, organic or soft soils</strong>, or bearing values below the presumptive table.</li>
+          <li><strong>High groundwater</strong>, slopes, or footings near an existing foundation or retaining wall.</li>
+          <li><strong>Commercial buildings or heavy loads</strong>, which fall under the IBC and usually require a soils report.</li>
         </ul>
+        <p className="text-gray-700 mt-4">
+          This tool gives code-minimum estimates for planning and bidding. It is not a foundation design — the engineer
+          of record and your building department have the final say.
+        </p>
       </section>
     </div>
   );

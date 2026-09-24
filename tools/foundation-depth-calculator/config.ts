@@ -2,7 +2,7 @@ export const foundationDepthCalculatorConfig = {
   name: "Foundation Depth Calculator",
   slug: "foundation-depth-calculator",
   category: "architecture",
-  description: "Calculate required foundation depth based on soil type, load, frost depth, and safety factors. Free online foundation depth calculator for engineers and builders.",
+  description: "Find how deep a footing must go (frost line or the 12 in IRC minimum) and how wide it must be for its load, using IRC presumptive soil bearing values or your soils report.",
   icon: "⬇️",
   color: "#058554",
   featured: false,
@@ -18,7 +18,7 @@ export const foundationDepthCalculatorConfig = {
   ],
   seo: {
     title: "Foundation Depth Calculator – Calculate Safe Foundation Depth Online",
-    description: "Easily calculate foundation depth based on soil type, load, frost depth, and safety factors. Free online foundation depth calculator for engineers and builders.",
+    description: "Free foundation depth calculator: minimum footing depth from frost depth and the IRC 12 in rule, plus footing width from wall or column load and soil bearing.",
     keywords: "foundation depth calculator, soil bearing capacity calculator, foundation design tool, civil engineering calculator, footing depth calculation",
     og: {
       title: "Foundation Depth Calculator – Free Online Tool",
