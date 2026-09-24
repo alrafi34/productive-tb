@@ -8,13 +8,15 @@ import { searchTools } from "@/lib/search-tools";
 
 const categoryName = new Map(categories.map(c => [c.slug, c.name]));
 
-/* Fast-path shortcuts to genuinely high-intent tools */
+/* The five tools with the most search clicks (GSC, six months to 2026-09-21).
+   The previous picks were guesses — torque-calculator had no impressions at
+   all and is now noindexed — so revisit this list from data, not intuition. */
 const QUICK_LINKS = [
-  { slug: "voltage-drop-calculator", category: "electrical", label: "Voltage Drop" },
-  { slug: "beam-load-calculator", category: "architecture", label: "Beam Load" },
-  { slug: "torque-calculator", category: "mechanical", label: "Torque" },
-  { slug: "percentage-calculator", category: "calculator", label: "Percentage" },
-  { slug: "word-counter", category: "writing", label: "Word Counter" },
+  { slug: "plot-division-calculator", category: "land", label: "Plot Division" },
+  { slug: "escalation-cost-calculator", category: "architecture", label: "Escalation Cost" },
+  { slug: "parking-space-calculator", category: "architecture", label: "Parking Space" },
+  { slug: "shadow-length-calculator", category: "architecture", label: "Shadow Length" },
+  { slug: "decimal-land-calculator", category: "land", label: "Decimal Land" },
 ];
 
 const MAX_RESULTS = 8;

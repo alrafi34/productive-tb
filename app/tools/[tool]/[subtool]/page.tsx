@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
 import { siteConfig } from "@/config/site";
+import { toolRobots } from "@/lib/indexing";
 import { tools, categories } from "@/config/tools";
 
 import { toolConfig as wordCounterConfig } from "@/tools/word-counter/config";
@@ -127,7 +128,6 @@ import { toolConfig as simpleInterestCalculatorConfig } from "@/tools/simple-int
 import { toolConfig as compoundInterestCalculatorConfig } from "@/tools/compound-interest-calculator/config";
 import { mortgageCalculatorConfig } from "@/tools/mortgage-calculator/config";
 import { toolConfig as investmentReturnCalculatorConfig } from "@/tools/investment-return-calculator/config";
-import { toolConfig as profitMarginCalculatorConfig } from "@/tools/profit-margin-calculator/config";
 import { toolConfig as gstVatCalculatorConfig } from "@/tools/gst-vat-calculator/config";
 import { toolConfig as salaryCalculatorConfig } from "@/tools/salary-calculator/config";
 import { toolConfig as bmrCalculatorConfig } from "@/tools/bmr-calculator/config";
@@ -403,7 +403,6 @@ const SimpleInterestCalculatorUI = dynamic(() => import("@/tools/simple-interest
 const CompoundInterestCalculatorUI = dynamic(() => import("@/tools/compound-interest-calculator/ui"));
 const MortgageCalculatorUI = dynamic(() => import("@/tools/mortgage-calculator/ui"));
 const InvestmentReturnCalculatorUI = dynamic(() => import("@/tools/investment-return-calculator/ui"));
-const ProfitMarginCalculatorUI = dynamic(() => import("@/tools/profit-margin-calculator/ui"));
 const GSTVATCalculatorUI = dynamic(() => import("@/tools/gst-vat-calculator/ui"));
 const SalaryCalculatorUI = dynamic(() => import("@/tools/salary-calculator/ui"));
 const BMRCalculatorUI = dynamic(() => import("@/tools/bmr-calculator/ui"));
@@ -680,7 +679,6 @@ const TOOLS = [
   { config: compoundInterestCalculatorConfig, Component: CompoundInterestCalculatorUI },
   { config: mortgageCalculatorConfig, Component: MortgageCalculatorUI },
   { config: investmentReturnCalculatorConfig, Component: InvestmentReturnCalculatorUI },
-  { config: profitMarginCalculatorConfig, Component: ProfitMarginCalculatorUI },
   { config: gstVatCalculatorConfig, Component: GSTVATCalculatorUI },
   { config: salaryCalculatorConfig, Component: SalaryCalculatorUI },
   { config: bmrCalculatorConfig, Component: BMRCalculatorUI },
@@ -908,7 +906,9 @@ export async function generateMetadata({
       images: [ogImage],
     },
     alternates: { canonical: canonicalUrl },
-    // No `robots` key on purpose. The root layout sets robots.googleBot with
+    ...toolRobots(slug),
+    // `robots` is only set by toolRobots() above, for tools in config/noindex.ts.
+    // Otherwise it is left unset on purpose: the root layout sets robots.googleBot with
     // max-image-preview:large and max-snippet:-1, and Next replaces the parent
     // robots object wholesale rather than merging — declaring a bare
     // { index, follow } here would silently drop those two directives.

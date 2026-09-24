@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { tools, categories } from '@/config/tools';
 import { siteConfig } from '@/config/site';
 import { TOOL_CONTENT_DATES, PAGE_CONTENT_DATES } from '@/config/content-dates';
+import { NOINDEX_TOOLS } from '@/config/noindex';
 
 /* lastModified comes from config/content-dates.ts — the date each page's
    content actually changed, derived from git by scripts/content-dates.mjs.
@@ -73,7 +74,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // ── Individual tool pages ────────────────────────────────────────
-  const toolUrls: MetadataRoute.Sitemap = tools.map((tool) => ({
+  // Noindexed tools are left out: listing a URL while telling Google not to
+  // index it is a contradictory signal.
+  const toolUrls: MetadataRoute.Sitemap = tools.filter((tool) => !NOINDEX_TOOLS.has(tool.slug)).map((tool) => ({
     url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
     lastModified: toolDate(tool.slug),
     changeFrequency: 'monthly' as const,

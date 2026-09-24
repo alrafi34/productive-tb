@@ -4,7 +4,9 @@
  *
  * A tool's date is the last commit touching its seo-content.tsx or config.ts —
  * the copy and metadata Google reads. UI and logic refactors do not count.
- * Commits in IGNORE_COMMITS are mechanical edits that should not bump a date.
+ * Mechanical commits that should not bump a date are skipped: either listed in
+ * IGNORE_COMMITS, or — preferred, since rebase-merging rewrites hashes — with
+ * "[no-content-date]" anywhere in the commit message.
  *
  * Git history is read here, at development time, rather than during the build:
  * Vercel builds from a shallow clone, where it is not reliable.
@@ -56,7 +58,7 @@ function lastChanged(files) {
   const existing = files.filter((f) => fs.existsSync(path.join(ROOT, f)));
   if (!existing.length) return null;
   if (existing.some((f) => uncommitted.has(f))) return today;
-  const log = git('log', '--format=%h %cs', '--', ...existing);
+  const log = git('log', '--format=%h %cs', '--invert-grep', '--fixed-strings', '--grep=[no-content-date]', '--', ...existing);
   for (const line of log.split('\n')) {
     const [hash, date] = line.split(' ');
     if (hash && !IGNORE_COMMITS.has(hash.slice(0, 7))) return date;

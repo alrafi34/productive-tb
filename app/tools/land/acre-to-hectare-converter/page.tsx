@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import ToolLayout from "@/components/ToolLayout";
 import { siteConfig } from "@/config/site";
+import { toolRobots } from "@/lib/indexing";
 import { categories } from "@/config/tools";
 import { acreToHectareConverterConfig as config } from "@/tools/acre-to-hectare-converter/config";
 
@@ -36,7 +37,9 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   alternates: { canonical: canonicalUrl },
-  // No `robots` key on purpose. The root layout sets robots.googleBot with
+  ...toolRobots("acre-to-hectare-converter"),
+  // `robots` is only set by toolRobots() above, for tools in config/noindex.ts.
+  // Otherwise it is left unset on purpose: the root layout sets robots.googleBot with
   // max-image-preview:large and max-snippet:-1, and Next replaces the parent
   // robots object wholesale rather than merging — declaring a bare
   // { index, follow } here would silently drop those two directives.
