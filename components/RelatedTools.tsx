@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { tools, categories, type Tool } from '@/config/tools';
+import { NOINDEX_TOOLS } from '@/config/noindex';
 
 /* Resolved from `config/tools` on purpose. This component is imported by
    `"use client"` tool UIs, so anything it imports ships to the browser —
@@ -77,7 +78,8 @@ export default function RelatedTools({ currentTool, tools: slugs = [], title = "
   const add = (list: Tool[]) => {
     for (const tool of list) {
       if (picked.length >= TARGET_COUNT) return;
-      if (seen.has(tool.slug)) continue;
+      /* Noindexed tools earned no search demand; spend the links on pages that do. */
+      if (seen.has(tool.slug) || NOINDEX_TOOLS.has(tool.slug)) continue;
       seen.add(tool.slug);
       picked.push(tool);
     }

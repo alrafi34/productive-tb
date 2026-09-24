@@ -16,6 +16,25 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000,
   },
 
+  /* Tools merged into an earning sibling (#22 triage, GSC export 2026-09-24).
+     Each source had zero impressions in six months; its target covers the same
+     calculation and earns clicks. Any category segment is matched, so old and
+     wrong-category URLs land on the target in one hop. `permanent` sends 308,
+     which Google treats as a 301. */
+  async redirects() {
+    const merged: Record<string, string> = {
+      "f1-score-calculator-analytics": "/tools/computer-science/f1-score-calculator",
+      "precision-calculator": "/tools/computer-science/precision-recall-calculator",
+      "recall-calculator": "/tools/computer-science/precision-recall-calculator",
+      "confusion-matrix-analyzer": "/tools/computer-science/confusion-matrix-calculator",
+      "profit-margin-calculator": "/tools/marketing/profit-margin-calculator-marketing",
+    };
+    return Object.entries(merged).flatMap(([slug, destination]) => [
+      { source: `/tools/:category/${slug}`, destination, permanent: true },
+      { source: `/tools/${slug}`, destination, permanent: true },
+    ]);
+  },
+
   experimental: {
     /* Deliberately not paired with `modularizeImports` for lucide-react:
        optimizePackageImports is its modern replacement, and running both can

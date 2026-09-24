@@ -7,7 +7,9 @@
  *   3. a config/tools.ts entry that no route serves at /tools/<category>/<slug>
  *      (listed in the sitemap but 404);
  *   4. a config/tools.ts entry with no date in config/content-dates.ts
- *      (its sitemap URL would have no <lastmod> — see #17).
+ *      (its sitemap URL would have no <lastmod> — see #17);
+ *   5. a config/noindex.ts slug that no tool declares (a typo would silently
+ *      leave the intended page indexed — see #22).
  *
  * Folder names are not always the slug (css-blob-generator serves
  * css-border-radius-blob), so everything is keyed on the slug in each
@@ -27,9 +29,7 @@ const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 const ALLOW_UNREGISTERED = new Set([
   'tip-calculator',
   'roman-numeral-converter',
-  'profit-margin-calculator',
   'roi-calculator-marketing',
-  'f1-score-calculator',
   'binary-to-decimal-calculator',
   'decimal-to-binary-calculator',
 ]);
@@ -81,6 +81,9 @@ for (const slug of registry.keys()) {
   if (!dated.has(slug)) {
     problems.push(`config/tools.ts "${slug}" has no date in config/content-dates.ts — run \`node scripts/content-dates.mjs\` and commit`);
   }
+}
+for (const [, slug] of read('config/noindex.ts').matchAll(/^\s*"([^"]+)",$/gm)) {
+  if (!folderBySlug.has(slug)) problems.push(`config/noindex.ts "${slug}" matches no tool`);
 }
 for (const slug of ALLOW_UNREGISTERED) {
   if (registry.has(slug)) problems.push(`"${slug}" is registered now — remove it from ALLOW_UNREGISTERED`);
