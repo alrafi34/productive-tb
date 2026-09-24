@@ -8,10 +8,9 @@ export const rocAucCalculatorConfig = {
   icon: "📊",
   free: true,
   relatedTools: [
-    "precision-calculator",
-    "recall-calculator",
-    "f1-score-calculator-analytics",
-    "confusion-matrix-analyzer",
+    "precision-recall-calculator",
+    "f1-score-calculator",
+    "confusion-matrix-calculator",
     "chi-square-calculator",
     "a-b-test-calculator",
   ],

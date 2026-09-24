@@ -12,7 +12,7 @@ export const dataSamplingCalculatorConfig = {
     "p-value-calculator",
     "correlation-coefficient-calculator",
     "data-normalization-calculator",
-    "confusion-matrix-analyzer",
+    "confusion-matrix-calculator",
     "time-series-forecast-calculator",
   ],
   seo: {

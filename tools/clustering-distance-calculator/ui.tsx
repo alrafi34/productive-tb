@@ -297,7 +297,7 @@ export default function ClusteringDistanceCalculatorUI() {
           "correlation-coefficient-calculator",
           "standard-deviation-calculator",
           "roc-auc-calculator",
-          "confusion-matrix-analyzer",
+          "confusion-matrix-calculator",
           "regression-calculator",
           "outlier-detection-calculator",
         ]}

@@ -488,7 +488,7 @@ export default function RevenueGrowthCalculatorUI() {
           "cost-per-acquisition-cpa-calculator",
           "customer-lifetime-value-calculator",
           "investment-return-calculator",
-          "profit-margin-calculator",
+          "profit-margin-calculator-marketing",
           "conversion-rate-calculator",
         ]}
       />
