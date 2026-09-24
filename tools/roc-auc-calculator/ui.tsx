@@ -291,10 +291,9 @@ export default function ROCAUCCalculatorUI() {
       <RelatedTools
         currentTool="roc-auc-calculator"
         tools={[
-          "precision-calculator",
-          "recall-calculator",
-          "f1-score-calculator-analytics",
-          "confusion-matrix-analyzer",
+          "precision-recall-calculator",
+          "f1-score-calculator",
+          "confusion-matrix-calculator",
           "chi-square-calculator",
           "a-b-test-calculator",
         ]}

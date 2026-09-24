@@ -117,7 +117,7 @@ export const toolConfig = {
     ],
   },
   relatedTools: [
-    "profit-margin-calculator",
+    "profit-margin-calculator-marketing",
     "percentage-calculator",
     "gst-vat-calculator",
     "tip-calculator",

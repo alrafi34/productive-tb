@@ -123,7 +123,7 @@ export const toolConfig = {
   relatedTools: [
     "percentage-calculator",
     "discount-calculator",
-    "profit-margin-calculator",
+    "profit-margin-calculator-marketing",
     "compound-interest-calculator",
     "revenue-growth-calculator",
   ],

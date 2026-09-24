@@ -454,7 +454,7 @@ export default function GSTVATCalculatorUI() {
           "percentage-calculator",
           "simple-interest-calculator",
           "compound-interest-calculator",
-          "profit-margin-calculator",
+          "profit-margin-calculator-marketing",
           "investment-return-calculator"
         ]}
       />

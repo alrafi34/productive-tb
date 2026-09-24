@@ -130,6 +130,6 @@ export const toolConfig = {
     "discount-calculator",
     "gst-vat-calculator",
     "tip-calculator",
-    "profit-margin-calculator",
+    "profit-margin-calculator-marketing",
   ],
 };
