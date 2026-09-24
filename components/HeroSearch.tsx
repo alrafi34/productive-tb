@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { tools, categories } from "@/config/tools";
+import { searchTools } from "@/lib/search-tools";
 
 const categoryName = new Map(categories.map(c => [c.slug, c.name]));
 
@@ -26,28 +27,7 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  /* Rank by match quality: exact name > name prefix > name substring > description */
-  const { results, matchCount } = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return { results: [], matchCount: 0 };
-
-    const scored: { tool: (typeof tools)[number]; score: number }[] = [];
-    for (const tool of tools) {
-      const name = tool.name.toLowerCase();
-      let score = -1;
-      if (name === q) score = 0;
-      else if (name.startsWith(q)) score = 1;
-      else if (name.includes(q)) score = 2;
-      else if (tool.description.toLowerCase().includes(q)) score = 3;
-      if (score >= 0) scored.push({ tool, score });
-    }
-    scored.sort((a, b) => a.score - b.score || a.tool.name.length - b.tool.name.length);
-
-    return {
-      results: scored.slice(0, MAX_RESULTS).map(s => s.tool),
-      matchCount: scored.length,
-    };
-  }, [query]);
+  const { results, matchCount } = useMemo(() => searchTools(tools, query, MAX_RESULTS), [query]);
 
   /* "/" focuses search from anywhere on the page */
   useEffect(() => {
