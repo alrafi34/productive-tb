@@ -103,8 +103,11 @@ export const calculateNumberOfBars = (
     return null;
   }
 
-  // Calculate number of bars
-  const calculatedBars = Math.floor(effectiveWidth / spacingMm) + 1;
+  // Desired spacing is a maximum: round the bar count up so the actual
+  // spacing never exceeds it. (Rounding down under-reinforced the section:
+  // 1000 mm at 300 mm gave 4 bars at 333 mm.) The epsilon keeps exact
+  // divisions such as 900 / 300 from gaining a bar through float error.
+  const calculatedBars = Math.ceil(effectiveWidth / spacingMm - 1e-9) + 1;
 
   // Calculate actual spacing achieved
   const actualSpacing = effectiveWidth / (calculatedBars - 1);
@@ -131,29 +134,43 @@ export const formatNumber = (num: number, decimals: number = 2): string => {
   return num.toFixed(decimals);
 };
 
-// Check if spacing meets minimum requirements
-export const checkSpacingValidity = (clearSpacing: number, barDiameter: number): {
+// ACI 318-19 limits, in mm
+const ACI_MIN_CLEAR_MM = 25.4;          // 25.2.1: at least 1 in
+const ACI_MAX_SLAB_SPACING_MM = 457.2;  // 7.7.2.3 / 24.4.3.3: at most 18 in (slabs)
+export const DEFAULT_AGGREGATE_MM = 19.05; // 3/4 in, the common US maximum aggregate
+
+/** ACI 318-19 25.2.1: minimum clear spacing between parallel bars in a layer. */
+export const aciMinClearSpacing = (barDiameterMm: number, aggregateMm: number): number =>
+  Math.max(ACI_MIN_CLEAR_MM, barDiameterMm, (4 / 3) * aggregateMm);
+
+// Check spacing against ACI 318 (all inputs in mm; messages in the user's unit)
+export const checkSpacingValidity = (
+  clearSpacing: number,
+  barDiameter: number,
+  centerSpacing: number,
+  aggregateMm: number,
+  unit: Unit
+): {
   isValid: boolean;
   warning?: string;
 } => {
-  // Minimum clear spacing should be at least 1x bar diameter (common rule)
-  const minSpacing = barDiameter;
-  
-  if (clearSpacing < minSpacing) {
+  const show = (mm: number) => `${formatNumber(convertFromMm(mm, unit))} ${unit === 'inch' ? 'in' : 'mm'}`;
+  const minClear = aciMinClearSpacing(barDiameter, aggregateMm);
+
+  if (clearSpacing < minClear) {
     return {
       isValid: false,
-      warning: `Clear spacing (${formatNumber(clearSpacing)} mm) is less than minimum recommended (${formatNumber(minSpacing)} mm)`
+      warning: `Clear spacing (${show(clearSpacing)}) is below the ACI 318 minimum of ${show(minClear)} — the largest of 1 in, the bar diameter and 4/3 × max aggregate size.`
     };
   }
-  
-  // Warn if spacing is very tight (less than 1.5x diameter)
-  if (clearSpacing < barDiameter * 1.5) {
+
+  if (centerSpacing > ACI_MAX_SLAB_SPACING_MM) {
     return {
       isValid: true,
-      warning: `Spacing is tight. Consider reducing bar count or increasing width.`
+      warning: `Center spacing (${show(centerSpacing)}) exceeds 18 in — the ACI 318 maximum for slab flexural and shrinkage/temperature reinforcement (also limited to 3h and 5h). Check the limit for your member type.`
     };
   }
-  
+
   return { isValid: true };
 };
 
@@ -191,33 +208,35 @@ export const clearHistory = (): void => {
 
 // Export to text
 export const exportToText = (calculation: SpacingCalculation): string => {
+  const u = calculation.unit === 'inch' ? 'in' : 'mm';
+  const f = (mm: number) => `${formatNumber(convertFromMm(mm, calculation.unit))} ${u}`;
   let text = '═══════════════════════════════════════\n';
   text += '   REBAR SPACING CALCULATION\n';
   text += '═══════════════════════════════════════\n\n';
   
   text += 'INPUT PARAMETERS:\n';
   text += '───────────────────────────────────────\n';
-  text += `Total Width:      ${formatNumber(calculation.width)} mm\n`;
-  text += `Bar Diameter:     ${formatNumber(calculation.barDiameter)} mm\n`;
-  text += `Clear Cover:      ${formatNumber(calculation.clearCover)} mm\n`;
+  text += `Total Width:      ${f(calculation.width)}\n`;
+  text += `Bar Diameter:     ${f(calculation.barDiameter)}\n`;
+  text += `Clear Cover:      ${f(calculation.clearCover)}\n`;
   
   if (calculation.mode === 'spacing') {
     text += `Number of Bars:   ${calculation.numberOfBars}\n\n`;
   } else {
-    text += `Desired Spacing:  ${formatNumber(calculation.desiredSpacing!)} mm\n\n`;
+    text += `Desired Spacing:  ${f(calculation.desiredSpacing!)} (maximum)\n\n`;
   }
   
   text += 'CALCULATION RESULTS:\n';
   text += '═══════════════════════════════════════\n';
-  text += `Effective Width:  ${formatNumber(calculation.effectiveWidth)} mm\n`;
+  text += `Effective Width:  ${f(calculation.effectiveWidth)}\n`;
   
   if (calculation.mode === 'spacing') {
-    text += `Center-to-Center: ${formatNumber(calculation.spacing!)} mm\n`;
-    text += `Clear Spacing:    ${formatNumber(calculation.clearSpacing!)} mm\n`;
+    text += `Center-to-Center: ${f(calculation.spacing!)}\n`;
+    text += `Clear Spacing:    ${f(calculation.clearSpacing!)}\n`;
   } else {
     text += `Bars Required:    ${calculation.calculatedBars}\n`;
-    text += `Actual Spacing:   ${formatNumber(calculation.spacing!)} mm\n`;
-    text += `Clear Spacing:    ${formatNumber(calculation.clearSpacing!)} mm\n`;
+    text += `Actual Spacing:   ${f(calculation.spacing!)}\n`;
+    text += `Clear Spacing:    ${f(calculation.clearSpacing!)}\n`;
   }
   
   text += '\nFORMULA USED:\n';
@@ -227,7 +246,7 @@ export const exportToText = (calculation: SpacingCalculation): string => {
   if (calculation.mode === 'spacing') {
     text += 'Spacing = Effective Width / (Bars - 1)\n';
   } else {
-    text += 'Number of Bars = floor(Effective Width / Spacing) + 1\n';
+    text += 'Number of Bars = ceil(Effective Width / Max Spacing) + 1\n';
   }
   
   text += 'Clear Spacing = Spacing - Bar Diameter\n';
