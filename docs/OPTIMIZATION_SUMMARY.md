@@ -109,8 +109,8 @@ const TOOLS = [
 import dynamic from "next/dynamic";
 
 const TOOL_COMPONENTS = {
-  'word-counter': dynamic(() => import('@/tools/word-counter/ui'), { ssr: false }),
-  'image-compressor': dynamic(() => import('@/tools/image-compressor/ui'), { ssr: false }),
+  'word-counter': dynamic(() => import('@/tools/word-counter/ui')),
+  'image-compressor': dynamic(() => import('@/tools/image-compressor/ui')),
 };
 
 const Component = TOOL_COMPONENTS[slug];
@@ -138,7 +138,7 @@ const Component = TOOL_COMPONENTS[slug];
 When building new tools, AI assistants should:
 
 1. **Read PERFORMANCE_GUIDE.md first** before writing any code
-2. **Always use dynamic imports** with `ssr: false` in `[subtool]/page.tsx`
+2. **Always use dynamic imports** — **never with `ssr: false`**, which hides the tool from Google (#26)
 3. **Add `"use client"` on line 1** of all tool UI components
 4. **Debounce real-time updates** (300ms delay)
 5. **Lazy load heavy libraries** (Chart.js, D3.js, etc.)
@@ -154,7 +154,7 @@ The integration checklist now includes performance checks:
 
 ### Phase 2 — Create
 - [ ] `tools/your-tool-name/ui.tsx` (with `"use client"` on line 1)
-- [ ] `app/tools/[tool]/[subtool]/page.tsx` — add **dynamic import** with `ssr: false`
+- [ ] Route file — add a **dynamic import** (no `ssr: false`)
 
 ### Phase 3 — Test
 - [ ] **Lighthouse mobile score 95+**

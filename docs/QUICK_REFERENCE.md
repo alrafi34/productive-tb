@@ -204,7 +204,7 @@ import { toolConfig as toolNameConfig } from "@/tools/tool-name/config";
 
 // Create dynamic component mapping:
 const TOOL_COMPONENTS = {
-  'tool-name': dynamic(() => import('@/tools/tool-name/ui'), { ssr: false }),
+  'tool-name': dynamic(() => import('@/tools/tool-name/ui')),
 };
 
 // DO NOT add to TOOLS array anymore - use dynamic lookup instead
@@ -241,7 +241,7 @@ import ToolUI from "@/tools/tool-name/ui";
 
 // ✅ ALWAYS: Dynamic import
 const TOOL_COMPONENTS = {
-  'tool-name': dynamic(() => import('@/tools/tool-name/ui'), { ssr: false }),
+  'tool-name': dynamic(() => import('@/tools/tool-name/ui')),
 };
 ```
 
@@ -249,7 +249,8 @@ const TOOL_COMPONENTS = {
 
 ```
 [ ] "use client" on line 1 of ui.tsx
-[ ] Registered with dynamic() import + ssr: false
+[ ] Registered with dynamic() import — NO ssr: false (it hides the page from Google)
+[ ] curl of the page shows the FAQ text (tool renders on the server)
 [ ] No heavy libraries at top level
 [ ] Real-time updates debounced (300ms)
 [ ] Images have loading + size attributes
@@ -368,7 +369,7 @@ Keywords:    primary, "free primary", "online primary", variations, long-tail (1
 | RelatedTools card missing | Slug not in config/tools.ts | Add it; run `pnpm check:tools` |
 | "use client" error | Server component using hooks | Add `"use client"` line 1 |
 | **Large bundle size** | **Static imports** | **Use `dynamic()` imports** |
-| **Low Lighthouse score** | **No ssr: false flag** | **Add `{ ssr: false }` to dynamic()** |
+| **Empty page in `curl` / not indexed** | **`ssr: false`, a `mounted` gate or `useSearchParams()` around the UI** | **Render on the server; use browser APIs inside `useEffect`** |
 | Wrong font rendering | Missing `style={{ fontFamily }}` | Add font style to elements |
 | Tool not in category | Wrong category slug | Check 10-category table |
 | Redirect not working | Not in `config/tools.ts` | Add to tools array |
