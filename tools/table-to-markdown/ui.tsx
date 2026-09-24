@@ -5,6 +5,7 @@ import { TableData, ConversionOptions, ConversionResult, HeaderMode, ColumnAlign
 import { parseTableData, convertToMarkdown, copyToClipboard, downloadAsFile, readFileAsText } from './logic';
 import { tableToMarkdownConfig } from './config';
 import SEOContent from './seo-content';
+import RelatedTools from '@/components/RelatedTools';
 
 export default function TableToMarkdownUI() {
   const [inputText, setInputText] = useState('');
@@ -340,6 +341,7 @@ export default function TableToMarkdownUI() {
       </div>
 
       <SEOContent />
+      <RelatedTools currentTool="table-to-markdown" />
     </div>
   );
 }

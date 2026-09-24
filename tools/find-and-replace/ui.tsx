@@ -5,6 +5,7 @@ import { FindReplaceOptions, FindReplaceResult, HistoryState, BatchReplaceItem }
 import { findMatches, replaceText, batchReplace, copyToClipboard, downloadAsFile, readFileAsText, saveToLocalStorage, loadFromLocalStorage } from './logic';
 import { findAndReplaceConfig } from './config';
 import SEOContent from './seo-content';
+import RelatedTools from '@/components/RelatedTools';
 
 export default function FindAndReplaceUI() {
   const [inputText, setInputText] = useState('');
@@ -484,6 +485,7 @@ export default function FindAndReplaceUI() {
       </div>
 
       <SEOContent />
+      <RelatedTools currentTool="find-and-replace" />
     </div>
   );
 }

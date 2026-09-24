@@ -5,6 +5,7 @@ import { DiffOptions, DiffResult, ViewMode, ComparisonLevel } from './types';
 import { compareTexts, renderDiffParts, copyToClipboard, downloadAsFile, readFileAsText, exportDiffAsHtml } from './logic';
 import { textDiffCheckerConfig } from './config';
 import SEOContent from './seo-content';
+import RelatedTools from '@/components/RelatedTools';
 
 export default function TextDiffCheckerUI() {
   const [textA, setTextA] = useState('');
@@ -414,6 +415,7 @@ export default function TextDiffCheckerUI() {
       </div>
 
       <SEOContent />
+      <RelatedTools currentTool="text-diff-checker" />
     </div>
   );
 }

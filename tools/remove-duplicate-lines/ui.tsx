@@ -5,6 +5,7 @@ import { ProcessingOptions, ProcessingResult, HistoryState, TextTransform } from
 import { removeDuplicateLines, applyTextTransform, copyToClipboard, downloadAsFile, readFileAsText } from './logic';
 import { removeDuplicateLinesConfig } from './config';
 import SEOContent from './seo-content';
+import RelatedTools from '@/components/RelatedTools';
 
 export default function RemoveDuplicateLinesUI() {
   const [inputText, setInputText] = useState('');
@@ -368,6 +369,7 @@ export default function RemoveDuplicateLinesUI() {
       </div>
 
       <SEOContent />
+      <RelatedTools currentTool="remove-duplicate-lines" />
     </div>
   );
 }

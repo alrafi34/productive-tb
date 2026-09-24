@@ -5,6 +5,7 @@ import { BionicOptions, DisplayOptions, ConversionResult, HistoryState } from '.
 import { convertToBionicReading, copyToClipboard, downloadAsFile, readFileAsText, exportAsHtml, saveToLocalStorage, loadFromLocalStorage } from './logic';
 import { bionicReadingConverterConfig } from './config';
 import SEOContent from './seo-content';
+import RelatedTools from '@/components/RelatedTools';
 
 export default function BionicReadingConverterUI() {
   const [inputText, setInputText] = useState('');
@@ -460,6 +461,7 @@ export default function BionicReadingConverterUI() {
       </div>
 
       <SEOContent />
+      <RelatedTools currentTool="bionic-reading-converter" />
     </div>
   );
 }

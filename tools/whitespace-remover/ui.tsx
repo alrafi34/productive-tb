@@ -5,6 +5,7 @@ import { CleaningOptions, CleaningResult, HistoryState } from './types';
 import { cleanWhitespace, highlightExtraSpaces, copyToClipboard, downloadAsFile, readFileAsText, saveToLocalStorage, loadFromLocalStorage } from './logic';
 import { whitespaceRemoverConfig } from './config';
 import SEOContent from './seo-content';
+import RelatedTools from '@/components/RelatedTools';
 
 export default function WhitespaceRemoverUI() {
   const [inputText, setInputText] = useState('');
@@ -443,6 +444,7 @@ export default function WhitespaceRemoverUI() {
       </div>
 
       <SEOContent />
+      <RelatedTools currentTool="whitespace-remover" />
     </div>
   );
 }
