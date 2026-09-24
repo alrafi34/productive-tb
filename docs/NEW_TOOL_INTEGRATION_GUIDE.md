@@ -483,6 +483,16 @@ registered slug is not served at `/tools/<category>/<slug>`. The same check runs
 start of `pnpm build`, so a drifted catalogue cannot deploy. `RelatedTools` needs no
 separate registration — it reads `config/tools.ts`.
 
+Then regenerate the sitemap dates and commit the result:
+
+```bash
+pnpm content-dates   # rewrites config/content-dates.ts from git history
+```
+
+Do this whenever a tool's `seo-content.tsx` or `config.ts` changes, too — the sitemap's
+`<lastmod>` for that tool comes from this file (#17). `pnpm check:tools` fails if a
+registered tool has no date.
+
 ---
 
 ### Step 8: Register in `app/tools/[tool]/[subtool]/page.tsx`

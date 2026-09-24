@@ -1,22 +1,24 @@
 import { MetadataRoute } from 'next';
 import { tools, categories } from '@/config/tools';
 import { siteConfig } from '@/config/site';
+import { TOOL_CONTENT_DATES, PAGE_CONTENT_DATES } from '@/config/content-dates';
 
-// Build time is used as a stable base for lastModified.
-// Static pages like homepage and category pages are marked as "today"
-// to encourage Google to re-crawl them frequently.
-// Tool pages use the build date — update this when tool content is updated.
-const BUILD_DATE = new Date();
+/* lastModified comes from config/content-dates.ts — the date each page's
+   content actually changed, derived from git by scripts/content-dates.mjs.
+   It used to be the build time for every URL, so each deploy told Google
+   that all pages changed at once and the signal was discounted (#17).
+   A URL with no known date gets no lastModified rather than a made-up one. */
 
-// Approximate date a tool's content was last meaningfully updated.
-// If a tool has no individual timestamp, falls back to BUILD_DATE.
-// Add entries here whenever you expand a tool's seo-content.tsx.
-const TOOL_UPDATED_DATES: Record<string, Date> = {
-  // Tier 1 tools — manually expanded content
-  // 'word-counter': new Date('2026-07-01'),
-  // 'bmi-calculator': new Date('2026-07-01'),
-  // Add more as you expand content
-};
+/* ISO dates compare correctly as strings. */
+const latest = (dates: (string | undefined)[]) =>
+  dates.reduce<string | undefined>((max, d) => (d && (!max || d > max) ? d : max), undefined);
+
+const toolDate = (slug: string) => TOOL_CONTENT_DATES[slug];
+
+/* Hub pages change when any tool they list changes, or when their own file does. */
+const categoryDate = (slug: string) =>
+  latest(tools.filter((t) => t.category === slug).map((t) => toolDate(t.slug)));
+const catalogueDate = latest(tools.map((t) => toolDate(t.slug)));
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
@@ -25,37 +27,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: BUILD_DATE,
+      lastModified: latest([PAGE_CONTENT_DATES['/'], catalogueDate]),
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/tools`,
-      lastModified: BUILD_DATE,
+      lastModified: latest([PAGE_CONTENT_DATES['/tools'], catalogueDate]),
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: BUILD_DATE,
+      lastModified: PAGE_CONTENT_DATES['/about'],
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: BUILD_DATE,
+      lastModified: PAGE_CONTENT_DATES['/contact'],
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: BUILD_DATE,
+      lastModified: PAGE_CONTENT_DATES['/privacy'],
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: BUILD_DATE,
+      lastModified: PAGE_CONTENT_DATES['/terms'],
       changeFrequency: 'yearly',
       priority: 0.3,
     },
@@ -65,17 +67,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Marked weekly — new tools get added to categories regularly.
   const categoryUrls: MetadataRoute.Sitemap = categories.map((cat) => ({
     url: `${baseUrl}/tools/${cat.slug}`,
-    lastModified: BUILD_DATE,
+    lastModified: categoryDate(cat.slug),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));
 
   // ── Individual tool pages ────────────────────────────────────────
-  // Uses per-tool date from TOOL_UPDATED_DATES if available,
-  // otherwise falls back to BUILD_DATE.
   const toolUrls: MetadataRoute.Sitemap = tools.map((tool) => ({
     url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
-    lastModified: TOOL_UPDATED_DATES[tool.slug] ?? BUILD_DATE,
+    lastModified: toolDate(tool.slug),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));

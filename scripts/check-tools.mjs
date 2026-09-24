@@ -5,7 +5,9 @@
  *      (built but invisible to sitemap, search and navigation — see #7);
  *   2. a config/tools.ts entry with no tools/<dir> behind it;
  *   3. a config/tools.ts entry that no route serves at /tools/<category>/<slug>
- *      (listed in the sitemap but 404).
+ *      (listed in the sitemap but 404);
+ *   4. a config/tools.ts entry with no date in config/content-dates.ts
+ *      (its sitemap URL would have no <lastmod> — see #17).
  *
  * Folder names are not always the slug (css-blob-generator serves
  * css-border-radius-blob), so everything is keyed on the slug in each
@@ -70,6 +72,14 @@ for (const [slug, category] of registry) {
   if (!folderBySlug.has(slug)) problems.push(`config/tools.ts "${slug}" has no tools/ folder`);
   else if (!hasStaticRoute(category, slug) && !dynamicSlugs.has(slug)) {
     problems.push(`config/tools.ts "${slug}" is not served at /tools/${category}/${slug}`);
+  }
+}
+const dated = new Set(
+  [...read('config/content-dates.ts').matchAll(/^\s*"([^"]+)": "\d{4}-\d{2}-\d{2}",$/gm)].map((m) => m[1])
+);
+for (const slug of registry.keys()) {
+  if (!dated.has(slug)) {
+    problems.push(`config/tools.ts "${slug}" has no date in config/content-dates.ts — run \`node scripts/content-dates.mjs\` and commit`);
   }
 }
 for (const slug of ALLOW_UNREGISTERED) {
