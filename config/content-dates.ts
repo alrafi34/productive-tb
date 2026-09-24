@@ -193,7 +193,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "font-pairer": "2026-04-05",
   "footing-size-calculator": "2026-05-01",
   "force-calculator": "2026-07-07",
-  "foundation-depth-calculator": "2026-05-01",
+  "foundation-depth-calculator": "2026-09-24",
   "fraction-calculator": "2026-08-07",
   "frequency-calculator": "2026-08-07",
   "frequency-response-calculator": "2026-07-07",

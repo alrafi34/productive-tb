@@ -1,47 +1,52 @@
-export type Unit = 'ft' | 'm';
-export type SoilType = 'clay' | 'sand' | 'silt' | 'gravel' | 'rock';
-export type WaterLevel = 'low' | 'medium' | 'high';
-export type SafetyFactor = 1.5 | 2.0 | 2.5;
-export type FoundationType = 'shallow' | 'strip' | 'raft' | 'pile';
+export type UnitSystem = 'imperial' | 'metric';
 
-export interface FoundationInputs {
-  soilType: SoilType;
-  load: string;
-  frostDepth: string;
-  waterLevel: WaterLevel;
-  safetyFactor: SafetyFactor;
-  foundationType: FoundationType;
-  customBearingCapacity?: string;
+/** Presumptive soil classes of IRC Table R401.4.1, plus a value from a soils report. */
+export type SoilClass = 'bedrock' | 'sedimentary-rock' | 'gravel' | 'sand' | 'clay' | 'custom';
+
+/** Continuous footing under a wall, or an isolated square footing under a column. */
+export type FootingKind = 'wall' | 'column';
+
+export interface SoilPreset {
+  soil: SoilClass;
+  name: string;
+  /** Unified Soil Classification symbols the class covers. */
+  uscs: string;
+  /** Presumptive allowable bearing pressure, psf. */
+  psf: number;
 }
 
-export interface FoundationCalculation {
-  id: string;
-  soilType: SoilType;
-  load: number;
+export interface FoundationInputs {
+  system: UnitSystem;
+  kind: FootingKind;
+  soil: SoilClass;
+  /** Frost depth: inches (imperial) or mm (metric). */
   frostDepth: number;
-  waterLevel: WaterLevel;
-  safetyFactor: SafetyFactor;
-  foundationType: FoundationType;
-  bearingCapacity: number;
-  requiredDepth: number;
-  requiredDepthFt: number;
-  baseDepth: number;
-  adjustment: number;
-  status: 'safe' | 'risky' | 'critical';
+  /** Wall load per unit length (plf | kN/m) or column load (lb | kN). Optional. */
+  load?: number;
+  /** Allowable bearing when soil = 'custom': psf | kPa. */
+  customBearing?: number;
+}
+
+export interface FoundationResult {
+  system: UnitSystem;
+  kind: FootingKind;
+  soil: SoilClass;
+  /** Bottom of footing below finished grade, in (imperial) or mm (metric). */
+  minDepth: number;
+  depthGovernedBy: 'frost' | 'code-minimum';
+  /** Allowable bearing used, psf | kPa. */
+  bearing: number;
+  /** Wall footing width, or column footing side: in | mm. Absent without a load. */
+  width?: number;
+  widthGovernedBy?: 'load' | 'code-minimum';
+  /** Column footing plan area: ft² | m². */
+  area?: number;
   notes: string[];
-  unit: Unit;
-  timestamp: number;
 }
 
 export interface CalculationHistory {
   id: string;
   timestamp: number;
-  calculation: FoundationCalculation;
-}
-
-export interface SoilPreset {
-  type: SoilType;
-  name: string;
-  bearingCapacity: number;
-  description: string;
+  inputs: FoundationInputs;
+  result: FoundationResult;
 }
