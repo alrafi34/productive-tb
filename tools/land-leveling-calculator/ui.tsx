@@ -645,7 +645,7 @@ export default function LandLevelingCalculatorUI() {
           "earth-filling-calculator",
           "soil-volume-calculator",
           "excavation-cost-calculator",
-          "land-area-calculator",
+          "land-area-calculator-square-feet",
           "cut-and-fill-calculator",
           "land-slope-calculator",
         ]}

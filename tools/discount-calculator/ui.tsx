@@ -446,7 +446,7 @@ export default function DiscountCalculatorUI() {
       
       <RelatedTools
         currentTool="discount-calculator"
-        tools={['percentage-calculator', 'percentage-increase-decrease-calculator', 'profit-margin-calculator']}
+        tools={['percentage-calculator', 'percentage-increase-decrease', 'profit-margin-calculator']}
       />
     </>
   );

@@ -556,7 +556,7 @@ export default function MapScaleCalculatorUI() {
         tools={[
           "survey-area-calculator",
           "boundary-length-calculator",
-          "land-area-calculator",
+          "land-area-calculator-square-feet",
           "distance-between-points-calculator",
         ]}
       />

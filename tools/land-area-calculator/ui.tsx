@@ -444,7 +444,7 @@ export default function LandAreaCalculatorUI() {
 
       <LandAreaCalculatorSEO />
       <RelatedTools
-        currentTool="land-area-calculator"
+        currentTool="land-area-calculator-square-feet"
         tools={[
           "plot-area-calculator",
           "room-area-calculator",
