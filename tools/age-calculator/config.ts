@@ -50,7 +50,7 @@ export const toolConfig = {
       { name: "Read your exact age", text: "Your age appears instantly in years, months, and days. The result updates automatically whenever you change either date — no submit button needed." },
       { name: "Review lifetime statistics", text: "The Lifetime Stats panel shows your total months, weeks, days, hours, minutes, and seconds lived from birth to the comparison date. These numbers update in real time." },
       { name: "Check your next birthday", text: "The birthday countdown shows how many months and days remain until your next birthday, the total days left, and what day of the week your next birthday falls on." },
-      { name: "Explore milestones and zodiac", text: "The milestones panel lists notable day and year milestones with their exact calendar dates, marking which ones you have already passed. Your Western and Chinese zodiac signs are shown based on your birth date." },
+      { name: "Explore milestones and zodiac", text: "The milestones panel lists notable day and year milestones with their exact calendar dates, marking which ones you have already passed. Your zodiac sign is shown based on your birth date." },
       { name: "Use batch mode for multiple people", text: "Switch to Batch mode, paste one birth date per line, and the calculator processes all entries simultaneously. Use the Export CSV button to download the results for school, HR, or admin use." },
     ],
     faq: [
@@ -71,7 +71,7 @@ export const toolConfig = {
     "Full lifetime statistics: total days, weeks, hours, minutes, seconds",
     "Countdown to next birthday with weekday prediction",
     "Life milestones: 1,000 days, 10,000 days, major birthdays",
-    "Western and Chinese zodiac sign",
+    "Zodiac sign with symbol",
     "Age at any past or future comparison date",
     "Batch mode for multiple DOBs with CSV export",
     "100% browser-based — no data sent to any server",
