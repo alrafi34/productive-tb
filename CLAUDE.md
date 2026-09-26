@@ -30,6 +30,13 @@
   `git fetch --unshallow`) and commit `config/content-dates.ts`. Commits that
   touch those files without changing content carry `[no-content-date]`.
 
+## Routes
+- Every tool that matters for search gets its own static route,
+  `app/tools/<category>/<slug>/page.tsx`: the shared dynamic route
+  `app/tools/[tool]/[subtool]` ships about 1.8 MB of gzipped JavaScript, a
+  static route about 190 KB. Create them with
+  `node scripts/add-static-routes.mjs <slug> …`; new tools start there.
+
 ## Checks before pushing
 - `pnpm build`, `npx tsc --noEmit -p .`, ESLint on changed files (compare with
   main — the repo has pre-existing warnings).

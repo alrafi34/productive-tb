@@ -15,8 +15,8 @@ const toolName = (config as any).name;
 const toolDescription = (config as any).description ?? "";
 const ogTitle = seo.openGraph?.title ?? seo.og?.title ?? seo.title;
 const ogDescription = seo.openGraph?.description ?? seo.og?.description ?? seo.description;
-// `+` rather than %20 so these URLs stay identical to what is already indexed.
-const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName).replace(/%20/g, "+")}`;
+// %20 spaces, as the dynamic route that served this tool before emitted.
+const ogImage = `${siteConfig.url}/og?title=${encodeURIComponent(toolName)}`;
 
 export const metadata: Metadata = {
   title: seo.title,
