@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Unit, DoorCalculation } from "./types";
+import { Unit, DoorCalculation, FrameStyle } from "./types";
 import {
   calculateDoorArea,
   getDoorPresets,
@@ -25,6 +25,7 @@ export default function DoorAreaCalculatorUI() {
   const [width, setWidth] = useState("");
   const [includeFrame, setIncludeFrame] = useState(false);
   const [frameThickness, setFrameThickness] = useState("");
+  const [frameStyle, setFrameStyle] = useState<FrameStyle>("all-sides");
   
   // Results
   const [calculation, setCalculation] = useState<DoorCalculation | null>(null);
@@ -39,12 +40,12 @@ export default function DoorAreaCalculatorUI() {
     const frame = includeFrame ? parseFloat(frameThickness) || 0 : 0;
     
     if (!isNaN(h) && !isNaN(w) && h > 0 && w > 0) {
-      const result = calculateDoorArea(h, w, unit, includeFrame, frame);
+      const result = calculateDoorArea(h, w, unit, includeFrame, frame, frameStyle);
       setCalculation(result);
     } else {
       setCalculation(null);
     }
-  }, [height, width, unit, includeFrame, frameThickness]);
+  }, [height, width, unit, includeFrame, frameThickness, frameStyle]);
 
   const handleReset = () => {
     setHeight("");
@@ -99,11 +100,15 @@ export default function DoorAreaCalculatorUI() {
 
   const loadFromHistory = (calc: DoorCalculation) => {
     setUnit(calc.unit);
-    setHeight(calc.height.toString());
-    setWidth(calc.width.toString());
+    // The door's own size: height/width already include the frame
+    setHeight((calc.doorHeight ?? calc.height).toString());
+    setWidth((calc.doorWidth ?? calc.width).toString());
     setIncludeFrame(calc.includeFrame);
     if (calc.frameThickness) {
       setFrameThickness(calc.frameThickness.toString());
+    }
+    if (calc.frameStyle) {
+      setFrameStyle(calc.frameStyle);
     }
     setShowHistory(false);
   };
@@ -184,6 +189,33 @@ export default function DoorAreaCalculatorUI() {
                       min="0"
                       step="0.01"
                     />
+                    <fieldset className="mt-3">
+                      <legend className="block text-xs font-medium text-gray-600 mb-1">Add the frame on</legend>
+                      <div className="grid gap-2">
+                        {([
+                          ["all-sides", "All four sides", "Height + 2× and width + 2× thickness"],
+                          ["door-frame", "Sides and top (door frame)", "No frame at the floor: height + 1×, width + 2× thickness"],
+                        ] as [FrameStyle, string, string][]).map(([value, label, hint]) => (
+                          <label
+                            key={value}
+                            className={`flex items-start gap-2 p-2 rounded-lg border-2 cursor-pointer text-sm ${frameStyle === value ? "border-primary bg-primary/5" : "border-gray-200"}`}
+                          >
+                            <input
+                              type="radio"
+                              name="frame-style"
+                              value={value}
+                              checked={frameStyle === value}
+                              onChange={() => setFrameStyle(value)}
+                              className="mt-1 text-primary focus:ring-primary"
+                            />
+                            <span>
+                              <span className="block font-medium text-gray-800">{label}</span>
+                              <span className="block text-xs text-gray-500">{hint}</span>
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </fieldset>
                   </div>
                 )}
               </div>

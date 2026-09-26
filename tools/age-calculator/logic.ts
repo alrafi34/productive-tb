@@ -23,9 +23,7 @@ export interface NextBirthday {
 
 export interface ZodiacInfo {
   western: string;
-  chinese: string;
   westernIcon: string;
-  chineseIcon: string;
 }
 
 export interface Milestone {
@@ -137,7 +135,6 @@ export function calculateNextBirthday(birthDate: Date, targetDate: Date): NextBi
 export function getZodiacSigns(birthDate: Date): ZodiacInfo {
   const day = birthDate.getDate();
   const month = birthDate.getMonth() + 1; // 1-12
-  const year = birthDate.getFullYear();
 
   let western = "";
   let westernIcon = "";
@@ -155,13 +152,7 @@ export function getZodiacSigns(birthDate: Date): ZodiacInfo {
   else if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) { western = "Scorpio"; westernIcon = "♏"; }
   else if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) { western = "Sagittarius"; westernIcon = "♐"; }
 
-  const chineseAnimals = ["Monkey", "Rooster", "Dog", "Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Sheep"];
-  const chineseIcons = ["🐒", "🐓", "🐕", "🐖", "🐀", "🐂", "🐅", "🐇", "🐉", "🐍", "🐎", "🐏"];
-  const chineseIndex = year % 12;
-  const chinese = chineseAnimals[chineseIndex];
-  const chineseIcon = chineseIcons[chineseIndex];
-
-  return { western, chinese, westernIcon, chineseIcon };
+  return { western, westernIcon };
 }
 
 export function getMilestones(birthDate: Date, targetDate: Date): Milestone[] {

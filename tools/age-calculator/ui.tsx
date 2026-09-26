@@ -107,7 +107,7 @@ export default function AgeCalculatorUI() {
     return `Age: ${age.years} years, ${age.months} months, ${age.days} days
 Total Days Lived: ${stats.totalDays.toLocaleString()}
 Next Birthday In: ${nextBday.months}m ${nextBday.days}d
-Zodiac: ${zodiac.western} / ${zodiac.chinese}
+Zodiac: ${zodiac.western}
 Born On: ${getWeekday(parseDateInput(birthDateStr))}
 Calculated via Productive Toolbox`;
   };
@@ -208,17 +208,10 @@ Calculated via Productive Toolbox`;
             {mode === 'normal' && zodiac && age !== null && (
                <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
                  <h3 className="text-sm font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Astrology Profile</h3>
-                 <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-3 text-center">
-                       <span className="text-2xl block mb-1">{zodiac.westernIcon}</span>
-                       <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Western</span>
-                       <p className="font-semibold text-blue-900">{zodiac.western}</p>
-                    </div>
-                    <div className="bg-red-50/50 border border-red-100 rounded-lg p-3 text-center">
-                       <span className="text-2xl block mb-1">{zodiac.chineseIcon}</span>
-                       <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Chinese</span>
-                       <p className="font-semibold text-red-900">{zodiac.chinese}</p>
-                    </div>
+                 <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-3 text-center">
+                    <span className="text-2xl block mb-1">{zodiac.westernIcon}</span>
+                    <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Zodiac Sign</span>
+                    <p className="font-semibold text-blue-900">{zodiac.western}</p>
                  </div>
                </div>
             )}
