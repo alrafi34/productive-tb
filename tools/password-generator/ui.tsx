@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import {
   generatePassword,
   generatePassphrase,
+  passphraseEntropy,
+  patternEntropy,
   generateFromPattern,
   calculateStrength,
   generateMultiplePasswords,
@@ -21,6 +23,8 @@ import RelatedStrip from "@/components/RelatedStrip";
 export default function PasswordGeneratorUI() {
   const [mode, setMode] = useState<GeneratorMode>('random');
   const [password, setPassword] = useState('');
+  // entropy of how the current password was generated (see calculateStrength)
+  const [entropyBits, setEntropyBits] = useState<number | undefined>(undefined);
   const [showPassword, setShowPassword] = useState(true);
   const [copied, setCopied] = useState(false);
   
@@ -68,23 +72,28 @@ export default function PasswordGeneratorUI() {
   
   const handleGenerate = () => {
     let newPassword = '';
+    let entropy: number | undefined;
     
     switch (mode) {
       case 'random':
+        // every character is a uniform pick from the pool: the estimate is right
         newPassword = generatePassword(options);
         break;
       case 'passphrase':
         newPassword = generatePassphrase(passphraseOptions);
+        entropy = passphraseEntropy(passphraseOptions);
         break;
       case 'pattern':
         newPassword = generateFromPattern(pattern);
+        entropy = patternEntropy(pattern);
         break;
     }
     
     setPassword(newPassword);
+    setEntropyBits(entropy);
     
     // Save to history
-    const strength = calculateStrength(newPassword);
+    const strength = calculateStrength(newPassword, entropy);
     const generated: GeneratedPassword = {
       id: crypto.randomUUID(),
       password: newPassword,
@@ -106,7 +115,7 @@ export default function PasswordGeneratorUI() {
     setTimeout(() => setCopied(false), 2000);
   };
   
-  const strength = password ? calculateStrength(password) : null;
+  const strength = password ? calculateStrength(password, entropyBits) : null;
   
   return (
     <>

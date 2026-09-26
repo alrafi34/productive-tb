@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import {
-  generateWiFiPassword,
   generateFromPattern,
+  generateWiFiPasswordWithEntropy,
+  patternEntropy,
   calculateStrength,
   validateRouterCompatibility,
   generateMultiplePasswords,
@@ -24,6 +25,8 @@ import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WiFiPasswordGeneratorUI() {
   const [password, setPassword] = useState('');
+  // entropy of how the current password was generated (see calculateStrength)
+  const [entropyBits, setEntropyBits] = useState<number | undefined>(undefined);
   const [showPassword, setShowPassword] = useState(true);
   const [copied, setCopied] = useState(false);
   const [usePattern, setUsePattern] = useState(false);
@@ -66,17 +69,20 @@ export default function WiFiPasswordGeneratorUI() {
   
   const handleGenerate = () => {
     let newPassword = '';
+    let entropy: number;
     
     if (usePattern) {
       newPassword = generateFromPattern(pattern);
+      entropy = patternEntropy(pattern);
     } else {
-      newPassword = generateWiFiPassword(options);
+      ({ password: newPassword, entropy } = generateWiFiPasswordWithEntropy(options));
     }
     
     setPassword(newPassword);
+    setEntropyBits(entropy);
     
     // Save to history
-    const strength = calculateStrength(newPassword);
+    const strength = calculateStrength(newPassword, entropy);
     const generated: GeneratedPassword = {
       id: crypto.randomUUID(),
       password: newPassword,
@@ -113,7 +119,7 @@ export default function WiFiPasswordGeneratorUI() {
     setTimeout(() => setCopied(false), 2000);
   };
   
-  const strength = password ? calculateStrength(password) : null;
+  const strength = password ? calculateStrength(password, entropyBits) : null;
   const compatibility = password ? validateRouterCompatibility(password) : null;
   
   return (
