@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import {
   CompoundingFrequency,
+  ContributionFrequency,
+  ContributionTiming,
   HistoryEntry,
   calculateCompoundInterest,
   formatCurrency,
@@ -26,6 +28,12 @@ const frequencyLabel: Record<CompoundingFrequency, string> = {
   daily: "Daily",
 };
 
+const contributionLabel: Record<ContributionFrequency, string> = {
+  monthly: "Monthly",
+  quarterly: "Quarterly",
+  annual: "Yearly",
+};
+
 const periodsPerYear: Record<CompoundingFrequency, number> = {
   annual: 1,
   "semi-annual": 2,
@@ -39,6 +47,9 @@ export default function CompoundInterestCalculatorUI() {
   const [rate, setRate] = useState<string>("7");
   const [time, setTime] = useState<string>("10");
   const [frequency, setFrequency] = useState<CompoundingFrequency>("monthly");
+  const [contribution, setContribution] = useState<string>("");
+  const [contributionFrequency, setContributionFrequency] = useState<ContributionFrequency>("monthly");
+  const [contributionTiming, setContributionTiming] = useState<ContributionTiming>("end");
   const [precision, setPrecision] = useState<number>(2);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [copied, setCopied] = useState(false);
@@ -56,13 +67,21 @@ export default function CompoundInterestCalculatorUI() {
   const pNum = parseFloat(principal);
   const rNum = parseFloat(rate);
   const tNum = parseFloat(time);
+  const cRaw = parseFloat(contribution);
+  const cNum = isNaN(cRaw) || cRaw < 0 ? 0 : cRaw;
+  const hasContribution = cNum > 0;
 
-  const isValid = !isNaN(pNum) && !isNaN(rNum) && !isNaN(tNum) && pNum > 0 && rNum >= 0 && tNum > 0;
+  // A starting balance of 0 is fine when regular contributions are made
+  const isValid =
+    !isNaN(pNum) && !isNaN(rNum) && !isNaN(tNum) && pNum >= 0 && (pNum > 0 || hasContribution) && rNum >= 0 && tNum > 0;
 
   const result = useMemo(() => {
-    if (!isValid) return { futureValue: 0, interestEarned: 0, yearlyBreakdown: [] };
-    return calculateCompoundInterest(pNum, rNum, tNum, frequency);
-  }, [pNum, rNum, tNum, frequency, isValid]);
+    if (!isValid) return { futureValue: 0, interestEarned: 0, totalContributions: 0, yearlyBreakdown: [] };
+    return calculateCompoundInterest(pNum, rNum, tNum, frequency, cNum, contributionFrequency, contributionTiming);
+  }, [pNum, rNum, tNum, frequency, cNum, contributionFrequency, contributionTiming, isValid]);
+
+  // Everything paid in: the starting principal plus every contribution
+  const totalDeposits = pNum + result.totalContributions;
 
   const chartData = useMemo(() => generateChartData(result.yearlyBreakdown), [result.yearlyBreakdown]);
 
@@ -72,9 +91,9 @@ export default function CompoundInterestCalculatorUI() {
   }, [chartData]);
 
   const growthMultiple = useMemo(() => {
-    if (!isValid || pNum <= 0) return 0;
-    return result.futureValue / pNum;
-  }, [isValid, pNum, result.futureValue]);
+    if (!isValid || totalDeposits <= 0) return 0;
+    return result.futureValue / totalDeposits;
+  }, [isValid, totalDeposits, result.futureValue]);
 
   const effectiveAnnualRate = useMemo(() => {
     if (!isValid) return 0;
@@ -85,8 +104,8 @@ export default function CompoundInterestCalculatorUI() {
 
   const principalShare = useMemo(() => {
     if (!isValid || result.futureValue <= 0) return 0;
-    return (pNum / result.futureValue) * 100;
-  }, [isValid, pNum, result.futureValue]);
+    return (totalDeposits / result.futureValue) * 100;
+  }, [isValid, totalDeposits, result.futureValue]);
 
   const interestShare = useMemo(() => {
     if (!isValid || result.futureValue <= 0) return 0;
@@ -95,7 +114,7 @@ export default function CompoundInterestCalculatorUI() {
 
   const handleCopy = () => {
     if (!isValid) return;
-    const text = `Compound Interest Summary\nPrincipal: $${formatCurrency(pNum, precision)}\nRate: ${rNum}%\nTime: ${tNum} years\nCompounding: ${frequencyLabel[frequency]}\nFuture Value: $${formatCurrency(result.futureValue, precision)}\nInterest Earned: $${formatCurrency(result.interestEarned, precision)}\nGrowth Multiple: ${growthMultiple.toFixed(3)}x`;
+    const text = `Compound Interest Summary\nPrincipal: $${formatCurrency(pNum, precision)}\nRate: ${rNum}%\nTime: ${tNum} years\nCompounding: ${frequencyLabel[frequency]}${hasContribution ? `\nContribution: $${formatCurrency(cNum, precision)} ${contributionLabel[contributionFrequency].toLowerCase()} (${contributionTiming} of period)\nTotal Contributions: $${formatCurrency(result.totalContributions, precision)}` : ""}\nFuture Value: $${formatCurrency(result.futureValue, precision)}\nInterest Earned: $${formatCurrency(result.interestEarned, precision)}\nGrowth Multiple: ${growthMultiple.toFixed(3)}x`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -103,7 +122,15 @@ export default function CompoundInterestCalculatorUI() {
 
   const handleDownloadCSV = () => {
     if (!isValid || !result.yearlyBreakdown.length) return;
-    const csvContent = generateCSV(result.yearlyBreakdown, pNum, rNum, frequency);
+    const csvContent = generateCSV(
+      result.yearlyBreakdown,
+      pNum,
+      rNum,
+      frequency,
+      cNum,
+      contributionFrequency,
+      contributionTiming
+    );
     downloadCSV(csvContent);
   };
 
@@ -119,16 +146,18 @@ export default function CompoundInterestCalculatorUI() {
       frequency,
       futureValue: result.futureValue,
       interestEarned: result.interestEarned,
+      ...(hasContribution ? { contribution: cNum, contributionFrequency, contributionTiming } : {}),
     };
 
     saveToHistory(entry);
     setHistory(getHistory());
-  }, [pNum, rNum, tNum, frequency, result, isValid]);
+  }, [pNum, rNum, tNum, frequency, result, isValid, hasContribution, cNum, contributionFrequency, contributionTiming]);
 
   const handleClear = () => {
     setPrincipal("");
     setRate("");
     setTime("");
+    setContribution("");
   };
 
   const setScenario = (scenario: { principal: number; rate: number; time: number; frequency: CompoundingFrequency }) => {
@@ -206,6 +235,57 @@ export default function CompoundInterestCalculatorUI() {
             </div>
 
             <div className="space-y-2">
+              <label htmlFor="ci-contribution" className="block text-sm font-semibold text-gray-700">
+                Regular Contribution <span className="font-normal text-gray-400">(optional)</span>
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
+                  <input
+                    id="ci-contribution"
+                    type="number"
+                    min="0"
+                    value={contribution}
+                    onChange={(e) => setContribution(e.target.value)}
+                    className="w-full pl-8 pr-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
+                    placeholder="e.g. 100"
+                  />
+                </div>
+                <select
+                  aria-label="Contribution frequency"
+                  value={contributionFrequency}
+                  onChange={(e) => setContributionFrequency(e.target.value as ContributionFrequency)}
+                  className="w-full px-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-sm font-semibold text-gray-700"
+                >
+                  {(["monthly", "quarterly", "annual"] as ContributionFrequency[]).map((f) => (
+                    <option key={f} value={f}>
+                      {contributionLabel[f]}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {hasContribution && (
+                <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="When each contribution is paid">
+                  {(["end", "start"] as ContributionTiming[]).map((t) => (
+                    <button
+                      key={t}
+                      role="radio"
+                      aria-checked={contributionTiming === t}
+                      onClick={() => setContributionTiming(t)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                        contributionTiming === t
+                          ? "bg-primary text-white border-primary"
+                          : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      Paid at {t} of each period
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-2">
               <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Decimal Precision</label>
               <div className="flex gap-2">
                 {[0, 2, 4, 6].map((p) => (
@@ -256,6 +336,12 @@ export default function CompoundInterestCalculatorUI() {
                     <p className="text-xs text-gray-500 font-medium">Interest Earned</p>
                     <p className="text-2xl font-bold text-primary">${formatCurrency(result.interestEarned, precision)}</p>
                   </div>
+                  {hasContribution && (
+                    <p className="text-xs text-gray-500 font-medium">
+                      Total contributions:{" "}
+                      <span className="font-bold text-gray-700">${formatCurrency(result.totalContributions, precision)}</span>
+                    </p>
+                  )}
                 </>
               ) : (
                 <span className="text-2xl font-bold text-gray-300 italic">Enter values...</span>
@@ -279,7 +365,7 @@ export default function CompoundInterestCalculatorUI() {
                     <div className="bg-emerald-500 h-full" style={{ width: `${interestShare}%` }} />
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-gray-500 font-semibold">
-                    <span>Principal {principalShare.toFixed(1)}%</span>
+                    <span>{hasContribution ? "Deposits" : "Principal"} {principalShare.toFixed(1)}%</span>
                     <span>Interest {interestShare.toFixed(1)}%</span>
                   </div>
                 </>
@@ -370,6 +456,9 @@ export default function CompoundInterestCalculatorUI() {
                 <tr className="border-b border-gray-100">
                   <th className="text-left py-3 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Year</th>
                   <th className="text-right py-3 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Principal</th>
+                  {hasContribution && (
+                    <th className="text-right py-3 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Contributions</th>
+                  )}
                   <th className="text-right py-3 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Interest</th>
                   <th className="text-right py-3 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Total</th>
                 </tr>
@@ -379,6 +468,9 @@ export default function CompoundInterestCalculatorUI() {
                   <tr key={row.year} className="border-b border-gray-50 hover:bg-gray-50/50">
                     <td className="py-3 px-4 font-semibold text-gray-800">{row.year}</td>
                     <td className="py-3 px-4 text-right font-medium text-gray-600">${formatCurrency(row.principal, precision)}</td>
+                    {hasContribution && (
+                      <td className="py-3 px-4 text-right font-medium text-gray-600">${formatCurrency(row.contributions, precision)}</td>
+                    )}
                     <td className="py-3 px-4 text-right font-semibold text-emerald-600">${formatCurrency(row.interest, precision)}</td>
                     <td className="py-3 px-4 text-right font-bold text-primary">${formatCurrency(row.total, precision)}</td>
                   </tr>
@@ -422,7 +514,11 @@ export default function CompoundInterestCalculatorUI() {
                       {new Date(entry.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                     </span>
                     <div className="text-sm font-bold text-gray-800">
-                      ${formatCurrency(entry.principal, 0)} @ {entry.rate}% for {entry.time} years ({frequencyLabel[entry.frequency]})
+                      ${formatCurrency(entry.principal, 0)}
+                      {entry.contribution && entry.contributionFrequency
+                        ? ` + $${formatCurrency(entry.contribution, 0)} ${contributionLabel[entry.contributionFrequency].toLowerCase()}`
+                        : ""}{" "}
+                      @ {entry.rate}% for {entry.time} years ({frequencyLabel[entry.frequency]})
                     </div>
                     <div className="text-xs text-gray-500">
                       Future value: <span className="font-semibold text-primary">${formatCurrency(entry.futureValue, 2)}</span> | Interest:{" "}
