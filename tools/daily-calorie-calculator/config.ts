@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Daily Calorie Calculator – Calculate Your Daily Calorie Needs",
-    description: "Calculate your daily calorie requirements for weight maintenance, loss, or gain. Get personalized recommendations based on age, gender, activity level, and goals.",
+    title: "Calorie Calculator – Daily Calories to Lose or Gain Weight",
+    description: "Calculate how many calories you need each day to maintain, lose or gain weight, based on your age, sex, height, weight and activity level.",
     keywords: [
       "daily calorie calculator",
       "calorie needs calculator",

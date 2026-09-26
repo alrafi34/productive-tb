@@ -7,8 +7,8 @@ export const usernameGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Username Generator — Create Random & Memorable Usernames",
-    description: "Generate random, memorable, and social media-friendly usernames instantly. Customize length, characters, patterns, and generate bulk usernames with one click. Perfect for gaming and social media.",
+    title: "Username Generator – Random Usernames for Games & Social",
+    description: "Generate random, memorable usernames for games and social media. Choose the length, style and characters, and create a whole list in one click.",
     keywords: [
       "username generator",
       "random username",

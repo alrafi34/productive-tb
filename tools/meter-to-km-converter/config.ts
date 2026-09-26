@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Meter to Kilometer Converter Online – Instant Metric Conversion",
-    description: "Free online Meter to Kilometer Converter. Convert meters to kilometers instantly with real-time results. Copy, clear, and calculate directly in your browser.",
+    title: "Meters to Kilometers Converter (m to km)",
+    description: "Convert meters to kilometers and kilometers to meters instantly. 1 km = 1,000 m, with the formula, a conversion table and copyable results.",
     keywords: [
       "meter to kilometer",
       "m to km converter",

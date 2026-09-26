@@ -8,8 +8,8 @@ export const fileSizeConverterConfig = {
   icon: "💾",
   free: true,
   seo: {
-    title: "Free File Size Converter – Convert KB, MB, GB, TB Online",
-    description: "Convert file sizes instantly between Bytes, KB, MB, GB, TB, and PB. Supports binary (1024) and decimal (1000) conversions with real-time results. Free online tool.",
+    title: "File Size Converter – Bytes, KB, MB, GB, TB",
+    description: "Convert file sizes between bytes, KB, MB, GB, TB and PB in decimal (1000) or binary (1024) units, and see the difference between MB and MiB.",
     keywords: [
       "file size converter",
       "KB to MB converter",

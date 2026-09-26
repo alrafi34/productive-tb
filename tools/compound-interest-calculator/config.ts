@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Compound Interest Calculator Online - Future Value, Growth, and Compounding",
-    description: "Free compound interest calculator to estimate future value and total interest earned. Compare compounding frequencies, view yearly growth, and export results as CSV.",
+    title: "Compound Interest Calculator – With Monthly Contributions",
+    description: "Calculate compound interest with optional monthly, quarterly or yearly contributions. Compare compounding frequencies, see growth year by year and export CSV.",
     keywords: [
       "compound interest calculator",
       "investment calculator",

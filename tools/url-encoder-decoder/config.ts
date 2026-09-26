@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "URL Encoder / Decoder Online – Encode & Decode URLs Instantly",
-    description: "Free online URL encoder and decoder. Convert special characters to percent encoding (%xx) or decode encoded URLs instantly in your browser. No server required.",
+    title: "URL Encoder / Decoder – Percent-Encode URLs Online",
+    description: "Encode special characters in URLs and query strings as percent-encoding (%20) or decode encoded URLs back to plain text, in your browser.",
     keywords: [
       "url encoder",
       "url decoder",

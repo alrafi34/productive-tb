@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Ideal Weight Calculator - Devine, Robinson, Miller, and Broca Formula Comparison",
-    description: "Free Ideal Weight Calculator with Devine, Robinson, Miller, and Broca formulas. Compare metric and imperial outputs, review healthy range status, and copy full calculation breakdown instantly.",
+    title: "Ideal Weight Calculator – Devine, Robinson, Miller & Broca",
+    description: "Find your ideal body weight with the Devine, Robinson, Miller and Broca formulas side by side, plus a healthy BMI weight range, in kg or lb.",
     keywords: [
       "ideal weight calculator",
       "healthy weight calculator",

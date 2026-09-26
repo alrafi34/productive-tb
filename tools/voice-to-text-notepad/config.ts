@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Voice-to-Text Notepad - Dictate Notes Online with Speech Recognition",
-    description: "Convert speech to text instantly with this free voice-to-text notepad. Dictate notes using your microphone, edit them live, and download your transcription with no login required.",
+    title: "Voice to Text Notepad – Dictate Notes Online Free",
+    description: "Dictate notes with your microphone and see the text appear as you speak. Edit, copy or download the transcript. Free, no sign-up.",
     keywords: [
       "voice to text",
       "speech to text online",

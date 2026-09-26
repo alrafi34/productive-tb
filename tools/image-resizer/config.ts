@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Image Resizer - Resize JPG, PNG, WebP Online",
-    description: "Free online image resizer to resize images to custom width and height. Maintain aspect ratio, batch resize, and download instantly. Works with JPG, PNG, and WebP formats.",
+    title: "Image Resizer – Resize JPG, PNG and WebP Online",
+    description: "Resize images to an exact width and height or by percentage, keep the aspect ratio, resize several at once and download them. Nothing is uploaded.",
     keywords: [
       "image resizer",
       "resize image online",

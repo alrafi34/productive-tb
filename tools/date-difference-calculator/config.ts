@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Date Difference Calculator (Years, Months, Days, Weeks)",
-    description: "Free Date Difference Calculator to find exact time between two dates. Get years, months, days, total weeks, and total days with leap-year accuracy and optional time details.",
+    title: "Date Difference Calculator – Days Between Two Dates",
+    description: "Find the exact time between two dates in years, months and days, plus total days and weeks. Handles leap years and month lengths correctly.",
     keywords: [
       "date difference calculator",
       "date duration calculator",

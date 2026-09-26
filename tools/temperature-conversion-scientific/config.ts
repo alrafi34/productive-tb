@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Temperature Conversion Calculator (Scientific) - Celsius, Fahrenheit, Kelvin, Rankine",
-    description: "Free scientific temperature conversion calculator. Convert Celsius, Fahrenheit, Kelvin, and Rankine instantly with precision control, copy-all results, and local history.",
+    title: "Temperature Converter – Celsius, Fahrenheit, Kelvin, Rankine",
+    description: "Convert between Celsius, Fahrenheit, Kelvin and Rankine at once, with adjustable precision. For everyday °C to °F, use the Celsius to Fahrenheit converter.",
     keywords: [
       "temperature conversion",
       "temperature converter",

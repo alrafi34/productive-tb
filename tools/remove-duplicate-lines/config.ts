@@ -25,8 +25,8 @@ export const removeDuplicateLinesConfig = {
     "frontend text tool"
   ],
   seo: {
-    title: "Remove Duplicate Lines Online - Clean Repeated Text Entries Instantly",
-    description: "Free Remove Duplicate Lines tool to deduplicate text lists with case handling, whitespace trim, empty-line removal, sorting, and duplicate-only mode. Copy or download cleaned output quickly.",
+    title: "Remove Duplicate Lines – Deduplicate a Text List Online",
+    description: "Remove duplicate lines from any list, with options to ignore case, trim spaces, drop empty lines, sort the result or show only the duplicates.",
     keywords: [
       "remove duplicate lines",
       "text cleaner",

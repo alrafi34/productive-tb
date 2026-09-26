@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "BMR Calculator Online – Estimate Basal Metabolic Rate Instantly",
-    description: "Free online BMR Calculator. Estimate your Basal Metabolic Rate and Total Daily Energy Expenditure based on weight, height, age, gender, and activity level. Results update instantly in your browser.",
+    title: "BMR Calculator – Basal Metabolic Rate & Daily Calories",
+    description: "Calculate your basal metabolic rate (BMR) and daily energy needs (TDEE) from age, sex, height, weight and activity, in metric or imperial units.",
     keywords: [
       "bmr calculator",
       "basal metabolic rate",

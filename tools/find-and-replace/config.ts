@@ -25,8 +25,8 @@ export const findAndReplaceConfig = {
     "frontend text tool"
   ],
   seo: {
-    title: "Find and Replace Online - Advanced Text Search and Replace Tool",
-    description: "Free Find and Replace tool with regex support, batch replacements, preview mode, match-case controls, and file upload. Edit text faster and export results instantly.",
+    title: "Find and Replace Text Online – With Regex Support",
+    description: "Find and replace words or patterns in text, with regular expressions, match case, whole words, several rules at once and a preview before you apply.",
     keywords: [
       "find and replace",
       "text search",

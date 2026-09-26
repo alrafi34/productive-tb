@@ -7,9 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Time Duration Calculator – Calculate Hours, Minutes & Seconds Between Two Times",
-    description:
-      "Free online Time Duration Calculator to calculate time difference between two times. Includes overnight shift support, optional seconds precision, total hours/minutes/seconds output, and one-click copy.",
+    title: "Time Duration Calculator – Hours Between Two Times",
+    description: "Calculate the hours, minutes and seconds between two times, including overnight shifts, with the total in hours, minutes and seconds.",
     keywords: [
       "time duration calculator",
       "time difference calculator",

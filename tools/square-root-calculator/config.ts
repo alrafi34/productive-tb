@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Square Root Calculator Online – Instantly Find √ of Any Number",
-    description: "Free online Square Root Calculator. Instantly calculate the square root of any number with precision control, verification, and batch processing directly in your browser.",
+    title: "Square Root Calculator – Find √ of Any Number",
+    description: "Calculate the square root of any number to the precision you choose, check the answer by squaring it, and work out many roots at once.",
     keywords: [
       "square root calculator",
       "square root finder",

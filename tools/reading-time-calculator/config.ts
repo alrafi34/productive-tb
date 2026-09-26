@@ -7,9 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Reading Time Calculator Online - Estimate Article and Blog Read Duration Instantly",
-    description:
-      "Free Reading Time Calculator with multiple speed profiles, custom WPM, speaking-time estimates, text analytics, and copy-ready read-time badges.",
+    title: "Reading Time Calculator – Words to Minutes",
+    description: "Estimate how long a text takes to read or speak aloud at typical or custom words-per-minute speeds, with word, sentence and paragraph counts.",
     keywords: [
       "reading time calculator",
       "blog reading time estimator",

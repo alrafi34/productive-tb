@@ -7,8 +7,8 @@ export const toolConfig = {
   icon: "⭐",
   keywords: ["favicon generator", "favicon creator", "icon generator", "website icon", "favicon maker", "ico generator", "favicon resize"],
   seo: {
-    title: "Favicon Generator – Resize Images to 16×16 & 32×32 for Web | Free Tool",
-    description: "Upload your image and generate favicons in 16×16, 32×32, and custom sizes instantly in your browser. Supports PNG, ICO, background color, and live preview. Free online tool.",
+    title: "Favicon Generator – Create 16×16, 32×32 and ICO Icons",
+    description: "Turn any image into favicons in 16×16, 32×32 and custom sizes, as PNG or ICO, with a background color and live preview. Runs in your browser.",
     keywords: "favicon generator, favicon creator, icon generator, website favicon, favicon maker, ico generator, favicon resize, create favicon",
     openGraph: {
       title: "Free Favicon Generator – Create Website Icons Instantly",

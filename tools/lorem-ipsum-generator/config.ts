@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Lorem Ipsum Generator Online - Placeholder Text for Design and Development",
-    description: "Free Lorem Ipsum Generator for paragraphs, sentences, or words. Configure randomization modes, add custom words, include HTML, and copy or download output instantly.",
+    title: "Lorem Ipsum Generator – Placeholder Text for Designs",
+    description: "Generate lorem ipsum placeholder text as paragraphs, sentences or words, optionally wrapped in HTML tags, and copy or download it.",
     keywords: [
       "lorem ipsum generator",
       "placeholder text generator",

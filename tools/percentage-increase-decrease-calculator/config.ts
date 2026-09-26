@@ -9,8 +9,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Percentage Increase/Decrease Calculator — Free Online",
-    description: "Calculate percent change between two numbers instantly. Includes reverse percentage, multi-step compounding simulation, batch list analysis, and CSV export. Free, browser-based.",
+    title: "Percentage Change Calculator – Increase & Decrease",
+    description: "Calculate the percentage increase or decrease between two numbers, find the original value from a percent change, and chain several changes together.",
     keywords: [
       "percentage increase calculator",
       "percentage decrease calculator",

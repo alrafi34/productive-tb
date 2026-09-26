@@ -7,8 +7,8 @@ export const toolConfig = {
   icon: "🔒",
   keywords: ["exif remover", "remove metadata", "strip exif", "image privacy", "metadata remover", "exif cleaner", "photo privacy"],
   seo: {
-    title: "EXIF Data Remover – Strip Metadata from Images Online | Free Tool",
-    description: "Remove all EXIF metadata from your images instantly in the browser. Protect your privacy before sharing photos. Free online EXIF remover tool.",
+    title: "EXIF Remover – Strip Photo Metadata and GPS Location",
+    description: "Remove EXIF metadata, including GPS location, camera details and dates, from photos before you share them. Processed in your browser, never uploaded.",
     keywords: "exif remover, remove exif data, strip metadata, image privacy, photo metadata remover, exif cleaner, remove location data, privacy tool",
     openGraph: {
       title: "Free EXIF Data Remover – Protect Your Privacy",

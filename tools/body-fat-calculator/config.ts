@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Body Fat Calculator - US Navy and BMI Body Fat Percentage Estimator",
-    description: "Free Body Fat Calculator with US Navy and BMI methods. Estimate body fat percentage, view category guidance, switch metric/imperial units, and save local history for progress tracking.",
+    title: "Body Fat Calculator – U.S. Navy Method & BMI Estimate",
+    description: "Estimate body fat percentage with the U.S. Navy tape method or from BMI, in metric or imperial units, and see which category your result falls in.",
     keywords: [
       "body fat calculator",
       "body fat percentage",

@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "GST / VAT Calculator - Add or Remove Tax from Price Instantly",
-    description: "Free GST/VAT Calculator to add tax to base price or remove tax from tax-inclusive totals. Includes formulas, examples, FAQ, predefined rates, history, and CSV export.",
+    title: "VAT & GST Calculator – Add or Remove Tax from a Price",
+    description: "Add VAT or GST to a net price or remove it from a gross price at any rate. See the tax amount, net and gross totals, the formula and a copyable breakdown.",
     keywords: [
       "gst calculator",
       "vat calculator",
@@ -46,7 +46,7 @@ export const toolConfig = {
     "Calculate tax-inclusive prices (add tax)",
     "Calculate tax-exclusive prices (remove tax)",
     "Support for custom tax rates",
-    "Predefined GST/VAT rates (5%, 12%, 18%, 28%)",
+    "Quick rates: UK, Germany, France, Spain, Italy, Ireland, Canada, Australia, New Zealand",
     "Real-time calculation as you type",
     "Decimal precision control",
     "Quick amount presets",

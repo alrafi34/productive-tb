@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Exponent Calculator Online - Power (x^y), Negative, and Fractional Exponents",
-    description: "Free Exponent Calculator for x^y powers, negative exponents, and fractional powers. Get instant results, step expansion, precision control, and scientific notation.",
+    title: "Exponent Calculator – Negative & Fractional Powers",
+    description: "Calculate x^y for any base and exponent, including negative and fractional exponents such as (−8)^(1/3) = −2, with steps and scientific notation.",
     keywords: [
       "exponent calculator",
       "power calculator",

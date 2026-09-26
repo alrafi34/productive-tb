@@ -9,8 +9,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Percentage Calculator — Free Online Percentage Calculator",
-    description: "Solve any percentage problem instantly. Find X% of Y, what % X is of Y, increase/decrease by %, reverse percentage, multi-step, and batch with CSV export. Free, browser-based.",
+    title: "Percentage Calculator – X% of Y, What Percent, % Change",
+    description: "Solve any percentage problem: X% of Y, what percent X is of Y, percentage increase or decrease, and reverse percentages, with steps and batch mode.",
     keywords: [
       "percentage calculator",
       "percentage calculator online",

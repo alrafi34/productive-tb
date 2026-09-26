@@ -7,8 +7,8 @@ export const averageCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Average Calculator Online - Find Mean of Numbers Instantly",
-    description: "Use our free Average Calculator to calculate mean from numbers, marks, prices, and datasets in seconds. Paste comma, space, or line-separated values and export results as CSV.",
+    title: "Average Calculator – Mean of a List of Numbers",
+    description: "Find the average (mean) of any list of numbers, pasted with commas, spaces or new lines, along with the sum, count, minimum and maximum.",
     keywords: [
       "average calculator",
       "mean calculator",

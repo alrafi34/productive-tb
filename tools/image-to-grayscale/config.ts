@@ -7,8 +7,8 @@ export const toolConfig = {
   icon: "⚫",
   keywords: ["grayscale converter", "black and white", "image filter", "grayscale image", "desaturate image", "monochrome converter", "bw converter"],
   seo: {
-    title: "Image to Grayscale – Convert Images to Black & White Online | Free Tool",
-    description: "Apply grayscale filter to your images instantly in your browser. Preview and download black-and-white versions of PNG, JPEG, or GIF. Free online tool.",
+    title: "Image to Grayscale – Make a Photo Black and White",
+    description: "Convert any PNG, JPG or GIF image to grayscale (black and white) in your browser, preview it next to the original and download the result.",
     keywords: "image to grayscale, black and white converter, grayscale filter, desaturate image, monochrome image, bw converter, image grayscale online",
     openGraph: {
       title: "Free Image to Grayscale Converter – Black & White Filter",
