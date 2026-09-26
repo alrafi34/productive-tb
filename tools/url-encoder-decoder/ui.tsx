@@ -167,7 +167,7 @@ export default function URLEncoderDecoderUI() {
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="max-w-6xl mx-auto space-y-8 pb-12 px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="max-w-6xl mx-auto space-y-8 pb-12 pt-8">
         
         {/* Header */}
         <div className="flex justify-between items-center">

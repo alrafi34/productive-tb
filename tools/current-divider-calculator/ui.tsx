@@ -340,7 +340,7 @@ export default function CurrentDividerCalculatorUI() {
                   {inputs.resistors.map((resistor, index) => (
                     <div key={resistor.id} className="flex items-center gap-3">
                       <span className="text-sm font-medium text-gray-600 w-8">R{index + 1}</span>
-                      <div className="flex-1 flex gap-2">
+                      <div className="flex-1 min-w-0 flex gap-2">
                         <input
                           type="number"
                           value={resistor.value}

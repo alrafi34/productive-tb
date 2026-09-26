@@ -83,11 +83,11 @@ export default function ToolLayout({ title, description, icon, category, slug, c
           <ToolNavProvider value={nav}>
             {hasRail ? (
               <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-8 xl:items-start">
-                <div className="min-w-0">{children}</div>
+                <div data-tool-main className="min-w-0">{children}</div>
                 <ToolRail nav={nav} />
               </div>
             ) : (
-              children
+              <div data-tool-main className="min-w-0">{children}</div>
             )}
           </ToolNavProvider>
         </article>

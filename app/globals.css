@@ -113,3 +113,44 @@
     overflow: hidden;
   }
 }
+
+/* One width for every tool page. Each tool UI and its write-up were built
+   with their own centred wrapper (max-w-2xl to 7xl, often with side padding),
+   so pages came out at different widths. The page-level wrappers — the tool
+   UI's root (or the wrapper around it and the related strip), and the
+   write-up's root that follows the strip — now fill the main column, and
+   the ones with no background of their own drop their side padding so every
+   tool lines up with the column edges. Unlayered, so these win over the
+   Tailwind utilities. */
+:is(
+  [data-tool-main] > *,
+  [data-tool-main] > :has(> [data-related-strip]) > *,
+  [data-related-strip] ~ *
+):is(.max-w-2xl, .max-w-3xl, .max-w-4xl, .max-w-5xl, .max-w-6xl, .max-w-7xl) {
+  max-width: none;
+}
+:is(
+  [data-tool-main] > *,
+  [data-tool-main] > :has(> [data-related-strip]) > *,
+  [data-related-strip] ~ *
+).mx-auto:not([class*="bg-"]) {
+  padding-inline: 0;
+}
+
+/* …and nothing inside may push the page wider than the screen. Grid items
+   and form controls default to min-width:auto, so a long label or a wide
+   input made a column (and with it the whole page) wider than a phone.
+   Letting them shrink, and letting long unbroken strings (hashes, Base64,
+   URLs) wrap, keeps every tool inside the column. */
+[data-tool-main] {
+  overflow-wrap: break-word;
+}
+[data-tool-main] .grid > *,
+[data-tool-main] :is(input, select, textarea) {
+  min-width: 0;
+}
+/* Code samples keep their line breaks and scroll inside their own box. */
+[data-tool-main] :is(pre, .whitespace-pre) {
+  max-width: 100%;
+  overflow-x: auto;
+}

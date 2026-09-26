@@ -201,7 +201,7 @@ export default function CSSClampGenerator() {
 
         {/* Tabs */}
         <div className="bg-white rounded-xl border border-gray-200 p-2">
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setActiveTab('generator')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
@@ -483,9 +483,9 @@ export default function CSSClampGenerator() {
 
             {/* Code Output */}
             <div className="bg-white rounded-xl border border-gray-200 p-4 lg:p-6">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <h3 className="text-lg font-semibold">Generated Code</h3>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <button
                     onClick={handleGenerateScale}
                     className="flex items-center gap-2 px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"

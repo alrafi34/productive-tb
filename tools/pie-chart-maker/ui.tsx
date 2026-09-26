@@ -153,7 +153,7 @@ export default function PieChartMakerUI() {
 
   return (
     <div className={`min-h-screen transition-colors ${config.darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="max-w-7xl mx-auto space-y-8 pb-12 px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="max-w-7xl mx-auto space-y-8 pb-12 pt-8">
         
         {/* Header */}
         <div className="flex justify-between items-center">
@@ -333,7 +333,7 @@ export default function PieChartMakerUI() {
                 Chart Preview
               </label>
               <div className={`rounded-lg border p-4 flex justify-center ${config.darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
-                <div dangerouslySetInnerHTML={{ __html: svgChart }} />
+                <div className="max-w-full [&_svg]:max-w-full [&_svg]:h-auto" dangerouslySetInnerHTML={{ __html: svgChart }} />
               </div>
             </div>
 

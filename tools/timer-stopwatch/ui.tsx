@@ -182,7 +182,7 @@ export default function TimerStopwatchUI() {
                 </h1>
               </div>
 
-              <div className="flex justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 <button 
                   onClick={toggleStopwatch}
                   className={`px-10 py-5 rounded-2xl font-bold text-lg transition-all active:scale-95 shadow-lg ${swRunning ? 'bg-red-50 text-red-600 hover:bg-red-100' : 'bg-primary text-white hover:bg-primary-dark shadow-primary/20'}`}
