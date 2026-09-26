@@ -16,6 +16,7 @@ import {
   UNIT_LABELS,
   UNIT_SHORT,
   ALL_UNITS,
+  lengthUnitFor,
 } from "./logic";
 import PlotDivisionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -181,6 +182,12 @@ export default function PlotDivisionCalculatorUI() {
                 )}
               </div>
 
+              {result && result.warnings?.length > 0 && (
+                <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800 space-y-1" role="status">
+                  {result.warnings.map((w) => <p key={w}>{w}</p>)}
+                </div>
+              )}
+
               <div className="pt-2 space-y-2">
                 <button
                   onClick={handleReset}
@@ -242,7 +249,7 @@ export default function PlotDivisionCalculatorUI() {
                   {result.plotWidth && result.plotLength && (
                     <div className="flex justify-between">
                       <span className="text-primary-100">Plot Dimensions:</span>
-                      <span className="font-semibold">{formatNumber(result.plotWidth)} × {formatNumber(result.plotLength)}</span>
+                      <span className="font-semibold">{formatNumber(result.plotWidth)} × {formatNumber(result.plotLength)} {result.lengthUnit}</span>
                     </div>
                   )}
                 </div>
@@ -326,7 +333,7 @@ export default function PlotDivisionCalculatorUI() {
                 <h4 className="text-sm font-semibold text-gray-700 mb-3">Optional: Land Dimensions</h4>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Land Width</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Land Width ({lengthUnitFor(inputs.landUnit)})</label>
                     <input
                       type="number"
                       inputMode="decimal"
@@ -339,7 +346,7 @@ export default function PlotDivisionCalculatorUI() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Land Length</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Land Length ({lengthUnitFor(inputs.landUnit)})</label>
                     <input
                       type="number"
                       inputMode="decimal"
@@ -355,7 +362,7 @@ export default function PlotDivisionCalculatorUI() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Road Width (Optional)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Road Width ({lengthUnitFor(inputs.landUnit)}, optional)</label>
                 <input
                   type="number"
                   inputMode="decimal"
@@ -366,7 +373,7 @@ export default function PlotDivisionCalculatorUI() {
                   min="0"
                   step="any"
                 />
-                <p className="text-xs text-gray-500 mt-1">Space reserved for roads between plots</p>
+                <p className="text-xs text-gray-500 mt-1">Space reserved for roads between plots (needs the land width and length)</p>
               </div>
 
               <p className="text-xs text-gray-500">

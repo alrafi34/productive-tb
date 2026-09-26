@@ -18,8 +18,14 @@ export function calculateYearlyBreakdown(
   escalationType: EscalationType
 ): YearlyBreakdown[] {
   const breakdown: YearlyBreakdown[] = [];
-  
-  for (let year = 0; year <= duration; year++) {
+
+  // Whole years, then the exact end of a fractional duration (2.5 years ends
+  // at 2.5), so the last row always matches the future cost.
+  const years: number[] = [];
+  for (let year = 0; year <= duration; year++) years.push(year);
+  if (!Number.isInteger(duration)) years.push(duration);
+
+  for (const year of years) {
     let cost: number;
     
     if (escalationType === "compound") {
@@ -28,7 +34,8 @@ export function calculateYearlyBreakdown(
       cost = baseCost * (1 + (rate * year));
     }
     
-    const increase = year === 0 ? 0 : cost - (breakdown[year - 1]?.cost || baseCost);
+    const previous = breakdown[breakdown.length - 1];
+    const increase = previous ? cost - previous.cost : 0;
     const cumulativeIncrease = cost - baseCost;
     
     breakdown.push({

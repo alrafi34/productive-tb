@@ -48,34 +48,53 @@ export function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month, 0).getDate();
 }
 
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+/* A date picker's "YYYY-MM-DD" as local midnight. new Date("YYYY-MM-DD")
+   reads it as UTC midnight, which is the previous day anywhere west of UTC. */
+export function parseDateInput(value: string): Date {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value.trim());
+  return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : new Date(value);
+}
+
+/* Today's date as "YYYY-MM-DD" in the visitor's own timezone. */
+export function todayInputValue(now: Date = new Date()): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+}
+
+function startOfDay(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+/* Whole calendar days from a to b; rounding absorbs daylight-saving hours. */
+function daysBetween(a: Date, b: Date): number {
+  return Math.round((startOfDay(b).getTime() - startOfDay(a).getTime()) / MS_PER_DAY);
+}
+
 export function calculateExactAge(birthDate: Date, targetDate: Date): AgeResult {
   let years = targetDate.getFullYear() - birthDate.getFullYear();
   let months = targetDate.getMonth() - birthDate.getMonth();
-  let days = targetDate.getDate() - birthDate.getDate();
-
-  if (days < 0) {
-    months--;
-    // Get days of the previous month
-    let prevMonth = targetDate.getMonth();
-    let prevYear = targetDate.getFullYear();
-    if (prevMonth === 0) {
-      prevMonth = 12;
-      prevYear--;
-    }
-    days += getDaysInMonth(prevYear, prevMonth);
-  }
-
+  if (targetDate.getDate() < birthDate.getDate()) months--;
   if (months < 0) {
     years--;
     months += 12;
   }
+
+  // Days counted from the last "monthiversary". A birth day the month does not
+  // have (the 31st, or 29 Feb) falls on that month's last day.
+  const monthIndex = birthDate.getMonth() + months;
+  const anchorYear = birthDate.getFullYear() + years + Math.floor(monthIndex / 12);
+  const anchorMonth = monthIndex % 12;
+  const anchorDay = Math.min(birthDate.getDate(), getDaysInMonth(anchorYear, anchorMonth + 1));
+  const days = daysBetween(new Date(anchorYear, anchorMonth, anchorDay), targetDate);
 
   return { years, months, days };
 }
 
 export function calculateLifetimeStats(birthDate: Date, targetDate: Date): LifetimeStats {
   const diffTime = targetDate.getTime() - birthDate.getTime();
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const diffDays = daysBetween(birthDate, targetDate);
   
   // Approximate months
   const age = calculateExactAge(birthDate, targetDate);
@@ -92,19 +111,19 @@ export function calculateLifetimeStats(birthDate: Date, targetDate: Date): Lifet
 }
 
 export function calculateNextBirthday(birthDate: Date, targetDate: Date): NextBirthday {
-  let nextBdayYear = targetDate.getFullYear();
+  const today = startOfDay(targetDate);
+  let nextBdayYear = today.getFullYear();
   let nextBday = new Date(nextBdayYear, birthDate.getMonth(), birthDate.getDate());
 
-  // If birthday already passed this year, next one is next year
-  if (nextBday.getTime() < targetDate.getTime()) {
+  // A birthday earlier this year is next year's; one that is today stays today
+  if (nextBday.getTime() < today.getTime()) {
     nextBdayYear++;
     nextBday = new Date(nextBdayYear, birthDate.getMonth(), birthDate.getDate());
   }
 
-  const diffTime = nextBday.getTime() - targetDate.getTime();
-  const totalDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const totalDaysLeft = daysBetween(today, nextBday);
 
-  const result = calculateExactAge(targetDate, nextBday);
+  const result = calculateExactAge(today, nextBday);
 
   return {
     months: result.months,

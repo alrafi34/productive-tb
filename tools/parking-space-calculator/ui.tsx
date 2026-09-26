@@ -48,14 +48,21 @@ export default function ParkingSpaceCalculatorUI() {
     setAisleWidth(getRecommendedAisleWidth(next, unit).toString());
   };
 
-  // Stall and aisle sizes are lengths in the selected unit, so switching units
-  // converts them instead of reading 8.5 ft as 8.5 m.
+  // Every size is in the selected unit, so switching units converts them
+  // instead of reading 8.5 ft as 8.5 m or a 10,000 sq ft lot as 10,000 sq m.
   const handleUnitChange = (next: Unit) => {
     if (next === unit) return;
     const conv = (v: string) => {
       const n = parseFloat(v);
       return Number.isFinite(n) ? String(Number(convertLength(n, unit, next).toFixed(2))) : v;
     };
+    const convArea = (v: string) => {
+      const n = parseFloat(v);
+      return Number.isFinite(n) ? String(Number(convertLength(convertLength(n, unit, next), unit, next).toFixed(2))) : v;
+    };
+    setTotalArea(convArea(totalArea));
+    setWidth(conv(width));
+    setLength(conv(length));
     setSpaceWidth(conv(spaceWidth));
     setSpaceLength(conv(spaceLength));
     setAisleWidth(conv(aisleWidth));
