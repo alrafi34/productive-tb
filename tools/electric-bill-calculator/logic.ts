@@ -209,21 +209,24 @@ export function totalApplianceKwh(appliances: Appliance[], days: number): number
 export const COMMON_APPLIANCES: { name: string; watts: number; hoursPerDay: number }[] = [
   { name: "LED bulb", watts: 10, hoursPerDay: 5 },
   { name: "Ceiling fan", watts: 75, hoursPerDay: 8 },
-  { name: "Refrigerator", watts: 150, hoursPerDay: 24 },
-  { name: "Air conditioner", watts: 1500, hoursPerDay: 6 },
+  // A fridge's compressor cycles on and off, so its average draw is far below its rating
+  { name: "Refrigerator (average)", watts: 60, hoursPerDay: 24 },
   { name: "Television", watts: 100, hoursPerDay: 4 },
   { name: "Laptop", watts: 60, hoursPerDay: 6 },
   { name: "Desktop PC", watts: 250, hoursPerDay: 4 },
   { name: "Washing machine", watts: 500, hoursPerDay: 1 },
   { name: "Microwave", watts: 1100, hoursPerDay: 0.3 },
   { name: "Electric kettle", watts: 2000, hoursPerDay: 0.25 },
-  { name: "Water heater", watts: 3000, hoursPerDay: 1 },
+  { name: "Air conditioner", watts: 1500, hoursPerDay: 6 },
   { name: "Space heater", watts: 1500, hoursPerDay: 4 },
+  { name: "Clothes dryer", watts: 3000, hoursPerDay: 1 },
+  { name: "Water heater (tank)", watts: 4500, hoursPerDay: 3 },
+  { name: "EV charger (Level 2)", watts: 7200, hoursPerDay: 1 },
 ];
 
 export function createDefaultAppliances(): Appliance[] {
   return [
-    { id: generateId(), name: "Refrigerator", watts: 150, quantity: 1, hoursPerDay: 24 },
+    { id: generateId(), name: "Refrigerator (average)", watts: 60, quantity: 1, hoursPerDay: 24 },
     { id: generateId(), name: "LED bulb", watts: 10, quantity: 6, hoursPerDay: 5 },
     { id: generateId(), name: "Television", watts: 100, quantity: 1, hoursPerDay: 4 },
   ];

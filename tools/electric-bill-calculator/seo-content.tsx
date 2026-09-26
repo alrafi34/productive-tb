@@ -1,54 +1,38 @@
+import { electricBillCalculatorConfig } from "./config";
+
 export default function ElectricBillCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is an electric bill calculator?",
-      a: "An electric bill calculator is a free online tool that estimates your total electricity cost from your kWh usage, billing type, and applicable charges. It supports both flat-rate billing, where every unit costs the same, and tiered (slab) billing, where different consumption ranges are charged at different rates, plus service charges, meter charges, and tax.",
-    },
-    {
-      q: "How is an electricity bill calculated?",
-      a: "For flat-rate billing: Total = (Units × Rate) + Service Charge + Meter Charge + Tax. For tiered billing, each consumption band is charged at its own rate and the per-band costs are summed before adding fixed charges and tax. For example, 200 kWh at a flat $0.12/kWh rate costs 200 × 0.12 = $24.00 before fixed charges and tax.",
-    },
-    {
-      q: "What is the difference between flat rate and tiered (slab) billing?",
-      a: "Flat-rate billing charges the same rate per kWh regardless of how much you use. Tiered billing splits usage into bands — for example the first 100 kWh at one rate, the next 100–300 kWh at a higher rate, and anything above that at a higher rate still — so heavier consumption is charged progressively more per unit. Most residential utilities in South Asia use tiered billing; many US utilities use flat or two-tier billing.",
-    },
-    {
-      q: "How do I find my electricity consumption in kWh?",
-      a: "Check your electricity bill for the \"Units Consumed\" or \"kWh Used\" figure for the billing period. You can also read your meter at the start and end of a period and subtract the two readings, or use this site's energy consumption calculator to estimate usage from your appliances directly.",
-    },
-    {
-      q: "What is the difference between kW and kWh?",
-      a: "kW (kilowatt) measures power — the rate at which electricity is used at any given moment. kWh (kilowatt-hour) measures energy — power used over time — and is what your bill is actually based on. A 1,000W (1kW) appliance running for one hour uses 1 kWh regardless of how the power varies during that hour.",
-    },
-    {
-      q: "Why do utilities use tiered billing instead of a flat rate?",
-      a: "Tiered billing is designed to keep electricity affordable for low-usage households while discouraging excessive consumption at the margin. The first band typically covers baseline needs at the lowest rate, and each additional band raises the marginal cost — so conservation is rewarded and heavy users subsidize the lower tiers to some degree.",
-    },
-    {
-      q: "What are service charges and meter charges?",
-      a: "A service charge is a fixed monthly fee that covers grid maintenance and account administration, charged regardless of how much electricity you use. A meter charge covers the cost of reading and maintaining your meter. Both are added on top of your energy consumption cost, before tax is applied to the subtotal.",
-    },
-    {
-      q: "Can I use this calculator for commercial or industrial billing?",
-      a: "Yes. Enter your commercial or industrial tariff's flat rate, or set up the slab structure and rates from your utility's commercial tariff schedule. Commercial rates are often structured differently from residential tariffs and may include demand charges that this calculator does not model separately.",
-    },
-    {
-      q: "How accurate is this calculator compared to my actual bill?",
-      a: "This calculator applies the exact rates, charges, and tax percentage you enter, so it will match your utility's math closely for the inputs given. Small differences can appear from rounding conventions, additional regulatory fees, or mid-cycle rate changes that your utility applies but that aren't part of the input fields here.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your usage figures, rate structure, and any saved history are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
+  // Same questions as the FAQPage schema, so the page and the markup agree
+  const faqItems = electricBillCalculatorConfig.seo.faq;
+
+  const howToSteps: [string, string][] = electricBillCalculatorConfig.seo.howToSteps.map(
+    ({ name, text }) => [name, text]
+  );
+
+  // Monthly use = watts × hours a day × 30 days ÷ 1,000; cost at $0.18/kWh
+  const applianceCosts: [string, string, string, string, string][] = [
+    ["LED bulb", "10 W", "5 h", "1.5 kWh", "$0.27"],
+    ["Ceiling fan", "75 W", "8 h", "18 kWh", "$3.24"],
+    ["Refrigerator (average draw)", "60 W", "24 h", "43.2 kWh", "$7.78"],
+    ["Television", "100 W", "4 h", "12 kWh", "$2.16"],
+    ["Laptop", "60 W", "6 h", "10.8 kWh", "$1.94"],
+    ["Desktop PC", "250 W", "4 h", "30 kWh", "$5.40"],
+    ["Washing machine", "500 W", "1 h", "15 kWh", "$2.70"],
+    ["Microwave", "1,100 W", "20 min", "9.9 kWh", "$1.78"],
+    ["Window / portable AC", "1,500 W", "6 h", "270 kWh", "$48.60"],
+    ["Space heater", "1,500 W", "4 h", "180 kWh", "$32.40"],
+    ["Clothes dryer", "3,000 W", "1 h", "90 kWh", "$16.20"],
+    ["Water heater (tank)", "4,500 W", "3 h", "405 kWh", "$72.90"],
+    ["EV charger (Level 2)", "7,200 W", "1 h", "216 kWh", "$38.88"],
   ];
 
-  const howToSteps: [string, string][] = [
-    ["Enter your consumption", "Input your electricity usage in kWh for the billing period, found on a past bill or from your meter reading difference."],
-    ["Select a billing type", "Choose Flat Rate if your utility charges one price per unit, or Tiered (Slab) if it charges different rates across consumption bands."],
-    ["Set your rates", "For flat rate, enter the price per kWh. For tiered, enter the minimum and maximum kWh and rate for each band, or start from a built-in preset."],
-    ["Add fixed charges and tax", "Enter your service charge, meter charge, and tax percentage so the subtotal and final total match your actual bill structure."],
-    ["Review the breakdown", "The results panel shows cost per tier (if tiered), the subtotal, tax amount, and final total bill in your selected currency."],
-    ["Save or export the calculation", "Save the result to history for comparison across months, or export the full breakdown as a CSV or text file."],
+  const priceReference: [string, string, string][] = [
+    ["United States – average home", "≈ 18¢ per kWh", "EIA, 2026"],
+    ["United States – range by state", "≈ 13¢ (Nevada) to 50¢+ (Hawaii)", "2026 state averages"],
+    ["United Kingdom – price cap", "26.32p per kWh + 54.83p per day", "Ofgem, Oct–Dec 2026"],
+    ["European Union – household average", "≈ €0.29 per kWh, taxes included", "Eurostat, 2nd half 2025"],
+    ["Germany", "≈ €0.39 per kWh", "Eurostat, 2nd half 2025"],
+    ["Ireland", "≈ €0.40 per kWh", "Eurostat, 2nd half 2025"],
+    ["Hungary", "≈ €0.11 per kWh", "Eurostat, 2nd half 2025"],
   ];
 
   return (
@@ -60,48 +44,55 @@ export default function ElectricBillCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>electric bill calculator</strong> estimates your total electricity cost from your
-            kWh usage, billing structure, and applicable charges. It supports both flat-rate billing, where
-            every unit costs the same, and tiered (slab) billing, where different consumption bands are
-            charged at different rates — plus service charges, meter charges, and tax on top.
+            An <strong>electric bill calculator</strong> turns the electricity you use into money. Give it
+            your usage in kilowatt-hours (kWh) and the price you pay per kWh, add any fixed charges and tax,
+            and it returns the bill, line by line.
           </p>
           <p>
-            The math behind a flat-rate bill is simple multiplication, but tiered billing requires splitting
-            your total usage across multiple bands, calculating each band's cost separately, then summing
-            them before fixed charges and tax are applied — a calculation that's easy to get wrong by hand,
-            especially with six or more bands like Bangladesh's residential tariff structure. This tool
-            handles the band-splitting automatically and shows the cost contributed by each tier.
+            You don&apos;t need a past bill to start. If you only know your appliances, switch to{" "}
+            <strong>Estimate from watts</strong>: enter each device&apos;s wattage and how many hours a day it
+            runs, and the calculator works out the kWh for the billing period and prices it at your rate.
+            That makes it just as useful for budgeting a new home, checking what a space heater or an EV
+            charger will add, or comparing a supplier&apos;s offer.
           </p>
           <p>
-            Built for <strong>homeowners checking their bill against the posted tariff, tenants estimating
-            costs before signing a lease, and small businesses modeling commercial tariffs</strong>. Supports
-            five currencies (BDT, USD, EUR, GBP, INR), built-in tariff presets for Bangladesh, India, the
-            USA, and the UK, CSV and text export, and calculation history — free and browser-based.
+            It works anywhere. The calculator opens in your local currency (US dollar, euro, pound, Canadian
+            or Australian dollar and more), handles flat and tiered (block) pricing, and includes presets for
+            the U.S. average, the UK price cap and the EU average. Every number stays editable, so you can
+            match your own utility&apos;s tariff exactly.
           </p>
         </div>
       </section>
 
-      {/* ── 2. How It Works ── */}
+      {/* ── 2. Formulas ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Flat Rate vs. Tiered Billing Formulas
+          How to Calculate Your Electric Bill
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>Every electricity bill comes down to three steps: find the energy used, price it, then add the fixed parts.</p>
           <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
             <p className="text-sm font-medium text-gray-500 mb-3">Core Formulas</p>
             <div className="space-y-1.5 font-mono text-sm text-gray-900">
-              <p><span className="font-semibold">Flat rate total</span> = (Units × Rate) + Service Charge + Meter Charge + Tax</p>
-              <p><span className="font-semibold">Tiered subtotal</span> = Σ (units in each band × that band's rate)</p>
-              <p><span className="font-semibold">Tax</span> = Subtotal × Tax % ÷ 100</p>
-              <p className="text-gray-500 text-xs mt-2">Example: 200 kWh flat at $0.12/kWh</p>
-              <p className="text-gray-500 text-xs">200 × 0.12 = <span className="text-green-600 font-semibold">$24.00</span> before fixed charges and tax</p>
+              <p><span className="font-semibold">Energy (kWh)</span> = watts × hours per day × days ÷ 1,000</p>
+              <p><span className="font-semibold">Energy cost</span> = kWh × price per kWh</p>
+              <p><span className="font-semibold">Bill</span> = energy cost + fixed charges + tax</p>
             </div>
           </div>
-          <ul className="space-y-1 ml-4 list-disc text-gray-600">
-            <li><strong>Flat rate</strong> — one price per kWh applies to all units consumed</li>
-            <li><strong>Tiered (slab) rate</strong> — usage is split into bands (e.g. 0-100, 101-300, 301+), each charged at its own rate</li>
-            <li><strong>Service charge / meter charge</strong> — fixed monthly fees added regardless of usage</li>
-            <li><strong>Tax</strong> — applied as a percentage of the subtotal (energy cost + fixed charges)</li>
+          <h3 className="text-lg font-medium text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>Worked examples</h3>
+          <ul className="space-y-2 ml-4 list-disc">
+            <li>
+              <strong>From a meter reading (U.S.):</strong> 900 kWh × $0.18 = <strong>$162.00</strong> of energy.
+              Add your utility&apos;s monthly customer charge and any local tax to get the full bill.
+            </li>
+            <li>
+              <strong>From an appliance&apos;s watts:</strong> a 1,500 W space heater used 4 hours a day for
+              30 days uses 1,500 × 4 × 30 ÷ 1,000 = 180 kWh, which costs 180 × $0.18 = <strong>$32.40</strong>.
+            </li>
+            <li>
+              <strong>With a standing charge (UK):</strong> 270 kWh × £0.2632 = £71.06, plus 30 days × 54.83p =
+              £16.45, gives a bill of <strong>£87.51</strong>.
+            </li>
           </ul>
         </div>
       </section>
@@ -124,19 +115,19 @@ export default function ElectricBillCalculatorSEO() {
             </ol>
           </div>
           <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Provides</h3>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Does</h3>
             <ul className="space-y-2 text-gray-600">
               {[
-                "Real-time calculation as you type",
-                "Flat rate and tiered (slab) billing support",
-                "Multi-currency: BDT, USD, EUR, GBP, INR",
-                "Built-in presets for Bangladesh, India, USA, and UK tariffs",
-                "Per-band cost breakdown for tiered billing",
-                "Service charge, meter charge, and tax fields",
-                "Calculation history (saved locally)",
-                "CSV export for spreadsheets",
-                "Text export for records",
-                "No signup required",
+                "Bill from kWh, or kWh estimated from appliance watts",
+                "Your own price per kWh, in your local currency",
+                "Flat and tiered (block) pricing",
+                "Standing, service and meter charges",
+                "Tax as a percentage of the bill",
+                "Presets: U.S. average, UK price cap, EU average and more",
+                "Line-by-line cost breakdown",
+                "History saved in your browser",
+                "CSV and text export",
+                "Free, no sign-up, nothing sent to a server",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>
@@ -148,36 +139,136 @@ export default function ElectricBillCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 4. Use Cases ── */}
+      {/* ── 4. Appliance costs ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          How Much Electricity Do Appliances Use?
+        </h2>
+        <p className="text-gray-600 leading-relaxed mb-4">
+          Typical monthly use and cost over 30 days at the U.S. average of $0.18 per kWh. Wattage is on the
+          appliance&apos;s label or manual; your own hours and rate will differ, so enter them in{" "}
+          <strong>Estimate from watts</strong> above.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Appliance</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Power</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Use per day</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">kWh per month</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Cost per month</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {applianceCosts.map(([name, watts, hours, kwh, cost]) => (
+                <tr key={name} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-semibold text-primary text-xs">{name}</td>
+                  <td className="py-2 px-3 text-right font-mono text-gray-600 text-xs">{watts}</td>
+                  <td className="py-2 px-3 text-right font-mono text-gray-600 text-xs">{hours}</td>
+                  <td className="py-2 px-3 text-right font-mono text-gray-600 text-xs">{kwh}</td>
+                  <td className="py-2 px-3 text-right font-mono text-gray-900 text-xs font-semibold">{cost}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400 mt-2">
+          * A refrigerator is rated at 100–200 W, but its compressor cycles on and off, so about 60 W on average
+          is closer to real use.
+        </p>
+      </section>
+
+      {/* ── 5. Price reference ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          Average Electricity Prices per kWh
+        </h2>
+        <p className="text-gray-600 leading-relaxed mb-4">
+          Use the rate on your own bill whenever you can. If you don&apos;t have one, these published averages
+          are a reasonable starting point.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Region</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Residential price</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Source</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {priceReference.map(([region, price, source]) => (
+                <tr key={region} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-semibold text-primary text-xs">{region}</td>
+                  <td className="py-2 px-3 font-mono text-gray-700 text-xs">{price}</td>
+                  <td className="py-2 px-3 text-gray-500 text-xs">{source}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400 mt-2">
+          * Prices change often and vary by utility, supplier, plan and time of day. UK and EU figures include
+          VAT and taxes.
+        </p>
+      </section>
+
+      {/* ── 6. Flat vs tiered ── */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          Flat, Tiered and Time-of-Use Pricing
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <ul className="space-y-2 ml-4 list-disc">
+            <li>
+              <strong>Flat rate:</strong> every kWh costs the same. This is the most common plan in the UK and
+              much of Europe, and for many U.S. utilities.
+            </li>
+            <li>
+              <strong>Tiered (block) rate:</strong> the price steps up once you pass a threshold. Each block is
+              charged only for the kWh inside it: with 0–500 kWh at $0.15 and 501+ at $0.20, a 700 kWh month
+              costs 500 × 0.15 + 200 × 0.20 = <strong>$115</strong>, not 700 × 0.20.
+            </li>
+            <li>
+              <strong>Time-of-use:</strong> the price depends on the hour, cheaper overnight and dearer at the
+              evening peak. Enter your usage-weighted average rate as a flat rate, or work out peak and off-peak
+              kWh separately and add the two results.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* ── 7. Use Cases ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Real-World Use Cases
+          Real-World Examples
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {[
             {
-              title: "Bangladesh Residential Tariff Check",
-              scenario: "A homeowner in Dhaka used 450 kWh this month and wants to verify their bill against the posted tariff. Using the Bangladesh preset (6 slabs from 4.00 to 11.00 BDT/unit), the calculator splits 450 units across the bands — 75 @ 4.00, 125 @ 5.30, 100 @ 5.80, 100 @ 6.00, and 50 @ 9.50 — returning a subtotal of 2,437.50 BDT before service charge and tax.",
+              title: "Checking a U.S. monthly bill",
+              scenario: "A household in Ohio used 900 kWh last month. At 18¢ per kWh the energy costs $162.00; adding the utility's $10 customer charge gives $172.00 before tax, so a $175 bill checks out once local tax is included.",
             },
             {
-              title: "USA Flat Rate Verification",
-              scenario: "A renter in a US state with flat billing used 620 kWh and was billed $86.80. Entering 620 units at $0.12/kWh plus a $9.50 service charge, the calculator returns $74.40 + $9.50 = $83.90 before tax — close enough to confirm the bill is correct once local tax and fees are added.",
+              title: "What a space heater really costs",
+              scenario: "A renter in Chicago wants to know whether a 1,500 W space heater is affordable. Running it 4 hours a day for 30 days uses 180 kWh, adding $32.40 a month at $0.18 per kWh.",
             },
             {
-              title: "India Tiered Tariff Comparison",
-              scenario: "A household in India is deciding whether reducing usage from 520 kWh to 490 kWh crosses a tariff threshold. At 520 kWh, 20 units fall into the 501+ INR 7.00/unit band. At 490 kWh, no units reach that band, and the last 290 units are billed at INR 6.00/unit instead of 7.00 — the calculator shows a saving of roughly INR 200 beyond the raw reduction in units.",
+              title: "UK bill with a standing charge",
+              scenario: "A flat in Manchester uses 270 kWh a month on the price-cap tariff. Energy costs £71.06 at 26.32p per kWh, and the 54.83p daily standing charge adds £16.45, for a bill of £87.51.",
             },
             {
-              title: "UK Flat Rate Winter Estimate",
-              scenario: "A UK tenant estimates a winter month's bill using higher heating usage of 380 kWh at the UK preset rate of £0.28/kWh. The calculator returns 380 × 0.28 = £106.40 in energy cost, prompting them to budget an extra £106 above their summer average for the season.",
+              title: "Budgeting in the EU",
+              scenario: "A couple moving to Spain expects to use about 300 kWh a month. At the EU average of €0.29 per kWh, taxes included, they budget €87 a month for electricity.",
             },
             {
-              title: "Small Business Commercial Tariff",
-              scenario: "A small retail shop uses 1,200 kWh/month under a commercial flat rate of $0.18/kWh with a $25 service charge and 8% tax. The calculator returns energy cost of $216, plus $25 service charge = $241 subtotal, plus 8% tax ($19.28) for a total bill of $260.28 — used to compare against a competing utility's commercial quote.",
+              title: "Charging an electric car at home",
+              scenario: "A driver in Texas charges a car on a 7.2 kW Level 2 charger for an hour a day. That is 216 kWh a month, or $38.88 at $0.18 per kWh, which they compare with their monthly fuel spend.",
             },
             {
-              title: "Year-over-Year Bill Comparison",
-              scenario: "A homeowner saves a calculation each month to history at 350 kWh and a flat $0.13/kWh rate, then compares it a year later when usage has grown to 410 kWh at $0.15/kWh. The calculator shows the cost rose from $45.50 to $61.50 — a $16/month increase split roughly evenly between higher usage and the higher rate.",
+              title: "Small business with sales tax",
+              scenario: "A small shop uses 1,200 kWh a month at $0.18 per kWh with a $25 service charge and 8% tax. Energy is $216, the subtotal $241, tax $19.28, and the total bill $260.28.",
             },
           ].map(({ title, scenario }) => (
             <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
@@ -188,21 +279,21 @@ export default function ElectricBillCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 5. Tips & Mistakes ── */}
+      {/* ── 8. Tips & Mistakes ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips &amp; Common Mistakes
+          Tips to Lower Your Bill &amp; Common Mistakes
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Tips</h3>
             <ul className="space-y-3 text-gray-600 leading-relaxed">
               {[
-                "Start from a built-in preset if your tariff matches Bangladesh, India, USA, or UK residential structures, then adjust individual slab rates if your local utility has since updated them — it's faster than building the band structure from scratch.",
-                "If you're near a tiered billing threshold, calculate both your current usage and a slightly reduced figure. Crossing below a band boundary can save more than the raw kWh reduction suggests, since it also lowers the rate on units within that band.",
-                "Enter service charge and meter charge as separate fields even if your bill lists them together — it keeps the breakdown transparent and makes it easier to spot when a utility raises a fixed fee independent of your usage.",
-                "Save a calculation to history every billing cycle if you're tracking usage trends. Comparing month over month makes it easy to see how much of a bill increase came from higher consumption versus a rate change.",
-                "Use tiered mode even for a nominally flat-rate tariff that has a single \"lifeline\" discount for the first block of units — model it as a two-band tiered structure rather than forcing it into the flat-rate field.",
+                "Find your all-in rate: divide last month's total bill by the kWh used. It includes delivery charges and fees, so it predicts your next bill better than the headline energy rate.",
+                "Target heating and cooling first. Water heaters, space heaters, air conditioners and dryers run at 1,500–4,500 W, so an hour less a day saves far more than switching off lights.",
+                "Swap remaining incandescent bulbs for LEDs: a 60 W bulb and a 10 W LED give similar light, and the LED uses about a sixth of the energy.",
+                "On a time-of-use plan, run the dishwasher, washing machine and EV charger overnight, when the rate is lowest.",
+                "Save a calculation each month to see whether a higher bill came from using more kWh or from a price rise.",
               ].map((tip, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
@@ -212,14 +303,14 @@ export default function ElectricBillCalculatorSEO() {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes</h3>
             <ul className="space-y-3 text-gray-600 leading-relaxed">
               {[
-                "Applying the top slab's rate to all units instead of only the units within that band. Tiered billing charges each band at its own rate — a 450 kWh bill isn't 450 × the highest rate, it's the sum of each band's units at that band's own rate.",
-                "Forgetting to include tax in the comparison when checking this calculator against your actual bill. The subtotal (energy cost + fixed charges) is taxed as a whole, so compare the final total, not the subtotal, to your bill.",
-                "Overlapping or leaving gaps between slab ranges when building a custom tiered structure. Each band's minimum should be exactly one unit above the previous band's maximum, or units will be double-counted or skipped entirely.",
-                "Using an outdated preset rate. Utility tariffs change periodically — treat the built-in presets as a starting structure and verify the current rates against your utility's published tariff schedule before relying on the result.",
-                "Mixing currencies between the rate you enter and the currency selector. If your slab rates are in local currency but the selector is left on a different currency, the total will display with the wrong currency label even though the math is otherwise correct.",
+                "Mixing up watts and kWh. Watts are how fast a device uses power; kWh are how much it used. Divide by 1,000 and multiply by hours to go from one to the other.",
+                "Using an appliance's maximum rating for devices that cycle. Fridges, freezers and thermostatic heaters are only drawing full power part of the time.",
+                "Adding tax twice. UK and EU unit rates usually include VAT already; add tax only when your bill lists it separately.",
+                "Forgetting the standing or customer charge. It is billed every day or month even at zero usage, and can be a large share of a small bill.",
+                "Charging every kWh at the top tier on a tiered plan. Each block has its own price and applies only to the kWh inside it.",
               ].map((mistake, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
@@ -231,40 +322,7 @@ export default function ElectricBillCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 6. Reference Table ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Common Tariff Reference
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm border-collapse">
-            <thead>
-              <tr className="border-b-2 border-gray-200">
-                <th className="text-left py-2 px-3 font-semibold text-gray-700">Tariff</th>
-                <th className="text-left py-2 px-3 font-semibold text-gray-700">Type</th>
-                <th className="text-left py-2 px-3 font-semibold text-gray-700">Structure</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {[
-                ["Bangladesh residential", "Tiered", "0-75 @ 4.00, 76-200 @ 5.30, 201-300 @ 5.80, 301-400 @ 6.00, 401-600 @ 9.50, 601+ @ 11.00 BDT"],
-                ["India residential (typical)", "Tiered", "0-100 @ 3.00, 101-200 @ 4.50, 201-500 @ 6.00, 501+ @ 7.00 INR"],
-                ["USA residential (typical)", "Flat", "$0.12-$0.15 per kWh, varies by state"],
-                ["UK residential (typical)", "Flat", "£0.24-£0.30 per kWh, varies by supplier"],
-              ].map(([name, type, structure]) => (
-                <tr key={name} className="hover:bg-gray-50">
-                  <td className="py-2 px-3 font-semibold text-primary text-xs">{name}</td>
-                  <td className="py-2 px-3 text-gray-700 text-xs">{type}</td>
-                  <td className="py-2 px-3 font-mono text-gray-600 text-xs">{structure}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-xs text-gray-400 mt-2">* Rates shown are illustrative averages — always confirm current rates against your utility's published tariff schedule.</p>
-      </section>
-
-      {/* ── 7. FAQ ── */}
+      {/* ── 9. FAQ ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Frequently Asked Questions
@@ -279,19 +337,19 @@ export default function ElectricBillCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 8. Who Uses This ── */}
+      {/* ── 10. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Who Uses This Electric Bill Calculator?
         </h2>
         <div className="grid md:grid-cols-3 gap-5">
           {[
-            { icon: "🏠", title: "Homeowners", desc: "Verify a monthly bill against the posted tariff structure and spot billing errors before paying." },
-            { icon: "🏢", title: "Tenants & Renters", desc: "Estimate electricity costs before signing a lease in an unfamiliar tariff region or currency." },
-            { icon: "🏪", title: "Small Business Owners", desc: "Model commercial flat or tiered tariffs to compare utility quotes and budget monthly overhead." },
-            { icon: "🌏", title: "Expats & Relocating Families", desc: "Convert an unfamiliar tiered tariff structure (like Bangladesh or India's slab system) into an estimated monthly cost." },
-            { icon: "📊", title: "Energy Auditors", desc: "Model the cost impact of usage changes across different tariff bands to justify efficiency recommendations." },
-            { icon: "🎓", title: "Students", desc: "Learn how tiered utility pricing works and practice slab-based cost calculations for coursework." },
+            { icon: "🏠", title: "Homeowners", desc: "Check a monthly bill, spot billing errors, and see which appliances drive the cost." },
+            { icon: "🔑", title: "Renters & Movers", desc: "Budget for electricity before signing a lease or moving to a new city or country." },
+            { icon: "🚗", title: "EV Owners", desc: "Work out what home charging adds to the bill and compare it with fuel." },
+            { icon: "🏪", title: "Small Businesses", desc: "Estimate monthly energy costs and compare supplier or utility quotes." },
+            { icon: "☀️", title: "Solar Shoppers", desc: "Measure current usage and spending before sizing solar panels or a battery." },
+            { icon: "🎓", title: "Students & Teachers", desc: "Practice converting watts to kWh and pricing energy use for science and economics classes." },
           ].map(({ icon, title, desc }) => (
             <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
               <div className="text-2xl mb-2">{icon}</div>
