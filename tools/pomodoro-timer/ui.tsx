@@ -189,9 +189,9 @@ export default function PomodoroTimerUI() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className={`text-4xl font-black ${state.darkMode ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: "var(--font-heading)" }}>
+            <h2 className={`text-4xl font-black ${state.darkMode ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: "var(--font-heading)" }}>
               🍅 Pomodoro Timer
-            </h1>
+            </h2>
             <p className={`text-sm mt-2 ${state.darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
               Stay focused, take breaks, boost productivity
             </p>

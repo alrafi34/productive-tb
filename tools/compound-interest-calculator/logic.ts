@@ -1,14 +1,20 @@
 export type CompoundingFrequency = 'annual' | 'semi-annual' | 'quarterly' | 'monthly' | 'daily';
 
+export type ContributionFrequency = 'monthly' | 'quarterly' | 'annual';
+export type ContributionTiming = 'end' | 'start';
+
 export interface CompoundInterestResult {
   futureValue: number;
   interestEarned: number;
+  totalContributions: number;
   yearlyBreakdown: YearlyData[];
 }
 
 export interface YearlyData {
   year: number;
   principal: number;
+  /** Regular contributions paid in so far (cumulative). */
+  contributions: number;
   interest: number;
   total: number;
 }
@@ -22,7 +28,16 @@ export interface HistoryEntry {
   frequency: CompoundingFrequency;
   futureValue: number;
   interestEarned: number;
+  contribution?: number;
+  contributionFrequency?: ContributionFrequency;
+  contributionTiming?: ContributionTiming;
 }
+
+export const CONTRIBUTIONS_PER_YEAR: Record<ContributionFrequency, number> = {
+  monthly: 12,
+  quarterly: 4,
+  annual: 1,
+};
 
 const FREQUENCY_MAP: Record<CompoundingFrequency, number> = {
   'annual': 1,
@@ -36,31 +51,55 @@ export function calculateCompoundInterest(
   principal: number,
   rate: number,
   time: number,
-  frequency: CompoundingFrequency
+  frequency: CompoundingFrequency,
+  contribution: number = 0,
+  contributionFrequency: ContributionFrequency = 'monthly',
+  timing: ContributionTiming = 'end'
 ): CompoundInterestResult {
   const n = FREQUENCY_MAP[frequency];
   const r = rate / 100;
-  
-  // FV = P × (1 + r/n)^(n × t)
-  const futureValue = principal * Math.pow((1 + r / n), n * time);
-  const interestEarned = futureValue - principal;
+  const m = CONTRIBUTIONS_PER_YEAR[contributionFrequency];
+  // Growth of 1 unit left in for t years: (1 + r/n)^(n × t)
+  const growth = (t: number) => Math.pow(1 + r / n, n * t);
+
+  // Balance after t years. Each contribution grows from the moment it is
+  // paid: at the start (0, 1/m, …) or end (1/m, 2/m, …) of its period.
+  const balanceAt = (t: number) => {
+    let total = principal * growth(t);
+    let paid = 0;
+    if (contribution > 0) {
+      const count = timing === 'start' ? Math.ceil(m * t - 1e-9) : Math.floor(m * t + 1e-9);
+      for (let j = 0; j < count; j++) {
+        const paidAt = (timing === 'start' ? j : j + 1) / m;
+        total += contribution * growth(t - paidAt);
+        paid += contribution;
+      }
+    }
+    return { total, paid };
+  };
+
+  // FV = P × (1 + r/n)^(n × t) + the grown value of every contribution
+  const end = balanceAt(time);
+  const futureValue = end.total;
+  const interestEarned = futureValue - principal - end.paid;
   
   // Generate yearly breakdown
   const yearlyBreakdown: YearlyData[] = [];
   for (let year = 1; year <= time; year++) {
-    const yearlyFV = principal * Math.pow((1 + r / n), n * year);
-    const yearlyInterest = yearlyFV - principal;
+    const { total, paid } = balanceAt(year);
     yearlyBreakdown.push({
       year,
       principal,
-      interest: yearlyInterest,
-      total: yearlyFV
+      contributions: paid,
+      interest: total - principal - paid,
+      total
     });
   }
   
   return {
     futureValue: isFinite(futureValue) ? futureValue : 0,
     interestEarned: isFinite(interestEarned) ? interestEarned : 0,
+    totalContributions: end.paid,
     yearlyBreakdown
   };
 }
@@ -77,25 +116,42 @@ export function generateChartData(yearlyBreakdown: YearlyData[]) {
   return yearlyBreakdown.map(data => ({
     year: data.year,
     principal: data.principal,
+    contributions: data.contributions,
     total: data.total,
     interest: data.interest
   }));
 }
 
-export function generateCSV(yearlyBreakdown: YearlyData[], principal: number, rate: number, frequency: CompoundingFrequency): string {
-  const headers = ['Year', 'Principal', 'Interest Earned', 'Total Amount'];
+export function generateCSV(
+  yearlyBreakdown: YearlyData[],
+  principal: number,
+  rate: number,
+  frequency: CompoundingFrequency,
+  contribution: number = 0,
+  contributionFrequency: ContributionFrequency = 'monthly',
+  timing: ContributionTiming = 'end'
+): string {
+  const withContributions = contribution > 0;
+  const headers = withContributions
+    ? ['Year', 'Principal', 'Contributions', 'Interest Earned', 'Total Amount']
+    : ['Year', 'Principal', 'Interest Earned', 'Total Amount'];
+  // Plain numbers: a thousands separator would split a CSV cell in two
   const rows = yearlyBreakdown.map(data => [
     data.year.toString(),
-    formatCurrency(data.principal, 2),
-    formatCurrency(data.interest, 2),
-    formatCurrency(data.total, 2)
+    data.principal.toFixed(2),
+    ...(withContributions ? [data.contributions.toFixed(2)] : []),
+    data.interest.toFixed(2),
+    data.total.toFixed(2)
   ]);
   
   const csvContent = [
     `Compound Interest Calculation - ${new Date().toLocaleDateString()}`,
-    `Principal: $${formatCurrency(principal, 2)}`,
+    `Principal: ${principal.toFixed(2)}`,
     `Interest Rate: ${rate}%`,
     `Compounding: ${frequency}`,
+    ...(withContributions
+      ? [`Contribution: ${contribution.toFixed(2)} ${contributionFrequency} (${timing} of period)`]
+      : []),
     '',
     headers.join(','),
     ...rows.map(row => row.join(','))

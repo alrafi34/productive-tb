@@ -18,6 +18,17 @@ export function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month + 1, 0).getDate();
 }
 
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+function startOfDay(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+/* Whole calendar days from a to b; rounding absorbs daylight-saving hours. */
+function daysBetween(a: Date, b: Date): number {
+  return Math.round((startOfDay(b).getTime() - startOfDay(a).getTime()) / MS_PER_DAY);
+}
+
 export function calculateDateDifference(
   startDate: Date,
   endDate: Date,
@@ -30,24 +41,22 @@ export function calculateDateDifference(
 
   let years = endDate.getFullYear() - startDate.getFullYear();
   let months = endDate.getMonth() - startDate.getMonth();
-  let days = endDate.getDate() - startDate.getDate();
-
-  // Adjust for negative days
-  if (days < 0) {
-    months--;
-    const prevMonth = endDate.getMonth() === 0 ? 11 : endDate.getMonth() - 1;
-    const prevYear = endDate.getMonth() === 0 ? endDate.getFullYear() - 1 : endDate.getFullYear();
-    days += getDaysInMonth(prevYear, prevMonth);
-  }
-
-  // Adjust for negative months
+  if (endDate.getDate() < startDate.getDate()) months--;
   if (months < 0) {
     years--;
     months += 12;
   }
 
+  // Days counted from the last whole month after the start. A start day the
+  // month does not have (the 31st, or 29 Feb) falls on that month's last day.
+  const monthIndex = startDate.getMonth() + months;
+  const anchorYear = startDate.getFullYear() + years + Math.floor(monthIndex / 12);
+  const anchorMonth = monthIndex % 12;
+  const anchorDay = Math.min(startDate.getDate(), getDaysInMonth(anchorYear, anchorMonth));
+  const days = daysBetween(new Date(anchorYear, anchorMonth, anchorDay), endDate);
+
   // Calculate total values
-  const totalDays = Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+  const totalDays = daysBetween(startDate, endDate);
   const totalMonths = years * 12 + months;
   const totalWeeks = Math.floor(totalDays / 7);
 
@@ -104,13 +113,21 @@ export function formatDateDifference(diff: DateDifference, format: 'full' | 'yea
   }
 }
 
+/* "YYYY-MM-DD" in the visitor's own timezone. toISOString() would give the
+   UTC date, which is a different day for part of every day. */
 export function formatDate(date: Date): string {
-  return date.toISOString().split('T')[0];
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
+/* A date picker's "YYYY-MM-DD" as local midnight. new Date("YYYY-MM-DD")
+   reads it as UTC midnight, which is the previous day anywhere west of UTC. */
 export function parseDate(dateString: string): Date | null {
   if (!dateString) return null;
-  const date = new Date(dateString);
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString.trim());
+  const date = m
+    ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]))
+    : new Date(dateString);
   return isNaN(date.getTime()) ? null : date;
 }
 

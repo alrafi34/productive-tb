@@ -115,9 +115,9 @@ export default function PasswordStrengthMeterUI() {
       <div className="max-w-6xl mx-auto p-4 lg:p-6 space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-3xl lg:text-4xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Password Strength Meter
-          </h1>
+          </h2>
           <p className="text-slate-600" style={{ fontFamily: 'Inter, sans-serif' }}>
             Evaluate password security with entropy analysis and crack time estimation
           </p>

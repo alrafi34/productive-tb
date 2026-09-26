@@ -10,7 +10,9 @@ import {
   commonHolidays,
   getWeekendDescription,
   WorkingDaysResult,
-  WeekendType
+  WeekendType,
+  getDefaultWeekendType,
+  parseDateInput
 } from "./logic";
 import WorkingDaysCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -26,12 +28,18 @@ export default function WorkingDaysCalculatorUI() {
   const [error, setError] = useState<string>("");
   const [copied, setCopied] = useState<boolean>(false);
 
+  // Start from the weekend used where the visitor is (Fri–Sat in Bangladesh)
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setWeekendType(getDefaultWeekendType()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   // Calculate working days whenever inputs change
   useEffect(() => {
     if (startDate && endDate) {
       try {
-        const start = new Date(startDate);
-        const end = new Date(endDate);
+        const start = parseDateInput(startDate);
+        const end = parseDateInput(endDate);
         
         if (isNaN(start.getTime()) || isNaN(end.getTime())) {
           setError("Invalid date format");
@@ -65,7 +73,7 @@ export default function WorkingDaysCalculatorUI() {
     setEndDate(getDatePlusWeeks(2));
     setHolidayText("");
     setIncludeStartDate(true);
-    setWeekendType('two-day');
+    setWeekendType(getDefaultWeekendType());
     setError("");
   };
 
@@ -131,6 +139,8 @@ export default function WorkingDaysCalculatorUI() {
                   className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
                 >
                   <option value="two-day">2-Day Weekend (Sat & Sun)</option>
+                  <option value="fri-sat">2-Day Weekend (Fri & Sat) · Bangladesh, Gulf</option>
+                  <option value="one-day-friday">1-Day Weekend (Friday)</option>
                   <option value="one-day-saturday">1-Day Weekend (Saturday)</option>
                   <option value="one-day-sunday">1-Day Weekend (Sunday)</option>
                   <option value="none">No Weekends (7-Day Work Week)</option>
