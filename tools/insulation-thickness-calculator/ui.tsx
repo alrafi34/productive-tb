@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { CalculationMode, ThicknessUnit, InsulationCalculation } from "./types";
 import {
   performInsulationCalculation,
+  DEFAULT_SURFACE_COEFFICIENT,
   saveToHistory,
   getHistory,
   clearHistory,
@@ -28,6 +29,7 @@ export default function InsulationThicknessCalculatorUI() {
   const [fluidTemp, setFluidTemp] = useState("");
   const [targetSurfaceTemp, setTargetSurfaceTemp] = useState("");
   const [pipeDiameter, setPipeDiameter] = useState("");
+  const [surfaceCoefficient, setSurfaceCoefficient] = useState(String(DEFAULT_SURFACE_COEFFICIENT));
   
   // Heat loss mode
   const [maxHeatLoss, setMaxHeatLoss] = useState("");
@@ -58,8 +60,10 @@ export default function InsulationThicknessCalculatorUI() {
     let pDiameter: number | undefined;
     let mHeatLoss: number | undefined;
     let tUValue: number | undefined;
+    let h: number | undefined;
     
     if (mode === "surface") {
+      h = parseFloat(surfaceCoefficient);
       fTemp = parseFloat(fluidTemp);
       tSurfaceTemp = parseFloat(targetSurfaceTemp);
       pDiameter = pipeDiameter ? parseFloat(pipeDiameter) : undefined;
@@ -72,7 +76,7 @@ export default function InsulationThicknessCalculatorUI() {
     }
     
     const validationError = validateInputs(
-      mode, aTemp, k, fTemp, tSurfaceTemp, pDiameter, mHeatLoss, tUValue
+      mode, aTemp, k, fTemp, tSurfaceTemp, pDiameter, mHeatLoss, tUValue, h
     );
     
     if (validationError) {
@@ -81,11 +85,11 @@ export default function InsulationThicknessCalculatorUI() {
     }
     
     const result = performInsulationCalculation(
-      mode, thicknessUnit, aTemp, k, fTemp, tSurfaceTemp, pDiameter, mHeatLoss, tUValue
+      mode, thicknessUnit, aTemp, k, fTemp, tSurfaceTemp, pDiameter, mHeatLoss, tUValue, h
     );
     setCalculation(result);
   }, [mode, thicknessUnit, ambientTemp, thermalConductivity, fluidTemp, targetSurfaceTemp, 
-      pipeDiameter, maxHeatLoss, targetUValue]);
+      pipeDiameter, maxHeatLoss, targetUValue, surfaceCoefficient]);
 
   const handleReset = () => {
     setAmbientTemp("30");
@@ -93,6 +97,7 @@ export default function InsulationThicknessCalculatorUI() {
     setFluidTemp("");
     setTargetSurfaceTemp("");
     setPipeDiameter("");
+    setSurfaceCoefficient(String(DEFAULT_SURFACE_COEFFICIENT));
     setMaxHeatLoss("");
     setTargetUValue("");
     setCalculation(null);
@@ -154,6 +159,7 @@ export default function InsulationThicknessCalculatorUI() {
       setFluidTemp(calc.fluidTemp?.toString() || "");
       setTargetSurfaceTemp(calc.targetSurfaceTemp?.toString() || "");
       setPipeDiameter(calc.pipeDiameter?.toString() || "");
+      setSurfaceCoefficient(String(calc.surfaceCoefficient ?? DEFAULT_SURFACE_COEFFICIENT));
     } else if (calc.mode === "heatloss") {
       setFluidTemp(calc.fluidTemp?.toString() || "");
       setMaxHeatLoss(calc.maxHeatLoss?.toString() || "");
@@ -372,7 +378,7 @@ export default function InsulationThicknessCalculatorUI() {
                     />
                   </div>
 
-                  <div className="md:col-span-2">
+                  <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Pipe Diameter (mm) - Optional
                     </label>
@@ -385,12 +391,32 @@ export default function InsulationThicknessCalculatorUI() {
                       min="0"
                       step="1"
                     />
+                    <p className="text-xs text-gray-500 mt-1">Leave empty for a flat wall or tank</p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Surface Coefficient h (W/m²·K)
+                    </label>
+                    <input
+                      type="number"
+                      value={surfaceCoefficient}
+                      onChange={(e) => setSurfaceCoefficient(e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                      placeholder="10"
+                      min="1"
+                      max="100"
+                      step="0.5"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Still indoor air ≈ 8–12; outdoors with wind ≈ 15–25</p>
                   </div>
                 </div>
 
                 <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="text-xs text-gray-600">
-                    <strong>Formula:</strong> thickness ≈ k × (T_hot - T_surface) / (T_surface - T_ambient)
+                    <strong>Formula:</strong> {pipeDiameter
+                      ? "r₂ · ln(r₂ / r₁) = k × (T_hot − T_surface) / (h × (T_surface − T_ambient)), thickness = r₂ − r₁"
+                      : "thickness = k × (T_hot − T_surface) / (h × (T_surface − T_ambient))"}
                   </div>
                 </div>
               </div>
