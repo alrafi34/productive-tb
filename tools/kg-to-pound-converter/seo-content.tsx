@@ -12,7 +12,7 @@ export default function ToolSEOContent() {
           How to Convert Kilograms to Pounds
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
-          <p>Kilograms are the world's standard unit of mass; pounds are used for body weight, groceries and luggage in the United States and alongside kilograms in the UK. Convert either way, and see UK stones and pounds for body weight.</p>
+          <p>Kilograms are the world&apos;s standard unit of mass; pounds are used for body weight, groceries and luggage in the United States and alongside kilograms in the UK. Convert either way, and see UK stones and pounds for body weight.</p>
           <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4">
             <div className="space-y-1.5 font-mono text-sm text-gray-900">
               <p>lb = kg × 2.20462</p>
