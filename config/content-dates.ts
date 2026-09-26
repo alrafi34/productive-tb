@@ -312,7 +312,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "palindrome-checker": "2026-04-08",
   "paragraph-formatter": "2026-04-08",
   "parallel-resistor-calculator": "2026-08-07",
-  "parking-space-calculator": "2026-08-07",
+  "parking-space-calculator": "2026-09-26",
   "password-generator": "2026-08-07",
   "password-strength-meter": "2026-08-07",
   "pattern-noise-generator": "2026-08-07",
