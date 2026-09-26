@@ -30,7 +30,8 @@ export default function WorkingDaysCalculatorUI() {
 
   // Start from the weekend used where the visitor is (Fri–Sat in Bangladesh)
   useEffect(() => {
-    setWeekendType(getDefaultWeekendType());
+    const frame = window.requestAnimationFrame(() => setWeekendType(getDefaultWeekendType()));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   // Calculate working days whenever inputs change

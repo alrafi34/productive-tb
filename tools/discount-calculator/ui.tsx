@@ -45,14 +45,17 @@ export default function DiscountCalculatorUI() {
   // Currency: remembered choice, else a guess from the visitor's timezone/language
   const [currency, setCurrency] = useState<CurrencyCode>('USD');
   useEffect(() => {
-    let saved: string | null = null;
-    try {
-      saved = localStorage.getItem(CURRENCY_KEY);
-    } catch {
-      // storage unavailable
-    }
-    const known = CURRENCIES.some(c => c.code === saved);
-    setCurrency(known ? (saved as CurrencyCode) : guessCurrency());
+    const frame = window.requestAnimationFrame(() => {
+      let saved: string | null = null;
+      try {
+        saved = localStorage.getItem(CURRENCY_KEY);
+      } catch {
+        // storage unavailable
+      }
+      const known = CURRENCIES.some(c => c.code === saved);
+      setCurrency(known ? (saved as CurrencyCode) : guessCurrency());
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
   const changeCurrency = (code: CurrencyCode) => {
     setCurrency(code);
