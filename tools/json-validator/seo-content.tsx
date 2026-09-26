@@ -1,6 +1,10 @@
 export default function JSONValidatorSEO() {
   const faqItems = [
     {
+      q: "Can this tool fix invalid JSON automatically?",
+      a: "Yes, for the most common mistakes. \"Fix common errors\" removes trailing commas and comments, turns single and curly quotes into double quotes, puts quotes around unquoted property names, and converts Python True, False and None and JavaScript undefined or NaN into valid JSON. It lists every change it made; anything it cannot fix is shown with its line and column.",
+    },
+    {
       q: "What is a JSON validator and what does it check?",
       a: "A JSON validator parses your JSON against the ECMA-404 specification and reports exactly where the input breaks the rules. It checks for missing or extra commas, unclosed braces and brackets, unquoted keys, invalid escape sequences in strings, trailing commas, and incorrect value types. This tool also reports the character position and line number of the first syntax error it finds, so you can jump straight to the problem rather than scanning the entire document.",
     },

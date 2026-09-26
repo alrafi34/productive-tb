@@ -86,7 +86,7 @@ export default function JSONFormatterSEOContent() {
             </h2>
             <ul className="space-y-2">
               <li>🔍 <strong>API Response Debugging</strong> - Format messy API responses for easier reading</li>
-              <li>✅ <strong>JSON Validation</strong> - Check if your JSON is valid before deployment</li>
+              <li>🔤 <strong>Consistent Output</strong> - Sort keys A–Z so the same data always formats the same way</li>
               <li>📦 <strong>Data Compression</strong> - Minify JSON to reduce file size</li>
               <li>🌳 <strong>Structure Exploration</strong> - Visualize nested JSON with tree view</li>
               <li>⚙️ <strong>Configuration Files</strong> - Format and validate config files</li>
@@ -101,12 +101,25 @@ export default function JSONFormatterSEOContent() {
             <ul className="space-y-2">
               <li>💡 Drag and drop JSON files directly into the editor</li>
               <li>💡 Use different indentation sizes (2 spaces, 4 spaces, or tabs)</li>
+              <li>💡 Tick &quot;Sort keys A–Z&quot; to make two JSON documents easy to compare</li>
               <li>💡 Tree view is perfect for exploring deeply nested structures</li>
               <li>💡 Copy formatted or minified JSON with one click</li>
               <li>💡 Download your formatted JSON as a file</li>
               <li>💡 Works with large JSON files (several MB)</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          {toolConfig.seo.faq.map(({ q, a }, i) => (
+            <div key={q} className={i < toolConfig.seo.faq.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
     </>
