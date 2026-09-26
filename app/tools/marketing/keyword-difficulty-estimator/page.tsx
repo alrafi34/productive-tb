@@ -104,6 +104,7 @@ export default function KeywordDifficultyEstimatorPage() {
         />
       )}
       <ToolLayout
+        slug="keyword-difficulty-estimator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

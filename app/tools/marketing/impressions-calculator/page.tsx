@@ -104,6 +104,7 @@ export default function ImpressionsCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="impressions-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

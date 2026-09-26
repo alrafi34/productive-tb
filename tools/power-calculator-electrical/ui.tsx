@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import PowerCalculatorElectricalSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PowerCalculatorElectricalUI() {
   const [voltage, setVoltage] = useState(220);
@@ -500,11 +501,9 @@ export default function PowerCalculatorElectricalUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PowerCalculatorElectricalSEO />
-      <RelatedTools
-        currentTool="power-calculator-electrical"
-        tools={['ohms-law-calculator', 'voltage-drop-calculator', 'electrical-load-calculator-building']}
-      />
+      <RelatedTools />
     </>
   );
 }

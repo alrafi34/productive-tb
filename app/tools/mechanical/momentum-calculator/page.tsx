@@ -104,6 +104,7 @@ export default function MomentumCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="momentum-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

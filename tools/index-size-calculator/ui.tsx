@@ -16,6 +16,7 @@ import {
 import { BreakdownPieChart, ComparisonBarChart } from "./chart";
 import IndexSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function IndexSizeCalculatorUI() {
   const [engine, setEngine] = useState<DatabaseEngine>(DEFAULT_ENGINE);
@@ -400,19 +401,10 @@ export default function IndexSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <IndexSizeCalculatorSEO />
 
-      <RelatedTools
-        currentTool="index-size-calculator"
-        tools={[
-          "storage-requirement-calculator",
-          "hadoop-storage-calculator",
-          "data-partition-calculator",
-          "cache-efficiency-calculator",
-          "data-compression-ratio-calculator",
-          "cluster-utilization-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

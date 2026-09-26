@@ -104,6 +104,7 @@ export default function LatencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="latency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

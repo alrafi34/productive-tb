@@ -25,6 +25,7 @@ import {
 } from "./logic";
 import IdealGasLawCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const GAS_PRESETS = [
   { label: "STP (1 mol)",    pressure: "1",      pressureUnit: "atm" as PressureUnit, volume: "22.414", volumeUnit: "L" as VolumeUnit, moles: "1",   temperature: "273.15", temperatureUnit: "K" as TemperatureUnit },
@@ -597,18 +598,9 @@ export default function IdealGasLawCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <IdealGasLawCalculatorSEO />
-      <RelatedTools
-        currentTool="ideal-gas-law-calculator"
-        tools={[
-          "reynolds-number-calculator",
-          "bernoulli-equation-calculator",
-          "pressure-drop-calculator",
-          "flow-rate-calculator",
-          "temperature-conversion-scientific",
-          "heat-transfer-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

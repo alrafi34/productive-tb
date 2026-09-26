@@ -18,6 +18,7 @@ import {
 import { QROptions, QRHistory, WiFiConfig } from "./types";
 import QRCodeGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function QRCodeGeneratorUI() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -506,11 +507,9 @@ export default function QRCodeGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <QRCodeGeneratorSEOContent />
-      <RelatedTools
-        currentTool="qr-code-generator"
-        tools={["base64-image-encoder", "url-encoder-decoder", "hash-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

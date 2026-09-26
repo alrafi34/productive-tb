@@ -20,6 +20,7 @@ import {
 import { WiFiPasswordOptions, GeneratedPassword } from "./types";
 import WiFiPasswordGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WiFiPasswordGeneratorUI() {
   const [password, setPassword] = useState('');
@@ -519,11 +520,9 @@ export default function WiFiPasswordGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WiFiPasswordGeneratorSEOContent />
-      <RelatedTools
-        currentTool="wifi-password-generator"
-        tools={["password-generator", "username-generator", "hash-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

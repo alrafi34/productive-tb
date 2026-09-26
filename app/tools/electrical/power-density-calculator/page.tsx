@@ -104,6 +104,7 @@ export default function PowerDensityCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="power-density-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

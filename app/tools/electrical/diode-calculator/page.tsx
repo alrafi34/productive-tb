@@ -104,6 +104,7 @@ export default function DiodeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="diode-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

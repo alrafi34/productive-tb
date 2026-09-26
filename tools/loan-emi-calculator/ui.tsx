@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import LoanEmiCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'calculator' | 'compare' | 'schedule';
 
@@ -448,12 +449,10 @@ Calculated via Productive Toolbox`;
         </div>
       </div>
 
+      <RelatedStrip />
       <LoanEmiCalculatorSEO />
 
-      <RelatedTools 
-        currentTool="loan-emi-calculator"
-        tools={['bmi-calculator', 'age-calculator', 'percentage-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

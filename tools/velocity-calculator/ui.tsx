@@ -23,6 +23,7 @@ import {
 } from "./logic";
 import VelocityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -527,18 +528,9 @@ export default function VelocityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VelocityCalculatorSEO />
-      <RelatedTools
-        currentTool="velocity-calculator"
-        tools={[
-          "torque-calculator",
-          "force-calculator",
-          "kinetic-energy-calculator",
-          "angular-velocity-calculator",
-          "centripetal-force-calculator",
-          "projectile-motion-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

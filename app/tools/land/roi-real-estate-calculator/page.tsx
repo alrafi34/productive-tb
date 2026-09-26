@@ -104,6 +104,7 @@ export default function RoiRealEstateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="roi-real-estate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

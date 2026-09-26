@@ -104,6 +104,7 @@ export default function ThermalExpansionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="thermal-expansion-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

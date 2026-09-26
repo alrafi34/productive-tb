@@ -104,6 +104,7 @@ export default function QueryOptimizationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="query-optimization-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

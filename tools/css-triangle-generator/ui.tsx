@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import CSSTriangleGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CSSTriangleGeneratorUI() {
   const [direction, setDirection] = useState<TriangleDirection>('top');
@@ -230,8 +231,9 @@ export default function CSSTriangleGeneratorUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <CSSTriangleGeneratorSEOContent />
-      <RelatedTools currentTool="css-triangle-generator" tools={["css-box-shadow-generator", "css-gradient-generator", "color-format-converter"]} />
+      <RelatedTools />
     </>
   );
 }

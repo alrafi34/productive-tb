@@ -25,6 +25,7 @@ import {
 } from "./logic";
 import GeneratorSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function GeneratorSizeCalculatorUI() {
   const savedSettings = loadSettings();
@@ -629,11 +630,9 @@ export default function GeneratorSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GeneratorSizeCalculatorSEO />
-      <RelatedTools
-        currentTool="generator-size-calculator"
-        tools={['solar-inverter-calculator', 'energy-consumption-calculator', 'wire-size-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

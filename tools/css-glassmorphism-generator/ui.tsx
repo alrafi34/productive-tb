@@ -12,6 +12,7 @@ import {
 import { OutputFormat } from "./types";
 import GlassmorphismSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function GlassmorphismGeneratorUI() {
   const [config, setConfig] = useState<GlassmorphismConfig>(defaultConfig);
@@ -290,12 +291,10 @@ export default function GlassmorphismGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GlassmorphismSEOContent />
       
-      <RelatedTools
-        currentTool="css-glassmorphism-generator"
-        tools={['css-gradient-generator', 'css-box-shadow-generator', 'color-format-converter']}
-      />
+      <RelatedTools />
     </>
   );
 }

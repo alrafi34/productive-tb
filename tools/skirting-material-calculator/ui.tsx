@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import SkirtingMaterialCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SkirtingMaterialCalculatorUI() {
   const [rooms, setRooms] = useState<Room[]>([createRoom()]);
@@ -475,11 +476,9 @@ export default function SkirtingMaterialCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SkirtingMaterialCalculatorSEO />
-      <RelatedTools
-        currentTool="skirting-material-calculator"
-        tools={['room-area-calculator', 'floor-finish-calculator', 'paint-required-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

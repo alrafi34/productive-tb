@@ -11,6 +11,7 @@ import {
 import { BeforeAfterChart, exportCanvasAsPng } from "./chart";
 import DataNormalizationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DataNormalizationCalculatorUI() {
   const [input, setInput] = useState("");
@@ -359,19 +360,10 @@ export default function DataNormalizationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataNormalizationCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-normalization-calculator"
-        tools={[
-          "min-max-scaling-calculator",
-          "log-transformation-calculator",
-          "standard-deviation-calculator",
-          "z-score-calculator",
-          "mean-calculator",
-          "variance-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

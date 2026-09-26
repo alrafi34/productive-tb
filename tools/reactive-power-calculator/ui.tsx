@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import ReactivePowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ReactivePowerCalculatorUI() {
   const [voltage, setVoltage] = useState<string>("230");
@@ -493,11 +494,9 @@ export default function ReactivePowerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ReactivePowerCalculatorSEO />
-      <RelatedTools
-        currentTool="reactive-power-calculator"
-        tools={['real-power-calculator', 'power-factor-calculator', 'phase-angle-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

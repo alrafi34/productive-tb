@@ -20,6 +20,7 @@ import {
 import { UsernameOptions, PresetType, GeneratedUsername } from "./types";
 import UsernameGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function UsernameGeneratorUI() {
   const [username, setUsername] = useState('');
@@ -489,11 +490,9 @@ export default function UsernameGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <UsernameGeneratorSEOContent />
-      <RelatedTools
-        currentTool="username-generator"
-        tools={["password-generator", "random-name-picker", "text-to-slug-converter"]}
-      />
+      <RelatedTools />
     </>
   );
 }

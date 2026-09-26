@@ -104,6 +104,7 @@ export default function CentripetalForceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="centripetal-force-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -23,6 +23,7 @@ import {
 } from "./logic";
 import VideoFrameExtractorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function VideoFrameExtractorUI() {
   const [video, setVideo] = useState<HTMLVideoElement | null>(null);
@@ -681,12 +682,10 @@ export default function VideoFrameExtractorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <VideoFrameExtractorSEOContent />
       
-      <RelatedTools
-        currentTool="video-frame-extractor"
-        tools={["audio-visualizer", "image-resizer", "image-compressor"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

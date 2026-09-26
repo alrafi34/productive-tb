@@ -104,6 +104,7 @@ export default function DragForceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="drag-force-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

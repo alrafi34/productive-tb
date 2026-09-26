@@ -13,6 +13,7 @@ import {
 import ThroughputTrendChart from "./chart";
 import EtlThroughputCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EtlThroughputCalculatorUI() {
   const [inputs, setInputs] = useState<EtlInputs>(DEFAULT_INPUTS);
@@ -398,19 +399,10 @@ export default function EtlThroughputCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EtlThroughputCalculatorSEO />
 
-      <RelatedTools
-        currentTool="etl-throughput-calculator"
-        tools={[
-          "data-growth-calculator",
-          "session-duration-calculator",
-          "page-speed-score-calculator",
-          "user-growth-rate-calculator",
-          "scroll-depth-calculator",
-          "mean-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

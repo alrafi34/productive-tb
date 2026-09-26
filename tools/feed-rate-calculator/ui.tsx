@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import FeedRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: FeedRateInputs = {
   unitSystem:   "metric",
@@ -578,18 +579,9 @@ export default function FeedRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FeedRateCalculatorSEO />
-      <RelatedTools
-        currentTool="feed-rate-calculator"
-        tools={[
-          "cutting-speed-calculator",
-          "lathe-speed-calculator",
-          "torque-calculator",
-          "angular-velocity-calculator",
-          "thread-pitch-calculator",
-          "gear-ratio-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

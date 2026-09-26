@@ -12,6 +12,7 @@ import {
 import { Scatter2DChart, DiffBarChart } from "./chart";
 import ClusteringDistanceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ClusteringDistanceCalculatorUI() {
   const [metric, setMetric] = useState<MetricId>("euclidean");
@@ -289,19 +290,10 @@ export default function ClusteringDistanceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ClusteringDistanceCalculatorSEO />
 
-      <RelatedTools
-        currentTool="clustering-distance-calculator"
-        tools={[
-          "correlation-coefficient-calculator",
-          "standard-deviation-calculator",
-          "roc-auc-calculator",
-          "confusion-matrix-calculator",
-          "regression-calculator",
-          "outlier-detection-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

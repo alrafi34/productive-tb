@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import PowerConsumptionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PowerConsumptionCalculatorUI() {
   const [appliances, setAppliances] = useState<Appliance[]>([]);
@@ -459,16 +460,10 @@ export default function PowerConsumptionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PowerConsumptionCalculatorSEO />
 
-      <RelatedTools
-        currentTool="power-consumption-calculator"
-        tools={[
-          "mortgage-calculator",
-          "simple-interest-calculator",
-          "daily-calorie-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

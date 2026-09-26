@@ -26,6 +26,7 @@ import {
 } from "./logic";
 import InductorCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function InductorCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("inductance-solenoid");
@@ -683,11 +684,9 @@ export default function InductorCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <InductorCalculatorSEO />
-      <RelatedTools
-        currentTool="inductor-calculator"
-        tools={['capacitor-calculator', 'capacitive-reactance-calculator', 'ohms-law-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

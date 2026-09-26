@@ -104,6 +104,7 @@ export default function LedResistorCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="led-resistor-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import RoomLightingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RoomLightingCalculatorUI() {
   const savedSettings = loadSettings();
@@ -534,11 +535,9 @@ export default function RoomLightingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RoomLightingCalculatorSEO />
-      <RelatedTools
-        currentTool="room-lighting-calculator"
-        tools={['house-wiring-load-calculator', 'energy-consumption-calculator', 'voltage-drop-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

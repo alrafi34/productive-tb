@@ -104,6 +104,7 @@ export default function RetentionRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="retention-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

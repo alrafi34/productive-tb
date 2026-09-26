@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import HabitTrackerSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HabitTrackerUI() {
   const [habitData, setHabitData] = useState<HabitData>({ habits: [] });
@@ -509,11 +510,9 @@ export default function HabitTrackerUI() {
           </div>
         </div>
 
+        <RelatedStrip />
         <HabitTrackerSEO />
-        <RelatedTools
-          currentTool="habit-tracker"
-          tools={['pomodoro-timer', 'daily-checklist', 'timer-stopwatch']}
-        />
+        <RelatedTools />
       </div>
     </div>
   );

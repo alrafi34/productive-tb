@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import UserAgentParserSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function UserAgentParserUI() {
   const [currentUA, setCurrentUA] = useState<ParsedUserAgent | null>(null);
@@ -307,11 +308,9 @@ export default function UserAgentParserUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <UserAgentParserSEOContent />
-      <RelatedTools
-        currentTool="user-agent-parser"
-        tools={["json-formatter", "base64-encoder-decoder", "regex-tester"]}
-      />
+      <RelatedTools />
     </>
   );
 }

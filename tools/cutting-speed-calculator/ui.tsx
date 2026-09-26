@@ -25,6 +25,7 @@ import {
 } from "./logic";
 import CuttingSpeedCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const MODE_LABELS: Record<CalcMode, string> = {
   "cutting-speed":  "Cutting Speed",
@@ -762,18 +763,9 @@ export default function CuttingSpeedCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CuttingSpeedCalculatorSEO />
-      <RelatedTools
-        currentTool="cutting-speed-calculator"
-        tools={[
-          "torque-calculator",
-          "gear-ratio-calculator",
-          "angular-velocity-calculator",
-          "force-calculator",
-          "reynolds-number-calculator",
-          "flow-rate-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

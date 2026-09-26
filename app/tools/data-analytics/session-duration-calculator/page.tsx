@@ -104,6 +104,7 @@ export default function SessionDurationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="session-duration-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -6,6 +6,7 @@ import { convertToBionicReading, copyToClipboard, downloadAsFile, readFileAsText
 import { bionicReadingConverterConfig } from './config';
 import SEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function BionicReadingConverterUI() {
   const [inputText, setInputText] = useState('');
@@ -460,8 +461,9 @@ export default function BionicReadingConverterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools currentTool="bionic-reading-converter" />
+      <RelatedTools />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { PreviewSettings } from './types';
 import { parseMarkdown, calculateStats, downloadFile, copyToClipboard, DEFAULT_MARKDOWN } from './logic';
 import MarkdownPreviewerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function MarkdownPreviewerUI() {
   const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
@@ -207,9 +208,10 @@ ${html}
         </div>
       </div>
 
+      <RelatedStrip />
       <MarkdownPreviewerSEOContent />
       
-      <RelatedTools currentTool="markdown-previewer" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

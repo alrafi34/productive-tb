@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import AmplifierGainCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AmplifierGainCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('voltage');
@@ -568,11 +569,9 @@ export default function AmplifierGainCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AmplifierGainCalculatorSEO />
-      <RelatedTools
-        currentTool="amplifier-gain-calculator"
-        tools={['impedance-calculator', 'power-factor-calculator', 'voltage-divider-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

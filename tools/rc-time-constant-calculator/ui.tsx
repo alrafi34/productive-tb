@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import RCTimeConstantCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RCTimeConstantCalculatorUI() {
   const [resistance, setResistance] = useState<string>("10");
@@ -450,11 +451,9 @@ export default function RCTimeConstantCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RCTimeConstantCalculatorSEO />
-      <RelatedTools
-        currentTool="rc-time-constant-calculator"
-        tools={['capacitor-charge-time-calculator', 'capacitor-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

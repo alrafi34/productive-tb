@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Box, Connection, FlowchartState, createBox, createConnection, getBoxCenter, isPointInBox, exportAsJSON, importFromJSON } from "./logic";
 import FlowchartSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FlowchartLogicMapperUI() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -500,8 +501,9 @@ export default function FlowchartLogicMapperUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FlowchartSEOContent />
-      <RelatedTools currentTool="flowchart-logic-mapper" tools={["mind-map-builder", "timeline-creator", "venn-diagram-maker"]} />
+      <RelatedTools />
     </>
   );
 }

@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import JSONFormatterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_JSON = `{
   "name": "John Doe",
@@ -435,12 +436,10 @@ export default function JSONFormatterUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <JSONFormatterSEOContent />
 
-      <RelatedTools
-        currentTool="json-formatter"
-        tools={["json-validator", "json-to-csv", "xml-to-json"]}
-      />
+      <RelatedTools />
     </>
   );
 }

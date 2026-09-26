@@ -104,6 +104,7 @@ export default function IrrigationWaterCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="irrigation-water-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

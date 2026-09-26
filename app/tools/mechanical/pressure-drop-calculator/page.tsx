@@ -104,6 +104,7 @@ export default function PressureDropCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="pressure-drop-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

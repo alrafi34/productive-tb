@@ -19,6 +19,7 @@ import {
 } from './logic';
 import TextToSpeechSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function TextToSpeechPreviewUI() {
   const [text, setText] = useState('');
@@ -428,8 +429,9 @@ export default function TextToSpeechPreviewUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TextToSpeechSEOContent />
-      <RelatedTools currentTool="text-to-speech-preview" tools={["voice-to-text-notepad", "reading-time-calculator", "word-counter"]} />
+      <RelatedTools />
     </>
   );
 }

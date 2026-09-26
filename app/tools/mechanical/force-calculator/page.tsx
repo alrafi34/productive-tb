@@ -104,6 +104,7 @@ export default function ForceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="force-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

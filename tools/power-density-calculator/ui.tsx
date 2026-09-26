@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import PowerDensityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const POWER_UNITS: { label: string; value: PowerUnit }[] = [
   { label: 'W (Watts)', value: 'W' },
@@ -540,11 +541,9 @@ export default function PowerDensityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PowerDensityCalculatorSEO />
-      <RelatedTools
-        currentTool="power-density-calculator"
-        tools={['power-calculator-electrical', 'electrical-efficiency-calculator', 'power-loss-calculator', 'energy-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

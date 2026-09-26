@@ -28,6 +28,7 @@ import {
 } from "./logic";
 import BernoulliEquationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: BernoulliInputs = {
   solveFor:    "P2",
@@ -770,19 +771,10 @@ export default function BernoulliEquationCalculatorUI() {
         </div>{/* end grid */}
       </div>{/* end max-w */}
 
+      <RelatedStrip />
       <BernoulliEquationCalculatorSEO />
 
-      <RelatedTools
-        currentTool="bernoulli-equation-calculator"
-        tools={[
-          "reynolds-number-calculator",
-          "pressure-drop-calculator",
-          "flow-rate-calculator",
-          "pipe-velocity-calculator",
-          "hydraulic-pressure-calculator",
-          "venturi-flow-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

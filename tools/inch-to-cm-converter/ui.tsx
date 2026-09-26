@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function InchToCmConverterUI() {
   const [inputValue, setInputValue] = useState<string>("10");
@@ -226,8 +227,9 @@ export default function InchToCmConverterUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="inch-to-cm-converter" tools={["centimeter-to-meter-converter", "meter-to-km-converter", "temperature-conversion-scientific"]} />
+      <RelatedTools />
     </div>
   );
 }

@@ -21,6 +21,7 @@ import {
 } from './logic';
 import HashGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 type Tab = 'text' | 'file' | 'bulk' | 'verify';
 
@@ -628,11 +629,9 @@ export default function HashGeneratorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <HashGeneratorSEOContent />
-      <RelatedTools
-        currentTool="hash-generator"
-        tools={["password-generator", "text-encrypt-decrypt", "username-generator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

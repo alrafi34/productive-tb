@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import HectareToAcreConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "1 ha", value: "1" },
@@ -471,16 +472,9 @@ export default function HectareToAcreConverterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HectareToAcreConverterSEO />
-      <RelatedTools
-        currentTool="hectare-to-acre-converter"
-        tools={[
-          "acre-to-hectare-converter",
-          "acre-to-square-feet-converter",
-          "square-feet-to-acre-converter",
-          "land-area-calculator-square-meter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -18,6 +18,7 @@ import {
 } from './logic';
 import ColorPaletteContrastGridSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function ColorPaletteContrastGrid() {
   const [palette, setPalette] = useState<PaletteColor[]>(defaultPalette);
@@ -361,12 +362,10 @@ export default function ColorPaletteContrastGrid() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ColorPaletteContrastGridSEOContent />
       
-      <RelatedTools
-        currentTool="color-palette-contrast-grid"
-        tools={['contrast-checker', 'color-palette-generator', 'hsl-color-slider']}
-      />
+      <RelatedTools />
     </>
   );
 }

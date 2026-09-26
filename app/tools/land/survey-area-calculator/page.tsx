@@ -104,6 +104,7 @@ export default function SurveyAreaCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="survey-area-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

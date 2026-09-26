@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import SVGPatternGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SVGPatternGeneratorUI() {
   const [settings, setSettings] = useState<PatternSettings>({
@@ -348,15 +349,9 @@ export default function SVGPatternGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SVGPatternGeneratorSEOContent />
-      <RelatedTools
-        currentTool="svg-pattern-generator"
-        tools={[
-          "css-gradient-generator",
-          "placeholder-image-generator",
-          "color-palette-generator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

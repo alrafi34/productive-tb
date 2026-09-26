@@ -12,6 +12,7 @@ import {
 } from './logic';
 import HSLColorSliderSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function HSLColorSlider() {
   const [color, setColor] = useState<HSLColor>({ h: 210, s: 60, l: 50 });
@@ -302,11 +303,9 @@ export default function HSLColorSlider() {
         `}</style>
       </div>
 
+      <RelatedStrip />
       <HSLColorSliderSEOContent />
-      <RelatedTools
-        currentTool="hsl-color-slider"
-        tools={['color-palette-generator', 'color-format-converter', 'hex-to-rgb-converter']}
-      />
+      <RelatedTools />
     </>
   );
 }

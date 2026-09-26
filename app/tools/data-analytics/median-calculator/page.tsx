@@ -104,6 +104,7 @@ export default function MedianCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="median-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import FrequencyResponseCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FrequencyResponseCalculatorUI() {
   const [inputs, setInputs] = useState<FrequencyResponseInputs>({
@@ -656,11 +657,9 @@ export default function FrequencyResponseCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FrequencyResponseCalculatorSEO />
-      <RelatedTools
-        currentTool="frequency-response-calculator"
-        tools={['ohms-law-calculator', 'capacitor-calculator', 'inductor-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

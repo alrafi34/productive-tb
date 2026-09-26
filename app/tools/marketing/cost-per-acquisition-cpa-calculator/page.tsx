@@ -104,6 +104,7 @@ export default function CostPerAcquisitionCpaCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="cost-per-acquisition-cpa-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

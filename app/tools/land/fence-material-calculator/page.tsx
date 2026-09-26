@@ -104,6 +104,7 @@ export default function FenceMaterialCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="fence-material-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

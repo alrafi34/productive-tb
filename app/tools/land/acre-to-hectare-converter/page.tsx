@@ -104,6 +104,7 @@ export default function AcreToHectareConverterPage() {
         />
       )}
       <ToolLayout
+        slug="acre-to-hectare-converter"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

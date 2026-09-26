@@ -104,6 +104,7 @@ export default function RainwaterRunoffCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="rainwater-runoff-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

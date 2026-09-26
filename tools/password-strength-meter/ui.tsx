@@ -15,6 +15,7 @@ import {
 } from './logic';
 import PasswordStrengthMeterSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 type Mode = 'single' | 'compare';
 
@@ -548,11 +549,9 @@ export default function PasswordStrengthMeterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PasswordStrengthMeterSEOContent />
-      <RelatedTools
-        currentTool="password-strength-meter"
-        tools={["password-generator", "hash-generator", "text-encrypt-decrypt"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

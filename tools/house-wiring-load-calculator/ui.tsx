@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import HouseWiringLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HouseWiringLoadCalculatorUI() {
   const [appliances, setAppliances] = useState<Appliance[]>(() => {
@@ -546,11 +547,9 @@ export default function HouseWiringLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HouseWiringLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="house-wiring-load-calculator"
-        tools={['fuse-rating-calculator', 'voltage-drop-calculator', 'energy-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

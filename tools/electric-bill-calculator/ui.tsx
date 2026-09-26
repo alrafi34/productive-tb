@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ElectricBillCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ElectricBillCalculatorUI() {
   const [units, setUnits] = useState("150");
@@ -602,11 +603,9 @@ export default function ElectricBillCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ElectricBillCalculatorSEO />
-      <RelatedTools
-        currentTool="electric-bill-calculator"
-        tools={['percentage-calculator', 'discount-calculator', 'tip-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

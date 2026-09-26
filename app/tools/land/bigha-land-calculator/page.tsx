@@ -104,6 +104,7 @@ export default function BighaLandCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="bigha-land-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

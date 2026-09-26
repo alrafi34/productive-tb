@@ -13,6 +13,7 @@ import {
 } from './logic';
 import CSSFilterTesterSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 const DEFAULT_PLACEHOLDER_IMAGE = `data:image/svg+xml;utf8,${encodeURIComponent(`
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
@@ -358,11 +359,9 @@ export default function CSSFilterTester() {
       `}</style>
       </div>
 
+      <RelatedStrip />
       <CSSFilterTesterSEOContent />
-      <RelatedTools
-        currentTool="css-filter-tester"
-        tools={['css-animation-previewer', 'css-gradient-generator', 'css-box-shadow-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

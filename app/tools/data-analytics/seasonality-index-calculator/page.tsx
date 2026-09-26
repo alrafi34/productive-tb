@@ -104,6 +104,7 @@ export default function SeasonalityIndexCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="seasonality-index-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

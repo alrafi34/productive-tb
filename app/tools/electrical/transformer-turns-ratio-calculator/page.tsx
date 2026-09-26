@@ -104,6 +104,7 @@ export default function TransformerTurnsRatioCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="transformer-turns-ratio-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

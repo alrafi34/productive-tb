@@ -104,6 +104,7 @@ export default function AiPromptLengthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="ai-prompt-length-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

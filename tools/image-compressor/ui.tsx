@@ -11,6 +11,7 @@ import type { ImageFile, CompressionSettings, CompressionPreset } from "./types"
 import type { WorkerMessage, WorkerResponse } from "./compression.worker";
 import ImageCompressorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 export default function ImageCompressorUI() {
   const [images, setImages] = useState<ImageFile[]>([]);
   const [settings, setSettings] = useState<CompressionSettings>({
@@ -548,9 +549,10 @@ export default function ImageCompressorUI() {
           </div>
         )}
       </div>
+      <RelatedStrip />
       <ImageCompressorSEOContent />
       
-      <RelatedTools currentTool="image-compressor" tools={["image-resizer", "image-to-grayscale", "exif-remover"]} />
+      <RelatedTools />
     </>
   );
 }

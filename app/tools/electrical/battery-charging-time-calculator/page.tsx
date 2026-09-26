@@ -104,6 +104,7 @@ export default function BatteryChargingTimeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="battery-charging-time-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

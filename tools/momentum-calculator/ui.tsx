@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import MomentumCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -493,18 +494,9 @@ export default function MomentumCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MomentumCalculatorSEO />
-      <RelatedTools
-        currentTool="momentum-calculator"
-        tools={[
-          "kinetic-energy-calculator",
-          "force-calculator",
-          "velocity-calculator",
-          "acceleration-calculator",
-          "torque-calculator",
-          "centripetal-force-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

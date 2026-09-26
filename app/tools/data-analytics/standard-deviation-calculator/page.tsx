@@ -104,6 +104,7 @@ export default function StandardDeviationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="standard-deviation-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

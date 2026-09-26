@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import TimeZoneConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TimeZoneConverterUI() {
   const [baseTime, setBaseTime] = useState<string>("");
@@ -324,11 +325,9 @@ export default function TimeZoneConverterUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <TimeZoneConverterSEO />
-      <RelatedTools
-        currentTool="time-zone-converter"
-        tools={["pomodoro-timer", "timer-stopwatch", "date-difference-calculator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

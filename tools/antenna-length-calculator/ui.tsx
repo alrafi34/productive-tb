@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import AntennaLengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AntennaLengthCalculatorUI() {
   const [inputs, setInputs] = useState<AntennaInputs>({
@@ -474,11 +475,9 @@ export default function AntennaLengthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AntennaLengthCalculatorSEO />
-      <RelatedTools
-        currentTool="antenna-length-calculator"
-        tools={['clock-frequency-calculator', 'data-rate-calculator', 'impedance-calculator', 'capacitive-reactance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

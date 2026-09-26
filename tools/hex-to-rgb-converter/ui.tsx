@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { hexToRgb, rgbToHex, rgbToHsl, generatePalette } from "./logic";
 import HexToRgbSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HexToRgbConverterUI() {
   const [hex, setHex] = useState("#FF5733");
@@ -188,9 +189,10 @@ export default function HexToRgbConverterUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <HexToRgbSEOContent />
       
-      <RelatedTools currentTool="hex-to-rgb-converter" tools={["image-compressor", "favicon-generator", "duotone-filter"]} />
+      <RelatedTools />
     </>
   );
 }

@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import RegexTesterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_TEXT = `Email: john@example.com
 Phone: 123-456-7890
@@ -572,11 +573,9 @@ export default function RegexTesterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RegexTesterSEOContent />
-      <RelatedTools
-        currentTool="regex-tester"
-        tools={["json-validator", "text-diff-checker", "find-and-replace"]}
-      />
+      <RelatedTools />
     </>
   );
 }

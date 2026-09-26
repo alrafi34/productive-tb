@@ -104,6 +104,7 @@ export default function PricePerSquareFeetCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="price-per-square-feet-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

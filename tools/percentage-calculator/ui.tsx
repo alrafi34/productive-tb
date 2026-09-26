@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import PercentageCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PercentageCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('basic');
@@ -552,12 +553,10 @@ export default function PercentageCalculatorUI() {
 
       </div>
       
+      <RelatedStrip />
       <PercentageCalculatorSEO />
       
-      <RelatedTools
-        currentTool="percentage-calculator"
-        tools={['percentage-increase-decrease', 'discount-calculator', 'tip-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

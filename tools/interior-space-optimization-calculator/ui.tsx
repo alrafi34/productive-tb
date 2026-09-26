@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import InteriorSpaceOptimizationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function InteriorSpaceOptimizationCalculatorUI() {
   const [roomDimensions, setRoomDimensions] = useState<RoomDimensions>({
@@ -689,11 +690,9 @@ export default function InteriorSpaceOptimizationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <InteriorSpaceOptimizationCalculatorSEO />
-      <RelatedTools
-        currentTool="interior-space-optimization-calculator"
-        tools={['room-area-calculator', 'floor-area-calculator', 'parking-space-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

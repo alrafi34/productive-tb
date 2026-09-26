@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SquareRootCalculatorUI() {
   const [inputValue, setInputValue] = useState<string>("25");
@@ -331,8 +332,9 @@ export default function SquareRootCalculatorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="square-root-calculator" tools={["scientific-calculator", "average-calculator", "inch-to-cm-converter"]} />
+      <RelatedTools />
     </div>
   );
 }

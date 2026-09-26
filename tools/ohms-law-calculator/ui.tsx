@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const VOLTAGE_UNITS: { label: string; value: VoltageUnit }[] = [
   { label: 'Volts (V)', value: 'V' },
@@ -313,8 +314,9 @@ export default function OhmsLawCalculatorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="ohms-law-calculator" tools={["temperature-conversion-scientific", "unit-ratio-calculator", "scientific-calculator-tool"]} />
+      <RelatedTools />
     </div>
   );
 }

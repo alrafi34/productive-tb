@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import ConversionRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "Website", visitors: 5000, conversions: 175 },
@@ -608,19 +609,10 @@ export default function ConversionRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ConversionRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="conversion-rate-calculator"
-        tools={[
-          "ctr-calculator",
-          "percentage-calculator",
-          "discount-calculator",
-          "investment-return-calculator",
-          "simple-interest-calculator",
-          "gst-vat-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

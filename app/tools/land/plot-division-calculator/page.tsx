@@ -104,6 +104,7 @@ export default function PlotDivisionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="plot-division-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

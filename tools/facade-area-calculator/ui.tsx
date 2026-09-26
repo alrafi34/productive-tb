@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import FacadeAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FacadeAreaCalculatorUI() {
   const [wallSections, setWallSections] = useState<WallSection[]>([createWallSection(10, 5)]);
@@ -514,11 +515,9 @@ export default function FacadeAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FacadeAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="facade-area-calculator"
-        tools={['wall-area-calculator', 'paint-required-calculator', 'room-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

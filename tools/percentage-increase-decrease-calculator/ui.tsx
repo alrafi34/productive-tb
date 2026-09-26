@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import PercentageChangeSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PercentageChangeCalculatorUI() {
   // Mode 1: Basic Change
@@ -301,12 +302,10 @@ export default function PercentageChangeCalculatorUI() {
          </div>
       </div>
 
+      <RelatedStrip />
       <PercentageChangeSEO />
       
-      <RelatedTools 
-        currentTool="percentage-increase-decrease"
-        tools={['percentage-calculator', 'discount-calculator', 'loan-emi-calculator']}
-      />
+      <RelatedTools />
     </div>
   );
 }

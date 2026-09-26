@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import ImpressionsCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const MODES: CalcMode[] = ["reach-frequency", "cpm-budget", "ctr-clicks", "engagement"];
 
@@ -365,19 +366,10 @@ export default function ImpressionsCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ImpressionsCalculatorSEO />
 
-      <RelatedTools
-        currentTool="impressions-calculator"
-        tools={[
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "cost-per-click-cpc-calculator",
-          "bounce-rate-calculator",
-          "roi-calculator-marketing",
-          "cost-per-acquisition-cpa-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

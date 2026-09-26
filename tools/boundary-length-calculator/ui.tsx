@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import BoundaryLengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   sides: [
@@ -508,16 +509,9 @@ export default function BoundaryLengthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BoundaryLengthCalculatorSEO />
-      <RelatedTools
-        currentTool="boundary-length-calculator"
-        tools={[
-          "plot-division-calculator",
-          "land-area-calculator-square-feet",
-          "fence-material-calculator",
-          "land-price-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

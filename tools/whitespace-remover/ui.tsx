@@ -6,6 +6,7 @@ import { cleanWhitespace, highlightExtraSpaces, copyToClipboard, downloadAsFile,
 import { whitespaceRemoverConfig } from './config';
 import SEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function WhitespaceRemoverUI() {
   const [inputText, setInputText] = useState('');
@@ -443,8 +444,9 @@ export default function WhitespaceRemoverUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools currentTool="whitespace-remover" />
+      <RelatedTools />
     </div>
   );
 }

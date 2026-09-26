@@ -104,6 +104,7 @@ export default function FertilizerRequirementCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="fertilizer-requirement-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

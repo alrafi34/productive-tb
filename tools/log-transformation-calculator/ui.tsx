@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import LogTransformationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LogTransformationCalculatorUI() {
   const [mode, setMode] = useState<InputMode>("single");
@@ -372,19 +373,10 @@ export default function LogTransformationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LogTransformationCalculatorSEO />
 
-      <RelatedTools
-        currentTool="log-transformation-calculator"
-        tools={[
-          "data-normalization-calculator",
-          "min-max-scaling-calculator",
-          "standard-deviation-calculator",
-          "mean-calculator",
-          "exponential-smoothing-calculator",
-          "variance-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

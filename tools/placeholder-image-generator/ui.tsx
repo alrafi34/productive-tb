@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import PlaceholderImageGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PlaceholderImageGeneratorUI() {
   const [config, setConfig] = useState<PlaceholderConfig>({
@@ -438,11 +439,9 @@ export default function PlaceholderImageGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PlaceholderImageGeneratorSEOContent />
-      <RelatedTools
-        currentTool="placeholder-image-generator"
-        tools={["favicon-generator", "color-palette-generator", "css-gradient-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

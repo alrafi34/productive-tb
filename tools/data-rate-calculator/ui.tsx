@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import DataRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DataRateCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('data-time-to-rate');
@@ -579,11 +580,9 @@ export default function DataRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataRateCalculatorSEO />
-      <RelatedTools
-        currentTool="data-rate-calculator"
-        tools={['clock-frequency-calculator', 'energy-consumption-calculator', 'power-calculator-electrical', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function RentalYieldCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="rental-yield-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function RealPowerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="real-power-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

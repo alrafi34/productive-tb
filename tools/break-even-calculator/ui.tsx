@@ -9,6 +9,7 @@ import {
 } from "./logic";
 import BreakEvenCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "Retail",        fc: "5000",  vc: "12",  sp: "30",  cu: "",    tp: "" },
@@ -453,19 +454,10 @@ export default function BreakEvenCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BreakEvenCalculatorSEO />
 
-      <RelatedTools
-        currentTool="break-even-calculator"
-        tools={[
-          "profit-margin-calculator-marketing",
-          "revenue-growth-calculator",
-          "roi-calculator-marketing",
-          "cost-per-acquisition-cpa-calculator",
-          "customer-lifetime-value-calculator",
-          "investment-return-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

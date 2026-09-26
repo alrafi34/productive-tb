@@ -12,6 +12,7 @@ import {
 import { ScoreGauge, MiniGauge } from "./chart";
 import PageRankEstimatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type SectionKey = "onpage" | "content" | "images" | "internal" | "technical" | "ux" | "authority";
 
@@ -526,19 +527,10 @@ export default function PageRankEstimatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PageRankEstimatorSEO />
 
-      <RelatedTools
-        currentTool="page-rank-estimator"
-        tools={[
-          "seo-score-calculator",
-          "serp-ctr-estimator",
-          "domain-authority-estimator",
-          "keyword-density-calculator-seo",
-          "backlink-ratio-calculator",
-          "traffic-growth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

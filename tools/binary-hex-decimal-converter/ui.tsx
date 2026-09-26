@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import BinaryHexDecimalConverterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BinaryHexDecimalConverterUI() {
   const [binary, setBinary] = useState("");
@@ -460,11 +461,9 @@ export default function BinaryHexDecimalConverterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BinaryHexDecimalConverterSEOContent />
-      <RelatedTools
-        currentTool="binary-hex-decimal-converter"
-        tools={["base64-encoder-decoder", "hash-generator", "timestamp-unix-converter"]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -13,6 +13,7 @@ import {
 import { contributionColor, residualColor } from "./chart";
 import ChiSquareCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 function cloneTable(t: number[][]): number[][] {
   return t.map((row) => [...row]);
@@ -505,19 +506,10 @@ export default function ChiSquareCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ChiSquareCalculatorSEO />
 
-      <RelatedTools
-        currentTool="chi-square-calculator"
-        tools={[
-          "p-value-calculator",
-          "a-b-test-calculator",
-          "sample-size-calculator",
-          "correlation-coefficient-calculator",
-          "standard-deviation-calculator",
-          "confidence-interval-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

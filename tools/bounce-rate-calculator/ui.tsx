@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import BounceRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "Small Website", bounces: 500, totalVisits: 2000 },
@@ -608,19 +609,10 @@ export default function BounceRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BounceRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="bounce-rate-calculator"
-        tools={[
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "percentage-calculator",
-          "discount-calculator",
-          "investment-return-calculator",
-          "simple-interest-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import TextReverserSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type ReverseMode = "letters" | "words" | "eachWord" | "sentences" | "paragraphs";
 
@@ -175,9 +176,10 @@ export default function TextReverserUI() {
       )}
       </div>
       
+      <RelatedStrip />
       <TextReverserSEOContent />
       
-      <RelatedTools currentTool="text-reverser" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

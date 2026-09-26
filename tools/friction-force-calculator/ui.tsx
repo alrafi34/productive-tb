@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import FrictionForceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const QUICK_PRESETS = [
@@ -548,18 +549,9 @@ export default function FrictionForceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FrictionForceCalculatorSEO />
-      <RelatedTools
-        currentTool="friction-force-calculator"
-        tools={[
-          "force-calculator",
-          "torque-calculator",
-          "stress-calculator",
-          "spring-force-calculator",
-          "centripetal-force-calculator",
-          "momentum-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import WallAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WallAreaCalculatorUI() {
   const [walls, setWalls] = useState<Wall[]>([
@@ -500,11 +501,9 @@ export default function WallAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WallAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="wall-area-calculator"
-        tools={['floor-area-calculator', 'room-area-calculator', 'plot-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

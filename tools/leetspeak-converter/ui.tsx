@@ -5,6 +5,7 @@ import { LeetspeakOptions, PresetType } from './types';
 import { textToLeetspeak, leetspeakToText, getPresetOptions, copyToClipboard, downloadAsFile } from './logic';
 import LeetspeakConverterSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function LeetspeakConverterUI() {
   const [inputText, setInputText] = useState('');
@@ -296,9 +297,10 @@ export default function LeetspeakConverterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LeetspeakConverterSEOContent />
 
-      <RelatedTools currentTool="leetspeak-converter" tools={["zalgo-text-generator", "text-reverser", "nato-phonetic-converter"]} />
+      <RelatedTools />
     </>
   );
 }

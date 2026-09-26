@@ -105,6 +105,7 @@ export default function AccelerationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="acceleration-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

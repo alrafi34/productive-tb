@@ -104,6 +104,7 @@ export default function ShortCircuitCurrentCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="short-circuit-current-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

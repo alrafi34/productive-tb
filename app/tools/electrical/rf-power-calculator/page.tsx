@@ -104,6 +104,7 @@ export default function RfPowerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="rf-power-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

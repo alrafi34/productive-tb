@@ -13,6 +13,7 @@ import {
 import { ROCChart } from "./chart";
 import ROCAUCCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ROCAUCCalculatorUI() {
   const [text, setText] = useState(SAMPLE_DATASET);
@@ -286,18 +287,10 @@ export default function ROCAUCCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ROCAUCCalculatorSEO />
 
-      <RelatedTools
-        currentTool="roc-auc-calculator"
-        tools={[
-          "precision-recall-calculator",
-          "f1-score-calculator",
-          "confusion-matrix-calculator",
-          "chi-square-calculator",
-          "a-b-test-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

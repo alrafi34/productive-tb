@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import ScreenResolutionCheckerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ScreenResolutionCheckerUI() {
   const [metrics, setMetrics] = useState<DeviceMetrics | null>(null);
@@ -203,11 +204,9 @@ export default function ScreenResolutionCheckerUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ScreenResolutionCheckerSEOContent />
-      <RelatedTools
-        currentTool="screen-resolution-checker"
-        tools={["user-agent-parser", "responsive-breakpoint-tester", "css-flexbox-playground"]}
-      />
+      <RelatedTools />
     </>
   );
 }

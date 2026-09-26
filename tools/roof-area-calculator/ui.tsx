@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import RoofAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RoofAreaCalculatorUI() {
   const [roofType, setRoofType] = useState<RoofType>("gable");
@@ -504,11 +505,9 @@ export default function RoofAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RoofAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="roof-area-calculator"
-        tools={['floor-area-calculator', 'wall-area-calculator', 'paint-required-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

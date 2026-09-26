@@ -12,6 +12,7 @@ import {
 import RetentionGauge from "./chart";
 import RetentionRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3];
 
@@ -393,19 +394,10 @@ export default function RetentionRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RetentionRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="retention-rate-calculator"
-        tools={[
-          "churn-rate-calculator",
-          "customer-lifetime-value-calculator",
-          "conversion-rate-calculator",
-          "bounce-rate-calculator",
-          "lead-conversion-funnel-calculator",
-          "revenue-growth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

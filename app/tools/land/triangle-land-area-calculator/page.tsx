@@ -104,6 +104,7 @@ export default function TriangleLandAreaCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="triangle-land-area-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

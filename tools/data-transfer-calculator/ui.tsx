@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import DataTransferCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const SIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB"];
 const SPEED_UNITS = ["Kbps", "Mbps", "Gbps", "KB/s", "MB/s", "GB/s"];
@@ -521,19 +522,10 @@ export default function DataTransferCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataTransferCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-transfer-calculator"
-        tools={[
-          "bandwidth-calculator",
-          "cidr-calculator",
-          "subnet-calculator",
-          "download-time-calculator",
-          "latency-calculator",
-          "ip-range-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

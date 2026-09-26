@@ -104,6 +104,7 @@ export default function ApparentPowerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="apparent-power-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

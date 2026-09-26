@@ -11,6 +11,7 @@ import {
 import { ScoreGauge, MetricBar } from "./chart";
 import PageSpeedScoreCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const RATING_STYLES: Record<string, string> = {
   Excellent: "bg-green-50 text-green-700 border-green-200",
@@ -342,19 +343,10 @@ export default function PageSpeedScoreCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PageSpeedScoreCalculatorSEO />
 
-      <RelatedTools
-        currentTool="page-speed-score-calculator"
-        tools={[
-          "session-duration-calculator",
-          "bounce-rate-calculator",
-          "conversion-rate-calculator",
-          "seo-score-calculator",
-          "domain-authority-estimator",
-          "download-time-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

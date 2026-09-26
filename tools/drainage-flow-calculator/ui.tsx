@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import DrainageFlowCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DrainageFlowCalculatorUI() {
   const [mode, setMode] = useState<DrainageMode>("pipe");
@@ -596,11 +597,9 @@ export default function DrainageFlowCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DrainageFlowCalculatorSEO />
-      <RelatedTools
-        currentTool="drainage-flow-calculator"
-        tools={['excavation-volume-calculator', 'concrete-volume-calculator', 'slope-stability-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

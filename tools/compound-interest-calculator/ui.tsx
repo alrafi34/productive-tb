@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const frequencyLabel: Record<CompoundingFrequency, string> = {
   annual: "Annual",
@@ -444,12 +445,10 @@ export default function CompoundInterestCalculatorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
       <div className="mt-12">
-        <RelatedTools
-          currentTool="compound-interest-calculator"
-          tools={["simple-interest-calculator", "mortgage-calculator", "loan-emi-calculator"]}
-        />
+        <RelatedTools />
       </div>
     </div>
   );

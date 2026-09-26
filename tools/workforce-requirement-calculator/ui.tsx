@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import WorkforceRequirementCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WorkforceRequirementCalculatorUI() {
   const [totalWork, setTotalWork] = useState("1000");
@@ -528,11 +529,9 @@ export default function WorkforceRequirementCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WorkforceRequirementCalculatorSEO />
-      <RelatedTools
-        currentTool="workforce-requirement-calculator"
-        tools={['labor-cost-calculator', 'project-timeline-calculator', 'construction-cost-estimator']}
-      />
+      <RelatedTools />
     </>
   );
 }

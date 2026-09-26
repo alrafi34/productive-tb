@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import BcryptHashVerifierSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type TabMode = "verify" | "generate" | "batch";
 
@@ -424,12 +425,10 @@ export default function BcryptHashVerifierUI() {
         )}
       </div>
       
+      <RelatedStrip />
       <BcryptHashVerifierSEOContent />
       
-      <RelatedTools
-        currentTool="bcrypt-hash-verifier"
-        tools={['text-encryptor-aes', 'password-generator', 'hash-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

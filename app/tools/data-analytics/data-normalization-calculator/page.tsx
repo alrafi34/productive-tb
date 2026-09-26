@@ -104,6 +104,7 @@ export default function DataNormalizationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-normalization-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

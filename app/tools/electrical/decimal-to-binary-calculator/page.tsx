@@ -104,6 +104,7 @@ export default function DecimalToBinaryCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="decimal-to-binary-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

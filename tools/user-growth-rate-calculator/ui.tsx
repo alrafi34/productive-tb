@@ -13,6 +13,7 @@ import GrowthGauge from "./gauge";
 import GrowthProjectionChart from "./chart";
 import UserGrowthRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 
@@ -328,19 +329,10 @@ export default function UserGrowthRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <UserGrowthRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="user-growth-rate-calculator"
-        tools={[
-          "traffic-growth-calculator",
-          "retention-rate-calculator",
-          "churn-rate-calculator",
-          "viral-coefficient-calculator",
-          "revenue-growth-calculator",
-          "customer-lifetime-value-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

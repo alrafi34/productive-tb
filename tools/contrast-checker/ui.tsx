@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import ContrastCheckerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ContrastCheckerUI() {
   const [config, setConfig] = useState<ContrastConfig>(defaultConfig);
@@ -325,12 +326,10 @@ export default function ContrastCheckerUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ContrastCheckerSEOContent />
       
-      <RelatedTools
-        currentTool="contrast-checker"
-        tools={['color-format-converter', 'css-gradient-generator', 'color-palette-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function DataGrowthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-growth-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

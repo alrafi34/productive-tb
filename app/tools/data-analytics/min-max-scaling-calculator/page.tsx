@@ -104,6 +104,7 @@ export default function MinMaxScalingCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="min-max-scaling-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FuelCostCalculatorUI() {
   const [distance, setDistance] = useState<string>("100");
@@ -371,8 +372,9 @@ export default function FuelCostCalculatorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="fuel-cost-calculator" tools={["tip-calculator", "loan-emi-calculator", "standard-deviation-calculator"]} />
+      <RelatedTools />
     </div>
   );
 }

@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import PrecisionRecallCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // Metric card definition
 interface MetricCard {
@@ -527,19 +528,10 @@ export default function PrecisionRecallCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PrecisionRecallCalculatorSEO />
 
-      <RelatedTools
-        currentTool="precision-recall-calculator"
-        tools={[
-          "model-accuracy-calculator",
-          "ai-token-cost-calculator",
-          "ai-prompt-length-calculator",
-          "time-complexity-calculator",
-          "latency-calculator",
-          "data-transfer-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -9,6 +9,7 @@ import {
 } from "./logic";
 import XMLToJsonSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <library>
@@ -319,12 +320,10 @@ export default function XMLToJsonUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <XMLToJsonSEOContent />
 
-      <RelatedTools
-        currentTool="xml-to-json"
-        tools={["json-validator", "find-and-replace", "markdown-previewer"]}
-      />
+      <RelatedTools />
     </>
   );
 }

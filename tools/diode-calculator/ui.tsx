@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import DiodeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DiodeCalculatorUI() {
   const [inputs, setInputs] = useState<DiodeCalculatorInputs>({
@@ -552,11 +553,9 @@ export default function DiodeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DiodeCalculatorSEO />
-      <RelatedTools
-        currentTool="diode-calculator"
-        tools={['led-resistor-calculator', 'ohms-law-calculator', 'voltage-divider-calculator', 'power-calculator-electrical']}
-      />
+      <RelatedTools />
     </>
   );
 }

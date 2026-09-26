@@ -104,6 +104,7 @@ export default function BearingLifeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="bearing-life-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

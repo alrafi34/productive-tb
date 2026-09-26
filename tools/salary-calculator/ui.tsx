@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import SalaryCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const CURRENCIES = [
   { code: "USD", symbol: "$" },
@@ -431,12 +432,10 @@ export default function SalaryCalculatorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <SalaryCalculatorSEO />
 
-      <RelatedTools
-        currentTool="salary-calculator"
-        tools={["discount-calculator", "percentage-calculator", "loan-emi-calculator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

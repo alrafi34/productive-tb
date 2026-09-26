@@ -28,6 +28,7 @@ import {
 } from "./logic";
 import FatigueLifeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ─── S-N Chart (canvas) ───────────────────────────────────────────────────────
 function SNChart({
@@ -1072,18 +1073,9 @@ export default function FatigueLifeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FatigueLifeCalculatorSEO />
-      <RelatedTools
-        currentTool="fatigue-life-calculator"
-        tools={[
-          "stress-calculator",
-          "factor-of-safety-calculator",
-          "beam-deflection-calculator",
-          "spring-force-calculator",
-          "moment-of-inertia-calculator",
-          "natural-frequency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

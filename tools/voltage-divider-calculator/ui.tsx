@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import VoltageDividerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function VoltageDividerCalculatorUI() {
   const [inputs, setInputs] = useState<VoltageInputs>({
@@ -470,11 +471,9 @@ export default function VoltageDividerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VoltageDividerCalculatorSEO />
-      <RelatedTools
-        currentTool="voltage-divider-calculator"
-        tools={['ohms-law-calculator', 'power-consumption-calculator', 'resistor-color-code-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

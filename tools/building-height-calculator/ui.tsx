@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import BuildingHeightCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BuildingHeightCalculatorUI() {
   const [plotArea, setPlotArea] = useState("2000");
@@ -490,11 +491,9 @@ export default function BuildingHeightCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BuildingHeightCalculatorSEO />
-      <RelatedTools
-        currentTool="building-height-calculator"
-        tools={['floor-area-calculator', 'plot-area-calculator', 'room-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

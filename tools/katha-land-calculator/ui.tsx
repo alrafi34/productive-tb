@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import KathaLandCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const UNITS: Unit[] = ["katha", "decimal", "bigha", "acre", "sqft", "sqm", "hectare"];
 const REGIONS: Region[] = ["bangladesh", "westbengal", "bihar", "nepal"];
@@ -464,16 +465,9 @@ export default function KathaLandCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <KathaLandCalculatorSEO />
-      <RelatedTools
-        currentTool="katha-land-calculator"
-        tools={[
-          "land-area-calculator-square-feet",
-          "land-area-calculator-square-meter",
-          "acre-to-square-feet-converter",
-          "hectare-to-acre-converter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

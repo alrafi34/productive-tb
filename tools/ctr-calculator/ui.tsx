@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import CTRCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "150 / 5,000", clicks: 150, impressions: 5000 },
@@ -587,18 +588,10 @@ export default function CTRCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CTRCalculatorSEO />
 
-      <RelatedTools
-        currentTool="ctr-calculator"
-        tools={[
-          "cost-per-click-cpc-calculator",
-          "cost-per-acquisition-cpa-calculator",
-          "conversion-rate-calculator",
-          "keyword-density-checker",
-          "profit-margin-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

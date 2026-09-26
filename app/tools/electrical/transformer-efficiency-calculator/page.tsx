@@ -104,6 +104,7 @@ export default function TransformerEfficiencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="transformer-efficiency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

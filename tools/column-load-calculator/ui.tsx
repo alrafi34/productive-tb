@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ColumnLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ColumnLoadCalculatorUI() {
   const [columnType, setColumnType] = useState<ColumnType>("concrete");
@@ -677,11 +678,9 @@ export default function ColumnLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ColumnLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="column-load-calculator"
-        tools={['beam-load-calculator', 'foundation-depth-calculator', 'concrete-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

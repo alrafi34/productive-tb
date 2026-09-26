@@ -5,6 +5,7 @@ import { analyzeText, exportToCSV, exportToJSON } from "./logic";
 import type { AnalysisResult, FilterOptions } from "./types";
 import WordFrequencyCounterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WordFrequencyCounterUI() {
   const [text, setText] = useState("");
@@ -331,9 +332,10 @@ export default function WordFrequencyCounterUI() {
         )}
       </div>
       
+      <RelatedStrip />
       <WordFrequencyCounterSEOContent />
       
-      <RelatedTools currentTool="word-frequency-counter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

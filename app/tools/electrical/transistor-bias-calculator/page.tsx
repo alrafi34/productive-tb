@@ -104,6 +104,7 @@ export default function TransistorBiasCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="transistor-bias-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function VarianceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="variance-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

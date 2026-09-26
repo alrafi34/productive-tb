@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import LightingLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LightingLoadCalculatorUI() {
   const [areaUnit, setAreaUnit] = useState<AreaUnit>("sqft");
@@ -523,11 +524,9 @@ export default function LightingLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LightingLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="lighting-load-calculator"
-        tools={['electrical-load-calculator-building', 'power-consumption-calculator', 'energy-efficiency-calculator-building']}
-      />
+      <RelatedTools />
     </>
   );
 }

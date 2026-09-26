@@ -28,6 +28,7 @@ import {
 } from "./logic";
 import DownPaymentCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Payment bar visualization ─────────────────────────────────────────────────
 
@@ -480,16 +481,9 @@ export default function DownPaymentCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DownPaymentCalculatorSEO />
-      <RelatedTools
-        currentTool="down-payment-calculator"
-        tools={[
-          "mortgage-loan-calculator",
-          "home-loan-emi-calculator",
-          "land-price-calculator",
-          "property-tax-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

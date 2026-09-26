@@ -29,6 +29,7 @@ import {
 } from "./logic";
 import SoilVolumeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -589,16 +590,9 @@ export default function SoilVolumeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SoilVolumeCalculatorSEO />
-      <RelatedTools
-        currentTool="soil-volume-calculator"
-        tools={[
-          "earth-filling-calculator",
-          "cut-and-fill-calculator",
-          "excavation-cost-calculator",
-          "land-area-calculator-square-feet",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

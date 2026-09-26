@@ -104,6 +104,7 @@ export default function EtlThroughputCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="etl-throughput-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

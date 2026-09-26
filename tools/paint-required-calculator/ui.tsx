@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import PaintRequiredCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PaintRequiredCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("room");
@@ -513,11 +514,9 @@ export default function PaintRequiredCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PaintRequiredCalculatorSEO />
-      <RelatedTools
-        currentTool="paint-required-calculator"
-        tools={['wall-area-calculator', 'room-area-calculator', 'floor-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

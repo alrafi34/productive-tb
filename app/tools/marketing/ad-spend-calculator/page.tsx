@@ -104,6 +104,7 @@ export default function AdSpendCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="ad-spend-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

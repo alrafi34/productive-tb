@@ -104,6 +104,7 @@ export default function CorrelationCoefficientCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="correlation-coefficient-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -108,6 +108,7 @@ export default function SunlightExposureCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="sunlight-exposure-calculator"
         title={toolName}
         description={toolDescription}
         icon={toolIcon}

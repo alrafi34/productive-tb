@@ -5,6 +5,7 @@ import { DuotoneOptions, ProcessedImage } from "./types";
 import { processImage, processBatch, DUOTONE_PRESETS } from "./logic";
 import DuotoneFilterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DuotoneFilterUI() {
   const [darkColor, setDarkColor] = useState("#008080");
@@ -309,12 +310,10 @@ export default function DuotoneFilterUI() {
       )}
     </div>
 
+    <RelatedStrip />
     <DuotoneFilterSEOContent />
 
-    <RelatedTools 
-      currentTool="duotone-filter"
-      tools={['image-to-grayscale', 'dithering-filter', 'image-compressor']} 
-    />
+    <RelatedTools />
     </>
   );
 }

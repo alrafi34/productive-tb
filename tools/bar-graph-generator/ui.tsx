@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import BarGraphGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BarGraphGeneratorUI() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -366,12 +367,10 @@ export default function BarGraphGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BarGraphGeneratorSEOContent />
 
-      <RelatedTools
-        currentTool="bar-graph-generator"
-        tools={["word-cloud-generator", "mind-map-builder", "pie-chart-maker"]}
-      />
+      <RelatedTools />
     </>
   );
 }

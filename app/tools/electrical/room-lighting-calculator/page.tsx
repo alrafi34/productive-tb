@@ -104,6 +104,7 @@ export default function RoomLightingCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="room-lighting-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

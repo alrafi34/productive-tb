@@ -104,6 +104,7 @@ export default function ThreadPitchCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="thread-pitch-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

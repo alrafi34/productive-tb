@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import ClockFrequencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ClockFrequencyCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('frequency-to-period');
@@ -673,11 +674,9 @@ export default function ClockFrequencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ClockFrequencyCalculatorSEO />
-      <RelatedTools
-        currentTool="clock-frequency-calculator"
-        tools={['capacitor-charge-time-calculator', 'inductor-calculator', 'impedance-calculator', 'capacitive-reactance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

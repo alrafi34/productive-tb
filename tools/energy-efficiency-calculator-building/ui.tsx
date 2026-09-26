@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import EnergyEfficiencyCalculatorBuildingSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EnergyEfficiencyCalculatorBuildingUI() {
   const [buildingArea, setBuildingArea] = useState(2000);
@@ -533,11 +534,9 @@ export default function EnergyEfficiencyCalculatorBuildingUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EnergyEfficiencyCalculatorBuildingSEO />
-      <RelatedTools
-        currentTool="energy-efficiency-calculator-building"
-        tools={['hvac-load-calculator', 'cooling-load-calculator-architecture', 'insulation-thickness-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

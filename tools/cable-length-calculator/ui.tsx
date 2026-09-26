@@ -26,6 +26,7 @@ import {
 } from "./logic";
 import CableLengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CableLengthCalculatorUI() {
   const [inputs, setInputs] = useState<CableLengthInputs>({
@@ -545,11 +546,9 @@ export default function CableLengthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CableLengthCalculatorSEO />
-      <RelatedTools
-        currentTool="cable-length-calculator"
-        tools={['wire-size-calculator', 'voltage-drop-calculator', 'circuit-breaker-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

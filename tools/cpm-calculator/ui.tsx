@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import CPMCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 
@@ -420,19 +421,10 @@ export default function CPMCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CPMCalculatorSEO />
 
-      <RelatedTools
-        currentTool="cpm-calculator"
-        tools={[
-          "cost-per-click-cpc-calculator",
-          "cost-per-acquisition-cpa-calculator",
-          "impressions-calculator",
-          "ad-frequency-calculator",
-          "ctr-calculator",
-          "roi-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function GeneratorSizeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="generator-size-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

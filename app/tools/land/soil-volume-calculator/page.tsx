@@ -104,6 +104,7 @@ export default function SoilVolumeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="soil-volume-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

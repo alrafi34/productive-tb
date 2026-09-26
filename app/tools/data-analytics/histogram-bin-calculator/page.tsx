@@ -104,6 +104,7 @@ export default function HistogramBinCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="histogram-bin-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

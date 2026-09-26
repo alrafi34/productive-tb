@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import ChecksumCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type InputMode = "text" | "file";
 
@@ -555,19 +556,10 @@ export default function ChecksumCalculatorUI() {
 
       </div>
 
+      <RelatedStrip />
       <ChecksumCalculatorSEO />
 
-      <RelatedTools
-        currentTool="checksum-calculator"
-        tools={[
-          "subnet-calculator",
-          "file-hash-generator",
-          "hash-generator",
-          "ip-range-calculator",
-          "text-encrypt-decrypt",
-          "bandwidth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

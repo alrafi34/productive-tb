@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import WorkingDaysCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WorkingDaysCalculatorUI() {
   const [startDate, setStartDate] = useState<string>(getTodayString());
@@ -331,12 +332,10 @@ export default function WorkingDaysCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WorkingDaysCalculatorSEO />
       
-      <RelatedTools
-        currentTool="working-days-calculator"
-        tools={['date-difference-calculator', 'time-duration-calculator', 'percentage-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

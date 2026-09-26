@@ -26,6 +26,7 @@ import {
 } from "./logic";
 import LandLevelingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   mode: "simple",
@@ -638,18 +639,9 @@ export default function LandLevelingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LandLevelingCalculatorSEO />
-      <RelatedTools
-        currentTool="land-leveling-calculator"
-        tools={[
-          "earth-filling-calculator",
-          "soil-volume-calculator",
-          "excavation-cost-calculator",
-          "land-area-calculator-square-feet",
-          "cut-and-fill-calculator",
-          "land-slope-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

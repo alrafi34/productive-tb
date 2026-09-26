@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import RandomIDGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RandomIDGeneratorUI() {
   const [idType, setIdType] = useState<IDType>("uuid-v4");
@@ -223,11 +224,9 @@ export default function RandomIDGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RandomIDGeneratorSEOContent />
-      <RelatedTools
-        currentTool="random-id-generator"
-        tools={["hash-generator", "password-generator", "qr-code-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

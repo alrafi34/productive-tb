@@ -104,6 +104,7 @@ export default function RlTimeConstantCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="rl-time-constant-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

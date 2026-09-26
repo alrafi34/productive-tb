@@ -104,6 +104,7 @@ export default function EscalationCostCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="escalation-cost-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

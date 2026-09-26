@@ -5,6 +5,7 @@ import { ZalgoOptions, PresetType } from './types';
 import { generateZalgo, removeZalgo, getPresetOptions, copyToClipboard, downloadAsFile } from './logic';
 import ZalgoTextGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function ZalgoTextGeneratorUI() {
   const [inputText, setInputText] = useState('');
@@ -296,9 +297,10 @@ export default function ZalgoTextGeneratorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <ZalgoTextGeneratorSEOContent />
 
-      <RelatedTools currentTool="zalgo-text-generator" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

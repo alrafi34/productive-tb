@@ -19,6 +19,7 @@ import {
 } from './logic';
 import CSSBlobGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 type Tab = 'generator' | 'animation' | 'export';
 
@@ -492,11 +493,9 @@ export default function CSSBlobGeneratorUI() {
         `}</style>
       </div>
 
+      <RelatedStrip />
       <CSSBlobGeneratorSEOContent />
-      <RelatedTools
-        currentTool="css-border-radius-blob"
-        tools={["css-gradient-generator", "css-box-shadow-generator", "neumorphism-generator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

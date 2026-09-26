@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import EmergencyExitWidthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EmergencyExitWidthCalculatorUI() {
   const [occupants, setOccupants] = useState("100");
@@ -468,11 +469,9 @@ export default function EmergencyExitWidthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EmergencyExitWidthCalculatorSEO />
-      <RelatedTools
-        currentTool="emergency-exit-width-calculator"
-        tools={['fire-safety-load-calculator', 'staircase-calculator', 'room-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

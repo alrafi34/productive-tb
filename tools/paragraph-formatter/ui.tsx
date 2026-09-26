@@ -4,6 +4,7 @@ import { useState } from "react";
 import { removeExtraSpaces, fixLineBreaks, trimEmptyLines, formatParagraphs, autoFormat } from "./logic";
 import ParagraphFormatterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ParagraphFormatterUI() {
   const [text, setText] = useState("");
@@ -178,9 +179,10 @@ export default function ParagraphFormatterUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <ParagraphFormatterSEOContent />
       
-      <RelatedTools currentTool="paragraph-formatter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

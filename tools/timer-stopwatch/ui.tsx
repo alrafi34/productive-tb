@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import TimerStopwatchSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'stopwatch' | 'countdown';
 
@@ -381,12 +382,10 @@ export default function TimerStopwatchUI() {
 
       </div>
 
+      <RelatedStrip />
       <TimerStopwatchSEO />
 
-      <RelatedTools 
-        currentTool="timer-stopwatch"
-        tools={['timestamp-unix-converter', 'age-calculator', 'loan-emi-calculator']}
-      />
+      <RelatedTools />
 
     </div>
   );

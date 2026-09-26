@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import BandwidthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = "transfer" | "website" | "streaming" | "multiuser";
 
@@ -692,19 +693,10 @@ export default function BandwidthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BandwidthCalculatorSEO />
 
-      <RelatedTools
-        currentTool="bandwidth-calculator"
-        tools={[
-          "cidr-calculator",
-          "subnet-calculator",
-          "ip-range-calculator",
-          "download-time-calculator",
-          "data-transfer-calculator",
-          "latency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

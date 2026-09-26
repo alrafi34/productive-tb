@@ -104,6 +104,7 @@ export default function ConfusionMatrixCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="confusion-matrix-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

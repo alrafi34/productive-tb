@@ -104,6 +104,7 @@ export default function FrictionForceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="friction-force-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

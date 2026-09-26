@@ -104,6 +104,7 @@ export default function RefrigerationCopCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="refrigeration-cop-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

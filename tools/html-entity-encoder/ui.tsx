@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import HTMLEntityEncoderSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_TEXT = "<div class=\"container\">Hello & Welcome</div>";
 
@@ -357,11 +358,9 @@ export default function HTMLEntityEncoderUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HTMLEntityEncoderSEOContent />
-      <RelatedTools
-        currentTool="html-entity-encoder"
-        tools={["url-encoder-decoder", "base64-encoder-decoder", "json-formatter"]}
-      />
+      <RelatedTools />
     </>
   );
 }

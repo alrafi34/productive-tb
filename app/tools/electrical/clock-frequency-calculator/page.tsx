@@ -104,6 +104,7 @@ export default function ClockFrequencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="clock-frequency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function SolarBatteryCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="solar-battery-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import WaterTankCapacityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WaterTankCapacityCalculatorUI() {
   const [shape, setShape] = useState<TankShape>("rectangular");
@@ -545,11 +546,9 @@ export default function WaterTankCapacityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WaterTankCapacityCalculatorSEO />
-      <RelatedTools
-        currentTool="water-tank-capacity-calculator"
-        tools={['rainwater-harvesting-calculator', 'concrete-volume-calculator', 'excavation-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

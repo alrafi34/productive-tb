@@ -5,6 +5,7 @@ import { NATOOptions, ViewMode } from './types';
 import { textToNATO, textToNATOLetterByLetter, natoToText, speakNATO, copyToClipboard, downloadAsFile } from './logic';
 import NATOPhoneticConverterSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function NATOPhoneticConverterUI() {
   const [inputText, setInputText] = useState('');
@@ -277,9 +278,10 @@ export default function NATOPhoneticConverterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <NATOPhoneticConverterSEOContent />
 
-      <RelatedTools currentTool="nato-phonetic-converter" tools={["text-reverser", "sentence-case-converter", "word-counter"]} />
+      <RelatedTools />
     </>
   );
 }

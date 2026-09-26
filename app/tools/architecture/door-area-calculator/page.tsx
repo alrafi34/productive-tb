@@ -104,6 +104,7 @@ export default function DoorAreaCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="door-area-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

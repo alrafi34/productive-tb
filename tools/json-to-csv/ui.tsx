@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import JSONToCSVSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_JSON = `[
   {
@@ -329,12 +330,10 @@ export default function JSONToCSVUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <JSONToCSVSEOContent />
 
-      <RelatedTools
-        currentTool="json-to-csv"
-        tools={["json-validator", "xml-to-json", "find-and-replace"]}
-      />
+      <RelatedTools />
     </>
   );
 }

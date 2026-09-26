@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import DragForceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const QUICK_PRESETS = [
   { label: "Car at 100 km/h",  velocity: "100",  velocityUnit: "km/h" as VelocityUnit, density: "1.225", dragCoefficient: "0.30", area: "2.2",  fluidType: "air"   as FluidType },
@@ -559,18 +560,9 @@ export default function DragForceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DragForceCalculatorSEO />
-      <RelatedTools
-        currentTool="drag-force-calculator"
-        tools={[
-          "friction-force-calculator",
-          "force-calculator",
-          "reynolds-number-calculator",
-          "bernoulli-equation-calculator",
-          "flow-rate-calculator",
-          "pressure-drop-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

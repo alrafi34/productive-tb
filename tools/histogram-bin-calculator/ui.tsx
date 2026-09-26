@@ -11,6 +11,7 @@ import {
 import { HistogramBarChart, exportCanvasAsPng } from "./chart";
 import HistogramBinCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HistogramBinCalculatorUI() {
   const [input, setInput] = useState("");
@@ -431,19 +432,10 @@ export default function HistogramBinCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HistogramBinCalculatorSEO />
 
-      <RelatedTools
-        currentTool="histogram-bin-calculator"
-        tools={[
-          "standard-deviation-calculator",
-          "percentile-calculator",
-          "mean-calculator",
-          "median-calculator",
-          "outlier-detection-calculator",
-          "data-normalization-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function ProfitMarginCalculatorMarketingPage() {
         />
       )}
       <ToolLayout
+        slug="profit-margin-calculator-marketing"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

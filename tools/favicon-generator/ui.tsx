@@ -6,6 +6,7 @@ import { FaviconOptions, FaviconSize } from "./types";
 import { generateMultipleFavicons, downloadFavicon, downloadAllFavicons, copyToClipboard, generateHTMLSnippet, STANDARD_SIZES } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FaviconGeneratorUI() {
   const [favicons, setFavicons] = useState<FaviconSize[]>([]);
@@ -366,11 +367,9 @@ export default function FaviconGeneratorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="favicon-generator"
-        tools={['image-resizer', 'image-compressor', 'base64-image-encoder']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function HomeLoanEmiCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="home-loan-emi-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

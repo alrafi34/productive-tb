@@ -36,6 +36,7 @@ import {
 } from "./logic";
 import BendingMomentCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -938,18 +939,9 @@ export default function BendingMomentCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BendingMomentCalculatorSEO />
-      <RelatedTools
-        currentTool="bending-moment-calculator"
-        tools={[
-          "beam-deflection-calculator",
-          "stress-calculator",
-          "torque-calculator",
-          "moment-of-inertia-calculator",
-          "force-calculator",
-          "spring-force-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import FontPairerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FontPairerUI() {
   const [headingFont, setHeadingFont] = useState("Playfair Display");
@@ -462,11 +463,9 @@ export default function FontPairerUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <FontPairerSEOContent />
-      <RelatedTools
-        currentTool="font-pairer"
-        tools={["color-palette-generator", "css-gradient-generator", "placeholder-image-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

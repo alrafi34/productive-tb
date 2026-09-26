@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import VentilationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function VentilationCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("room-volume");
@@ -541,11 +542,9 @@ export default function VentilationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VentilationCalculatorSEO />
-      <RelatedTools
-        currentTool="ventilation-calculator"
-        tools={['hvac-load-calculator', 'room-volume-calculator', 'air-quality-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

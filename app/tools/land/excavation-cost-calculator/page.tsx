@@ -104,6 +104,7 @@ export default function ExcavationCostCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="excavation-cost-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

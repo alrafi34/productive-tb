@@ -104,6 +104,7 @@ export default function FatigueLifeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="fatigue-life-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

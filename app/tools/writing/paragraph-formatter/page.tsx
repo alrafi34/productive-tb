@@ -108,6 +108,7 @@ export default function ParagraphFormatterPage() {
         />
       )}
       <ToolLayout
+        slug="paragraph-formatter"
         title={toolName}
         description={toolDescription}
         icon={toolIcon}

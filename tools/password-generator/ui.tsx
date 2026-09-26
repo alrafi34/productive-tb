@@ -16,6 +16,7 @@ import {
 import { PasswordOptions, PassphraseOptions, GeneratorMode, GeneratedPassword } from "./types";
 import PasswordGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PasswordGeneratorUI() {
   const [mode, setMode] = useState<GeneratorMode>('random');
@@ -490,11 +491,9 @@ export default function PasswordGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PasswordGeneratorSEOContent />
-      <RelatedTools
-        currentTool="password-generator"
-        tools={["username-generator", "hash-generator", "text-encrypt-decrypt"]}
-      />
+      <RelatedTools />
     </>
   );
 }

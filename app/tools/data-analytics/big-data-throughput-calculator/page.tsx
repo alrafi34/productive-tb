@@ -104,6 +104,7 @@ export default function BigDataThroughputCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="big-data-throughput-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

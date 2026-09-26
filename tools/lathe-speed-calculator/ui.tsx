@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import LatheSpeedCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: LatheInputs = {
   unitSystem:   "metric",
@@ -543,18 +544,9 @@ export default function LatheSpeedCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LatheSpeedCalculatorSEO />
-      <RelatedTools
-        currentTool="lathe-speed-calculator"
-        tools={[
-          "cutting-speed-calculator",
-          "torque-calculator",
-          "gear-ratio-calculator",
-          "angular-velocity-calculator",
-          "thread-pitch-calculator",
-          "feed-rate-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function SignalAttenuationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="signal-attenuation-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

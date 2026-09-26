@@ -104,6 +104,7 @@ export default function SoilCompactionRatioCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="soil-compaction-ratio-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import MapScaleCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -550,16 +551,9 @@ export default function MapScaleCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MapScaleCalculatorSEO />
-      <RelatedTools
-        currentTool="map-scale-calculator"
-        tools={[
-          "survey-area-calculator",
-          "boundary-length-calculator",
-          "land-area-calculator-square-feet",
-          "distance-between-points-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

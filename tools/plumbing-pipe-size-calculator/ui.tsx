@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import PlumbingPipeSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PlumbingPipeSizeCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("diameter");
@@ -560,11 +561,9 @@ export default function PlumbingPipeSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PlumbingPipeSizeCalculatorSEO />
-      <RelatedTools
-        currentTool="plumbing-pipe-size-calculator"
-        tools={['drainage-flow-calculator', 'water-tank-capacity-calculator', 'concrete-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

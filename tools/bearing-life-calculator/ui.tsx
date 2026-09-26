@@ -25,6 +25,7 @@ import {
 } from "./logic";
 import BearingLifeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US/metric engineering defaults) ──────────────────────────────
 const PRESETS = [
@@ -840,18 +841,9 @@ export default function BearingLifeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BearingLifeCalculatorSEO />
-      <RelatedTools
-        currentTool="bearing-life-calculator"
-        tools={[
-          "torque-calculator",
-          "gear-ratio-calculator",
-          "spring-force-calculator",
-          "angular-velocity-calculator",
-          "natural-frequency-calculator",
-          "centripetal-force-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import TimeComplexitySEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const ALGORITHM_PRESETS = [
   { label: "Binary Search", input: "binary search" },
@@ -589,19 +590,10 @@ export default function TimeComplexityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TimeComplexitySEO />
 
-      <RelatedTools
-        currentTool="time-complexity-calculator"
-        tools={[
-          "data-transfer-calculator",
-          "bandwidth-calculator",
-          "cidr-calculator",
-          "subnet-calculator",
-          "checksum-calculator",
-          "ip-range-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

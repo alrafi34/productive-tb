@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import EscalationCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EscalationCostCalculatorUI() {
   const [baseCost, setBaseCost] = useState("");
@@ -476,11 +477,9 @@ export default function EscalationCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EscalationCostCalculatorSEO />
-      <RelatedTools
-        currentTool="escalation-cost-calculator"
-        tools={['concrete-volume-calculator', 'cement-calculator', 'brick-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

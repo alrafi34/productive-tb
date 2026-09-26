@@ -22,6 +22,7 @@ import {
 } from './logic';
 import CSSClampGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function CSSClampGenerator() {
   const [config, setConfig] = useState<ClampConfig>(() => {
@@ -624,12 +625,10 @@ export default function CSSClampGenerator() {
         )}
       </div>
 
+      <RelatedStrip />
       <CSSClampGeneratorSEOContent />
       
-      <RelatedTools
-        currentTool="css-clamp-generator"
-        tools={['css-gradient-generator', 'neumorphism-generator', 'css-animation-previewer']}
-      />
+      <RelatedTools />
     </>
   );
 }

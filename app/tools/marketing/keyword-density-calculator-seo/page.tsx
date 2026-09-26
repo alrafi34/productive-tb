@@ -104,6 +104,7 @@ export default function KeywordDensityCalculatorSeoPage() {
         />
       )}
       <ToolLayout
+        slug="keyword-density-calculator-seo"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

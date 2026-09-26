@@ -13,6 +13,7 @@ import {
 import GrowthChart, { exportCanvasAsPng } from "./chart";
 import TrafficGrowthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TrafficGrowthCalculatorUI() {
   const [inputs, setInputs]         = useState<GrowthInputs>(DEFAULT_INPUTS);
@@ -460,19 +461,10 @@ export default function TrafficGrowthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TrafficGrowthCalculatorSEO />
 
-      <RelatedTools
-        currentTool="traffic-growth-calculator"
-        tools={[
-          "revenue-growth-calculator",
-          "seo-score-calculator",
-          "domain-authority-estimator",
-          "impressions-calculator",
-          "social-media-reach-calculator",
-          "roi-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

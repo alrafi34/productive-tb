@@ -28,6 +28,7 @@ import {
 } from "./logic";
 import RefrigerationCOPCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: RefrigerationCOPInputs = {
   method: "basic",
@@ -700,17 +701,9 @@ export default function RefrigerationCOPCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RefrigerationCOPCalculatorSEO />
-      <RelatedTools
-        currentTool="refrigeration-cop-calculator"
-        tools={[
-          "thermal-efficiency-calculator",
-          "air-conditioner-power-calculator",
-          "ideal-gas-law-calculator",
-          "heat-dissipation-calculator",
-          "pump-efficiency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

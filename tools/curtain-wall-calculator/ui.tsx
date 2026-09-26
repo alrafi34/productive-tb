@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import CurtainWallCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CurtainWallCalculatorUI() {
   const [width, setWidth] = useState(20);
@@ -523,11 +524,9 @@ export default function CurtainWallCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CurtainWallCalculatorSEO />
-      <RelatedTools
-        currentTool="curtain-wall-calculator"
-        tools={['facade-area-calculator', 'glass-panel-size-calculator', 'cladding-material-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function ConfidenceIntervalCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="confidence-interval-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

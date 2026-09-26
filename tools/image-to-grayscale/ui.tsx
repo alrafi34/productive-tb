@@ -6,6 +6,7 @@ import { GrayscaleOptions, ProcessedImage } from "./types";
 import { convertToGrayscale, convertMultipleToGrayscale, downloadImage, downloadAllImages, copyImageToClipboard, formatFileSize } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ImageToGrayscaleUI() {
   const [images, setImages] = useState<ProcessedImage[]>([]);
@@ -408,11 +409,9 @@ export default function ImageToGrayscaleUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="image-to-grayscale"
-        tools={['image-compressor', 'image-resizer', 'favicon-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import DailyCalorieCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DailyCalorieCalculatorUI() {
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
@@ -487,12 +488,10 @@ export default function DailyCalorieCalculatorUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <DailyCalorieCalculatorSEO />
       
-      <RelatedTools
-        currentTool="daily-calorie-calculator"
-        tools={['bmr-calculator', 'bmi-calculator', 'body-fat-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import ParkingSpaceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ParkingSpaceCalculatorUI() {
   const [inputMode, setInputMode] = useState<InputMode>("total-area");
@@ -542,11 +543,9 @@ export default function ParkingSpaceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ParkingSpaceCalculatorSEO />
-      <RelatedTools
-        currentTool="parking-space-calculator"
-        tools={['room-area-calculator', 'floor-area-calculator', 'plot-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import TransformerTurnsRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TransformerTurnsRatioCalculatorUI() {
   const [inputs, setInputs] = useState<TransformerInputs>({
@@ -471,11 +472,9 @@ export default function TransformerTurnsRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TransformerTurnsRatioCalculatorSEO />
-      <RelatedTools
-        currentTool="transformer-turns-ratio-calculator"
-        tools={['voltage-divider-calculator', 'power-factor-calculator', 'impedance-calculator', 'ohms-law-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

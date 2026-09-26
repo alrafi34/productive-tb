@@ -17,6 +17,7 @@ import {
 import { GridSize, PixelGrid, PixelArtState } from "./types";
 import PixelArtCreatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const COLOR_PRESETS = [
   "#000000", "#FFFFFF", "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF",
@@ -418,11 +419,9 @@ export default function PixelArtCreatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PixelArtCreatorSEOContent />
-      <RelatedTools
-        currentTool="pixel-art-grid"
-        tools={["ascii-art-generator", "placeholder-image-generator", "color-palette-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -9,6 +9,7 @@ import {
 } from "./logic";
 import MedianCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4, 6];
 
@@ -278,19 +279,10 @@ export default function MedianCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MedianCalculatorSEO />
 
-      <RelatedTools
-        currentTool="median-calculator"
-        tools={[
-          "mean-calculator",
-          "standard-deviation-calculator",
-          "data-growth-calculator",
-          "etl-throughput-calculator",
-          "storage-requirement-calculator",
-          "session-duration-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import BinaryToDecimalCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BinaryToDecimalCalculatorUI() {
   const savedSettings = loadSettings();
@@ -443,11 +444,9 @@ export default function BinaryToDecimalCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BinaryToDecimalCalculatorSEO />
-      <RelatedTools
-        currentTool="binary-to-decimal-calculator"
-        tools={['decimal-to-binary-calculator', 'logic-gate-calculator', 'adc-resolution-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

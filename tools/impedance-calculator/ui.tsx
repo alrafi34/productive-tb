@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ImpedanceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ImpedanceCalculatorUI() {
   const [resistance, setResistance] = useState<string>("10");
@@ -458,11 +459,9 @@ export default function ImpedanceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ImpedanceCalculatorSEO />
-      <RelatedTools
-        currentTool="impedance-calculator"
-        tools={['inductive-reactance-calculator', 'capacitive-reactance-calculator', 'phase-angle-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

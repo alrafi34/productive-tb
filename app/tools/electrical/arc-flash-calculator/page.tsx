@@ -104,6 +104,7 @@ export default function ArcFlashCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="arc-flash-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

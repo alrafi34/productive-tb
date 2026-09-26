@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function MeterToKmUI() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -218,8 +219,9 @@ export default function MeterToKmUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="meter-to-km-converter" tools={["centimeter-to-meter-converter", "unit-ratio-calculator", "time-duration-calculator"]} />
+      <RelatedTools />
     </div>
   );
 }

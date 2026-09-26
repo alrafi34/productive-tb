@@ -13,6 +13,7 @@ import ViralGauge from "./gauge";
 import GrowthTimelineChart from "./chart";
 import ViralCoefficientCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 
@@ -330,19 +331,10 @@ export default function ViralCoefficientCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ViralCoefficientCalculatorSEO />
 
-      <RelatedTools
-        currentTool="viral-coefficient-calculator"
-        tools={[
-          "retention-rate-calculator",
-          "churn-rate-calculator",
-          "customer-lifetime-value-calculator",
-          "roi-calculator-marketing",
-          "marketing-roi-calculator",
-          "lead-conversion-funnel-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

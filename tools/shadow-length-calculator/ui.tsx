@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import ShadowLengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ShadowLengthCalculatorUI() {
   const [objectHeight, setObjectHeight] = useState("10");
@@ -573,11 +574,9 @@ export default function ShadowLengthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ShadowLengthCalculatorSEO />
-      <RelatedTools
-        currentTool="shadow-length-calculator"
-        tools={['sunlight-exposure-calculator', 'building-height-calculator', 'room-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

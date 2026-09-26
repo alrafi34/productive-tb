@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import AirChangeRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AirChangeRateCalculatorUI() {
   const [mode, setMode] = useState<InputMode>("dimensions");
@@ -556,11 +557,9 @@ export default function AirChangeRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AirChangeRateCalculatorSEO />
-      <RelatedTools
-        currentTool="air-change-rate-calculator"
-        tools={['ventilation-calculator', 'hvac-load-calculator', 'room-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

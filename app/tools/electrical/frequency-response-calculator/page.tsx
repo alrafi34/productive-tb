@@ -104,6 +104,7 @@ export default function FrequencyResponseCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="frequency-response-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

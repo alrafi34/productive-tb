@@ -104,6 +104,7 @@ export default function LandLevelingCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="land-leveling-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

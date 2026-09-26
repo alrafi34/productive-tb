@@ -11,6 +11,7 @@ import {
 import { SmoothingChart, exportCanvasAsPng, copyCanvasToClipboard, buildChartSVG } from "./chart";
 import ExponentialSmoothingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 2, 4, 6];
 const METHOD_LABELS: Record<SmoothingMethod, string> = { ses: "Simple (SES)", holt: "Double (Holt)", "holt-winters": "Triple (Holt-Winters)" };
@@ -529,19 +530,10 @@ export default function ExponentialSmoothingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ExponentialSmoothingCalculatorSEO />
 
-      <RelatedTools
-        currentTool="exponential-smoothing-calculator"
-        tools={[
-          "moving-average-calculator",
-          "mean-calculator",
-          "standard-deviation-calculator",
-          "regression-calculator",
-          "correlation-coefficient-calculator",
-          "data-growth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

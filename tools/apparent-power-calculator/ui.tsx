@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import ApparentPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ApparentPowerCalculatorUI() {
   const [voltage, setVoltage] = useState<string>("230");
@@ -382,11 +383,9 @@ export default function ApparentPowerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ApparentPowerCalculatorSEO />
-      <RelatedTools
-        currentTool="apparent-power-calculator"
-        tools={['real-power-calculator', 'power-factor-calculator', 'voltage-divider-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

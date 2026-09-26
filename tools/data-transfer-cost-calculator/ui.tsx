@@ -14,6 +14,7 @@ import {
 import CostBarChart from "./chart";
 import DataTransferCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DataTransferCostCalculatorUI() {
   const [inputs, setInputs] = useState<TransferInputs>(DEFAULT_INPUTS);
@@ -370,19 +371,10 @@ export default function DataTransferCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataTransferCostCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-transfer-cost-calculator"
-        tools={[
-          "storage-requirement-calculator",
-          "cloud-cost-calculator",
-          "download-time-calculator",
-          "session-duration-calculator",
-          "page-speed-score-calculator",
-          "click-heatmap-density-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

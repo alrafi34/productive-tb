@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import UnixTimestampConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'unix-to-date' | 'date-to-unix' | 'batch' | 'diff';
 
@@ -410,12 +411,10 @@ export default function UnixTimestampConverterUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <UnixTimestampConverterSEO />
       
-      <RelatedTools
-        currentTool="timestamp-unix-converter"
-        tools={['age-calculator', 'percentage-calculator', 'checksum-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

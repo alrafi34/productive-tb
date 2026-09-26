@@ -104,6 +104,7 @@ export default function RlcResonanceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="rlc-resonance-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import FileSizeConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; value: number; unit: Unit }[] = [
   { label: "1 KB",    value: 1,          unit: "KB" },
@@ -446,19 +447,10 @@ export default function FileSizeConverterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FileSizeConverterSEO />
 
-      <RelatedTools
-        currentTool="file-size-converter"
-        tools={[
-          "data-transfer-calculator",
-          "bandwidth-calculator",
-          "download-time-calculator",
-          "checksum-calculator",
-          "subnet-calculator",
-          "latency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

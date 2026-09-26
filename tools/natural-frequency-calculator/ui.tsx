@@ -39,6 +39,7 @@ import {
 } from "./logic";
 import NaturalFrequencySEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -832,18 +833,9 @@ export default function NaturalFrequencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <NaturalFrequencySEO />
-      <RelatedTools
-        currentTool="natural-frequency-calculator"
-        tools={[
-          "spring-force-calculator",
-          "torque-calculator",
-          "kinetic-energy-calculator",
-          "moment-of-inertia-calculator",
-          "beam-deflection-calculator",
-          "stress-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

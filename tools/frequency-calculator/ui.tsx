@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import FrequencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FrequencyCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('period-to-frequency');
@@ -549,11 +550,9 @@ export default function FrequencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FrequencyCalculatorSEO />
-      <RelatedTools
-        currentTool="frequency-calculator"
-        tools={['impedance-calculator', 'capacitive-reactance-calculator', 'inductive-reactance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

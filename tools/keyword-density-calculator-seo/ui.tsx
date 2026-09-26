@@ -7,6 +7,7 @@ import {
 } from "./logic";
 import KeywordDensityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const SAMPLE_TEXT = `SEO is a critical part of any digital marketing strategy. Good SEO helps websites rank higher in search engine results pages. Content marketing and SEO work together to improve visibility. When you write content with SEO in mind, you naturally include keywords that your audience is searching for. SEO techniques include on-page optimization, link building, and technical SEO. Every digital marketer should understand how SEO affects organic traffic growth.`;
 
@@ -362,19 +363,10 @@ export default function KeywordDensityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <KeywordDensityCalculatorSEO />
 
-      <RelatedTools
-        currentTool="keyword-density-calculator-seo"
-        tools={[
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "cost-per-click-cpc-calculator",
-          "cost-per-acquisition-cpa-calculator",
-          "bounce-rate-calculator",
-          "roi-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import RainwaterRunoffCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   rainfall: "50",
@@ -525,18 +526,9 @@ export default function RainwaterRunoffCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RainwaterRunoffCalculatorSEO />
-      <RelatedTools
-        currentTool="rainwater-runoff-calculator"
-        tools={[
-          "drainage-system-calculator",
-          "rainwater-harvesting-calculator",
-          "irrigation-water-calculator",
-          "water-tank-capacity-calculator",
-          "drainage-flow-calculator",
-          "land-area-calculator-square-feet",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

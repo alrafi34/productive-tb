@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import SlabLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SlabLoadCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
@@ -527,11 +528,9 @@ export default function SlabLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SlabLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="slab-load-calculator"
-        tools={['concrete-volume-calculator', 'beam-load-calculator', 'column-load-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

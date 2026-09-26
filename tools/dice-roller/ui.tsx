@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import DiceRollerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DICE_TYPES = [4, 6, 8, 10, 12, 20];
 let rollCounter = 0;
@@ -436,11 +437,9 @@ export default function DiceRollerUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DiceRollerSEOContent />
-      <RelatedTools
-        currentTool="dice-roller"
-        tools={["decision-wheel", "random-number-generator", "random-name-picker"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

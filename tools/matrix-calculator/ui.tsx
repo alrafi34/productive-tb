@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import MatrixCalculatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function MatrixCalculatorUI() {
   const [matrixA, setMatrixA] = useState<number[][]>([[1, 2], [3, 4]]);
@@ -509,11 +510,9 @@ export default function MatrixCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MatrixCalculatorSEOContent />
-      <RelatedTools
-        currentTool="matrix-calculator"
-        tools={["percentage-calculator", "discount-calculator", "aspect-ratio-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

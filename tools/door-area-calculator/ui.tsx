@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import DoorAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DoorAreaCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("ft");
@@ -491,11 +492,9 @@ export default function DoorAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DoorAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="door-area-calculator"
-        tools={['window-area-calculator', 'floor-area-calculator', 'wall-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

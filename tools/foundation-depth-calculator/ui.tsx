@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import FoundationDepthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 /* Quick picks spanning common US frost depths (southern states ~12 in,
    northern states 42–60 in). The local value always wins. */
@@ -411,11 +412,9 @@ export default function FoundationDepthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FoundationDepthCalculatorSEO />
-      <RelatedTools
-        currentTool="foundation-depth-calculator"
-        tools={['footing-size-calculator', 'soil-bearing-capacity-calculator', 'concrete-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

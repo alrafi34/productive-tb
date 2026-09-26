@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import ArcFlashCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ArcFlashCalculatorUI() {
   const [inputs, setInputs] = useState<ArcFlashInputs>({
@@ -489,11 +490,9 @@ export default function ArcFlashCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ArcFlashCalculatorSEO />
-      <RelatedTools
-        currentTool="arc-flash-calculator"
-        tools={['power-loss-calculator', 'short-circuit-current-calculator', 'ground-fault-current-calculator', 'electrical-efficiency-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

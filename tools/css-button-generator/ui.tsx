@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ButtonState, defaultState, generateCSS, generateTailwindClasses, generateDarkerColor, buttonPresets } from "./logic";
 import CSSButtonGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CSSButtonGeneratorUI() {
   const [state, setState] = useState<ButtonState>(defaultState);
@@ -395,8 +396,9 @@ export default function CSSButtonGeneratorUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <CSSButtonGeneratorSEOContent />
-      <RelatedTools currentTool="css-button-generator" tools={["css-box-shadow-generator", "css-gradient-generator", "color-palette-generator"]} />
+      <RelatedTools />
     </>
   );
 }

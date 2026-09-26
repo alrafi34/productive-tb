@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import CementCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CementCalculatorUI() {
   const [calculationType, setCalculationType] = useState<CalculationType>("concrete");
@@ -534,11 +535,9 @@ export default function CementCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CementCalculatorSEO />
-      <RelatedTools
-        currentTool="cement-calculator"
-        tools={['brick-calculator', 'tile-quantity-calculator', 'wall-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

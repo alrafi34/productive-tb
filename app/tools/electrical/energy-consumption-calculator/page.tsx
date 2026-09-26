@@ -104,6 +104,7 @@ export default function EnergyConsumptionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="energy-consumption-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

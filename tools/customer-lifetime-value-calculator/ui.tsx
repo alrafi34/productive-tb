@@ -9,6 +9,7 @@ import {
 } from "./logic";
 import CLVCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; inputs: Partial<Record<string, string>> & { mode: CalcMode } }[] = [
   { label: "Ecommerce",    inputs: { mode: "basic",        aov: "80",  frequency: "10", lifespan: "4" } },
@@ -594,19 +595,10 @@ export default function CLVCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CLVCalculatorSEO />
 
-      <RelatedTools
-        currentTool="customer-lifetime-value-calculator"
-        tools={[
-          "cost-per-acquisition-cpa-calculator",
-          "cost-per-click-cpc-calculator",
-          "roi-calculator-marketing",
-          "conversion-rate-calculator",
-          "ctr-calculator",
-          "investment-return-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

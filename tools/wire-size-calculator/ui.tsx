@@ -26,6 +26,7 @@ import {
 } from "./logic";
 import WireSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WireSizeCalculatorUI() {
   const [inputs, setInputs] = useState<WireSizeInputs>({
@@ -597,11 +598,9 @@ export default function WireSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WireSizeCalculatorSEO />
-      <RelatedTools
-        currentTool="wire-size-calculator"
-        tools={['voltage-drop-calculator', 'circuit-breaker-calculator', 'power-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

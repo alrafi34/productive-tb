@@ -27,6 +27,7 @@ import {
 } from "./logic";
 import SurveyAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -632,16 +633,9 @@ export default function SurveyAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SurveyAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="survey-area-calculator"
-        tools={[
-          "land-area-calculator-square-feet",
-          "polygon-area-calculator",
-          "land-price-calculator",
-          "boundary-length-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function ModelAccuracyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="model-accuracy-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

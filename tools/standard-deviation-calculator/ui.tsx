@@ -10,6 +10,7 @@ import {
 import { HistogramChart, BoxPlotChart, exportCanvasAsPng } from "./chart";
 import StandardDeviationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4, 6, 8, 10];
 
@@ -329,19 +330,10 @@ export default function StandardDeviationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <StandardDeviationCalculatorSEO />
 
-      <RelatedTools
-        currentTool="standard-deviation-calculator"
-        tools={[
-          "mean-calculator",
-          "median-calculator",
-          "data-growth-calculator",
-          "etl-throughput-calculator",
-          "storage-requirement-calculator",
-          "session-duration-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

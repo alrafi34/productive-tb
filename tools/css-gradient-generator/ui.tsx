@@ -4,6 +4,7 @@ import { useState } from "react";
 import { generateLinearGradient, generateRadialGradient, reverseStops, generateRandomGradient, PRESETS, ColorStop } from "./logic";
 import CSSGradientGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CSSGradientGeneratorUI() {
   const [type, setType] = useState<'linear' | 'radial'>('linear');
@@ -123,8 +124,9 @@ export default function CSSGradientGeneratorUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <CSSGradientGeneratorSEOContent />
-      <RelatedTools currentTool="css-gradient-generator" tools={["color-palette-generator", "hex-to-rgb-converter", "duotone-filter"]} />
+      <RelatedTools />
     </>
   );
 }

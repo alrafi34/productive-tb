@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import UnitRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function UnitRatioCalculatorUI() {
   const [input, setInput] = useState<string>("100:50");
@@ -276,12 +277,10 @@ export default function UnitRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <UnitRatioCalculatorSEO />
       
-      <RelatedTools
-        currentTool="unit-ratio-calculator"
-        tools={['percentage-calculator', 'aspect-ratio-calculator', 'golden-ratio-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

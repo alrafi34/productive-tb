@@ -104,6 +104,7 @@ export default function MapScaleCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="map-scale-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

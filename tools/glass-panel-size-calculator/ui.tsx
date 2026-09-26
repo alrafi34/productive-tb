@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import GlassPanelSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function GlassPanelSizeCalculatorUI() {
   const [openingWidth, setOpeningWidth] = useState(1000);
@@ -560,11 +561,9 @@ export default function GlassPanelSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GlassPanelSizeCalculatorSEO />
-      <RelatedTools
-        currentTool="glass-panel-size-calculator"
-        tools={['window-area-calculator', 'door-area-calculator', 'facade-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import ElectricMotorPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ElectricMotorPowerCalculatorUI() {
   const savedSettings = loadSettings();
@@ -574,11 +575,9 @@ export default function ElectricMotorPowerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ElectricMotorPowerCalculatorSEO />
-      <RelatedTools
-        currentTool="electric-motor-power-calculator"
-        tools={['transformer-efficiency-calculator', 'power-factor-calculator', 'energy-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AreaConverterUI() {
   const [mode, setMode] = useState<AreaType>("m2");
@@ -365,11 +366,9 @@ export default function AreaConverterUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools
-        currentTool="square-meter-to-square-foot-converter"
-        tools={["inch-to-cm-converter", "meter-to-km-converter", "centimeter-to-meter-converter"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

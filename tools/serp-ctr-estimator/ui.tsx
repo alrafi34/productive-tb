@@ -14,6 +14,7 @@ import {
 import CTRCurveChart, { exportCanvasAsPng } from "./chart";
 import SERPCTREstimatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const POSITIONS = Array.from({ length: 100 }, (_, i) => i + 1);
 
@@ -580,19 +581,10 @@ export default function SERPCTREstimatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SERPCTREstimatorSEO />
 
-      <RelatedTools
-        currentTool="serp-ctr-estimator"
-        tools={[
-          "ctr-calculator",
-          "keyword-density-calculator-seo",
-          "seo-score-calculator",
-          "domain-authority-estimator",
-          "traffic-growth-calculator",
-          "backlink-ratio-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

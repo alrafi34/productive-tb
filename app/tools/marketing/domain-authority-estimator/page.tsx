@@ -104,6 +104,7 @@ export default function DomainAuthorityEstimatorPage() {
         />
       )}
       <ToolLayout
+        slug="domain-authority-estimator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

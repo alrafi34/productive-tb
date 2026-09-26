@@ -6,6 +6,7 @@ import { Base64Options, EncodedImage } from "./types";
 import { encodeImageToBase64, encodeMultipleImages, formatFileSize, copyToClipboard, downloadAsFile, downloadAllAsFile } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function Base64ImageEncoderUI() {
   const [encodedImages, setEncodedImages] = useState<EncodedImage[]>([]);
@@ -349,11 +350,9 @@ export default function Base64ImageEncoderUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="base64-image-encoder"
-        tools={['image-compressor', 'image-resizer', 'text-to-clipboard']}
-      />
+      <RelatedTools />
     </>
   );
 }

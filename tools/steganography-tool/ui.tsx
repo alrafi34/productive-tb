@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import SteganographyToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = "hide" | "extract";
 
@@ -570,12 +571,10 @@ export default function SteganographyToolUI() {
         )}
       </div>
       
+      <RelatedStrip />
       <SteganographyToolSEOContent />
       
-      <RelatedTools
-        currentTool="steganography-tool"
-        tools={['text-encryptor-aes', 'file-hash-generator', 'password-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

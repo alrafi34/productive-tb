@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import RafterLengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RafterLengthCalculatorUI() {
   const [inputMode, setInputMode] = useState<InputMode>("run-rise");
@@ -511,11 +512,9 @@ export default function RafterLengthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RafterLengthCalculatorSEO />
-      <RelatedTools
-        currentTool="rafter-length-calculator"
-        tools={['roof-pitch-calculator', 'roof-area-calculator', 'floor-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

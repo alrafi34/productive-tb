@@ -104,6 +104,7 @@ export default function FanPowerConsumptionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="fan-power-consumption-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

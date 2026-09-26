@@ -104,6 +104,7 @@ export default function KineticEnergyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="kinetic-energy-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

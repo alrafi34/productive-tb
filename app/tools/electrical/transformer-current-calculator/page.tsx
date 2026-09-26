@@ -104,6 +104,7 @@ export default function TransformerCurrentCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="transformer-current-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

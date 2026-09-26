@@ -104,6 +104,7 @@ export default function BeamDeflectionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="beam-deflection-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

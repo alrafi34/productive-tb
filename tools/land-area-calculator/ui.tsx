@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import LandAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LandAreaCalculatorUI() {
   const [dimensions, setDimensions] = useState<LandDimensions>({
@@ -442,16 +443,9 @@ export default function LandAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LandAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="land-area-calculator-square-feet"
-        tools={[
-          "plot-area-calculator",
-          "room-area-calculator",
-          "floor-area-calculator",
-          "square-meter-to-square-foot-converter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

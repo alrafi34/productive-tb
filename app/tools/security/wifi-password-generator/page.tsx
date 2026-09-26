@@ -108,6 +108,7 @@ export default function WiFiPasswordGeneratorPage() {
         />
       )}
       <ToolLayout
+        slug="wifi-password-generator"
         title={toolName}
         description={toolDescription}
         icon={toolIcon}

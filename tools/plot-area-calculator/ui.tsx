@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import PlotAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PlotAreaCalculatorUI() {
   const [dimensions, setDimensions] = useState<PlotDimensions>({
@@ -493,11 +494,9 @@ export default function PlotAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PlotAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="plot-area-calculator"
-        tools={['floor-area-calculator', 'aspect-ratio-calculator', 'square-meter-to-square-foot-converter']}
-      />
+      <RelatedTools />
     </>
   );
 }

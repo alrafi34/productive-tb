@@ -11,6 +11,7 @@ import {
 import UtilizationGauge from "./gauge";
 import ClusterUtilizationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const STATUS_COLORS: Record<string, { bg: string; text: string; gauge: string }> = {
   Healthy: { bg: "bg-green-100", text: "text-green-700", gauge: "#16a34a" },
@@ -365,19 +366,10 @@ export default function ClusterUtilizationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ClusterUtilizationCalculatorSEO />
 
-      <RelatedTools
-        currentTool="cluster-utilization-calculator"
-        tools={[
-          "big-data-throughput-calculator",
-          "spark-job-time-calculator",
-          "data-compression-ratio-calculator",
-          "encoding-efficiency-calculator",
-          "data-partition-calculator",
-          "time-series-forecast-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

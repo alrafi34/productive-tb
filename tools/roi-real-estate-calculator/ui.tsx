@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import RoiRealEstateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   purchasePrice: "", downPayment: "", closingCosts: "",
@@ -428,16 +429,9 @@ export default function RoiRealEstateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RoiRealEstateCalculatorSEO />
-      <RelatedTools
-        currentTool="roi-real-estate-calculator"
-        tools={[
-          "rental-yield-calculator",
-          "mortgage-loan-calculator",
-          "down-payment-calculator",
-          "land-price-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function ElectricMotorPowerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="electric-motor-power-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

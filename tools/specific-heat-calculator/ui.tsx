@@ -9,6 +9,7 @@ import {
 } from "./logic";
 import SpecificHeatCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 import { specificHeatCalculatorConfig } from "./config";
 
 const DEFAULT_INPUTS: SpecificHeatInputs = {
@@ -576,12 +577,10 @@ export default function SpecificHeatCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SpecificHeatCalculatorSEO />
 
-      <RelatedTools
-        currentTool="specific-heat-calculator"
-        tools={specificHeatCalculatorConfig.relatedTools}
-      />
+      <RelatedTools />
     </>
   );
 }

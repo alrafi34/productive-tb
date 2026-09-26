@@ -4,6 +4,7 @@ import { useState } from "react";
 import { generateAnalogous, generateComplementary, generateTriadic, generateMonochromatic, generateTetradic, generateRandom, hexToRgb, rgbToHsl, getContrastRatio } from "./logic";
 import ColorPaletteGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type PaletteType = 'analogous' | 'complementary' | 'triadic' | 'monochromatic' | 'tetradic' | 'random';
 
@@ -138,8 +139,9 @@ export default function ColorPaletteGeneratorUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <ColorPaletteGeneratorSEOContent />
-      <RelatedTools currentTool="color-palette-generator" tools={["hex-to-rgb-converter", "duotone-filter", "favicon-generator"]} />
+      <RelatedTools />
     </>
   );
 }

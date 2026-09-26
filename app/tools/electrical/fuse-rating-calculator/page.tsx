@@ -104,6 +104,7 @@ export default function FuseRatingCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="fuse-rating-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

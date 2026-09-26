@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import RebarWeightCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RebarWeightCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
@@ -582,11 +583,9 @@ export default function RebarWeightCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RebarWeightCalculatorSEO />
-      <RelatedTools
-        currentTool="rebar-weight-calculator"
-        tools={['steel-quantity-calculator', 'concrete-volume-calculator', 'cement-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

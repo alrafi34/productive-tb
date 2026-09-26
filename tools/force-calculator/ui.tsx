@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import ForceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -465,18 +466,9 @@ export default function ForceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ForceCalculatorSEO />
-      <RelatedTools
-        currentTool="force-calculator"
-        tools={[
-          "torque-calculator",
-          "kinetic-energy-calculator",
-          "centripetal-force-calculator",
-          "momentum-calculator",
-          "spring-force-calculator",
-          "acceleration-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

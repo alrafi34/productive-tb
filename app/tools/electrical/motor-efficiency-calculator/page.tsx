@@ -104,6 +104,7 @@ export default function MotorEfficiencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="motor-efficiency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

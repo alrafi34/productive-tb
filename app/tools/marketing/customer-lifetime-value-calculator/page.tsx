@@ -104,6 +104,7 @@ export default function CustomerLifetimeValueCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="customer-lifetime-value-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

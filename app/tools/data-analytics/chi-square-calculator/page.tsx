@@ -104,6 +104,7 @@ export default function ChiSquareCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="chi-square-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

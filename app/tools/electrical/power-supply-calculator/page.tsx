@@ -104,6 +104,7 @@ export default function PowerSupplyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="power-supply-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

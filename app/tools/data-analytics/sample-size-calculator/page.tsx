@@ -104,6 +104,7 @@ export default function SampleSizeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="sample-size-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

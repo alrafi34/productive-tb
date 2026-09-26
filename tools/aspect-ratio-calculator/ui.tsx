@@ -18,6 +18,7 @@ import {
 } from './logic';
 import AspectRatioCalculatorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 type Tab = 'calculator' | 'converter' | 'image';
 
@@ -604,11 +605,9 @@ export default function AspectRatioCalculatorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <AspectRatioCalculatorSEOContent />
-      <RelatedTools
-        currentTool="aspect-ratio-calculator"
-        tools={["image-resizer", "image-compressor", "css-gradient-generator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

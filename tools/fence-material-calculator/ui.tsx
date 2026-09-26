@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import FenceMaterialCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: FenceInputs = {
   fenceType: "wood",
@@ -425,16 +426,9 @@ export default function FenceMaterialCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FenceMaterialCalculatorSEO />
-      <RelatedTools
-        currentTool="fence-material-calculator"
-        tools={[
-          "boundary-length-calculator",
-          "plot-division-calculator",
-          "land-price-calculator",
-          "wall-boundary-cost-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import AESEncryptorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = "encrypt" | "decrypt";
 type OutputFormat = "base64" | "hex" | "json";
@@ -383,12 +384,10 @@ export default function AESEncryptorUI() {
         )}
       </div>
       
+      <RelatedStrip />
       <AESEncryptorSEOContent />
       
-      <RelatedTools
-        currentTool="text-encryptor-aes"
-        tools={['password-generator', 'hash-generator', 'base64-encoder']}
-      />
+      <RelatedTools />
     </>
   );
 }

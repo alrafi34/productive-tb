@@ -24,6 +24,7 @@ import {
 } from "./logic";
 import AirConditionerPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AirConditionerPowerCalculatorUI() {
   const savedSettings = loadSettings();
@@ -561,11 +562,9 @@ export default function AirConditionerPowerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AirConditionerPowerCalculatorSEO />
-      <RelatedTools
-        currentTool="air-conditioner-power-calculator"
-        tools={['fan-power-consumption-calculator', 'energy-consumption-calculator', 'electric-bill-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

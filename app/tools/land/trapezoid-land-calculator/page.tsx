@@ -104,6 +104,7 @@ export default function TrapezoidLandCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="trapezoid-land-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

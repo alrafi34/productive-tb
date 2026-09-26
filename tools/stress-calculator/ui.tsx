@@ -32,6 +32,7 @@ import {
 } from "./logic";
 import StressCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -545,18 +546,9 @@ export default function StressCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <StressCalculatorSEO />
-      <RelatedTools
-        currentTool="stress-calculator"
-        tools={[
-          "torque-calculator",
-          "force-calculator",
-          "beam-deflection-calculator",
-          "spring-force-calculator",
-          "kinetic-energy-calculator",
-          "reynolds-number-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function WavelengthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="wavelength-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

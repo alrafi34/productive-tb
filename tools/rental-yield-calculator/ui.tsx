@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import RentalYieldCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   propertyPrice: "", monthlyRent: "", downPayment: "",
@@ -392,16 +393,9 @@ export default function RentalYieldCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RentalYieldCalculatorSEO />
-      <RelatedTools
-        currentTool="rental-yield-calculator"
-        tools={[
-          "land-price-calculator",
-          "mortgage-loan-calculator",
-          "down-payment-calculator",
-          "property-tax-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

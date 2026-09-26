@@ -104,6 +104,7 @@ export default function CableLengthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="cable-length-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -37,6 +37,7 @@ import {
 } from "./logic";
 import ExcavationCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -454,16 +455,9 @@ export default function ExcavationCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ExcavationCostCalculatorSEO />
-      <RelatedTools
-        currentTool="excavation-cost-calculator"
-        tools={[
-          "soil-volume-calculator",
-          "earth-filling-calculator",
-          "cut-and-fill-calculator",
-          "land-price-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

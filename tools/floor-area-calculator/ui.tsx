@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import FloorAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FloorAreaCalculatorUI() {
   const [rooms, setRooms] = useState<Room[]>([
@@ -383,11 +384,9 @@ export default function FloorAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FloorAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="floor-area-calculator"
-        tools={['aspect-ratio-calculator', 'square-meter-to-square-foot-converter', 'room-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

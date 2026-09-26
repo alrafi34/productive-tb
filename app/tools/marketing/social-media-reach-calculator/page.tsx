@@ -104,6 +104,7 @@ export default function SocialMediaReachCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="social-media-reach-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

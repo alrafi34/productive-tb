@@ -104,6 +104,7 @@ export default function SubdivisionCostCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="subdivision-cost-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

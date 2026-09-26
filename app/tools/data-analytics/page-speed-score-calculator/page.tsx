@@ -104,6 +104,7 @@ export default function PageSpeedScoreCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="page-speed-score-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

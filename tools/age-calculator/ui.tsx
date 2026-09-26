@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import AgeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'normal' | 'batch';
 
@@ -391,12 +392,10 @@ Calculated via Productive Toolbox`;
 
       </div>
       
+      <RelatedStrip />
       <AgeCalculatorSEO />
       
-      <RelatedTools
-        currentTool="age-calculator"
-        tools={['date-difference-calculator', 'time-duration-calculator', 'bmi-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

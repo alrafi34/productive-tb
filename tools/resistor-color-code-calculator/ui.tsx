@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ResistorColorCodeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ResistorColorCodeCalculatorUI() {
   const [bands, setBands] = useState<ResistorBands>({
@@ -471,11 +472,9 @@ export default function ResistorColorCodeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ResistorColorCodeCalculatorSEO />
-      <RelatedTools
-        currentTool="resistor-color-code-calculator"
-        tools={['ohms-law-calculator', 'parallel-resistor-calculator', 'voltage-divider-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

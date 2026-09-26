@@ -104,6 +104,7 @@ export default function MarketingRoiCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="marketing-roi-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

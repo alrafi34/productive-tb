@@ -10,6 +10,7 @@ import {
 import ShapeDiagram from "./ShapeDiagram";
 import MomentOfInertiaSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ────────────────────────────────────────────────────────────────
 const PRESETS = [
@@ -536,18 +537,9 @@ export default function MomentOfInertiaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MomentOfInertiaSEO />
-      <RelatedTools
-        currentTool="moment-of-inertia-calculator"
-        tools={[
-          "beam-deflection-calculator",
-          "stress-calculator",
-          "torque-calculator",
-          "bending-stress-calculator",
-          "section-modulus-calculator",
-          "shear-stress-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

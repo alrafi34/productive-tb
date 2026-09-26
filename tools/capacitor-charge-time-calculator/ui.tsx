@@ -23,6 +23,7 @@ import {
 } from "./logic";
 import CapacitorChargeTimeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CapacitorChargeTimeCalculatorUI() {
   const [resistance, setResistance] = useState<string>("10");
@@ -485,11 +486,9 @@ export default function CapacitorChargeTimeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CapacitorChargeTimeCalculatorSEO />
-      <RelatedTools
-        currentTool="capacitor-charge-time-calculator"
-        tools={['capacitor-calculator', 'series-resistor-calculator', 'ohms-law-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

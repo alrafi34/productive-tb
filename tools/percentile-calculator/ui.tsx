@@ -13,6 +13,7 @@ type CalcMode = "value" | "rank" | "multiple";
 import { PercentileChart } from "./chart";
 import PercentileCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PercentileCalculatorUI() {
   const [input, setInput] = useState("");
@@ -480,19 +481,10 @@ const runRef = useRef(debounce((text: string, p: number, dec: number, m: CalcMod
         </div>
       </div>
 
+      <RelatedStrip />
       <PercentileCalculatorSEO />
 
-      <RelatedTools
-        currentTool="percentile-calculator"
-        tools={[
-          "median-calculator",
-          "mean-calculator",
-          "standard-deviation-calculator",
-          "variance-calculator",
-          "z-score-calculator",
-          "outlier-detection-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import ConstructionCostEstimatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ConstructionCostEstimatorUI() {
   const [area, setArea] = useState("1000");
@@ -545,11 +546,9 @@ export default function ConstructionCostEstimatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ConstructionCostEstimatorSEO />
-      <RelatedTools
-        currentTool="construction-cost-estimator"
-        tools={['escalation-cost-calculator', 'concrete-volume-calculator', 'brick-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

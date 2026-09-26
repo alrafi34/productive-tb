@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import ReadingTimeCalculatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ReadingTimeCalculatorUI() {
   const [text, setText] = useState("");
@@ -298,9 +299,10 @@ export default function ReadingTimeCalculatorUI() {
         )}
       </div>
       
+      <RelatedStrip />
       <ReadingTimeCalculatorSEOContent />
       
-      <RelatedTools currentTool="reading-time-calculator" tools={["word-counter", "word-frequency-counter", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

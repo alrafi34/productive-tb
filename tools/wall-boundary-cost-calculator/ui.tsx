@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import WallBoundaryCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; inputs: Partial<CalculatorInputs> }[] = [
   { label: "Residential 200ft", inputs: { perimeter: "200", wallHeight: "6", materialCostPerSqft: "12", laborCostPerSqft: "4", gateCost: "2500" } },
@@ -493,16 +494,9 @@ export default function WallBoundaryCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WallBoundaryCostCalculatorSEO />
-      <RelatedTools
-        currentTool="wall-boundary-cost-calculator"
-        tools={[
-          "boundary-length-calculator",
-          "fence-material-calculator",
-          "land-price-calculator",
-          "plot-division-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

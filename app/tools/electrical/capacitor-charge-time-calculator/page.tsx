@@ -104,6 +104,7 @@ export default function CapacitorChargeTimeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="capacitor-charge-time-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

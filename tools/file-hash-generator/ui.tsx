@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import FileHashGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FileHashGeneratorUI() {
   const [file, setFile] = useState<File | null>(null);
@@ -424,12 +425,10 @@ export default function FileHashGeneratorUI() {
         )}
       </div>
       
+      <RelatedStrip />
       <FileHashGeneratorSEOContent />
       
-      <RelatedTools
-        currentTool="file-hash-generator"
-        tools={['text-encryptor-aes', 'hash-generator', 'password-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

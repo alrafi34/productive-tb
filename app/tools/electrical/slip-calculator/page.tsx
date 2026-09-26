@@ -104,6 +104,7 @@ export default function SlipCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="slip-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

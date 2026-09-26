@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import ConcreteMixRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ConcreteMixRatioCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("m");
@@ -471,11 +472,9 @@ export default function ConcreteMixRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ConcreteMixRatioCalculatorSEO />
-      <RelatedTools
-        currentTool="concrete-mix-ratio-calculator"
-        tools={['cement-calculator', 'sand-calculator', 'brick-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

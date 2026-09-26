@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import MeanCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = Array.from({ length: 11 }, (_, i) => i);
 
@@ -279,19 +280,10 @@ export default function MeanCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MeanCalculatorSEO />
 
-      <RelatedTools
-        currentTool="mean-calculator"
-        tools={[
-          "median-calculator",
-          "mode-calculator",
-          "standard-deviation-calculator",
-          "variance-calculator",
-          "percentile-calculator",
-          "percentage-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

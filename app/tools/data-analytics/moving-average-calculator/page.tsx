@@ -104,6 +104,7 @@ export default function MovingAverageCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="moving-average-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

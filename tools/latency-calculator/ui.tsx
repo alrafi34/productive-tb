@@ -29,6 +29,7 @@ import {
 } from "./logic";
 import LatencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const MODES: { id: CalcMode; label: string }[] = [
   { id: "basic", label: "Basic" },
@@ -722,19 +723,10 @@ export default function LatencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LatencyCalculatorSEO />
 
-      <RelatedTools
-        currentTool="latency-calculator"
-        tools={[
-          "download-time-calculator",
-          "data-transfer-calculator",
-          "bandwidth-calculator",
-          "subnet-calculator",
-          "cidr-calculator",
-          "ip-range-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

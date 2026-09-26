@@ -104,6 +104,7 @@ export default function WallBoundaryCostCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="wall-boundary-cost-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

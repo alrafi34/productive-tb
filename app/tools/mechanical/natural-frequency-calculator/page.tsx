@@ -104,6 +104,7 @@ export default function NaturalFrequencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="natural-frequency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

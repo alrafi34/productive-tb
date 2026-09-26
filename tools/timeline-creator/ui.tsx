@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import TimelineCreatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TimelineCreatorUI() {
   const [events, setEvents] = useState<TimelineEvent[]>([
@@ -437,12 +438,10 @@ export default function TimelineCreatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TimelineCreatorSEOContent />
 
-      <RelatedTools
-        currentTool="timeline-creator"
-        tools={["bar-graph-generator", "pie-chart-maker", "mind-map-builder"]}
-      />
+      <RelatedTools />
     </>
   );
 }

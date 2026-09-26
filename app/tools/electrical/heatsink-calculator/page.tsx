@@ -104,6 +104,7 @@ export default function HeatsinkCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="heatsink-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

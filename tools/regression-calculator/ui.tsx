@@ -11,6 +11,7 @@ import {
 import { RegressionScatterPlot, ResidualPlot, exportCanvasAsPng, buildScatterSVG } from "./chart";
 import RegressionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [2, 3, 4, 5, 6];
 
@@ -502,19 +503,10 @@ export default function RegressionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RegressionCalculatorSEO />
 
-      <RelatedTools
-        currentTool="regression-calculator"
-        tools={[
-          "correlation-coefficient-calculator",
-          "mean-calculator",
-          "median-calculator",
-          "standard-deviation-calculator",
-          "data-growth-calculator",
-          "session-duration-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

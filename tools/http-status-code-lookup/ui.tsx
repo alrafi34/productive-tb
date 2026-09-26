@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import HttpStatusCodeLookupSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HttpStatusCodeLookupUI() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -349,11 +350,9 @@ export default function HttpStatusCodeLookupUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HttpStatusCodeLookupSEOContent />
-      <RelatedTools
-        currentTool="http-status-code-lookup"
-        tools={["user-agent-parser", "json-formatter", "regex-tester"]}
-      />
+      <RelatedTools />
     </>
   );
 }

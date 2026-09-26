@@ -14,6 +14,7 @@ import {
 import DataGrowthChart, { exportCanvasAsPng } from "./chart";
 import DataGrowthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 2, 4, 6];
 
@@ -380,19 +381,10 @@ export default function DataGrowthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataGrowthCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-growth-calculator"
-        tools={[
-          "user-growth-rate-calculator",
-          "traffic-growth-calculator",
-          "session-duration-calculator",
-          "page-speed-score-calculator",
-          "scroll-depth-calculator",
-          "revenue-growth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

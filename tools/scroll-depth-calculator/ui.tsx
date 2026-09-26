@@ -12,6 +12,7 @@ import {
 import ScrollDepthGauge from "./gauge";
 import ScrollDepthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ScrollDepthCalculatorUI() {
   const [inputs, setInputs] = useState<ScrollDepthInputs>(DEFAULT_INPUTS);
@@ -346,19 +347,10 @@ export default function ScrollDepthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ScrollDepthCalculatorSEO />
 
-      <RelatedTools
-        currentTool="scroll-depth-calculator"
-        tools={[
-          "session-duration-calculator",
-          "page-speed-score-calculator",
-          "click-heatmap-density-calculator",
-          "bounce-rate-calculator",
-          "engagement-rate-calculator",
-          "conversion-rate-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

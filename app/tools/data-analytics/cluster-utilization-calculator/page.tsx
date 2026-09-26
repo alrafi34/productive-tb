@@ -104,6 +104,7 @@ export default function ClusterUtilizationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="cluster-utilization-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

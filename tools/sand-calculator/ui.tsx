@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import SandCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SandCalculatorUI() {
   const [calculationType, setCalculationType] = useState<CalculationType>("area");
@@ -563,11 +564,9 @@ export default function SandCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SandCalculatorSEO />
-      <RelatedTools
-        currentTool="sand-calculator"
-        tools={['cement-calculator', 'brick-calculator', 'concrete-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

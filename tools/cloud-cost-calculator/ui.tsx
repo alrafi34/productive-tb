@@ -24,6 +24,7 @@ import { PROVIDERS, REGION_LABELS, CURRENCY_SYMBOLS } from "./pricing";
 import type { SavedEstimate, ProviderComparison } from "./types";
 import CloudCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Breakdown labels ──────────────────────────────────────────────────────────
 const BREAKDOWN_ITEMS = [
@@ -706,19 +707,10 @@ export default function CloudCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CloudCostCalculatorSEO />
 
-      <RelatedTools
-        currentTool="cloud-cost-calculator"
-        tools={[
-          "ai-token-cost-calculator",
-          "download-time-calculator",
-          "latency-calculator",
-          "bandwidth-calculator",
-          "data-transfer-calculator",
-          "time-complexity-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

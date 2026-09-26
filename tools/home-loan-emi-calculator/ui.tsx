@@ -26,6 +26,7 @@ import {
 } from "./logic";
 import HomeLoanEmiCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── SVG Pie Chart ─────────────────────────────────────────────────────────────
 
@@ -616,16 +617,9 @@ export default function HomeLoanEmiCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HomeLoanEmiCalculatorSEO />
-      <RelatedTools
-        currentTool="home-loan-emi-calculator"
-        tools={[
-          "mortgage-loan-calculator",
-          "land-price-calculator",
-          "down-payment-calculator",
-          "property-tax-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

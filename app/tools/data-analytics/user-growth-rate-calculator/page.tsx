@@ -104,6 +104,7 @@ export default function UserGrowthRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="user-growth-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

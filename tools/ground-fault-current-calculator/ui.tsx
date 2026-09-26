@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import GroundFaultCurrentCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function GroundFaultCurrentCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('basic');
@@ -590,11 +591,9 @@ export default function GroundFaultCurrentCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GroundFaultCurrentCalculatorSEO />
-      <RelatedTools
-        currentTool="ground-fault-current-calculator"
-        tools={['short-circuit-current-calculator', 'power-loss-calculator', 'ohms-law-calculator', 'electrical-efficiency-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

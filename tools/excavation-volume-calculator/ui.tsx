@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import ExcavationVolumeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ExcavationVolumeCalculatorUI() {
   const [shape, setShape] = useState<ExcavationShape>("rectangular");
@@ -529,11 +530,9 @@ export default function ExcavationVolumeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ExcavationVolumeCalculatorSEO />
-      <RelatedTools
-        currentTool="excavation-volume-calculator"
-        tools={['concrete-volume-calculator', 'construction-cost-estimator', 'material-cost-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

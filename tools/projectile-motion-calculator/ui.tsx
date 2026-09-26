@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ProjectileMotionSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ────────────────────────────────────────────────────────────────
 const PRESETS = [
@@ -811,18 +812,9 @@ export default function ProjectileMotionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ProjectileMotionSEO />
-      <RelatedTools
-        currentTool="projectile-motion-calculator"
-        tools={[
-          "kinetic-energy-calculator",
-          "force-calculator",
-          "velocity-calculator",
-          "centripetal-force-calculator",
-          "angular-velocity-calculator",
-          "momentum-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

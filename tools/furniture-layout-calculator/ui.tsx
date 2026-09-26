@@ -23,6 +23,7 @@ import {
 } from "./logic";
 import FurnitureLayoutCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FurnitureLayoutCalculatorUI() {
   const [roomDimensions, setRoomDimensions] = useState<RoomDimensions>({
@@ -673,11 +674,9 @@ export default function FurnitureLayoutCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FurnitureLayoutCalculatorSEO />
-      <RelatedTools
-        currentTool="furniture-layout-calculator"
-        tools={['interior-space-optimization-calculator', 'room-area-calculator', 'floor-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

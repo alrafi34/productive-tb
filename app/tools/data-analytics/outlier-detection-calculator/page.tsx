@@ -104,6 +104,7 @@ export default function OutlierDetectionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="outlier-detection-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

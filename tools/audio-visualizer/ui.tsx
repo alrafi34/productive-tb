@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import AudioVisualizerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type VisualizationStyle = "bars" | "waveform" | "circular" | "radial";
 
@@ -501,11 +502,9 @@ export default function AudioVisualizerUI() {
   return (
     <>
       <AudioVisualizerContent />
+      <RelatedStrip />
       <AudioVisualizerSEOContent />
-      <RelatedTools
-        currentTool="audio-visualizer"
-        tools={["webcam-photo-booth", "video-frame-extractor", "text-to-speech-preview"]}
-      />
+      <RelatedTools />
     </>
   );
 }

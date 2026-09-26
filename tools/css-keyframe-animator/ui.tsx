@@ -19,6 +19,7 @@ import {
 } from './logic';
 import CSSKeyframeAnimatorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function CSSKeyframeAnimatorUI() {
   const [animation, setAnimation] = useState<Animation>(DEFAULT_ANIMATION);
@@ -664,11 +665,9 @@ export default function CSSKeyframeAnimatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CSSKeyframeAnimatorSEOContent />
-      <RelatedTools
-        currentTool="css-keyframe-animator"
-        tools={["css-animation-previewer", "css-gradient-generator", "css-box-shadow-generator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

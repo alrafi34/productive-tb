@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import LandDevelopmentCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -667,18 +668,9 @@ export default function LandDevelopmentCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LandDevelopmentCostCalculatorSEO />
-      <RelatedTools
-        currentTool="land-development-cost-calculator"
-        tools={[
-          "land-price-calculator",
-          "subdivision-cost-calculator",
-          "excavation-cost-calculator",
-          "land-valuation-calculator",
-          "construction-cost-estimator",
-          "property-appreciation-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

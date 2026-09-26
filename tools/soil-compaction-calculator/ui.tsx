@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import SoilCompactionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SoilCompactionCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("g/cm3");
@@ -535,11 +536,9 @@ export default function SoilCompactionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SoilCompactionCalculatorSEO />
-      <RelatedTools
-        currentTool="soil-compaction-calculator"
-        tools={['soil-bearing-capacity-calculator', 'foundation-depth-calculator', 'excavation-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function AdcResolutionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="adc-resolution-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

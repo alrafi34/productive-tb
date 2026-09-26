@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import InsulationThicknessCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function InsulationThicknessCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("surface");
@@ -601,11 +602,9 @@ export default function InsulationThicknessCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <InsulationThicknessCalculatorSEO />
-      <RelatedTools
-        currentTool="insulation-thickness-calculator"
-        tools={['heat-loss-calculator-building', 'hvac-load-calculator', 'cooling-load-calculator-architecture']}
-      />
+      <RelatedTools />
     </>
   );
 }

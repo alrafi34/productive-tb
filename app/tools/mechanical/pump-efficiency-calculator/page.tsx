@@ -104,6 +104,7 @@ export default function PumpEfficiencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="pump-efficiency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

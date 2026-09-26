@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const UNITS: { value: TemperatureUnit; label: string; symbol: string }[] = [
   { value: "Celsius", label: "Celsius", symbol: "°C" },
@@ -245,8 +246,9 @@ export default function TemperatureConversionUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="temperature-conversion-scientific" tools={["scientific-calculator-tool", "unit-converter", "fuel-cost-calculator"]} />
+      <RelatedTools />
     </div>
   );
 }

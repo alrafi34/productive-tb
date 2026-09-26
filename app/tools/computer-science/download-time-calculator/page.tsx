@@ -105,6 +105,7 @@ export default function DownloadTimeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="download-time-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

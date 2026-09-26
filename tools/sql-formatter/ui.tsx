@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import SQLFormatterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SQLFormatterUI() {
   const [input, setInput] = useState("");
@@ -365,12 +366,10 @@ export default function SQLFormatterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SQLFormatterSEOContent />
 
-      <RelatedTools
-        currentTool="sql-formatter"
-        tools={["json-validator", "regex-tester", "find-and-replace"]}
-      />
+      <RelatedTools />
     </>
   );
 }
