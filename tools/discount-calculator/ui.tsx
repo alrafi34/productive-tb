@@ -6,13 +6,19 @@ import {
   CalculationResult, 
   calculateDiscount, 
   calculateOriginalPrice, 
-  formatCurrency 
+  formatCurrency as formatAmount,
+  currencySymbol,
+  guessCurrency,
+  CURRENCIES,
+  CurrencyCode
 } from "./logic";
 import DiscountCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'normal' | 'reverse' | 'batch';
+
+const CURRENCY_KEY = "discount-calculator-currency";
 
 export default function DiscountCalculatorUI() {
   const [mode, setMode] = useState<Mode>('normal');
@@ -36,6 +42,29 @@ export default function DiscountCalculatorUI() {
 
   const PRESETS = [10, 20, 25, 30, 40, 50, 75];
 
+  // Currency: remembered choice, else a guess from the visitor's timezone/language
+  const [currency, setCurrency] = useState<CurrencyCode>('USD');
+  useEffect(() => {
+    let saved: string | null = null;
+    try {
+      saved = localStorage.getItem(CURRENCY_KEY);
+    } catch {
+      // storage unavailable
+    }
+    const known = CURRENCIES.some(c => c.code === saved);
+    setCurrency(known ? (saved as CurrencyCode) : guessCurrency());
+  }, []);
+  const changeCurrency = (code: CurrencyCode) => {
+    setCurrency(code);
+    try {
+      localStorage.setItem(CURRENCY_KEY, code);
+    } catch {
+      // storage unavailable
+    }
+  };
+  const formatCurrency = (amount: number) => formatAmount(amount, currency);
+  const symbol = currencySymbol(currency);
+
   // Perform Calculations
   useEffect(() => {
     const priceVal = parseFloat(inputValue);
@@ -46,7 +75,7 @@ export default function DiscountCalculatorUI() {
         setResult(null);
         return;
       }
-      setResult(calculateDiscount(priceVal, discounts, taxVal));
+      setResult(calculateDiscount(priceVal, discounts, taxVal, currency));
     } 
     else if (mode === 'reverse') {
       if (isNaN(priceVal) || priceVal < 0) {
@@ -63,10 +92,10 @@ export default function DiscountCalculatorUI() {
         .map(line => parseFloat(line.trim()))
         .filter(n => !isNaN(n) && n >= 0);
         
-      const results = prices.map(p => calculateDiscount(p, discounts, taxVal));
+      const results = prices.map(p => calculateDiscount(p, discounts, taxVal, currency));
       setBatchResults(results);
     }
-  }, [inputValue, discounts, tax, mode, batchInput]);
+  }, [inputValue, discounts, tax, mode, batchInput, currency]);
 
   // Handlers
   const addDiscountStep = () => {
@@ -157,20 +186,34 @@ export default function DiscountCalculatorUI() {
             {/* Input Price */}
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {mode === 'reverse' ? 'Sale Price ($)' : 'Original Price ($)'}
-                </label>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <label htmlFor="discount-price" className="block text-sm font-semibold text-gray-700" style={{ fontFamily: "var(--font-heading)" }}>
+                    {mode === 'reverse' ? 'Sale Price' : 'Original Price'}{symbol ? ` (${symbol})` : ''}
+                  </label>
+                  <select
+                    aria-label="Currency"
+                    value={currency}
+                    onChange={e => changeCurrency(e.target.value as CurrencyCode)}
+                    className="max-w-[12rem] rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  >
+                    {CURRENCIES.map(c => (
+                      <option key={c.code} value={c.code}>{c.label}</option>
+                    ))}
+                  </select>
+                </div>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500 font-medium">
-                    $
+                    {symbol}
                   </div>
                   <input
                     type="number"
                     min="0"
                     step="0.01"
+                    id="discount-price"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="w-full rounded-lg border border-gray-200 bg-gray-50 pl-8 pr-4 py-3 text-lg font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                    style={{ paddingLeft: symbol ? `${1.25 + symbol.length * 0.6}rem` : undefined }}
+                    className="w-full rounded-lg border border-gray-200 bg-gray-50 pl-3 pr-4 py-3 text-lg font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                     placeholder="0.00"
                   />
                 </div>
@@ -216,7 +259,7 @@ export default function DiscountCalculatorUI() {
                          className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50"
                        >
                          <option value="percent">% Off</option>
-                         <option value="fixed">$ Off</option>
+                         <option value="fixed">{symbol || 'Amount'} Off</option>
                        </select>
                     )}
                     <div className="relative flex-1">
@@ -238,7 +281,7 @@ export default function DiscountCalculatorUI() {
                          className="w-full rounded-lg border border-gray-200 bg-gray-50 pl-3 pr-8 py-2 text-base font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
                       />
                       <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500 font-medium">
-                        {discount.type === 'percent' ? '%' : '$'}
+                        {discount.type === 'percent' ? '%' : symbol}
                       </div>
                     </div>
                     {mode !== 'reverse' && discounts.length > 1 && (
@@ -368,11 +411,11 @@ export default function DiscountCalculatorUI() {
                      <div className="pb-6 border-b border-white/20">
                         <p className="text-primary-100 font-medium mb-1" style={{ fontFamily: "var(--font-heading)" }}>Original Price Before Sale</p>
                         <h2 className="text-5xl font-bold tracking-tight mb-2">
-                           {reverseResult !== null ? formatCurrency(reverseResult) : '$0.00'}
+                           {formatCurrency(reverseResult ?? 0)}
                         </h2>
                      </div>
                      <p className="text-primary-100 text-sm leading-relaxed max-w-xs mx-auto">
-                        If an item costs <strong className="text-white">${parseFloat(inputValue) || 0}</strong> today because it is <strong className="text-white">{discounts[0]?.value || 0}%</strong> off, it originally cost <strong className="text-white">{reverseResult !== null ? formatCurrency(reverseResult) : '$0.00'}</strong>.
+                        If an item costs <strong className="text-white">{formatCurrency(parseFloat(inputValue) || 0)}</strong> today because it is <strong className="text-white">{discounts[0]?.value || 0}%</strong> off, it originally cost <strong className="text-white">{formatCurrency(reverseResult ?? 0)}</strong>.
                      </p>
                      <div className="pt-4">
                         <button 
