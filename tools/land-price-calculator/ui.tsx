@@ -534,6 +534,12 @@ export default function LandPriceCalculatorUI() {
                     {(() => {
                       const a = compareResults[0]!.total;
                       const b = compareResults[1]!.total;
+                      if (compareResults[0]!.currency !== compareResults[1]!.currency) {
+                        return <>Pick the same currency for both options to compare them.</>;
+                      }
+                      if (Math.abs(a - b) < 0.005) {
+                        return <>Both options cost the same.</>;
+                      }
                       const diff = Math.abs(a - b);
                       const cheaper = a < b ? "Option A" : "Option B";
                       const csym = CURRENCY_SYMBOLS[compareResults[0]!.currency];

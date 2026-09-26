@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { CalculatorInputs, CalculationResult, HistoryEntry, Side, ShapeMode, Unit } from "./types";
 import {
   calculate,
+  triangleError,
   formatNumber,
   debounce,
   saveToHistory,
@@ -410,6 +411,10 @@ export default function BoundaryLengthCalculatorUI() {
                     />
                   </div>
                 </div>
+              )}
+
+              {inputs.shapeMode === "triangle" && triangleError(inputs) && (
+                <p className="text-xs text-red-600" role="alert">{triangleError(inputs)}</p>
               )}
 
               <p className="text-xs text-gray-500">

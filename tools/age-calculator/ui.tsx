@@ -9,6 +9,8 @@ import {
   Milestone,
   getWeekday,
   calculateExactAge,
+  parseDateInput,
+  todayInputValue,
   calculateLifetimeStats,
   calculateNextBirthday,
   getZodiacSigns,
@@ -26,7 +28,7 @@ export default function AgeCalculatorUI() {
 
   // Input States
   const [birthDateStr, setBirthDateStr] = useState<string>("1998-05-15");
-  const [currentDateStr, setCurrentDateStr] = useState<string>(new Date().toISOString().split('T')[0]);
+  const [currentDateStr, setCurrentDateStr] = useState<string>(todayInputValue());
   
   // Results States
   const [age, setAge] = useState<AgeResult | null>(null);
@@ -47,7 +49,7 @@ export default function AgeCalculatorUI() {
   
   useEffect(() => {
     // Only update 'now' if current date is 'today'
-    const todayStr = new Date().toISOString().split('T')[0];
+    const todayStr = todayInputValue();
     if (currentDateStr === todayStr) {
       const interval = setInterval(() => setNow(new Date()), 1000);
       return () => clearInterval(interval);
@@ -57,11 +59,11 @@ export default function AgeCalculatorUI() {
   // Main calculations
   useEffect(() => {
     if (mode === 'normal') {
-      const bDate = new Date(birthDateStr);
-      let cDate = new Date(currentDateStr);
+      const bDate = parseDateInput(birthDateStr);
+      let cDate = parseDateInput(currentDateStr);
       
       // If current date is today, use the highly precise 'now'
-      const todayStr = new Date().toISOString().split('T')[0];
+      const todayStr = todayInputValue();
       if (currentDateStr === todayStr) {
         cDate = now;
       }
@@ -79,12 +81,12 @@ export default function AgeCalculatorUI() {
       setProgress(getAgeProgressDetails(bDate, cDate));
 
     } else if (mode === 'batch') {
-      const cDate = new Date(currentDateStr);
+      const cDate = parseDateInput(currentDateStr);
       if (isNaN(cDate.getTime())) return;
 
       const lines = batchInput.split('\n').map(l => l.trim()).filter(Boolean);
       const results = lines.map(line => {
-        const bDate = new Date(line);
+        const bDate = parseDateInput(line);
         if (isNaN(bDate.getTime()) || bDate.getTime() > cDate.getTime()) {
           return { dob: line, result: null };
         }
@@ -105,8 +107,8 @@ export default function AgeCalculatorUI() {
     return `Age: ${age.years} years, ${age.months} months, ${age.days} days
 Total Days Lived: ${stats.totalDays.toLocaleString()}
 Next Birthday In: ${nextBday.months}m ${nextBday.days}d
-Zodiac: ${zodiac.western} / ${zodiac.chinese}
-Born On: ${getWeekday(new Date(birthDateStr))}
+Zodiac: ${zodiac.western}
+Born On: ${getWeekday(parseDateInput(birthDateStr))}
 Calculated via Productive Toolbox`;
   };
 
@@ -163,9 +165,9 @@ Calculated via Productive Toolbox`;
                     onChange={(e) => setBirthDateStr(e.target.value)}
                     className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
                   />
-                  {birthDateStr && !isNaN(new Date(birthDateStr).getTime()) && (
+                  {birthDateStr && !isNaN(parseDateInput(birthDateStr).getTime()) && (
                     <p className="text-xs text-gray-500 mt-2 ml-1">
-                      Born on a <strong>{getWeekday(new Date(birthDateStr))}</strong>
+                      Born on a <strong>{getWeekday(parseDateInput(birthDateStr))}</strong>
                     </p>
                   )}
                 </div>
@@ -192,7 +194,7 @@ Calculated via Productive Toolbox`;
                     className="flex-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
                   />
                   <button 
-                    onClick={() => setCurrentDateStr(new Date().toISOString().split('T')[0])}
+                    onClick={() => setCurrentDateStr(todayInputValue())}
                     className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors border border-gray-200 shadow-sm"
                   >
                     Today
@@ -206,17 +208,10 @@ Calculated via Productive Toolbox`;
             {mode === 'normal' && zodiac && age !== null && (
                <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
                  <h3 className="text-sm font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Astrology Profile</h3>
-                 <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-3 text-center">
-                       <span className="text-2xl block mb-1">{zodiac.westernIcon}</span>
-                       <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Western</span>
-                       <p className="font-semibold text-blue-900">{zodiac.western}</p>
-                    </div>
-                    <div className="bg-red-50/50 border border-red-100 rounded-lg p-3 text-center">
-                       <span className="text-2xl block mb-1">{zodiac.chineseIcon}</span>
-                       <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Chinese</span>
-                       <p className="font-semibold text-red-900">{zodiac.chinese}</p>
-                    </div>
+                 <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-3 text-center">
+                    <span className="text-2xl block mb-1">{zodiac.westernIcon}</span>
+                    <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Zodiac Sign</span>
+                    <p className="font-semibold text-blue-900">{zodiac.western}</p>
                  </div>
                </div>
             )}
@@ -376,7 +371,7 @@ Calculated via Productive Toolbox`;
                                {row.result ? `${row.result.years}Y, ${row.result.months}M, ${row.result.days}D` : <span className="text-red-400">Invalid</span>}
                              </td>
                              <td className="px-6 py-4 font-mono">
-                               {row.result ? calculateLifetimeStats(new Date(row.dob), new Date(currentDateStr)).totalDays.toLocaleString() : '-'}
+                               {row.result ? calculateLifetimeStats(parseDateInput(row.dob), parseDateInput(currentDateStr)).totalDays.toLocaleString() : '-'}
                              </td>
                            </tr>
                          ))}

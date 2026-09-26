@@ -1,6 +1,8 @@
 import { HSLColor, ColorFormats, ColorPalette, PaletteType } from './types';
 
-export const hslToHex = (h: number, s: number, l: number): string => {
+export const hslToHex = (hue: number, s: number, l: number): string => {
+  // 360° is the same hue as 0°; without wrapping, h = 360 matched no sector below and came out black
+  const h = ((hue % 360) + 360) % 360;
   const sNorm = s / 100;
   const lNorm = l / 100;
   

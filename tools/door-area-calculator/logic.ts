@@ -1,4 +1,4 @@
-import { DoorCalculation, HistoryEntry, DoorPreset, Unit } from "./types";
+import { DoorCalculation, HistoryEntry, DoorPreset, Unit, FrameStyle } from "./types";
 
 const HISTORY_KEY = "door-area-calculator-history";
 const MAX_HISTORY = 10;
@@ -30,15 +30,17 @@ export function calculateDoorArea(
   width: number,
   unit: Unit,
   includeFrame: boolean = false,
-  frameThickness: number = 0
+  frameThickness: number = 0,
+  frameStyle: FrameStyle = "all-sides"
 ): DoorCalculation {
   let finalHeight = height;
   let finalWidth = width;
   
-  // Add frame thickness if included
+  // Add frame thickness if included: always on both sides; on top only for a
+  // door frame, on top and bottom for an all-round margin
   if (includeFrame && frameThickness > 0) {
-    finalHeight = height + (frameThickness * 2);
     finalWidth = width + (frameThickness * 2);
+    finalHeight = height + frameThickness * (frameStyle === "door-frame" ? 1 : 2);
   }
   
   // Calculate area
@@ -51,6 +53,9 @@ export function calculateDoorArea(
     area,
     includeFrame,
     frameThickness: includeFrame ? frameThickness : undefined,
+    frameStyle: includeFrame ? frameStyle : undefined,
+    doorHeight: height,
+    doorWidth: width,
     timestamp: Date.now()
   };
 }

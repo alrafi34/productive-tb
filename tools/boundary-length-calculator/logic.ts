@@ -26,6 +26,18 @@ export function validateSide(value: string): string | null {
   return null;
 }
 
+/* Three lengths only close into a triangle when each is shorter than the
+   other two together. */
+export function triangleError(inputs: CalculatorInputs): string | null {
+  const [a, b, c] = [inputs.triangleSide1, inputs.triangleSide2, inputs.triangleSide3].map(parseFloat);
+  if (!(a > 0 && b > 0 && c > 0)) return null;
+  const longest = Math.max(a, b, c);
+  if (longest >= a + b + c - longest) {
+    return "These sides cannot form a triangle: the longest side must be shorter than the other two combined.";
+  }
+  return null;
+}
+
 export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   let total = 0;
   const breakdown: string[] = [];
@@ -68,6 +80,7 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
     const s3 = parseFloat(inputs.triangleSide3);
     
     if (isNaN(s1) || isNaN(s2) || isNaN(s3) || s1 <= 0 || s2 <= 0 || s3 <= 0) return null;
+    if (triangleError(inputs)) return null;
     
     total = s1 + s2 + s3;
     breakdown.push(`${formatNumber(s1, inputs.precision)} + ${formatNumber(s2, inputs.precision)} + ${formatNumber(s3, inputs.precision)}`);

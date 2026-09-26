@@ -129,7 +129,7 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   const plots = parseFloat(inputs.numPlots);
   const landSize = parseFloat(inputs.landSize);
 
-  if (!plots || plots <= 0) return null;
+  if (!plots || plots <= 0 || !Number.isInteger(plots)) return null;
 
   const survey   = parseNum(inputs.surveyCost);
   const legal    = parseNum(inputs.legalFees);
@@ -159,14 +159,15 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
     pct: totalCost > 0 ? (i.value / totalCost) * 100 : 0,
   }));
 
+  const sym = CURRENCY_SYMBOLS[inputs.currency];
   const steps = [
-    `Survey: $${survey.toLocaleString("en-US")}`,
-    `Legal: $${legal.toLocaleString("en-US")}`,
-    `Permits: $${permit.toLocaleString("en-US")}`,
-    `Utilities: $${utility.toLocaleString("en-US")}`,
-    `Road: $${road.toLocaleString("en-US")}`,
-    `Drainage: $${drainage.toLocaleString("en-US")}`,
-    `Misc: $${misc.toLocaleString("en-US")}`,
+    `Survey: ${sym}${survey.toLocaleString("en-US")}`,
+    `Legal: ${sym}${legal.toLocaleString("en-US")}`,
+    `Permits: ${sym}${permit.toLocaleString("en-US")}`,
+    `Utilities: ${sym}${utility.toLocaleString("en-US")}`,
+    `Road: ${sym}${road.toLocaleString("en-US")}`,
+    `Drainage: ${sym}${drainage.toLocaleString("en-US")}`,
+    `Misc: ${sym}${misc.toLocaleString("en-US")}`,
     `Total = ${survey} + ${legal} + ${permit} + ${utility} + ${road} + ${drainage} + ${misc} = ${totalCost}`,
     `Cost/Plot = ${totalCost} ÷ ${plots} = ${costPerPlot.toFixed(2)}`,
     ...(landSize > 0 ? [`Land/Plot = ${landSize} ÷ ${plots} = ${landPerPlot.toFixed(4)} ${UNIT_SHORT[inputs.landUnit]}`] : []),
@@ -187,6 +188,9 @@ export function validateInputs(inputs: CalculatorInputs): string | null {
   const plots = parseFloat(inputs.numPlots);
   if (!inputs.numPlots || isNaN(plots) || plots <= 0) {
     return "Plot count must be greater than 0";
+  }
+  if (!Number.isInteger(plots)) {
+    return "Plot count must be a whole number";
   }
   return null;
 }

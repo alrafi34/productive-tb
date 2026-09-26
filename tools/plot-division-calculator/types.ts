@@ -22,6 +22,10 @@ export interface CalculationResult {
   suggestedCols: number;
   plotWidth?: number;
   plotLength?: number;
+  /* unit of plotWidth / plotLength (and of the width, length and road inputs) */
+  lengthUnit: "ft" | "m";
+  /* why part of the result could not be worked out, or looks inconsistent */
+  warnings: string[];
   totalArea: number;
 }
 

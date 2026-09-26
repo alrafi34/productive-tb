@@ -55,95 +55,126 @@ export function validatePlots(value: string): string | null {
   return null;
 }
 
-function findBestGrid(numPlots: number): { rows: number; cols: number } {
-  const sqrt = Math.sqrt(numPlots);
-  let bestRows = Math.floor(sqrt);
-  let bestCols = Math.ceil(numPlots / bestRows);
-  
-  for (let r = 1; r <= numPlots; r++) {
-    if (numPlots % r === 0) {
-      const c = numPlots / r;
-      const ratio = Math.max(r, c) / Math.min(r, c);
-      const currentRatio = Math.max(bestRows, bestCols) / Math.min(bestRows, bestCols);
-      if (ratio < currentRatio) {
-        bestRows = r;
-        bestCols = c;
-      }
+/* Width, length and road width are lengths: metres when the land is measured
+   in square metres or hectares, feet for every other unit. */
+export type LengthUnit = "ft" | "m";
+
+export function lengthUnitFor(landUnit: Unit): LengthUnit {
+  return landUnit === "sqm" || landUnit === "hectare" ? "m" : "ft";
+}
+
+/* rows × cols that is exactly numPlots, with plots as close to square as the
+   land allows. A prime count leaves a single row or column. */
+function findBestGrid(numPlots: number, width?: number, length?: number): { rows: number; cols: number } {
+  const aspect = width && length ? width / length : 1;
+  let best = { rows: 1, cols: numPlots };
+  let bestScore = Infinity;
+  for (let rows = 1; rows <= numPlots; rows++) {
+    if (numPlots % rows !== 0) continue;
+    const cols = numPlots / rows;
+    // plot width ÷ plot length; 1 is a square plot
+    const plotAspect = (aspect * rows) / cols;
+    const score = Math.abs(Math.log(plotAspect));
+    if (score < bestScore - 1e-9) {
+      bestScore = score;
+      best = { rows, cols };
     }
   }
-  
-  return { rows: bestRows, cols: bestCols };
+  return best;
 }
 
 export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   const landErr = validatePositive(inputs.totalLand, "Total land");
   const plotErr = validatePlots(inputs.numPlots);
-  
+
   if (landErr || plotErr) return null;
-  
+
   const totalLand = parseFloat(inputs.totalLand);
   const numPlots = parseInt(inputs.numPlots);
   const roadWidth = parseFloat(inputs.roadWidth) || 0;
-  
-  let roadArea = 0;
-  if (roadWidth > 0 && inputs.landWidth && inputs.landLength) {
-    const width = parseFloat(inputs.landWidth);
-    const length = parseFloat(inputs.landLength);
-    if (!isNaN(width) && !isNaN(length)) {
-      const totalAreaCalc = width * length;
-      const grid = findBestGrid(numPlots);
-      const roadLengthHorizontal = (grid.rows - 1) * width;
-      const roadLengthVertical = (grid.cols - 1) * length;
-      roadArea = (roadLengthHorizontal + roadLengthVertical) * roadWidth;
-      roadArea = convertArea(roadArea, inputs.landUnit, inputs.landUnit);
+  const lengthUnit = lengthUnitFor(inputs.landUnit);
+  const areaUnitOfLengths: Unit = lengthUnit === "m" ? "sqm" : "sqft";
+  const warnings: string[] = [];
+
+  const width = parseFloat(inputs.landWidth);
+  const length = parseFloat(inputs.landLength);
+  const hasDims = width > 0 && length > 0;
+
+  let rows = 1;
+  let cols = numPlots;
+  let gridOk = true;
+  if (inputs.divisionMode === "custom-grid") {
+    const r = parseInt(inputs.customRows);
+    const c = parseInt(inputs.customCols);
+    if (r > 0 && c > 0) {
+      if (r * c === numPlots) {
+        rows = r;
+        cols = c;
+      } else {
+        gridOk = false;
+        warnings.push(`Rows × columns (${r} × ${c} = ${r * c}) must equal the number of plots (${numPlots}).`);
+      }
+    } else {
+      ({ rows, cols } = findBestGrid(numPlots, width, length));
     }
+  } else if (inputs.divisionMode === "equal-width") {
+    // side-by-side strips: every plot runs the full length of the land
+    rows = 1;
+    cols = numPlots;
+  } else if (inputs.divisionMode === "equal-length") {
+    // stacked strips: every plot runs the full width of the land
+    rows = numPlots;
+    cols = 1;
+  } else {
+    ({ rows, cols } = findBestGrid(numPlots, width, length));
   }
-  
-  const usableLand = totalLand - roadArea;
-  const plotSize = usableLand / numPlots;
-  const remainingLand = usableLand - (plotSize * numPlots);
-  
+
+  // Roads run between the rows and between the columns; where they cross,
+  // the crossing is counted once.
+  let roadArea = 0;
   let plotWidth: number | undefined;
   let plotLength: number | undefined;
-  let suggestedRows = 1;
-  let suggestedCols = numPlots;
-  
-  if (inputs.landWidth && inputs.landLength) {
-    const width = parseFloat(inputs.landWidth);
-    const length = parseFloat(inputs.landLength);
-    
-    if (!isNaN(width) && !isNaN(length)) {
-      if (inputs.divisionMode === "custom-grid" && inputs.customRows && inputs.customCols) {
-        const rows = parseInt(inputs.customRows);
-        const cols = parseInt(inputs.customCols);
-        if (!isNaN(rows) && !isNaN(cols) && rows > 0 && cols > 0) {
-          suggestedRows = rows;
-          suggestedCols = cols;
-        }
-      } else {
-        const grid = findBestGrid(numPlots);
-        suggestedRows = grid.rows;
-        suggestedCols = grid.cols;
+  if (hasDims && gridOk) {
+    const netWidth = width - roadWidth * (cols - 1);
+    const netLength = length - roadWidth * (rows - 1);
+    if (netWidth <= 0 || netLength <= 0) {
+      warnings.push("The roads are wider than the land leaves room for — reduce the road width or the number of plots.");
+    } else {
+      if (roadWidth > 0) {
+        const roadLinear =
+          (rows - 1) * width * roadWidth +
+          (cols - 1) * length * roadWidth -
+          (rows - 1) * (cols - 1) * roadWidth * roadWidth;
+        roadArea = convertArea(roadLinear, areaUnitOfLengths, inputs.landUnit);
       }
-      
-      const effectiveWidth = width - (roadWidth * (suggestedCols - 1) / suggestedCols);
-      const effectiveLength = length - (roadWidth * (suggestedRows - 1) / suggestedRows);
-      
-      plotWidth = effectiveWidth / suggestedCols;
-      plotLength = effectiveLength / suggestedRows;
+      plotWidth = netWidth / cols;
+      plotLength = netLength / rows;
+      const dimsArea = convertArea(width * length, areaUnitOfLengths, inputs.landUnit);
+      if (Math.abs(dimsArea - totalLand) / totalLand > 0.02) {
+        warnings.push(
+          `Width × length is ${formatNumber(dimsArea)} ${UNIT_SHORT[inputs.landUnit]}, which differs from the total land entered; plot dimensions follow width × length.`
+        );
+      }
     }
+  } else if (roadWidth > 0 && !hasDims) {
+    warnings.push(`Road width needs the land's width and length (${lengthUnit}) to work out the road area.`);
   }
-  
+
+  const usableLand = totalLand - roadArea;
+  const plotSize = usableLand / numPlots;
+
   return {
     plotSize,
     plotSizeUnit: inputs.landUnit,
     usableLand,
     roadArea,
-    remainingLand,
-    suggestedRows,
-    suggestedCols,
+    remainingLand: 0,
+    suggestedRows: rows,
+    suggestedCols: cols,
     plotWidth,
     plotLength,
+    lengthUnit,
+    warnings,
     totalArea: totalLand,
   };
 }
@@ -198,7 +229,7 @@ export function exportToText(inputs: CalculatorInputs, result: CalculationResult
     result.roadArea > 0 ? `Usable Land   : ${formatNumber(result.usableLand)} ${UNIT_LABELS[inputs.landUnit]}` : "",
     "",
     `Plot Size     : ${formatNumber(result.plotSize)} ${UNIT_LABELS[inputs.landUnit]}`,
-    result.plotWidth && result.plotLength ? `Plot Dimensions: ${formatNumber(result.plotWidth)} × ${formatNumber(result.plotLength)} ${UNIT_SHORT[inputs.landUnit]}` : "",
+    result.plotWidth && result.plotLength ? `Plot Dimensions: ${formatNumber(result.plotWidth)} × ${formatNumber(result.plotLength)} ${result.lengthUnit}` : "",
     `Suggested Layout: ${result.suggestedRows} × ${result.suggestedCols} grid`,
     "",
     "=".repeat(45),
