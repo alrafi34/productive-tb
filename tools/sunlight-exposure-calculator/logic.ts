@@ -159,14 +159,12 @@ export function calculateExposure(
     // Maximum at 90° (sun directly overhead)
     exposure = Math.sin(toRadians(elevation)) * 100;
   } else if (surfaceType === "wall") {
-    // Wall exposure depends on angle between sun and wall orientation
-    const angleDiff = Math.abs(normalizeAngle(azimuth - buildingOrientation));
-    const facingFactor = Math.cos(toRadians(Math.min(angleDiff, 180 - angleDiff)));
-    
-    // Also factor in elevation (lower sun = less direct light on vertical surfaces)
-    const elevationFactor = Math.sin(toRadians(elevation));
-    
-    exposure = Math.max(0, facingFactor * elevationFactor * 100);
+    // Incidence on a vertical surface whose outward normal points at the wall's
+    // orientation: cos θ = cos(elevation) · cos(azimuth − orientation). It is
+    // negative when the sun is behind the wall, which gets no direct light.
+    const cosIncidence =
+      Math.cos(toRadians(elevation)) * Math.cos(toRadians(azimuth - buildingOrientation));
+    exposure = Math.max(0, cosIncidence * 100);
   } else if (surfaceType === "ground") {
     // Ground exposure similar to roof but inverted
     exposure = Math.sin(toRadians(elevation)) * 100;
@@ -239,12 +237,6 @@ function toRadians(degrees: number): number {
 
 function toDegrees(radians: number): number {
   return radians * (180 / Math.PI);
-}
-
-function normalizeAngle(angle: number): number {
-  while (angle < 0) angle += 360;
-  while (angle >= 360) angle -= 360;
-  return angle;
 }
 
 export function formatNumber(value: number, decimals: number = 2): string {
