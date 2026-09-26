@@ -46,7 +46,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["age-calculator", "date-difference-calculator", "time-duration-calculator", "working-days-calculator", "timestamp-unix-converter", "time-zone-converter"],
   ["centimeter-to-meter-converter", "meter-to-km-converter", "inch-to-cm-converter", "feet-to-meter-converter"],
   ["celsius-to-fahrenheit-converter", "temperature-conversion-scientific", "kg-to-pound-converter", "gram-to-ounce-converter", "liter-to-ml-converter"],
-  ["square-meter-to-square-foot-converter", "sqm-to-sqft-converter", "acre-to-hectare-converter", "hectare-to-acre-converter", "acre-to-square-feet-converter", "square-feet-to-acre-converter"],
+  ["square-meter-to-square-foot-converter", "acre-to-hectare-converter", "hectare-to-acre-converter", "acre-to-square-feet-converter", "square-feet-to-acre-converter"],
   ["scientific-calculator", "fraction-calculator", "exponent-calculator", "square-root-calculator", "prime-number-checker", "matrix-calculator", "binary-hex-decimal-converter"],
   ["random-number-generator", "random-name-picker", "decision-wheel", "dice-roller"],
   ["fuel-cost-calculator", "unit-ratio-calculator", "currency-format-previewer"],
