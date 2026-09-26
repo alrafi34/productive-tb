@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { ACPowerInputs, ACPowerResult, ACCapacityUnit, ACCapacityTon } from "./types";
+import { ACPowerInputs, ACPowerResult, ACCapacityUnit, ACCapacityTon, ACRatingType } from "./types";
 import {
   calculateACPower,
   validateInputs,
+  effectiveEER,
+  DEFAULT_EER,
   AC_PRESETS,
   tonsToWatts,
   wattsToTons,
@@ -31,10 +33,12 @@ export default function AirConditionerPowerCalculatorUI() {
   const [inputs, setInputs] = useState<ACPowerInputs>({
     capacityUnit: (savedSettings.capacityUnit as ACCapacityUnit) || 'ton',
     capacityTon: (savedSettings.capacityTon as ACCapacityTon) || 1.5,
-    capacityWatt: savedSettings.capacityWatt || 5275,
+    capacityWatt: savedSettings.capacityWatt || 1800,
     hoursPerDay: savedSettings.hoursPerDay || 8,
     daysPerMonth: savedSettings.daysPerMonth || 30,
-    tariff: savedSettings.tariff || 0.12
+    tariff: savedSettings.tariff || 0.12,
+    efficiency: savedSettings.efficiency || DEFAULT_EER,
+    ratingType: (savedSettings.ratingType as ACRatingType) || 'eer'
   });
   
   const [result, setResult] = useState<ACPowerResult | null>(null);
@@ -76,20 +80,21 @@ export default function AirConditionerPowerCalculatorUI() {
     saveSettings(inputs);
   }, [inputs]);
 
-  const handleInputChange = (field: keyof ACPowerInputs, value: number | ACCapacityUnit | ACCapacityTon) => {
+  const handleInputChange = (field: keyof ACPowerInputs, value: number | ACCapacityUnit | ACCapacityTon | ACRatingType) => {
     setInputs(prev => ({ ...prev, [field]: value }));
   };
 
   const handleUnitToggle = () => {
+    const eer = effectiveEER(inputs);
     if (inputs.capacityUnit === 'ton') {
-      // Convert ton to watt
-      const watts = inputs.capacityTon ? tonsToWatts(inputs.capacityTon) : 5275;
+      // Cooling tons -> electrical watts at the current EER
+      const watts = inputs.capacityTon ? tonsToWatts(inputs.capacityTon, eer) : 1800;
       setInputs(prev => ({ ...prev, capacityUnit: 'watt', capacityWatt: Math.round(watts) }));
     } else {
-      // Convert watt to ton
-      const tons = inputs.capacityWatt ? wattsToTons(inputs.capacityWatt) : 1.5;
-      const roundedTons = Math.round(tons * 4) / 4; // Round to nearest 0.25
-      setInputs(prev => ({ ...prev, capacityUnit: 'ton', capacityTon: roundedTons as ACCapacityTon }));
+      // Electrical watts -> the nearest tonnage the select offers
+      const tons = inputs.capacityWatt ? wattsToTons(inputs.capacityWatt, eer) : 1.5;
+      const nearest = tonOptions.reduce((a, b) => (Math.abs(b - tons) < Math.abs(a - tons) ? b : a));
+      setInputs(prev => ({ ...prev, capacityUnit: 'ton', capacityTon: nearest }));
     }
   };
 
@@ -97,10 +102,12 @@ export default function AirConditionerPowerCalculatorUI() {
     setInputs({
       capacityUnit: 'ton',
       capacityTon: 1.5,
-      capacityWatt: 5275,
+      capacityWatt: 1800,
       hoursPerDay: 8,
       daysPerMonth: 30,
-      tariff: 0.12
+      tariff: 0.12,
+      efficiency: DEFAULT_EER,
+      ratingType: 'eer'
     });
     setResult(null);
     setError(null);
@@ -110,10 +117,12 @@ export default function AirConditionerPowerCalculatorUI() {
     setInputs({
       capacityUnit: 'ton',
       capacityTon: preset.capacityTon,
-      capacityWatt: tonsToWatts(preset.capacityTon),
+      capacityWatt: Math.round(tonsToWatts(preset.capacityTon, effectiveEER(inputs))),
       hoursPerDay: preset.typicalHours,
       daysPerMonth: 30,
-      tariff: inputs.tariff
+      tariff: inputs.tariff,
+      efficiency: inputs.efficiency,
+      ratingType: inputs.ratingType
     });
   };
 
@@ -308,25 +317,59 @@ export default function AirConditionerPowerCalculatorUI() {
                     ))}
                   </select>
                   <p className="text-xs text-gray-500 mt-1">
-                    1 Ton ≈ 3517 Watts
+                    1 Ton = 12,000 BTU/h of cooling — not the power it draws
                   </p>
                 </div>
               ) : (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    AC Power (Watts)
+                    AC Power Input (Watts)
                   </label>
                   <input
                     type="number"
                     value={inputs.capacityWatt || ''}
                     onChange={(e) => handleInputChange('capacityWatt', parseFloat(e.target.value) || 0)}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder="5275"
+                    placeholder="1800"
                     min="0"
                     step="100"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Typical range: 2500-8500W
+                    Rated power input from the unit label (not cooling capacity). Typical: 700–3,500 W
+                  </p>
+                </div>
+              )}
+
+              {/* Efficiency rating (ton mode only — watt mode already has input power) */}
+              {inputs.capacityUnit === 'ton' && (
+                <div>
+                  <label htmlFor="ac-efficiency" className="block text-sm font-medium text-gray-700 mb-2">
+                    Efficiency Rating ({inputs.ratingType === 'seer' ? 'SEER' : 'EER'})
+                  </label>
+                  <div className="flex gap-2">
+                    <select
+                      aria-label="Rating type"
+                      value={inputs.ratingType ?? 'eer'}
+                      onChange={(e) => handleInputChange('ratingType', e.target.value as ACRatingType)}
+                      className="px-3 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-semibold"
+                    >
+                      <option value="eer">EER</option>
+                      <option value="seer">SEER</option>
+                    </select>
+                    <input
+                      id="ac-efficiency"
+                      type="number"
+                      value={inputs.efficiency || ''}
+                      onChange={(e) => handleInputChange('efficiency', parseFloat(e.target.value) || 0)}
+                      className="flex-1 min-w-0 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                      placeholder="10"
+                      min="5"
+                      max="40"
+                      step="0.1"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    From the energy label (BTU/h per W). Typical EER: 8–10 older units, 11–13 modern, 14+ inverter. Use 10 if unknown.
                   </p>
                 </div>
               )}
@@ -389,6 +432,9 @@ export default function AirConditionerPowerCalculatorUI() {
               {result && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="text-sm text-green-800">
+                    {inputs.capacityUnit === 'ton' && (
+                      <div><strong>Electrical draw</strong> = {formatNumber(result.coolingBtu ?? 0, 0)} BTU/h ÷ EER {formatNumber(result.eer ?? DEFAULT_EER, 2)} = {formatNumber(result.powerWatts, 0)} W</div>
+                    )}
                     <strong>Formula:</strong> Energy (kWh) = (Power × Hours × Days) / 1000
                   </div>
                 </div>

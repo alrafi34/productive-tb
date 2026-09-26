@@ -1,18 +1,22 @@
 export type ACCapacityUnit = 'ton' | 'watt';
 export type ACCapacityTon = 0.75 | 1 | 1.5 | 2 | 2.5 | 3;
+export type ACRatingType = 'eer' | 'seer';
 
 export interface ACPowerInputs {
   capacityUnit: ACCapacityUnit;
   capacityTon?: ACCapacityTon;
-  capacityWatt?: number;
+  capacityWatt?: number; // electrical input power from the rating label
   hoursPerDay: number;
   daysPerMonth: number;
   tariff: number; // Cost per kWh
-  efficiency?: number; // EER or SEER rating (optional)
+  efficiency?: number; // EER or SEER rating, BTU/h per W
+  ratingType?: ACRatingType;
 }
 
 export interface ACPowerResult {
-  powerWatts: number;
+  powerWatts: number; // electrical input power
+  coolingBtu?: number; // cooling capacity, ton mode only
+  eer?: number; // EER actually used, ton mode only
   dailyEnergy: number; // kWh
   monthlyEnergy: number; // kWh
   yearlyEnergy: number; // kWh

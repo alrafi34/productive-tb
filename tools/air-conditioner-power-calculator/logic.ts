@@ -1,7 +1,16 @@
 import { ACPowerInputs, ACPowerResult, ACPreset, ACCapacityTon, HistoryEntry } from "./types";
 
-// Conversion constant: 1 Ton = 3517 Watts (approximately)
-const WATTS_PER_TON = 3517;
+// 1 ton of refrigeration = 12,000 BTU/h of *cooling*. Electrical input is
+// cooling ÷ EER (BTU/h per watt), so tons alone never give watts.
+const BTU_PER_TON = 12000;
+// SEER is a seasonal average; ×0.875 is the usual peak-condition EER estimate.
+const SEER_TO_EER = 0.875;
+export const DEFAULT_EER = 10;
+
+export function effectiveEER(inputs: Pick<ACPowerInputs, 'efficiency' | 'ratingType'>): number {
+  const rating = inputs.efficiency || DEFAULT_EER;
+  return inputs.ratingType === 'seer' ? rating * SEER_TO_EER : rating;
+}
 
 // AC presets with typical configurations
 export const AC_PRESETS: ACPreset[] = [
@@ -52,17 +61,25 @@ export function calculateACPower(inputs: ACPowerInputs): ACPowerResult {
   steps.push('Air Conditioner Power Consumption Calculation');
   steps.push('');
   
-  // Step 1: Determine power in watts
+  // Step 1: Determine electrical input power in watts
   let powerWatts: number;
-  
+  let coolingBtu: number | undefined;
+  let eer: number | undefined;
+
   if (capacityUnit === 'ton' && capacityTon) {
-    steps.push('Step 1: Convert AC Capacity to Watts');
-    steps.push(`Formula: Power (W) = Capacity (Ton) × ${WATTS_PER_TON}`);
-    steps.push(`Power = ${capacityTon} × ${WATTS_PER_TON}`);
-    powerWatts = capacityTon * WATTS_PER_TON;
+    eer = effectiveEER(inputs);
+    coolingBtu = capacityTon * BTU_PER_TON;
+    steps.push('Step 1: Convert Cooling Capacity to Electrical Power');
+    steps.push(`Cooling = ${capacityTon} Ton × ${BTU_PER_TON.toLocaleString()} = ${coolingBtu.toLocaleString()} BTU/h`);
+    if (inputs.ratingType === 'seer') {
+      steps.push(`EER ≈ SEER ${inputs.efficiency || DEFAULT_EER} × ${SEER_TO_EER} = ${eer.toFixed(2)}`);
+    }
+    steps.push(`Formula: Power (W) = Cooling (BTU/h) ÷ EER`);
+    steps.push(`Power = ${coolingBtu.toLocaleString()} ÷ ${Number(eer.toFixed(2))}`);
+    powerWatts = coolingBtu / eer;
     steps.push(`Power = ${powerWatts.toFixed(2)} W`);
   } else {
-    steps.push('Step 1: Power Rating');
+    steps.push('Step 1: Power Rating (from the unit label)');
     powerWatts = capacityWatt || 0;
     steps.push(`Power = ${powerWatts} W`);
   }
@@ -128,6 +145,8 @@ export function calculateACPower(inputs: ACPowerInputs): ACPowerResult {
   
   return {
     powerWatts,
+    coolingBtu,
+    eer,
     dailyEnergy,
     monthlyEnergy,
     yearlyEnergy,
@@ -147,6 +166,10 @@ export function validateInputs(inputs: ACPowerInputs): string | null {
   if (capacityUnit === 'ton') {
     if (!capacityTon || capacityTon <= 0) {
       return "Please select a valid AC capacity in tons";
+    }
+    const rating = inputs.efficiency;
+    if (rating !== undefined && (!Number.isFinite(rating) || rating < 5 || rating > 40)) {
+      return `${inputs.ratingType === 'seer' ? 'SEER' : 'EER'} must be between 5 and 40`;
     }
   } else {
     if (!capacityWatt || capacityWatt <= 0) {
@@ -176,14 +199,14 @@ export function validateInputs(inputs: ACPowerInputs): string | null {
   return null;
 }
 
-// Convert tons to watts
-export function tonsToWatts(tons: number): number {
-  return tons * WATTS_PER_TON;
+// Cooling tons -> electrical input watts at a given EER
+export function tonsToWatts(tons: number, eer: number = DEFAULT_EER): number {
+  return (tons * BTU_PER_TON) / eer;
 }
 
-// Convert watts to tons
-export function wattsToTons(watts: number): number {
-  return watts / WATTS_PER_TON;
+// Electrical input watts -> cooling tons at a given EER
+export function wattsToTons(watts: number, eer: number = DEFAULT_EER): number {
+  return (watts * eer) / BTU_PER_TON;
 }
 
 // Format number with decimals
@@ -262,9 +285,10 @@ export function exportToText(inputs: ACPowerInputs, result: ACPowerResult): stri
   lines.push('-'.repeat(50));
   
   if (inputs.capacityUnit === 'ton') {
-    lines.push(`Capacity: ${inputs.capacityTon} Ton`);
+    lines.push(`Capacity: ${inputs.capacityTon} Ton (${(result.coolingBtu ?? 0).toLocaleString()} BTU/h cooling)`);
+    lines.push(`Efficiency: ${(inputs.ratingType ?? 'eer').toUpperCase()} ${inputs.efficiency ?? DEFAULT_EER}`);
   }
-  lines.push(`Power Rating: ${formatNumber(result.powerWatts, 2)} W`);
+  lines.push(`Electrical Power: ${formatNumber(result.powerWatts, 2)} W`);
   lines.push(`Usage: ${inputs.hoursPerDay} hours/day`);
   lines.push(`Days per Month: ${inputs.daysPerMonth}`);
   lines.push(`Electricity Tariff: ${inputs.tariff} per kWh`);
@@ -301,6 +325,7 @@ export function exportToCSV(inputs: ACPowerInputs, result: ACPowerResult): strin
   
   if (inputs.capacityUnit === 'ton') {
     csv += `Capacity (Ton),${inputs.capacityTon}\n`;
+    csv += `${(inputs.ratingType ?? 'eer').toUpperCase()},${inputs.efficiency ?? DEFAULT_EER}\n`;
   }
   csv += `Power (W),${formatNumber(result.powerWatts, 2)}\n`;
   csv += `Hours per Day,${inputs.hoursPerDay}\n`;
@@ -330,8 +355,9 @@ export function downloadFile(content: string, filename: string): void {
   URL.revokeObjectURL(url);
 }
 
-// Save last used settings
-const SETTINGS_KEY = 'ac-power-calculator-settings';
+// Save last used settings. v2: capacityWatt now means electrical input, not
+// the cooling-watts the old key stored (5275 for 1.5 ton).
+const SETTINGS_KEY = 'ac-power-calculator-settings-v2';
 
 export function saveSettings(settings: Partial<ACPowerInputs>): void {
   try {
