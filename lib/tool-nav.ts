@@ -1,7 +1,7 @@
 import { tools, categories, type Tool } from "@/config/tools";
 import { NOINDEX_TOOLS } from "@/config/noindex";
 import { RELATED_PICKS } from "@/config/related-picks";
-import { TOOL_FAMILIES, NEXT_STEPS, POPULAR_TOOLS, WIDE_TOOLS } from "@/config/tool-nav";
+import { TOOL_FAMILIES, NEXT_STEPS, POPULAR_TOOLS, POPULAR_POOL, WIDE_TOOLS } from "@/config/tool-nav";
 
 /* Everything a tool page links to besides its own content: the family strip
    above the tool, the next-step and related chips under it, the side rail and
@@ -31,7 +31,7 @@ export type ToolNav = {
 };
 
 const RELATED_COUNT = 12;
-const POPULAR_COUNT = 5;
+const POPULAR_COUNT = 7;
 
 const TOOLS_BY_SLUG = new Map(tools.map((t) => [t.slug, t]));
 const CATEGORY_BY_SLUG = new Map(categories.map((c) => [c.slug, c]));
@@ -100,6 +100,16 @@ const toLink = (t: Tool): NavLink => ({
 /* Noindexed tools earned no search demand; links go to pages that do. */
 const linkable = (slug: string) => TOOLS_BY_SLUG.has(slug) && !NOINDEX_TOOLS.has(slug);
 
+/* A small stable hash (FNV-1a) of a slug, for picking rotating links. */
+function hashSlug(slug: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < slug.length; i++) {
+    h ^= slug.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
 const resolve = (slugs: readonly string[]) =>
   slugs.map((s) => TOOLS_BY_SLUG.get(s)).filter((t): t is Tool => t !== undefined);
 
@@ -136,9 +146,14 @@ export function getToolNav(slug: string): ToolNav {
   const next = resolve(NEXT_STEPS[slug] ?? []).filter((t) => linkable(t.slug));
 
   const railSlugs = new Set(related.slice(0, 8).map((t) => t.slug));
-  const popular = resolve(POPULAR_TOOLS)
-    .filter((t) => t.slug !== slug && !railSlugs.has(t.slug) && linkable(t.slug))
-    .slice(0, POPULAR_COUNT);
+  const popularOk = (t: Tool) => t.slug !== slug && !railSlugs.has(t.slug) && linkable(t.slug);
+  const fixed = resolve(POPULAR_TOOLS).filter(popularOk);
+  // Rotate through the pool from a point that depends on the page, so each
+  // pool tool appears on a share of all pages (and the same ones every build)
+  const pool = resolve(POPULAR_POOL).filter((t) => popularOk(t) && !fixed.includes(t));
+  const start = pool.length ? hashSlug(slug) % pool.length : 0;
+  const rotated = [...pool.slice(start), ...pool.slice(0, start)];
+  const popular = [...fixed, ...rotated].slice(0, POPULAR_COUNT);
 
   const category = categorySlug ? CATEGORY_BY_SLUG.get(categorySlug) : undefined;
 

@@ -48,14 +48,22 @@ const POPULAR = pick([
 ]);
 
 const EVERYDAY = pick([
+  "bmi-calculator",
+  "age-calculator",
+  "percentage-calculator",
+  "loan-calculator",
+  "mortgage-calculator",
+  "discount-calculator",
+  "celsius-to-fahrenheit-converter",
+  "kg-to-pound-converter",
   "word-counter",
   "image-compressor",
   "qr-code-generator",
   "password-generator",
-  "json-validator",
-  "color-palette-generator",
-  "base64-encoder-decoder",
-  "age-calculator",
+  "time-zone-converter",
+  "date-difference-calculator",
+  "daily-calorie-calculator",
+  "emoji-search-copy",
 ]);
 
 const RECENT = tools.slice(-6);
@@ -477,7 +485,7 @@ export default function HomePage() {
                 Everyday utilities
               </h2>
               <p className="text-slate-500 leading-relaxed mb-7">
-                The small things you still need between the technical work — text, images, colour and code.
+                Health, money, dates, conversions, text and images: the calculators people reach for every day.
               </p>
 
               <div className="grid grid-cols-2 gap-3">
