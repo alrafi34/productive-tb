@@ -75,9 +75,12 @@ export function detectInputType(text: string): string {
 }
 
 // Generate WiFi QR code string
+// \ ; , : and " have a special meaning in the WIFI: payload and must be escaped
+const escapeWifi = (value: string) => value.replace(/([\\;,:"])/g, '\\$1');
+
 export function generateWiFiString(config: WiFiConfig): string {
   const { ssid, password, security, hidden } = config;
-  return `WIFI:T:${security};S:${ssid};P:${password};H:${hidden ? 'true' : 'false'};;`;
+  return `WIFI:T:${security};S:${escapeWifi(ssid)};P:${escapeWifi(password)};H:${hidden ? 'true' : 'false'};;`;
 }
 
 // Parse WiFi QR code string

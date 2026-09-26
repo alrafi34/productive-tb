@@ -84,9 +84,11 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         width = bestWidth;
         height = bestHeight;
       } else {
+        // Find the highest quality whose file still fits the target: start
+        // from high quality and binary-search down only if it is too big
         let minQuality = 0.01;
-        let maxQuality = 0.95;
-        let quality = 0.5;
+        let maxQuality = 0.92;
+        let quality = maxQuality;
         let scale = 1.0;
         let bestBlob: Blob | null = null;
         let bestWidth = width;
