@@ -12,7 +12,8 @@ import {
   exportToText,
   exportToCSV,
   downloadFile,
-  formatNumber
+  formatNumber,
+  presetLoadForUnit,
 } from "./logic";
 import StructuralLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -97,9 +98,9 @@ export default function StructuralLoadCalculatorUI() {
   };
 
   const handleApplyPreset = (preset: any) => {
-    setDeadLoad(preset.deadLoad.toString());
-    setLiveLoad(preset.liveLoad.toString());
-    setAdditionalLoad(preset.additionalLoad.toString());
+    setDeadLoad(presetLoadForUnit(preset.deadLoad, unit).toString());
+    setLiveLoad(presetLoadForUnit(preset.liveLoad, unit).toString());
+    setAdditionalLoad(presetLoadForUnit(preset.additionalLoad, unit).toString());
   };
 
   const handleCopy = () => {

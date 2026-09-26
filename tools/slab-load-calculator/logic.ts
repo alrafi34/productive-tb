@@ -5,6 +5,12 @@ const KN_TO_LB = 224.809;
 const M_TO_FT = 3.28084;
 const KN_M2_TO_PSF = 20.8854;
 
+/* Presets are stored in metres and kN/m²; in Imperial mode the fields are ft and psf. */
+export const presetThicknessForUnit = (thicknessM: number, unit: Unit): number =>
+  unit === 'imperial' ? Number((thicknessM * M_TO_FT).toFixed(3)) : thicknessM;
+export const presetLoadForUnit = (loadKnM2: number, unit: Unit): number =>
+  unit === 'imperial' ? Number((loadKnM2 * KN_M2_TO_PSF).toFixed(1)) : loadKnM2;
+
 // Generate unique ID
 export const generateId = (): string => {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;

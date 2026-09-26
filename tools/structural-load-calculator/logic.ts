@@ -3,6 +3,11 @@ import { CalculationType, Unit, StructuralCalculation, CalculationHistory, LoadP
 // Constants
 const KN_TO_LB = 224.809;
 const M_TO_FT = 3.28084;
+const KN_M2_TO_PSF = 20.8854;
+
+/* Presets are stored in kN/m²; in Imperial mode the load fields are psf. */
+export const presetLoadForUnit = (loadKnM2: number, unit: Unit): number =>
+  unit === 'imperial' ? Number((loadKnM2 * KN_M2_TO_PSF).toFixed(1)) : loadKnM2;
 
 // Generate unique ID
 export const generateId = (): string => {

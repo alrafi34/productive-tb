@@ -5,6 +5,13 @@ const KN_TO_LB = 224.809;
 const M_TO_FT = 3.28084;
 const SQM_TO_SQFT = 10.7639;
 
+/* Presets are stored in kN and kN/m²; in Imperial mode the fields are lb and psf,
+   converted with the same factors convertLoadToKN / convertBearingCapacityToMetric undo. */
+export const presetLoadForUnit = (loadKn: number, unit: Unit): number =>
+  unit === 'imperial' ? Math.round(loadKn * KN_TO_LB) : loadKn;
+export const presetBearingCapacityForUnit = (capacityKnM2: number, unit: Unit): number =>
+  unit === 'imperial' ? Math.round(capacityKnM2 * (KN_TO_LB / SQM_TO_SQFT)) : capacityKnM2;
+
 // Generate unique ID
 export const generateId = (): string => {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
