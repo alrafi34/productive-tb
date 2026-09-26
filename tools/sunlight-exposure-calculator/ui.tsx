@@ -80,6 +80,8 @@ export default function SunlightExposureCalculatorUI() {
   // Draw visualization
   useEffect(() => {
     if (!calculation || !canvasRef.current) return;
+    // the drawing scales from the height; never hand the canvas a non-finite value
+    if (!Number.isFinite(calculation.inputs.buildingHeight)) return;
     
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');

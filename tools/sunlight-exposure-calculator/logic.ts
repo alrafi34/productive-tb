@@ -254,15 +254,16 @@ export function validateInputs(
   longitude: number,
   buildingHeight: number
 ): string | null {
-  if (latitude < -90 || latitude > 90) {
+  // NaN (an empty or whitespace field) fails every comparison, so test it first
+  if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90) {
     return "Latitude must be between -90 and 90 degrees";
   }
   
-  if (longitude < -180 || longitude > 180) {
+  if (!Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
     return "Longitude must be between -180 and 180 degrees";
   }
   
-  if (buildingHeight <= 0) {
+  if (!Number.isFinite(buildingHeight) || buildingHeight <= 0) {
     return "Building height must be greater than 0";
   }
   
