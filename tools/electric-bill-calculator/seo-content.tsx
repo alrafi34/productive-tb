@@ -17,7 +17,7 @@ export default function ElectricBillCalculatorSEO() {
     ["Laptop", "60 W", "6 h", "10.8 kWh", "$1.94"],
     ["Desktop PC", "250 W", "4 h", "30 kWh", "$5.40"],
     ["Washing machine", "500 W", "1 h", "15 kWh", "$2.70"],
-    ["Microwave", "1,100 W", "20 min", "9.9 kWh", "$1.78"],
+    ["Microwave", "1,100 W", "18 min", "9.9 kWh", "$1.78"],
     ["Window / portable AC", "1,500 W", "6 h", "270 kWh", "$48.60"],
     ["Space heater", "1,500 W", "4 h", "180 kWh", "$32.40"],
     ["Clothes dryer", "3,000 W", "1 h", "90 kWh", "$16.20"],
