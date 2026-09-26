@@ -12,7 +12,9 @@ import {
   exportToCSV,
   downloadFile,
   formatNumber,
-  getWarnings
+  getWarnings,
+  presetThicknessForUnit,
+  presetLoadForUnit,
 } from "./logic";
 import SlabLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -71,9 +73,9 @@ export default function SlabLoadCalculatorUI() {
   };
 
   const handleApplyPreset = (preset: any) => {
-    setThickness(preset.thickness.toString());
-    setLiveLoad(preset.liveLoad.toString());
-    setAdditionalLoad(preset.additionalLoad.toString());
+    setThickness(presetThicknessForUnit(preset.thickness, unit).toString());
+    setLiveLoad(presetLoadForUnit(preset.liveLoad, unit).toString());
+    setAdditionalLoad(presetLoadForUnit(preset.additionalLoad, unit).toString());
   };
 
   const handleCopy = () => {

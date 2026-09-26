@@ -5,10 +5,14 @@ export interface MechanicalInputs {
   speed: number; // RPM
 }
 
+export type Supply = 'dc' | 'single' | 'three';
+
 export interface ElectricalInputs {
-  voltage: number; // V
+  voltage: number; // V (line-to-line for three-phase)
   current: number; // A
   efficiency: number; // 0 to 1
+  supply?: Supply; // defaults to single-phase AC
+  powerFactor?: number; // 0 to 1, AC only; defaults to 0.85
 }
 
 export interface HorsepowerInputs {

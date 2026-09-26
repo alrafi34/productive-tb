@@ -4,7 +4,8 @@ export interface SunlightInputs {
   latitude: number;
   longitude: number;
   date: Date;
-  time: number; // Hours in 24h format (e.g., 14.5 for 2:30 PM)
+  time: number; // Local clock time in hours, 24h format (e.g., 14.5 for 2:30 PM)
+  utcOffset?: number; // Hours the clock is ahead of UTC (e.g., 6 for Dhaka); defaults to round(longitude / 15)
   buildingHeight: number;
   buildingOrientation: number; // 0-360 degrees
   surfaceType: SurfaceType;

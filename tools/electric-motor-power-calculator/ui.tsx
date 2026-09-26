@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { MotorPowerInputs, MotorPowerResult, CalculationMode } from "./types";
+import { MotorPowerInputs, MotorPowerResult, CalculationMode, ElectricalInputs, Supply } from "./types";
 import {
   calculateMotorPower,
   validateInputs,
@@ -15,7 +15,8 @@ import {
   formatNumber,
   debounce,
   saveSettings,
-  loadSettings
+  loadSettings,
+  SUPPLY_LABELS,
 } from "./logic";
 import ElectricMotorPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -29,10 +30,12 @@ export default function ElectricMotorPowerCalculatorUI() {
     torque: savedSettings.mechanical?.torque || 10,
     speed: savedSettings.mechanical?.speed || 1500
   });
-  const [electricalInputs, setElectricalInputs] = useState({
+  const [electricalInputs, setElectricalInputs] = useState<ElectricalInputs>({
     voltage: savedSettings.electrical?.voltage || 220,
     current: savedSettings.electrical?.current || 5,
-    efficiency: savedSettings.electrical?.efficiency || 0.9
+    efficiency: savedSettings.electrical?.efficiency || 0.9,
+    supply: savedSettings.electrical?.supply || 'single',
+    powerFactor: savedSettings.electrical?.powerFactor || 0.85
   });
   const [horsepowerInputs, setHorsepowerInputs] = useState({
     horsepower: savedSettings.horsepower?.horsepower || 2
@@ -96,7 +99,7 @@ export default function ElectricMotorPowerCalculatorUI() {
 
   const handleReset = () => {
     setMechanicalInputs({ torque: 10, speed: 1500 });
-    setElectricalInputs({ voltage: 220, current: 5, efficiency: 0.9 });
+    setElectricalInputs({ voltage: 220, current: 5, efficiency: 0.9, supply: 'single', powerFactor: 0.85 });
     setHorsepowerInputs({ horsepower: 2 });
     setResult(null);
     setError(null);
@@ -109,7 +112,7 @@ export default function ElectricMotorPowerCalculatorUI() {
         setMechanicalInputs(preset.values as any);
         break;
       case 'electrical':
-        setElectricalInputs(preset.values as any);
+        setElectricalInputs({ supply: 'single', powerFactor: 0.85, ...(preset.values as ElectricalInputs) });
         break;
       case 'horsepower':
         setHorsepowerInputs(preset.values as any);
@@ -343,6 +346,22 @@ export default function ElectricMotorPowerCalculatorUI() {
                 <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
                   Electrical Parameters
                 </h3>
+
+                <div>
+                  <label htmlFor="motor-supply" className="block text-sm font-medium text-gray-700 mb-2">
+                    Supply
+                  </label>
+                  <select
+                    id="motor-supply"
+                    value={electricalInputs.supply ?? 'single'}
+                    onChange={(e) => setElectricalInputs(prev => ({ ...prev, supply: e.target.value as Supply }))}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
+                  >
+                    <option value="single">{SUPPLY_LABELS.single}</option>
+                    <option value="three">{SUPPLY_LABELS.three}</option>
+                    <option value="dc">{SUPPLY_LABELS.dc}</option>
+                  </select>
+                </div>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -358,7 +377,7 @@ export default function ElectricMotorPowerCalculatorUI() {
                     step="1"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Supply voltage in volts
+                    {electricalInputs.supply === 'three' ? 'Line-to-line supply voltage in volts' : 'Supply voltage in volts'}
                   </p>
                 </div>
 
@@ -403,10 +422,37 @@ export default function ElectricMotorPowerCalculatorUI() {
                   </p>
                 </div>
 
+                {electricalInputs.supply !== 'dc' && (
+                  <div>
+                    <label htmlFor="motor-pf" className="block text-sm font-medium text-gray-700 mb-2">
+                      Power Factor (PF)
+                    </label>
+                    <input
+                      id="motor-pf"
+                      type="number"
+                      value={electricalInputs.powerFactor ?? ''}
+                      onChange={(e) => setElectricalInputs(prev => ({ ...prev, powerFactor: parseFloat(e.target.value) || 0 }))}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                      placeholder="0.85"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Ratio of real to apparent power (typical: 0.80-0.90 at full load)
+                    </p>
+                  </div>
+                )}
+
                 {result && (
                   <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                     <div className="text-sm text-green-800">
-                      <strong>Formula:</strong> P = V × I × η
+                      <strong>Formula:</strong>{' '}
+                      {electricalInputs.supply === 'dc'
+                        ? 'P = V × I × η'
+                        : electricalInputs.supply === 'three'
+                          ? 'P = √3 × V × I × PF × η'
+                          : 'P = V × I × PF × η'}
                     </div>
                   </div>
                 )}

@@ -115,6 +115,27 @@ export function generatePassphrase(options: PassphraseOptions): string {
   return passphrase;
 }
 
+// Entropy of a passphrase: each word is one uniform pick from WORD_LIST and
+// the optional number one pick from 0000–9998; capitals and separators are fixed
+export function passphraseEntropy(options: PassphraseOptions): number {
+  return options.wordCount * Math.log2(WORD_LIST.length) + (options.includeNumber ? Math.log2(9999) : 0);
+}
+
+// Entropy of a pattern: each placeholder is one uniform pick from its set;
+// literal characters add nothing. Mirrors generateFromPattern's switch, which
+// matches on the upper-cased character.
+export function patternEntropy(pattern: string): number {
+  const sizes: Record<string, number> = {
+    L: UPPERCASE.length + LOWERCASE.length,
+    U: UPPERCASE.length,
+    N: NUMBERS.length,
+    S: SYMBOLS.length,
+  };
+  let bits = 0;
+  for (const char of pattern) bits += sizes[char.toUpperCase()] ? Math.log2(sizes[char.toUpperCase()]) : 0;
+  return bits;
+}
+
 // Generate password from pattern
 export function generateFromPattern(pattern: string): string {
   let result = '';
@@ -181,9 +202,10 @@ export function estimateCrackTime(entropy: number): string {
   return 'Millions of years';
 }
 
-// Calculate password strength
-export function calculateStrength(password: string): PasswordStrength {
-  const entropy = calculateEntropy(password);
+// Calculate password strength. Pass the generator's own entropy when known:
+// estimating it from the characters alone overstates passphrases and patterns.
+export function calculateStrength(password: string, generatedEntropy?: number): PasswordStrength {
+  const entropy = generatedEntropy ?? calculateEntropy(password);
   const crackTime = estimateCrackTime(entropy);
   
   let score = 0;

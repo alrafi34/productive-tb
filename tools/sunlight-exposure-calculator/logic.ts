@@ -31,11 +31,44 @@ function calculateDeclination(dayOfYear: number): number {
 }
 
 /**
- * Calculate hour angle
+ * Equation of time in minutes: how far the sun runs ahead of (+) or behind
+ * (−) a uniform clock on this day of the year.
  */
-function calculateHourAngle(time: number): number {
-  // H = 15° × (time - 12)
-  return 15 * (time - 12);
+export function equationOfTime(dayOfYear: number): number {
+  const b = toRadians((360 / 365) * (dayOfYear - 81));
+  return 9.87 * Math.sin(2 * b) - 7.53 * Math.cos(b) - 1.5 * Math.sin(b);
+}
+
+/**
+ * Local solar time (hours) for a clock time at a longitude in a time zone:
+ * 4 minutes per degree between the longitude and its zone's meridian
+ * (15° × UTC offset), plus the equation of time.
+ */
+export function solarTime(clockTime: number, longitude: number, utcOffset: number, dayOfYear: number): number {
+  return clockTime + (4 * (longitude - 15 * utcOffset) + equationOfTime(dayOfYear)) / 60;
+}
+
+/** Clock time (hours) at which the sun is due south/north (solar noon). */
+export function solarNoonClockTime(longitude: number, utcOffset: number, date: Date): number {
+  return 12 - (4 * (longitude - 15 * utcOffset) + equationOfTime(getDayOfYear(date))) / 60;
+}
+
+/** The time zone's UTC offset in hours on a given date (daylight saving included). */
+export function utcOffsetFor(timeZone: string, date: Date): number {
+  const noon = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12);
+  const name = new Intl.DateTimeFormat("en-US", { timeZone, timeZoneName: "longOffset" })
+    .formatToParts(noon)
+    .find((p) => p.type === "timeZoneName")?.value ?? "GMT";
+  const m = /GMT([+-])(\d{2}):(\d{2})/.exec(name);
+  return m ? (m[1] === "-" ? -1 : 1) * (Number(m[2]) + Number(m[3]) / 60) : 0;
+}
+
+/**
+ * Calculate hour angle from local solar time
+ */
+function calculateHourAngle(solarTimeHours: number): number {
+  // H = 15° × (solar time − 12)
+  return 15 * (solarTimeHours - 12);
 }
 
 /**
@@ -89,11 +122,13 @@ function calculateAzimuth(
  * Calculate sun position
  */
 export function calculateSunPosition(inputs: SunlightInputs): SunPosition {
-  const { latitude, date, time } = inputs;
+  const { latitude, longitude, date, time } = inputs;
+  // Without a time zone, assume the one nominally centred on this longitude
+  const utcOffset = inputs.utcOffset ?? Math.round(longitude / 15);
   
   const dayOfYear = getDayOfYear(date);
   const declination = calculateDeclination(dayOfYear);
-  const hourAngle = calculateHourAngle(time);
+  const hourAngle = calculateHourAngle(solarTime(time, longitude, utcOffset, dayOfYear));
   const elevation = calculateElevation(latitude, declination, hourAngle);
   const azimuth = calculateAzimuth(latitude, declination, hourAngle, elevation);
   
@@ -159,14 +194,12 @@ export function calculateExposure(
     // Maximum at 90° (sun directly overhead)
     exposure = Math.sin(toRadians(elevation)) * 100;
   } else if (surfaceType === "wall") {
-    // Wall exposure depends on angle between sun and wall orientation
-    const angleDiff = Math.abs(normalizeAngle(azimuth - buildingOrientation));
-    const facingFactor = Math.cos(toRadians(Math.min(angleDiff, 180 - angleDiff)));
-    
-    // Also factor in elevation (lower sun = less direct light on vertical surfaces)
-    const elevationFactor = Math.sin(toRadians(elevation));
-    
-    exposure = Math.max(0, facingFactor * elevationFactor * 100);
+    // Incidence on a vertical surface whose outward normal points at the wall's
+    // orientation: cos θ = cos(elevation) · cos(azimuth − orientation). It is
+    // negative when the sun is behind the wall, which gets no direct light.
+    const cosIncidence =
+      Math.cos(toRadians(elevation)) * Math.cos(toRadians(azimuth - buildingOrientation));
+    exposure = Math.max(0, cosIncidence * 100);
   } else if (surfaceType === "ground") {
     // Ground exposure similar to roof but inverted
     exposure = Math.sin(toRadians(elevation)) * 100;
@@ -241,14 +274,33 @@ function toDegrees(radians: number): number {
   return radians * (180 / Math.PI);
 }
 
-function normalizeAngle(angle: number): number {
-  while (angle < 0) angle += 360;
-  while (angle >= 360) angle -= 360;
-  return angle;
-}
-
 export function formatNumber(value: number, decimals: number = 2): string {
   return value.toFixed(decimals);
+}
+
+/* UTC offsets in use around the world, in hours. */
+export const UTC_OFFSETS: number[] = [
+  -12, -11, -10, -9.5, -9, -8, -7, -6, -5, -4, -3.5, -3, -2, -1, 0, 1, 2, 3, 3.5, 4, 4.5,
+  5, 5.5, 5.75, 6, 6.5, 7, 8, 8.75, 9, 9.5, 10, 10.5, 11, 12, 12.75, 13, 14,
+];
+
+export function formatUtcOffset(offset: number): string {
+  const sign = offset < 0 ? "−" : "+";
+  const abs = Math.abs(offset);
+  const minutes = Math.round((abs % 1) * 60);
+  return `UTC${sign}${Math.floor(abs)}${minutes ? `:${String(minutes).padStart(2, "0")}` : ""}`;
+}
+
+/* A date input's "YYYY-MM-DD" as local midnight (new Date("YYYY-MM-DD") is UTC). */
+export function parseDateInput(value: string): Date {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : new Date(value);
+}
+
+/* A date as a date input's "YYYY-MM-DD", in local time. */
+export function toDateInputValue(date: Date): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 export function formatTime(hours: number): string {
@@ -262,15 +314,16 @@ export function validateInputs(
   longitude: number,
   buildingHeight: number
 ): string | null {
-  if (latitude < -90 || latitude > 90) {
+  // NaN (an empty or whitespace field) fails every comparison, so test it first
+  if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90) {
     return "Latitude must be between -90 and 90 degrees";
   }
   
-  if (longitude < -180 || longitude > 180) {
+  if (!Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
     return "Longitude must be between -180 and 180 degrees";
   }
   
-  if (buildingHeight <= 0) {
+  if (!Number.isFinite(buildingHeight) || buildingHeight <= 0) {
     return "Building height must be greater than 0";
   }
   

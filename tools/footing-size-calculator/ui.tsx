@@ -13,7 +13,9 @@ import {
   downloadFile,
   formatNumber,
   getUnitLabels,
-  validateFooting
+  validateFooting,
+  presetLoadForUnit,
+  presetBearingCapacityForUnit,
 } from "./logic";
 import FootingSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -81,8 +83,8 @@ export default function FootingSizeCalculatorUI() {
   };
 
   const handleApplyPreset = (preset: { load: number; bearingCapacity: number }) => {
-    setLoad(preset.load.toString());
-    setBearingCapacity(preset.bearingCapacity.toString());
+    setLoad(presetLoadForUnit(preset.load, unit).toString());
+    setBearingCapacity(presetBearingCapacityForUnit(preset.bearingCapacity, unit).toString());
   };
 
   const handleCopy = () => {
@@ -409,7 +411,7 @@ export default function FootingSizeCalculatorUI() {
                     <div className="font-semibold text-gray-900 text-sm">{preset.name}</div>
                     <div className="text-xs text-gray-600 mt-1">{preset.description}</div>
                     <div className="text-xs text-primary font-semibold mt-1">
-                      Load: {preset.load} kN • SBC: {preset.bearingCapacity} kN/m²
+                      Load: {presetLoadForUnit(preset.load, unit).toLocaleString("en-US")} {unit === 'metric' ? 'kN' : 'lb'} • SBC: {presetBearingCapacityForUnit(preset.bearingCapacity, unit).toLocaleString("en-US")} {unit === 'metric' ? 'kN/m²' : 'psf'}
                     </div>
                   </button>
                 ))}

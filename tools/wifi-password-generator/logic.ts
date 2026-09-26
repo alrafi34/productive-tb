@@ -80,66 +80,76 @@ function getCharacterPool(options: WiFiPasswordOptions): string {
   return pool;
 }
 
-// Generate memorable WiFi password
-export function generateMemorablePassword(options: WiFiPasswordOptions): string {
+// Generate memorable WiFi password. Each character is recorded with the
+// entropy of the choice that produced it (log2 of the set it was drawn from;
+// fixed capitals and the "-" add nothing), so strength reflects the pattern.
+function buildMemorablePassword(options: WiFiPasswordOptions): { password: string; entropy: number } {
   const length = options.length;
-  let password = '';
-  
+  const chars: string[] = [];
+  const bits: number[] = [];
+  const pick = (set: string) => {
+    chars.push(set[getSecureRandomInt(set.length)]);
+    bits.push(Math.log2(set.length));
+  };
+  const fixed = (char: string) => {
+    chars.push(char);
+    bits.push(0);
+  };
+  const capitalize = (index: number) => {
+    if (index < chars.length) chars[index] = chars[index].toUpperCase();
+  };
+
   // Generate pronounceable segments
   const segmentLength = Math.floor(length / 2);
-  
+
   for (let i = 0; i < segmentLength; i++) {
     // Alternate consonant-vowel pattern
-    if (i % 2 === 0) {
-      password += CONSONANTS[getSecureRandomInt(CONSONANTS.length)];
-    } else {
-      password += VOWELS[getSecureRandomInt(VOWELS.length)];
-    }
+    pick(i % 2 === 0 ? CONSONANTS : VOWELS);
   }
-  
+
   // Capitalize first letter if uppercase is enabled
-  if (options.uppercase && password.length > 0) {
-    password = password.charAt(0).toUpperCase() + password.slice(1);
-  }
-  
+  if (options.uppercase) capitalize(0);
+
   // Add numbers if enabled
   if (options.numbers) {
     const numCount = Math.max(2, Math.floor(length * 0.2));
-    for (let i = 0; i < numCount; i++) {
-      password += NUMBERS[getSecureRandomInt(NUMBERS.length)];
-    }
+    for (let i = 0; i < numCount; i++) pick(NUMBERS);
   }
-  
+
   // Add separator and second segment if length allows
   if (length > 8) {
-    password += '-';
-    const secondSegmentLength = Math.floor((length - password.length) / 2);
-    
+    fixed('-');
+    const secondStart = chars.length;
+    const secondSegmentLength = Math.floor((length - chars.length) / 2);
+
     for (let i = 0; i < secondSegmentLength; i++) {
-      if (i % 2 === 0) {
-        password += CONSONANTS[getSecureRandomInt(CONSONANTS.length)];
-      } else {
-        password += VOWELS[getSecureRandomInt(VOWELS.length)];
-      }
+      pick(i % 2 === 0 ? CONSONANTS : VOWELS);
     }
-    
+
     // Capitalize second segment if uppercase is enabled
-    if (options.uppercase) {
-      const parts = password.split('-');
-      if (parts[1]) {
-        parts[1] = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
-        password = parts.join('-');
-      }
-    }
-    
+    if (options.uppercase) capitalize(secondStart);
+
     // Add more numbers to reach desired length
-    while (password.length < length && options.numbers) {
-      password += NUMBERS[getSecureRandomInt(NUMBERS.length)];
-    }
+    while (chars.length < length && options.numbers) pick(NUMBERS);
   }
-  
+
   // Trim to exact length
-  return password.slice(0, length);
+  return {
+    password: chars.slice(0, length).join(''),
+    entropy: bits.slice(0, length).reduce((sum, b) => sum + b, 0),
+  };
+}
+
+export function generateMemorablePassword(options: WiFiPasswordOptions): string {
+  return buildMemorablePassword(options).password;
+}
+
+// Generate a WiFi password together with the entropy of how it was generated
+export function generateWiFiPasswordWithEntropy(options: WiFiPasswordOptions): { password: string; entropy: number } {
+  if (options.memorable) return buildMemorablePassword(options);
+  const password = generateWiFiPassword(options);
+  // Random mode draws every character uniformly from the pool
+  return { password, entropy: password.length * Math.log2(Math.max(1, getCharacterPool(options).length)) };
 }
 
 // Generate random WiFi password
@@ -189,6 +199,20 @@ export function generateWiFiPassword(options: WiFiPasswordOptions): string {
   
   // Shuffle the password
   return password.split('').sort(() => getSecureRandomInt(3) - 1).join('');
+}
+
+// Entropy of a pattern: each placeholder is one uniform pick from its set;
+// literal characters add nothing
+export function patternEntropy(pattern: string): number {
+  const sizes: Record<string, number> = {
+    L: UPPERCASE.length + LOWERCASE.length,
+    U: UPPERCASE.length,
+    N: NUMBERS.length,
+    S: SYMBOLS.length,
+  };
+  let bits = 0;
+  for (const char of pattern) bits += sizes[char.toUpperCase()] ? Math.log2(sizes[char.toUpperCase()]) : 0;
+  return bits;
 }
 
 // Generate password from pattern
@@ -254,9 +278,10 @@ export function estimateCrackTime(entropy: number): string {
   return 'Millions of years';
 }
 
-// Calculate password strength
-export function calculateStrength(password: string): PasswordStrength {
-  const entropy = calculateEntropy(password);
+// Calculate password strength. Pass the generator's own entropy when known:
+// estimating it from the characters alone overstates patterned passwords.
+export function calculateStrength(password: string, generatedEntropy?: number): PasswordStrength {
+  const entropy = generatedEntropy ?? calculateEntropy(password);
   const crackTime = estimateCrackTime(entropy);
   
   let score = 0;
@@ -331,8 +356,8 @@ export function generateMultiplePasswords(
   const passwords: GeneratedPassword[] = [];
   
   for (let i = 0; i < count; i++) {
-    const password = generateWiFiPassword(options);
-    const strength = calculateStrength(password);
+    const { password, entropy } = generateWiFiPasswordWithEntropy(options);
+    const strength = calculateStrength(password, entropy);
     
     passwords.push({
       id: crypto.randomUUID(),
