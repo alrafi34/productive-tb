@@ -186,6 +186,7 @@ export const tools: Tool[] = [
   
   // Advanced Science & Math Utilities (New)
   { slug: "matrix-calculator", name: "Matrix Calculator", description: "Performs addition, multiplication, and inversion of matrices.", category: "calculator", icon: "🔢", free: true },
+  { slug: "celsius-to-fahrenheit-converter", name: "Celsius to Fahrenheit Converter", description: "Convert °C to °F and back with the formula and a chart.", category: "calculator", icon: "🌡️", free: true },
   { slug: "temperature-conversion-scientific", name: "Temperature Conversion (Scientific)", description: "Kelvin, Celsius, Fahrenheit, Rankine.", category: "calculator", icon: "🌡️", free: true },
   // Niche & Advanced Utilities (New)
   { slug: "hex-to-rgba-converter", name: "Hex-to-RGBA Converter", description: "Adds an alpha channel slider.", category: "design", icon: "🎨", free: true },
