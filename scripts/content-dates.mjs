@@ -26,6 +26,12 @@ const IGNORE_COMMITS = new Set([
   '04b0ed3', // www → non-www URL in power-consumption-calculator's JSON-LD
 ]);
 
+/* Squash merges whose message carries "[no-content-date]" from some of the
+   squashed commits while others did change content: they still count. */
+const CONTENT_COMMITS = new Set([
+  '4ca317d', // #75: rewrote the electric bill calculator's content
+]);
+
 /* Standalone pages whose content lives in one file. */
 const PAGES = {
   '/': 'app/page.tsx',
@@ -58,10 +64,20 @@ function lastChanged(files) {
   const existing = files.filter((f) => fs.existsSync(path.join(ROOT, f)));
   if (!existing.length) return null;
   if (existing.some((f) => uncommitted.has(f))) return today;
-  const log = git('log', '--format=%h %cs', '--invert-grep', '--fixed-strings', '--grep=[no-content-date]', '--', ...existing);
+  const tagged = new Set(
+    git('log', '--format=%h', '--fixed-strings', '--grep=[no-content-date]', '--', ...existing)
+      .split('\n')
+      .filter(Boolean)
+      .map((h) => h.slice(0, 7))
+  );
+  const log = git('log', '--format=%h %cs', '--', ...existing);
   for (const line of log.split('\n')) {
     const [hash, date] = line.split(' ');
-    if (hash && !IGNORE_COMMITS.has(hash.slice(0, 7))) return date;
+    if (!hash) continue;
+    const short = hash.slice(0, 7);
+    if (IGNORE_COMMITS.has(short)) continue;
+    if (tagged.has(short) && !CONTENT_COMMITS.has(short)) continue;
+    return date;
   }
   return null;
 }
