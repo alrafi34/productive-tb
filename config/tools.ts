@@ -74,7 +74,7 @@ export const tools: Tool[] = [
   // Math & Data Converters (New)
   { slug: "timestamp-unix-converter", name: "Timestamp/Unix Converter", description: "Convert Unix Epoch to human-readable dates.", category: "calculator", icon: "🕐", free: true },
   { slug: "binary-hex-decimal-converter", name: "Binary/Hex/Decimal Converter", description: "Switch numbers between different bases.", category: "math", icon: "🔢", free: true },
-  { slug: "loan-emi-calculator", name: "Loan/EMI Calculator", description: "Calculate monthly payments with interest.", category: "calculator", icon: "💳", free: true },
+  { slug: "loan-calculator", name: "Loan Calculator", description: "Monthly payment, interest and schedule for any loan.", category: "calculator", icon: "💳", free: true },
   { slug: "random-number-generator", name: "Random Number Generator", description: "Generate random value within range.", category: "math", icon: "🎲", free: true },
   { slug: "currency-format-previewer", name: "Currency Format Previewer", description: "Show numbers in different global currencies.", category: "calculator", icon: "💱", free: true },
   
@@ -399,8 +399,6 @@ export const tools: Tool[] = [
   { slug: "soil-volume-calculator", name: "Soil Volume Calculator", description: "Calculate soil excavation volume.", category: "land", icon: "🏗️", free: true },
   { slug: "earth-filling-calculator", name: "Earth Filling Calculator", description: "Estimate fill material needed.", category: "land", icon: "🚜", free: true },
   { slug: "excavation-cost-calculator", name: "Excavation Cost Calculator", description: "Estimate digging cost.", category: "land", icon: "💰", free: true },
-  { slug: "mortgage-loan-calculator", name: "Mortgage Loan Calculator", description: "Calculate monthly loan payments.", category: "land", icon: "🏦", free: true },
-  { slug: "home-loan-emi-calculator", name: "Home Loan EMI Calculator", description: "Compute EMI for property loan.", category: "land", icon: "🏠", free: true },
   { slug: "down-payment-calculator", name: "Down Payment Calculator", description: "Calculate upfront payment.", category: "land", icon: "💵", free: true },
   { slug: "loan-interest-calculator-property", name: "Loan Interest Calculator (Property)", description: "Calculate interest on land loans.", category: "land", icon: "💰", free: true },
   { slug: "rental-yield-calculator", name: "Rental Yield Calculator", description: "Calculate return from rental property.", category: "land", icon: "📊", free: true },
