@@ -4,6 +4,10 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { 
   ExponentHistoryEntry,
   calculatePower, 
+  parseExponent,
+  complexPower,
+  formatComplex,
+  getRootSteps,
   formatValue,
   getHistory,
   saveToHistory,
@@ -31,13 +35,25 @@ export default function ExponentCalculatorUI() {
   }, []);
 
   const baseNum = parseFloat(baseInput);
-  const exponentNum = parseFloat(exponentInput);
-  const isValid = !isNaN(baseNum) && !isNaN(exponentNum);
+  const parsedExponent = parseExponent(exponentInput);
+  const exponentNum = parsedExponent ? parsedExponent.value : NaN;
+  const exponentFraction = parsedExponent?.fraction;
+  const isValid = !isNaN(baseNum) && parsedExponent !== null;
   
   const result = useMemo(() => {
     if (!isValid) return 0;
-    return calculatePower(baseNum, exponentNum);
-  }, [baseNum, exponentNum, isValid]);
+    return calculatePower(baseNum, exponentNum, exponentFraction);
+  }, [baseNum, exponentNum, exponentFraction, isValid]);
+
+  // No real answer: an even root of a negative number, or 0 to a negative power
+  const noRealResult = isValid && isNaN(result);
+  const divisionByZero = isValid && baseNum === 0 && exponentNum < 0;
+  const resultText = noRealResult
+    ? "No real result"
+    : divisionByZero
+      ? "Undefined"
+      : formatValue(result, precision, isScientific);
+  const rootSteps = isValid && exponentFraction ? getRootSteps(baseNum, exponentFraction) : "";
 
   const expansionSteps = useMemo(() => {
     if (!showSteps || !isValid) return "";
@@ -47,7 +63,9 @@ export default function ExponentCalculatorUI() {
   const handleCopy = () => {
     if (!isValid) return;
     const fromStr = `${baseInput}^${exponentInput}`;
-    const toStr = formatValue(result, precision, isScientific);
+    const toStr = noRealResult
+      ? formatComplex(complexPower(baseNum, exponentNum), precision)
+      : resultText;
     const text = `${fromStr} = ${toStr}`;
     
     navigator.clipboard.writeText(text);
@@ -56,7 +74,7 @@ export default function ExponentCalculatorUI() {
   };
 
   const handleSaveToHistory = useCallback(() => {
-    if (!isValid) return;
+    if (!isValid || noRealResult || divisionByZero) return;
     
     const entry: ExponentHistoryEntry = {
       id: crypto.randomUUID(),
@@ -69,7 +87,7 @@ export default function ExponentCalculatorUI() {
     
     saveToHistory(entry);
     setHistory(getHistory());
-  }, [baseNum, exponentNum, result, precision, isValid]);
+  }, [baseNum, exponentNum, result, precision, isValid, noRealResult, divisionByZero]);
 
   const handleClear = () => {
     setBaseInput("");
@@ -115,11 +133,12 @@ export default function ExponentCalculatorUI() {
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">Exponent (y)</label>
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="decimal"
                   value={exponentInput}
                   onChange={(e) => setExponentInput(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-xl font-bold text-gray-800"
-                  placeholder="e.g. 3"
+                  placeholder="e.g. 3 or 1/3"
                 />
               </div>
             </div>
@@ -129,7 +148,7 @@ export default function ExponentCalculatorUI() {
                 <div className="flex justify-between items-center">
                   <label className="text-sm font-medium text-gray-500">Exponent Slider</label>
                   <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-lg">
-                    {exponentNum || 0}
+                    {Number((exponentNum || 0).toFixed(3))}
                   </span>
                 </div>
                 <input
@@ -188,12 +207,26 @@ export default function ExponentCalculatorUI() {
                 <>
                   <div className="flex items-baseline gap-1">
                     <span className="text-5xl font-black text-gray-900" style={{ fontFamily: "var(--font-heading)" }}>
-                      {formatValue(result, precision, isScientific)}
+                      {resultText}
                     </span>
                   </div>
+                  {noRealResult && (
+                    <p className="text-sm text-gray-600">
+                      An even root of a negative number is not real. Complex value:{" "}
+                      <span className="font-mono font-semibold text-gray-900">{formatComplex(complexPower(baseNum, exponentNum), precision)}</span>
+                    </p>
+                  )}
+                  {divisionByZero && (
+                    <p className="text-sm text-gray-600">0 raised to a negative power means dividing by zero.</p>
+                  )}
+                  {showSteps && rootSteps && !noRealResult && !divisionByZero && (
+                    <div className="mt-4 px-4 py-2 bg-white/60 rounded-xl border border-primary/10 text-xs font-medium text-gray-600 font-mono">
+                      {rootSteps} = {resultText}
+                    </div>
+                  )}
                   {expansionSteps && (
                     <div className="mt-4 px-4 py-2 bg-white/60 rounded-xl border border-primary/10 text-xs font-medium text-gray-600 font-mono">
-                      {expansionSteps} = {formatValue(result, precision, isScientific)}
+                      {expansionSteps} = {resultText}
                     </div>
                   )}
                 </>
@@ -207,7 +240,7 @@ export default function ExponentCalculatorUI() {
               <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center justify-between text-xs font-medium text-gray-500">
                 <span className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                  Calculation: <code className="bg-white px-1.5 py-0.5 rounded border border-gray-200">{baseNum}^{exponentNum}</code>
+                  Calculation: <code className="bg-white px-1.5 py-0.5 rounded border border-gray-200">{baseNum}^{exponentFraction && exponentFraction.den > 1 ? `(${exponentInput.trim()})` : exponentNum}</code>
                 </span>
                 {exponentNum === 0 && <span className="text-primary font-bold">Hint: x⁰ = 1</span>}
                 {exponentNum === 0.5 && <span className="text-primary font-bold">Hint: x⁰·⁵ = √x</span>}
