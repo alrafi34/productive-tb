@@ -4,11 +4,11 @@ import ToolLayout from "@/components/ToolLayout";
 import { siteConfig } from "@/config/site";
 import { toolRobots } from "@/lib/indexing";
 import { categories } from "@/config/tools";
-import { mortgageCalculatorConfig as config } from "@/tools/mortgage-calculator/config";
+import { toolConfig as config } from "@/tools/time-duration-calculator/config";
 
-const MortgageCalculatorUI = dynamic(() => import("@/tools/mortgage-calculator/ui"));
+const TimeDurationCalculatorUI = dynamic(() => import("@/tools/time-duration-calculator/ui"));
 
-const canonicalUrl = `${siteConfig.url}/tools/calculator/mortgage-calculator`;
+const canonicalUrl = `${siteConfig.url}/tools/calculator/time-duration-calculator`;
 
 const seo = (config as any).seo ?? {};
 const toolName = (config as any).name;
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   alternates: { canonical: canonicalUrl },
-  ...toolRobots("mortgage-calculator"),
+  ...toolRobots("time-duration-calculator"),
   // `robots` is only set by toolRobots() above, for tools in config/noindex.ts.
   // Otherwise it is left unset on purpose: the root layout sets robots.googleBot with
   // max-image-preview:large and max-snippet:-1, and Next replaces the parent
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   // { index, follow } here would silently drop those two directives.
 };
 
-export default function MortgageCalculatorPage() {
+export default function TimeDurationCalculatorPage() {
   const catObj = categories.find((c) => c.slug === "calculator");
 
   const jsonLd = {
@@ -104,13 +104,13 @@ export default function MortgageCalculatorPage() {
         />
       )}
       <ToolLayout
-        slug="mortgage-calculator"
+        slug="time-duration-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}
         category={catObj}
       >
-        <MortgageCalculatorUI />
+        <TimeDurationCalculatorUI />
       </ToolLayout>
     </>
   );
