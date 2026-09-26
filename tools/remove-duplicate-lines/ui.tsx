@@ -6,6 +6,7 @@ import { removeDuplicateLines, applyTextTransform, copyToClipboard, downloadAsFi
 import { removeDuplicateLinesConfig } from './config';
 import SEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function RemoveDuplicateLinesUI() {
   const [inputText, setInputText] = useState('');
@@ -368,8 +369,9 @@ export default function RemoveDuplicateLinesUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools currentTool="remove-duplicate-lines" />
+      <RelatedTools />
     </div>
   );
 }

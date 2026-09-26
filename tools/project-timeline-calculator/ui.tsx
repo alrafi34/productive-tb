@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ProjectTimelineCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ProjectTimelineCalculatorUI() {
   const [tasks, setTasks] = useState<Task[]>([createEmptyTask()]);
@@ -593,11 +594,9 @@ export default function ProjectTimelineCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ProjectTimelineCalculatorSEO />
-      <RelatedTools
-        currentTool="project-timeline-calculator"
-        tools={['construction-cost-estimator', 'labor-cost-calculator', 'material-cost-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

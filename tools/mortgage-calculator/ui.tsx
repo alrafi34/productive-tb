@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { MortgageInputs, calculateMortgage, generateAmortizationSchedule, compareLoanTerms, formatCurrency, exportScheduleToCSV, validateInputs } from "./logic";
 import MortgageCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'calculator' | 'compare' | 'schedule';
 
@@ -372,12 +373,10 @@ export default function MortgageCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MortgageCalculatorSEO />
 
-      <RelatedTools 
-        currentTool="mortgage-calculator"
-        tools={['loan-emi-calculator', 'simple-interest-calculator', 'discount-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

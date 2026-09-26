@@ -104,6 +104,7 @@ export default function ShadowLengthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="shadow-length-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Circle, VennState, createCircle, isPointInCircle, getCircleIntersectionPoint, circlesOverlap, exportAsJSON, importFromJSON } from "./logic";
 import VennDiagramSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const CIRCLE_LABELS = ["A", "B", "C"];
 const DEFAULT_COLORS = ["#3b82f6", "#ef4444", "#10b981"];
@@ -471,8 +472,9 @@ export default function VennDiagramMakerUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VennDiagramSEOContent />
-      <RelatedTools currentTool="venn-diagram-maker" tools={["flowchart-logic-mapper", "mind-map-builder", "timeline-creator"]} />
+      <RelatedTools />
     </>
   );
 }

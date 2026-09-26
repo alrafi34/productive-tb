@@ -104,6 +104,7 @@ export default function AirConditionerPowerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="air-conditioner-power-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

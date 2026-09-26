@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import PxToRemSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PxToRemConverterUI() {
   const [input, setInput] = useState("");
@@ -368,12 +369,10 @@ export default function PxToRemConverterUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <PxToRemSEOContent />
 
-      <RelatedTools
-        currentTool="px-to-rem-converter"
-        tools={["css-gradient-generator", "css-box-shadow-generator", "css-flexbox-playground"]}
-      />
+      <RelatedTools />
     </>
   );
 }

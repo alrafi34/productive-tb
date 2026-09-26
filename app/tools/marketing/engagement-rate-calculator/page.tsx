@@ -104,6 +104,7 @@ export default function EngagementRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="engagement-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

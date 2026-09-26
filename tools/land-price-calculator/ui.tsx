@@ -24,6 +24,7 @@ import {
 } from "./logic";
 import LandPriceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; area: string; areaUnit: Unit; rate: string }[] = [
   { label: "5 Decimal @ $20k",  area: "5",    areaUnit: "decimal", rate: "20000"  },
@@ -598,16 +599,9 @@ export default function LandPriceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LandPriceCalculatorSEO />
-      <RelatedTools
-        currentTool="land-price-calculator"
-        tools={[
-          "decimal-land-calculator",
-          "katha-land-calculator",
-          "bigha-land-calculator",
-          "acre-to-square-feet-converter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

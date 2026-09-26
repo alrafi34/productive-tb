@@ -104,6 +104,7 @@ export default function ChurnRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="churn-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

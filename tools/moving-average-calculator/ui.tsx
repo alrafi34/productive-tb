@@ -11,6 +11,7 @@ import {
 import { TrendChart, exportCanvasAsPng, buildChartSVG } from "./chart";
 import MovingAverageCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4, 5];
 const TYPE_LABELS: Record<MAType, string> = { sma: "SMA", wma: "WMA", ema: "EMA" };
@@ -411,19 +412,10 @@ export default function MovingAverageCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MovingAverageCalculatorSEO />
 
-      <RelatedTools
-        currentTool="moving-average-calculator"
-        tools={[
-          "mean-calculator",
-          "median-calculator",
-          "standard-deviation-calculator",
-          "regression-calculator",
-          "correlation-coefficient-calculator",
-          "data-growth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

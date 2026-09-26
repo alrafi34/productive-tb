@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import CronExpressionGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CronExpressionGeneratorUI() {
   const [cronState, setCronState] = useState<CronState>({
@@ -385,11 +386,9 @@ export default function CronExpressionGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CronExpressionGeneratorSEOContent />
-      <RelatedTools
-        currentTool="cron-expression-generator"
-        tools={["timestamp-unix-converter", "time-zone-converter", "pomodoro-timer"]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -13,6 +13,7 @@ import {
 import LatencyDistributionChart from "./chart";
 import DataPipelineLatencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DataPipelineLatencyCalculatorUI() {
   const [pipelineName, setPipelineName] = useState(DEFAULT_PIPELINE_NAME);
@@ -451,19 +452,10 @@ export default function DataPipelineLatencyCalculatorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <DataPipelineLatencyCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-pipeline-latency-calculator"
-        tools={[
-          "latency-calculator",
-          "cloud-cost-calculator",
-          "download-time-calculator",
-          "session-duration-calculator",
-          "storage-requirement-calculator",
-          "data-transfer-cost-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

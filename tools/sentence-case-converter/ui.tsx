@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toUpperCase, toLowerCase, toTitleCase, toSentenceCase } from "./logic";
 import SentenceCaseConverterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type CaseType = "uppercase" | "lowercase" | "titlecase" | "sentencecase";
 
@@ -124,9 +125,10 @@ export default function SentenceCaseConverterUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <SentenceCaseConverterSEOContent />
       
-      <RelatedTools currentTool="sentence-case-converter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

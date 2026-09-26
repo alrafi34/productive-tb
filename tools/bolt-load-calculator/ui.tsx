@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import BoltLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "M12 Grade 8.8",  diameter: "12",  diameterUnit: "mm" as const, unitSystem: "metric"   as const, grade: "8.8"    as BoltGrade, yieldStrength: "640",  tighteningPercent: 75, externalLoad: "0" },
@@ -674,18 +675,9 @@ export default function BoltLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BoltLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="bolt-load-calculator"
-        tools={[
-          "torque-calculator",
-          "stress-calculator",
-          "force-calculator",
-          "spring-force-calculator",
-          "friction-force-calculator",
-          "factor-of-safety-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

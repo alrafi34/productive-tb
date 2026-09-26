@@ -14,6 +14,7 @@ import {
 import FrequencyBarChart from "./chart";
 import ModeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ModeCalculatorUI() {
   const [text, setText] = useState(DEFAULT_TEXT);
@@ -305,19 +306,10 @@ export default function ModeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ModeCalculatorSEO />
 
-      <RelatedTools
-        currentTool="mode-calculator"
-        tools={[
-          "mean-calculator",
-          "median-calculator",
-          "standard-deviation-calculator",
-          "variance-calculator",
-          "percentile-calculator",
-          "percentage-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

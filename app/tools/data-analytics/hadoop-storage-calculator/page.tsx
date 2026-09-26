@@ -104,6 +104,7 @@ export default function HadoopStorageCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="hadoop-storage-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

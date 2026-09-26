@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import CPACalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "Google Ads",   spend: 2500,  acquisitions: 100  },
@@ -575,19 +576,10 @@ export default function CPACalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CPACalculatorSEO />
 
-      <RelatedTools
-        currentTool="cost-per-acquisition-cpa-calculator"
-        tools={[
-          "cost-per-click-cpc-calculator",
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "bounce-rate-calculator",
-          "roi-calculator-marketing",
-          "investment-return-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

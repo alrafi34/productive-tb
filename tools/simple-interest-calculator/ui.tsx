@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SimpleInterestCalculatorUI() {
   const [principal, setPrincipal] = useState<string>("1000");
@@ -339,12 +340,10 @@ Total Amount: $${formatCurrency(total, precision)}`;
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
       <div className="mt-12">
-        <RelatedTools
-          currentTool="simple-interest-calculator"
-          tools={["compound-interest-calculator", "mortgage-calculator", "loan-emi-calculator"]}
-        />
+        <RelatedTools />
       </div>
     </div>
   );

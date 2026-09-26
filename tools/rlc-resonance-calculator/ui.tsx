@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import RLCResonanceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RLCResonanceCalculatorUI() {
   const [resistance, setResistance] = useState<string>("10");
@@ -495,11 +496,9 @@ export default function RLCResonanceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RLCResonanceCalculatorSEO />
-      <RelatedTools
-        currentTool="rlc-resonance-calculator"
-        tools={['rc-time-constant-calculator', 'rl-time-constant-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

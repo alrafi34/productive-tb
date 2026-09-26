@@ -104,6 +104,7 @@ export default function LogicGateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="logic-gate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

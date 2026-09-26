@@ -13,6 +13,7 @@ import {
 import { DistributionBarChart, PartitionSizeGauge } from "./chart";
 import DataPartitionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DataPartitionCalculatorUI() {
   const [mode, setMode] = useState<CalcMode>(DEFAULT_MODE);
@@ -368,19 +369,10 @@ export default function DataPartitionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataPartitionCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-partition-calculator"
-        tools={[
-          "hadoop-storage-calculator",
-          "storage-requirement-calculator",
-          "cluster-utilization-calculator",
-          "big-data-throughput-calculator",
-          "data-pipeline-latency-calculator",
-          "etl-throughput-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

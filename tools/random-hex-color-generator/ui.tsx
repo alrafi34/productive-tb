@@ -18,6 +18,7 @@ import {
 } from './logic';
 import RandomHexColorGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function RandomHexColorGenerator() {
   const [state, setState] = useState<GeneratorState>({
@@ -348,12 +349,10 @@ export default function RandomHexColorGenerator() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RandomHexColorGeneratorSEOContent />
       
-      <RelatedTools
-        currentTool="random-hex-color-generator"
-        tools={['color-palette-generator', 'hsl-color-slider', 'gradient-text-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

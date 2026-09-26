@@ -104,6 +104,7 @@ export default function DataCompressionRatioCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-compression-ratio-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

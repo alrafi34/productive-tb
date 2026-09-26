@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import DatasetSplitCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_DATASET = 10000;
 const DEFAULT_TRAIN = 80;
@@ -754,19 +755,10 @@ export default function DatasetSplitCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DatasetSplitCalculatorSEO />
 
-      <RelatedTools
-        currentTool="dataset-split-calculator"
-        tools={[
-          "model-accuracy-calculator",
-          "confusion-matrix-calculator",
-          "f1-score-calculator",
-          "precision-recall-calculator",
-          "ai-token-cost-calculator",
-          "time-complexity-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

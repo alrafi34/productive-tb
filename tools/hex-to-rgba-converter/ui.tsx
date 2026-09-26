@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import HexToRgbaConverterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HexToRgbaConverterUI() {
   const [hexInput, setHexInput] = useState("#3498db");
@@ -349,11 +350,9 @@ export default function HexToRgbaConverterUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <HexToRgbaConverterSEOContent />
-      <RelatedTools
-        currentTool="hex-to-rgba-converter"
-        tools={["color-format-converter", "hex-to-rgb-converter", "css-gradient-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

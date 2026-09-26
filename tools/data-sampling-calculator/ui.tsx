@@ -11,6 +11,7 @@ import {
 import { SampleSizeSensitivityChart } from "./chart";
 import DataSamplingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DataSamplingCalculatorUI() {
   const [population, setPopulation] = useState("10000");
@@ -325,19 +326,10 @@ export default function DataSamplingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataSamplingCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-sampling-calculator"
-        tools={[
-          "confidence-interval-calculator",
-          "p-value-calculator",
-          "correlation-coefficient-calculator",
-          "data-normalization-calculator",
-          "confusion-matrix-calculator",
-          "time-series-forecast-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import PomodoroSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type SessionType = 'focus' | 'short-break' | 'long-break';
 
@@ -426,11 +427,9 @@ export default function PomodoroTimerUI() {
           </div>
         </div>
 
+        <RelatedStrip />
         <PomodoroSEO />
-        <RelatedTools
-          currentTool="pomodoro-timer"
-          tools={['timer-stopwatch', 'age-calculator', 'password-generator']}
-        />
+        <RelatedTools />
       </div>
     </div>
   );

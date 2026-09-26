@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import ConfidenceIntervalCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const CALC_TYPES: { key: CalcType; label: string }[] = [
   { key: "mean-known", label: "Mean (Known σ)" },
@@ -450,19 +451,10 @@ export default function ConfidenceIntervalCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ConfidenceIntervalCalculatorSEO />
 
-      <RelatedTools
-        currentTool="confidence-interval-calculator"
-        tools={[
-          "z-score-calculator",
-          "standard-deviation-calculator",
-          "p-value-calculator",
-          "sample-size-calculator",
-          "correlation-coefficient-calculator",
-          "mean-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

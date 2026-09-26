@@ -104,6 +104,7 @@ export default function MachNumberCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="mach-number-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

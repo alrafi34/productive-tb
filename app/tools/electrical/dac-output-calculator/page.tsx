@@ -104,6 +104,7 @@ export default function DacOutputCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="dac-output-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

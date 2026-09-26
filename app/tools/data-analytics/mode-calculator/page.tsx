@@ -104,6 +104,7 @@ export default function ModeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="mode-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

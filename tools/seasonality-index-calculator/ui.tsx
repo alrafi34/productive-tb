@@ -12,6 +12,7 @@ import {
 import { SeasonalityBarChart, SeasonalityLineChart } from "./chart";
 import SeasonalityIndexCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SeasonalityIndexCalculatorUI() {
   const [rows, setRows] = useState<DataRow[]>(DEFAULT_ROWS);
@@ -382,19 +383,10 @@ export default function SeasonalityIndexCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SeasonalityIndexCalculatorSEO />
 
-      <RelatedTools
-        currentTool="seasonality-index-calculator"
-        tools={[
-          "time-series-forecast-calculator",
-          "user-growth-rate-calculator",
-          "data-growth-calculator",
-          "correlation-coefficient-calculator",
-          "session-duration-calculator",
-          "sample-size-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

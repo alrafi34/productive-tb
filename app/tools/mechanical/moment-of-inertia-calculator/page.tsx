@@ -104,6 +104,7 @@ export default function MomentOfInertiaCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="moment-of-inertia-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

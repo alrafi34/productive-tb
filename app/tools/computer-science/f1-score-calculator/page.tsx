@@ -104,6 +104,7 @@ export default function F1ScoreCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="f1-score-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function BoundaryLengthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="boundary-length-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

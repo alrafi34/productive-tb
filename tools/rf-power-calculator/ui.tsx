@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import RFPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RFPowerCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('watts');
@@ -590,11 +591,9 @@ export default function RFPowerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RFPowerCalculatorSEO />
-      <RelatedTools
-        currentTool="rf-power-calculator"
-        tools={['antenna-length-calculator', 'impedance-calculator', 'decibel-db-calculator', 'amplifier-gain-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

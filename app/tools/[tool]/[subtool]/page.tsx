@@ -996,7 +996,7 @@ export default async function ToolPage({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
       )}
-      <ToolLayout title={toolName} description={toolDescription} icon={toolIcon} category={catObj}>
+      <ToolLayout title={toolName} description={toolDescription} icon={toolIcon} category={catObj} slug={slug}>
         <Component />
       </ToolLayout>
     </>

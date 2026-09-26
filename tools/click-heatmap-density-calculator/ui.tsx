@@ -10,6 +10,7 @@ import {
 import { renderHeatmap, buildHeatSVG } from "./render";
 import ClickHeatmapDensityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const MAX_IMAGE_MB = 20;
 const UNDO_LIMIT = 30;
@@ -453,19 +454,10 @@ export default function ClickHeatmapDensityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ClickHeatmapDensityCalculatorSEO />
 
-      <RelatedTools
-        currentTool="click-heatmap-density-calculator"
-        tools={[
-          "scroll-depth-calculator",
-          "session-duration-calculator",
-          "page-speed-score-calculator",
-          "bounce-rate-calculator",
-          "conversion-rate-calculator",
-          "engagement-rate-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

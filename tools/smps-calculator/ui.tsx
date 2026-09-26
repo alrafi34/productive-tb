@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import SMPSCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SMPSCalculatorUI() {
   const [inputs, setInputs] = useState<SMPSInputs>({
@@ -587,11 +588,9 @@ export default function SMPSCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SMPSCalculatorSEO />
-      <RelatedTools
-        currentTool="smps-calculator"
-        tools={['power-supply-calculator', 'transformer-efficiency-calculator', 'power-factor-calculator', 'voltage-regulation-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

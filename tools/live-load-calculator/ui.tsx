@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import LiveLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LiveLoadCalculatorUI() {
   const [buildingType, setBuildingType] = useState<BuildingType>("residential");
@@ -460,11 +461,9 @@ export default function LiveLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LiveLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="live-load-calculator"
-        tools={['dead-load-calculator', 'structural-load-calculator', 'slab-load-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

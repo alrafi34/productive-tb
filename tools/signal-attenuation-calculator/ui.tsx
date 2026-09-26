@@ -31,6 +31,7 @@ import {
 } from "./logic";
 import SignalAttenuationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SignalAttenuationCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('power');
@@ -680,11 +681,9 @@ export default function SignalAttenuationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SignalAttenuationCalculatorSEO />
-      <RelatedTools
-        currentTool="signal-attenuation-calculator"
-        tools={['amplifier-gain-calculator', 'power-factor-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

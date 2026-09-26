@@ -104,6 +104,7 @@ export default function StressCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="stress-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

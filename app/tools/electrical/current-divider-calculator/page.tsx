@@ -104,6 +104,7 @@ export default function CurrentDividerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="current-divider-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

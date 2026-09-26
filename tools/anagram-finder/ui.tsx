@@ -12,6 +12,7 @@ import {
 } from './logic';
 import AnagramFinderSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function AnagramFinderUI() {
   const [mode, setMode] = useState<CheckMode>('single');
@@ -516,12 +517,10 @@ export default function AnagramFinderUI() {
       )}
     </div>
     
+    <RelatedStrip />
     <AnagramFinderSEOContent />
     
-    <RelatedTools 
-      currentTool="anagram-finder"
-      tools={['word-frequency-counter', 'text-reverser', 'find-and-replace']} 
-    />
+    <RelatedTools />
     </>
   );
 }

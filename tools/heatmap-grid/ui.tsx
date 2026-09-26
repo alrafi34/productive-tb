@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { HeatmapState, createGrid, getCellColor, getGridStats, getGradientColors, exportAsJSON, importFromJSON, randomizeGrid } from "./logic";
 import HeatmapGridSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HeatmapGridUI() {
   const gridContainerRef = useRef<HTMLDivElement>(null);
@@ -374,8 +375,9 @@ export default function HeatmapGridUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HeatmapGridSEOContent />
-      <RelatedTools currentTool="heatmap-grid" tools={["venn-diagram-maker", "flowchart-logic-mapper", "timeline-creator"]} />
+      <RelatedTools />
     </>
   );
 }

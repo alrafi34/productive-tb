@@ -6,6 +6,7 @@ import { MorseOptions, MorseMode } from "./types";
 import { textToMorse, morseToText, playMorseAudio, copyToClipboard, downloadAsFile, MORSE_CODE_MAP } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function MorseCodeTranslatorUI() {
   const [inputText, setInputText] = useState("");
@@ -301,11 +302,9 @@ export default function MorseCodeTranslatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="morse-code-translator"
-        tools={['nato-phonetic-converter', 'text-reverser', 'upside-down-text-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

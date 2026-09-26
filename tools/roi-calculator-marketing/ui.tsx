@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import ROICalculatorMarketingSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "Google Ads", investment: 1000, revenue: 1500 },
@@ -465,19 +466,10 @@ export default function ROICalculatorMarketingUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ROICalculatorMarketingSEO />
 
-      <RelatedTools
-        currentTool="roi-calculator-marketing"
-        tools={[
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "bounce-rate-calculator",
-          "investment-return-calculator",
-          "simple-interest-calculator",
-          "compound-interest-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

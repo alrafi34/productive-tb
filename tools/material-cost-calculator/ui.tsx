@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import MaterialCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function MaterialCostCalculatorUI() {
   const [materials, setMaterials] = useState<Material[]>([createEmptyMaterial()]);
@@ -472,11 +473,9 @@ export default function MaterialCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MaterialCostCalculatorSEO />
-      <RelatedTools
-        currentTool="material-cost-calculator"
-        tools={['construction-cost-estimator', 'concrete-volume-calculator', 'brick-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

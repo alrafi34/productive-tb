@@ -5,6 +5,7 @@ import { TextBlock, CopySettings } from './types';
 import { copyToClipboard, addLineNumbers, formatAsMarkdown, formatAsHTML, generateId, selectText } from './logic';
 import TextToClipboardSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function TextToClipboardUI() {
   const [textBlocks, setTextBlocks] = useState<TextBlock[]>([
@@ -199,9 +200,10 @@ export default function TextToClipboardUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TextToClipboardSEOContent />
       
-      <RelatedTools currentTool="text-to-clipboard" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

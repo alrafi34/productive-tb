@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import FireSafetyLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FireSafetyLoadCalculatorUI() {
   const [floorArea, setFloorArea] = useState("100");
@@ -546,11 +547,9 @@ export default function FireSafetyLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FireSafetyLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="fire-safety-load-calculator"
-        tools={['concrete-volume-calculator', 'construction-cost-estimator', 'room-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

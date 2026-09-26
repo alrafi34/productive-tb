@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import SocialMediaReachCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PLATFORMS = Object.entries(PLATFORM_DEFAULTS) as [Platform, typeof PLATFORM_DEFAULTS[Platform]][];
 
@@ -515,19 +516,10 @@ export default function SocialMediaReachCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SocialMediaReachCalculatorSEO />
 
-      <RelatedTools
-        currentTool="social-media-reach-calculator"
-        tools={[
-          "impressions-calculator",
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "cost-per-click-cpc-calculator",
-          "bounce-rate-calculator",
-          "roi-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ModelAccuracyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const TIER_COLORS: Record<string, string> = {
   excellent: "text-green-700 bg-green-50 border-green-200",
@@ -600,19 +601,10 @@ export default function ModelAccuracyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ModelAccuracyCalculatorSEO />
 
-      <RelatedTools
-        currentTool="model-accuracy-calculator"
-        tools={[
-          "ai-token-cost-calculator",
-          "ai-prompt-length-calculator",
-          "time-complexity-calculator",
-          "latency-calculator",
-          "data-transfer-calculator",
-          "subnet-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function DataPipelineLatencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-pipeline-latency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import DataCompressionRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DataCompressionRatioCalculatorUI() {
   const [original, setOriginal] = useState(String(DEFAULT_ORIGINAL));
@@ -332,19 +333,10 @@ export default function DataCompressionRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DataCompressionRatioCalculatorSEO />
 
-      <RelatedTools
-        currentTool="data-compression-ratio-calculator"
-        tools={[
-          "storage-requirement-calculator",
-          "data-transfer-cost-calculator",
-          "encoding-efficiency-calculator",
-          "data-growth-calculator",
-          "hadoop-storage-calculator",
-          "data-pipeline-latency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

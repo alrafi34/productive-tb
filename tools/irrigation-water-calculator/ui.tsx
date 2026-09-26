@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import IrrigationWaterCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   landArea: "",
@@ -489,16 +490,9 @@ export default function IrrigationWaterCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <IrrigationWaterCalculatorSEO />
-      <RelatedTools
-        currentTool="irrigation-water-calculator"
-        tools={[
-          "fertilizer-requirement-calculator",
-          "land-area-calculator-square-feet",
-          "rainwater-harvesting-calculator",
-          "water-tank-capacity-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

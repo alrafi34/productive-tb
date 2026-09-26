@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import BmiCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BmiCalculatorUI() {
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
@@ -525,12 +526,10 @@ export default function BmiCalculatorUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <BmiCalculatorSEO />
       
-      <RelatedTools
-        currentTool="bmi-calculator"
-        tools={['percentage-calculator', 'age-calculator', 'discount-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

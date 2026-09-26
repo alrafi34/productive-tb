@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import DecimalLandCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; value: string; unit: Unit }[] = [
   { label: "1 Decimal",  value: "1",   unit: "decimal" },
@@ -457,16 +458,9 @@ export default function DecimalLandCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DecimalLandCalculatorSEO />
-      <RelatedTools
-        currentTool="decimal-land-calculator"
-        tools={[
-          "katha-land-calculator",
-          "bigha-land-calculator",
-          "acre-to-square-feet-converter",
-          "hectare-to-acre-converter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

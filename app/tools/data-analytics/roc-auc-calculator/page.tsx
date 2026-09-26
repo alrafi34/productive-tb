@@ -104,6 +104,7 @@ export default function RocAucCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="roc-auc-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

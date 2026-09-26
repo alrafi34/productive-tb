@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import MockDataGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type OutputFormat = "table" | "json" | "csv";
 
@@ -268,11 +269,9 @@ export default function MockDataGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MockDataGeneratorSEOContent />
-      <RelatedTools
-        currentTool="mock-data-generator"
-        tools={["json-formatter", "password-generator", "username-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

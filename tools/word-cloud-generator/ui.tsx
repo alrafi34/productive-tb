@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import WordCloudGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_TEXT = `The quick brown fox jumps over the lazy dog. The fox is clever and quick. 
 Dogs are loyal and friendly. The brown fox runs through the forest. 
@@ -375,12 +376,10 @@ export default function WordCloudGeneratorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <WordCloudGeneratorSEOContent />
 
-      <RelatedTools
-        currentTool="word-cloud-generator"
-        tools={["word-frequency-counter", "keyword-density-checker", "text-reverser"]}
-      />
+      <RelatedTools />
     </>
   );
 }

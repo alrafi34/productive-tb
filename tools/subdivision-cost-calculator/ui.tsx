@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import SubdivisionCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -641,18 +642,9 @@ export default function SubdivisionCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SubdivisionCostCalculatorSEO />
-      <RelatedTools
-        currentTool="subdivision-cost-calculator"
-        tools={[
-          "land-price-calculator",
-          "plot-division-calculator",
-          "land-valuation-calculator",
-          "excavation-cost-calculator",
-          "fence-material-calculator",
-          "boundary-length-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

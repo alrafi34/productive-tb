@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import SepticTankSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SepticTankSizeCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
@@ -511,11 +512,9 @@ export default function SepticTankSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SepticTankSizeCalculatorSEO />
-      <RelatedTools
-        currentTool="septic-tank-size-calculator"
-        tools={['drainage-flow-calculator', 'excavation-volume-calculator', 'concrete-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

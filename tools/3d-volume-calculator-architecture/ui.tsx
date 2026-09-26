@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import VolumeCalculatorArchitectureSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function VolumeCalculatorArchitectureUI() {
   const [shape, setShape] = useState<ShapeType>("rectangular");
@@ -577,11 +578,9 @@ export default function VolumeCalculatorArchitectureUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VolumeCalculatorArchitectureSEO />
-      <RelatedTools
-        currentTool="3d-volume-calculator-architecture"
-        tools={['room-volume-calculator', 'concrete-volume-calculator', 'room-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

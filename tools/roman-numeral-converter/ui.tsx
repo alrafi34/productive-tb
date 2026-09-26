@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import RomanNumeralConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RomanNumeralConverterUI() {
   const [mode, setMode] = useState<'number' | 'roman'>('number');
@@ -325,12 +326,10 @@ export default function RomanNumeralConverterUI() {
 
       </div>
 
+      <RelatedStrip />
       <RomanNumeralConverterSEO />
 
-      <RelatedTools
-        currentTool="roman-numeral-converter"
-        tools={['binary-hex-decimal-converter', 'timestamp-unix-converter', 'random-number-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

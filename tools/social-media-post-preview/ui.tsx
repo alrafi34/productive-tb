@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import SocialMediaPostPreviewSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SocialMediaPostPreviewUI() {
   const [text, setText] = useState("");
@@ -414,12 +415,10 @@ export default function SocialMediaPostPreviewUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <SocialMediaPostPreviewSEOContent />
 
-      <RelatedTools
-        currentTool="social-media-post-preview"
-        tools={["text-to-slug-converter", "word-counter", "paragraph-formatter"]}
-      />
+      <RelatedTools />
     </>
   );
 }

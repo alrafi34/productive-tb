@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import RainwaterHarvestingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RainwaterHarvestingCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
@@ -551,11 +552,9 @@ export default function RainwaterHarvestingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RainwaterHarvestingCalculatorSEO />
-      <RelatedTools
-        currentTool="rainwater-harvesting-calculator"
-        tools={['excavation-volume-calculator', 'drainage-flow-calculator', 'concrete-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

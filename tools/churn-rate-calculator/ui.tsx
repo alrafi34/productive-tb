@@ -14,6 +14,7 @@ import ChurnGauge from "./gauge";
 import { RetentionPieChart, ChurnProjectionChart } from "./chart";
 import ChurnRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ChurnRateCalculatorUI() {
   const [inputs, setInputs] = useState<ChurnInputs>(DEFAULT_INPUTS);
@@ -387,19 +388,10 @@ export default function ChurnRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ChurnRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="churn-rate-calculator"
-        tools={[
-          "retention-rate-calculator",
-          "customer-lifetime-value-calculator",
-          "roi-calculator-marketing",
-          "marketing-roi-calculator",
-          "break-even-calculator",
-          "ad-spend-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

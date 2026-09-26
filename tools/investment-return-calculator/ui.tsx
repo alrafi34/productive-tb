@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const quickScenarios = [
   { label: "Stock Gain", initial: 1000, current: 1240 },
@@ -406,8 +407,9 @@ export default function InvestmentROICalculatorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="investment-return-calculator" tools={["simple-interest-calculator", "compound-interest-calculator", "discount-calculator", "percentage-calculator", "loan-emi-calculator"]} />
+      <RelatedTools />
     </div>
   );
 }

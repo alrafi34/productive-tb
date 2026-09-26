@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import DomainAuthorityEstimatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DomainAuthorityEstimatorUI() {
   const [inputs, setInputs]           = useState<DAInputs>(DEFAULT_INPUTS);
@@ -550,19 +551,10 @@ export default function DomainAuthorityEstimatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DomainAuthorityEstimatorSEO />
 
-      <RelatedTools
-        currentTool="domain-authority-estimator"
-        tools={[
-          "backlink-ratio-calculator",
-          "seo-score-calculator",
-          "keyword-density-checker",
-          "ctr-calculator",
-          "bounce-rate-calculator",
-          "conversion-rate-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import ZScoreCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4, 5];
 
@@ -343,19 +344,10 @@ export default function ZScoreCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ZScoreCalculatorSEO />
 
-      <RelatedTools
-        currentTool="z-score-calculator"
-        tools={[
-          "standard-deviation-calculator",
-          "variance-calculator",
-          "mean-calculator",
-          "confidence-interval-calculator",
-          "sample-size-calculator",
-          "correlation-coefficient-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

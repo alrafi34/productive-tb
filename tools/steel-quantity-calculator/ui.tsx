@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import SteelQuantityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SteelQuantityCalculatorUI() {
   const [calculationType, setCalculationType] = useState<CalculationType>("slab");
@@ -597,11 +598,9 @@ export default function SteelQuantityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SteelQuantityCalculatorSEO />
-      <RelatedTools
-        currentTool="steel-quantity-calculator"
-        tools={['rebar-weight-calculator', 'rebar-spacing-calculator', 'concrete-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

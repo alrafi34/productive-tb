@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import FanPowerConsumptionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FanPowerConsumptionCalculatorUI() {
   const savedSettings = loadSettings();
@@ -489,11 +490,9 @@ export default function FanPowerConsumptionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FanPowerConsumptionCalculatorSEO />
-      <RelatedTools
-        currentTool="fan-power-consumption-calculator"
-        tools={['energy-consumption-calculator', 'electric-bill-calculator', 'power-calculator-electrical']}
-      />
+      <RelatedTools />
     </>
   );
 }

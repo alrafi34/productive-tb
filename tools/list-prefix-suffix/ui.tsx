@@ -6,6 +6,7 @@ import { PrefixSuffixOptions, TemplateType } from "./types";
 import { applyPrefixSuffix, applyRandomPrefixSuffix, getTemplateOptions, copyToClipboard, downloadAsFile } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ListPrefixSuffixUI() {
   const [inputText, setInputText] = useState("");
@@ -370,11 +371,9 @@ export default function ListPrefixSuffixUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="list-prefix-suffix"
-        tools={['remove-duplicate-lines', 'find-and-replace', 'paragraph-formatter']}
-      />
+      <RelatedTools />
     </>
   );
 }

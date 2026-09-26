@@ -104,6 +104,7 @@ export default function HeatTransferCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="heat-transfer-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

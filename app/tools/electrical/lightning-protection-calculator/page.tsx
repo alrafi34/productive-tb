@@ -104,6 +104,7 @@ export default function LightningProtectionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="lightning-protection-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

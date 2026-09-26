@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import RealPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RealPowerCalculatorUI() {
   const [voltage, setVoltage] = useState<string>("230");
@@ -457,11 +458,9 @@ export default function RealPowerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RealPowerCalculatorSEO />
-      <RelatedTools
-        currentTool="real-power-calculator"
-        tools={['voltage-divider-calculator', 'impedance-calculator', 'phase-angle-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import RoofPitchCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RoofPitchCalculatorUI() {
   const [inputMode, setInputMode] = useState<InputMode>("rise-run");
@@ -534,11 +535,9 @@ export default function RoofPitchCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RoofPitchCalculatorSEO />
-      <RelatedTools
-        currentTool="roof-pitch-calculator"
-        tools={['roof-area-calculator', 'floor-area-calculator', 'wall-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

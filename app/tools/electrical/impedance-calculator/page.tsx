@@ -104,6 +104,7 @@ export default function ImpedanceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="impedance-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

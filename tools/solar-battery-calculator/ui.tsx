@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import SolarBatteryCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SolarBatteryCalculatorUI() {
   const savedSettings = loadSettings();
@@ -549,11 +550,9 @@ export default function SolarBatteryCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SolarBatteryCalculatorSEO />
-      <RelatedTools
-        currentTool="solar-battery-calculator"
-        tools={['solar-panel-calculator', 'battery-capacity-calculator', 'solar-inverter-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

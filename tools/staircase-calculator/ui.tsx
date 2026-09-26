@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import StaircaseCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function StaircaseCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("mm");
@@ -489,11 +490,9 @@ export default function StaircaseCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <StaircaseCalculatorSEO />
-      <RelatedTools
-        currentTool="staircase-calculator"
-        tools={['floor-area-calculator', 'room-volume-calculator', 'wall-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

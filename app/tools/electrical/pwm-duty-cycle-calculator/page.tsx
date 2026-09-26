@@ -104,6 +104,7 @@ export default function PwmDutyCycleCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="pwm-duty-cycle-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

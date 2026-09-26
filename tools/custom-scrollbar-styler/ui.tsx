@@ -18,6 +18,7 @@ import {
 } from './logic';
 import CustomScrollbarStylerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function CustomScrollbarStylerUI() {
   const [styles, setStyles] = useState<ScrollbarStyles>(DEFAULT_STYLES);
@@ -516,11 +517,9 @@ export default function CustomScrollbarStylerUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CustomScrollbarStylerSEOContent />
-      <RelatedTools
-        currentTool="custom-scrollbar-styler"
-        tools={["css-gradient-generator", "css-box-shadow-generator", "neumorphism-generator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

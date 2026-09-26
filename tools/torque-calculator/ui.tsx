@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import TorqueCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -559,18 +560,9 @@ export default function TorqueCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TorqueCalculatorSEO />
-      <RelatedTools
-        currentTool="torque-calculator"
-        tools={[
-          "gear-ratio-calculator",
-          "force-calculator",
-          "angular-velocity-calculator",
-          "spring-force-calculator",
-          "centripetal-force-calculator",
-          "kinetic-energy-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

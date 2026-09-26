@@ -104,6 +104,7 @@ export default function SerpCtrEstimatorPage() {
         />
       )}
       <ToolLayout
+        slug="serp-ctr-estimator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

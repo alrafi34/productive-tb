@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import FertilizerRequirementCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   landArea: "",
@@ -558,16 +559,9 @@ export default function FertilizerRequirementCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FertilizerRequirementCalculatorSEO />
-      <RelatedTools
-        currentTool="fertilizer-requirement-calculator"
-        tools={[
-          "land-area-calculator-square-feet",
-          "acre-to-hectare-converter",
-          "soil-volume-calculator",
-          "irrigation-water-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

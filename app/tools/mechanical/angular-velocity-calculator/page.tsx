@@ -104,6 +104,7 @@ export default function AngularVelocityCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="angular-velocity-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

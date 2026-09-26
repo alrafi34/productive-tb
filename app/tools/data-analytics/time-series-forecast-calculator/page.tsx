@@ -104,6 +104,7 @@ export default function TimeSeriesForecastCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="time-series-forecast-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

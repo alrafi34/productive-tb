@@ -11,6 +11,7 @@ import {
 import SessionBarChart from "./chart";
 import SessionDurationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const MODE_META: Record<Mode, string> = {
   time: "Hours / Minutes / Seconds",
@@ -387,19 +388,10 @@ export default function SessionDurationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SessionDurationCalculatorSEO />
 
-      <RelatedTools
-        currentTool="session-duration-calculator"
-        tools={[
-          "page-speed-score-calculator",
-          "bounce-rate-calculator",
-          "conversion-rate-calculator",
-          "retention-rate-calculator",
-          "engagement-rate-calculator",
-          "impressions-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
 import { ConversionBarChart } from "./chart";
 import ABTestCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const CONFIDENCE_OPTIONS = [90, 95, 99];
 const PRECISION_OPTIONS = [2, 3, 4, 5];
@@ -386,19 +387,10 @@ export default function ABTestCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ABTestCalculatorSEO />
 
-      <RelatedTools
-        currentTool="a-b-test-calculator"
-        tools={[
-          "sample-size-calculator",
-          "p-value-calculator",
-          "chi-square-calculator",
-          "confidence-interval-calculator",
-          "standard-deviation-calculator",
-          "z-score-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

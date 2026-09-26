@@ -5,6 +5,7 @@ import { SlugOptions, SlugResult, ConversionMode } from './types';
 import { convertSingle, convertBulk, copyToClipboard, downloadAsFile, downloadAsCSV, formatResultsAsText } from './logic';
 import TextToSlugConverterSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function TextToSlugConverterUI() {
   const [mode, setMode] = useState<ConversionMode>('single');
@@ -337,9 +338,10 @@ export default function TextToSlugConverterUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <TextToSlugConverterSEOContent />
 
-      <RelatedTools currentTool="text-to-slug-converter" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

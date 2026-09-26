@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import DecibelCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DecibelCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>(() => loadMode());
@@ -476,11 +477,9 @@ export default function DecibelCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DecibelCalculatorSEO />
-      <RelatedTools
-        currentTool="decibel-db-calculator"
-        tools={['amplifier-gain-calculator', 'frequency-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

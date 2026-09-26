@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import TransformerCurrentCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TransformerCurrentCalculatorUI() {
   const [inputs, setInputs] = useState<TransformerCurrentInputs>({
@@ -485,11 +486,9 @@ export default function TransformerCurrentCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TransformerCurrentCalculatorSEO />
-      <RelatedTools
-        currentTool="transformer-current-calculator"
-        tools={['transformer-turns-ratio-calculator', 'transformer-efficiency-calculator', 'three-phase-power-calculator', 'power-factor-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -17,6 +17,7 @@ import {
 import { NoiseSettings, PreviewSettings, ExportSettings, PatternType, ColorMode, BackgroundType, ExportFormat } from "./types";
 import PatternNoiseSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PatternNoiseGeneratorUI() {
   const [noiseSettings, setNoiseSettings] = useState<NoiseSettings>(DEFAULT_NOISE_SETTINGS);
@@ -585,12 +586,10 @@ export default function PatternNoiseGeneratorUI() {
         <canvas ref={canvasRef} className="hidden" />
       </div>
 
+      <RelatedStrip />
       <PatternNoiseSEOContent />
       
-      <RelatedTools
-        currentTool="pattern-noise-generator"
-        tools={['css-glassmorphism-generator', 'css-gradient-generator', 'dithering-filter']}
-      />
+      <RelatedTools />
     </>
   );
 }

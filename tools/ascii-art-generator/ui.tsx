@@ -16,6 +16,7 @@ import {
 import { AsciiConfig, AsciiHistory, CHARACTER_SETS, STYLES } from "./types";
 import AsciiArtGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AsciiArtGeneratorUI() {
   const [config, setConfig] = useState<AsciiConfig>({
@@ -444,11 +445,9 @@ export default function AsciiArtGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AsciiArtGeneratorSEOContent />
-      <RelatedTools
-        currentTool="ascii-art-generator"
-        tools={["qr-code-generator", "placeholder-image-generator", "color-palette-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

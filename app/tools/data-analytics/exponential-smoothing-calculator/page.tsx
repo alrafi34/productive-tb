@@ -104,6 +104,7 @@ export default function ExponentialSmoothingCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="exponential-smoothing-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

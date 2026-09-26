@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import DateDifferenceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type OutputFormat = 'full' | 'years' | 'months' | 'days' | 'weeks';
 
@@ -358,12 +359,10 @@ export default function DateDifferenceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DateDifferenceCalculatorSEO />
       
-      <RelatedTools
-        currentTool="date-difference-calculator"
-        tools={['age-calculator', 'timestamp-unix-converter', 'percentage-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function LandValuationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="land-valuation-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function SeriesResistorCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="series-resistor-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function ThermalEfficiencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="thermal-efficiency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

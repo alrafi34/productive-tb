@@ -13,6 +13,7 @@ import {
 import { ROIGauge, ROIBarChart, exportCanvasAsPng } from "./chart";
 import MarketingROICalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 
@@ -442,19 +443,10 @@ export default function MarketingROICalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MarketingROICalculatorSEO />
 
-      <RelatedTools
-        currentTool="marketing-roi-calculator"
-        tools={[
-          "roi-calculator-marketing",
-          "cost-per-acquisition-cpa-calculator",
-          "cost-per-click-cpc-calculator",
-          "profit-margin-calculator-marketing",
-          "break-even-calculator",
-          "customer-lifetime-value-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

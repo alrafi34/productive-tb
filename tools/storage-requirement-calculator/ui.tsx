@@ -14,6 +14,7 @@ import {
 import { BreakdownDonut, GrowthChart } from "./chart";
 import StorageRequirementCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const MODE_META: Record<Mode, string> = {
   file: "File Storage",
@@ -488,19 +489,10 @@ export default function StorageRequirementCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <StorageRequirementCalculatorSEO />
 
-      <RelatedTools
-        currentTool="storage-requirement-calculator"
-        tools={[
-          "data-transfer-cost-calculator",
-          "cloud-cost-calculator",
-          "download-time-calculator",
-          "session-duration-calculator",
-          "page-speed-score-calculator",
-          "click-heatmap-density-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

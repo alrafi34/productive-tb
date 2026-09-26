@@ -27,6 +27,7 @@ import {
 } from "./logic";
 import MortgageLoanCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── SVG Donut Chart ───────────────────────────────────────────────────────────
 
@@ -571,16 +572,9 @@ export default function MortgageLoanCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MortgageLoanCalculatorSEO />
-      <RelatedTools
-        currentTool="mortgage-loan-calculator"
-        tools={[
-          "land-price-calculator",
-          "land-valuation-calculator",
-          "property-tax-calculator",
-          "down-payment-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

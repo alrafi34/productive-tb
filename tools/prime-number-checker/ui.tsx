@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import PrimeNumberCheckerSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'check' | 'generate';
 
@@ -389,12 +390,10 @@ export default function PrimeNumberCheckerUI() {
 
       </div>
 
+      <RelatedStrip />
       <PrimeNumberCheckerSEO />
       
-      <RelatedTools 
-        currentTool="prime-number-checker"
-        tools={['scientific-calculator', 'random-number-generator', 'percentage-calculator']}
-      />
+      <RelatedTools />
     </div>
   );
 }

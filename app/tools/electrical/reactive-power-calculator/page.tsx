@@ -104,6 +104,7 @@ export default function ReactivePowerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="reactive-power-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import DiscountCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'normal' | 'reverse' | 'batch';
 
@@ -442,12 +443,10 @@ export default function DiscountCalculatorUI() {
 
       </div>
       
+      <RelatedStrip />
       <DiscountCalculatorSEO />
       
-      <RelatedTools
-        currentTool="discount-calculator"
-        tools={['percentage-calculator', 'percentage-increase-decrease', 'profit-margin-calculator-marketing']}
-      />
+      <RelatedTools />
     </>
   );
 }

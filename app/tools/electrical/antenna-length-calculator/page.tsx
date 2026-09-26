@@ -104,6 +104,7 @@ export default function AntennaLengthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="antenna-length-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

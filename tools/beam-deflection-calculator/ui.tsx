@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import BeamDeflectionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── SVG Beam Diagram ──────────────────────────────────────────────────────
 function BeamDiagram({ inputs, result }: { inputs: BeamInputs; result: BeamResult | null }) {
@@ -796,11 +797,9 @@ export default function BeamDeflectionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BeamDeflectionCalculatorSEO />
-      <RelatedTools
-        currentTool="beam-deflection-calculator"
-        tools={["beam-load-calculator", "torque-calculator", "force-calculator", "spring-force-calculator", "bending-stress-calculator", "shear-force-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

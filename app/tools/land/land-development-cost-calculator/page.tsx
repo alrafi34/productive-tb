@@ -104,6 +104,7 @@ export default function LandDevelopmentCostCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="land-development-cost-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

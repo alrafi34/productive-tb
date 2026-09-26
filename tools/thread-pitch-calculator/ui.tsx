@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import ThreadPitchCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: ThreadInputs = {
   mode: "metric",
@@ -799,18 +800,9 @@ export default function ThreadPitchCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ThreadPitchCalculatorSEO />
-      <RelatedTools
-        currentTool="thread-pitch-calculator"
-        tools={[
-          "torque-calculator",
-          "bolt-load-calculator",
-          "stress-calculator",
-          "force-calculator",
-          "gear-ratio-calculator",
-          "spring-force-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

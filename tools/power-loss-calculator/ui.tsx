@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import PowerLossCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PowerLossCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('i-r');
@@ -611,11 +612,9 @@ export default function PowerLossCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PowerLossCalculatorSEO />
-      <RelatedTools
-        currentTool="power-loss-calculator"
-        tools={['power-calculator-electrical', 'energy-consumption-calculator', 'ohms-law-calculator', 'voltage-drop-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -15,6 +15,7 @@ import {
 } from './logic';
 import CSSAnimationPreviewerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function CSSAnimationPreviewer() {
   const [settings, setSettings] = useState<AnimationSettings>(defaultSettings);
@@ -370,12 +371,10 @@ export default function CSSAnimationPreviewer() {
       `}</style>
       </div>
 
+      <RelatedStrip />
       <CSSAnimationPreviewerSEOContent />
       
-      <RelatedTools
-        currentTool="css-animation-previewer"
-        tools={['css-filter-tester', 'css-gradient-generator', 'css-box-shadow-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

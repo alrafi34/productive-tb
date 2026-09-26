@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import RetainingWallCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RetainingWallCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
@@ -579,11 +580,9 @@ export default function RetainingWallCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RetainingWallCalculatorSEO />
-      <RelatedTools
-        currentTool="retaining-wall-calculator"
-        tools={['concrete-volume-calculator', 'soil-bearing-capacity-calculator', 'foundation-depth-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

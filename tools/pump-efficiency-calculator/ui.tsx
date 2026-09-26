@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import PumpEfficiencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: PumpEfficiencyInputs = {
   unitSystem: "imperial",
@@ -587,17 +588,9 @@ export default function PumpEfficiencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PumpEfficiencyCalculatorSEO />
-      <RelatedTools
-        currentTool="pump-efficiency-calculator"
-        tools={[
-          "hydraulic-power-calculator",
-          "flow-rate-calculator",
-          "reynolds-number-calculator",
-          "pressure-drop-calculator",
-          "motor-efficiency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

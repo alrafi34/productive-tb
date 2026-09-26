@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ADCResolutionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ADCResolutionCalculatorUI() {
   const savedSettings = loadSettings();
@@ -518,11 +519,9 @@ export default function ADCResolutionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ADCResolutionCalculatorSEO />
-      <RelatedTools
-        currentTool="adc-resolution-calculator"
-        tools={['dac-output-calculator', 'binary-to-decimal-calculator', 'logic-gate-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

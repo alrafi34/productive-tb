@@ -104,6 +104,7 @@ export default function SpecificHeatCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="specific-heat-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

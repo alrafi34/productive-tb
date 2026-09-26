@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import CarbonFootprintCalculatorConstructionSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CarbonFootprintCalculatorConstructionUI() {
   const [materials, setMaterials] = useState<MaterialInput[]>(createDefaultMaterials());
@@ -494,11 +495,9 @@ export default function CarbonFootprintCalculatorConstructionUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CarbonFootprintCalculatorConstructionSEO />
-      <RelatedTools
-        currentTool="carbon-footprint-calculator-construction"
-        tools={['green-building-score-calculator', 'energy-efficiency-calculator-building', 'sustainability-index-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

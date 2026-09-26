@@ -13,6 +13,7 @@ import {
 import { SensitivityChart } from "./chart";
 import SampleSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SampleSizeCalculatorUI() {
   const [population, setPopulation] = useState(String(DEFAULT_POPULATION));
@@ -530,19 +531,10 @@ export default function SampleSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SampleSizeCalculatorSEO />
 
-      <RelatedTools
-        currentTool="sample-size-calculator"
-        tools={[
-          "confidence-interval-calculator",
-          "a-b-test-calculator",
-          "p-value-calculator",
-          "standard-deviation-calculator",
-          "mean-calculator",
-          "z-score-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

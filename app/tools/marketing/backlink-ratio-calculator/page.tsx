@@ -104,6 +104,7 @@ export default function BacklinkRatioCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="backlink-ratio-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

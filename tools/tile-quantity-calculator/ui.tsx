@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import TileQuantityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TileQuantityCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("dimension");
@@ -522,11 +523,9 @@ export default function TileQuantityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TileQuantityCalculatorSEO />
-      <RelatedTools
-        currentTool="tile-quantity-calculator"
-        tools={['wall-area-calculator', 'floor-area-calculator', 'paint-required-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

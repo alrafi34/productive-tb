@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import JSONValidatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_JSON = `{
   "name": "John Doe",
@@ -371,12 +372,10 @@ export default function JSONValidatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <JSONValidatorSEOContent />
 
-      <RelatedTools
-        currentTool="json-validator"
-        tools={["find-and-replace", "text-diff-checker", "markdown-previewer"]}
-      />
+      <RelatedTools />
     </>
   );
 }

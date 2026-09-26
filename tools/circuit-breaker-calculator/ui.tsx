@@ -25,6 +25,7 @@ import {
 } from "./logic";
 import CircuitBreakerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CircuitBreakerCalculatorUI() {
   const [inputs, setInputs] = useState<CircuitBreakerInputs>({
@@ -540,11 +541,9 @@ export default function CircuitBreakerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CircuitBreakerCalculatorSEO />
-      <RelatedTools
-        currentTool="circuit-breaker-calculator"
-        tools={['voltage-drop-calculator', 'wire-size-calculator', 'power-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

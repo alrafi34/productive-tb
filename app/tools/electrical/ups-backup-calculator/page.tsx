@@ -104,6 +104,7 @@ export default function UpsBackupCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="ups-backup-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

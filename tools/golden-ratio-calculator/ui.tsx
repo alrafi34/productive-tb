@@ -20,6 +20,7 @@ import {
 } from './logic';
 import GoldenRatioCalculatorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 type Tab = 'calculator' | 'typography' | 'spacing' | 'layout';
 
@@ -594,11 +595,9 @@ export default function GoldenRatioCalculatorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <GoldenRatioCalculatorSEOContent />
-      <RelatedTools
-        currentTool="golden-ratio-calculator"
-        tools={["aspect-ratio-calculator", "css-gradient-generator", "color-palette-generator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

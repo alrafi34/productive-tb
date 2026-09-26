@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import AcreToHectareConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "1 ac", value: "1" },
@@ -419,16 +420,9 @@ export default function AcreToHectareConverterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AcreToHectareConverterSEO />
-      <RelatedTools
-        currentTool="acre-to-hectare-converter"
-        tools={[
-          "hectare-to-acre-converter",
-          "acre-to-square-feet-converter",
-          "square-feet-to-acre-converter",
-          "land-area-calculator-square-meter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

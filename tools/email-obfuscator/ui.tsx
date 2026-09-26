@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import EmailObfuscatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type EncodingMode = "decimal" | "hex" | "javascript" | "mixed";
 type TabMode = "single" | "batch" | "decode";
@@ -498,12 +499,10 @@ export default function EmailObfuscatorUI() {
         )}
       </div>
       
+      <RelatedStrip />
       <EmailObfuscatorSEOContent />
       
-      <RelatedTools
-        currentTool="email-obfuscator"
-        tools={['text-encryptor-aes', 'password-generator', 'hash-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

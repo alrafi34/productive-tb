@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import SVGPathVisualizerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SVGPathVisualizerUI() {
   const [config, setConfig] = useState<PathConfig>(defaultConfig);
@@ -369,12 +370,10 @@ export default function SVGPathVisualizerUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SVGPathVisualizerSEOContent />
       
-      <RelatedTools
-        currentTool="svg-path-visualizer"
-        tools={['css-gradient-generator', 'color-format-converter', 'css-glassmorphism-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

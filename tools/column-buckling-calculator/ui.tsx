@@ -34,6 +34,7 @@ import {
 } from "./logic";
 import ColumnBucklingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── End Condition SVG Diagram ──────────────────────────────────────────────────
 function EndConditionDiagram({ condition }: { condition: EndCondition }) {
@@ -879,18 +880,9 @@ export default function ColumnBucklingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ColumnBucklingCalculatorSEO />
-      <RelatedTools
-        currentTool="column-buckling-calculator"
-        tools={[
-          "beam-deflection-calculator",
-          "stress-calculator",
-          "moment-of-inertia-calculator",
-          "bending-moment-calculator",
-          "bolt-load-calculator",
-          "torque-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import PWMDutyCycleCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PWMDutyCycleCalculatorUI() {
   const savedSettings = loadSettings();
@@ -632,11 +633,9 @@ export default function PWMDutyCycleCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PWMDutyCycleCalculatorSEO />
-      <RelatedTools
-        currentTool="pwm-duty-cycle-calculator"
-        tools={['frequency-calculator', 'signal-attenuation-calculator', 'rc-time-constant-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

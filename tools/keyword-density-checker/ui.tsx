@@ -9,6 +9,7 @@ import {
 import type { DensityData, AnalysisOptions } from "./types";
 import KeywordDensityCheckerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function KeywordDensityCheckerUI() {
   const [text, setText] = useState("");
@@ -358,9 +359,10 @@ export default function KeywordDensityCheckerUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <KeywordDensityCheckerSEOContent />
       
-      <RelatedTools currentTool="keyword-density-checker" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

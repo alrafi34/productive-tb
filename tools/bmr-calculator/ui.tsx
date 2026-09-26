@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BMRCalculatorUI() {
   const [weight, setWeight] = useState<string>("70");
@@ -384,11 +385,9 @@ export default function BMRCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools 
-        currentTool="bmr-calculator" 
-        tools={["bmi-calculator", "age-calculator", "discount-calculator", "percentage-calculator", "simple-interest-calculator"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

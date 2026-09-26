@@ -23,6 +23,7 @@ import {
 } from "./logic";
 import PricePerSquareFeetCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; price: string; area: string; unit: Unit }[] = [
   { label: "5M / 2500 sqft",   price: "5000000",  area: "2500", unit: "sqft"    },
@@ -502,16 +503,9 @@ export default function PricePerSquareFeetCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PricePerSquareFeetCalculatorSEO />
-      <RelatedTools
-        currentTool="price-per-square-feet-calculator"
-        tools={[
-          "land-price-calculator",
-          "decimal-land-calculator",
-          "katha-land-calculator",
-          "acre-to-square-feet-converter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

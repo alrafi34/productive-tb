@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import StructuralLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function StructuralLoadCalculatorUI() {
   const [calculationType, setCalculationType] = useState<CalculationType>("area");
@@ -609,11 +610,9 @@ export default function StructuralLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <StructuralLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="structural-load-calculator"
-        tools={['beam-load-calculator', 'slab-load-calculator', 'column-load-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

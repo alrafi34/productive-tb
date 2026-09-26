@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import VoltageRegulationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function VoltageRegulationCalculatorUI() {
   const [inputs, setInputs] = useState<VoltageRegulationInputs>({
@@ -488,11 +489,9 @@ export default function VoltageRegulationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VoltageRegulationCalculatorSEO />
-      <RelatedTools
-        currentTool="voltage-regulation-calculator"
-        tools={['voltage-divider-calculator', 'transformer-efficiency-calculator', 'power-loss-calculator', 'voltage-drop-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

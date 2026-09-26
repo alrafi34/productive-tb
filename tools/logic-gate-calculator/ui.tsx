@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import LogicGateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LogicGateCalculatorUI() {
   const [inputs, setInputs] = useState<LogicGateInputs>({
@@ -516,11 +517,9 @@ export default function LogicGateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LogicGateCalculatorSEO />
-      <RelatedTools
-        currentTool="logic-gate-calculator"
-        tools={['binary-to-decimal-calculator', 'decimal-to-binary-calculator', 'adc-resolution-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

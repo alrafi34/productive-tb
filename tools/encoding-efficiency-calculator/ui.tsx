@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import EncodingEfficiencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EncodingEfficiencyCalculatorUI() {
   const [original, setOriginal] = useState(String(DEFAULT_ORIGINAL));
@@ -367,19 +368,10 @@ export default function EncodingEfficiencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EncodingEfficiencyCalculatorSEO />
 
-      <RelatedTools
-        currentTool="encoding-efficiency-calculator"
-        tools={[
-          "data-compression-ratio-calculator",
-          "storage-requirement-calculator",
-          "data-transfer-cost-calculator",
-          "data-growth-calculator",
-          "hadoop-storage-calculator",
-          "data-pipeline-latency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

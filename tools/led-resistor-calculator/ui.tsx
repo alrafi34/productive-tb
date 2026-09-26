@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import LEDResistorCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LEDResistorCalculatorUI() {
   const [inputs, setInputs] = useState<LEDResistorInputs>({
@@ -472,11 +473,9 @@ export default function LEDResistorCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LEDResistorCalculatorSEO />
-      <RelatedTools
-        currentTool="led-resistor-calculator"
-        tools={['ohms-law-calculator', 'voltage-divider-calculator', 'series-resistor-calculator', 'parallel-resistor-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

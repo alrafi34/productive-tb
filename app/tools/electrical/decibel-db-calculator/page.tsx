@@ -104,6 +104,7 @@ export default function DecibelDbCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="decibel-db-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

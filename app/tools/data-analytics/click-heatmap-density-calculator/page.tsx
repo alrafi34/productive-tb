@@ -104,6 +104,7 @@ export default function ClickHeatmapDensityCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="click-heatmap-density-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

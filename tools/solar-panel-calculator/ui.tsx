@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import SolarPanelCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SolarPanelCalculatorUI() {
   const savedSettings = loadSettings();
@@ -565,11 +566,9 @@ export default function SolarPanelCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SolarPanelCalculatorSEO />
-      <RelatedTools
-        currentTool="solar-panel-calculator"
-        tools={['solar-battery-calculator', 'solar-inverter-calculator', 'energy-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

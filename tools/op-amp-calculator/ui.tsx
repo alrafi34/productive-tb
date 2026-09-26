@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import OpAmpCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function OpAmpCalculatorUI() {
   const [circuitType, setCircuitType] = useState<CircuitType>('inverting');
@@ -709,11 +710,9 @@ export default function OpAmpCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <OpAmpCalculatorSEO />
-      <RelatedTools
-        currentTool="op-amp-calculator"
-        tools={['amplifier-gain-calculator', 'voltage-divider-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

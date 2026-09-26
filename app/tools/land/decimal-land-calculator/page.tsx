@@ -104,6 +104,7 @@ export default function DecimalLandCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="decimal-land-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

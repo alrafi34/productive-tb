@@ -104,6 +104,7 @@ export default function ABTestCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="a-b-test-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

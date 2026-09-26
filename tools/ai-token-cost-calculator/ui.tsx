@@ -29,6 +29,7 @@ import {
 } from "./logic";
 import AITokenCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type TabId = "calculator" | "compare";
 
@@ -764,19 +765,10 @@ export default function AITokenCostCalculatorUI() {
 
       </div>
 
+      <RelatedStrip />
       <AITokenCostCalculatorSEO />
 
-      <RelatedTools
-        currentTool="ai-token-cost-calculator"
-        tools={[
-          "ai-prompt-length-calculator",
-          "download-time-calculator",
-          "data-transfer-calculator",
-          "time-complexity-calculator",
-          "latency-calculator",
-          "bandwidth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

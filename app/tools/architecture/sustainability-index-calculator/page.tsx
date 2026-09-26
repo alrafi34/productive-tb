@@ -104,6 +104,7 @@ export default function SustainabilityIndexCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="sustainability-index-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

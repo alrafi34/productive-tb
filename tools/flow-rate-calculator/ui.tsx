@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import FlowRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Default states ────────────────────────────────────────────────────────────
 const DEFAULT_VOL_TIME = { volume: "500", volumeUnit: "L" as VolumeUnit, time: "10", timeUnit: "min" as TimeUnit };
@@ -728,11 +729,9 @@ export default function FlowRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FlowRateCalculatorSEO />
-      <RelatedTools
-        currentTool="flow-rate-calculator"
-        tools={["reynolds-number-calculator", "pipe-velocity-calculator", "pressure-drop-calculator", "bernoulli-equation-calculator", "water-flow-rate-calculator", "drainage-flow-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

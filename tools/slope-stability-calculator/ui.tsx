@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import SlopeStabilityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SlopeStabilityCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
@@ -602,11 +603,9 @@ export default function SlopeStabilityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SlopeStabilityCalculatorSEO />
-      <RelatedTools
-        currentTool="slope-stability-calculator"
-        tools={['soil-bearing-capacity-calculator', 'retaining-wall-calculator', 'foundation-depth-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

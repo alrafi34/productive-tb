@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import SustainabilityIndexCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SustainabilityIndexCalculatorUI() {
   const [inputs, setInputs] = useState<SustainabilityInputs>({
@@ -562,11 +563,9 @@ export default function SustainabilityIndexCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SustainabilityIndexCalculatorSEO />
-      <RelatedTools
-        currentTool="sustainability-index-calculator"
-        tools={['green-building-score-calculator', 'energy-efficiency-calculator-building', 'carbon-footprint-calculator-construction']}
-      />
+      <RelatedTools />
     </>
   );
 }

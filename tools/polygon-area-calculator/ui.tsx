@@ -23,6 +23,7 @@ import {
 } from "./logic";
 import PolygonAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -782,16 +783,9 @@ export default function PolygonAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PolygonAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="polygon-area-calculator"
-        tools={[
-          "survey-area-calculator",
-          "land-price-calculator",
-          "boundary-length-calculator",
-          "triangle-land-area-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

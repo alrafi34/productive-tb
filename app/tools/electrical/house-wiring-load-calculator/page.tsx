@@ -104,6 +104,7 @@ export default function HouseWiringLoadCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="house-wiring-load-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

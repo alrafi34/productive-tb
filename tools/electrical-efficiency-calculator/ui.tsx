@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import ElectricalEfficiencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const POWER_UNITS: { label: string; value: PowerUnit }[] = [
   { label: 'W (Watts)', value: 'W' },
@@ -548,11 +549,9 @@ export default function ElectricalEfficiencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ElectricalEfficiencyCalculatorSEO />
-      <RelatedTools
-        currentTool="electrical-efficiency-calculator"
-        tools={['power-loss-calculator', 'power-calculator-electrical', 'energy-consumption-calculator', 'motor-efficiency-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

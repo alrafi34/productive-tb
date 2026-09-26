@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import DACOutputCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DACOutputCalculatorUI() {
   const savedSettings = loadSettings();
@@ -564,11 +565,9 @@ export default function DACOutputCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DACOutputCalculatorSEO />
-      <RelatedTools
-        currentTool="dac-output-calculator"
-        tools={['adc-resolution-calculator', 'decimal-to-binary-calculator', 'pwm-duty-cycle-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

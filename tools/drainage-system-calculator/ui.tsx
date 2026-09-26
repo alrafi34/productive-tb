@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import DrainageSystemCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: DrainageInputs = {
   mode: "runoff",
@@ -562,18 +563,9 @@ export default function DrainageSystemCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DrainageSystemCalculatorSEO />
-      <RelatedTools
-        currentTool="drainage-system-calculator"
-        tools={[
-          "rainwater-runoff-calculator",
-          "irrigation-water-calculator",
-          "soil-volume-calculator",
-          "land-slope-calculator",
-          "well-depth-calculator",
-          "water-table-depth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function DataSamplingCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-sampling-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

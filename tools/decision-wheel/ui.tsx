@@ -20,6 +20,7 @@ import {
 } from './logic';
 import DecisionWheelSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function DecisionWheelUI() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -343,11 +344,9 @@ export default function DecisionWheelUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DecisionWheelSEOContent />
-      <RelatedTools
-        currentTool="decision-wheel"
-        tools={["random-name-picker", "random-number-generator", "habit-tracker"]}
-      />
+      <RelatedTools />
 
       <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     </>

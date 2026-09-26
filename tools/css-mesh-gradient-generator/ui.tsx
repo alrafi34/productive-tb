@@ -15,6 +15,7 @@ import {
 } from './logic';
 import CSSMeshGradientGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function CSSMeshGradientGenerator() {
   const [config, setConfig] = useState<MeshGradientConfig>({
@@ -425,12 +426,10 @@ export default function CSSMeshGradientGenerator() {
         <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={() => setFullscreen(false)} />
       )}
 
+      <RelatedStrip />
       <CSSMeshGradientGeneratorSEOContent />
       
-      <RelatedTools
-        currentTool="css-mesh-gradient-generator"
-        tools={['css-gradient-generator', 'gradient-text-generator', 'random-hex-color-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

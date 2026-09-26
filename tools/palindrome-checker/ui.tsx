@@ -12,6 +12,7 @@ import {
 } from './logic';
 import PalindromeCheckerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function PalindromeCheckerUI() {
   const [mode, setMode] = useState<CheckMode>('single');
@@ -318,9 +319,10 @@ export default function PalindromeCheckerUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <PalindromeCheckerSEOContent />
 
-      <RelatedTools currentTool="palindrome-checker" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

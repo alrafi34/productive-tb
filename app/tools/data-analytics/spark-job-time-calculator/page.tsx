@@ -104,6 +104,7 @@ export default function SparkJobTimeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="spark-job-time-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

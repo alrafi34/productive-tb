@@ -10,6 +10,7 @@ import {
 } from "./logic";
 import CurrencyFormatPreviewerSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CurrencyFormatPreviewerUI() {
   const [value, setValue] = useState<number>(1234567.89);
@@ -271,12 +272,10 @@ export default function CurrencyFormatPreviewerUI() {
          </div>
       </div>
 
+      <RelatedStrip />
       <CurrencyFormatPreviewerSEO />
       
-      <RelatedTools 
-        currentTool="currency-format-previewer"
-        tools={['decimal-hex-converter', 'random-number-generator', 'percentage-calculator']}
-      />
+      <RelatedTools />
     </div>
   );
 }

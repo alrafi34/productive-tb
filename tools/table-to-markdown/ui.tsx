@@ -6,6 +6,7 @@ import { parseTableData, convertToMarkdown, copyToClipboard, downloadAsFile, rea
 import { tableToMarkdownConfig } from './config';
 import SEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function TableToMarkdownUI() {
   const [inputText, setInputText] = useState('');
@@ -340,8 +341,9 @@ export default function TableToMarkdownUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools currentTool="table-to-markdown" />
+      <RelatedTools />
     </div>
   );
 }

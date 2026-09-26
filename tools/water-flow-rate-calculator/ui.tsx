@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import WaterFlowRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WaterFlowRateCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("flow-rate");
@@ -523,11 +524,9 @@ export default function WaterFlowRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WaterFlowRateCalculatorSEO />
-      <RelatedTools
-        currentTool="water-flow-rate-calculator"
-        tools={['plumbing-pipe-size-calculator', 'drainage-flow-calculator', 'water-tank-capacity-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

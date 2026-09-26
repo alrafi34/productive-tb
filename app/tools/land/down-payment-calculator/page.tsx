@@ -104,6 +104,7 @@ export default function DownPaymentCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="down-payment-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

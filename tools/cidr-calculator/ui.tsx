@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import CidrCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "192.168.1.1/24", ip: "192.168.1.1", cidr: 24 },
@@ -612,19 +613,10 @@ export default function CidrCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CidrCalculatorSEO />
 
-      <RelatedTools
-        currentTool="cidr-calculator"
-        tools={[
-          "subnet-calculator",
-          "ip-range-calculator",
-          "bandwidth-calculator",
-          "checksum-calculator",
-          "ip-address-masker",
-          "download-time-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

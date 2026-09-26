@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import EngagementRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3];
 
@@ -420,19 +421,10 @@ export default function EngagementRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EngagementRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="engagement-rate-calculator"
-        tools={[
-          "social-media-reach-calculator",
-          "impressions-calculator",
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "cost-per-click-cpc-calculator",
-          "roi-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

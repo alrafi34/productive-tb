@@ -108,6 +108,7 @@ export default function HSLColorSliderPage() {
         />
       )}
       <ToolLayout
+        slug="hsl-color-slider"
         title={toolName}
         description={toolDescription}
         icon={toolIcon}

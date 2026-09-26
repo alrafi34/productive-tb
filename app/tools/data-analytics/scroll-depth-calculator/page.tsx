@@ -104,6 +104,7 @@ export default function ScrollDepthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="scroll-depth-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

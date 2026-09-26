@@ -104,6 +104,7 @@ export default function CombinatoricsCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="combinatorics-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

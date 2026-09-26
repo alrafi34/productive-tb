@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import HeatLossCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HeatLossCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("simple");
@@ -707,11 +708,9 @@ export default function HeatLossCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HeatLossCalculatorSEO />
-      <RelatedTools
-        currentTool="heat-loss-calculator-building"
-        tools={['hvac-load-calculator', 'cooling-load-calculator-architecture', 'ventilation-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

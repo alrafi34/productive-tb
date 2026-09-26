@@ -6,6 +6,7 @@ import { DitheringOptions, ProcessedImage } from "./types";
 import { applyDithering, applyDitheringToMultiple, downloadImage, downloadAllImages, formatFileSize } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DitheringFilterUI() {
   const [images, setImages] = useState<ProcessedImage[]>([]);
@@ -408,11 +409,9 @@ export default function DitheringFilterUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="dithering-filter"
-        tools={['image-to-grayscale', 'image-compressor', 'favicon-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

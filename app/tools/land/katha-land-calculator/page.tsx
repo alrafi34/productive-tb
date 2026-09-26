@@ -104,6 +104,7 @@ export default function KathaLandCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="katha-land-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

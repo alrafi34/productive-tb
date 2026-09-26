@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import GearRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "Bicycle (Low)", driverTeeth: "22", drivenTeeth: "34", inputRPM: "80" },
@@ -633,18 +634,9 @@ export default function GearRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GearRatioCalculatorSEO />
-      <RelatedTools
-        currentTool="gear-ratio-calculator"
-        tools={[
-          "torque-calculator",
-          "angular-velocity-calculator",
-          "force-calculator",
-          "velocity-calculator",
-          "kinetic-energy-calculator",
-          "spring-force-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

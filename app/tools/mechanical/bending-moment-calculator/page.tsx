@@ -104,6 +104,7 @@ export default function BendingMomentCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="bending-moment-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import RebarSpacingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 /* Common bar sizes. US bars are named by eighths of an inch (#4 = 4/8 in). */
 const US_BARS = [
@@ -673,11 +674,9 @@ export default function RebarSpacingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RebarSpacingCalculatorSEO />
-      <RelatedTools
-        currentTool="rebar-spacing-calculator"
-        tools={['rebar-weight-calculator', 'concrete-volume-calculator', 'steel-quantity-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

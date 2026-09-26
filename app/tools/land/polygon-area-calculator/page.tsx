@@ -104,6 +104,7 @@ export default function PolygonAreaCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="polygon-area-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

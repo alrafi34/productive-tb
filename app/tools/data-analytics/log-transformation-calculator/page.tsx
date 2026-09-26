@@ -104,6 +104,7 @@ export default function LogTransformationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="log-transformation-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

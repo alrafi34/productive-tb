@@ -104,6 +104,7 @@ export default function ThreePhasePowerCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="three-phase-power-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

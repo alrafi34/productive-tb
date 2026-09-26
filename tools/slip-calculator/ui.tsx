@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import SlipCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SlipCalculatorUI() {
   const savedSettings = loadSettings();
@@ -539,11 +540,9 @@ export default function SlipCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SlipCalculatorSEO />
-      <RelatedTools
-        currentTool="slip-calculator"
-        tools={['motor-speed-calculator', 'electric-motor-power-calculator', 'frequency-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -11,6 +11,7 @@ import {
 import { BeforeAfterBarChart } from "./chart";
 import QueryOptimizationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const RATING_COLORS: Record<Rating, { bg: string; text: string }> = {
   Poor: { bg: "bg-red-100", text: "text-red-700" },
@@ -344,19 +345,10 @@ export default function QueryOptimizationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <QueryOptimizationCalculatorSEO />
 
-      <RelatedTools
-        currentTool="query-optimization-calculator"
-        tools={[
-          "big-data-throughput-calculator",
-          "cluster-utilization-calculator",
-          "spark-job-time-calculator",
-          "data-compression-ratio-calculator",
-          "index-size-calculator",
-          "data-partition-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

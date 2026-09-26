@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import ConfusionMatrixCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 interface MetricCard {
   key: string;
@@ -740,19 +741,10 @@ export default function ConfusionMatrixCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ConfusionMatrixCalculatorSEO />
 
-      <RelatedTools
-        currentTool="confusion-matrix-calculator"
-        tools={[
-          "precision-recall-calculator",
-          "f1-score-calculator",
-          "model-accuracy-calculator",
-          "ai-token-cost-calculator",
-          "ai-prompt-length-calculator",
-          "time-complexity-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

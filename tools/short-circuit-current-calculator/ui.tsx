@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import ShortCircuitCurrentCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ShortCircuitCurrentCalculatorUI() {
   const [inputs, setInputs] = useState<ShortCircuitInputs>({
@@ -483,11 +484,9 @@ export default function ShortCircuitCurrentCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ShortCircuitCurrentCalculatorSEO />
-      <RelatedTools
-        currentTool="short-circuit-current-calculator"
-        tools={['impedance-calculator', 'power-loss-calculator', 'fuse-rating-calculator', 'circuit-breaker-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

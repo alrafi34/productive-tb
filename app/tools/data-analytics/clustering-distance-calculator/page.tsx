@@ -104,6 +104,7 @@ export default function ClusteringDistanceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="clustering-distance-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

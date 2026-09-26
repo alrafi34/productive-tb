@@ -27,6 +27,7 @@ import {
 } from "./logic";
 import SoilCompactionRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   fieldDensity:     "",
@@ -549,16 +550,9 @@ export default function SoilCompactionRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SoilCompactionRatioCalculatorSEO />
-      <RelatedTools
-        currentTool="soil-compaction-ratio-calculator"
-        tools={[
-          "land-leveling-calculator",
-          "earth-filling-calculator",
-          "soil-volume-calculator",
-          "excavation-cost-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

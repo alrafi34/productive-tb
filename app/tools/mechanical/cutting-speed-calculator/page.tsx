@@ -104,6 +104,7 @@ export default function CuttingSpeedCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="cutting-speed-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

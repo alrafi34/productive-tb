@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import Base64EncoderDecoderSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_TEXT = "Hello World! This is a Base64 Encoder/Decoder.";
 
@@ -445,11 +446,9 @@ export default function Base64EncoderDecoderUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <Base64EncoderDecoderSEOContent />
-      <RelatedTools
-        currentTool="base64-encoder-decoder"
-        tools={["text-encrypt-decrypt", "hash-generator", "url-encoder-decoder"]}
-      />
+      <RelatedTools />
     </>
   );
 }

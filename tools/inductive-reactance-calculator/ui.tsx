@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import InductiveReactanceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function InductiveReactanceCalculatorUI() {
   const [frequency, setFrequency] = useState<string>("50");
@@ -417,11 +418,9 @@ export default function InductiveReactanceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <InductiveReactanceCalculatorSEO />
-      <RelatedTools
-        currentTool="inductive-reactance-calculator"
-        tools={['capacitive-reactance-calculator', 'impedance-calculator', 'inductor-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

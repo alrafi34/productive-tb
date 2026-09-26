@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import BigDataThroughputCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const MODE_OPTIONS: { id: Mode; label: string }[] = [
   { id: "required-throughput", label: "Calculate Required Throughput" },
@@ -409,19 +410,10 @@ export default function BigDataThroughputCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BigDataThroughputCalculatorSEO />
 
-      <RelatedTools
-        currentTool="big-data-throughput-calculator"
-        tools={[
-          "cluster-utilization-calculator",
-          "spark-job-time-calculator",
-          "data-compression-ratio-calculator",
-          "encoding-efficiency-calculator",
-          "data-partition-calculator",
-          "time-series-forecast-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

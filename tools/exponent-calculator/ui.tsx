@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ExponentCalculatorUI() {
   const [baseInput, setBaseInput] = useState<string>("2");
@@ -293,9 +294,10 @@ export default function ExponentCalculatorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
       <div className="mt-12">
-        <RelatedTools currentTool="exponent-calculator" tools={["square-root-calculator", "scientific-calculator", "fraction-calculator"]} />
+        <RelatedTools />
       </div>
     </div>
   );

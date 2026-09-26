@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import TransistorBiasCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TransistorBiasCalculatorUI() {
   const [inputs, setInputs] = useState<TransistorBiasInputs>({
@@ -642,11 +643,9 @@ export default function TransistorBiasCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TransistorBiasCalculatorSEO />
-      <RelatedTools
-        currentTool="transistor-bias-calculator"
-        tools={['ohms-law-calculator', 'voltage-divider-calculator', 'led-resistor-calculator', 'power-calculator-electrical']}
-      />
+      <RelatedTools />
     </>
   );
 }

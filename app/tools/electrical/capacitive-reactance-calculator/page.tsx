@@ -104,6 +104,7 @@ export default function CapacitiveReactanceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="capacitive-reactance-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

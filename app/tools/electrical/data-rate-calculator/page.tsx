@@ -104,6 +104,7 @@ export default function DataRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

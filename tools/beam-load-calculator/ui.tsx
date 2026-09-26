@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import BeamLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BeamLoadCalculatorUI() {
   const [beamType, setBeamType] = useState<BeamType>("simply-supported");
@@ -619,11 +620,9 @@ export default function BeamLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BeamLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="beam-load-calculator"
-        tools={['foundation-depth-calculator', 'concrete-volume-calculator', 'steel-quantity-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

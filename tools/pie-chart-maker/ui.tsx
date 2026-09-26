@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import PieChartSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_COLORS = [
   '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
@@ -444,11 +445,9 @@ export default function PieChartMakerUI() {
           </div>
         </div>
 
+        <RelatedStrip />
         <PieChartSEO />
-        <RelatedTools
-          currentTool="pie-chart-maker"
-          tools={['bar-graph-generator', 'heatmap-grid', 'word-cloud-generator']}
-        />
+        <RelatedTools />
       </div>
     </div>
   );

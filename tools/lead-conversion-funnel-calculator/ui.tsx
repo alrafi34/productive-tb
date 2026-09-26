@@ -11,6 +11,7 @@ import {
 import FunnelSVG, { exportFunnelPng, exportFunnelSvg } from "./chart";
 import LeadConversionFunnelCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 const UNDO_LIMIT = 20;
@@ -455,19 +456,10 @@ export default function LeadConversionFunnelCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LeadConversionFunnelCalculatorSEO />
 
-      <RelatedTools
-        currentTool="lead-conversion-funnel-calculator"
-        tools={[
-          "conversion-rate-calculator",
-          "cost-per-acquisition-cpa-calculator",
-          "customer-lifetime-value-calculator",
-          "bounce-rate-calculator",
-          "marketing-roi-calculator",
-          "roi-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

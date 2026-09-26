@@ -104,6 +104,7 @@ export default function ZScoreCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="z-score-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

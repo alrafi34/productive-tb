@@ -104,6 +104,7 @@ export default function MotorSpeedCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="motor-speed-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function LandAreaCalculatorSquareMeterPage() {
         />
       )}
       <ToolLayout
+        slug="land-area-calculator-square-meter"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

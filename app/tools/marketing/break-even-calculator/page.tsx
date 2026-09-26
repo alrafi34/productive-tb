@@ -104,6 +104,7 @@ export default function BreakEvenCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="break-even-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function AcreToSquareFeetConverterPage() {
         />
       )}
       <ToolLayout
+        slug="acre-to-square-feet-converter"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

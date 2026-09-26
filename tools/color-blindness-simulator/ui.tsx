@@ -7,6 +7,7 @@ import { SimulatorState, AccessibilityTip } from './types';
 import { colorBlindnessTypes, accessibilityTips, generateAllSVGFilters, loadImageFromFile, sampleImages } from './logic';
 import ColorBlindnessSimulatorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 
@@ -397,12 +398,10 @@ export default function ColorBlindnessSimulatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ColorBlindnessSimulatorSEOContent />
 
-      <RelatedTools
-        currentTool="color-blindness-simulator"
-        tools={['contrast-checker', 'color-palette-contrast-grid', 'color-palette-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import CSSFlexboxPlaygroundSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CSSFlexboxPlaygroundUI() {
   const [container, setContainer] = useState<FlexContainerProps>(DEFAULT_CONTAINER);
@@ -364,11 +365,9 @@ export default function CSSFlexboxPlaygroundUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CSSFlexboxPlaygroundSEOContent />
-      <RelatedTools
-        currentTool="css-flexbox-playground"
-        tools={["css-gradient-generator", "css-box-shadow-generator", "css-animation-previewer"]}
-      />
+      <RelatedTools />
     </>
   );
 }

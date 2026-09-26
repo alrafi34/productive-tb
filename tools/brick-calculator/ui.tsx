@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import BrickCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BrickCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("ft");
@@ -534,11 +535,9 @@ export default function BrickCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BrickCalculatorSEO />
-      <RelatedTools
-        currentTool="brick-calculator"
-        tools={['wall-area-calculator', 'tile-quantity-calculator', 'paint-required-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import SoilBearingCapacityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SoilBearingCapacityCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("m");
@@ -586,11 +587,9 @@ export default function SoilBearingCapacityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SoilBearingCapacityCalculatorSEO />
-      <RelatedTools
-        currentTool="soil-bearing-capacity-calculator"
-        tools={['foundation-depth-calculator', 'footing-size-calculator', 'structural-load-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

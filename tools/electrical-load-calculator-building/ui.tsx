@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import ElectricalLoadCalculatorBuildingSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ElectricalLoadCalculatorBuildingUI() {
   const [voltage, setVoltage] = useState<Voltage>(220);
@@ -533,11 +534,9 @@ export default function ElectricalLoadCalculatorBuildingUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ElectricalLoadCalculatorBuildingSEO />
-      <RelatedTools
-        currentTool="electrical-load-calculator-building"
-        tools={['lighting-load-calculator', 'power-consumption-calculator', 'ohms-law-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

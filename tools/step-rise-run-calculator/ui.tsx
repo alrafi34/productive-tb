@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import StepRiseRunCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function StepRiseRunCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("cm");
@@ -544,11 +545,9 @@ export default function StepRiseRunCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <StepRiseRunCalculatorSEO />
-      <RelatedTools
-        currentTool="step-rise-run-calculator"
-        tools={['staircase-calculator', 'floor-area-calculator', 'room-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

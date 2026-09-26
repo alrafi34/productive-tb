@@ -12,6 +12,7 @@ import {
 import OpenRateGauge from "./gauge";
 import EmailOpenRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 
@@ -285,19 +286,10 @@ export default function EmailOpenRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EmailOpenRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="email-open-rate-calculator"
-        tools={[
-          "email-click-rate-calculator",
-          "engagement-rate-calculator",
-          "lead-conversion-funnel-calculator",
-          "marketing-roi-calculator",
-          "retention-rate-calculator",
-          "cpm-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

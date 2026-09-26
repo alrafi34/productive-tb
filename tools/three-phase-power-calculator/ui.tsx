@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import ThreePhasePowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ThreePhasePowerCalculatorUI() {
   const [inputs, setInputs] = useState<ThreePhasePowerInputs>({
@@ -590,11 +591,9 @@ export default function ThreePhasePowerCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ThreePhasePowerCalculatorSEO />
-      <RelatedTools
-        currentTool="three-phase-power-calculator"
-        tools={['power-factor-calculator', 'apparent-power-calculator', 'real-power-calculator', 'reactive-power-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

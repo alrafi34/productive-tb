@@ -104,6 +104,7 @@ export default function OpAmpCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="op-amp-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

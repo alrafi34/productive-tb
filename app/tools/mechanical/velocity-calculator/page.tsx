@@ -105,6 +105,7 @@ export default function VelocityCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="velocity-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

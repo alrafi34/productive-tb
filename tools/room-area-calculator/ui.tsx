@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import RoomAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RoomAreaCalculatorUI() {
   const [dimensions, setDimensions] = useState<RoomDimensions>({
@@ -521,11 +522,9 @@ export default function RoomAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RoomAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="room-area-calculator"
-        tools={['floor-area-calculator', 'plot-area-calculator', 'square-meter-to-square-foot-converter']}
-      />
+      <RelatedTools />
     </>
   );
 }

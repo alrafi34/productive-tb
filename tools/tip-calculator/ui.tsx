@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import TipCalculatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TipCalculatorUI() {
   const [billAmount, setBillAmount] = useState("");
@@ -476,11 +477,9 @@ Each Pays: ${formatCurrency(result.perPersonAmount, symbol)}`;
         </div>
       </div>
 
+      <RelatedStrip />
       <TipCalculatorSEOContent />
-      <RelatedTools
-        currentTool="tip-calculator"
-        tools={["discount-calculator", "percentage-calculator", "bill-split-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

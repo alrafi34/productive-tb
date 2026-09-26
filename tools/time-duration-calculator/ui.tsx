@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import TimeDurationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 interface HistoryEntry {
   id: string;
@@ -370,12 +371,10 @@ export default function TimeDurationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TimeDurationCalculatorSEO />
       
-      <RelatedTools
-        currentTool="time-duration-calculator"
-        tools={['date-difference-calculator', 'timestamp-unix-converter', 'timer-stopwatch']}
-      />
+      <RelatedTools />
     </>
   );
 }

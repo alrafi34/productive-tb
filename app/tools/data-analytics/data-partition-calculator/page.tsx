@@ -104,6 +104,7 @@ export default function DataPartitionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-partition-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

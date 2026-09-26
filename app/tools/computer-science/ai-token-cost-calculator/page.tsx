@@ -104,6 +104,7 @@ export default function AiTokenCostCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="ai-token-cost-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

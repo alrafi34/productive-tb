@@ -104,6 +104,7 @@ export default function SolarPanelCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="solar-panel-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

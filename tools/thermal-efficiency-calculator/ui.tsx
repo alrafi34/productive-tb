@@ -31,6 +31,7 @@ import {
 } from "./logic";
 import ThermalEfficiencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: ThermalEfficiencyInputs = {
   mode: "basic",
@@ -679,11 +680,9 @@ export default function ThermalEfficiencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ThermalEfficiencyCalculatorSEO />
-      <RelatedTools
-        currentTool="thermal-efficiency-calculator"
-        tools={["heat-transfer-calculator", "ideal-gas-law-calculator", "thermal-expansion-calculator", "pump-efficiency-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import BatteryCapacityCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function BatteryCapacityCalculatorUI() {
   const [inputs, setInputs] = useState<BatteryCapacityInputs>({
@@ -492,11 +493,9 @@ export default function BatteryCapacityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BatteryCapacityCalculatorSEO />
-      <RelatedTools
-        currentTool="battery-capacity-calculator"
-        tools={['battery-backup-time-calculator', 'battery-charging-time-calculator', 'energy-consumption-calculator', 'solar-battery-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import PhaseAngleCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PhaseAngleCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("power");
@@ -530,11 +531,9 @@ export default function PhaseAngleCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PhaseAngleCalculatorSEO />
-      <RelatedTools
-        currentTool="phase-angle-calculator"
-        tools={['power-factor-calculator', 'impedance-calculator', 'inductive-reactance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

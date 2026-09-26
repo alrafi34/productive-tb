@@ -104,6 +104,7 @@ export default function LatheSpeedCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="lathe-speed-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

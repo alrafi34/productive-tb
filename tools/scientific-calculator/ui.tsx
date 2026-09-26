@@ -14,6 +14,7 @@ import {
 import { AngleMode, CalculationHistory, MemoryState } from "./types";
 import ScientificCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const SCIENTIFIC_ROWS = [
   ["sin", "cos", "tan", "log", "ln"],
@@ -530,12 +531,10 @@ export default function ScientificCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ScientificCalculatorSEO />
 
-      <RelatedTools
-        currentTool="scientific-calculator"
-        tools={["percentage-calculator", "matrix-calculator", "average-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

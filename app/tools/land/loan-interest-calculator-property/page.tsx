@@ -104,6 +104,7 @@ export default function LoanInterestCalculatorPropertyPage() {
         />
       )}
       <ToolLayout
+        slug="loan-interest-calculator-property"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

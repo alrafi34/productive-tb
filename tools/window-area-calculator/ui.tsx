@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import WindowAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WindowAreaCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("ft");
@@ -420,11 +421,9 @@ export default function WindowAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WindowAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="window-area-calculator"
-        tools={['floor-area-calculator', 'wall-area-calculator', 'room-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

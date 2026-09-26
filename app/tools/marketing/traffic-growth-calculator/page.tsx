@@ -104,6 +104,7 @@ export default function TrafficGrowthCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="traffic-growth-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function ZenerDiodeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="zener-diode-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import CSVToJSONSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_CSV = `name,age,city
 John,30,New York
@@ -332,12 +333,10 @@ export default function CSVToJSONUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <CSVToJSONSEOContent />
 
-      <RelatedTools
-        currentTool="csv-to-json-converter"
-        tools={["json-to-csv", "json-formatter", "json-validator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

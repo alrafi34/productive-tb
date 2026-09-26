@@ -104,6 +104,7 @@ export default function GroundFaultCurrentCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="ground-fault-current-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

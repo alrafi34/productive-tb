@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import LaborCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LaborCostCalculatorUI() {
   const [wageType, setWageType] = useState<WageType>("hourly");
@@ -592,11 +593,9 @@ export default function LaborCostCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LaborCostCalculatorSEO />
-      <RelatedTools
-        currentTool="labor-cost-calculator"
-        tools={['construction-cost-estimator', 'material-cost-calculator', 'escalation-cost-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

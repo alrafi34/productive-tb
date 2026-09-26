@@ -104,6 +104,7 @@ export default function PrecisionRecallCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="precision-recall-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

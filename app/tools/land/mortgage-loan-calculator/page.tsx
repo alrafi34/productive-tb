@@ -104,6 +104,7 @@ export default function MortgageLoanCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="mortgage-loan-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -104,6 +104,7 @@ export default function BoltLoadCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="bolt-load-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import ElevationDesignCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ElevationDesignCalculatorUI() {
   const [width, setWidth] = useState(30);
@@ -630,11 +631,9 @@ export default function ElevationDesignCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ElevationDesignCalculatorSEO />
-      <RelatedTools
-        currentTool="elevation-design-calculator"
-        tools={['facade-area-calculator', 'building-height-calculator', 'floor-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

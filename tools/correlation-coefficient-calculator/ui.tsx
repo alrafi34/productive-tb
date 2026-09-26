@@ -11,6 +11,7 @@ import {
 import { ScatterPlot, exportCanvasAsPng, buildScatterSVG } from "./chart";
 import CorrelationCoefficientCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [2, 3, 4, 5, 6];
 const METHOD_LABELS: Record<CorrelationMethod, string> = { pearson: "Pearson", spearman: "Spearman Rank", kendall: "Kendall Tau" };
@@ -424,19 +425,10 @@ export default function CorrelationCoefficientCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CorrelationCoefficientCalculatorSEO />
 
-      <RelatedTools
-        currentTool="correlation-coefficient-calculator"
-        tools={[
-          "mean-calculator",
-          "median-calculator",
-          "standard-deviation-calculator",
-          "regression-calculator",
-          "data-growth-calculator",
-          "session-duration-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

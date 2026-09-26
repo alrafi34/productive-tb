@@ -104,6 +104,7 @@ export default function AdFrequencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="ad-frequency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

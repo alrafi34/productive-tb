@@ -104,6 +104,7 @@ export default function PageRankEstimatorPage() {
         />
       )}
       <ToolLayout
+        slug="page-rank-estimator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

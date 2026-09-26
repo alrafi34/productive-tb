@@ -13,6 +13,7 @@ import {
 import DifficultyGauge, { exportGaugeAsPng } from "./gauge";
 import KeywordDifficultyEstimatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const INTENT_OPTIONS: { value: SearchIntent; label: string }[] = [
   { value: "informational", label: "Informational" },
@@ -455,19 +456,10 @@ export default function KeywordDifficultyEstimatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <KeywordDifficultyEstimatorSEO />
 
-      <RelatedTools
-        currentTool="keyword-difficulty-estimator"
-        tools={[
-          "seo-score-calculator",
-          "domain-authority-estimator",
-          "backlink-ratio-calculator",
-          "keyword-density-calculator-seo",
-          "serp-ctr-estimator",
-          "organic-vs-paid-ratio-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

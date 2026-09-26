@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import UPSLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function UPSLoadCalculatorUI() {
   const [devices, setDevices] = useState<Device[]>([
@@ -562,11 +563,9 @@ export default function UPSLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <UPSLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="ups-load-calculator"
-        tools={['battery-backup-time-calculator', 'power-consumption-calculator', 'generator-size-calculator', 'energy-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

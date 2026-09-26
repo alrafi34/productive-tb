@@ -104,6 +104,7 @@ export default function FlowRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="flow-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

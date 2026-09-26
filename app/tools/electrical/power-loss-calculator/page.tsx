@@ -104,6 +104,7 @@ export default function PowerLossCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="power-loss-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

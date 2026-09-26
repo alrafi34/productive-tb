@@ -43,6 +43,7 @@ import {
 } from "./logic";
 import HeatTransferCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: HeatTransferInputs = {
   mode: "conduction",
@@ -854,18 +855,9 @@ export default function HeatTransferCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HeatTransferCalculatorSEO />
-      <RelatedTools
-        currentTool="heat-transfer-calculator"
-        tools={[
-          "thermal-stress-calculator",
-          "thermal-expansion-calculator",
-          "specific-heat-calculator",
-          "thermal-efficiency-calculator",
-          "reynolds-number-calculator",
-          "ideal-gas-law-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

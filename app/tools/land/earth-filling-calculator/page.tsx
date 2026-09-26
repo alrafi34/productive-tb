@@ -104,6 +104,7 @@ export default function EarthFillingCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="earth-filling-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

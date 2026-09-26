@@ -104,6 +104,7 @@ export default function RegressionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="regression-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

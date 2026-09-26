@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import PlotDivisionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   totalLand: "",
@@ -495,16 +496,9 @@ export default function PlotDivisionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PlotDivisionCalculatorSEO />
-      <RelatedTools
-        currentTool="plot-division-calculator"
-        tools={[
-          "land-price-calculator",
-          "land-area-calculator-square-feet",
-          "boundary-length-calculator",
-          "fence-material-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

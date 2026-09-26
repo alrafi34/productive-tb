@@ -13,6 +13,7 @@ import {
 import { StorageBreakdownChart, ForecastBarChart } from "./chart";
 import HadoopStorageCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HadoopStorageCalculatorUI() {
   const [rawDataSize, setRawDataSize] = useState(String(DEFAULT_RAW_DATA));
@@ -352,19 +353,10 @@ export default function HadoopStorageCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HadoopStorageCalculatorSEO />
 
-      <RelatedTools
-        currentTool="hadoop-storage-calculator"
-        tools={[
-          "storage-requirement-calculator",
-          "data-transfer-cost-calculator",
-          "cluster-utilization-calculator",
-          "big-data-throughput-calculator",
-          "data-partition-calculator",
-          "data-pipeline-latency-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

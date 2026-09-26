@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import ZenerDiodeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ZenerDiodeCalculatorUI() {
   const [inputs, setInputs] = useState<ZenerDiodeInputs>({
@@ -583,11 +584,9 @@ export default function ZenerDiodeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ZenerDiodeCalculatorSEO />
-      <RelatedTools
-        currentTool="zener-diode-calculator"
-        tools={['diode-calculator', 'led-resistor-calculator', 'voltage-divider-calculator', 'ohms-law-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

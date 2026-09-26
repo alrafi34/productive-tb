@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import SparkJobTimeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const BOTTLENECK_COLORS: Record<string, string> = {
   Read: "bg-blue-100 text-blue-700",
@@ -446,19 +447,10 @@ export default function SparkJobTimeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SparkJobTimeCalculatorSEO />
 
-      <RelatedTools
-        currentTool="spark-job-time-calculator"
-        tools={[
-          "big-data-throughput-calculator",
-          "cluster-utilization-calculator",
-          "data-compression-ratio-calculator",
-          "encoding-efficiency-calculator",
-          "data-partition-calculator",
-          "time-series-forecast-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

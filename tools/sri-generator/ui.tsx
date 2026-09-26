@@ -18,6 +18,7 @@ import {
 } from './logic';
 import SRIGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 type TabType = 'single' | 'batch';
 
@@ -563,12 +564,10 @@ export default function SRIGeneratorUI() {
       )}
       </div>
       
+      <RelatedStrip />
       <SRIGeneratorSEOContent />
       
-      <RelatedTools
-        currentTool="sri-generator"
-        tools={['file-hash-generator', 'text-encryptor-aes', 'password-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

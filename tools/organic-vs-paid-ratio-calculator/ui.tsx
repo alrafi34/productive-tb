@@ -13,6 +13,7 @@ import {
 import RatioChart, { exportCanvasAsPng } from "./chart";
 import OrganicVsPaidRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const CHART_TYPES: { value: ChartType; label: string }[] = [
   { value: "pie", label: "Pie Chart" },
@@ -382,19 +383,10 @@ export default function OrganicVsPaidRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <OrganicVsPaidRatioCalculatorSEO />
 
-      <RelatedTools
-        currentTool="organic-vs-paid-ratio-calculator"
-        tools={[
-          "traffic-growth-calculator",
-          "seo-score-calculator",
-          "domain-authority-estimator",
-          "roi-calculator-marketing",
-          "cost-per-click-cpc-calculator",
-          "conversion-rate-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

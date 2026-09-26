@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import MinMaxScalingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4, 5, 6];
 const PREVIEW_LIMIT = 200;
@@ -324,19 +325,10 @@ export default function MinMaxScalingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MinMaxScalingCalculatorSEO />
 
-      <RelatedTools
-        currentTool="min-max-scaling-calculator"
-        tools={[
-          "data-normalization-calculator",
-          "log-transformation-calculator",
-          "standard-deviation-calculator",
-          "z-score-calculator",
-          "mean-calculator",
-          "outlier-detection-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

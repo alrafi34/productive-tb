@@ -15,6 +15,7 @@ import {
 import { EncryptionMode, TransformationHistory } from "./types";
 import TextEncryptDecryptSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function TextEncryptDecryptUI() {
   const [inputText, setInputText] = useState('');
@@ -378,11 +379,9 @@ export default function TextEncryptDecryptUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TextEncryptDecryptSEOContent />
-      <RelatedTools
-        currentTool="text-encrypt-decrypt"
-        tools={["password-generator", "hash-generator", "base64-image-encoder"]}
-      />
+      <RelatedTools />
     </>
   );
 }

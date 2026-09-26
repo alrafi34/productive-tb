@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import URLEncoderSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = 'encode' | 'decode' | 'auto';
 type Method = 'encodeURI' | 'encodeURIComponent';
@@ -450,11 +451,9 @@ export default function URLEncoderDecoderUI() {
           </div>
         </div>
 
+        <RelatedStrip />
         <URLEncoderSEO />
-        <RelatedTools
-          currentTool="url-encoder-decoder"
-          tools={['base64-encoder-decoder', 'json-validator', 'regex-tester']}
-        />
+        <RelatedTools />
       </div>
     </div>
   );

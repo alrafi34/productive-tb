@@ -6,6 +6,7 @@ import { ExifRemovalOptions, ProcessedImage } from "./types";
 import { removeExifFromMultiple, downloadImage, downloadAllImages, formatFileSize, calculateSavings } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ExifRemoverUI() {
   const [images, setImages] = useState<ProcessedImage[]>([]);
@@ -355,11 +356,9 @@ export default function ExifRemoverUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="exif-remover"
-        tools={['image-compressor', 'image-to-grayscale', 'image-resizer']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import MindMapBuilderSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function MindMapBuilderUI() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -487,12 +488,10 @@ export default function MindMapBuilderUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MindMapBuilderSEOContent />
 
-      <RelatedTools
-        currentTool="mind-map-builder"
-        tools={["flowchart-logic-mapper", "venn-diagram-maker", "word-cloud-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

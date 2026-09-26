@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import SlabConcreteCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SlabConcreteCalculatorUI() {
   const [shape, setShape] = useState<SlabShape>("rectangular");
@@ -707,11 +708,9 @@ export default function SlabConcreteCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SlabConcreteCalculatorSEO />
-      <RelatedTools
-        currentTool="slab-concrete-calculator"
-        tools={['concrete-volume-calculator', 'concrete-mix-ratio-calculator', 'cement-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

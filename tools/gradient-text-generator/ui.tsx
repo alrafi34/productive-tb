@@ -16,6 +16,7 @@ import {
 } from './logic';
 import GradientTextGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function GradientTextGenerator() {
   const [gradient, setGradient] = useState<GradientSettings>(defaultGradient);
@@ -346,12 +347,10 @@ export default function GradientTextGenerator() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GradientTextGeneratorSEOContent />
       
-      <RelatedTools
-        currentTool="gradient-text-generator"
-        tools={['css-gradient-generator', 'hsl-color-slider', 'color-palette-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

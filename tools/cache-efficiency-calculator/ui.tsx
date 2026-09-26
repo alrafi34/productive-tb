@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import CacheEfficiencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CacheEfficiencyCalculatorUI() {
   const [useTotalMode, setUseTotalMode] = useState(false);
@@ -316,19 +317,10 @@ export default function CacheEfficiencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CacheEfficiencyCalculatorSEO />
 
-      <RelatedTools
-        currentTool="cache-efficiency-calculator"
-        tools={[
-          "index-size-calculator",
-          "cluster-utilization-calculator",
-          "big-data-throughput-calculator",
-          "etl-throughput-calculator",
-          "data-pipeline-latency-calculator",
-          "storage-requirement-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

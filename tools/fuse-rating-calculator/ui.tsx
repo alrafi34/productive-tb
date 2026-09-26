@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import FuseRatingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FuseRatingCalculatorUI() {
   const savedSettings = loadSettings();
@@ -560,11 +561,9 @@ export default function FuseRatingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FuseRatingCalculatorSEO />
-      <RelatedTools
-        currentTool="fuse-rating-calculator"
-        tools={['energy-consumption-calculator', 'voltage-divider-calculator', 'power-factor-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

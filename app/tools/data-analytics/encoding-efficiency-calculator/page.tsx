@@ -104,6 +104,7 @@ export default function EncodingEfficiencyCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="encoding-efficiency-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import LightningProtectionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function LightningProtectionCalculatorUI() {
   const [inputs, setInputs] = useState<LightningProtectionInputs>({
@@ -478,11 +479,9 @@ export default function LightningProtectionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LightningProtectionCalculatorSEO />
-      <RelatedTools
-        currentTool="lightning-protection-calculator"
-        tools={['power-calculator-electrical', 'energy-consumption-calculator', 'electric-bill-calculator', 'ohms-law-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

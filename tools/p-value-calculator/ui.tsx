@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import PValueCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PValueCalculatorUI() {
   const [testType, setTestType] = useState<TestType>("z");
@@ -362,19 +363,10 @@ export default function PValueCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PValueCalculatorSEO />
 
-      <RelatedTools
-        currentTool="p-value-calculator"
-        tools={[
-          "confidence-interval-calculator",
-          "z-score-calculator",
-          "correlation-coefficient-calculator",
-          "standard-deviation-calculator",
-          "chi-square-calculator",
-          "sample-size-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

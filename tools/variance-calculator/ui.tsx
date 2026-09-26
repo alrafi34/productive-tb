@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import VarianceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4, 5, 6];
 
@@ -374,19 +375,10 @@ export default function VarianceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VarianceCalculatorSEO />
 
-      <RelatedTools
-        currentTool="variance-calculator"
-        tools={[
-          "standard-deviation-calculator",
-          "mean-calculator",
-          "median-calculator",
-          "mode-calculator",
-          "z-score-calculator",
-          "correlation-coefficient-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

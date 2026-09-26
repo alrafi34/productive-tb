@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import URLSanitizerSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function URLSanitizerUI() {
   const [input, setInput] = useState("");
@@ -432,11 +433,9 @@ https://news.com/article?gclid=EAIaIQobChMI&utm_term=keyword&mc_cid=newsletter`
         </div>
       </div>
 
+      <RelatedStrip />
       <URLSanitizerSEO />
-      <RelatedTools
-        currentTool="url-sanitizer"
-        tools={["url-encoder-decoder", "password-generator", "hash-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

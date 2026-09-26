@@ -104,6 +104,7 @@ export default function DrainageSystemCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="drainage-system-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

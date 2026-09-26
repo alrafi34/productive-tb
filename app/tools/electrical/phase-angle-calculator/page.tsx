@@ -104,6 +104,7 @@ export default function PhaseAngleCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="phase-angle-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -36,6 +36,7 @@ import {
 } from "./logic";
 import CentripetalForceSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -648,18 +649,9 @@ export default function CentripetalForceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CentripetalForceSEO />
-      <RelatedTools
-        currentTool="centripetal-force-calculator"
-        tools={[
-          "force-calculator",
-          "torque-calculator",
-          "angular-velocity-calculator",
-          "kinetic-energy-calculator",
-          "spring-force-calculator",
-          "velocity-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

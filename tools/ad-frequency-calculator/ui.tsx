@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import AdFrequencyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 
@@ -323,19 +324,10 @@ export default function AdFrequencyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AdFrequencyCalculatorSEO />
 
-      <RelatedTools
-        currentTool="ad-frequency-calculator"
-        tools={[
-          "impressions-calculator",
-          "social-media-reach-calculator",
-          "ctr-calculator",
-          "cpm-calculator",
-          "cost-per-click-cpc-calculator",
-          "engagement-rate-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { hexToRgb, rgbToHex, rgbToHsl, rgbToCmyk, parseColorInput } from "./logic";
 import ColorFormatConverterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ColorFormatConverterUI() {
   const [input, setInput] = useState("#FF5733");
@@ -136,8 +137,9 @@ export default function ColorFormatConverterUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <ColorFormatConverterSEOContent />
-      <RelatedTools currentTool="color-format-converter" tools={["hex-to-rgb-converter", "color-palette-generator", "css-gradient-generator"]} />
+      <RelatedTools />
     </>
   );
 }

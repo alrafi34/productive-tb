@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import RelayCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RelayCalculatorUI() {
   const savedSettings = loadSettings();
@@ -678,11 +679,9 @@ export default function RelayCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RelayCalculatorSEO />
-      <RelatedTools
-        currentTool="relay-calculator"
-        tools={['led-resistor-calculator', 'transistor-base-resistor-calculator', 'op-amp-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

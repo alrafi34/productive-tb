@@ -104,6 +104,7 @@ export default function EmailClickRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="email-click-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

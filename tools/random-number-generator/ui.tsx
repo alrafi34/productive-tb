@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import RandomNumberGeneratorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type ToolMode = 'numbers' | 'picker' | 'color';
 
@@ -416,12 +417,10 @@ export default function RandomNumberGeneratorUI() {
 
       </div>
 
+      <RelatedStrip />
       <RandomNumberGeneratorSEO />
       
-      <RelatedTools 
-        currentTool="random-number-generator"
-        tools={['password-generator', 'hash-generator', 'username-generator']}
-      />
+      <RelatedTools />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { UpsideDownOptions, FlipMode, PresetType } from "./types";
 import { textToUpsideDown, upsideDownToText, getPresetOptions, copyToClipboard, downloadAsFile, UPSIDE_DOWN_MAP } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function UpsideDownTextGeneratorUI() {
   const [inputText, setInputText] = useState("");
@@ -297,11 +298,9 @@ export default function UpsideDownTextGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools
-        currentTool="upside-down-text-generator"
-        tools={['text-reverser', 'zalgo-text-generator', 'leetspeak-converter']}
-      />
+      <RelatedTools />
     </>
   );
 }

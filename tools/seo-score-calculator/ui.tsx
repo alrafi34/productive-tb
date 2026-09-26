@@ -7,6 +7,7 @@ import {
 } from "./logic";
 import SEOScoreCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: SEOInputs = {
   title: "", metaDescription: "", targetKeyword: "", url: "", h1: "",
@@ -385,19 +386,10 @@ export default function SEOScoreCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOScoreCalculatorSEO />
 
-      <RelatedTools
-        currentTool="seo-score-calculator"
-        tools={[
-          "keyword-density-checker",
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "cost-per-click-cpc-calculator",
-          "bounce-rate-calculator",
-          "roi-calculator-marketing",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

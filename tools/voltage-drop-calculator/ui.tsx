@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import VoltageDropCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function VoltageDropCalculatorUI() {
   const savedSettings = loadSettings();
@@ -543,11 +544,9 @@ export default function VoltageDropCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <VoltageDropCalculatorSEO />
-      <RelatedTools
-        currentTool="voltage-drop-calculator"
-        tools={['voltage-divider-calculator', 'energy-consumption-calculator', 'fuse-rating-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

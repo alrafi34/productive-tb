@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import RoomAcousticsCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RoomAcousticsCalculatorUI() {
   const [dimensionUnit, setDimensionUnit] = useState<DimensionUnit>("m");
@@ -587,11 +588,9 @@ export default function RoomAcousticsCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RoomAcousticsCalculatorSEO />
-      <RelatedTools
-        currentTool="room-acoustics-calculator"
-        tools={['acoustic-soundproofing-calculator', 'ventilation-calculator', 'room-volume-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

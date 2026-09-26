@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import AIPromptLengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const TOKEN_MODES: { id: TokenMode; label: string }[] = [
   { id: "fast", label: "Fast" },
@@ -547,19 +548,10 @@ export default function AIPromptLengthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AIPromptLengthCalculatorSEO />
 
-      <RelatedTools
-        currentTool="ai-prompt-length-calculator"
-        tools={[
-          "ai-token-cost-calculator",
-          "download-time-calculator",
-          "time-complexity-calculator",
-          "latency-calculator",
-          "data-transfer-calculator",
-          "bandwidth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -24,6 +24,7 @@ import {
 } from "./logic";
 import BighaLandCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; value: string; unit: Unit }[] = [
   { label: "1 Bigha",  value: "1",  unit: "bigha" },
@@ -489,16 +490,9 @@ export default function BighaLandCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BighaLandCalculatorSEO />
-      <RelatedTools
-        currentTool="bigha-land-calculator"
-        tools={[
-          "katha-land-calculator",
-          "land-area-calculator-square-feet",
-          "acre-to-square-feet-converter",
-          "hectare-to-acre-converter",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

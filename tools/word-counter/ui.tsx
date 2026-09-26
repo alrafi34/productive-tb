@@ -7,6 +7,7 @@ import {
 } from "./logic";
 import WordCounterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WordCounterUI() {
   const [text, setText] = useState("");
@@ -79,9 +80,10 @@ export default function WordCounterUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <WordCounterSEOContent />
       
-      <RelatedTools currentTool="word-counter" tools={["word-frequency-counter", "paragraph-formatter", "text-reverser"]} />
+      <RelatedTools />
     </>
   );
 }

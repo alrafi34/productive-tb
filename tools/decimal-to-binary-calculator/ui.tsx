@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import DecimalToBinaryCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DecimalToBinaryCalculatorUI() {
   const [inputs, setInputs] = useState<DecimalToBinaryInputs>({
@@ -481,11 +482,9 @@ export default function DecimalToBinaryCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DecimalToBinaryCalculatorSEO />
-      <RelatedTools
-        currentTool="decimal-to-binary-calculator"
-        tools={['binary-to-decimal-calculator', 'logic-gate-calculator', 'dac-output-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

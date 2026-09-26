@@ -25,6 +25,7 @@ import {
 } from "./logic";
 import CapacitorCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CapacitorCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("charge");
@@ -491,11 +492,9 @@ export default function CapacitorCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CapacitorCalculatorSEO />
-      <RelatedTools
-        currentTool="capacitor-calculator"
-        tools={['ohms-law-calculator', 'voltage-divider-calculator', 'energy-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

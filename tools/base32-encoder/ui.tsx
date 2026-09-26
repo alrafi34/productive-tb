@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import Base32EncoderSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const EXAMPLE_TEXT = "Hello World! This is a Base32 Encoder/Decoder.";
 
@@ -335,11 +336,9 @@ export default function Base32EncoderUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <Base32EncoderSEOContent />
-      <RelatedTools
-        currentTool="base32-encoder"
-        tools={["base64-encoder-decoder", "text-encrypt-decrypt", "hash-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

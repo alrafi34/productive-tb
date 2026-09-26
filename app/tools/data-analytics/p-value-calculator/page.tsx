@@ -104,6 +104,7 @@ export default function PValueCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="p-value-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

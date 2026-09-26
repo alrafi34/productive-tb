@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import HVACLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HVACLoadCalculatorUI() {
   const [dimensionUnit, setDimensionUnit] = useState<DimensionUnit>("ft");
@@ -513,11 +514,9 @@ export default function HVACLoadCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HVACLoadCalculatorSEO />
-      <RelatedTools
-        currentTool="hvac-load-calculator"
-        tools={['ventilation-calculator', 'air-change-rate-calculator', 'cooling-load-calculator-architecture']}
-      />
+      <RelatedTools />
     </>
   );
 }

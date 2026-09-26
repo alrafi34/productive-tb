@@ -6,6 +6,7 @@ import { findMatches, replaceText, batchReplace, copyToClipboard, downloadAsFile
 import { findAndReplaceConfig } from './config';
 import SEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function FindAndReplaceUI() {
   const [inputText, setInputText] = useState('');
@@ -484,8 +485,9 @@ export default function FindAndReplaceUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SEOContent />
-      <RelatedTools currentTool="find-and-replace" />
+      <RelatedTools />
     </div>
   );
 }

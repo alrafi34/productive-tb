@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import RLTimeConstantCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function RLTimeConstantCalculatorUI() {
   const [inductance, setInductance] = useState<string>("10");
@@ -448,11 +449,9 @@ export default function RLTimeConstantCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <RLTimeConstantCalculatorSEO />
-      <RelatedTools
-        currentTool="rl-time-constant-calculator"
-        tools={['rc-time-constant-calculator', 'inductor-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

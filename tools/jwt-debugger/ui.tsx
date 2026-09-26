@@ -13,6 +13,7 @@ import {
 } from "./logic";
 import JWTDebuggerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function JWTDebuggerUI() {
   const [token, setToken] = useState("");
@@ -368,12 +369,10 @@ export default function JWTDebuggerUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <JWTDebuggerSEOContent />
 
-      <RelatedTools
-        currentTool="jwt-debugger"
-        tools={["json-validator", "base64-encoder-decoder", "hash-generator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

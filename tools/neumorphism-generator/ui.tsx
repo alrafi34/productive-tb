@@ -11,6 +11,7 @@ import {
 } from "./logic";
 import NeumorphismSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function NeumorphismGeneratorUI() {
   const [config, setConfig] = useState<NeumorphismConfig>(defaultConfig);
@@ -350,12 +351,10 @@ export default function NeumorphismGeneratorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <NeumorphismSEOContent />
       
-      <RelatedTools
-        currentTool="neumorphism-generator"
-        tools={['css-box-shadow-generator', 'css-gradient-generator', 'css-glassmorphism-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

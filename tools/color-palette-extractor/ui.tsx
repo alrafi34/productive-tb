@@ -24,6 +24,7 @@ import {
 } from './logic';
 import ColorPaletteExtractorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function ColorPaletteExtractorUI() {
   const [image, setImage] = useState<string | null>(null);
@@ -616,11 +617,9 @@ export default function ColorPaletteExtractorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <ColorPaletteExtractorSEOContent />
-      <RelatedTools
-        currentTool="color-palette-extractor"
-        tools={["color-palette-generator", "hex-to-rgb-converter", "contrast-checker"]}
-      />
+      <RelatedTools />
     </div>
   );
 }

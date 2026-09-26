@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { parseNumbers, calculateAverage, formatNumber, exportToCSV, downloadFile } from "./logic";
 import AverageCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AverageCalculatorUI() {
   const [input, setInput] = useState("10, 20, 30, 40");
@@ -135,11 +136,9 @@ export default function AverageCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AverageCalculatorSEO />
-      <RelatedTools
-        currentTool="average-calculator"
-        tools={['standard-deviation-calculator', 'percentage-calculator', 'discount-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

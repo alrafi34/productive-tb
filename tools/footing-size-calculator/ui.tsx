@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import FootingSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FootingSizeCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
@@ -565,11 +566,9 @@ export default function FootingSizeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FootingSizeCalculatorSEO />
-      <RelatedTools
-        currentTool="footing-size-calculator"
-        tools={['foundation-depth-calculator', 'concrete-volume-calculator', 'slab-concrete-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

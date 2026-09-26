@@ -26,6 +26,7 @@ import {
 } from "./logic";
 import TrapezoidLandCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -501,16 +502,9 @@ export default function TrapezoidLandCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TrapezoidLandCalculatorSEO />
-      <RelatedTools
-        currentTool="trapezoid-land-calculator"
-        tools={[
-          "triangle-land-area-calculator",
-          "survey-area-calculator",
-          "polygon-area-calculator",
-          "land-price-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import CombinatoricsCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_OP: Operation = "combination";
 const DEFAULT_N = 10;
@@ -572,19 +573,10 @@ export default function CombinatoricsCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <CombinatoricsCalculatorSEO />
 
-      <RelatedTools
-        currentTool="combinatorics-calculator"
-        tools={[
-          "model-accuracy-calculator",
-          "dataset-split-calculator",
-          "f1-score-calculator",
-          "time-complexity-calculator",
-          "standard-deviation-calculator",
-          "percentage-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

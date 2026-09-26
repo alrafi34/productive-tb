@@ -104,6 +104,7 @@ export default function VoltageRegulationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="voltage-regulation-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

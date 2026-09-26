@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import HeatDissipationCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HeatDissipationCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('voltage-current');
@@ -510,11 +511,9 @@ export default function HeatDissipationCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HeatDissipationCalculatorSEO />
-      <RelatedTools
-        currentTool="heat-dissipation-calculator"
-        tools={['power-loss-calculator', 'power-calculator-electrical', 'ohms-law-calculator', 'electrical-efficiency-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

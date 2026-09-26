@@ -15,6 +15,7 @@ import {
 } from './logic';
 import CSSCursorStylePreviewerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function CSSCursorStylePreviewer() {
   const [state, setState] = useState<CursorPreviewState>({
@@ -207,12 +208,10 @@ export default function CSSCursorStylePreviewer() {
 
 
 
+      <RelatedStrip />
       <CSSCursorStylePreviewerSEOContent />
       
-      <RelatedTools
-        currentTool="css-cursor-style-previewer"
-        tools={['css-filter-tester', 'css-animation-previewer', 'neumorphism-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

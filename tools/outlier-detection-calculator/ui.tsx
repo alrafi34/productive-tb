@@ -11,6 +11,7 @@ import {
 import { OutlierChart, OutlierBoxPlot, OutlierHistogram } from "./chart";
 import OutlierDetectionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type ChartTab = "dotplot" | "boxplot" | "histogram";
 
@@ -454,19 +455,10 @@ export default function OutlierDetectionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <OutlierDetectionCalculatorSEO />
 
-      <RelatedTools
-        currentTool="outlier-detection-calculator"
-        tools={[
-          "standard-deviation-calculator",
-          "percentile-calculator",
-          "histogram-bin-calculator",
-          "mean-calculator",
-          "median-calculator",
-          "z-score-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

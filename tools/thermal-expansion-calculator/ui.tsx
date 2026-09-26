@@ -33,6 +33,7 @@ import {
 } from "./logic";
 import ThermalExpansionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ────────────────────────────────────────────────────────────────
 const PRESETS = [
@@ -738,18 +739,9 @@ export default function ThermalExpansionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ThermalExpansionCalculatorSEO />
-      <RelatedTools
-        currentTool="thermal-expansion-calculator"
-        tools={[
-          "heat-transfer-calculator",
-          "stress-calculator",
-          "reynolds-number-calculator",
-          "flow-rate-calculator",
-          "torque-calculator",
-          "kinetic-energy-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

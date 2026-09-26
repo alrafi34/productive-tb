@@ -27,6 +27,7 @@ import {
 } from "./logic";
 import TriangleLandAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -496,16 +497,9 @@ export default function TriangleLandAreaCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TriangleLandAreaCalculatorSEO />
-      <RelatedTools
-        currentTool="triangle-land-area-calculator"
-        tools={[
-          "survey-area-calculator",
-          "polygon-area-calculator",
-          "land-price-calculator",
-          "boundary-length-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function IndexSizeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="index-size-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

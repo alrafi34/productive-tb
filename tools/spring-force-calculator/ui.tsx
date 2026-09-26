@@ -31,6 +31,7 @@ import {
 } from "./logic";
 import SpringForceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -547,18 +548,9 @@ export default function SpringForceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SpringForceCalculatorSEO />
-      <RelatedTools
-        currentTool="spring-force-calculator"
-        tools={[
-          "force-calculator",
-          "torque-calculator",
-          "kinetic-energy-calculator",
-          "stress-calculator",
-          "natural-frequency-calculator",
-          "elastic-potential-energy-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

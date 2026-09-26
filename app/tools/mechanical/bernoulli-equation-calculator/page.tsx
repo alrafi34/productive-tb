@@ -104,6 +104,7 @@ export default function BernoulliEquationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="bernoulli-equation-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

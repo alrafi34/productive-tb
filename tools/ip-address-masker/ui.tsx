@@ -16,6 +16,7 @@ import {
 import type { IPCalculation } from "./types";
 import IPAddressMaskerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Mode = "calculator" | "practice" | "batch" | "hosts";
 
@@ -571,12 +572,10 @@ export default function IPAddressMaskerUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <IPAddressMaskerSEOContent />
 
-      <RelatedTools
-        currentTool="ip-address-masker"
-        tools={["hash-generator", "base64-encoder-decoder", "url-encoder-decoder"]}
-      />
+      <RelatedTools />
     </>
   );
 }

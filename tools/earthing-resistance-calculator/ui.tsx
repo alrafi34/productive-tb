@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import EarthingResistanceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EarthingResistanceCalculatorUI() {
   const savedSettings = loadSettings();
@@ -533,11 +534,9 @@ export default function EarthingResistanceCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EarthingResistanceCalculatorSEO />
-      <RelatedTools
-        currentTool="earthing-resistance-calculator"
-        tools={['voltage-drop-calculator', 'fuse-rating-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

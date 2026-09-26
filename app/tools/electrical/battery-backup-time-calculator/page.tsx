@@ -104,6 +104,7 @@ export default function BatteryBackupTimeCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="battery-backup-time-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

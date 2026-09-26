@@ -5,6 +5,7 @@ import { PickerOptions, WinnerResult } from './types';
 import { parseNames, removeDuplicates, shuffleArray, pickRandomWinners, copyToClipboard, downloadAsFile, downloadAsCSV, formatWinnersAsText, triggerConfetti } from './logic';
 import RandomNamePickerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function RandomNamePickerUI() {
   const [namesText, setNamesText] = useState('');
@@ -337,9 +338,10 @@ export default function RandomNamePickerUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <RandomNamePickerSEOContent />
 
-      <RelatedTools currentTool="random-name-picker" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
 
       <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     </>

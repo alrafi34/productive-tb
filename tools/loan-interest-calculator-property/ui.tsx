@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import LoanInterestCalculatorPropertySEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   loanAmount: "", interestRate: "", duration: "20",
@@ -456,16 +457,9 @@ export default function LoanInterestCalculatorPropertyUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <LoanInterestCalculatorPropertySEO />
-      <RelatedTools
-        currentTool="loan-interest-calculator-property"
-        tools={[
-          "mortgage-loan-calculator",
-          "home-loan-emi-calculator",
-          "down-payment-calculator",
-          "land-price-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import ParallelResistorCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const RESISTANCE_UNITS: { label: string; value: ResistanceUnit }[] = [
   { label: 'Ohms (Ω)', value: 'Ω' },
@@ -321,11 +322,9 @@ export default function ParallelResistorCalculatorUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ParallelResistorCalculatorSEO />
-      <RelatedTools 
-        currentTool="parallel-resistor-calculator" 
-        tools={["series-resistor-calculator", "ohms-law-calculator", "voltage-divider-calculator"]} 
-      />
+      <RelatedTools />
     </div>
   );
 }

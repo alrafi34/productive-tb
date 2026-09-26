@@ -104,6 +104,7 @@ export default function DataTransferCostCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="data-transfer-cost-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

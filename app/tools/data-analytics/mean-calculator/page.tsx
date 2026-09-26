@@ -104,6 +104,7 @@ export default function MeanCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="mean-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -11,6 +11,7 @@ import {
 import { ForecastChart, exportCanvasAsPng, copyCanvasToClipboard } from "./chart";
 import TimeSeriesForecastCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 2, 4, 6];
 
@@ -479,19 +480,10 @@ export default function TimeSeriesForecastCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <TimeSeriesForecastCalculatorSEO />
 
-      <RelatedTools
-        currentTool="time-series-forecast-calculator"
-        tools={[
-          "moving-average-calculator",
-          "exponential-smoothing-calculator",
-          "regression-calculator",
-          "seasonality-index-calculator",
-          "correlation-coefficient-calculator",
-          "data-growth-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

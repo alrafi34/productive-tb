@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import EnergyConsumptionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EnergyConsumptionCalculatorUI() {
   const [appliances, setAppliances] = useState<ApplianceInput[]>([createDefaultAppliance()]);
@@ -556,11 +557,9 @@ export default function EnergyConsumptionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EnergyConsumptionCalculatorSEO />
-      <RelatedTools
-        currentTool="energy-consumption-calculator"
-        tools={['ohms-law-calculator', 'power-calculator-electrical', 'electric-bill-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

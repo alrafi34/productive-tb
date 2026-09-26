@@ -104,6 +104,7 @@ export default function SolarInverterCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="solar-inverter-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

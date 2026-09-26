@@ -12,6 +12,7 @@ import {
 import ClickRateGauge from "./gauge";
 import EmailClickRateCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 1, 2, 3, 4];
 
@@ -283,19 +284,10 @@ export default function EmailClickRateCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <EmailClickRateCalculatorSEO />
 
-      <RelatedTools
-        currentTool="email-click-rate-calculator"
-        tools={[
-          "email-open-rate-calculator",
-          "engagement-rate-calculator",
-          "lead-conversion-funnel-calculator",
-          "marketing-roi-calculator",
-          "retention-rate-calculator",
-          "cpm-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CmToMeterUI() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -218,8 +219,9 @@ export default function CmToMeterUI() {
         </div>
       )}
 
+      <RelatedStrip />
       <ToolSEOContent />
-      <RelatedTools currentTool="centimeter-to-meter-converter" tools={["temperature-conversion-scientific", "unit-ratio-calculator", "ohms-law-calculator"]} />
+      <RelatedTools />
     </div>
   );
 }

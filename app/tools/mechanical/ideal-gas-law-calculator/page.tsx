@@ -104,6 +104,7 @@ export default function IdealGasLawCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="ideal-gas-law-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -14,6 +14,7 @@ import {
 import type { WorkerMessage, WorkerResponse } from './resize.worker';
 import ImageResizerSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function ImageResizerUI() {
   const [images, setImages] = useState<ImageFile[]>([]);
@@ -543,9 +544,10 @@ export default function ImageResizerUI() {
         </>
       )}
 
+      <RelatedStrip />
       <ImageResizerSEOContent />
       
-      <RelatedTools currentTool="image-resizer" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </div>
   );
 }

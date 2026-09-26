@@ -26,6 +26,7 @@ import {
 import { VoiceRecognitionState, NotepadSettings, SavedNote, SpeechRecognition, SpeechRecognitionEvent, SpeechRecognitionErrorEvent } from './types';
 import VoiceToTextNotepadSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function VoiceToTextNotepadUI() {
   const [text, setText] = useState('');
@@ -293,8 +294,9 @@ export default function VoiceToTextNotepadUI() {
             <strong>Supported browsers:</strong> Chrome (recommended), Edge, Safari (iOS 14.5+)
           </div>
         </div>
+        <RelatedStrip />
         <VoiceToTextNotepadSEOContent />
-        <RelatedTools currentTool="voice-to-text-notepad" tools={["word-counter", "text-to-clipboard", "reading-time-calculator"]} />
+        <RelatedTools />
       </div>
     );
   }
@@ -593,8 +595,9 @@ export default function VoiceToTextNotepadUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <VoiceToTextNotepadSEOContent />
-      <RelatedTools currentTool="voice-to-text-notepad" tools={["word-counter", "text-to-clipboard", "reading-time-calculator"]} />
+      <RelatedTools />
     </>
   );
 }

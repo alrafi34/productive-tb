@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import SeriesResistorCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SeriesResistorCalculatorUI() {
   const [resistors, setResistors] = useState<Resistor[]>([
@@ -432,11 +433,9 @@ export default function SeriesResistorCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SeriesResistorCalculatorSEO />
-      <RelatedTools
-        currentTool="series-resistor-calculator"
-        tools={['parallel-resistor-calculator', 'ohms-law-calculator', 'voltage-divider-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

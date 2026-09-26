@@ -104,6 +104,7 @@ export default function EarthingResistanceCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="earthing-resistance-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

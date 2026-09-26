@@ -5,6 +5,7 @@ import { GeneratorOptions, GenerationType } from './types';
 import { generateText, downloadAsFile, copyToClipboard } from './logic';
 import LoremIpsumGeneratorSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
+import RelatedStrip from '@/components/RelatedStrip';
 
 export default function LoremIpsumGeneratorUI() {
   const [options, setOptions] = useState<GeneratorOptions>({
@@ -244,9 +245,10 @@ export default function LoremIpsumGeneratorUI() {
         )}
       </div>
 
+      <RelatedStrip />
       <LoremIpsumGeneratorSEOContent />
       
-      <RelatedTools currentTool="lorem-ipsum-generator" tools={["word-counter", "text-reverser", "paragraph-formatter"]} />
+      <RelatedTools />
     </>
   );
 }

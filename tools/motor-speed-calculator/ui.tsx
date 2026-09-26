@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import MotorSpeedCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function MotorSpeedCalculatorUI() {
   const savedSettings = loadSettings();
@@ -446,11 +447,9 @@ export default function MotorSpeedCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <MotorSpeedCalculatorSEO />
-      <RelatedTools
-        currentTool="motor-speed-calculator"
-        tools={['electric-motor-power-calculator', 'frequency-calculator', 'power-factor-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

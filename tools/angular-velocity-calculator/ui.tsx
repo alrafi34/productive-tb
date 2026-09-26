@@ -44,6 +44,7 @@ import {
 } from "./logic";
 import AngularVelocitySEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ───────────────────────────────────────────────────
 const PRESETS: Array<{ label: string; inputs: Partial<AngularVelocityInputs> }> = [
@@ -737,18 +738,9 @@ export default function AngularVelocityCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AngularVelocitySEO />
-      <RelatedTools
-        currentTool="angular-velocity-calculator"
-        tools={[
-          "torque-calculator",
-          "centripetal-force-calculator",
-          "gear-ratio-calculator",
-          "velocity-calculator",
-          "angular-acceleration-calculator",
-          "rotational-kinetic-energy-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

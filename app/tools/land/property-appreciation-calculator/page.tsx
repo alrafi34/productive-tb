@@ -104,6 +104,7 @@ export default function PropertyAppreciationCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="property-appreciation-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -21,6 +21,7 @@ import {
 } from "./logic";
 import WavelengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function WavelengthCalculatorUI() {
   const [frequency, setFrequency] = useState<string>("100");
@@ -446,11 +447,9 @@ export default function WavelengthCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <WavelengthCalculatorSEO />
-      <RelatedTools
-        currentTool="wavelength-calculator"
-        tools={['frequency-calculator', 'rlc-resonance-calculator', 'impedance-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

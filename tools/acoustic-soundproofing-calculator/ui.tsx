@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import AcousticSoundproofingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AcousticSoundproofingCalculatorUI() {
   const [length, setLength] = useState("4");
@@ -533,11 +534,9 @@ export default function AcousticSoundproofingCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AcousticSoundproofingCalculatorSEO />
-      <RelatedTools
-        currentTool="acoustic-soundproofing-calculator"
-        tools={['heat-loss-calculator-building', 'insulation-thickness-calculator', 'ventilation-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import IpRangeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
   { label: "192.168.1.0/24", ip: "192.168.1.10", cidr: 24 },
@@ -511,19 +512,10 @@ export default function IpRangeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <IpRangeCalculatorSEO />
 
-      <RelatedTools
-        currentTool="ip-range-calculator"
-        tools={[
-          "subnet-calculator",
-          "cidr-calculator",
-          "bandwidth-calculator",
-          "checksum-calculator",
-          "ip-address-masker",
-          "download-time-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

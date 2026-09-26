@@ -104,6 +104,7 @@ export default function PowerFactorCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="power-factor-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

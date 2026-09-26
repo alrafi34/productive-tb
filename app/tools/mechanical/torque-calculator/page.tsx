@@ -104,6 +104,7 @@ export default function TorqueCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="torque-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

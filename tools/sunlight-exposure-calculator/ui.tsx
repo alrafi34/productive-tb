@@ -15,6 +15,7 @@ import {
 } from "./logic";
 import SunlightExposureCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SunlightExposureCalculatorUI() {
   const [latitude, setLatitude] = useState("23.8103");
@@ -612,11 +613,9 @@ export default function SunlightExposureCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <SunlightExposureCalculatorSEO />
-      <RelatedTools
-        currentTool="sunlight-exposure-calculator"
-        tools={['building-height-calculator', 'room-area-calculator', 'plot-area-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

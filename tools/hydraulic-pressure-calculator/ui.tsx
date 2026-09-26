@@ -40,6 +40,7 @@ import {
 } from "./logic";
 import HydraulicPressureCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -579,18 +580,9 @@ export default function HydraulicPressureCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HydraulicPressureCalculatorSEO />
-      <RelatedTools
-        currentTool="hydraulic-pressure-calculator"
-        tools={[
-          "pressure-drop-calculator",
-          "flow-rate-calculator",
-          "pump-efficiency-calculator",
-          "force-calculator",
-          "stress-calculator",
-          "bernoulli-equation-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

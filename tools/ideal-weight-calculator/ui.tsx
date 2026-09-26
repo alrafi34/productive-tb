@@ -14,6 +14,7 @@ import {
 } from "./logic";
 import IdealWeightCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const QUICK_HEIGHTS_CM = [150, 160, 170, 180, 190, 200];
 
@@ -453,12 +454,10 @@ export default function IdealWeightCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <IdealWeightCalculatorSEO />
 
-      <RelatedTools
-        currentTool="ideal-weight-calculator"
-        tools={["bmi-calculator", "bmr-calculator", "daily-calorie-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

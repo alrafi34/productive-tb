@@ -104,6 +104,7 @@ export default function StorageRequirementCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="storage-requirement-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

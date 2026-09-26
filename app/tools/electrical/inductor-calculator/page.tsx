@@ -104,6 +104,7 @@ export default function InductorCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="inductor-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

@@ -20,6 +20,7 @@ import {
 } from "./logic";
 import FloorFinishCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FloorFinishCalculatorUI() {
   const [roomLength, setRoomLength] = useState(10);
@@ -533,11 +534,9 @@ export default function FloorFinishCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FloorFinishCalculatorSEO />
-      <RelatedTools
-        currentTool="floor-finish-calculator"
-        tools={['tile-quantity-calculator', 'room-area-calculator', 'paint-required-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

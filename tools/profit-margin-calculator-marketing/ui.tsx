@@ -9,6 +9,7 @@ import {
 } from "./logic";
 import ProfitMarginCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; mode: CalcMode; fields: Record<string, string> }[] = [
   { label: "33% Margin",    mode: "margin",       fields: { cost: "80",    selling: "120"   } },
@@ -590,19 +591,10 @@ export default function ProfitMarginCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <ProfitMarginCalculatorSEO />
 
-      <RelatedTools
-        currentTool="profit-margin-calculator-marketing"
-        tools={[
-          "revenue-growth-calculator",
-          "roi-calculator-marketing",
-          "cost-per-acquisition-cpa-calculator",
-          "customer-lifetime-value-calculator",
-          "investment-return-calculator",
-          "break-even-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

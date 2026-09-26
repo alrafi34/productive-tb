@@ -18,6 +18,7 @@ import {
 } from "./logic";
 import PowerFactorCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PowerFactorCalculatorUI() {
   const [inputs, setInputs] = useState<PowerFactorInputs>({
@@ -461,11 +462,9 @@ export default function PowerFactorCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PowerFactorCalculatorSEO />
-      <RelatedTools
-        currentTool="power-factor-calculator"
-        tools={['impedance-calculator', 'phase-angle-calculator', 'energy-consumption-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

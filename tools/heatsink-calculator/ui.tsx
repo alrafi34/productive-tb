@@ -17,6 +17,7 @@ import {
 } from "./logic";
 import HeatsinkCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function HeatsinkCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('thermal-resistance');
@@ -567,11 +568,9 @@ export default function HeatsinkCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <HeatsinkCalculatorSEO />
-      <RelatedTools
-        currentTool="heatsink-calculator"
-        tools={['heat-dissipation-calculator', 'power-loss-calculator', 'electrical-efficiency-calculator', 'power-density-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

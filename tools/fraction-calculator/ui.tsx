@@ -14,6 +14,7 @@ import {
 import { Fraction, FractionOperation, FractionResult, CalculationHistory } from "./types";
 import FractionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function FractionCalculatorUI() {
   // Fraction A
@@ -545,12 +546,10 @@ export default function FractionCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <FractionCalculatorSEO />
       
-      <RelatedTools
-        currentTool="fraction-calculator"
-        tools={['percentage-calculator', 'scientific-calculator', 'average-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

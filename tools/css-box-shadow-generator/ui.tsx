@@ -4,6 +4,7 @@ import { useState } from "react";
 import { generateShadowCSS, generateMultipleShadows, PRESETS, Shadow } from "./logic";
 import CSSBoxShadowGeneratorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function CSSBoxShadowGeneratorUI() {
   const [shadows, setShadows] = useState<Shadow[]>([
@@ -153,8 +154,9 @@ export default function CSSBoxShadowGeneratorUI() {
         </div>
       </div>
       
+      <RelatedStrip />
       <CSSBoxShadowGeneratorSEOContent />
-      <RelatedTools currentTool="css-box-shadow-generator" tools={["css-gradient-generator", "color-palette-generator", "hex-to-rgb-converter"]} />
+      <RelatedTools />
     </>
   );
 }

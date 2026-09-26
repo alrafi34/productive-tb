@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import PowerSupplyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PowerSupplyCalculatorUI() {
   const [inputs, setInputs] = useState<PowerSupplyInputs>({
@@ -667,11 +668,9 @@ export default function PowerSupplyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <PowerSupplyCalculatorSEO />
-      <RelatedTools
-        currentTool="power-supply-calculator"
-        tools={['power-consumption-calculator', 'energy-consumption-calculator', 'electric-motor-power-calculator', 'power-loss-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

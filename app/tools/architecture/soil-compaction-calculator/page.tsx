@@ -108,6 +108,7 @@ export default function SoilCompactionCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="soil-compaction-calculator"
         title={toolName}
         description={toolDescription}
         icon={toolIcon}

@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import DownloadTimeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const SIZE_UNITS: FileSizeUnit[] = ["KB", "MB", "GB", "TB"];
 const SPEED_UNITS: SpeedUnit[] = ["Kbps", "Mbps", "Gbps"];
@@ -560,19 +561,10 @@ export default function DownloadTimeCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <DownloadTimeCalculatorSEO />
 
-      <RelatedTools
-        currentTool="download-time-calculator"
-        tools={[
-          "data-transfer-calculator",
-          "bandwidth-calculator",
-          "cidr-calculator",
-          "subnet-calculator",
-          "ip-range-calculator",
-          "time-complexity-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

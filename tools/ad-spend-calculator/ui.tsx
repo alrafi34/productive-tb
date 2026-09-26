@@ -12,6 +12,7 @@ import {
 } from "./logic";
 import AdSpendCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function AdSpendCalculatorUI() {
   const [inputs, setInputs] = useState<AdSpendInputs>(DEFAULT_INPUTS);
@@ -374,19 +375,10 @@ export default function AdSpendCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <AdSpendCalculatorSEO />
 
-      <RelatedTools
-        currentTool="ad-spend-calculator"
-        tools={[
-          "cpm-calculator",
-          "cost-per-click-cpc-calculator",
-          "cost-per-acquisition-cpa-calculator",
-          "roi-calculator-marketing",
-          "marketing-roi-calculator",
-          "break-even-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -104,6 +104,7 @@ export default function ViralCoefficientCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="viral-coefficient-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

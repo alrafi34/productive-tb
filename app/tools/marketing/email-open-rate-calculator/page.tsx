@@ -104,6 +104,7 @@ export default function EmailOpenRateCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="email-open-rate-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

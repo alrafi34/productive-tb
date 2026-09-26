@@ -19,6 +19,7 @@ import {
 } from "./logic";
 import GreenBuildingScoreCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function GreenBuildingScoreCalculatorUI() {
   const [energyEfficiency, setEnergyEfficiency] = useState(50);
@@ -532,11 +533,9 @@ export default function GreenBuildingScoreCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GreenBuildingScoreCalculatorSEO />
-      <RelatedTools
-        currentTool="green-building-score-calculator"
-        tools={['energy-efficiency-calculator-building', 'carbon-footprint-calculator-construction', 'sustainability-index-calculator']}
-      />
+      <RelatedTools />
     </>
   );
 }

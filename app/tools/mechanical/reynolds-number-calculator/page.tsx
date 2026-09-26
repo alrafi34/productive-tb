@@ -104,6 +104,7 @@ export default function ReynoldsNumberCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="reynolds-number-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}

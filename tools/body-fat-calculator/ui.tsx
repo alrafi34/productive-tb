@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import BodyFatCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 type Unit = "metric" | "imperial";
 type Gender = "male" | "female";
@@ -667,12 +668,10 @@ export default function BodyFatCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BodyFatCalculatorSEO />
 
-      <RelatedTools
-        currentTool="body-fat-calculator"
-        tools={["bmi-calculator", "bmr-calculator", "ideal-weight-calculator"]}
-      />
+      <RelatedTools />
     </>
   );
 }

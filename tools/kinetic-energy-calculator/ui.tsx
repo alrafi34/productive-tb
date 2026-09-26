@@ -22,6 +22,7 @@ import {
 } from "./logic";
 import KineticEnergyCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 // ── Presets (US defaults) ──────────────────────────────────────────────────
 const PRESETS = [
@@ -509,18 +510,9 @@ export default function KineticEnergyCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <KineticEnergyCalculatorSEO />
-      <RelatedTools
-        currentTool="kinetic-energy-calculator"
-        tools={[
-          "force-calculator",
-          "momentum-calculator",
-          "potential-energy-calculator",
-          "velocity-calculator",
-          "torque-calculator",
-          "projectile-motion-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

@@ -18,6 +18,7 @@ import {
 import { GlassLayer, BackgroundScene, NoiseSettings, DeviceSize, ExportFormat, ComponentPreview } from "./types";
 import GlassmorphismLayerTesterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 export default function GlassmorphismLayerTesterUI() {
   const [glassLayer, setGlassLayer] = useState<GlassLayer>(DEFAULT_GLASS_LAYER);
@@ -629,12 +630,10 @@ export default function GlassmorphismLayerTesterUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <GlassmorphismLayerTesterSEOContent />
       
-      <RelatedTools
-        currentTool="glassmorphism-layer-tester"
-        tools={['css-glassmorphism-generator', 'pattern-noise-generator', 'neumorphism-generator']}
-      />
+      <RelatedTools />
     </>
   );
 }

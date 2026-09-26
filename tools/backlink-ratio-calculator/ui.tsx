@@ -9,6 +9,7 @@ import {
 } from "./logic";
 import BacklinkRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedStrip from "@/components/RelatedStrip";
 
 const STATUS_STYLES: Record<RatioItem["status"], { bg: string; text: string; border: string; dot: string }> = {
   healthy: { bg: "bg-green-50",  text: "text-green-700",  border: "border-green-200",  dot: "bg-green-500"  },
@@ -425,19 +426,10 @@ export default function BacklinkRatioCalculatorUI() {
         </div>
       </div>
 
+      <RelatedStrip />
       <BacklinkRatioCalculatorSEO />
 
-      <RelatedTools
-        currentTool="backlink-ratio-calculator"
-        tools={[
-          "keyword-density-checker",
-          "seo-score-calculator",
-          "ctr-calculator",
-          "conversion-rate-calculator",
-          "bounce-rate-calculator",
-          "cost-per-click-cpc-calculator",
-        ]}
-      />
+      <RelatedTools />
     </>
   );
 }

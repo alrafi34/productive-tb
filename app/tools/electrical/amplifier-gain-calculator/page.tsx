@@ -104,6 +104,7 @@ export default function AmplifierGainCalculatorPage() {
         />
       )}
       <ToolLayout
+        slug="amplifier-gain-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}
