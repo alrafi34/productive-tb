@@ -46,12 +46,17 @@ export function validatePositive(value: string, fieldName: string): string | nul
   return null;
 }
 
+/* Largest plot count accepted; the layout preview draws at most MAX_PREVIEW_PLOTS. */
+export const MAX_PLOTS = 100_000;
+export const MAX_PREVIEW_PLOTS = 200;
+
 export function validatePlots(value: string): string | null {
   if (!value || value.trim() === "") return "Number of plots is required.";
   const num = parseFloat(value);
   if (isNaN(num)) return "Please enter a valid number.";
   if (num <= 0) return "Number of plots must be greater than zero.";
   if (num !== Math.floor(num)) return "Number of plots must be a whole number.";
+  if (num > MAX_PLOTS) return `Up to ${MAX_PLOTS.toLocaleString("en-US")} plots are supported.`;
   return null;
 }
 
@@ -64,21 +69,24 @@ export function lengthUnitFor(landUnit: Unit): LengthUnit {
 }
 
 /* rows × cols that is exactly numPlots, with plots as close to square as the
-   land allows. A prime count leaves a single row or column. */
+   land allows. A prime count leaves a single row or column. Factor pairs are
+   found by walking up to √numPlots and trying both orientations of each. */
 function findBestGrid(numPlots: number, width?: number, length?: number): { rows: number; cols: number } {
   const aspect = width && length ? width / length : 1;
   let best = { rows: 1, cols: numPlots };
   let bestScore = Infinity;
-  for (let rows = 1; rows <= numPlots; rows++) {
-    if (numPlots % rows !== 0) continue;
-    const cols = numPlots / rows;
+  const consider = (rows: number, cols: number) => {
     // plot width ÷ plot length; 1 is a square plot
-    const plotAspect = (aspect * rows) / cols;
-    const score = Math.abs(Math.log(plotAspect));
-    if (score < bestScore - 1e-9) {
+    const score = Math.abs(Math.log((aspect * rows) / cols));
+    if (score < bestScore - 1e-9 || (Math.abs(score - bestScore) <= 1e-9 && rows < best.rows)) {
       bestScore = score;
       best = { rows, cols };
     }
+  };
+  for (let f = 1; f * f <= numPlots; f++) {
+    if (numPlots % f !== 0) continue;
+    consider(f, numPlots / f);
+    consider(numPlots / f, f);
   }
   return best;
 }

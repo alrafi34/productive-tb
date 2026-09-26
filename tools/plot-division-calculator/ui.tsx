@@ -17,6 +17,7 @@ import {
   UNIT_SHORT,
   ALL_UNITS,
   lengthUnitFor,
+  MAX_PREVIEW_PLOTS,
 } from "./logic";
 import PlotDivisionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -437,6 +438,11 @@ export default function PlotDivisionCalculatorUI() {
                   Visual Layout Preview
                 </h3>
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  {result.suggestedRows * result.suggestedCols > MAX_PREVIEW_PLOTS ? (
+                    <p className="text-sm text-gray-600 text-center">
+                      The preview draws layouts of up to {MAX_PREVIEW_PLOTS} plots.
+                    </p>
+                  ) : (
                   <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${result.suggestedCols}, 1fr)` }}>
                     {Array.from({ length: result.suggestedRows * result.suggestedCols }).map((_, i) => (
                       <div
@@ -451,6 +457,7 @@ export default function PlotDivisionCalculatorUI() {
                       </div>
                     ))}
                   </div>
+                  )}
                   <div className="mt-4 text-sm text-gray-600 text-center">
                     Layout: {result.suggestedRows} rows × {result.suggestedCols} columns
                   </div>
