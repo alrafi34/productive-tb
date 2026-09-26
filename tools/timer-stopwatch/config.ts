@@ -7,6 +7,10 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
+    faq: [
+      { q: "Is this timer accurate?", a: "Yes. We use the High Resolution Time API (`performance.now()`) to measure the precise passage of time regardless of browser event loop congestion." },
+      { q: "Can I run multiple countdowns?", a: "Absolutely. You can add as many countdown timers as you need, label them, and run them concurrently. Each has its own progress tracker and alarm." },
+    ],
     title: "Stopwatch & Countdown Timer – High Precision Online Timer",
     description: "Use a high-precision stopwatch and countdown timer directly in your browser. Track lap times and manage multiple timers instantly.",
     keywords: [

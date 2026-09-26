@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 export default function TimeZoneConverterSEO() {
   return (
     <div className="mt-12 space-y-8 text-gray-600">
@@ -24,8 +26,8 @@ export default function TimeZoneConverterSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
         <ol className="space-y-2 list-decimal list-inside">
-          <li>Enter your base time or click "Use Current Time"</li>
-          <li>Select your base timezone from the dropdown</li>
+          <li>Enter the date and time, or click "Use Current Time"</li>
+          <li>Select the timezone that date and time are in</li>
           <li>Search for cities or click quick-add buttons</li>
           <li>View converted times instantly</li>
           <li>Star favorite cities for quick access</li>
@@ -80,7 +82,7 @@ export default function TimeZoneConverterSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Supported Cities</h2>
         <p className="mb-3">
-          This converter supports 30+ major cities including New York, London, Dubai, Tokyo, Sydney, Singapore, Hong Kong, Bangkok, Mumbai, Dhaka, Berlin, Paris, Toronto, San Francisco, Mexico City, São Paulo, Moscow, Istanbul, Cairo, Johannesburg, Auckland, Los Angeles, Chicago, Denver, Amsterdam, Madrid, Rome, Seoul, and more.
+          This converter supports 30+ major cities including New York, London, Dubai, Tokyo, Sydney, Singapore, Hong Kong, Bangkok, Mumbai, Dhaka, Berlin, Paris, Toronto, San Francisco, Mexico City, São Paulo, Moscow, Istanbul, Cairo, Johannesburg, Auckland, Los Angeles, Chicago, Denver, Amsterdam, Madrid, Rome and Seoul. Search also finds every other IANA time zone, such as Phoenix, Adelaide or Kolkata, and daylight saving time is applied for the date you choose, so a meeting next month converts correctly even if the clocks change before then.
         </p>
       </section>
 
@@ -90,6 +92,7 @@ export default function TimeZoneConverterSEO() {
           This tool runs 100% in your browser. No data is sent to any server. Your timezone preferences and favorite cities are saved only in your browser's localStorage. Your privacy is completely protected.
         </p>
       </section>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

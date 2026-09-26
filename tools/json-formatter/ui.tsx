@@ -7,12 +7,12 @@ import {
   minifyJSON,
   analyzeJSON,
   buildTree,
-  getErrorContext,
   downloadJSON,
   TreeNode,
   ValidationResult,
   Analysis
 } from "./logic";
+import { findJsonError, sortKeysDeep, sendJsonTo, takeHandedOffJson } from "@/lib/json-tools";
 import JSONFormatterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
@@ -93,23 +93,38 @@ export default function JSONFormatterUI() {
   const [viewMode, setViewMode] = useState<"formatted" | "tree" | "raw">("formatted");
   const [copied, setCopied] = useState(false);
   const [copiedType, setCopiedType] = useState<string | null>(null);
+  const [sortKeys, setSortKeys] = useState(false);
+
+  // JSON sent over from the JSON validator
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const handed = takeHandedOffJson();
+      if (handed !== null) setInput(handed);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const validation: ValidationResult = useMemo(() => validateJSON(input), [input]);
+  // The JSON that is formatted, minified and shown as a tree: keys sorted A–Z on request
+  const source = useMemo(
+    () => (validation.valid && sortKeys ? JSON.stringify(sortKeysDeep(JSON.parse(input))) : input),
+    [input, validation.valid, sortKeys]
+  );
   const analysis: Analysis | null = useMemo(
     () => (input.trim() && validation.valid ? analyzeJSON(input) : null),
     [input, validation.valid]
   );
   const formatted = useMemo(
-    () => (validation.valid ? formatJSON(input, indentSize) : null),
-    [input, validation.valid, indentSize]
+    () => (validation.valid ? formatJSON(source, indentSize) : null),
+    [source, validation.valid, indentSize]
   );
   const minified = useMemo(
-    () => (validation.valid ? minifyJSON(input) : null),
-    [input, validation.valid]
+    () => (validation.valid ? minifyJSON(source) : null),
+    [source, validation.valid]
   );
   const tree = useMemo(
-    () => (validation.valid && input.trim() ? buildTree(JSON.parse(input)) : null),
-    [input, validation.valid]
+    () => (validation.valid && source.trim() ? buildTree(JSON.parse(source)) : null),
+    [source, validation.valid]
   );
 
   const handleCopy = useCallback((text: string, type: string) => {
@@ -149,7 +164,9 @@ export default function JSONFormatterUI() {
     }
   }, []);
 
-  const errorContext = validation.error ? getErrorContext(input, validation.position) : null;
+  // Exact message, line and column from our own parser (current browsers no
+  // longer include a position in JSON.parse errors)
+  const jsonError = input.trim() && !validation.valid ? findJsonError(input) : null;
 
   return (
     <>
@@ -206,6 +223,16 @@ export default function JSONFormatterUI() {
                   <option value="tab">Tabs</option>
                 </select>
               </div>
+
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={sortKeys}
+                  onChange={(e) => setSortKeys(e.target.checked)}
+                  className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                Sort keys A–Z
+              </label>
 
               <button
                 onClick={() => setInput("")}
@@ -305,16 +332,20 @@ export default function JSONFormatterUI() {
                   <span className="text-2xl">{validation.valid ? "✓" : "✗"}</span>
                   {validation.valid ? "Valid JSON" : "Invalid JSON"}
                 </div>
-                {validation.error && (
+                {jsonError && (
                   <div className="text-sm text-red-600 space-y-2">
                     <div className="bg-red-100 p-3 rounded-xl border border-red-200">
-                      <p className="font-mono break-words text-xs leading-relaxed">{validation.error}</p>
+                      <p className="break-words text-xs leading-relaxed font-semibold">{jsonError.message}</p>
                     </div>
-                    {errorContext && (
-                      <div className="text-xs text-red-500 bg-red-50 p-2 rounded-lg">
-                        <p className="font-semibold">📍 Line {errorContext.line}, Column {errorContext.column}</p>
-                      </div>
-                    )}
+                    <div className="text-xs text-red-500 bg-red-50 p-2 rounded-lg">
+                      <p className="font-semibold">📍 Line {jsonError.line}, Column {jsonError.column}</p>
+                    </div>
+                    <button
+                      onClick={() => sendJsonTo("/tools/developer/json-validator", input)}
+                      className="w-full px-3 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition-colors"
+                    >
+                      🔧 Fix it in the JSON Validator →
+                    </button>
                   </div>
                 )}
               </div>

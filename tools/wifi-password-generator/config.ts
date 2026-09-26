@@ -7,8 +7,15 @@ export const wifiPasswordGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "WiFi Password Generator – Secure & Easy WiFi Passwords",
-    description: "Generate strong and secure WiFi passwords instantly. Customize length, complexity, and generate memorable or fully random passwords for home networks. Fast, front-end only tool with router compatibility validation.",
+    faq: [
+      { q: "How long should a WiFi password be?", a: "WPA2 and WPA3 accept 8 to 63 characters. Use at least 12 random characters, or a passphrase of four or more random words, for a home network." },
+      { q: "Which characters are safe to use in a WiFi password?", a: "Letters, numbers and common symbols work on almost every router. The generator avoids characters some devices struggle to type or display, such as quotes, backslashes and spaces." },
+      { q: "Is a random password or a passphrase better?", a: "Both can be strong. A random password packs more strength into fewer characters; a passphrase of random words is easier to read out and type on a TV or games console." },
+      { q: "Are the passwords generated securely?", a: "Yes. They use the browser's cryptographic random number generator (crypto.getRandomValues), and nothing is sent to a server." },
+      { q: "How do I change my WiFi password?", a: "Open your router's admin page (often 192.168.0.1 or 192.168.1.1, or the router's app), go to the wireless security settings, paste the new password, save, and reconnect your devices." },
+    ],
+    title: "WiFi Password Generator – Strong WPA2 & WPA3 Keys",
+    description: "Generate strong WiFi passwords that routers accept: random or easy-to-type passphrases, with the length and characters you choose and the strength shown.",
     keywords: [
       "wifi password generator",
       "wireless password",

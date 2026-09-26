@@ -58,13 +58,37 @@ function lastChanged(files) {
   const existing = files.filter((f) => fs.existsSync(path.join(ROOT, f)));
   if (!existing.length) return null;
   if (existing.some((f) => uncommitted.has(f))) return today;
-  const log = git('log', '--format=%h %cs', '--invert-grep', '--fixed-strings', '--grep=[no-content-date]', '--', ...existing);
+  const tagged = new Set(
+    git('log', '--format=%h', '--fixed-strings', '--grep=[no-content-date]', '--', ...existing)
+      .split('\n')
+      .filter(Boolean)
+      .map((h) => h.slice(0, 7))
+  );
+  const log = git('log', '--format=%h %cs', '--', ...existing);
   for (const line of log.split('\n')) {
     const [hash, date] = line.split(' ');
-    if (hash && !IGNORE_COMMITS.has(hash.slice(0, 7))) return date;
+    if (!hash) continue;
+    const short = hash.slice(0, 7);
+    if (IGNORE_COMMITS.has(short)) continue;
+    if (tagged.has(short)) continue;
+    return date;
   }
   return null;
 }
+
+/* Dates only move forward. A squash merge's message collects every squashed
+   commit's message, so one "[no-content-date]" commit hides the whole merge
+   from the log above, even when other squashed commits changed content (#75
+   rewrote the electric bill calculator's copy). The date recorded when the
+   content was committed is kept instead of falling back to an older one. */
+const previous = {};
+try {
+  const current = fs.readFileSync(path.join(ROOT, OUT), 'utf8');
+  for (const m of current.matchAll(/^\s*"([^"]+)": "(\d{4}-\d{2}-\d{2})",$/gm)) previous[m[1]] = m[2];
+} catch {
+  // first run: nothing recorded yet
+}
+const latest = (key, date) => (previous[key] && previous[key] > (date ?? '') ? previous[key] : date);
 
 const tools = {};
 for (const dir of fs.readdirSync(path.join(ROOT, 'tools')).sort()) {
@@ -73,13 +97,15 @@ for (const dir of fs.readdirSync(path.join(ROOT, 'tools')).sort()) {
   const slug = fs.readFileSync(path.join(ROOT, cfg), 'utf8').match(/slug:\s*["']([^"']+)["']/)?.[1];
   if (!slug) continue;
   const date = lastChanged([path.join('tools', dir, 'seo-content.tsx'), cfg]);
-  if (date) tools[slug] = date;
+  const kept = latest(slug, date);
+  if (kept) tools[slug] = kept;
 }
 
 const pages = {};
 for (const [route, file] of Object.entries(PAGES)) {
   const date = lastChanged([file]);
-  if (date) pages[route] = date;
+  const kept = latest(route, date);
+  if (kept) pages[route] = kept;
 }
 
 const body = (obj) => Object.entries(obj).map(([k, v]) => `  ${JSON.stringify(k)}: "${v}",`).join('\n');

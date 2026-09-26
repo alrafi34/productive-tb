@@ -7,8 +7,8 @@ export const fractionCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Fraction Calculator with Steps – Add, Subtract, Multiply & Divide Fractions Online",
-    description: "Free online Fraction Calculator with steps. Add, subtract, multiply, and divide fractions with auto simplification, mixed number conversion, and decimal output.",
+    title: "Fraction Calculator with Steps – Add, Subtract, Multiply",
+    description: "Add, subtract, multiply and divide fractions and mixed numbers with step-by-step working, automatic simplification and a decimal answer.",
     keywords: [
       "fraction calculator",
       "fraction calculator with steps",

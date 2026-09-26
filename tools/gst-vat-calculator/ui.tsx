@@ -24,7 +24,7 @@ const QUICK_AMOUNTS = [100, 500, 1000, 5000, 10000, 25000];
 
 export default function GSTVATCalculatorUI() {
   const [price, setPrice] = useState<string>("100");
-  const [taxRate, setTaxRate] = useState<string>("18");
+  const [taxRate, setTaxRate] = useState<string>("20");
   const [operation, setOperation] = useState<TaxOperation>("add");
   const [precision, setPrecision] = useState<number>(2);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -170,7 +170,7 @@ export default function GSTVATCalculatorUI() {
                   value={taxRate}
                   onChange={(e) => setTaxRate(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
-                  placeholder="e.g. 18"
+                  placeholder="e.g. 20"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">%</span>
               </div>
@@ -178,7 +178,7 @@ export default function GSTVATCalculatorUI() {
               <div className="flex flex-wrap gap-2 pt-1">
                 {PREDEFINED_TAX_RATES.map((rate) => (
                   <button
-                    key={rate.value}
+                    key={rate.label}
                     onClick={() => handlePredefinedRate(rate.value)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
                       taxRate === rate.value.toString()

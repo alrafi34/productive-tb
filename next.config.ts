@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
       "recall-calculator": "/tools/computer-science/precision-recall-calculator",
       "confusion-matrix-analyzer": "/tools/computer-science/confusion-matrix-calculator",
       "profit-margin-calculator": "/tools/marketing/profit-margin-calculator-marketing",
+      // #65: one mortgage page instead of three competing for the same query
+      "mortgage-loan-calculator": "/tools/calculator/mortgage-calculator",
+      "home-loan-emi-calculator": "/tools/calculator/mortgage-calculator",
+      // #65: "loan calculator" is the global search term; EMI is regional
+      "loan-emi-calculator": "/tools/calculator/loan-calculator",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },

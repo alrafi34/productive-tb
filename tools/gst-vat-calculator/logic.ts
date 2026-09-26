@@ -18,12 +18,17 @@ export interface HistoryEntry {
   operation: TaxOperation;
 }
 
-// Predefined tax rates
+// Standard VAT / GST rates for quick selection; any other rate can be typed in
 export const PREDEFINED_TAX_RATES = [
-  { label: '5%', value: 5 },
-  { label: '12%', value: 12 },
-  { label: '18%', value: 18 },
-  { label: '28%', value: 28 }
+  { label: 'UK 20%', value: 20 },
+  { label: 'Germany 19%', value: 19 },
+  { label: 'France 20%', value: 20 },
+  { label: 'Spain 21%', value: 21 },
+  { label: 'Italy 22%', value: 22 },
+  { label: 'Ireland 23%', value: 23 },
+  { label: 'Canada GST 5%', value: 5 },
+  { label: 'Australia GST 10%', value: 10 },
+  { label: 'New Zealand GST 15%', value: 15 }
 ];
 
 // Add tax (calculate inclusive price)

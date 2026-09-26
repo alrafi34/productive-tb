@@ -9,8 +9,8 @@ export const passwordGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Password Generator — Free Random Password Generator Online",
-    description: "Generate strong random passwords instantly. Set length up to 128 chars, choose character types, view entropy in bits, and export in bulk. Free, no signup, 100% browser-based.",
+    title: "Password Generator – Strong Random Passwords",
+    description: "Generate strong random passwords up to 128 characters. Choose character types, see the strength in bits of entropy and create many at once.",
     keywords: [
       "password generator",
       "password generator online",

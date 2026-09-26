@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 import React from 'react';
 
 export default function PomodoroSEO() {
@@ -141,6 +143,7 @@ export default function PomodoroSEO() {
           Start using this free Pomodoro Timer today. No signup required, no distractions, 100% browser-based. Your productivity journey starts now!
         </p>
       </div>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

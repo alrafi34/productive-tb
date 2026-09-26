@@ -25,8 +25,8 @@ export const textDiffCheckerConfig = {
     "frontend diff tool"
   ],
   seo: {
-    title: "Text Diff Checker Online - Compare Text Changes Instantly",
-    description: "Free Text Diff Checker to compare two text versions by line, word, or character. Use side-by-side or inline view, apply ignore-case/whitespace filters, and export diff results.",
+    title: "Text Diff Checker – Compare Two Texts Online",
+    description: "Compare two texts and highlight what changed by line, word or character, side by side or inline, with options to ignore case and whitespace.",
     keywords: [
       "text diff checker",
       "compare text",

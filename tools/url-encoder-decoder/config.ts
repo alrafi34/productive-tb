@@ -7,8 +7,15 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "URL Encoder / Decoder Online – Encode & Decode URLs Instantly",
-    description: "Free online URL encoder and decoder. Convert special characters to percent encoding (%xx) or decode encoded URLs instantly in your browser. No server required.",
+    faq: [
+      { q: "What is URL encoding?", a: "URL encoding (percent-encoding) replaces characters that are not allowed in a URL with % followed by their hexadecimal code, for example a space becomes %20 and & becomes %26." },
+      { q: "What is the difference between encodeURI and encodeURIComponent?", a: "encodeURI keeps characters that structure a URL, such as / ? & and =, so it suits a whole URL. encodeURIComponent encodes those too, so it suits a single query-string value." },
+      { q: "Why is a space sometimes + instead of %20?", a: "HTML forms encode spaces in query strings as +. Both mean a space in a query string, but only %20 is correct in the path of a URL." },
+      { q: "Why does decoding fail?", a: "Decoding fails when a % is not followed by two valid hex digits, for example 100% on its own. Encode the text first, or fix the stray % sign." },
+      { q: "Is my data sent to a server?", a: "No. Encoding and decoding run entirely in your browser." },
+    ],
+    title: "URL Encoder / Decoder – Percent-Encode URLs Online",
+    description: "Encode special characters in URLs and query strings as percent-encoding (%20) or decode encoded URLs back to plain text, in your browser.",
     keywords: [
       "url encoder",
       "url decoder",

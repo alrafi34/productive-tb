@@ -7,8 +7,15 @@ export const usernameGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Username Generator — Create Random & Memorable Usernames",
-    description: "Generate random, memorable, and social media-friendly usernames instantly. Customize length, characters, patterns, and generate bulk usernames with one click. Perfect for gaming and social media.",
+    faq: [
+      { q: "How do I pick a good username?", a: "Choose something easy to remember and spell, avoid your full name or birth year for privacy, and check that it is available on every platform you plan to use." },
+      { q: "Can I set the length and style?", a: "Yes. Choose the length and whether to include numbers and symbols such as underscores, or build usernames from a pattern of letters, numbers and symbols, then generate a whole list at once." },
+      { q: "Are the usernames random?", a: "Yes. Combinations are drawn with the browser's cryptographic random generator, so each list is different." },
+      { q: "Will the username be available?", a: "The generator cannot check availability on other sites. Try your favorites on the platform itself; adding a number or underscore often helps." },
+      { q: "Is it free?", a: "Yes, with no sign-up, and nothing you generate is stored on a server." },
+    ],
+    title: "Username Generator – Random Usernames for Games & Social",
+    description: "Generate random, memorable usernames for games and social media. Choose the length, style and characters, and create a whole list in one click.",
     keywords: [
       "username generator",
       "random username",

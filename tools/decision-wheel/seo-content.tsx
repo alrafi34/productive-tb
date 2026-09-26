@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 import React from 'react';
 
 export default function DecisionWheelSEOContent() {
@@ -96,6 +98,7 @@ export default function DecisionWheelSEOContent() {
           </div>
         </div>
       </div>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

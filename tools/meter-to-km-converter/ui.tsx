@@ -20,6 +20,8 @@ export default function MeterToKmUI() {
   const [history, setHistory] = useState<MToKmEntry[]>([]);
   const [copied, setCopied] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  // false: meters → kilometers; true: kilometers → meters
+  const [reverse, setReverse] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -28,11 +30,13 @@ export default function MeterToKmUI() {
 
   const currentVal = parseFloat(inputValue);
   const isValid = !isNaN(currentVal) && inputValue.trim() !== "";
-  const result = isValid ? convertMeterToKm(currentVal) : null;
+  const result = isValid ? (reverse ? currentVal * 1000 : convertMeterToKm(currentVal)) : null;
+  const fromUnit = reverse ? "km" : "m";
+  const toUnit = reverse ? "m" : "km";
 
   const handleCopy = () => {
     if (result === null) return;
-    const text = formatValue(result, precision);
+    const text = `${inputValue} ${fromUnit} = ${formatValue(result, precision)} ${toUnit}`;
     
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -45,14 +49,14 @@ export default function MeterToKmUI() {
     const entry: MToKmEntry = {
       id: crypto.randomUUID(),
       timestamp: Date.now(),
-      meterValue: currentVal,
-      kmValue: result,
+      meterValue: reverse ? result : currentVal,
+      kmValue: reverse ? currentVal : result,
       precision
     };
     
     saveToHistory(entry);
     setHistory(getHistory());
-  }, [currentVal, result, precision]);
+  }, [currentVal, result, precision, reverse]);
 
   const handleClear = () => {
     setInputValue("");
@@ -89,24 +93,35 @@ export default function MeterToKmUI() {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-8">
         
         <div className="mb-6">
-          <h2 className="text-xl font-bold text-gray-900">Meter (M) to Kilometer (KM)</h2>
-          <p className="text-gray-500 text-sm mt-1">Convert meters to kilometers dynamically.</p>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-xl font-bold text-gray-900">{reverse ? "Kilometers (km) to Meters (m)" : "Meters (m) to Kilometers (km)"}</h2>
+            <button
+              onClick={() => {
+                if (result !== null) setInputValue(formatValue(result, 6));
+                setReverse(r => !r);
+              }}
+              className="px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:border-primary hover:text-primary transition-colors"
+            >
+              ⇄ Swap to {reverse ? "m → km" : "km → m"}
+            </button>
+          </div>
+          <p className="text-gray-500 text-sm mt-1">1 km = 1,000 m, so divide meters by 1,000 or multiply kilometers by 1,000.</p>
         </div>
 
         {/* Controls Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 bg-gray-50/50 p-6 rounded-xl border border-gray-100">
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Meters (m)</label>
+            <label className="block text-sm font-medium text-gray-700">{reverse ? "Kilometers (km)" : "Meters (m)"}</label>
             <div className="relative">
               <input
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-800 text-lg font-medium transition-all"
-                placeholder="e.g. 500"
+                placeholder={reverse ? "e.g. 2.5" : "e.g. 500"}
                 autoFocus
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">m</span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">{fromUnit}</span>
             </div>
           </div>
 
@@ -133,9 +148,9 @@ export default function MeterToKmUI() {
         {/* Results Section */}
         {result !== null ? (
           <div className="mb-8 p-8 flex flex-col items-center justify-center bg-violet-50 text-violet-900 rounded-2xl border border-violet-100 shadow-sm relative overflow-hidden transition-all duration-300">
-            <div className="uppercase tracking-widest text-violet-600 text-xs font-bold mb-2 z-10">Kilometers (km)</div>
+            <div className="uppercase tracking-widest text-violet-600 text-xs font-bold mb-2 z-10">{reverse ? "Meters (m)" : "Kilometers (km)"}</div>
             <div className="text-5xl md:text-6xl font-black z-10 break-all text-center px-4" style={{ fontFamily: "var(--font-heading)" }}>
-              {formatValue(result, precision)} <span className="text-violet-700 font-bold ml-1">km</span>
+              {formatValue(result, precision)} <span className="text-violet-700 font-bold ml-1">{toUnit}</span>
             </div>
             {/* Background design */}
             <div className="absolute -right-8 -bottom-8 text-9xl text-violet-500 opacity-5 select-none font-bold">

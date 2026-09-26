@@ -22,7 +22,7 @@ const faqItems = [
   {
     question: "Does this calculator support custom tax rates?",
     answer:
-      "Yes. You can enter any tax rate manually and also use quick predefined rates for common GST scenarios.",
+      "Yes. You can enter any tax rate manually and also use quick buttons for common VAT and GST rates.",
   },
   {
     question: "Why is this GST/VAT calculator better than many basic calculators?",
@@ -82,29 +82,29 @@ const strengths = [
 
 const examples = [
   {
-    title: "Example 1: Add 18% tax",
-    input: "Base = 1,000, Rate = 18%",
-    output: "Tax = 180, Final = 1,180",
+    title: "Example 1: Add 20% VAT (UK)",
+    input: "Net = £1,000, Rate = 20%",
+    output: "VAT = £200, Gross = £1,200",
   },
   {
-    title: "Example 2: Remove 18% tax",
-    input: "Final = 1,180, Rate = 18%",
-    output: "Base = 1,000, Tax = 180",
+    title: "Example 2: Remove 20% VAT",
+    input: "Gross = £1,200, Rate = 20%",
+    output: "Net = £1,000, VAT = £200 (not 20% of £1,200)",
   },
   {
-    title: "Example 3: Add 5% tax",
-    input: "Base = 20,000, Rate = 5%",
-    output: "Tax = 1,000, Final = 21,000",
+    title: "Example 3: Add 19% VAT (Germany)",
+    input: "Net = €250, Rate = 19%",
+    output: "VAT = €47.50, Gross = €297.50",
   },
   {
-    title: "Example 4: Remove 12% tax",
-    input: "Final = 5,600, Rate = 12%",
-    output: "Base and tax are derived instantly by the calculator",
+    title: "Example 4: Remove 10% GST (Australia)",
+    input: "Gross = A$110, Rate = 10%",
+    output: "Net = A$100, GST = A$10",
   },
   {
     title: "Example 5: Compare two rates",
-    input: "Base = 50,000, compare 18% vs 28%",
-    output: "Use quick rate buttons to evaluate impact quickly",
+    input: "Net = €50,000, compare 21% vs 23%",
+    output: "€10,500 vs €11,500 of VAT: use the quick rate buttons",
   },
   {
     title: "Example 6: Invoice validation",

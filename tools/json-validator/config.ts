@@ -3,14 +3,14 @@ import { siteConfig } from "@/config/site";
 export const toolConfig = {
   slug: "json-validator",
   name: "JSON Validator",
-  description: "Validate, format, and minify JSON instantly with real-time error detection, line-number reporting, stats analysis, and clipboard export.",
+  description: "Validate JSON with the exact line and column of each error, and fix common mistakes such as trailing commas, single quotes and unquoted keys in one click.",
   category: "developer",
   icon: "✅",
   free: true,
   backend: false,
   seo: {
-    title: "JSON Validator — Free Online JSON Validator & Formatter",
-    description: "Validate JSON syntax instantly with line-number error reporting. Format with 2 or 4-space indent, minify for production, and analyse depth and size. Free, browser-based, no upload.",
+    title: "JSON Validator – Check & Fix JSON Errors Online",
+    description: "Validate JSON and see the exact line and column of each error. One click fixes trailing commas, single quotes, unquoted keys, comments and Python values.",
     keywords: [
       "json validator",
       "json validator online",
@@ -75,6 +75,10 @@ export const toolConfig = {
       },
     ],
     faq: [
+      {
+        q: "Can this tool fix invalid JSON automatically?",
+        a: "Yes, for the most common mistakes. \"Fix common errors\" removes trailing commas and comments, turns single and curly quotes into double quotes, puts quotes around unquoted property names, and converts Python True, False and None and JavaScript undefined or NaN into valid JSON. It lists every change it made; anything it cannot fix is shown with its line and column.",
+      },
       {
         q: "What is a JSON validator and what does it check?",
         a: "A JSON validator parses your JSON against the ECMA-404 specification and reports exactly where the input breaks the rules. It checks for missing or extra commas, unclosed braces and brackets, unquoted keys, invalid escape sequences, trailing commas, and incorrect value types. This tool reports the character position and line number of the first syntax error so you can jump straight to the problem.",

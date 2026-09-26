@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { Upload, Download, RotateCcw, Copy, Code, ZoomIn, FileDown } from "lucide-react";
 import { FaviconOptions, FaviconSize } from "./types";
-import { generateMultipleFavicons, downloadFavicon, downloadAllFavicons, copyToClipboard, generateHTMLSnippet, STANDARD_SIZES } from "./logic";
+import { generateMultipleFavicons, downloadFavicon, downloadAllFavicons, downloadIco, copyToClipboard, generateHTMLSnippet, STANDARD_SIZES } from "./logic";
 import SEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
@@ -292,6 +292,14 @@ export default function FaviconGeneratorUI() {
                 >
                   <FileDown className="w-4 h-4" />
                   Download All
+                </button>
+                <button
+                  onClick={() => downloadIco(favicons)}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                  title="One .ico file containing the 16, 32 and 48 px icons"
+                >
+                  <FileDown className="w-4 h-4" />
+                  favicon.ico
                 </button>
                 <button
                   onClick={handleClear}

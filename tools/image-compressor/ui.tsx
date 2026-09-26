@@ -365,8 +365,25 @@ export default function ImageCompressorUI() {
                 />
                 <span className="text-sm font-semibold text-gray-600 whitespace-nowrap">KB or less</span>
               </div>
+              <div className="flex flex-wrap gap-1.5 mt-2" role="group" aria-label="Common target sizes">
+                {[20, 50, 100, 200, 500, 1024].map((kb) => (
+                  <button
+                    key={kb}
+                    type="button"
+                    onClick={() => setSettings({ ...settings, targetSizeKB: settings.targetSizeKB === kb ? 0 : kb })}
+                    disabled={isCompressing}
+                    className={`px-2.5 py-1 rounded-md text-xs font-semibold border transition-colors disabled:opacity-50 ${
+                      settings.targetSizeKB === kb
+                        ? "bg-primary text-white border-primary"
+                        : "bg-white text-gray-700 border-gray-200 hover:border-primary"
+                    }`}
+                  >
+                    {kb >= 1024 ? "1 MB" : `${kb} KB`}
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 mt-1">
-                Leave empty to use quality slider. If set, compressor will try to achieve this file size.
+                Leave empty to use the quality slider. If set, the compressor lowers quality (and size for PNG) until the file is at or under this size, for forms and uploads with a size limit.
               </p>
             </div>
             {/* Max Dimensions */}

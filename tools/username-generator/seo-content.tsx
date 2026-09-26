@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { usernameGeneratorConfig } from "./config";
 export default function UsernameGeneratorSEOContent() {
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
@@ -266,6 +268,7 @@ export default function UsernameGeneratorSEOContent() {
           and Opera. The crypto.getRandomValues() API ensures secure random generation across all platforms.
         </p>
       </section>
+      <ToolFaq items={usernameGeneratorConfig.seo.faq} />
     </div>
   );
 }

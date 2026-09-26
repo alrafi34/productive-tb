@@ -1,0 +1,55 @@
+import { siteConfig } from "@/config/site";
+
+export const celsiusToFahrenheitConverterConfig = {
+  name: "Celsius to Fahrenheit Converter",
+  slug: "celsius-to-fahrenheit-converter",
+  category: "calculator",
+  description: "Convert Celsius to Fahrenheit and back instantly, with the formula, worked steps and a °C to °F chart.",
+  icon: "🌡️",
+  color: "#ef4444",
+  featured: false,
+  keywords: [
+    "celsius to fahrenheit",
+    "celsius to fahrenheit converter",
+    "c to f",
+    "fahrenheit to celsius",
+    "f to c",
+    "convert celsius to fahrenheit",
+    "celsius to fahrenheit formula",
+    "celsius to fahrenheit chart",
+    "degrees c to f",
+    "temperature converter",
+  ],
+  seo: {
+    title: "Celsius to Fahrenheit Converter (°C to °F) – With Formula",
+    description: "Convert Celsius to Fahrenheit and Fahrenheit to Celsius instantly. See the formula, each step, and a °C to °F chart for weather, cooking and fever.",
+    keywords: "celsius to fahrenheit, c to f, fahrenheit to celsius, f to c, celsius to fahrenheit formula, celsius to fahrenheit chart, temperature converter",
+    openGraph: {
+      title: "Celsius to Fahrenheit Converter (°C to °F)",
+      description: "Convert °C to °F and back instantly, with the formula, worked steps and a conversion chart.",
+      type: "website",
+      url: `${siteConfig.url}/tools/calculator/celsius-to-fahrenheit-converter`,
+    },
+    howToSteps: [
+      { name: "Type a temperature", text: "Enter a value in the Celsius box to get Fahrenheit, or in the Fahrenheit box to get Celsius. The other box updates as you type." },
+      { name: "Read the steps", text: "The working below the boxes shows the formula with your number filled in, so you can check or copy the calculation." },
+      { name: "Use a quick value or the chart", text: "Tap a common temperature such as 0 °C, 20 °C or 37 °C, or pick a row from the conversion chart." },
+      { name: "Copy the result", text: "Copy the conversion, for example \"37 °C = 98.6 °F\", to paste into a recipe, report or message." },
+    ],
+    faq: [
+      { q: "What is the formula to convert Celsius to Fahrenheit?", a: "°F = °C × 9/5 + 32. Multiply the Celsius temperature by 1.8, then add 32. For example, 25 °C × 1.8 = 45, and 45 + 32 = 77 °F." },
+      { q: "How do I convert Fahrenheit to Celsius?", a: "°C = (°F − 32) × 5/9. Subtract 32, then divide by 1.8. For example, 68 °F − 32 = 36, and 36 ÷ 1.8 = 20 °C." },
+      { q: "What is 37 °C in Fahrenheit?", a: "37 °C is 98.6 °F, the traditional value for normal human body temperature: 37 × 1.8 + 32 = 98.6." },
+      { q: "What is 0 °C in Fahrenheit?", a: "0 °C is 32 °F, the temperature at which water freezes at sea level." },
+      { q: "What is 180 °C in Fahrenheit for an oven?", a: "180 °C is 356 °F. Recipes usually round it to 350 °F, a moderate oven. 200 °C is 392 °F, usually written as 400 °F." },
+      { q: "At what temperature are Celsius and Fahrenheit the same?", a: "At −40. −40 °C × 1.8 + 32 = −40 °F, so the two scales meet there." },
+      { q: "Is there a quick way to estimate °F from °C in my head?", a: "Double the Celsius value and add 30. It gives 70 °F for 20 °C (exact: 68 °F) and is close for everyday weather, but use the exact formula for cooking, medicine or science." },
+      { q: "Which countries use Fahrenheit?", a: "The United States and a few territories and small nations use Fahrenheit for everyday temperatures. Most of the world, including Europe, Canada and Australia, uses Celsius." },
+    ],
+  },
+  relatedTools: [
+    "temperature-conversion-scientific",
+    "inch-to-cm-converter",
+    "unit-ratio-calculator",
+  ],
+};

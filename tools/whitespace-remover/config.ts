@@ -25,8 +25,8 @@ export const whitespaceRemoverConfig = {
     "text processor"
   ],
   seo: {
-    title: "White Space Remover Online - Clean Extra Spaces and Tabs Instantly",
-    description: "Free White Space Remover to clean leading/trailing spaces, collapse multiple spaces, remove empty lines, and convert tabs. Export cleaned text in TXT, MD, or CSV.",
+    title: "Whitespace Remover – Remove Extra Spaces and Tabs",
+    description: "Remove extra spaces, leading and trailing whitespace, tabs and empty lines from text in one click, then copy or download the cleaned result.",
     keywords: [
       "whitespace remover",
       "remove spaces",

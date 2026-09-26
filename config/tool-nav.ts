@@ -40,12 +40,12 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
 
   /* ── Everyday calculators ── */
   ["percentage-calculator", "percentage-increase-decrease", "discount-calculator", "gst-vat-calculator"],
-  ["loan-emi-calculator", "home-loan-emi-calculator", "mortgage-calculator", "mortgage-loan-calculator", "loan-interest-calculator-property", "down-payment-calculator"],
+  ["loan-calculator", "mortgage-calculator", "loan-interest-calculator-property", "down-payment-calculator"],
   ["simple-interest-calculator", "compound-interest-calculator", "investment-return-calculator", "salary-calculator"],
   ["bmi-calculator", "bmr-calculator", "body-fat-calculator", "ideal-weight-calculator", "daily-calorie-calculator"],
   ["age-calculator", "date-difference-calculator", "time-duration-calculator", "working-days-calculator", "timestamp-unix-converter", "time-zone-converter"],
   ["centimeter-to-meter-converter", "meter-to-km-converter", "inch-to-cm-converter", "feet-to-meter-converter"],
-  ["kg-to-pound-converter", "gram-to-ounce-converter", "liter-to-ml-converter", "temperature-conversion-scientific"],
+  ["celsius-to-fahrenheit-converter", "temperature-conversion-scientific", "kg-to-pound-converter", "gram-to-ounce-converter", "liter-to-ml-converter"],
   ["square-meter-to-square-foot-converter", "sqm-to-sqft-converter", "acre-to-hectare-converter", "hectare-to-acre-converter", "acre-to-square-feet-converter", "square-feet-to-acre-converter"],
   ["scientific-calculator", "fraction-calculator", "exponent-calculator", "square-root-calculator", "prime-number-checker", "matrix-calculator", "binary-hex-decimal-converter"],
   ["random-number-generator", "random-name-picker", "decision-wheel", "dice-roller"],
@@ -132,9 +132,8 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
    is. Only for tools where the next step is obvious; everything else falls
    back to the related-tools chips. */
 export const NEXT_STEPS: Readonly<Record<string, readonly string[]>> = {
-  "loan-emi-calculator": ["mortgage-calculator", "compound-interest-calculator", "salary-calculator"],
-  "mortgage-calculator": ["down-payment-calculator", "home-loan-emi-calculator", "loan-emi-calculator"],
-  "home-loan-emi-calculator": ["down-payment-calculator", "mortgage-calculator", "loan-emi-calculator"],
+  "loan-calculator": ["mortgage-calculator", "compound-interest-calculator", "salary-calculator"],
+  "mortgage-calculator": ["down-payment-calculator", "loan-calculator", "loan-interest-calculator-property"],
   "percentage-calculator": ["percentage-increase-decrease", "discount-calculator", "gst-vat-calculator"],
   "bmi-calculator": ["bmr-calculator", "body-fat-calculator", "ideal-weight-calculator"],
   "age-calculator": ["date-difference-calculator", "working-days-calculator", "time-duration-calculator"],

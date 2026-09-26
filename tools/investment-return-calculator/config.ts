@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Investment Return (ROI) Calculator - Calculate Gain, Loss, and ROI Percentage",
-    description: "Free Investment Return (ROI) Calculator to measure gain/loss and return on investment percentage for stocks, crypto, real estate, and business scenarios. Includes formula, examples, FAQ, and CSV export.",
+    title: "ROI Calculator – Return on Investment, Gain & Loss",
+    description: "Calculate return on investment (ROI) as a percentage, plus your gain or loss, for stocks, crypto, property or a business, with the formula and CSV export.",
     keywords: [
       "investment calculator",
       "ROI calculator",

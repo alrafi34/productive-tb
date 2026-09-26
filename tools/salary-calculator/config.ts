@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Salary Calculator - Convert Annual Salary to Hourly, Daily, Weekly, Monthly",
-    description: "Free Salary Calculator to convert annual salary into monthly, weekly, daily, and hourly pay with custom work hours and days. Includes formulas, examples, FAQ, and scenario comparison workflow.",
+    title: "Salary Calculator – Annual to Hourly, Weekly & Monthly Pay",
+    description: "Convert an annual salary to monthly, weekly, daily and hourly pay using your own hours per week and working days, and compare pay scenarios.",
     keywords: [
       "salary calculator",
       "hourly rate calculator",

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { MortgageInputs, calculateMortgage, generateAmortizationSchedule, compareLoanTerms, formatCurrency, exportScheduleToCSV, validateInputs } from "./logic";
+import { useState, useMemo, useEffect } from "react";
+import { MortgageInputs, calculateMortgage, generateAmortizationSchedule, compareLoanTerms, formatCurrency as formatAmount, exportScheduleToCSV, validateInputs, CURRENCIES, CurrencyCode, currencySymbol, guessCurrency } from "./logic";
 import MortgageCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
@@ -16,14 +16,29 @@ export default function MortgageCalculatorUI() {
   const [loanTermYears, setLoanTermYears] = useState(30);
   const [downPayment, setDownPayment] = useState(60000);
   const [extraPayment, setExtraPayment] = useState(0);
+  // Costs that differ by country, state and lender: all entered by the visitor
+  const [propertyTaxRate, setPropertyTaxRate] = useState(0);
+  const [homeInsurance, setHomeInsurance] = useState(0);
+  const [pmiRate, setPmiRate] = useState(0);
+  const [hoa, setHoa] = useState(0);
+  const [currency, setCurrency] = useState<CurrencyCode>('USD');
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const formatCurrency = (amount: number) => formatAmount(amount, currency);
+  const symbol = currencySymbol(currency);
   
   const [copied, setCopied] = useState("");
 
-  const inputs: MortgageInputs = { loanAmount, interestRate, loanTermYears, downPayment, extraPayment };
+  const inputs: MortgageInputs = { loanAmount, interestRate, loanTermYears, downPayment, extraPayment, propertyTaxRate, homeInsurance, pmiRate, hoa };
   const error = validateInputs(inputs);
   
-  const result = useMemo(() => error ? null : calculateMortgage(inputs), [loanAmount, interestRate, loanTermYears, downPayment, extraPayment, error]);
-  const resultNoExtra = useMemo(() => error ? null : calculateMortgage({ ...inputs, extraPayment: 0 }), [loanAmount, interestRate, loanTermYears, downPayment, error]);
+  // A few hundred loop steps: cheap enough to compute on every render
+  const result = error ? null : calculateMortgage(inputs);
+  const resultNoExtra = error ? null : calculateMortgage({ ...inputs, extraPayment: 0 });
   
   const schedule = useMemo(() => {
     if (mode === 'schedule' && !error) {
@@ -47,7 +62,7 @@ export default function MortgageCalculatorUI() {
 
   const getSummaryText = () => {
     if (!result) return "";
-    return `Mortgage Summary:\nHome Price: ${formatCurrency(loanAmount)}\nDown Payment: ${formatCurrency(downPayment)}\nLoan Amount: ${formatCurrency(result.principalAmount)}\nInterest Rate: ${interestRate}%\nLoan Term: ${loanTermYears} years\nMonthly Payment: ${formatCurrency(result.monthlyPayment)}\nTotal Interest: ${formatCurrency(result.totalInterest)}\nTotal Payment: ${formatCurrency(result.totalPayment)}\nCalculated via Productive Toolbox`;
+    return `Mortgage Summary:\nHome Price: ${formatCurrency(loanAmount)}\nDown Payment: ${formatCurrency(downPayment)}\nLoan Amount: ${formatCurrency(result.principalAmount)}\nInterest Rate: ${interestRate}%\nLoan Term: ${loanTermYears} years\nPrincipal & Interest: ${formatCurrency(result.principalAndInterest)}\nTotal Monthly Payment: ${formatCurrency(result.totalMonthly)}\nTotal Interest: ${formatCurrency(result.totalInterest)}\nTotal Payment: ${formatCurrency(result.totalPayment)}\nCalculated via Productive Toolbox`;
   };
 
   const monthsSaved = resultNoExtra && result ? resultNoExtra.totalMonths - result.totalMonths : 0;
@@ -78,6 +93,18 @@ export default function MortgageCalculatorUI() {
               Schedule
             </button>
           </div>
+          <label className="flex items-center gap-2 text-sm font-semibold text-gray-600">
+            Currency
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+              className="bg-gray-50 border border-gray-200 rounded-lg px-2 py-1.5 text-sm font-semibold text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
+            >
+              {CURRENCIES.map((c) => (
+                <option key={c.code} value={c.code}>{c.label}</option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
@@ -89,12 +116,12 @@ export default function MortgageCalculatorUI() {
                 <div className="flex justify-between items-end">
                   <label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Home Price</label>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">{symbol}</span>
                     <input 
                       type="number" 
                       value={loanAmount} 
                       onChange={(e) => setLoanAmount(Number(e.target.value))}
-                      className="w-36 bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-right font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-40 bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-3 py-2 text-right font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
                 </div>
@@ -113,12 +140,12 @@ export default function MortgageCalculatorUI() {
                 <div className="flex justify-between items-end">
                   <label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Down Payment</label>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">{symbol}</span>
                     <input 
                       type="number" 
                       value={downPayment} 
                       onChange={(e) => setDownPayment(Number(e.target.value))}
-                      className="w-36 bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-right font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-40 bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-3 py-2 text-right font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
                 </div>
@@ -190,16 +217,54 @@ export default function MortgageCalculatorUI() {
                       <p className="text-[10px] text-gray-400 font-medium">Pay off faster & save interest</p>
                     </div>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-primary/40 font-bold">$</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-primary/40 font-bold">{symbol}</span>
                       <input 
                         type="number" 
                         value={extraPayment} 
                         onChange={(e) => setExtraPayment(Number(e.target.value))}
-                        className="w-28 bg-primary/5 border border-primary/10 rounded-lg pl-7 pr-3 py-2 text-right font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        className="w-32 bg-primary/5 border border-primary/10 rounded-lg pl-10 pr-3 py-2 text-right font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
                       />
                     </div>
                   </div>
                 </div>
+              )}
+
+              {mode === 'calculator' && (
+                <details className="pt-4 mt-4 border-t border-gray-100 group" open={propertyTaxRate > 0 || homeInsurance > 0 || pmiRate > 0 || hoa > 0}>
+                  <summary className="cursor-pointer text-sm font-bold text-gray-700 uppercase tracking-wide list-none flex items-center justify-between">
+                    Taxes, insurance &amp; fees
+                    <span className="text-[10px] font-medium normal-case text-gray-400 group-open:hidden">optional · add for your full monthly cost</span>
+                  </summary>
+                  <div className="grid grid-cols-2 gap-4 mt-4">
+                    {([
+                      ["Property tax", "% of price / year", propertyTaxRate, setPropertyTaxRate, "e.g. 1.1", "%"],
+                      ["Home insurance", "per year", homeInsurance, setHomeInsurance, "e.g. 1800", symbol],
+                      ["PMI", "% of loan / year", pmiRate, setPmiRate, "e.g. 0.5", "%"],
+                      ["HOA / service charge", "per month", hoa, setHoa, "e.g. 100", symbol],
+                    ] as [string, string, number, (v: number) => void, string, string][]).map(([label, hint, value, set, placeholder, unit]) => (
+                      <div key={label} className="space-y-1">
+                        <label className="block text-xs font-bold text-gray-600">
+                          {label} <span className="font-medium text-gray-400">({hint})</span>
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={value || ""}
+                            placeholder={placeholder}
+                            onChange={(e) => set(Math.max(0, Number(e.target.value) || 0))}
+                            className="w-full bg-gray-50 border border-gray-200 rounded-lg pl-3 pr-12 py-2 text-right font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs font-bold">{unit}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-[11px] text-gray-500 mt-3">
+                    These vary by country, state and lender, so enter your own figures. PMI stops once the balance reaches 80% of the price; with 20% or more down it does not apply.
+                  </p>
+                </details>
               )}
             </div>
 
@@ -237,13 +302,33 @@ export default function MortgageCalculatorUI() {
               <div className="space-y-6">
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col items-center text-center">
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Monthly Payment</p>
-                  <h2 className="text-6xl font-black text-gray-900 tracking-tight mb-2">
-                    <span className="text-3xl align-top mr-1 font-bold text-primary">$</span>
-                    {result.monthlyPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                  <h2 className="text-5xl sm:text-6xl font-black text-gray-900 tracking-tight mb-2 break-words">
+                    {formatCurrency(result.totalMonthly)}
                   </h2>
+                  {result.totalMonthly - result.monthlyPayment > 0.005 && (
+                    <dl className="w-full max-w-xs text-sm text-gray-600 space-y-1 mb-4">
+                      {([
+                        ["Principal & interest", result.monthlyPayment],
+                        ["Property tax", result.monthlyTax],
+                        ["Home insurance", result.monthlyInsurance],
+                        ["PMI", result.monthlyPmi],
+                        ["HOA / service charge", result.monthlyHoa],
+                      ] as [string, number][]).filter(([, v]) => v > 0).map(([label, v]) => (
+                        <div key={label} className="flex justify-between gap-4">
+                          <dt>{label}</dt>
+                          <dd className="font-semibold text-gray-900">{formatCurrency(v)}</dd>
+                        </div>
+                      ))}
+                      {result.monthlyPmi > 0 && (
+                        <p className="text-[11px] text-gray-500 pt-1">
+                          PMI ends after {result.pmiMonths} months ({Math.floor(result.pmiMonths / 12)}y {result.pmiMonths % 12}m).
+                        </p>
+                      )}
+                    </dl>
+                  )}
                   <div className="flex gap-2">
                     <button 
-                      onClick={() => copyToClipboard(Math.round(result.monthlyPayment).toString(), 'payment')}
+                      onClick={() => copyToClipboard(Math.round(result.totalMonthly).toString(), 'payment')}
                       className="text-xs bg-gray-50 border border-gray-200 hover:bg-gray-100 px-3 py-1.5 rounded-lg font-bold text-gray-600 transition-all"
                     >
                       {copied === 'payment' ? 'Copied' : '📋 Copy'}

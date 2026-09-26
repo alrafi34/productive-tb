@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Sentence Case Converter Online - Uppercase, Lowercase, Title Case Tool",
-    description: "Free Sentence Case Converter for uppercase, lowercase, title case, and sentence case formatting. Instantly transform text for writing, editing, and publishing workflows.",
+    title: "Case Converter – Sentence, Title, Upper & Lower Case",
+    description: "Convert text to sentence case, Title Case, UPPERCASE or lowercase instantly. Paste text, pick a style and copy the result.",
     keywords: [
       "sentence case converter",
       "uppercase converter",

@@ -7,8 +7,8 @@ export const scientificCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Scientific Calculator Online - Advanced Math Functions, Trig, Log, and Power",
-    description: "Free online Scientific Calculator with trigonometric functions, logarithms, powers, roots, memory controls, keyboard shortcuts, and local history export. Fast browser-based advanced math calculations.",
+    title: "Scientific Calculator Online – Trig, Log, Powers & Roots",
+    description: "Free online scientific calculator with sin, cos, tan, logarithms, powers, roots, memory and keyboard input. Works in degrees or radians.",
     keywords: [
       "scientific calculator",
       "scientific calculator online",

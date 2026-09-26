@@ -6,11 +6,11 @@ import {
   formatJSON,
   minifyJSON,
   analyzeJSON,
-  getErrorContext,
   saveToHistory,
   getHistory,
   clearHistory
 } from "./logic";
+import { findJsonError, repairJson, sendJsonTo, takeHandedOffJson } from "@/lib/json-tools";
 import JSONValidatorSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
@@ -34,6 +34,8 @@ export default function JSONValidatorUI() {
   const [copiedType, setCopiedType] = useState<string | null>(null);
   const [showHistory, setShowHistory] = useState(false);
   const [history, setHistory] = useState<any[]>([]);
+  // What the last "Fix" changed, or why it could not fix everything
+  const [repairNote, setRepairNote] = useState<{ fixes: string[]; stillInvalid: boolean } | null>(null);
 
   const validation = validateJSON(input);
   const analysis = input.trim() ? analyzeJSON(input) : null;
@@ -42,7 +44,16 @@ export default function JSONValidatorUI() {
 
   useEffect(() => {
     setHistory(getHistory());
+    // JSON sent over from the JSON formatter
+    const handed = takeHandedOffJson();
+    if (handed !== null) setInput(handed);
   }, []);
+
+  const handleRepair = useCallback(() => {
+    const { output, fixes } = repairJson(input);
+    setInput(output);
+    setRepairNote({ fixes, stillInvalid: findJsonError(output) !== null });
+  }, [input]);
 
   const handleCopy = useCallback((text: string, type: string) => {
     navigator.clipboard.writeText(text);
@@ -109,7 +120,10 @@ export default function JSONValidatorUI() {
     setShowHistory(false);
   }, []);
 
-  const errorContext = validation.error ? getErrorContext(input, validation.position) : null;
+  // Exact line and column from our own parser: current browsers no longer
+  // include a position in JSON.parse errors
+  const jsonError = input.trim() && !validation.valid ? findJsonError(input) : null;
+  const errorLine = jsonError ? input.split("\n")[jsonError.line - 1] ?? "" : "";
 
   return (
     <>
@@ -136,7 +150,10 @@ export default function JSONValidatorUI() {
               >
                 <textarea
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={(e) => {
+                    setInput(e.target.value);
+                    setRepairNote(null);
+                  }}
                   placeholder={`Paste JSON here or drag & drop a .json file...\n\nExample:\n${EXAMPLE_JSON}`}
                   rows={12}
                   className="w-full p-4 rounded-xl border-0 resize-none focus:outline-none focus:ring-2 focus:ring-primary font-mono text-sm bg-white text-gray-900 placeholder:text-gray-400"
@@ -227,16 +244,49 @@ export default function JSONValidatorUI() {
                 }`}>
                   {validation.valid ? "✓ Valid JSON" : "✗ Invalid JSON"}
                 </div>
-                {validation.error && (
-                  <div className="text-sm text-red-600">
-                    <p className="font-mono break-words">{validation.error}</p>
-                    {errorContext && (
-                      <div className="mt-2 text-xs">
-                        <p>Line {errorContext.line}, Column {errorContext.column}</p>
-                        <p className="mt-1 opacity-75">...{errorContext.context}...</p>
-                      </div>
+                {jsonError && (
+                  <div className="text-sm text-red-700 space-y-2">
+                    <p className="font-semibold break-words">{jsonError.message}</p>
+                    <p className="text-xs">Line {jsonError.line}, column {jsonError.column}</p>
+                    {errorLine.trim() && (
+                      <pre className="text-xs bg-white border border-red-200 rounded-lg p-2 overflow-x-auto font-mono text-gray-800">
+{errorLine.length > 80 ? errorLine.slice(Math.max(0, jsonError.column - 40), jsonError.column + 40) : errorLine}
+{"\n"}
+<span className="text-red-600 font-bold">{" ".repeat(Math.max(0, errorLine.length > 80 ? Math.min(39, jsonError.column - 1) : jsonError.column - 1))}^</span>
+                      </pre>
+                    )}
+                    <button
+                      onClick={handleRepair}
+                      className="w-full px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold text-sm transition-colors"
+                    >
+                      🔧 Fix common errors
+                    </button>
+                    <p className="text-[11px] text-red-600/80">
+                      Fixes trailing commas, single or curly quotes, unquoted keys, comments, and Python or JavaScript values (True, None, undefined, NaN).
+                    </p>
+                  </div>
+                )}
+                {repairNote && (
+                  <div className={`mt-3 text-xs rounded-lg p-2 border ${repairNote.stillInvalid ? "bg-amber-50 border-amber-200 text-amber-800" : "bg-white border-green-200 text-green-800"}`}>
+                    {repairNote.fixes.length === 0 ? (
+                      <p>Nothing to fix automatically. Check the line shown above.</p>
+                    ) : (
+                      <>
+                        <p className="font-semibold mb-1">{repairNote.stillInvalid ? "Partly fixed:" : "Fixed:"}</p>
+                        <ul className="list-disc ml-4 space-y-0.5">
+                          {repairNote.fixes.map((f) => <li key={f}>{f}</li>)}
+                        </ul>
+                      </>
                     )}
                   </div>
+                )}
+                {validation.valid && input.trim() && (
+                  <button
+                    onClick={() => sendJsonTo("/tools/developer/json-formatter", input)}
+                    className="mt-3 w-full px-3 py-2 rounded-lg bg-white border border-green-300 hover:bg-green-100 text-green-800 font-semibold text-sm transition-colors"
+                  >
+                    Open in JSON Formatter (tree view, sort keys) →
+                  </button>
                 )}
               </div>
 

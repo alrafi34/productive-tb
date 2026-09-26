@@ -4,11 +4,11 @@ import ToolLayout from "@/components/ToolLayout";
 import { siteConfig } from "@/config/site";
 import { toolRobots } from "@/lib/indexing";
 import { categories } from "@/config/tools";
-import { homeLoanEmiCalculatorConfig as config } from "@/tools/home-loan-emi-calculator/config";
+import { mortgageCalculatorConfig as config } from "@/tools/mortgage-calculator/config";
 
-const HomeLoanEmiCalculatorUI = dynamic(() => import("@/tools/home-loan-emi-calculator/ui"));
+const MortgageCalculatorUI = dynamic(() => import("@/tools/mortgage-calculator/ui"));
 
-const canonicalUrl = `${siteConfig.url}/tools/land/home-loan-emi-calculator`;
+const canonicalUrl = `${siteConfig.url}/tools/calculator/mortgage-calculator`;
 
 const seo = (config as any).seo ?? {};
 const toolName = (config as any).name;
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   alternates: { canonical: canonicalUrl },
-  ...toolRobots("home-loan-emi-calculator"),
+  ...toolRobots("mortgage-calculator"),
   // `robots` is only set by toolRobots() above, for tools in config/noindex.ts.
   // Otherwise it is left unset on purpose: the root layout sets robots.googleBot with
   // max-image-preview:large and max-snippet:-1, and Next replaces the parent
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   // { index, follow } here would silently drop those two directives.
 };
 
-export default function HomeLoanEmiCalculatorPage() {
-  const catObj = categories.find((c) => c.slug === "land");
+export default function MortgageCalculatorPage() {
+  const catObj = categories.find((c) => c.slug === "calculator");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -104,13 +104,13 @@ export default function HomeLoanEmiCalculatorPage() {
         />
       )}
       <ToolLayout
-        slug="home-loan-emi-calculator"
+        slug="mortgage-calculator"
         title={toolName}
         description={toolDescription}
         icon={(config as any).icon}
         category={catObj}
       >
-        <HomeLoanEmiCalculatorUI />
+        <MortgageCalculatorUI />
       </ToolLayout>
     </>
   );

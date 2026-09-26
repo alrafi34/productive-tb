@@ -7,8 +7,16 @@ export const base64EncoderDecoderConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Base64 Encoder/Decoder Online — Encode & Decode Base64 Instantly",
-    description: "Free online Base64 encoder and decoder. Convert text to Base64 or decode Base64 back to text instantly in your browser. No uploads or servers required. Supports file upload, auto-detect, and history.",
+    faq: [
+      { q: "Is Base64 secure?", a: "No, Base64 is an encoding scheme, not encryption. It's easily reversible and provides no security. Use proper encryption for sensitive data." },
+      { q: "Can I encode binary files?", a: "This tool works with text files. For binary files, you need a specialized tool that can read binary data." },
+      { q: "How large can files be?", a: "The tool can handle 100,000+ characters efficiently. Very large files may take a moment to process." },
+      { q: "Is my data stored anywhere?", a: "No, all processing happens in your browser. Only conversion history is stored locally in your browser's localStorage." },
+      { q: "Can I use this offline?", a: "Yes, once the page loads, all functionality works offline. No internet connection is required for encoding/decoding." },
+      { q: "What's the difference between Base64 and Base32?", a: "Base64 uses 64 characters (A-Z, a-z, 0-9, +, /), while Base32 uses 32 characters (A-Z, 2-7). Base32 is case-insensitive and used in authenticator apps." },
+    ],
+    title: "Base64 Encoder and Decoder – Encode or Decode Online",
+    description: "Encode text or files to Base64 and decode Base64 back to text in your browser, with auto-detection and UTF-8 support. Nothing is uploaded.",
     keywords: [
       "base64 encoder",
       "base64 decoder",

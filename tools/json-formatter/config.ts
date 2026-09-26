@@ -1,18 +1,20 @@
 export const toolConfig = {
   slug: "json-formatter",
   name: "JSON Formatter & Beautifier",
-  description: "Beautify or minify JSON, highlight syntax errors, and explore nested structure with tree view.",
+  description: "Pretty print or minify JSON, sort keys A–Z, and explore nested structure in a tree view.",
   category: "developer",
   icon: "📝",
   free: true,
   backend: false,
   seo: {
-    title: "JSON Formatter & Beautifier – Format, Validate, and Minify JSON Online",
-    description: "Free JSON Formatter and Beautifier tool to format, validate, minify, and explore JSON data with tree view and syntax highlighting. Perfect for developers working with APIs.",
+    title: "JSON Formatter & Beautifier – Pretty Print JSON Online",
+    description: "Format and beautify JSON online: pretty print with 2 or 4 spaces or tabs, sort keys A–Z, minify, and explore nested data in a tree view. Free and private.",
     keywords: [
       "json formatter",
       "json beautifier",
-      "json validator",
+      "json pretty print",
+      "pretty print json online",
+      "sort json keys",
       "format json online",
       "json viewer",
       "json minify tool",
@@ -27,11 +29,19 @@ export const toolConfig = {
       "api response formatter"
     ],
     openGraph: {
-      title: "JSON Formatter & Beautifier – Format & Minify JSON Online",
-      description: "Instantly format, validate, and minify JSON with tree view and syntax highlighting. Free online tool for developers.",
+      title: "JSON Formatter & Beautifier – Pretty Print JSON Online",
+      description: "Pretty print, sort keys, minify and explore JSON in a tree view. Free, private, in your browser.",
       type: "website",
       url: "/tools/developer/json-formatter"
-    }
+    },
+    faq: [
+      { q: "What does a JSON formatter do?", a: "It re-indents JSON so each key and value sits on its own line at the right depth, which makes API responses and config files readable. The data itself does not change, only the whitespace." },
+      { q: "Can I choose the indentation?", a: "Yes: 2 spaces, 4 spaces or tabs. 2 spaces is the most common style in JavaScript projects; 4 spaces is common in Python and Java codebases." },
+      { q: "Why sort JSON keys?", a: "Sorting keys A–Z at every level gives the same output for the same data, so two JSON files or API responses can be compared line by line in a diff. Arrays keep their order, because order matters in an array." },
+      { q: "What is the difference between formatting and minifying?", a: "Formatting adds indentation and line breaks for people to read; minifying removes every space and line break outside strings for the smallest size to send or store." },
+      { q: "What if my JSON has an error?", a: "The formatter shows the error message with its line and column. Use \"Fix it in the JSON Validator\" to repair common mistakes such as trailing commas, single quotes or unquoted keys automatically." },
+      { q: "Is my JSON uploaded anywhere?", a: "No. Formatting runs entirely in your browser, so private API responses and config files never leave your device." },
+    ],
   },
   features: [
     "Real-time JSON formatting and beautification",

@@ -48,7 +48,7 @@ export default function AgeCalculatorSEO() {
     ["Read your exact age", "Your age appears instantly in years, months, and days. The result updates automatically whenever you change either date — no submit button needed."],
     ["Review lifetime statistics", "The Lifetime Stats panel shows your total months, weeks, days, hours, minutes, and seconds lived from birth to the comparison date. These numbers update in real time."],
     ["Check your next birthday", "The birthday countdown shows how many months and days remain until your next birthday, the total days left, and what day of the week your next birthday falls on."],
-    ["Explore milestones and zodiac", "The milestones panel lists notable day and year milestones with their exact calendar dates, marking which ones you have already passed. Your Western and Chinese zodiac signs are shown based on your birth date."],
+    ["Explore milestones and zodiac", "The milestones panel lists notable day and year milestones with their exact calendar dates, marking which ones you have already passed. Your zodiac sign is shown based on your birth date."],
     ["Use batch mode for multiple people", "Switch to Batch mode, paste one birth date per line, and the calculator processes all entries simultaneously. Use the Export CSV button to download the results for school, HR, or admin use."],
   ];
 
@@ -78,7 +78,7 @@ export default function AgeCalculatorSEO() {
             Beyond the age result, this calculator provides a full set of outputs useful for planning, records, and
             fun: <strong>total days and hours lived</strong>, a <strong>countdown to your next birthday</strong>,
             notable <strong>life milestones</strong> (1,000 days, 10,000 days, major birthdays), your{" "}
-            <strong>Western and Chinese zodiac signs</strong>, and a <strong>batch mode</strong> for calculating
+            <strong>zodiac sign</strong>, and a <strong>batch mode</strong> for calculating
             ages for multiple people at once with CSV export.
           </p>
         </div>
@@ -143,8 +143,7 @@ export default function AgeCalculatorSEO() {
                 "Next birthday date, weekday, and countdown",
                 "Life milestones: 1K days, 5K days, 10K days, 15K days, 20K days",
                 "Year milestones: 18, 21, 30, 40, 50, 60, 65, 80",
-                "Western zodiac sign with symbol",
-                "Chinese zodiac animal",
+                "Zodiac sign with symbol",
                 "Age at any past or future comparison date",
                 "Batch mode — multiple DOBs at once",
                 "CSV export for batch results",

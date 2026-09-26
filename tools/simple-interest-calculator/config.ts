@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Simple Interest Calculator Online - Interest, Total Amount, and Formula",
-    description: "Free Simple Interest Calculator to compute interest and total amount from principal, annual rate, and time. Supports years, months, and days with instant results.",
+    title: "Simple Interest Calculator – Interest, Total & Formula",
+    description: "Calculate simple interest and the total amount from principal, rate and time in years, months or days, with the I = P × r × t formula shown step by step.",
     keywords: [
       "simple interest calculator",
       "simple interest formula",

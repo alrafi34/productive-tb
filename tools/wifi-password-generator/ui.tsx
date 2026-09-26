@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import WifiQr from "./WifiQr";
 import {
   generateFromPattern,
   generateWiFiPasswordWithEntropy,
@@ -253,6 +254,8 @@ export default function WiFiPasswordGeneratorUI() {
               )}
             </div>
           )}
+
+          {password && <WifiQr password={password} />}
         </div>
 
         {/* Generator Mode Toggle */}

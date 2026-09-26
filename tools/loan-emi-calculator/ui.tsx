@@ -20,13 +20,40 @@ const CURRENCIES = [
   { code: 'USD', name: 'USD ($)', symbol: '$' },
   { code: 'EUR', name: 'EUR (€)', symbol: '€' },
   { code: 'GBP', name: 'GBP (£)', symbol: '£' },
+  { code: 'CAD', name: 'CAD (CA$)', symbol: 'CA$' },
+  { code: 'AUD', name: 'AUD (A$)', symbol: 'A$' },
+  { code: 'CHF', name: 'CHF', symbol: 'CHF' },
   { code: 'INR', name: 'INR (₹)', symbol: '₹' },
   { code: 'NONE', name: 'Generic', symbol: '' },
 ];
 
+/* The visitor's likely currency, from the timezone first (browsers are often
+   set to en-US anywhere), then the browser language's region; USD otherwise. */
+function guessCurrency(): string {
+  try {
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? '';
+    if (zone === 'Europe/London') return 'GBP';
+    if (zone === 'Europe/Zurich') return 'CHF';
+    if (zone === 'Asia/Kolkata' || zone === 'Asia/Calcutta') return 'INR';
+    if (zone.startsWith('Australia/')) return 'AUD';
+    if (/^America\/(Toronto|Vancouver|Montreal|Edmonton|Winnipeg|Halifax|Regina|St_Johns)$/.test(zone)) return 'CAD';
+    if (zone.startsWith('Europe/')) return 'EUR';
+    const region = /[-_]([A-Za-z]{2})\b/.exec(navigator.language || '')?.[1]?.toUpperCase();
+    const byRegion: Record<string, string> = { GB: 'GBP', CA: 'CAD', AU: 'AUD', CH: 'CHF', IN: 'INR' };
+    if (region && byRegion[region]) return byRegion[region];
+  } catch {
+    // fall through
+  }
+  return 'USD';
+}
+
 export default function LoanEmiCalculatorUI() {
   const [mode, setMode] = useState<Mode>('calculator');
   const [currency, setCurrency] = useState('USD');
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   // Primary Loan Inputs
   const [principal, setPrincipal] = useState(500000);
@@ -67,7 +94,7 @@ export default function LoanEmiCalculatorUI() {
     const fullSchedule = generateAmortizationSchedule(principal, rate, months, extraPayment);
     if (fullSchedule.length === 0) return;
 
-    let csv = "Month,EMI,Principal,Interest,Balance\n";
+    let csv = "Month,Payment,Principal,Interest,Balance\n";
     fullSchedule.forEach(row => {
       csv += `${row.month},${row.payment.toFixed(2)},${row.principal.toFixed(2)},${row.interest.toFixed(2)},${row.balance.toFixed(2)}\n`;
     });
@@ -88,7 +115,7 @@ export default function LoanEmiCalculatorUI() {
 Loan Amount: ${formatCurrency(principal, currency)}
 Interest Rate: ${rate}%
 Tenure: ${tenure} ${tenureUnit}
-Monthly EMI: ${formatCurrency(result.emi, currency)}
+Monthly Payment: ${formatCurrency(result.emi, currency)}
 Total Interest: ${formatCurrency(result.totalInterest, currency)}
 Total Payment: ${formatCurrency(result.totalPayment, currency)}
 Calculated via Productive Toolbox`;
@@ -105,7 +132,7 @@ Calculated via Productive Toolbox`;
                 onClick={() => setMode('calculator')} 
                 className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all ${mode === 'calculator' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
               >
-                EMI Calculator
+                Loan Calculator
               </button>
               <button 
                 onClick={() => setMode('compare')} 
@@ -272,7 +299,7 @@ Calculated via Productive Toolbox`;
              {mode === 'calculator' && (
                 <div className="space-y-6">
                    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col items-center text-center">
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Monthly Installment (EMI)</p>
+                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Monthly Payment</p>
                       <h2 className="text-6xl font-black text-gray-900 tracking-tight mb-2">
                         {currency !== 'NONE' && <span className="text-3xl align-top mr-1 font-bold text-primary">{CURRENCIES.find(c => c.code === currency)?.symbol}</span>}
                         {result.emi.toLocaleString(undefined, { maximumFractionDigits: 0 })}
@@ -282,7 +309,7 @@ Calculated via Productive Toolbox`;
                            onClick={() => copyToClipboard(Math.round(result.emi).toString(), 'emi')}
                            className="text-xs bg-gray-50 border border-gray-200 hover:bg-gray-100 px-3 py-1.5 rounded-lg font-bold text-gray-600 transition-all"
                          >
-                            {copied === 'emi' ? 'Copied' : '📋 Copy EMI'}
+                            {copied === 'emi' ? 'Copied' : '📋 Copy Payment'}
                          </button>
                          <button 
                            onClick={() => copyToClipboard(getSummaryText(), 'summary')}
@@ -343,7 +370,7 @@ Calculated via Productive Toolbox`;
                          <div className="space-y-4">
                             <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Loan Option A (Current)</h4>
                             <div className="text-center p-4 bg-gray-50 rounded-xl border border-gray-100">
-                               <p className="text-xs font-medium text-gray-500">EMI</p>
+                               <p className="text-xs font-medium text-gray-500">Monthly payment</p>
                                <p className="text-2xl font-bold text-gray-900">{formatCurrency(result.emi, currency)}</p>
                                <p className="text-[10px] font-bold text-primary mt-2">Rate: {rate}%</p>
                             </div>
@@ -362,7 +389,7 @@ Calculated via Productive Toolbox`;
                                </div>
                             </div>
                             <div className="text-center p-4 bg-primary/5 rounded-xl border border-primary/10">
-                               <p className="text-xs font-medium text-gray-500">EMI</p>
+                               <p className="text-xs font-medium text-gray-500">Monthly payment</p>
                                <p className="text-2xl font-bold text-primary">{formatCurrency(resultB.emi, currency)}</p>
                                <input 
                                  type="range" 
@@ -422,7 +449,7 @@ Calculated via Productive Toolbox`;
                          <thead className="bg-white sticky top-0 uppercase tracking-wide text-[10px] text-gray-400 font-bold border-b border-gray-100 shadow-sm z-10">
                             <tr>
                                <th className="px-5 py-4">Month</th>
-                               <th className="px-5 py-4">EMI</th>
+                               <th className="px-5 py-4">Payment</th>
                                <th className="px-5 py-4">Principal</th>
                                <th className="px-5 py-4">Interest</th>
                                <th className="px-5 py-4 text-right">Balance</th>

@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 export default function WorkingDaysCalculatorSEO() {
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
@@ -44,6 +46,7 @@ export default function WorkingDaysCalculatorSEO() {
           </div>
         </div>
       </div>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

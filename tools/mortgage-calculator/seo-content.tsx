@@ -1,203 +1,144 @@
+import { mortgageCalculatorConfig } from "./config";
+
 export default function MortgageCalculatorSEO() {
+  // Same questions and steps as the FAQPage / HowTo schema
+  const faqItems = mortgageCalculatorConfig.seo.faq;
+  const howToSteps = mortgageCalculatorConfig.seo.howToSteps;
+
+  const card = "mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8";
+  const h2 = "text-2xl font-semibold text-gray-900 mb-4";
+
   return (
-    <div className="mt-16 space-y-12 text-gray-700 leading-relaxed">
-      
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">About the Mortgage Calculator</h2>
-        <p className="mb-4">
-          Our free online Mortgage Calculator helps you estimate your monthly home loan payments, total interest costs, and view detailed amortization schedules. Whether you're a first-time homebuyer or refinancing your existing mortgage, this tool provides accurate calculations to help you make informed financial decisions.
-        </p>
-        <p>
-          Calculate mortgage payments for different loan amounts, interest rates, and terms. Compare various loan options side-by-side and see how extra payments can save you thousands in interest while shortening your loan term.
-        </p>
+    <>
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>What This Mortgage Calculator Shows</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            A lender quotes principal and interest, but the payment that leaves your account each month usually
+            includes more. This <strong>mortgage calculator</strong> adds <strong>property tax, homeowners
+            insurance, PMI and HOA fees</strong> to the loan payment, so you see the full monthly cost of owning the
+            home, along with the total interest over the life of the loan.
+          </p>
+          <p>
+            Compare 15, 20 and 30-year terms side by side, see how an extra monthly payment shortens the loan, and
+            open the month-by-month amortization schedule. Taxes, insurance and fees differ by country, state and
+            lender, so every one of them is your own input, in your own currency.
+          </p>
+        </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Mortgage Calculator</h2>
-        <ol className="list-decimal list-inside space-y-3 ml-4">
-          <li><strong>Enter Home Price:</strong> Input the total purchase price of the property you're considering.</li>
-          <li><strong>Set Down Payment:</strong> Specify how much you'll pay upfront (typically 10-20% of home price).</li>
-          <li><strong>Input Interest Rate:</strong> Enter the annual interest rate offered by your lender.</li>
-          <li><strong>Choose Loan Term:</strong> Select the number of years to repay the loan (commonly 15, 20, or 30 years).</li>
-          <li><strong>Add Extra Payments (Optional):</strong> See how additional monthly payments reduce interest and loan duration.</li>
-          <li><strong>View Results:</strong> Instantly see your monthly payment, total interest, and payment breakdown.</li>
-          <li><strong>Compare Terms:</strong> Switch to comparison mode to evaluate different loan term options.</li>
-          <li><strong>Review Schedule:</strong> View the complete amortization schedule and export to CSV.</li>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>How a Mortgage Payment Is Calculated</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4">
+            <div className="space-y-1.5 font-mono text-sm text-gray-900">
+              <p><span className="font-semibold">Principal &amp; interest</span> M = P × r(1 + r)ⁿ ÷ ((1 + r)ⁿ − 1)</p>
+              <p className="text-xs text-gray-500">P = loan amount, r = annual rate ÷ 12, n = years × 12</p>
+              <p><span className="font-semibold">Monthly payment</span> = M + property tax + insurance + PMI + HOA</p>
+            </div>
+          </div>
+          <h3 className="text-lg font-medium text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>Worked example</h3>
+          <ul className="space-y-2 ml-4 list-disc">
+            <li>Home price $400,000 with 20% down ($80,000) leaves a <strong>$320,000</strong> loan.</li>
+            <li>At 6.5% for 30 years, principal and interest are <strong>$2,022.62</strong> a month.</li>
+            <li>Property tax at 1.1% a year adds $366.67 a month; insurance of $1,800 a year adds $150.</li>
+            <li>The total monthly payment (PITI) is about <strong>$2,539</strong>; total interest over 30 years is $408,142.</li>
+            <li>With only 10% down, the loan is $360,000, principal and interest rise to $2,275.44, and PMI at 0.5% adds $150 a month for the first 95 months.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>How to Use the Mortgage Calculator</h2>
+        <ol className="space-y-4 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Understanding Mortgage Calculations</h2>
-        <p className="mb-4">
-          Mortgage payments are calculated using a standard amortization formula that considers the loan principal, interest rate, and loan term. Each monthly payment consists of two components:
-        </p>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Principal:</strong> The portion that reduces your loan balance</li>
-          <li><strong>Interest:</strong> The cost of borrowing money from the lender</li>
-        </ul>
-        <p className="mt-4">
-          Early in the loan term, a larger portion of your payment goes toward interest. As you progress, more of each payment reduces the principal balance. This is called amortization.
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>15-Year vs 30-Year Mortgage</h2>
+        <p className="text-gray-600 leading-relaxed mb-4">The same $320,000 loan at 6.5%:</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Term</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Monthly P&amp;I</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Total interest</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["15 years", "$2,787.54", "$181,758"],
+                ["30 years", "$2,022.62", "$408,142"],
+                ["30 years + $200/month extra", "$2,222.62", "$302,714 (paid off in 281 months)"],
+              ].map(([term, pay, interest]) => (
+                <tr key={term} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-semibold text-primary text-xs">{term}</td>
+                  <td className="py-2 px-3 text-right font-mono text-gray-700 text-xs">{pay}</td>
+                  <td className="py-2 px-3 text-right font-mono text-gray-900 text-xs">{interest}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-gray-600 leading-relaxed mt-4">
+          The shorter term costs $764.92 more a month but saves $226,384 in interest. An extra payment on a 30-year
+          loan sits in between and keeps the lower required payment as a safety net.
         </p>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Mortgage Terms Explained</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">Principal Amount</h3>
-            <p>The actual loan amount borrowed (home price minus down payment). This is the amount on which interest is calculated.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">Interest Rate</h3>
-            <p>The annual percentage rate (APR) charged by the lender. Even small differences in interest rates can significantly impact total costs over the loan term.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">Loan Term</h3>
-            <p>The number of years to repay the loan. Shorter terms mean higher monthly payments but less total interest paid. Longer terms reduce monthly payments but increase total interest costs.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">Down Payment</h3>
-            <p>The upfront payment made when purchasing a home. A larger down payment reduces the loan amount and may help you secure better interest rates.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">Amortization Schedule</h3>
-            <p>A detailed table showing how each payment is split between principal and interest over the entire loan term, along with the remaining balance after each payment.</p>
-          </div>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Taxes, Insurance, PMI and HOA Explained</h2>
+        <div className="grid md:grid-cols-2 gap-6 text-gray-600 leading-relaxed">
+          {[
+            ["Property tax", "Charged by local government, usually as a percentage of the home's assessed value. U.S. effective rates range from well under 1% to over 2% a year; many other countries charge a fixed yearly amount."],
+            ["Homeowners insurance", "Covers the building against fire, storms and other damage. Lenders require it, and it is often paid through an escrow account as part of the monthly payment."],
+            ["PMI (private mortgage insurance)", "Protects the lender when the down payment is under 20%. It typically costs 0.3–1.5% of the loan a year and can be removed once the balance reaches 80% of the home's original value."],
+            ["HOA or service charges", "Monthly fees for condos, townhouses and planned communities, or service charges and ground rent on apartments in the UK and Europe."],
+          ].map(([title, text]) => (
+            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
+              <p className="text-sm">{text}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Benefits of Extra Mortgage Payments</h2>
-        <p className="mb-4">
-          Making extra payments toward your mortgage principal can provide significant financial benefits:
-        </p>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Reduce Total Interest:</strong> Save thousands of dollars in interest charges over the life of the loan</li>
-          <li><strong>Pay Off Faster:</strong> Shorten your loan term by months or even years</li>
-          <li><strong>Build Equity Quicker:</strong> Increase your home ownership stake faster</li>
-          <li><strong>Financial Freedom:</strong> Become mortgage-free sooner and redirect funds to other goals</li>
-        </ul>
-        <p className="mt-4">
-          Use our calculator's extra payment feature to see exactly how much you can save with additional monthly contributions.
-        </p>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Comparing Different Loan Terms</h2>
-        <p className="mb-4">
-          Choosing the right loan term is crucial for your financial health. Here's how different terms compare:
-        </p>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">15-Year Mortgage</h3>
-            <p><strong>Pros:</strong> Lower total interest, build equity faster, own home sooner. <strong>Cons:</strong> Higher monthly payments, less flexibility in budget.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">30-Year Mortgage</h3>
-            <p><strong>Pros:</strong> Lower monthly payments, more budget flexibility, easier qualification. <strong>Cons:</strong> Higher total interest, slower equity building.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">20-Year Mortgage</h3>
-            <p><strong>Pros:</strong> Balanced approach between 15 and 30-year terms. <strong>Cons:</strong> Less common, may have slightly higher rates than 30-year.</p>
-          </div>
-        </div>
-        <p className="mt-4">
-          Use the comparison mode to see exact numbers for different loan terms based on your specific situation.
-        </p>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Factors Affecting Your Mortgage Rate</h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Credit Score:</strong> Higher scores typically qualify for lower interest rates</li>
-          <li><strong>Down Payment Size:</strong> Larger down payments (20%+) often secure better rates</li>
-          <li><strong>Loan Term:</strong> Shorter terms usually have lower interest rates</li>
-          <li><strong>Loan Type:</strong> Fixed-rate vs. adjustable-rate mortgages have different rate structures</li>
-          <li><strong>Market Conditions:</strong> Economic factors and Federal Reserve policies influence rates</li>
-          <li><strong>Property Type:</strong> Primary residence, investment property, or vacation home</li>
-          <li><strong>Debt-to-Income Ratio:</strong> Lower ratios demonstrate better ability to repay</li>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Tips Before You Borrow</h2>
+        <ul className="space-y-3 text-gray-600 leading-relaxed">
+          {[
+            "Compare the full monthly payment, not just principal and interest: taxes and insurance can add 20–30% to it.",
+            "Put 20% down if you can to avoid PMI; if not, check when your PMI can be removed.",
+            "Get quotes from several lenders on the same day. A 0.5% lower rate on $320,000 over 30 years saves roughly $100 a month.",
+            "Keep an emergency fund after the down payment and closing costs, which are commonly 2–5% of the price.",
+            "Use the schedule to see how slowly the balance falls in the early years, and how much an extra payment speeds it up.",
+          ].map((tip) => (
+            <li key={tip} className="flex items-start gap-2">
+              <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
+              <span>{tip}</span>
+            </li>
+          ))}
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Tips for First-Time Homebuyers</h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li>Save for a 20% down payment to avoid private mortgage insurance (PMI)</li>
-          <li>Get pre-approved for a mortgage before house hunting</li>
-          <li>Compare rates from multiple lenders to find the best deal</li>
-          <li>Consider all costs: property taxes, insurance, maintenance, and HOA fees</li>
-          <li>Don't max out your budget—leave room for unexpected expenses</li>
-          <li>Review your credit report and improve your score before applying</li>
-          <li>Understand the difference between fixed-rate and adjustable-rate mortgages</li>
-          <li>Factor in closing costs (typically 2-5% of home price)</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">When to Refinance Your Mortgage</h2>
-        <p className="mb-4">
-          Refinancing can be beneficial in several situations:
-        </p>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li>Interest rates have dropped significantly since your original loan</li>
-          <li>Your credit score has improved, qualifying you for better rates</li>
-          <li>You want to switch from an adjustable-rate to a fixed-rate mortgage</li>
-          <li>You need to shorten or extend your loan term</li>
-          <li>You want to tap into home equity for major expenses</li>
-          <li>You can eliminate PMI by reaching 20% equity</li>
-        </ul>
-        <p className="mt-4">
-          Use our calculator to compare your current mortgage with potential refinancing options to determine if refinancing makes financial sense.
-        </p>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">What is included in a monthly mortgage payment?</h3>
-            <p>A typical mortgage payment includes principal, interest, property taxes, homeowners insurance, and possibly PMI. This is often called PITI (Principal, Interest, Taxes, Insurance).</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">How much house can I afford?</h3>
-            <p>A general rule is that your monthly housing costs shouldn't exceed 28% of your gross monthly income, and total debt payments shouldn't exceed 36%.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">Is it better to pay extra toward principal or invest?</h3>
-            <p>This depends on your mortgage rate vs. potential investment returns, risk tolerance, and financial goals. If your mortgage rate is high, paying extra can provide guaranteed "returns" by reducing interest.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">What's the difference between APR and interest rate?</h3>
-            <p>The interest rate is the cost of borrowing the principal. APR includes the interest rate plus other costs like origination fees, making it a more comprehensive measure of loan cost.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-gray-900 mb-2">Can I pay off my mortgage early?</h3>
-            <p>Most mortgages allow early payoff, but some have prepayment penalties. Check your loan terms and use our extra payment calculator to see the benefits of early payoff.</p>
-          </div>
+      <section className={card}>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          {faqItems.map(({ q, a }, i) => (
+            <div key={q} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
+              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
+              <p className="text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
-
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use Our Mortgage Calculator?</h2>
-        <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>100% Free:</strong> No registration, no hidden fees, unlimited calculations</li>
-          <li><strong>Accurate Results:</strong> Uses standard mortgage formulas for precise calculations</li>
-          <li><strong>Comprehensive Features:</strong> Calculator, comparison tool, and amortization schedule in one</li>
-          <li><strong>Extra Payment Analysis:</strong> See exactly how much you save with additional payments</li>
-          <li><strong>Export Capability:</strong> Download amortization schedules as CSV files</li>
-          <li><strong>Privacy Focused:</strong> All calculations happen in your browser—no data sent to servers</li>
-          <li><strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
-          <li><strong>Instant Results:</strong> Real-time calculations as you adjust inputs</li>
-        </ul>
-      </section>
-
-      <section className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Start Planning Your Home Purchase Today</h2>
-        <p>
-          Whether you're buying your first home, upgrading to a larger property, or refinancing your current mortgage, our Mortgage Calculator provides the insights you need to make confident financial decisions. Calculate your monthly payments, compare loan terms, and see how extra payments can save you money. All calculations are performed instantly in your browser with complete privacy and accuracy.
-        </p>
-      </section>
-
-    </div>
+    </>
   );
 }
