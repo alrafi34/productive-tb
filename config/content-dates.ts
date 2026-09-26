@@ -240,7 +240,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "index-size-calculator": "2026-08-02",
   "inductive-reactance-calculator": "2026-08-07",
   "inductor-calculator": "2026-08-07",
-  "insulation-thickness-calculator": "2026-05-01",
+  "insulation-thickness-calculator": "2026-09-26",
   "interior-space-optimization-calculator": "2026-05-01",
   "investment-return-calculator": "2026-03-20",
   "ip-address-masker": "2026-08-07",

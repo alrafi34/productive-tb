@@ -27,21 +27,40 @@ export function convertThickness(value: number, from: ThicknessUnit, to: Thickne
   return value;
 }
 
+// Combined convection + radiation coefficient for a surface in still indoor
+// air. Outdoors with wind it is roughly 15–25 W/m²·K.
+export const DEFAULT_SURFACE_COEFFICIENT = 10; // W/m²·K
+
 // Core calculation functions
 export function calculateThicknessSurfaceTemp(
   thermalConductivity: number,
   fluidTemp: number,
   targetSurfaceTemp: number,
-  ambientTemp: number
+  ambientTemp: number,
+  surfaceCoefficient: number = DEFAULT_SURFACE_COEFFICIENT,
+  pipeDiameter?: number
 ): number {
-  // Simplified formula: thickness ≈ k × (T_hot - T_surface) / (T_surface - T_ambient)
-  const numerator = thermalConductivity * (fluidTemp - targetSurfaceTemp);
-  const denominator = targetSurfaceTemp - ambientTemp;
-  
+  // Heat conducted through the insulation = heat leaving its outer surface:
+  //   flat:  k (Tf − Ts) / t            = h (Ts − Ta)  →  t = L
+  //   pipe:  k (Tf − Ts) / (r2 ln(r2/r1)) = h (Ts − Ta)  →  r2 ln(r2/r1) = L
+  // with L = k (Tf − Ts) / (h (Ts − Ta)).
+  const denominator = surfaceCoefficient * (targetSurfaceTemp - ambientTemp);
   if (denominator === 0) return 0;
-  
-  const thicknessMeters = numerator / denominator;
-  return Math.max(0, thicknessMeters * 1000); // Convert to mm
+  const L = (thermalConductivity * (fluidTemp - targetSurfaceTemp)) / denominator;
+  if (!(L > 0)) return 0;
+
+  if (!pipeDiameter || pipeDiameter <= 0) return L * 1000; // flat surface, mm
+
+  // r2 ln(r2/r1) rises monotonically from 0 at r2 = r1, and is ≥ r2 − r1, so
+  // the root lies in [r1, r1 + L]. Bisection is exact enough and never diverges.
+  const r1 = pipeDiameter / 2000;
+  let lo = r1;
+  let hi = r1 + L;
+  for (let i = 0; i < 100; i++) {
+    const mid = (lo + hi) / 2;
+    if (mid * Math.log(mid / r1) < L) lo = mid; else hi = mid;
+  }
+  return ((lo + hi) / 2 - r1) * 1000; // mm
 }
 
 export function calculateThicknessHeatLoss(
@@ -85,10 +104,12 @@ export function estimateHeatLoss(
   thickness: number,
   fluidTemp: number,
   ambientTemp: number,
-  pipeDiameter: number
+  pipeDiameter: number,
+  surfaceCoefficient?: number
 ): number {
-  // Estimate heat loss per meter for cylindrical pipe
-  // q = (2πk(T_hot - T_ambient)) / ln(r2 / r1)
+  // Heat loss per metre of pipe through the insulation and, when h is given,
+  // the outer surface film in series:
+  // q = (T_hot − T_ambient) / (ln(r2/r1) / 2πk + 1 / (2π r2 h))
   
   const r1 = pipeDiameter / 2000; // mm to meters
   const thicknessMeters = thickness / 1000; // mm to meters
@@ -97,7 +118,9 @@ export function estimateHeatLoss(
   if (r1 === 0 || r2 === r1) return 0;
   
   const tempDiff = fluidTemp - ambientTemp;
-  const heatLoss = (2 * Math.PI * thermalConductivity * tempDiff) / Math.log(r2 / r1);
+  const insulationResistance = Math.log(r2 / r1) / (2 * Math.PI * thermalConductivity);
+  const filmResistance = surfaceCoefficient ? 1 / (2 * Math.PI * r2 * surfaceCoefficient) : 0;
+  const heatLoss = tempDiff / (insulationResistance + filmResistance);
   
   return Math.max(0, heatLoss);
 }
@@ -111,7 +134,8 @@ export function performInsulationCalculation(
   targetSurfaceTemp?: number,
   pipeDiameter?: number,
   maxHeatLoss?: number,
-  targetUValue?: number
+  targetUValue?: number,
+  surfaceCoefficient: number = DEFAULT_SURFACE_COEFFICIENT
 ): InsulationCalculation {
   let requiredThickness = 0;
   let estimatedHeatLoss: number | undefined;
@@ -121,7 +145,9 @@ export function performInsulationCalculation(
       thermalConductivity,
       fluidTemp,
       targetSurfaceTemp,
-      ambientTemp
+      ambientTemp,
+      surfaceCoefficient,
+      pipeDiameter
     );
     
     // Estimate heat loss if pipe diameter is provided
@@ -131,7 +157,8 @@ export function performInsulationCalculation(
         requiredThickness,
         fluidTemp,
         ambientTemp,
-        pipeDiameter
+        pipeDiameter,
+        surfaceCoefficient
       );
     }
   } else if (mode === "heatloss" && fluidTemp !== undefined && maxHeatLoss !== undefined && pipeDiameter !== undefined) {
@@ -162,6 +189,7 @@ export function performInsulationCalculation(
     pipeDiameter,
     maxHeatLoss,
     targetUValue,
+    surfaceCoefficient: mode === "surface" ? surfaceCoefficient : undefined,
     requiredThickness,
     requiredThicknessInches,
     estimatedHeatLoss,
@@ -177,7 +205,8 @@ export function validateInputs(
   targetSurfaceTemp?: number,
   pipeDiameter?: number,
   maxHeatLoss?: number,
-  targetUValue?: number
+  targetUValue?: number,
+  surfaceCoefficient?: number
 ): string | null {
   if (isNaN(ambientTemp)) return "Ambient temperature is required";
   if (isNaN(thermalConductivity) || thermalConductivity <= 0) return "Thermal conductivity must be greater than 0";
@@ -189,6 +218,9 @@ export function validateInputs(
     if (targetSurfaceTemp <= ambientTemp) return "Target surface temperature must be higher than ambient temperature";
     if (targetSurfaceTemp >= fluidTemp) return "Target surface temperature must be lower than fluid temperature";
     if (pipeDiameter !== undefined && pipeDiameter <= 0) return "Pipe diameter must be greater than 0";
+    if (surfaceCoefficient !== undefined && (isNaN(surfaceCoefficient) || surfaceCoefficient <= 0 || surfaceCoefficient > 100)) {
+      return "Surface coefficient must be between 0 and 100 W/m²·K";
+    }
   } else if (mode === "heatloss") {
     if (fluidTemp === undefined || isNaN(fluidTemp)) return "Fluid temperature is required";
     if (maxHeatLoss === undefined || isNaN(maxHeatLoss) || maxHeatLoss <= 0) return "Maximum heat loss must be greater than 0";
@@ -367,7 +399,8 @@ MATERIAL PROPERTIES:
     content += `SURFACE TEMPERATURE MODE:
 - Fluid Temperature: ${formatNumber(calculation.fluidTemp || 0)}°C
 - Target Surface Temperature: ${formatNumber(calculation.targetSurfaceTemp || 0)}°C
-${calculation.pipeDiameter ? `- Pipe Diameter: ${formatNumber(calculation.pipeDiameter)} mm\n` : ''}
+${calculation.pipeDiameter ? `- Pipe Diameter: ${formatNumber(calculation.pipeDiameter)} mm\n` : ''}- Surface Coefficient (h): ${formatNumber(calculation.surfaceCoefficient ?? DEFAULT_SURFACE_COEFFICIENT)} W/m²·K
+- Model: ${calculation.pipeDiameter ? 'pipe (cylindrical)' : 'flat surface'}
 `;
   } else if (calculation.mode === "heatloss") {
     content += `HEAT LOSS MODE:

@@ -12,6 +12,7 @@ export interface InsulationCalculation {
   fluidTemp?: number;
   targetSurfaceTemp?: number;
   pipeDiameter?: number;
+  surfaceCoefficient?: number; // h, W/m²·K
   
   // Heat loss mode
   maxHeatLoss?: number;

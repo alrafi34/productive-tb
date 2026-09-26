@@ -78,8 +78,11 @@ export default function InsulationThicknessCalculatorSEO() {
               Calculate insulation thickness needed to achieve a target surface temperature. Ideal for safety requirements and condensation prevention.
             </p>
             <code className="bg-white px-3 py-1 rounded border border-blue-300 text-xs">
-              thickness ≈ k × (T_hot - T_surface) / (T_surface - T_ambient)
+              thickness = k × (T_hot − T_surface) / (h × (T_surface − T_ambient))
             </code>
+            <p className="text-xs text-blue-800 mt-2">
+              h is the surface heat transfer coefficient (convection + radiation): about 8–12 W/m²·K in still indoor air, 15–25 outdoors. For pipes the calculator solves the cylindrical form r₂ · ln(r₂/r₁) = k(T_hot − T_surface) / (h(T_surface − T_ambient)).
+            </p>
           </div>
 
           <div className="bg-green-50 p-4 rounded-lg border border-green-200">
@@ -142,9 +145,9 @@ export default function InsulationThicknessCalculatorSEO() {
           <div className="bg-white p-4 rounded-lg border border-gray-200">
             <h4 className="font-semibold text-gray-900 mb-2">Example 1: Hot Water Pipe</h4>
             <div className="text-sm text-gray-700 space-y-1">
-              <p><strong>Given:</strong> Pipe temp 60°C, Ambient 20°C, Target surface 35°C, k = 0.040 W/m·K</p>
-              <p><strong>Calculation:</strong> thickness = 0.040 × (60-35) / (35-20) = 0.067 m</p>
-              <p className="text-primary font-semibold"><strong>Result:</strong> 67 mm insulation required</p>
+              <p><strong>Given:</strong> Hot surface 60°C, Ambient 20°C, Target surface 35°C, k = 0.040 W/m·K, h = 10 W/m²·K (still air)</p>
+              <p><strong>Calculation:</strong> thickness = 0.040 × (60 − 35) / (10 × (35 − 20)) = 0.0067 m</p>
+              <p className="text-primary font-semibold"><strong>Result:</strong> about 7 mm of insulation (flat surface; a pipe needs slightly less)</p>
             </div>
           </div>
 
