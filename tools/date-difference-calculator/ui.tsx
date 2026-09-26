@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {
   calculateDateDifference,
   formatDateDifference,
+  formatDate,
   parseDate,
   getTodayString,
   getDateFromYearsAgo,
@@ -124,7 +125,7 @@ export default function DateDifferenceCalculatorUI() {
       case 'month':
         const date = new Date();
         date.setMonth(date.getMonth() - 1);
-        setStartDate(date.toISOString().split('T')[0]);
+        setStartDate(formatDate(date));
         break;
     }
   };
