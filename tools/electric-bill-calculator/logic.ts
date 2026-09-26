@@ -1,4 +1,4 @@
-import { BillingType, Currency, Slab, BillCalculation, SlabBreakdown, HistoryEntry, Preset } from "./types";
+import { Appliance, BillingType, Currency, Slab, BillCalculation, SlabBreakdown, HistoryEntry, Preset } from "./types";
 
 const HISTORY_KEY = "electric-bill-calculator-history";
 const MAX_HISTORY = 10;
@@ -113,9 +113,120 @@ export function performCalculation(
   };
 }
 
-// Format number with currency
+export const CURRENCIES: { code: Currency; label: string }[] = [
+  { code: "USD", label: "USD ($)" },
+  { code: "EUR", label: "EUR (€)" },
+  { code: "GBP", label: "GBP (£)" },
+  { code: "CAD", label: "CAD (CA$)" },
+  { code: "AUD", label: "AUD (A$)" },
+  { code: "INR", label: "INR (₹)" },
+  { code: "BDT", label: "BDT (৳)" },
+];
+
+/* A starting price per kWh for each currency, replaced by the visitor's own.
+   USD: EIA 2026 U.S. residential average; EUR: Eurostat EU household average,
+   2nd half of 2025; GBP: Ofgem price cap, Oct–Dec 2026. */
+export const TYPICAL_RATE: Record<Currency, number> = {
+  USD: 0.18,
+  EUR: 0.29,
+  GBP: 0.2632,
+  CAD: 0.18,
+  AUD: 0.33,
+  INR: 7,
+  BDT: 8.5,
+};
+
+const CURRENCY_BY_TIMEZONE: Record<string, Currency> = {
+  "Europe/London": "GBP",
+  "Asia/Kolkata": "INR",
+  "Asia/Calcutta": "INR",
+  "Asia/Dhaka": "BDT",
+};
+
+const CURRENCY_BY_REGION: Record<string, Currency> = {
+  US: "USD", GB: "GBP", CA: "CAD", AU: "AUD", IN: "INR", BD: "BDT",
+  DE: "EUR", FR: "EUR", ES: "EUR", IT: "EUR", NL: "EUR", BE: "EUR", AT: "EUR",
+  IE: "EUR", PT: "EUR", FI: "EUR", GR: "EUR", SK: "EUR", SI: "EUR", LT: "EUR",
+  LV: "EUR", EE: "EUR", LU: "EUR", MT: "EUR", CY: "EUR", HR: "EUR",
+};
+
+/* The visitor's likely currency, from the timezone first (it says where
+   they are; many browsers are set to en-US anywhere): London → £, other
+   European zones → €, Canadian and Australian zones → their dollar. Then
+   the browser language's region, and US dollars otherwise. */
+export function guessCurrency(timeZone?: string, language?: string): Currency {
+  try {
+    const zone = timeZone ?? Intl.DateTimeFormat().resolvedOptions().timeZone ?? "";
+    const lang = language ?? (typeof navigator !== "undefined" ? navigator.language : "");
+    const region = /[-_]([A-Za-z]{2})\b/.exec(lang || "")?.[1]?.toUpperCase();
+    if (CURRENCY_BY_TIMEZONE[zone]) return CURRENCY_BY_TIMEZONE[zone];
+    if (zone.startsWith("Australia/")) return "AUD";
+    if (/^America\/(Toronto|Vancouver|Montreal|Edmonton|Winnipeg|Halifax|Regina|St_Johns)$/.test(zone)) return "CAD";
+    if (zone.startsWith("Europe/")) return "EUR";
+    if (region && CURRENCY_BY_REGION[region]) return CURRENCY_BY_REGION[region];
+  } catch {
+    // fall through
+  }
+  return "USD";
+}
+
+const currencyFormatters = new Map<string, Intl.NumberFormat>();
+
+// Format number with currency ("$27.00", "€8.70", "৳1,912.00")
 export function formatCurrency(value: number, currency: Currency, decimals: number = 2): string {
-  return `${value.toFixed(decimals)} ${currency}`;
+  const key = `${currency}-${decimals}`;
+  let formatter = currencyFormatters.get(key);
+  if (!formatter) {
+    try {
+      formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency,
+        currencyDisplay: currency === "CAD" || currency === "AUD" ? "symbol" : "narrowSymbol",
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
+    } catch {
+      return `${value.toFixed(decimals)} ${currency}`;
+    }
+    currencyFormatters.set(key, formatter);
+  }
+  return formatter.format(value);
+}
+
+// Energy used by appliances: watts × quantity × hours a day × days ÷ 1000 = kWh
+export function applianceKwh(appliance: Appliance, days: number): number {
+  const w = Math.max(0, appliance.watts || 0);
+  const q = Math.max(0, appliance.quantity || 0);
+  const h = Math.min(24, Math.max(0, appliance.hoursPerDay || 0));
+  return (w * q * h * Math.max(0, days || 0)) / 1000;
+}
+
+export function totalApplianceKwh(appliances: Appliance[], days: number): number {
+  return appliances.reduce((sum, a) => sum + applianceKwh(a, days), 0);
+}
+
+/* Typical power draw, for quick adding; the visitor edits the watts. */
+export const COMMON_APPLIANCES: { name: string; watts: number; hoursPerDay: number }[] = [
+  { name: "LED bulb", watts: 10, hoursPerDay: 5 },
+  { name: "Ceiling fan", watts: 75, hoursPerDay: 8 },
+  { name: "Refrigerator", watts: 150, hoursPerDay: 24 },
+  { name: "Air conditioner", watts: 1500, hoursPerDay: 6 },
+  { name: "Television", watts: 100, hoursPerDay: 4 },
+  { name: "Laptop", watts: 60, hoursPerDay: 6 },
+  { name: "Desktop PC", watts: 250, hoursPerDay: 4 },
+  { name: "Washing machine", watts: 500, hoursPerDay: 1 },
+  { name: "Microwave", watts: 1100, hoursPerDay: 0.3 },
+  { name: "Electric kettle", watts: 2000, hoursPerDay: 0.25 },
+  { name: "Water heater", watts: 3000, hoursPerDay: 1 },
+  { name: "Space heater", watts: 1500, hoursPerDay: 4 },
+];
+
+export function createDefaultAppliances(): Appliance[] {
+  return [
+    { id: generateId(), name: "Refrigerator", watts: 150, quantity: 1, hoursPerDay: 24 },
+    { id: generateId(), name: "LED bulb", watts: 10, quantity: 6, hoursPerDay: 5 },
+    { id: generateId(), name: "Television", watts: 100, quantity: 1, hoursPerDay: 4 },
+  ];
 }
 
 // Format number
@@ -157,12 +268,47 @@ export function validateInputs(
   return null;
 }
 
-// Presets
+// Presets: published averages to start from; every value stays editable
 export function getPresets(): Preset[] {
   return [
     {
+      name: "USA Average",
+      description: "18¢/kWh – EIA 2026 U.S. residential average",
+      billingType: "flat",
+      currency: "USD",
+      flatRate: 0.18
+    },
+    {
+      name: "UK Price Cap",
+      description: "26.32p/kWh + 54.83p/day standing charge (Ofgem, Oct–Dec 2026)",
+      billingType: "flat",
+      currency: "GBP",
+      flatRate: 0.2632,
+      // 54.83p a day for a 30-day bill
+      serviceCharge: 16.45
+    },
+    {
+      name: "EU Average",
+      description: "€0.29/kWh incl. taxes – Eurostat, 2nd half of 2025",
+      billingType: "flat",
+      currency: "EUR",
+      flatRate: 0.29
+    },
+    {
+      name: "India Residential",
+      description: "Typical Indian tiered tariff",
+      billingType: "tiered",
+      currency: "INR",
+      slabs: [
+        { id: generateId(), min: 0, max: 100, rate: 3.0 },
+        { id: generateId(), min: 101, max: 200, rate: 4.5 },
+        { id: generateId(), min: 201, max: 500, rate: 6.0 },
+        { id: generateId(), min: 501, max: Infinity, rate: 7.0 }
+      ]
+    },
+    {
       name: "Bangladesh Residential",
-      description: "BERC residential tariff (June 2026) + 5% VAT",
+      description: "BERC tiered tariff (June 2026) + 5% VAT",
       billingType: "tiered",
       currency: "BDT",
       taxPercent: 5,
@@ -174,32 +320,6 @@ export function getPresets(): Preset[] {
         { id: generateId(), min: 401, max: 600, rate: 15.01 },
         { id: generateId(), min: 601, max: Infinity, rate: 17.35 }
       ]
-    },
-    {
-      name: "India Residential",
-      description: "Typical Indian tariff",
-      billingType: "tiered",
-      currency: "INR",
-      slabs: [
-        { id: generateId(), min: 0, max: 100, rate: 3.0 },
-        { id: generateId(), min: 101, max: 200, rate: 4.5 },
-        { id: generateId(), min: 201, max: 500, rate: 6.0 },
-        { id: generateId(), min: 501, max: Infinity, rate: 7.0 }
-      ]
-    },
-    {
-      name: "USA Flat Rate",
-      description: "Simple flat rate billing",
-      billingType: "flat",
-      currency: "USD",
-      flatRate: 0.12
-    },
-    {
-      name: "UK Standard",
-      description: "UK residential rate",
-      billingType: "flat",
-      currency: "GBP",
-      flatRate: 0.28
     }
   ];
 }

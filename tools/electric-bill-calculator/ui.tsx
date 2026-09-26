@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { BillingType, Currency, Slab, BillCalculation } from "./types";
+import { Appliance, BillingType, Currency, Slab, BillCalculation, UsageMode } from "./types";
 import {
   performCalculation,
   validateInputs,
@@ -16,7 +16,14 @@ import {
   generateId,
   createDefaultSlabs,
   getPresets,
-  debounce
+  debounce,
+  CURRENCIES,
+  TYPICAL_RATE,
+  guessCurrency,
+  applianceKwh,
+  totalApplianceKwh,
+  COMMON_APPLIANCES,
+  createDefaultAppliances
 } from "./logic";
 import ElectricBillCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -25,8 +32,11 @@ import RelatedStrip from "@/components/RelatedStrip";
 export default function ElectricBillCalculatorUI() {
   const [units, setUnits] = useState("150");
   const [billingType, setBillingType] = useState<BillingType>("flat");
-  const [currency, setCurrency] = useState<Currency>("BDT");
-  const [flatRate, setFlatRate] = useState("8");
+  const [currency, setCurrency] = useState<Currency>("USD");
+  const [flatRate, setFlatRate] = useState(String(TYPICAL_RATE.USD));
+  const [usageMode, setUsageMode] = useState<UsageMode>("meter");
+  const [appliances, setAppliances] = useState<Appliance[]>(createDefaultAppliances);
+  const [days, setDays] = useState("30");
   const [slabs, setSlabs] = useState<Slab[]>(createDefaultSlabs());
   const [serviceCharge, setServiceCharge] = useState("0");
   const [meterCharge, setMeterCharge] = useState("0");
@@ -40,12 +50,59 @@ export default function ElectricBillCalculatorUI() {
 
   const presets = getPresets();
 
+  // kWh from the appliance list: watts × quantity × hours a day × days ÷ 1000
+  const daysNum = parseFloat(days) || 0;
+  const applianceTotal = Math.round(totalApplianceKwh(appliances, daysNum) * 100) / 100;
+  const effectiveUnits = usageMode === "appliances" ? String(applianceTotal) : units;
+
+  // Start in the visitor's currency with a typical local price per kWh
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const guess = guessCurrency();
+      setCurrency(guess);
+      setFlatRate(String(TYPICAL_RATE[guess]));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const handleCurrencyChange = (next: Currency) => {
+    // Swap the starting rate too, unless the visitor has typed their own
+    if (parseFloat(flatRate) === TYPICAL_RATE[currency]) setFlatRate(String(TYPICAL_RATE[next]));
+    setCurrency(next);
+  };
+
+  const updateAppliance = (id: string, field: keyof Appliance, value: string) => {
+    setAppliances(list => list.map(a => {
+      if (a.id !== id) return a;
+      if (field === "name") return { ...a, name: value };
+      const num = parseFloat(value);
+      return { ...a, [field]: isNaN(num) ? 0 : num };
+    }));
+  };
+
+  const addAppliance = (preset?: { name: string; watts: number; hoursPerDay: number }) => {
+    setAppliances(list => [
+      ...list,
+      {
+        id: generateId(),
+        name: preset?.name ?? "Appliance",
+        watts: preset?.watts ?? 100,
+        quantity: 1,
+        hoursPerDay: preset?.hoursPerDay ?? 1
+      }
+    ]);
+  };
+
+  const removeAppliance = (id: string) => {
+    setAppliances(list => list.filter(a => a.id !== id));
+  };
+
   // Debounced calculation
   const debouncedCalculate = useCallback(
     debounce(() => {
       setError(null);
 
-      const u = parseFloat(units);
+      const u = parseFloat(effectiveUnits);
       const fr = parseFloat(flatRate);
       const sc = parseFloat(serviceCharge) || 0;
       const mc = parseFloat(meterCharge) || 0;
@@ -66,19 +123,23 @@ export default function ElectricBillCalculatorUI() {
         setCalculation(null);
       }
     }, 150),
-    [units, billingType, currency, flatRate, slabs, serviceCharge, meterCharge, taxPercent]
+    [effectiveUnits, billingType, currency, flatRate, slabs, serviceCharge, meterCharge, taxPercent]
   );
 
   // Calculate in real-time
   useEffect(() => {
     debouncedCalculate();
-  }, [units, billingType, currency, flatRate, slabs, serviceCharge, meterCharge, taxPercent, debouncedCalculate]);
+  }, [effectiveUnits, billingType, currency, flatRate, slabs, serviceCharge, meterCharge, taxPercent, debouncedCalculate]);
 
   const handleReset = () => {
     setUnits("150");
     setBillingType("flat");
-    setCurrency("BDT");
-    setFlatRate("8");
+    const guess = guessCurrency();
+    setCurrency(guess);
+    setFlatRate(String(TYPICAL_RATE[guess]));
+    setUsageMode("meter");
+    setAppliances(createDefaultAppliances());
+    setDays("30");
     setSlabs(createDefaultSlabs());
     setServiceCharge("0");
     setMeterCharge("0");
@@ -108,7 +169,10 @@ export default function ElectricBillCalculatorUI() {
 
     setBillingType(preset.billingType);
     setCurrency(preset.currency);
-    if (preset.taxPercent !== undefined) setTaxPercent(preset.taxPercent.toString());
+    // A preset brings its own fixed charges and tax, so none carry over
+    setTaxPercent(String(preset.taxPercent ?? 0));
+    setServiceCharge(String(preset.serviceCharge ?? 0));
+    setMeterCharge("0");
 
     if (preset.billingType === "flat" && preset.flatRate !== undefined) {
       setFlatRate(preset.flatRate.toString());
@@ -156,6 +220,7 @@ export default function ElectricBillCalculatorUI() {
 
   const loadFromHistory = (calc: BillCalculation) => {
     setUnits(calc.units.toString());
+    setUsageMode("meter");
     setBillingType(calc.billingType);
     setCurrency(calc.currency);
     if (calc.flatRate !== undefined) setFlatRate(calc.flatRate.toString());
@@ -179,7 +244,7 @@ export default function ElectricBillCalculatorUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Electric Bill Calculator</h3>
               <p className="text-sm text-blue-800">
-                Calculate your electricity bill instantly with support for flat and tiered rates. Get detailed cost breakdown and export options.
+                Enter your kWh, or estimate it from appliance watts, then add your price per kWh. Works with flat or tiered rates in any currency.
               </p>
             </div>
           </div>
@@ -211,14 +276,12 @@ export default function ElectricBillCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select
                   value={currency}
-                  onChange={(e) => setCurrency(e.target.value as Currency)}
+                  onChange={(e) => handleCurrencyChange(e.target.value as Currency)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
-                  <option value="BDT">BDT (৳)</option>
-                  <option value="USD">USD ($)</option>
-                  <option value="EUR">EUR (€)</option>
-                  <option value="GBP">GBP (£)</option>
-                  <option value="INR">INR (₹)</option>
+                  {CURRENCIES.map(c => (
+                    <option key={c.code} value={c.code}>{c.label}</option>
+                  ))}
                 </select>
               </div>
 
@@ -245,10 +308,10 @@ export default function ElectricBillCalculatorUI() {
                   <p className="text-amber-100 font-medium mb-2 text-xs uppercase tracking-wider" style={{ fontFamily: "var(--font-heading)" }}>
                     Total Bill
                   </p>
-                  <div className="text-4xl font-bold mb-1">
-                    {formatNumber(calculation.totalBill, 2)}
+                  <div className="text-4xl font-bold mb-1 break-words">
+                    {formatCurrency(calculation.totalBill, calculation.currency)}
                   </div>
-                  <div className="text-xl text-amber-100">
+                  <div className="text-sm text-amber-100">
                     {calculation.currency}
                   </div>
                 </div>
@@ -256,15 +319,15 @@ export default function ElectricBillCalculatorUI() {
                 <div className="mt-4 pt-4 border-t border-white/20 text-sm space-y-2">
                   <div className="flex justify-between">
                     <span className="text-amber-100">Units:</span>
-                    <span className="font-semibold">{calculation.units} kWh</span>
+                    <span className="font-semibold">{formatNumber(calculation.units, Number.isInteger(calculation.units) ? 0 : 2)} kWh</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-amber-100">Energy Cost:</span>
-                    <span className="font-semibold">{formatNumber(calculation.subtotal - calculation.serviceCharge - calculation.meterCharge, 2)}</span>
+                    <span className="font-semibold">{formatCurrency(calculation.subtotal - calculation.serviceCharge - calculation.meterCharge, calculation.currency)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-amber-100">Tax:</span>
-                    <span className="font-semibold">{formatNumber(calculation.totalTax, 2)}</span>
+                    <span className="font-semibold">{formatCurrency(calculation.totalTax, calculation.currency)}</span>
                   </div>
                 </div>
 
@@ -296,20 +359,146 @@ export default function ElectricBillCalculatorUI() {
                 Electricity Consumption
               </h3>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Units Consumed (kWh)
-                </label>
-                <input
-                  type="number"
-                  value={units}
-                  onChange={(e) => setUnits(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                  placeholder="150"
-                  min="0"
-                  step="1"
-                />
+              <div className="flex flex-wrap gap-2 p-1 bg-gray-100 rounded-lg w-fit" role="radiogroup" aria-label="How to enter usage">
+                {([
+                  ["meter", "I know my kWh"],
+                  ["appliances", "Estimate from watts"]
+                ] as [UsageMode, string][]).map(([mode, label]) => (
+                  <button
+                    key={mode}
+                    role="radio"
+                    aria-checked={usageMode === mode}
+                    onClick={() => setUsageMode(mode)}
+                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                      usageMode === mode ? "bg-white text-gray-900 shadow-sm border border-gray-200" : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
+
+              {usageMode === "meter" ? (
+                <div>
+                  <label htmlFor="eb-units" className="block text-sm font-medium text-gray-700 mb-2">
+                    Units Consumed (kWh)
+                  </label>
+                  <input
+                    id="eb-units"
+                    type="number"
+                    value={units}
+                    onChange={(e) => setUnits(e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                    placeholder="150"
+                    min="0"
+                    step="1"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">The kWh figure on your bill or meter reading.</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <p className="text-xs text-gray-500">
+                    Enter each appliance&apos;s power in watts (on its label) and how long it runs. kWh = watts × quantity × hours a day × days ÷ 1000.
+                  </p>
+                  <div className="space-y-2">
+                    {appliances.map((a) => {
+                      const kwh = applianceKwh(a, daysNum);
+                      return (
+                        <div key={a.id} className="grid grid-cols-2 sm:grid-cols-12 gap-2 items-end p-3 bg-gray-50 rounded-lg border border-gray-200">
+                          <div className="col-span-2 sm:col-span-4">
+                            <label className="block text-xs font-medium text-gray-600 mb-1">Appliance</label>
+                            <input
+                              type="text"
+                              value={a.name}
+                              onChange={(e) => updateAppliance(a.id, "name", e.target.value)}
+                              className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <label className="block text-xs font-medium text-gray-600 mb-1">Watts</label>
+                            <input
+                              type="number"
+                              min="0"
+                              value={a.watts}
+                              onChange={(e) => updateAppliance(a.id, "watts", e.target.value)}
+                              className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono text-sm"
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <label className="block text-xs font-medium text-gray-600 mb-1">Qty</label>
+                            <input
+                              type="number"
+                              min="0"
+                              step="1"
+                              value={a.quantity}
+                              onChange={(e) => updateAppliance(a.id, "quantity", e.target.value)}
+                              className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono text-sm"
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <label className="block text-xs font-medium text-gray-600 mb-1">Hours/day</label>
+                            <input
+                              type="number"
+                              min="0"
+                              max="24"
+                              step="0.25"
+                              value={a.hoursPerDay}
+                              onChange={(e) => updateAppliance(a.id, "hoursPerDay", e.target.value)}
+                              className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono text-sm"
+                            />
+                          </div>
+                          <div className="sm:col-span-2 flex items-center justify-between gap-2">
+                            <span className="text-xs font-semibold text-gray-700 font-mono whitespace-nowrap">{formatNumber(kwh, 1)} kWh</span>
+                            <button
+                              onClick={() => removeAppliance(a.id)}
+                              aria-label={`Remove ${a.name}`}
+                              className="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-xs"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {COMMON_APPLIANCES.map((c) => (
+                      <button
+                        key={c.name}
+                        onClick={() => addAppliance(c)}
+                        className="px-2.5 py-1 text-xs font-medium rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      >
+                        + {c.name} ({c.watts} W)
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => addAppliance()}
+                      className="px-2.5 py-1 text-xs font-medium rounded-md bg-primary text-white hover:bg-primary-dark"
+                    >
+                      + Custom
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 items-end">
+                    <div>
+                      <label htmlFor="eb-days" className="block text-sm font-medium text-gray-700 mb-2">Days in billing period</label>
+                      <input
+                        id="eb-days"
+                        type="number"
+                        min="1"
+                        value={days}
+                        onChange={(e) => setDays(e.target.value)}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono"
+                      />
+                    </div>
+                    <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                      <div className="text-xs text-amber-800">Estimated usage</div>
+                      <div className="text-xl font-bold text-amber-700 font-mono">{formatNumber(applianceTotal, 2)} kWh</div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Rate Configuration */}
@@ -321,17 +510,18 @@ export default function ElectricBillCalculatorUI() {
               {billingType === "flat" ? (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Cost per Unit ({currency}/kWh)
+                    Price per kWh ({currency})
                   </label>
                   <input
                     type="number"
                     value={flatRate}
                     onChange={(e) => setFlatRate(e.target.value)}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder="8"
+                    placeholder={String(TYPICAL_RATE[currency])}
                     min="0"
                     step="0.01"
                   />
+                  <p className="text-xs text-gray-500 mt-1">Use the rate on your bill. Starting value: a typical {currency} rate; pick a preset below or type your own.</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -482,8 +672,8 @@ export default function ElectricBillCalculatorUI() {
                       {calculation.breakdown.map((item, index) => (
                         <tr key={index} className="hover:bg-gray-50">
                           <td className="px-4 py-3 text-sm font-medium text-gray-900">{item.range}</td>
-                          <td className="px-4 py-3 text-sm text-gray-600 text-right font-mono">{formatNumber(item.units, 0)}</td>
-                          <td className="px-4 py-3 text-sm text-gray-600 text-right font-mono">{formatNumber(item.rate, 2)}</td>
+                          <td className="px-4 py-3 text-sm text-gray-600 text-right font-mono">{formatNumber(item.units, Number.isInteger(item.units) ? 0 : 2)}</td>
+                          <td className="px-4 py-3 text-sm text-gray-600 text-right font-mono">{Number(item.rate.toFixed(4))}</td>
                           <td className="px-4 py-3 text-sm font-semibold text-gray-900 text-right">{formatNumber(item.cost, 2)}</td>
                         </tr>
                       ))}

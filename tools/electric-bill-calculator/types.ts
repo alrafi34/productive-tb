@@ -1,5 +1,15 @@
 export type BillingType = "flat" | "tiered";
-export type Currency = "BDT" | "USD" | "EUR" | "GBP" | "INR";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD" | "INR" | "BDT";
+
+export type UsageMode = "meter" | "appliances";
+
+export interface Appliance {
+  id: string;
+  name: string;
+  watts: number;
+  quantity: number;
+  hoursPerDay: number;
+}
 
 export interface Slab {
   id: string;
@@ -45,4 +55,6 @@ export interface Preset {
   flatRate?: number;
   currency: Currency;
   taxPercent?: number;
+  /** Fixed charge per bill, e.g. a daily standing charge × 30 days. */
+  serviceCharge?: number;
 }
