@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 import React from 'react';
 
 export default function URLEncoderSEO() {
@@ -173,6 +175,7 @@ export default function URLEncoderSEO() {
           Start using this free URL Encoder/Decoder tool today. No signup required, no server processing, 100% browser-based. Perfect for developers, testers, and anyone working with URLs!
         </p>
       </div>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

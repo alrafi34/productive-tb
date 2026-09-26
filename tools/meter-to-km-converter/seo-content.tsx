@@ -79,8 +79,8 @@ export default function ToolSEOContent() {
         </h2>
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">How can I reverse calculate kilometers back into meters?</h3>
-            <p className="text-gray-600 leading-relaxed">Because this layout is tightly stripped back for maximum efficiency in calculating meters to kilometers, the reverse calculation is not embedded here. To manually derive meters from kilometers, simply multiply your kilometers value by 1,000.</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I convert kilometers back into meters?</h3>
+            <p className="text-gray-600 leading-relaxed">Click &quot;Swap&quot; to switch the converter to kilometers → meters, or multiply the kilometers by 1,000: 2.5 km × 1,000 = 2,500 m.</p>
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I perform conversions offline?</h3>

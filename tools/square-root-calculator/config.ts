@@ -7,6 +7,11 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
+    faq: [
+      { q: "How accurate is this calculator?", a: "The calculator uses IEEE 754 floating-point arithmetic. For 99.9% of engineering and educational use cases, the accuracy is more than sufficient." },
+      { q: "Can I export my batch results?", a: "Yes! If you use the batch mode, an export button will appear allowing you to download a CSV file containing all your inputs and their corresponding roots." },
+      { q: "What is the square root of a negative number?", a: "By default, our tool alerts you that negative numbers result in complex/imaginary numbers. Standard calculators cannot find a \"real\" number because no real number multiplied by itself can be negative." },
+    ],
     title: "Square Root Calculator – Find √ of Any Number",
     description: "Calculate the square root of any number to the precision you choose, check the answer by squaring it, and work out many roots at once.",
     keywords: [

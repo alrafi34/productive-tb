@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 import React from 'react';
 
 export default function VoiceToTextNotepadSEOContent() {
@@ -99,6 +101,7 @@ export default function VoiceToTextNotepadSEOContent() {
           </div>
         </div>
       </div>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

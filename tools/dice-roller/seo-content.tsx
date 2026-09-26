@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 import React from "react";
 
 export default function DiceRollerSEOContent() {
@@ -74,6 +76,7 @@ export default function DiceRollerSEOContent() {
           All dice rolls are generated locally in your browser using JavaScript's Math.random() function. No data is sent to any server. Roll history is stored in your browser's local storage and can be cleared anytime. The tool runs entirely client-side for maximum speed and privacy.
         </p>
       </section>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

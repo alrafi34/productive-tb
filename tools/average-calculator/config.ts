@@ -7,6 +7,17 @@ export const averageCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
+    faq: [
+      { q: "What is an average in math?", a: "In basic statistics, average usually means the arithmetic mean: add all numbers and divide by how many numbers you have." },
+      { q: "Is average the same as mean?", a: "In most everyday use, yes. Mean is the formal statistical term for the arithmetic average." },
+      { q: "Can I calculate average from Excel data?", a: "Yes. Copy your row or column from Excel or Google Sheets and paste it directly into the input area. The tool parses the numbers automatically." },
+      { q: "Does this calculator work on mobile devices?", a: "Yes. The interface is responsive and designed to work on phones, tablets, and desktops." },
+      { q: "Can I use decimal and negative numbers?", a: "Absolutely. Decimal and negative values are supported, which makes the calculator useful for real-world datasets." },
+      { q: "Can I export average calculation results?", a: "Yes. You can export your values and final average as a CSV file for reporting, archiving, or further analysis." },
+      { q: "What is the difference between average and weighted average?", a: "A simple average treats every value equally. A weighted average gives more importance to selected values based on assigned weights." },
+      { q: "Is my data private?", a: "Calculations run in your browser, so your numbers remain on your device during use." },
+      { q: "What makes this better than many other average calculators?", a: "It combines instant calculation, flexible input parsing, extra stats (sum, count, min, max), CSV export, and a clean interface that works well on both desktop and mobile." },
+    ],
     title: "Average Calculator – Mean of a List of Numbers",
     description: "Find the average (mean) of any list of numbers, pasted with commas, spaces or new lines, along with the sum, count, minimum and maximum.",
     keywords: [

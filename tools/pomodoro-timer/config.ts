@@ -7,6 +7,13 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
+    faq: [
+      { q: "What is the Pomodoro Technique?", a: "A time-management method: work with full focus for 25 minutes, take a 5-minute break, and after four focus sessions take a longer break of 15–30 minutes." },
+      { q: "Can I change the session lengths?", a: "Yes. Set your own focus, short break and long break lengths, and how many focus sessions come before a long break." },
+      { q: "Will I be alerted when a session ends?", a: "Yes. The timer plays a sound and, if you allow browser notifications, shows a notification even when the tab is in the background." },
+      { q: "Does the timer keep running if I switch tabs?", a: "Yes. It keeps counting while the tab is open. Closing the tab or the browser stops it." },
+      { q: "Is it free?", a: "Yes, with no sign-up. Everything runs in your browser." },
+    ],
     title: "Pomodoro Timer – 25/5 Focus Timer with Breaks",
     description: "Free online Pomodoro timer: 25-minute focus sessions and 5-minute breaks with a longer break every four rounds, sound alerts and notifications.",
     keywords: [

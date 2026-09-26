@@ -7,6 +7,13 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
+    faq: [
+      { q: "Which dice can I roll?", a: "D4, D6, D8, D10, D12 and D20, and several of each at once, for example 2d6 for board games or 1d20 for tabletop RPGs." },
+      { q: "Are the rolls random?", a: "Yes. Every face has an equal chance of coming up on each roll, and each roll is independent of the ones before." },
+      { q: "Does it add up the total?", a: "Yes. Each roll shows every die and the total, and the history keeps your recent rolls." },
+      { q: "What does 2d6 mean?", a: "Roll two six-sided dice and add them. The total ranges from 2 to 12, and 7 is the most likely result." },
+      { q: "Is it free?", a: "Yes, with no sign-up. Rolls happen in your browser." },
+    ],
     title: "Dice Roller – Roll D4, D6, D8, D10, D12 and D20 Online",
     description: "Roll virtual dice for board games and tabletop RPGs: D4, D6, D8, D10, D12 and D20, several at once, with totals and a history of rolls.",
     keywords: [

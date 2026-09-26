@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 export default function TimeZoneConverterSEO() {
   return (
     <div className="mt-12 space-y-8 text-gray-600">
@@ -90,6 +92,7 @@ export default function TimeZoneConverterSEO() {
           This tool runs 100% in your browser. No data is sent to any server. Your timezone preferences and favorite cities are saved only in your browser's localStorage. Your privacy is completely protected.
         </p>
       </section>
+      <ToolFaq items={toolConfig.seo.faq} />
     </div>
   );
 }

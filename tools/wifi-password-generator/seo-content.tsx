@@ -1,3 +1,5 @@
+import ToolFaq from "@/components/ToolFaq";
+import { wifiPasswordGeneratorConfig } from "./config";
 export default function WiFiPasswordGeneratorSEOContent() {
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
@@ -266,6 +268,7 @@ export default function WiFiPasswordGeneratorSEOContent() {
           2013, ensuring wide compatibility and secure password generation.
         </p>
       </section>
+      <ToolFaq items={wifiPasswordGeneratorConfig.seo.faq} />
     </div>
   );
 }

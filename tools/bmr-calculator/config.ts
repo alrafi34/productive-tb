@@ -7,6 +7,11 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
+    faq: [
+      { q: "Is BMR the same as RMR?", a: "BMR (Basal Metabolic Rate) and RMR (Resting Metabolic Rate) are similar but not identical. BMR is measured under strict conditions, while RMR is more practical and typically 10-20% higher." },
+      { q: "How accurate is the Mifflin-St Jeor equation?", a: "The Mifflin-St Jeor equation is considered the most accurate predictive equation, with about 90% accuracy for healthy individuals. However, individual variations can occur due to genetics, body composition, and health conditions." },
+      { q: "Should I eat exactly my BMR calories?", a: "No, you should eat according to your TDEE, not BMR. BMR only accounts for basic functions, while TDEE includes all daily activities. Eating only BMR calories would be too restrictive for most people." },
+    ],
     title: "BMR Calculator – Basal Metabolic Rate & Daily Calories",
     description: "Calculate your basal metabolic rate (BMR) and daily energy needs (TDEE) from age, sex, height, weight and activity, in metric or imperial units.",
     keywords: [
