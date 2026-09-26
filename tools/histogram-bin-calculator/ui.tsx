@@ -246,13 +246,12 @@ export default function HistogramBinCalculatorUI() {
               </div>
               <p className="text-xs text-gray-400">Press <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs font-mono">Esc</kbd> to reset, <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs font-mono">Ctrl+L</kbd> for a random dataset</p>
             </div>
+            {method === "auto" && (
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 text-xs text-gray-600 leading-relaxed">
+                <span className="font-semibold text-primary">Auto mode:</span> every statistical method below is calculated, and the histogram uses the median bin count across all of them as the recommended value.
+              </div>
+            )}
           </div>
-
-          {method === "auto" && (
-            <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 text-xs text-gray-600 leading-relaxed">
-              <span className="font-semibold text-primary">Auto mode:</span> every statistical method below is calculated, and the histogram uses the median bin count across all of them as the recommended value.
-            </div>
-          )}
 
           {/* ── Right: results ── */}
           <div className="lg:col-span-7 space-y-5">

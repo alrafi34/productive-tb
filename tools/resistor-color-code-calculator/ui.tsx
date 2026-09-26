@@ -348,7 +348,7 @@ export default function ResistorColorCodeCalculatorUI() {
                 Visual Preview
               </h3>
               
-              <div className="flex items-center justify-center py-8">
+              <div className="flex items-center justify-center py-8 px-12">
                 <div className="relative w-full max-w-md h-20 bg-gradient-to-r from-gray-300 via-amber-100 to-gray-300 rounded-full flex items-center justify-center shadow-md">
                   {/* Resistor body */}
                   <div className="absolute inset-0 flex items-center justify-center gap-2 px-12">

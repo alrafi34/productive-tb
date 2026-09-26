@@ -16,7 +16,7 @@ export default function RelatedStrip() {
   if (nav.next.length === 0 && chips.length === 0) return null;
 
   return (
-    <div className="mt-8 space-y-5">
+    <div data-related-strip className="mt-8 space-y-5">
       {nav.next.length > 0 && (
         <section aria-label="Next step" className="rounded-2xl border border-primary/20 bg-primary/5 p-4 sm:p-5">
           <p className="text-sm font-semibold text-emerald-900 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
