@@ -97,8 +97,11 @@ export default function JSONFormatterUI() {
 
   // JSON sent over from the JSON validator
   useEffect(() => {
-    const handed = takeHandedOffJson();
-    if (handed !== null) setInput(handed);
+    const frame = window.requestAnimationFrame(() => {
+      const handed = takeHandedOffJson();
+      if (handed !== null) setInput(handed);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const validation: ValidationResult = useMemo(() => validateJSON(input), [input]);

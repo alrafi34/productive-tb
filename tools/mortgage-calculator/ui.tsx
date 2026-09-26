@@ -36,8 +36,9 @@ export default function MortgageCalculatorUI() {
   const inputs: MortgageInputs = { loanAmount, interestRate, loanTermYears, downPayment, extraPayment, propertyTaxRate, homeInsurance, pmiRate, hoa };
   const error = validateInputs(inputs);
   
-  const result = useMemo(() => error ? null : calculateMortgage(inputs), [loanAmount, interestRate, loanTermYears, downPayment, extraPayment, propertyTaxRate, homeInsurance, pmiRate, hoa, error]);
-  const resultNoExtra = useMemo(() => error ? null : calculateMortgage({ ...inputs, extraPayment: 0 }), [loanAmount, interestRate, loanTermYears, downPayment, error]);
+  // A few hundred loop steps: cheap enough to compute on every render
+  const result = error ? null : calculateMortgage(inputs);
+  const resultNoExtra = error ? null : calculateMortgage({ ...inputs, extraPayment: 0 });
   
   const schedule = useMemo(() => {
     if (mode === 'schedule' && !error) {

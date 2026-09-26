@@ -22,6 +22,14 @@ import TimeZoneConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
+const pad = (n: number) => String(n).padStart(2, "0");
+
+/* Today's date and the current time as a clock in `timezone` shows them. */
+function nowIn(timezone: string): { date: string; time: string } {
+  const w = wallClock(new Date(), timezone);
+  return { date: `${w.year}-${pad(w.month)}-${pad(w.day)}`, time: `${pad(w.hour)}:${pad(w.minute)}` };
+}
+
 export default function TimeZoneConverterUI() {
   const [baseTime, setBaseTime] = useState<string>("");
   const [baseTimezone, setBaseTimezone] = useState<string>("");
@@ -40,7 +48,9 @@ export default function TimeZoneConverterUI() {
     setIsMounted(true);
     const userTz = getUserTimezone();
     setBaseTimezone(userTz);
-    setNow(userTz);
+    const now = nowIn(userTz);
+    setBaseDate(now.date);
+    setBaseTime(now.time);
 
     const saved = loadSelectedCities();
     if (saved.length > 0) {
@@ -70,14 +80,6 @@ export default function TimeZoneConverterUI() {
     }
   }, [searchQuery]);
 
-  const pad = (n: number) => String(n).padStart(2, "0");
-
-  // Today's date and the current time as a clock in `timezone` shows them
-  function setNow(timezone: string) {
-    const w = wallClock(new Date(), timezone);
-    setBaseDate(`${w.year}-${pad(w.month)}-${pad(w.day)}`);
-    setBaseTime(`${pad(w.hour)}:${pad(w.minute)}`);
-  }
 
   // The instant the base date and time name in the base timezone (not in the
   // visitor's own timezone), so DST on either side is handled
@@ -136,7 +138,11 @@ export default function TimeZoneConverterUI() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const useCurrentTime = () => setNow(baseTimezone || getUserTimezone());
+  const useCurrentTime = () => {
+    const now = nowIn(baseTimezone || getUserTimezone());
+    setBaseDate(now.date);
+    setBaseTime(now.time);
+  };
 
   const resetConverter = () => {
     setSelectedCities(POPULAR_CITIES.slice(0, 4));
