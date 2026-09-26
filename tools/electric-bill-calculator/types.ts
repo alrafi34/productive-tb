@@ -44,4 +44,5 @@ export interface Preset {
   slabs?: Slab[];
   flatRate?: number;
   currency: Currency;
+  taxPercent?: number;
 }

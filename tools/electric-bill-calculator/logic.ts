@@ -40,7 +40,9 @@ export function calculateTieredRate(
   for (const slab of sortedSlabs) {
     if (remaining <= 0) break;
 
-    const slabRange = slab.max === Infinity ? Infinity : slab.max - slab.min + 1;
+    // Slabs are inclusive ranges of whole units ("0–75", "76–200"), so a slab
+    // holds max − (min − 1) units; a first slab written from 0 or 1 holds max.
+    const slabRange = slab.max === Infinity ? Infinity : slab.max - Math.max(slab.min - 1, 0);
     const unitsInSlab = Math.min(remaining, slabRange);
     const cost = unitsInSlab * slab.rate;
 
@@ -160,16 +162,17 @@ export function getPresets(): Preset[] {
   return [
     {
       name: "Bangladesh Residential",
-      description: "Standard residential tariff",
+      description: "BERC residential tariff (June 2026) + 5% VAT",
       billingType: "tiered",
       currency: "BDT",
+      taxPercent: 5,
       slabs: [
-        { id: generateId(), min: 0, max: 75, rate: 4.0 },
-        { id: generateId(), min: 76, max: 200, rate: 5.3 },
-        { id: generateId(), min: 201, max: 300, rate: 5.8 },
-        { id: generateId(), min: 301, max: 400, rate: 6.0 },
-        { id: generateId(), min: 401, max: 600, rate: 9.5 },
-        { id: generateId(), min: 601, max: Infinity, rate: 11.0 }
+        { id: generateId(), min: 0, max: 75, rate: 5.26 },
+        { id: generateId(), min: 76, max: 200, rate: 8.5 },
+        { id: generateId(), min: 201, max: 300, rate: 9.1 },
+        { id: generateId(), min: 301, max: 400, rate: 9.62 },
+        { id: generateId(), min: 401, max: 600, rate: 15.01 },
+        { id: generateId(), min: 601, max: Infinity, rate: 17.35 }
       ]
     },
     {
@@ -236,7 +239,14 @@ export function getHistory(): HistoryEntry[] {
 
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
-    return stored ? JSON.parse(stored) : [];
+    const history: HistoryEntry[] = stored ? JSON.parse(stored) : [];
+    // JSON has no Infinity: the open-ended last slab comes back as null
+    for (const entry of history) {
+      entry.calculation.slabs?.forEach(slab => {
+        if ((slab.max as number | null) === null) slab.max = Infinity;
+      });
+    }
+    return history;
   } catch (error) {
     console.error("Failed to load history:", error);
     return [];

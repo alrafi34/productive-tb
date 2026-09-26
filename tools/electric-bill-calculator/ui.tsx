@@ -108,6 +108,7 @@ export default function ElectricBillCalculatorUI() {
 
     setBillingType(preset.billingType);
     setCurrency(preset.currency);
+    if (preset.taxPercent !== undefined) setTaxPercent(preset.taxPercent.toString());
 
     if (preset.billingType === "flat" && preset.flatRate !== undefined) {
       setFlatRate(preset.flatRate.toString());
