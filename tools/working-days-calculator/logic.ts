@@ -12,7 +12,47 @@ export interface Holiday {
   name?: string;
 }
 
-export type WeekendType = 'two-day' | 'one-day-saturday' | 'one-day-sunday' | 'none';
+export type WeekendType =
+  | 'two-day'
+  | 'fri-sat'
+  | 'one-day-friday'
+  | 'one-day-saturday'
+  | 'one-day-sunday'
+  | 'none';
+
+/* Timezones whose working week ends on Friday and Saturday (Bangladesh, and
+   Saudi Arabia, Qatar, Kuwait, Bahrain, Oman, Jordan, Iraq and Egypt). */
+const FRI_SAT_TIMEZONES = new Set([
+  'Asia/Dhaka', 'Asia/Riyadh', 'Asia/Qatar', 'Asia/Kuwait', 'Asia/Bahrain',
+  'Asia/Muscat', 'Asia/Amman', 'Asia/Baghdad', 'Africa/Cairo',
+]);
+
+/* The weekend most visitors in this timezone work to. */
+export function getDefaultWeekendType(timeZone?: string): WeekendType {
+  let zone = timeZone;
+  if (zone === undefined) {
+    try {
+      zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    } catch {
+      zone = '';
+    }
+  }
+  return zone && FRI_SAT_TIMEZONES.has(zone) ? 'fri-sat' : 'two-day';
+}
+
+/* A date picker's "YYYY-MM-DD" as local midnight. new Date("YYYY-MM-DD")
+   reads it as UTC midnight, which is the previous day (and weekday)
+   anywhere west of UTC. */
+export function parseDateInput(value: string): Date {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value.trim());
+  return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : new Date(value);
+}
+
+/* "YYYY-MM-DD" for a date in the visitor's own timezone. */
+export function toDateString(date: Date): string {
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
 
 export function calculateWorkingDays(
   startDate: Date,
@@ -25,7 +65,7 @@ export function calculateWorkingDays(
     throw new Error("Start date must be before or equal to end date");
   }
 
-  const holidaySet = new Set(holidays.map(h => h.trim()));
+  const holidaySet = new Set(holidays.map(h => toDateString(parseDateInput(h))));
   let workingDays = 0;
   let weekendDays = 0;
   let holidayDays = 0;
@@ -40,7 +80,7 @@ export function calculateWorkingDays(
 
   while (current <= end) {
     const dayOfWeek = current.getDay();
-    const dateString = current.toISOString().split('T')[0];
+    const dateString = toDateString(current);
     
     const isWeekend = getIsWeekend(dayOfWeek, weekendType);
     const isHoliday = holidaySet.has(dateString);
@@ -56,7 +96,8 @@ export function calculateWorkingDays(
     current.setDate(current.getDate() + 1);
   }
 
-  const totalDays = Math.floor((end.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + (includeStartDate ? 1 : 0);
+  // Rounded, so a daylight-saving change inside the range does not drop a day
+  const totalDays = Math.round((end.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + (includeStartDate ? 1 : 0);
 
   return {
     workingDays,
@@ -72,6 +113,10 @@ function getIsWeekend(dayOfWeek: number, weekendType: WeekendType): boolean {
   switch (weekendType) {
     case 'two-day':
       return dayOfWeek === 0 || dayOfWeek === 6; // Sunday = 0, Saturday = 6
+    case 'fri-sat':
+      return dayOfWeek === 5 || dayOfWeek === 6; // Friday = 5, Saturday = 6
+    case 'one-day-friday':
+      return dayOfWeek === 5; // Friday only
     case 'one-day-saturday':
       return dayOfWeek === 6; // Saturday only
     case 'one-day-sunday':
@@ -87,6 +132,10 @@ export function getWeekendDescription(weekendType: WeekendType): string {
   switch (weekendType) {
     case 'two-day':
       return 'Saturday & Sunday';
+    case 'fri-sat':
+      return 'Friday & Saturday';
+    case 'one-day-friday':
+      return 'Friday only';
     case 'one-day-saturday':
       return 'Saturday only';
     case 'one-day-sunday':
@@ -105,19 +154,19 @@ export function parseHolidays(holidayText: string): string[] {
     .filter(line => line.length > 0)
     .filter(line => {
       // Basic date validation
-      const date = new Date(line);
+      const date = parseDateInput(line);
       return !isNaN(date.getTime());
     });
 }
 
 export function getTodayString(): string {
-  return new Date().toISOString().split('T')[0];
+  return toDateString(new Date());
 }
 
 export function getDatePlusWeeks(weeks: number): string {
   const date = new Date();
   date.setDate(date.getDate() + (weeks * 7));
-  return date.toISOString().split('T')[0];
+  return toDateString(date);
 }
 
 export function formatResultText(result: WorkingDaysResult, weekendType: WeekendType): string {
