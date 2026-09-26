@@ -172,9 +172,9 @@ export default function URLEncoderDecoderUI() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className={`text-4xl font-black ${darkMode ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: "var(--font-heading)" }}>
+            <h2 className={`text-4xl font-black ${darkMode ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: "var(--font-heading)" }}>
               🔗 URL Encoder / Decoder
-            </h1>
+            </h2>
             <p className={`text-sm mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
               Encode and decode URLs with special characters instantly
             </p>

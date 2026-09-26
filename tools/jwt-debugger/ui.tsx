@@ -99,7 +99,7 @@ export default function JWTDebuggerUI() {
         <div className="max-w-6xl mx-auto px-4 py-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold mb-2 text-gray-900">JWT Debugger</h1>
+            <h2 className="text-3xl font-bold mb-2 text-gray-900">JWT Debugger</h2>
             <p className="text-sm text-gray-600">
               Decode and inspect JSON Web Tokens instantly. All processing happens locally in your browser.
             </p>

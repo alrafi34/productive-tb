@@ -177,9 +177,9 @@ export default function TimerStopwatchUI() {
             <div className="bg-white rounded-3xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-12 text-center space-y-8">
               <div className="space-y-2">
                 <span className="text-gray-400 font-bold uppercase tracking-widest text-xs">High Resolution Stopwatch</span>
-                <h1 className="text-7xl sm:text-9xl font-black text-gray-900 tracking-tighter tabular-nums leading-none" style={{ fontFamily: "var(--font-heading)" }}>
+                <div className="text-7xl sm:text-9xl font-black text-gray-900 tracking-tighter tabular-nums leading-none" style={{ fontFamily: "var(--font-heading)" }}>
                   {isMounted ? formatTime(swTime) : "00:00:00.00"}
-                </h1>
+                </div>
               </div>
 
               <div className="flex flex-wrap justify-center gap-4">
