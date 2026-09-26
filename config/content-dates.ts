@@ -454,7 +454,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "time-complexity-calculator": "2026-07-07",
   "time-duration-calculator": "2026-08-07",
   "time-series-forecast-calculator": "2026-08-02",
-  "time-zone-converter": "2026-08-07",
+  "time-zone-converter": "2026-09-26",
   "timeline-creator": "2026-08-07",
   "timer-stopwatch": "2026-08-07",
   "timestamp-unix-converter": "2026-08-07",
