@@ -95,10 +95,11 @@ export default function ParkingSpaceCalculatorSEO() {
           <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
             <p className="text-sm font-medium text-gray-500 mb-2">Core Formula (90° Layout)</p>
             <div className="space-y-1 font-mono text-sm text-gray-900">
-              <p><span className="font-semibold">Area per Stall</span> = Stall Width × (Stall Depth × 2 + Aisle Width)</p>
+              <p><span className="font-semibold">Area per Stall</span> = Stall Width × (Stall Depth + Aisle Width ÷ 2)</p>
               <p><span className="font-semibold">Stall Count</span> = Total Lot Area ÷ Area per Stall</p>
-              <p className="text-gray-500 text-xs mt-2">Example: 9 ft × (19 ft × 2 + 24 ft) = 9 × 62 = <span className="text-green-600 font-semibold">558 sq ft per stall</span></p>
-              <p className="text-gray-500 text-xs">20,000 sq ft lot ÷ 558 = <span className="text-green-600 font-semibold">~35 stalls</span></p>
+              <p className="text-gray-500 text-xs mt-2">Example: 9 ft × (19 ft + 24 ft ÷ 2) = 9 × 31 = <span className="text-green-600 font-semibold">279 sq ft per stall</span></p>
+              <p className="text-gray-500 text-xs">20,000 sq ft lot ÷ 279 = <span className="text-green-600 font-semibold">~71 stalls</span> before entrances and landscaping</p>
+              <p className="text-gray-500 text-xs">Angled stalls at angle θ: (Width ÷ sin θ) × (Depth · sin θ + Width · cos θ + Aisle ÷ 2)</p>
             </div>
           </div>
           <ul className="space-y-1 ml-4 list-disc text-gray-600">

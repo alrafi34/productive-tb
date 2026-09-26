@@ -11,13 +11,31 @@ import {
 const HISTORY_KEY = "parking-space-calculator-history";
 const MAX_HISTORY = 10;
 
-// Approximate space requirements per vehicle (in square feet, including aisle)
-const LAYOUT_FACTORS: Record<LayoutType, number> = {
-  "perpendicular": 300,
-  "angled-60": 275,
-  "angled-45": 250,
-  "parallel": 350
-};
+const FT_PER_M = 3.28084;
+
+/**
+ * Area one stall occupies in a double-loaded bay: its width measured along the
+ * aisle × (its depth perpendicular to the aisle + half the aisle it shares).
+ * All lengths in one unit; the result is in that unit squared.
+ *   90°:      w × (l + a/2)
+ *   angle θ:  (w / sin θ) × (l·sin θ + w·cos θ + a/2)
+ *   parallel: l × (w + a/2)   — the car's length runs along the curb
+ */
+export function areaPerStall(layoutType: LayoutType, spaceWidth: number, spaceLength: number, aisleWidth: number): number {
+  const halfAisle = aisleWidth / 2;
+  if (layoutType === "parallel") return spaceLength * (spaceWidth + halfAisle);
+  if (layoutType === "perpendicular") return spaceWidth * (spaceLength + halfAisle);
+  const theta = layoutType === "angled-60" ? Math.PI / 3 : Math.PI / 4;
+  const alongAisle = spaceWidth / Math.sin(theta);
+  const depth = spaceLength * Math.sin(theta) + spaceWidth * Math.cos(theta);
+  return alongAisle * (depth + halfAisle);
+}
+
+/** Convert a length between the calculator's two units. */
+export function convertLength(value: number, from: Unit, to: Unit): number {
+  if (from === to) return value;
+  return from === "feet" ? value / FT_PER_M : value * FT_PER_M;
+}
 
 /**
  * Calculate parking capacity based on area and layout
@@ -35,24 +53,22 @@ export function calculateParkingCapacity(inputs: ParkingSpaceInputs): ParkingSpa
     notes.push(`Calculated area: ${width} × ${length} = ${formatNumber(area, 0)} ${unit === "feet" ? "sq ft" : "sq m"}`);
   }
   
-  // Convert to square feet if in meters
-  const areaInSqFt = unit === "meters" ? area * 10.764 : area;
+  // Area per stall from the stall and aisle inputs, in the same unit as the lot
+  const areaPerSpace = areaPerStall(layoutType, spaceWidth, spaceLength, aisleWidth);
+  const areaUnit = unit === "feet" ? "sq ft" : "sq m";
   
-  // Calculate area per parking space (including aisle allocation)
-  const layoutFactor = LAYOUT_FACTORS[layoutType];
-  const areaPerSpace = layoutFactor;
-  
-  // Calculate estimated capacity
-  const estimatedCapacity = Math.floor(areaInSqFt / areaPerSpace);
+  // Calculate estimated capacity (the epsilon keeps 5,400 / 270 from flooring to 19)
+  const estimatedCapacity = Math.floor(area / areaPerSpace + 1e-9);
   
   // Calculate used and unused area
   const usedArea = estimatedCapacity * areaPerSpace;
-  const unusedArea = areaInSqFt - usedArea;
-  const efficiencyPercentage = (usedArea / areaInSqFt) * 100;
+  const unusedArea = area - usedArea;
+  const efficiencyPercentage = (usedArea / area) * 100;
   
   // Add notes based on layout type
   notes.push(`Layout type: ${getLayoutTypeLabel(layoutType)}`);
-  notes.push(`Space per vehicle: ~${areaPerSpace} sq ft (including aisle)`);
+  notes.push(`Space per vehicle: ${formatNumber(areaPerSpace, 1)} ${areaUnit} (stall + half the aisle)`);
+  notes.push("Net capacity: entrances, landscaping and end-of-row losses usually cost another 10–25%");
   
   if (efficiencyPercentage > 90) {
     notes.push("✓ High space efficiency - good utilization");
@@ -96,8 +112,8 @@ export function calculateParkingCapacity(inputs: ParkingSpaceInputs): ParkingSpa
     aisleWidth,
     estimatedCapacity,
     areaPerSpace,
-    usedArea: unit === "meters" ? usedArea / 10.764 : usedArea,
-    unusedArea: unit === "meters" ? unusedArea / 10.764 : unusedArea,
+    usedArea,
+    unusedArea,
     efficiencyPercentage,
     timestamp: Date.now(),
     notes
@@ -163,14 +179,14 @@ export function getLayoutPresets(): LayoutPreset[] {
   ];
 }
 
-export function getRecommendedAisleWidth(layoutType: LayoutType): number {
+export function getRecommendedAisleWidth(layoutType: LayoutType, unit: Unit = "feet"): number {
   const recommendations: Record<LayoutType, number> = {
     "perpendicular": 24,
     "angled-60": 18,
     "angled-45": 13,
     "parallel": 12
   };
-  return recommendations[layoutType];
+  return Number(convertLength(recommendations[layoutType], "feet", unit).toFixed(2));
 }
 
 // History management
@@ -235,7 +251,7 @@ export function exportToText(calculation: ParkingSpaceCalculation): string {
     "CALCULATED RESULTS:",
     "-".repeat(50),
     `Estimated Capacity: ${calculation.estimatedCapacity} vehicles`,
-    `Area Per Space: ${formatNumber(calculation.areaPerSpace, 1)} sq ft`,
+    `Area Per Space: ${formatNumber(calculation.areaPerSpace, 1)} ${calculation.unit === "feet" ? "sq ft" : "sq m"}`,
     `Used Area: ${formatNumber(calculation.usedArea, 0)} ${calculation.unit === "feet" ? "sq ft" : "sq m"}`,
     `Unused Area: ${formatNumber(calculation.unusedArea, 0)} ${calculation.unit === "feet" ? "sq ft" : "sq m"}`,
     `Efficiency: ${formatNumber(calculation.efficiencyPercentage, 1)}%`
@@ -289,7 +305,15 @@ export function getInputModeLabel(mode: InputMode): string {
   return labels[mode];
 }
 
-export function validateInputs(inputMode: InputMode, totalArea: number | undefined, width: number | undefined, length: number | undefined): string | null {
+export function validateInputs(
+  inputMode: InputMode,
+  totalArea: number | undefined,
+  width: number | undefined,
+  length: number | undefined,
+  spaceWidth?: number,
+  spaceLength?: number,
+  aisleWidth?: number
+): string | null {
   if (inputMode === "total-area") {
     if (!totalArea || totalArea <= 0) {
       return "Total area must be greater than 0";
@@ -302,6 +326,9 @@ export function validateInputs(inputMode: InputMode, totalArea: number | undefin
       return "Length must be greater than 0";
     }
   }
+  if (spaceWidth !== undefined && !(spaceWidth > 0)) return "Space width must be greater than 0";
+  if (spaceLength !== undefined && !(spaceLength > 0)) return "Space length must be greater than 0";
+  if (aisleWidth !== undefined && !(aisleWidth >= 0)) return "Aisle width cannot be negative";
   
   return null;
 }

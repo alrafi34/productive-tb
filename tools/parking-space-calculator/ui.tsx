@@ -6,6 +6,7 @@ import {
   calculateParkingCapacity,
   getLayoutPresets,
   getRecommendedAisleWidth,
+  convertLength,
   saveToHistory,
   getHistory,
   clearHistory,
@@ -39,11 +40,26 @@ export default function ParkingSpaceCalculatorUI() {
 
   const layoutPresets = getLayoutPresets();
 
-  // Update aisle width when layout type changes
-  useEffect(() => {
-    const recommendedWidth = getRecommendedAisleWidth(layoutType);
-    setAisleWidth(recommendedWidth.toString());
-  }, [layoutType]);
+  // Picking a layout suggests its usual aisle width. This lives in the select's
+  // handler rather than an effect so a preset's own aisle width is not overwritten.
+  const handleLayoutChange = (next: LayoutType) => {
+    setLayoutType(next);
+    setAisleWidth(getRecommendedAisleWidth(next, unit).toString());
+  };
+
+  // Stall and aisle sizes are lengths in the selected unit, so switching units
+  // converts them instead of reading 8.5 ft as 8.5 m.
+  const handleUnitChange = (next: Unit) => {
+    if (next === unit) return;
+    const conv = (v: string) => {
+      const n = parseFloat(v);
+      return Number.isFinite(n) ? String(Number(convertLength(n, unit, next).toFixed(2))) : v;
+    };
+    setSpaceWidth(conv(spaceWidth));
+    setSpaceLength(conv(spaceLength));
+    setAisleWidth(conv(aisleWidth));
+    setUnit(next);
+  };
 
   // Debounced calculation
   const debouncedCalculate = useCallback(
@@ -54,7 +70,10 @@ export default function ParkingSpaceCalculatorUI() {
       const w = parseFloat(width);
       const l = parseFloat(length);
       
-      const validationError = validateInputs(inputMode, area, w, l);
+      const validationError = validateInputs(
+        inputMode, area, w, l,
+        parseFloat(spaceWidth), parseFloat(spaceLength), parseFloat(aisleWidth)
+      );
       if (validationError) {
         setError(validationError);
         setCalculation(null);
@@ -102,10 +121,12 @@ export default function ParkingSpaceCalculatorUI() {
   };
 
   const handleApplyPreset = (preset: any) => {
+    // Presets are in feet
+    const conv = (v: number) => String(Number(convertLength(v, "feet", unit).toFixed(2)));
     setLayoutType(preset.layoutType);
-    setSpaceWidth(preset.spaceWidth.toString());
-    setSpaceLength(preset.spaceLength.toString());
-    setAisleWidth(preset.aisleWidth.toString());
+    setSpaceWidth(conv(preset.spaceWidth));
+    setSpaceLength(conv(preset.spaceLength));
+    setAisleWidth(conv(preset.aisleWidth));
   };
 
   const handleCopy = () => {
@@ -192,7 +213,7 @@ export default function ParkingSpaceCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Unit</label>
                 <select
                   value={unit}
-                  onChange={(e) => setUnit(e.target.value as Unit)}
+                  onChange={(e) => handleUnitChange(e.target.value as Unit)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
                   <option value="feet">Feet</option>
@@ -205,7 +226,7 @@ export default function ParkingSpaceCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Layout Type</label>
                 <select
                   value={layoutType}
-                  onChange={(e) => setLayoutType(e.target.value as LayoutType)}
+                  onChange={(e) => handleLayoutChange(e.target.value as LayoutType)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
                   <option value="perpendicular">Perpendicular (90°)</option>
@@ -451,8 +472,8 @@ export default function ParkingSpaceCalculatorUI() {
                   </div>
                   <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                     <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Per Space</div>
-                    <div className="text-lg font-bold text-gray-900">{formatNumber(calculation.areaPerSpace, 0)}</div>
-                    <div className="text-xs text-gray-600">sq ft</div>
+                    <div className="text-lg font-bold text-gray-900">{formatNumber(calculation.areaPerSpace, unit === "feet" ? 0 : 1)}</div>
+                    <div className="text-xs text-gray-600">{unit === "feet" ? "sq ft" : "sq m"}</div>
                   </div>
                   <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                     <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Unused</div>
