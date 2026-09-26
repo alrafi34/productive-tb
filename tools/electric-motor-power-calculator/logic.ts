@@ -1,4 +1,4 @@
-import { MotorPowerInputs, MotorPowerResult, MotorPreset, CalculationMode, HistoryEntry } from "./types";
+import { MotorPowerInputs, MotorPowerResult, MotorPreset, CalculationMode, HistoryEntry, ElectricalInputs, Supply } from "./types";
 
 // Motor presets for common scenarios
 export const MOTOR_PRESETS: MotorPreset[] = [
@@ -30,13 +30,13 @@ export const MOTOR_PRESETS: MotorPreset[] = [
     name: "AC Motor (220V, 5A)",
     description: "Standard AC motor",
     mode: 'electrical',
-    values: { voltage: 220, current: 5, efficiency: 0.85 }
+    values: { voltage: 220, current: 5, efficiency: 0.85, supply: 'single', powerFactor: 0.85 }
   },
   {
     name: "DC Motor (24V, 10A)",
     description: "DC motor application",
     mode: 'electrical',
-    values: { voltage: 24, current: 10, efficiency: 0.90 }
+    values: { voltage: 24, current: 10, efficiency: 0.90, supply: 'dc', powerFactor: 1 }
   }
 ];
 
@@ -111,35 +111,59 @@ function calculateMechanicalPower(inputs: { torque: number; speed: number }, ste
   return power;
 }
 
-// Calculate power from voltage, current, and efficiency (electrical)
-function calculateElectricalPower(inputs: { voltage: number; current: number; efficiency: number }, steps: string[]): number {
-  let { voltage, current, efficiency } = inputs;
+export const SUPPLY_LABELS: Record<Supply, string> = {
+  dc: 'DC',
+  single: 'Single-phase AC',
+  three: 'Three-phase AC',
+};
+
+// Output power from voltage and current (electrical):
+//   DC:           P = V × I × η
+//   single-phase: P = V × I × PF × η
+//   three-phase:  P = √3 × V × I × PF × η   (V line-to-line)
+function calculateElectricalPower(inputs: ElectricalInputs, steps: string[]): number {
+  let { efficiency } = inputs;
+  const { voltage, current } = inputs;
+  const supply: Supply = inputs.supply ?? 'single';
+  const pf = supply === 'dc' ? 1 : inputs.powerFactor ?? 0.85;
+  const k = supply === 'three' ? Math.sqrt(3) : 1;
   
   // If efficiency > 1, treat as percentage
   if (efficiency > 1) {
     efficiency = efficiency / 100;
   }
   
-  steps.push('Mode: Electrical (Voltage + Current)');
+  const formula =
+    supply === 'dc' ? 'P = V × I × η' : supply === 'three' ? 'P = √3 × V × I × PF × η' : 'P = V × I × PF × η';
+  const apparentVA = k * voltage * current;
+  const inputW = apparentVA * pf;
+  const power = inputW * efficiency;
+  
+  steps.push(`Mode: Electrical (Voltage + Current), ${SUPPLY_LABELS[supply]}`);
   steps.push('');
-  steps.push('Formula: P = V × I × η');
+  steps.push(`Formula: ${formula}`);
   steps.push('Where:');
-  steps.push('  P = Power (Watts)');
-  steps.push('  V = Voltage (Volts)');
+  steps.push('  P = Output power (Watts)');
+  steps.push(`  V = Voltage (Volts${supply === 'three' ? ', line-to-line' : ''})`);
   steps.push('  I = Current (Amperes)');
+  if (supply !== 'dc') steps.push('  PF = Power factor (0 to 1)');
   steps.push('  η = Efficiency (0 to 1)');
   steps.push('');
   steps.push('Given Values:');
   steps.push(`  Voltage (V) = ${voltage} V`);
   steps.push(`  Current (I) = ${current} A`);
+  if (supply !== 'dc') steps.push(`  Power factor (PF) = ${pf}`);
   steps.push(`  Efficiency (η) = ${efficiency} (${(efficiency * 100).toFixed(0)}%)`);
   steps.push('');
   steps.push('Calculation:');
-  steps.push(`P = ${voltage} × ${current} × ${efficiency}`);
-  
-  const power = voltage * current * efficiency;
-  
+  const factors = [supply === 'three' ? '√3' : null, `${voltage}`, `${current}`, supply !== 'dc' ? `${pf}` : null, `${efficiency}`]
+    .filter(Boolean)
+    .join(' × ');
+  steps.push(`P = ${factors}`);
   steps.push(`P = ${formatNumber(power, 2)} W`);
+  steps.push('');
+  steps.push(`Electrical input power = ${formatNumber(inputW, 2)} W`);
+  if (supply !== 'dc') steps.push(`Apparent power = ${formatNumber(apparentVA / 1000, 3)} kVA`);
   
   return power;
 }
@@ -187,6 +211,10 @@ export function validateInputs(inputs: MotorPowerInputs): string | null {
       if (!current || current <= 0) return "Current must be greater than 0";
       if (!efficiency || efficiency <= 0) return "Efficiency must be greater than 0";
       if (efficiency > 100) return "Efficiency cannot exceed 100%";
+      if (inputs.electrical.supply !== 'dc') {
+        const pf = inputs.electrical.powerFactor ?? 0.85;
+        if (!(pf > 0 && pf <= 1)) return "Power factor must be greater than 0 and at most 1";
+      }
       break;
       
     case 'horsepower':
