@@ -10,6 +10,9 @@ import {
   getTimeDifference,
   formatTimeDifference,
   searchCities,
+  wallClock,
+  zonedTimeToDate,
+  findCity,
   saveFavoriteCities,
   loadFavoriteCities,
   saveSelectedCities,
@@ -22,6 +25,7 @@ import RelatedStrip from "@/components/RelatedStrip";
 export default function TimeZoneConverterUI() {
   const [baseTime, setBaseTime] = useState<string>("");
   const [baseTimezone, setBaseTimezone] = useState<string>("");
+  const [baseDate, setBaseDate] = useState<string>("");
   const [selectedCities, setSelectedCities] = useState<City[]>([]);
   const [favorites, setFavorites] = useState<City[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,11 +40,7 @@ export default function TimeZoneConverterUI() {
     setIsMounted(true);
     const userTz = getUserTimezone();
     setBaseTimezone(userTz);
-
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    setBaseTime(`${hours}:${minutes}`);
+    setNow(userTz);
 
     const saved = loadSelectedCities();
     if (saved.length > 0) {
@@ -70,16 +70,33 @@ export default function TimeZoneConverterUI() {
     }
   }, [searchQuery]);
 
+  const pad = (n: number) => String(n).padStart(2, "0");
+
+  // Today's date and the current time as a clock in `timezone` shows them
+  function setNow(timezone: string) {
+    const w = wallClock(new Date(), timezone);
+    setBaseDate(`${w.year}-${pad(w.month)}-${pad(w.day)}`);
+    setBaseTime(`${pad(w.hour)}:${pad(w.minute)}`);
+  }
+
+  // The instant the base date and time name in the base timezone (not in the
+  // visitor's own timezone), so DST on either side is handled
   const parseBaseTime = (): Date => {
     const [hours, minutes] = baseTime.split(":").map(Number);
-    const now = new Date();
-    return new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours || 0, minutes || 0);
+    const [y, m, d] = baseDate.split("-").map(Number);
+    if (!baseTimezone || !y) return new Date();
+    return zonedTimeToDate(y, m, d, hours || 0, minutes || 0, baseTimezone);
   };
 
-  const convertedTimes: ConvertedTime[] = selectedCities.map(city => {
-    const baseDate = parseBaseTime();
-    return convertTimeToTimezone(baseDate, city.timezone);
-  });
+  const baseInstant = parseBaseTime();
+  const convertedTimes: ConvertedTime[] = selectedCities.map(city =>
+    convertTimeToTimezone(baseInstant, city.timezone, baseTimezone)
+  );
+
+  // The base timezone may not be one of the popular cities (e.g. America/Phoenix)
+  const baseOptions = POPULAR_CITIES.some(c => c.timezone === baseTimezone) || !baseTimezone
+    ? POPULAR_CITIES
+    : [findCity(baseTimezone), ...POPULAR_CITIES];
 
   const addCity = (city: City) => {
     if (!selectedCities.find(c => c.timezone === city.timezone)) {
@@ -110,7 +127,7 @@ export default function TimeZoneConverterUI() {
 
   const copyToClipboard = () => {
     const summary = [
-      `Base Time: ${baseTime} (${baseTimezone})`,
+      `Base Time: ${baseDate} ${baseTime} (${baseTimezone})`,
       ...convertedTimes.map(ct => `${ct.city.name}: ${ct.formatted}`)
     ].join("\n");
 
@@ -119,12 +136,7 @@ export default function TimeZoneConverterUI() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const useCurrentTime = () => {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    setBaseTime(`${hours}:${minutes}`);
-  };
+  const useCurrentTime = () => setNow(baseTimezone || getUserTimezone());
 
   const resetConverter = () => {
     setSelectedCities(POPULAR_CITIES.slice(0, 4));
@@ -137,7 +149,17 @@ export default function TimeZoneConverterUI() {
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Base Time</h2>
         
-        <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div className="grid sm:grid-cols-3 gap-4 mb-4">
+          <div>
+            <label htmlFor="tz-date" className="block text-sm font-medium text-gray-700 mb-2">Date</label>
+            <input
+              id="tz-date"
+              type="date"
+              value={baseDate}
+              onChange={(e) => setBaseDate(e.target.value)}
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
             <input
@@ -154,7 +176,7 @@ export default function TimeZoneConverterUI() {
               onChange={(e) => setBaseTimezone(e.target.value)}
               className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
             >
-              {POPULAR_CITIES.map(city => (
+              {baseOptions.map(city => (
                 <option key={city.timezone} value={city.timezone}>
                   {city.name} ({city.timezone})
                 </option>
@@ -255,9 +277,9 @@ export default function TimeZoneConverterUI() {
               <div className="mb-3">
                 <div className="text-2xl font-bold text-primary">{ct.formatted}</div>
                 <div className="text-xs text-gray-500 mt-1">
-                  {ct.dayDifference > 0 && <span className="text-amber-600">+1 day</span>}
-                  {ct.dayDifference < 0 && <span className="text-amber-600">-1 day</span>}
-                  {ct.dayDifference === 0 && <span>Today</span>}
+                  {ct.dayDifference > 0 && <span className="text-amber-600">Next day</span>}
+                  {ct.dayDifference < 0 && <span className="text-amber-600">Previous day</span>}
+                  {ct.dayDifference === 0 && <span>Same day</span>}
                 </div>
               </div>
 
@@ -294,7 +316,7 @@ export default function TimeZoneConverterUI() {
           <div className="grid sm:grid-cols-2 gap-3">
             {selectedCities.map((city, idx) => {
               if (idx === 0) return null;
-              const diff = getTimeDifference(parseBaseTime(), city.timezone, baseTimezone);
+              const diff = getTimeDifference(baseInstant, city.timezone, baseTimezone);
               return (
                 <div key={city.timezone} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                   <span className="text-sm text-gray-700">{city.name}</span>

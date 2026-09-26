@@ -54,40 +54,70 @@ export function getUserTimezone(): string {
   }
 }
 
-export function convertTimeToTimezone(date: Date, timezone: string): ConvertedTime {
-  const formatter = new Intl.DateTimeFormat("en-US", {
+export interface WallClock {
+  year: number;
+  month: number; // 1–12
+  day: number;
+  hour: number;
+  minute: number;
+}
+
+/** The date and time a clock in `timezone` shows at the instant `date`. */
+export function wallClock(date: Date, timezone: string): WallClock {
+  const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: timezone,
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
+    hourCycle: "h23",
     year: "numeric",
     month: "2-digit",
-    day: "2-digit"
-  });
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).formatToParts(date);
+  const get = (type: string) => parseInt(parts.find((p) => p.type === type)?.value || "0", 10);
+  return { year: get("year"), month: get("month"), day: get("day"), hour: get("hour") % 24, minute: get("minute") };
+}
 
-  const parts = formatter.formatToParts(date);
-  const hour = parseInt(parts.find(p => p.type === "hour")?.value || "0");
-  const minute = parseInt(parts.find(p => p.type === "minute")?.value || "0");
-  const day = parseInt(parts.find(p => p.type === "day")?.value || "1");
-  const month = parseInt(parts.find(p => p.type === "month")?.value || "1");
-  const year = parseInt(parts.find(p => p.type === "year")?.value || "2024");
+/** Minutes `timezone` is ahead of UTC at the instant `date` (DST included). */
+export function utcOffsetMinutes(date: Date, timezone: string): number {
+  const w = wallClock(date, timezone);
+  const asUtc = Date.UTC(w.year, w.month - 1, w.day, w.hour, w.minute);
+  return Math.round((asUtc - Math.floor(date.getTime() / 60000) * 60000) / 60000);
+}
+
+/*
+ * The instant when a clock in `timezone` shows the given date and time.
+ * The offset is looked up twice so a date on the other side of a
+ * daylight-saving change from today still converts correctly.
+ */
+export function zonedTimeToDate(year: number, month: number, day: number, hour: number, minute: number, timezone: string): Date {
+  const guess = Date.UTC(year, month - 1, day, hour, minute);
+  let instant = guess - utcOffsetMinutes(new Date(guess), timezone) * 60000;
+  instant = guess - utcOffsetMinutes(new Date(instant), timezone) * 60000;
+  return new Date(instant);
+}
+
+/**
+ * The time in `timezone` at the instant `date`. dayDifference compares its
+ * calendar date with the base timezone's date (not the visitor's own).
+ */
+export function convertTimeToTimezone(date: Date, timezone: string, baseTimezone?: string): ConvertedTime {
+  const w = wallClock(date, timezone);
+  const { hour, minute } = w;
 
   const isDaytime = hour >= 6 && hour < 18;
   const isWorkingHours = hour >= 9 && hour < 18;
 
-  const baseDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  const convertedDate = new Date(year, month - 1, day);
-  const dayDifference = Math.floor((convertedDate.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24));
+  const base = baseTimezone ? wallClock(date, baseTimezone) : null;
+  const baseDay = base
+    ? Date.UTC(base.year, base.month - 1, base.day)
+    : Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  const dayDifference = Math.round((Date.UTC(w.year, w.month - 1, w.day) - baseDay) / 86400000);
 
-  const city = POPULAR_CITIES.find(c => c.timezone === timezone) || {
-    name: timezone,
-    timezone,
-    country: ""
-  };
+  const city = findCity(timezone);
 
   return {
     city,
-    time: new Date(year, month - 1, day, hour, minute),
+    time: new Date(w.year, w.month - 1, w.day, hour, minute),
     formatted: `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
     hour,
     minute,
@@ -97,37 +127,58 @@ export function convertTimeToTimezone(date: Date, timezone: string): ConvertedTi
   };
 }
 
+/** Hours `targetTimezone` is ahead of `baseTimezone` at that instant. */
 export function getTimeDifference(baseTime: Date, targetTimezone: string, baseTimezone: string): number {
-  const baseConverted = convertTimeToTimezone(baseTime, baseTimezone);
-  const targetConverted = convertTimeToTimezone(baseTime, targetTimezone);
-
-  const baseMinutes = baseConverted.hour * 60 + baseConverted.minute;
-  const targetMinutes = targetConverted.hour * 60 + targetConverted.minute;
-
-  let diff = targetMinutes - baseMinutes;
-  diff += (targetConverted.dayDifference - baseConverted.dayDifference) * 24 * 60;
-
-  return diff / 60;
+  return (utcOffsetMinutes(baseTime, targetTimezone) - utcOffsetMinutes(baseTime, baseTimezone)) / 60;
 }
 
 export function formatTimeDifference(hours: number): string {
   if (hours === 0) return "Same time";
-  const sign = hours > 0 ? "+" : "";
-  const absHours = Math.abs(hours);
-  if (Number.isInteger(absHours)) {
-    return `${sign}${absHours}h`;
+  const sign = hours > 0 ? "+" : "−";
+  const totalMinutes = Math.round(Math.abs(hours) * 60);
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  // Half- and quarter-hour zones (India +5:30, Nepal +5:45) in hours and minutes
+  return m === 0 ? `${sign}${h}h` : `${sign}${h}h ${m}m`;
+}
+
+/** Every IANA timezone the browser knows, or just the popular ones. */
+export function allTimezones(): string[] {
+  try {
+    const intl = Intl as unknown as { supportedValuesOf?: (key: string) => string[] };
+    const zones = intl.supportedValuesOf?.("timeZone");
+    if (zones && zones.length) return zones;
+  } catch {
+    // older browsers
   }
-  return `${sign}${absHours.toFixed(1)}h`;
+  return POPULAR_CITIES.map((c) => c.timezone);
+}
+
+/** A city entry for any timezone: a popular city, or one named after the zone. */
+export function findCity(timezone: string): City {
+  const known = POPULAR_CITIES.find((c) => c.timezone === timezone);
+  if (known) return known;
+  const parts = timezone.split("/");
+  return {
+    name: parts[parts.length - 1].replace(/_/g, " "),
+    timezone,
+    country: parts.length > 1 ? parts[0].replace(/_/g, " ") : ""
+  };
 }
 
 export function searchCities(query: string): City[] {
-  const q = query.toLowerCase();
-  return POPULAR_CITIES.filter(
-    city =>
-      city.name.toLowerCase().includes(q) ||
-      city.country.toLowerCase().includes(q) ||
-      city.timezone.toLowerCase().includes(q)
-  ).slice(0, 10);
+  const q = query.toLowerCase().trim();
+  const matches = (city: City) =>
+    city.name.toLowerCase().includes(q) ||
+    city.country.toLowerCase().includes(q) ||
+    city.timezone.toLowerCase().replace(/_/g, " ").includes(q);
+  const popular = POPULAR_CITIES.filter(matches);
+  // Then any other IANA zone ("Phoenix", "Kathmandu", "Adelaide", …)
+  const others = allTimezones()
+    .filter((tz) => !POPULAR_CITIES.some((c) => c.timezone === tz))
+    .map(findCity)
+    .filter(matches);
+  return [...popular, ...others].slice(0, 12);
 }
 
 export function saveFavoriteCities(cities: City[]): void {
