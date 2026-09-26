@@ -11,7 +11,13 @@ import {
   formatNumber,
   formatTime,
   validateInputs,
-  debounce
+  debounce,
+  parseDateInput,
+  toDateInputValue,
+  utcOffsetFor,
+  solarNoonClockTime,
+  UTC_OFFSETS,
+  formatUtcOffset,
 } from "./logic";
 import SunlightExposureCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -20,7 +26,9 @@ import RelatedStrip from "@/components/RelatedStrip";
 export default function SunlightExposureCalculatorUI() {
   const [latitude, setLatitude] = useState("23.8103");
   const [longitude, setLongitude] = useState("90.4125");
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [date, setDate] = useState(toDateInputValue(new Date()));
+  // Clock time is local to this time zone; Dhaka (the default location) is UTC+6
+  const [utcOffset, setUtcOffset] = useState(6);
   const [time, setTime] = useState(12);
   const [buildingHeight, setBuildingHeight] = useState("10");
   const [buildingOrientation, setBuildingOrientation] = useState(180); // South-facing
@@ -57,7 +65,8 @@ export default function SunlightExposureCalculatorUI() {
         const result = calculateSunlightExposure({
           latitude: lat,
           longitude: lon,
-          date: new Date(date),
+          date: parseDateInput(date),
+          utcOffset,
           time,
           buildingHeight: height,
           buildingOrientation,
@@ -69,13 +78,13 @@ export default function SunlightExposureCalculatorUI() {
         setCalculation(null);
       }
     }, 150),
-    [latitude, longitude, date, time, buildingHeight, buildingOrientation, surfaceType]
+    [latitude, longitude, date, time, utcOffset, buildingHeight, buildingOrientation, surfaceType]
   );
 
   // Calculate in real-time
   useEffect(() => {
     debouncedCalculate();
-  }, [latitude, longitude, date, time, buildingHeight, buildingOrientation, surfaceType, debouncedCalculate]);
+  }, [latitude, longitude, date, time, utcOffset, buildingHeight, buildingOrientation, surfaceType, debouncedCalculate]);
 
   // Draw visualization
   useEffect(() => {
@@ -262,7 +271,8 @@ export default function SunlightExposureCalculatorUI() {
   const handleReset = () => {
     setLatitude("23.8103");
     setLongitude("90.4125");
-    setDate(new Date().toISOString().split('T')[0]);
+    setUtcOffset(6);
+    setDate(toDateInputValue(new Date()));
     setTime(12);
     setBuildingHeight("10");
     setBuildingOrientation(180);
@@ -274,6 +284,8 @@ export default function SunlightExposureCalculatorUI() {
   const handleApplyPreset = (preset: any) => {
     setLatitude(preset.latitude.toString());
     setLongitude(preset.longitude.toString());
+    // the preset's own time zone on the chosen date, daylight saving included
+    setUtcOffset(utcOffsetFor(preset.timezone, parseDateInput(date)));
   };
 
   const handleExportImage = () => {
@@ -302,7 +314,9 @@ export default function SunlightExposureCalculatorUI() {
   const loadFromHistory = (calc: SunlightCalculation) => {
     setLatitude(calc.inputs.latitude.toString());
     setLongitude(calc.inputs.longitude.toString());
-    setDate(calc.inputs.date.toISOString().split('T')[0]);
+    // history comes back from JSON, so the date is a string there
+    setDate(toDateInputValue(new Date(calc.inputs.date)));
+    setUtcOffset(calc.inputs.utcOffset ?? Math.round(calc.inputs.longitude / 15));
     setTime(calc.inputs.time);
     setBuildingHeight(calc.inputs.buildingHeight.toString());
     setBuildingOrientation(calc.inputs.buildingOrientation);
@@ -361,6 +375,21 @@ export default function SunlightExposureCalculatorUI() {
                   min="-180"
                   max="180"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="sun-utc-offset" className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
+                <select
+                  id="sun-utc-offset"
+                  value={utcOffset}
+                  onChange={(e) => setUtcOffset(parseFloat(e.target.value))}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono"
+                >
+                  {(UTC_OFFSETS.includes(utcOffset) ? UTC_OFFSETS : [...UTC_OFFSETS, utcOffset].sort((a, b) => a - b)).map((o) => (
+                    <option key={o} value={o}>{formatUtcOffset(o)}</option>
+                  ))}
+                </select>
+                <p className="text-xs text-gray-500 mt-1">The time below is local clock time in this zone</p>
               </div>
 
               <div>
@@ -491,8 +520,15 @@ export default function SunlightExposureCalculatorUI() {
                 <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
                   Time Control
                 </h3>
-                <div className="text-2xl font-bold text-primary font-mono">
-                  {formatTime(time)}
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-primary font-mono">
+                    {formatTime(time)}
+                  </div>
+                  {Number.isFinite(parseFloat(longitude)) && (
+                    <div className="text-xs text-gray-500">
+                      {formatUtcOffset(utcOffset)} · solar noon {formatTime(solarNoonClockTime(parseFloat(longitude), utcOffset, parseDateInput(date)))}
+                    </div>
+                  )}
                 </div>
               </div>
               
