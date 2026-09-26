@@ -195,10 +195,20 @@ export function repairJson(input: string): RepairResult {
     for (let k = out.length - 1; k >= 0; k--) if (!/\s/.test(out[k])) return out[k];
     return "";
   };
+  // Next character that is not whitespace or inside a comment
   const nextSignificant = (from: number) => {
     let k = from;
-    while (k < src.length && /\s/.test(src[k])) k++;
-    return src[k] ?? "";
+    for (;;) {
+      while (k < src.length && /\s/.test(src[k])) k++;
+      if (src[k] === "/" && src[k + 1] === "/") {
+        while (k < src.length && src[k] !== "\n") k++;
+      } else if (src[k] === "/" && src[k + 1] === "*") {
+        const end = src.indexOf("*/", k + 2);
+        k = end === -1 ? src.length : end + 2;
+      } else {
+        return src[k] ?? "";
+      }
+    }
   };
 
   while (i < src.length) {
