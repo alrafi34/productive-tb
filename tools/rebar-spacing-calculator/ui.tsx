@@ -491,7 +491,7 @@ export default function RebarSpacingCalculatorUI() {
               {calculation && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="text-sm text-green-800">
-                    <strong>Formula:</strong> Effective Width = {formatNumber(convertFromMm(calculation.width, unit))} - (2 × {formatNumber(convertFromMm(calculation.clearCover, unit))}) = {formatNumber(convertFromMm(calculation.effectiveWidth, unit))} {unit}
+                    <strong>Formula:</strong> Effective Width = {formatNumber(convertFromMm(calculation.width, unit))} − (2 × {formatNumber(convertFromMm(calculation.clearCover, unit))}) − {formatNumber(convertFromMm(calculation.barDiameter, unit))} = {formatNumber(convertFromMm(calculation.effectiveWidth, unit))} {unit}
                   </div>
                 </div>
               )}

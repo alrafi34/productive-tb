@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { AreaUnit, LightingType, RoomType, LightingCalculation } from "./types";
+import { CURRENCIES, type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import {
   performLightingCalculation,
   saveToHistory,
@@ -29,6 +30,13 @@ export default function LightingLoadCalculatorUI() {
   const [lightingType, setLightingType] = useState<LightingType>("LED");
   const [efficiencyFactor, setEfficiencyFactor] = useState(0.8);
   const [electricityRate, setElectricityRate] = useState("");
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [showAdvanced, setShowAdvanced] = useState(false);
   
   // Results
@@ -100,7 +108,7 @@ export default function LightingLoadCalculatorUI() {
   const handleExportText = () => {
     if (calculation) {
       const rate = parseFloat(electricityRate) || undefined;
-      const text = exportToText(calculation, rate);
+      const text = exportToText(calculation, rate, currency);
       downloadFile(text, 'lighting_load_calculation.txt');
     }
   };
@@ -211,18 +219,31 @@ export default function LightingLoadCalculatorUI() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Electricity Rate ($/kWh)
+                    <label htmlFor="lighting-rate" className="block text-sm font-medium text-gray-700 mb-2">
+                      Electricity Price per kWh
                     </label>
-                    <input
-                      type="number"
-                      value={electricityRate}
-                      onChange={(e) => setElectricityRate(e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                      placeholder="0.12"
-                      min="0"
-                      step="0.01"
-                    />
+                    <div className="flex gap-2">
+                      <select
+                        value={currency}
+                        onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                        aria-label="Currency"
+                        className="px-3 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
+                      >
+                        {CURRENCIES.map((c) => (
+                          <option key={c.code} value={c.code}>{c.symbol} {c.code}</option>
+                        ))}
+                      </select>
+                      <input
+                        id="lighting-rate"
+                        type="number"
+                        value={electricityRate}
+                        onChange={(e) => setElectricityRate(e.target.value)}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                        placeholder="0.17"
+                        min="0"
+                        step="0.01"
+                      />
+                    </div>
                     <p className="text-xs text-gray-500 mt-1">
                       Optional: for cost estimation
                     </p>
@@ -277,7 +298,7 @@ export default function LightingLoadCalculatorUI() {
                   {monthlyCost !== null && (
                     <div className="flex justify-between pt-2 border-t border-white/20">
                       <span className="text-primary-100">Monthly Cost:</span>
-                      <span className="font-semibold">${formatNumber(monthlyCost)}</span>
+                      <span className="font-semibold">{formatMoney(monthlyCost, currency)}</span>
                     </div>
                   )}
                 </div>

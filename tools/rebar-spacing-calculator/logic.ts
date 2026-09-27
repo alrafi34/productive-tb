@@ -44,8 +44,9 @@ export const calculateSpacing = (
   const diameterMm = convertToMm(barDiameter, unit);
   const coverMm = convertToMm(clearCover, unit);
 
-  // Calculate effective width (total width minus covers on both sides)
-  const effectiveWidth = widthMm - (2 * coverMm);
+  // Distance between the centers of the two outer bars: clear cover is
+  // measured to the bar surface, so half a bar sits inside it on each side
+  const effectiveWidth = widthMm - (2 * coverMm) - diameterMm;
 
   if (effectiveWidth <= 0) {
     return null;
@@ -96,8 +97,8 @@ export const calculateNumberOfBars = (
   const diameterMm = convertToMm(barDiameter, unit);
   const coverMm = convertToMm(clearCover, unit);
 
-  // Calculate effective width
-  const effectiveWidth = widthMm - (2 * coverMm);
+  // Distance between the centers of the two outer bars (see calculateSpacing)
+  const effectiveWidth = widthMm - (2 * coverMm) - diameterMm;
 
   if (effectiveWidth <= 0) {
     return null;
