@@ -1,3 +1,6 @@
+import ToolFaq from "@/components/ToolFaq";
+import { foundationDepthCalculatorConfig } from "./config";
+
 const BEARING: [string, string, string, string][] = [
   ["Crystalline bedrock", "—", "12,000", "574.6"],
   ["Sedimentary and foliated rock", "—", "4,000", "191.5"],
@@ -7,6 +10,7 @@ const BEARING: [string, string, string, string][] = [
 ];
 
 export default function FoundationDepthCalculatorSEO() {
+  const { howToSteps, faq } = foundationDepthCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
       <section className="mb-8">
@@ -110,6 +114,18 @@ export default function FoundationDepthCalculatorSEO() {
           of record and your building department have the final say.
         </p>
       </section>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Foundation Depth Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

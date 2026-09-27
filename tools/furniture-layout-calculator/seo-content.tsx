@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { furnitureLayoutCalculatorConfig } from "./config";
+
 export default function FurnitureLayoutCalculatorSEO() {
+  const { howToSteps, faq } = furnitureLayoutCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,14 +21,13 @@ export default function FurnitureLayoutCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Set Room Dimensions:</strong> Enter the width and height of your room in feet or meters</li>
-          <li><strong>Add Furniture:</strong> Click "Add Item" or select from presets to add furniture pieces</li>
-          <li><strong>Customize Items:</strong> Set name, dimensions, and color for each furniture item</li>
-          <li><strong>Arrange Layout:</strong> Use "Auto Arrange" for automatic placement or manually adjust positions</li>
-          <li><strong>Rotate Items:</strong> Click the rotate button to turn furniture 90 degrees</li>
-          <li><strong>View Results:</strong> See space efficiency percentage and area breakdown</li>
-          <li><strong>Export Layout:</strong> Download as PNG image or text report</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -143,53 +146,7 @@ export default function FurnitureLayoutCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How accurate are the furniture dimensions?
-            </h3>
-            <p className="text-sm">
-              The presets use standard industry dimensions. Always verify actual furniture measurements before finalizing your layout, as sizes can vary by manufacturer.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I save my layouts?
-            </h3>
-            <p className="text-sm">
-              Yes! Use the "Save to History" button to store layouts in your browser. You can also export as PNG images or text reports for external storage.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What's the best efficiency percentage?
-            </h3>
-            <p className="text-sm">
-              For residential spaces, 40-60% is generally optimal. This provides adequate furniture while maintaining comfortable circulation. Commercial spaces may vary based on function.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How does auto-arrange work?
-            </h3>
-            <p className="text-sm">
-              The auto-arrange algorithm places furniture using a grid-based system, checking for collisions and room boundaries. It tries to maximize space efficiency while maintaining 1-foot padding between items.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I use this for commercial spaces?
-            </h3>
-            <p className="text-sm">
-              Yes! The calculator works for any interior space. For commercial use, consider local building codes for accessibility, egress, and occupancy requirements.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

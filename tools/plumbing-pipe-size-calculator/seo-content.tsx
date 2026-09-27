@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { plumbingPipeSizeCalculatorConfig } from "./config";
+
 export default function PlumbingPipeSizeCalculatorSEO() {
+  const { howToSteps, faq } = plumbingPipeSizeCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -14,29 +18,14 @@ export default function PlumbingPipeSizeCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Select Calculation Mode</h3>
-              <p className="text-gray-700">
-                Choose what you want to calculate: pipe diameter, flow velocity, or flow rate. The calculator will automatically 
-                adjust the input fields based on your selection.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Enter Parameters</h3>
-              <p className="text-gray-700">
-                Input your known values such as flow rate (in L/s, m³/h, GPM, or ft³/s) and velocity (in m/s or ft/s). 
-                Select your pipe material to get velocity recommendations.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Review Results</h3>
-              <p className="text-gray-700">
-                The calculator instantly displays the calculated value along with conversions in multiple units. Review the 
-                notes and recommendations to ensure your design meets engineering standards.
-              </p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -176,46 +165,7 @@ export default function PlumbingPipeSizeCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What is the ideal flow velocity for residential plumbing?</h3>
-              <p className="text-gray-700">
-                For residential applications, maintain velocities between 1.2-2.0 m/s (4-6.5 ft/s) to minimize noise while 
-                ensuring adequate flow. Lower velocities (around 1.5 m/s) are preferred for quiet operation.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How do I convert between different flow rate units?</h3>
-              <p className="text-gray-700">
-                The calculator automatically handles conversions. Common conversions: 1 L/s = 15.85 GPM = 3.6 m³/h. 
-                Results are displayed in multiple units for convenience.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Should I round up or down when selecting pipe size?</h3>
-              <p className="text-gray-700">
-                Always round up to the nearest standard pipe size. Using a slightly larger pipe reduces pressure loss and 
-                provides a safety margin. Standard sizes include 15mm, 20mm, 25mm, 32mm, 40mm, 50mm, etc.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Does pipe material affect the calculation?</h3>
-              <p className="text-gray-700">
-                The basic diameter calculation is material-independent, but different materials have different recommended 
-                velocity ranges due to factors like roughness, strength, and noise characteristics.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What causes high velocity in pipes?</h3>
-              <p className="text-gray-700">
-                High velocity results from undersized pipes or excessive flow rates. This can cause noise, vibration, erosion, 
-                and water hammer. Increase pipe diameter or reduce flow rate to lower velocity.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Engineering Best Practices</h2>

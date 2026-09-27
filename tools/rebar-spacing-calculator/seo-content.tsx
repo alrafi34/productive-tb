@@ -1,3 +1,6 @@
+import ToolFaq from "@/components/ToolFaq";
+import { rebarSpacingCalculatorConfig } from "./config";
+
 const US_BARS: [string, string, string, string, string][] = [
   ["#3", "0.375", "9.5", "0.11", "0.376"],
   ["#4", "0.500", "12.7", "0.20", "0.668"],
@@ -16,6 +19,7 @@ const COVER: [string, string][] = [
 ];
 
 export default function RebarSpacingCalculatorSEO() {
+  const { howToSteps, faq } = rebarSpacingCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
       <section className="mb-8">
@@ -34,13 +38,13 @@ export default function RebarSpacingCalculatorSEO() {
 
       <section className="mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-        <ol className="list-decimal list-inside space-y-2 text-gray-700">
-          <li><strong>Pick a unit:</strong> inches or millimeters. Values you have already typed are converted.</li>
-          <li><strong>Select a mode:</strong> &ldquo;Calculate Spacing&rdquo; from a bar count, or &ldquo;Calculate Number of Bars&rdquo; from a maximum spacing.</li>
-          <li><strong>Enter the width</strong> of the element and the <strong>clear cover</strong> on each side.</li>
-          <li><strong>Choose the bar:</strong> tap #3–#8 (or a metric size) or type a diameter.</li>
-          <li><strong>Optionally enter the max aggregate size</strong> — the ACI check assumes ¾ in if left blank.</li>
-          <li><strong>Read the result</strong> and any ACI 318 warning under it.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -48,13 +52,13 @@ export default function RebarSpacingCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Calculation Formulas</h2>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
           <h3 className="font-semibold text-gray-900 mb-2">Calculate Spacing:</h3>
-          <p className="text-sm text-gray-700 mb-2">Effective Width = Total Width − (2 × Clear Cover)</p>
+          <p className="text-sm text-gray-700 mb-2">Effective Width = Total Width − (2 × Clear Cover) − Bar Diameter</p>
           <p className="text-sm text-gray-700 mb-2">Center-to-Center Spacing = Effective Width ÷ (Number of Bars − 1)</p>
           <p className="text-sm text-gray-700">Clear Spacing = Spacing − Bar Diameter</p>
         </div>
         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
           <h3 className="font-semibold text-gray-900 mb-2">Calculate Number of Bars:</h3>
-          <p className="text-sm text-gray-700 mb-2">Effective Width = Total Width − (2 × Clear Cover)</p>
+          <p className="text-sm text-gray-700 mb-2">Effective Width = Total Width − (2 × Clear Cover) − Bar Diameter</p>
           <p className="text-sm text-gray-700 mb-2">Number of Bars = ⌈Effective Width ÷ Maximum Spacing⌉ + 1</p>
           <p className="text-sm text-gray-700">
             The count is rounded <em>up</em>: the spacing you enter is treated as a maximum, so the actual spacing
@@ -69,10 +73,10 @@ export default function RebarSpacingCalculatorSEO() {
           A 48 in wide slab strip, 1½ in clear cover each side, #5 bars at no more than 12 in on center:
         </p>
         <ul className="list-disc list-inside space-y-1 text-gray-700">
-          <li>Effective width = 48 − (2 × 1.5) = <strong>45 in</strong></li>
-          <li>Bars = ⌈45 ÷ 12⌉ + 1 = 4 + 1 = <strong>5 bars</strong></li>
-          <li>Actual spacing = 45 ÷ 4 = <strong>11.25 in</strong> on center — within the 12 in maximum</li>
-          <li>Clear spacing = 11.25 − 0.625 = <strong>10.625 in</strong> — above the 1 in ACI minimum, below the 18 in slab maximum</li>
+          <li>Effective width (outer bar centers) = 48 − (2 × 1.5) − 0.625 = <strong>44.375 in</strong></li>
+          <li>Bars = ⌈44.375 ÷ 12⌉ + 1 = 4 + 1 = <strong>5 bars</strong></li>
+          <li>Actual spacing = 44.375 ÷ 4 = <strong>11.09 in</strong> on center — within the 12 in maximum</li>
+          <li>Clear spacing = 11.09 − 0.625 = <strong>10.47 in</strong> — above the 1 in ACI minimum, below the 18 in slab maximum</li>
         </ul>
       </section>
 
@@ -149,6 +153,7 @@ export default function RebarSpacingCalculatorSEO() {
           </table>
         </div>
       </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

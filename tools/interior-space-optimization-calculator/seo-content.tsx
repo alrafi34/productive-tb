@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { interiorSpaceOptimizationCalculatorConfig } from "./config";
+
 export default function InteriorSpaceOptimizationCalculatorSEO() {
+  const { howToSteps, faq } = interiorSpaceOptimizationCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,13 +21,13 @@ export default function InteriorSpaceOptimizationCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Enter Room Dimensions:</strong> Input the width and length of your room in feet or meters</li>
-          <li><strong>Add Furniture Items:</strong> Click "Add Item" or use presets to add furniture pieces</li>
-          <li><strong>Customize Furniture:</strong> Set the name, width, and length for each furniture item</li>
-          <li><strong>Adjust Constraints:</strong> Set minimum walking space and enable/disable rotation</li>
-          <li><strong>View Results:</strong> See the efficiency score, visual layout, and placement analysis</li>
-          <li><strong>Optimize Layout:</strong> Follow suggestions to improve space utilization</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -206,61 +210,7 @@ export default function InteriorSpaceOptimizationCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What is a good efficiency score for a room?
-            </h3>
-            <p className="text-sm">
-              For residential spaces, 40-60% is generally optimal. This provides adequate furniture while maintaining comfortable walking space. Commercial spaces may target 50-70% depending on function.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How much walking space should I leave?
-            </h3>
-            <p className="text-sm">
-              Minimum 2 feet for tight spaces, 3 feet for comfortable residential use, and 4+ feet for high-traffic or accessible areas. The calculator helps you visualize these clearances.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I use this for commercial spaces?
-            </h3>
-            <p className="text-sm">
-              Yes! The calculator works for any interior space. For commercial use, consider local building codes for accessibility, egress, and occupancy requirements.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What if my furniture doesn't fit?
-            </h3>
-            <p className="text-sm">
-              The calculator will show overflow items that couldn't be placed. Try enabling rotation, reducing walking space slightly, or removing/resizing furniture items.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How accurate is the placement algorithm?
-            </h3>
-            <p className="text-sm">
-              The algorithm uses grid-based placement with collision detection. While it provides good initial layouts, you may want to adjust positions based on windows, doors, and personal preferences.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I save my layouts?
-            </h3>
-            <p className="text-sm">
-              Yes! Use the "Save to History" button to store calculations in your browser. You can also export detailed reports as text files.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

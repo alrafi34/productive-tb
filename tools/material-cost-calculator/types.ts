@@ -1,5 +1,5 @@
 export type UnitType = "kg" | "tons" | "bags" | "pcs" | "liters" | "m" | "m2" | "m3" | "ft" | "ft2" | "ft3";
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface Material {
   id: string;

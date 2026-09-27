@@ -23,7 +23,7 @@ import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EmergencyExitWidthCalculatorUI() {
   const [occupants, setOccupants] = useState("100");
-  const [widthFactor, setWidthFactor] = useState<WidthFactor>(0.3);
+  const [widthFactor, setWidthFactor] = useState<WidthFactor>(0.2);
   const [numberOfExits, setNumberOfExits] = useState("1");
   const [unit, setUnit] = useState<Unit>("inches");
   
@@ -73,7 +73,7 @@ export default function EmergencyExitWidthCalculatorUI() {
 
   const handleReset = () => {
     setOccupants("100");
-    setWidthFactor(0.3);
+    setWidthFactor(0.2);
     setNumberOfExits("1");
     setUnit("inches");
     setCalculation(null);
@@ -182,9 +182,9 @@ export default function EmergencyExitWidthCalculatorUI() {
                   onChange={(e) => setWidthFactor(parseFloat(e.target.value) as WidthFactor)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
-                  <option value={0.3}>0.3 in/person (Doors/Level)</option>
-                  <option value={0.2}>0.2 in/person (Stairs)</option>
-                  <option value={0.15}>0.15 in/person (Sprinklered)</option>
+                  <option value={0.3}>0.3 in/person (Stairways)</option>
+                  <option value={0.2}>0.2 in/person (Doors, corridors, ramps)</option>
+                  <option value={0.15}>0.15 in/person (Doors, sprinklered + voice alarm)</option>
                 </select>
               </div>
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { WageType, Currency, LaborCalculation } from "./types";
+import { guessCurrency, isCurrencyCode } from "@/lib/currency";
 import {
   performLaborCalculation,
   saveToHistory,
@@ -34,6 +35,12 @@ export default function LaborCostCalculatorUI() {
   const [overtimeMultiplier, setOvertimeMultiplier] = useState("1.5");
   const [additionalCost, setAdditionalCost] = useState("0");
   const [currency, setCurrency] = useState<Currency>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   // Results
   const [calculation, setCalculation] = useState<LaborCalculation | null>(null);
@@ -77,14 +84,16 @@ export default function LaborCostCalculatorUI() {
     setOvertimeHours("0");
     setOvertimeMultiplier("1.5");
     setAdditionalCost("0");
-    setCurrency("USD");
+    setCurrency(guessCurrency());
     setCalculation(null);
     setError(null);
   };
 
+  // The wage presets are US figures, so applying one switches to dollars
   const handleApplyWagePreset = (preset: any) => {
     setWageType(preset.wageType);
     setWage(preset.wage.toString());
+    setCurrency("USD");
   };
 
   const handleApplyProjectPreset = (preset: any) => {
@@ -140,7 +149,7 @@ export default function LaborCostCalculatorUI() {
     setOvertimeHours(calc.overtimeHours.toString());
     setOvertimeMultiplier(calc.overtimeMultiplier.toString());
     setAdditionalCost(calc.additionalCost.toString());
-    setCurrency(calc.currency);
+    setCurrency(isCurrencyCode(calc.currency) ? calc.currency : "USD");
     setShowHistory(false);
   };
 
@@ -239,8 +248,8 @@ export default function LaborCostCalculatorUI() {
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
                   <option value="GBP">GBP (£)</option>
-                  <option value="INR">INR (₹)</option>
-                  <option value="BDT">BDT (৳)</option>
+                  <option value="CAD">CAD (CA$)</option>
+                  <option value="AUD">AUD (A$)</option>
                 </select>
               </div>
             </div>
@@ -494,8 +503,9 @@ export default function LaborCostCalculatorUI() {
                   >
                     <div className="font-semibold text-gray-900 text-sm">{preset.name}</div>
                     <div className="text-xs text-gray-600 mt-1">
-                      {formatCurrency(preset.wage, currency)}/{preset.wageType === "hourly" ? "hr" : "day"}
+                      {formatCurrency(preset.wage, "USD")}/{preset.wageType === "hourly" ? "hr" : "day"}
                     </div>
+                    <div className="text-[11px] text-gray-500 mt-0.5">{preset.description}</div>
                   </button>
                 ))}
               </div>

@@ -24,18 +24,18 @@ export default function BrickCalculatorUI() {
   const [wallDimensions, setWallDimensions] = useState<WallDimensions>({
     length: "",
     height: "",
-    thickness: "full"
+    thickness: "half"
   });
   
   // Brick size (in inches)
   const [brickSize, setBrickSize] = useState<BrickSize>({
-    length: "9",
-    width: "4.5",
-    height: "3"
+    length: "7.625",
+    width: "3.625",
+    height: "2.25"
   });
   
   // Mortar thickness (in inches)
-  const [mortarThickness, setMortarThickness] = useState("0.5");
+  const [mortarThickness, setMortarThickness] = useState("0.375");
   
   // Openings area
   const [openingsArea, setOpeningsArea] = useState("");
@@ -84,9 +84,9 @@ export default function BrickCalculatorUI() {
   }, [wallDimensions, brickSize, mortarThickness, openingsArea, wastagePercentage, unit]);
 
   const handleReset = () => {
-    setWallDimensions({ length: "", height: "", thickness: "full" });
-    setBrickSize({ length: "9", width: "4.5", height: "3" });
-    setMortarThickness("0.5");
+    setWallDimensions({ length: "", height: "", thickness: "half" });
+    setBrickSize({ length: "7.625", width: "3.625", height: "2.25" });
+    setMortarThickness("0.375");
     setOpeningsArea("");
     setWastagePercentage(5);
     setCalculation(null);
@@ -197,8 +197,8 @@ export default function BrickCalculatorUI() {
                   onChange={(e) => setWallDimensions({ ...wallDimensions, thickness: e.target.value as WallThickness })}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
-                  <option value="half">4.5" (Half Brick)</option>
-                  <option value="full">9" (Full Brick)</option>
+                  <option value="half">Single wythe (half brick, veneer)</option>
+                  <option value="full">Double wythe (full brick)</option>
                 </select>
               </div>
 

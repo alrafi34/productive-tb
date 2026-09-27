@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { curtainWallCalculatorConfig } from "./config";
+
 export default function CurtainWallCalculatorSEO() {
+  const { howToSteps, faq } = curtainWallCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       
@@ -17,14 +21,13 @@ export default function CurtainWallCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Curtain Wall Calculator</h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Enter Dimensions:</strong> Input the width and height of your curtain wall facade.</li>
-          <li><strong>Configure Panels:</strong> Specify panel width and height for your curtain wall system.</li>
-          <li><strong>Set Glass Ratio:</strong> Adjust the slider to set the percentage of glass vs frame (typically 70-90%).</li>
-          <li><strong>Add Frame Details:</strong> Optionally enter frame thickness in millimeters.</li>
-          <li><strong>View Results:</strong> The calculator instantly displays total area, panel count, and material breakdown.</li>
-          <li><strong>Use Presets:</strong> Apply building type presets for quick calculations.</li>
-          <li><strong>Export Data:</strong> Download calculations as CSV or text for documentation.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -270,66 +273,7 @@ export default function CurtainWallCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">What is a curtain wall?</h3>
-            <p className="text-sm text-gray-700">
-              A curtain wall is a non-structural, lightweight exterior wall system that hangs from the building structure 
-              like a curtain. It typically consists of glass panels held by aluminum or steel frames and doesn't carry 
-              any structural load except its own weight and wind loads.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">What is a typical glass ratio for curtain walls?</h3>
-            <p className="text-sm text-gray-700">
-              Most commercial curtain walls have 70-90% glass ratio. Office buildings typically use 80-85%, high-end 
-              commercial buildings 85-90%, and retail storefronts often exceed 90%. Lower ratios (60-75%) are common 
-              in residential applications for better thermal performance.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How do I choose panel size?</h3>
-            <p className="text-sm text-gray-700">
-              Panel size depends on building height, wind loads, glass weight, and aesthetic preferences. Standard sizes 
-              range from 1.2m × 1.5m to 2.0m × 2.5m. Larger panels reduce frame lines but increase weight and handling 
-              complexity. Consult with curtain wall manufacturers for specific recommendations.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">Does this calculator include structural calculations?</h3>
-            <p className="text-sm text-gray-700">
-              No, this calculator provides area and material estimates only. Structural calculations for wind loads, 
-              seismic forces, and thermal movements must be performed by qualified structural engineers. This tool is 
-              for preliminary planning and budgeting purposes.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How accurate is the panel count?</h3>
-            <p className="text-sm text-gray-700">
-              The calculator provides an estimate based on total area divided by panel area. Actual panel count may vary 
-              due to building geometry, floor heights, corner conditions, and design details. Add 5-10% for waste and 
-              future repairs. Always verify with detailed shop drawings.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">What about doors and operable windows?</h3>
-            <p className="text-sm text-gray-700">
-              This calculator assumes a continuous curtain wall. For facades with doors and operable windows, calculate 
-              those areas separately and subtract from the total. Operable elements typically require different framing 
-              and should be coordinated with curtain wall manufacturers.
-            </p>
-          </div>
-
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use Our Curtain Wall Calculator?</h2>

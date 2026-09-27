@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { electricalLoadCalculatorBuildingConfig } from "./config";
+
 export default function ElectricalLoadCalculatorBuildingSEO() {
+  const { howToSteps, faq } = electricalLoadCalculatorBuildingConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100">
@@ -70,32 +74,14 @@ export default function ElectricalLoadCalculatorBuildingSEO() {
         </div>
 
         <h3 className="text-xl font-bold text-gray-900 mb-4 mt-8">How to Use the Calculator</h3>
-        
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-6">
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">1.</span>
-              <span><strong>Configure Settings:</strong> Select voltage (110V or 220V), load type, and demand factor</span>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
             </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">2.</span>
-              <span><strong>Add Appliances:</strong> Enter appliance details or use quick templates</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">3.</span>
-              <span><strong>Input Details:</strong> Specify quantity, power rating, and category for each appliance</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">4.</span>
-              <span><strong>Review Results:</strong> See total load, current, breaker size, and cable recommendations</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">5.</span>
-              <span><strong>Export Data:</strong> Download results as TXT or CSV for documentation</span>
-            </li>
-          </ol>
-        </div>
-
+          ))}
+        </ol>
         <h3 className="text-xl font-bold text-gray-900 mb-4">Understanding the Calculations</h3>
         
         <div className="bg-gray-50 p-6 rounded-xl mb-6">
@@ -141,8 +127,8 @@ export default function ElectricalLoadCalculatorBuildingSEO() {
                 <p>• 1 AC @ 1500W = 1500W</p>
                 <p className="pt-2 border-t border-gray-300"><strong>Total:</strong> 1800W = 1.8 kW</p>
                 <p><strong>Demand (80%):</strong> 1.44 kW</p>
-                <p><strong>Current:</strong> (1440W) / (220V × 0.8) = 8.18 A</p>
-                <p><strong>Breaker:</strong> 8.18 × 1.25 = 10.23 A → 16A breaker</p>
+                <p><strong>At 120 V (US):</strong> 1440 W ÷ (120 V × 0.8) = 15 A; × 1.25 = 18.75 A → 20 A breaker, 12 AWG</p>
+                <p><strong>At 230 V (Europe):</strong> 1440 W ÷ (230 V × 0.8) = 7.83 A; × 1.25 = 9.78 A → 10 A breaker, 1.5 mm²</p>
               </div>
             </div>
           </div>
@@ -211,39 +197,48 @@ export default function ElectricalLoadCalculatorBuildingSEO() {
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-gray-100">
-                <th className="text-left p-3 border border-gray-200">Current (A)</th>
-                <th className="text-left p-3 border border-gray-200">Cable Size (mm²)</th>
-                <th className="text-left p-3 border border-gray-200">Typical Use</th>
+                <th className="text-left p-3 border border-gray-200">Breaker</th>
+                <th className="text-left p-3 border border-gray-200">Copper cable (metric / US)</th>
+                <th className="text-left p-3 border border-gray-200">Typical use</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="p-3 border border-gray-200">Up to 6A</td>
-                <td className="p-3 border border-gray-200">1.5 mm²</td>
+                <td className="p-3 border border-gray-200">15–16 A</td>
+                <td className="p-3 border border-gray-200">1.5 mm² (14 AWG)</td>
                 <td className="p-3 border border-gray-200">Lighting circuits</td>
               </tr>
               <tr>
-                <td className="p-3 border border-gray-200">Up to 10A</td>
-                <td className="p-3 border border-gray-200">2.5 mm²</td>
-                <td className="p-3 border border-gray-200">Power outlets</td>
+                <td className="p-3 border border-gray-200">20 A</td>
+                <td className="p-3 border border-gray-200">2.5 mm² (12 AWG)</td>
+                <td className="p-3 border border-gray-200">General outlets, kitchen circuits (US)</td>
               </tr>
               <tr>
-                <td className="p-3 border border-gray-200">Up to 16A</td>
-                <td className="p-3 border border-gray-200">4 mm²</td>
-                <td className="p-3 border border-gray-200">Heavy appliances</td>
+                <td className="p-3 border border-gray-200">30–32 A</td>
+                <td className="p-3 border border-gray-200">4–6 mm² (10 AWG)</td>
+                <td className="p-3 border border-gray-200">Water heaters, dryers, cookers, EV chargers</td>
               </tr>
               <tr>
-                <td className="p-3 border border-gray-200">Up to 20A</td>
-                <td className="p-3 border border-gray-200">6 mm²</td>
-                <td className="p-3 border border-gray-200">Air conditioners</td>
+                <td className="p-3 border border-gray-200">40 A</td>
+                <td className="p-3 border border-gray-200">6 mm² (8 AWG)</td>
+                <td className="p-3 border border-gray-200">Ranges, larger air conditioners</td>
               </tr>
               <tr>
-                <td className="p-3 border border-gray-200">Up to 32A</td>
-                <td className="p-3 border border-gray-200">16 mm²</td>
-                <td className="p-3 border border-gray-200">Main distribution</td>
+                <td className="p-3 border border-gray-200">60–63 A</td>
+                <td className="p-3 border border-gray-200">16 mm² (6–4 AWG)</td>
+                <td className="p-3 border border-gray-200">Sub-panels</td>
+              </tr>
+              <tr>
+                <td className="p-3 border border-gray-200">100 A</td>
+                <td className="p-3 border border-gray-200">35 mm² (3–1 AWG)</td>
+                <td className="p-3 border border-gray-200">Small service or main feeder</td>
               </tr>
             </tbody>
           </table>
+          <p className="text-xs text-gray-500 mt-2">
+            Typical sizes from NEC Table 310.16 and IEC 60364-5-52 for short runs. Long runs, bundled cables, hot
+            locations and local rules can require larger cables; have an electrician confirm the size.
+          </p>
         </div>
 
         <h3 className="text-xl font-bold text-gray-900 mb-4">Practical Applications</h3>
@@ -316,6 +311,7 @@ export default function ElectricalLoadCalculatorBuildingSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

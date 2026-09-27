@@ -22,7 +22,7 @@ import RelatedStrip from "@/components/RelatedStrip";
 export default function SepticTankSizeCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("metric");
   const [numberOfUsers, setNumberOfUsers] = useState("5");
-  const [waterUsagePerPerson, setWaterUsagePerPerson] = useState("120");
+  const [waterUsagePerPerson, setWaterUsagePerPerson] = useState("200");
   const [retentionTime, setRetentionTime] = useState<RetentionTime>(2);
   const [sludgeFactor, setSludgeFactor] = useState<SludgeFactor>(0.3);
   
@@ -70,7 +70,7 @@ export default function SepticTankSizeCalculatorUI() {
   const handleReset = () => {
     setUnit("metric");
     setNumberOfUsers("5");
-    setWaterUsagePerPerson("120");
+    setWaterUsagePerPerson("200");
     setRetentionTime(2);
     setSludgeFactor(0.3);
     setCalculation(null);

@@ -1,5 +1,5 @@
 export type Unit = 'ft' | 'm';
-export type BagSize = 40 | 50;
+export type BagSize = number; // kg
 
 export interface MixRatio {
   cement: number;

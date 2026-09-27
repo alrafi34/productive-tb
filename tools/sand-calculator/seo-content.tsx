@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { sandCalculatorConfig } from "./config";
+
 export default function SandCalculatorSEO() {
+  const { howToSteps, faq } = sandCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
       
@@ -14,47 +18,14 @@ export default function SandCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Sand Calculator</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Area Mode (Length × Width × Depth)</h3>
-            <ol className="list-decimal list-inside space-y-2 ml-4">
-              <li>Select "Area" calculation mode</li>
-              <li>Choose your measurement unit (feet or meters)</li>
-              <li>Enter the length, width, and depth of the area</li>
-              <li>View instant sand volume calculation in both cubic feet and cubic meters</li>
-            </ol>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Example:</strong> For a 10 ft × 10 ft area with 0.5 ft depth, you'll need approximately 50 cubic feet of sand.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Concrete Mix Mode (Ratio Based)</h3>
-            <ol className="list-decimal list-inside space-y-2 ml-4">
-              <li>Select "Concrete Mix" calculation mode</li>
-              <li>Enter the total concrete volume needed</li>
-              <li>Set the mix ratio (cement:sand:aggregate) or use presets</li>
-              <li>Get accurate sand volume based on the dry volume factor (1.54)</li>
-            </ol>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Example:</strong> For 1 cubic meter of concrete with 1:2:4 ratio, you'll need approximately 0.44 cubic meters of sand.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Plaster Mode</h3>
-            <ol className="list-decimal list-inside space-y-2 ml-4">
-              <li>Select "Plaster Calculation" mode</li>
-              <li>Enter the wall area to be plastered</li>
-              <li>Specify the plaster thickness in inches</li>
-              <li>View sand requirement (typically 50% of plaster volume)</li>
-            </ol>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Example:</strong> For 100 sq ft area with 0.5 inch thickness, you'll need approximately 2.1 cubic feet of sand.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section>
@@ -221,35 +192,7 @@ export default function SandCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How much sand do I need for 1 cubic meter of concrete?</h3>
-            <p className="text-sm">
-              For a standard 1:2:4 mix, you'll need approximately 0.44 cubic meters of sand per cubic meter of concrete. This accounts for the dry volume factor of 1.54.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">What is the dry volume factor?</h3>
-            <p className="text-sm">
-              The dry volume factor (1.54) accounts for the voids between particles in dry materials. When cement, sand, and aggregate are mixed with water, they occupy less space than their individual dry volumes.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can I use this calculator for beach sand?</h3>
-            <p className="text-sm">
-              This calculator is designed for construction-grade sand. Beach sand is not recommended for construction as it contains salt and organic materials that can affect concrete strength.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How do I convert cubic feet to tons?</h3>
-            <p className="text-sm">
-              Sand density varies, but typically 1 cubic foot of sand weighs about 100 pounds. So 1 ton (2000 lbs) equals approximately 20 cubic feet of sand.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

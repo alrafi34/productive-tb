@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { slabLoadCalculatorConfig } from "./config";
+
 export default function SlabLoadCalculatorSEO() {
+  const { howToSteps, faq } = slabLoadCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -24,15 +28,14 @@ export default function SlabLoadCalculatorSEO() {
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>
-        <ol className="list-decimal list-inside text-gray-700 space-y-2 mb-4">
-          <li>Enter slab dimensions (length, width, thickness)</li>
-          <li>Input concrete density (default: 25 kN/m³)</li>
-          <li>Specify live load based on usage (residential: 2 kN/m², commercial: 4-6 kN/m²)</li>
-          <li>Add any additional loads (finishes, partitions, etc.)</li>
-          <li>View instant results including dead load, total load per m², and total slab load</li>
-          <li>Export calculations or save to history for future reference</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
-
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Load Types Explained</h3>
         
         <h4 className="text-lg font-semibold text-gray-800 mt-4 mb-2">Dead Load</h4>
@@ -157,10 +160,10 @@ export default function SlabLoadCalculatorSEO() {
           Live load values should comply with local building codes:
         </p>
         <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
-          <li><strong>IS 875 (India):</strong> Part 2 - Imposed Loads</li>
           <li><strong>ASCE 7 (USA):</strong> Minimum Design Loads for Buildings</li>
           <li><strong>Eurocode 1 (Europe):</strong> Actions on Structures</li>
-          <li><strong>BS 6399 (UK):</strong> Loading for Buildings</li>
+          <li><strong>UK:</strong> BS EN 1991 with the UK National Annex (BS 6399 was withdrawn in 2010)</li>
+          <li><strong>Other countries:</strong> national codes such as NBC (Canada), AS/NZS 1170 (Australia, New Zealand) and IS 875 (India)</li>
         </ul>
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
@@ -176,6 +179,7 @@ export default function SlabLoadCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

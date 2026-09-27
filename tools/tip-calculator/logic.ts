@@ -22,8 +22,34 @@ export const CURRENCIES = {
   USD: { symbol: "$", name: "US Dollar" },
   EUR: { symbol: "€", name: "Euro" },
   GBP: { symbol: "£", name: "British Pound" },
-  BDT: { symbol: "৳", name: "Bangladeshi Taka" }
+  CAD: { symbol: "CA$", name: "Canadian Dollar" },
+  AUD: { symbol: "A$", name: "Australian Dollar" }
 };
+
+export type CurrencyCode = keyof typeof CURRENCIES;
+
+export function isCurrency(code: unknown): code is CurrencyCode {
+  return typeof code === "string" && Object.prototype.hasOwnProperty.call(CURRENCIES, code);
+}
+
+/* A best guess at the visitor's currency from their timezone, then their
+   browser language's region; US dollars otherwise. Always editable. */
+export function guessCurrency(timeZone?: string, language?: string): CurrencyCode {
+  try {
+    const zone = timeZone ?? Intl.DateTimeFormat().resolvedOptions().timeZone ?? "";
+    if (zone === "Europe/London") return "GBP";
+    if (zone.startsWith("Australia/")) return "AUD";
+    const lang = language ?? (typeof navigator !== "undefined" ? navigator.language : "");
+    const region = /[-_]([A-Za-z]{2})\b/.exec(lang || "")?.[1]?.toUpperCase();
+    if (region === "GB") return "GBP";
+    if (region === "CA") return "CAD";
+    if (region === "AU") return "AUD";
+    if (zone.startsWith("Europe/")) return "EUR";
+  } catch {
+    // fall through
+  }
+  return "USD";
+}
 
 export function calculateTip(
   billAmount: number,

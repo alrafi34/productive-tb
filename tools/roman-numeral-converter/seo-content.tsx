@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function RomanNumeralConverterSEO() {
+  const { howToSteps, faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -12,18 +16,12 @@ export default function RomanNumeralConverterSEO() {
               Simple Instructions
             </h3>
             <ol className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">1</span>
-                <span><strong>Choose Conversion Mode:</strong> Select whether you want to convert a number to Roman numerals or Roman numerals to a number.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">2</span>
-                <span><strong>Enter Your Input:</strong> Type a number (1-3999) or a valid Roman numeral in the input field.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">3</span>
-                <span><strong>Get Instant Result:</strong> The conversion appears instantly as you type. Copy the result or save it to your history.</span>
-              </li>
+              {howToSteps.map(({ name, text }, n) => (
+                <li key={name} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{n + 1}</span>
+                  <span><strong>{name}:</strong> {text}</span>
+                </li>
+              ))}
             </ol>
           </div>
           <div>
@@ -179,57 +177,7 @@ export default function RomanNumeralConverterSEO() {
       </section>
 
       {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              What is the range of numbers this converter supports?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              This converter supports numbers from 1 to 3999. Roman numerals traditionally don't have a symbol for zero, and numbers above 3999 require special notation (vinculum or overline) that isn't commonly used.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Why can't I convert numbers larger than 3999?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              The standard Roman numeral system uses letters I, V, X, L, C, D, and M. To represent numbers above 3999, you would need to use a vinculum (a line over the numeral) to multiply by 1000, which is not part of standard modern usage.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              How does the subtractive notation work?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              In Roman numerals, when a smaller value appears before a larger value, you subtract the smaller from the larger. For example, IV means 5 - 1 = 4, and XC means 100 - 10 = 90. This rule only applies to specific combinations to avoid ambiguity.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is my conversion history saved permanently?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Your conversion history is saved in your browser's local storage and persists between sessions. However, it will be cleared if you delete your browser's cache or use private/incognito mode. You can manually clear the history anytime using the "Clear All" button.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I use this tool offline?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Yes! Once the page loads, all conversions happen entirely in your browser using JavaScript. No internet connection is required after the initial page load, making it perfect for offline use.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits Section */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

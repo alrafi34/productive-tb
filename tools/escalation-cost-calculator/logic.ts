@@ -103,24 +103,24 @@ export function formatCurrency(value: number, currency: Currency, decimals: numb
   
   const symbols: Record<Currency, string> = {
     "USD": "$",
-    "INR": "₹",
-    "BDT": "৳",
+    "CAD": "CA$",
+    "AUD": "A$",
     "EUR": "€",
     "GBP": "£"
   };
   
-  return `${symbols[currency]}${formatted}`;
+  return `${(symbols[currency] ?? "$")}${formatted}`;
 }
 
 export function getCurrencySymbol(currency: Currency): string {
   const symbols: Record<Currency, string> = {
     "USD": "$",
-    "INR": "₹",
-    "BDT": "৳",
+    "CAD": "CA$",
+    "AUD": "A$",
     "EUR": "€",
     "GBP": "£"
   };
-  return symbols[currency];
+  return (symbols[currency] ?? "$");
 }
 
 export function getEscalationTypeLabel(type: EscalationType): string {
@@ -129,11 +129,11 @@ export function getEscalationTypeLabel(type: EscalationType): string {
 
 export function getRatePresets() {
   return [
+    { label: "3%", value: 3 },
+    { label: "4%", value: 4 },
     { label: "5%", value: 5 },
-    { label: "8%", value: 8 },
-    { label: "10%", value: 10 },
-    { label: "12%", value: 12 },
-    { label: "15%", value: 15 }
+    { label: "6%", value: 6 },
+    { label: "8%", value: 8 }
   ];
 }
 

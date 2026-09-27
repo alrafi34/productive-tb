@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { EscalationType, Currency, EscalationCalculation } from "./types";
+import { guessCurrency, isCurrencyCode } from "@/lib/currency";
 import {
   performEscalationCalculation,
   saveToHistory,
@@ -26,9 +27,15 @@ import RelatedStrip from "@/components/RelatedStrip";
 export default function EscalationCostCalculatorUI() {
   const [baseCost, setBaseCost] = useState("");
   const [duration, setDuration] = useState("2");
-  const [escalationRate, setEscalationRate] = useState("8");
+  const [escalationRate, setEscalationRate] = useState("5");
   const [escalationType, setEscalationType] = useState<EscalationType>("compound");
   const [currency, setCurrency] = useState<Currency>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   // Results
   const [calculation, setCalculation] = useState<EscalationCalculation | null>(null);
@@ -62,9 +69,9 @@ export default function EscalationCostCalculatorUI() {
   const handleReset = () => {
     setBaseCost("");
     setDuration("2");
-    setEscalationRate("8");
+    setEscalationRate("5");
     setEscalationType("compound");
-    setCurrency("USD");
+    setCurrency(guessCurrency());
     setCalculation(null);
     setError(null);
   };
@@ -121,7 +128,7 @@ export default function EscalationCostCalculatorUI() {
     setDuration(calc.duration.toString());
     setEscalationRate(calc.escalationRate.toString());
     setEscalationType(calc.escalationType);
-    setCurrency(calc.currency);
+    setCurrency(isCurrencyCode(calc.currency) ? calc.currency : "USD");
     setShowHistory(false);
   };
 
@@ -174,8 +181,8 @@ export default function EscalationCostCalculatorUI() {
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
                   <option value="USD">USD ($)</option>
-                  <option value="INR">INR (₹)</option>
-                  <option value="BDT">BDT (৳)</option>
+                  <option value="CAD">CAD (CA$)</option>
+                  <option value="AUD">AUD (A$)</option>
                   <option value="EUR">EUR (€)</option>
                   <option value="GBP">GBP (£)</option>
                 </select>

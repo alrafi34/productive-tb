@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { retainingWallCalculatorConfig } from "./config";
+
 export default function RetainingWallCalculatorSEO() {
+  const { howToSteps, faq } = retainingWallCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,16 +21,13 @@ export default function RetainingWallCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the Retaining Wall Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2">
-          <li>Select your unit system (metric or imperial)</li>
-          <li>Enter wall dimensions: height, length, and thickness</li>
-          <li>Input soil properties: density, friction angle, and backfill slope</li>
-          <li>Set the safety factor (typically 1.5-2.0)</li>
-          <li>View instant calculations for lateral force and pressure</li>
-          <li>Review recommended base width and material volumes</li>
-          <li>Check engineering notes and stability status</li>
-          <li>Use presets for common wall types</li>
-          <li>Save calculations to history or export results</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -258,53 +259,7 @@ export default function RetainingWallCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is the maximum height for a retaining wall?
-            </h3>
-            <p>
-              There's no absolute maximum, but walls over 6m (20 ft) require specialized engineering. Most residential walls are 1-3m (3-10 ft). Taller walls may need counterfort or anchored designs.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How deep should the foundation be?
-            </h3>
-            <p>
-              Foundation depth typically equals 10-15% of wall height, with minimum 300mm (12") below grade. Must be below frost line in cold climates and on stable bearing soil.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Do I need a building permit?
-            </h3>
-            <p>
-              Most jurisdictions require permits for walls over 1.2m (4 ft) or walls supporting structures. Check local building codes. Permits typically require engineered drawings.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What causes retaining walls to fail?
-            </h3>
-            <p>
-              Common causes: inadequate drainage, poor soil conditions, insufficient base width, lack of reinforcement, frost heave, and improper construction. Most failures are preventable with proper design and drainage.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Can I use this calculator for final design?
-            </h3>
-            <p>
-              No, this tool provides preliminary estimates only. Final design requires detailed structural engineering analysis, soil testing, and consideration of local codes and site-specific conditions.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

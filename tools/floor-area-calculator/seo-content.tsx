@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { floorAreaCalculatorConfig } from "./config";
+
 export default function FloorAreaCalculatorSEO() {
+  const { howToSteps, faq } = floorAreaCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12 text-gray-700">
       
@@ -14,14 +18,13 @@ export default function FloorAreaCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Floor Area Calculator</h2>
-        <ol className="list-decimal list-inside space-y-3 leading-relaxed">
-          <li><strong>Select Your Unit:</strong> Choose between meters (m) or feet (ft) as your default measurement unit.</li>
-          <li><strong>Add Rooms:</strong> Click "Add Room" to create new room entries in the table.</li>
-          <li><strong>Enter Dimensions:</strong> Input the length and width for each room. The area calculates automatically.</li>
-          <li><strong>Name Your Rooms:</strong> Give each room a descriptive name (e.g., "Living Room", "Bedroom 1").</li>
-          <li><strong>Enable Floor Grouping (Optional):</strong> Turn on floor grouping to organize rooms by floor levels and see per-floor subtotals.</li>
-          <li><strong>View Results:</strong> The total floor area updates in real-time as you enter dimensions.</li>
-          <li><strong>Export Data:</strong> Download your calculations as CSV or text summary for documentation.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -141,39 +144,7 @@ export default function FloorAreaCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What's the difference between built-up area and carpet area?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Built-up area includes wall thickness and structural elements, while carpet area measures only the usable floor space inside the walls. This calculator can be used for both - just adjust your measurements accordingly.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I calculate irregular-shaped rooms?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              For irregular rooms, divide the space into multiple rectangular sections and add them as separate rooms. The calculator will sum all areas automatically.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Is my data saved?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Yes, your room data is automatically saved in your browser's local storage. It will be available when you return, but only on the same device and browser.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use decimal values?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Absolutely! The calculator supports decimal inputs (e.g., 10.5 meters or 12.75 feet) for precise measurements.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use This Floor Area Calculator?</h2>

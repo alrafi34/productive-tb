@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { volumeCalculatorArchitectureConfig } from "./config";
+
 export default function VolumeCalculatorArchitectureSEO() {
+  const { howToSteps, faq } = volumeCalculatorArchitectureConfig.seo;
   return (
     <div className="mt-16 space-y-12 max-w-4xl mx-auto">
       
@@ -16,32 +20,14 @@ export default function VolumeCalculatorArchitectureSEO() {
       {/* How It Works */}
       <section className="space-y-4">
         <h2 className="text-2xl font-bold text-gray-900">How It Works</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">1. Select Shape Type</h3>
-            <p className="text-gray-700 text-sm">
-              Choose from rectangular prism, cylinder, sphere, or cone based on your structure.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">2. Enter Dimensions</h3>
-            <p className="text-gray-700 text-sm">
-              Input the required measurements in meters or feet. The calculator adapts inputs based on the selected shape.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">3. Get Instant Results</h3>
-            <p className="text-gray-700 text-sm">
-              View the calculated volume in real-time with the formula used for transparency.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">4. Save or Export</h3>
-            <p className="text-gray-700 text-sm">
-              Save calculations to history or export detailed reports for documentation.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Formulas */}
@@ -231,48 +217,7 @@ export default function VolumeCalculatorArchitectureSEO() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
-        <div className="space-y-3">
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How do I calculate room volume for HVAC sizing?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Use the rectangular prism option and enter the room's length, width, and height. The volume in cubic meters or feet will help determine the appropriate HVAC capacity. Generally, you need about 20-25 BTU per square foot for cooling.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What's the difference between cubic meters and cubic feet?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              1 cubic meter (m³) equals approximately 35.31 cubic feet (ft³). The calculator automatically handles conversions when you switch units. Use meters for metric system projects and feet for imperial system projects.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How much concrete do I need for a slab?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Calculate the slab volume using rectangular prism (length × width × thickness). Add 5-10% for wastage. For example, a 6m × 4m × 0.15m slab needs 3.6 m³ of concrete, plus wastage = approximately 4 m³.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">Can I calculate irregular shapes?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              For irregular shapes, break them down into multiple regular shapes (rectangular prisms, cylinders, etc.), calculate each volume separately, and sum them up. Use the history feature to track multiple calculations.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How do I calculate water tank capacity in liters?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Calculate the cylinder volume in cubic meters, then multiply by 1,000 to convert to liters. For example, a tank with 62.83 m³ volume holds 62,830 liters of water.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What precision should I use for construction calculations?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              For most construction purposes, 2-3 decimal places are sufficient. The calculator provides 3 decimal places by default, which is accurate enough for material estimation and structural planning.
-            </p>
-          </details>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits */}
       <section className="space-y-4">

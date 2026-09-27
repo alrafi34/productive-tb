@@ -1,3 +1,4 @@
+import { type CurrencyCode, formatMoney } from "@/lib/currency";
 import { LightingCalculation, HistoryEntry, RoomPreset, LightingTypeInfo, AreaUnit, LightingType, RoomType } from "./types";
 
 const HISTORY_KEY = "lighting-load-calculator-history";
@@ -218,7 +219,7 @@ export function clearHistory(): void {
 }
 
 // Export functions
-export function exportToText(calculation: LightingCalculation, electricityRate?: number): string {
+export function exportToText(calculation: LightingCalculation, electricityRate?: number, currency: CurrencyCode = "USD"): string {
   let text = `Lighting Load Calculation Results\n`;
   text += `==================================\n\n`;
   
@@ -242,7 +243,7 @@ export function exportToText(calculation: LightingCalculation, electricityRate?:
   
   if (electricityRate) {
     const monthlyCost = calculation.monthlyKWh * electricityRate;
-    text += `  Estimated Monthly Cost: $${formatNumber(monthlyCost)}\n`;
+    text += `  Estimated Monthly Cost: ${formatMoney(monthlyCost, currency)}\n`;
   }
   
   text += `\nGenerated: ${new Date().toLocaleString()}\n`;

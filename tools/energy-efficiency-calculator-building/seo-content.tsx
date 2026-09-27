@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { energyEfficiencyCalculatorBuildingConfig } from "./config";
+
 export default function EnergyEfficiencyCalculatorBuildingSEO() {
+  const { howToSteps, faq } = energyEfficiencyCalculatorBuildingConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,14 +21,13 @@ export default function EnergyEfficiencyCalculatorBuildingSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Enter Building Area:</strong> Input the total floor area in square feet or square meters</li>
-          <li><strong>Input Annual Energy Use:</strong> Enter total energy consumption in kWh per year</li>
-          <li><strong>Add Occupancy:</strong> Optionally specify the number of building occupants</li>
-          <li><strong>Select Building Type:</strong> Choose residential, commercial, or industrial</li>
-          <li><strong>Choose Climate Zone:</strong> Select cold, moderate, or hot climate</li>
-          <li><strong>View Results:</strong> See EUI, efficiency rating, and personalized recommendations</li>
-          <li><strong>Export Data:</strong> Download reports as text or CSV files</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -169,61 +172,7 @@ export default function EnergyEfficiencyCalculatorBuildingSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What is a good EUI for my building?
-            </h3>
-            <p className="text-sm">
-              It depends on building type and climate. For residential buildings in moderate climates, aim for EUI below 15. Commercial buildings should target below 20, and industrial facilities below 25.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How do I find my annual energy consumption?
-            </h3>
-            <p className="text-sm">
-              Check your utility bills for the past 12 months and add up all kWh usage. Most utilities also provide annual summaries online or upon request.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why does climate zone matter?
-            </h3>
-            <p className="text-sm">
-              Climate significantly affects energy use. Cold climates require more heating, hot climates need more cooling. The calculator adjusts efficiency thresholds accordingly for fair comparison.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I compare different buildings?
-            </h3>
-            <p className="text-sm">
-              Yes! Use the history feature to save multiple calculations and compare EUI values across different buildings or track improvements over time.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What's the difference between EUI and total energy use?
-            </h3>
-            <p className="text-sm">
-              Total energy use is the absolute amount consumed. EUI normalizes this by building size, allowing fair comparison between buildings of different sizes.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How often should I calculate EUI?
-            </h3>
-            <p className="text-sm">
-              Calculate annually to track performance trends. Also recalculate after major upgrades or changes to verify improvements.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

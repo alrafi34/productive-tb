@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { concreteMixRatioCalculatorConfig } from "./config";
+
 export default function ConcreteMixRatioCalculatorSEO() {
+  const { howToSteps, faq } = concreteMixRatioCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
       
@@ -14,42 +18,14 @@ export default function ConcreteMixRatioCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Enter Total Volume</h3>
-            <p className="text-sm">
-              Input the total volume of concrete you need. You can choose between cubic meters (m³) or cubic feet (ft³) depending on your preference. The calculator automatically handles unit conversions.
-            </p>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Example:</strong> For a slab measuring 10m × 5m × 0.15m, enter 7.5 m³
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Select Mix Ratio</h3>
-            <p className="text-sm">
-              Enter your desired mix ratio in the format Cement:Sand:Aggregate (e.g., 1:2:4). You can also use the preset buttons for standard concrete grades like M15, M20, or M25.
-            </p>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Example:</strong> For general construction, use 1:2:4 (M15 grade)
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Choose Cement Bag Size</h3>
-            <p className="text-sm">
-              Select your cement bag size (40kg or 50kg). The calculator will automatically compute the number of bags needed based on your selection.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: View Results</h3>
-            <p className="text-sm">
-              The calculator instantly displays the required quantities of cement (in bags and kg), sand (in m³), and aggregate (in m³). You can copy, save, or export these results for your records.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section>
@@ -96,50 +72,54 @@ export default function ConcreteMixRatioCalculatorSEO() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Standard Concrete Grades</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Nominal Mixes</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Grade</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Mix Ratio</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Application</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Mix (cement:sand:gravel)</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Typical use</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Typical strength</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               <tr>
-                <td className="px-4 py-3 text-sm font-semibold">M5</td>
-                <td className="px-4 py-3 text-sm font-mono">1:5:10</td>
-                <td className="px-4 py-3 text-sm">Lean concrete for leveling</td>
+                <td className="px-4 py-3 text-sm font-mono font-semibold">1:5:10</td>
+                <td className="px-4 py-3 text-sm">Blinding and leveling under footings</td>
+                <td className="px-4 py-3 text-sm">≈ 5 MPa (700 psi)</td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-sm font-semibold">M10</td>
-                <td className="px-4 py-3 text-sm font-mono">1:3:6</td>
-                <td className="px-4 py-3 text-sm">Non-structural concrete</td>
+                <td className="px-4 py-3 text-sm font-mono font-semibold">1:3:6</td>
+                <td className="px-4 py-3 text-sm">Mass fill, non-structural work</td>
+                <td className="px-4 py-3 text-sm">≈ 10 MPa (1,450 psi)</td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-sm font-semibold">M15</td>
-                <td className="px-4 py-3 text-sm font-mono">1:2:4</td>
-                <td className="px-4 py-3 text-sm">Standard concrete for general use</td>
+                <td className="px-4 py-3 text-sm font-mono font-semibold">1:2:4</td>
+                <td className="px-4 py-3 text-sm">Slabs on grade, footings, paths</td>
+                <td className="px-4 py-3 text-sm">≈ 15 MPa (2,200 psi)</td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-sm font-semibold">M20</td>
-                <td className="px-4 py-3 text-sm font-mono">1:1.5:3</td>
-                <td className="px-4 py-3 text-sm">Structural concrete for beams and columns</td>
+                <td className="px-4 py-3 text-sm font-mono font-semibold">1:1.5:3</td>
+                <td className="px-4 py-3 text-sm">Beams, columns, suspended slabs</td>
+                <td className="px-4 py-3 text-sm">≈ 20 MPa (2,900 psi)</td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-sm font-semibold">M25</td>
-                <td className="px-4 py-3 text-sm font-mono">1:1:2</td>
-                <td className="px-4 py-3 text-sm">High strength structural concrete</td>
+                <td className="px-4 py-3 text-sm font-mono font-semibold">1:1:2</td>
+                <td className="px-4 py-3 text-sm">Heavily loaded members</td>
+                <td className="px-4 py-3 text-sm">≈ 25 MPa (3,600 psi)</td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-sm font-semibold">M30</td>
-                <td className="px-4 py-3 text-sm font-mono">1:0.75:1.5</td>
-                <td className="px-4 py-3 text-sm">Very high strength concrete</td>
+                <td className="px-4 py-3 text-sm font-mono font-semibold">1:0.75:1.5</td>
+                <td className="px-4 py-3 text-sm">High strength; usually a designed mix</td>
+                <td className="px-4 py-3 text-sm">≈ 30 MPa (4,350 psi)</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p className="mt-3 text-sm text-gray-600">
+          Strengths are typical for well-made site-batched concrete, not guaranteed. Structural concrete is specified by
+          strength class (ACI 318 in the US, EN 206 in Europe), so follow the engineer&apos;s specification where there is one.
+        </p>
       </section>
 
       <section>
@@ -151,7 +131,7 @@ export default function ConcreteMixRatioCalculatorSEO() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
-            <span>Multiple mix ratio presets (M5-M30)</span>
+            <span>Presets from 1:5:10 lean mix to 1:0.75:1.5</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
@@ -163,7 +143,7 @@ export default function ConcreteMixRatioCalculatorSEO() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
-            <span>Cement bag size options (40kg/50kg)</span>
+            <span>Cement bags of 94 lb, 25 kg, 40 kg or 50 kg</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
@@ -240,35 +220,7 @@ export default function ConcreteMixRatioCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">What is the dry volume factor?</h3>
-            <p className="text-sm">
-              The dry volume factor (typically 1.54) accounts for the voids between particles in dry materials. When cement, sand, and aggregate are mixed with water, they occupy less space than their individual dry volumes combined.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Which concrete grade should I use?</h3>
-            <p className="text-sm">
-              M15 (1:2:4) is suitable for general construction. M20 (1:1.5:3) is recommended for structural elements like beams and columns. M25 and above are used for high-strength applications. Consult a structural engineer for specific requirements.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How many cement bags do I need for 1 cubic meter?</h3>
-            <p className="text-sm">
-              For M15 grade (1:2:4) concrete, you'll need approximately 6.3 bags of 50kg cement per cubic meter. This varies based on the mix ratio and bag size.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can I use this calculator for ready-mix concrete?</h3>
-            <p className="text-sm">
-              This calculator is designed for site-mixed concrete. Ready-mix concrete is typically ordered by volume (cubic meters or cubic yards) directly from suppliers who handle the proportioning.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

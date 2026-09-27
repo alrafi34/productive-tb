@@ -98,13 +98,14 @@ function findNearestStandardSize(volume: number): number {
   return Math.ceil(volume / 1000) * 1000;
 }
 
+// Household wastewater is about 150 L (Europe) to 200–250 L (US) per person per day
 export function getSepticTankPresets(): SepticTankPreset[] {
   return [
     {
       name: "Small House (1-3 people)",
       description: "100 L/day/person, 2 days retention",
       numberOfUsers: 2,
-      waterUsagePerPerson: 100,
+      waterUsagePerPerson: 150,
       retentionTime: 2,
       sludgeFactor: 0.3,
       category: "Residential"
@@ -113,7 +114,7 @@ export function getSepticTankPresets(): SepticTankPreset[] {
       name: "Medium House (4-5 people)",
       description: "120 L/day/person, 2 days retention",
       numberOfUsers: 5,
-      waterUsagePerPerson: 120,
+      waterUsagePerPerson: 200,
       retentionTime: 2,
       sludgeFactor: 0.3,
       category: "Residential"
@@ -122,7 +123,7 @@ export function getSepticTankPresets(): SepticTankPreset[] {
       name: "Large House (6-8 people)",
       description: "130 L/day/person, 2 days retention",
       numberOfUsers: 7,
-      waterUsagePerPerson: 130,
+      waterUsagePerPerson: 200,
       retentionTime: 2,
       sludgeFactor: 0.3,
       category: "Residential"
@@ -131,7 +132,7 @@ export function getSepticTankPresets(): SepticTankPreset[] {
       name: "Small Apartment Building",
       description: "10 people, 110 L/day/person",
       numberOfUsers: 10,
-      waterUsagePerPerson: 110,
+      waterUsagePerPerson: 180,
       retentionTime: 2,
       sludgeFactor: 0.3,
       category: "Multi-Family"
@@ -140,7 +141,7 @@ export function getSepticTankPresets(): SepticTankPreset[] {
       name: "Guest House / B&B",
       description: "15 people, 150 L/day/person",
       numberOfUsers: 15,
-      waterUsagePerPerson: 150,
+      waterUsagePerPerson: 200,
       retentionTime: 2,
       sludgeFactor: 0.5,
       category: "Commercial"

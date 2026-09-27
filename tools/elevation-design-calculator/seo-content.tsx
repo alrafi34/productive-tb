@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { elevationDesignCalculatorConfig } from "./config";
+
 export default function ElevationDesignCalculatorSEO() {
+  const { howToSteps, faq } = elevationDesignCalculatorConfig.seo;
   return (
     <div className="mt-16 space-y-12 max-w-4xl mx-auto">
       
@@ -16,32 +20,14 @@ export default function ElevationDesignCalculatorSEO() {
       {/* How It Works */}
       <section className="space-y-4">
         <h2 className="text-2xl font-bold text-gray-900">How It Works</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">1. Enter Building Dimensions</h3>
-            <p className="text-gray-700 text-sm">
-              Input the building width, height, and number of floors in feet or meters.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">2. Select Design Mode</h3>
-            <p className="text-gray-700 text-sm">
-              Choose between standard proportions, golden ratio, or custom ratio for your elevation design.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">3. View Results</h3>
-            <p className="text-gray-700 text-sm">
-              Get instant calculations for floor height, width-to-height ratio, and visual elevation preview with recommendations.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">4. Export Design</h3>
-            <p className="text-gray-700 text-sm">
-              Save your calculations to history or export detailed reports for documentation.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Formulas */}
@@ -255,48 +241,7 @@ export default function ElevationDesignCalculatorSEO() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
-        <div className="space-y-3">
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What is the ideal width-to-height ratio for buildings?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              The ideal ratio typically ranges from 1.5 to 1.8, meaning the height should be 1.5 to 1.8 times the width. This creates visually balanced proportions that are neither too squat nor too tall.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">When should I use the golden ratio mode?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Use golden ratio mode (1:1.618) when aesthetic harmony is a primary design goal. It's particularly effective for landmark buildings, cultural centers, and designs where visual appeal is paramount.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What is a typical floor height for residential buildings?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Residential floor heights typically range from 9 to 12 feet (2.7 to 3.6 meters). Standard ceiling height is 8-9 feet, with additional space for floor structure and services.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How do I adjust proportions for a narrow site?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              For narrow sites, you may need to accept a higher width-to-height ratio. Use custom ratio mode to find a balance between site constraints and aesthetic requirements. Consider vertical emphasis in facade design.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">Can I use this calculator for high-rise buildings?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Yes, the calculator works for buildings of any height. For high-rises, pay special attention to floor height consistency and overall proportion. Typical high-rise floor heights range from 10 to 14 feet.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What if my ratio falls outside the ideal range?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Ratios outside 1.5-1.8 aren't necessarily wrong—they depend on building type and context. The calculator provides recommendations, but final decisions should consider functional requirements, site constraints, and design intent.
-            </p>
-          </details>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits */}
       <section className="space-y-4">

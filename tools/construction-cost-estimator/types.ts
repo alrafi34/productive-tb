@@ -1,6 +1,6 @@
 export type MaterialQuality = "low" | "medium" | "high" | "premium";
 export type RegionFactor = "low" | "standard" | "high";
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface AddOns {
   plumbing: boolean;

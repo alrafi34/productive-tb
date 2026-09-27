@@ -6,6 +6,7 @@ import {
   calculatePlotArea,
   getFormulaText,
   formatArea,
+  convertArea,
   exportToText,
   downloadFile,
   saveToHistory,
@@ -376,6 +377,28 @@ export default function PlotAreaCalculatorUI() {
               <div className="text-sm text-primary-100 mb-4">
                 ({getUnitName(dimensions.unit)})
               </div>
+              {area > 0 && (() => {
+                const m2 = convertArea(area, dimensions.unit, "m");
+                const rows: [string, number][] = [
+                  ["sq ft", convertArea(area, dimensions.unit, "ft")],
+                  ["m²", m2],
+                  ["sq yd", convertArea(area, dimensions.unit, "yd")],
+                  ["acres", m2 / 4046.8564224],
+                  ["hectares", m2 / 10000],
+                ];
+                return (
+                  <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-primary-100 mb-4 border-t border-white/20 pt-3">
+                    {rows.map(([label, value]) => (
+                      <div key={label} className="contents">
+                        <dt>{label}</dt>
+                        <dd className="text-right font-semibold text-white">
+                          {value.toLocaleString("en-US", { maximumFractionDigits: value < 10 ? 4 : 2 })}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                );
+              })()}
 
               <div className="space-y-2">
                 <button

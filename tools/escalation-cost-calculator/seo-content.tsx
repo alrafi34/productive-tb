@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { escalationCostCalculatorConfig } from "./config";
+
 export default function EscalationCostCalculatorSEO() {
+  const { howToSteps, faq } = escalationCostCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100">
@@ -30,7 +34,7 @@ export default function EscalationCostCalculatorSEO() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
-                <span>Quick rate presets (5-15%)</span>
+                <span>Quick rate presets (3-8%)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
@@ -103,9 +107,9 @@ export default function EscalationCostCalculatorSEO() {
         
         <div className="grid md:grid-cols-3 gap-4 mb-6">
           <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-            <h4 className="font-semibold text-green-900 mb-2">Low Inflation (3-5%)</h4>
+            <h4 className="font-semibold text-green-900 mb-2">Low Escalation (2-4%)</h4>
             <ul className="text-sm text-green-800 space-y-1">
-              <li>• Stable economies</li>
+              <li>• Stable markets, close to long-run US and European averages</li>
               <li>• Short-term projects</li>
               <li>• Minimal material volatility</li>
               <li>• Standard construction</li>
@@ -113,7 +117,7 @@ export default function EscalationCostCalculatorSEO() {
           </div>
           
           <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-            <h4 className="font-semibold text-yellow-900 mb-2">Moderate Inflation (6-10%)</h4>
+            <h4 className="font-semibold text-yellow-900 mb-2">Moderate Escalation (4-7%)</h4>
             <ul className="text-sm text-yellow-800 space-y-1">
               <li>• Typical construction projects</li>
               <li>• Medium-term duration</li>
@@ -123,9 +127,9 @@ export default function EscalationCostCalculatorSEO() {
           </div>
           
           <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-            <h4 className="font-semibold text-red-900 mb-2">High Inflation (11-15%+)</h4>
+            <h4 className="font-semibold text-red-900 mb-2">High Escalation (8%+)</h4>
             <ul className="text-sm text-red-800 space-y-1">
-              <li>• Volatile markets</li>
+              <li>• Volatile markets, as in 2021–2022</li>
               <li>• Specialized materials</li>
               <li>• Long-term projects</li>
               <li>• Supply chain issues</li>
@@ -235,6 +239,18 @@ export default function EscalationCostCalculatorSEO() {
         </div>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Escalation Cost Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

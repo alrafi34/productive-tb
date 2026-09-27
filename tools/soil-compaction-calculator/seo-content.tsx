@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { soilCompactionCalculatorConfig } from "./config";
+
 export default function SoilCompactionCalculatorSEO() {
+  const { howToSteps, faq } = soilCompactionCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,16 +21,13 @@ export default function SoilCompactionCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the Soil Compaction Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2">
-          <li>Select your density unit (g/cm³ or kN/m³)</li>
-          <li>Enter the field dry density measured on site</li>
-          <li>Input the maximum dry density from Proctor test results</li>
-          <li>Choose the required compaction standard (90%, 95%, 98%, or 100%)</li>
-          <li>View instant compaction percentage and pass/fail status</li>
-          <li>Review engineering notes and recommendations</li>
-          <li>Use soil type presets for quick reference values</li>
-          <li>Save calculations to history for record keeping</li>
-          <li>Export results as text or CSV for documentation</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -252,53 +253,7 @@ export default function SoilCompactionCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is soil compaction?
-            </h3>
-            <p>
-              Soil compaction is the process of mechanically increasing soil density by reducing air voids between soil particles. This improves soil strength, stability, and load-bearing capacity.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Why is 95% compaction commonly required?
-            </h3>
-            <p>
-              95% compaction provides a good balance between achievable field conditions and adequate soil performance for most construction applications. It's practical to achieve while ensuring sufficient stability.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What if field density exceeds maximum dry density?
-            </h3>
-            <p>
-              This usually indicates a measurement error or different soil conditions. Verify your measurements and ensure the Proctor test was performed on representative soil samples.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How often should compaction be tested?
-            </h3>
-            <p>
-              Testing frequency depends on project specifications, but typically every 500-1000 square feet or every lift for critical applications. Check local building codes and project requirements.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Can I use this calculator for any soil type?
-            </h3>
-            <p>
-              Yes, the calculator works for all soil types. However, you must use the correct maximum dry density from laboratory tests performed on your specific soil.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

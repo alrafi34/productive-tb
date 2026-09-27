@@ -1,3 +1,4 @@
+import { type CurrencyCode, formatMoney } from "@/lib/currency";
 import { Unit, Room, SkirtingCalculation, HistoryEntry } from "./types";
 
 export function createRoom(length: number = 10, width: number = 12, doors: number = 1, doorWidth: number = 3): Room {
@@ -94,7 +95,7 @@ export function clearHistory(): void {
 }
 
 // Export Functions
-export function exportToCSV(calculation: SkirtingCalculation): string {
+export function exportToCSV(calculation: SkirtingCalculation, currency: CurrencyCode = "USD"): string {
   const unit = getUnitLabel(calculation.unit);
   const headers = ["Room #", "Length", "Width", "Doors", "Door Width", "Skirting Length"];
   const rows = calculation.rooms.map((room, index) => [
@@ -109,12 +110,12 @@ export function exportToCSV(calculation: SkirtingCalculation): string {
   const summaryRow = ["", "", "", "", "Total:", `${formatNumber(calculation.totalSkirtingLength, 2)} ${unit}`];
   
   if (calculation.costPerUnit > 0) {
-    headers.push("Cost");
+    headers.push(`Cost (${currency})`);
     rows.forEach((row, index) => {
       const roomSkirting = calculateRoomSkirting(calculation.rooms[index]);
-      row.push(`$${formatNumber(roomSkirting * calculation.costPerUnit, 2)}`);
+      row.push(formatNumber(roomSkirting * calculation.costPerUnit, 2));
     });
-    summaryRow.push(`$${formatNumber(calculation.totalCost, 2)}`);
+    summaryRow.push(formatNumber(calculation.totalCost, 2));
   }
   
   const csvContent = [
@@ -126,7 +127,7 @@ export function exportToCSV(calculation: SkirtingCalculation): string {
   return csvContent;
 }
 
-export function exportToText(calculation: SkirtingCalculation): string {
+export function exportToText(calculation: SkirtingCalculation, currency: CurrencyCode = "USD"): string {
   const unit = getUnitLabel(calculation.unit);
   
   let text = `SKIRTING MATERIAL CALCULATION
@@ -144,7 +145,7 @@ export function exportToText(calculation: SkirtingCalculation): string {
 - Skirting Required: ${formatNumber(skirting, 2)} ${unit}
 `;
     if (calculation.costPerUnit > 0) {
-      text += `- Cost: $${formatNumber(skirting * calculation.costPerUnit, 2)}\n`;
+      text += `- Cost: ${formatMoney(skirting * calculation.costPerUnit, currency)}\n`;
     }
     text += "\n";
   });
@@ -155,8 +156,8 @@ Total Skirting Length: ${formatNumber(calculation.totalSkirtingLength, 2)} ${uni
 `;
 
   if (calculation.costPerUnit > 0) {
-    text += `Cost per ${unit}: $${calculation.costPerUnit}
-Total Cost: $${formatNumber(calculation.totalCost, 2)}
+    text += `Cost per ${unit}: ${formatMoney(calculation.costPerUnit, currency)}
+Total Cost: ${formatMoney(calculation.totalCost, currency)}
 `;
   }
 

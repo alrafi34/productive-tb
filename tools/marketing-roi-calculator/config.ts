@@ -8,7 +8,7 @@ export const marketingRoiCalculatorConfig = {
   icon: "📊",
   free: true,
   relatedTools: [
-    "roi-calculator-marketing",
+    "investment-return-calculator",
     "cost-per-acquisition-cpa-calculator",
     "cost-per-click-cpc-calculator",
     "profit-margin-calculator-marketing",

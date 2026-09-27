@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { sunlightExposureCalculatorConfig } from "./config";
+
 export default function SunlightExposureCalculatorSEO() {
+  const { howToSteps, faq } = sunlightExposureCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -15,43 +19,14 @@ export default function SunlightExposureCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Set Location</h3>
-              <p className="text-gray-700">
-                Enter the latitude and longitude of your location, or select from preset cities. Location determines the 
-                sun's path across the sky throughout the year.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Choose Date</h3>
-              <p className="text-gray-700">
-                Select the date for analysis. Sun position varies significantly throughout the year, with summer solstice 
-                providing maximum elevation and winter solstice the minimum.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Adjust Time</h3>
-              <p className="text-gray-700">
-                Use the time slider to analyze sunlight at different times of day, or click Play to animate the sun's 
-                movement from sunrise to sunset.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Configure Building</h3>
-              <p className="text-gray-700">
-                Set building height, orientation (0° = North, 90° = East, 180° = South, 270° = West), and surface type 
-                (wall, roof, or ground) to analyze specific exposure scenarios.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 5: Analyze Results</h3>
-              <p className="text-gray-700">
-                View real-time visualization showing sun position, shadow length and direction, plus numerical data including 
-                sun elevation, azimuth, exposure percentage, and light intensity.
-              </p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -235,59 +210,7 @@ export default function SunlightExposureCalculatorSEO() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How accurate are the sun position calculations?</h3>
-              <p className="text-gray-700">
-                The calculator uses simplified solar geometry formulas that provide accuracy within 1-2 degrees for most 
-                practical applications. For precise scientific or engineering work, consider specialized solar position 
-                algorithms that account for atmospheric refraction and Earth's orbital variations.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Why does sun position vary by latitude?</h3>
-              <p className="text-gray-700">
-                Earth's spherical shape means different latitudes experience different sun angles. Equatorial regions (0° 
-                latitude) see the sun nearly overhead year-round, while polar regions experience extreme seasonal variations 
-                with midnight sun in summer and polar night in winter.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What's the best building orientation for solar panels?</h3>
-              <p className="text-gray-700">
-                In the Northern Hemisphere, south-facing (180°) panels with tilt angle equal to latitude typically maximize 
-                annual energy production. In the Southern Hemisphere, north-facing (0°) is optimal. East-west orientations 
-                can work for morning/evening peak demand scenarios.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How do I use this for passive solar design?</h3>
-              <p className="text-gray-700">
-                Analyze winter sun angles to maximize solar heat gain through south-facing windows (Northern Hemisphere). 
-                Check summer conditions to design overhangs that block high-angle summer sun while allowing low-angle winter 
-                sun to enter.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What factors are not included in this calculator?</h3>
-              <p className="text-gray-700">
-                This tool doesn't account for atmospheric conditions (clouds, pollution), surrounding obstructions (trees, 
-                buildings), terrain elevation changes, or reflected light. It provides direct sunlight analysis only. For 
-                comprehensive daylighting studies, consider professional software with 3D modeling capabilities.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Can I use this for any location on Earth?</h3>
-              <p className="text-gray-700">
-                Yes, the calculator works for any latitude between -90° (South Pole) and +90° (North Pole). However, polar 
-                regions experience unique phenomena like midnight sun and polar night that may require special consideration 
-                beyond this tool's scope.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Design Best Practices</h2>

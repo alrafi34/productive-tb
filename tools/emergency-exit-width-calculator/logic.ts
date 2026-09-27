@@ -64,11 +64,11 @@ export function calculateEmergencyExitWidth(inputs: EmergencyExitInputs): Emerge
   
   // Code compliance notes
   if (widthFactor === 0.2) {
-    notes.push("Using stair width factor (0.2 in/person) - typical for vertical egress");
+    notes.push("Using 0.2 in/person - doors, corridors and ramps (IBC 1005.3.2), or stairways in a sprinklered building with an emergency voice/alarm system");
   } else if (widthFactor === 0.3) {
-    notes.push("Using door/corridor width factor (0.3 in/person) - typical for level egress");
+    notes.push("Using 0.3 in/person - stairways (IBC 1005.3.1)");
   } else if (widthFactor === 0.15) {
-    notes.push("Using sprinklered building factor (0.15 in/person) - reduced requirement");
+    notes.push("Using 0.15 in/person - doors and corridors in a sprinklered building with an emergency voice/alarm system (IBC 1005.3.2 exception)");
   }
   
   return {
@@ -113,11 +113,11 @@ function getSafetyLevel(widthPerExit: number, occupants: number, exits: number):
 function getWidthFactorDescription(factor: WidthFactor): string {
   switch (factor) {
     case 0.2:
-      return "stairs/vertical egress";
+      return "doors, corridors and ramps";
     case 0.3:
-      return "doors/level egress";
+      return "stairways";
     case 0.15:
-      return "sprinklered building";
+      return "doors and corridors, sprinklered with voice alarm";
     default:
       return "standard";
   }
@@ -127,9 +127,9 @@ export function getOccupancyPresets(): OccupancyPreset[] {
   return [
     {
       name: "Small Office",
-      description: "50 occupants, single exit",
-      occupants: 50,
-      widthFactor: 0.3,
+      description: "49 occupants, single exit",
+      occupants: 49,
+      widthFactor: 0.2,
       numberOfExits: 1,
       category: "Office"
     },
@@ -137,7 +137,7 @@ export function getOccupancyPresets(): OccupancyPreset[] {
       name: "Medium Office",
       description: "150 occupants, two exits",
       occupants: 150,
-      widthFactor: 0.3,
+      widthFactor: 0.2,
       numberOfExits: 2,
       category: "Office"
     },
@@ -145,15 +145,15 @@ export function getOccupancyPresets(): OccupancyPreset[] {
       name: "Classroom",
       description: "30 students, single exit",
       occupants: 30,
-      widthFactor: 0.3,
+      widthFactor: 0.2,
       numberOfExits: 1,
       category: "Educational"
     },
     {
       name: "Lecture Hall",
-      description: "200 occupants, two exits",
+      description: "200 occupants, two exits, stairs",
       occupants: 200,
-      widthFactor: 0.2,
+      widthFactor: 0.3,
       numberOfExits: 2,
       category: "Educational"
     },
@@ -161,15 +161,15 @@ export function getOccupancyPresets(): OccupancyPreset[] {
       name: "Restaurant",
       description: "100 occupants, two exits",
       occupants: 100,
-      widthFactor: 0.3,
+      widthFactor: 0.2,
       numberOfExits: 2,
       category: "Assembly"
     },
     {
       name: "Theater",
-      description: "300 occupants, three exits",
+      description: "300 occupants, three exits, stairs",
       occupants: 300,
-      widthFactor: 0.2,
+      widthFactor: 0.3,
       numberOfExits: 3,
       category: "Assembly"
     },
@@ -177,7 +177,7 @@ export function getOccupancyPresets(): OccupancyPreset[] {
       name: "Retail Store",
       description: "200 occupants, two exits",
       occupants: 200,
-      widthFactor: 0.3,
+      widthFactor: 0.2,
       numberOfExits: 2,
       category: "Mercantile"
     },
@@ -312,9 +312,9 @@ export function getSafetyLevelColor(level: SafetyLevel): string {
 
 export function getWidthFactorLabel(factor: WidthFactor): string {
   const labels: Record<WidthFactor, string> = {
-    0.2: "0.2 in/person (Stairs)",
-    0.3: "0.3 in/person (Doors/Level)",
-    0.15: "0.15 in/person (Sprinklered)"
+    0.2: "0.2 in/person (Doors, corridors, ramps)",
+    0.3: "0.3 in/person (Stairways)",
+    0.15: "0.15 in/person (Doors, sprinklered + voice alarm)"
   };
   return labels[factor];
 }

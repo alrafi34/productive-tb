@@ -565,7 +565,8 @@ export default function RoomVolumeCalculatorUI() {
                     Recommended CADR: <strong>{cadr} CFM</strong>
                   </div>
                   <p className="text-xs text-green-700 mt-2">
-                    For effective air purification, choose an air purifier with CADR at least {cadr} CFM.
+                    Enough for about five clean-air changes an hour; for an 8 ft ceiling this matches the AHAM guideline
+                    of a CADR of at least two-thirds of the floor area in square feet.
                   </p>
                 </div>
               </div>

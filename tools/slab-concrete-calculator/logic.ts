@@ -130,7 +130,8 @@ export const calculateSlabVolume = (
   // Calculate cost if provided
   let totalCost: number | undefined;
   if (costPerUnit && costPerUnit > 0) {
-    totalCost = volumeM3 * costPerUnit;
+    // Ready-mix is priced per cubic yard where slabs are measured in feet, per m³ elsewhere
+    totalCost = (unit === 'ft' ? volumeYd3 : volumeM3) * costPerUnit;
   }
   
   return {
@@ -266,7 +267,7 @@ export const exportToText = (calculation: SlabCalculation): string => {
     text += '\n';
     text += 'COST ESTIMATION:\n';
     text += '───────────────────────────────────────\n';
-    text += `Cost per m³:      ${formatNumber(calculation.costPerUnit || 0, 2)}\n`;
+    text += `Cost per ${calculation.unit === 'ft' ? 'yd³' : 'm³'}:     ${formatNumber(calculation.costPerUnit || 0, 2)}\n`;
     text += `Total Cost:       ${formatNumber(calculation.totalCost, 2)}\n`;
   }
   

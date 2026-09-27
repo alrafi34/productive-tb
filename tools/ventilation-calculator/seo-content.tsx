@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { ventilationCalculatorConfig } from "./config";
+
 export default function VentilationCalculatorSEO() {
+  const { howToSteps, faq } = ventilationCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100">
@@ -70,55 +74,14 @@ export default function VentilationCalculatorSEO() {
         </div>
 
         <h3 className="text-xl font-bold text-gray-900 mb-4 mt-8">How to Use the Calculator</h3>
-        
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-6">
-          <h4 className="font-semibold text-blue-900 mb-3">Room Volume Mode (ACH-based)</h4>
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">1.</span>
-              <span><strong>Select Mode:</strong> Choose "Room Volume (ACH)" calculation mode</span>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
             </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">2.</span>
-              <span><strong>Enter Dimensions:</strong> Input room length, width, and height</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">3.</span>
-              <span><strong>Set ACH:</strong> Enter or select air changes per hour (use presets for guidance)</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">4.</span>
-              <span><strong>Choose Units:</strong> Select preferred output unit (CFM, m³/h, or L/s)</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">5.</span>
-              <span><strong>View Results:</strong> See required airflow with automatic conversions</span>
-            </li>
-          </ol>
-        </div>
-
-        <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-xl mb-6">
-          <h4 className="font-semibold text-green-900 mb-3">Occupancy Mode</h4>
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex gap-3">
-              <span className="font-bold text-green-600 flex-shrink-0">1.</span>
-              <span><strong>Select Mode:</strong> Choose "Occupancy-based" calculation mode</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-green-600 flex-shrink-0">2.</span>
-              <span><strong>Enter People:</strong> Input number of occupants</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-green-600 flex-shrink-0">3.</span>
-              <span><strong>Set Airflow:</strong> Enter airflow per person (typically 8-10 L/s)</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-green-600 flex-shrink-0">4.</span>
-              <span><strong>View Results:</strong> See total required airflow instantly</span>
-            </li>
-          </ol>
-        </div>
-
+          ))}
+        </ol>
         <h3 className="text-xl font-bold text-gray-900 mb-4">Understanding the Formulas</h3>
         
         <div className="bg-gray-50 p-6 rounded-xl mb-6">
@@ -326,6 +289,7 @@ export default function VentilationCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

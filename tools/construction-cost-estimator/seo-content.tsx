@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { constructionCostEstimatorConfig } from "./config";
+
 export default function ConstructionCostEstimatorSEO() {
+  const { howToSteps, faq } = constructionCostEstimatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100">
@@ -81,7 +85,7 @@ export default function ConstructionCostEstimatorSEO() {
               Base Cost = Area (sq ft) × Cost per sq ft
             </code>
             <div className="text-xs text-blue-700 mt-2">
-              Example: 1,500 sq ft × $50/sq ft = $75,000
+              Example: 1,500 sq ft × $150/sq ft = $225,000
             </div>
           </div>
 
@@ -247,12 +251,12 @@ export default function ConstructionCostEstimatorSEO() {
             <h4 className="font-semibold text-gray-900 mb-2">Example 1: Small Residential Home</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p><strong>Area:</strong> 1,200 sq ft</p>
-              <p><strong>Cost per sq ft:</strong> $50</p>
+              <p><strong>Cost per sq ft:</strong> $150</p>
               <p><strong>Material:</strong> Medium (1.0x)</p>
               <p><strong>Labor:</strong> 1.0x</p>
               <p><strong>Region:</strong> Standard (1.0x)</p>
-              <p><strong>Base Cost:</strong> 1,200 × $50 = $60,000</p>
-              <p className="text-primary font-semibold"><strong>Total Cost:</strong> $60,000</p>
+              <p><strong>Base Cost:</strong> 1,200 × $150 = $180,000</p>
+              <p className="text-primary font-semibold"><strong>Total Cost:</strong> $180,000</p>
             </div>
           </div>
 
@@ -260,15 +264,15 @@ export default function ConstructionCostEstimatorSEO() {
             <h4 className="font-semibold text-gray-900 mb-2">Example 2: Premium Home with Add-ons</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p><strong>Area:</strong> 2,000 sq ft</p>
-              <p><strong>Cost per sq ft:</strong> $80</p>
+              <p><strong>Cost per sq ft:</strong> $160</p>
               <p><strong>Material:</strong> High (1.3x)</p>
               <p><strong>Labor:</strong> 1.2x</p>
               <p><strong>Region:</strong> High (1.2x)</p>
               <p><strong>Add-ons:</strong> Plumbing, Electrical</p>
-              <p><strong>Base Cost:</strong> 2,000 × $80 = $160,000</p>
-              <p><strong>Adjusted:</strong> $160,000 × 1.3 × 1.2 × 1.2 = $299,520</p>
-              <p><strong>Add-ons:</strong> $160,000 × (0.05 + 0.07) = $19,200</p>
-              <p className="text-primary font-semibold"><strong>Total Cost:</strong> $318,720</p>
+              <p><strong>Base Cost:</strong> 2,000 × $160 = $320,000</p>
+              <p><strong>Adjusted:</strong> $320,000 × 1.3 × 1.2 × 1.2 = $599,040</p>
+              <p><strong>Add-ons:</strong> $320,000 × (0.05 + 0.07) = $38,400</p>
+              <p className="text-primary font-semibold"><strong>Total Cost:</strong> $637,440</p>
             </div>
           </div>
         </div>
@@ -311,6 +315,18 @@ export default function ConstructionCostEstimatorSEO() {
         </div>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Construction Cost Estimator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

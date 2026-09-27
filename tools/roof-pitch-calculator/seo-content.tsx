@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { roofPitchCalculatorConfig } from "./config";
+
 export default function RoofPitchCalculatorSEO() {
+  const { howToSteps, faq } = roofPitchCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -23,15 +27,14 @@ export default function RoofPitchCalculatorSEO() {
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>
-        <ol className="list-decimal list-inside text-gray-700 space-y-2 mb-4">
-          <li>Select input mode (Rise & Run, Pitch Ratio, or Angle)</li>
-          <li>Enter your measurements</li>
-          <li>Choose measurement unit (inches, feet, or meters)</li>
-          <li>View instant results with pitch, angle, and slope</li>
-          <li>Use visual diagram to understand the pitch</li>
-          <li>Export calculations or save to history</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
-
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Understanding Roof Pitch</h3>
         <p className="text-gray-700 mb-4">
           Roof pitch is the steepness or slope of a roof, typically expressed as a ratio of vertical rise to horizontal run. The standard format is X:12, meaning X inches of rise for every 12 inches of horizontal run. Roof pitch affects drainage, material selection, structural design, and aesthetics.
@@ -259,6 +262,7 @@ export default function RoofPitchCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

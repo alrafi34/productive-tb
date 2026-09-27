@@ -13,7 +13,7 @@ export const leadConversionFunnelCalculatorConfig = {
     "customer-lifetime-value-calculator",
     "bounce-rate-calculator",
     "marketing-roi-calculator",
-    "roi-calculator-marketing",
+    "investment-return-calculator",
   ],
   seo: {
     title: "Lead Conversion Funnel Calculator — Free Funnel Analyzer Online",

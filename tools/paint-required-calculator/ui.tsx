@@ -8,6 +8,7 @@ import {
   roundPaintAmount,
   formatPaintAmount,
   getDefaultCoverage,
+  paintUnit,
   saveToHistory,
   getHistory,
   clearHistory,
@@ -105,7 +106,7 @@ export default function PaintRequiredCalculatorUI() {
 
   const handleCopy = () => {
     if (calculation) {
-      const text = `Paint Required: ${calculation.paintRequired.toFixed(2)} liters\nRecommended Purchase: ${calculation.recommendedPurchase} liters`;
+      const text = `Paint Required: ${calculation.paintRequired.toFixed(2)} ${paintUnit(calculation.unit)}\nRecommended Purchase: ${calculation.recommendedPurchase} ${paintUnit(calculation.unit)}`;
       navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -238,19 +239,19 @@ export default function PaintRequiredCalculatorUI() {
               {/* Paint Coverage */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Coverage per Liter ({unit}²)
+                  Coverage per {unit === "ft" ? "US Gallon" : "Liter"} ({unit}²)
                 </label>
                 <input
                   type="number"
                   value={coverage}
                   onChange={(e) => setCoverage(parseFloat(e.target.value) || 0)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                  placeholder={unit === "ft" ? "350" : "32.5"}
+                  placeholder={unit === "ft" ? "350" : "10"}
                   min="0"
                   step="0.1"
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  Typical: {unit === "ft" ? "300-400 sq ft" : "28-37 sq m"} per liter
+                  Typical: {unit === "ft" ? "350–400 sq ft per gallon" : "9–12 m² per liter"} for one coat on smooth walls
                 </p>
               </div>
 
@@ -281,7 +282,7 @@ export default function PaintRequiredCalculatorUI() {
                     {calculation.paintRequired.toFixed(2)}
                   </div>
                   <div className="text-xl text-primary-100">
-                    liters
+                    {paintUnit(calculation.unit)}
                   </div>
                 </div>
 
@@ -293,7 +294,7 @@ export default function PaintRequiredCalculatorUI() {
                     {calculation.recommendedPurchase}
                   </div>
                   <div className="text-lg text-primary-100">
-                    liters
+                    {paintUnit(calculation.unit)}
                   </div>
                 </div>
 
@@ -420,7 +421,7 @@ export default function PaintRequiredCalculatorUI() {
               {calculation && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="text-sm text-green-800">
-                    <strong>Calculation:</strong> ({calculation.totalArea.toFixed(2)} - {calculation.openingsArea.toFixed(2)}) × {calculation.coats} ÷ {calculation.coverage.toFixed(0)} = {calculation.paintRequired.toFixed(2)} liters
+                    <strong>Calculation:</strong> ({calculation.totalArea.toFixed(2)} - {calculation.openingsArea.toFixed(2)}) × {calculation.coats} ÷ {calculation.coverage.toFixed(1)} = {calculation.paintRequired.toFixed(2)} {paintUnit(calculation.unit)}
                   </div>
                 </div>
               )}
@@ -493,7 +494,7 @@ export default function PaintRequiredCalculatorUI() {
                       >
                         <div className="flex items-center justify-between mb-2">
                           <span className="font-semibold text-gray-900">
-                            {entry.calculation.paintRequired.toFixed(2)} liters
+                            {entry.calculation.paintRequired.toFixed(2)} {paintUnit(entry.calculation.unit)}
                           </span>
                           <span className="text-xs text-gray-500">
                             {new Date(entry.timestamp).toLocaleString()}

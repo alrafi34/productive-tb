@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { wallAreaCalculatorConfig } from "./config";
+
 export default function WallAreaCalculatorSEO() {
+  const { howToSteps, faq } = wallAreaCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -20,14 +24,14 @@ export default function WallAreaCalculatorSEO() {
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>
-        <ol className="list-decimal pl-6 text-gray-700 space-y-2">
-          <li>Select your preferred measurement unit (feet or meters)</li>
-          <li>Add walls by clicking "Add Wall" and enter width and height</li>
-          <li>Add doors and windows by clicking "Add Door/Window"</li>
-          <li>View the net paintable area in the summary panel</li>
-          <li>Export your calculations for documentation</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
-
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Calculation Formula</h3>
         <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
           <p className="text-gray-700 font-mono text-sm mb-2">
@@ -90,6 +94,7 @@ export default function WallAreaCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

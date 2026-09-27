@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Unit, Room, SkirtingCalculation } from "./types";
+import { CURRENCIES, type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import {
   createRoom,
   calculateRoomSkirting,
@@ -25,6 +26,13 @@ export default function SkirtingMaterialCalculatorUI() {
   const [rooms, setRooms] = useState<Room[]>([createRoom()]);
   const [unit, setUnit] = useState<Unit>("feet");
   const [costPerUnit, setCostPerUnit] = useState(0);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [showCost, setShowCost] = useState(false);
   
   const [calculation, setCalculation] = useState<SkirtingCalculation | null>(null);
@@ -76,7 +84,7 @@ export default function SkirtingMaterialCalculatorUI() {
 
   const handleCopy = () => {
     if (calculation) {
-      const text = `Total Skirting: ${formatNumber(calculation.totalSkirtingLength, 2)} ${getUnitLabel(calculation.unit)}${showCost ? ` | Cost: $${formatNumber(calculation.totalCost, 2)}` : ''}`;
+      const text = `Total Skirting: ${formatNumber(calculation.totalSkirtingLength, 2)} ${getUnitLabel(calculation.unit)}${showCost ? ` | Cost: ${formatMoney(calculation.totalCost, currency)}` : ''}`;
       navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -92,14 +100,14 @@ export default function SkirtingMaterialCalculatorUI() {
 
   const handleExportCSV = () => {
     if (calculation) {
-      const csv = exportToCSV(calculation);
+      const csv = exportToCSV(calculation, currency);
       downloadFile(csv, 'skirting-calculation.csv', 'text/csv');
     }
   };
 
   const handleExportText = () => {
     if (calculation) {
-      const text = exportToText(calculation);
+      const text = exportToText(calculation, currency);
       downloadFile(text, 'skirting-calculation.txt', 'text/plain');
     }
   };
@@ -173,18 +181,31 @@ export default function SkirtingMaterialCalculatorUI() {
               {/* Cost Per Unit */}
               {showCost && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Cost per {getUnitLabel(unit)} ($)
+                  <label htmlFor="skirting-cost" className="block text-sm font-medium text-gray-700 mb-2">
+                    Cost per {getUnitLabel(unit)}
                   </label>
-                  <input
-                    type="number"
-                    value={costPerUnit || ''}
-                    onChange={(e) => setCostPerUnit(parseFloat(e.target.value) || 0)}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono"
-                    placeholder="2.50"
-                    min="0"
-                    step="0.1"
-                  />
+                  <div className="flex gap-2">
+                    <select
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                      aria-label="Currency"
+                      className="px-3 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
+                    >
+                      {CURRENCIES.map((c) => (
+                        <option key={c.code} value={c.code}>{c.symbol} {c.code}</option>
+                      ))}
+                    </select>
+                    <input
+                      id="skirting-cost"
+                      type="number"
+                      value={costPerUnit || ''}
+                      onChange={(e) => setCostPerUnit(parseFloat(e.target.value) || 0)}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono"
+                      placeholder="2.50"
+                      min="0"
+                      step="0.1"
+                    />
+                  </div>
                 </div>
               )}
 
@@ -225,7 +246,7 @@ export default function SkirtingMaterialCalculatorUI() {
                       Total Cost
                     </p>
                     <div className="text-2xl font-bold">
-                      ${formatNumber(calculation.totalCost, 2)}
+                      {formatMoney(calculation.totalCost, currency)}
                     </div>
                   </div>
                 )}
@@ -358,7 +379,7 @@ export default function SkirtingMaterialCalculatorUI() {
                           Skirting: <span className="font-semibold text-primary">{formatNumber(skirting, 2)} {getUnitLabel(unit)}</span>
                           {showCost && costPerUnit > 0 && (
                             <span className="ml-2">
-                              • Cost: <span className="font-semibold text-primary">${formatNumber(skirting * costPerUnit, 2)}</span>
+                              • Cost: <span className="font-semibold text-primary">{formatMoney(skirting * costPerUnit, currency)}</span>
                             </span>
                           )}
                         </div>
@@ -390,7 +411,7 @@ export default function SkirtingMaterialCalculatorUI() {
                   {showCost && calculation.costPerUnit > 0 && (
                     <div className="p-3 bg-green-50 rounded-lg border border-green-200">
                       <div className="text-xs text-green-700 uppercase tracking-wider mb-1 font-semibold">Total Cost</div>
-                      <div className="text-2xl font-bold text-green-700">${formatNumber(calculation.totalCost, 2)}</div>
+                      <div className="text-2xl font-bold text-green-700">{formatMoney(calculation.totalCost, currency)}</div>
                       <div className="text-xs text-green-600">estimated</div>
                     </div>
                   )}
@@ -461,7 +482,7 @@ export default function SkirtingMaterialCalculatorUI() {
                         <div className="text-sm text-gray-600">
                           {entry.calculation.rooms.length} rooms
                           {entry.calculation.costPerUnit > 0 && (
-                            <span className="ml-2">• ${formatNumber(entry.calculation.totalCost, 2)}</span>
+                            <span className="ml-2">• {formatMoney(entry.calculation.totalCost, currency)}</span>
                           )}
                         </div>
                       </div>

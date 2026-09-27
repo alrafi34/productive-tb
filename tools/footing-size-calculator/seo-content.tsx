@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { footingSizeCalculatorConfig } from "./config";
+
 export default function FootingSizeCalculatorSEO() {
+  const { howToSteps, faq } = footingSizeCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
       <section className="mb-8">
@@ -13,14 +17,13 @@ export default function FootingSizeCalculatorSEO() {
 
       <section className="mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Footing Size Calculator</h2>
-        <ol className="list-decimal list-inside space-y-2 text-gray-700">
-          <li><strong>Select Unit System:</strong> Choose between metric (kN, m) or imperial (lb, ft) units</li>
-          <li><strong>Choose Footing Type:</strong> Select square or rectangular footing</li>
-          <li><strong>Enter Total Load:</strong> Input the total structural load on the footing</li>
-          <li><strong>Enter Bearing Capacity:</strong> Input the safe bearing capacity of the soil</li>
-          <li><strong>Set Factor of Safety:</strong> Adjust the safety factor (typically 1.5-2.5)</li>
-          <li><strong>For Rectangular:</strong> Set the length/width ratio if using rectangular footing</li>
-          <li><strong>Review Results:</strong> Get instant footing dimensions and area calculations</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -163,35 +166,7 @@ export default function FootingSizeCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What is the difference between square and rectangular footings?</h3>
-            <p className="text-gray-700">
-              Square footings have equal length and width, providing uniform load distribution. Rectangular footings have different length and width dimensions, useful when space is limited in one direction or when loads are unequal.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How do I determine soil bearing capacity?</h3>
-            <p className="text-gray-700">
-              Soil bearing capacity must be determined through geotechnical investigation including soil testing, boring, and laboratory analysis. Never assume bearing capacity without proper testing. The calculator provides typical values for reference only.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What factor of safety should I use?</h3>
-            <p className="text-gray-700">
-              Standard practice uses a factor of safety of 2.0 for most buildings. Use 1.5 for temporary structures with well-known conditions, and 2.5-3.0 for critical structures, uncertain soil conditions, or when required by local codes.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this for all types of foundations?</h3>
-            <p className="text-gray-700">
-              This calculator is designed for isolated spread footings under columns or walls. For other foundation types like raft foundations, pile caps, or combined footings, specialized analysis is required.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Benefits of Using This Calculator</h2>

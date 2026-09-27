@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { concreteVolumeCalculatorConfig } from "./config";
+
 export default function ConcreteVolumeCalculatorSEO() {
+  const { howToSteps, faq } = concreteVolumeCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
       
@@ -14,39 +18,14 @@ export default function ConcreteVolumeCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Select Shape Type</h3>
-            <p className="text-sm">
-              Choose the construction element you need to calculate: Slab, Column, Beam, or Footing. The input fields will automatically adjust based on your selection.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Enter Dimensions</h3>
-            <p className="text-sm">
-              Input the dimensions for your selected shape. For slabs and footings, enter length, width, and thickness/depth. For columns, enter radius and height. For beams, enter length, width, and height.
-            </p>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Example:</strong> For a 10m × 5m slab with 0.15m thickness, enter: Length=10, Width=5, Thickness=0.15
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Set Quantity</h3>
-            <p className="text-sm">
-              If you have multiple identical structures, enter the quantity. The calculator will automatically multiply the unit volume by the quantity to give you the total volume needed.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Add to Batch (Optional)</h3>
-            <p className="text-sm">
-              For projects with multiple different elements, use the "Add to Batch" feature to combine calculations. The tool will automatically sum up all volumes and allow you to export the complete list.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section>
@@ -220,35 +199,7 @@ export default function ConcreteVolumeCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How much concrete do I need for a 10×10 slab?</h3>
-            <p className="text-sm">
-              For a 10m × 10m slab with standard 0.15m (6 inch) thickness, you'll need 15 cubic meters of concrete. Always add 5-10% extra for wastage.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can I calculate volume in feet?</h3>
-            <p className="text-sm">
-              Yes! The calculator supports both meters and feet. Simply select your preferred unit, and the tool will handle all conversions automatically.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">What is the batch calculation feature?</h3>
-            <p className="text-sm">
-              The batch feature allows you to add multiple calculations together. This is useful for projects with different elements (slabs, columns, beams) where you need a total concrete volume.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How accurate are these calculations?</h3>
-            <p className="text-sm">
-              The calculator uses standard geometric formulas and provides accurate results. However, always consult with a structural engineer for critical structural elements and add appropriate safety margins.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

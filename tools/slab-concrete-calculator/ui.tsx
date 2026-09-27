@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Unit, SlabShape, SlabCalculation, RectangularDimensions, CircularDimensions, TriangularDimensions, LShapedDimensions } from "./types";
+import { CURRENCIES, type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import {
   calculateSlabVolume,
   getShapeDisplayName,
@@ -50,6 +51,13 @@ export default function SlabConcreteCalculatorUI() {
   });
   
   const [costPerUnit, setCostPerUnit] = useState("");
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [showCost, setShowCost] = useState(false);
   
   // Results
@@ -256,18 +264,31 @@ export default function SlabConcreteCalculatorUI() {
               {/* Cost Input */}
               {showCost && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Cost per m³
+                  <label htmlFor="slab-cost" className="block text-sm font-medium text-gray-700 mb-2">
+                    Price per {unit === "ft" ? "cubic yard" : "m³"}
                   </label>
-                  <input
-                    type="number"
-                    value={costPerUnit}
-                    onChange={(e) => setCostPerUnit(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder="100"
-                    min="0"
-                    step="0.01"
-                  />
+                  <div className="flex gap-2">
+                    <select
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                      aria-label="Currency"
+                      className="px-3 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
+                    >
+                      {CURRENCIES.map((c) => (
+                        <option key={c.code} value={c.code}>{c.symbol} {c.code}</option>
+                      ))}
+                    </select>
+                    <input
+                      id="slab-cost"
+                      type="number"
+                      value={costPerUnit}
+                      onChange={(e) => setCostPerUnit(e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                      placeholder={unit === "ft" ? "165" : "140"}
+                      min="0"
+                      step="0.01"
+                    />
+                  </div>
                 </div>
               )}
 
@@ -321,7 +342,7 @@ export default function SlabConcreteCalculatorUI() {
                       <div className="pt-2 border-t border-white/20"></div>
                       <div className="flex justify-between">
                         <span className="text-primary-100">Total Cost:</span>
-                        <span className="font-semibold">${formatNumber(calculation.totalCost, 2)}</span>
+                        <span className="font-semibold">{formatMoney(calculation.totalCost, currency)}</span>
                       </div>
                     </>
                   )}
@@ -632,7 +653,7 @@ export default function SlabConcreteCalculatorUI() {
                   {calculation.totalCost && (
                     <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                       <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Total Cost</div>
-                      <div className="text-lg font-bold text-primary">${formatNumber(calculation.totalCost, 2)}</div>
+                      <div className="text-lg font-bold text-primary">{formatMoney(calculation.totalCost, currency)}</div>
                     </div>
                   )}
                 </div>

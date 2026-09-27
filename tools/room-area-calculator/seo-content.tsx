@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { roomAreaCalculatorConfig } from "./config";
+
 export default function RoomAreaCalculatorSEO() {
+  const { howToSteps, faq } = roomAreaCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12 text-gray-700">
       
@@ -14,14 +18,13 @@ export default function RoomAreaCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Room Area Calculator</h2>
-        <ol className="list-decimal list-inside space-y-3 leading-relaxed">
-          <li><strong>Select Your Unit:</strong> Choose your preferred measurement unit (feet, meters, yards, or inches).</li>
-          <li><strong>Enter Length:</strong> Input the length of your room in the selected unit.</li>
-          <li><strong>Enter Width:</strong> Input the width of your room in the selected unit.</li>
-          <li><strong>View Results:</strong> The area calculates automatically in real-time as you type.</li>
-          <li><strong>Check Conversions:</strong> See the area converted to all common units instantly.</li>
-          <li><strong>Use Extras (Optional):</strong> Calculate tiles needed or paint gallons required.</li>
-          <li><strong>Save or Export:</strong> Save to history or export your calculation as a text file.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -191,46 +194,7 @@ export default function RoomAreaCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How do I measure an irregular room?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Divide the room into multiple rectangular sections, calculate each area separately, and add them together. For L-shaped rooms, treat them as two rectangles.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Should I include closets in room area?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              For flooring and painting, yes. For furniture planning, calculate the main room area separately from closet space.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How much extra material should I buy?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Add 10-15% extra for flooring and tiles to account for cuts, waste, and future repairs. For paint, round up to the nearest gallon.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I save my calculations?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Yes! Use the "Save to History" button to store calculations in your browser. You can review and reload them anytime.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What if my room isn't perfectly rectangular?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Measure the longest length and widest width to get an approximate area. For precise calculations, divide into multiple sections.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use This Room Area Calculator?</h2>

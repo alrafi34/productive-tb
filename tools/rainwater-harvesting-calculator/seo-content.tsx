@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { rainwaterHarvestingCalculatorConfig } from "./config";
+
 export default function RainwaterHarvestingCalculatorSEO() {
+  const { howToSteps, faq } = rainwaterHarvestingCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -12,27 +16,14 @@ export default function RainwaterHarvestingCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Enter Roof Area</h3>
-              <p className="text-gray-700">Input your total roof catchment area in square meters or square feet. This is the horizontal projection of your roof surface that collects rainwater.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Input Annual Rainfall</h3>
-              <p className="text-gray-700">Enter the average annual rainfall for your location in millimeters or inches. You can find this data from local weather stations or online climate databases.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Set Runoff Coefficient</h3>
-              <p className="text-gray-700">Adjust the runoff coefficient (0.5-1.0) based on your roof material. Smooth surfaces like metal or tile have higher coefficients (0.8-0.9), while rough surfaces have lower values.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Review Results</h3>
-              <p className="text-gray-700">The calculator instantly shows your potential water collection in liters or gallons per year, month, and day, plus recommended tank sizes.</p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -167,45 +158,7 @@ export default function RainwaterHarvestingCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How accurate is the calculator?</h3>
-              <p className="text-gray-700">
-                The calculator provides estimates based on standard formulas used in civil engineering. Actual collection may vary by ±10-15% due to local conditions, roof design, and system efficiency.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Can I use rainwater for drinking?</h3>
-              <p className="text-gray-700">
-                Rainwater can be used for drinking if properly filtered and treated. However, most residential systems are designed for non-potable uses like irrigation, toilet flushing, and laundry.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">What runoff coefficient should I use?</h3>
-              <p className="text-gray-700">
-                Use 0.8-0.9 for metal or tile roofs, 0.75-0.85 for asphalt shingles, and 0.7-0.8 for concrete or clay tiles. When in doubt, use 0.8 as a conservative estimate.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How do I find my local rainfall data?</h3>
-              <p className="text-gray-700">
-                Check your local weather station, national meteorological service, or online climate databases. Use average annual rainfall for the most accurate estimates.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Is rainwater harvesting legal?</h3>
-              <p className="text-gray-700">
-                Rainwater harvesting is legal in most areas and even encouraged through rebates and incentives. However, some regions have restrictions. Check local regulations before installing a system.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Related Calculations</h2>

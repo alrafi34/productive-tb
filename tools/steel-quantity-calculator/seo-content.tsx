@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { steelQuantityCalculatorConfig } from "./config";
+
 export default function SteelQuantityCalculatorSEO() {
+  const { howToSteps, faq } = steelQuantityCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
       <section className="mb-8">
@@ -13,12 +17,13 @@ export default function SteelQuantityCalculatorSEO() {
 
       <section className="mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-        <ol className="list-decimal list-inside space-y-2 text-gray-700">
-          <li><strong>Select Element Type:</strong> Choose from Slab, Beam, Column, or Footing</li>
-          <li><strong>Choose Unit System:</strong> Select Metric or Imperial units</li>
-          <li><strong>Enter Parameters:</strong> Input dimensions and steel factors</li>
-          <li><strong>View Results:</strong> Get instant steel quantity in kg and tons</li>
-          <li><strong>Export Data:</strong> Download results as text or CSV</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -129,6 +134,7 @@ export default function SteelQuantityCalculatorSEO() {
           <li>Instant results for better decision making</li>
         </ul>
       </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

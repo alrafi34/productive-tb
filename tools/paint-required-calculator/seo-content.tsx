@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { paintRequiredCalculatorConfig } from "./config";
+
 export default function PaintRequiredCalculatorSEO() {
+  const { howToSteps, faq } = paintRequiredCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -22,16 +26,14 @@ export default function PaintRequiredCalculatorSEO() {
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>
-        <ol className="list-decimal pl-6 text-gray-700 space-y-2">
-          <li>Choose calculation mode (Room or Custom Area)</li>
-          <li>Select your measurement unit (feet or meters)</li>
-          <li>Enter room dimensions or total area</li>
-          <li>Set number of coats (typically 2 for best coverage)</li>
-          <li>Adjust paint coverage rate if needed</li>
-          <li>Optionally subtract doors and windows area</li>
-          <li>View instant paint requirement and purchase recommendation</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
-
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Calculation Formula</h3>
         <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
           <p className="text-gray-700 font-mono text-sm mb-2">
@@ -41,7 +43,7 @@ export default function PaintRequiredCalculatorSEO() {
             <strong>Net Area:</strong> Total Area - Openings Area
           </p>
           <p className="text-gray-700 font-mono text-sm">
-            <strong>Paint Required:</strong> (Net Area × Coats) ÷ Coverage per Liter
+            <strong>Paint Required:</strong> (Net Area × Coats) ÷ Coverage per Gallon or Liter
           </p>
         </div>
 
@@ -52,16 +54,16 @@ export default function PaintRequiredCalculatorSEO() {
           <p className="text-gray-700 mb-1">Openings (1 door + 2 windows) = 50 sq ft</p>
           <p className="text-gray-700 mb-1">Net Area = 440 - 50 = 390 sq ft</p>
           <p className="text-gray-700 mb-1">Total Coverage Needed = 390 × 2 = 780 sq ft</p>
-          <p className="text-gray-700 mb-1">Paint Required = 780 ÷ 350 = 2.23 liters</p>
-          <p className="text-gray-700 text-lg font-bold text-primary mt-3">Recommended Purchase: 3 liters</p>
+          <p className="text-gray-700 mb-1">Paint Required = 780 ÷ 350 = 2.23 US gallons</p>
+          <p className="text-gray-700 text-lg font-bold text-primary mt-3">Recommended Purchase: 3 gallons</p>
         </div>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Paint Coverage Guidelines</h3>
         <ul className="list-disc pl-6 text-gray-700 space-y-2">
-          <li><strong>Standard Coverage:</strong> 300-400 sq ft per liter (28-37 sq m per liter)</li>
-          <li><strong>Smooth Surfaces:</strong> Higher coverage (up to 400 sq ft/liter)</li>
-          <li><strong>Rough/Textured Surfaces:</strong> Lower coverage (250-300 sq ft/liter)</li>
-          <li><strong>Primer:</strong> Similar coverage to paint, typically 300-350 sq ft/liter</li>
+          <li><strong>Standard Coverage:</strong> 350–400 sq ft per US gallon (about 9–10 m² per liter)</li>
+          <li><strong>Smooth Surfaces:</strong> Higher coverage (up to 400 sq ft per gallon, 10–12 m² per liter)</li>
+          <li><strong>Rough/Textured Surfaces:</strong> Lower coverage (250–300 sq ft per gallon, 6–7 m² per liter)</li>
+          <li><strong>Primer:</strong> Typically 200–300 sq ft per gallon on new drywall, which absorbs more</li>
           <li><strong>Dark to Light Colors:</strong> May require additional coats</li>
         </ul>
 
@@ -113,6 +115,7 @@ export default function PaintRequiredCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

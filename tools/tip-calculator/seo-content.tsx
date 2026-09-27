@@ -1,30 +1,24 @@
+import ToolFaq from "@/components/ToolFaq";
+import { tipCalculatorConfig } from "./config";
+
 export default function TipCalculatorSEOContent() {
+  const { howToSteps, faq } = tipCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
       {/* How It Works */}
       <section className="space-y-4">
         <h2 className="text-2xl font-bold text-gray-900">How the Tip Calculator Works</h2>
         <p>
-          Our Tip Calculator uses simple mathematical formulas to instantly calculate tips and split bills between multiple people. Here's how it works:
+          Work out the tip and each person&apos;s share of the bill in four steps:
         </p>
-        <div className="bg-gray-50 p-4 rounded-lg space-y-3">
-          <div>
-            <h3 className="font-semibold text-gray-900">Step 1: Enter Bill Amount</h3>
-            <p className="text-sm">Input the total bill amount before tip.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900">Step 2: Select Tip Percentage</h3>
-            <p className="text-sm">Choose from preset options (10%, 15%, 18%, 20%) or use the slider for custom percentages.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900">Step 3: Set Number of People</h3>
-            <p className="text-sm">Specify how many people are splitting the bill.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900">Step 4: View Results</h3>
-            <p className="text-sm">See the tip amount, total bill, and per-person cost instantly.</p>
-          </div>
-        </div>
+        <ol className="bg-gray-50 p-4 rounded-lg space-y-3">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name}>
+              <h3 className="font-semibold text-gray-900">Step {i + 1}: {name}</h3>
+              <p className="text-sm">{text}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Formulas */}
@@ -104,44 +98,8 @@ export default function TipCalculatorSEOContent() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">What's a standard tip percentage?</h3>
-            <p className="text-sm">In the US, 15-20% is standard for restaurants. 15% for average service, 18-20% for good service, and 20%+ for excellent service.</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Should I tip on the pre-tax or post-tax amount?</h3>
-            <p className="text-sm">Traditionally, tips are calculated on the pre-tax amount, but many people now tip on the total including tax. Use whichever feels right to you.</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">How do I split a bill fairly?</h3>
-            <p className="text-sm">Our calculator divides the total (including tip) equally among all people. For unequal splits, calculate each person's portion separately.</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Can I round up the per-person amount?</h3>
-            <p className="text-sm">Yes! Use the "Round up" option to round each person's share to the nearest dollar for easier payment.</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Is my data saved?</h3>
-            <p className="text-sm">Yes, your last settings and calculation history are saved locally in your browser using localStorage. No data is sent to servers.</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this offline?</h3>
-            <p className="text-sm">Yes! This calculator runs 100% in your browser with no internet required after the initial page load.</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">What currencies are supported?</h3>
-            <p className="text-sm">We support USD ($), EUR (€), GBP (£), and BDT (৳). The calculations work the same regardless of currency.</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Can I copy the results?</h3>
-            <p className="text-sm">Yes! Click any "Copy" button to copy individual amounts or the full summary to your clipboard.</p>
-          </div>
-        </div>
-      </section>
+      {/* FAQ: the same list as the FAQPage schema */}
+      <ToolFaq items={faq} />
 
       {/* Tips for Better Tipping */}
       <section className="space-y-4">

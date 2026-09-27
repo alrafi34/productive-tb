@@ -252,9 +252,9 @@ export function calculateSunlightExposure(inputs: SunlightInputs): SunlightCalcu
  */
 export function getLocationPresets(): LocationPreset[] {
   return [
-    { name: "Dhaka, Bangladesh", latitude: 23.8103, longitude: 90.4125, timezone: "Asia/Dhaka" },
     { name: "New York, USA", latitude: 40.7128, longitude: -74.0060, timezone: "America/New_York" },
     { name: "London, UK", latitude: 51.5074, longitude: -0.1278, timezone: "Europe/London" },
+    { name: "Berlin, Germany", latitude: 52.5200, longitude: 13.4050, timezone: "Europe/Berlin" },
     { name: "Tokyo, Japan", latitude: 35.6762, longitude: 139.6503, timezone: "Asia/Tokyo" },
     { name: "Sydney, Australia", latitude: -33.8688, longitude: 151.2093, timezone: "Australia/Sydney" },
     { name: "Dubai, UAE", latitude: 25.2048, longitude: 55.2708, timezone: "Asia/Dubai" },

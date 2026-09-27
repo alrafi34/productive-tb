@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { laborCostCalculatorConfig } from "./config";
+
 export default function LaborCostCalculatorSEO() {
+  const { howToSteps, faq } = laborCostCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100">
@@ -294,15 +298,15 @@ export default function LaborCostCalculatorSEO() {
           </div>
           
           <div className="bg-orange-50 p-3 rounded-lg border border-orange-200 text-center">
-            <div className="text-2xl mb-1">₹</div>
-            <div className="text-sm font-semibold text-orange-900">INR</div>
-            <div className="text-xs text-orange-700">Indian Rupee</div>
+            <div className="text-2xl mb-1">CA$</div>
+            <div className="text-sm font-semibold text-orange-900">CAD</div>
+            <div className="text-xs text-orange-700">Canadian Dollar</div>
           </div>
           
           <div className="bg-red-50 p-3 rounded-lg border border-red-200 text-center">
-            <div className="text-2xl mb-1">৳</div>
-            <div className="text-sm font-semibold text-red-900">BDT</div>
-            <div className="text-xs text-red-700">Bangladeshi Taka</div>
+            <div className="text-2xl mb-1">A$</div>
+            <div className="text-sm font-semibold text-red-900">AUD</div>
+            <div className="text-xs text-red-700">Australian Dollar</div>
           </div>
         </div>
 
@@ -393,6 +397,18 @@ export default function LaborCostCalculatorSEO() {
         </div>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Labor Cost Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

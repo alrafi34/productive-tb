@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import {
   calculateTip,
   formatCurrency,
+  guessCurrency,
+  isCurrency,
   roundUpBill,
   saveTipSettings,
   getTipSettings,
@@ -40,7 +42,9 @@ export default function TipCalculatorUI() {
       setBillAmount(settings.billAmount.toString());
       setTipPercentage(settings.tipPercentage);
       setNumberOfPeople(settings.numberOfPeople);
-      setCurrency(settings.currency);
+      if (isCurrency(settings.currency)) setCurrency(settings.currency);
+    } else {
+      setCurrency(guessCurrency());
     }
     setHistory(getHistory());
   }, []);
@@ -236,7 +240,7 @@ Each Pays: ${formatCurrency(result.perPersonAmount, symbol)}`;
             <label className="block text-sm font-semibold text-gray-700">
               Currency
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
               {Object.entries(CURRENCIES).map(([code, { symbol: sym, name }]) => (
                 <button
                   key={code}

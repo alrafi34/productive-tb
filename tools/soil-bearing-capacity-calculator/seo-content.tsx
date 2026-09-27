@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { soilBearingCapacityCalculatorConfig } from "./config";
+
 export default function SoilBearingCapacityCalculatorSEO() {
+  const { howToSteps, faq } = soilBearingCapacityCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,16 +21,13 @@ export default function SoilBearingCapacityCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the Soil Bearing Capacity Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2">
-          <li>Select your measurement unit (meters or feet)</li>
-          <li>Choose a soil type preset or enter custom soil parameters</li>
-          <li>Enter foundation width (B) and depth (Df)</li>
-          <li>Input soil properties: unit weight (γ), cohesion (c), and friction angle (φ)</li>
-          <li>Set the factor of safety (typically 2.5-3.0)</li>
-          <li>Select water table position relative to foundation</li>
-          <li>View instant results including safe bearing capacity and bearing capacity factors</li>
-          <li>Review engineering notes and recommendations</li>
-          <li>Export results as text or CSV for documentation</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -193,53 +194,7 @@ export default function SoilBearingCapacityCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is bearing capacity?
-            </h3>
-            <p>
-              Bearing capacity is the maximum load per unit area that soil can support without shear failure or excessive settlement. It's a critical parameter for foundation design.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What's the difference between ultimate and safe bearing capacity?
-            </h3>
-            <p>
-              Ultimate bearing capacity is the maximum load soil can theoretically support before failure. Safe bearing capacity is the ultimate capacity divided by a factor of safety, providing a margin for uncertainties.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              When should I use this calculator?
-            </h3>
-            <p>
-              Use this calculator for preliminary estimates, feasibility studies, and educational purposes. Always conduct detailed soil testing and consult a geotechnical engineer for final foundation design.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What if I don't know the soil properties?
-            </h3>
-            <p>
-              Use the soil type presets which provide typical values for common soil types. However, for actual construction, you must obtain soil properties through laboratory testing of site samples.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Is this calculator suitable for deep foundations?
-            </h3>
-            <p>
-              No, this calculator uses Terzaghi's equation which is specifically for shallow foundations (depth less than width). Deep foundations like piles require different analysis methods.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

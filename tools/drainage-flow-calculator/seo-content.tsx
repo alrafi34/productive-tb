@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { drainageFlowCalculatorConfig } from "./config";
+
 export default function DrainageFlowCalculatorSEO() {
+  const { howToSteps, faq } = drainageFlowCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -12,27 +16,14 @@ export default function DrainageFlowCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Select Drainage Type</h3>
-              <p className="text-gray-700">Choose between Pipe Flow (for circular pipes) or Open Channel (for rectangular channels). This determines which input parameters you'll need to provide.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Enter Dimensions</h3>
-              <p className="text-gray-700">For pipes, enter the diameter. For channels, enter the width and water depth. All measurements can be in meters or feet depending on your unit preference.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Set Slope and Material</h3>
-              <p className="text-gray-700">Enter the slope as a decimal (e.g., 0.01 for 1%) and select the material type (concrete, PVC, earth) to automatically set Manning's roughness coefficient.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Review Results</h3>
-              <p className="text-gray-700">The calculator instantly displays flow rate in multiple units (m³/s, L/s, GPM), flow velocity, hydraulic radius, and engineering notes about the design.</p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -132,38 +123,7 @@ export default function DrainageFlowCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">What is Manning's equation used for?</h3>
-              <p className="text-gray-700">
-                Manning's equation is used to calculate flow rate in open channels and pipes. It's the standard method in civil engineering for designing drainage systems, sewers, and irrigation channels.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How do I choose the right Manning's n value?</h3>
-              <p className="text-gray-700">
-                Select the roughness coefficient based on your pipe or channel material. Use 0.009 for smooth PVC, 0.013 for concrete, and 0.022 for earth channels. For other materials, consult engineering handbooks.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">What slope should I use for drainage pipes?</h3>
-              <p className="text-gray-700">
-                Minimum slope for gravity drainage is typically 0.4% (0.004) for sewers and 0.5% (0.005) for stormwater. Steeper slopes increase flow velocity but may cause erosion.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Can this calculator handle partial pipe flow?</h3>
-              <p className="text-gray-700">
-                This calculator assumes full pipe flow for circular pipes. For partial flow calculations, use specialized hydraulic software or consult hydraulic charts.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Related Calculations</h2>

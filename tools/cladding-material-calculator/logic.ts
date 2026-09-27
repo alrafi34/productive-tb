@@ -1,3 +1,4 @@
+import { type CurrencyCode, formatMoney } from "@/lib/currency";
 import { Unit, WallInput, PanelSize, CladdingCalculation, HistoryEntry, PresetTemplate } from "./types";
 
 const HISTORY_KEY = "cladding-material-calculator-history";
@@ -227,7 +228,7 @@ export function getPresetTemplates(): PresetTemplate[] {
 /**
  * Export to CSV
  */
-export function exportToCSV(calculation: CladdingCalculation): string {
+export function exportToCSV(calculation: CladdingCalculation, currency: CurrencyCode = "USD"): string {
   const lines: string[] = [];
   
   // Header
@@ -262,8 +263,8 @@ export function exportToCSV(calculation: CladdingCalculation): string {
   if (calculation.costPerPanel > 0) {
     lines.push("");
     lines.push("COST ESTIMATION");
-    lines.push(`Cost per Panel,$${formatNumber(calculation.costPerPanel, 2)}`);
-    lines.push(`Total Cost,$${formatNumber(calculation.totalCost, 2)}`);
+    lines.push(`Cost per Panel (${currency}),${formatNumber(calculation.costPerPanel, 2)}`);
+    lines.push(`Total Cost (${currency}),${formatNumber(calculation.totalCost, 2)}`);
   }
   
   return lines.join("\n");
@@ -272,7 +273,7 @@ export function exportToCSV(calculation: CladdingCalculation): string {
 /**
  * Export to text
  */
-export function exportToText(calculation: CladdingCalculation): string {
+export function exportToText(calculation: CladdingCalculation, currency: CurrencyCode = "USD"): string {
   const unitLabel = getUnitLabel(calculation.unit);
   const linearUnit = getLinearUnitLabel(calculation.unit);
   
@@ -312,8 +313,8 @@ export function exportToText(calculation: CladdingCalculation): string {
     lines.push("");
     lines.push("COST ESTIMATION:");
     lines.push("-".repeat(50));
-    lines.push(`Cost per Panel: $${formatNumber(calculation.costPerPanel, 2)}`);
-    lines.push(`Total Cost: $${formatNumber(calculation.totalCost, 2)}`);
+    lines.push(`Cost per Panel: ${formatMoney(calculation.costPerPanel, currency)}`);
+    lines.push(`Total Cost: ${formatMoney(calculation.totalCost, currency)}`);
   }
   
   lines.push("");
