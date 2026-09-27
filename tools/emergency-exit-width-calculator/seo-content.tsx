@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { emergencyExitWidthCalculatorConfig } from "./config";
+
 export default function EmergencyExitWidthCalculatorSEO() {
+  const { howToSteps, faq } = emergencyExitWidthCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -15,36 +19,14 @@ export default function EmergencyExitWidthCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Enter Number of Occupants</h3>
-              <p className="text-gray-700">
-                Input the total number of people who will occupy the space. This is the occupant load calculated based 
-                on the building's use and floor area.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Select Width Factor</h3>
-              <p className="text-gray-700">
-                Choose the appropriate width factor based on the type of egress: 0.3 inches/person for doors and level 
-                paths, 0.2 inches/person for stairs, or 0.15 inches/person for sprinklered buildings.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Specify Number of Exits</h3>
-              <p className="text-gray-700">
-                Enter the number of exits available. The calculator will distribute the required width across all exits 
-                to determine the width needed for each exit.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Review Results</h3>
-              <p className="text-gray-700">
-                The calculator instantly displays the total required width and width per exit, along with safety 
-                assessment and code compliance recommendations.
-              </p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -70,21 +52,21 @@ export default function EmergencyExitWidthCalculatorSEO() {
             <div className="border border-gray-200 rounded-lg p-4">
               <h3 className="font-semibold text-gray-800 mb-2">0.3 inches/person</h3>
               <p className="text-sm text-gray-700 mb-2">
-                <strong>Doors and Level Egress</strong>
+                <strong>Stairways</strong>
               </p>
               <p className="text-xs text-gray-600">
-                Used for exit doors, corridors, and other level egress components. This is the most common factor for 
-                horizontal travel.
+                IBC 1005.3.1: the capacity of exit stairways. Moving down stairs is slower than walking on the level,
+                so stairs need more width per person.
               </p>
             </div>
             <div className="border border-gray-200 rounded-lg p-4">
               <h3 className="font-semibold text-gray-800 mb-2">0.2 inches/person</h3>
               <p className="text-sm text-gray-700 mb-2">
-                <strong>Stairs and Ramps</strong>
+                <strong>Doors, Corridors and Ramps</strong>
               </p>
               <p className="text-xs text-gray-600">
-                Applied to stairs and ramps where vertical travel occurs. The reduced factor accounts for slower 
-                movement on inclined surfaces.
+                IBC 1005.3.2: all other means of egress components. Also the stairway factor in a sprinklered building
+                with an emergency voice/alarm communication system.
               </p>
             </div>
             <div className="border border-gray-200 rounded-lg p-4">
@@ -93,8 +75,8 @@ export default function EmergencyExitWidthCalculatorSEO() {
                 <strong>Sprinklered Buildings</strong>
               </p>
               <p className="text-xs text-gray-600">
-                Reduced factor for buildings with automatic sprinkler systems. The sprinklers provide additional 
-                safety, allowing narrower exits.
+                Doors and corridors in a building with automatic sprinklers and an emergency voice/alarm
+                communication system (IBC 1005.3.2 exception). Minimum widths still apply.
               </p>
             </div>
           </div>
@@ -207,80 +189,39 @@ export default function EmergencyExitWidthCalculatorSEO() {
             <div className="border border-gray-200 rounded-lg p-4">
               <h3 className="font-semibold text-gray-800 mb-2">Office Building (100 occupants)</h3>
               <p className="text-sm text-gray-700 mb-2">
-                Width factor: 0.3 in/person<br />
-                Required width: 30 inches<br />
+                Width factor: 0.2 in/person (doors)<br />
+                Required width: 20 inches<br />
                 Recommended: 2 exits at 36 inches each
               </p>
             </div>
             <div className="border border-gray-200 rounded-lg p-4">
               <h3 className="font-semibold text-gray-800 mb-2">Classroom (30 students)</h3>
               <p className="text-sm text-gray-700 mb-2">
-                Width factor: 0.3 in/person<br />
-                Required width: 9 inches<br />
+                Width factor: 0.2 in/person (doors)<br />
+                Required width: 6 inches<br />
                 Minimum: 1 exit at 36 inches (code minimum)
               </p>
             </div>
             <div className="border border-gray-200 rounded-lg p-4">
               <h3 className="font-semibold text-gray-800 mb-2">Theater (300 occupants)</h3>
               <p className="text-sm text-gray-700 mb-2">
-                Width factor: 0.2 in/person (stairs)<br />
-                Required width: 60 inches<br />
-                Recommended: 3 exits at 44 inches each
+                Width factor: 0.3 in/person (stairs)<br />
+                Required width: 90 inches<br />
+                Recommended: 3 stairways at 44 inches each (the IBC minimum stair width)
               </p>
             </div>
             <div className="border border-gray-200 rounded-lg p-4">
               <h3 className="font-semibold text-gray-800 mb-2">Restaurant (100 occupants)</h3>
               <p className="text-sm text-gray-700 mb-2">
-                Width factor: 0.3 in/person<br />
-                Required width: 30 inches<br />
+                Width factor: 0.2 in/person (doors)<br />
+                Required width: 20 inches<br />
                 Recommended: 2 exits at 36 inches each
               </p>
             </div>
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What is the minimum exit door width?</h3>
-              <p className="text-gray-700">
-                The minimum clear width for exit doors is 32 inches according to most building codes. However, 36 inches 
-                is recommended for better flow and to meet accessibility requirements. The clear width is measured from 
-                the face of the door when open 90 degrees to the stop.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How do I calculate occupant load?</h3>
-              <p className="text-gray-700">
-                Occupant load is calculated by dividing the floor area by the occupant load factor for the specific use. 
-                For example, offices typically use 100 sq ft per person, while assembly areas use 7-15 sq ft per person 
-                depending on the type of seating.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Can I have just one exit?</h3>
-              <p className="text-gray-700">
-                Single exits are permitted only for occupant loads of 49 or fewer, and only when travel distance and 
-                other code requirements are met. Most buildings require at least two exits for safety redundancy.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What if my calculated width is less than the minimum?</h3>
-              <p className="text-gray-700">
-                Always use the larger of the calculated width or the code minimum. Even if calculations show a smaller 
-                width is sufficient, you must meet minimum width requirements (typically 32-36 inches for doors).
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Do sprinklers reduce exit width requirements?</h3>
-              <p className="text-gray-700">
-                Yes, buildings with automatic sprinkler systems can use a reduced width factor (0.15 inches/person 
-                instead of 0.3 inches/person for level egress). However, minimum width requirements still apply.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Engineering Best Practices</h2>

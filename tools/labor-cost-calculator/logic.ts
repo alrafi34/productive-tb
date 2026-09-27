@@ -113,12 +113,12 @@ export function getTimeLabel(wageType: WageType): string {
 // Presets
 export function getWagePresets(): WagePreset[] {
   return [
-    { name: "Minimum Wage", wageType: "hourly", wage: 7.25, description: "Federal minimum wage" },
-    { name: "Construction Worker", wageType: "hourly", wage: 18, description: "Average construction wage" },
-    { name: "Skilled Tradesman", wageType: "hourly", wage: 25, description: "Electrician, plumber, etc." },
-    { name: "Site Supervisor", wageType: "hourly", wage: 35, description: "Construction supervisor" },
-    { name: "General Labor", wageType: "daily", wage: 80, description: "Daily general labor" },
-    { name: "Skilled Daily", wageType: "daily", wage: 150, description: "Skilled daily worker" }
+    // US figures, so they only make sense in dollars: BLS Occupational Outlook Handbook, median pay May 2023
+    { name: "US Federal Minimum", wageType: "hourly", wage: 7.25, description: "US federal minimum wage (many states are higher)" },
+    { name: "Construction Laborer", wageType: "hourly", wage: 21.5, description: "US median, BLS May 2023" },
+    { name: "Electrician / Plumber", wageType: "hourly", wage: 29.6, description: "US median, BLS May 2023" },
+    { name: "Laborer, 8-hour day", wageType: "daily", wage: 172, description: "8 × US laborer median" },
+    { name: "Tradesperson, 8-hour day", wageType: "daily", wage: 237, description: "8 × US electrician median" }
   ];
 }
 

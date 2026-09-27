@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { sustainabilityIndexCalculatorConfig } from "./config";
+
 export default function SustainabilityIndexCalculatorSEO() {
+  const { howToSteps, faq } = sustainabilityIndexCalculatorConfig.seo;
   return (
     <div className="mt-16 max-w-4xl mx-auto space-y-12 pb-12">
       
@@ -148,68 +152,7 @@ export default function SustainabilityIndexCalculatorSEO() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is a good sustainability index score?
-            </h3>
-            <p className="text-gray-700">
-              A score of 70 or above indicates high sustainability performance suitable for green building certification. Scores between 40-69 show moderate sustainability with room for improvement, while scores below 40 indicate significant sustainability challenges that should be addressed.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How accurate is this calculator?
-            </h3>
-            <p className="text-gray-700">
-              This calculator provides a general assessment based on industry-standard weighting factors. For official green building certification or detailed energy audits, consult with certified professionals who can conduct comprehensive on-site evaluations.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Can I use this for LEED certification?
-            </h3>
-            <p className="text-gray-700">
-              While this calculator can help you understand your building's sustainability profile and prepare for LEED certification, it is not a substitute for the official LEED rating system. Use it as a preliminary assessment tool to identify areas for improvement.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How do I determine scores for each metric?
-            </h3>
-            <p className="text-gray-700">
-              Score each metric on a 0-100 scale based on performance relative to best practices. For example, a building with basic insulation and standard HVAC might score 50 for energy efficiency, while a net-zero energy building would score 90-100. Use the preset scenarios as benchmarks.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What building types can I evaluate?
-            </h3>
-            <p className="text-gray-700">
-              This calculator works for all building types including residential, commercial, industrial, and institutional buildings. The preset scenarios provide starting points for common building types, which you can then adjust based on specific features.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How often should I reassess my building?
-            </h3>
-            <p className="text-gray-700">
-              Reassess annually or after major upgrades to track improvement over time. Regular assessment helps identify degrading performance and opportunities for optimization as new technologies and practices become available.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Related Topics */}
       <section className="prose prose-gray max-w-none">
@@ -236,6 +179,17 @@ export default function SustainabilityIndexCalculatorSEO() {
         </div>
       </section>
 
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Sustainability Index Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

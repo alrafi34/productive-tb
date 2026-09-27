@@ -89,9 +89,11 @@ export default function LaborCostCalculatorUI() {
     setError(null);
   };
 
+  // The wage presets are US figures, so applying one switches to dollars
   const handleApplyWagePreset = (preset: any) => {
     setWageType(preset.wageType);
     setWage(preset.wage.toString());
+    setCurrency("USD");
   };
 
   const handleApplyProjectPreset = (preset: any) => {
@@ -501,8 +503,9 @@ export default function LaborCostCalculatorUI() {
                   >
                     <div className="font-semibold text-gray-900 text-sm">{preset.name}</div>
                     <div className="text-xs text-gray-600 mt-1">
-                      {formatCurrency(preset.wage, currency)}/{preset.wageType === "hourly" ? "hr" : "day"}
+                      {formatCurrency(preset.wage, "USD")}/{preset.wageType === "hourly" ? "hr" : "day"}
                     </div>
+                    <div className="text-[11px] text-gray-500 mt-0.5">{preset.description}</div>
                   </button>
                 ))}
               </div>

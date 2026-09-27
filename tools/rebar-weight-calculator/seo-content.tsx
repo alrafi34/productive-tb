@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { rebarWeightCalculatorConfig } from "./config";
+
 export default function RebarWeightCalculatorSEO() {
+  const { howToSteps, faq } = rebarWeightCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
       <section className="mb-8">
@@ -13,14 +17,13 @@ export default function RebarWeightCalculatorSEO() {
 
       <section className="mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Rebar Weight Calculator</h2>
-        <ol className="list-decimal list-inside space-y-2 text-gray-700">
-          <li><strong>Select Diameter:</strong> Choose from standard rebar sizes (6mm to 40mm) or enter custom diameter</li>
-          <li><strong>Enter Length:</strong> Input the length of each rebar in meters or feet</li>
-          <li><strong>Set Quantity:</strong> Specify the number of bars (default is 1)</li>
-          <li><strong>Choose Unit System:</strong> Select metric (kg, m) or imperial (lb, ft)</li>
-          <li><strong>View Results:</strong> Get instant weight calculations per meter and total weight</li>
-          <li><strong>Batch Calculations:</strong> Add multiple entries for comprehensive project estimation</li>
-          <li><strong>Export Data:</strong> Download results as CSV or text for documentation</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -198,41 +201,7 @@ export default function RebarWeightCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How accurate is the rebar weight formula?</h3>
-            <p className="text-gray-700">
-              The formula D² / 162 is the industry-standard calculation and provides highly accurate results for standard reinforcement steel bars. It's based on the theoretical weight derived from steel density and cross-sectional area.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this calculator for imperial units?</h3>
-            <p className="text-gray-700">
-              Yes, the calculator supports both metric and imperial units. Simply select your preferred unit system, and the calculator will handle all conversions automatically.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What if my rebar diameter is not in the preset list?</h3>
-            <p className="text-gray-700">
-              You can select "Custom" from the diameter dropdown and enter any diameter value. The calculator will compute the weight for any diameter you specify.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How do I calculate weight for multiple different rebar sizes?</h3>
-            <p className="text-gray-700">
-              Use the batch calculation feature. Calculate each size separately and click "Add to Batch" for each entry. The calculator will maintain a running total and allow you to export all calculations together.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Why is the constant 162 used in the formula?</h3>
-            <p className="text-gray-700">
-              The constant 162 is derived from the mathematical relationship: (π/4) × (density of steel in kg/m³) / 1000. For steel density of 7850 kg/m³, this simplifies to approximately 162, making the formula easy to use with diameter in millimeters.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Benefits of Using This Calculator</h2>
