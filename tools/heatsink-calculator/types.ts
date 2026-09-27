@@ -6,12 +6,13 @@ export interface HeatsinkInputs {
   ambientTemp: number;
   maxJunctionTemp: number;
   thermalResistance?: number;
+  junctionToSink?: number; // θjc + θcs, °C/W
   precision: number;
 }
 
 export interface HeatsinkResult {
   mode: CalculationMode;
-  requiredThermalResistance?: number;
+  requiredThermalResistance?: number; // heatsink-to-ambient θsa
   actualJunctionTemp?: number;
   powerDissipation: number;
   ambientTemp: number;

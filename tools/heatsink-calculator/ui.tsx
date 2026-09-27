@@ -26,6 +26,7 @@ export default function HeatsinkCalculatorUI() {
     powerDissipation: 10,
     ambientTemp: 25,
     maxJunctionTemp: 85,
+    junctionToSink: 1,
     precision: 2
   });
   
@@ -72,6 +73,7 @@ export default function HeatsinkCalculatorUI() {
         powerDissipation: 10, 
         ambientTemp: 25, 
         maxJunctionTemp: 85, 
+        junctionToSink: inputs.junctionToSink ?? 1,
         precision: 2 
       });
     } else {
@@ -81,6 +83,7 @@ export default function HeatsinkCalculatorUI() {
         ambientTemp: 25, 
         maxJunctionTemp: 85, 
         thermalResistance: 5,
+        junctionToSink: inputs.junctionToSink ?? 1,
         precision: 2 
       });
     }
@@ -100,6 +103,7 @@ export default function HeatsinkCalculatorUI() {
         powerDissipation: 10, 
         ambientTemp: 25, 
         maxJunctionTemp: 85, 
+        junctionToSink: inputs.junctionToSink ?? 1,
         precision: 2 
       });
     } else {
@@ -109,6 +113,7 @@ export default function HeatsinkCalculatorUI() {
         ambientTemp: 25, 
         maxJunctionTemp: 85, 
         thermalResistance: 5,
+        junctionToSink: inputs.junctionToSink ?? 1,
         precision: 2 
       });
     }
@@ -123,6 +128,7 @@ export default function HeatsinkCalculatorUI() {
       powerDissipation: preset.powerDissipation,
       ambientTemp: preset.ambientTemp,
       maxJunctionTemp: preset.maxJunctionTemp,
+      junctionToSink: inputs.junctionToSink,
     };
 
     if ('thermalResistance' in preset) {
@@ -136,7 +142,7 @@ export default function HeatsinkCalculatorUI() {
     if (result) {
       let text = "";
       if (result.requiredThermalResistance !== undefined) {
-        text = `Required Thermal Resistance: ${formatNumber(result.requiredThermalResistance, inputs.precision)} °C/W`;
+        text = `Required Heatsink Thermal Resistance (θsa): ${formatNumber(result.requiredThermalResistance, inputs.precision)} °C/W`;
       } else if (result.actualJunctionTemp !== undefined) {
         text = `Junction Temperature: ${formatNumber(result.actualJunctionTemp, inputs.precision)} °C (${result.safetyStatus.toUpperCase()})`;
       }
@@ -231,7 +237,7 @@ export default function HeatsinkCalculatorUI() {
               <div className="bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white space-y-4">
                 <div>
                   <p className="text-primary-100 font-medium mb-2 text-xs uppercase tracking-wider" style={{ fontFamily: "var(--font-heading)" }}>
-                    {mode === 'thermal-resistance' ? 'Required Thermal Resistance' : 'Junction Temperature'}
+                    {mode === 'thermal-resistance' ? 'Required Heatsink θsa' : 'Junction Temperature'}
                   </p>
                   <div className="text-4xl font-bold mb-1">
                     {mode === 'thermal-resistance' 
@@ -389,6 +395,22 @@ export default function HeatsinkCalculatorUI() {
                   step="1"
                 />
                 <p className="text-xs text-gray-500 mt-1">Maximum safe operating temperature of the component</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Junction-to-Sink Resistance, θjc + θcs (°C/W)
+                </label>
+                <input
+                  type="number"
+                  value={inputs.junctionToSink ?? ''}
+                  onChange={(e) => handleInputChange('junctionToSink', e.target.value === '' ? undefined : parseFloat(e.target.value) || 0)}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                  placeholder="1"
+                  step="0.1"
+                  min="0"
+                />
+                <p className="text-xs text-gray-500 mt-1">θjc from the component datasheet plus about 0.1–0.5 °C/W for the thermal pad or paste</p>
               </div>
 
               {mode === 'temperature-check' && (

@@ -85,6 +85,8 @@ function getWarning(safetyStatus: 'safe' | 'warning' | 'critical', coolingType: 
 
 export function calculateHeatsink(inputs: HeatsinkInputs): HeatsinkResult {
   const { mode, powerDissipation, ambientTemp, maxJunctionTemp, thermalResistance, precision = 2 } = inputs;
+  // Heat flows junction → case → heatsink → air; the heatsink only gets what is left
+  const junctionToSink = inputs.junctionToSink ?? 0;
 
   const temperatureDifference = maxJunctionTemp - ambientTemp;
   let requiredThermalResistance: number | undefined;
@@ -92,17 +94,17 @@ export function calculateHeatsink(inputs: HeatsinkInputs): HeatsinkResult {
   let safetyStatus: 'safe' | 'warning' | 'critical';
 
   if (mode === 'thermal-resistance') {
-    // Calculate required thermal resistance: θ = ΔT / P
-    requiredThermalResistance = temperatureDifference / powerDissipation;
+    // Required heatsink resistance: θsa = ΔT / P − (θjc + θcs)
+    requiredThermalResistance = temperatureDifference / powerDissipation - junctionToSink;
     actualJunctionTemp = maxJunctionTemp; // At the limit
-    safetyStatus = 'safe'; // This is the requirement calculation
+    safetyStatus = requiredThermalResistance > 0 ? 'safe' : 'critical';
   } else {
-    // Calculate actual junction temperature: Tj = Ta + (P × θ)
-    actualJunctionTemp = ambientTemp + (powerDissipation * thermalResistance!);
+    // Junction temperature: Tj = Ta + P × (θsa + θjc + θcs)
+    actualJunctionTemp = ambientTemp + powerDissipation * (thermalResistance! + junctionToSink);
     safetyStatus = getSafetyStatus(actualJunctionTemp, maxJunctionTemp);
   }
 
-  const effectiveThermalResistance = requiredThermalResistance || thermalResistance!;
+  const effectiveThermalResistance = requiredThermalResistance !== undefined ? Math.max(requiredThermalResistance, 0.01) : thermalResistance!;
   const heatsinkRecommendation = getHeatsinkRecommendation(effectiveThermalResistance, powerDissipation);
   const coolingType = getCoolingType(powerDissipation, effectiveThermalResistance);
   const warning = getWarning(safetyStatus, coolingType);
@@ -149,10 +151,13 @@ function generateSteps(
       `  ΔT = ${maxJunctionTemp} - ${ambientTemp}`,
       `  ΔT = ${temperatureDifference} °C`,
       "",
-      "Step 2: Calculate Required Thermal Resistance",
-      `  Formula: θ = ΔT / P`,
-      `  θ = ${temperatureDifference} / ${powerDissipation}`,
-      `  θ = ${formatNumber(requiredThermalResistance!, precision)} °C/W`,
+      "Step 2: Total Thermal Resistance Allowed",
+      `  θja = ΔT / P = ${temperatureDifference} / ${powerDissipation} = ${formatNumber(temperatureDifference! / powerDissipation, precision)} °C/W`,
+      "",
+      "Step 3: Required Heatsink Thermal Resistance",
+      `  θsa = θja − (θjc + θcs) = ${formatNumber(temperatureDifference! / powerDissipation, precision)} − ${inputs.junctionToSink ?? 0}`,
+      `  θsa = ${formatNumber(requiredThermalResistance!, precision)} °C/W`,
+      requiredThermalResistance! <= 0 ? "  No heatsink can keep the junction below its limit: reduce the power or the junction-to-sink resistance." : "",
       ""
     );
   } else {
@@ -164,9 +169,9 @@ function generateSteps(
       `  Maximum Junction Temperature (Tj) = ${maxJunctionTemp} °C`,
       "",
       "Step 1: Calculate Actual Junction Temperature",
-      `  Formula: Tj_actual = Ta + (P × θ)`,
-      `  Tj_actual = ${ambientTemp} + (${powerDissipation} × ${thermalResistance})`,
-      `  Tj_actual = ${ambientTemp} + ${formatNumber(powerDissipation * thermalResistance!, precision)}`,
+      `  Formula: Tj_actual = Ta + P × (θsa + θjc + θcs)`,
+      `  Tj_actual = ${ambientTemp} + ${powerDissipation} × (${thermalResistance} + ${inputs.junctionToSink ?? 0})`,
+      `  Tj_actual = ${ambientTemp} + ${formatNumber(powerDissipation * (thermalResistance! + (inputs.junctionToSink ?? 0)), precision)}`,
       `  Tj_actual = ${formatNumber(actualJunctionTemp!, precision)} °C`,
       "",
       "Step 2: Check Safety Margin",

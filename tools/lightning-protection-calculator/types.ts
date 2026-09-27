@@ -12,18 +12,18 @@ export interface LightningProtectionInputs {
 }
 
 export interface LightningProtectionResult {
-  riskScore: number;
+  riskScore: number; // Nd / Nc
   protectionLevel: ProtectionLevel;
   protectionLevelText: string;
   recommendation: string;
   systemType: string;
   safetyWarning: string;
-  heightFactor: number;
-  areaFactor: number;
-  riskFactor: number;
-  structureFactor: number;
+  collectionArea: number;   // Ad, m²
+  flashDensity: number;     // Ng, flashes/km²/year
+  expectedStrikes: number;  // Nd, per year
+  tolerableStrikes: number; // Nc, per year
+  efficiency: number;       // required LPS efficiency E (0 when not required)
   groundingRequired: boolean;
-  estimatedCost: string;
   steps: string[];
 }
 
