@@ -123,15 +123,6 @@ export default function RoomVolumeCalculatorSEO() {
         </ul>
       </section>
 
-      <ToolFaq items={faq} />
-
-      <section className="bg-primary/5 border border-primary/20 rounded-xl p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-3">Start Calculating Room Volume Now</h2>
-        <p className="leading-relaxed">
-          Whether you're designing HVAC systems, sizing air purifiers, planning acoustics, or calculating room capacity, this Room Volume Calculator provides fast, accurate results with professional-grade features. Select your room shape above and get instant calculations with automatic unit conversions.
-        </p>
-      </section>
-
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Room Volume Calculator</h2>
         <ol className="space-y-3 text-gray-600 leading-relaxed">
@@ -143,6 +134,16 @@ export default function RoomVolumeCalculatorSEO() {
           ))}
         </ol>
       </section>
+
+      <ToolFaq items={faq} />
+
+      <section className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+        <h2 className="text-xl font-bold text-gray-900 mb-3">Start Calculating Room Volume Now</h2>
+        <p className="leading-relaxed">
+          Whether you're designing HVAC systems, sizing air purifiers, planning acoustics, or calculating room capacity, this Room Volume Calculator provides fast, accurate results with professional-grade features. Select your room shape above and get instant calculations with automatic unit conversions.
+        </p>
+      </section>
+
     </div>
   );
 }

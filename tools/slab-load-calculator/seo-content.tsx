@@ -160,10 +160,10 @@ export default function SlabLoadCalculatorSEO() {
           Live load values should comply with local building codes:
         </p>
         <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
-          <li><strong>IS 875 (India):</strong> Part 2 - Imposed Loads</li>
           <li><strong>ASCE 7 (USA):</strong> Minimum Design Loads for Buildings</li>
           <li><strong>Eurocode 1 (Europe):</strong> Actions on Structures</li>
-          <li><strong>BS 6399 (UK):</strong> Loading for Buildings</li>
+          <li><strong>UK:</strong> BS EN 1991 with the UK National Annex (BS 6399 was withdrawn in 2010)</li>
+          <li><strong>Other countries:</strong> national codes such as NBC (Canada), AS/NZS 1170 (Australia, New Zealand) and IS 875 (India)</li>
         </ul>
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">

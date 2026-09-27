@@ -44,23 +44,23 @@ export const getEndConditionFactors = (): EndConditionFactor[] => {
 export const getMaterialPresets = (): MaterialPreset[] => {
   return [
     {
-      name: 'M20 Concrete',
-      description: 'Standard grade concrete',
+      name: 'C20/25 Concrete',
+      description: 'fck 20 MPa (about 3,000 psi)',
       fck: 20
     },
     {
-      name: 'M25 Concrete',
-      description: 'Common structural grade',
+      name: 'C25/30 Concrete',
+      description: 'fck 25 MPa (about 3,600 psi)',
       fck: 25
     },
     {
-      name: 'M30 Concrete',
-      description: 'High strength concrete',
+      name: 'C30/37 Concrete',
+      description: 'fck 30 MPa (about 4,350 psi)',
       fck: 30
     },
     {
-      name: 'M35 Concrete',
-      description: 'Very high strength',
+      name: 'C35/45 Concrete',
+      description: 'fck 35 MPa (about 5,000 psi)',
       fck: 35
     },
     {
