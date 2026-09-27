@@ -17,7 +17,7 @@ export const sunlightExposureCalculatorConfig = {
   ],
   seo: {
     title: "Sunlight Exposure Calculator – Sun Path & Shadows",
-    description: "See the sun's position, sunrise, sunset and the shadow a building casts for any place and date. Useful for daylighting, solar panels and site planning.",
+    description: "See the sun's altitude and azimuth and the shadow a building casts at any place, date and time. For daylighting, solar panels and site planning.",
     keywords: "sunlight calculator, shadow analysis tool, sun exposure building, solar angle calculator, architecture sunlight simulation",
     og: {
       title: "Sunlight Exposure Calculator – Sun Position & Shadow Analysis",
@@ -28,7 +28,7 @@ export const sunlightExposureCalculatorConfig = {
     howToSteps: [
       { name: "Set the location", text: "Enter latitude and longitude or pick a city; the time zone fills in with daylight saving." },
       { name: "Choose the date", text: "Pick the day to analyze, such as the summer or winter solstice." },
-      { name: "Set the time", text: "Move the time slider or press play to watch the sun move from sunrise to sunset." },
+      { name: "Set the time", text: "Move the time slider or press play to watch the sun move across the day." },
       { name: "Describe the building", text: "Enter the building height, the direction the surface faces and whether it is a wall, roof or ground." },
       { name: "Read the results", text: "See the sun's altitude and azimuth, the shadow length and the direct sunlight on the surface." },
     ],
