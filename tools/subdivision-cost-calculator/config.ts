@@ -21,8 +21,8 @@ export const subdivisionCostCalculatorConfig = {
       "land development cost calculator",
     ],
     og: {
-      title: "Subdivision Cost Calculator – Estimate Land Division Cost Online",
-      description: "Estimate subdivision costs instantly with our free Subdivision Cost Calculator. Calculate legal fees, permits, surveying, utilities, roads, and cost per plot online.",
+      title: "Land Subdivision Cost Estimator — Free",
+      description: "Estimate the cost of subdividing land — survey, permits, utilities, roads and engineering. Adjust each line item to match your local rates.",
       url: `${siteConfig.url}/tools/land/subdivision-cost-calculator`,
     },
     howToSteps: [

@@ -20,8 +20,8 @@ export const roiRealEstateCalculatorConfig = {
       "property roi estimator",
     ],
     og: {
-      title: "ROI Real Estate Calculator – Estimate Property Investment Returns",
-      description: "Calculate real estate ROI instantly. Estimate rental income, cash flow, appreciation, and property investment returns.",
+      title: "Real Estate ROI Calculator – Rental Property Returns",
+      description: "Calculate cash-on-cash ROI, cash flow, gross and net yield, appreciation and total return for a rental property, with your mortgage and expenses.",
       url: `${siteConfig.url}/tools/land/roi-real-estate-calculator`,
     },
     howToSteps: [

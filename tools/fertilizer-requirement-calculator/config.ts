@@ -23,8 +23,8 @@ export const fertilizerRequirementCalculatorConfig = {
       "soil nutrient calculator",
     ],
     og: {
-      title: "Fertilizer Requirement Calculator – Estimate Fertilizer for Crops Online",
-      description: "Calculate fertilizer requirements instantly for crops based on land size, crop type, and nutrient needs. Free agricultural calculator.",
+      title: "Fertilizer Calculator – How Much per Acre?",
+      description: "Work out how much urea, DAP, potash or NPK fertilizer a field needs from its area, crop and nutrient targets, in kg and lb, with cost in your currency.",
       url: `${siteConfig.url}/tools/land/fertilizer-requirement-calculator`,
     },
     howToSteps: [

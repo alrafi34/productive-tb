@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { landDevelopmentCostCalculatorConfig } from "./config";
 
 export default function LandDevelopmentCostCalculatorSEO() {
+  const { howToSteps, faq } = landDevelopmentCostCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,53 +28,14 @@ export default function LandDevelopmentCostCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use This Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the land area and select the unit (sq ft, sq m, acres, or hectares)",
-                "Enter the land purchase cost if applicable",
-                "Fill in infrastructure costs: road, site prep, drainage, water, electricity, sewer",
-                "Add professional costs: permits, engineering, labor, and materials",
-                "Use the sliders to set contingency (default 10%) and tax rate (default 5%)",
-                "Add any custom cost rows for project-specific expenses",
-                "View the instant total cost, base cost, and cost per area unit",
-                "Use presets for Residential, Commercial, Agricultural, or Industrial scenarios",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type",
-                "11 standard cost categories + unlimited custom rows",
-                "Contingency and tax percentage sliders",
-                "Cost per area unit calculation",
-                "Visual cost breakdown with percentage bars",
-                "4 quick presets for common project types",
-                "Scenario comparison — save and compare multiple estimates",
-                "Auto-save inputs to localStorage",
-                "Multi-currency support (USD, EUR, GBP, AUD, CAD)",
-                "Export to TXT and copy to clipboard",
-                "Calculation history with one-click reload",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -172,44 +136,7 @@ export default function LandDevelopmentCostCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the average cost to develop land in the US?",
-              a: "Land development costs vary widely depending on location, project type, and site conditions. A basic residential lot development can cost $50,000–$200,000+, while commercial or industrial sites can exceed $500,000. The biggest variables are road construction, utility connections, and permit fees.",
-            },
-            {
-              q: "Why should I include a contingency percentage?",
-              a: "Contingency covers unexpected costs that arise during development — unforeseen soil conditions, permit delays, material price increases, or design changes. A 10% contingency is standard for most projects. Complex or large-scale developments may warrant 15–20%.",
-            },
-            {
-              q: "How is cost per area unit calculated?",
-              a: "Cost per area unit is the total development cost divided by the land area. For example, if the total cost is $172,500 and the land is 10,000 sq ft, the cost per sq ft is $17.25. This metric helps compare development costs across different project sizes.",
-            },
-            {
-              q: "What is the difference between base cost and total cost?",
-              a: "Base cost is the sum of all direct development expenses (land, infrastructure, labor, materials). Total cost adds contingency (for unexpected expenses) and tax on top of the base cost. The formula is: Total = Base + (Base × Contingency%) + (Base × Tax%).",
-            },
-            {
-              q: "Can I save and compare multiple scenarios?",
-              a: "Yes. After calculating a result, enter a scenario name and click Save to store it. You can save up to 10 scenarios and compare them side by side. Click Load to restore any saved scenario's inputs.",
-            },
-            {
-              q: "Is this calculator accurate for my specific project?",
-              a: "This calculator provides a preliminary budget estimate based on your inputs. Actual costs depend on your specific location, local permit fees, contractor rates, and site conditions. Always obtain professional quotes before committing to a project budget.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

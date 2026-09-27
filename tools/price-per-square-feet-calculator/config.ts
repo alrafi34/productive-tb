@@ -25,7 +25,7 @@ export const pricePerSquareFeetCalculatorConfig = {
     ],
     openGraph: {
       title: "Price per Square Foot Calculator – Homes & Land",
-      description: "Price per square foot and per square meter from the total price and area of a home, apartment or lot.",
+      description: "Work out price per square foot and per square meter from the total price and area of a home, apartment or lot, in sq ft, m², acres or hectares.",
       type: "website",
       url: `${siteConfig.url}/tools/land/price-per-square-feet-calculator`,
     },

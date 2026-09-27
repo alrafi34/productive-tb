@@ -21,8 +21,8 @@ export const fenceMaterialCalculatorConfig = {
       "fence post spacing calculator",
     ],
     og: {
-      title: "Fence Material Calculator – Estimate Fence Panels, Posts & Materials",
-      description: "Calculate fence materials instantly. Estimate fence panels, posts, concrete, and rails for wood, vinyl, chain link, and metal fencing.",
+      title: "Fence Calculator – Panels, Posts & Concrete",
+      description: "Work out fence panels, posts, concrete bags and gates from the fence length or yard size, for wood, vinyl, chain link and metal fences. Feet or meters.",
       url: `${siteConfig.url}/tools/land/fence-material-calculator`,
     },
     howToSteps: [

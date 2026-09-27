@@ -24,9 +24,9 @@ export const soilCompactionRatioCalculatorConfig = {
       "compaction percentage calculator",
     ],
     og: {
-      title: "Soil Compaction Ratio Calculator – Free Engineering Tool",
+      title: "Soil Compaction Calculator – Relative Compaction %",
       description:
-        "Calculate soil compaction ratio instantly. Compare field dry density with maximum dry density for quality control.",
+        "Calculate relative compaction from field dry density and Proctor maximum dry density, in g/cm³, kg/m³ or lb/ft³, and check it against a 90–100% spec.",
       url: `${siteConfig.url}/tools/land/soil-compaction-ratio-calculator`,
     },
     howToSteps: [

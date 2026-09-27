@@ -24,7 +24,7 @@ export const plotDivisionCalculatorConfig = {
     ],
     og: {
       title: "Plot Division Calculator – Divide Land into Equal Plots Online",
-      description: "Calculate and divide land into equal plots instantly. Enter land size, dimensions, and plot count to plan subdivisions with visual layouts.",
+      description: "Calculate and divide land into equal plots instantly. Enter land size, dimensions, and plot count to plan subdivisions with visual layouts and accurate calculations.",
       url: `${siteConfig.url}/tools/land/plot-division-calculator`,
     },
     howToSteps: [

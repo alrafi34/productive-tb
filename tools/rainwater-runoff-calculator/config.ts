@@ -23,8 +23,8 @@ export const rainwaterRunoffCalculatorConfig = {
       "stormwater management tool",
     ],
     og: {
-      title: "Free Rainwater Runoff Calculator – Estimate Water Runoff Online",
-      description: "Calculate rainwater runoff instantly using rainfall, land area, and surface type. Estimate stormwater runoff, drainage needs, and rainwater collection online for free.",
+      title: "Rainwater Runoff Calculator – Stormwater Volume",
+      description: "Estimate stormwater runoff from rainfall, area and surface type (roof, pavement, lawn) in gallons, liters and m³, using the runoff coefficient.",
       url: `${siteConfig.url}/tools/land/rainwater-runoff-calculator`,
     },
     howToSteps: [

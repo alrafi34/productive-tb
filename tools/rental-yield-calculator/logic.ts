@@ -66,7 +66,8 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
 
   const loanPrincipal   = Math.max(0, price - down);
   const mortgagePayment = mRate > 0 ? monthlyMortgage(loanPrincipal, mRate, mTerm) : 0;
-  const monthlyCashFlow = rent - monthlyExpenses - mortgagePayment;
+  // Cash flow after vacancy, like the annual profit
+  const monthlyCashFlow = vacancyAdjustedRent / 12 - monthlyExpenses - mortgagePayment;
   const annualCashFlow  = monthlyCashFlow * 12;
   const annualProfit    = vacancyAdjustedRent - annualExpenses - mortgagePayment * 12;
 

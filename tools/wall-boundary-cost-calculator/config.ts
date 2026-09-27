@@ -21,8 +21,8 @@ export const wallBoundaryCostCalculatorConfig = {
       "construction cost estimator",
     ],
     og: {
-      title: "Wall Boundary Cost Calculator – Estimate Boundary Wall Construction Cost",
-      description: "Calculate the estimated cost of building a boundary wall instantly. Estimate material, labor, plaster, gate, and total construction cost online for free.",
+      title: "Boundary Wall Cost Calculator – Garden & Perimeter Walls",
+      description: "Estimate the cost of a boundary, garden or perimeter wall from its length and height, material and labor rates per sq ft, plus finishing and a gate.",
       url: `${siteConfig.url}/tools/land/wall-boundary-cost-calculator`,
     },
     howToSteps: [

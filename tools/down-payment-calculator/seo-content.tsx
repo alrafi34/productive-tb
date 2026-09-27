@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { downPaymentCalculatorConfig } from "./config";
 
 export default function DownPaymentCalculatorSEO() {
+  const { howToSteps, faq } = downPaymentCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function DownPaymentCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Down Payment Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the total purchase price of the property or asset",
-                "Select Percentage or Fixed Amount mode",
-                "Enter the down payment percentage (e.g. 20%) or fixed amount",
-                "Use the slider or quick preset buttons for fast adjustments",
-                "Optionally enter an interest rate and loan term for monthly estimates",
-                "View the payment bar showing down payment vs loan split",
-                "Click Show on Scenario Comparison to compare multiple options",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Percentage and fixed amount modes",
-                "Interactive slider for percentage input",
-                "Quick preset buttons: 5%, 10%, 15%, 20%, 25%, 30%",
-                "Visual payment bar showing down vs loan split",
-                "Optional monthly payment estimate with interest rate",
-                "Scenario comparison table for all common percentages",
-                "Multi-currency: USD, EUR, GBP, CAD, AUD",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -159,44 +128,7 @@ export default function DownPaymentCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How much down payment do I need for a house?",
-              a: "The minimum down payment depends on the loan type. Conventional loans typically require 3–20%. FHA loans require 3.5% with a credit score of 580+. VA and USDA loans may require 0% down for eligible buyers. A 20% down payment avoids Private Mortgage Insurance (PMI), which adds to your monthly cost.",
-            },
-            {
-              q: "What is PMI and how does the down payment affect it?",
-              a: "Private Mortgage Insurance (PMI) is required by most lenders when your down payment is less than 20% of the home price. PMI typically costs 0.5–1.5% of the loan amount per year. Making a 20% or larger down payment eliminates this extra cost.",
-            },
-            {
-              q: "Is a larger down payment always better?",
-              a: "A larger down payment reduces your loan amount, monthly payment, and total interest paid. However, it also ties up more cash upfront. Consider your emergency fund, investment opportunities, and liquidity needs before committing to a large down payment.",
-            },
-            {
-              q: "Can I use this calculator for vehicle purchases?",
-              a: "Yes. Enter the vehicle price as the purchase price and your planned down payment. The calculator works for any asset purchase — property, land, vehicles, or equipment. The monthly payment estimate uses the standard amortization formula.",
-            },
-            {
-              q: "What is the difference between percentage and fixed amount mode?",
-              a: "Percentage mode calculates the down payment as a fraction of the purchase price (e.g., 20% of $300,000 = $60,000). Fixed amount mode lets you enter a specific dollar amount directly (e.g., $60,000 flat). The calculator shows the equivalent percentage in both cases.",
-            },
-            {
-              q: "How accurate is the monthly payment estimate?",
-              a: "The monthly payment estimate uses the standard mortgage amortization formula and is accurate for fixed-rate loans. It does not include property taxes, insurance, HOA fees, or PMI. For a complete PITI estimate, use the Mortgage Loan Calculator.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

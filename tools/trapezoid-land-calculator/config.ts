@@ -22,8 +22,8 @@ export const trapezoidLandCalculatorConfig = {
       "trapezoid area calculator",
     ],
     og: {
-      title: "Free Trapezoid Land Calculator – Calculate Trapezoid Area Online",
-      description: "Calculate trapezoid land area instantly using accurate formulas. Enter top base, bottom base, and height to measure land area online with automatic unit conversion.",
+      title: "Trapezoid Land Area Calculator – Sq Ft, m² & Acres",
+      description: "Calculate the area of a trapezoid-shaped plot from its two parallel sides and the distance between them, in square feet, square meters, acres or hectares.",
       url: `${siteConfig.url}/tools/land/trapezoid-land-calculator`,
     },
     howToSteps: [

@@ -23,8 +23,8 @@ export const landAreaCalculatorConfig = {
       "land size calculator",
     ],
     og: {
-      title: "Land Area Calculator (Square Feet) – Calculate Property Size Online",
-      description: "Calculate land area in square feet instantly from length and width. Free online land area calculator with feet, meter, and yard conversion.",
+      title: "Land Area Calculator – Square Feet, m² and Acres",
+      description: "Find the area of a rectangular lot from its length and width in feet, meters or yards, in square feet, square meters, square yards and acres.",
       url: `${siteConfig.url}/tools/land/land-area-calculator-square-feet`,
     },
     howToSteps: [

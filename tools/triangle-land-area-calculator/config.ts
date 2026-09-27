@@ -23,8 +23,8 @@ export const triangleLandAreaCalculatorConfig = {
       "three sides area calculator",
     ],
     og: {
-      title: "Triangle Land Area Calculator – Calculate Triangular Plot Area Online",
-      description: "Calculate triangular land area instantly using base & height or Heron's formula. Free triangle land area calculator with unit conversion.",
+      title: "Triangle Land Area Calculator – 3 Sides or Base",
+      description: "Calculate the area of a triangular plot from base and height, from its three sides (Heron's formula) or from coordinates, in sq ft, m², acres or hectares.",
       url: `${siteConfig.url}/tools/land/triangle-land-area-calculator`,
     },
     howToSteps: [

@@ -22,8 +22,8 @@ export const soilVolumeCalculatorConfig = {
       "excavation volume estimator",
     ],
     og: {
-      title: "Soil Volume Calculator – Free Excavation & Earthwork Volume Tool",
-      description: "Calculate soil excavation volume instantly for construction, landscaping, trenches, and earthwork projects. Free online soil volume calculator with unit conversion.",
+      title: "Soil Volume Calculator – Cubic Yards & m³ of Dirt",
+      description: "Calculate soil volume for excavation or fill: pits, trenches, circles and slopes, in cubic yards, cubic feet and m³, with weight and cost in your currency.",
       url: `${siteConfig.url}/tools/land/soil-volume-calculator`,
     },
     howToSteps: [

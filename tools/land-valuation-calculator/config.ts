@@ -25,8 +25,8 @@ export const landValuationCalculatorConfig = {
       "land cost estimator",
     ],
     og: {
-      title: "Land Valuation Calculator – Estimate Property Value Online",
-      description: "Calculate land value instantly using area size, unit price, and extra costs. Supports Katha, Acre, Decimal, Sq Ft, and more.",
+      title: "Land Valuation Calculator – Value from Price per Unit",
+      description: "Estimate a plot's value from its area and a price per acre, sq ft, m² or hectare, plus closing costs such as fees and taxes, in your currency.",
       url: `${siteConfig.url}/tools/land/land-valuation-calculator`,
     },
     howToSteps: [

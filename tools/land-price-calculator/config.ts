@@ -26,7 +26,7 @@ export const landPriceCalculatorConfig = {
     ],
     openGraph: {
       title: "Land Price Calculator – Total Price per Acre or Sq Ft",
-      description: "Total land price from area and price per acre, sq ft, m² or hectare, with automatic unit conversion and a two-plot comparison.",
+      description: "Work out the total price of land from its area and the price per acre, square foot, m² or hectare. Converts units automatically and compares two plots.",
       type: "website",
       url: `${siteConfig.url}/tools/land/land-price-calculator`,
     },

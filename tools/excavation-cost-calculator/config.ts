@@ -21,8 +21,8 @@ export const excavationCostCalculatorConfig = {
       "excavation estimate tool",
     ],
     og: {
-      title: "Free Excavation Cost Calculator – Estimate Digging Cost Online",
-      description: "Calculate excavation and digging costs instantly. Estimate land excavation, trenching, foundation digging, and soil removal costs with real-time calculations.",
+      title: "Excavation Cost Calculator – Digging Cost per Cubic Yard",
+      description: "Estimate excavation cost from the dig size, rate per cubic yard or m³ and soil type, with optional labor, equipment and hauling, in $, €, £ and more.",
       url: `${siteConfig.url}/tools/land/excavation-cost-calculator`,
     },
     howToSteps: [

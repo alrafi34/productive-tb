@@ -22,8 +22,8 @@ export const earthFillingCalculatorConfig = {
       "fill dirt calculator",
     ],
     og: {
-      title: "Earth Filling Calculator – Calculate Fill Material Volume Instantly",
-      description: "Calculate earth fill material required for construction, land filling, ponds, and foundations. Estimate cubic feet, cubic meters, truckloads, and cost instantly.",
+      title: "Fill Dirt Calculator – Cubic Yards & Truckloads",
+      description: "Calculate how much fill dirt or earth fill you need, in cubic yards, cubic feet or m³, with a compaction allowance, truckloads and cost in your currency.",
       url: `${siteConfig.url}/tools/land/earth-filling-calculator`,
     },
     howToSteps: [

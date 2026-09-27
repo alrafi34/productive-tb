@@ -179,13 +179,13 @@ export default function PolygonAreaCalculatorUI() {
   const recalc = useCallback(
     debounce(() => {
       const s = parseFloat(scale) || 1;
-      setResult(calculate(points, s, outputUnit));
+      setResult(calculate(points, s, outputUnit, scaleUnit));
       autosave(points);
     }, 120),
-    [points, scale, outputUnit]
+    [points, scale, scaleUnit, outputUnit]
   );
 
-  useEffect(() => { recalc(); }, [points, scale, outputUnit, recalc]);
+  useEffect(() => { recalc(); }, [points, scale, scaleUnit, outputUnit, recalc]);
 
   // Redraw canvas
   useEffect(() => {

@@ -78,17 +78,28 @@ function sqmToUnit(sqm: number, unit: OutputUnit): number {
 
 // ── Main calculate ────────────────────────────────────────────────────────────
 
+// Meters per unit of the scale selector
+export const SCALE_UNIT_METERS: Record<string, number> = {
+  ft: 0.3048,
+  m: 1,
+  yd: 0.9144,
+  km: 1000,
+  mi: 1609.344,
+};
+
 export function calculate(
   points: Point[],
-  scale: number,        // 1 canvas unit = scale meters
-  outputUnit: OutputUnit
+  scale: number,        // 1 canvas unit = scale × scaleUnit
+  outputUnit: OutputUnit,
+  scaleUnit = "m"
 ): CalculationResult | null {
   if (points.length < 3) return null;
 
-  const rawArea = shoelaceArea(points);          // canvas units²
-  const scaledAreaSqm = rawArea * scale * scale; // real-world sq meters
+  const metersPerUnit = scale * (SCALE_UNIT_METERS[scaleUnit] ?? 1);
+  const rawArea = shoelaceArea(points);                          // canvas units²
+  const scaledAreaSqm = rawArea * metersPerUnit * metersPerUnit; // real-world sq meters
   const perimeter = calcPerimeter(points);
-  const scaledPerimeter = perimeter * scale;
+  const scaledPerimeter = perimeter * scale;                     // in scaleUnit
 
   const sqm       = scaledAreaSqm;
   const sqft      = sqmToUnit(sqm, "sqft");

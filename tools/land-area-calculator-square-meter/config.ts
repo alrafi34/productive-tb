@@ -23,8 +23,8 @@ export const landAreaCalculatorSquareMeterConfig = {
       "bigha to square meter",
     ],
     og: {
-      title: "Land Area Calculator (Square Meter) – Convert Land Units Online",
-      description: "Calculate and convert land area into square meters instantly. Convert square feet, acres, hectares, and more with real-time results.",
+      title: "Land Area Calculator – Square Meters from Any Unit",
+      description: "Calculate land area in square meters from length and width, or convert acres, hectares, sq ft, sq yd and other units to m², with instant conversions.",
       url: `${siteConfig.url}/tools/land/land-area-calculator-square-meter`,
     },
     howToSteps: [

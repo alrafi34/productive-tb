@@ -22,8 +22,8 @@ export const boundaryLengthCalculatorConfig = {
       "property perimeter tool",
     ],
     og: {
-      title: "Free Boundary Length Calculator – Calculate Plot Perimeter Online",
-      description: "Calculate total boundary length or perimeter instantly for plots, land, rooms, or property boundaries. Fast and accurate.",
+      title: "Boundary Length Calculator – Plot Perimeter",
+      description: "Calculate the perimeter of a plot, yard or room: add any number of sides or use rectangle, square and triangle modes. Meters, feet, km, cm or inches.",
       url: `${siteConfig.url}/tools/land/boundary-length-calculator`,
     },
     howToSteps: [
