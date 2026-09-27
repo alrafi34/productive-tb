@@ -39,6 +39,8 @@ for (const dir of fs.readdirSync(path.join(ROOT, 'tools'))) {
 }
 
 const pascal = (s) => s.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join('');
+// Component names must be valid identifiers: "3d-volume-…" → "Tool3dVolume…"
+const componentName = (s) => (/^[0-9]/.test(s) ? 'Tool' : '') + pascal(s);
 
 let written = 0;
 for (const slug of process.argv.slice(2)) {
@@ -50,7 +52,7 @@ for (const slug of process.argv.slice(2)) {
     console.log(`skip ${out} (exists)`);
     continue;
   }
-  const name = pascal(slug);
+  const name = componentName(slug);
   const page = TEMPLATE
     .replace('import { hectareToAcreConverterConfig as config } from "@/tools/hectare-to-acre-converter/config";',
       `import { ${tool.exp} as config } from "@/tools/${tool.dir}/config";`)
@@ -65,8 +67,17 @@ for (const slug of process.argv.slice(2)) {
     // These tools were served by the dynamic route, whose og:image URL encodes
     // spaces as %20; keep it so the image URLs already shared do not change.
     .replace('// `+` rather than %20 so these URLs stay identical to what is already indexed.\n', '// %20 spaces, as the dynamic route that served this tool before emitted.\n')
-    .replace('encodeURIComponent(toolName).replace(/%20/g, "+")', 'encodeURIComponent(toolName)');
+    .replace('encodeURIComponent(toolName).replace(/%20/g, "+")', 'encodeURIComponent(toolName)')
+    // The dynamic route fell back to the plain config fields for tools with
+    // no `seo` block or `name`; keep those fallbacks.
+    .replace('const toolName = (config as any).name;', `const toolName = (config as any).name ?? (config as any).title ?? "${slug}";`)
+    .replace('?? seo.og?.title ?? seo.title;', '?? seo.og?.title ?? seo.title ?? toolName;')
+    .replace('?? seo.og?.description ?? seo.description;', '?? seo.og?.description ?? seo.description ?? toolDescription;')
+    .replace('  title: seo.title,', '  title: seo.title ?? toolName,')
+    .replace('  description: seo.description,', '  description: seo.description ?? toolDescription,')
+    .replace('  keywords: seo.keywords,', '  keywords: seo.keywords ?? (config as any).keywords,');
   if (/hectare|HectareToAcre|replace\(\/%20/.test(page)) throw new Error(`${slug}: template substitution incomplete`);
+  if ((page.match(/\?\? toolName|\?\? toolDescription|\?\? \(config as any\)\.(title|keywords)/g) ?? []).length !== 6) throw new Error(`${slug}: config fallbacks not applied`);
   fs.mkdirSync(path.dirname(path.join(ROOT, out)), { recursive: true });
   fs.writeFileSync(path.join(ROOT, out), page);
   written++;
