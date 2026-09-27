@@ -24,11 +24,11 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 export default function SunlightExposureCalculatorUI() {
-  const [latitude, setLatitude] = useState("23.8103");
-  const [longitude, setLongitude] = useState("90.4125");
+  const [latitude, setLatitude] = useState("40.7128");
+  const [longitude, setLongitude] = useState("-74.0060");
   const [date, setDate] = useState(toDateInputValue(new Date()));
-  // Clock time is local to this time zone; Dhaka (the default location) is UTC+6
-  const [utcOffset, setUtcOffset] = useState(6);
+  // Clock time is local to this time zone: New York (the default location), with daylight saving
+  const [utcOffset, setUtcOffset] = useState(() => utcOffsetFor("America/New_York", new Date()));
   const [time, setTime] = useState(12);
   const [buildingHeight, setBuildingHeight] = useState("10");
   const [buildingOrientation, setBuildingOrientation] = useState(180); // South-facing
@@ -269,9 +269,9 @@ export default function SunlightExposureCalculatorUI() {
   }, [isPlaying]);
 
   const handleReset = () => {
-    setLatitude("23.8103");
-    setLongitude("90.4125");
-    setUtcOffset(6);
+    setLatitude("40.7128");
+    setLongitude("-74.0060");
+    setUtcOffset(utcOffsetFor("America/New_York", new Date()));
     setDate(toDateInputValue(new Date()));
     setTime(12);
     setBuildingHeight("10");
@@ -356,7 +356,7 @@ export default function SunlightExposureCalculatorUI() {
                   value={latitude}
                   onChange={(e) => setLatitude(e.target.value)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono"
-                  placeholder="23.8103"
+                  placeholder="40.7128"
                   step="0.0001"
                   min="-90"
                   max="90"
@@ -370,7 +370,7 @@ export default function SunlightExposureCalculatorUI() {
                   value={longitude}
                   onChange={(e) => setLongitude(e.target.value)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono"
-                  placeholder="90.4125"
+                  placeholder="-74.0060"
                   step="0.0001"
                   min="-180"
                   max="180"

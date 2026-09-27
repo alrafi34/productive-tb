@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { fireSafetyLoadCalculatorConfig } from "./config";
+
 export default function FireSafetyLoadCalculatorSEO() {
+  const { howToSteps, faq } = fireSafetyLoadCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -15,36 +19,14 @@ export default function FireSafetyLoadCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Enter Floor Area</h3>
-              <p className="text-gray-700">
-                Input the total floor area of the space in square meters. This is the area over which the fire load will 
-                be distributed.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Select Occupancy Type</h3>
-              <p className="text-gray-700">
-                Choose the building occupancy type (residential, office, commercial, industrial, or warehouse) to get 
-                context-specific recommendations.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Add Combustible Materials</h3>
-              <p className="text-gray-700">
-                Add all combustible materials present in the space. Select from preset materials or enter custom values. 
-                Specify the mass (kg) for each material. The calorific value is automatically filled for preset materials.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Review Results</h3>
-              <p className="text-gray-700">
-                The calculator instantly displays the total heat energy, fire load density, and risk level classification 
-                with detailed recommendations.
-              </p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -221,50 +203,7 @@ export default function FireSafetyLoadCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What is fire load and why is it important?</h3>
-              <p className="text-gray-700">
-                Fire load is the total amount of heat energy that can be released by all combustible materials in a space, 
-                divided by the floor area. It's crucial for determining fire safety requirements, structural fire resistance, 
-                and evacuation time calculations.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How do I determine the mass of materials in a space?</h3>
-              <p className="text-gray-700">
-                For existing buildings, conduct a physical inventory and weigh representative samples. For design phase, 
-                estimate based on typical furniture and equipment for the occupancy type. Include all combustible contents 
-                including finishes, furniture, and stored materials.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What materials should I include in the calculation?</h3>
-              <p className="text-gray-700">
-                Include all combustible materials: furniture, finishes, stored goods, packaging, and equipment. Exclude 
-                non-combustible items like concrete, steel, glass, and masonry. Include wall and ceiling finishes if combustible.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How does fire load affect building design?</h3>
-              <p className="text-gray-700">
-                Higher fire loads require enhanced fire protection measures including longer fire resistance ratings for 
-                structural elements, more robust sprinkler systems, better compartmentation, and potentially more exits. 
-                This affects construction costs and building layout.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Can I reduce fire load in an existing building?</h3>
-              <p className="text-gray-700">
-                Yes, by reducing combustible materials, using fire-resistant furniture and finishes, implementing better 
-                storage practices, and removing unnecessary combustible items. Regular housekeeping and material management 
-                are essential.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Engineering Best Practices</h2>
