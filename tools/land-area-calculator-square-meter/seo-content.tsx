@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { landAreaCalculatorSquareMeterConfig } from "./config";
+
 export default function LandAreaCalculatorSquareMeterSEO() {
+  const { howToSteps, faq } = landAreaCalculatorSquareMeterConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -128,32 +132,13 @@ export default function LandAreaCalculatorSquareMeterSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Choose Calculation Mode:</strong> Select "Calculate by Dimensions" to enter length and width, or "Convert Existing Area" to convert from another unit.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Enter Values:</strong> Input your land dimensions or area value depending on the selected mode.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Select Units:</strong> Choose the appropriate unit for your input (meters, feet, yards for dimensions; various area units for conversion).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Set Precision:</strong> Choose decimal precision (0, 2, or 4 decimal places) for your results.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>View Results:</strong> The area in square meters updates instantly, along with conversions to other common units.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Use Additional Features:</strong> Copy results, save to history, export reports, or generate shareable links.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -224,41 +209,7 @@ export default function LandAreaCalculatorSquareMeterSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I convert acres to square meters?</h3>
-              <p className="text-gray-700">Select "Convert Existing Area" mode, enter your acre value, choose "Acres" as the unit, and the result will show the equivalent area in square meters. 1 acre = 4046.86 square meters.</p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I calculate area from dimensions in feet?</h3>
-              <p className="text-gray-700">Yes. Select "Calculate by Dimensions" mode, enter your length and width, choose "Feet" as the unit, and the tool will automatically convert to square meters.</p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between hectare and acre?</h3>
-              <p className="text-gray-700">A hectare is a metric unit equal to 10,000 square meters, while an acre is an imperial unit equal to 4,046.86 square meters. One hectare is approximately 2.47 acres.</p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How accurate are the regional unit conversions?</h3>
-              <p className="text-gray-700">The calculator uses standard conversion factors for katha, bigha, and decimal. However, these units can vary by region, so verify local standards for official documentation.</p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I save my calculations?</h3>
-              <p className="text-gray-700">Yes. The tool automatically saves your last 5 calculations in your browser's local storage. You can access them through the history panel and reuse previous calculations.</p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Is this tool suitable for irregular land shapes?</h3>
-              <p className="text-gray-700">This calculator is designed for rectangular land plots. For irregular shapes, you would need to break the land into rectangular sections or use specialized surveying tools.</p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

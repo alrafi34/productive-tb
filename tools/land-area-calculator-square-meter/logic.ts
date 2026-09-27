@@ -133,9 +133,9 @@ export function getLandSizeComparison(squareMeters: number): string {
   } else if (squareMeters < 50) {
     return "About the size of a studio apartment";
   } else if (squareMeters < 100) {
-    return "About the size of a tennis court";
+    return "About the size of a two-bedroom apartment";
   } else if (squareMeters < 500) {
-    return "About the size of a basketball court";
+    return "About the size of a tennis or basketball court (260–420 m²)";
   } else if (squareMeters < 1000) {
     return "About the size of 2-3 houses";
   } else if (squareMeters < 4000) {

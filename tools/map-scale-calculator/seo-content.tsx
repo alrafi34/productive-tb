@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { mapScaleCalculatorConfig } from "./config";
 
 export default function MapScaleCalculatorSEO() {
+  const { howToSteps, faq } = mapScaleCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -31,46 +34,14 @@ export default function MapScaleCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Map Scale Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Map → Real Distance</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select mode: Map → Real Distance",
-                "Enter the map scale (e.g. 1:25000)",
-                "Enter the distance measured on the map",
-                "Select the unit of your measurement (cm, in, etc.)",
-                "View the real-world distance instantly",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Real → Map Distance</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select mode: Real → Map Distance",
-                "Enter the map scale (e.g. 1:50000)",
-                "Enter the known real-world distance",
-                "Select the unit (m, km, ft, mi, etc.)",
-                "View the required map measurement",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -165,40 +136,7 @@ export default function MapScaleCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is real-world distance calculated from a map?",
-              a: "Real Distance = Map Distance × Scale Denominator. For example, on a 1:25,000 map, 4 cm on the map equals 4 × 25,000 = 100,000 cm = 1,000 m = 1 km in reality.",
-            },
-            {
-              q: "What scale formats does the calculator accept?",
-              a: "The calculator accepts 1:25000, 1/25000, or simply 25000. Commas are ignored, so 1:25,000 also works.",
-            },
-            {
-              q: "What is the reverse calculation?",
-              a: "Map Distance = Real Distance ÷ Scale Denominator. If you know a road is 5 km long and your map is 1:50,000, the road measures 5,000 m ÷ 50,000 = 0.1 m = 10 cm on the map.",
-            },
-            {
-              q: "What does 'Automatic' output unit mean?",
-              a: "The calculator picks the most readable unit automatically. For metric inputs it chooses mm, cm, m, or km based on the magnitude. For imperial inputs it chooses in, ft, or mi.",
-            },
-            {
-              q: "Is my data saved anywhere?",
-              a: "No. All calculations run entirely in your browser. History is stored only in your browser's localStorage and is never sent to any server.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );
