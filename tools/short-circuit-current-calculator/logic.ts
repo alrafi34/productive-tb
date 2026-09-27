@@ -90,7 +90,9 @@ export const calculateShortCircuitCurrent = (inputs: ShortCircuitInputs): ShortC
   let shortCircuitCurrent: number;
   let formula: string;
 
-  if (inputs.systemType === 'three-phase' && inputs.calculationMode === 'advanced') {
+  // A three-phase bolted fault is driven by the phase voltage, VLL / √3, through
+  // the per-phase impedance; a single-phase fault by V through the loop impedance.
+  if (inputs.systemType === 'three-phase') {
     // Three-phase formula: Isc = V / (√3 × Z)
     shortCircuitCurrent = inputs.voltage / (Math.sqrt(3) * inputs.impedance);
     formula = 'Isc = V / (√3 × Z)';
@@ -131,7 +133,7 @@ const generateCalculationSteps = (inputs: ShortCircuitInputs, result: number): s
   steps.push(`System Type: ${inputs.systemType}`);
   steps.push('');
   
-  if (inputs.systemType === 'three-phase' && inputs.calculationMode === 'advanced') {
+  if (inputs.systemType === 'three-phase') {
     steps.push('Formula for Three-Phase System:');
     steps.push('Isc = V / (√3 × Z)');
     steps.push('');
@@ -141,7 +143,7 @@ const generateCalculationSteps = (inputs: ShortCircuitInputs, result: number): s
     steps.push(`Isc = ${formatNumber(inputs.voltage, inputs.precision)} / ${formatNumber(Math.sqrt(3) * inputs.impedance, inputs.precision)}`);
     steps.push(`Isc = ${formatNumber(result, inputs.precision)} A`);
   } else {
-    steps.push('Formula (Basic):');
+    steps.push('Formula for Single-Phase System:');
     steps.push('Isc = V / Z');
     steps.push('');
     steps.push('Calculation:');
@@ -173,15 +175,15 @@ export const debounce = <T extends (...args: any[]) => any>(
 // Presets
 export const getPresets = (): Preset[] => [
   {
-    name: 'Residential 230V',
-    description: 'Typical home electrical system',
+    name: 'UK/EU Residential 230V',
+    description: 'Single-phase home supply',
     voltage: 230,
     impedance: 0.5,
     systemType: 'single-phase'
   },
   {
-    name: 'Industrial 400V',
-    description: 'Low voltage industrial system',
+    name: 'UK/EU Industrial 400V',
+    description: '400/230 V three-phase system',
     voltage: 400,
     impedance: 0.2,
     systemType: 'three-phase'
@@ -201,17 +203,17 @@ export const getPresets = (): Preset[] => [
     systemType: 'three-phase'
   },
   {
-    name: 'Motor Circuit 415V',
-    description: 'Typical motor feeder circuit',
-    voltage: 415,
-    impedance: 0.15,
+    name: 'US Industrial 480V',
+    description: '480Y/277 V switchboard',
+    voltage: 480,
+    impedance: 0.02,
     systemType: 'three-phase'
   },
   {
-    name: 'Lighting Circuit 230V',
-    description: 'Commercial lighting circuit',
-    voltage: 230,
-    impedance: 0.8,
+    name: 'US Residential 240V',
+    description: '120/240 V split-phase service',
+    voltage: 240,
+    impedance: 0.03,
     systemType: 'single-phase'
   }
 ];

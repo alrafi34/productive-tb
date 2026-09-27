@@ -96,7 +96,7 @@ export function validateInputs(inputs: FrequencyResponseInputs): string | null {
 
   // Basic transfer function validation
   if (!isValidTransferFunction(transferFunction)) {
-    return "Invalid transfer function format. Use 'jω' for frequency variable.";
+    return "Could not read the transfer function. Use jω (or s) for frequency, e.g. 1/(1+jω/1000).";
   }
 
   return null;
@@ -104,56 +104,102 @@ export function validateInputs(inputs: FrequencyResponseInputs): string | null {
 
 // Basic transfer function validation
 function isValidTransferFunction(tf: string): boolean {
-  // Check for basic mathematical expressions and jω
-  const validChars = /^[jω\d\s\+\-\*\/\(\)\.\^]+$/;
-  return validChars.test(tf) && tf.includes('ω');
+  if (!/^[jωwsπ\d\s+\-*/().^,]+$/.test(tf)) return false;
+  try {
+    evaluateTransferFunction(tf, 1);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
-// Parse and evaluate transfer function
+/*
+ * Evaluates H at angular frequency ω with a small recursive-descent parser:
+ * numbers, j (imaginary unit), ω or w (angular frequency), s (= jω), π,
+ * + − × ÷, ^ with a real exponent, parentheses and implied multiplication,
+ * so "1/(1+jω/1000)", "10/(s+10)^2" and "(1+0.1jω)(1+jω)" all work.
+ */
 function evaluateTransferFunction(tf: string, omega: number): Complex {
-  try {
-    // Replace jω with complex representation
-    // This is a simplified parser for common transfer functions
-    
-    // Handle common cases
-    if (tf.trim() === '1') {
-      return complex(1, 0);
+  const src = tf.replace(/\s+/g, "").replace(/,/g, ".");
+  let i = 0;
+  const peek = () => src[i];
+  const startsPrimary = (c: string | undefined) => c !== undefined && /[\dj.ωwsπ(]/.test(c);
+
+  const complexPow = (a: Complex, p: Complex): Complex => {
+    if (p.imaginary !== 0) throw new Error("Exponents must be real");
+    const n = p.real;
+    if (Number.isInteger(n) && Math.abs(n) <= 64) {
+      let r = complex(1, 0);
+      for (let k = 0; k < Math.abs(n); k++) r = complexMultiply(r, a);
+      return n < 0 ? complexDivide(complex(1, 0), r) : r;
     }
-    
-    if (tf.trim() === 'jω') {
-      return complex(0, omega);
+    const mag = Math.pow(complexMagnitude(a), n);
+    const ang = complexPhase(a) * n;
+    return complex(mag * Math.cos(ang), mag * Math.sin(ang));
+  };
+
+  function primary(): Complex {
+    const c = peek();
+    if (c === "(") {
+      i++;
+      const v = expr();
+      if (peek() !== ")") throw new Error("Missing )");
+      i++;
+      return v;
     }
-    
-    if (tf.includes('1/(1+jω)')) {
-      // Low-pass filter: 1/(1+jω)
-      const denominator = complexAdd(complex(1, 0), complex(0, omega));
-      return complexDivide(complex(1, 0), denominator);
+    if (c !== undefined && /[\d.]/.test(c)) {
+      const m = /^\d*\.?\d+(?:e[+-]?\d+)?|^\d+\.?/i.exec(src.slice(i));
+      if (!m) throw new Error("Bad number");
+      i += m[0].length;
+      return complex(parseFloat(m[0]), 0);
     }
-    
-    if (tf.includes('jω/(1+jω)')) {
-      // High-pass filter: jω/(1+jω)
-      const numerator = complex(0, omega);
-      const denominator = complexAdd(complex(1, 0), complex(0, omega));
-      return complexDivide(numerator, denominator);
-    }
-    
-    if (tf.includes('1+jω')) {
-      // Differentiator: 1+jω
-      return complexAdd(complex(1, 0), complex(0, omega));
-    }
-    
-    if (tf.includes('1/jω')) {
-      // Integrator: 1/jω
-      return complexDivide(complex(1, 0), complex(0, omega));
-    }
-    
-    // More complex parsing would go here
-    // For now, return a default response
-    return complex(1, 0);
-    
-  } catch (error) {
-    throw new Error(`Error evaluating transfer function: ${error}`);
+    if (c === "j") { i++; return complex(0, 1); }
+    if (c === "ω" || c === "w") { i++; return complex(omega, 0); }
+    if (c === "s") { i++; return complex(0, omega); }
+    if (c === "π") { i++; return complex(Math.PI, 0); }
+    throw new Error(c === undefined ? "Unexpected end" : `Unexpected "${c}"`);
   }
+
+  function power(): Complex {
+    const base = primary();
+    if (peek() === "^") {
+      i++;
+      return complexPow(base, unary());
+    }
+    return base;
+  }
+
+  function unary(): Complex {
+    if (peek() === "-") { i++; const v = unary(); return complex(-v.real, -v.imaginary); }
+    if (peek() === "+") { i++; return unary(); }
+    return power();
+  }
+
+  function term(): Complex {
+    let v = unary();
+    for (;;) {
+      const c = peek();
+      if (c === "*") { i++; v = complexMultiply(v, unary()); }
+      else if (c === "/") { i++; v = complexDivide(v, unary()); }
+      else if (startsPrimary(c)) { v = complexMultiply(v, power()); }
+      else return v;
+    }
+  }
+
+  function expr(): Complex {
+    let v = term();
+    for (;;) {
+      const c = peek();
+      if (c === "+") { i++; v = complexAdd(v, term()); }
+      else if (c === "-") { i++; const t = term(); v = complex(v.real - t.real, v.imaginary - t.imaginary); }
+      else return v;
+    }
+  }
+
+  const v = expr();
+  if (i !== src.length) throw new Error(`Unexpected "${src[i]}"`);
+  if (!Number.isFinite(v.real) || !Number.isFinite(v.imaginary)) throw new Error("Result is not finite");
+  return v;
 }
 
 // Analyze system characteristics
@@ -187,14 +233,17 @@ function analyzeSystem(points: FrequencyPoint[], tf: string): any {
   return characteristics;
 }
 
-// Determine system type
-function determineSystemType(tf: string): string {
-  if (tf.includes('1/(1+jω)')) return 'Low-pass Filter';
-  if (tf.includes('jω/(1+jω)')) return 'High-pass Filter';
-  if (tf.includes('1+jω')) return 'Differentiator';
-  if (tf.includes('1/jω')) return 'Integrator';
-  if (tf.trim() === '1') return 'Unity Gain';
-  if (tf.trim() === 'jω') return 'Pure Differentiator';
+// Describe the shape of the response from the computed points
+function determineSystemType(points: FrequencyPoint[]): string {
+  const db = points.map((p) => p.magnitudeDb).filter((d) => Number.isFinite(d));
+  if (db.length < 2) return 'Custom System';
+  const first = db[0];
+  const last = db[db.length - 1];
+  const peak = Math.max(...db);
+  if (peak - Math.min(...db) < 1) return 'Flat (Constant Gain)';
+  if (peak - first > 10 && peak - last > 10) return 'Band-pass / Resonant';
+  if (first - last > 10) return 'Low-pass';
+  if (last - first > 10) return 'High-pass';
   return 'Custom System';
 }
 
@@ -268,7 +317,7 @@ export function calculateFrequencyResponse(inputs: FrequencyResponseInputs): Fre
   const characteristics = analyzeSystem(points, transferFunction);
   
   // Determine system type
-  const systemType = determineSystemType(transferFunction);
+  const systemType = determineSystemType(points);
 
   const result: FrequencyResponseResult = {
     points,
@@ -331,10 +380,26 @@ export function getPresets() {
     },
     {
       name: "Lead Compensator",
-      description: "First-order lead",
-      transferFunction: "1+jω",
-      startFrequency: 0.1,
-      endFrequency: 100,
+      description: "Zero at 16 Hz, pole at 160 Hz",
+      transferFunction: "(1+jω/100)/(1+jω/1000)",
+      startFrequency: 1,
+      endFrequency: 10000,
+      samplingPoints: 500 as SamplingPoints
+    },
+    {
+      name: "RC Low-pass 1 kHz",
+      description: "R = 1.6 kΩ, C = 100 nF",
+      transferFunction: "1/(1+jω/6283)",
+      startFrequency: 10,
+      endFrequency: 100000,
+      samplingPoints: 500 as SamplingPoints
+    },
+    {
+      name: "2nd-order Low-pass 1 kHz",
+      description: "Butterworth, Q = 0.707",
+      transferFunction: "1/(1-(ω/6283)^2+jω/(6283*0.707))",
+      startFrequency: 10,
+      endFrequency: 100000,
       samplingPoints: 500 as SamplingPoints
     }
   ];

@@ -1,10 +1,14 @@
+import ToolFaq from "@/components/ToolFaq";
+import { solarPanelCalculatorConfig } from "./config";
+
 export default function SolarPanelCalculatorSEO() {
+  const { howToSteps, faq } = solarPanelCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
         
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Calculate Solar Panel Requirements</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">How Solar Panel Sizing Works</h2>
           <p className="text-gray-700 leading-relaxed">
             Calculating solar panel requirements involves determining how much electricity your home or business uses, understanding 
             your location's solar potential (sun hours), and sizing a system that meets your energy needs. This calculator uses 
@@ -96,10 +100,30 @@ export default function SolarPanelCalculatorSEO() {
                   <td className="px-4 py-3 text-sm text-gray-700 font-mono">2.5-3 hours</td>
                   <td className="px-4 py-3 text-sm text-orange-600 font-semibold">Limited</td>
                 </tr>
+                <tr>
+                  <td className="px-4 py-3 text-sm text-gray-900">Southern Spain, Portugal, Greece</td>
+                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">4.5-5.5 hours</td>
+                  <td className="px-4 py-3 text-sm text-green-600 font-semibold">Very Good</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 text-sm text-gray-900">Italy, Southern France</td>
+                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">4-4.5 hours</td>
+                  <td className="px-4 py-3 text-sm text-blue-600 font-semibold">Good</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 text-sm text-gray-900">Germany, Netherlands, Northern France</td>
+                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">2.7-3.2 hours</td>
+                  <td className="px-4 py-3 text-sm text-yellow-600 font-semibold">Fair</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 text-sm text-gray-900">UK, Ireland</td>
+                  <td className="px-4 py-3 text-sm text-gray-700 font-mono">2.5-3 hours</td>
+                  <td className="px-4 py-3 text-sm text-orange-600 font-semibold">Limited</td>
+                </tr>
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-600 mt-2">Note: Sun hours vary by season. These are annual averages.</p>
+          <p className="text-xs text-gray-600 mt-2">Annual averages of peak sun hours (kWh/m² per day on a tilted panel); winter is much lower. For your address, use NREL PVWatts in the US or the EU&apos;s PVGIS tool in Europe.</p>
         </section>
 
         <section>
@@ -293,104 +317,26 @@ export default function SolarPanelCalculatorSEO() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Solar Panel System Costs (2024)</h2>
-          
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">System Size</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Average Cost</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">After Tax Credit*</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Payback Period</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">3 kW</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">$7,500 - $9,000</td>
-                  <td className="px-4 py-3 text-sm text-green-600 font-semibold">$5,250 - $6,300</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">6-8 years</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">5 kW</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">$12,500 - $15,000</td>
-                  <td className="px-4 py-3 text-sm text-green-600 font-semibold">$8,750 - $10,500</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">6-8 years</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">7 kW</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">$17,500 - $21,000</td>
-                  <td className="px-4 py-3 text-sm text-green-600 font-semibold">$12,250 - $14,700</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">6-9 years</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm text-gray-900">10 kW</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">$25,000 - $30,000</td>
-                  <td className="px-4 py-3 text-sm text-green-600 font-semibold">$17,500 - $21,000</td>
-                  <td className="px-4 py-3 text-sm text-gray-600">7-10 years</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="text-xs text-gray-600 mt-2">*30% Federal Solar Tax Credit (ITC). State incentives may apply.</p>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How many solar panels do I need for a 2000 sq ft home?</h3>
-              <p className="text-sm text-gray-700">
-                A 2000 sq ft home typically uses 800-1200 kWh/month. With 5 sun hours/day and 400W panels, you'd need 13-20 panels 
-                (5-8 kW system). Actual requirements depend on your specific electricity usage, location, and energy efficiency.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between kW and kWh?</h3>
-              <p className="text-sm text-gray-700">
-                kW (kilowatt) measures power capacity - the size of your solar system. kWh (kilowatt-hour) measures energy production 
-                or consumption over time. A 5 kW system producing power for 5 hours generates 25 kWh of energy.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How long do solar panels last?</h3>
-              <p className="text-sm text-gray-700">
-                Solar panels typically last 25-30 years with minimal maintenance. Most manufacturers offer 25-year performance warranties 
-                guaranteeing 80-85% efficiency after 25 years. Inverters usually need replacement after 10-15 years.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Do solar panels work on cloudy days?</h3>
-              <p className="text-sm text-gray-700">
-                Yes, but at reduced efficiency. Solar panels produce 10-25% of their rated capacity on cloudy days. This is why system 
-                sizing uses average sun hours, which account for cloudy days, seasonal variations, and weather patterns.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is net metering?</h3>
-              <p className="text-sm text-gray-700">
-                Net metering allows you to send excess solar energy to the grid in exchange for credits. When your panels produce more 
-                than you use, the excess goes to the grid. At night or on cloudy days, you draw from the grid using your credits. This 
-                effectively uses the grid as a battery.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Should I add battery storage to my solar system?</h3>
-              <p className="text-sm text-gray-700">
-                Battery storage (like Tesla Powerwall) provides backup power during outages and stores excess solar energy for nighttime 
-                use. It's beneficial if you have frequent outages, time-of-use electricity rates, or want energy independence. However, 
-                batteries add $8,000-$15,000 to system cost.
-              </p>
-            </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Estimating Cost and Payback</h2>
+          <div className="space-y-3 text-gray-700 leading-relaxed">
+            <p>
+              Installers quote per watt of panel capacity, so cost ≈ system size in W × installed price per W. Prices vary
+              widely by country, roof and installer, so use the quotes you receive rather than a national average.
+            </p>
+            <p>
+              Simple payback = net cost ÷ yearly savings, where yearly savings ≈ yearly production (kWh) × your electricity
+              rate. Enter your rate in the calculator to see the savings; include any export payment you receive for
+              surplus power.
+            </p>
+            <p className="text-sm text-gray-600">
+              Incentives change often: in the US the 30% federal residential clean energy credit ended for systems
+              installed after December 31, 2025, while state rebates and net metering rules differ; in the UK and EU, check
+              VAT relief and export tariffs where you live.
+            </p>
           </div>
         </section>
+
+        <ToolFaq items={faq} />
 
         <section className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-yellow-900 mb-3">⚠️ Important Note</h2>
@@ -403,6 +349,17 @@ export default function SolarPanelCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Solar Panel Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

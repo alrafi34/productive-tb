@@ -1,6 +1,8 @@
 import { frequencyResponseCalculatorConfig } from "./config";
+import ToolFaq from "@/components/ToolFaq";
 
 export default function FrequencyResponseCalculatorSEO() {
+  const { howToSteps, faq } = frequencyResponseCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
@@ -126,70 +128,17 @@ export default function FrequencyResponseCalculatorSEO() {
 
         <div className="mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">How to Use</h3>
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">1</div>
-              <h4 className="font-semibold text-gray-900 mb-2">Enter Function</h4>
-              <p className="text-sm text-gray-600">Input transfer function using 'jω' notation</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">2</div>
-              <h4 className="font-semibold text-gray-900 mb-2">Set Range</h4>
-              <p className="text-sm text-gray-600">Define start and end frequencies for analysis</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">3</div>
-              <h4 className="font-semibold text-gray-900 mb-2">Choose Display</h4>
-              <p className="text-sm text-gray-600">Select magnitude, phase, or both for Bode plot</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">4</div>
-              <h4 className="font-semibold text-gray-900 mb-2">Analyze Results</h4>
-              <p className="text-sm text-gray-600">View real-time plots and system characteristics</p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <div className="border-t border-gray-200 pt-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Frequently Asked Questions</h3>
-          <div className="space-y-6">
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">What is a Bode plot?</h4>
-              <p className="text-gray-600 text-sm">
-                A Bode plot is a graphical representation of a system's frequency response, showing magnitude (in dB) 
-                and phase (in degrees) versus frequency on a logarithmic scale. It's essential for analyzing system 
-                stability and performance.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">How do I interpret the magnitude response?</h4>
-              <p className="text-gray-600 text-sm">
-                The magnitude response shows how much the system amplifies or attenuates signals at different frequencies. 
-                Positive dB values indicate amplification, negative values indicate attenuation. The -3dB point typically 
-                defines the cutoff frequency.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">What does phase response tell me?</h4>
-              <p className="text-gray-600 text-sm">
-                Phase response shows the time delay (phase shift) introduced by the system at each frequency. This is 
-                crucial for understanding signal timing, system stability, and potential oscillation conditions in 
-                feedback systems.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Can I analyze custom transfer functions?</h4>
-              <p className="text-gray-600 text-sm">
-                Yes, the calculator supports various transfer function formats using 'jω' notation. You can analyze 
-                filters, compensators, and other linear systems. The tool includes presets for common functions to 
-                get you started.
-              </p>
-            </div>
-          </div>
-        </div>
+        <ToolFaq items={faq} />
 
       </div>
     </div>
