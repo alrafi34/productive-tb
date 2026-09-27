@@ -54,12 +54,8 @@ for (const dir of fs.readdirSync(path.join(ROOT, 'tools'))) {
   else folderBySlug.set(slug, dir);
 }
 
-// ── what the dynamic route serves (by the slug of each imported config)
-const dynamicRoute = read('app/tools/[tool]/[subtool]/page.tsx');
-const dynamicSlugs = new Set();
-for (const [, dir] of dynamicRoute.matchAll(/from "@\/tools\/([^"]+)\/config"/g)) {
-  for (const [slug, d] of folderBySlug) if (d === dir) dynamicSlugs.add(slug);
-}
+// Every tool has its own static route; app/tools/[tool]/[subtool] only redirects
+// wrong-category URLs (#3, #14)
 const hasStaticRoute = (category, slug) =>
   fs.existsSync(path.join(ROOT, 'app/tools', category, slug, 'page.tsx'));
 
@@ -70,7 +66,7 @@ for (const [slug, dir] of folderBySlug) {
 }
 for (const [slug, category] of registry) {
   if (!folderBySlug.has(slug)) problems.push(`config/tools.ts "${slug}" has no tools/ folder`);
-  else if (!hasStaticRoute(category, slug) && !dynamicSlugs.has(slug)) {
+  else if (!hasStaticRoute(category, slug)) {
     problems.push(`config/tools.ts "${slug}" is not served at /tools/${category}/${slug}`);
   }
 }

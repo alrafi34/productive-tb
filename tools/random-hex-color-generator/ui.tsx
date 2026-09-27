@@ -22,7 +22,9 @@ import RelatedStrip from '@/components/RelatedStrip';
 
 export default function RandomHexColorGenerator() {
   const [state, setState] = useState<GeneratorState>({
-    colors: [generateColorData('1')],
+    // Fixed on the server; the first random colour is picked after hydration,
+    // so server and browser render the same markup
+    colors: [generateColorData('1', '#3B82F6')],
     paletteSize: 1,
     gradientMode: false,
     history: [],
@@ -31,9 +33,9 @@ export default function RandomHexColorGenerator() {
   
   const [gradient, setGradient] = useState<GradientData | null>(null);
 
-  // Load history on mount
+  // Pick the first random colour and load history on mount
   useEffect(() => {
-    setState(prev => ({ ...prev, history: getHistory() }));
+    setState(prev => ({ ...prev, colors: [generateColorData('1')], history: getHistory() }));
   }, []);
 
   // Spacebar event listener
