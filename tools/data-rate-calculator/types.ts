@@ -2,7 +2,8 @@ export type CalculationMode = 'data-time-to-rate' | 'rate-time-to-data' | 'rate-
 
 export type DataUnit = 'bytes' | 'kb' | 'mb' | 'gb' | 'tb';
 export type TimeUnit = 's' | 'min' | 'h';
-export type RateUnit = 'bps' | 'kbps' | 'mbps' | 'gbps';
+// kbps/mbps/gbps are bytes per second (KB/s …); kbit/mbit/gbit are network bits per second (decimal)
+export type RateUnit = 'bps' | 'kbps' | 'mbps' | 'gbps' | 'kbit' | 'mbit' | 'gbit';
 
 export interface DataRateInputs {
   mode: CalculationMode;

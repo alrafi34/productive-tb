@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { pwmDutyCycleCalculatorConfig } from "./config";
+
 export default function PWMDutyCycleCalculatorSEO() {
+  const { howToSteps, faq } = pwmDutyCycleCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -239,79 +243,7 @@ export default function PWMDutyCycleCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between duty cycle and frequency?</h3>
-              <p className="text-sm text-gray-700">
-                Duty cycle is the percentage of time the signal is ON during one period, while frequency is the number 
-                of complete cycles per second. A 50% duty cycle at 1kHz means the signal is ON for 0.5ms and OFF for 
-                0.5ms, repeating 1000 times per second. You can have the same duty cycle at different frequencies.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate PWM duty cycle for Arduino?</h3>
-              <p className="text-sm text-gray-700">
-                Arduino uses 8-bit PWM (0-255). To set a specific duty cycle, use: analogWrite(pin, (dutyCycle / 100) × 255). 
-                For 50% duty cycle: analogWrite(9, 128). For 25%: analogWrite(9, 64). For 75%: analogWrite(9, 192). 
-                The default Arduino PWM frequency is 490 Hz on most pins.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What PWM frequency should I use for LED dimming?</h3>
-              <p className="text-sm text-gray-700">
-                Use at least 100 Hz to avoid visible flicker, but 200-1000 Hz is recommended for smooth dimming. 
-                Higher frequencies (1-10 kHz) eliminate flicker completely and work better with cameras. Very high 
-                frequencies (&gt; 20 kHz) may cause audible noise in some LED drivers. Arduino default 490 Hz works 
-                well for most LED applications.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use PWM to control AC devices?</h3>
-              <p className="text-sm text-gray-700">
-                Not directly. PWM from microcontrollers is DC (0-5V). To control AC devices, use a solid-state relay 
-                (SSR), TRIAC, or optocoupler with zero-crossing detection. For AC motor speed control, use phase 
-                control (dimmer circuit) or variable frequency drive (VFD), not simple PWM. Never connect PWM output 
-                directly to AC mains.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why does my motor make noise with PWM control?</h3>
-              <p className="text-sm text-gray-700">
-                Audible noise occurs when PWM frequency is below 20 kHz (human hearing range). The motor vibrates at 
-                the PWM frequency, creating sound. Solution: Increase PWM frequency to 20-40 kHz using timer 
-                configuration. Trade-off: Higher frequency increases switching losses and heat in the motor driver. 
-                Use proper motor driver ICs designed for PWM control.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I convert PWM to analog voltage?</h3>
-              <p className="text-sm text-gray-700">
-                Use a low-pass RC filter. Connect PWM output to a resistor (1-10kΩ), then to a capacitor (0.1-10µF) 
-                to ground. Output voltage = Supply Voltage × (Duty Cycle / 100). For 5V PWM at 50% duty cycle, output 
-                is 2.5V. Filter cutoff frequency should be 10-100× lower than PWM frequency for smooth DC output. 
-                Add op-amp buffer for low-impedance output.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the maximum PWM frequency for Arduino?</h3>
-              <p className="text-sm text-gray-700">
-                Arduino Uno can achieve up to 62.5 kHz PWM by modifying timer prescaler, but at reduced resolution 
-                (4-bit instead of 8-bit). Default is 490 Hz (8-bit). ESP32 supports up to 40 MHz PWM with configurable 
-                resolution. Higher frequency requires lower resolution due to timer limitations. For most applications, 
-                1-20 kHz at 8-bit resolution is optimal.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -325,6 +257,17 @@ export default function PWMDutyCycleCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the PWM Duty Cycle Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

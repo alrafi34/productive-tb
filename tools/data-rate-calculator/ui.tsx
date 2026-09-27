@@ -450,6 +450,9 @@ export default function DataRateCalculatorUI() {
                       <option value="kbps">KB/s</option>
                       <option value="mbps">MB/s</option>
                       <option value="gbps">GB/s</option>
+                      <option value="kbit">kbps (kilobits/s)</option>
+                      <option value="mbit">Mbps (megabits/s)</option>
+                      <option value="gbit">Gbps (gigabits/s)</option>
                     </select>
                   </div>
                 </div>

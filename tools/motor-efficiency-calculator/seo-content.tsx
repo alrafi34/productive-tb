@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { motorEfficiencyCalculatorConfig } from "./config";
+
 export default function MotorEfficiencyCalculatorSEO() {
+  const { howToSteps, faq } = motorEfficiencyCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -211,40 +215,14 @@ export default function MotorEfficiencyCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Measure Motor Efficiency</h2>
-          
-          <div className="space-y-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h3 className="font-semibold text-blue-900 mb-2">Method 1: Direct Measurement (Most Accurate)</h3>
-              <div className="text-sm text-blue-800 space-y-2">
-                <p><strong>Input Power:</strong> Measure voltage (V), current (I), and power factor (PF) using a power 
-                meter. For 3-phase: P_in = √3 × V × I × PF. For single-phase: P_in = V × I × PF.</p>
-                <p><strong>Output Power:</strong> Measure torque (T) and speed (N) using a dynamometer. 
-                P_out = (2 × π × N × T) / 60. Requires specialized equipment.</p>
-                <p><strong>Efficiency:</strong> η = (P_out / P_in) × 100. Most accurate but requires expensive equipment.</p>
-              </div>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <h3 className="font-semibold text-green-900 mb-2">Method 2: Nameplate Method (Quick Estimate)</h3>
-              <div className="text-sm text-green-800 space-y-2">
-                <p><strong>Input Power:</strong> Measure actual input power using a power meter or clamp meter.</p>
-                <p><strong>Output Power:</strong> Use nameplate rated power (HP or kW) multiplied by load factor. 
-                Estimate load factor from current: Load Factor ≈ (Actual Current / Rated Current).</p>
-                <p><strong>Efficiency:</strong> Calculate using formula. Less accurate but practical for field testing.</p>
-              </div>
-            </div>
-
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-              <h3 className="font-semibold text-purple-900 mb-2">Method 3: Slip Method (Induction Motors)</h3>
-              <div className="text-sm text-purple-800 space-y-2">
-                <p><strong>Measure Slip:</strong> Slip = (Synchronous Speed - Actual Speed) / Synchronous Speed. 
-                Lower slip indicates higher efficiency and lighter load.</p>
-                <p><strong>Estimate Load:</strong> Load % ≈ (Slip / Full Load Slip) × 100. Full load slip is typically 
-                2-5% for standard motors.</p>
-                <p><strong>Efficiency:</strong> Use manufacturer's efficiency curve at estimated load. Approximate method.</p>
-              </div>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -378,81 +356,7 @@ export default function MotorEfficiencyCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is a good efficiency for an electric motor?</h3>
-              <p className="text-sm text-gray-700">
-                For industrial motors, 85-95% is considered good to excellent efficiency. Small motors (below 1 HP) 
-                typically have 70-85% efficiency, medium motors (1-10 HP) have 80-90% efficiency, and large motors 
-                (above 10 HP) can achieve 90-96% efficiency. Premium efficiency motors (IE3, IE4) offer the highest 
-                efficiency ratings.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate motor efficiency without a dynamometer?</h3>
-              <p className="text-sm text-gray-700">
-                Measure input power using a power meter (voltage, current, power factor). Estimate output power from 
-                nameplate rating multiplied by load factor. Load factor can be estimated from current: Load Factor ≈ 
-                (Actual Current / Rated Current). Then calculate efficiency = (Output / Input) × 100. This method is 
-                less accurate but practical for field testing.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is my motor efficiency lower than nameplate rating?</h3>
-              <p className="text-sm text-gray-700">
-                Motors operate at nameplate efficiency only at 75-100% of rated load. At lower loads, efficiency drops 
-                significantly. Other causes include high ambient temperature, poor ventilation, voltage imbalance, 
-                bearing wear, misalignment, and age. A motor running at 25% load may lose 10-15% efficiency compared 
-                to full load operation.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What causes power losses in electric motors?</h3>
-              <p className="text-sm text-gray-700">
-                Main losses are: (1) Copper losses (50-60%) from winding resistance, (2) Core losses (20-25%) from 
-                hysteresis and eddy currents, (3) Mechanical losses (5-10%) from friction and windage, and (4) Stray 
-                losses (5-10%) from leakage flux and harmonics. Total losses typically range from 5-20% of input power 
-                depending on motor size and efficiency class.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Is it worth upgrading to a premium efficiency motor?</h3>
-              <p className="text-sm text-gray-700">
-                Yes, for motors running continuously (more than 4000 hours/year). A premium motor costs 15-30% more 
-                but saves 3-8% energy. For a 10 HP motor running 8000 hours/year, annual savings are $600-800, giving 
-                payback in 6-18 months. For intermittent duty (less than 2000 hours/year), payback may exceed 5 years, 
-                making it less attractive.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How does motor size affect efficiency?</h3>
-              <p className="text-sm text-gray-700">
-                Larger motors are generally more efficient. A 1 HP motor may have 80% efficiency, a 10 HP motor 88%, 
-                and a 100 HP motor 95%. This is because larger motors have better surface-to-volume ratio, lower 
-                relative losses, and can justify better materials and design. However, an oversized motor running at 
-                low load will have poor efficiency regardless of size.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Should I rewind or replace a failed motor?</h3>
-              <p className="text-sm text-gray-700">
-                For motors below 50 HP, replacement with a premium efficiency motor is usually more cost-effective than 
-                rewinding. Rewinding costs 40-60% of new motor price but reduces efficiency by 1-2% and doesn't address 
-                bearing wear or mechanical issues. For large motors (above 50 HP) or special motors, rewinding by a 
-                certified shop may be justified. Always compare lifecycle costs, not just initial cost.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>

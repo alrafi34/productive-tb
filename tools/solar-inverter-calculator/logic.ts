@@ -61,13 +61,13 @@ export function calculateSolarInverter(inputs: SolarInverterInputs): SolarInvert
   steps.push(`Adjusted Load = ${adjustedLoad.toFixed(0)} W`);
   steps.push('');
   
-  // Step 2: Adjust for efficiency
-  steps.push('Step 2: Adjust for Inverter Efficiency');
-  steps.push(`Formula: Inverter Size (VA) = Adjusted Load / Efficiency`);
-  steps.push(`Inverter Size = ${adjustedLoad.toFixed(0)} / ${efficiency}`);
-  
-  const inverterSizeVA = adjustedLoad / efficiency;
-  steps.push(`Inverter Size = ${inverterSizeVA.toFixed(0)} VA`);
+  // Step 2: The inverter's continuous output rating must cover the adjusted load;
+  // efficiency affects the DC power drawn from the battery (step 5), not the rating
+  steps.push('Step 2: Required Inverter Output Rating');
+  steps.push(`Inverter Rating = Adjusted Load (unity power factor)`);
+
+  const inverterSizeVA = adjustedLoad;
+  steps.push(`Inverter Rating = ${inverterSizeVA.toFixed(0)} VA`);
   steps.push('');
   
   // Step 3: Convert to kW
@@ -85,10 +85,10 @@ export function calculateSolarInverter(inputs: SolarInverterInputs): SolarInvert
   steps.push('');
   
   // Step 5: Calculate current draw
-  const current = totalLoad / systemVoltage;
+  const current = totalLoad / (systemVoltage * efficiency);
   steps.push('Step 5: Calculate Current Draw from Battery');
-  steps.push(`Current (A) = Total Load / System Voltage`);
-  steps.push(`Current = ${totalLoad} / ${systemVoltage}`);
+  steps.push(`Current (A) = Total Load / (System Voltage × Efficiency)`);
+  steps.push(`Current = ${totalLoad} / (${systemVoltage} × ${efficiency})`);
   steps.push(`Current = ${current.toFixed(2)} A`);
   
   // Calculate utilization

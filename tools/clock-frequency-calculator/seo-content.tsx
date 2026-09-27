@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { clockFrequencyCalculatorConfig } from "./config";
+
 export default function ClockFrequencyCalculatorSEO() {
+  const { howToSteps, faq } = clockFrequencyCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -179,48 +183,7 @@ export default function ClockFrequencyCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What is the difference between clock frequency and clock period?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Clock frequency (f) is the number of clock cycles per second, measured in Hz. Clock period (T) is the time duration of one clock cycle, measured in seconds. They are reciprocals: f = 1/T.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How do I calculate execution time for my code?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Count the number of clock cycles your code takes (from datasheet or profiling), then use the "Cycles → Time" mode with your system's clock frequency to get the execution time.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why are my results in scientific notation?
-            </h3>
-            <p className="text-sm text-gray-600">
-              The calculator automatically uses scientific notation for very large (&gt;1,000,000) or very small (&lt;0.000001) numbers to maintain readability and precision.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I use this for AC power frequency calculations?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Yes! While designed for digital electronics, the calculator works for any frequency-period relationship, including AC power (50/60 Hz), audio signals, and RF applications.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -236,6 +199,17 @@ export default function ClockFrequencyCalculatorSEO() {
           <li>DAC Output Calculator - Calculate DAC analog output values</li>
           <li>RC Time Constant Calculator - Analyze RC circuit timing</li>
         </ul>
+      </section>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Clock Frequency Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
     </div>
   );

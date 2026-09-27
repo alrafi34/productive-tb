@@ -3,15 +3,15 @@ import { ColorBand, ResistorBands, ResistorResult, HistoryEntry, ColorInfo } fro
 const STORAGE_KEY = "resistor-color-code-history";
 
 export const COLOR_MAP: Record<ColorBand, ColorInfo> = {
-  black: { name: 'Black', hex: '#000000', digit: 0, multiplier: 1 },
+  black: { name: 'Black', hex: '#000000', digit: 0, multiplier: 1, tempCoeff: 250 },
   brown: { name: 'Brown', hex: '#8B4513', digit: 1, multiplier: 10, tolerance: 1, tempCoeff: 100 },
   red: { name: 'Red', hex: '#FF0000', digit: 2, multiplier: 100, tolerance: 2, tempCoeff: 50 },
   orange: { name: 'Orange', hex: '#FFA500', digit: 3, multiplier: 1000, tempCoeff: 15 },
   yellow: { name: 'Yellow', hex: '#FFFF00', digit: 4, multiplier: 10000, tempCoeff: 25 },
-  green: { name: 'Green', hex: '#00FF00', digit: 5, multiplier: 100000, tolerance: 0.5 },
-  blue: { name: 'Blue', hex: '#0000FF', digit: 6, multiplier: 1000000, tolerance: 0.25 },
-  violet: { name: 'Violet', hex: '#9400D3', digit: 7, multiplier: 10000000, tolerance: 0.1 },
-  gray: { name: 'Gray', hex: '#808080', digit: 8, multiplier: 100000000, tolerance: 0.05 },
+  green: { name: 'Green', hex: '#00FF00', digit: 5, multiplier: 100000, tolerance: 0.5, tempCoeff: 20 },
+  blue: { name: 'Blue', hex: '#0000FF', digit: 6, multiplier: 1000000, tolerance: 0.25, tempCoeff: 10 },
+  violet: { name: 'Violet', hex: '#9400D3', digit: 7, multiplier: 10000000, tolerance: 0.1, tempCoeff: 5 },
+  gray: { name: 'Gray', hex: '#808080', digit: 8, multiplier: 100000000, tolerance: 0.05, tempCoeff: 1 },
   white: { name: 'White', hex: '#FFFFFF', digit: 9, multiplier: 1000000000 },
   gold: { name: 'Gold', hex: '#FFD700', multiplier: 0.1, tolerance: 5 },
   silver: { name: 'Silver', hex: '#C0C0C0', multiplier: 0.01, tolerance: 10 },
@@ -32,8 +32,9 @@ export const TOLERANCE_COLORS: ColorBand[] = [
   'brown', 'red', 'green', 'blue', 'violet', 'gray', 'gold', 'silver', 'none'
 ];
 
+// IEC 60062 temperature coefficients, ppm/K
 export const TEMP_COEFF_COLORS: ColorBand[] = [
-  'brown', 'red', 'orange', 'yellow'
+  'black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'gray'
 ];
 
 export function calculateResistance(bands: ResistorBands): ResistorResult {

@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { dataRateCalculatorConfig } from "./config";
+
 export default function DataRateCalculatorSEO() {
+  const { howToSteps, faq } = dataRateCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -194,47 +198,17 @@ export default function DataRateCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What's the difference between MB/s and Mbps?
-            </h3>
-            <p className="text-sm text-gray-600">
-              MB/s (megabytes per second) measures data in bytes, while Mbps (megabits per second) measures in bits. 1 MB/s = 8 Mbps. This calculator uses bytes (MB/s) for consistency.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why is my actual transfer speed different from calculated?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Real-world transfers include protocol overhead, network congestion, and other factors that reduce effective throughput. The calculator provides theoretical maximum rates.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How do I convert between different units?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Simply select your desired input and output units from the dropdown menus. The calculator automatically handles all conversions using standard binary multipliers (1024).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I use this for network planning?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Yes! Use the calculator to estimate bandwidth requirements, plan capacity, and determine transfer times for various scenarios in network design and planning.
-            </p>
-          </div>
-        </div>
+      <ToolFaq items={faq} />
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Data Rate Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
     </div>
   );

@@ -37,6 +37,13 @@ export function normalizeRate(value: number, unit: RateUnit): number {
       return value * 1024 * 1024;
     case 'gbps':
       return value * 1024 * 1024 * 1024;
+    // Network speeds: decimal bits per second, 8 bits per byte
+    case 'kbit':
+      return (value * 1e3) / 8;
+    case 'mbit':
+      return (value * 1e6) / 8;
+    case 'gbit':
+      return (value * 1e9) / 8;
     default:
       return value;
   }
@@ -79,6 +86,12 @@ export function convertRate(bps: number, unit: RateUnit): number {
       return bps / (1024 * 1024);
     case 'gbps':
       return bps / (1024 * 1024 * 1024);
+    case 'kbit':
+      return (bps * 8) / 1e3;
+    case 'mbit':
+      return (bps * 8) / 1e6;
+    case 'gbit':
+      return (bps * 8) / 1e9;
     default:
       return bps;
   }
@@ -119,6 +132,12 @@ export function getRateUnitLabel(unit: RateUnit): string {
       return 'MB/s';
     case 'gbps':
       return 'GB/s';
+    case 'kbit':
+      return 'kbps';
+    case 'mbit':
+      return 'Mbps';
+    case 'gbit':
+      return 'Gbps';
     default:
       return 'B/s';
   }
@@ -449,6 +468,14 @@ export function getPresets(mode: CalculationMode) {
         dataUnit: 'mb' as DataUnit,
         dataRate: 5,
         rateUnit: 'mbps' as RateUnit,
+      },
+      {
+        name: "5 GB game at 100 Mbps",
+        description: "Home broadband download",
+        dataSize: 5,
+        dataUnit: 'gb' as DataUnit,
+        dataRate: 100,
+        rateUnit: 'mbit' as RateUnit,
       },
       {
         name: "10 GB at 2.78 MB/s",

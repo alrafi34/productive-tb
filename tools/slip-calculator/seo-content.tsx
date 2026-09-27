@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { slipCalculatorConfig } from "./config";
+
 export default function SlipCalculatorSEO() {
+  const { howToSteps, faq } = slipCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-sm max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -15,13 +19,13 @@ export default function SlipCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Slip Calculator</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700">
-            <li>Enter the synchronous speed (Ns) in RPM</li>
-            <li>Enter the rotor speed (Nr) in RPM</li>
-            <li>View instant results for slip (decimal and percentage)</li>
-            <li>Optionally use auto-calculate to determine synchronous speed from frequency and poles</li>
-            <li>Review the slip analysis and interpretation</li>
-            <li>Export or save your calculations for future reference</li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -264,51 +268,7 @@ export default function SlipCalculatorSEO() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is a normal slip value for an induction motor?</h3>
-              <p className="text-gray-700">
-                For standard induction motors at full load, slip typically ranges from 3-5%. High-efficiency motors may 
-                have lower slip (1-3%), while motors under heavy load may show higher values (5-8%).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can slip be zero?</h3>
-              <p className="text-gray-700">
-                In theory, slip approaches zero at no load, but it can never be exactly zero in an induction motor. 
-                Zero slip would mean no torque production. Synchronous motors, however, operate at zero slip.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What causes high slip?</h3>
-              <p className="text-gray-700">
-                High slip can be caused by overloading, low voltage supply, high rotor resistance, damaged rotor bars, 
-                poor cooling, or mechanical problems. It indicates the motor is working harder than normal.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How does slip affect motor efficiency?</h3>
-              <p className="text-gray-700">
-                Higher slip means more energy is dissipated as heat in the rotor, reducing efficiency. Motors with lower 
-                slip are generally more efficient because they have lower rotor losses.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the relationship between slip and torque?</h3>
-              <p className="text-gray-700">
-                In the normal operating range, torque is approximately proportional to slip. As load increases, slip 
-                increases, producing more torque. However, beyond the breakdown torque point, this relationship reverses.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>
