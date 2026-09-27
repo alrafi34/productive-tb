@@ -1,5 +1,5 @@
 export type EscalationType = "compound" | "simple";
-export type Currency = "USD" | "INR" | "BDT" | "EUR" | "GBP";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface EscalationCalculation {
   // Inputs

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { MaterialQuality, RegionFactor, Currency, AddOns, ConstructionEstimate } from "./types";
+import { guessCurrency, isCurrencyCode } from "@/lib/currency";
 import {
   performConstructionEstimate,
   saveToHistory,
@@ -25,11 +26,17 @@ import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ConstructionCostEstimatorUI() {
   const [area, setArea] = useState("1000");
-  const [costPerSqFt, setCostPerSqFt] = useState("50");
+  const [costPerSqFt, setCostPerSqFt] = useState("150");
   const [materialQuality, setMaterialQuality] = useState<MaterialQuality>("medium");
   const [laborMultiplier, setLaborMultiplier] = useState("1.0");
   const [regionFactor, setRegionFactor] = useState<RegionFactor>("standard");
   const [currency, setCurrency] = useState<Currency>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   // Add-ons
   const [addOns, setAddOns] = useState<AddOns>({
@@ -69,11 +76,11 @@ export default function ConstructionCostEstimatorUI() {
 
   const handleReset = () => {
     setArea("1000");
-    setCostPerSqFt("50");
+    setCostPerSqFt("150");
     setMaterialQuality("medium");
     setLaborMultiplier("1.0");
     setRegionFactor("standard");
-    setCurrency("USD");
+    setCurrency(guessCurrency());
     setAddOns({
       plumbing: false,
       electrical: false,
@@ -141,12 +148,12 @@ export default function ConstructionCostEstimatorUI() {
     setMaterialQuality(est.materialQuality);
     setLaborMultiplier(est.laborMultiplier.toString());
     setRegionFactor(est.regionFactor);
-    setCurrency(est.currency);
+    setCurrency(isCurrencyCode(est.currency) ? est.currency : "USD");
     setAddOns(est.addOns);
     setShowHistory(false);
   };
 
-  const intensity = estimate ? getCostIntensity(estimate.totalCost) : null;
+  const intensity = estimate ? getCostIntensity(estimate.totalCost, estimate.area) : null;
 
   return (
     <>
@@ -184,8 +191,8 @@ export default function ConstructionCostEstimatorUI() {
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
                   <option value="GBP">GBP (£)</option>
-                  <option value="INR">INR (₹)</option>
-                  <option value="BDT">BDT (৳)</option>
+                  <option value="CAD">CAD (CA$)</option>
+                  <option value="AUD">AUD (A$)</option>
                 </select>
               </div>
 
@@ -294,10 +301,14 @@ export default function ConstructionCostEstimatorUI() {
                     value={costPerSqFt}
                     onChange={(e) => setCostPerSqFt(e.target.value)}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder="50"
+                    placeholder="150"
                     min="0"
                     step="1"
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Use a local rate. Typical 2024 US new builds cost about $150–$250 per sq ft for construction
+                    alone (NAHB Cost of Constructing a Home, 2024: $162 average); presets are starting points.
+                  </p>
                 </div>
               </div>
             </div>
@@ -470,7 +481,7 @@ export default function ConstructionCostEstimatorUI() {
                     <div className="font-semibold text-gray-900 text-sm">{preset.name}</div>
                     <div className="text-xs text-gray-600 mt-1">{preset.description}</div>
                     <div className="text-xs text-gray-500 mt-1">
-                      {formatNumber(preset.area)} sq ft | ${preset.costPerSqFt}/sq ft
+                      {formatNumber(preset.area)} sq ft | {getCurrencySymbol(currency)}{preset.costPerSqFt}/sq ft
                     </div>
                   </button>
                 ))}

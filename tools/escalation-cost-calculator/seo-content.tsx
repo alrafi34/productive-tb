@@ -34,7 +34,7 @@ export default function EscalationCostCalculatorSEO() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
-                <span>Quick rate presets (5-15%)</span>
+                <span>Quick rate presets (3-8%)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
@@ -107,9 +107,9 @@ export default function EscalationCostCalculatorSEO() {
         
         <div className="grid md:grid-cols-3 gap-4 mb-6">
           <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-            <h4 className="font-semibold text-green-900 mb-2">Low Inflation (3-5%)</h4>
+            <h4 className="font-semibold text-green-900 mb-2">Low Escalation (2-4%)</h4>
             <ul className="text-sm text-green-800 space-y-1">
-              <li>• Stable economies</li>
+              <li>• Stable markets, close to long-run US and European averages</li>
               <li>• Short-term projects</li>
               <li>• Minimal material volatility</li>
               <li>• Standard construction</li>
@@ -117,7 +117,7 @@ export default function EscalationCostCalculatorSEO() {
           </div>
           
           <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-            <h4 className="font-semibold text-yellow-900 mb-2">Moderate Inflation (6-10%)</h4>
+            <h4 className="font-semibold text-yellow-900 mb-2">Moderate Escalation (4-7%)</h4>
             <ul className="text-sm text-yellow-800 space-y-1">
               <li>• Typical construction projects</li>
               <li>• Medium-term duration</li>
@@ -127,9 +127,9 @@ export default function EscalationCostCalculatorSEO() {
           </div>
           
           <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-            <h4 className="font-semibold text-red-900 mb-2">High Inflation (11-15%+)</h4>
+            <h4 className="font-semibold text-red-900 mb-2">High Escalation (8%+)</h4>
             <ul className="text-sm text-red-800 space-y-1">
-              <li>• Volatile markets</li>
+              <li>• Volatile markets, as in 2021–2022</li>
               <li>• Specialized materials</li>
               <li>• Long-term projects</li>
               <li>• Supply chain issues</li>

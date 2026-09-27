@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Material, UnitType, Currency, MaterialCalculation } from "./types";
+import { guessCurrency, isCurrencyCode } from "@/lib/currency";
 import {
   createEmptyMaterial,
   performMaterialCalculation,
@@ -25,6 +26,12 @@ export default function MaterialCostCalculatorUI() {
   const [materials, setMaterials] = useState<Material[]>([createEmptyMaterial()]);
   const [overhead, setOverhead] = useState("0");
   const [currency, setCurrency] = useState<Currency>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [calculation, setCalculation] = useState<MaterialCalculation | null>(null);
   const [copied, setCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
@@ -120,7 +127,7 @@ export default function MaterialCostCalculatorUI() {
   const loadFromHistory = (calc: MaterialCalculation) => {
     setMaterials(calc.materials);
     setOverhead(calc.overhead.toString());
-    setCurrency(calc.currency);
+    setCurrency(isCurrencyCode(calc.currency) ? calc.currency : "USD");
     setShowHistory(false);
   };
 
@@ -160,8 +167,8 @@ export default function MaterialCostCalculatorUI() {
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
                   <option value="GBP">GBP (£)</option>
-                  <option value="INR">INR (₹)</option>
-                  <option value="BDT">BDT (৳)</option>
+                  <option value="CAD">CAD (CA$)</option>
+                  <option value="AUD">AUD (A$)</option>
                 </select>
               </div>
 

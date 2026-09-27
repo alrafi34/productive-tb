@@ -83,10 +83,10 @@ export function getCurrencySymbol(currency: Currency): string {
     USD: "$",
     EUR: "€",
     GBP: "£",
-    INR: "₹",
-    BDT: "৳"
+    "CAD": "CA$",
+    "AUD": "A$"
   };
-  return symbols[currency];
+  return (symbols[currency] ?? "$");
 }
 
 export function formatCurrency(amount: number, currency: Currency): string {

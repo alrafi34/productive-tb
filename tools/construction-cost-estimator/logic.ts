@@ -148,11 +148,11 @@ export function formatCurrency(value: number, currency: Currency, decimals: numb
     "USD": "$",
     "EUR": "€",
     "GBP": "£",
-    "INR": "₹",
-    "BDT": "৳"
+    "CAD": "CA$",
+    "AUD": "A$"
   };
   
-  return `${symbols[currency]}${formatted}`;
+  return `${(symbols[currency] ?? "$")}${formatted}`;
 }
 
 export function getCurrencySymbol(currency: Currency): string {
@@ -160,10 +160,10 @@ export function getCurrencySymbol(currency: Currency): string {
     "USD": "$",
     "EUR": "€",
     "GBP": "£",
-    "INR": "₹",
-    "BDT": "৳"
+    "CAD": "CA$",
+    "AUD": "A$"
   };
-  return symbols[currency];
+  return (symbols[currency] ?? "$");
 }
 
 export function getProjectPresets() {
@@ -172,7 +172,7 @@ export function getProjectPresets() {
       name: "Small House",
       description: "1000 sq ft residential",
       area: 1000,
-      costPerSqFt: 50,
+      costPerSqFt: 150,
       materialQuality: "medium" as MaterialQuality,
       laborMultiplier: 1.0
     },
@@ -180,7 +180,7 @@ export function getProjectPresets() {
       name: "Medium House",
       description: "2000 sq ft residential",
       area: 2000,
-      costPerSqFt: 60,
+      costPerSqFt: 150,
       materialQuality: "high" as MaterialQuality,
       laborMultiplier: 1.1
     },
@@ -188,7 +188,7 @@ export function getProjectPresets() {
       name: "Large House",
       description: "3500 sq ft residential",
       area: 3500,
-      costPerSqFt: 80,
+      costPerSqFt: 160,
       materialQuality: "premium" as MaterialQuality,
       laborMultiplier: 1.2
     },
@@ -196,7 +196,7 @@ export function getProjectPresets() {
       name: "Apartment",
       description: "1200 sq ft unit",
       area: 1200,
-      costPerSqFt: 45,
+      costPerSqFt: 170,
       materialQuality: "medium" as MaterialQuality,
       laborMultiplier: 0.9
     },
@@ -204,7 +204,7 @@ export function getProjectPresets() {
       name: "Office Space",
       description: "2500 sq ft commercial",
       area: 2500,
-      costPerSqFt: 70,
+      costPerSqFt: 160,
       materialQuality: "high" as MaterialQuality,
       laborMultiplier: 1.15
     },
@@ -212,44 +212,28 @@ export function getProjectPresets() {
       name: "Warehouse",
       description: "5000 sq ft industrial",
       area: 5000,
-      costPerSqFt: 35,
+      costPerSqFt: 100,
       materialQuality: "low" as MaterialQuality,
       laborMultiplier: 0.8
     }
   ];
 }
 
-export function getCostIntensity(totalCost: number): { level: string; description: string; color: string } {
-  if (totalCost < 50000) {
-    return {
-      level: "Budget",
-      description: "Low-cost project",
-      color: "green"
-    };
-  } else if (totalCost < 150000) {
-    return {
-      level: "Standard",
-      description: "Average-cost project",
-      color: "blue"
-    };
-  } else if (totalCost < 300000) {
-    return {
-      level: "Premium",
-      description: "High-cost project",
-      color: "yellow"
-    };
-  } else if (totalCost < 500000) {
-    return {
-      level: "Luxury",
-      description: "Very high-cost project",
-      color: "orange"
-    };
+/* Rated on the all-in cost per square foot, so a warehouse and a house are
+   compared on the same footing; bands follow typical 2024 US build costs
+   (NAHB put the construction cost of an average new home at about $162/sq ft). */
+export function getCostIntensity(totalCost: number, area: number): { level: string; description: string; color: string } {
+  const perSqFt = area > 0 ? totalCost / area : 0;
+  if (perSqFt < 120) {
+    return { level: "Budget", description: "Below typical new-build costs", color: "green" };
+  } else if (perSqFt < 200) {
+    return { level: "Standard", description: "Typical new-build cost", color: "blue" };
+  } else if (perSqFt < 300) {
+    return { level: "Premium", description: "Above-average specification", color: "yellow" };
+  } else if (perSqFt < 450) {
+    return { level: "Luxury", description: "High-end custom build", color: "orange" };
   } else {
-    return {
-      level: "Ultra-Luxury",
-      description: "Exceptional-cost project",
-      color: "red"
-    };
+    return { level: "Ultra-Luxury", description: "Exceptional cost per square foot", color: "red" };
   }
 }
 
@@ -296,7 +280,7 @@ export function clearHistory(): void {
 
 // Export functions
 export function exportToText(estimate: ConstructionEstimate): string {
-  const intensity = getCostIntensity(estimate.totalCost);
+  const intensity = getCostIntensity(estimate.totalCost, estimate.area);
   
   return `CONSTRUCTION COST ESTIMATE REPORT
 Generated: ${new Date(estimate.timestamp).toLocaleString()}

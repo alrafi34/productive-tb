@@ -1,6 +1,6 @@
 export type WageType = "hourly" | "daily";
 
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface LaborCalculation {
   id: string;

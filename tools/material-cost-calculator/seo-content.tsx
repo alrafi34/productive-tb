@@ -273,15 +273,15 @@ export default function MaterialCostCalculatorSEO() {
           </div>
           
           <div className="bg-orange-50 p-3 rounded-lg border border-orange-200 text-center">
-            <div className="text-2xl mb-1">₹</div>
-            <div className="text-sm font-semibold text-orange-900">INR</div>
-            <div className="text-xs text-orange-700">Indian Rupee</div>
+            <div className="text-2xl mb-1">CA$</div>
+            <div className="text-sm font-semibold text-orange-900">CAD</div>
+            <div className="text-xs text-orange-700">Canadian Dollar</div>
           </div>
           
           <div className="bg-red-50 p-3 rounded-lg border border-red-200 text-center">
-            <div className="text-2xl mb-1">৳</div>
-            <div className="text-sm font-semibold text-red-900">BDT</div>
-            <div className="text-xs text-red-700">Bangladeshi Taka</div>
+            <div className="text-2xl mb-1">A$</div>
+            <div className="text-sm font-semibold text-red-900">AUD</div>
+            <div className="text-xs text-red-700">Australian Dollar</div>
           </div>
         </div>
 

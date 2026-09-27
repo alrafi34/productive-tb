@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { WageType, Currency, LaborCalculation } from "./types";
+import { guessCurrency, isCurrencyCode } from "@/lib/currency";
 import {
   performLaborCalculation,
   saveToHistory,
@@ -34,6 +35,12 @@ export default function LaborCostCalculatorUI() {
   const [overtimeMultiplier, setOvertimeMultiplier] = useState("1.5");
   const [additionalCost, setAdditionalCost] = useState("0");
   const [currency, setCurrency] = useState<Currency>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   // Results
   const [calculation, setCalculation] = useState<LaborCalculation | null>(null);
@@ -77,7 +84,7 @@ export default function LaborCostCalculatorUI() {
     setOvertimeHours("0");
     setOvertimeMultiplier("1.5");
     setAdditionalCost("0");
-    setCurrency("USD");
+    setCurrency(guessCurrency());
     setCalculation(null);
     setError(null);
   };
@@ -140,7 +147,7 @@ export default function LaborCostCalculatorUI() {
     setOvertimeHours(calc.overtimeHours.toString());
     setOvertimeMultiplier(calc.overtimeMultiplier.toString());
     setAdditionalCost(calc.additionalCost.toString());
-    setCurrency(calc.currency);
+    setCurrency(isCurrencyCode(calc.currency) ? calc.currency : "USD");
     setShowHistory(false);
   };
 
@@ -239,8 +246,8 @@ export default function LaborCostCalculatorUI() {
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
                   <option value="GBP">GBP (£)</option>
-                  <option value="INR">INR (₹)</option>
-                  <option value="BDT">BDT (৳)</option>
+                  <option value="CAD">CAD (CA$)</option>
+                  <option value="AUD">AUD (A$)</option>
                 </select>
               </div>
             </div>

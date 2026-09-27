@@ -95,11 +95,11 @@ export function formatCurrency(value: number, currency: Currency, decimals: numb
     "USD": "$",
     "EUR": "€",
     "GBP": "£",
-    "INR": "₹",
-    "BDT": "৳"
+    "CAD": "CA$",
+    "AUD": "A$"
   };
   
-  return `${symbols[currency]}${formatted}`;
+  return `${(symbols[currency] ?? "$")}${formatted}`;
 }
 
 export function getCurrencySymbol(currency: Currency): string {
@@ -107,10 +107,10 @@ export function getCurrencySymbol(currency: Currency): string {
     "USD": "$",
     "EUR": "€",
     "GBP": "£",
-    "INR": "₹",
-    "BDT": "৳"
+    "CAD": "CA$",
+    "AUD": "A$"
   };
-  return symbols[currency];
+  return (symbols[currency] ?? "$");
 }
 
 export function getUnitTypeLabel(unit: UnitType): string {
