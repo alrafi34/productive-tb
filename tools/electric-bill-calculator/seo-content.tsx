@@ -57,7 +57,7 @@ export default function ElectricBillCalculatorSEO() {
           </p>
           <p>
             It works anywhere. The calculator opens in your local currency (US dollar, euro, pound, Canadian
-            or Australian dollar and more), handles flat and tiered (block) pricing, and includes presets for
+            or Australian dollar), handles flat and tiered (block) pricing, and includes presets for
             the U.S. average, the UK price cap and the EU average. Every number stays editable, so you can
             match your own utility&apos;s tariff exactly.
           </p>
@@ -123,7 +123,7 @@ export default function ElectricBillCalculatorSEO() {
                 "Flat and tiered (block) pricing",
                 "Standing, service and meter charges",
                 "Tax as a percentage of the bill",
-                "Presets: U.S. average, UK price cap, EU average and more",
+                "Presets: U.S. average, UK price cap and EU average",
                 "Line-by-line cost breakdown",
                 "History saved in your browser",
                 "CSV and text export",
