@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { antennaLengthCalculatorConfig } from "./config";
+
 export default function AntennaLengthCalculatorSEO() {
+  const { howToSteps, faq } = antennaLengthCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -215,48 +219,7 @@ export default function AntennaLengthCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why is my antenna length different from calculated?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Practical antennas may need adjustment due to end effects, conductor diameter, nearby objects, and impedance matching requirements. The calculated length is a starting point for tuning.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What's the difference between monopole and dipole?
-            </h3>
-            <p className="text-sm text-gray-600">
-              A monopole is half of a dipole (quarter-wave) and requires a ground plane. A dipole is a full half-wave antenna that doesn't need a ground plane. Both have similar radiation patterns.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              When should I adjust the velocity factor?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Adjust VF when designing antennas on PCBs, in cables, or near dielectric materials. For free-space wire antennas, use VF = 1.0. PCB antennas typically use VF = 0.5-0.6.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I use this for multi-band antennas?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Calculate each band separately. Multi-band antennas often use traps, loading coils, or specific geometries that require additional design considerations beyond simple length calculations.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -269,6 +232,17 @@ export default function AntennaLengthCalculatorSEO() {
           <li><strong>Gain:</strong> Antenna's ability to focus energy in specific directions</li>
           <li><strong>Bandwidth:</strong> Range of frequencies the antenna can effectively operate</li>
         </ul>
+      </section>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Antenna Length Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
     </div>
   );

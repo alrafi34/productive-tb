@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { smpsCalculatorConfig } from "./config";
+
 export default function SMPSCalculatorSEO() {
+  const { howToSteps, faq } = smpsCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -214,40 +218,13 @@ export default function SMPSCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Enter Output Voltage:</strong> Input the desired DC output voltage of your SMPS in volts.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Set Output Current:</strong> Specify the maximum output current your SMPS needs to provide in amperes.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Adjust Efficiency:</strong> Use the slider or input field to set the expected efficiency percentage (50-100%).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Optional - Input Voltage:</strong> Enter the AC input voltage to calculate input current requirements.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>Select Load Type:</strong> Choose between resistive, inductive, or mixed load characteristics.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Review Results:</strong> Analyze output power, input power, losses, and efficiency rating.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Check Warnings:</strong> Review any design considerations or recommendations provided.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Use Presets:</strong> Try common SMPS configurations for quick analysis and comparison.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -276,53 +253,7 @@ export default function SMPSCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is a good efficiency for an SMPS?</h3>
-              <p className="text-gray-700">
-                Modern SMPS designs typically achieve 85-95% efficiency. High-end supplies can reach 96-98%. Efficiency below 80% is generally considered poor for switching power supplies.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How does load type affect SMPS performance?</h3>
-              <p className="text-gray-700">
-                Resistive loads are easiest for SMPS to handle with stable performance. Inductive loads can cause current spikes and may require larger input capacitors. Mixed loads are most common in real applications.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is input current calculation important?</h3>
-              <p className="text-gray-700">
-                Input current determines the required wire gauge, fuse rating, and input connector specifications. It's also needed for power factor correction and EMI filter design.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What causes power losses in SMPS?</h3>
-              <p className="text-gray-700">
-                Main loss sources include switching losses in MOSFETs/diodes, conduction losses in resistive elements, core losses in transformers/inductors, and control circuit consumption.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How accurate are these calculations?</h3>
-              <p className="text-gray-700">
-                These calculations provide good estimates for design planning. Actual performance may vary by ±5-10% depending on component tolerances, temperature, and load conditions.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">When should I use SMPS vs linear power supply?</h3>
-              <p className="text-gray-700">
-                Use SMPS for higher power (&gt;10W), better efficiency, and smaller size. Linear supplies are better for low noise, simplicity, and very low power applications.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

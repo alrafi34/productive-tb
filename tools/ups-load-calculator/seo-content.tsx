@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { upsLoadCalculatorConfig } from "./config";
+
 export default function UPSLoadCalculatorSEO() {
+  const { howToSteps, faq } = upsLoadCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,12 +21,13 @@ export default function UPSLoadCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the UPS Load Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Add Your Devices:</strong> Enter each device name, power consumption (watts), and quantity</li>
-          <li><strong>Set Safety Margin:</strong> Choose 20-30% safety margin for future expansion</li>
-          <li><strong>Adjust Settings:</strong> Optionally modify power factor and battery efficiency</li>
-          <li><strong>View Results:</strong> Get instant UPS capacity recommendations in VA</li>
-          <li><strong>Export Report:</strong> Download calculation details as TXT or CSV</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -216,57 +221,7 @@ export default function UPSLoadCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What's the difference between Watts and VA?
-            </h3>
-            <p className="text-gray-700">
-              Watts (W) measure real power consumed by devices, while VA (Volt-Amperes) measure apparent power. UPS systems are rated in VA because they must handle both real and reactive power. The power factor (typically 0.8) relates the two: Watts = VA × Power Factor.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How much safety margin should I add?
-            </h3>
-            <p className="text-gray-700">
-              A 20-30% safety margin is recommended. This accounts for future equipment additions, power spikes, and ensures optimal UPS efficiency. Running a UPS near maximum capacity reduces battery life and runtime.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I connect a laser printer to a UPS?
-            </h3>
-            <p className="text-gray-700">
-              Laser printers draw high surge current during startup and printing, which can overload a UPS. It's generally not recommended unless you have a high-capacity UPS specifically rated for such loads. Inkjet printers are safer alternatives.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How long will my UPS provide backup power?
-            </h3>
-            <p className="text-gray-700">
-              Runtime depends on UPS battery capacity and your load. A 1000VA UPS with 500W load typically provides 10-15 minutes of backup. Check manufacturer specifications for runtime curves at different load levels.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What power factor should I use?
-            </h3>
-            <p className="text-gray-700">
-              Most modern UPS systems have a power factor of 0.8 (80%). Some newer models offer 0.9 or even 1.0. Check your UPS specifications or use 0.8 as a safe default value.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
