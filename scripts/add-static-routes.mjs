@@ -35,7 +35,8 @@ for (const dir of fs.readdirSync(path.join(ROOT, 'tools'))) {
   const src = read(file);
   const slug = /slug:\s*["']([^"']+)["']/.exec(src)?.[1];
   const exp = /export const ([A-Za-z0-9_]+)/.exec(src)?.[1];
-  if (slug && exp) bySlug.set(slug, { dir, exp });
+  const category = /category:\s*["']([^"']+)["']/.exec(src)?.[1];
+  if (slug && exp) bySlug.set(slug, { dir, exp, category });
 }
 
 const pascal = (s) => s.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join('');
@@ -44,9 +45,10 @@ const componentName = (s) => (/^[0-9]/.test(s) ? 'Tool' : '') + pascal(s);
 
 let written = 0;
 for (const slug of process.argv.slice(2)) {
-  const category = registry.get(slug);
   const tool = bySlug.get(slug);
-  if (!category || !tool) throw new Error(`${slug}: not registered or no tools/<dir>/config.ts`);
+  // Unregistered tools (ALLOW_UNREGISTERED in check-tools.mjs) live under their config's category
+  const category = registry.get(slug) ?? tool?.category;
+  if (!category || !tool) throw new Error(`${slug}: no tools/<dir>/config.ts or no category`);
   const out = path.join('app/tools', category, slug, 'page.tsx');
   if (fs.existsSync(path.join(ROOT, out))) {
     console.log(`skip ${out} (exists)`);
