@@ -153,7 +153,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "duotone-filter": "2026-03-09",
   "earth-filling-calculator": "2026-09-27",
   "earthing-resistance-calculator": "2026-09-27",
-  "electric-bill-calculator": "2026-09-26",
+  "electric-bill-calculator": "2026-09-27",
   "electric-motor-power-calculator": "2026-08-07",
   "electrical-efficiency-calculator": "2026-09-27",
   "electrical-load-calculator-building": "2026-09-27",
