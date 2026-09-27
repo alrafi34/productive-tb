@@ -1,321 +1,162 @@
+import ToolFaq from "@/components/ToolFaq";
+import { arcFlashCalculatorConfig } from "./config";
+
 export default function ArcFlashCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = arcFlashCalculatorConfig.seo;
+
+  const card = "mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8";
+  const h2 = "text-2xl font-semibold text-gray-900 mb-4";
+
+  // IEEE 1584-2002 Table 4 values used by the calculator
+  const equipment: [string, string, string, string][] = [
+    ["Panelboard / MCC", "0.208–1 kV", "25 mm", "1.641"],
+    ["Switchgear", "0.208–1 kV", "32 mm", "1.473"],
+    ["Open air / cable", "0.208–1 kV", "40 mm", "2.000"],
+    ["Switchgear", "1–5 kV", "102 mm", "0.973"],
+    ["Switchgear", "5–15 kV", "153 mm", "0.973"],
+    ["Open air / cable", "1–15 kV", "102–153 mm", "2.000"],
+  ];
+
+  const ppe: [string, string, string][] = [
+    ["Below 1.2 cal/cm²", "Outside the arc flash boundary", "Arc-rated clothing not required by the energy level; other PPE still applies"],
+    ["1.2–4 cal/cm²", "Category 1 (4 cal/cm²)", "Arc-rated shirt and pants or coverall, face shield, hard hat, safety glasses, hearing protection, leather gloves"],
+    ["4–8 cal/cm²", "Category 2 (8 cal/cm²)", "As category 1 with an arc-rated balaclava or hood, and leather footwear"],
+    ["8–25 cal/cm²", "Category 3 (25 cal/cm²)", "Arc flash suit with hood, arc-rated gloves"],
+    ["25–40 cal/cm²", "Category 4 (40 cal/cm²)", "40 cal/cm² arc flash suit with hood, arc-rated gloves"],
+    ["Above 40 cal/cm²", "No PPE category", "De-energize the equipment before work"],
+  ];
+
   return (
-    <div className="mt-12 prose prose-slate max-w-none">
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
-        
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">About Arc Flash Calculator</h2>
-          <p className="text-gray-700 leading-relaxed">
-            The Arc Flash Calculator is a professional electrical safety tool designed to assess arc flash hazards and determine appropriate personal protective equipment (PPE) requirements. This calculator helps electrical engineers, safety officers, and technicians quickly estimate incident energy levels and safety distances for electrical work.
+    <>
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>What This Arc Flash Calculator Does</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            An arc flash is the burst of heat and light released when current flows through air between conductors. The
+            hazard to a worker is measured as <strong>incident energy</strong>, the heat reaching the skin at the working
+            distance, in cal/cm². At 1.2 cal/cm² bare skin receives a second-degree burn.
           </p>
-          <p className="text-gray-700 leading-relaxed mt-4">
-            Arc flash incidents are among the most serious electrical hazards, capable of causing severe burns, blindness, and death. This tool provides instant calculations based on simplified IEEE 1584 methodology to help ensure worker safety around energized electrical equipment.
+          <p>
+            This calculator applies the empirical equations of <strong>IEEE 1584-2002</strong> to estimate the arcing
+            current, the incident energy, the arc flash boundary and the minimum arc rating of the PPE, for systems from
+            208 V to 15 kV. It is a screening tool: equipment labels and work permits must come from an arc flash study
+            by a qualified engineer.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Features</h2>
-          <ul className="space-y-2 text-gray-700">
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>Instant Calculations:</strong> Real-time arc flash hazard assessment with debounced input handling</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>Risk Level Classification:</strong> Automatic categorization into low, medium, high, and extreme risk levels</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>PPE Recommendations:</strong> Automatic PPE category determination based on incident energy</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>Safety Distance Calculation:</strong> Determines safe working distance where incident energy equals 1.2 cal/cm²</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>Equipment Type Factors:</strong> Adjustable factors for different equipment types (panels, switchgear, MCC, transformers)</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>Advanced Mode:</strong> Optional exposure time and equipment type selection for detailed analysis</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>Common Presets:</strong> Quick calculations for typical electrical scenarios</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-primary mr-2">•</span>
-              <span><strong>Export Options:</strong> Download results as TXT or CSV files for documentation</span>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Arc Flash Calculation Formula</h2>
-          
-          <div className="space-y-4">
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Incident Energy Formula (Simplified)</h3>
-              <code className="text-sm text-gray-700">IE = (k × V × I × t) / D²</code>
-              <p className="text-sm text-gray-600 mt-2">
-                Where IE is incident energy (cal/cm²), k is equipment factor, V is voltage (V), I is fault current (kA), t is exposure time (s), and D is working distance (inches).
-              </p>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Safety Distance Formula</h3>
-              <code className="text-sm text-gray-700">D_safe = √((k × V × I × t) / 1.2)</code>
-              <p className="text-sm text-gray-600 mt-2">
-                Calculates the distance where incident energy equals 1.2 cal/cm², the threshold for Category 1 PPE requirements.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Equipment Factors</h3>
-              <div className="space-y-1 text-sm text-gray-700">
-                <div>Panel: k = 0.008</div>
-                <div>MCC: k = 0.010</div>
-                <div>Switchgear: k = 0.012</div>
-                <div>Transformer: k = 0.015</div>
-              </div>
-            </div>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>The IEEE 1584-2002 Equations</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 font-mono text-sm text-gray-900 space-y-2">
+            <p><span className="font-semibold">Arcing current, below 1 kV</span>: lg Ia = K + 0.662 lg Ibf + 0.0966 V + 0.000526 G + 0.5588 V lg Ibf − 0.00304 G lg Ibf</p>
+            <p><span className="font-semibold">Arcing current, 1 kV and above</span>: lg Ia = 0.00402 + 0.983 lg Ibf</p>
+            <p><span className="font-semibold">Normalized energy</span>: lg En = K1 + K2 + 1.081 lg Ia + 0.0011 G</p>
+            <p><span className="font-semibold">Incident energy</span>: E = 4.184 × Cf × En × (t ÷ 0.2) × (610 ÷ D)^x</p>
           </div>
-        </section>
+          <p className="text-sm">
+            Ibf is the bolted fault current (kA), V the voltage (kV), G the electrode gap (mm), t the arc duration (s) and D
+            the working distance (mm). K is −0.153 in open air and −0.097 in a box; K1 is −0.792 in open air and −0.555 in
+            a box; K2 is −0.113 for solidly grounded systems and 0 otherwise; Cf is 1.5 up to 1 kV and 1.0 above. E comes
+            out in J/cm²; divide by 4.184 for cal/cm².
+          </p>
+          <p className="text-sm">
+            Example: 480 V, 20 kA, a panelboard, 0.1 s and 18 in (457 mm) give Ia ≈ 11.9 kA and E ≈ 4.0 cal/cm², with an
+            arc flash boundary of about 37 in.
+          </p>
+        </div>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">PPE Categories</h2>
-          
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Incident Energy</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">PPE Requirements</th>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Equipment Gaps and Distance Exponents</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Equipment</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Voltage</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Gap G</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Exponent x</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {equipment.map(([eq, v, g, x]) => (
+                <tr key={eq + v} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 text-xs font-semibold text-gray-900">{eq}</td>
+                  <td className="py-2 px-3 text-xs text-gray-700">{v}</td>
+                  <td className="py-2 px-3 text-right font-mono text-xs text-gray-700">{g}</td>
+                  <td className="py-2 px-3 text-right font-mono text-xs text-gray-700">{x}</td>
                 </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td className="px-4 py-3 text-sm font-semibold text-green-600">Category 0/1</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">&lt; 1.2 cal/cm²</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">Non-melting shirt, pants, safety glasses</td>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-500 mt-4">
+          A smaller exponent means enclosed equipment focuses the energy toward the opening, so it falls off more slowly
+          with distance than an arc in open air.
+        </p>
+      </section>
+
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Incident Energy and PPE</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Incident energy</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Minimum arc rating</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Typical PPE</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {ppe.map(([e, rating, kit]) => (
+                <tr key={e} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-mono text-xs text-gray-900">{e}</td>
+                  <td className="py-2 px-3 text-xs text-gray-700">{rating}</td>
+                  <td className="py-2 px-3 text-xs text-gray-700">{kit}</td>
                 </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm font-semibold text-yellow-600">Category 2</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">1.2 - 4 cal/cm²</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">Arc-rated shirt, pants, face shield, gloves</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm font-semibold text-orange-600">Category 3</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">4 - 8 cal/cm²</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">Arc-rated suit, hood, gloves, boots</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm font-semibold text-red-600">Category 4</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">&gt; 8 cal/cm²</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">Maximum protection arc suit, hood, gloves</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-500 mt-4">
+          PPE categories and ratings from NFPA 70E (2024 edition). Choose clothing with an arc rating at or above the
+          calculated incident energy.
+        </p>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Risk Level Classification</h2>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-              <h3 className="font-semibold text-green-900 mb-2">Low Risk (&lt; 1.2 cal/cm²)</h3>
-              <p className="text-sm text-green-800">
-                Minimal arc flash hazard. Standard electrical safety practices apply. Category 0/1 PPE sufficient.
-              </p>
-            </div>
-
-            <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
-              <h3 className="font-semibold text-yellow-900 mb-2">Medium Risk (1.2 - 4 cal/cm²)</h3>
-              <p className="text-sm text-yellow-800">
-                Moderate arc flash hazard. Use proper PPE and follow safety procedures. Category 2 PPE required.
-              </p>
-            </div>
-
-            <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
-              <h3 className="font-semibold text-orange-900 mb-2">High Risk (4 - 8 cal/cm²)</h3>
-              <p className="text-sm text-orange-800">
-                Significant arc flash hazard. Use appropriate PPE and maintain controlled access zone. Category 3 PPE required.
-              </p>
-            </div>
-
-            <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-              <h3 className="font-semibold text-red-900 mb-2">Extreme Risk (&gt; 8 cal/cm²)</h3>
-              <p className="text-sm text-red-800">
-                Very high arc flash hazard. Use highest level PPE and restrict access. Category 4 PPE required.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Applications</h2>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-blue-50 rounded-lg p-4">
-              <h3 className="font-semibold text-blue-900 mb-2">Electrical Maintenance</h3>
-              <p className="text-sm text-blue-800">
-                Assess arc flash hazards before performing maintenance on energized electrical equipment.
-              </p>
-            </div>
-
-            <div className="bg-green-50 rounded-lg p-4">
-              <h3 className="font-semibold text-green-900 mb-2">Safety Training</h3>
-              <p className="text-sm text-green-800">
-                Educate workers about arc flash hazards and appropriate PPE requirements for different scenarios.
-              </p>
-            </div>
-
-            <div className="bg-purple-50 rounded-lg p-4">
-              <h3 className="font-semibold text-purple-900 mb-2">Equipment Labeling</h3>
-              <p className="text-sm text-purple-800">
-                Generate incident energy values for arc flash warning labels on electrical equipment.
-              </p>
-            </div>
-
-            <div className="bg-orange-50 rounded-lg p-4">
-              <h3 className="font-semibold text-orange-900 mb-2">Safety Compliance</h3>
-              <p className="text-sm text-orange-800">
-                Ensure compliance with NFPA 70E, OSHA, and other electrical safety standards.
-              </p>
-            </div>
-
-            <div className="bg-red-50 rounded-lg p-4">
-              <h3 className="font-semibold text-red-900 mb-2">Risk Assessment</h3>
-              <p className="text-sm text-red-800">
-                Evaluate electrical hazards during design phase and operational planning.
-              </p>
-            </div>
-
-            <div className="bg-yellow-50 rounded-lg p-4">
-              <h3 className="font-semibold text-yellow-900 mb-2">PPE Selection</h3>
-              <p className="text-sm text-yellow-800">
-                Determine appropriate personal protective equipment for electrical work tasks.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Enter System Voltage:</strong> Input the system voltage in volts (V).</span>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>How to Use the Arc Flash Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
             </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Enter Fault Current:</strong> Input the available fault current in kiloamperes (kA).</span>
+          ))}
+        </ol>
+      </section>
+
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Limits of This Estimate</h2>
+        <ul className="space-y-3 text-gray-600 leading-relaxed">
+          {[
+            "IEEE 1584-2002 covers 208 V to 15 kV and bolted fault currents of 0.7 to 106 kA; outside that range the equations do not apply.",
+            "Below 1 kV the standard also asks for a second calculation at 85% of the arcing current, which can trip the protection more slowly and give a higher energy. That needs the device's time-current curve.",
+            "IEEE 1584-2018 replaced these equations with models for five electrode configurations and enclosure sizes; results can differ in either direction.",
+            "The arc duration must be the actual clearing time of the upstream device at the arcing current, not a guess.",
+            "Never use this estimate for equipment labels or energized work permits; commission a full study.",
+          ].map((tip) => (
+            <li key={tip} className="flex items-start gap-2">
+              <span className="text-primary font-bold flex-shrink-0 mt-0.5">⚠️</span>
+              <span>{tip}</span>
             </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Set Working Distance:</strong> Enter the working distance from the arc source in inches.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Enable Advanced Mode:</strong> Optionally adjust exposure time and equipment type for more precise calculations.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>Review Results:</strong> The calculator instantly shows incident energy, risk level, and PPE category.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Check Safety Distance:</strong> Note the calculated safe working distance for the scenario.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Use Presets:</strong> Click on common examples for quick calculations of typical scenarios.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Export Results:</strong> Download calculations as TXT or CSV files for documentation.</span>
-            </li>
-          </ol>
-        </section>
+          ))}
+        </ul>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Safety Considerations</h2>
-          
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 space-y-2">
-            <p className="text-sm text-yellow-900">
-              <strong>De-energize When Possible:</strong> The safest approach is to de-energize equipment before work. Use lockout/tagout procedures.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Qualified Personnel Only:</strong> Only qualified electrical workers should perform energized work with appropriate training.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Proper PPE:</strong> Always use PPE rated for the calculated incident energy level or higher.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Arc Flash Boundaries:</strong> Establish and maintain appropriate arc flash protection boundaries.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Regular Updates:</strong> Recalculate arc flash hazards when system conditions change.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Professional Analysis:</strong> For critical applications, consider professional arc flash studies using detailed IEEE 1584 analysis.
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is an arc flash?</h3>
-              <p className="text-gray-700">
-                An arc flash is a dangerous electrical explosion that occurs when electrical current travels through air between conductors or from conductor to ground. It can reach temperatures of 35,000°F and cause severe burns, blindness, and death.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How accurate is this calculator?</h3>
-              <p className="text-gray-700">
-                This calculator uses simplified formulas based on IEEE 1584 methodology. For critical applications or detailed studies, professional arc flash analysis software should be used with complete system modeling.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is incident energy?</h3>
-              <p className="text-gray-700">
-                Incident energy is the amount of thermal energy impressed on a surface at a certain distance from an electrical arc. It's measured in calories per square centimeter (cal/cm²) and determines PPE requirements.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is working distance important?</h3>
-              <p className="text-gray-700">
-                Incident energy decreases with the square of distance. Doubling the working distance reduces incident energy by 75%. Maintaining proper working distance is crucial for safety.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What factors affect arc flash hazard?</h3>
-              <p className="text-gray-700">
-                Key factors include system voltage, available fault current, protective device clearing time, working distance, and equipment configuration. Higher voltage and current increase hazard levels.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">When should I perform arc flash calculations?</h3>
-              <p className="text-gray-700">
-                Perform calculations before any energized electrical work, when installing new equipment, after system modifications, and periodically to ensure labels remain accurate.
-              </p>
-            </div>
-          </div>
-        </section>
-
-      </div>
-    </div>
+      <ToolFaq items={faq} />
+    </>
   );
 }

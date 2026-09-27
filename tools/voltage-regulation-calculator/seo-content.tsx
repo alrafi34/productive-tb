@@ -1,6 +1,8 @@
 import { voltageRegulationCalculatorConfig } from "./config";
+import ToolFaq from "@/components/ToolFaq";
 
 export default function VoltageRegulationCalculatorSEO() {
+  const { howToSteps, faq } = voltageRegulationCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
@@ -122,53 +124,17 @@ export default function VoltageRegulationCalculatorSEO() {
 
         <div className="mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">How to Use</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">1</div>
-              <h4 className="font-semibold text-gray-900 mb-2">Enter Voltages</h4>
-              <p className="text-sm text-gray-600">Input no-load and full-load voltage values with appropriate units</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">2</div>
-              <h4 className="font-semibold text-gray-900 mb-2">Select System</h4>
-              <p className="text-sm text-gray-600">Choose system type (transformer, transmission line, or general)</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">3</div>
-              <h4 className="font-semibold text-gray-900 mb-2">Get Results</h4>
-              <p className="text-sm text-gray-600">View regulation percentage with interpretation and recommendations</p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <div className="border-t border-gray-200 pt-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Frequently Asked Questions</h3>
-          <div className="space-y-6">
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">What is good voltage regulation?</h4>
-              <p className="text-gray-600 text-sm">
-                Good voltage regulation is typically below 5% for most electrical systems. Excellent regulation is below 2%, 
-                while regulation above 10% indicates potential issues that may affect equipment performance.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Why is voltage regulation important?</h4>
-              <p className="text-gray-600 text-sm">
-                Voltage regulation affects equipment performance, efficiency, and lifespan. Poor regulation can cause motors 
-                to overheat, lights to dim, and electronic devices to malfunction or fail prematurely.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">How can I improve voltage regulation?</h4>
-              <p className="text-gray-600 text-sm">
-                Voltage regulation can be improved by using voltage regulators, tap-changing transformers, capacitor banks, 
-                reducing system impedance, or upgrading to larger conductors and transformers.
-              </p>
-            </div>
-          </div>
-        </div>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { powerSupplyCalculatorConfig } from "./config";
+
 export default function PowerSupplyCalculatorSEO() {
+  const { howToSteps, faq } = powerSupplyCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -228,40 +232,13 @@ export default function PowerSupplyCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Select CPU:</strong> Choose your processor from the dropdown list of popular models.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Select GPU:</strong> Pick your graphics card, or choose "Integrated Graphics" for APUs.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Configure RAM:</strong> Select the total amount of system memory (8GB to 128GB).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Add Storage:</strong> Specify the number and type of storage devices (SSD, HDD, NVMe).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>Choose Cooling:</strong> Select your cooling solution from stock to custom liquid cooling.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Add Peripherals:</strong> Include RGB lighting, keyboards, mice, and other powered accessories.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Set Options:</strong> Enable overclocking and adjust safety margin as needed.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Review Results:</strong> Check the recommended PSU wattage and efficiency rating.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -290,53 +267,7 @@ export default function PowerSupplyCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What safety margin should I use?</h3>
-              <p className="text-gray-700">
-                A 20% safety margin is recommended for most builds. Use 25-30% for overclocked systems or if you plan future upgrades. 15% is acceptable for budget builds with no upgrade plans.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Should I account for overclocking?</h3>
-              <p className="text-gray-700">
-                Yes, if you plan to overclock your CPU or GPU. Overclocking can increase power consumption by 15-25%. Enable the overclocking option for more accurate calculations.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What's the optimal PSU load percentage?</h3>
-              <p className="text-gray-700">
-                PSUs are most efficient at 50-80% load. This range provides the best balance of efficiency, noise levels, and component longevity. Avoid running PSUs above 90% load continuously.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Do I need to include monitor power consumption?</h3>
-              <p className="text-gray-700">
-                No, monitors have their own power supplies and don't draw power from your PC's PSU. Only include USB-powered devices and internal components in your calculation.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How accurate are these power estimates?</h3>
-              <p className="text-gray-700">
-                Our estimates are based on manufacturer specifications and real-world testing data. Actual power consumption may vary by ±10% depending on specific models, silicon lottery, and usage patterns.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use a higher wattage PSU than recommended?</h3>
-              <p className="text-gray-700">
-                Yes, using a higher wattage PSU is safe and can provide benefits like lower noise, better efficiency at partial loads, and headroom for future upgrades. However, very oversized PSUs may be less efficient at low loads.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

@@ -24,9 +24,8 @@ export function validateInputs(inputs: UPSBackupInputs): string | null {
   }
 
   if (inputs.capacityMode === 'va') {
-    if (!inputs.vaRating || inputs.vaRating <= 0) {
-      return "VA rating must be greater than 0";
-    }
+    // A VA rating is the UPS's power limit, not the energy in its battery
+    return "Runtime depends on the battery, not the VA rating: enter the battery voltage and Ah, or its Wh";
   } else if (inputs.capacityMode === 'wh') {
     if (!inputs.wattHour || inputs.wattHour <= 0) {
       return "Watt-hour must be greater than 0";

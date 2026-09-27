@@ -85,9 +85,7 @@ export default function UPSBackupCalculatorUI() {
       capacityMode: mode,
     };
 
-    if (mode === 'va') {
-      newInputs.vaRating = 1000;
-    } else if (mode === 'wh') {
+    if (mode === 'wh') {
       newInputs.wattHour = 480;
     } else if (mode === 'battery') {
       newInputs.voltage = 12;
@@ -295,7 +293,7 @@ export default function UPSBackupCalculatorUI() {
                 Capacity Mode
               </h3>
               
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={() => handleModeChange('battery')}
                   className={`px-4 py-3 rounded-lg font-medium text-sm transition-colors ${
@@ -305,16 +303,6 @@ export default function UPSBackupCalculatorUI() {
                   }`}
                 >
                   Battery (V+Ah)
-                </button>
-                <button
-                  onClick={() => handleModeChange('va')}
-                  className={`px-4 py-3 rounded-lg font-medium text-sm transition-colors ${
-                    inputs.capacityMode === 'va'
-                      ? 'bg-primary text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  VA Rating
                 </button>
                 <button
                   onClick={() => handleModeChange('wh')}
@@ -395,27 +383,6 @@ export default function UPSBackupCalculatorUI() {
                 </>
               )}
 
-              {inputs.capacityMode === 'va' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    VA Rating
-                  </label>
-                  <div className="flex gap-2">
-                    <input
-                      type="number"
-                      value={inputs.vaRating || ''}
-                      onChange={(e) => handleInputChange('vaRating', parseFloat(e.target.value) || 0)}
-                      className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                      placeholder="1000"
-                      min="0"
-                    />
-                    <div className="px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-lg font-semibold text-gray-700 flex items-center">
-                      VA
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {inputs.capacityMode === 'wh' && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -459,26 +426,6 @@ export default function UPSBackupCalculatorUI() {
 
               {showAdvanced && (
                 <div className="pt-4 border-t border-gray-200 space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Power Factor: {inputs.powerFactor}
-                    </label>
-                    <input
-                      type="range"
-                      value={inputs.powerFactor}
-                      onChange={(e) => handleInputChange('powerFactor', parseFloat(e.target.value))}
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
-                      min="0.6"
-                      max="1"
-                      step="0.05"
-                    />
-                    <div className="flex justify-between text-xs text-gray-500 mt-1">
-                      <span>0.6</span>
-                      <span>0.8</span>
-                      <span>1.0</span>
-                    </div>
-                  </div>
-
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Safety Buffer: {inputs.safetyBuffer}%
