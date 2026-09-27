@@ -113,49 +113,49 @@ export function getPresets() {
   return [
     {
       name: 'LED Bulb (10W)',
-      description: '10W LED at 220V',
+      description: '10W LED at 120V',
       mode: 'power_voltage' as InputMode,
       power: 10,
-      voltage: 220
+      voltage: 120
     },
     {
       name: 'Incandescent Bulb (60W)',
-      description: '60W bulb at 220V',
+      description: '60W bulb at 230V',
       mode: 'power_voltage' as InputMode,
       power: 60,
-      voltage: 220
+      voltage: 230
     },
     {
       name: 'Microwave (1000W)',
-      description: '1kW microwave at 220V',
+      description: '1kW microwave at 120V',
       mode: 'power_voltage' as InputMode,
       power: 1000,
-      voltage: 220
+      voltage: 120
     },
     {
-      name: 'Electric Kettle (1500W)',
-      description: '1.5kW kettle at 220V',
+      name: 'Electric Kettle (2200W)',
+      description: '2.2kW kettle at 230V',
       mode: 'power_voltage' as InputMode,
-      power: 1500,
-      voltage: 220
+      power: 2200,
+      voltage: 230
     },
     {
       name: 'Air Conditioner (2000W)',
-      description: '2kW AC at 220V',
+      description: '2kW AC at 240V',
       mode: 'power_voltage' as InputMode,
       power: 2000,
-      voltage: 220
+      voltage: 240
     },
     {
       name: 'Water Heater (3000W)',
-      description: '3kW heater at 220V',
+      description: '3kW heater at 230V',
       mode: 'power_voltage' as InputMode,
       power: 3000,
-      voltage: 220
+      voltage: 230
     },
     {
       name: 'US Outlet (15A)',
-      description: '15A at 110V',
+      description: '15A at 120V',
       mode: 'current' as InputMode,
       current: 15
     },

@@ -17,7 +17,7 @@ export const cableLengthCalculatorConfig = {
     "cable installation calculator"
   ],
   seo: {
-    title: "Cable Length Calculator — Free Wire & Cable Length Tool Online",
+    title: "Cable Length Calculator — Wire Run with Slack & Bends",
     description: "Calculate total cable length instantly with slack, bend allowance, and installation factor. Get results in meters and feet. Free, browser-based, no signup.",
     keywords: [
       "cable length calculator",
@@ -44,7 +44,7 @@ export const cableLengthCalculatorConfig = {
       "cat6 cable length calculator",
     ],
     og: {
-      title: "Cable Length Calculator — Free Wire & Cable Length Tool Online",
+      title: "Cable Length Calculator — Wire Run with Slack & Bends",
       description: "Calculate total cable length instantly with slack, bend allowance, and installation factor. Get results in meters and feet. Free, browser-based, no signup.",
       type: "website",
       url: "/tools/electrical/cable-length-calculator"

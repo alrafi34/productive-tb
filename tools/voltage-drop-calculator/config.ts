@@ -8,7 +8,7 @@ export const voltageDropCalculatorConfig = {
   slug: "voltage-drop-calculator",
   seo: {
     title: "Voltage Drop Calculator — Free Wire Voltage Loss Calculator",
-    description: "Calculate voltage drop in copper or aluminum wires for single-phase, three-phase, or DC. Get drop %, final voltage, and power loss instantly. Free, browser-based.",
+    description: "Calculate voltage drop in copper or aluminum wire for single-phase, three-phase or DC circuits, with drop %, final voltage and power loss.",
     keywords: [
       "voltage drop calculator",
       "wire voltage drop",
@@ -37,7 +37,7 @@ export const voltageDropCalculatorConfig = {
     ],
     og: {
       title: "Voltage Drop Calculator — Free Wire Voltage Loss Calculator",
-      description: "Calculate voltage drop in copper or aluminum wires for single-phase, three-phase, or DC. Get drop %, final voltage, and power loss instantly. Free tool.",
+      description: "Calculate voltage drop in copper or aluminum wire for single-phase, three-phase or DC circuits, with drop %, final voltage and power loss.",
       url: `${siteConfig.url}/tools/electrical/voltage-drop-calculator`
     },
     howToSteps: [

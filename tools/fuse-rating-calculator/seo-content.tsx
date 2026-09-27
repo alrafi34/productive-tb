@@ -1,25 +1,8 @@
+import { fuseRatingCalculatorConfig } from "./config";
 export default function FuseRatingCalculatorSEO() {
-  const faqItems = [
-    { q: "What is a fuse rating calculator?", a: "A fuse rating calculator determines the correct fuse amperage for a circuit or appliance based on its power consumption, supply voltage, or measured current, plus a safety margin. It finds the smallest standard fuse size that safely carries the load's current without blowing during normal operation, while still opening the circuit if a genuine fault occurs." },
-    { q: "How is fuse rating calculated?", a: "If you know the appliance's power and voltage, current is found with I = P / V. If you already know the current draw, that value is used directly. The calculator then multiplies this current by a safety factor — typically 1.25 — to get the adjusted current, and selects the nearest standard fuse rating at or above that adjusted value from the IEC list (0.5A, 1A, 1.5A, 2A, 3A, 5A, 6A, 10A, 13A, 15A, 16A, 20A, 25A, 32A, 40A, 50A, 63A, 80A, 100A, 125A, 160A, 200A)." },
-    { q: "What safety factor should I use for fuse sizing?", a: "Use 1.25 (the standard, IEC-recommended default) for most resistive loads like heaters, lighting, and kitchen appliances — it adds a 25% margin that prevents nuisance blowing from minor voltage fluctuations. Use 1.5 or 1.6 for loads with inrush current, such as motors, compressors, and transformers, since their startup current briefly spikes well above the running current." },
-    { q: "What is the difference between fast blow and slow blow fuses?", a: "A fast blow (F) fuse opens almost instantly once current exceeds its rating, making it suitable for resistive loads like lighting and heating elements where current is steady. A slow blow (T, time-delay) fuse tolerates brief current surges — 5 to 8 times its rating for a fraction of a second — before opening, which is required for motors, compressors, and transformers that draw high inrush current at startup." },
-    { q: "Why did the calculator warn about a low safety margin?", a: "A low safety margin (under 10%) means the recommended fuse rating is very close to your adjusted current — for example, an 8.9A adjusted current selecting a 10A fuse leaves only 11% headroom. This increases the risk of nuisance blowing from normal load fluctuations. The calculator suggests moving to the next higher standard rating for more reliable operation." },
-    { q: "Why did the calculator warn about a very high safety margin?", a: "A safety margin above 100% means the selected fuse is more than double your adjusted current — for example, a 2A load recommending a 5A fuse. This usually happens with very small loads, since standard fuse ratings jump in large steps at the low end. While not unsafe, verify your inputs since an oversized fuse provides less precise protection against overcurrent faults." },
-    { q: "Should I round the fuse rating up or down?", a: "Always round up to the next available standard fuse rating after applying the safety factor — never round down. A fuse rated below the adjusted current will blow during normal operation, while rounding up to the nearest standard size preserves the safety margin the calculation was designed to provide." },
-    { q: "Can I use this calculator for both AC and DC circuits?", a: "The current and safety-margin math is identical for AC and DC — I = P / V and the 1.25× factor apply either way. However, the physical fuse you install must be rated for the circuit type: DC fuses are built to extinguish the sustained arc that forms when DC current is interrupted, and a fuse rated only for AC use should never be substituted into a DC circuit such as a solar or battery system." },
-    { q: "How does this differ from a circuit breaker calculator?", a: "Fuse sizing and circuit breaker sizing use the same underlying current and safety-factor logic, but fuses are single-use (they must be physically replaced after blowing) while breakers can be reset. Fuses also come in a finer range of small ratings (0.5A–3A) useful for electronics and appliances, whereas breakers are more common for whole-circuit protection in a panel. Use our Circuit Breaker Calculator if you're sizing a panel-mounted breaker instead of a plug or inline fuse." },
-    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, current, and fuse selections are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
-  ];
+  const faqItems = fuseRatingCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Choose an input mode", "Select Power + Voltage if you know the appliance's wattage and supply voltage, or Direct Current if you already have a measured or nameplate current value. The calculator computes current as I = P ÷ V automatically when you use the power and voltage mode."],
-    ["Enter your circuit values", "In Power + Voltage mode, type the wattage in watts and the supply voltage. In Direct Current mode, type the current in amperes directly. Use the built-in appliance presets — microwave, kettle, air conditioner, and more — to auto-fill common values."],
-    ["Select a safety factor", "Choose 1.25 for standard resistive loads (the recommended default), 1.5 for occasional surge loads, or 1.6 for motors and other high-inrush equipment. This factor is applied to your calculated current before a fuse size is selected."],
-    ["Choose fast blow or slow blow", "Select Fast Blow for lighting, heating elements, and general electronics with steady current draw. Select Slow Blow for motors, compressors, and transformers that need to tolerate a brief startup current surge without nuisance blowing."],
-    ["Read the recommended fuse rating", "The calculator returns the nearest standard fuse rating at or above your adjusted current, the safety margin percentage, and the next higher standard size as a backup option. A warning appears if the margin is unusually low or high."],
-    ["Save or export the result", "Copy the recommended rating to your clipboard, save the calculation to your local history for later reference, or export a full text report showing every calculation step for documentation."],
-  ];
+  const howToSteps: [string, string][] = fuseRatingCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>
@@ -130,15 +113,15 @@ export default function FuseRatingCalculatorSEO() {
           {[
             {
               title: "Microwave Oven Repair",
-              scenario: "An appliance repair technician is replacing the internal fuse on a 1000W microwave rated at 220V. Using Power + Voltage mode with 1000W and 220V, the calculator computes 4.55A, applies the standard 1.25 factor for 5.68A adjusted, and recommends a 6A fast blow fuse — a 5.6% safety margin, matching the original factory fuse.",
+              scenario: "An appliance repair technician is checking the internal fuse on a 1000W microwave rated at 120V. Using Power + Voltage mode with 1000W and 120V, the calculator computes 8.33A, applies the standard 1.25 factor for 10.42A adjusted, and recommends a 13A fuse as the minimum. Microwaves draw a surge when the magnetron starts, so the technician fits the rating printed on the original fuse, often 15A or 20A.",
             },
             {
               title: "Electric Kettle Circuit",
-              scenario: "A homeowner's 1500W, 220V kettle keeps blowing its plug fuse. Entering 1500W and 220V gives 6.82A, adjusted to 8.52A at the standard 1.25 factor, which recommends a 10A fast blow fuse — replacing the incorrectly installed 6A fuse that was undersized for the load.",
+              scenario: "A UK homeowner's 2.2kW, 230V kettle keeps blowing its plug fuse. Entering 2200W and 230V gives 9.57A, adjusted to 11.96A at the standard 1.25 factor, which recommends a 13A fuse, the standard BS 1362 plug fuse for appliances over about 700W, replacing an incorrectly fitted 5A fuse.",
             },
             {
               title: "LED Strip Electronics Project",
-              scenario: "A hobbyist is adding an inline fuse to a 10W LED strip driver running at 220V. Current works out to just 0.045A; at the 1.25 safety factor that's 0.057A adjusted, so the calculator recommends the smallest standard rating — a 0.5A fast blow fuse — appropriately protecting the low-current electronics without oversizing.",
+              scenario: "A hobbyist is adding an inline fuse to a 10W LED strip driver running at 230V. Current works out to just 0.043A; at the 1.25 safety factor that's 0.054A adjusted, so the calculator recommends the smallest standard rating — a 0.5A fast blow fuse — appropriately protecting the low-current electronics without oversizing.",
             },
             {
               title: "Conveyor Motor Protection",

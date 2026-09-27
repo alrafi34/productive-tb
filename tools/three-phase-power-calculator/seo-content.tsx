@@ -1,55 +1,8 @@
+import { threePhasePowerCalculatorConfig } from "./config";
 export default function ThreePhasePowerCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a three-phase power calculator?",
-      a: "A three-phase power calculator is a free online tool that computes real power (kW), apparent power (kVA), and reactive power (kVAR) for balanced three-phase AC systems. It supports three modes: calculate power from voltage, current, and power factor; calculate current from power, voltage, and power factor; or calculate voltage from power, current, and power factor.",
-    },
-    {
-      q: "What is the formula for three-phase power?",
-      a: "Real power: P = √3 × V × I × PF ÷ 1000 (kW). Apparent power: S = √3 × V × I ÷ 1000 (kVA). Reactive power: Q = √(S² - P²) (kVAR). For example, a 415V, 10A system with power factor 0.8: P = 1.732 × 415 × 10 × 0.8 ÷ 1000 = 5.75kW.",
-    },
-    {
-      q: "Why does three-phase power use a √3 factor instead of the single-phase formula?",
-      a: "In a balanced three-phase system, the three line voltages and currents are 120 degrees apart in phase, and the vector sum of the power delivered across all three phases simplifies to √3 × V_line × I_line, rather than a simple 3× multiplier you might expect from adding three identical single-phase circuits. Using the single-phase formula (V × I) for a three-phase system without this factor underestimates power by about 42%.",
-    },
-    {
-      q: "What is the difference between line voltage and phase voltage in a three-phase system?",
-      a: "Line voltage is measured between any two of the three line conductors, while phase voltage is measured between one line conductor and neutral. In a star (wye) connection, line voltage equals phase voltage × √3 — a common 230V phase voltage corresponds to 400V line voltage. In a delta connection, line voltage equals phase voltage directly. This calculator uses line voltage and line current throughout.",
-    },
-    {
-      q: "How do I calculate the current a three-phase motor draws from its kW rating?",
-      a: "I = P × 1000 ÷ (√3 × V × PF), where P is in kW. A 15kW motor at 415V with a power factor of 0.85 draws I = 15,000 ÷ (1.732 × 415 × 0.85) = 15,000 ÷ 613.4 ≈ 24.5A. This is the full-load current used for cable and protection device sizing.",
-    },
-    {
-      q: "How do I calculate required voltage from a known power, current, and power factor?",
-      a: "V = P × 1000 ÷ (√3 × I × PF). This is useful when verifying a system's expected voltage given a known load and measured current — for example, confirming a 400V supply is delivering the expected voltage under a specific load condition.",
-    },
-    {
-      q: "Why is power factor needed for three-phase power calculations?",
-      a: "Power factor separates real power (useful work, kW) from apparent power (total supply demand, kVA) in the same way it does for single-phase circuits. Three-phase motors and transformers typically have power factors between 0.80 and 0.95 at full load, so omitting PF and using apparent power as if it were real power overstates useful output significantly.",
-    },
-    {
-      q: "How does three-phase power calculation change between 50Hz and 60Hz systems?",
-      a: "Frequency itself doesn't appear directly in the P = √3VI×PF formula — power depends on voltage, current, and power factor, not frequency. However, standard system voltages differ by region (400-415V/50Hz in Europe and much of Asia, versus 480V/60Hz in North American industrial systems), which is why this calculator includes frequency as a reference field alongside region-specific presets.",
-    },
-    {
-      q: "How do I size a generator for a three-phase load?",
-      a: "Calculate the load's apparent power (kVA) using S = √3 × V × I ÷ 1000, since generators are rated in kVA to reflect maximum current delivery capability regardless of the load's power factor. Add margin for motor starting surge current, which can be several times the running current for a brief period during startup.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, power, and power factor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = threePhasePowerCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Select a calculation mode", "Choose to calculate Power, Current, or Voltage, depending on which value you don't already know."],
-    ["Enter your known values", "For Power mode, enter line voltage, line current, and power factor. For Current mode, enter power, voltage, and power factor. For Voltage mode, enter power, current, and power factor."],
-    ["Enter frequency for reference", "Input the system frequency (50Hz or 60Hz) — this doesn't affect the power calculation directly but is recorded for documentation."],
-    ["Read the calculated result", "View the requested value, along with real power (kW), apparent power (kVA), and reactive power (kVAR) derived from the same inputs."],
-    ["Review the step-by-step derivation", "See exactly how √3, voltage, current, and power factor combine at each stage of the calculation."],
-    ["Apply a preset or export results", "Use a built-in preset for common industrial voltage systems, or export the full calculation as text or CSV."],
-  ];
+  const howToSteps: [string, string][] = threePhasePowerCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

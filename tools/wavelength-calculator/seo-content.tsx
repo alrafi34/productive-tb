@@ -1,25 +1,8 @@
+import { wavelengthCalculatorConfig } from "./config";
 export default function WavelengthCalculatorSEO() {
-  const faqItems = [
-    { q: "What is a wavelength calculator?", a: "A wavelength calculator is a tool that computes the physical length of one full wave cycle from its frequency and propagation speed, using λ = v/f. It works for any wave type — electromagnetic (radio, WiFi, light) or mechanical (sound) — as long as you know the frequency and the speed the wave travels at in its medium." },
-    { q: "How is wavelength calculated?", a: "Wavelength is calculated as λ = v/f, where v is the wave's propagation speed in meters per second and f is the frequency in Hertz. For a 100 MHz FM radio signal traveling through air at 299,702,547 m/s, the wavelength is 299,702,547 ÷ 100,000,000, which equals approximately 2.997 meters." },
-    { q: "Why does the calculator ask for a propagation medium?", a: "Wave speed is not constant — it depends on what the wave is traveling through. Electromagnetic waves move at the speed of light in vacuum (299,792,458 m/s), fractionally slower in air, and considerably slower in water or along a copper conductor. Since wavelength depends directly on speed, selecting the correct medium is necessary for an accurate result." },
-    { q: "Why is wavelength shorter in water or copper than in air?", a: "When a wave enters a denser or more resistive medium, its propagation speed drops while its frequency stays fixed. Since λ = v/f, a lower speed at the same frequency produces a shorter wavelength. This is why the same 2.4 GHz signal has a wavelength of about 12.5 cm in air but would be noticeably shorter traveling through water." },
-    { q: "Can I use this calculator for sound waves?", a: "Yes. Select Custom Speed and enter the speed of sound for your medium — approximately 343 m/s in air at 20°C, 1,480 m/s in water, or 5,120 m/s in steel. The λ = v/f formula applies to any wave type, not just electromagnetic ones, so sound wavelength calculations work the same way." },
-    { q: "What is the wavelength of 2.4 GHz WiFi?", a: "A 2.4 GHz WiFi signal traveling through air has a wavelength of approximately 12.49 centimeters, calculated as 299,702,547 m/s divided by 2,400,000,000 Hz. This is why 2.4 GHz WiFi antennas are commonly built around 6.2 cm (a quarter-wavelength) or 12.5 cm (a half-wavelength)." },
-    { q: "How do I calculate antenna length from wavelength?", a: "Common antenna designs use fractions of the wavelength: a quarter-wave monopole is λ/4, and a half-wave dipole is λ/2. For 2.4 GHz WiFi with a wavelength of about 12.5 cm, a quarter-wave antenna would be roughly 3.1 cm before accounting for the antenna's velocity factor, which typically shortens the physical length by 5-10% relative to free-space calculation." },
-    { q: "What is the difference between wavelength and frequency?", a: "Frequency is how many wave cycles occur per second, measured in Hertz. Wavelength is the physical distance one complete cycle covers, measured in meters. They are inversely linked through the wave speed — higher frequency always means shorter wavelength for a wave traveling at a fixed speed, and vice versa." },
-    { q: "Why does the result show conversions in km, m, cm, and mm?", a: "Wavelengths span an enormous range depending on frequency — AM radio wavelengths are hundreds of meters long, while 5G millimeter-wave signals are barely a centimeter. Showing the same result in multiple units at once lets you immediately pick the most readable scale, whether you're sizing a broadcast tower or a chip-scale antenna." },
-    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your frequency values, medium selection, and calculation history are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
-  ];
+  const faqItems = wavelengthCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter the frequency", "Type the frequency value into the input box. This is the number of wave cycles per second for the signal you're analyzing — for example, 2.4 for a WiFi band or 100 for FM radio."],
-    ["Select the frequency unit", "Choose Hz, kHz, MHz, or GHz to match how your frequency value is normally expressed. The calculator converts your input to Hz internally before applying the formula."],
-    ["Choose the propagation medium", "Select vacuum, air, water, copper, or a custom speed. Each medium has a different wave propagation speed, which directly changes the calculated wavelength."],
-    ["Enter a custom speed if needed", "If your wave travels through a medium not listed — such as sound in steel or a fiber-optic core — select Custom Speed and enter the propagation speed in meters per second."],
-    ["Read the wavelength result", "The calculator instantly returns the wavelength using λ = v/f, along with the same value converted to kilometers, meters, centimeters, and millimeters so you can pick the most readable scale."],
-    ["Save, copy, or export", "Copy the result to your clipboard, save the calculation to your history for later reference, or export a full text report including the formula and step-by-step working."],
-  ];
+  const howToSteps: [string, string][] = wavelengthCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

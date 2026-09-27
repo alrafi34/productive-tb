@@ -1,55 +1,8 @@
+import { voltageDividerCalculatorConfig } from "./config";
 export default function VoltageDividerCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a voltage divider calculator?",
-      a: "A voltage divider calculator is a free online tool that computes the output voltage (Vout) of a two-resistor divider circuit from an input voltage (Vin), R1, and R2. It also returns the current through the divider and the power dissipated in each resistor, so you can check that both the voltage level and the resistor wattage ratings are correct for your circuit.",
-    },
-    {
-      q: "What is the voltage divider formula?",
-      a: "Vout = Vin × R2 ÷ (R1 + R2), where R1 is the resistor between Vin and the output node, and R2 is the resistor between the output node and ground. For example, with Vin = 12V, R1 = 4.7kΩ, and R2 = 3.3kΩ: Vout = 12 × 3,300 ÷ (4,700 + 3,300) = 12 × 0.4125 = 4.95V.",
-    },
-    {
-      q: "Which resistor is R1 and which is R2 in a voltage divider?",
-      a: "R1 is the top resistor, connected between the input voltage source and the output tap point. R2 is the bottom resistor, connected between the output tap point and ground. Vout is measured across R2 — increasing R2 relative to R1 raises Vout, and increasing R1 relative to R2 lowers it.",
-    },
-    {
-      q: "How do I choose resistor values for a specific output voltage?",
-      a: "Pick a ratio R2 ÷ (R1 + R2) equal to your target Vout ÷ Vin, then choose a total resistance (R1 + R2) high enough to limit current draw but low enough that the divider remains stiff against the load you're connecting. For a 3.3V logic input from a 5V source, a ratio around 0.66 works — R1 = 1.7kΩ and R2 = 3.3kΩ is one common combination, though standard E12/E24 values are used in practice rather than the exact calculated figures.",
-    },
-    {
-      q: "How much current flows through a voltage divider?",
-      a: "Current (A) = Vin ÷ (R1 + R2). For a 12V input with a 4.7kΩ + 3.3kΩ = 8kΩ total resistance, current = 12 ÷ 8,000 = 1.5mA. This current flows continuously through both resistors whenever the divider is powered, even with no load connected — which is why voltage dividers are inefficient for delivering real power.",
-    },
-    {
-      q: "Why does a voltage divider's output voltage sag under load?",
-      a: "A basic two-resistor voltage divider assumes nothing is drawing current from the output tap. Connecting a load in parallel with R2 effectively lowers R2's value, which reduces Vout below the calculated no-load figure. The lower the load's resistance relative to R2, the more the output sags — for high-impedance loads like an ADC input, the sag is usually negligible.",
-    },
-    {
-      q: "Can I use a voltage divider to step down power, like a battery charger?",
-      a: "No. A resistive voltage divider wastes power as heat in both resistors and cannot supply meaningful current without significant voltage sag — it is only suitable for signal-level applications like feeding a sensor reading or ADC input into a microcontroller. For power conversion, use a voltage regulator, buck converter, or transformer instead.",
-    },
-    {
-      q: "How do I calculate power dissipation in divider resistors?",
-      a: "Power (W) = Current² × Resistance for each resistor. With 1.5mA flowing through a 4.7kΩ R1: Power = 0.0015² × 4,700 = 0.0106W (10.6mW). Standard 1/4-watt (0.25W) resistors have enormous headroom for typical logic-level dividers, but the check matters more for low-resistance or high-voltage dividers.",
-    },
-    {
-      q: "What voltage divider ratio do I need for an Arduino or ESP32 ADC?",
-      a: "Arduino boards typically read 0-5V or 0-3.3V on their analog pins, while ESP32 ADC pins read up to about 3.3V. To measure a 12V source with an Arduino's 5V ADC, you need a ratio of 5/12 = 0.417 — for example R1 = 4.7kΩ and R2 = 3.3kΩ gives Vout = 4.95V at Vin = 12V, safely within range with a small margin.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage and resistor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = voltageDividerCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter input voltage (Vin)", "Type the supply voltage feeding the divider circuit, in volts."],
-    ["Enter R1 (top resistor)", "Input the resistance between the input voltage and the output tap point, choosing Ω, kΩ, or MΩ as the unit."],
-    ["Enter R2 (bottom resistor)", "Input the resistance between the output tap point and ground. Vout is measured across this resistor."],
-    ["Read the output voltage and ratio", "The result panel shows Vout, the R2 ÷ (R1 + R2) ratio as a percentage, and a full step-by-step breakdown of the calculation."],
-    ["Check current and power dissipation", "Review the current flowing through the divider and the power dissipated in each resistor to confirm your resistor wattage ratings are sufficient."],
-    ["Apply a preset or export the result", "Use a built-in preset for common conversions like 12V-to-5V or 9V-to-3.3V, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = voltageDividerCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

@@ -91,22 +91,22 @@ export function getAppliancePresets(): AppliancePreset[] {
     { name: 'LED Bulb', wattage: 10, category: 'Lighting' },
     { name: 'CFL Bulb', wattage: 15, category: 'Lighting' },
     { name: 'Incandescent Bulb', wattage: 60, category: 'Lighting' },
-    { name: 'Tube Light', wattage: 40, category: 'Lighting' },
+    { name: 'LED Shop Light', wattage: 40, category: 'Lighting' },
     
     // Fans & Cooling
     { name: 'Ceiling Fan', wattage: 75, category: 'Fans' },
     { name: 'Table Fan', wattage: 50, category: 'Fans' },
     { name: 'Exhaust Fan', wattage: 30, category: 'Fans' },
-    { name: 'Air Conditioner (1 Ton)', wattage: 1200, category: 'Cooling' },
-    { name: 'Air Conditioner (1.5 Ton)', wattage: 1800, category: 'Cooling' },
-    { name: 'Air Conditioner (2 Ton)', wattage: 2400, category: 'Cooling' },
+    { name: 'Window AC (12,000 BTU)', wattage: 1200, category: 'Cooling' },
+    { name: 'Mini-Split AC (18,000 BTU)', wattage: 1800, category: 'Cooling' },
+    { name: 'Central AC (2 ton, 24,000 BTU)', wattage: 2400, category: 'Cooling' },
     
     // Kitchen Appliances
     { name: 'Refrigerator', wattage: 300, category: 'Kitchen' },
     { name: 'Microwave Oven', wattage: 1000, category: 'Kitchen' },
     { name: 'Electric Kettle', wattage: 1500, category: 'Kitchen' },
     { name: 'Toaster', wattage: 800, category: 'Kitchen' },
-    { name: 'Mixer Grinder', wattage: 500, category: 'Kitchen' },
+    { name: 'Blender', wattage: 500, category: 'Kitchen' },
     { name: 'Induction Cooktop', wattage: 2000, category: 'Kitchen' },
     { name: 'Electric Oven', wattage: 2000, category: 'Kitchen' },
     { name: 'Dishwasher', wattage: 1800, category: 'Kitchen' },
@@ -124,7 +124,7 @@ export function getAppliancePresets(): AppliancePreset[] {
     { name: 'Iron', wattage: 1000, category: 'Laundry' },
     
     // Heating
-    { name: 'Water Heater (Geyser)', wattage: 2000, category: 'Heating' },
+    { name: 'Water Heater (electric)', wattage: 3000, category: 'Heating' },
     { name: 'Room Heater', wattage: 2000, category: 'Heating' },
     
     // Electronics
@@ -327,13 +327,13 @@ export function getPresetConfigurations() {
       description: '3 bedroom house',
       appliances: [
         { name: 'LED Bulb', quantity: 15, wattage: 10 },
-        { name: 'Ceiling Fan', quantity: 5, wattage: 75 },
-        { name: 'Air Conditioner (1.5 Ton)', quantity: 2, wattage: 1800 },
+        { name: 'Ceiling Fan', quantity: 3, wattage: 75 },
+        { name: 'Mini-Split AC (18,000 BTU)', quantity: 2, wattage: 1800 },
         { name: 'Refrigerator', quantity: 1, wattage: 300 },
         { name: 'Microwave Oven', quantity: 1, wattage: 1000 },
         { name: 'LED TV (42")', quantity: 2, wattage: 80 },
         { name: 'Washing Machine', quantity: 1, wattage: 500 },
-        { name: 'Water Heater (Geyser)', quantity: 1, wattage: 2000 }
+        { name: 'Water Heater (electric)', quantity: 1, wattage: 3000 }
       ]
     },
     {
@@ -341,16 +341,16 @@ export function getPresetConfigurations() {
       description: '4+ bedroom house',
       appliances: [
         { name: 'LED Bulb', quantity: 25, wattage: 10 },
-        { name: 'Ceiling Fan', quantity: 8, wattage: 75 },
-        { name: 'Air Conditioner (1.5 Ton)', quantity: 3, wattage: 1800 },
-        { name: 'Air Conditioner (2 Ton)', quantity: 1, wattage: 2400 },
+        { name: 'Ceiling Fan', quantity: 5, wattage: 75 },
+        { name: 'Mini-Split AC (18,000 BTU)', quantity: 3, wattage: 1800 },
+        { name: 'Central AC (2 ton, 24,000 BTU)', quantity: 1, wattage: 2400 },
         { name: 'Refrigerator', quantity: 1, wattage: 300 },
         { name: 'Microwave Oven', quantity: 1, wattage: 1000 },
         { name: 'Induction Cooktop', quantity: 1, wattage: 2000 },
         { name: 'LED TV (55")', quantity: 2, wattage: 120 },
         { name: 'Washing Machine', quantity: 1, wattage: 500 },
-        { name: 'Water Heater (Geyser)', quantity: 2, wattage: 2000 },
-        { name: 'Water Pump', quantity: 1, wattage: 750 }
+        { name: 'Water Heater (electric)', quantity: 2, wattage: 3000 },
+        { name: 'Well Pump', quantity: 1, wattage: 750 }
       ]
     }
   ];

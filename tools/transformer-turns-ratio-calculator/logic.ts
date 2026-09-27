@@ -247,18 +247,18 @@ function formatRatio(ratio: number): string {
 export function getPresets(): Preset[] {
   return [
     {
-      name: 'Step-Down (220V to 110V)',
-      description: 'Common household transformer',
-      primaryVoltage: 220,
-      secondaryVoltage: 110,
+      name: 'Step-Down (240V to 120V)',
+      description: 'US 240V to 120V transformer',
+      primaryVoltage: 240,
+      secondaryVoltage: 120,
       primaryTurns: 1000,
       secondaryTurns: 500
     },
     {
-      name: 'Step-Up (110V to 220V)',
+      name: 'Step-Up (120V to 240V)',
       description: 'Voltage doubler',
-      primaryVoltage: 110,
-      secondaryVoltage: 220,
+      primaryVoltage: 120,
+      secondaryVoltage: 240,
       primaryTurns: 500,
       secondaryTurns: 1000
     },

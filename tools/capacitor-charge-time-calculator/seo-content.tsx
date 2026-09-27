@@ -1,55 +1,8 @@
+import { capacitorChargeTimeCalculatorConfig } from "./config";
 export default function CapacitorChargeTimeCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a capacitor charge time calculator?",
-      a: "A capacitor charge time calculator is a free online tool that computes how long an RC circuit takes to charge a capacitor to a target percentage of the supply voltage. Enter resistance and capacitance, choose a target percentage (50%, 63%, 90%, 95%, or 99%), and the calculator returns the exact charge time along with the circuit's time constant (τ) and full-charge time.",
-    },
-    {
-      q: "What is the RC time constant?",
-      a: "The time constant, τ (tau), equals resistance × capacitance (τ = R × C), measured in seconds. It represents the time for a capacitor to charge to about 63.2% of the supply voltage, or to discharge to about 36.8% of its starting voltage. For example, a 10kΩ resistor with a 10µF capacitor gives τ = 10,000 × 0.00001 = 0.1 seconds (100ms).",
-    },
-    {
-      q: "What is the formula for capacitor charge time?",
-      a: "t = -RC × ln(1 - p), where p is the target charge fraction (e.g. 0.9 for 90%). This comes from the exponential charging curve of an RC circuit. For example, charging to 90% with τ = 0.1s: t = -0.1 × ln(0.1) = -0.1 × (-2.303) = 0.2303 seconds.",
-    },
-    {
-      q: "Why is a capacitor considered 'fully charged' at 5 time constants?",
-      a: "At 5τ, a capacitor reaches approximately 99.3% of the supply voltage — close enough to full charge for nearly all practical purposes, since the exponential curve approaches 100% asymptotically but never mathematically reaches it. Engineers commonly use 5τ as the standard rule of thumb for 'fully charged' in circuit design and simulation.",
-    },
-    {
-      q: "How does resistance affect capacitor charging speed?",
-      a: "Charging time is directly proportional to resistance — doubling the resistance doubles the time constant and doubles the time to reach any given charge percentage, for the same capacitance. Lower resistance charges a capacitor faster but also draws higher initial current from the source, which is a tradeoff to consider when picking component values.",
-    },
-    {
-      q: "Why does a 555 timer commonly use the 63% charge point?",
-      a: "The 63.2% point corresponds to exactly one time constant (τ), which is the natural reference point built into the exponential RC charging equation. Many 555 timer astable and monostable circuit designs are based on multiples of τ because the timing math simplifies cleanly around this value, rather than requiring the target percentage to be solved for separately each time.",
-    },
-    {
-      q: "How do I calculate charge time for a specific percentage like 95%?",
-      a: "Enter your resistance, capacitance, and select 95% as the target percentage — the calculator applies t = -RC × ln(1 - 0.95) = -RC × ln(0.05) = RC × 2.996 automatically. Each target percentage has its own natural log multiplier: 50% ≈ 0.693τ, 63% ≈ 1.0τ, 90% ≈ 2.303τ, 95% ≈ 2.996τ, and 99% ≈ 4.605τ.",
-    },
-    {
-      q: "Does the supply voltage affect the charge time?",
-      a: "No. The time constant and the time to reach any given percentage of full charge depend only on resistance and capacitance (τ = RC), not on the supply voltage. A 12V and a 120V circuit with identical R and C values take exactly the same time to reach 90% charge — voltage only affects how much charge and energy end up stored, not how fast the percentage climbs.",
-    },
-    {
-      q: "How do I use this calculator to design a 555 timer circuit?",
-      a: "Set your target frequency or pulse width, then work backward to find R and C values that produce the needed charge time at the 63% point (one time constant), which corresponds to standard 555 monostable timing. Use the built-in 555 timer preset (10kΩ, 10µF) as a starting reference and adjust component values until the calculated time matches your design target.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your resistance, capacitance, and target percentage values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = capacitorChargeTimeCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter resistance", "Input the resistor value in the RC circuit, choosing Ω, kΩ, or MΩ as the unit."],
-    ["Enter capacitance", "Input the capacitor value, choosing F, mF, µF, nF, or pF as the unit."],
-    ["Select target charge percentage", "Choose 50%, 63%, 90%, 95%, or 99% — the percentage of supply voltage you want the capacitor to reach."],
-    ["Read the time constant and charge time", "View τ (RC), the exact time to reach your selected percentage, and the ~5τ full-charge time, all automatically converted to appropriate time units (µs, ms, s, min, hr)."],
-    ["Review the step-by-step formula", "See the full derivation using t = -RC × ln(1 - p), useful for verifying hand calculations or learning the formula."],
-    ["Apply a preset or export results", "Use a built-in preset for a 555 timer, audio filter, power supply, or timing circuit, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = capacitorChargeTimeCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

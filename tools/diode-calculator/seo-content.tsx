@@ -1,55 +1,8 @@
+import { diodeCalculatorConfig } from "./config";
 export default function DiodeCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a diode calculator?",
-      a: "A diode calculator is a free online tool that solves diode circuit problems using the diode's approximately constant forward voltage drop. It supports three modes: calculate the current through a diode and series resistor, calculate the resistor needed for a target current, or analyze the voltage drop across a diode and how much voltage remains for the rest of the circuit.",
-    },
-    {
-      q: "What forward voltage should I use for different diode types?",
-      a: "Silicon diodes (like the common 1N4001-1N4007 series) drop approximately 0.7V when forward-biased. Germanium diodes (like 1N34A) drop only about 0.3V. Schottky diodes (like 1N5817-1N5819) also drop around 0.3V, valued for their low forward voltage and fast switching. LEDs drop significantly more, typically 1.8-3.4V depending on color, since they're a different semiconductor structure entirely.",
-    },
-    {
-      q: "How do I calculate current through a diode circuit?",
-      a: "First find the voltage across the series resistor: Vr = Vs − Vf (supply voltage minus diode forward voltage). Then apply Ohm's Law: I = Vr ÷ R. For example, a silicon diode (Vf = 0.7V) with a 220Ω resistor on a 5V supply: Vr = 5 − 0.7 = 4.3V, I = 4.3 ÷ 220 ≈ 19.5mA.",
-    },
-    {
-      q: "How do I calculate the resistor needed for a target diode current?",
-      a: "R = (Vs − Vf) ÷ I, the same formula rearranged to solve for resistance instead of current. For a silicon diode (Vf = 0.7V) on a 12V supply targeting 50mA: R = (12 − 0.7) ÷ 0.05 = 226Ω, which rounds to a standard 220Ω or 240Ω resistor value.",
-    },
-    {
-      q: "Why is diode forward voltage treated as approximately constant?",
-      a: "Real diodes follow the Shockley diode equation, where current rises exponentially with voltage, but across the normal operating current range this curve is steep enough that voltage barely changes even as current varies substantially. This makes the constant-voltage-drop approximation (0.7V for silicon, for example) accurate enough for most practical circuit design, even though the true relationship is exponential rather than fixed.",
-    },
-    {
-      q: "What is the difference between a rectifier diode and a signal diode?",
-      a: "Rectifier diodes (like the 1N4001-1N4007 series) are silicon diodes designed to handle higher current and reverse voltage, commonly used for AC-to-DC conversion in power supplies. Signal diodes (like the 1N4148) are designed for fast switching at lower current, commonly used in logic and signal processing circuits. Both typically share the same ~0.7V silicon forward voltage drop.",
-    },
-    {
-      q: "Why would I choose a Schottky diode over a standard silicon diode?",
-      a: "Schottky diodes have a lower forward voltage drop (~0.3V versus ~0.7V for silicon), which reduces power dissipation and heat in high-current applications like power supply rectification. They also switch faster than standard silicon diodes, making them preferred in switching power supplies and reverse-polarity protection circuits where efficiency matters.",
-    },
-    {
-      q: "How do I use this calculator for reverse-polarity protection design?",
-      a: "Use Voltage Drop mode with the diode's forward voltage to see exactly how much voltage the protection diode consumes before it reaches your circuit. A silicon diode (0.7V drop) in a 5V supply line leaves only 4.3V for downstream components — for voltage-sensitive circuits, this is often significant enough to justify choosing a lower-drop Schottky diode instead.",
-    },
-    {
-      q: "How is this different from the LED resistor calculator?",
-      a: "This diode calculator covers general-purpose diodes (silicon, germanium, Schottky) as well as LEDs, and includes a dedicated voltage-drop analysis mode for evaluating a diode's impact on a circuit without necessarily involving a resistor. The LED resistor calculator is specialized specifically for sizing current-limiting resistors for one or more LEDs in series.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, and resistance values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = diodeCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Select a calculation mode", "Choose Calculate Current (from a known resistor), Calculate Resistor (for a target current), or Voltage Drop Analysis."],
-    ["Enter supply voltage", "Input the voltage source powering the diode circuit."],
-    ["Enter diode forward voltage", "Input the forward voltage for your diode, or use a preset for silicon, germanium, Schottky, or LED types."],
-    ["Enter the mode-specific value", "For Current mode, enter the series resistor value. For Resistor mode, enter the target current in mA."],
-    ["Read the results", "View calculated current or resistance, voltage across the resistor, power dissipation, and recommended resistor wattage."],
-    ["Apply a preset or export results", "Use a built-in preset for common diode types, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = diodeCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

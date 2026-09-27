@@ -1,55 +1,8 @@
+import { powerCalculatorElectricalConfig } from "./config";
 export default function PowerCalculatorElectricalSEO() {
-  const faqItems = [
-    {
-      q: "What is an electrical power calculator?",
-      a: "An electrical power calculator is a free online tool that solves P = V × I for power, voltage, or current when you know the other two values. Enter voltage and current to find power, power and current to find voltage, or power and voltage to find current. It supports V, mV, kV, A, mA, W, mW, and kW so you can work in whatever unit scale your device's datasheet uses.",
-    },
-    {
-      q: "How do I calculate power from voltage and current?",
-      a: "Multiply voltage by current: Power (W) = Voltage (V) × Current (A). For example, a device running at 12V and drawing 2A consumes 12 × 2 = 24W. This formula applies directly to DC circuits and to AC circuits with a power factor of 1.0, such as purely resistive loads like heaters and incandescent bulbs.",
-    },
-    {
-      q: "How much power do common household devices use?",
-      a: "Typical household devices range widely: an LED bulb uses 5–15W, a laptop charger 45–65W, a microwave 800–1,200W, and a space heater 1,500–2,200W. You can verify any device's actual draw by entering its rated voltage and measured current into this calculator in Power mode — nameplate wattage is often a rounded or peak figure rather than the true running value.",
-    },
-    {
-      q: "What is the difference between power, voltage, and current?",
-      a: "Voltage (V) is the electrical potential difference that pushes current through a circuit, measured in volts. Current (I) is the rate of electron flow, measured in amperes. Power (P) is the rate at which electrical energy converts to another form — heat, light, or motion — measured in watts, and is the product of voltage and current.",
-    },
-    {
-      q: "How do I calculate current if I only know power and voltage?",
-      a: "Divide power by voltage: Current (A) = Power (W) ÷ Voltage (V). For example, a 2,200W heater on a 220V circuit draws 2,200 ÷ 220 = 10A. Select Current mode, enter the power and voltage values, and the calculator returns the exact current draw for breaker or wire sizing.",
-    },
-    {
-      q: "Can I use this calculator for AC circuits?",
-      a: "Yes, for purely resistive AC loads like heaters, incandescent bulbs, and resistive elements, P = V × I applies exactly as it does in DC. For inductive or capacitive AC loads such as motors, transformers, and fluorescent ballasts, real power is P = V × I × PF, where PF is the power factor, typically 0.7–0.95. This calculator does not include a power factor field, so multiply your result by the load's PF for accurate AC figures.",
-    },
-    {
-      q: "Can I use this calculator for three-phase power?",
-      a: "No, this calculator is built for single-phase circuits. Three-phase power uses the formula P = √3 × V × I × PF, which includes a 1.732 multiplier for the phase relationship between conductors. Applying this single-phase calculator's result directly to a three-phase load will underestimate actual power by roughly 42%.",
-    },
-    {
-      q: "What is the difference between this calculator and Ohm's Law?",
-      a: "This calculator solves the power equation P = V × I. Ohm's Law is a separate equation, V = I × R, relating voltage, current, and resistance. The two combine when resistance is known: P = I²R or P = V²/R, which is useful for finding power dissipated across a resistor without measuring current or voltage directly.",
-    },
-    {
-      q: "Why do I get a division-by-zero error?",
-      a: "The calculator blocks any calculation that would divide by zero, which is mathematically undefined. This happens if you try to solve for voltage while current is set to 0, or solve for current while voltage is set to 0. Enter a nonzero value for both known fields to clear the error.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, and power values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = powerCalculatorElectricalConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Select calculation mode", "Choose whether you want to solve for Power, Voltage, or Current. The calculator hides the field you're solving for and asks only for the two values you already know."],
-    ["Enter your known values", "Type in the two values you have. Results calculate instantly as you type — there's no button to press and no page reload."],
-    ["Choose units for each value", "Pick from V, mV, or kV for voltage; A or mA for current; and W, mW, or kW for power. The calculator converts everything internally, so the units you pick never need to match each other."],
-    ["Apply a voltage preset (optional)", "Use one of the six built-in presets — USB 5V, 12V automotive, 24V industrial, 110V US, 220V EU, or 240V UK — to skip manual entry for common voltage standards."],
-    ["Read the result and breakdown", "The highlighted result box shows your answer plus the two input values used, so you can verify the math without leaving the page."],
-    ["Copy, save, or export", "Copy the result to your clipboard, save it to your local calculation history (up to 20 entries), or export it as a downloadable text file."],
-  ];
+  const howToSteps: [string, string][] = powerCalculatorElectricalConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>
@@ -94,8 +47,8 @@ export default function PowerCalculatorElectricalSEO() {
               <p><span className="font-semibold">Power (W)</span> = Voltage (V) × Current (A)</p>
               <p><span className="font-semibold">Voltage (V)</span> = Power (W) ÷ Current (A)</p>
               <p><span className="font-semibold">Current (A)</span> = Power (W) ÷ Voltage (V)</p>
-              <p className="text-gray-500 text-xs mt-2">Example: a heater draws 10A at 220V</p>
-              <p className="text-gray-500 text-xs">Power = 220 × 10 = <span className="text-green-600 font-semibold">2,200W (2.2kW)</span></p>
+              <p className="text-gray-500 text-xs mt-2">Example: a heater draws 10A at 230V</p>
+              <p className="text-gray-500 text-xs">Power = 230 × 10 = <span className="text-green-600 font-semibold">2,300W (2.3kW)</span></p>
             </div>
           </div>
           <ul className="space-y-1 ml-4 list-disc text-gray-600">
@@ -162,7 +115,7 @@ export default function PowerCalculatorElectricalSEO() {
             },
             {
               title: "Space Heater Breaker Sizing",
-              scenario: "A homeowner installing a 2,200W space heater on a 220V circuit needs to confirm it won't overload a 10A breaker. Using Current mode with 2,200W and 220V, the calculator returns exactly 10A — right at the breaker's limit — so they move the heater to a dedicated 16A circuit instead.",
+              scenario: "A homeowner in Europe installing a 2,300W heater on a 230V circuit needs to confirm it won't overload a 10A breaker. Using Current mode with 2,300W and 230V, the calculator returns exactly 10A — right at the breaker's limit — so they move the heater to a dedicated 16A circuit instead.",
             },
             {
               title: "Headlight Wiring Diagnosis",
@@ -219,7 +172,7 @@ export default function PowerCalculatorElectricalSEO() {
                 "Entering current in milliamps but leaving the unit dropdown on amps, or vice versa. A 20mA LED entered as \"20 A\" returns a result 1,000× too high — always double-check the unit selector, not just the number.",
                 "Using the plain P = V × I formula for AC circuits with a power factor below 1.0. Real power in reactive AC circuits is P = V × I × PF, so omitting PF overstates true power for inductive loads like motors and transformers.",
                 "Trying to solve for voltage or current while the other known input is left at zero. Division by zero is mathematically undefined, so the calculator blocks it and shows a validation error rather than a false result.",
-                "Assuming a household voltage preset matches your exact location. Nominal voltage varies by country — 110-120V in North America, 220-240V across Europe, the UK, and most of Asia — and even within a region, so measure with a meter for precise calculations.",
+                "Assuming a household voltage preset matches your exact location. Nominal voltage varies by country — 120V in North America, 230V in the UK, Europe and Australia, and 220–240V in many other countries — and even within a region, so measure with a meter for precise calculations.",
                 "Forgetting this is single-phase math. Three-phase power uses a √3 factor and a different formula entirely — applying this tool's result directly to a three-phase load underestimates power by roughly 42%.",
               ].map((mistake, i) => (
                 <li key={i} className="flex items-start gap-2">
@@ -251,9 +204,9 @@ export default function PowerCalculatorElectricalSEO() {
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {[
-                    ["Power (P)", "V × I", "220V × 10A = 2,200W"],
-                    ["Voltage (V)", "P ÷ I", "2,200W ÷ 10A = 220V"],
-                    ["Current (I)", "P ÷ V", "2,200W ÷ 220V = 10A"],
+                    ["Power (P)", "V × I", "230V × 10A = 2,300W"],
+                    ["Voltage (V)", "P ÷ I", "2,300W ÷ 10A = 230V"],
+                    ["Current (I)", "P ÷ V", "2,300W ÷ 230V = 10A"],
                     ["AC real power (PF-adjusted)", "V × I × PF", "230V × 10A × 0.9 = 2,070W"],
                   ].map(([name, formula, example]) => (
                     <tr key={name} className="hover:bg-gray-50">
@@ -283,7 +236,7 @@ export default function PowerCalculatorElectricalSEO() {
                     ["Automotive", "12V DC", "Car electrical systems"],
                     ["Industrial", "24V DC", "Industrial control systems"],
                     ["US household", "110-120V AC", "North American outlets"],
-                    ["EU household", "220-230V AC", "European outlets"],
+                    ["EU household", "230V AC", "European outlets"],
                     ["UK household", "230-240V AC", "UK outlets"],
                   ].map(([std, v, app]) => (
                     <tr key={std} className="hover:bg-gray-50">

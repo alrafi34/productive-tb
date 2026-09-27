@@ -1,55 +1,8 @@
+import { zenerDiodeCalculatorConfig } from "./config";
 export default function ZenerDiodeCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a Zener diode calculator?",
-      a: "A Zener diode calculator is a free online tool that analyzes a shunt voltage regulator circuit — a Zener diode, series resistor, and optional load — computing total current, load current, Zener current, power dissipation in both the diode and resistor, and whether the circuit achieves stable voltage regulation.",
-    },
-    {
-      q: "How does a Zener diode voltage regulator circuit work?",
-      a: "A series resistor connects the input voltage to the Zener diode, with the load connected in parallel with the Zener. When reverse-biased above its breakdown voltage, the Zener diode holds a nearly constant voltage across itself (and the load) regardless of moderate changes in input voltage or load current, as long as enough current flows through the Zener to keep it in its regulation region.",
-    },
-    {
-      q: "What is the formula for Zener diode circuit current?",
-      a: "Total current: I_total = (Vin − Vz) ÷ Rs. Load current: IL = Vz ÷ RL (or given directly). Zener current: Iz = I_total − IL. For example, Vin = 12V, Vz = 5.1V, Rs = 220Ω, RL = 1,000Ω: I_total = (12−5.1)÷220 ≈ 31.4mA, IL = 5.1÷1,000 = 5.1mA, Iz = 31.4−5.1 ≈ 26.3mA.",
-    },
-    {
-      q: "Why does the Zener diode need a minimum current to regulate properly?",
-      a: "A Zener diode only maintains its rated voltage when operating within its breakdown region, which requires a minimum current (often around 5mA for small signal Zeners) to sustain. Below this minimum, the diode's voltage becomes unstable and no longer reliably holds at the rated Zener voltage — this calculator flags when Zener current falls below the specified minimum.",
-    },
-    {
-      q: "What happens if the load draws too much current from a Zener regulator?",
-      a: "If load current approaches or exceeds total current through the series resistor, Zener current drops toward zero or even goes negative, meaning the Zener diode stops conducting and regulation fails entirely — the output voltage will then sag below the Zener voltage and vary directly with the load, since the diode can no longer supply the difference.",
-    },
-    {
-      q: "How do I calculate the Zener diode's power dissipation?",
-      a: "Pz = Vz × Iz, using the Zener voltage and the current flowing through the Zener (not the total current). For a 5.1V Zener carrying 26.3mA: Pz = 5.1 × 0.0263 ≈ 0.134W — this must stay below the diode's maximum power rating (commonly 0.5W for small signal Zeners) to avoid damage.",
-    },
-    {
-      q: "How do I size the series resistor for a Zener regulator?",
-      a: "Choose Rs so that at minimum expected load current, enough current still flows through the Zener to stay above its minimum regulation current, and at maximum expected load current, the Zener's power dissipation stays below its rated maximum. This typically means sizing Rs based on the no-load (maximum Zener current) condition and verifying against the full-load (minimum Zener current) condition.",
-    },
-    {
-      q: "Why use a Zener diode instead of a linear voltage regulator IC?",
-      a: "Zener diode regulators are simple and cheap but relatively inefficient (since the series resistor always dissipates power regardless of load) and provide poor load regulation compared to a dedicated linear regulator IC or switching regulator. They're best suited for low-current, non-critical applications like reference voltages, simple protection circuits, or where a full regulator IC would be overkill.",
-    },
-    {
-      q: "What does 'unstable' or 'warning' regulation status mean in this calculator?",
-      a: "'Unstable' means Zener current has fallen below the minimum needed for reliable regulation, or gone negative (regulation failed entirely). 'Warning' means Zener power dissipation exceeds the diode's maximum rating, risking damage. 'Stable' means the circuit is operating safely within both the minimum current and maximum power constraints.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, resistance, and current values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = zenerDiodeCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter input voltage", "Input the unregulated supply voltage feeding the circuit."],
-    ["Enter Zener voltage", "Input the Zener diode's rated breakdown voltage — this becomes your regulated output voltage."],
-    ["Enter series resistor value", "Input the resistor connecting input voltage to the Zener diode and load."],
-    ["Enter load resistance or current", "Input either the load's resistance (to calculate its current) or the load current directly if already known."],
-    ["Review current and power results", "See total current, load current, Zener current, and power dissipation in both the Zener and series resistor."],
-    ["Check the regulation status", "View whether the circuit is stable, in warning (power exceeded), or unstable (insufficient Zener current or regulation failure)."],
-  ];
+  const howToSteps: [string, string][] = zenerDiodeCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

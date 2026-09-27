@@ -1,55 +1,9 @@
-export default function AirConditionerPowerCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is an air conditioner power calculator?",
-      a: "An air conditioner power calculator is a free online tool that computes AC power consumption in watts and kilowatts from the unit's capacity in tons or BTU/h, its energy efficiency rating (EER or SEER), and its operating hours. It also calculates monthly electricity cost and the generator or inverter size required to run the unit. It is used by homeowners, electricians, HVAC engineers, and facility managers to estimate running costs and plan electrical infrastructure.",
-    },
-    {
-      q: "How many watts does a 1 ton AC use?",
-      a: "A 1 ton air conditioner has a cooling capacity of 12,000 BTU/h. The actual power consumption in watts depends on the unit's EER (Energy Efficiency Ratio): Power (W) = Cooling Capacity (BTU/h) ÷ EER. For a 1 ton AC with EER 10, power consumption is 12,000 ÷ 10 = 1,200W (1.2 kW). For a more efficient unit with EER 12, it is 1,000W (1.0 kW). Older or low-efficiency units with EER 8 consume 1,500W. Modern inverter ACs often achieve EER 14–18 at part load.",
-    },
-    {
-      q: "How many watts does a 1.5 ton AC use?",
-      a: "A 1.5 ton AC has a cooling capacity of 18,000 BTU/h. At EER 10, power consumption is 18,000 ÷ 10 = 1,800W (1.8 kW). At EER 12, it is 1,500W (1.5 kW). At EER 14 (modern inverter), approximately 1,286W. For a non-inverter 1.5 ton window AC with EER 8, consumption is 2,250W. The actual wattage varies by brand, age, ambient temperature, and whether the compressor is running at full capacity.",
-    },
-    {
-      q: "What size generator is required for a 1.5 ton AC?",
-      a: "A 1.5 ton AC running at approximately 1,800W requires a generator rated at least 2,500–3,000W to handle startup surge current (typically 2–3× running wattage). For a 1.5 ton AC with 1,800W running load, a 3 kVA generator is the practical minimum. If you are running the AC alongside other loads (lights, fans, refrigerator), add their wattages and plan for a 5 kVA generator. Enter your AC tonnage and EER in this calculator to get an exact generator size recommendation.",
-    },
-    {
-      q: "What is the difference between EER and SEER?",
-      a: "EER (Energy Efficiency Ratio) is the cooling capacity (BTU/h) divided by power input (W) measured at a single standard test condition (95°F outdoor, 80°F indoor). SEER (Seasonal Energy Efficiency Ratio) is the same ratio averaged over a full cooling season across varying outdoor temperatures. SEER is always higher than EER for the same unit because it includes milder operating conditions. EER is better for comparing units under worst-case hot conditions; SEER is better for estimating annual energy cost. This calculator supports both.",
-    },
-    {
-      q: "How do I calculate monthly electricity cost for an air conditioner?",
-      a: "Monthly electricity cost = (Power in kW) × (Daily operating hours) × (Days per month) × (Electricity rate per kWh). For example, a 1.5 kW AC running 8 hours per day for 30 days at $0.12/kWh: 1.5 × 8 × 30 × 0.12 = $43.20/month. Enter your AC capacity, EER, daily runtime, and local electricity rate into this calculator to get the monthly cost automatically.",
-    },
-    {
-      q: "How many tons of AC do I need for my room?",
-      a: "As a general rule, residential spaces require approximately 20 BTU/h per square foot of cooled area under standard conditions. For a 150 sq ft bedroom: 150 × 20 = 3,000 BTU/h = 0.25 ton — a small 5,000 BTU window unit. For a 400 sq ft living room: 400 × 20 = 8,000 BTU/h = 0.67 ton — a 1 ton unit. For a 600 sq ft open-plan space with high ceilings or west-facing windows, increase by 20–30%. This calculator includes a room sizing mode to calculate required tons from room dimensions.",
-    },
-    {
-      q: "What is the power consumption of a 2 ton AC?",
-      a: "A 2 ton AC has a cooling capacity of 24,000 BTU/h. At EER 10, power consumption is 24,000 ÷ 10 = 2,400W (2.4 kW). At EER 12, it is 2,000W. At EER 14, approximately 1,714W. For a generator or inverter, a 2 ton AC at 2,400W running load requires a 4–5 kVA generator to handle startup surge. Monthly cost at 8 hours/day, 30 days, $0.12/kWh: 2.4 × 8 × 30 × 0.12 = $69.12.",
-    },
-    {
-      q: "What is BTU and how does it relate to tons?",
-      a: "BTU (British Thermal Unit) is a unit of heat energy. In HVAC, BTU/h describes the rate at which an AC removes heat from a space. 1 ton of cooling = 12,000 BTU/h — a historical reference to the cooling power of melting one ton of ice per day. Common conversions: 0.75 ton = 9,000 BTU/h; 1 ton = 12,000 BTU/h; 1.5 ton = 18,000 BTU/h; 2 ton = 24,000 BTU/h; 2.5 ton = 30,000 BTU/h; 3 ton = 36,000 BTU/h.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your AC capacity, EER values, operating hours, and electricity rates are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+import { airConditionerPowerCalculatorConfig } from "./config";
 
-  const howToSteps: [string, string][] = [
-    ["Enter AC capacity", "Input your air conditioner's capacity in tons (e.g., 1, 1.5, 2) or BTU/h (e.g., 12000, 18000). Both input methods are supported — select whichever matches your unit's spec sheet or nameplate."],
-    ["Enter the EER or SEER rating", "Type the unit's EER (Energy Efficiency Ratio) or SEER from the product label or datasheet. Typical range: 8–10 for older non-inverter units, 12–14 for modern standard units, 16–22 for premium inverter ACs. If unknown, use 10 as a conservative estimate."],
-    ["Set daily operating hours and days per month", "Enter how many hours per day the AC runs and how many days per month — typically 30. This drives the monthly energy consumption and cost calculation."],
-    ["Enter your electricity rate", "Type your local electricity cost per kWh. This appears on your electricity bill. Common ranges: $0.10–0.15/kWh in the US, ₹5–8/kWh in India, ৳7–10/kWh in Bangladesh."],
-    ["Read power, energy, and cost results", "The calculator returns running wattage, monthly kWh consumption, monthly electricity cost, required circuit breaker size, and recommended generator/inverter kVA — all updated instantly as you change inputs."],
-    ["Use room sizing mode to find required tonnage", "Switch to room sizing mode, enter room dimensions and sun exposure level, and the calculator returns the required AC capacity in tons and BTU/h for your space."],
-  ];
+export default function AirConditionerPowerCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const faqItems = airConditionerPowerCalculatorConfig.seo.faq;
+  const howToSteps: [string, string][] = airConditionerPowerCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>
@@ -164,7 +118,7 @@ export default function AirConditionerPowerCalculatorSEO() {
           {[
             {
               title: "Monthly Electricity Bill Estimation",
-              scenario: "A homeowner in Dhaka has a 1.5 ton split AC (EER 11) running 10 hours/day during summer. They enter 1.5 tons, EER 11, 10 hours, 30 days, and ৳8/kWh. The calculator returns: 1,636W running load, 49.1 kWh/day, 1,472 kWh/month, ৳11,773/month in electricity cost. They realize the AC accounts for 60% of their monthly bill and switch to running it 8 hours at night only — saving ৳3,924/month.",
+              scenario: "A homeowner in Texas has a 1.5 ton mini-split (EER 11) running 10 hours/day during summer. They enter 1.5 tons, EER 11, 10 hours, 30 days, and $0.15/kWh. The calculator returns: 1,636W running load, 16.4 kWh/day, 491 kWh/month and about $73.60/month in electricity. Cutting the run time to 8 hours a day brings it to 393 kWh and about $58.90 — saving roughly $14.70 a month.",
             },
             {
               title: "Generator Sizing for Backup Power",
@@ -172,7 +126,7 @@ export default function AirConditionerPowerCalculatorSEO() {
             },
             {
               title: "Comparing Inverter vs Non-Inverter AC",
-              scenario: "A buyer is deciding between a non-inverter 1.5 ton AC (EER 9, ₹32,000) and an inverter model (SEER 18, ₹52,000). They enter both models and set 8 hours/day, 180 days/year, ₹7/kWh. Non-inverter: 2,000W × 8h × 180 = 2,880 kWh/year × ₹7 = ₹20,160/year. Inverter at SEER 18 (≈EER 15.75): 1,143W × 8h × 180 = 1,646 kWh × ₹7 = ₹11,522/year. Annual saving: ₹8,638. The ₹20,000 premium pays back in 2.3 years.",
+              scenario: "A buyer is deciding between a basic 1.5 ton unit (EER 9) and an inverter model (SEER 18) that costs $1,000 more. They enter both and set 8 hours/day, 180 days/year, $0.16/kWh. Basic unit: 2,000W × 8h × 180 = 2,880 kWh/year, about $461/year. Inverter at SEER 18 (≈EER 15.75): 1,143W × 8h × 180 = 1,646 kWh, about $263/year. The annual saving of about $198 pays back the $1,000 premium in roughly 5 years.",
             },
             {
               title: "HVAC Equipment Selection",

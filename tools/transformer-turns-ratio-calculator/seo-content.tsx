@@ -1,55 +1,8 @@
+import { transformerTurnsRatioCalculatorConfig } from "./config";
 export default function TransformerTurnsRatioCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a transformer turns ratio calculator?",
-      a: "A transformer turns ratio calculator is a free online tool that computes the relationship between a transformer's primary and secondary windings — turns ratio, voltage ratio, and current ratio. Enter any combination of primary voltage, secondary voltage, primary turns, and secondary turns, and the calculator derives the remaining values, including calculating missing turns or voltages when only some are known.",
-    },
-    {
-      q: "What is the transformer turns ratio formula?",
-      a: "Turns Ratio = Np ÷ Ns = Vp ÷ Vs = Is ÷ Ip, where Np and Ns are primary and secondary turns, Vp and Vs are primary and secondary voltages, and Ip and Is are primary and secondary currents. For example, a transformer with 1,000 primary turns and 500 secondary turns has a turns ratio of 2:1, meaning it's a step-down transformer that halves voltage.",
-    },
-    {
-      q: "How do I calculate secondary voltage from turns ratio?",
-      a: "Vs = Vp ÷ (Np ÷ Ns). For a transformer with 1,150 primary turns, 60 secondary turns, and 230V primary voltage: turns ratio = 1,150 ÷ 60 = 19.17, so Vs = 230 ÷ 19.17 ≈ 12V — a typical AC adapter transformer stepping mains voltage down to a low-voltage output.",
-    },
-    {
-      q: "Why does current increase when voltage decreases in a step-down transformer?",
-      a: "Transformers conserve power (ignoring small losses), so Vp × Ip ≈ Vs × Is. If a step-down transformer halves voltage, it must roughly double current to keep power constant on both sides — this is the current ratio being the inverse of the voltage ratio (Is/Ip = Np/Ns).",
-    },
-    {
-      q: "What is the difference between a step-up and step-down transformer?",
-      a: "A step-down transformer has more primary turns than secondary turns (Np > Ns), producing a lower secondary voltage than primary voltage — common for household and industrial voltage reduction. A step-up transformer has fewer primary turns than secondary turns (Np < Ns), producing a higher secondary voltage — common in power transmission to reduce line losses over long distances.",
-    },
-    {
-      q: "What is a 1:1 isolation transformer used for?",
-      a: "A 1:1 turns ratio transformer produces the same voltage on both sides (Vp = Vs) but provides electrical isolation between the primary and secondary circuits — no direct electrical connection exists between them, only magnetic coupling. This is used for safety isolation, noise reduction, and ground loop elimination in sensitive electronic and medical equipment.",
-    },
-    {
-      q: "How do I calculate turns ratio if I only know two voltages?",
-      a: "Turns Ratio = Vp ÷ Vs directly, since voltage ratio equals turns ratio in an ideal transformer. A transformer converting 220V to 110V has a turns ratio of 220 ÷ 110 = 2:1, without needing to know the actual number of turns on either winding.",
-    },
-    {
-      q: "Can I calculate the number of turns needed on one winding if I know the other winding's turns and both voltages?",
-      a: "Yes. If you know primary turns (Np), primary voltage (Vp), and secondary voltage (Vs), calculate turns ratio = Vp ÷ Vs, then secondary turns Ns = Np ÷ turns ratio. This calculator handles this and several other combinations of known values automatically.",
-    },
-    {
-      q: "How is turns ratio used in power distribution transformers?",
-      a: "Utility distribution transformers step high transmission voltages (like 11kV) down to usable levels (like 415V or 230V) using a large turns ratio — an 11,000V to 415V transformer has a turns ratio of roughly 26.5:1. This calculator's distribution preset demonstrates this exact scenario.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage and turns values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = transformerTurnsRatioCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter known voltage values", "Input primary voltage, secondary voltage, or both, depending on what you know about the transformer."],
-    ["Enter known turns values", "Input primary turns, secondary turns, or both, if known from a winding specification or nameplate."],
-    ["Provide at least two known values", "The calculator needs either both voltages, both turns counts, or one voltage plus both turns counts to solve for the rest."],
-    ["Read the turns, voltage, and current ratios", "View all three ratios expressed as both a decimal and an x:1 or 1:x format for easy interpretation."],
-    ["Check any calculated missing values", "If you provided a mix of voltages and turns, see the calculator's derived values for whichever quantity you didn't already know."],
-    ["Apply a preset or export results", "Use a built-in preset for common step-up, step-down, isolation, or distribution transformers, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = transformerTurnsRatioCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>
@@ -161,7 +114,7 @@ export default function TransformerTurnsRatioCalculatorSEO() {
             },
             {
               title: "Household Step-Down Transformer Verification",
-              scenario: "An electrician verifying a 220V-to-110V step-down transformer with 1,000 primary and 500 secondary turns confirms a turns ratio of exactly 2:1, and a current ratio of 1:2 — meaning secondary current will be double primary current, information needed for downstream cable sizing.",
+              scenario: "An electrician verifying a 240V-to-120V step-down transformer with 1,000 primary and 500 secondary turns confirms a turns ratio of exactly 2:1, and a current ratio of 1:2 — meaning secondary current will be double primary current, information needed for downstream cable sizing.",
             },
             {
               title: "Isolation Transformer Confirmation",
@@ -248,8 +201,8 @@ export default function TransformerTurnsRatioCalculatorSEO() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {[
-                ["Household step-down", "220V / 110V", "2:1", "Step-down"],
-                ["Voltage doubler", "110V / 220V", "1:2", "Step-up"],
+                ["Household step-down", "240V / 120V", "2:1", "Step-down"],
+                ["Voltage doubler", "120V / 240V", "1:2", "Step-up"],
                 ["Isolation transformer", "230V / 230V", "1:1", "Isolation"],
                 ["AC power adapter", "230V / 12V", "19.17:1", "Step-down"],
                 ["Industrial distribution", "11,000V / 415V", "26.51:1", "Step-down"],

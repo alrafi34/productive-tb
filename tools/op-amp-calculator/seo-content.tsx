@@ -1,25 +1,8 @@
+import { opAmpCalculatorConfig } from "./config";
 export default function OpAmpCalculatorSEO() {
-  const faqItems = [
-    { q: "What is an op-amp calculator?", a: "An op-amp calculator finds the voltage gain and output voltage of an operational amplifier circuit from its resistor values and input voltage. It covers four standard configurations — inverting amplifier, non-inverting amplifier, voltage follower, and summing amplifier — the building blocks nearly every analog circuit is made from." },
-    { q: "How is gain calculated for an inverting amplifier?", a: "The inverting amplifier's gain is Gain = −(R2 ÷ R1), where R2 is the feedback resistor and R1 is the input resistor. The negative sign means the output is inverted — 180° out of phase with the input. Output voltage is then Vout = Gain × Vin, so a gain of −10 with a 1V input produces a −10V output." },
-    { q: "How is gain calculated for a non-inverting amplifier?", a: "The non-inverting amplifier's gain is Gain = 1 + (R2 ÷ R1), where R2 is the feedback resistor to the output and R1 connects the inverting input to ground. Because the formula always adds 1, non-inverting gain can never drop below 1 — it can only amplify, never attenuate, and the output stays in phase with the input." },
-    { q: "What is a voltage follower and when do I use one?", a: "A voltage follower, also called a unity gain buffer, has Vout = Vin with a gain of exactly 1. It provides very high input impedance and very low output impedance without adding any amplification, which makes it the standard way to isolate a high-impedance source — like a sensor or photodiode — from a low-impedance load without loading it down." },
-    { q: "How does a summing amplifier combine multiple inputs?", a: "A summing amplifier computes Vout = −Rf × (V1/R1 + V2/R2 + V3/R3 + ...), where each input has its own resistor. Each channel's contribution to the output is scaled independently by the ratio Rf/Rn, so you can mix several signals together with different weights simultaneously, and the result is inverted just like a single-input inverting amplifier." },
-    { q: "Why is the inverting amplifier's output voltage negative for a positive input?", a: "The inverting configuration feeds the input signal through R1 into the op-amp's inverting terminal, and negative feedback through R2 forces that terminal to a virtual ground. This topology inherently flips the signal's polarity — a positive input produces a negative output and vice versa — which is why the gain formula always carries a minus sign." },
-    { q: "What is the difference between inverting and non-inverting amplifier input impedance?", a: "The inverting amplifier's input impedance is approximately equal to R1, because the source drives current through R1 into the virtual ground node. The non-inverting amplifier's input impedance is extremely high — essentially the op-amp's own input impedance — because the signal connects directly to the non-inverting terminal, which draws negligible current." },
-    { q: "Can non-inverting gain ever be less than 1?", a: "No. Because the formula is Gain = 1 + (R2 ÷ R1), the smallest possible non-inverting gain is 1, which occurs only when R2 = 0 (making it a voltage follower). If you need a gain below 1 — attenuation — use an inverting amplifier with R2 smaller than R1, or a passive voltage divider instead." },
-    { q: "What happens if I request a gain the real op-amp can't reach?", a: "This calculator uses ideal op-amp formulas, which assume infinite open-loop gain and unlimited output swing. A real op-amp's output voltage is limited by its supply rails — typically 1 to 2V below each rail — so if the calculated Vout exceeds what your actual supply voltage allows, the real circuit will clip well before reaching that theoretical value." },
-    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your resistor values, input voltages, and any saved calculation history are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
-  ];
+  const faqItems = opAmpCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Select an op-amp configuration", "Choose inverting, non-inverting, voltage follower, or summing amplifier from the mode selector. The input fields update automatically to match what that configuration needs."],
-    ["Enter your resistor values", "Input R1 and R2 for inverting or non-inverting mode, or Rf plus one to three input resistors for the summing amplifier. Choose Ω, kΩ, or MΩ independently for each resistor."],
-    ["Enter the input voltage", "Type Vin for inverting, non-inverting, or voltage follower mode, or up to three input voltages (Vin1, Vin2, Vin3) for the summing amplifier."],
-    ["Try a built-in preset", "Load a preset such as Gain of -10, Gain of 11, or 3-Input Mixer to see realistic resistor values before entering your own design."],
-    ["Read the gain and output voltage", "The calculator instantly returns the voltage gain and Vout, along with a full step-by-step breakdown showing exactly how each formula was applied."],
-    ["Export or save your calculation", "Copy the result to your clipboard or export a text report. The last 10 calculations are saved automatically for comparing different configurations."],
-  ];
+  const howToSteps: [string, string][] = opAmpCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

@@ -1,55 +1,8 @@
+import { impedanceCalculatorConfig } from "./config";
 export default function ImpedanceCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is an impedance calculator?",
-      a: "An impedance calculator is a free online tool that computes the total opposition to current flow (Z) in an AC circuit containing resistance, inductance, and capacitance. Enter resistance (R), inductive reactance (XL), and capacitive reactance (XC), and the calculator returns impedance, phase angle, and the circuit's overall behavior (inductive, capacitive, resistive, or resonant).",
-    },
-    {
-      q: "What is the formula for impedance?",
-      a: "Z = √(R² + (XL - XC)²), where Z is impedance in ohms, R is resistance, XL is inductive reactance, and XC is capacitive reactance. For example, with R = 10Ω, XL = 15Ω, and XC = 5Ω: net reactance X = 15 - 5 = 10Ω, so Z = √(10² + 10²) = √200 ≈ 14.14Ω.",
-    },
-    {
-      q: "What is the difference between impedance and resistance?",
-      a: "Resistance (R) is a fixed opposition to current that doesn't depend on frequency and dissipates energy as heat. Impedance (Z) is the combined opposition from resistance and reactance in an AC circuit — it includes both the energy-dissipating resistive part and the frequency-dependent, energy-storing reactive part, and it also introduces a phase shift between voltage and current that pure resistance does not.",
-    },
-    {
-      q: "How do I calculate the phase angle from impedance?",
-      a: "θ = arctan(X ÷ R), where X is the net reactance (XL - XC) and R is resistance. For R = 10Ω and net reactance X = 10Ω, θ = arctan(10/10) = 45°. A positive phase angle means voltage leads current (inductive circuit); a negative phase angle means current leads voltage (capacitive circuit).",
-    },
-    {
-      q: "What does it mean when a circuit is 'resonant'?",
-      a: "A circuit is resonant when inductive reactance exactly equals capacitive reactance (XL = XC), making the net reactance zero. At resonance, impedance equals resistance alone (Z = R), the phase angle is 0°, and the circuit behaves as if it were purely resistive — this is the operating point used to tune radio receivers and filter circuits to a specific frequency.",
-    },
-    {
-      q: "How do I know if a circuit is inductive or capacitive from its impedance?",
-      a: "Compare XL and XC: if XL > XC, the net reactance is positive and the circuit is inductive (voltage leads current). If XC > XL, the net reactance is negative and the circuit is capacitive (current leads voltage). If XL equals XC exactly, the circuit is resonant and behaves as purely resistive.",
-    },
-    {
-      q: "How is impedance different from just adding resistance and reactance together?",
-      a: "Resistance and reactance can't simply be added arithmetically because they're 90 degrees out of phase with each other in an AC circuit — resistance dissipates energy in phase with voltage, while reactance stores and releases energy 90 degrees out of phase. This is why impedance uses the Pythagorean-style formula Z = √(R² + X²), treating R and X as perpendicular components of a single complex quantity.",
-    },
-    {
-      q: "How do I calculate current from impedance and voltage?",
-      a: "I = V ÷ Z, following the AC equivalent of Ohm's Law. For a circuit with 120V applied across an impedance of 14.14Ω, current = 120 ÷ 14.14 ≈ 8.49A. Unlike a purely resistive circuit, this current will be out of phase with the voltage by the circuit's phase angle.",
-    },
-    {
-      q: "Why does impedance matter for speaker and audio system design?",
-      a: "Speakers present a complex, frequency-dependent impedance rather than a fixed resistance, since their voice coil is inductive and crossover networks add capacitive elements. Amplifiers are rated for a nominal impedance range (commonly 4Ω, 6Ω, or 8Ω), and matching amplifier output impedance to speaker impedance affects power transfer, damping, and the risk of overheating the amplifier at very low impedance loads.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your resistance, reactance, and impedance values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = impedanceCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter resistance (R)", "Input the circuit's resistance value, choosing Ω, kΩ, or MΩ as the unit."],
-    ["Enter inductive reactance (XL)", "Input the inductive reactance, calculated separately as XL = 2πfL if not already known, in the same unit scale."],
-    ["Enter capacitive reactance (XC)", "Input the capacitive reactance, calculated separately as XC = 1/(2πfC) if not already known."],
-    ["Read the impedance and phase angle", "The calculator instantly returns total impedance (Z), net reactance, and the phase angle between voltage and current."],
-    ["Check the circuit classification", "See whether the circuit is inductive, capacitive, resistive, or resonant based on the relationship between XL and XC."],
-    ["Apply a preset or export results", "Use a built-in preset for common RL, RC, RLC, or resonant circuit configurations, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = impedanceCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

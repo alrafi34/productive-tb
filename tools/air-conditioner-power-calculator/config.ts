@@ -53,7 +53,7 @@ export const airConditionerPowerCalculatorConfig = {
       { name: "Enter AC Capacity", text: "Input your AC capacity in tons (e.g. 1.5) or BTU/h (e.g. 18000). Select whichever matches your unit's nameplate or spec sheet." },
       { name: "Enter EER or SEER Rating", text: "Type the EER or SEER from the product label. Typical range: 8–10 for older units, 12–14 for modern units, 16–22 for premium inverter ACs. Use 10 if unknown." },
       { name: "Set Daily Hours and Days per Month", text: "Enter how many hours per day the AC runs and how many days per month (typically 30). This drives monthly energy and cost calculations." },
-      { name: "Enter Your Electricity Rate", text: "Type your local electricity cost per kWh from your bill. Common ranges: $0.10–0.15/kWh in the US, ₹5–8 in India, ৳7–10 in Bangladesh." },
+      { name: "Enter Your Electricity Rate", text: "Type your electricity cost per kWh from your bill and choose your currency; rates vary widely between countries and suppliers." },
       { name: "Read All Results", text: "The calculator returns running wattage, monthly kWh, monthly cost, annual cost, required circuit breaker size, and recommended generator/inverter kVA — all updated instantly." },
     ],
     faq: [

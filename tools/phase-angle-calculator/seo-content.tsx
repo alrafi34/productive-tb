@@ -1,55 +1,8 @@
+import { phaseAngleCalculatorConfig } from "./config";
 export default function PhaseAngleCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a phase angle calculator?",
-      a: "A phase angle calculator is a free online tool that computes the phase difference (φ) between voltage and current in an AC circuit. It supports three calculation modes: from real and apparent power (φ = arccos(P/S)), from resistance and reactance (φ = arctan(X/R)), or directly from a known power factor (φ = arccos(PF)).",
-    },
-    {
-      q: "What is the formula for phase angle from power values?",
-      a: "φ = arccos(P ÷ S), where P is real power in watts and S is apparent power in volt-amperes. For example, a load with 1,000W real power and 1,250VA apparent power gives φ = arccos(1000/1250) = arccos(0.8) = 36.87°.",
-    },
-    {
-      q: "What is the formula for phase angle from resistance and reactance?",
-      a: "φ = arctan(X ÷ R), where X is net reactance and R is resistance, both in ohms. For example, R = 10Ω and X = 10Ω gives φ = arctan(10/10) = arctan(1) = 45°, meaning voltage leads current by 45 degrees in this inductive circuit.",
-    },
-    {
-      q: "How is phase angle related to power factor?",
-      a: "Power factor equals the cosine of the phase angle: PF = cos(φ). A 0° phase angle gives PF = 1.0 (unity, purely resistive). A 90° phase angle gives PF = 0 (purely reactive). A 36.87° phase angle gives PF = 0.8, a common value for lightly loaded induction motors.",
-    },
-    {
-      q: "What does a positive versus negative phase angle mean?",
-      a: "A positive phase angle means voltage leads current, which happens in inductive circuits — common with motors, transformers, and any winding-based load. A negative phase angle means current leads voltage, which happens in capacitive circuits — common with power factor correction capacitors and certain electronic loads.",
-    },
-    {
-      q: "What is the maximum possible phase angle in an AC circuit?",
-      a: "The theoretical maximum is 90°, occurring in a purely reactive circuit with zero resistance — either purely inductive (+90°) or purely capacitive (-90°). Real circuits always have some resistance, so practical phase angles for typical loads range from a few degrees up to around 60-70° for heavily inductive industrial loads.",
-    },
-    {
-      q: "How do I calculate phase angle if I only know the power factor rating on a motor nameplate?",
-      a: "Use the power factor mode: enter the nameplate power factor directly (e.g. 0.85), and the calculator returns φ = arccos(0.85) = 31.79°. This is the fastest way to find phase angle when you have a rated PF but not the underlying resistance, reactance, or power values.",
-    },
-    {
-      q: "Why does phase angle matter for electricity billing and power factor correction?",
-      a: "Utilities often measure or estimate the phase angle indirectly through power factor, and many commercial and industrial tariffs include a penalty for a large phase angle (low power factor) because it means more current is drawn than the useful (real) power alone would require. Power factor correction capacitors are sized specifically to reduce phase angle back toward zero.",
-    },
-    {
-      q: "Can phase angle be calculated for three-phase systems the same way?",
-      a: "The same per-phase relationship (φ = arccos(P/S) or arctan(X/R)) applies to each phase individually in a balanced three-phase system, since each phase behaves like an equivalent single-phase circuit. Unbalanced three-phase systems require analyzing each phase separately, as the phase angle can differ between phases.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, impedance, and power factor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = phaseAngleCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Select a calculation mode", "Choose to calculate phase angle from power (P & S), from impedance (R & X), or directly from a known power factor."],
-    ["Enter your known values", "For power mode, enter real power (W) and apparent power (VA). For impedance mode, enter resistance and reactance (Ω). For power factor mode, enter a value between 0 and 1."],
-    ["Read the phase angle result", "The calculator returns phase angle in both degrees and radians, plus the corresponding power factor."],
-    ["Review the step-by-step derivation", "See the full calculation showing exactly how the inputs were substituted into the formula for your selected mode."],
-    ["Apply a preset (optional)", "Use built-in presets covering unity power factor, typical motor loads, and common R-X combinations to explore how phase angle behaves."],
-    ["Save or export the result", "Save the calculation to history, or export the full result with formula and steps as a text file."],
-  ];
+  const howToSteps: [string, string][] = phaseAngleCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

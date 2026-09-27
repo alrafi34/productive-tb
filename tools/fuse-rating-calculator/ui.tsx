@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { guessMainsVoltage } from "@/lib/voltage";
 import { FuseInputs, FuseResult, InputMode, FuseType } from "./types";
 import {
   calculateFuseRating,
@@ -30,11 +31,18 @@ export default function FuseRatingCalculatorUI() {
   const [inputs, setInputs] = useState<FuseInputs>({
     mode: mode,
     power: savedSettings.power || 1000,
-    voltage: savedSettings.voltage || 220,
+    voltage: savedSettings.voltage || 120,
     current: savedSettings.current || 10,
     safetyFactor: savedSettings.safetyFactor || 1.25,
     fuseType: (savedSettings.fuseType as FuseType) || 'fast'
   });
+  // Without a saved voltage, default to the local mains voltage, guessed after hydration
+  useEffect(() => {
+    if (savedSettings.voltage) return;
+    const frame = window.requestAnimationFrame(() => setInputs(prev => ({ ...prev, voltage: guessMainsVoltage() })));
+    return () => window.cancelAnimationFrame(frame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   const [result, setResult] = useState<FuseResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -93,7 +101,7 @@ export default function FuseRatingCalculatorUI() {
     setInputs({
       mode: mode,
       power: 1000,
-      voltage: 220,
+      voltage: guessMainsVoltage(),
       current: 10,
       safetyFactor: 1.25,
       fuseType: 'fast'
@@ -334,7 +342,7 @@ export default function FuseRatingCalculatorUI() {
                         value={inputs.voltage || ''}
                         onChange={(e) => handleInputChange('voltage', parseFloat(e.target.value) || 0)}
                         className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                        placeholder="220"
+                        placeholder="230"
                         min="0"
                         step="1"
                       />
