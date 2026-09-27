@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { slabConcreteCalculatorConfig } from "./config";
+
 export default function SlabConcreteCalculatorSEO() {
+  const { howToSteps, faq } = slabConcreteCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
       
@@ -14,39 +18,14 @@ export default function SlabConcreteCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Select Measurement Unit</h3>
-            <p className="text-sm">
-              Choose between meters (m) or feet (ft) based on your preference. The calculator will handle all conversions automatically.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Enter Slab Dimensions</h3>
-            <p className="text-sm">
-              Input the length, width, and thickness of your slab. You can use the thickness presets for common slab sizes (4 inches, 6 inches, 10 cm, 15 cm, etc.).
-            </p>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Example:</strong> For a 10m × 5m slab with 0.1m thickness, enter: Length=10, Width=5, Thickness=0.1
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Enable Cost Estimation (Optional)</h3>
-            <p className="text-sm">
-              If you want to estimate the total cost, enable cost estimation and enter the price per cubic meter of concrete in your area.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: View Results</h3>
-            <p className="text-sm">
-              The calculator instantly displays the concrete volume in multiple units (m³, ft³, yd³), slab area, and optional cost estimate. You can copy, save, or export the results.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section>
@@ -225,35 +204,7 @@ export default function SlabConcreteCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How much concrete do I need for a 10×10 slab?</h3>
-            <p className="text-sm">
-              For a 10m × 10m slab with standard 0.1m (4 inch) thickness, you'll need 10 cubic meters of concrete. For a 10ft × 10ft slab with 4 inch thickness, you'll need approximately 1.23 cubic yards.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">What thickness should my concrete slab be?</h3>
-            <p className="text-sm">
-              Standard residential slabs are typically 4 inches (10 cm) thick. For heavier loads like garages, use 6 inches (15 cm). Industrial applications may require 8 inches (20 cm) or more. Always consult local building codes.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How do I convert cubic meters to cubic yards?</h3>
-            <p className="text-sm">
-              Multiply cubic meters by 1.30795 to get cubic yards. The calculator automatically shows results in all common units (m³, ft³, yd³).
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Should I order extra concrete?</h3>
-            <p className="text-sm">
-              Yes, always order 5-10% extra to account for spillage, uneven ground, and measurement variations. It's better to have slightly too much than to run short during pouring.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

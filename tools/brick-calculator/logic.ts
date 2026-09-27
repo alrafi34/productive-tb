@@ -19,8 +19,13 @@ export const inchesToFeet = (inches: number): number => {
 };
 
 // Get wall thickness in feet
-export const getWallThickness = (thickness: WallThickness): number => {
-  return thickness === 'half' ? inchesToFeet(4.5) : inchesToFeet(9);
+/* Half brick = one wythe (a single layer, e.g. veneer); full brick = two */
+export const getWythes = (thickness: WallThickness): number => (thickness === 'half' ? 1 : 2);
+
+// Wall thickness in feet: the brick widths plus the collar joint between wythes
+export const getWallThickness = (thickness: WallThickness, brickWidthIn = 3.625, mortarIn = 0.375): number => {
+  const wythes = getWythes(thickness);
+  return inchesToFeet(wythes * brickWidthIn + (wythes - 1) * mortarIn);
 };
 
 // Calculate wall volume
@@ -61,7 +66,7 @@ export const calculateBricksNeeded = (
   // Convert all to feet
   const lengthFt = convertToFeet(wallLength, unit);
   const heightFt = convertToFeet(wallHeight, unit);
-  const thicknessFt = getWallThickness(wallThickness);
+  const thicknessFt = getWallThickness(wallThickness, brickWidth, mortarThickness);
   
   // Convert brick dimensions from inches to feet
   const brickLFt = inchesToFeet(brickLength);
@@ -79,8 +84,10 @@ export const calculateBricksNeeded = (
   // Convert openings to square feet if needed
   const openingsAreaFt = convertToFeet(openingsArea, unit) * convertToFeet(1, unit);
   
-  // Calculate bricks
-  let bricksNeeded = wallVolume / brickVolume;
+  // Masons count bricks by wall face: one brick plus its bed and head
+  // joint covers (length + joint) × (height + joint), for each wythe
+  const faceAreaFt = (brickLFt + mortarFt) * (brickHFt + mortarFt);
+  let bricksNeeded = faceAreaFt > 0 ? (wallArea / faceAreaFt) * getWythes(wallThickness) : 0;
   
   // Subtract openings (proportional to wall area)
   if (openingsAreaFt > 0 && wallArea > 0) {
@@ -106,11 +113,12 @@ export const calculateBricksNeeded = (
 // Brick presets
 export const getBrickPresets = (): BrickPreset[] => {
   return [
-    { name: 'Standard (9×4.5×3")', length: 9, width: 4.5, height: 3, unit: 'in' },
-    { name: 'Modular (7.6×3.6×2.3")', length: 7.6, width: 3.6, height: 2.3, unit: 'in' },
-    { name: 'Queen (9.6×2.8×2.8")', length: 9.6, width: 2.8, height: 2.8, unit: 'in' },
-    { name: 'King (9.6×2.8×3.2")', length: 9.6, width: 2.8, height: 3.2, unit: 'in' },
-    { name: 'Utility (11.6×3.6×3.6")', length: 11.6, width: 3.6, height: 3.6, unit: 'in' },
+    { name: 'US Modular (7⅝×3⅝×2¼")', length: 7.625, width: 3.625, height: 2.25, unit: 'in' },
+    { name: 'UK/EU (215×102.5×65 mm)', length: 8.465, width: 4.035, height: 2.559, unit: 'in' },
+    { name: 'Queen (9⅝×2¾×2¾")', length: 9.625, width: 2.75, height: 2.75, unit: 'in' },
+    { name: 'King (9⅝×2¾×2⅝")', length: 9.625, width: 2.75, height: 2.625, unit: 'in' },
+    { name: 'Utility (11⅝×3⅝×3⅝")', length: 11.625, width: 3.625, height: 3.625, unit: 'in' },
+    { name: 'Traditional (9×4½×3")', length: 9, width: 4.5, height: 3, unit: 'in' },
   ];
 };
 

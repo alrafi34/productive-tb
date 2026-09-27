@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { brickCalculatorConfig } from "./config";
+
 export default function BrickCalculatorSEO() {
+  const { howToSteps, faq } = brickCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -13,8 +17,8 @@ export default function BrickCalculatorSEO() {
         <ul className="list-disc pl-6 text-gray-700 space-y-2">
           <li><strong>Real-Time Calculations:</strong> Instant results as you type</li>
           <li><strong>Multiple Unit Support:</strong> Feet and meters</li>
-          <li><strong>Brick Size Presets:</strong> Standard, Modular, Queen, King, and Utility</li>
-          <li><strong>Wall Thickness Options:</strong> Half brick (4.5") or full brick (9")</li>
+          <li><strong>Brick Size Presets:</strong> US Modular, UK/EU, Queen, King, Utility and traditional sizes</li>
+          <li><strong>Wall Thickness Options:</strong> Single wythe (half brick) or double wythe (full brick)</li>
           <li><strong>Mortar Thickness Adjustment:</strong> Customizable mortar joint thickness</li>
           <li><strong>Openings Deduction:</strong> Subtract doors and windows area</li>
           <li><strong>Wastage Factor:</strong> 0-20% adjustable wastage percentage</li>
@@ -23,27 +27,24 @@ export default function BrickCalculatorSEO() {
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>
-        <ol className="list-decimal pl-6 text-gray-700 space-y-2">
-          <li>Select your measurement unit (feet or meters)</li>
-          <li>Choose wall thickness (half brick or full brick)</li>
-          <li>Enter wall length and height</li>
-          <li>Input brick dimensions or select from presets</li>
-          <li>Set mortar thickness (typically 0.5 inches)</li>
-          <li>Adjust wastage percentage (typically 5-10%)</li>
-          <li>Optionally subtract openings (doors/windows)</li>
-          <li>View instant brick quantity with and without wastage</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
-
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Calculation Formula</h3>
         <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
           <p className="text-gray-700 font-mono text-sm mb-2">
-            <strong>Wall Volume:</strong> Length × Height × Thickness
+            <strong>Wall Area:</strong> Length × Height
           </p>
           <p className="text-gray-700 font-mono text-sm mb-2">
-            <strong>Brick Volume:</strong> (Length + Mortar) × (Width + Mortar) × (Height + Mortar)
+            <strong>Brick Face with Joint:</strong> (Brick Length + Joint) × (Brick Height + Joint)
           </p>
           <p className="text-gray-700 font-mono text-sm mb-2">
-            <strong>Base Bricks:</strong> Wall Volume ÷ Brick Volume
+            <strong>Base Bricks:</strong> Wall Area ÷ Brick Face × Number of Wythes
           </p>
           <p className="text-gray-700 font-mono text-sm">
             <strong>Final Bricks:</strong> (Base Bricks - Openings) × (1 + Wastage %)
@@ -52,34 +53,34 @@ export default function BrickCalculatorSEO() {
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Example Calculation</h3>
         <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-          <p className="text-gray-700 mb-2"><strong>Scenario:</strong> Wall 10ft × 8ft with standard bricks (9"×4.5"×3")</p>
-          <p className="text-gray-700 mb-1">Wall Volume = 10 × 8 × 0.75 = 60 cubic feet</p>
-          <p className="text-gray-700 mb-1">Brick with Mortar = (9.5" × 5" × 3.5") ≈ 0.0964 cubic feet</p>
-          <p className="text-gray-700 mb-1">Base Bricks = 60 ÷ 0.0964 ≈ 622 bricks</p>
-          <p className="text-gray-700 mb-1">With 5% Wastage = 622 × 1.05 ≈ 653 bricks</p>
-          <p className="text-gray-700 text-lg font-bold text-primary mt-3">Purchase: 653 bricks</p>
+          <p className="text-gray-700 mb-2"><strong>Scenario:</strong> Single-wythe wall 10 ft × 8 ft in US modular brick (7⅝" × 3⅝" × 2¼") with ⅜" joints</p>
+          <p className="text-gray-700 mb-1">Wall Area = 10 × 8 = 80 sq ft</p>
+          <p className="text-gray-700 mb-1">Brick Face with Joint = 8" × 2⅝" = 21 sq in, so 144 ÷ 21 = 6.86 bricks per sq ft</p>
+          <p className="text-gray-700 mb-1">Base Bricks = 80 × 6.86 ≈ 549 bricks</p>
+          <p className="text-gray-700 mb-1">With 5% Wastage = 549 × 1.05 ≈ 577 bricks</p>
+          <p className="text-gray-700 text-lg font-bold text-primary mt-3">Purchase: 577 bricks</p>
         </div>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Standard Brick Sizes</h3>
         <ul className="list-disc pl-6 text-gray-700 space-y-2">
-          <li><strong>Standard:</strong> 9" × 4.5" × 3" (most common in US)</li>
-          <li><strong>Modular:</strong> 7.6" × 3.6" × 2.3"</li>
-          <li><strong>Queen:</strong> 9.6" × 2.8" × 2.8"</li>
-          <li><strong>King:</strong> 9.6" × 2.8" × 3.2"</li>
-          <li><strong>Utility:</strong> 11.6" × 3.6" × 3.6"</li>
+          <li><strong>US Modular:</strong> 7⅝" × 3⅝" × 2¼" (the most common US brick, 6.75 per sq ft with ⅜" joints)</li>
+          <li><strong>UK / EU standard:</strong> 215 × 102.5 × 65 mm (60 per m² with 10 mm joints)</li>
+          <li><strong>Queen:</strong> 9⅝" × 2¾" × 2¾"</li>
+          <li><strong>King:</strong> 9⅝" × 2¾" × 2⅝"</li>
+          <li><strong>Utility:</strong> 11⅝" × 3⅝" × 3⅝"</li>
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Wall Thickness Guide</h3>
         <ul className="list-disc pl-6 text-gray-700 space-y-2">
-          <li><strong>Half Brick (4.5"):</strong> Single wythe wall, non-load bearing partitions</li>
-          <li><strong>Full Brick (9"):</strong> Double wythe wall, load-bearing structures</li>
+          <li><strong>Single wythe (half brick):</strong> One layer of brick, as in brick veneer on a framed house or a UK cavity wall leaf</li>
+          <li><strong>Double wythe (full brick):</strong> Two layers bonded together, for solid load-bearing and garden walls</li>
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Mortar Joint Thickness</h3>
         <ul className="list-disc pl-6 text-gray-700 space-y-2">
-          <li><strong>Standard:</strong> 0.5 inches (most common)</li>
-          <li><strong>Thin Joint:</strong> 0.25 inches (precision masonry)</li>
-          <li><strong>Thick Joint:</strong> 0.75 inches (rustic appearance)</li>
+          <li><strong>Standard:</strong> ⅜ inch in the US, 10 mm in the UK and Europe</li>
+          <li><strong>Thin Joint:</strong> ¼ inch or 3 mm (precision and thin-joint masonry)</li>
+          <li><strong>Thick Joint:</strong> ½ inch or more (rustic appearance, irregular bricks)</li>
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Wastage Guidelines</h3>
@@ -132,6 +133,7 @@ export default function BrickCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

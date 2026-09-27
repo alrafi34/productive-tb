@@ -274,7 +274,11 @@ export default function CementCalculatorUI() {
                     {calculation.cementBags}
                   </div>
                   <div className="text-xl text-primary-100">
-                    bags (50kg)
+                    bags (50 kg)
+                  </div>
+                  <div className="text-sm text-primary-100 mt-1">
+                    = {Math.ceil(calculation.cementVolume / 0.0283168)} US bags (94 lb, 1 cu ft) or{" "}
+                    {Math.ceil((calculation.cementVolume * 1440) / 25)} bags of 25 kg
                   </div>
                 </div>
 
