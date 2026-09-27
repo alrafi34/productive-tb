@@ -109,7 +109,7 @@ export default function LoanInterestCalculatorPropertyUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Loan Interest Calculator (Property)</h3>
               <p className="text-sm text-blue-800">
-                Calculate property loan interest, EMI, total repayment, and amortization schedule. Supports EMI, simple interest, and compound interest methods.
+                Calculate property loan payments, total interest and the amortization schedule, with amortized, simple or compound interest.
               </p>
             </div>
           </div>
@@ -158,7 +158,7 @@ export default function LoanInterestCalculatorPropertyUI() {
 
               <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600 space-y-1">
                 <div className="font-semibold text-gray-500 uppercase tracking-wider mb-1">Formula</div>
-                {inputs.interestType === "emi"      && <div className="font-mono">EMI = P×r(1+r)ⁿ / ((1+r)ⁿ−1)</div>}
+                {inputs.interestType === "emi"      && <div className="font-mono">Payment = P×r(1+r)ⁿ / ((1+r)ⁿ−1)</div>}
                 {inputs.interestType === "simple"   && <div className="font-mono">I = P × R × T</div>}
                 {inputs.interestType === "compound" && <div className="font-mono">A = P(1 + r/n)^(nt)</div>}
               </div>

@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { excavationCostCalculatorConfig } from "./config";
 
 export default function ExcavationCostCalculatorSEO() {
+  const { howToSteps, faq } = excavationCostCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function ExcavationCostCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Excavation Cost Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select your input unit (feet or meters)",
-                "Choose the excavation type for your project",
-                "Enter length, width, and depth of the excavation",
-                "Enter the excavation rate (cost per cubic yard/meter)",
-                "Select the soil type to apply the correct multiplier",
-                "Optionally add labor, equipment, and transport costs",
-                "View the instant cost breakdown and total estimate",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "6 excavation types: foundation, basement, trench, pond, leveling, custom",
-                "6 soil types with automatic cost multipliers",
-                "Optional labor, equipment, and transport costs",
-                "Multi-currency support (USD, EUR, GBP, CAD, AUD)",
-                "Volume output in yd³, m³, or ft³",
-                "Step-by-step cost breakdown",
-                "4 quick presets for common projects",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -159,44 +128,7 @@ export default function ExcavationCostCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is a typical excavation rate per cubic yard?",
-              a: "In the US, typical excavation rates range from $5–$15 per cubic yard for loose soil, $8–$20 for clay, and $20–$50+ for hard rock. Rates vary significantly by region, project size, and contractor. Always get multiple quotes for large projects.",
-            },
-            {
-              q: "Why does soil type affect excavation cost?",
-              a: "Different soil types require different equipment, time, and effort. Loose soil can be excavated quickly with a standard backhoe. Clay is sticky and heavy, slowing the process. Hard rock requires specialized equipment like hydraulic breakers or blasting, dramatically increasing cost.",
-            },
-            {
-              q: "How do I convert cubic feet to cubic yards?",
-              a: "Divide cubic feet by 27. For example, 7,500 cubic feet ÷ 27 = 277.78 cubic yards. The calculator handles this conversion automatically when you select cubic yards as the output unit.",
-            },
-            {
-              q: "Should I include labor separately from the excavation rate?",
-              a: "It depends on how your contractor quotes. Some contractors include labor in their per-cubic-yard rate. Others quote labor separately by day. If your excavation rate already includes labor, leave the labor fields blank to avoid double-counting.",
-            },
-            {
-              q: "What is a typical residential foundation depth?",
-              a: "Residential foundations typically range from 4–8 feet deep depending on frost line depth, soil conditions, and local building codes. In cold climates, foundations must extend below the frost line, which can be 3–6 feet deep.",
-            },
-            {
-              q: "How accurate is this estimate?",
-              a: "This calculator provides a preliminary budget estimate based on your inputs. Actual costs depend on site access, equipment availability, local labor rates, and unforeseen conditions. Always get professional quotes before committing to a project budget.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

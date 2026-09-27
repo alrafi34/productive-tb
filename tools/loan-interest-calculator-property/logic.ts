@@ -21,7 +21,7 @@ export const CURRENCY_LABELS: Record<Currency, string> = {
 export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const INTEREST_TYPE_LABELS: Record<InterestType, string> = {
-  emi:      "EMI / Mortgage Style",
+  emi:      "Amortized / Mortgage",
   simple:   "Simple Interest",
   compound: "Compound Interest",
 };

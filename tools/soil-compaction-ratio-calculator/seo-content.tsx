@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { soilCompactionRatioCalculatorConfig } from "./config";
+
 export default function SoilCompactionRatioCalculatorSEO() {
+  const { howToSteps, faq } = soilCompactionRatioCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,15 +21,13 @@ export default function SoilCompactionRatioCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use This Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2">
-          <li>Select your density unit (g/cm³, kg/m³, or lb/ft³)</li>
-          <li>Choose the required compaction standard (90%, 92%, 95%, 98%, or 100%)</li>
-          <li>Enter the field dry density measured on site</li>
-          <li>Enter the maximum dry density from the Proctor test</li>
-          <li>View the instant compaction ratio and pass/fail status</li>
-          <li>Use soil type presets for quick reference values</li>
-          <li>Review the step-by-step calculation breakdown</li>
-          <li>Save, copy, or export the result for documentation</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -139,29 +141,7 @@ export default function SoilCompactionRatioCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">What is relative compaction?</h3>
-            <p className="text-sm">Relative compaction (compaction ratio) is the ratio of field dry density to maximum dry density expressed as a percentage. It indicates how well the soil has been compacted compared to the laboratory maximum.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Why is 95% the most common standard?</h3>
-            <p className="text-sm">95% compaction provides a practical balance between achievable field conditions and adequate soil performance for most construction applications. It ensures sufficient stability while remaining realistic to achieve with standard equipment.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">What if field density exceeds maximum dry density?</h3>
-            <p className="text-sm">This typically indicates a measurement error or that the field soil differs from the Proctor test sample. Verify your measurements and ensure the lab test was performed on representative soil.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">What units does this calculator support?</h3>
-            <p className="text-sm">The calculator supports g/cm³ (grams per cubic centimeter), kg/m³ (kilograms per cubic meter), and lb/ft³ (pounds per cubic foot) — the three most common density units used in geotechnical engineering.</p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }
