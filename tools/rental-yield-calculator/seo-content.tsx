@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { rentalYieldCalculatorConfig } from "./config";
 
 export default function RentalYieldCalculatorSEO() {
+  const { howToSteps, faq } = rentalYieldCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function RentalYieldCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Rental Yield Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the property purchase price",
-                "Enter the expected monthly rental income",
-                "Adjust the vacancy rate slider (default 5%)",
-                "Click Show on Annual Expenses to add costs",
-                "Optionally enter mortgage details for cash flow analysis",
-                "View gross yield, net yield, and monthly cash flow",
-                "Check the rating badge and expense breakdown",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Gross and net rental yield calculation",
-                "Vacancy rate adjustment slider (0–20%)",
-                "Full expense breakdown with visual bars",
-                "Monthly cash flow and annual profit",
-                "Cash-on-cash return based on down payment",
-                "Investment rating: Excellent to Poor",
-                "Mortgage integration for complete analysis",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -155,44 +124,7 @@ export default function RentalYieldCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is a good rental yield?",
-              a: "A good rental yield depends on the market and investment strategy. Generally, a net yield of 5–7% is considered average for residential properties. Yields above 7% are strong, and above 9% are excellent — though very high yields may indicate higher risk, lower-quality areas, or underestimated expenses.",
-            },
-            {
-              q: "What is the difference between gross and net rental yield?",
-              a: "Gross rental yield is calculated using rent alone, without deducting any expenses. Net rental yield subtracts all annual operating costs (property tax, insurance, maintenance, management fees, HOA) before dividing by the property price. Net yield is a more accurate measure of actual investment return.",
-            },
-            {
-              q: "What is cash-on-cash return?",
-              a: "Cash-on-cash return measures the annual cash flow as a percentage of the actual cash invested (your down payment). For example, if you put $50,000 down and generate $6,000 in annual cash flow, your cash-on-cash return is 12%. This metric is more relevant than yield for leveraged investments.",
-            },
-            {
-              q: "How does vacancy rate affect rental yield?",
-              a: "A 5% vacancy rate means the property is unoccupied for about 18 days per year. This reduces effective annual rent by 5%. For a property generating $24,000/year, a 5% vacancy reduces income to $22,800. Higher vacancy rates significantly reduce net yield and cash flow.",
-            },
-            {
-              q: "Should I include mortgage payments in the yield calculation?",
-              a: "Mortgage payments are a financing cost, not an operating expense. Rental yield is typically calculated before mortgage payments to allow comparison between properties regardless of financing. However, monthly cash flow (which includes mortgage) shows whether the property is self-funding.",
-            },
-            {
-              q: "What expenses should I include in net yield?",
-              a: "Include all recurring annual costs: property tax, homeowner's insurance, maintenance and repairs (typically 1–2% of property value per year), property management fees (typically 8–12% of rent), and HOA fees if applicable. Do not include mortgage principal or interest in the expense calculation for yield purposes.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { shortCircuitCurrentCalculatorConfig } from "./config";
+
 export default function ShortCircuitCurrentCalculatorSEO() {
+  const { howToSteps, faq } = shortCircuitCurrentCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -226,44 +230,13 @@ export default function ShortCircuitCurrentCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Enter System Voltage:</strong> Input the nominal system voltage in Volts (e.g., 230V, 400V, 11kV).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Input System Impedance:</strong> Enter the total system impedance in Ohms, including source, transformer, and cable impedances.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Select System Type:</strong> Choose between single-phase or three-phase system configuration.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Choose Calculation Mode:</strong> Select basic (V/Z) or advanced (three-phase formula) calculation method.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>Set Precision:</strong> Choose the number of decimal places for results (2-4 decimal places).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>View Results:</strong> The calculator instantly shows fault current, classification, and safety warnings.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Review Steps:</strong> See detailed calculation steps with formulas and intermediate values.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Use Presets:</strong> Click on common examples for quick calculations of typical system configurations.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">9.</span>
-              <span><strong>Export or Save:</strong> Download results as text files or save to history for future reference.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -298,53 +271,7 @@ export default function ShortCircuitCurrentCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is short circuit current?</h3>
-              <p className="text-gray-700">
-                Short circuit current is the maximum current that flows when a fault occurs in an electrical system, creating a low-impedance path. It's limited only by the system impedance and can be many times higher than normal operating current.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is short circuit analysis important?</h3>
-              <p className="text-gray-700">
-                Short circuit analysis is crucial for selecting proper protection equipment, ensuring safety, and preventing equipment damage. It helps determine circuit breaker ratings, relay settings, and arc flash hazard levels.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What's the difference between single-phase and three-phase calculations?</h3>
-              <p className="text-gray-700">
-                Single-phase calculations use I = V/Z directly. Three-phase calculations account for the √3 relationship between line and phase quantities, using I = V/(√3×Z) for line-to-line faults in balanced systems.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How accurate are these calculations?</h3>
-              <p className="text-gray-700">
-                The calculations provide good estimates for preliminary analysis. Actual fault currents depend on many factors including system configuration, load conditions, and fault type. Professional software should be used for detailed studies.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What if I don't know the system impedance?</h3>
-              <p className="text-gray-700">
-                System impedance can be calculated from utility fault MVA data, transformer impedance percentages, and cable parameters. Consult utility companies for source impedance data and use manufacturer specifications for equipment impedances.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">When should I use basic vs advanced calculation mode?</h3>
-              <p className="text-gray-700">
-                Use basic mode for simplified analysis or single-phase systems. Use advanced mode for three-phase systems where you want to account for the √3 factor in the calculation for more accurate results.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

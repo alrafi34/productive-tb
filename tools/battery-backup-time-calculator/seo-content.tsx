@@ -1,55 +1,8 @@
+import { batteryBackupTimeCalculatorConfig } from "./config";
 export default function BatteryBackupTimeCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a battery backup time calculator?",
-      a: "A battery backup time calculator is a free online tool that estimates how long an existing battery will power a given load, from battery voltage, capacity (Ah), load power, system efficiency, and depth of discharge. Unlike a battery capacity calculator (which sizes a new battery for a target runtime), this tool solves the reverse problem — how long a battery you already have will actually last.",
-    },
-    {
-      q: "What is the formula for battery backup time?",
-      a: "Backup Time (hours) = (Voltage × Capacity × Depth of Discharge% × Efficiency%) ÷ Load Power. For example, a 12V, 100Ah battery at 85% efficiency and 100% depth of discharge, powering a 150W load: Time = (12 × 100 × 1.0 × 0.85) ÷ 150 = 1,020 ÷ 150 = 6.8 hours.",
-    },
-    {
-      q: "What is depth of discharge (DoD) and why does it matter?",
-      a: "Depth of discharge is the percentage of a battery's total rated capacity that's safely usable before recharging is needed. Lead-acid batteries are commonly limited to 50% DoD to preserve cycle life, while lithium-ion and LiFePO4 batteries can often handle 80-100% DoD without significant lifespan reduction — using the wrong DoD assumption significantly changes the calculated backup time.",
-    },
-    {
-      q: "Why does system efficiency reduce backup time below the theoretical maximum?",
-      a: "Real systems lose some energy to internal battery resistance, inverter conversion losses, and wiring resistance, so not all of the battery's rated Wh reaches the load as useful power. A system at 85% efficiency delivers only 85% of the battery's theoretical energy to the actual load, directly reducing backup time proportionally.",
-    },
-    {
-      q: "How do I calculate backup time for a home inverter system?",
-      a: "Multiply battery voltage by capacity to get total Wh, apply depth of discharge and efficiency percentages, then divide by the load's power draw. A 12V, 100Ah battery (1,200Wh) at 85% efficiency and full depth of discharge running a 150W load gives roughly 6.8 hours of backup time.",
-    },
-    {
-      q: "How does load power affect backup time?",
-      a: "Backup time is inversely proportional to load power — doubling the load halves the backup time for the same battery. A 12V, 100Ah battery that runs a 150W load for 6.8 hours would only run a 300W load for about 3.4 hours, since twice the power draws down the same energy reserve twice as fast.",
-    },
-    {
-      q: "Why is my actual backup time shorter than the calculated figure?",
-      a: "Several factors commonly cause real-world backup time to fall short of calculation: battery capacity degrading with age below its original rating, colder ambient temperatures reducing usable capacity (especially for lead-acid), higher-than-estimated load power, or a lower actual system efficiency than assumed — measuring these factors and re-running the calculation with updated values usually closes the gap.",
-    },
-    {
-      q: "How do I estimate backup time for multiple appliances at once?",
-      a: "Add up the power draw of every appliance you want to run simultaneously to get total load power, then use that combined figure in the backup time calculation. Running a 60W LED light set alongside a 65W laptop charger means using 125W as the total load power, not calculating each separately.",
-    },
-    {
-      q: "How is this different from a battery capacity calculator?",
-      a: "This calculator solves for backup time given a known battery — useful for checking how long an already-purchased UPS, inverter battery, or solar battery bank will last. A battery capacity calculator solves the reverse problem, sizing a new battery to meet a target runtime.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, capacity, load power, and efficiency values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = batteryBackupTimeCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter battery voltage", "Input the nominal battery voltage — commonly 12V, 24V, or 48V."],
-    ["Enter battery capacity", "Input the battery's rated capacity in amp-hours (Ah), found on the battery's label or datasheet."],
-    ["Enter load power", "Input the total power in watts (W) drawn by everything you're running on this battery, adding up multiple devices if needed."],
-    ["Enter system efficiency and depth of discharge", "Input your inverter/system efficiency percentage and how much of the battery's capacity you plan to safely use."],
-    ["Read the backup time result", "The calculator returns backup time in hours, plus a formatted hours-and-minutes figure and the current draw."],
-    ["Apply a preset or export results", "Use a built-in preset for common UPS, inverter, solar, and RV scenarios, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = batteryBackupTimeCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { boundaryLengthCalculatorConfig } from "./config";
 
 export default function BoundaryLengthCalculatorSEO() {
+  const { howToSteps, faq } = boundaryLengthCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -24,45 +27,14 @@ export default function BoundaryLengthCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Boundary Length Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select shape mode (Manual, Rectangle, Square, or Triangle)",
-                "Choose your measurement unit (Meter, Feet, etc.)",
-                "Enter side lengths or dimensions",
-                "View instant boundary length calculation",
-                "Optionally save to history or export results",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type",
-                "Multiple shape modes (Manual, Rectangle, Square, Triangle)",
-                "Support for 5 measurement units",
-                "Dynamic side addition/removal",
-                "Calculation breakdown display",
-                "Save and export calculation history",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -190,44 +162,7 @@ export default function BoundaryLengthCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is boundary length calculated?",
-              a: "Boundary length (perimeter) is calculated by adding all side lengths together. For rectangles: P = 2 × (Length + Width). For squares: P = 4 × Side. For irregular shapes: P = sum of all sides.",
-            },
-            {
-              q: "Can I calculate irregular plot boundaries?",
-              a: "Yes. Use the 'Manual Side Entry' mode to enter any number of sides. The calculator will sum all entered values to give you the total boundary length.",
-            },
-            {
-              q: "What units are supported?",
-              a: "The calculator supports Meter (m), Feet (ft), Kilometer (km), Centimeter (cm), and Inch (in). All calculations maintain the selected unit throughout.",
-            },
-            {
-              q: "How do I add more sides?",
-              a: "In Manual Side Entry mode, click the '➕ Add Side' button to add additional side inputs. You can add unlimited sides for complex shapes.",
-            },
-            {
-              q: "Can I save my calculations?",
-              a: "Yes. Click 'Save to History' to store your calculation. History is saved in your browser's localStorage and can be accessed anytime.",
-            },
-            {
-              q: "Is my data private?",
-              a: "Absolutely. All calculations happen entirely in your browser. No data is sent to any server. Your measurements remain completely private.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

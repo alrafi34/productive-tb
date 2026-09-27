@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { rfPowerCalculatorConfig } from "./config";
+
 export default function RFPowerCalculatorSEO() {
+  const { howToSteps, faq } = rfPowerCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -207,32 +211,13 @@ export default function RFPowerCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Select Calculation Mode:</strong> Choose whether you're starting with Watts, dBm, dBW, or voltage/resistance values.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Enter Input Values:</strong> Type in your known power value or voltage and resistance.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>View Results:</strong> The calculator instantly shows power in all units (W, dBm, dBW, mW).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Review Calculation Steps:</strong> See the detailed formulas and steps used for the conversion.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>Use Presets:</strong> Click on common examples for quick calculations of standard power levels.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Export or Save:</strong> Copy results, save to history, or download a detailed calculation report.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -255,46 +240,7 @@ export default function RFPowerCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between dBm and dBW?</h3>
-              <p className="text-gray-700">
-                Both are logarithmic power units, but they have different reference points. dBm is referenced to 1 milliwatt, while dBW is referenced to 1 watt. The conversion is simple: dBW = dBm - 30. For example, 30 dBm = 0 dBW = 1 watt.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why use logarithmic units like dBm instead of watts?</h3>
-              <p className="text-gray-700">
-                RF systems often deal with very large ranges of power levels, from nanowatts to kilowatts. Logarithmic units compress this range into manageable numbers and make calculations involving gains and losses much simpler (addition instead of multiplication).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate power from voltage and resistance?</h3>
-              <p className="text-gray-700">
-                Use the formula P = V²/R, where P is power in watts, V is voltage in volts, and R is resistance in ohms. This assumes the voltage is measured across the resistance (load). For RF systems, R is typically the characteristic impedance (50Ω or 75Ω).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is a typical WiFi router power output?</h3>
-              <p className="text-gray-700">
-                Most WiFi routers transmit at around 100 mW (20 dBm or -10 dBW). However, this can vary by country due to regulatory limits and by frequency band (2.4 GHz vs 5 GHz).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use this calculator for audio power?</h3>
-              <p className="text-gray-700">
-                While the mathematical conversions work for any power measurement, this calculator is optimized for RF applications. Audio power calculations often involve additional factors like speaker impedance matching and RMS vs peak power.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

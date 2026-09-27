@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { currentDividerCalculatorConfig } from "./config";
+
 export default function CurrentDividerCalculatorSEO() {
+  const { howToSteps, faq } = currentDividerCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -180,40 +184,13 @@ export default function CurrentDividerCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Enter Total Current:</strong> Input the total current flowing into the parallel network in Amperes.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Add Resistor Values:</strong> Enter the resistance value and select the appropriate unit (Ω, kΩ, MΩ) for each parallel branch.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Add More Branches:</strong> Click "Add Resistor" to include additional parallel branches (up to 10 resistors).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Set Precision:</strong> Choose the number of decimal places for results (2-6 decimal places).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>View Results:</strong> The calculator instantly shows current through each branch, percentage distribution, and power dissipation.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Review Steps:</strong> See detailed calculation steps with formulas and intermediate values.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Use Presets:</strong> Click on common examples for quick calculations of typical scenarios.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Export or Save:</strong> Download results as TXT/CSV or save to history for future reference.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -266,53 +243,7 @@ export default function CurrentDividerCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the current divider rule?</h3>
-              <p className="text-gray-700">
-                The current divider rule states that in parallel circuits, current divides inversely proportional to resistance. Branches with lower resistance carry more current, while the total current is conserved across all branches.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why does lower resistance carry more current?</h3>
-              <p className="text-gray-700">
-                According to Ohm's law (V = IR), for a fixed voltage across parallel branches, current is inversely proportional to resistance (I = V/R). Lower resistance provides an easier path for current flow.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How accurate is the current divider calculation?</h3>
-              <p className="text-gray-700">
-                The calculation is mathematically exact for ideal resistors. Real-world accuracy depends on resistor tolerances, temperature effects, and measurement precision. The calculator includes validation to verify current conservation.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use this for AC circuits?</h3>
-              <p className="text-gray-700">
-                Yes, for purely resistive AC circuits. For circuits with reactive components (inductors, capacitors), you need to consider impedance instead of resistance, and the calculations become more complex.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What happens if one resistor is much smaller than others?</h3>
-              <p className="text-gray-700">
-                The smallest resistor will carry most of the current, potentially causing overcurrent conditions. This is why parallel circuits need careful design to prevent current concentration in low-resistance paths.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I ensure equal current sharing?</h3>
-              <p className="text-gray-700">
-                Use identical resistance values with tight tolerances. For critical applications, consider current-sharing circuits with feedback control or current-limiting resistors to balance the load.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

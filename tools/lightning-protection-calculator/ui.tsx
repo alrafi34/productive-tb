@@ -14,6 +14,7 @@ import {
   formatNumber,
   getRiskLevelLabel,
   getStructureTypeLabel,
+  formatSmall,
   debounce,
   HistoryEntry
 } from "./logic";
@@ -94,7 +95,7 @@ export default function LightningProtectionCalculatorUI() {
 
   const handleCopy = () => {
     if (result) {
-      const text = `Risk Score: ${formatNumber(result.riskScore, inputs.precision || 2)}, Protection Level: ${result.protectionLevelText}, System: ${result.systemType}`;
+      const text = `Nd/Nc: ${formatNumber(result.riskScore, inputs.precision || 2)}, Protection Level: ${result.protectionLevelText}, System: ${result.systemType}`;
       navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -128,16 +129,16 @@ export default function LightningProtectionCalculatorUI() {
   };
 
   const getRiskColor = (score: number) => {
-    if (score < 0.3) return 'text-green-600';
-    if (score < 0.5) return 'text-yellow-600';
-    if (score < 0.7) return 'text-orange-600';
+    if (score <= 1) return 'text-green-600';
+    if (score < 3) return 'text-yellow-600';
+    if (score < 10) return 'text-orange-600';
     return 'text-red-600';
   };
 
   const getRiskBgColor = (score: number) => {
-    if (score < 0.3) return 'bg-green-50 border-green-200';
-    if (score < 0.5) return 'bg-yellow-50 border-yellow-200';
-    if (score < 0.7) return 'bg-orange-50 border-orange-200';
+    if (score <= 1) return 'bg-green-50 border-green-200';
+    if (score < 3) return 'bg-yellow-50 border-yellow-200';
+    if (score < 10) return 'bg-orange-50 border-orange-200';
     return 'bg-red-50 border-red-200';
   };
 
@@ -168,7 +169,7 @@ export default function LightningProtectionCalculatorUI() {
               <div className="bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white space-y-4">
                 <div>
                   <p className="text-primary-100 font-medium mb-2 text-xs uppercase tracking-wider" style={{ fontFamily: "var(--font-heading)" }}>
-                    Risk Score
+                    Expected ÷ Tolerable Strikes (Nd / Nc)
                   </p>
                   <div className="text-5xl font-bold mb-1">
                     {formatNumber(result.riskScore, inputs.precision || 2)}
@@ -180,20 +181,20 @@ export default function LightningProtectionCalculatorUI() {
 
                 <div className="mt-4 pt-4 border-t border-white/20 text-sm space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-primary-100">Height Factor:</span>
-                    <span className="font-semibold">{formatNumber(result.heightFactor, inputs.precision || 2)}</span>
+                    <span className="text-primary-100">Collection Area (Ad):</span>
+                    <span className="font-semibold">{formatNumber(result.collectionArea, 0)} m²</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-primary-100">Area Factor:</span>
-                    <span className="font-semibold">{formatNumber(result.areaFactor, inputs.precision || 2)}</span>
+                    <span className="text-primary-100">Expected Strikes (Nd):</span>
+                    <span className="font-semibold">{formatSmall(result.expectedStrikes)} / yr</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-primary-100">Risk Factor:</span>
-                    <span className="font-semibold">{formatNumber(result.riskFactor, inputs.precision || 2)}</span>
+                    <span className="text-primary-100">Tolerable (Nc):</span>
+                    <span className="font-semibold">{formatSmall(result.tolerableStrikes)} / yr</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-primary-100">Structure Factor:</span>
-                    <span className="font-semibold">{formatNumber(result.structureFactor, inputs.precision || 2)}</span>
+                    <span className="text-primary-100">Required Efficiency:</span>
+                    <span className="font-semibold">{result.efficiency > 0 ? `${formatNumber(result.efficiency * 100, 1)}%` : 'Not required'}</span>
                   </div>
                 </div>
 
@@ -291,10 +292,10 @@ export default function LightningProtectionCalculatorUI() {
                   onChange={(e) => handleInputChange('riskLevel', e.target.value as RiskLevel)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-semibold"
                 >
-                  <option value="low">Low Risk Area</option>
-                  <option value="medium">Medium Risk Area</option>
-                  <option value="high">High Risk Area</option>
-                  <option value="very-high">Very High Risk Area</option>
+                  <option value="low">{getRiskLevelLabel('low')}</option>
+                  <option value="medium">{getRiskLevelLabel('medium')}</option>
+                  <option value="high">{getRiskLevelLabel('high')}</option>
+                  <option value="very-high">{getRiskLevelLabel('very-high')}</option>
                 </select>
               </div>
 
@@ -307,11 +308,11 @@ export default function LightningProtectionCalculatorUI() {
                   onChange={(e) => handleInputChange('structureType', e.target.value as StructureType)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-semibold"
                 >
-                  <option value="residential">Residential Building</option>
-                  <option value="commercial">Commercial Building</option>
-                  <option value="industrial">Industrial Facility</option>
-                  <option value="critical">Critical Infrastructure</option>
-                  <option value="open-field">Open Field Structure</option>
+                  <option value="residential">{getStructureTypeLabel('residential')}</option>
+                  <option value="commercial">{getStructureTypeLabel('commercial')}</option>
+                  <option value="industrial">{getStructureTypeLabel('industrial')}</option>
+                  <option value="critical">{getStructureTypeLabel('critical')}</option>
+                  <option value="open-field">{getStructureTypeLabel('open-field')}</option>
                 </select>
               </div>
 
@@ -372,11 +373,6 @@ export default function LightningProtectionCalculatorUI() {
                   <div>
                     <p className="text-sm font-medium text-gray-600">Recommendation:</p>
                     <p className="text-base text-gray-800">{result.recommendation}</p>
-                  </div>
-
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">Estimated Cost:</p>
-                    <p className="text-base font-semibold text-gray-900">{result.estimatedCost}</p>
                   </div>
 
                   <div>
@@ -465,7 +461,7 @@ export default function LightningProtectionCalculatorUI() {
                           </span>
                         </div>
                         <div className="text-sm text-gray-600">
-                          Risk Score: {formatNumber(entry.result.riskScore, 2)} - {entry.result.protectionLevelText}
+                          Nd/Nc: {formatNumber(entry.result.riskScore, 2)} - {entry.result.protectionLevelText}
                         </div>
                       </div>
                     ))

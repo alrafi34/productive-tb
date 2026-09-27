@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { subdivisionCostCalculatorConfig } from "./config";
 
 export default function SubdivisionCostCalculatorSEO() {
+  const { howToSteps, faq } = subdivisionCostCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,53 +28,14 @@ export default function SubdivisionCostCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Subdivision Cost Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the total land size and select the unit (acres, sq ft, sq m, or hectares)",
-                "Enter the number of plots you plan to create",
-                "Fill in the surveying cost for boundary surveys and mapping",
-                "Add legal fees for title work, contracts, and attorney costs",
-                "Enter permit and approval costs from local authorities",
-                "Add utility installation costs (water, electricity, sewer, internet)",
-                "Enter road development and drainage infrastructure costs",
-                "Add any miscellaneous or contingency costs",
-                "View the instant total cost, cost per plot, and land per plot",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type",
-                "7 cost categories covering all major subdivision expenses",
-                "Cost per plot and land per plot calculations",
-                "Visual cost breakdown with percentage bars",
-                "4 quick presets for common subdivision scenarios",
-                "Multi-currency support (USD, EUR, GBP, AUD, CAD)",
-                "4 land unit options (acres, sq ft, sq m, hectares)",
-                "Step-by-step calculation breakdown",
-                "Save and export estimates",
-                "Calculation history with one-click reload",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -169,44 +133,7 @@ export default function SubdivisionCostCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the average cost to subdivide land in the US?",
-              a: "The average cost to subdivide land in the US ranges from $5,000 to $30,000+ for a simple residential subdivision, and can exceed $100,000 for larger developments requiring significant road and utility infrastructure. Costs vary widely by state, county, and project complexity.",
-            },
-            {
-              q: "What is the most expensive part of a subdivision?",
-              a: "Utility installation and road development are typically the largest cost items in a subdivision project. Installing water, sewer, and electrical connections can cost $5,000–$50,000+ depending on distance from existing infrastructure. Road construction can range from $5,000 to over $100,000 for larger subdivisions.",
-            },
-            {
-              q: "How is cost per plot calculated?",
-              a: "Cost per plot is calculated by dividing the total subdivision cost by the number of plots. For example, if the total cost is $25,500 and you are creating 20 plots, the cost per plot is $25,500 ÷ 20 = $1,275. This metric helps assess whether the subdivision is financially viable.",
-            },
-            {
-              q: "Do I need a surveyor to subdivide land?",
-              a: "Yes, in virtually all jurisdictions a licensed land surveyor is required to prepare a subdivision plat or plan. The surveyor establishes legal boundaries, prepares the official plat document, and ensures the subdivision meets local zoning and setback requirements. Surveying costs typically range from $500 to $5,000.",
-            },
-            {
-              q: "How long does the subdivision approval process take?",
-              a: "The subdivision approval process typically takes 3–12 months depending on the jurisdiction, project complexity, and whether environmental reviews are required. Simple minor subdivisions in rural areas may be approved in weeks, while major subdivisions in urban areas can take a year or more.",
-            },
-            {
-              q: "Is this calculator accurate for my specific project?",
-              a: "This calculator provides a preliminary budget estimate based on your inputs. Actual costs depend on your specific location, local permit fees, contractor rates, and site conditions. Always obtain professional quotes from surveyors, engineers, and contractors before committing to a project budget.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

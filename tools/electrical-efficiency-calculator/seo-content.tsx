@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { electricalEfficiencyCalculatorConfig } from "./config";
+
 export default function ElectricalEfficiencyCalculatorSEO() {
+  const { howToSteps, faq } = electricalEfficiencyCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -228,44 +232,13 @@ export default function ElectricalEfficiencyCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Enter Input Power:</strong> Input the total power consumed by the system in Watts, Kilowatts, or Megawatts.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Enter Output Power:</strong> Input the useful power delivered by the system in the same units.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Select Power Unit:</strong> Choose the appropriate power unit (W, kW, MW) for your application.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Set Precision:</strong> Choose the number of decimal places for results (1-4 decimal places).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>View Results:</strong> The calculator instantly shows efficiency percentage, classification, and power loss analysis.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Analyze Efficiency:</strong> Review the efficiency gauge and power flow diagram for visual analysis.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Review Steps:</strong> See detailed calculation steps with formulas and intermediate values.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Use Presets:</strong> Click on common examples for quick calculations of typical electrical systems.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">9.</span>
-              <span><strong>Export or Save:</strong> Download results as TXT/CSV files or save to history for future reference.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -301,53 +274,7 @@ export default function ElectricalEfficiencyCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is electrical efficiency?</h3>
-              <p className="text-gray-700">
-                Electrical efficiency is the ratio of useful output power to total input power, expressed as a percentage. It measures how effectively an electrical system converts input energy into useful work, with higher percentages indicating better performance.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is efficiency important?</h3>
-              <p className="text-gray-700">
-                High efficiency reduces energy costs, minimizes environmental impact, decreases heat generation, and improves system reliability. In industrial applications, even small efficiency improvements can result in significant cost savings.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can efficiency exceed 100%?</h3>
-              <p className="text-gray-700">
-                In practical electrical systems, efficiency cannot exceed 100% due to the conservation of energy. If calculations show &gt;100% efficiency, check measurement accuracy, ensure proper power measurement techniques, or verify that all losses are accounted for.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I measure input and output power?</h3>
-              <p className="text-gray-700">
-                Use calibrated power meters or multimeters to measure voltage and current. For AC systems, ensure you measure true RMS values and account for power factor. Input power is measured at the system input, output power at the useful load.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What's considered good efficiency for different devices?</h3>
-              <p className="text-gray-700">
-                LED lights: &gt;90%, modern electric motors: 85-95%, power supplies: 80-95%, transformers: 95-99%, solar inverters: 95-98%. Efficiency standards vary by application and technology generation.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How does efficiency change with load?</h3>
-              <p className="text-gray-700">
-                Most electrical equipment has peak efficiency at a specific load point (typically 75-100% of rated load). Efficiency usually decreases at very light loads and may also decrease at overload conditions. Variable speed drives help maintain high efficiency across different load levels.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

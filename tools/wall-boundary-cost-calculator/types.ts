@@ -1,5 +1,5 @@
 export type Unit = "ft" | "m";
-export type Currency = "USD" | "EUR" | "GBP" | "BDT" | "INR";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 export type Thickness = "4in" | "5in" | "9in" | "12in";
 
 export interface CalculatorInputs {

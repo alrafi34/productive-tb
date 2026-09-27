@@ -5,7 +5,6 @@ import {
   ShortCircuitInputs, 
   ShortCircuitResult, 
   SystemType, 
-  CalculationMode, 
   HistoryEntry 
 } from "./types";
 import {
@@ -280,7 +279,7 @@ export default function ShortCircuitCurrentCalculatorUI() {
                     V
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Typical: 230V (residential), 400V (industrial), 11kV (distribution)</p>
+                <p className="text-xs text-gray-500 mt-1">Three-phase: line-to-line voltage (208 V or 480 V in the US, 400 V in the UK and Europe). Single-phase: 120 V or 240 V in the US, 230 V in the UK and Europe.</p>
               </div>
 
               {/* System Impedance */}
@@ -302,7 +301,7 @@ export default function ShortCircuitCurrentCalculatorUI() {
                     Ω
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Total system impedance including source, transformer, and cable impedances</p>
+                <p className="text-xs text-gray-500 mt-1">Three-phase: impedance per phase. Single-phase: loop impedance (out and back). Include source, transformer and cable.</p>
               </div>
 
               {/* System Type */}
@@ -318,22 +317,6 @@ export default function ShortCircuitCurrentCalculatorUI() {
                   <option value="single-phase">Single Phase</option>
                   <option value="three-phase">Three Phase</option>
                 </select>
-              </div>
-
-              {/* Calculation Mode */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Calculation Mode
-                </label>
-                <select
-                  value={inputs.calculationMode}
-                  onChange={(e) => handleInputChange('calculationMode', e.target.value as CalculationMode)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-semibold"
-                >
-                  <option value="basic">Basic (V / Z)</option>
-                  <option value="advanced">Advanced (3-phase formula)</option>
-                </select>
-                <p className="text-xs text-gray-500 mt-1">Advanced mode uses √3 factor for three-phase systems</p>
               </div>
 
               {/* Precision */}

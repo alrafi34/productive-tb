@@ -26,10 +26,10 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; price: string; area: string; unit: Unit }[] = [
-  { label: "5M / 2500 sqft",   price: "5000000",  area: "2500", unit: "sqft"    },
-  { label: "1.2M / 3 Decimal", price: "1200000",  area: "3",    unit: "decimal" },
-  { label: "25M / 0.5 Acre",   price: "25000000", area: "0.5",  unit: "acre"    },
-  { label: "500K / 10 Katha",  price: "500000",   area: "10",   unit: "katha"   },
+  { label: "450K / 2,000 sq ft",  price: "450000", area: "2000", unit: "sqft" },
+  { label: "120K / 0.25 Acre",    price: "120000", area: "0.25", unit: "acre" },
+  { label: "320K / 85 m²",        price: "320000", area: "85",   unit: "sqm"  },
+  { label: "60K / 2 Hectare",     price: "60000",  area: "2",    unit: "hectare" },
 ];
 
 const DEFAULT_INPUTS: CalculatorInputs = {
@@ -89,7 +89,7 @@ export default function PricePerSquareFeetCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     navigator.clipboard.writeText(
       `Price per sq ft: ${sym}${formatNumber(result.pricePerSqFt, inputs.precision)}\nTotal Area: ${formatNumber(result.totalAreaSqFt, inputs.precision)} sq ft\nTotal Price: ${sym}${formatNumber(result.totalPrice, inputs.precision)}`
     );
@@ -121,7 +121,7 @@ export default function PricePerSquareFeetCalculatorUI() {
     if (e.key === "Escape") handleReset();
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const isConverted = inputs.areaUnit !== "sqft";
 
   return (
@@ -207,7 +207,7 @@ export default function PricePerSquareFeetCalculatorUI() {
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -319,7 +319,7 @@ export default function PricePerSquareFeetCalculatorUI() {
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                   >
                     {ALL_UNITS.map((u) => (
-                      <option key={u} value={u}>{UNIT_LABELS[u]}</option>
+                      <option key={u} value={u}>{(UNIT_LABELS[u] ?? u)}</option>
                     ))}
                   </select>
                 </div>
@@ -473,7 +473,7 @@ export default function PricePerSquareFeetCalculatorUI() {
                     <div className="p-8 text-center text-gray-400">No calculations saved yet</div>
                   ) : (
                     history.map((entry) => {
-                      const esym = CURRENCY_SYMBOLS[entry.inputs.currency];
+                      const esym = (CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$");
                       return (
                         <div
                           key={entry.id}

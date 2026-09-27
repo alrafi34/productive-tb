@@ -1,55 +1,8 @@
+import { batteryCapacityCalculatorConfig } from "./config";
 export default function BatteryCapacityCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a battery capacity calculator?",
-      a: "A battery capacity calculator is a free online tool that computes the required battery size, in amp-hours (Ah) and watt-hours (Wh), to power a given load for a target runtime. Enter load power, battery voltage, desired runtime, and system efficiency, and the calculator returns both the ideal and efficiency-adjusted capacity needed.",
-    },
-    {
-      q: "What is the formula for battery capacity?",
-      a: "Energy (Wh) = Power (W) × Runtime (hours). Capacity (Ah) = Energy (Wh) ÷ Voltage (V). For example, a 100W load running for 5 hours needs 100 × 5 = 500Wh, and at 12V that's 500 ÷ 12 ≈ 41.67Ah of ideal capacity before adjusting for system efficiency.",
-    },
-    {
-      q: "Why do I need to adjust battery capacity for efficiency?",
-      a: "Real battery systems lose some energy to internal resistance, inverter conversion losses, and discharge inefficiency, so the ideal Ah figure understates what you actually need to buy. Adjusted Capacity = Ideal Capacity ÷ Efficiency — at 80% efficiency (typical for lead-acid), a 41.67Ah ideal requirement becomes 52.08Ah of actual battery capacity needed.",
-    },
-    {
-      q: "What efficiency should I use for different battery types?",
-      a: "Lead-acid batteries typically run around 80% round-trip efficiency due to higher internal resistance and voltage sag under load. Lithium-ion batteries run around 90%. LiFePO4 (lithium iron phosphate) batteries run around 95%, among the most efficient common chemistries, which is one reason they're increasingly preferred for solar and backup applications despite a higher upfront cost.",
-    },
-    {
-      q: "How do I calculate the current a battery will discharge?",
-      a: "Current (A) = Power (W) ÷ Voltage (V). A 300W load on a 24V battery draws 300 ÷ 24 = 12.5A. This figure is important for checking that your battery's maximum discharge current rating and the connecting cable's ampacity can handle the load safely.",
-    },
-    {
-      q: "Why does battery voltage matter for sizing?",
-      a: "For the same power and runtime, a higher-voltage battery system needs proportionally fewer amp-hours, since Ah = Wh ÷ V. A 500Wh requirement needs about 41.7Ah at 12V but only about 20.8Ah at 24V — this is one reason larger solar and backup systems often use 24V or 48V battery banks rather than 12V, since it reduces both the Ah requirement and the current (and therefore cable size) needed.",
-    },
-    {
-      q: "How much battery capacity do I need for an 8-hour LED lighting backup?",
-      a: "For a 60W LED lighting load at 12V running 8 hours: Energy = 60 × 8 = 480Wh, ideal capacity = 480 ÷ 12 = 40Ah. Adjusted for 80% lead-acid efficiency: 40 ÷ 0.8 = 50Ah — so a 50Ah (or larger, for margin) 12V lead-acid battery would cover this load.",
-    },
-    {
-      q: "Should I size a battery to its rated capacity or add margin?",
-      a: "Add margin beyond the calculated adjusted capacity — most battery chemistries shouldn't be regularly discharged to 100% of rated capacity, since deep discharging shortens cycle life significantly for lead-acid batteries especially. A common practice is sizing for 20-30% additional headroom beyond the calculated requirement, particularly for lead-acid systems.",
-    },
-    {
-      q: "How is this different from a battery backup time calculator?",
-      a: "This calculator solves for required capacity given a target runtime — useful when specifying a new battery. A battery backup time calculator solves the reverse problem, estimating how long an existing battery of known capacity will last under a given load — useful when checking an already-purchased battery's runtime.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, runtime, and battery type values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = batteryCapacityCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter load power", "Input the total power in watts (W) that the connected equipment draws."],
-    ["Enter battery voltage", "Input the nominal battery voltage — commonly 12V, 24V, or 48V for backup and solar systems."],
-    ["Enter desired runtime", "Input how many hours you need the load to run on battery power."],
-    ["Select battery type", "Choose lead-acid, lithium-ion, or LiFePO4 — each has a different default efficiency assumption built in."],
-    ["Read the required capacity", "View both ideal capacity (Ah) and efficiency-adjusted capacity, along with total energy (Wh) and discharge current (A)."],
-    ["Apply a preset or export results", "Use a built-in preset for common scenarios like LED backup, router backup, or solar systems, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = batteryCapacityCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

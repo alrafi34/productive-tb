@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { surveyAreaCalculatorConfig } from "./config";
 
 export default function SurveyAreaCalculatorSEO() {
+  const { howToSteps, faq } = surveyAreaCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,47 +28,14 @@ export default function SurveyAreaCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Survey Area Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select your plot type: Rectangle, Triangle, or Polygon",
-                "Choose your input unit (feet, meters, yards, or km)",
-                "Enter the dimensions for your selected plot type",
-                "Select your preferred primary output unit",
-                "View the instant area result and full conversion table",
-                "Copy, save, or export the result as needed",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Rectangle, triangle, and polygon plot support",
-                "Real-time calculation as you type",
-                "Input units: feet, meters, yards, kilometers",
-                "8 output units including acres, bigha, katha",
-                "Full conversion table for all units at once",
-                "Quick presets for common plot sizes",
-                "Save history and export to TXT",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -188,44 +158,7 @@ export default function SurveyAreaCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How do I enter polygon coordinates?",
-              a: "Enter one coordinate pair per line in the format 'x y' (space-separated). For example: '0 0' on line 1, '100 0' on line 2, '100 50' on line 3, '0 50' on line 4. You need at least 3 points to form a valid polygon.",
-            },
-            {
-              q: "What is the Shoelace formula?",
-              a: "The Shoelace formula (also called the Surveyor's formula) calculates the area of any polygon given its vertex coordinates. It works by summing cross-products of consecutive coordinate pairs: Area = ½|Σ(xᵢyᵢ₊₁ − yᵢxᵢ₊₁)|.",
-            },
-            {
-              q: "What is Heron's formula?",
-              a: "Heron's formula calculates the area of a triangle when all three side lengths are known. First compute the semi-perimeter s = (a+b+c)/2, then Area = √(s(s-a)(s-b)(s-c)). The sides must satisfy the triangle inequality.",
-            },
-            {
-              q: "How accurate are the conversions?",
-              a: "The conversions use standard international factors: 1 acre = 43,560 sq ft, 1 hectare = 107,639 sq ft. Regional units like bigha and katha use common standard values (14,400 sq ft and 720 sq ft respectively), which may vary slightly by region.",
-            },
-            {
-              q: "Can I calculate area in meters and get the result in acres?",
-              a: "Yes. Select 'Meters (m)' as your input unit, enter your dimensions, then select 'Acres' as your primary output unit. The calculator automatically converts the area from square meters to acres.",
-            },
-            {
-              q: "What is a decimal in land measurement?",
-              a: "A decimal is a land unit used in Bangladesh and parts of India. 1 decimal equals 435.6 square feet or 1/100th of an acre. It is commonly used for smaller residential plots.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

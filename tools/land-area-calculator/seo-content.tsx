@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { landAreaCalculatorConfig } from "./config";
+
 export default function LandAreaCalculatorSEO() {
+  const { howToSteps, faq } = landAreaCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -83,31 +87,13 @@ export default function LandAreaCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Select Unit:</strong> Choose feet, meters, or yards from the unit selector.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Enter Length:</strong> Type the length of your land plot.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Enter Width:</strong> Type the width of your land plot.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>View Results:</strong> The area in square feet updates instantly, along with sq m, sq yd, and acres.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>Copy or Share:</strong> Use the copy button to grab the result, or generate a shareable link.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Save to History:</strong> Click "Save" to store the calculation for later reference.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -133,31 +119,7 @@ export default function LandAreaCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate land area in square feet?</h3>
-              <p className="text-gray-700">Multiply the length by the width of the rectangular plot. If your dimensions are in meters or yards, the calculator converts them to feet first before multiplying.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I enter dimensions in meters?</h3>
-              <p className="text-gray-700">Yes. Select "Meters" from the unit dropdown and enter your dimensions. The tool automatically converts to feet using the factor 1 m = 3.28084 ft.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How many square feet are in an acre?</h3>
-              <p className="text-gray-700">One acre equals 43,560 square feet. The calculator shows the acreage alongside the square feet result.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Does this work for non-rectangular land?</h3>
-              <p className="text-gray-700">This calculator is designed for rectangular plots. For irregular shapes, use the Plot Area Calculator which supports triangles and trapezoids.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Is my data stored anywhere?</h3>
-              <p className="text-gray-700">No. All calculations happen entirely in your browser. History is saved only to your device's local storage and never sent to any server.</p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

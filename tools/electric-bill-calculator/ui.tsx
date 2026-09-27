@@ -222,7 +222,8 @@ export default function ElectricBillCalculatorUI() {
     setUnits(calc.units.toString());
     setUsageMode("meter");
     setBillingType(calc.billingType);
-    setCurrency(calc.currency);
+    // History saved before a currency was dropped falls back to US dollars
+    setCurrency(calc.currency in TYPICAL_RATE ? calc.currency : "USD");
     if (calc.flatRate !== undefined) setFlatRate(calc.flatRate.toString());
     if (calc.slabs) setSlabs(calc.slabs);
     setServiceCharge(calc.serviceCharge.toString());

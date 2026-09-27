@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { drainageSystemCalculatorConfig } from "./config";
+
 export default function DrainageSystemCalculatorSEO() {
+  const { howToSteps, faq } = drainageSystemCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -12,28 +16,14 @@ export default function DrainageSystemCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use This Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Select Calculation Type</h3>
-              <p className="text-gray-700">Choose from Peak Runoff Flow, Pipe Capacity, Channel Flow, Drainage Area Design, or Stormwater Estimate depending on your project needs.</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Enter Land Area and Rainfall</h3>
-              <p className="text-gray-700">Input the drainage area in m², hectares, or acres. Enter the design rainfall intensity in mm/hr — use local IDF (Intensity-Duration-Frequency) curves for accurate results.</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Set Runoff Coefficient</h3>
-              <p className="text-gray-700">Use the slider or quick-select buttons to set the runoff coefficient (C) based on your surface type. Concrete surfaces use ~0.9; grass lawns use ~0.2.</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Configure Pipe or Channel</h3>
-              <p className="text-gray-700">For pipe sizing, enter diameter, material, and slope. The calculator uses Manning&apos;s n for the selected material to compute full-pipe flow capacity.</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 5: Review Results and Recommendations</h3>
-              <p className="text-gray-700">Instantly see peak runoff, pipe capacity, fill percentage, overflow risk, and engineering recommendations. Export the full report as a TXT file.</p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -130,23 +120,7 @@ export default function DrainageSystemCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {[
-              ["What is the Rational Method?", "The Rational Method (Q = CIA/360) estimates peak stormwater runoff from a drainage area. It's the standard approach for small catchments under 80 hectares and is widely used in US and international drainage design codes."],
-              ["How do I find rainfall intensity for my location?", "Use NOAA Atlas 14 for US locations to find design rainfall intensity for your storm return period (e.g., 10-year, 25-year storm). Enter the intensity in mm/hr for your design storm duration."],
-              ["What pipe size should I use?", "The calculator recommends the minimum standard pipe diameter that can carry the peak runoff flow. Always round up to the next standard size and verify velocity is within acceptable limits."],
-              ["What is Manning's roughness coefficient?", "Manning's n quantifies pipe or channel surface roughness. Smooth PVC has n=0.009; concrete has n=0.013; earth channels have n=0.022–0.030. Lower n means smoother surface and higher flow capacity."],
-              ["Can I use this for large watersheds?", "The Rational Method is most accurate for areas under 80 hectares. For larger watersheds, use the SCS/NRCS Curve Number method or hydrologic modeling software."],
-            ].map(([q, a]) => (
-              <div key={q as string}>
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">{q}</h3>
-                <p className="text-gray-700">{a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

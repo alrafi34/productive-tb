@@ -305,11 +305,11 @@ export default function WireSizeCalculatorUI() {
                   onChange={(e) => handleInputChange('voltage', parseInt(e.target.value) as VoltageType)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
-                  <option value={110}>110V (US)</option>
-                  <option value={120}>120V (US)</option>
-                  <option value={220}>220V (EU/Asia)</option>
-                  <option value={230}>230V (EU/Asia)</option>
-                  <option value={240}>240V (US Split)</option>
+                  <option value={110}>110V (older US rating)</option>
+                  <option value={120}>120V (US, Canada)</option>
+                  <option value={220}>220V (older rating)</option>
+                  <option value={230}>230V (UK, Europe, Australia)</option>
+                  <option value={240}>240V (US split-phase)</option>
                   <option value={380}>380V (Three Phase)</option>
                   <option value={400}>400V (Three Phase)</option>
                   <option value={415}>415V (Three Phase)</option>

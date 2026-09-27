@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { roiRealEstateCalculatorConfig } from "./config";
 
 export default function RoiRealEstateCalculatorSEO() {
+  const { howToSteps, faq } = roiRealEstateCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function RoiRealEstateCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the ROI Real Estate Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the purchase price, down payment, closing costs, and renovation",
-                "Add mortgage rate and term for cash flow analysis",
-                "Enter monthly rent and any other income",
-                "Add monthly expenses: tax, insurance, maintenance, management, HOA",
-                "Set vacancy rate and annual appreciation rate",
-                "Choose your investment duration (1–30 years)",
-                "View ROI, cash flow, projections, and investment rating",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Cash-on-cash ROI, gross yield, and net yield",
-                "Monthly and annual cash flow calculation",
-                "Property appreciation and future value projection",
-                "Year-by-year equity and ROI table",
-                "Break-even month estimation",
-                "Investment rating: Excellent to Poor",
-                "Full expense breakdown with mortgage integration",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -159,44 +128,7 @@ export default function RoiRealEstateCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is a good real estate ROI?",
-              a: "A cash-on-cash ROI of 8–12% is generally considered strong for residential rental properties. Above 12% is excellent. Below 5% may indicate the property is overpriced relative to rental income, though appreciation potential may compensate in high-growth markets.",
-            },
-            {
-              q: "What is the difference between cash-on-cash ROI and total ROI?",
-              a: "Cash-on-cash ROI measures annual rental cash flow as a percentage of your invested capital (down payment + costs). Total ROI includes both cumulative cash flow and property appreciation over the investment period. Total ROI is more relevant for long-term hold strategies.",
-            },
-            {
-              q: "Should I include mortgage payments in ROI calculations?",
-              a: "Yes — mortgage payments are included in the monthly cash flow calculation. Cash-on-cash ROI is calculated after mortgage payments, giving you the true return on your out-of-pocket investment. This is why leveraged investments can show higher cash-on-cash ROI than all-cash purchases.",
-            },
-            {
-              q: "How does appreciation affect ROI?",
-              a: "Property appreciation adds to total return but is not guaranteed. A 3% annual appreciation rate on a $200,000 property adds $6,000 in value in year one, growing to $68,783 over 10 years. The total ROI calculation combines cash flow and appreciation to show the complete investment picture.",
-            },
-            {
-              q: "What is break-even in real estate?",
-              a: "Break-even is the number of months of positive cash flow needed to recover your total investment (down payment + closing costs + renovation). For example, if you invested $60,000 and generate $450/month in cash flow, break-even is approximately 133 months (11 years).",
-            },
-            {
-              q: "How accurate are the projections?",
-              a: "Projections are based on constant appreciation rate and cash flow assumptions. Real-world results vary due to market conditions, rent changes, unexpected repairs, and interest rate fluctuations. Use projections as planning estimates, not guarantees.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

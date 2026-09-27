@@ -12,7 +12,6 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: "$",
   EUR: "€",
   GBP: "£",
-  INR: "₹",
   CAD: "CA$",
   AUD: "A$",
 };
@@ -21,12 +20,11 @@ export const CURRENCY_LABELS: Record<Currency, string> = {
   USD: "USD – US Dollar",
   EUR: "EUR – Euro",
   GBP: "GBP – British Pound",
-  INR: "INR – Indian Rupee",
   CAD: "CAD – Canadian Dollar",
   AUD: "AUD – Australian Dollar",
 };
 
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "INR", "CAD", "AUD"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const COMPOUND_FREQUENCY_LABELS: Record<string, string> = {
   yearly: "Yearly",
@@ -53,7 +51,7 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): 
 // ── Formatting ────────────────────────────────────────────────────────────────
 
 export function fmt(value: number, currency: Currency, decimals = 0): string {
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   return `${sym}${value.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
@@ -179,7 +177,7 @@ export function clearHistory(): void {
 // ── CSV Export ────────────────────────────────────────────────────────────────
 
 export function generateCSV(breakdown: YearlyBreakdown[], currency: Currency, hasInflation: boolean): string {
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   const headers = hasInflation
     ? ["Year", `Property Value (${sym})`, `Annual Gain (${sym})`, `Cumulative Gain (${sym})`, `Inflation-Adjusted Value (${sym})`]
     : ["Year", `Property Value (${sym})`, `Annual Gain (${sym})`, `Cumulative Gain (${sym})`];
@@ -209,14 +207,14 @@ export function downloadFile(content: string, filename: string): void {
 }
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[result.currency];
+  const sym = (CURRENCY_SYMBOLS[result.currency] ?? "$");
   return [
     "Property Appreciation Calculator – Results",
     "=".repeat(45),
     `Initial Property Value: ${sym}${result.initialValue.toLocaleString("en-US")}`,
     `Annual Appreciation Rate: ${inputs.appreciationRate}%`,
     `Investment Duration: ${inputs.years} years`,
-    `Compound Frequency: ${COMPOUND_FREQUENCY_LABELS[inputs.compoundFrequency]}`,
+    `Compound Frequency: ${(COMPOUND_FREQUENCY_LABELS[inputs.compoundFrequency] ?? inputs.compoundFrequency)}`,
     "",
     `Future Estimated Value: ${sym}${result.futureValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}`,
     `Total Appreciation Gain: ${sym}${result.totalGain.toLocaleString("en-US", { maximumFractionDigits: 0 })}`,

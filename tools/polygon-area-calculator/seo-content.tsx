@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { polygonAreaCalculatorConfig } from "./config";
 
 export default function PolygonAreaCalculatorSEO() {
+  const { howToSteps, faq } = polygonAreaCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,49 +28,14 @@ export default function PolygonAreaCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Polygon Area Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Canvas Mode</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Click anywhere on the canvas to place a vertex",
-                "Continue clicking to add more points (minimum 3)",
-                "Drag any point to adjust the polygon shape",
-                "Use Undo/Redo to correct mistakes",
-                "Set the scale (1 unit = X meters/feet) for real-world area",
-                "Select your preferred output unit",
-                "View the live area result and all unit conversions",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Text Mode</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Switch to Text mode using the tab above the canvas",
-                "Enter one coordinate pair per line: x, y",
-                "Use decimal values for precision (e.g. 10.5, 23.7)",
-                "Click Apply Coordinates to plot on canvas",
-                "The polygon is auto-fitted to the canvas view",
-                "Adjust scale and output unit as needed",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -156,44 +124,7 @@ export default function PolygonAreaCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the Shoelace formula?",
-              a: "The Shoelace formula (Surveyor's formula) calculates the area of any simple polygon given its vertex coordinates. The formula is: Area = ½ × |Σ(xᵢyᵢ₊₁ − yᵢxᵢ₊₁)|. It works for any polygon — convex, concave, or irregular — as long as the vertices are listed in order and the polygon does not self-intersect.",
-            },
-            {
-              q: "How do I get real-world area from canvas coordinates?",
-              a: "Use the Scale setting. If 1 canvas unit represents 5 meters, set scale to 5 and unit to 'm'. The calculator multiplies the raw canvas area by scale² to get the real-world area in square meters, then converts to your selected output unit.",
-            },
-            {
-              q: "Can I calculate area for a self-intersecting polygon?",
-              a: "The Shoelace formula gives the net signed area for self-intersecting polygons, which may not match the visual area. For accurate results, ensure your polygon vertices are listed in order (clockwise or counterclockwise) without crossing edges.",
-            },
-            {
-              q: "How do I enter GPS coordinates?",
-              a: "Switch to Text mode and enter your GPS coordinates as decimal degrees (e.g. longitude, latitude pairs). The calculator will compute the area in canvas units, which you can scale to real-world area using the scale factor.",
-            },
-            {
-              q: "What is snap-to-grid?",
-              a: "When snap-to-grid is enabled, points you place on the canvas automatically snap to the nearest grid intersection. This makes it easier to create precise shapes with clean coordinates.",
-            },
-            {
-              q: "Can I export the polygon coordinates?",
-              a: "Yes. Use the Export section to download coordinates as CSV, the full result as JSON, a text report as TXT, or a PNG image of the canvas visualization.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

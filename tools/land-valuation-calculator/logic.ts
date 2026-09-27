@@ -50,22 +50,22 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: "$",
   EUR: "€",
   GBP: "£",
-  BDT: "৳",
-  INR: "₹",
+  CAD: "CA$",
+  AUD: "A$",
 };
 
 export const CURRENCY_LABELS: Record<Currency, string> = {
   USD: "USD ($)",
   EUR: "EUR (€)",
   GBP: "GBP (£)",
-  BDT: "BDT (৳)",
-  INR: "INR (₹)",
+  CAD: "CAD (CA$)",
+  AUD: "AUD (A$)",
 };
 
 export const ALL_UNITS: Unit[] = [
   "sqft", "sqm", "acre", "hectare", "decimal", "katha", "bigha", "marla", "kanal",
 ];
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "BDT", "INR"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export function validateArea(value: string): string | null {
   if (!value || value.trim() === "") return "Please enter a valid land area.";
@@ -106,7 +106,7 @@ export function formatNumber(value: number, decimals: number): string {
 }
 
 export function formatCurrency(value: number, currency: Currency, decimals: number): string {
-  return `${CURRENCY_SYMBOLS[currency]}${formatNumber(value, decimals)}`;
+  return `${(CURRENCY_SYMBOLS[currency] ?? "$")}${formatNumber(value, decimals)}`;
 }
 
 export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
@@ -142,7 +142,7 @@ export function clearHistory(): void {
 }
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const p = inputs.precision;
   return [
     "Land Valuation Calculator – Report",

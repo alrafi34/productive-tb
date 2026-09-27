@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { logicGateCalculatorConfig } from "./config";
+
 export default function LogicGateCalculatorSEO() {
+  const { howToSteps, faq } = logicGateCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -351,85 +355,7 @@ export default function LogicGateCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between AND and NAND gates?</h3>
-              <p className="text-sm text-gray-700">
-                AND gate outputs 1 only when both inputs are 1. NAND gate is the inverse - it outputs 0 only when 
-                both inputs are 1, otherwise outputs 1. NAND is a universal gate (can create any other gate), while 
-                AND is not. In IC design, NAND gates are preferred because they're simpler to manufacture and faster 
-                than AND gates. NAND = NOT + AND.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is XOR gate used for?</h3>
-              <p className="text-sm text-gray-700">
-                XOR (Exclusive OR) outputs 1 when inputs are different, 0 when same. Main uses: (1) Binary addition 
-                - XOR gives sum bit in half adder. (2) Parity checking - XOR chain detects odd/even number of 1s. 
-                (3) Encryption - XOR with key for simple cipher. (4) Comparison - detects if two bits differ. (5) 
-                Toggle - XOR with 1 inverts bit. Essential in arithmetic circuits, error detection, and cryptography.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why are NAND and NOR called universal gates?</h3>
-              <p className="text-sm text-gray-700">
-                NAND and NOR are called universal gates because you can create ANY other logic gate using only NAND 
-                or only NOR gates. For example, using only NAND: NOT = NAND with tied inputs, AND = NAND + NOT, 
-                OR = NOT + NAND + NOT. This property is crucial in IC manufacturing - entire processors can be built 
-                using primarily NAND gates, simplifying design and production. AND, OR, NOT are not universal.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I read a truth table?</h3>
-              <p className="text-sm text-gray-700">
-                Truth table shows all possible input combinations and their outputs. Each row is one combination. 
-                For 2 inputs (A, B), there are 4 rows: 00, 01, 10, 11. For 3 inputs, 8 rows. For n inputs, 2<sup>n</sup> 
-                rows. Read left to right: input values, then output. Example: AND gate row "1 1 → 1" means when both 
-                inputs are 1, output is 1. Truth tables completely define gate behavior and are used for circuit 
-                design and verification.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What voltage levels represent 0 and 1 in logic gates?</h3>
-              <p className="text-sm text-gray-700">
-                In TTL (5V logic): 0 = 0-0.8V (LOW), 1 = 2-5V (HIGH). In CMOS (3.3V logic): 0 = 0-1V, 1 = 2.3-3.3V. 
-                In CMOS (5V logic): 0 = 0-1.5V, 1 = 3.5-5V. The gap between LOW and HIGH provides noise immunity. 
-                Modern processors use lower voltages (1.8V, 1.2V, 0.9V) for power efficiency. Arduino uses 5V logic, 
-                Raspberry Pi uses 3.3V. Voltage level shifters needed when interfacing different logic families.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I build a computer using only logic gates?</h3>
-              <p className="text-sm text-gray-700">
-                Yes! All computers are fundamentally built from logic gates. CPU contains billions of transistors 
-                forming logic gates. Basic components: (1) ALU - arithmetic using adders (XOR, AND gates). (2) 
-                Registers - memory using flip-flops (NAND/NOR gates). (3) Control unit - state machines (various 
-                gates). (4) Memory - arrays of latches. Simple 8-bit computer can be built with ~1000 gates. Modern 
-                processors have billions of gates. Educational projects like Ben Eater's 8-bit computer demonstrate 
-                this concept.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is propagation delay in logic gates?</h3>
-              <p className="text-sm text-gray-700">
-                Propagation delay is the time between input change and corresponding output change. Measured in 
-                nanoseconds (ns). TTL gates: 5-10ns. CMOS gates: 10-50ns. Modern processors: &lt;1ns. Delay limits 
-                maximum clock speed - faster gates allow higher frequencies. Caused by transistor switching time and 
-                capacitance. Critical in timing analysis and high-speed design. Multiple gates in series add delays. 
-                Affects maximum operating frequency of digital circuits.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -445,6 +371,17 @@ export default function LogicGateCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Logic Gate Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

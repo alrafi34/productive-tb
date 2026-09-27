@@ -7,7 +7,7 @@ export const houseWiringLoadCalculatorConfig = {
   category: "electrical",
   slug: "house-wiring-load-calculator",
   seo: {
-    title: "House Wiring Load Calculator — Free Electrical Load & Breaker Tool",
+    title: "House Wiring Load Calculator — Load, Amps & Breaker",
     description: "Calculate total house electrical load, current, and breaker size instantly with a 34-item appliance library and diversity factor. Free, browser-based.",
     keywords: [
       "house wiring load calculator",
@@ -33,7 +33,7 @@ export const houseWiringLoadCalculatorConfig = {
       "panel sizing calculator",
     ],
     og: {
-      title: "House Wiring Load Calculator — Free Electrical Load & Breaker Tool",
+      title: "House Wiring Load Calculator — Load, Amps & Breaker",
       description: "Calculate total house electrical load, current, and breaker size instantly with a 34-item appliance library and diversity factor. Free, browser-based.",
       url: `${siteConfig.url}/tools/electrical/house-wiring-load-calculator`
     },
@@ -48,7 +48,7 @@ export const houseWiringLoadCalculatorConfig = {
       },
       {
         name: "Select Your Supply Voltage",
-        text: "Choose 110V, 220V, 230V, or 240V to match your electrical system, since current equals power divided by voltage.",
+        text: "Choose 120V, 240V, 230V or 220V to match your electrical system, since current equals power divided by voltage.",
       },
       {
         name: "Set the Diversity Factor",
@@ -86,7 +86,7 @@ export const houseWiringLoadCalculatorConfig = {
       },
       {
         q: "What voltage should I select for my calculation?",
-        a: "Select the voltage that matches your electrical system: 110V is standard in North America for general outlets, 220V is common across most of Asia and continental Europe, 230V is the UK and much of Europe's nominal standard, and 240V is used in Australia and parts of the Pacific. Using the wrong voltage produces an incorrect current and breaker recommendation.",
+        a: "Select the voltage that matches your electrical system: 120V is standard in the US and Canada for general outlets, with 240V split-phase for large appliances; 230V is the nominal voltage in the UK, Europe and Australia; 220V is an older nominal value still found on some equipment. Using the wrong voltage produces an incorrect current and breaker recommendation.",
       },
       {
         q: "What does apparent power mean in the results?",

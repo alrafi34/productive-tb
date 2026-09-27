@@ -119,8 +119,6 @@ export const CURRENCIES: { code: Currency; label: string }[] = [
   { code: "GBP", label: "GBP (£)" },
   { code: "CAD", label: "CAD (CA$)" },
   { code: "AUD", label: "AUD (A$)" },
-  { code: "INR", label: "INR (₹)" },
-  { code: "BDT", label: "BDT (৳)" },
 ];
 
 /* A starting price per kWh for each currency, replaced by the visitor's own.
@@ -132,19 +130,14 @@ export const TYPICAL_RATE: Record<Currency, number> = {
   GBP: 0.2632,
   CAD: 0.18,
   AUD: 0.33,
-  INR: 7,
-  BDT: 8.5,
 };
 
 const CURRENCY_BY_TIMEZONE: Record<string, Currency> = {
   "Europe/London": "GBP",
-  "Asia/Kolkata": "INR",
-  "Asia/Calcutta": "INR",
-  "Asia/Dhaka": "BDT",
 };
 
 const CURRENCY_BY_REGION: Record<string, Currency> = {
-  US: "USD", GB: "GBP", CA: "CAD", AU: "AUD", IN: "INR", BD: "BDT",
+  US: "USD", GB: "GBP", CA: "CAD", AU: "AUD",
   DE: "EUR", FR: "EUR", ES: "EUR", IT: "EUR", NL: "EUR", BE: "EUR", AT: "EUR",
   IE: "EUR", PT: "EUR", FI: "EUR", GR: "EUR", SK: "EUR", SI: "EUR", LT: "EUR",
   LV: "EUR", EE: "EUR", LU: "EUR", MT: "EUR", CY: "EUR", HR: "EUR",
@@ -172,7 +165,7 @@ export function guessCurrency(timeZone?: string, language?: string): Currency {
 
 const currencyFormatters = new Map<string, Intl.NumberFormat>();
 
-// Format number with currency ("$27.00", "€8.70", "৳1,912.00")
+// Format number with currency ("$27.00", "€8.70", "£41.20")
 export function formatCurrency(value: number, currency: Currency, decimals: number = 2): string {
   const key = `${currency}-${decimals}`;
   let formatter = currencyFormatters.get(key);
@@ -296,33 +289,6 @@ export function getPresets(): Preset[] {
       billingType: "flat",
       currency: "EUR",
       flatRate: 0.29
-    },
-    {
-      name: "India Residential",
-      description: "Typical Indian tiered tariff",
-      billingType: "tiered",
-      currency: "INR",
-      slabs: [
-        { id: generateId(), min: 0, max: 100, rate: 3.0 },
-        { id: generateId(), min: 101, max: 200, rate: 4.5 },
-        { id: generateId(), min: 201, max: 500, rate: 6.0 },
-        { id: generateId(), min: 501, max: Infinity, rate: 7.0 }
-      ]
-    },
-    {
-      name: "Bangladesh Residential",
-      description: "BERC tiered tariff (June 2026) + 5% VAT",
-      billingType: "tiered",
-      currency: "BDT",
-      taxPercent: 5,
-      slabs: [
-        { id: generateId(), min: 0, max: 75, rate: 5.26 },
-        { id: generateId(), min: 76, max: 200, rate: 8.5 },
-        { id: generateId(), min: 201, max: 300, rate: 9.1 },
-        { id: generateId(), min: 301, max: 400, rate: 9.62 },
-        { id: generateId(), min: 401, max: 600, rate: 15.01 },
-        { id: generateId(), min: 601, max: Infinity, rate: 17.35 }
-      ]
     }
   ];
 }
@@ -330,9 +296,9 @@ export function getPresets(): Preset[] {
 // Create default slabs
 export function createDefaultSlabs(): Slab[] {
   return [
-    { id: generateId(), min: 0, max: 100, rate: 5 },
-    { id: generateId(), min: 101, max: 300, rate: 7 },
-    { id: generateId(), min: 301, max: Infinity, rate: 10 }
+    { id: generateId(), min: 0, max: 100, rate: 0.15 },
+    { id: generateId(), min: 101, max: 300, rate: 0.2 },
+    { id: generateId(), min: 301, max: Infinity, rate: 0.28 }
   ];
 }
 

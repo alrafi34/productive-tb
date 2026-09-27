@@ -332,7 +332,7 @@ export default function GroundFaultCurrentCalculatorUI() {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  System Voltage (V)
+                  Voltage to Ground, U₀ (V)
                 </label>
                 <input
                   type="number"
@@ -343,13 +343,13 @@ export default function GroundFaultCurrentCalculatorUI() {
                   step="1"
                   min="0"
                 />
-                <p className="text-xs text-gray-500 mt-1">Line-to-neutral or line-to-line voltage</p>
+                <p className="text-xs text-gray-500 mt-1">Phase-to-ground voltage: 120 V or 277 V in the US, 230 V in the UK and Europe (not the 208/400/480 V line-to-line value)</p>
               </div>
 
               {mode === 'basic' ? (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Total Fault Loop Impedance (Ω)
+                    Total Fault Loop Impedance, Zs (Ω)
                   </label>
                   <input
                     type="number"
@@ -382,7 +382,7 @@ export default function GroundFaultCurrentCalculatorUI() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Cable Impedance (Ω)
+                      Cable Loop Impedance, Phase + Ground (Ω)
                     </label>
                     <input
                       type="number"
@@ -413,7 +413,7 @@ export default function GroundFaultCurrentCalculatorUI() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Transformer Rating (kVA)
+                        Transformer Rating (kVA, three-phase)
                       </label>
                       <input
                         type="number"
@@ -507,7 +507,7 @@ export default function GroundFaultCurrentCalculatorUI() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <div className="text-xs text-blue-600 uppercase tracking-wider mb-1 font-semibold">System Voltage</div>
+                    <div className="text-xs text-blue-600 uppercase tracking-wider mb-1 font-semibold">Voltage to Ground</div>
                     <div className="text-2xl font-bold text-blue-900">{result.systemVoltage}V</div>
                     <div className="text-xs text-blue-700">{result.systemType}</div>
                   </div>

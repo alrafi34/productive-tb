@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { rainwaterRunoffCalculatorConfig } from "./config";
 
 export default function RainwaterRunoffCalculatorSEO() {
+  const { howToSteps, faq } = rainwaterRunoffCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -34,53 +37,14 @@ export default function RainwaterRunoffCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Runoff Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the rainfall amount and select the unit (mm, cm, or inches)",
-                "Enter the land area and select the unit (m², ft², acres, or hectares)",
-                "Choose the surface type from the dropdown — the coefficient is set automatically",
-                "For custom surfaces, select 'Custom Coefficient' and enter a value between 0 and 1",
-                "View the instant runoff estimate in liters, m³, gallons, and barrels",
-                "Check the harvest potential rating and recommendations",
-                "Copy, save, or export the result as a TXT report",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type",
-                "8 preset surface types with standard coefficients",
-                "Custom runoff coefficient mode",
-                "3 rainfall units: mm, cm, inches",
-                "4 area units: m², ft², acres, hectares",
-                "Output in liters, m³, gallons, and barrels",
-                "Rainwater harvest potential rating",
-                "Engineering recommendations",
-                "Calculation history with LocalStorage",
-                "Export results as TXT report",
-                "Copy to clipboard",
-                "Mobile-friendly for field use",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -190,44 +154,7 @@ export default function RainwaterRunoffCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is rainwater runoff calculated?",
-              a: "Runoff volume is calculated using the formula: Runoff (liters) = Rainfall (mm) × Area (m²) × Runoff Coefficient. The runoff coefficient (C) represents the fraction of rainfall that becomes surface runoff. For example, 50 mm of rain on 100 m² of concrete (C = 0.90) produces 50 × 100 × 0.90 = 4,500 liters.",
-            },
-            {
-              q: "What is a runoff coefficient?",
-              a: "The runoff coefficient (C) is a dimensionless number between 0 and 1 that represents the proportion of rainfall that becomes runoff. A coefficient of 0.90 means 90% of rainfall runs off the surface. Impervious surfaces like roofs and concrete have high coefficients, while permeable surfaces like grass and sandy soil have low coefficients.",
-            },
-            {
-              q: "Why does surface type matter for runoff?",
-              a: "Different surfaces have very different infiltration rates. Concrete and asphalt are nearly impervious, so most rainfall becomes runoff. Grass and soil absorb significant amounts of water, reducing runoff. Choosing the right surface type ensures accurate estimates for drainage design and water management.",
-            },
-            {
-              q: "What is the difference between runoff and infiltration?",
-              a: "Runoff is the portion of rainfall that flows over the surface into drains, streams, or collection systems. Infiltration is the portion that soaks into the ground and recharges groundwater. The runoff coefficient determines the split: C = 0.90 means 90% runoff and 10% infiltration.",
-            },
-            {
-              q: "Can I use this for rainwater harvesting calculations?",
-              a: "Yes. The calculator shows the total runoff volume available for collection. For harvesting, use a roof surface (C = 0.95) as your catchment area. Multiply the result by a first-flush factor (typically 0.85–0.90) to account for initial contamination. The harvest potential rating gives a quick guide to collection feasibility.",
-            },
-            {
-              q: "What units does the calculator support?",
-              a: "Rainfall can be entered in millimeters (mm), centimeters (cm), or inches (in). Land area can be entered in square meters (m²), square feet (ft²), acres, or hectares. Results are shown in liters, cubic meters (m³), US gallons, and standard barrels (~190 liters each).",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

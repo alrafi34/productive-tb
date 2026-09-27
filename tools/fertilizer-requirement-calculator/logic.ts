@@ -16,7 +16,6 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: "$",
   EUR: "€",
   GBP: "£",
-  INR: "₹",
   CAD: "CA$",
   AUD: "A$",
 };
@@ -25,12 +24,11 @@ export const CURRENCY_LABELS: Record<Currency, string> = {
   USD: "USD – US Dollar",
   EUR: "EUR – Euro", 
   GBP: "GBP – British Pound",
-  INR: "INR – Indian Rupee",
   CAD: "CAD – Canadian Dollar",
   AUD: "AUD – Australian Dollar",
 };
 
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "INR", "CAD", "AUD"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const AREA_UNIT_LABELS: Record<AreaUnit, string> = {
   acre: "Acre",
@@ -74,13 +72,16 @@ export const ALL_FERTILIZERS: FertilizerType[] = ["urea", "dap", "mop", "npk-10-
 
 // ── Preset Data ──────────────────────────────────────────────────────────────
 
+/* Typical kg per acre for one season (phosphorus as P₂O₅, potassium as K₂O),
+   from the middle of US university extension ranges: corn about 150–180 lb N/acre,
+   wheat 90–120, rice 120–150, potatoes 150–200. A soil test should set the real rates. */
 export const CROP_NUTRIENT_PRESETS: Record<CropType, NutrientRequirement> = {
-  rice: { nitrogen: 60, phosphorus: 25, potassium: 30 },
-  wheat: { nitrogen: 80, phosphorus: 30, potassium: 40 },
-  corn: { nitrogen: 120, phosphorus: 40, potassium: 60 },
-  tomato: { nitrogen: 100, phosphorus: 50, potassium: 80 },
-  potato: { nitrogen: 90, phosphorus: 35, potassium: 120 },
-  vegetables: { nitrogen: 70, phosphorus: 30, potassium: 50 },
+  rice: { nitrogen: 60, phosphorus: 20, potassium: 25 },
+  wheat: { nitrogen: 45, phosphorus: 20, potassium: 20 },
+  corn: { nitrogen: 75, phosphorus: 30, potassium: 35 },
+  tomato: { nitrogen: 55, phosphorus: 45, potassium: 70 },
+  potato: { nitrogen: 80, phosphorus: 55, potassium: 90 },
+  vegetables: { nitrogen: 45, phosphorus: 25, potassium: 45 },
   custom: { nitrogen: 0, phosphorus: 0, potassium: 0 },
 };
 
@@ -119,7 +120,7 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): 
 // ── Formatting ────────────────────────────────────────────────────────────────
 
 export function fmt(value: number, currency: Currency, decimals = 2): string {
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   return `${sym}${value.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
@@ -248,13 +249,13 @@ export function clearHistory(): void {
 // ── Export Functions ──────────────────────────────────────────────────────────
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[result.currency];
+  const sym = (CURRENCY_SYMBOLS[result.currency] ?? "$");
   return [
     "Fertilizer Requirement Calculator – Results",
     "=".repeat(45),
-    `Crop: ${CROP_LABELS[result.cropType]}`,
-    `Land Area: ${fmtNum(result.landArea, 2)} ${AREA_UNIT_LABELS[result.areaUnit]} (${fmtNum(result.landAreaInAcres, 2)} acres)`,
-    `Fertilizer: ${FERTILIZER_LABELS[result.fertilizerType]}`,
+    `Crop: ${(CROP_LABELS[result.cropType] ?? result.cropType)}`,
+    `Land Area: ${fmtNum(result.landArea, 2)} ${(AREA_UNIT_LABELS[result.areaUnit] ?? result.areaUnit)} (${fmtNum(result.landAreaInAcres, 2)} acres)`,
+    `Fertilizer: ${(FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType)}`,
     "",
     "Nutrient Requirements:",
     ...result.calculations.map(c => 

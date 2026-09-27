@@ -1,55 +1,8 @@
+import { energyConsumptionCalculatorConfig } from "./config";
 export default function EnergyConsumptionCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is an energy consumption calculator?",
-      a: "An energy consumption calculator is a free online tool that converts an appliance's power rating and usage time into kilowatt-hours (kWh) and an estimated electricity cost. Enter the wattage, hours and minutes of daily use, quantity of devices, and your electricity rate, and the calculator returns daily, monthly, and yearly energy use and cost for one appliance or a full list of them.",
-    },
-    {
-      q: "How is energy consumption calculated?",
-      a: "Energy (kWh) = Power (W) × Time (hours) ÷ 1000. For example, a 1,500W kettle running for 30 minutes (0.5 hours) uses 1,500 × 0.5 ÷ 1000 = 0.75 kWh. Multiply by quantity if you have more than one of the same appliance, then multiply by your electricity rate per kWh to get the cost.",
-    },
-    {
-      q: "What is a kilowatt-hour (kWh) and why does it matter?",
-      a: "A kilowatt-hour is the energy used by a 1,000-watt load running for one hour — it's the unit your electricity provider bills you on. A 100W device running for 10 hours also uses 1 kWh, since energy is the product of power and time regardless of how that time is distributed. Comparing appliances in kWh, rather than watts alone, is what lets you compare their actual cost impact.",
-    },
-    {
-      q: "What is a typical electricity rate to use in this calculator?",
-      a: "Electricity rates vary by location, provider, and time of use, typically ranging from $0.10 to $0.35 per kWh. In the US the national average is around $0.12–$0.17 per kWh; check a recent electricity bill for your exact rate, since tiered pricing or time-of-use plans can make the effective rate higher than the headline number.",
-    },
-    {
-      q: "How do I calculate energy consumption for multiple appliances?",
-      a: "Add each appliance with its own power rating, usage hours and minutes, and quantity. The calculator computes energy and cost per appliance individually, then sums them into a combined daily, monthly, and yearly total — so you can see both the whole-household figure and which single appliance is driving the bill.",
-    },
-    {
-      q: "What is the difference between running wattage and rated wattage?",
-      a: "Rated wattage on a nameplate is usually the maximum or nominal draw, not the continuous average. Compressor-based appliances like refrigerators and air conditioners cycle on and off, so their average running wattage is often 30–50% lower than the nameplate figure. For the most accurate estimate, use a plug-in power meter to measure actual draw rather than relying solely on the label.",
-    },
-    {
-      q: "How much does it cost to run an air conditioner for a month?",
-      a: "A 1.5-ton air conditioner rated at 1,800W running 8 hours a day uses (1,800 × 8 ÷ 1000) = 14.4 kWh per day, or 432 kWh per month. At $0.14 per kWh, that's roughly $60.48 per month. Larger units, longer run times, or higher local rates increase this proportionally — enter your unit's actual wattage and hours for a precise figure.",
-    },
-    {
-      q: "Why does my calculated cost not match my actual electricity bill?",
-      a: "Electricity bills include fixed service charges, taxes, and sometimes tiered or time-of-use rates that a flat per-kWh calculation doesn't capture. This calculator estimates only the variable energy cost of the appliances you enter — for appliances you didn't include, standby power draw, and utility fees, the calculated total will run lower than your actual bill.",
-    },
-    {
-      q: "How can I reduce my appliance energy consumption?",
-      a: "The biggest wins are usually replacing high-wattage incandescent or halogen lighting with LEDs (roughly 80% less energy for the same light output), reducing air conditioner and water heater run time, and unplugging devices that draw standby power when idle. Running full loads in washing machines and dishwashers, rather than partial loads, also reduces the number of cycles needed per week.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your appliance list, power ratings, usage hours, and electricity rate are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = energyConsumptionCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Add an appliance", "Click add appliance, or choose from the built-in preset list covering lighting, cooling, kitchen, and entertainment devices with typical wattage already filled in."],
-    ["Enter power rating", "Type the appliance's wattage from its nameplate or manual, or use the auto-filled value from a preset. Power in kW can be converted to watts by multiplying by 1,000."],
-    ["Set daily usage time", "Enter hours and minutes of typical daily use, plus the quantity if you have more than one of the same device — for example, 4 LED bulbs at 3 hours each."],
-    ["Enter your electricity rate", "Input your cost per kWh from a recent electricity bill. The default is a placeholder — using your actual rate is what makes the cost estimate meaningful."],
-    ["Review the daily, monthly, and yearly totals", "The results panel shows combined energy in kWh and cost across all appliances you've added, plus which single appliance is the largest contributor."],
-    ["Save or export the results", "Save the calculation to history for later reference, or export the full breakdown as a CSV or text file for budgeting or an energy audit report."],
-  ];
+  const howToSteps: [string, string][] = energyConsumptionCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

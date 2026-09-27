@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { groundFaultCurrentCalculatorConfig } from "./config";
+
 export default function GroundFaultCurrentCalculatorSEO() {
+  const { howToSteps, faq } = groundFaultCurrentCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
@@ -80,10 +84,10 @@ export default function GroundFaultCurrentCalculatorSEO() {
             <div>
               <h4 className="font-semibold text-gray-800 mb-2">Basic Formula (Ohm's Law)</h4>
               <p className="text-gray-700 text-sm mb-2">
-                <strong>I_fault = V / Z_total</strong>
+                <strong>I_fault = U₀ / Zs</strong>
               </p>
               <p className="text-gray-600 text-sm">
-                Where I_fault is the fault current (A), V is the system voltage (V), and Z_total is the total fault loop impedance (Ω).
+                Where I_fault is the fault current (A), U₀ is the phase-to-ground voltage (120 V or 277 V in the US, 230 V in the UK and Europe) and Zs is the total fault loop impedance (Ω): source, phase conductor and the ground return path.
               </p>
             </div>
             <div>
@@ -92,7 +96,7 @@ export default function GroundFaultCurrentCalculatorSEO() {
                 <strong>Z_total = Z_source + Z_cable + Z_transformer</strong>
               </p>
               <p className="text-gray-600 text-sm">
-                In advanced mode, the total impedance is calculated by summing individual impedance components including source, cable, and transformer impedances.
+                In advanced mode, the source, cable loop and transformer impedances are added. A three-phase transformer&apos;s percentage impedance becomes ohms per phase as Z% × VLL² ÷ S, where VLL² = 3 × U₀². Adding magnitudes this way slightly overstates the impedance, so the current is a conservative (low) estimate.
               </p>
             </div>
           </div>
@@ -232,6 +236,18 @@ export default function GroundFaultCurrentCalculatorSEO() {
         </div>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Ground Fault Current Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

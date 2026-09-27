@@ -79,7 +79,7 @@ export default function WallBoundaryCostCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     const text = `Wall Boundary Cost Estimate\nTotal Cost: ${sym}${formatNumber(result.totalCost, inputs.precision)}\nWall Area: ${formatNumber(result.wallArea, 0)} sq ft\nMaterial: ${sym}${formatNumber(result.materialCost, inputs.precision)}\nLabor: ${sym}${formatNumber(result.laborCost, inputs.precision)}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -116,7 +116,7 @@ export default function WallBoundaryCostCalculatorUI() {
   const set = (key: keyof CalculatorInputs, value: unknown) =>
     setInputs((p) => ({ ...p, [key]: value }));
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const inputCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
   const selectCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium";
 
@@ -164,7 +164,7 @@ export default function WallBoundaryCostCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Wall Thickness</label>
                 <select value={inputs.thickness} onChange={(e) => set("thickness", e.target.value as Thickness)} className={selectCls}>
                   {ALL_THICKNESSES.map((t) => (
-                    <option key={t} value={t}>{THICKNESS_LABELS[t]}</option>
+                    <option key={t} value={t}>{(THICKNESS_LABELS[t] ?? t)}</option>
                   ))}
                 </select>
               </div>
@@ -173,7 +173,7 @@ export default function WallBoundaryCostCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>

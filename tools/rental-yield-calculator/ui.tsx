@@ -59,7 +59,7 @@ export default function RentalYieldCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     const text = `Rental Yield Summary\nProperty: ${sym}${result.propertyPrice.toLocaleString("en-US")} | Rent: ${sym}${result.monthlyRent}/mo\nGross Yield: ${fmtPct(result.grossYield)} | Net Yield: ${fmtPct(result.netYield)}\nMonthly Cash Flow: ${fmtCashFlow(result.monthlyCashFlow, result.currency)}\nRating: ${result.rating}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -78,7 +78,7 @@ export default function RentalYieldCalculatorUI() {
     if (confirm("Clear all calculation history?")) { clearHistory(); setHistory([]); }
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const inputCls  = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
   const selectCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium";
 
@@ -110,7 +110,7 @@ export default function RentalYieldCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -375,7 +375,7 @@ export default function RentalYieldCalculatorUI() {
                         onClick={() => { setInputs(entry.inputs); setShowHistory(false); }}>
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-gray-900 text-sm">
-                            {CURRENCY_SYMBOLS[entry.inputs.currency]}{parseFloat(entry.inputs.propertyPrice).toLocaleString("en-US")} · {CURRENCY_SYMBOLS[entry.inputs.currency]}{parseFloat(entry.inputs.monthlyRent).toLocaleString("en-US")}/mo
+                            {(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}{parseFloat(entry.inputs.propertyPrice).toLocaleString("en-US")} · {(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}{parseFloat(entry.inputs.monthlyRent).toLocaleString("en-US")}/mo
                           </span>
                           <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>
                         </div>

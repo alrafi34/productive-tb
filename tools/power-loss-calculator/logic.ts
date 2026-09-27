@@ -270,13 +270,13 @@ export function getPresets(mode: CalculationMode) {
       { name: "12V DC System", description: "12V, 5A", voltage: 12, current: 5 },
       { name: "24V DC System", description: "24V, 10A", voltage: 24, current: 10 },
       { name: "120V AC Circuit", description: "120V, 15A", voltage: 120, current: 15 },
-      { name: "220V AC Circuit", description: "220V, 10A", voltage: 220, current: 10 },
+      { name: "230V AC Circuit", description: "230V, 10A", voltage: 230, current: 10 },
       { name: "240V AC Circuit", description: "240V, 20A", voltage: 240, current: 20 },
       { name: "480V Industrial", description: "480V, 50A", voltage: 480, current: 50 },
     ];
   } else {
     return [
-      { name: "Household Circuit", description: "220V, 5A, 10Ω", voltage: 220, current: 5, resistance: 10 },
+      { name: "Household Circuit", description: "230V, 5A, 10Ω", voltage: 230, current: 5, resistance: 10 },
       { name: "Industrial Motor", description: "480V, 20A, 1Ω", voltage: 480, current: 20, resistance: 1 },
       { name: "DC Power Supply", description: "12V, 10A, 0.5Ω", voltage: 12, current: 10, resistance: 0.5 },
       { name: "Transmission Line", description: "11kV, 100A, 0.2Ω", voltage: 11000, current: 100, resistance: 0.2 },

@@ -21,17 +21,11 @@ export function debounce(fn: () => void, delay: number) {
 export function validateInputs(inputs: ArcFlashInputs): string | null {
   const { voltage, faultCurrent, workingDistance, exposureTime } = inputs;
 
-  if (voltage <= 0) {
-    return "Voltage must be greater than 0";
+  if (voltage < 208 || voltage > 15000) {
+    return "IEEE 1584 covers system voltages from 208 V to 15,000 V";
   }
-  if (voltage > 15000) {
-    return "Voltage exceeds typical range (>15kV)";
-  }
-  if (faultCurrent <= 0) {
-    return "Fault current must be greater than 0";
-  }
-  if (faultCurrent > 100) {
-    return "Fault current exceeds typical range (>100kA)";
+  if (faultCurrent < 0.7 || faultCurrent > 106) {
+    return "IEEE 1584 covers bolted fault currents from 0.7 to 106 kA";
   }
   if (workingDistance <= 0) {
     return "Working distance must be greater than 0";
@@ -47,65 +41,85 @@ export function validateInputs(inputs: ArcFlashInputs): string | null {
 }
 
 // Calculate arc flash incident energy
+/*
+ * IEEE 1584-2002 empirical model (208 V to 15 kV, 0.7 to 106 kA bolted
+ * fault). The standard also asks for a second run at 85% of the arcing
+ * current with its own clearing time on low-voltage systems; that needs the
+ * protective device curve, so it is left to a full study.
+ */
+interface EquipmentModel { gap: number; x: number; enclosed: boolean; label: string }
+
+function getEquipmentModel(equipmentType: string | undefined, kV: number): EquipmentModel {
+  const type = equipmentType === 'switchgear' || equipmentType === 'open' || equipmentType === 'mcc' ? equipmentType : 'panel';
+  if (kV <= 1) {
+    if (type === 'switchgear') return { gap: 32, x: 1.473, enclosed: true, label: 'Switchgear' };
+    if (type === 'open') return { gap: 40, x: 2.0, enclosed: false, label: 'Open air / cable' };
+    return { gap: 25, x: 1.641, enclosed: true, label: type === 'mcc' ? 'MCC' : 'Panelboard' };
+  }
+  if (type === 'open') return { gap: kV <= 5 ? 102 : 153, x: 2.0, enclosed: false, label: 'Open air / cable' };
+  // Switchgear, MCCs and panels above 1 kV use the switchgear values
+  return { gap: kV <= 5 ? 102 : 153, x: 0.973, enclosed: true, label: 'Switchgear' };
+}
+
 export function calculateArcFlash(inputs: ArcFlashInputs): ArcFlashResult {
-  const { voltage, faultCurrent, workingDistance, exposureTime = 0.1, equipmentType, precision = 2 } = inputs;
+  const { voltage, faultCurrent, workingDistance, exposureTime = 0.1, equipmentType, grounding = 'grounded', precision = 2 } = inputs;
 
-  // Simplified IEEE 1584-inspired calculation
-  const k = getEquipmentFactor(equipmentType);
-  
-  // Basic incident energy formula: IE = (k * V * I * t) / (D^2)
-  const incidentEnergy = (k * voltage * faultCurrent * exposureTime) / (workingDistance * workingDistance);
+  const kV = voltage / 1000;
+  const m = getEquipmentModel(equipmentType, kV);
+  const lgIbf = Math.log10(faultCurrent);
 
-  // Determine risk level
+  // Arcing current, kA
+  const lgIa = kV < 1
+    ? (m.enclosed ? -0.097 : -0.153) + 0.662 * lgIbf + 0.0966 * kV + 0.000526 * m.gap
+      + 0.5588 * kV * lgIbf - 0.00304 * m.gap * lgIbf
+    : 0.00402 + 0.983 * lgIbf;
+  const arcingCurrent = Math.pow(10, lgIa);
+
+  // Normalized incident energy (0.2 s, 610 mm), J/cm²
+  const K1 = m.enclosed ? -0.555 : -0.792;
+  const K2 = grounding === 'grounded' ? -0.113 : 0;
+  const En = Math.pow(10, K1 + K2 + 1.081 * lgIa + 0.0011 * m.gap);
+
+  const Cf = kV <= 1 ? 1.5 : 1.0;
+  const scaled = 4.184 * Cf * En * (exposureTime / 0.2); // J/cm² at 610 mm
+  const Dmm = workingDistance * 25.4;
+  const incidentEnergy = (scaled * Math.pow(610 / Dmm, m.x)) / 4.184; // cal/cm²
+
+  // Arc flash boundary: where the energy falls to 1.2 cal/cm² (5.0 J/cm²)
+  const safetyDistance = Math.pow((scaled * Math.pow(610, m.x)) / 5.0, 1 / m.x) / 25.4;
+
   const riskLevel = getRiskLevel(incidentEnergy);
-
-  // Get PPE category
   const ppeCategory = getPPECategory(incidentEnergy);
-
-  // Calculate safe working distance (distance where IE = 1.2 cal/cm²)
-  const safetyDistance = Math.sqrt((k * voltage * faultCurrent * exposureTime) / 1.2);
-
-  // Get warning message
   const warning = getWarning(riskLevel, incidentEnergy);
-
-  // Generate calculation steps
-  const steps = generateSteps(inputs, incidentEnergy, safetyDistance, k, precision);
+  const steps = generateSteps(inputs, { kV, m, arcingCurrent, En, Cf, incidentEnergy, safetyDistance, K1, K2 }, precision);
 
   return {
     incidentEnergy,
     riskLevel,
     ppeCategory,
     safetyDistance,
+    arcingCurrent,
     warning,
     steps,
   };
 }
 
-// Get equipment factor
-function getEquipmentFactor(equipmentType?: string): number {
-  switch (equipmentType) {
-    case 'panel': return 0.008;
-    case 'switchgear': return 0.012;
-    case 'mcc': return 0.010;
-    case 'transformer': return 0.015;
-    default: return 0.010; // Default factor
-  }
-}
-
-// Determine risk level
+// Risk level by incident energy, cal/cm²
 function getRiskLevel(incidentEnergy: number): 'low' | 'medium' | 'high' | 'extreme' {
   if (incidentEnergy < 1.2) return 'low';
-  if (incidentEnergy < 4) return 'medium';
-  if (incidentEnergy < 8) return 'high';
+  if (incidentEnergy < 8) return 'medium';
+  if (incidentEnergy <= 40) return 'high';
   return 'extreme';
 }
 
-// Get PPE category
+// Minimum arc rating of the PPE (NFPA 70E category ratings: 4, 8, 25, 40 cal/cm²)
 function getPPECategory(incidentEnergy: number): string {
-  if (incidentEnergy < 1.2) return 'Category 0/1';
-  if (incidentEnergy < 4) return 'Category 2';
-  if (incidentEnergy < 8) return 'Category 3';
-  return 'Category 4';
+  if (incidentEnergy < 1.2) return 'Below 1.2 cal/cm²';
+  if (incidentEnergy <= 4) return 'Arc rating ≥ 4 cal/cm² (Category 1)';
+  if (incidentEnergy <= 8) return 'Arc rating ≥ 8 cal/cm² (Category 2)';
+  if (incidentEnergy <= 25) return 'Arc rating ≥ 25 cal/cm² (Category 3)';
+  if (incidentEnergy <= 40) return 'Arc rating ≥ 40 cal/cm² (Category 4)';
+  return 'Above 40 cal/cm²: de-energize';
 }
 
 // Get warning message
@@ -125,47 +139,48 @@ function getWarning(riskLevel: string, incidentEnergy: number): string | undefin
 }
 
 // Generate calculation steps
-function generateSteps(
-  inputs: ArcFlashInputs,
-  incidentEnergy: number,
-  safetyDistance: number,
-  k: number,
-  precision: number
-): string[] {
-  const { voltage, faultCurrent, workingDistance, exposureTime = 0.1, equipmentType } = inputs;
+interface StepValues {
+  kV: number; m: EquipmentModel; arcingCurrent: number; En: number; Cf: number;
+  incidentEnergy: number; safetyDistance: number; K1: number; K2: number;
+}
 
-  const steps = [
-    "Arc Flash Calculation",
+function generateSteps(inputs: ArcFlashInputs, v: StepValues, precision: number): string[] {
+  const { voltage, faultCurrent, workingDistance, exposureTime = 0.1, grounding = 'grounded' } = inputs;
+  const f = (n: number) => formatNumber(n, precision);
+  return [
+    "Arc Flash Calculation (IEEE 1584-2002)",
     "",
     "Given:",
-    `  System Voltage (V) = ${voltage} V`,
-    `  Fault Current (I) = ${faultCurrent} kA`,
-    `  Working Distance (D) = ${workingDistance} inches`,
-    `  Exposure Time (t) = ${exposureTime} seconds`,
-    equipmentType ? `  Equipment Type = ${equipmentType}` : "",
+    `  System voltage = ${voltage} V (${f(v.kV)} kV)`,
+    `  Bolted fault current Ibf = ${faultCurrent} kA`,
+    `  Working distance D = ${workingDistance} in (${f(workingDistance * 25.4)} mm)`,
+    `  Arc duration t = ${exposureTime} s`,
+    `  Equipment = ${v.m.label}: gap G = ${v.m.gap} mm, distance exponent x = ${v.m.x}`,
+    `  System = ${grounding === 'grounded' ? 'solidly grounded' : 'ungrounded or resistance grounded'}`,
     "",
-    "Step 1: Determine Equipment Factor",
-    `  Equipment Factor (k) = ${k}`,
+    "Step 1: Arcing current",
+    v.kV < 1
+      ? "  lg Ia = K + 0.662 lg Ibf + 0.0966 V + 0.000526 G + 0.5588 V lg Ibf − 0.00304 G lg Ibf"
+      : "  lg Ia = 0.00402 + 0.983 lg Ibf",
+    `  Ia = ${f(v.arcingCurrent)} kA`,
     "",
-    "Step 2: Calculate Incident Energy",
-    `  Formula: IE = (k × V × I × t) / D²`,
-    `  IE = (${k} × ${voltage} × ${faultCurrent} × ${exposureTime}) / ${workingDistance}²`,
-    `  IE = ${formatNumber((k * voltage * faultCurrent * exposureTime), precision)} / ${workingDistance * workingDistance}`,
-    `  IE = ${formatNumber(incidentEnergy, precision)} cal/cm²`,
+    "Step 2: Normalized incident energy (0.2 s, 610 mm)",
+    `  lg En = K1 + K2 + 1.081 lg Ia + 0.0011 G  (K1 = ${v.K1}, K2 = ${v.K2})`,
+    `  En = ${f(v.En)} J/cm²`,
     "",
-    "Step 3: Determine Safety Distance",
-    `  Safety Distance (IE = 1.2 cal/cm²)`,
-    `  D_safe = √((k × V × I × t) / 1.2)`,
-    `  D_safe = ${formatNumber(safetyDistance, precision)} inches`,
+    "Step 3: Incident energy at the working distance",
+    `  E = 4.184 × Cf × En × (t / 0.2) × (610 / D)^x  (Cf = ${v.Cf})`,
+    `  E = ${f(v.incidentEnergy * 4.184)} J/cm² = ${f(v.incidentEnergy)} cal/cm²`,
+    "",
+    "Step 4: Arc flash boundary (E = 1.2 cal/cm²)",
+    `  DB = ${f(v.safetyDistance)} in (${f(v.safetyDistance * 25.4)} mm)`,
     "",
     "Results:",
-    `  Incident Energy: ${formatNumber(incidentEnergy, precision)} cal/cm²`,
-    `  PPE Category: ${getPPECategory(incidentEnergy)}`,
-    `  Risk Level: ${getRiskLevel(incidentEnergy).toUpperCase()}`,
-    `  Safe Working Distance: ${formatNumber(safetyDistance, precision)} inches`
+    `  Incident energy: ${f(v.incidentEnergy)} cal/cm²`,
+    `  PPE: ${getPPECategory(v.incidentEnergy)}`,
+    `  Risk level: ${getRiskLevel(v.incidentEnergy).toUpperCase()}`,
+    `  Arc flash boundary: ${f(v.safetyDistance)} in`,
   ];
-
-  return steps.filter(step => step !== "");
 }
 
 // Get common presets
@@ -174,7 +189,7 @@ export function getPresets() {
     { name: "480V Panel", description: "480V, 20kA, 18 inches", voltage: 480, faultCurrent: 20, workingDistance: 18, equipmentType: 'panel' },
     { name: "600V Switchgear", description: "600V, 35kA, 24 inches", voltage: 600, faultCurrent: 35, workingDistance: 24, equipmentType: 'switchgear' },
     { name: "240V MCC", description: "240V, 15kA, 18 inches", voltage: 240, faultCurrent: 15, workingDistance: 18, equipmentType: 'mcc' },
-    { name: "4160V Transformer", description: "4160V, 25kA, 36 inches", voltage: 4160, faultCurrent: 25, workingDistance: 36, equipmentType: 'transformer' },
+    { name: "4.16kV Switchgear", description: "4160V, 25kA, 36 inches", voltage: 4160, faultCurrent: 25, workingDistance: 36, equipmentType: 'switchgear' },
     { name: "208V Panel", description: "208V, 10kA, 18 inches", voltage: 208, faultCurrent: 10, workingDistance: 18, equipmentType: 'panel' },
     { name: "13.8kV Switchgear", description: "13.8kV, 40kA, 48 inches", voltage: 13800, faultCurrent: 40, workingDistance: 48, equipmentType: 'switchgear' },
   ];

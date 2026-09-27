@@ -19,6 +19,8 @@ export const AREA_MULTIPLIERS: Record<AreaUnit, number> = {
   'm²': 1,
   'cm²': 0.0001,
   'mm²': 0.000001,
+  'ft²': 0.09290304,
+  'in²': 0.00064516,
 };
 
 // Generate unique ID

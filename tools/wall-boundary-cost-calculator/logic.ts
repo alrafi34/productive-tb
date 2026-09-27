@@ -1,20 +1,20 @@
 import { CalculatorInputs, CalculationResult, Currency, HistoryEntry, Thickness, Unit } from "./types";
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
-  USD: "$", EUR: "€", GBP: "£", BDT: "৳", INR: "₹",
+  USD: "$", EUR: "€", GBP: "£", CAD: "CA$", AUD: "A$",
 };
 
 export const CURRENCY_LABELS: Record<Currency, string> = {
-  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", BDT: "BDT (৳)", INR: "INR (₹)",
+  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", CAD: "CAD (CA$)", AUD: "AUD (A$)",
 };
 
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "BDT", "INR"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const THICKNESS_LABELS: Record<Thickness, string> = {
-  "4in": "4 inch (Light)",
-  "5in": "5 inch",
-  "9in": "9 inch (Standard)",
-  "12in": "12 inch (Heavy)",
+  "4in": "4 in / 100 mm (one wythe of brick)",
+  "5in": "5 in / 125 mm",
+  "9in": "8–9 in / 200–215 mm (block or two wythes)",
+  "12in": "12 in / 300 mm (heavy)",
 };
 
 export const ALL_THICKNESSES: Thickness[] = ["4in", "5in", "9in", "12in"];
@@ -70,7 +70,7 @@ export function formatNumber(value: number, decimals = 2): string {
 }
 
 export function formatCurrency(value: number, currency: Currency, decimals = 2): string {
-  return `${CURRENCY_SYMBOLS[currency]}${formatNumber(value, decimals)}`;
+  return `${(CURRENCY_SYMBOLS[currency] ?? "$")}${formatNumber(value, decimals)}`;
 }
 
 export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
@@ -106,7 +106,7 @@ export function clearHistory(): void {
 }
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const p = inputs.precision;
   const u = inputs.unit;
   return [
@@ -115,7 +115,7 @@ export function exportToText(inputs: CalculatorInputs, result: CalculationResult
     "",
     `Boundary Length  : ${inputs.perimeter} ${u}`,
     `Wall Height      : ${inputs.wallHeight} ${u}`,
-    `Wall Thickness   : ${THICKNESS_LABELS[inputs.thickness]}`,
+    `Wall Thickness   : ${(THICKNESS_LABELS[inputs.thickness] ?? inputs.thickness)}`,
     `Wall Area        : ${formatNumber(result.wallArea, p)} sq ft`,
     "",
     `Material Cost    : ${sym}${formatNumber(result.materialCost, p)}`,

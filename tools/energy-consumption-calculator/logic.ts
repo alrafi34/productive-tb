@@ -14,7 +14,7 @@ export const APPLIANCE_PRESETS: Record<string, AppliancePreset> = {
   "microwave": { name: "Microwave Oven", power: 1200, category: "Kitchen", typicalHours: 0.5 },
   "electric-kettle": { name: "Electric Kettle", power: 1500, category: "Kitchen", typicalHours: 0.5 },
   "toaster": { name: "Toaster", power: 800, category: "Kitchen", typicalHours: 0.25 },
-  "mixer-grinder": { name: "Mixer Grinder", power: 500, category: "Kitchen", typicalHours: 0.5 },
+  "mixer-grinder": { name: "Blender", power: 500, category: "Kitchen", typicalHours: 0.5 },
   "induction-cooktop": { name: "Induction Cooktop", power: 2000, category: "Kitchen", typicalHours: 2 },
   "electric-stove": { name: "Electric Stove", power: 2500, category: "Kitchen", typicalHours: 2 },
   "washing-machine": { name: "Washing Machine", power: 500, category: "Appliances", typicalHours: 1 },
@@ -189,15 +189,15 @@ export const exportToText = (calculation: EnergyCalculation): string => {
     text += `  Usage: ${appliance.hours}h ${appliance.minutes}m\n`;
     text += `  Quantity: ${appliance.quantity}\n`;
     text += `  Energy: ${formatNumber(energy, 3)} kWh\n`;
-    text += `  Cost: $${formatNumber(cost, 2)}\n\n`;
+    text += `  Cost: ${formatNumber(cost, 2)}\n\n`;
   });
   
   text += "=".repeat(50) + "\n";
   text += `Total Energy: ${formatNumber(calculation.totalEnergy, 3)} kWh\n`;
-  text += `Total Cost: $${formatNumber(calculation.totalCost, 2)}\n\n`;
-  text += `Daily: ${formatNumber(calculation.dailyEnergy, 3)} kWh ($${formatNumber(calculation.dailyCost, 2)})\n`;
-  text += `Monthly: ${formatNumber(calculation.monthlyEnergy, 3)} kWh ($${formatNumber(calculation.monthlyCost, 2)})\n`;
-  text += `Yearly: ${formatNumber(calculation.yearlyEnergy, 3)} kWh ($${formatNumber(calculation.yearlyCost, 2)})\n`;
+  text += `Total Cost: ${formatNumber(calculation.totalCost, 2)}\n\n`;
+  text += `Daily: ${formatNumber(calculation.dailyEnergy, 3)} kWh (${formatNumber(calculation.dailyCost, 2)})\n`;
+  text += `Monthly: ${formatNumber(calculation.monthlyEnergy, 3)} kWh (${formatNumber(calculation.monthlyCost, 2)})\n`;
+  text += `Yearly: ${formatNumber(calculation.yearlyEnergy, 3)} kWh (${formatNumber(calculation.yearlyCost, 2)})\n`;
   
   return text;
 };

@@ -58,8 +58,8 @@ export default function LoanInterestCalculatorPropertyUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
-    const freqLabel = FREQUENCY_LABELS[result.frequency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
+    const freqLabel = (FREQUENCY_LABELS[result.frequency] ?? result.frequency);
     const text = `Property Loan Summary\n${freqLabel} Payment: ${sym}${fmtNum(result.periodicPayment, 2)}\nTotal Interest: ${sym}${fmtNum(result.totalInterest, 0)}\nTotal Payment: ${sym}${fmtNum(result.totalPayment, 0)}\nPayoff: ${result.payoffDate}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -82,10 +82,10 @@ export default function LoanInterestCalculatorPropertyUI() {
     if (confirm("Clear all calculation history?")) { clearHistory(); setHistory([]); }
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const inputCls  = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
   const selectCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium";
-  const freqLabel = result ? FREQUENCY_LABELS[result.frequency] : "Periodic";
+  const freqLabel = result ? (FREQUENCY_LABELS[result.frequency] ?? result.frequency) : "Periodic";
 
   const principal = parseFloat(inputs.loanAmount) || 0;
   const down      = parseFloat(inputs.downPayment) || 0;
@@ -109,7 +109,7 @@ export default function LoanInterestCalculatorPropertyUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Loan Interest Calculator (Property)</h3>
               <p className="text-sm text-blue-800">
-                Calculate property loan interest, EMI, total repayment, and amortization schedule. Supports EMI, simple interest, and compound interest methods.
+                Calculate property loan payments, total interest and the amortization schedule, with amortized, simple or compound interest.
               </p>
             </div>
           </div>
@@ -129,7 +129,7 @@ export default function LoanInterestCalculatorPropertyUI() {
                   {ALL_INTEREST_TYPES.map((t) => (
                     <button key={t} onClick={() => set("interestType", t)}
                       className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${inputs.interestType === t ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
-                      {INTEREST_TYPE_LABELS[t]}
+                      {(INTEREST_TYPE_LABELS[t] ?? t)}
                     </button>
                   ))}
                 </div>
@@ -141,7 +141,7 @@ export default function LoanInterestCalculatorPropertyUI() {
                   {ALL_FREQUENCIES.map((f) => (
                     <button key={f} onClick={() => set("frequency", f)}
                       className={`px-2 py-2 rounded-lg text-xs font-medium transition-colors ${inputs.frequency === f ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
-                      {FREQUENCY_LABELS[f]}
+                      {(FREQUENCY_LABELS[f] ?? f)}
                     </button>
                   ))}
                 </div>
@@ -151,14 +151,14 @@ export default function LoanInterestCalculatorPropertyUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
 
               <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600 space-y-1">
                 <div className="font-semibold text-gray-500 uppercase tracking-wider mb-1">Formula</div>
-                {inputs.interestType === "emi"      && <div className="font-mono">EMI = P×r(1+r)ⁿ / ((1+r)ⁿ−1)</div>}
+                {inputs.interestType === "emi"      && <div className="font-mono">Payment = P×r(1+r)ⁿ / ((1+r)ⁿ−1)</div>}
                 {inputs.interestType === "simple"   && <div className="font-mono">I = P × R × T</div>}
                 {inputs.interestType === "compound" && <div className="font-mono">A = P(1 + r/n)^(nt)</div>}
               </div>
@@ -439,12 +439,12 @@ export default function LoanInterestCalculatorPropertyUI() {
                         onClick={() => { setInputs(entry.inputs); setShowHistory(false); }}>
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-gray-900 text-sm">
-                            {CURRENCY_SYMBOLS[entry.inputs.currency]}{fmtNum(parseFloat(entry.inputs.loanAmount) || 0, 0)} · {entry.inputs.interestRate}% · {entry.inputs.duration} {entry.inputs.durationUnit}
+                            {(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}{fmtNum(parseFloat(entry.inputs.loanAmount) || 0, 0)} · {entry.inputs.interestRate}% · {entry.inputs.duration} {entry.inputs.durationUnit}
                           </span>
                           <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>
                         </div>
                         <div className="text-sm font-semibold text-primary">
-                          {fmt(entry.result.periodicPayment, entry.result.currency, 2)}/{FREQUENCY_LABELS[entry.result.frequency].toLowerCase()} · {fmt(entry.result.totalInterest, entry.result.currency, 0)} interest
+                          {fmt(entry.result.periodicPayment, entry.result.currency, 2)}/{(FREQUENCY_LABELS[entry.result.frequency] ?? entry.result.frequency).toLowerCase()} · {fmt(entry.result.totalInterest, entry.result.currency, 0)} interest
                         </div>
                       </div>
                     ))

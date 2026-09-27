@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { solarBatteryCalculatorConfig } from "./config";
+
 export default function SolarBatteryCalculatorSEO() {
+  const { howToSteps, faq } = solarBatteryCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -357,74 +361,7 @@ export default function SolarBatteryCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How many batteries do I need for a 5kW solar system?</h3>
-              <p className="text-sm text-gray-700">
-                Battery count depends on daily consumption and backup days, not solar panel capacity. For 5 kWh/day with 2 days 
-                backup on a 24V system (85% efficiency, 80% DoD), you need 613 Ah. This equals about 3 × 200Ah batteries. A 5kW 
-                solar array can charge this bank in 3-4 hours of good sunlight.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What size battery for 3000W inverter?</h3>
-              <p className="text-sm text-gray-700">
-                For a 3000W inverter on 24V system, minimum battery capacity is 250 Ah (to deliver 3000W continuously). For 
-                12V system, you need 500 Ah. However, size batteries based on energy storage needs (kWh), not just inverter 
-                power. A 3000W inverter running 4 hours needs 500 Ah at 24V (12 kWh stored).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use car batteries for solar systems?</h3>
-              <p className="text-sm text-gray-700">
-                Not recommended. Car batteries (starting batteries) are designed for short high-current bursts, not deep cycling. 
-                They fail quickly in solar applications (6-12 months). Use deep-cycle batteries (AGM, gel, or lithium) designed 
-                for solar systems. They last 3-10 years depending on type and usage.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How long do solar batteries last?</h3>
-              <p className="text-sm text-gray-700">
-                Lithium batteries: 10-15 years (3000-6000 cycles), AGM/Gel: 4-7 years (500-1000 cycles), Flooded lead-acid: 
-                3-5 years (300-700 cycles). Lifespan depends on DoD, temperature, maintenance, and charge/discharge rates. 
-                Keeping batteries at 50% DoD doubles lifespan compared to 80% DoD.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Should I choose 12V, 24V, or 48V system?</h3>
-              <p className="text-sm text-gray-700">
-                Choose based on daily consumption: 12V for &lt;3 kWh/day (RVs, small cabins), 24V for 3-8 kWh/day (small-medium 
-                homes), 48V for &gt;8 kWh/day (large homes, commercial). Higher voltage = lower current = thinner cables + higher 
-                efficiency. 48V systems are 15-20% more efficient than 12V for the same power.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between Ah and kWh?</h3>
-              <p className="text-sm text-gray-700">
-                Ah (Ampere-hours) measures battery capacity at a specific voltage. kWh (kilowatt-hours) measures total energy 
-                stored. Formula: kWh = (Ah × Voltage) / 1000. Example: 200 Ah at 12V = 2.4 kWh, but 200 Ah at 48V = 9.6 kWh. 
-                Always specify voltage when stating Ah capacity.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate battery backup time?</h3>
-              <p className="text-sm text-gray-700">
-                Backup time (hours) = (Battery Capacity Ah × Voltage × DoD × Efficiency) / Load (W). Example: 400 Ah at 24V, 
-                80% DoD, 85% efficiency, 500W load = (400 × 24 × 0.80 × 0.85) / 500 = 13 hours backup. This assumes constant 
-                load; actual time varies with usage patterns.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -437,6 +374,17 @@ export default function SolarBatteryCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Solar Battery Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 export type BillingType = "flat" | "tiered";
-export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export type UsageMode = "meter" | "appliances";
 

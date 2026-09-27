@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { upsBackupCalculatorConfig } from "./config";
+
 export default function UPSBackupCalculatorSEO() {
+  const { howToSteps, faq } = upsBackupCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,13 +21,13 @@ export default function UPSBackupCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the UPS Backup Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Select Capacity Mode:</strong> Choose between Battery (V+Ah), VA Rating, or Watt-hour</li>
-          <li><strong>Enter Load Power:</strong> Input the total wattage of connected devices</li>
-          <li><strong>Enter Battery Details:</strong> Provide voltage and capacity (Ah) or VA rating</li>
-          <li><strong>Adjust Settings:</strong> Optionally modify efficiency, power factor, and safety buffer</li>
-          <li><strong>View Results:</strong> Get instant backup time estimation with detailed breakdown</li>
-          <li><strong>Save Scenarios:</strong> Store different configurations for comparison</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -67,9 +71,9 @@ export default function UPSBackupCalculatorSEO() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Power Factor</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">VA Rating</h4>
             <p className="text-gray-700">
-              The ratio of real power to apparent power. Most UPS systems have a power factor of 0.8. This affects how VA rating converts to actual watts.
+              The most power the UPS can deliver (watts = VA × power factor), not the energy in its battery. It decides whether the UPS can carry your load; the battery decides how long.
             </p>
           </div>
 
@@ -220,57 +224,7 @@ export default function UPSBackupCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why is my actual backup time less than calculated?
-            </h3>
-            <p className="text-gray-700">
-              Several factors affect real-world performance: battery age, temperature, actual load variations, battery quality, and UPS efficiency. The calculator provides theoretical estimates. Add a 20-30% safety buffer for realistic expectations.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What's the difference between VA and Watts?
-            </h3>
-            <p className="text-gray-700">
-              VA (Volt-Amperes) is apparent power, while Watts measure real power. They're related by power factor: Watts = VA × Power Factor. Most UPS systems have a power factor of 0.8, meaning a 1000VA UPS delivers about 800W.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How often should I replace UPS batteries?
-            </h3>
-            <p className="text-gray-700">
-              UPS batteries typically last 3-5 years under normal conditions. Replace them sooner if you notice significantly reduced backup time, battery swelling, or if the UPS frequently switches to battery mode.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Can I connect multiple batteries to increase backup time?
-            </h3>
-            <p className="text-gray-700">
-              Yes, connecting batteries in parallel increases capacity (Ah) while maintaining voltage. However, ensure your UPS supports external batteries and all batteries are identical (same voltage, capacity, age, and brand).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What efficiency should I use for my UPS?
-            </h3>
-            <p className="text-gray-700">
-              Modern UPS systems typically have 85-95% efficiency. Use 85% for older or budget UPS units, 90% for mid-range, and 95% for high-end online UPS systems. Check your UPS specifications for exact values.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

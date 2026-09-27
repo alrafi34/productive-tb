@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { fenceMaterialCalculatorConfig } from "./config";
 
 export default function FenceMaterialCalculatorSEO() {
+  const { howToSteps, faq } = fenceMaterialCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function FenceMaterialCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Fence Material Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select your fence type (Wood, Vinyl, Chain Link, etc.)",
-                "Choose your unit (Feet or Meters)",
-                "Enter fence length or property dimensions for perimeter mode",
-                "Set fence height and panel/post spacing",
-                "Optionally enable gate and enter gate width",
-                "Adjust waste percentage with the slider",
-                "View instant material estimates",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type",
-                "5 fence types with smart defaults",
-                "Straight fence and full perimeter modes",
-                "Gate support with extra post calculation",
-                "Waste percentage adjustment (0–20%)",
-                "Quick presets for common fence sizes",
-                "Save and export calculation history",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -192,44 +161,7 @@ export default function FenceMaterialCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How are fence panels calculated?",
-              a: "Panels = ⌈Fence Length ÷ Panel Width⌉. The ceiling function rounds up to ensure full coverage. For example, 100 ft ÷ 8 ft = 12.5, rounded up to 13 panels.",
-            },
-            {
-              q: "Why do I need one more post than panels?",
-              a: "Each panel requires a post on each end. For a straight fence with N panels, you need N+1 posts — one at the start, one between each panel, and one at the end.",
-            },
-            {
-              q: "What does the waste percentage do?",
-              a: "The waste percentage adds extra material to account for cutting errors, damaged pieces, and installation mistakes. A 10% waste factor on 13 panels gives you 15 panels to purchase.",
-            },
-            {
-              q: "How does perimeter mode work?",
-              a: "In perimeter mode, enter your property width and length. The calculator computes the total perimeter as 2 × (Width + Length) and uses that as the fence length.",
-            },
-            {
-              q: "How are concrete bags estimated?",
-              a: "Concrete bags are estimated per post based on fence type. Wood, vinyl, metal, and privacy fences use 2 bags per post. Chain link uses 1 bag per post.",
-            },
-            {
-              q: "Does the gate affect the calculation?",
-              a: "Yes. When a gate is included, the gate width is subtracted from the fenced length (reducing panels needed), and 2 extra gate posts are added to the post count.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

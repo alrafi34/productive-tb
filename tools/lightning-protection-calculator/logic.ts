@@ -1,35 +1,12 @@
 import { LightningProtectionInputs, LightningProtectionResult, RiskLevel, StructureType, ProtectionLevel } from "./types";
 
-// Map risk level to numeric factor
-export function getRiskFactor(riskLevel: RiskLevel): number {
-  const riskMap = {
-    'low': 0.2,
-    'medium': 0.5,
-    'high': 0.8,
-    'very-high': 1.0,
-  };
-  return riskMap[riskLevel];
-}
-
-// Map structure type to numeric factor
-export function getStructureFactor(structureType: StructureType): number {
-  const structureMap = {
-    'residential': 0.3,
-    'commercial': 0.5,
-    'industrial': 0.7,
-    'critical': 1.0,
-    'open-field': 0.4,
-  };
-  return structureMap[structureType];
-}
-
 // Get risk level label
 export function getRiskLevelLabel(riskLevel: RiskLevel): string {
   const labels = {
-    'low': 'Low Risk Area',
-    'medium': 'Medium Risk Area',
-    'high': 'High Risk Area',
-    'very-high': 'Very High Risk Area',
+    'low': 'Low (Ng ≈ 0.5: UK, Ireland, Scandinavia, US Pacific coast)',
+    'medium': 'Medium (Ng ≈ 2: most of Europe, US Northeast)',
+    'high': 'High (Ng ≈ 5: US Midwest and Southeast)',
+    'very-high': 'Very high (Ng ≈ 10: Florida, US Gulf Coast)',
   };
   return labels[riskLevel];
 }
@@ -37,11 +14,11 @@ export function getRiskLevelLabel(riskLevel: RiskLevel): string {
 // Get structure type label
 export function getStructureTypeLabel(structureType: StructureType): string {
   const labels = {
-    'residential': 'Residential Building',
-    'commercial': 'Commercial Building',
-    'industrial': 'Industrial Facility',
-    'critical': 'Critical Infrastructure',
-    'open-field': 'Open Field Structure',
+    'residential': 'Residential building',
+    'commercial': 'Commercial or public building',
+    'industrial': 'Industrial / flammable contents',
+    'critical': 'Critical service (hospital, data center)',
+    'open-field': 'Isolated structure in open ground',
   };
   return labels[structureType];
 }
@@ -92,78 +69,101 @@ export function validateInputs(inputs: LightningProtectionInputs): string | null
   return null;
 }
 
-// Calculate lightning protection requirements
+/*
+ * Risk assessment after IEC 62305-2 and NFPA 780 Annex L: the expected
+ * number of direct strikes a year, Nd = Ng × Ad × Cd × 10⁻⁶, against a
+ * tolerable number Nc = 1.5 × 10⁻³ / C. When Nd > Nc a lightning protection
+ * system is recommended, and the required efficiency E = 1 − Nc / Nd picks
+ * the protection level (I to IV).
+ */
+
+// Ground flash density Ng (flashes per km² per year) for each location choice;
+// typical values from lightning detection network maps, not a local measurement
+export const FLASH_DENSITY: Record<RiskLevel, number> = {
+  'low': 0.5,
+  'medium': 2,
+  'high': 5,
+  'very-high': 10,
+};
+
+// Location factor Cd and the product C of the NFPA 780 coefficients
+// (construction, contents, occupancy, consequence) for each structure choice
+export const STRUCTURE_COEFFICIENTS: Record<StructureType, { cd: number; c: number }> = {
+  'residential': { cd: 0.5, c: 1 },
+  'commercial': { cd: 0.5, c: 3 },
+  'industrial': { cd: 0.5, c: 5 },
+  'critical': { cd: 0.5, c: 10 },
+  'open-field': { cd: 1, c: 1 },
+};
+
+// Collection area of a building with a square footprint (IEC 62305-2)
+export function collectionArea(area: number, height: number): number {
+  const side = Math.sqrt(area);
+  return area + 6 * height * (side + side) + 9 * Math.PI * height * height;
+}
+
+// Small numbers such as strikes per year keep three significant figures
+export function formatSmall(value: number): string {
+  if (value === 0) return '0';
+  return Math.abs(value) < 0.01 ? value.toExponential(2) : value.toPrecision(3);
+}
+
 export function calculateLightningProtection(inputs: LightningProtectionInputs): LightningProtectionResult {
   const { height, area, riskLevel, structureType, groundResistance, precision = 2 } = inputs;
 
-  // Calculate individual factors
-  const heightFactor = Math.min(height / 100, 2.0); // Normalize to 0-2 range
-  const areaFactor = Math.min(area / 1000, 1.5); // Normalize to 0-1.5 range
-  const riskFactor = getRiskFactor(riskLevel);
-  const structureFactor = getStructureFactor(structureType);
+  const flashDensity = FLASH_DENSITY[riskLevel];
+  const { cd, c } = STRUCTURE_COEFFICIENTS[structureType];
+  const area_d = collectionArea(area, height);
+  const expectedStrikes = flashDensity * area_d * cd * 1e-6;
+  const tolerableStrikes = 1.5e-3 / c;
+  const riskScore = expectedStrikes / tolerableStrikes;
+  const efficiency = expectedStrikes > tolerableStrikes ? 1 - tolerableStrikes / expectedStrikes : 0;
 
-  // Calculate overall risk score (weighted average)
-  const riskScore = (
-    heightFactor * 0.35 +
-    areaFactor * 0.25 +
-    riskFactor * 0.25 +
-    structureFactor * 0.15
-  );
-
-  // Determine protection level
   let protectionLevel: ProtectionLevel;
   let protectionLevelText: string;
   let systemType: string;
   let recommendation: string;
-  let estimatedCost: string;
 
-  if (riskScore < 0.3) {
+  if (efficiency <= 0) {
     protectionLevel = 'minimal';
-    protectionLevelText = 'Minimal Protection Required';
-    systemType = 'Basic grounding system';
-    recommendation = 'Install basic grounding system with proper earthing. Minimal lightning protection required for this structure.';
-    estimatedCost = '$500 - $2,000';
-  } else if (riskScore < 0.5) {
+    protectionLevelText = 'Protection Optional';
+    systemType = 'No lightning protection system required by risk';
+    recommendation = 'Expected strikes are below the tolerable frequency, so an external lightning protection system is optional. Surge protective devices on the incoming power and data lines are still worthwhile.';
+  } else if (efficiency <= 0.8) {
     protectionLevel = 'basic';
-    protectionLevelText = 'Basic Protection Required';
-    systemType = 'Single air terminal with down conductors';
-    recommendation = 'Install lightning rod system with single air terminal, down conductors, and proper grounding. Basic surge protection recommended.';
-    estimatedCost = '$2,000 - $5,000';
-  } else if (riskScore < 0.7) {
+    protectionLevelText = 'Protection Level IV';
+    systemType = 'Class IV lightning protection system';
+    recommendation = 'Install air terminals, down conductors and an earth termination system designed to protection level IV (mesh about 20 m × 20 m, rolling sphere radius 60 m), with surge protection at the service entrance.';
+  } else if (efficiency <= 0.9) {
     protectionLevel = 'moderate';
-    protectionLevelText = 'Moderate Protection Required';
-    systemType = 'Multiple air terminals with mesh system';
-    recommendation = 'Install comprehensive lightning protection system with multiple air terminals, mesh conductors, and surge protection devices. Professional installation required.';
-    estimatedCost = '$5,000 - $15,000';
-  } else if (riskScore < 0.9) {
+    protectionLevelText = 'Protection Level III';
+    systemType = 'Class III lightning protection system';
+    recommendation = 'Install a lightning protection system to protection level III (mesh about 15 m × 15 m, rolling sphere radius 45 m), with surge protection at the service entrance.';
+  } else if (efficiency <= 0.95) {
     protectionLevel = 'high';
-    protectionLevelText = 'High-Level Protection Required';
-    systemType = 'Advanced multi-point protection system';
-    recommendation = 'Install advanced lightning protection system with multiple air terminals, mesh network, surge arresters, and comprehensive grounding. Certified engineering design required.';
-    estimatedCost = '$15,000 - $50,000';
+    protectionLevelText = 'Protection Level II';
+    systemType = 'Class II lightning protection system';
+    recommendation = 'Install a lightning protection system to protection level II (mesh about 10 m × 10 m, rolling sphere radius 30 m), with coordinated surge protection. Have it designed by a qualified engineer.';
   } else {
     protectionLevel = 'advanced';
-    protectionLevelText = 'Advanced Protection System Required';
-    systemType = 'Critical infrastructure protection system';
-    recommendation = 'Install state-of-the-art lightning protection system with early streamer emission (ESE) terminals, comprehensive surge protection, and redundant grounding. Professional engineering design and certification mandatory.';
-    estimatedCost = '$50,000+';
+    protectionLevelText = efficiency <= 0.98 ? 'Protection Level I' : 'Protection Level I + Extra Measures';
+    systemType = 'Class I lightning protection system';
+    recommendation = 'Install a lightning protection system to protection level I (mesh about 5 m × 5 m, rolling sphere radius 20 m) with coordinated surge protection' + (efficiency > 0.98 ? ', plus additional protection measures, because the required efficiency exceeds 98%.' : '.') + ' A full risk assessment by a qualified engineer is required.';
   }
 
-  // Determine grounding requirements
-  const groundingRequired = groundResistance === undefined || groundResistance > 10;
+  // Earth termination below 10 Ω is the usual target (IEC 62305-3, NFPA 780)
+  const groundingRequired = groundResistance === undefined || groundResistance === null || groundResistance > 10;
 
-  // Generate safety warning
   let safetyWarning = '';
-  if (riskScore >= 0.7) {
-    safetyWarning = '⚠️ HIGH RISK: Professional engineering consultation strongly recommended. This is an estimation tool only.';
-  } else if (riskScore >= 0.5) {
-    safetyWarning = '⚠️ MODERATE RISK: Consider professional assessment for proper system design.';
+  if (riskScore >= 10) {
+    safetyWarning = '⚠️ HIGH RISK: Have a qualified engineer carry out a full IEC 62305-2 or NFPA 780 risk assessment.';
+  } else if (riskScore > 1) {
+    safetyWarning = '⚠️ Protection recommended: confirm with a full risk assessment and your local code.';
   } else {
-    safetyWarning = 'ℹ️ Note: This is a preliminary estimation. Consult local building codes and standards.';
+    safetyWarning = 'ℹ️ This is a screening estimate. Local codes, insurers or the building use may still require protection.';
   }
 
-  // Generate calculation steps
-  const steps = generateSteps(inputs, heightFactor, areaFactor, riskFactor, structureFactor, riskScore, precision);
+  const steps = generateSteps(inputs, { flashDensity, cd, c, area_d, expectedStrikes, tolerableStrikes, efficiency, protectionLevelText }, precision);
 
   return {
     riskScore,
@@ -172,71 +172,51 @@ export function calculateLightningProtection(inputs: LightningProtectionInputs):
     recommendation,
     systemType,
     safetyWarning,
-    heightFactor,
-    areaFactor,
-    riskFactor,
-    structureFactor,
+    collectionArea: area_d,
+    flashDensity,
+    expectedStrikes,
+    tolerableStrikes,
+    efficiency,
     groundingRequired,
-    estimatedCost,
     steps,
   };
 }
 
-function generateSteps(
-  inputs: LightningProtectionInputs,
-  heightFactor: number,
-  areaFactor: number,
-  riskFactor: number,
-  structureFactor: number,
-  riskScore: number,
-  precision: number
-): string[] {
-  const steps: string[] = [];
-
-  steps.push(
-    "Lightning Protection Risk Assessment",
-    "",
-    "Given:",
-    `  Building Height = ${inputs.height} m`,
-    `  Building Area = ${inputs.area} m²`,
-    `  Location Risk = ${getRiskLevelLabel(inputs.riskLevel)}`,
-    `  Structure Type = ${getStructureTypeLabel(inputs.structureType)}`,
-    inputs.groundResistance !== undefined ? `  Ground Resistance = ${inputs.groundResistance} Ω` : "",
-    "",
-    "Step 1: Calculate Height Factor",
-    `  Height Factor = min(Height / 100, 2.0)`,
-    `  Height Factor = min(${inputs.height} / 100, 2.0)`,
-    `  Height Factor = ${formatNumber(heightFactor, precision)}`,
-    "",
-    "Step 2: Calculate Area Factor",
-    `  Area Factor = min(Area / 1000, 1.5)`,
-    `  Area Factor = min(${inputs.area} / 1000, 1.5)`,
-    `  Area Factor = ${formatNumber(areaFactor, precision)}`,
-    "",
-    "Step 3: Determine Risk Factor",
-    `  Risk Factor (${inputs.riskLevel}) = ${formatNumber(riskFactor, precision)}`,
-    "",
-    "Step 4: Determine Structure Factor",
-    `  Structure Factor (${inputs.structureType}) = ${formatNumber(structureFactor, precision)}`,
-    "",
-    "Step 5: Calculate Overall Risk Score",
-    `  Risk Score = (Height × 0.35) + (Area × 0.25) + (Risk × 0.25) + (Structure × 0.15)`,
-    `  Risk Score = (${formatNumber(heightFactor, precision)} × 0.35) + (${formatNumber(areaFactor, precision)} × 0.25) + (${formatNumber(riskFactor, precision)} × 0.25) + (${formatNumber(structureFactor, precision)} × 0.15)`,
-    `  Risk Score = ${formatNumber(riskScore, precision)}`,
-    "",
-    "Step 6: Determine Protection Level",
-    `  Risk Score ${formatNumber(riskScore, precision)} → ${getProtectionLevelFromScore(riskScore)}`
-  );
-
-  return steps.filter(step => step !== "");
+interface StepValues {
+  flashDensity: number; cd: number; c: number; area_d: number;
+  expectedStrikes: number; tolerableStrikes: number; efficiency: number; protectionLevelText: string;
 }
 
-function getProtectionLevelFromScore(score: number): string {
-  if (score < 0.3) return "Minimal Protection Required";
-  if (score < 0.5) return "Basic Protection Required";
-  if (score < 0.7) return "Moderate Protection Required";
-  if (score < 0.9) return "High-Level Protection Required";
-  return "Advanced Protection System Required";
+function generateSteps(inputs: LightningProtectionInputs, v: StepValues, precision: number): string[] {
+  const side = Math.sqrt(inputs.area);
+  const steps = [
+    "Lightning Risk Assessment (IEC 62305-2 / NFPA 780 Annex L)",
+    "",
+    "Given:",
+    `  Height H = ${inputs.height} m, footprint = ${inputs.area} m² (square, side ${formatNumber(side, precision)} m)`,
+    `  Location: ${getRiskLevelLabel(inputs.riskLevel)}, Ng = ${v.flashDensity} flashes/km²/year`,
+    `  Structure: ${getStructureTypeLabel(inputs.structureType)}, Cd = ${v.cd}, C = ${v.c}`,
+    inputs.groundResistance !== undefined && inputs.groundResistance !== null ? `  Ground resistance = ${inputs.groundResistance} Ω` : "",
+    "",
+    "Step 1: Collection area",
+    "  Ad = L × W + 6H(L + W) + 9πH²",
+    `  Ad = ${formatNumber(v.area_d, 0)} m²`,
+    "",
+    "Step 2: Expected direct strikes per year",
+    "  Nd = Ng × Ad × Cd × 10⁻⁶",
+    `  Nd = ${v.flashDensity} × ${formatNumber(v.area_d, 0)} × ${v.cd} × 10⁻⁶ = ${formatSmall(v.expectedStrikes)} per year (one in ${formatNumber(1 / v.expectedStrikes, 0)} years)`,
+    "",
+    "Step 3: Tolerable strike frequency",
+    "  Nc = 1.5 × 10⁻³ / C",
+    `  Nc = ${formatSmall(v.tolerableStrikes)} per year`,
+    "",
+    "Step 4: Compare",
+    v.efficiency > 0
+      ? `  Nd > Nc, required efficiency E = 1 − Nc / Nd = ${formatNumber(v.efficiency * 100, 1)}%`
+      : "  Nd ≤ Nc: protection is optional",
+    `  Result: ${v.protectionLevelText}`,
+  ];
+  return steps.filter((s) => s !== "");
 }
 
 // Get common presets
@@ -366,18 +346,16 @@ export function exportToText(inputs: LightningProtectionInputs, result: Lightnin
     "",
     "RISK ASSESSMENT:",
     "-".repeat(60),
-    `Risk Score: ${formatNumber(result.riskScore, inputs.precision || 2)}`,
+    `Nd / Nc: ${formatNumber(result.riskScore, inputs.precision || 2)}`,
     `Protection Level: ${result.protectionLevelText}`,
-    `Height Factor: ${formatNumber(result.heightFactor, inputs.precision || 2)}`,
-    `Area Factor: ${formatNumber(result.areaFactor, inputs.precision || 2)}`,
-    `Risk Factor: ${formatNumber(result.riskFactor, inputs.precision || 2)}`,
-    `Structure Factor: ${formatNumber(result.structureFactor, inputs.precision || 2)}`,
+    `Collection Area (Ad): ${formatNumber(result.collectionArea, 0)} m²`,
+    `Expected Strikes (Nd): ${formatSmall(result.expectedStrikes)} per year`,
+    `Tolerable Strikes (Nc): ${formatSmall(result.tolerableStrikes)} per year`,
     "",
     "RECOMMENDATIONS:",
     "-".repeat(60),
     `System Type: ${result.systemType}`,
     `Recommendation: ${result.recommendation}`,
-    `Estimated Cost: ${result.estimatedCost}`,
     `Grounding Required: ${result.groundingRequired ? 'Yes' : 'No'}`,
     "",
     "SAFETY WARNING:",

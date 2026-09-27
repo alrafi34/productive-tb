@@ -27,24 +27,24 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; area: string; areaUnit: Unit; rate: string }[] = [
-  { label: "5 Decimal @ $20k",  area: "5",    areaUnit: "decimal", rate: "20000"  },
-  { label: "1 Acre @ $50k",     area: "1",    areaUnit: "acre",    rate: "50000"  },
-  { label: "10 Katha @ $5k",    area: "10",   areaUnit: "katha",   rate: "5000"   },
-  { label: "4000 Sq Ft @ $120", area: "4000", areaUnit: "sqft",    rate: "120"    },
+  { label: "1 Acre @ $50k",       area: "1",    areaUnit: "acre",    rate: "50000" },
+  { label: "0.25 Acre @ $200k",   area: "0.25", areaUnit: "acre",    rate: "200000" },
+  { label: "4000 Sq Ft @ $120",   area: "4000", areaUnit: "sqft",    rate: "120" },
+  { label: "500 m² @ 300",        area: "500",  areaUnit: "sqm",     rate: "300" },
 ];
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   area: "",
-  areaUnit: "decimal",
+  areaUnit: "acre",
   rate: "",
-  rateUnit: "decimal",
+  rateUnit: "acre",
   currency: "USD",
   precision: 2,
 };
 
 const DEFAULT_COMPARE: CompareEntry[] = [
-  { label: "Option A", area: "", areaUnit: "decimal", rate: "", rateUnit: "decimal", currency: "USD" },
-  { label: "Option B", area: "", areaUnit: "decimal", rate: "", rateUnit: "decimal", currency: "USD" },
+  { label: "Option A", area: "", areaUnit: "acre", rate: "", rateUnit: "acre", currency: "USD" },
+  { label: "Option B", area: "", areaUnit: "acre", rate: "", rateUnit: "acre", currency: "USD" },
 ];
 
 export default function LandPriceCalculatorUI() {
@@ -98,8 +98,8 @@ export default function LandPriceCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
-    const text = `${formatNumber(parseFloat(inputs.area), inputs.precision)} ${UNIT_LABELS[inputs.areaUnit]} @ ${sym}${formatNumber(result.rateApplied, inputs.precision)} per ${UNIT_LABELS[inputs.rateUnit]} = ${sym}${formatNumber(result.totalPrice, inputs.precision)}`;
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
+    const text = `${formatNumber(parseFloat(inputs.area), inputs.precision)} ${(UNIT_LABELS[inputs.areaUnit] ?? inputs.areaUnit)} @ ${sym}${formatNumber(result.rateApplied, inputs.precision)} per ${(UNIT_LABELS[inputs.rateUnit] ?? inputs.rateUnit)} = ${sym}${formatNumber(result.totalPrice, inputs.precision)}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -129,7 +129,7 @@ export default function LandPriceCalculatorUI() {
     if (e.key === "Escape") handleReset();
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const sameUnit = inputs.areaUnit === inputs.rateUnit;
 
   // Compare mode results
@@ -179,7 +179,7 @@ export default function LandPriceCalculatorUI() {
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -202,7 +202,7 @@ export default function LandPriceCalculatorUI() {
                 <div className="font-mono">Total = Area × Rate</div>
                 {!sameUnit && inputs.area && inputs.rate && (
                   <div className="text-gray-500 mt-1">
-                    Area auto-converted to {UNIT_LABELS[inputs.rateUnit]}
+                    Area auto-converted to {(UNIT_LABELS[inputs.rateUnit] ?? inputs.rateUnit)}
                   </div>
                 )}
               </div>
@@ -327,7 +327,7 @@ export default function LandPriceCalculatorUI() {
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                   >
                     {ALL_UNITS.map((u) => (
-                      <option key={u} value={u}>{UNIT_LABELS[u]}</option>
+                      <option key={u} value={u}>{(UNIT_LABELS[u] ?? u)}</option>
                     ))}
                   </select>
                 </div>
@@ -361,7 +361,7 @@ export default function LandPriceCalculatorUI() {
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                   >
                     {ALL_UNITS.map((u) => (
-                      <option key={u} value={u}>{UNIT_LABELS[u]}</option>
+                      <option key={u} value={u}>{(UNIT_LABELS[u] ?? u)}</option>
                     ))}
                   </select>
                 </div>
@@ -378,14 +378,14 @@ export default function LandPriceCalculatorUI() {
                     <strong>Calculation:</strong>{" "}
                     {!sameUnit ? (
                       <>
-                        {formatNumber(parseFloat(inputs.area), inputs.precision)} {UNIT_LABELS[inputs.areaUnit]}
-                        {" → "}{formatNumber(result.areaInRateUnit, inputs.precision)} {UNIT_LABELS[inputs.rateUnit]}
+                        {formatNumber(parseFloat(inputs.area), inputs.precision)} {(UNIT_LABELS[inputs.areaUnit] ?? inputs.areaUnit)}
+                        {" → "}{formatNumber(result.areaInRateUnit, inputs.precision)} {(UNIT_LABELS[inputs.rateUnit] ?? inputs.rateUnit)}
                         {" × "}{sym}{formatNumber(result.rateApplied, inputs.precision)}
                         {" = "}<strong>{formatCurrency(result.totalPrice, inputs.currency, inputs.precision)}</strong>
                       </>
                     ) : (
                       <>
-                        {formatNumber(parseFloat(inputs.area), inputs.precision)} {UNIT_LABELS[inputs.areaUnit]}
+                        {formatNumber(parseFloat(inputs.area), inputs.precision)} {(UNIT_LABELS[inputs.areaUnit] ?? inputs.areaUnit)}
                         {" × "}{sym}{formatNumber(result.rateApplied, inputs.precision)}
                         {" = "}<strong>{formatCurrency(result.totalPrice, inputs.currency, inputs.precision)}</strong>
                       </>
@@ -470,7 +470,7 @@ export default function LandPriceCalculatorUI() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   {compareEntries.map((entry, idx) => {
                     const res = compareResults[idx];
-                    const csym = CURRENCY_SYMBOLS[entry.currency];
+                    const csym = (CURRENCY_SYMBOLS[entry.currency] ?? "$");
                     return (
                       <div key={idx} className="p-4 bg-gray-50 border border-gray-200 rounded-lg space-y-3">
                         <div className="font-semibold text-gray-700 text-sm">{entry.label}</div>
@@ -496,7 +496,7 @@ export default function LandPriceCalculatorUI() {
                             }}
                             className="px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent"
                           >
-                            {ALL_UNITS.map((u) => <option key={u} value={u}>{UNIT_LABELS[u]}</option>)}
+                            {ALL_UNITS.map((u) => <option key={u} value={u}>{(UNIT_LABELS[u] ?? u)}</option>)}
                           </select>
                           <input
                             type="number"
@@ -574,7 +574,7 @@ export default function LandPriceCalculatorUI() {
                     <div className="p-8 text-center text-gray-400">No calculations saved yet</div>
                   ) : (
                     history.map((entry) => {
-                      const esym = CURRENCY_SYMBOLS[entry.inputs.currency];
+                      const esym = (CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$");
                       return (
                         <div
                           key={entry.id}
@@ -583,7 +583,7 @@ export default function LandPriceCalculatorUI() {
                         >
                           <div className="flex items-center justify-between mb-1">
                             <span className="font-semibold text-gray-900 text-sm">
-                              {formatNumber(parseFloat(entry.inputs.area), 2)} {UNIT_LABELS[entry.inputs.areaUnit]}
+                              {formatNumber(parseFloat(entry.inputs.area), 2)} {(UNIT_LABELS[entry.inputs.areaUnit] ?? entry.inputs.areaUnit)}
                               {" @ "}{esym}{formatNumber(entry.result.rateApplied, 2)}/{UNIT_SHORT[entry.inputs.rateUnit]}
                             </span>
                             <span className="text-xs text-gray-500">

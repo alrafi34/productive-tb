@@ -10,15 +10,15 @@ import {
 // ── Labels ────────────────────────────────────────────────────────────────────
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
-  USD: "$", EUR: "€", GBP: "£", INR: "₹", BDT: "৳", SGD: "S$",
+  USD: "$", EUR: "€", GBP: "£", AUD: "A$", CAD: "CA$",
 };
 
 export const CURRENCY_LABELS: Record<Currency, string> = {
   USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)",
-  INR: "INR (₹)", BDT: "BDT (৳)", SGD: "SGD (S$)",
+  AUD: "AUD (A$)", CAD: "CAD (CA$)",
 };
 
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "INR", "BDT", "SGD"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const LOAN_TERMS: LoanTerm[] = [5, 10, 15, 20, 25, 30];
 
@@ -99,7 +99,7 @@ export function buildScenarios(
 // ── Formatting ────────────────────────────────────────────────────────────────
 
 export function fmt(value: number, currency: Currency, decimals = 0): string {
-  return `${CURRENCY_SYMBOLS[currency]}${value.toLocaleString("en-US", {
+  return `${(CURRENCY_SYMBOLS[currency] ?? "$")}${value.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   })}`;
@@ -148,7 +148,7 @@ export function clearHistory(): void {
 // ── Export ────────────────────────────────────────────────────────────────────
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[result.currency];
+  const sym = (CURRENCY_SYMBOLS[result.currency] ?? "$");
   return [
     "Down Payment Calculator – Summary",
     "=".repeat(45),

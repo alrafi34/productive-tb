@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { guessMainsVoltage } from "@/lib/voltage";
 import { SMPSInputs, SMPSResult, HistoryEntry, LoadType } from "./types";
 import {
   calculateSMPS,
@@ -26,9 +27,19 @@ export default function SMPSCalculatorUI() {
     outputVoltage: 12,
     outputCurrent: 2,
     efficiency: 85,
-    inputVoltage: 230,
+    inputVoltage: 120,
     loadType: 'resistive'
   });
+  // The local mains voltage, guessed after hydration so the server markup matches
+  const [mains, setMains] = useState(120);
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const v = guessMainsVoltage();
+      setMains(v);
+      setInputs(prev => (prev.inputVoltage === 120 ? { ...prev, inputVoltage: v } : prev));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   const [result, setResult] = useState<SMPSResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +48,7 @@ export default function SMPSCalculatorUI() {
   const [history, setHistory] = useState<HistoryEntry[]>(getHistory());
   const [showAdvanced, setShowAdvanced] = useState(true);
 
-  const presets = getPresets();
+  const presets = getPresets(mains);
 
   // Debounced calculation
   const debouncedCalculate = useCallback(
@@ -76,7 +87,7 @@ export default function SMPSCalculatorUI() {
       outputVoltage: 12,
       outputCurrent: 2,
       efficiency: 85,
-      inputVoltage: 230,
+      inputVoltage: mains,
       loadType: 'resistive'
     });
     setResult(null);
@@ -376,7 +387,7 @@ export default function SMPSCalculatorUI() {
                         value={inputs.inputVoltage || ''}
                         onChange={(e) => handleInputChange('inputVoltage', parseFloat(e.target.value) || undefined)}
                         className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                        placeholder="230"
+                        placeholder={String(mains)}
                         min="0"
                         step="1"
                       />

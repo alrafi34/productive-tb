@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { resistorColorCodeCalculatorConfig } from "./config";
+
 export default function ResistorColorCodeCalculatorSEO() {
+  const { howToSteps, faq } = resistorColorCodeCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       
@@ -17,36 +21,14 @@ export default function ResistorColorCodeCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-        <div className="bg-gray-50 rounded-xl p-6 space-y-4">
-          <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">1</span>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-1">Select Resistor Type</h3>
-              <p className="text-sm">Choose between 4-band, 5-band, or 6-band resistor configuration based on your component.</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">2</span>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-1">Select Color Bands</h3>
-              <p className="text-sm">Choose the color for each band from the dropdown menus. The visual preview updates in real-time.</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">3</span>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-1">View Results</h3>
-              <p className="text-sm">Get instant resistance value, tolerance, and value range. See step-by-step calculation breakdown.</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">4</span>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-1">Save or Export</h3>
-              <p className="text-sm">Copy results to clipboard, save to history, or export detailed calculation report.</p>
-            </div>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section>
@@ -193,46 +175,7 @@ export default function ResistorColorCodeCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-2">How do I read a resistor color code?</h3>
-            <p className="text-sm text-gray-600">
-              Read the bands from left to right. The first 2-3 bands are digits, followed by a multiplier band, 
-              tolerance band, and optionally a temperature coefficient band. Use this calculator to decode them instantly.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-2">What's the difference between 4, 5, and 6 band resistors?</h3>
-            <p className="text-sm text-gray-600">
-              4-band resistors have 2 digit bands (less precise), 5-band have 3 digit bands (more precise), 
-              and 6-band resistors add a temperature coefficient band for high-precision applications.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-2">What does tolerance mean?</h3>
-            <p className="text-sm text-gray-600">
-              Tolerance indicates how much the actual resistance can vary from the nominal value. 
-              For example, ±5% tolerance on a 100Ω resistor means it could be anywhere from 95Ω to 105Ω.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-2">Which way do I read the resistor?</h3>
-            <p className="text-sm text-gray-600">
-              The tolerance band (usually gold or silver) is typically on the right side. 
-              If there's a gap between bands, the tolerance band is after the gap. Start reading from the opposite end.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this calculator offline?</h3>
-            <p className="text-sm text-gray-600">
-              Yes! This calculator runs entirely in your browser with no server communication. 
-              Once the page loads, you can use it offline.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Tips for Reading Resistors</h2>

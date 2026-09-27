@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import CurrencySelect from "@/components/CurrencySelect";
+import { type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import { FanConsumptionInputs, FanConsumptionResult, FanType } from "./types";
 import {
   calculateFanConsumption,
@@ -31,6 +33,13 @@ export default function FanPowerConsumptionCalculatorUI() {
     tariff: savedSettings.tariff || 0.12,
     fanType: (savedSettings.fanType as FanType) || 'ceiling'
   });
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   const [result, setResult] = useState<FanConsumptionResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -178,7 +187,7 @@ export default function FanPowerConsumptionCalculatorUI() {
 
                 <div className="mt-4 pt-4 border-t border-white/20">
                   <div className="text-primary-100 mb-1 text-sm">Monthly Cost:</div>
-                  <div className="text-3xl font-bold">${formatNumber(result.monthlyCost, 2)}</div>
+                  <div className="text-3xl font-bold">{formatMoney(result.monthlyCost, currency)}</div>
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-white/20 text-sm space-y-2">
@@ -313,9 +322,12 @@ export default function FanPowerConsumptionCalculatorUI() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Electricity Tariff ($ per kWh)
-                </label>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Electricity Tariff per kWh
+                  </label>
+                  <CurrencySelect value={currency} onChange={setCurrency} />
+                </div>
                 <input
                   type="number"
                   value={inputs.tariff || ''}
@@ -383,17 +395,17 @@ export default function FanPowerConsumptionCalculatorUI() {
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <div className="text-xs text-blue-600 uppercase tracking-wider mb-1 font-semibold">Daily</div>
                     <div className="text-2xl font-bold text-blue-900">{formatNumber(result.dailyEnergy, 3)} kWh</div>
-                    <div className="text-sm text-blue-700 mt-1">${formatNumber(result.dailyCost, 2)}</div>
+                    <div className="text-sm text-blue-700 mt-1">{formatMoney(result.dailyCost, currency)}</div>
                   </div>
                   <div className="p-4 bg-green-50 rounded-lg border border-green-200">
                     <div className="text-xs text-green-600 uppercase tracking-wider mb-1 font-semibold">Monthly</div>
                     <div className="text-2xl font-bold text-green-900">{formatNumber(result.monthlyEnergy, 2)} kWh</div>
-                    <div className="text-sm text-green-700 mt-1">${formatNumber(result.monthlyCost, 2)}</div>
+                    <div className="text-sm text-green-700 mt-1">{formatMoney(result.monthlyCost, currency)}</div>
                   </div>
                   <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
                     <div className="text-xs text-purple-600 uppercase tracking-wider mb-1 font-semibold">Yearly</div>
                     <div className="text-2xl font-bold text-purple-900">{formatNumber(result.yearlyEnergy, 0)} kWh</div>
-                    <div className="text-sm text-purple-700 mt-1">${formatNumber(result.yearlyCost, 2)}</div>
+                    <div className="text-sm text-purple-700 mt-1">{formatMoney(result.yearlyCost, currency)}</div>
                   </div>
                 </div>
               </div>
@@ -425,10 +437,10 @@ export default function FanPowerConsumptionCalculatorUI() {
                     <h4 className="font-semibold text-yellow-900 mb-1">Energy Saving Tip</h4>
                     <p className="text-sm text-yellow-800">
                       {inputs.power > 70 && (
-                        <>Consider switching to an energy-efficient BLDC fan (40-50W) to save up to ${formatNumber((result.monthlyCost * 0.4), 2)}/month.</>
+                        <>Consider switching to an energy-efficient BLDC fan (40-50W) to save up to {formatMoney(result.monthlyCost * 0.4, currency)}/month.</>
                       )}
                       {inputs.power <= 70 && inputs.hoursPerDay > 12 && (
-                        <>Reducing usage by 2 hours/day could save approximately ${formatNumber((result.monthlyCost * (2 / inputs.hoursPerDay)), 2)}/month.</>
+                        <>Reducing usage by 2 hours/day could save approximately {formatMoney(result.monthlyCost * (2 / inputs.hoursPerDay), currency)}/month.</>
                       )}
                       {inputs.power <= 70 && inputs.hoursPerDay <= 12 && (
                         <>Your fan usage is already efficient! Regular cleaning can maintain optimal performance.</>

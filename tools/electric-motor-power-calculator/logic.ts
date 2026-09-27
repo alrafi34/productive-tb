@@ -27,10 +27,10 @@ export const MOTOR_PRESETS: MotorPreset[] = [
     values: { torque: 15, speed: 1000 }
   },
   {
-    name: "AC Motor (220V, 5A)",
+    name: "AC Motor (230V, 5A)",
     description: "Standard AC motor",
     mode: 'electrical',
-    values: { voltage: 220, current: 5, efficiency: 0.85, supply: 'single', powerFactor: 0.85 }
+    values: { voltage: 230, current: 5, efficiency: 0.85, supply: 'single', powerFactor: 0.85 }
   },
   {
     name: "DC Motor (24V, 10A)",

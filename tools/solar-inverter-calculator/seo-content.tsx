@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { solarInverterCalculatorConfig } from "./config";
+
 export default function SolarInverterCalculatorSEO() {
+  const { howToSteps, faq } = solarInverterCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -29,11 +33,11 @@ export default function SolarInverterCalculatorSEO() {
             </div>
 
             <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <h3 className="font-semibold text-green-900 mb-2">Step 2: Adjust for Efficiency</h3>
-              <p className="text-green-800 font-mono text-lg mb-2">Inverter Size (VA) = Adjusted Load / Efficiency</p>
+              <h3 className="font-semibold text-green-900 mb-2">Step 2: Battery Current</h3>
+              <p className="text-green-800 font-mono text-lg mb-2">DC Current (A) = Load / (Battery Voltage × Efficiency)</p>
               <p className="text-sm text-green-700">
-                Inverter efficiency typically ranges from 80-98%. Pure sine wave inverters: 90-95%, Modified sine wave: 
-                80-85%. Higher efficiency means less power loss and heat generation.
+                An inverter&apos;s rating is its AC output, so efficiency does not change the size you need; it raises the
+                power drawn from the battery. Pure sine wave inverters are typically 90-95% efficient.
               </p>
             </div>
 
@@ -51,9 +55,9 @@ export default function SolarInverterCalculatorSEO() {
               <div className="text-sm text-orange-700 space-y-1">
                 <p><strong>Given:</strong> 1000W load, 24V system, 90% efficiency, 1.2x safety factor</p>
                 <p><strong>Step 1:</strong> Adjusted Load = 1000 × 1.2 = 1200W</p>
-                <p><strong>Step 2:</strong> Inverter Size = 1200 / 0.90 = 1333 VA</p>
-                <p><strong>Step 3:</strong> Power = 1333 / 1000 = 1.33 kW</p>
-                <p><strong>Recommended:</strong> 1500 VA standard inverter</p>
+                <p><strong>Step 2:</strong> Battery current = 1000 / (24 × 0.90) = 46.3 A</p>
+                <p><strong>Step 3:</strong> Power = 1200 / 1000 = 1.2 kW</p>
+                <p><strong>Recommended:</strong> 1200 VA standard inverter (or 1500 VA for more headroom)</p>
               </div>
             </div>
           </div>
@@ -371,74 +375,7 @@ export default function SolarInverterCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What size inverter do I need for a 1000W load?</h3>
-              <p className="text-sm text-gray-700">
-                For a 1000W continuous load, you need a 1500 VA (1.5 kW) inverter with 1.2x safety factor and 90% 
-                efficiency. If the load includes motors or compressors, use 2000 VA (2 kW) to handle surge current. 
-                Always check both continuous and surge ratings.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between VA and Watts?</h3>
-              <p className="text-sm text-gray-700">
-                VA (Volt-Amperes) is apparent power, while Watts is real power. For resistive loads (heaters, lights), 
-                VA = Watts. For inductive loads (motors, transformers), VA &gt; Watts due to power factor. Inverters are 
-                rated in VA because they must handle apparent power, not just real power.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use a 12V inverter for 2000W load?</h3>
-              <p className="text-sm text-gray-700">
-                Not recommended. A 2000W load draws 167A at 12V, requiring very thick cables (4/0 AWG or larger) and 
-                causing significant voltage drop and power loss. Use 24V (83A) or 48V (42A) for loads above 800W. Higher 
-                voltage is more efficient and requires thinner, cheaper cables.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is inverter surge rating?</h3>
-              <p className="text-sm text-gray-700">
-                Surge rating is the maximum power an inverter can deliver for a few seconds during motor/compressor 
-                startup. Motors draw 3-7x rated power when starting. A good inverter has surge rating 2-3x continuous 
-                rating. For example, a 1500W inverter should have 3000-4500W surge capacity.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Should I buy pure sine wave or modified sine wave inverter?</h3>
-              <p className="text-sm text-gray-700">
-                Always buy pure sine wave for home use. Pure sine wave (90-95% efficient) works with all appliances, 
-                produces clean power, and extends appliance life. Modified sine wave (80-85% efficient) damages sensitive 
-                electronics, causes humming in motors, and reduces efficiency. The cost difference is worth it.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate inverter size for my home?</h3>
-              <p className="text-sm text-gray-700">
-                List all appliances that may run simultaneously, add their wattages, multiply by 1.2-1.5 safety factor, 
-                and divide by inverter efficiency (0.90). Example: 1000W simultaneous load × 1.2 / 0.90 = 1333 VA. 
-                Choose next standard size (1500 VA). For motor loads, use 1.5-2.0x safety factor.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What happens if inverter is undersized?</h3>
-              <p className="text-sm text-gray-700">
-                An undersized inverter will overload, overheat, and shut down when load exceeds capacity. Repeated 
-                overloading damages the inverter and shortens its lifespan. Symptoms include frequent shutdowns, low 
-                voltage alarms, and inability to start motor loads. Always size inverter with 20-30% safety margin.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -452,6 +389,17 @@ export default function SolarInverterCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Solar Inverter Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

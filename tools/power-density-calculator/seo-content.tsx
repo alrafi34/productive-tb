@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { powerDensityCalculatorConfig } from "./config";
+
 export default function PowerDensityCalculatorSEO() {
+  const { howToSteps, faq } = powerDensityCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -221,44 +225,13 @@ export default function PowerDensityCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Enter Power:</strong> Input the total electrical power in Watts, Kilowatts, or Megawatts.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Enter Area:</strong> Input the surface area in square meters, square centimeters, or square millimeters.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Select Units:</strong> Choose appropriate power and area units for your application.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Set Precision:</strong> Choose the number of decimal places for results (1-4 decimal places).</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>View Results:</strong> The calculator instantly shows power density, classification, and safety warnings.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Analyze Density:</strong> Review the density level indicator and safety recommendations.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Review Steps:</strong> See detailed calculation steps with unit conversions and formulas.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Use Presets:</strong> Click on common examples for quick calculations of typical applications.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">9.</span>
-              <span><strong>Export or Save:</strong> Download results as text files or save to history for future reference.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -308,53 +281,7 @@ export default function PowerDensityCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is power density?</h3>
-              <p className="text-gray-700">
-                Power density is the amount of electrical power distributed over a given surface area, expressed in Watts per square meter (W/m²). It's a key parameter for thermal management and safety analysis in electrical systems.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is power density important?</h3>
-              <p className="text-gray-700">
-                Power density determines heat generation rates, cooling requirements, and safety considerations. Higher power densities require more sophisticated thermal management and can create safety hazards if not properly managed.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What's considered a high power density?</h3>
-              <p className="text-gray-700">
-                Power densities above 100 W/m² are considered high and typically require active cooling. Above 1000 W/m² is very high and requires specialized cooling solutions and safety measures.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I reduce power density?</h3>
-              <p className="text-gray-700">
-                Reduce power density by increasing the surface area (larger heat sinks, distributed components) or reducing power consumption (more efficient components, lower operating power).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What cooling methods work for different power densities?</h3>
-              <p className="text-gray-700">
-                Low densities (&lt;100 W/m²): Natural convection. Moderate (100-500 W/m²): Forced air cooling. High (500-2000 W/m²): Liquid cooling. Very high (&gt;2000 W/m²): Advanced cooling like heat pipes or immersion cooling.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How does power density relate to temperature?</h3>
-              <p className="text-gray-700">
-                Higher power densities generally result in higher temperatures, but the exact relationship depends on thermal resistance, cooling methods, and ambient conditions. Thermal analysis is needed for precise temperature predictions.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

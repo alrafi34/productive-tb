@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { plotDivisionCalculatorConfig } from "./config";
 
 export default function PlotDivisionCalculatorSEO() {
+  const { howToSteps, faq } = plotDivisionCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,46 +28,14 @@ export default function PlotDivisionCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Plot Division Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter total land size (e.g. 10,000)",
-                "Select land unit (e.g. Square Feet)",
-                "Enter number of plots (e.g. 5)",
-                "Optionally add land width and length for layout suggestions",
-                "Optionally add road width to reserve space for roads",
-                "View instant results with plot size and layout grid",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type",
-                "Automatic grid layout suggestions",
-                "Road spacing allocation support",
-                "Visual plot layout preview",
-                "Plot dimension calculations",
-                "Save and export calculation history",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -153,44 +124,7 @@ export default function PlotDivisionCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is plot size calculated?",
-              a: "Plot Size = Total Land ÷ Number of Plots. If road width is specified, the road area is deducted first: Plot Size = (Total Land - Road Area) ÷ Number of Plots.",
-            },
-            {
-              q: "What is the suggested layout grid?",
-              a: "The calculator automatically suggests an optimal rows × columns grid that minimizes the aspect ratio. For example, 12 plots might be arranged as 3 × 4 or 2 × 6 depending on land dimensions.",
-            },
-            {
-              q: "How does road width allocation work?",
-              a: "When you provide land dimensions and road width, the calculator estimates the total road area needed between plots and deducts it from the total land before dividing into plots.",
-            },
-            {
-              q: "Can I specify a custom layout?",
-              a: "Yes. Select 'Custom Grid' mode and enter your desired number of rows and columns. The calculator will divide the land accordingly.",
-            },
-            {
-              q: "What units are supported?",
-              a: "The calculator supports Square Feet, Square Meter, Decimal, Acre, Katha, Bigha, and Hectare. All calculations maintain the selected unit throughout.",
-            },
-            {
-              q: "Is my data saved?",
-              a: "Calculation history is saved only in your browser's localStorage. No data is sent to any server. You can clear history anytime.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

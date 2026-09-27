@@ -1,6 +1,6 @@
 export type Unit = "decimal" | "acre" | "katha" | "bigha" | "sqft" | "sqm" | "hectare";
 
-export type Currency = "USD" | "EUR" | "GBP" | "BDT" | "INR";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface CalculatorInputs {
   area: string;

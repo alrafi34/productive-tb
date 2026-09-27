@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { bighaLandCalculatorConfig } from "./config";
 
 export default function BighaLandCalculatorSEO() {
+  const { howToSteps, faq } = bighaLandCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -33,44 +36,14 @@ export default function BighaLandCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Bigha Land Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the land area value in the input field",
-                "Select the unit you are converting from (e.g. Decimal, Katha, Acre)",
-                "Choose your regional standard (Bangladesh, West Bengal, Assam, Nepal, or Custom)",
-                "View instant conversions across all units simultaneously",
-                "Copy, save, or export your results",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Tips</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Results update automatically as you type",
-                "Use preset buttons for common Bigha values",
-                "Switch regions instantly to compare standards",
-                "Use Custom mode for non-standard Bigha sizes",
-                "Save calculations to history for reference",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Regional Standards Table */}
@@ -173,41 +146,7 @@ export default function BighaLandCalculatorSEO() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How many square feet is 1 Bigha in Bangladesh?",
-              a: "In Bangladesh, 1 Bigha equals 14,400 square feet. This is the same standard used in West Bengal and Assam.",
-            },
-            {
-              q: "How many Katha is 1 Bigha?",
-              a: "In Bangladesh, West Bengal, and Assam, 1 Bigha = 20 Katha. In Nepal, 1 Bigha = 20 Katha as well, but each Katha is larger (3,645 sq ft).",
-            },
-            {
-              q: "How many Bigha in 1 Acre (Bangladesh)?",
-              a: "1 Acre = 43,560 sq ft. In Bangladesh, 1 Bigha = 14,400 sq ft, so 1 Acre ≈ 3.025 Bigha.",
-            },
-            {
-              q: "How many Decimal is 1 Bigha?",
-              a: "In Bangladesh standard, 1 Bigha = 14,400 sq ft and 1 Decimal = 435.6 sq ft, so 1 Bigha ≈ 33.06 Decimal.",
-            },
-            {
-              q: "Why does 1 Bigha differ by region?",
-              a: "Bigha is a traditional unit that evolved independently in different regions before standardization. Each region adopted its own value based on historical land administration practices.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

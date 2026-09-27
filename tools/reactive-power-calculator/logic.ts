@@ -134,8 +134,8 @@ export function getPresets(): Preset[] {
     },
     {
       name: 'Example 3: Heavy Load',
-      description: '220V, 15A, 60° phase angle',
-      voltage: 220,
+      description: '230V, 15A, 60° phase angle',
+      voltage: 230,
       current: 15,
       phaseAngle: 60,
     },

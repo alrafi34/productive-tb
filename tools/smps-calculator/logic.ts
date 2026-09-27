@@ -187,8 +187,8 @@ function generateSteps(
   return steps.filter(step => step !== "");
 }
 
-// Get common presets
-export function getPresets() {
+// Get common presets; mains-powered ones use the local mains voltage
+export function getPresets(mains = 230) {
   return [
     {
       name: "5V USB Charger",
@@ -196,7 +196,7 @@ export function getPresets() {
       outputVoltage: 5,
       outputCurrent: 2,
       efficiency: 85,
-      inputVoltage: 230,
+      inputVoltage: mains,
       loadType: 'resistive' as LoadType
     },
     {
@@ -205,7 +205,7 @@ export function getPresets() {
       outputVoltage: 12,
       outputCurrent: 3,
       efficiency: 90,
-      inputVoltage: 230,
+      inputVoltage: mains,
       loadType: 'resistive' as LoadType
     },
     {
@@ -214,7 +214,7 @@ export function getPresets() {
       outputVoltage: 24,
       outputCurrent: 5,
       efficiency: 92,
-      inputVoltage: 230,
+      inputVoltage: mains,
       loadType: 'mixed' as LoadType
     },
     {
@@ -223,7 +223,7 @@ export function getPresets() {
       outputVoltage: 48,
       outputCurrent: 10,
       efficiency: 94,
-      inputVoltage: 230,
+      inputVoltage: mains,
       loadType: 'mixed' as LoadType
     },
     {
@@ -241,7 +241,7 @@ export function getPresets() {
       outputVoltage: 19,
       outputCurrent: 4.74,
       efficiency: 89,
-      inputVoltage: 230,
+      inputVoltage: mains,
       loadType: 'mixed' as LoadType
     },
   ];

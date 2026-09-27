@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { motorSpeedCalculatorConfig } from "./config";
+
 export default function MotorSpeedCalculatorSEO() {
+  const { howToSteps, faq } = motorSpeedCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-sm max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -14,13 +18,13 @@ export default function MotorSpeedCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Motor Speed Calculator</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700">
-            <li>Enter the supply frequency in Hz (typically 50 Hz or 60 Hz)</li>
-            <li>Select the number of poles in the motor (2, 4, 6, 8, 10, or 12)</li>
-            <li>Adjust the slip percentage using the slider (0-10%)</li>
-            <li>View instant results for synchronous and actual motor speeds</li>
-            <li>Switch between RPM and rad/s units as needed</li>
-            <li>Export or save your calculations for future reference</li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -204,51 +208,7 @@ export default function MotorSpeedCalculatorSEO() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is synchronous speed?</h3>
-              <p className="text-gray-700">
-                Synchronous speed is the speed of the rotating magnetic field in the stator, calculated as (120 × frequency) / poles. 
-                It's the theoretical maximum speed an induction motor can approach.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why do induction motors never reach synchronous speed?</h3>
-              <p className="text-gray-700">
-                Induction motors require slip to generate torque. If the rotor reached synchronous speed, there would be no relative 
-                motion between the rotor and the magnetic field, no induced current, and therefore no torque.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I choose the right number of poles?</h3>
-              <p className="text-gray-700">
-                Choose based on your speed requirements: 2-pole motors are fastest (3000/3600 RPM), 4-pole motors are standard 
-                (1500/1800 RPM), and 6-pole or higher are for low-speed applications. More poles provide higher torque at lower speeds.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is a typical slip value?</h3>
-              <p className="text-gray-700">
-                For standard induction motors at full load, slip typically ranges from 2-5%. High-efficiency motors may have lower 
-                slip (1-3%), while motors under heavy load may show higher slip values.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I change motor speed by changing frequency?</h3>
-              <p className="text-gray-700">
-                Yes, using a Variable Frequency Drive (VFD) allows you to control motor speed by varying the supply frequency. 
-                This is a common method for precise speed control in industrial applications.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

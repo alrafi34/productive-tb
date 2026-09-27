@@ -1,7 +1,7 @@
 export type InterestType = "emi" | "simple" | "compound";
 export type DurationUnit = "years" | "months";
 export type PaymentFrequency = "monthly" | "quarterly" | "yearly";
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface CalculatorInputs {
   loanAmount: string;

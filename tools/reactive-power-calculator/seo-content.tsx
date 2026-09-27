@@ -165,7 +165,7 @@ export default function ReactivePowerCalculatorSEO() {
             },
             {
               title: "Heavy Load Reactive Power Assessment",
-              scenario: "A facility manager evaluating a 220V, 15A heavy industrial load with a 60° phase angle calculates Q = 2,858.6 VAR against real power of only 1,650W — showing the load's apparent power (3,300VA) is dominated more by reactive than real power at this phase angle.",
+              scenario: "A facility manager evaluating a 230V, 15A heavy industrial load with a 60° phase angle calculates Q = 2,987.8 VAR against real power of only 1,725W — showing the load's apparent power (3,450VA) is dominated more by reactive than real power at this phase angle.",
             },
             {
               title: "Residential Circuit Reactive Power Estimate",

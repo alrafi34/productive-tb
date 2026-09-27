@@ -1,55 +1,8 @@
+import { ledResistorCalculatorConfig } from "./config";
 export default function LEDResistorCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is an LED resistor calculator?",
-      a: "An LED resistor calculator is a free online tool that computes the current-limiting resistor value needed to safely power one or more LEDs from a given supply voltage. Enter supply voltage, LED forward voltage, desired current, and number of LEDs in series, and the calculator returns the required resistance, the nearest standard E24 resistor value, and the resistor's power rating.",
-    },
-    {
-      q: "What is the formula for an LED resistor?",
-      a: "R = (Vs − N × Vf) ÷ If, where Vs is supply voltage, N is the number of LEDs in series, Vf is each LED's forward voltage, and If is the desired current in amps. For example, a single red LED (Vf = 2.0V, If = 20mA) on a 5V supply needs R = (5 − 2.0) ÷ 0.02 = 150Ω.",
-    },
-    {
-      q: "Why does an LED need a current-limiting resistor at all?",
-      a: "LEDs have a very steep current-voltage curve near their forward voltage — a tiny increase in voltage across the LED causes a large increase in current, with no natural current limit like a resistor has. Without a series resistor, an LED connected directly to a supply voltage above its forward voltage will draw excessive current almost instantly and burn out, often within seconds.",
-    },
-    {
-      q: "What is LED forward voltage and why does it vary by color?",
-      a: "Forward voltage (Vf) is the voltage drop across an LED when it's conducting current, and it depends on the semiconductor material's bandgap energy, which differs by color. Red and yellow LEDs typically have Vf around 1.8-2.2V, while green LEDs run about 2.0-2.2V, and blue and white LEDs (which use a different, wider-bandgap material) run higher, typically 3.0-3.4V.",
-    },
-    {
-      q: "How do I calculate the resistor for multiple LEDs in series?",
-      a: "Multiply the LED's forward voltage by the number of LEDs, then subtract from supply voltage before dividing by current: R = (Vs − N×Vf) ÷ If. Three red LEDs (Vf = 2.0V each) in series on a 9V supply at 20mA need R = (9 − 6.0) ÷ 0.02 = 150Ω — the same resistor value as a single LED on 5V in this particular example, since both scenarios happen to leave the same 3V across the resistor.",
-    },
-    {
-      q: "Why is the calculated resistance never exactly a standard resistor value?",
-      a: "The Ohm's Law calculation can produce any decimal value, but resistors are manufactured in standard series (like E24, with 24 values per decade) rather than arbitrary values. This calculator finds the nearest E24 standard value automatically — using a slightly higher resistance than calculated is always safer than a lower one, since it only reduces LED current slightly rather than risking overcurrent.",
-    },
-    {
-      q: "How do I calculate the resistor's power rating?",
-      a: "P = I² × R, using the actual current and resistance. A resistor dropping 3V at 20mA (0.02A) with 150Ω dissipates P = 0.02² × 150 = 0.06W. Standard practice is to use a resistor rated for at least twice the calculated power as a safety margin — in this case, a 1/8W (0.125W) or 1/4W (0.25W) resistor comfortably covers a 0.06W dissipation.",
-    },
-    {
-      q: "What LED current should I use if I don't know the datasheet value?",
-      a: "20mA (0.02A) is the standard assumption for most common 3mm and 5mm indicator LEDs and produces good brightness without excessive heat or reduced lifespan. High-power LEDs and specialty types can require significantly more or less current — always check the specific LED's datasheet when one is available rather than assuming 20mA for non-standard parts.",
-    },
-    {
-      q: "Can I use a higher resistance than calculated to reduce LED brightness?",
-      a: "Yes — increasing resistance above the calculated value reduces current and therefore brightness, which is a simple way to dim an LED without a dedicated dimming circuit. Going the other direction (lower resistance than calculated) increases current and brightness but risks exceeding the LED's maximum rated current and shortening its lifespan or causing failure.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, and LED count values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = ledResistorCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter supply voltage", "Input the voltage source powering the LED circuit, such as 5V from USB or 9V from a battery."],
-    ["Enter LED forward voltage", "Input the LED's forward voltage from its datasheet, or use a preset for common colors (red/yellow ≈2.0V, green ≈2.1V, blue/white ≈3.2V)."],
-    ["Enter desired LED current", "Input the target current in milliamps — 20mA is standard for common indicator LEDs unless the datasheet specifies otherwise."],
-    ["Enter number of LEDs in series", "Input how many identical LEDs are connected in series sharing the same current-limiting resistor."],
-    ["Read the required resistance and power", "The calculator returns the exact calculated resistance, the nearest standard E24 resistor value, and the required power rating."],
-    ["Apply a preset or export results", "Use a built-in preset for common LED colors, or export the full calculation as a text file."],
-  ];
+  const howToSteps: [string, string][] = ledResistorCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

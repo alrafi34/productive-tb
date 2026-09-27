@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { dacOutputCalculatorConfig } from "./config";
+
 export default function DACOutputCalculatorSEO() {
+  const { howToSteps, faq } = dacOutputCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -362,81 +366,7 @@ export default function DACOutputCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate DAC output voltage?</h3>
-              <p className="text-sm text-gray-700">
-                For unipolar DAC: V<sub>out</sub> = (Digital Value / Max Value) × V<sub>ref</sub>. For 8-bit DAC 
-                with 5V reference and digital input 128: V<sub>out</sub> = (128 / 255) × 5V = 2.51V. Max Value = 
-                2<sup>n</sup> - 1 where n is the number of bits. For bipolar DAC, output ranges from -V<sub>ref</sub> 
-                to +V<sub>ref</sub>.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between unipolar and bipolar DAC?</h3>
-              <p className="text-sm text-gray-700">
-                Unipolar DACs produce output from 0V to +V<sub>ref</sub> (always positive). Most microcontroller DACs 
-                are unipolar. Bipolar DACs produce output from -V<sub>ref</sub> to +V<sub>ref</sub> (both positive 
-                and negative). Bipolar DACs are used in audio applications, signal processing, and control systems 
-                requiring both polarities. Bipolar requires dual power supply or level shifting circuit.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I use Arduino analogWrite() as a DAC?</h3>
-              <p className="text-sm text-gray-700">
-                Arduino's analogWrite(pin, value) generates 8-bit PWM signal (0-255). To convert to analog voltage, 
-                add RC low-pass filter: connect 1kΩ resistor from PWM pin to output, then 10µF capacitor from output 
-                to ground. For 50% duty cycle (value=128), output will be ~2.5V on 5V Arduino. Not suitable for 
-                high-frequency signals. For better performance, use external DAC IC like MCP4725.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What DAC resolution do I need for audio?</h3>
-              <p className="text-sm text-gray-700">
-                CD-quality audio uses 16-bit DAC (96 dB dynamic range). Professional audio uses 24-bit (144 dB 
-                dynamic range). 8-bit (48 dB) is only suitable for voice or low-quality audio. Higher resolution 
-                provides better signal-to-noise ratio and dynamic range. Sample rate is equally important: 44.1 kHz 
-                minimum for audio, 48 kHz or 96 kHz for professional applications.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I connect DAC output directly to a speaker?</h3>
-              <p className="text-sm text-gray-700">
-                No, DAC output is low power (typically &lt;10mA) and cannot drive speakers directly. Use audio 
-                amplifier (LM386, TDA2030, or Class-D amplifier) between DAC and speaker. DAC provides line-level 
-                signal (~1V RMS), speakers need several watts. For headphones, use headphone amplifier. Direct 
-                connection may damage DAC or produce very low volume.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is my DAC output noisy?</h3>
-              <p className="text-sm text-gray-700">
-                Common causes: poor power supply filtering, inadequate decoupling capacitors, ground loops, digital 
-                noise coupling, missing output filter, or high-impedance load. Solutions: add 0.1µF + 10µF capacitors 
-                at power pins, use separate analog/digital grounds, add RC low-pass filter at output, use shielded 
-                cables, add op-amp buffer, use precision voltage reference instead of supply voltage.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How fast can a DAC update its output?</h3>
-              <p className="text-sm text-gray-700">
-                Update rate depends on DAC type and resolution. Fast DACs (video, RF): &gt;100 MSPS (mega samples 
-                per second). Audio DACs: 44.1-192 kSPS. Microcontroller DACs: 1-10 MSPS. Precision DACs: 100 kSPS - 
-                1 MSPS. Arduino analogWrite(): ~490 Hz effective (limited by PWM frequency). External I2C DACs: 
-                ~100 kHz (limited by I2C speed). SPI DACs are faster than I2C.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -452,6 +382,17 @@ export default function DACOutputCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the DAC Output Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

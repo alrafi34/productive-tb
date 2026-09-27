@@ -68,14 +68,14 @@ export const OUTPUT_UNIT_SHORT: Record<OutputUnit, string> = {
 export const ALL_OUTPUT_UNITS: OutputUnit[] = ["yd3", "m3", "ft3"];
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
-  USD: "$", EUR: "€", GBP: "£", BDT: "৳", INR: "₹",
+  USD: "$", EUR: "€", GBP: "£", CAD: "CA$", AUD: "A$",
 };
 
 export const CURRENCY_LABELS: Record<Currency, string> = {
-  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", BDT: "BDT (৳)", INR: "INR (₹)",
+  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", CAD: "CAD (CA$)", AUD: "AUD (A$)",
 };
 
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "BDT", "INR"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 // ── Unit conversion ───────────────────────────────────────────────────────────
 
@@ -127,7 +127,7 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   const transportTotal = transport;
   const totalCost = adjustedExcavationCost + laborTotal + equipmentTotal + transportTotal;
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const uShort = OUTPUT_UNIT_SHORT[inputs.outputUnit];
 
   const steps = [
@@ -135,7 +135,7 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
     `Volume = ${l} × ${w} × ${d} = ${(l * w * d).toFixed(2)} ${u}³`,
     `Volume = ${volumeInUnit.toFixed(2)} ${uShort}`,
     `Base Cost = ${volumeInUnit.toFixed(2)} × ${sym}${rate} = ${sym}${baseExcavationCost.toFixed(2)}`,
-    `Soil multiplier (${SOIL_LABELS[inputs.soilType]}) = ×${soilMult}`,
+    `Soil multiplier (${(SOIL_LABELS[inputs.soilType] ?? inputs.soilType)}) = ×${soilMult}`,
     `Adjusted Cost = ${sym}${baseExcavationCost.toFixed(2)} × ${soilMult} = ${sym}${adjustedExcavationCost.toFixed(2)}`,
     ...(laborTotal > 0    ? [`Labor = ${laborDays} days × ${sym}${laborRate} = ${sym}${laborTotal.toFixed(2)}`] : []),
     ...(equipmentTotal > 0 ? [`Equipment = ${eqHours} hrs × ${sym}${eqRate} = ${sym}${equipmentTotal.toFixed(2)}`] : []),
@@ -172,7 +172,7 @@ export function smartFormat(value: number): string {
 }
 
 export function formatCurrency(value: number, currency: Currency): string {
-  return `${CURRENCY_SYMBOLS[currency]}${smartFormat(value)}`;
+  return `${(CURRENCY_SYMBOLS[currency] ?? "$")}${smartFormat(value)}`;
 }
 
 // ── Debounce ──────────────────────────────────────────────────────────────────
@@ -214,16 +214,16 @@ export function clearHistory(): void {
 // ── Export ────────────────────────────────────────────────────────────────────
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[result.currency];
+  const sym = (CURRENCY_SYMBOLS[result.currency] ?? "$");
   const u = INPUT_UNIT_SHORT[inputs.unit];
   const uOut = OUTPUT_UNIT_SHORT[result.outputUnit];
   return [
     "Excavation Cost Calculator – Estimate",
     "=".repeat(45),
     "",
-    `Excavation Type  : ${EXCAVATION_TYPE_LABELS[inputs.excavationType]}`,
+    `Excavation Type  : ${(EXCAVATION_TYPE_LABELS[inputs.excavationType] ?? inputs.excavationType)}`,
     `Dimensions       : ${inputs.length} × ${inputs.width} × ${inputs.depth} ${u}`,
-    `Soil Type        : ${SOIL_LABELS[inputs.soilType]}`,
+    `Soil Type        : ${(SOIL_LABELS[inputs.soilType] ?? inputs.soilType)}`,
     `Rate             : ${sym}${inputs.excavationRate} per ${uOut}`,
     "",
     "── Calculation Steps ──",

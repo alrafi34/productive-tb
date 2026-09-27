@@ -26,7 +26,7 @@ export default function ArcFlashCalculatorUI() {
     workingDistance: 18,
     exposureTime: 0.1,
     equipmentType: 'panel',
-    advancedMode: false,
+    advancedMode: true,
     precision: 2
   });
   
@@ -77,7 +77,7 @@ export default function ArcFlashCalculatorUI() {
       workingDistance: 18,
       exposureTime: 0.1,
       equipmentType: 'panel',
-      advancedMode: false,
+      advancedMode: true,
       precision: 2
     });
     setResult(null);
@@ -203,8 +203,12 @@ export default function ArcFlashCalculatorUI() {
                     <span className="font-semibold">{result.ppeCategory}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-primary-100">Safe Distance:</span>
-                    <span className="font-semibold">{formatNumber(result.safetyDistance, inputs.precision)} in</span>
+                    <span className="text-primary-100">Arc Flash Boundary:</span>
+                    <span className="font-semibold">{formatNumber(result.safetyDistance, 1)} in ({formatNumber(result.safetyDistance * 25.4, 0)} mm)</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-primary-100">Arcing Current:</span>
+                    <span className="font-semibold">{formatNumber(result.arcingCurrent, 2)} kA</span>
                   </div>
                 </div>
 
@@ -304,7 +308,7 @@ export default function ArcFlashCalculatorUI() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Working Distance (inches)
+                    Working Distance (inches{inputs.workingDistance > 0 ? ` = ${Math.round(inputs.workingDistance * 25.4)} mm` : ""})
                   </label>
                   <input
                     type="number"
@@ -350,7 +354,7 @@ export default function ArcFlashCalculatorUI() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Exposure Time (seconds)
+                      Arc Duration / Clearing Time (s)
                     </label>
                     <input
                       type="number"
@@ -372,10 +376,24 @@ export default function ArcFlashCalculatorUI() {
                       onChange={(e) => handleInputChange('equipmentType', e.target.value)}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-semibold"
                     >
-                      <option value="panel">Panel</option>
+                      <option value="panel">Panelboard</option>
                       <option value="switchgear">Switchgear</option>
                       <option value="mcc">MCC</option>
-                      <option value="transformer">Transformer</option>
+                      <option value="open">Open air / cable</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      System Grounding
+                    </label>
+                    <select
+                      value={inputs.grounding || 'grounded'}
+                      onChange={(e) => handleInputChange('grounding', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-semibold"
+                    >
+                      <option value="grounded">Solidly grounded</option>
+                      <option value="ungrounded">Ungrounded or resistance grounded</option>
                     </select>
                   </div>
                 </div>

@@ -47,10 +47,12 @@ function getFaultLevel(faultCurrent: number): 'low' | 'medium' | 'high' | 'criti
   return 'critical';
 }
 
+// Classified by the line-to-line voltage of a system with this voltage to ground
 function getSystemType(voltage: number): string {
-  if (voltage <= 50) return 'Extra Low Voltage (ELV)';
-  if (voltage <= 1000) return 'Low Voltage (LV)';
-  if (voltage <= 35000) return 'Medium Voltage (MV)';
+  const lineVoltage = voltage * Math.sqrt(3);
+  if (lineVoltage <= 50) return 'Extra Low Voltage (ELV)';
+  if (lineVoltage <= 1000) return 'Low Voltage (LV)';
+  if (lineVoltage <= 35000) return 'Medium Voltage (MV)';
   return 'High Voltage (HV)';
 }
 
@@ -89,8 +91,8 @@ export function calculateFaultCurrent(inputs: FaultCurrentInputs): FaultCurrentR
     }
     
     if (transformerImpedance !== undefined && transformerImpedance !== null && transformerRating !== undefined && transformerRating !== null) {
-      // Convert transformer impedance percentage to ohms
-      const transformerImpedanceOhms = (transformerImpedance / 100) * (systemVoltage * systemVoltage) / (transformerRating * 1000);
+      // Per-phase ohms of a three-phase transformer: Z% × VLL² / S, with VLL² = 3 × U0²
+      const transformerImpedanceOhms = (transformerImpedance / 100) * 3 * (systemVoltage * systemVoltage) / (transformerRating * 1000);
       calculatedTotalImpedance += transformerImpedanceOhms;
     }
 
@@ -150,7 +152,7 @@ function generateSteps(
       steps.push(`    Cable Impedance = ${cableImpedance} Ω`);
     }
     if (transformerImpedance !== undefined && transformerImpedance !== null && transformerRating !== undefined) {
-      const transformerImpedanceOhms = (transformerImpedance / 100) * (systemVoltage * systemVoltage) / (transformerRating * 1000);
+      const transformerImpedanceOhms = (transformerImpedance / 100) * 3 * (systemVoltage * systemVoltage) / (transformerRating * 1000);
       steps.push(`    Transformer Impedance = ${transformerImpedance}% = ${formatNumber(transformerImpedanceOhms, precision)} Ω`);
     }
   }
@@ -182,12 +184,12 @@ function generateSteps(
 export function getPresets(mode: CalculationMode) {
   if (mode === 'basic') {
     return [
-      { name: "Residential 230V", description: "Typical house supply", systemVoltage: 230, totalImpedance: 0.8 },
-      { name: "Industrial 415V", description: "3-phase industrial", systemVoltage: 415, totalImpedance: 0.5 },
-      { name: "Distribution 11kV", description: "Medium voltage", systemVoltage: 11000, totalImpedance: 10 },
-      { name: "Low Impedance System", description: "High fault current", systemVoltage: 400, totalImpedance: 0.1 },
-      { name: "High Impedance System", description: "Limited fault current", systemVoltage: 230, totalImpedance: 5 },
-      { name: "Motor Circuit", description: "Industrial motor", systemVoltage: 415, totalImpedance: 1.2 },
+      { name: "US Branch Circuit 120V", description: "120 V to ground", systemVoltage: 120, totalImpedance: 0.4 },
+      { name: "UK/EU Final Circuit 230V", description: "230 V to earth", systemVoltage: 230, totalImpedance: 0.8 },
+      { name: "US 480Y/277V Feeder", description: "277 V to ground", systemVoltage: 277, totalImpedance: 0.1 },
+      { name: "UK/EU 400V Industrial", description: "230 V to earth", systemVoltage: 230, totalImpedance: 0.35 },
+      { name: "TT System (Earth Rod)", description: "Limited fault current", systemVoltage: 230, totalImpedance: 50 },
+      { name: "Distribution 11kV", description: "6.35 kV to earth", systemVoltage: 6351, totalImpedance: 10 },
     ];
   } else {
     return [
@@ -202,17 +204,17 @@ export function getPresets(mode: CalculationMode) {
       },
       { 
         name: "Industrial Plant", 
-        description: "Factory distribution", 
-        systemVoltage: 415, 
+        description: "400/230 V factory distribution", 
+        systemVoltage: 230, 
         sourceImpedance: 0.1, 
         cableImpedance: 0.3, 
         transformerImpedance: 6,
         transformerRating: 1000
       },
       { 
-        name: "Commercial Building", 
-        description: "Office complex", 
-        systemVoltage: 400, 
+        name: "US Commercial Building", 
+        description: "480Y/277 V office complex", 
+        systemVoltage: 277, 
         sourceImpedance: 0.2, 
         cableImpedance: 0.8, 
         transformerImpedance: 5,

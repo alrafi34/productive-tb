@@ -67,7 +67,7 @@ export default function PropertyAppreciationCalculatorSEO() {
                 "Copy results to clipboard",
                 "Shareable URL with saved inputs",
                 "Calculation history saved locally",
-                "Multi-currency support (USD, EUR, GBP, INR, CAD, AUD)",
+                "Multi-currency support (USD, EUR, GBP, CAD, AUD)",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>

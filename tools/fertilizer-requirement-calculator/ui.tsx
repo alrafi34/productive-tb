@@ -87,8 +87,8 @@ export default function FertilizerRequirementCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
-    const text = `Fertilizer Requirement Summary\nCrop: ${CROP_LABELS[result.cropType]}\nLand: ${fmtNum(result.landArea, 1)} ${AREA_UNIT_SHORT[result.areaUnit]}\nFertilizer: ${FERTILIZER_LABELS[result.fertilizerType]}\nRequired: ${fmtNum(result.totalFertilizerNeeded, 1)} kg${result.totalCost ? `\nCost: ${fmt(result.totalCost, result.currency, 2)}` : ""}`;
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
+    const text = `Fertilizer Requirement Summary\nCrop: ${(CROP_LABELS[result.cropType] ?? result.cropType)}\nLand: ${fmtNum(result.landArea, 1)} ${AREA_UNIT_SHORT[result.areaUnit]}\nFertilizer: ${(FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType)}\nRequired: ${fmtNum(result.totalFertilizerNeeded, 1)} kg${result.totalCost ? `\nCost: ${fmt(result.totalCost, result.currency, 2)}` : ""}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -109,7 +109,7 @@ export default function FertilizerRequirementCalculatorUI() {
     if (confirm("Clear all calculation history?")) { clearHistory(); setHistory([]); }
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const inputCls  = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
   const selectCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium";
   return (
@@ -135,7 +135,7 @@ export default function FertilizerRequirementCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -171,7 +171,7 @@ export default function FertilizerRequirementCalculatorUI() {
               </div>
               {result && (
                 <div className="text-primary-100 text-sm mb-3">
-                  {FERTILIZER_LABELS[result.fertilizerType]}
+                  = {fmtNum(result.totalFertilizerNeeded * 2.20462, 0)} lb · {(FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType)}
                 </div>
               )}
 
@@ -183,7 +183,7 @@ export default function FertilizerRequirementCalculatorUI() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-primary-100">Crop:</span>
-                    <span className="font-semibold">{CROP_LABELS[result.cropType]}</span>
+                    <span className="font-semibold">{(CROP_LABELS[result.cropType] ?? result.cropType)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-primary-100">Per Acre:</span>
@@ -240,7 +240,7 @@ export default function FertilizerRequirementCalculatorUI() {
                     className={selectCls}
                   >
                     {ALL_AREA_UNITS.map((u) => (
-                      <option key={u} value={u}>{AREA_UNIT_LABELS[u]}</option>
+                      <option key={u} value={u}>{(AREA_UNIT_LABELS[u] ?? u)}</option>
                     ))}
                   </select>
                 </div>
@@ -256,7 +256,7 @@ export default function FertilizerRequirementCalculatorUI() {
                     className={selectCls}
                   >
                     {ALL_CROPS.map((c) => (
-                      <option key={c} value={c}>{CROP_LABELS[c]}</option>
+                      <option key={c} value={c}>{(CROP_LABELS[c] ?? c)}</option>
                     ))}
                   </select>
                 </div>
@@ -268,7 +268,7 @@ export default function FertilizerRequirementCalculatorUI() {
                     className={selectCls}
                   >
                     {ALL_FERTILIZERS.map((f) => (
-                      <option key={f} value={f}>{FERTILIZER_LABELS[f]}</option>
+                      <option key={f} value={f}>{(FERTILIZER_LABELS[f] ?? f)}</option>
                     ))}
                   </select>
                 </div>
@@ -297,7 +297,7 @@ export default function FertilizerRequirementCalculatorUI() {
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800">
                   <strong>Land:</strong> {fmtNum(result.landArea, 1)} {AREA_UNIT_SHORT[result.areaUnit]} 
                   ({fmtNum(result.landAreaInAcres, 2)} acres) → 
-                  <strong> {fmtNum(result.totalFertilizerNeeded, 1)} kg {FERTILIZER_LABELS[result.fertilizerType]}</strong>
+                  <strong> {fmtNum(result.totalFertilizerNeeded, 1)} kg {(FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType)}</strong>
                 </div>
               )}
             </div>
@@ -305,7 +305,7 @@ export default function FertilizerRequirementCalculatorUI() {
             {/* Nutrient Requirements */}
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>Nutrient Requirements (kg/acre)</h3>
+                <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>Nutrient Requirements (kg/acre; P as P₂O₅, K as K₂O)</h3>
                 <button onClick={() => setShowAdvanced(!showAdvanced)} className="text-sm text-primary font-medium hover:underline">
                   {showAdvanced ? "Hide" : "Show"} Advanced
                 </button>
@@ -365,7 +365,7 @@ export default function FertilizerRequirementCalculatorUI() {
               ) : (
                 <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="text-sm text-gray-700">
-                    <strong>{CROP_LABELS[inputs.cropType]} Requirements:</strong>{" "}
+                    <strong>{(CROP_LABELS[inputs.cropType] ?? inputs.cropType)} Requirements:</strong>{" "}
                     N: {inputs.nutrientRequirement.nitrogen} kg/acre, 
                     P: {inputs.nutrientRequirement.phosphorus} kg/acre, 
                     K: {inputs.nutrientRequirement.potassium} kg/acre
@@ -433,7 +433,7 @@ export default function FertilizerRequirementCalculatorUI() {
                   </div>
                 </div>
                 <p className="text-xs text-gray-500">
-                  {FERTILIZER_LABELS[inputs.fertilizerType]} composition: 
+                  {(FERTILIZER_LABELS[inputs.fertilizerType] ?? inputs.fertilizerType)} composition: 
                   N: {inputs.fertilizerComposition.nitrogen}%, 
                   P: {inputs.fertilizerComposition.phosphorus}%, 
                   K: {inputs.fertilizerComposition.potassium}%
@@ -462,8 +462,8 @@ export default function FertilizerRequirementCalculatorUI() {
                     { label: "Total Fertilizer",  value: `${fmtNum(result.totalFertilizerNeeded, 1)} kg`,    highlight: true },
                     { label: "Land Area",         value: `${fmtNum(result.landArea, 1)} ${AREA_UNIT_SHORT[result.areaUnit]}` },
                     { label: "Per Acre",          value: `${fmtNum(result.totalFertilizerNeeded / result.landAreaInAcres, 1)} kg` },
-                    { label: "Crop Type",         value: CROP_LABELS[result.cropType], isText: true },
-                    { label: "Fertilizer Type",  value: FERTILIZER_LABELS[result.fertilizerType], isText: true },
+                    { label: "Crop Type",         value: (CROP_LABELS[result.cropType] ?? result.cropType), isText: true },
+                    { label: "Fertilizer Type",  value: (FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType), isText: true },
                     ...(result.totalCost !== null ? [
                       { label: "Estimated Cost", value: fmt(result.totalCost, result.currency, 2), highlight: true },
                     ] : []),
@@ -541,12 +541,12 @@ export default function FertilizerRequirementCalculatorUI() {
                         onClick={() => { setInputs(entry.inputs); setShowHistory(false); }}>
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-gray-900 text-sm">
-                            {CROP_LABELS[entry.inputs.cropType]} · {fmtNum(parseFloat(entry.inputs.landArea), 1)} {AREA_UNIT_SHORT[entry.inputs.areaUnit]}
+                            {(CROP_LABELS[entry.inputs.cropType] ?? entry.inputs.cropType)} · {fmtNum(parseFloat(entry.inputs.landArea), 1)} {AREA_UNIT_SHORT[entry.inputs.areaUnit]}
                           </span>
                           <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>
                         </div>
                         <div className="text-sm font-semibold text-primary">
-                          {FERTILIZER_LABELS[entry.inputs.fertilizerType]} · {fmtNum(entry.result.totalFertilizerNeeded, 1)} kg
+                          {(FERTILIZER_LABELS[entry.inputs.fertilizerType] ?? entry.inputs.fertilizerType)} · {fmtNum(entry.result.totalFertilizerNeeded, 1)} kg
                         </div>
                       </div>
                     ))

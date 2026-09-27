@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { fertilizerRequirementCalculatorConfig } from "./config";
 
 export default function FertilizerRequirementCalculatorSEO() {
+  const { howToSteps, faq } = fertilizerRequirementCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -32,51 +35,14 @@ export default function FertilizerRequirementCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Fertilizer Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter your land area (e.g., 2 acres, 5 hectares)",
-                "Select the area unit (acre, hectare, sq ft, sq m)",
-                "Choose your crop type from the dropdown",
-                "Select your fertilizer type (Urea, DAP, NPK, etc.)",
-                "Review auto-filled nutrient requirements",
-                "Adjust fertilizer composition if using custom blend",
-                "View instant fertilizer quantity and cost estimates",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time fertilizer calculation",
-                "Pre-loaded crop nutrient requirements",
-                "Multiple fertilizer types (Urea, DAP, MOP, NPK)",
-                "Area unit conversion (acre, hectare, sq ft, sq m)",
-                "Cost estimation with price input",
-                "Application timing recommendations",
-                "Calculation history and export",
-                "Multi-currency support",
-                "Mobile-friendly interface",
-                "Offline browser calculations",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -103,9 +69,9 @@ export default function FertilizerRequirementCalculatorSEO() {
                 <div className="font-mono">130.43 × 2 = <strong>260.87 kg Urea</strong></div>
               </div>
               <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                <div className="font-semibold text-green-900 mb-1">Wheat: 5 acres, 25 kg P/acre, DAP (46% P)</div>
-                <div className="font-mono">25 ÷ 0.46 = 54.35 kg/acre</div>
-                <div className="font-mono">54.35 × 5 = <strong>271.74 kg DAP</strong></div>
+                <div className="font-semibold text-green-900 mb-1">Wheat: 5 acres, 20 kg P₂O₅/acre, DAP (18-46-0)</div>
+                <div className="font-mono">20 ÷ 0.46 = 43.48 kg/acre</div>
+                <div className="font-mono">43.48 × 5 = <strong>217.39 kg DAP</strong></div>
               </div>
             </div>
           </div>
@@ -211,44 +177,7 @@ export default function FertilizerRequirementCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is fertilizer requirement calculated?",
-              a: "Fertilizer requirement is calculated using the formula: Required Fertilizer (kg) = Nutrient Requirement (kg) ÷ (Nutrient Percentage in Fertilizer / 100). The total is then multiplied by your land area.",
-            },
-            {
-              q: "What does NPK mean in fertilizers?",
-              a: "NPK stands for Nitrogen (N), Phosphorus (P), and Potassium (K) – the three primary nutrients plants need. The numbers like 10-10-10 represent the percentage of each nutrient in the fertilizer.",
-            },
-            {
-              q: "When should I apply fertilizer to my crops?",
-              a: "Timing varies by crop. Generally, apply nitrogen in split doses during active growth, phosphorus at planting for root development, and potassium throughout the growing season. The calculator provides specific timing recommendations for each crop.",
-            },
-            {
-              q: "Can I use this calculator for organic farming?",
-              a: "Yes! The calculator includes organic compost as an option and you can input custom organic fertilizer compositions. Organic fertilizers typically have lower nutrient percentages, so you'll need larger quantities.",
-            },
-            {
-              q: "How accurate are the crop nutrient requirements?",
-              a: "The preset values are based on general agricultural recommendations. For best results, conduct a soil test to determine your specific soil's nutrient levels and adjust accordingly.",
-            },
-            {
-              q: "What if I'm using multiple fertilizer types?",
-              a: "Calculate each fertilizer separately based on the specific nutrient it provides. For example, use Urea for nitrogen needs and DAP for phosphorus needs, then combine the application schedules.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

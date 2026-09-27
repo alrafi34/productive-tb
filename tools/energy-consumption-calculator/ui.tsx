@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import CurrencySelect from "@/components/CurrencySelect";
+import { type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import { ApplianceInput, EnergyCalculation } from "./types";
 import {
   createDefaultAppliance,
@@ -24,6 +26,13 @@ import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EnergyConsumptionCalculatorUI() {
   const [appliances, setAppliances] = useState<ApplianceInput[]>([createDefaultAppliance()]);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [calculation, setCalculation] = useState<EnergyCalculation | null>(null);
   const [copied, setCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
@@ -84,7 +93,7 @@ export default function EnergyConsumptionCalculatorUI() {
 
   const handleCopy = () => {
     if (calculation) {
-      const text = `Total Energy: ${formatNumber(calculation.totalEnergy, 3)} kWh\nTotal Cost: $${formatNumber(calculation.totalCost, 2)}`;
+      const text = `Total Energy: ${formatNumber(calculation.totalEnergy, 3)} kWh\nTotal Cost: ${formatMoney(calculation.totalCost, currency)}`;
       navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -192,7 +201,7 @@ export default function EnergyConsumptionCalculatorUI() {
                 {calculation.totalCost > 0 && (
                   <div className="mt-4 pt-4 border-t border-white/20">
                     <div className="text-primary-100 mb-1 text-sm">Estimated Cost:</div>
-                    <div className="text-2xl font-bold">${formatNumber(calculation.totalCost, 2)}</div>
+                    <div className="text-2xl font-bold">{formatMoney(calculation.totalCost, currency)}</div>
                     <div className="text-sm text-primary-100">per day</div>
                   </div>
                 )}
@@ -313,9 +322,12 @@ export default function EnergyConsumptionCalculatorUI() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-gray-600 mb-1">
-                        Electricity Rate ($ per kWh)
-                      </label>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <label className="block text-xs font-medium text-gray-600 mb-1">
+                          Electricity Rate per kWh
+                        </label>
+                        <CurrencySelect value={currency} onChange={setCurrency} />
+                      </div>
                       <input
                         type="number"
                         value={appliance.rate || ""}
@@ -410,21 +422,21 @@ export default function EnergyConsumptionCalculatorUI() {
                     <div className="text-xs text-blue-600 uppercase tracking-wider mb-1 font-semibold">Daily</div>
                     <div className="text-2xl font-bold text-blue-900">{formatNumber(calculation.dailyEnergy, 2)} kWh</div>
                     {calculation.dailyCost > 0 && (
-                      <div className="text-sm text-blue-700 mt-1">${formatNumber(calculation.dailyCost, 2)}</div>
+                      <div className="text-sm text-blue-700 mt-1">{formatMoney(calculation.dailyCost, currency)}</div>
                     )}
                   </div>
                   <div className="p-4 bg-green-50 rounded-lg border border-green-200">
                     <div className="text-xs text-green-600 uppercase tracking-wider mb-1 font-semibold">Monthly</div>
                     <div className="text-2xl font-bold text-green-900">{formatNumber(calculation.monthlyEnergy, 0)} kWh</div>
                     {calculation.monthlyCost > 0 && (
-                      <div className="text-sm text-green-700 mt-1">${formatNumber(calculation.monthlyCost, 2)}</div>
+                      <div className="text-sm text-green-700 mt-1">{formatMoney(calculation.monthlyCost, currency)}</div>
                     )}
                   </div>
                   <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
                     <div className="text-xs text-purple-600 uppercase tracking-wider mb-1 font-semibold">Yearly</div>
                     <div className="text-2xl font-bold text-purple-900">{formatNumber(calculation.yearlyEnergy, 0)} kWh</div>
                     {calculation.yearlyCost > 0 && (
-                      <div className="text-sm text-purple-700 mt-1">${formatNumber(calculation.yearlyCost, 2)}</div>
+                      <div className="text-sm text-purple-700 mt-1">{formatMoney(calculation.yearlyCost, currency)}</div>
                     )}
                   </div>
                 </div>
@@ -543,7 +555,7 @@ export default function EnergyConsumptionCalculatorUI() {
                         </div>
                         <div className="text-sm text-gray-600">
                           {entry.calculation.appliances.filter(a => a.power > 0 && (a.hours > 0 || a.minutes > 0)).length} appliances
-                          {entry.calculation.totalCost > 0 && ` • $${formatNumber(entry.calculation.totalCost, 2)}`}
+                          {entry.calculation.totalCost > 0 && ` • ${formatMoney(entry.calculation.totalCost, currency)}`}
                         </div>
                       </div>
                     ))

@@ -216,6 +216,10 @@ export default function HeatDissipationCalculatorUI() {
                     <span className="font-semibold uppercase">{result.heatLevel}</span>
                   </div>
                   <div className="flex justify-between">
+                    <span className="text-primary-100">Heat Output:</span>
+                    <span className="font-semibold">{formatNumber(result.heatDissipation * 3.412, 1)} BTU/h</span>
+                  </div>
+                  <div className="flex justify-between">
                     <span className="text-primary-100">Formula:</span>
                     <span className="font-semibold text-xs">{result.formula}</span>
                   </div>

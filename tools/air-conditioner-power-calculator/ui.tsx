@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import CurrencySelect from "@/components/CurrencySelect";
+import { type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import { ACPowerInputs, ACPowerResult, ACCapacityUnit, ACCapacityTon, ACRatingType } from "./types";
 import {
   calculateACPower,
@@ -41,6 +43,13 @@ export default function AirConditionerPowerCalculatorUI() {
     efficiency: savedSettings.efficiency || DEFAULT_EER,
     ratingType: (savedSettings.ratingType as ACRatingType) || 'eer'
   });
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   const [result, setResult] = useState<ACPowerResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -130,7 +139,7 @@ export default function AirConditionerPowerCalculatorUI() {
   const handleCopy = () => {
     if (result) {
       const capacity = inputs.capacityUnit === 'ton' ? `${inputs.capacityTon} Ton` : `${inputs.capacityWatt}W`;
-      const text = `AC: ${capacity} | Monthly: ${formatNumber(result.monthlyEnergy, 2)} kWh | Cost: $${formatNumber(result.monthlyCost, 2)}`;
+      const text = `AC: ${capacity} | Monthly: ${formatNumber(result.monthlyEnergy, 2)} kWh | Cost: ${formatMoney(result.monthlyCost, currency)}`;
       navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -211,7 +220,7 @@ export default function AirConditionerPowerCalculatorUI() {
 
                 <div className="mt-4 pt-4 border-t border-white/20">
                   <div className="text-primary-100 mb-1 text-sm">Monthly Cost:</div>
-                  <div className="text-3xl font-bold">${formatNumber(result.monthlyCost, 2)}</div>
+                  <div className="text-3xl font-bold">{formatMoney(result.monthlyCost, currency)}</div>
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-white/20 text-sm space-y-2">
@@ -413,9 +422,12 @@ export default function AirConditionerPowerCalculatorUI() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Electricity Tariff ($ per kWh)
-                </label>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Electricity Tariff per kWh
+                  </label>
+                  <CurrencySelect value={currency} onChange={setCurrency} />
+                </div>
                 <input
                   type="number"
                   value={inputs.tariff || ''}
@@ -504,17 +516,17 @@ export default function AirConditionerPowerCalculatorUI() {
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <div className="text-xs text-blue-600 uppercase tracking-wider mb-1 font-semibold">Daily</div>
                     <div className="text-2xl font-bold text-blue-900">{formatNumber(result.dailyEnergy, 2)} kWh</div>
-                    <div className="text-sm text-blue-700 mt-1">${formatNumber(result.dailyCost, 2)}</div>
+                    <div className="text-sm text-blue-700 mt-1">{formatMoney(result.dailyCost, currency)}</div>
                   </div>
                   <div className="p-4 bg-green-50 rounded-lg border border-green-200">
                     <div className="text-xs text-green-600 uppercase tracking-wider mb-1 font-semibold">Monthly</div>
                     <div className="text-2xl font-bold text-green-900">{formatNumber(result.monthlyEnergy, 0)} kWh</div>
-                    <div className="text-sm text-green-700 mt-1">${formatNumber(result.monthlyCost, 2)}</div>
+                    <div className="text-sm text-green-700 mt-1">{formatMoney(result.monthlyCost, currency)}</div>
                   </div>
                   <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
                     <div className="text-xs text-purple-600 uppercase tracking-wider mb-1 font-semibold">Yearly</div>
                     <div className="text-2xl font-bold text-purple-900">{formatNumber(result.yearlyEnergy, 0)} kWh</div>
-                    <div className="text-sm text-purple-700 mt-1">${formatNumber(result.yearlyCost, 2)}</div>
+                    <div className="text-sm text-purple-700 mt-1">{formatMoney(result.yearlyCost, currency)}</div>
                   </div>
                 </div>
               </div>
@@ -545,7 +557,7 @@ export default function AirConditionerPowerCalculatorUI() {
                   <div>
                     <h4 className="font-semibold text-yellow-900 mb-1">Energy Saving Tip</h4>
                     <p className="text-sm text-yellow-800">
-                      {getEnergySavingTip(result, inputs)}
+                      {getEnergySavingTip(result, inputs, currency)}
                     </p>
                   </div>
                 </div>

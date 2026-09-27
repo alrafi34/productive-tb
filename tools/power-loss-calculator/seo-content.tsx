@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { powerLossCalculatorConfig } from "./config";
+
 export default function PowerLossCalculatorSEO() {
+  const { howToSteps, faq } = powerLossCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -205,40 +209,13 @@ export default function PowerLossCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h2>
-          
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">1.</span>
-              <span><strong>Select Calculation Mode:</strong> Choose I²R, V×I, or Mixed mode based on your available parameters.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">2.</span>
-              <span><strong>Enter Parameters:</strong> Input voltage, current, and/or resistance values as required by the selected mode.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">3.</span>
-              <span><strong>Optional - Power Factor:</strong> For AC circuits, enter the power factor (0-1) if known.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">4.</span>
-              <span><strong>Enable Efficiency:</strong> Check the efficiency option to calculate system efficiency percentage.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">5.</span>
-              <span><strong>View Results:</strong> The calculator instantly shows power loss, efficiency, and loss level classification.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">6.</span>
-              <span><strong>Review Steps:</strong> See detailed calculation steps with formulas and intermediate values.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">7.</span>
-              <span><strong>Use Presets:</strong> Click on common examples for quick calculations of typical scenarios.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-semibold text-primary mr-2">8.</span>
-              <span><strong>Export or Save:</strong> Download results as TXT/CSV or save to history for future reference.</span>
-            </li>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -267,53 +244,7 @@ export default function PowerLossCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is power loss in electrical systems?</h3>
-              <p className="text-gray-700">
-                Power loss is the electrical energy converted to heat due to resistance in conductors and components. It represents wasted energy that doesn't reach the intended load, reducing system efficiency and generating heat.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why does power loss increase with the square of current?</h3>
-              <p className="text-gray-700">
-                The I²R formula shows that power loss is proportional to the square of current. Doubling the current quadruples the power loss. This is why high-voltage transmission (lower current for same power) is more efficient.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is an acceptable power loss percentage?</h3>
-              <p className="text-gray-700">
-                Generally, power losses below 5% are considered acceptable for most applications. Transmission systems aim for 2-3% loss, while some high-current applications may tolerate up to 10%. Critical systems require minimal losses.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How does wire size affect power loss?</h3>
-              <p className="text-gray-700">
-                Larger wire sizes have lower resistance per unit length. Since power loss equals I²R, reducing resistance by using thicker wire directly reduces power loss. However, larger wire is more expensive and harder to install.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is power factor and how does it affect losses?</h3>
-              <p className="text-gray-700">
-                Power factor is the ratio of real power to apparent power in AC circuits. Low power factor means higher current for the same real power, increasing I²R losses. Improving power factor reduces current and losses.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can power loss be completely eliminated?</h3>
-              <p className="text-gray-700">
-                No, power loss cannot be completely eliminated in practical systems due to the inherent resistance of conductors. However, it can be minimized through proper design, material selection, and system optimization. Superconductors can eliminate resistance but require extreme cooling.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
       </div>
     </div>

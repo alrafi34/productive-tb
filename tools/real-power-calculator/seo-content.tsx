@@ -1,55 +1,8 @@
+import { realPowerCalculatorConfig } from "./config";
 export default function RealPowerCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a real power calculator?",
-      a: "A real power calculator is a free online tool that computes the actual useful power (P) consumed by an AC electrical load, using voltage, current, and power factor. Unlike apparent power, real power is the portion that does actual work — heat, light, or motion — and is measured in watts (W).",
-    },
-    {
-      q: "What is the formula for real power?",
-      a: "P = V × I × PF, where P is real power in watts, V is voltage in volts, I is current in amps, and PF is power factor (a decimal between 0 and 1). For example, a load at 230V, 5A, with a power factor of 0.8 gives P = 230 × 5 × 0.8 = 920W.",
-    },
-    {
-      q: "What is the difference between real power, apparent power, and reactive power?",
-      a: "Real power (P, in watts) is the useful work performed. Apparent power (S = V × I, in volt-amperes) is the total power drawn from the supply. Reactive power (Q, in VAR) is the non-working power circulating due to inductive or capacitive loads. They relate by S² = P² + Q², and P = S when power factor is 1.0 (purely resistive).",
-    },
-    {
-      q: "Why is real power lower than apparent power for most loads?",
-      a: "Most real-world loads — motors, transformers, fluorescent lighting ballasts — aren't purely resistive, so their power factor is less than 1.0. Since P = V × I × PF, any power factor below 1.0 means real power is lower than the apparent power (V × I) the supply must still deliver, with the difference showing up as reactive power.",
-    },
-    {
-      q: "How do I calculate power factor if I know real and apparent power?",
-      a: "PF = P ÷ S, where S = V × I. For a load with P = 920W and S = V × I = 230 × 5 = 1,150VA, PF = 920 ÷ 1,150 = 0.8. This is the reverse calculation from what this tool performs, useful when you already know real power from a wattmeter reading.",
-    },
-    {
-      q: "What is the real power of a purely resistive load?",
-      a: "For a purely resistive load, power factor equals 1.0, so real power equals apparent power exactly: P = V × I. A 120V heater drawing 10A has real power of exactly 1,200W, with zero reactive power, since resistive loads like heaters and incandescent bulbs don't store or release energy out of phase.",
-    },
-    {
-      q: "How does real power relate to my electricity bill?",
-      a: "Utility bills for most residential and small commercial customers charge based on real power consumed over time (kWh), not apparent power. This is why a facility with a poor power factor can draw significantly more current from the supply than its billed energy consumption would suggest — the extra apparent power isn't directly billed as energy, but may incur a separate power factor penalty.",
-    },
-    {
-      q: "Can real power ever exceed apparent power?",
-      a: "No. Since P = S × PF and power factor can never exceed 1.0, real power can never be greater than apparent power. The two are only equal when power factor is exactly 1.0 (a purely resistive load) — for any reactive component, real power is strictly less than apparent power.",
-    },
-    {
-      q: "How do I calculate real power for an inductive load like a motor?",
-      a: "Use the motor's rated voltage, measured (or nameplate) current, and rated power factor in the P = V × I × PF formula. A three-phase motor at 400V, 10A, with a power factor of 0.85 gives single-phase-equivalent real power of P = 400 × 10 × 0.85 = 3,400W — for the full three-phase real power, multiply by √3 as well.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, and power factor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = realPowerCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Enter voltage", "Input the supply voltage in volts (V) applied to the load."],
-    ["Enter current", "Input the current drawn by the load in amps (A), from a nameplate rating or measured value."],
-    ["Enter power factor", "Input the load's power factor as a decimal between 0 and 1 — use 1.0 for purely resistive loads, or the rated PF for motors and other inductive equipment."],
-    ["Read the real power result", "The calculator returns real power in watts, calculated instantly using P = V × I × PF."],
-    ["Review apparent and reactive power", "See the related apparent power (S = V × I) and reactive power (Q = √(S² - P²)) calculated from the same inputs."],
-    ["Check the efficiency rating and export", "View an efficiency rating based on the power factor, and export the full calculation with steps as a text file."],
-  ];
+  const howToSteps: [string, string][] = realPowerCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

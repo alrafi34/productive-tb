@@ -13,15 +13,15 @@ import {
 // ── Labels ────────────────────────────────────────────────────────────────────
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
-  USD: "$", EUR: "€", GBP: "£", INR: "₹", BDT: "৳",
+  USD: "$", EUR: "€", GBP: "£", AUD: "A$", CAD: "CA$",
 };
 export const CURRENCY_LABELS: Record<Currency, string> = {
-  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", INR: "INR (₹)", BDT: "BDT (৳)",
+  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", AUD: "AUD (A$)", CAD: "CAD (CA$)",
 };
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "INR", "BDT"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const INTEREST_TYPE_LABELS: Record<InterestType, string> = {
-  emi:      "EMI / Mortgage Style",
+  emi:      "Amortized / Mortgage",
   simple:   "Simple Interest",
   compound: "Compound Interest",
 };
@@ -218,7 +218,7 @@ export function compareRates(
 // ── Formatting ────────────────────────────────────────────────────────────────
 
 export function fmt(value: number, currency: Currency, decimals = 0): string {
-  return `${CURRENCY_SYMBOLS[currency]}${value.toLocaleString("en-US", {
+  return `${(CURRENCY_SYMBOLS[currency] ?? "$")}${value.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   })}`;
@@ -268,7 +268,7 @@ export function clearHistory(): void {
 // ── CSV Export ────────────────────────────────────────────────────────────────
 
 export function exportScheduleCSV(schedule: AmortizationRow[], freq: PaymentFrequency, currency: Currency): void {
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   const header = `Period,Payment,Principal,Interest,Balance\n`;
   const rows = schedule.map((r) =>
     `${r.period},${r.payment.toFixed(2)},${r.principal.toFixed(2)},${r.interest.toFixed(2)},${r.balance.toFixed(2)}`
@@ -283,8 +283,8 @@ export function exportScheduleCSV(schedule: AmortizationRow[], freq: PaymentFreq
 }
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[result.currency];
-  const freqLabel = FREQUENCY_LABELS[result.frequency];
+  const sym = (CURRENCY_SYMBOLS[result.currency] ?? "$");
+  const freqLabel = (FREQUENCY_LABELS[result.frequency] ?? result.frequency);
   return [
     "Property Loan Interest Calculator – Summary",
     "=".repeat(45),
@@ -294,7 +294,7 @@ export function exportToText(inputs: CalculatorInputs, result: CalculationResult
     `Principal        : ${sym}${fmtNum(result.principal, 0)}`,
     `Interest Rate    : ${inputs.interestRate}% p.a.`,
     `Duration         : ${inputs.duration} ${inputs.durationUnit}`,
-    `Interest Type    : ${INTEREST_TYPE_LABELS[result.interestType]}`,
+    `Interest Type    : ${(INTEREST_TYPE_LABELS[result.interestType] ?? result.interestType)}`,
     `Payment Freq.    : ${freqLabel}`,
     "",
     `${freqLabel} Payment  : ${sym}${fmtNum(result.periodicPayment, 2)}`,

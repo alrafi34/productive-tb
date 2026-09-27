@@ -30,7 +30,7 @@ export const UNIT_SHORT: Record<Unit, string> = {
   hectare: "ha",
 };
 
-export const ALL_UNITS: Unit[] = ["sqft", "sqm", "decimal", "acre", "katha", "bigha", "hectare"];
+export const ALL_UNITS: Unit[] = ["sqft", "sqm", "acre", "hectare", "decimal", "katha", "bigha"];
 
 export function convertArea(value: number, fromUnit: Unit, toUnit: Unit): number {
   if (fromUnit === toUnit) return value;

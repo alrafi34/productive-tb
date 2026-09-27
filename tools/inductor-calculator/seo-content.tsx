@@ -1,55 +1,8 @@
+import { inductorCalculatorConfig } from "./config";
 export default function InductorCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is an inductor calculator?",
-      a: "An inductor calculator is a free online tool that computes coil inductance from physical winding parameters (turns, core area, length, and core material), or calculates inductive reactance from a known inductance and frequency. It covers three modes: solenoid inductance, air-core coil inductance, and inductive reactance (XL).",
-    },
-    {
-      q: "What is the formula for solenoid inductance?",
-      a: "L = (μ × N² × A) ÷ l, where μ is the core's permeability, N is the number of turns, A is the cross-sectional area, and l is the coil's length. For example, an air-core solenoid with 100 turns, 1cm² area, and 10cm length gives L = (4π×10⁻⁷ × 10,000 × 0.0001) ÷ 0.1 ≈ 1.26µH.",
-    },
-    {
-      q: "What is the formula for air-core coil inductance?",
-      a: "L ≈ (μ₀ × N² × π × r²) ÷ l, a simplified version of the solenoid formula using a circular cross-section defined by radius r instead of a general area. This is the standard approximation for a single-layer air-core coil and works best when the coil's length is significantly longer than its diameter.",
-    },
-    {
-      q: "What is the formula for inductive reactance?",
-      a: "XL = 2πfL, where XL is inductive reactance in ohms, f is frequency in hertz, and L is inductance in henries. For example, a 10µH inductor at 1MHz gives XL = 2π × 1,000,000 × 0.00001 ≈ 62.8Ω. Reactance increases linearly with both frequency and inductance.",
-    },
-    {
-      q: "Why does adding a magnetic core increase inductance?",
-      a: "A magnetic core material like iron has a much higher permeability (μ) than air — often 100 to several thousand times higher — which directly multiplies the inductance in the L = (μN²A)/l formula. This is why transformers and chokes use iron, ferrite, or powdered-iron cores to achieve high inductance in a compact winding rather than air-core coils, which need far more turns for the same value.",
-    },
-    {
-      q: "Why does inductance scale with the square of the number of turns?",
-      a: "Each additional turn contributes magnetic flux linkage to every other turn in the coil, not just its own flux — so N turns produce N times the flux, which links N times, giving an N² relationship overall. Doubling the number of turns quadruples inductance, all else equal, which is why turn count is the most powerful single variable for adjusting a coil's inductance.",
-    },
-    {
-      q: "How is inductive reactance different from resistance?",
-      a: "Resistance dissipates energy as heat and applies equally at any frequency, including DC. Inductive reactance (XL) opposes changes in current without dissipating energy, and only exists for AC or changing signals — it's zero at DC and increases linearly with frequency, which is why inductors block high-frequency signals more than low-frequency ones.",
-    },
-    {
-      q: "Why does inductive reactance increase with frequency?",
-      a: "An inductor opposes changes in current by generating a back-EMF proportional to the rate of change of current. At higher frequencies, current changes direction faster, so the back-EMF — and therefore the opposition to current flow — increases proportionally, following the direct relationship XL = 2πfL.",
-    },
-    {
-      q: "How accurate is the air-core coil formula for real-world coils?",
-      a: "The formula L ≈ (μ₀N²πr²)/l is most accurate for long, thin solenoids where length is at least several times the diameter. For short, fat coils, the simplified formula overestimates inductance because it doesn't account for fringing effects at the coil ends — Wheeler's approximation or a full field simulation is more accurate for those geometries.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your coil parameters, inductance, and frequency values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-    },
-  ];
+  const faqItems = inductorCalculatorConfig.seo.faq;
 
-  const howToSteps: [string, string][] = [
-    ["Select a calculation mode", "Choose Solenoid Inductance, Air-Core Coil Inductance, or Inductive Reactance, depending on what you're solving for."],
-    ["Enter winding parameters (for inductance modes)", "Input number of turns, coil length, and either cross-sectional area or radius, along with the core material — air, iron, or a custom permeability value."],
-    ["Enter inductance and frequency (for reactance mode)", "Input a known inductance value and the signal frequency you want to evaluate reactance at."],
-    ["Read the result and formula", "The calculator shows the computed value along with the exact formula used and every intermediate substitution."],
-    ["Review the step-by-step derivation", "Each calculation includes a full breakdown so you can verify the math or use it as a worked reference."],
-    ["Save or export the calculation", "Save results to history for later reference, or export the full calculation with formula and steps as a text file."],
-  ];
+  const howToSteps: [string, string][] = inductorCalculatorConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>

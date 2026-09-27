@@ -62,9 +62,9 @@ export function getVoltagePresets(): Preset[] {
     { name: "USB", voltage: 5, voltageUnit: "V", description: "USB Standard" },
     { name: "12V DC", voltage: 12, voltageUnit: "V", description: "Automotive" },
     { name: "24V DC", voltage: 24, voltageUnit: "V", description: "Industrial" },
-    { name: "110V AC", voltage: 110, voltageUnit: "V", description: "US Standard" },
-    { name: "220V AC", voltage: 220, voltageUnit: "V", description: "EU Standard" },
-    { name: "240V AC", voltage: 240, voltageUnit: "V", description: "UK Standard" }
+    { name: "120V AC", voltage: 120, voltageUnit: "V", description: "US, Canada outlets" },
+    { name: "230V AC", voltage: 230, voltageUnit: "V", description: "UK, Europe, Australia" },
+    { name: "240V AC", voltage: 240, voltageUnit: "V", description: "US split-phase (dryers, ranges)" }
   ];
 }
 
