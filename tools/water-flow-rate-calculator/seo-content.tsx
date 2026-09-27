@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { waterFlowRateCalculatorConfig } from "./config";
+
 export default function WaterFlowRateCalculatorSEO() {
+  const { howToSteps, faq } = waterFlowRateCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -15,29 +19,14 @@ export default function WaterFlowRateCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Select Calculation Mode</h3>
-              <p className="text-gray-700">
-                Choose what you want to calculate: flow rate, velocity, or pipe diameter. The calculator will automatically 
-                adjust the input fields based on your selection.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Enter Known Values</h3>
-              <p className="text-gray-700">
-                Input your known parameters such as pipe diameter (in mm) and velocity (in m/s) to calculate flow rate, 
-                or enter flow rate and diameter to find velocity.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Review Results</h3>
-              <p className="text-gray-700">
-                The calculator instantly displays results in multiple units including L/min, GPM, m³/s, along with 
-                recommendations and warnings based on engineering best practices.
-              </p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -218,46 +207,7 @@ export default function WaterFlowRateCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What is the ideal flow velocity for residential plumbing?</h3>
-              <p className="text-gray-700">
-                For residential applications, maintain velocities between 1.2-2.5 m/s (4-8 ft/s). This range provides adequate 
-                flow while minimizing noise and preventing erosion. Lower velocities around 1.5 m/s are preferred for quiet operation.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How do I calculate flow rate if I know diameter and velocity?</h3>
-              <p className="text-gray-700">
-                Use the formula Q = A × v, where A = π × (D/2)². First calculate the cross-sectional area from the diameter, 
-                then multiply by velocity. The calculator handles all conversions automatically.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What causes low water flow in buildings?</h3>
-              <p className="text-gray-700">
-                Low flow can result from undersized pipes, excessive friction losses, low supply pressure, clogged fixtures, 
-                or simultaneous usage exceeding system capacity. Use this calculator to verify proper pipe sizing.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How does pipe diameter affect flow rate?</h3>
-              <p className="text-gray-700">
-                Flow rate is proportional to the square of the diameter (Q ∝ D²). Doubling the diameter increases flow capacity 
-                by four times at the same velocity. This is why proper pipe sizing is critical.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What is water hammer and how can I prevent it?</h3>
-              <p className="text-gray-700">
-                Water hammer is a pressure surge caused by sudden flow changes. Prevent it by keeping velocities below 3 m/s, 
-                installing water hammer arrestors, and using slow-closing valves. High velocities increase water hammer risk.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Engineering Best Practices</h2>

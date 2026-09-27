@@ -247,6 +247,17 @@ export default function SandCalculatorUI() {
                     <span className="text-primary-100">In Cubic Feet:</span>
                     <span className="font-semibold">{formatNumber(calculation.sandRequired)} ft³</span>
                   </div>
+                  <div className="flex justify-between">
+                    <span className="text-primary-100">In Cubic Yards:</span>
+                    <span className="font-semibold">{formatNumber(calculation.sandRequired / 27)} yd³</span>
+                  </div>
+                  {/* Dry sand at about 1,600 kg/m³ (100 lb/ft³); wet sand weighs more */}
+                  <div className="flex justify-between">
+                    <span className="text-primary-100">Approx. Weight:</span>
+                    <span className="font-semibold">
+                      {formatNumber(calculation.sandRequiredM3 * 1.6)} t · {formatNumber(calculation.sandRequired * 100 / 2000)} US tons
+                    </span>
+                  </div>
                   {calculation.volumeDetails && (
                     <>
                       <div className="flex justify-between">

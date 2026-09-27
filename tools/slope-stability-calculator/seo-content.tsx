@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { slopeStabilityCalculatorConfig } from "./config";
+
 export default function SlopeStabilityCalculatorSEO() {
+  const { howToSteps, faq } = slopeStabilityCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -17,16 +21,13 @@ export default function SlopeStabilityCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           How to Use the Slope Stability Calculator
         </h2>
-        <ol className="list-decimal list-inside space-y-2">
-          <li>Select your unit system (metric or imperial)</li>
-          <li>Enter slope geometry: angle (0-90°) and height</li>
-          <li>Input soil properties: cohesion, friction angle, and unit weight</li>
-          <li>Set water conditions using pore water pressure ratio (0-1)</li>
-          <li>View instant Factor of Safety calculation</li>
-          <li>Check stability status (stable/marginal/unstable)</li>
-          <li>Review engineering notes and recommendations</li>
-          <li>Use soil type presets for common materials</li>
-          <li>Save calculations to history or export results</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -222,45 +223,7 @@ export default function SlopeStabilityCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What is a safe Factor of Safety for slopes?
-            </h3>
-            <p>
-              Minimum FoS of 1.3-1.5 is typical for permanent slopes. Temporary slopes may use 1.2-1.3. Critical infrastructure requires FoS of 1.5 or higher.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              How does water affect slope stability?
-            </h3>
-            <p>
-              Water increases soil weight and reduces effective stress, significantly decreasing stability. A fully saturated slope can have 50% lower FoS than dry conditions.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              What slope angle is considered safe?
-            </h3>
-            <p>
-              Depends on soil type. Clay: 20-30°. Sand: 30-35°. Rock: 45-60°. Flatter slopes are generally more stable but require more space.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Can I use this for final design?
-            </h3>
-            <p>
-              No, this tool provides preliminary estimates only. Final design requires detailed site investigation, laboratory testing, and analysis by licensed geotechnical engineer.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
