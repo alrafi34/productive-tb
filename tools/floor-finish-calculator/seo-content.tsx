@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { floorFinishCalculatorConfig } from "./config";
+
 export default function FloorFinishCalculatorSEO() {
+  const { howToSteps, faq } = floorFinishCalculatorConfig.seo;
   return (
     <div className="mt-16 space-y-12 max-w-4xl mx-auto">
       
@@ -16,32 +20,14 @@ export default function FloorFinishCalculatorSEO() {
       {/* How It Works */}
       <section className="space-y-4">
         <h2 className="text-2xl font-bold text-gray-900">How It Works</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">1. Enter Room Dimensions</h3>
-            <p className="text-gray-700 text-sm">
-              Input the length and width of your room in feet or meters.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">2. Specify Material Size</h3>
-            <p className="text-gray-700 text-sm">
-              Enter the dimensions of your tile, plank, or material unit, or choose from preset sizes.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">3. Set Wastage Percentage</h3>
-            <p className="text-gray-700 text-sm">
-              Adjust the wastage slider (typically 5-15%) to account for cuts, breakage, and pattern matching.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">4. Get Instant Results</h3>
-            <p className="text-gray-700 text-sm">
-              View the exact number of units required, including wastage, with detailed breakdown.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Formula */}
@@ -222,48 +208,7 @@ export default function FloorFinishCalculatorSEO() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
-        <div className="space-y-3">
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How much wastage should I add for tile installation?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              For standard tile installations with straight layouts, add 5-10% wastage. For diagonal patterns or complex designs, increase to 15-20%. The calculator automatically applies your selected wastage percentage to ensure you have enough material.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">Can I use this calculator for irregular room shapes?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              For irregular rooms, break the space into multiple rectangular sections, calculate each separately, and sum the results. Use the history feature to track multiple calculations and add them together.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What if my tile size is in inches?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Convert inches to feet by dividing by 12. For example, a 12×12 inch tile is 1×1 foot. Alternatively, use the meters option and convert inches to centimeters (multiply by 2.54) then to meters (divide by 100).
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">Why does the calculator round up the final number?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              The calculator rounds up to ensure you have enough material. You can't purchase partial tiles or planks, so rounding up guarantees complete coverage. Any leftover material can be kept for future repairs.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How do I calculate for multiple rooms?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Calculate each room separately and save to history. Then add up the final units from all rooms. This approach is more accurate than combining room dimensions, especially if rooms have different shapes or require different wastage percentages.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">Should I include closets in my calculation?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Yes, include closet floor space in your measurements for a seamless look and easier installation. Calculate the entire room including closets as one continuous area.
-            </p>
-          </details>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits */}
       <section className="space-y-4">

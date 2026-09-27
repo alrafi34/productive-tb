@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { roomVolumeCalculatorConfig } from "./config";
+
 export default function RoomVolumeCalculatorSEO() {
+  const { howToSteps, faq } = roomVolumeCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12 text-gray-700">
       
@@ -119,32 +123,7 @@ export default function RoomVolumeCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How do I measure room height?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Measure from floor to ceiling at the tallest point. For rooms with sloped ceilings, use the triangular/attic room option.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What CADR do I need for my air purifier?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              The calculator recommends a CADR of at least 2/3 of your room volume in cubic feet for effective air purification.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I calculate irregular room shapes?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              For irregular rooms, divide the space into multiple regular shapes, calculate each separately, and add the volumes together.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="bg-primary/5 border border-primary/20 rounded-xl p-6">
         <h2 className="text-xl font-bold text-gray-900 mb-3">Start Calculating Room Volume Now</h2>
@@ -153,6 +132,17 @@ export default function RoomVolumeCalculatorSEO() {
         </p>
       </section>
 
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Room Volume Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

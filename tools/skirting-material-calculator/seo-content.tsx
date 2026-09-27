@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { skirtingMaterialCalculatorConfig } from "./config";
+
 export default function SkirtingMaterialCalculatorSEO() {
+  const { howToSteps, faq } = skirtingMaterialCalculatorConfig.seo;
   return (
     <div className="mt-16 space-y-12 max-w-4xl mx-auto">
       
@@ -16,32 +20,14 @@ export default function SkirtingMaterialCalculatorSEO() {
       {/* How It Works */}
       <section className="space-y-4">
         <h2 className="text-2xl font-bold text-gray-900">How It Works</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">1. Enter Room Dimensions</h3>
-            <p className="text-gray-700 text-sm">
-              Input the length and width of each room in feet or meters.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">2. Specify Door Openings</h3>
-            <p className="text-gray-700 text-sm">
-              Enter the number of doors and their width to deduct from the perimeter calculation.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">3. Add Multiple Rooms (Optional)</h3>
-            <p className="text-gray-700 text-sm">
-              Use the "Add Room" button to calculate skirting for multiple rooms simultaneously.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">4. Enable Cost Estimation (Optional)</h3>
-            <p className="text-gray-700 text-sm">
-              Toggle cost estimation and enter the price per unit to get total project cost.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Formula */}
@@ -194,48 +180,7 @@ export default function SkirtingMaterialCalculatorSEO() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
-        <div className="space-y-3">
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What is skirting board and why is it needed?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Skirting board (also called baseboard) is a decorative and protective trim installed along the bottom of interior walls. It protects walls from damage, covers the joint between wall and floor, and provides a finished aesthetic appearance to rooms.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How much extra skirting should I buy?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              It's recommended to purchase 5-10% extra skirting material beyond your calculated requirement. This accounts for cutting waste, mistakes during installation, and potential damage. For complex rooms with many corners, consider 10-15% extra.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">Should I deduct window areas from the calculation?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              No, windows do not affect skirting calculations as skirting is installed at floor level, not around windows. Only deduct door openings where skirting is not installed.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">What is the standard door width for calculations?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              Standard interior door widths are typically 30-36 inches (2.5-3 feet) or 80-90 cm (0.8-0.9 meters). However, measure your actual door openings for accurate calculations, as sizes can vary.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">Can I use this calculator for irregular room shapes?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              For irregular rooms, break the space into multiple rectangular sections, calculate each separately using the "Add Room" feature, and sum the results. This approach works well for L-shaped rooms or spaces with alcoves.
-            </p>
-          </details>
-          <details className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
-            <summary className="font-semibold text-gray-900">How do I calculate skirting for stairs?</summary>
-            <p className="text-gray-700 text-sm mt-2">
-              For stairs, measure the total length of the staircase perimeter including risers. This calculator works best for flat rooms. For stairs, consider measuring the actual diagonal length along the staircase and adding it as a separate "room" with custom dimensions.
-            </p>
-          </details>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits */}
       <section className="space-y-4">

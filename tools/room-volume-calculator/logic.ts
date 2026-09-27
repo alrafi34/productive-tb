@@ -227,6 +227,7 @@ export function calculateACH(volumeCubicMeters: number, airflowCFM: number): num
 
 // Calculate air purifier size recommendation
 export function recommendAirPurifierCADR(volumeCubicFeet: number): number {
-  // CADR should be at least 2/3 of room volume for effective purification
-  return Math.ceil((volumeCubicFeet * 2) / 3);
+  // Five clean-air changes an hour: volume × 5 ÷ 60 min. For an 8 ft ceiling
+  // this is AHAM's rule of a CADR of at least 2/3 of the floor area in sq ft.
+  return Math.ceil(volumeCubicFeet / 12);
 }

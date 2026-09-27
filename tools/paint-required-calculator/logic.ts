@@ -31,12 +31,18 @@ export const roundPaintAmount = (amount: number): number => {
 
 // Format paint amount
 export const formatPaintAmount = (amount: number, unit: Unit): string => {
-  return `${amount.toFixed(2)} liters`;
+  return `${amount.toFixed(2)} ${paintUnit(unit)}`;
 };
+
+/* Paint is sold by the US gallon where rooms are measured in feet, and by
+   the liter where they are measured in meters */
+export const paintUnit = (unit: Unit): string => (unit === 'ft' ? 'gallons' : 'liters');
+export const paintUnitSingular = (unit: Unit): string => (unit === 'ft' ? 'gallon' : 'liter');
 
 // Get default coverage based on unit
 export const getDefaultCoverage = (unit: Unit): number => {
-  return unit === 'ft' ? 350 : 32.5; // 350 sq ft/liter or 32.5 sq m/liter
+  // About 350–400 sq ft per US gallon, or 9–10 m² per liter, for one coat on smooth walls
+  return unit === 'ft' ? 350 : 10;
 };
 
 // Convert area between units
@@ -99,12 +105,12 @@ export const exportToText = (calculation: PaintCalculation, mode: string): strin
   text += `Openings Area:        ${calculation.openingsArea.toFixed(2)} ${calculation.unit}²\n`;
   text += `Net Paintable Area:   ${calculation.netArea.toFixed(2)} ${calculation.unit}²\n`;
   text += `Number of Coats:      ${calculation.coats}\n`;
-  text += `Coverage per Liter:   ${calculation.coverage.toFixed(0)} ${calculation.unit}²\n\n`;
+  text += `Coverage per ${paintUnitSingular(calculation.unit)}: ${calculation.coverage.toFixed(1)} ${calculation.unit}²\n\n`;
   
   text += 'RESULT:\n';
   text += '═══════════════════════════════════════\n';
-  text += `Paint Required:       ${calculation.paintRequired.toFixed(2)} liters\n`;
-  text += `Recommended Purchase: ${calculation.recommendedPurchase} liters\n`;
+  text += `Paint Required:       ${calculation.paintRequired.toFixed(2)} ${paintUnit(calculation.unit)}\n`;
+  text += `Recommended Purchase: ${calculation.recommendedPurchase} ${paintUnit(calculation.unit)}\n`;
   text += '═══════════════════════════════════════\n';
   
   return text;
