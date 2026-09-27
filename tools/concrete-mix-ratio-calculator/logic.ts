@@ -86,45 +86,40 @@ export const calculateConcreteMix = (
 };
 
 // Mix ratio presets
+// Nominal (volume-batched) mixes. Strengths are typical, not guaranteed:
+// structural concrete is specified by strength class (ACI 318, EN 206).
 export const getMixRatioPresets = (): MixRatioPreset[] => {
   return [
-    {
-      name: 'M5 Grade',
-      ratio: { cement: 1, sand: 5, aggregate: 10 },
-      description: 'Lean concrete for leveling',
-      grade: 'M5'
-    },
-    {
-      name: 'M10 Grade',
-      ratio: { cement: 1, sand: 3, aggregate: 6 },
-      description: 'Non-structural concrete',
-      grade: 'M10'
-    },
-    {
-      name: 'M15 Grade',
-      ratio: { cement: 1, sand: 2, aggregate: 4 },
-      description: 'Standard concrete for general use',
-      grade: 'M15'
-    },
-    {
-      name: 'M20 Grade',
-      ratio: { cement: 1, sand: 1.5, aggregate: 3 },
-      description: 'Structural concrete for beams and columns',
-      grade: 'M20'
-    },
-    {
-      name: 'M25 Grade',
-      ratio: { cement: 1, sand: 1, aggregate: 2 },
-      description: 'High strength structural concrete',
-      grade: 'M25'
-    },
-    {
-      name: 'M30 Grade',
-      ratio: { cement: 1, sand: 0.75, aggregate: 1.5 },
-      description: 'Very high strength concrete',
-      grade: 'M30'
-    }
+    { name: '1:5:10 Lean mix', ratio: { cement: 1, sand: 5, aggregate: 10 }, description: 'Blinding and leveling, about 5 MPa (700 psi)' },
+    { name: '1:3:6 Mass concrete', ratio: { cement: 1, sand: 3, aggregate: 6 }, description: 'Mass fill and non-structural work, about 10 MPa (1,450 psi)' },
+    { name: '1:2:4 General purpose', ratio: { cement: 1, sand: 2, aggregate: 4 }, description: 'Slabs, footings and paths, about 15 MPa (2,200 psi)' },
+    { name: '1:1.5:3 Structural', ratio: { cement: 1, sand: 1.5, aggregate: 3 }, description: 'Beams, columns and suspended slabs, about 20 MPa (2,900 psi)' },
+    { name: '1:1:2 High strength', ratio: { cement: 1, sand: 1, aggregate: 2 }, description: 'Heavily loaded members, about 25 MPa (3,600 psi)' },
+    { name: '1:0.75:1.5 Very high strength', ratio: { cement: 1, sand: 0.75, aggregate: 1.5 }, description: 'About 30 MPa (4,350 psi); usually designed as a mix instead' },
   ];
+};
+
+// Cement bag sizes sold in different markets, in kg
+export const BAG_SIZES: { kg: number; label: string }[] = [
+  { kg: 42.64, label: '94 lb (US portland cement)' },
+  { kg: 25, label: '25 kg (UK, Europe)' },
+  { kg: 50, label: '50 kg' },
+  { kg: 40, label: '40 kg' },
+];
+
+export const bagLabel = (kg: number): string =>
+  BAG_SIZES.find((b) => b.kg === kg)?.label.split(' (')[0] ?? `${kg} kg`;
+
+/* Default bag size guessed from the visitor's timezone; always editable. */
+export const guessBagSize = (): number => {
+  try {
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? '';
+    if (zone.startsWith('America/')) return 42.64;
+    if (zone.startsWith('Europe/')) return 25;
+  } catch {
+    // fall through
+  }
+  return 50;
 };
 
 // Format number
@@ -175,7 +170,7 @@ export const exportToText = (calculation: ConcreteCalculation): string => {
   text += `Total Volume:         ${formatNumber(calculation.volumeM3)} m³\n`;
   text += `Mix Ratio:            ${formatMixRatio(calculation.mixRatio)}\n`;
   text += `Dry Volume Factor:    ${calculation.dryVolumeFactor}\n`;
-  text += `Cement Bag Size:      ${calculation.bagSize} kg\n\n`;
+  text += `Cement Bag Size:      ${bagLabel(calculation.bagSize)}\n\n`;
   
   text += 'VOLUME CALCULATIONS:\n';
   text += '───────────────────────────────────────\n';

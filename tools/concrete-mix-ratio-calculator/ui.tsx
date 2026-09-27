@@ -13,7 +13,10 @@ import {
   exportToText,
   exportToCSV,
   downloadFile,
-  formatNumber
+  formatNumber,
+  BAG_SIZES,
+  bagLabel,
+  guessBagSize
 } from "./logic";
 import ConcreteMixRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -34,6 +37,12 @@ export default function ConcreteMixRatioCalculatorUI() {
   const [showHistory, setShowHistory] = useState(false);
   const [history, setHistory] = useState(getHistory());
   const [ratioError, setRatioError] = useState("");
+
+  // The bag size sold locally, guessed after hydration so the server markup matches
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setBagSize(guessBagSize()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   // Parse and validate ratio input
   useEffect(() => {
@@ -178,11 +187,12 @@ export default function ConcreteMixRatioCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Cement Bag Size</label>
                 <select
                   value={bagSize}
-                  onChange={(e) => setBagSize(parseInt(e.target.value) as BagSize)}
+                  onChange={(e) => setBagSize(parseFloat(e.target.value) as BagSize)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
-                  <option value={50}>50 kg</option>
-                  <option value={40}>40 kg</option>
+                  {BAG_SIZES.map((b) => (
+                    <option key={b.kg} value={b.kg}>{b.label}</option>
+                  ))}
                 </select>
               </div>
 
@@ -241,7 +251,7 @@ export default function ConcreteMixRatioCalculatorUI() {
                     {formatNumber(calculation.cementBags)}
                   </div>
                   <div className="text-xl text-primary-100">
-                    bags ({calculation.bagSize}kg)
+                    bags ({bagLabel(calculation.bagSize)})
                   </div>
                 </div>
 
@@ -458,7 +468,7 @@ export default function ConcreteMixRatioCalculatorUI() {
                         <div className="text-sm text-gray-600">
                           {formatNumber(entry.calculation.volumeM3)} m³ • 
                           Ratio: {formatMixRatio(entry.calculation.mixRatio)} • 
-                          {entry.calculation.bagSize}kg bags
+                          {bagLabel(entry.calculation.bagSize)} bags
                         </div>
                       </div>
                     ))

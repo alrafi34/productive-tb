@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { plotAreaCalculatorConfig } from "./config";
+
 export default function PlotAreaCalculatorSEO() {
+  const { howToSteps, faq } = plotAreaCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12 text-gray-700">
       
@@ -14,12 +18,13 @@ export default function PlotAreaCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Plot Area Calculator</h2>
-        <ol className="list-decimal list-inside space-y-3 leading-relaxed">
-          <li><strong>Select Plot Shape:</strong> Choose from Rectangle, Square, Triangle, or Trapezoid based on your land shape.</li>
-          <li><strong>Choose Measurement Unit:</strong> Select meters (m), feet (ft), or yards (yd) as your preferred unit.</li>
-          <li><strong>Enter Dimensions:</strong> Input the required measurements based on the selected shape.</li>
-          <li><strong>View Results:</strong> The area calculates automatically in real-time as you type.</li>
-          <li><strong>Save or Export:</strong> Save calculations to history or export as a text file for documentation.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -180,39 +185,7 @@ export default function PlotAreaCalculatorSEO() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How do I measure an irregular plot?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              For irregular plots, divide the land into multiple regular shapes (rectangles, triangles, etc.), calculate each section separately, and add the results together.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What's the difference between plot area and built-up area?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Plot area is the total land area, while built-up area refers to the covered area of buildings on that plot. This calculator measures plot/land area.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I save my calculations?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Yes! Use the "Save to History" button to store calculations in your browser. You can review and reload past calculations anytime.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Which unit should I use?</h3>
-            <p className="text-sm leading-relaxed text-gray-600">
-              Use the unit that matches your measurement tools or local standards. The calculator supports meters (metric), feet (imperial), and yards.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use This Plot Area Calculator?</h2>

@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { glassPanelSizeCalculatorConfig } from "./config";
+
 export default function GlassPanelSizeCalculatorSEO() {
+  const { howToSteps, faq } = glassPanelSizeCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       
@@ -17,14 +21,13 @@ export default function GlassPanelSizeCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Glass Panel Size Calculator</h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Select Unit:</strong> Choose your preferred measurement unit (mm, cm, or inches).</li>
-          <li><strong>Enter Opening Dimensions:</strong> Input the width and height of your opening.</li>
-          <li><strong>Set Clearances:</strong> Specify clearance gaps for left, right, top, and bottom edges.</li>
-          <li><strong>Configure Panels:</strong> Enter the number of panels and gap between them if multiple panels.</li>
-          <li><strong>Choose Frame Type:</strong> Select a preset or custom frame type for automatic clearance adjustment.</li>
-          <li><strong>View Results:</strong> The calculator instantly displays panel width, glass height, and total area.</li>
-          <li><strong>Export Data:</strong> Download calculations as text for documentation and ordering.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -264,60 +267,7 @@ export default function GlassPanelSizeCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How much clearance should I leave for glass panels?</h3>
-            <p className="text-sm text-gray-700">
-              Standard clearance is 5-6mm for aluminum frames, 2-3mm for frameless installations, and 8-10mm for sliding systems. 
-              Always consult frame manufacturer specifications for exact requirements.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">Can I cut tempered glass to size after ordering?</h3>
-            <p className="text-sm text-gray-700">
-              No, tempered glass cannot be cut, drilled, or modified after the tempering process. All dimensions, holes, and edge 
-              work must be completed before tempering. Order exact sizes from this calculator.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">What if my opening is not perfectly square?</h3>
-            <p className="text-sm text-gray-700">
-              Measure all four sides and both diagonals. Use the smallest measurements for glass dimensions. Consider shimming 
-              or adjusting the frame to make it square before glass installation.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How do I calculate for multiple panels in one opening?</h3>
-            <p className="text-sm text-gray-700">
-              Enter the total number of panels and the gap between them. The calculator automatically divides the available 
-              width equally among all panels, accounting for gaps. Each panel will be the same width.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">Should I account for gaskets in clearance?</h3>
-            <p className="text-sm text-gray-700">
-              Yes, if using setting blocks or gaskets, include their thickness in your clearance measurements. Typical gaskets 
-              add 2-4mm per side. Check with your frame supplier for exact gasket dimensions.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">What units should I use for ordering glass?</h3>
-            <p className="text-sm text-gray-700">
-              Most glass fabricators work in millimeters for precision. This calculator supports mm, cm, and inches. 
-              Always confirm with your supplier which unit they prefer for orders.
-            </p>
-          </div>
-
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use Our Glass Panel Size Calculator?</h2>

@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { facadeAreaCalculatorConfig } from "./config";
+
 export default function FacadeAreaCalculatorSEO() {
+  const { howToSteps, faq } = facadeAreaCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       
@@ -17,13 +21,13 @@ export default function FacadeAreaCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Facade Area Calculator</h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Add Wall Sections:</strong> Click "Add Wall" to create new facade sections. Enter width and height for each wall.</li>
-          <li><strong>Add Openings:</strong> Click "Add Opening" to subtract windows, doors, or other openings. Specify dimensions and quantity.</li>
-          <li><strong>Select Unit:</strong> Choose between meters (m²) or feet (ft²) for your measurements.</li>
-          <li><strong>View Results:</strong> The calculator instantly displays total wall area, openings area, and net facade area.</li>
-          <li><strong>Export Data:</strong> Download your calculations as CSV or text format for documentation and reporting.</li>
-          <li><strong>Save History:</strong> Store calculations in browser history for future reference and comparison.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -259,60 +263,7 @@ export default function FacadeAreaCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How do I calculate facade area for irregular walls?</h3>
-            <p className="text-sm text-gray-700">
-              Break irregular walls into multiple rectangular sections. Add each section separately in the calculator, 
-              then the tool will sum them automatically to give you the total facade area.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">Should I include window frames in opening measurements?</h3>
-            <p className="text-sm text-gray-700">
-              Yes, measure the complete opening including the frame. This gives you the actual wall area that won't need 
-              cladding or paint. For precise material estimation, measure the rough opening dimensions.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How much waste factor should I add for materials?</h3>
-            <p className="text-sm text-gray-700">
-              Add 5-10% for paint, 10-15% for cladding and siding, and 15-20% for complex patterns or irregular surfaces. 
-              This accounts for cuts, overlaps, and installation waste.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this calculator for interior walls?</h3>
-            <p className="text-sm text-gray-700">
-              Yes! While designed for facades, this calculator works perfectly for interior walls too. Simply add your 
-              wall sections and subtract door and window openings to get net paintable or finishable area.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">What if I have curved or circular walls?</h3>
-            <p className="text-sm text-gray-700">
-              For curved walls, calculate the developed length (arc length) and multiply by height. You can approximate 
-              by breaking the curve into smaller straight sections or use the formula: Area = Arc Length × Height.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How do I convert between square meters and square feet?</h3>
-            <p className="text-sm text-gray-700">
-              The calculator handles unit conversion automatically. Simply select your preferred unit (meters or feet) 
-              and enter measurements. 1 m² = 10.764 ft², or 1 ft² = 0.0929 m².
-            </p>
-          </div>
-
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use Our Facade Area Calculator?</h2>

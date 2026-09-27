@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { structuralLoadCalculatorConfig } from "./config";
+
 export default function StructuralLoadCalculatorSEO() {
+  const { howToSteps, faq } = structuralLoadCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -24,27 +28,14 @@ export default function StructuralLoadCalculatorSEO() {
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>
-        
-        <h4 className="text-lg font-semibold text-gray-800 mt-4 mb-2">For Area Load (Floor/Slab)</h4>
-        <ol className="list-decimal list-inside text-gray-700 space-y-2 mb-4">
-          <li>Select "Area Load (Floor/Slab)" as calculation type</li>
-          <li>Enter the area in square meters or square feet</li>
-          <li>Input dead load (self-weight of structure)</li>
-          <li>Input live load (occupancy and movable items)</li>
-          <li>Add any additional loads (optional)</li>
-          <li>View instant results with load breakdown</li>
-          <li>Export calculations or save to history</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
-
-        <h4 className="text-lg font-semibold text-gray-800 mt-4 mb-2">For Beam Load (Linear)</h4>
-        <ol className="list-decimal list-inside text-gray-700 space-y-2 mb-4">
-          <li>Select "Beam Load (Linear)" as calculation type</li>
-          <li>Enter beam length in meters or feet</li>
-          <li>Input uniform load per unit length</li>
-          <li>View instant total load calculation</li>
-          <li>Export or save results as needed</li>
-        </ol>
-
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Load Types Explained</h3>
         
         <h4 className="text-lg font-semibold text-gray-800 mt-4 mb-2">Dead Load</h4>
@@ -226,6 +217,7 @@ export default function StructuralLoadCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }
