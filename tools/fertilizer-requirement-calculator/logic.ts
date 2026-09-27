@@ -72,13 +72,16 @@ export const ALL_FERTILIZERS: FertilizerType[] = ["urea", "dap", "mop", "npk-10-
 
 // ── Preset Data ──────────────────────────────────────────────────────────────
 
+/* Typical kg per acre for one season (phosphorus as P₂O₅, potassium as K₂O),
+   from the middle of US university extension ranges: corn about 150–180 lb N/acre,
+   wheat 90–120, rice 120–150, potatoes 150–200. A soil test should set the real rates. */
 export const CROP_NUTRIENT_PRESETS: Record<CropType, NutrientRequirement> = {
-  rice: { nitrogen: 60, phosphorus: 25, potassium: 30 },
-  wheat: { nitrogen: 80, phosphorus: 30, potassium: 40 },
-  corn: { nitrogen: 120, phosphorus: 40, potassium: 60 },
-  tomato: { nitrogen: 100, phosphorus: 50, potassium: 80 },
-  potato: { nitrogen: 90, phosphorus: 35, potassium: 120 },
-  vegetables: { nitrogen: 70, phosphorus: 30, potassium: 50 },
+  rice: { nitrogen: 60, phosphorus: 20, potassium: 25 },
+  wheat: { nitrogen: 45, phosphorus: 20, potassium: 20 },
+  corn: { nitrogen: 75, phosphorus: 30, potassium: 35 },
+  tomato: { nitrogen: 55, phosphorus: 45, potassium: 70 },
+  potato: { nitrogen: 80, phosphorus: 55, potassium: 90 },
+  vegetables: { nitrogen: 45, phosphorus: 25, potassium: 45 },
   custom: { nitrogen: 0, phosphorus: 0, potassium: 0 },
 };
 

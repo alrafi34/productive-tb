@@ -171,7 +171,7 @@ export default function FertilizerRequirementCalculatorUI() {
               </div>
               {result && (
                 <div className="text-primary-100 text-sm mb-3">
-                  {(FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType)}
+                  = {fmtNum(result.totalFertilizerNeeded * 2.20462, 0)} lb · {(FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType)}
                 </div>
               )}
 
@@ -305,7 +305,7 @@ export default function FertilizerRequirementCalculatorUI() {
             {/* Nutrient Requirements */}
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>Nutrient Requirements (kg/acre)</h3>
+                <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>Nutrient Requirements (kg/acre; P as P₂O₅, K as K₂O)</h3>
                 <button onClick={() => setShowAdvanced(!showAdvanced)} className="text-sm text-primary font-medium hover:underline">
                   {showAdvanced ? "Hide" : "Show"} Advanced
                 </button>

@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { earthFillingCalculatorConfig } from "./config";
 
 export default function EarthFillingCalculatorSEO() {
+  const { howToSteps, faq } = earthFillingCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function EarthFillingCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Earth Filling Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select your input unit (feet, meters, or yards)",
-                "Choose the fill area shape that matches your project",
-                "Enter the required dimensions for that shape",
-                "Select the compaction factor for your soil conditions",
-                "Choose the soil type for default truck capacity",
-                "Optionally enter truck capacity and cost per unit",
-                "View instant volume, truckload, and cost estimates",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "5 fill shapes: rectangle, square, triangle, circular, custom",
-                "3 compaction factors: loose, moderate, heavy",
-                "Truckload estimation by soil type",
-                "Optional project cost calculation",
-                "Real-time calculation as you type",
-                "Step-by-step calculation breakdown",
-                "4 construction presets (road, foundation, pond, circular)",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -158,44 +127,7 @@ export default function EarthFillingCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is a compaction factor and why does it matter?",
-              a: "When loose soil is placed as fill, it contains air voids that compress when compacted or loaded. A compaction factor of 1.20 means you need to order 20% more material than the raw volume to achieve the desired final volume after settling. Always apply a compaction factor to avoid running short of fill material.",
-            },
-            {
-              q: "How many cubic yards fit in a standard dump truck?",
-              a: "A standard dump truck carries 10–14 cubic yards (7.6–10.7 m³) of soil depending on the truck size and soil type. The calculator uses soil-type defaults (7–9 m³) and allows you to enter a custom truck capacity for your specific equipment.",
-            },
-            {
-              q: "What is the difference between bank, loose, and compacted volume?",
-              a: "Bank volume is the in-situ (undisturbed) soil volume. Loose volume is the volume after excavation (typically 10–30% more due to swell). Compacted volume is the final volume after placement and compaction (typically 10–20% less than loose). This calculator estimates the loose volume needed to achieve the desired compacted fill volume.",
-            },
-            {
-              q: "How do I calculate fill for an irregular area?",
-              a: "Use the Custom Area mode. Calculate the area of your irregular shape using the Polygon Area Calculator, then enter that area value along with the fill depth to get the volume estimate.",
-            },
-            {
-              q: "What compaction factor should I use for road base?",
-              a: "Road base typically requires heavy compaction (×1.30) because the material must be densely packed to support traffic loads. Foundation pads use moderate compaction (×1.20), while garden beds and landscaping use loose compaction (×1.10).",
-            },
-            {
-              q: "How accurate is the truckload estimate?",
-              a: "The truckload estimate uses default capacities by soil type (7–9 m³) and rounds up to the nearest whole truck. Actual truck capacity varies by vehicle — enter your specific truck capacity in the optional field for a more accurate estimate.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { trapezoidLandCalculatorConfig } from "./config";
 
 export default function TrapezoidLandCalculatorSEO() {
+  const { howToSteps, faq } = trapezoidLandCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function TrapezoidLandCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Trapezoid Land Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select your input unit (feet, meters, yards, or inches)",
-                "Enter the top base length (shorter parallel side)",
-                "Enter the bottom base length (longer parallel side)",
-                "Enter the perpendicular height between the two bases",
-                "Select your preferred output unit",
-                "View the instant area result and all unit conversions",
-                "Use sliders to fine-tune dimensions visually",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type or slide",
-                "Interactive slider controls for each dimension",
-                "Live SVG trapezoid diagram with labeled sides",
-                "5 output units: ft², m², acres, ha, yd²",
-                "Step-by-step calculation breakdown",
-                "Quick presets for common plot sizes",
-                "Save history and export to TXT",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -156,44 +125,7 @@ export default function TrapezoidLandCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the difference between a trapezoid and a trapezium?",
-              a: "In the US, a trapezoid has exactly one pair of parallel sides. In the UK and most other countries, the same shape is called a trapezium. This calculator uses the US definition — one pair of parallel sides (the top base and bottom base).",
-            },
-            {
-              q: "What is the perpendicular height?",
-              a: "The perpendicular height is the straight-line distance between the two parallel sides, measured at a right angle (90°) to both bases. It is not the length of the slanted sides — it is the vertical distance between the top and bottom bases.",
-            },
-            {
-              q: "Can the top base be longer than the bottom base?",
-              a: "Yes. The formula works regardless of which parallel side is longer. The calculator accepts any positive values for both bases and the height.",
-            },
-            {
-              q: "How do I measure the height of a trapezoidal land plot?",
-              a: "In field surveying, measure the perpendicular distance between the two parallel boundary lines. This can be done with a tape measure by finding the shortest distance between the two parallel sides, or calculated from GPS coordinates.",
-            },
-            {
-              q: "What if my land has two parallel sides but they are not horizontal?",
-              a: "The formula still applies. The height is always the perpendicular distance between the two parallel sides, regardless of their orientation. As long as you measure the perpendicular distance correctly, the formula gives the correct area.",
-            },
-            {
-              q: "How accurate are the unit conversions?",
-              a: "The conversions use standard international factors: 1 acre = 43,560 sq ft, 1 hectare = 107,639 sq ft, 1 sq meter = 10.7639 sq ft. All calculations use full floating-point precision.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );
