@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Unit, WallInput, PanelSize, CladdingCalculation } from "./types";
+import { CURRENCIES, type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import {
   calculateCladdingMaterials,
   createWallInput,
@@ -29,6 +30,13 @@ export default function CladdingMaterialCalculatorUI() {
   const [unit, setUnit] = useState<Unit>("feet");
   const [wastagePercentage, setWastagePercentage] = useState(10);
   const [costPerPanel, setCostPerPanel] = useState(0);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   const [calculation, setCalculation] = useState<CladdingCalculation | null>(null);
   const [copied, setCopied] = useState(false);
@@ -109,14 +117,14 @@ export default function CladdingMaterialCalculatorUI() {
 
   const handleExportCSV = () => {
     if (calculation) {
-      const csv = exportToCSV(calculation);
+      const csv = exportToCSV(calculation, currency);
       downloadFile(csv, 'cladding-material-calculation.csv', 'text/csv');
     }
   };
 
   const handleExportText = () => {
     if (calculation) {
-      const text = exportToText(calculation);
+      const text = exportToText(calculation, currency);
       downloadFile(text, 'cladding-material-calculation.txt', 'text/plain');
     }
   };
@@ -242,7 +250,7 @@ export default function CladdingMaterialCalculatorUI() {
                   {calculation.costPerPanel > 0 && (
                     <div className="flex justify-between pt-2 border-t border-white/20">
                       <span className="text-primary-100">Total Cost:</span>
-                      <span className="font-semibold">${formatNumber(calculation.totalCost, 2)}</span>
+                      <span className="font-semibold">{formatMoney(calculation.totalCost, currency)}</span>
                     </div>
                   )}
                 </div>
@@ -399,18 +407,31 @@ export default function CladdingMaterialCalculatorUI() {
               </h3>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Cost per Panel ($)
+                <label htmlFor="cladding-cost" className="block text-sm font-medium text-gray-700 mb-2">
+                  Cost per Panel
                 </label>
-                <input
-                  type="number"
-                  value={costPerPanel || ''}
-                  onChange={(e) => setCostPerPanel(parseFloat(e.target.value) || 0)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                  placeholder="0.00"
-                  min="0"
-                  step="0.01"
-                />
+                <div className="flex gap-2">
+                  <select
+                    value={currency}
+                    onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                    aria-label="Currency"
+                    className="px-3 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
+                  >
+                    {CURRENCIES.map((c) => (
+                      <option key={c.code} value={c.code}>{c.symbol} {c.code}</option>
+                    ))}
+                  </select>
+                  <input
+                    id="cladding-cost"
+                    type="number"
+                    value={costPerPanel || ''}
+                    onChange={(e) => setCostPerPanel(parseFloat(e.target.value) || 0)}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
               </div>
             </div>
 

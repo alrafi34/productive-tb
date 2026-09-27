@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { claddingMaterialCalculatorConfig } from "./config";
+
 export default function CladdingMaterialCalculatorSEO() {
+  const { howToSteps, faq } = claddingMaterialCalculatorConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       
@@ -17,13 +21,13 @@ export default function CladdingMaterialCalculatorSEO() {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Cladding Material Calculator</h2>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li><strong>Add Wall Dimensions:</strong> Enter width and height for each wall section. Click "Add Wall" for multiple surfaces.</li>
-          <li><strong>Enter Panel Size:</strong> Specify the dimensions of your cladding panels or boards.</li>
-          <li><strong>Set Wastage:</strong> Adjust the wastage percentage (typically 5-15%) using the slider.</li>
-          <li><strong>Add Cost (Optional):</strong> Enter cost per panel to get total project cost estimation.</li>
-          <li><strong>View Results:</strong> The calculator instantly displays total panels required and cost breakdown.</li>
-          <li><strong>Export Data:</strong> Download calculations as CSV or text for documentation and ordering.</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -254,60 +258,7 @@ export default function CladdingMaterialCalculatorSEO() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How much wastage should I add for cladding materials?</h3>
-            <p className="text-sm text-gray-700">
-              For standard rectangular walls, add 10-12% wastage. For complex designs with multiple angles, windows, and doors, 
-              add 15-20%. Premium materials like stone veneer may require 15-25% due to pattern matching and breakage.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">Should I subtract window and door areas?</h3>
-            <p className="text-sm text-gray-700">
-              Yes, subtract large openings from your wall area. However, keep the wastage percentage higher to account for 
-              cuts around these openings. Small openings (under 10 sq ft) can often be ignored as they're covered by wastage.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How do I calculate for different panel orientations?</h3>
-            <p className="text-sm text-gray-700">
-              Enter panel dimensions based on how they'll be installed. For horizontal siding, panel width is the horizontal 
-              dimension. For vertical panels, swap the dimensions. The calculator works the same way regardless of orientation.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this for interior wall cladding?</h3>
-            <p className="text-sm text-gray-700">
-              Absolutely! This calculator works for both exterior and interior cladding projects. Simply enter your wall 
-              dimensions and panel sizes, and adjust wastage based on project complexity.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">What if my panels have overlap or reveal?</h3>
-            <p className="text-sm text-gray-700">
-              Use the actual coverage area per panel, not the physical panel size. For example, if a 12" panel has 1" overlap, 
-              the coverage is 11". Check manufacturer specifications for exact coverage dimensions.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="font-semibold text-gray-900 mb-2">How accurate is the cost estimation feature?</h3>
-            <p className="text-sm text-gray-700">
-              The cost estimation multiplies panels by cost per panel. It's accurate for material costs but doesn't include 
-              labor, fasteners, trim, or installation accessories. Use it as a material cost baseline for budgeting.
-            </p>
-          </div>
-
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use Our Cladding Material Calculator?</h2>
