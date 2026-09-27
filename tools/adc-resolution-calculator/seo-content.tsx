@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { adcResolutionCalculatorConfig } from "./config";
+
 export default function ADCResolutionCalculatorSEO() {
+  const { howToSteps, faq } = adcResolutionCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -359,79 +363,7 @@ export default function ADCResolutionCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate ADC step size?</h3>
-              <p className="text-sm text-gray-700">
-                Step size = Reference Voltage / 2<sup>n</sup>, where n is the number of bits. For Arduino Uno (10-bit, 
-                5V): Step size = 5V / 1024 = 0.00488V = 4.88mV. This is the smallest voltage change the ADC can detect. 
-                For ESP32 (12-bit, 3.3V): Step size = 3.3V / 4096 = 0.000805V = 0.805mV.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between resolution and accuracy?</h3>
-              <p className="text-sm text-gray-700">
-                Resolution is the number of discrete values the ADC can produce (determined by bit depth). Accuracy 
-                is how close the measured value is to the true value (affected by errors, noise, calibration). A 
-                12-bit ADC has better resolution than 10-bit, but if poorly designed, it may have worse accuracy. 
-                High resolution doesn't guarantee high accuracy without proper design and calibration.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I convert ADC reading to voltage in Arduino?</h3>
-              <p className="text-sm text-gray-700">
-                Use formula: Voltage = (ADC_Reading / 1023) × Reference_Voltage. For Arduino Uno with 5V reference: 
-                Voltage = (analogRead(pin) / 1023.0) × 5.0. If reading is 512, voltage = (512 / 1023) × 5 = 2.5V. 
-                Note: Use 1023 (not 1024) because ADC values range from 0-1023. For 3.3V systems, replace 5.0 with 3.3.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why is my ADC reading noisy?</h3>
-              <p className="text-sm text-gray-700">
-                Common causes: poor power supply filtering, high-impedance source, electromagnetic interference (EMI), 
-                ground loops, inadequate decoupling capacitors, or digital noise coupling into analog circuits. 
-                Solutions: add 0.1µF capacitor at ADC input, use twisted pair wiring, separate analog/digital grounds, 
-                average multiple readings, use shielded cables for long connections, or add RC low-pass filter.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I measure voltages higher than the reference voltage?</h3>
-              <p className="text-sm text-gray-700">
-                No, input voltage must not exceed reference voltage (or VCC, whichever is lower). Exceeding this can 
-                damage the ADC or microcontroller. To measure higher voltages, use a voltage divider. For example, 
-                to measure 0-12V with 5V ADC: use 10kΩ and 5kΩ resistors (divides by 3), then multiply reading by 3. 
-                Always add protection diodes for safety in critical applications.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the effective number of bits (ENOB)?</h3>
-              <p className="text-sm text-gray-700">
-                ENOB is the actual usable resolution considering noise and distortion. A 12-bit ADC might have only 
-                10-11 ENOB due to noise, non-linearity, and other imperfections. ENOB is always less than or equal 
-                to the nominal bit depth. It's a more realistic measure of ADC performance than just bit count. 
-                Check datasheet for ENOB specifications in precision applications.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I increase ADC resolution beyond hardware limits?</h3>
-              <p className="text-sm text-gray-700">
-                Use oversampling: Take multiple samples and average them. To gain n extra bits, take 4<sup>n</sup> 
-                samples. For 1 extra bit: 4 samples, 2 bits: 16 samples, 3 bits: 64 samples. This reduces noise and 
-                increases effective resolution. Trade-off: slower sampling rate. Arduino 10-bit can achieve ~13-bit 
-                effective resolution with 64× oversampling. Works best when noise is present (adds dithering effect).
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -446,6 +378,17 @@ export default function ADCResolutionCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the ADC Resolution Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

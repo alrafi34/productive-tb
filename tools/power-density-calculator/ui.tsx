@@ -34,6 +34,8 @@ const AREA_UNITS: { label: string; value: AreaUnit }[] = [
   { label: 'm² (Square meters)', value: 'm²' },
   { label: 'cm² (Square centimeters)', value: 'cm²' },
   { label: 'mm² (Square millimeters)', value: 'mm²' },
+  { label: 'ft² (Square feet)', value: 'ft²' },
+  { label: 'in² (Square inches)', value: 'in²' },
 ];
 
 export default function PowerDensityCalculatorUI() {
@@ -208,6 +210,10 @@ export default function PowerDensityCalculatorUI() {
                   <div className="flex justify-between">
                     <span className="text-primary-100">Density Level:</span>
                     <span className="font-semibold capitalize">{result.densityLevel.replace('-', ' ')}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-primary-100">In US units:</span>
+                    <span className="font-semibold">{formatNumber(result.powerDensity * 0.09290304, inputs.precision)} W/ft²</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-primary-100">Power:</span>

@@ -20,7 +20,7 @@ export interface PowerDensityResult {
 }
 
 export type PowerUnit = 'W' | 'kW' | 'MW';
-export type AreaUnit = 'm²' | 'cm²' | 'mm²';
+export type AreaUnit = 'm²' | 'cm²' | 'mm²' | 'ft²' | 'in²';
 export type DensityLevel = 'low' | 'moderate' | 'high' | 'very-high';
 
 export interface HistoryEntry {

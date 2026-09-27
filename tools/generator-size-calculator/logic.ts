@@ -4,78 +4,83 @@ import { GeneratorInputs, GeneratorResult, Appliance, AppliancePreset, SystemPre
 export const APPLIANCE_PRESETS: AppliancePreset[] = [
   // Lighting
   { name: "LED Bulb", power: 10, category: "Lighting" },
-  { name: "CFL Bulb", power: 15, category: "Lighting" },
-  { name: "Tube Light", power: 40, category: "Lighting" },
-  { name: "Incandescent Bulb", power: 60, category: "Lighting" },
-  
-  // Cooling
-  { name: "Ceiling Fan", power: 75, category: "Cooling" },
-  { name: "Table Fan", power: 50, category: "Cooling" },
-  { name: "Exhaust Fan", power: 35, category: "Cooling" },
-  { name: "Window AC (1 Ton)", power: 1200, category: "Cooling" },
-  { name: "Split AC (1.5 Ton)", power: 1800, category: "Cooling" },
-  { name: "Split AC (2 Ton)", power: 2400, category: "Cooling" },
-  
+  { name: "LED Shop Light", power: 40, category: "Lighting" },
+  { name: "Halogen Floodlight", power: 150, category: "Lighting" },
+
+  // Heating & Cooling
+  { name: "Furnace Blower (1/2 HP)", power: 800, category: "Heating & Cooling" },
+  { name: "Window AC (10,000 BTU)", power: 900, category: "Heating & Cooling" },
+  { name: "Central AC (3 ton)", power: 3500, category: "Heating & Cooling" },
+  { name: "Heat Pump (3 ton)", power: 4000, category: "Heating & Cooling" },
+  { name: "Space Heater", power: 1500, category: "Heating & Cooling" },
+  { name: "Ceiling Fan", power: 60, category: "Heating & Cooling" },
+
   // Kitchen
   { name: "Refrigerator", power: 150, category: "Kitchen" },
+  { name: "Chest Freezer", power: 100, category: "Kitchen" },
   { name: "Microwave Oven", power: 1200, category: "Kitchen" },
-  { name: "Electric Kettle", power: 1500, category: "Kitchen" },
-  { name: "Toaster", power: 800, category: "Kitchen" },
-  { name: "Mixer Grinder", power: 500, category: "Kitchen" },
-  { name: "Induction Cooktop", power: 2000, category: "Kitchen" },
-  
+  { name: "Electric Kettle", power: 2000, category: "Kitchen" },
+  { name: "Coffee Maker", power: 1000, category: "Kitchen" },
+  { name: "Electric Range / Cooktop", power: 3000, category: "Kitchen" },
+
   // Electronics
-  { name: "LED TV (32\")", power: 60, category: "Electronics" },
-  { name: "LED TV (55\")", power: 150, category: "Electronics" },
+  { name: "TV (55\")", power: 150, category: "Electronics" },
   { name: "Desktop Computer", power: 300, category: "Electronics" },
   { name: "Laptop", power: 65, category: "Electronics" },
-  { name: "WiFi Router", power: 10, category: "Electronics" },
-  { name: "Mobile Charger", power: 10, category: "Electronics" },
-  
-  // Appliances
+  { name: "Wi-Fi Router & Modem", power: 20, category: "Electronics" },
+  { name: "Phone Charger", power: 10, category: "Electronics" },
+
+  // Appliances & Pumps
   { name: "Washing Machine", power: 500, category: "Appliances" },
-  { name: "Water Pump (0.5 HP)", power: 370, category: "Appliances" },
-  { name: "Water Pump (1 HP)", power: 750, category: "Appliances" },
-  { name: "Iron", power: 1000, category: "Appliances" },
+  { name: "Clothes Dryer (electric)", power: 5000, category: "Appliances" },
+  { name: "Water Heater (electric)", power: 4500, category: "Appliances" },
+  { name: "Sump Pump (1/3 HP)", power: 800, category: "Appliances" },
+  { name: "Well Pump (1 HP)", power: 1000, category: "Appliances" },
+  { name: "Garage Door Opener", power: 550, category: "Appliances" },
   { name: "Vacuum Cleaner", power: 1000, category: "Appliances" },
-  { name: "Water Heater", power: 2000, category: "Appliances" }
+  { name: "EV Charger (Level 2, 32 A)", power: 7700, category: "Appliances" }
 ];
 
 // System presets
 export const SYSTEM_PRESETS: SystemPreset[] = [
   {
-    name: "Small Home",
-    description: "Basic lighting and fans",
+    name: "Essentials",
+    description: "Fridge, lights, furnace, sump pump",
     appliances: [
-      { name: "LED Bulb", power: 10, quantity: 8 },
-      { name: "Ceiling Fan", power: 75, quantity: 4 },
-      { name: "TV", power: 60, quantity: 1 },
-      { name: "Refrigerator", power: 150, quantity: 1 }
+      { name: "LED Bulb", power: 10, quantity: 10 },
+      { name: "Refrigerator", power: 150, quantity: 1 },
+      { name: "Furnace Blower (1/2 HP)", power: 800, quantity: 1 },
+      { name: "Sump Pump (1/3 HP)", power: 800, quantity: 1 },
+      { name: "Wi-Fi Router & Modem", power: 20, quantity: 1 },
+      { name: "Phone Charger", power: 10, quantity: 3 }
     ]
   },
   {
     name: "Medium Home",
-    description: "Essential home appliances",
+    description: "Essentials plus cooling and kitchen",
     appliances: [
-      { name: "LED Bulb", power: 10, quantity: 12 },
-      { name: "Ceiling Fan", power: 75, quantity: 6 },
-      { name: "TV", power: 150, quantity: 2 },
+      { name: "LED Bulb", power: 10, quantity: 15 },
       { name: "Refrigerator", power: 150, quantity: 1 },
-      { name: "AC (1.5 Ton)", power: 1800, quantity: 1 },
-      { name: "Water Pump", power: 370, quantity: 1 }
+      { name: "Chest Freezer", power: 100, quantity: 1 },
+      { name: "Furnace Blower (1/2 HP)", power: 800, quantity: 1 },
+      { name: "Window AC (10,000 BTU)", power: 900, quantity: 1 },
+      { name: "Microwave Oven", power: 1200, quantity: 1 },
+      { name: "Well Pump (1 HP)", power: 1000, quantity: 1 },
+      { name: "TV (55\")", power: 150, quantity: 1 }
     ]
   },
   {
-    name: "Large Home",
-    description: "Full home backup",
+    name: "Whole Home",
+    description: "Central AC and major appliances",
     appliances: [
-      { name: "LED Bulb", power: 10, quantity: 20 },
-      { name: "Ceiling Fan", power: 75, quantity: 8 },
-      { name: "TV", power: 150, quantity: 3 },
+      { name: "LED Bulb", power: 10, quantity: 25 },
       { name: "Refrigerator", power: 150, quantity: 1 },
-      { name: "AC (1.5 Ton)", power: 1800, quantity: 2 },
-      { name: "Water Pump", power: 750, quantity: 1 },
-      { name: "Washing Machine", power: 500, quantity: 1 }
+      { name: "Central AC (3 ton)", power: 3500, quantity: 1 },
+      { name: "Microwave Oven", power: 1200, quantity: 1 },
+      { name: "Water Heater (electric)", power: 4500, quantity: 1 },
+      { name: "Washing Machine", power: 500, quantity: 1 },
+      { name: "TV (55\")", power: 150, quantity: 2 },
+      { name: "Desktop Computer", power: 300, quantity: 1 }
     ]
   },
   {
@@ -83,21 +88,20 @@ export const SYSTEM_PRESETS: SystemPreset[] = [
     description: "Office equipment",
     appliances: [
       { name: "LED Bulb", power: 10, quantity: 15 },
-      { name: "Ceiling Fan", power: 75, quantity: 5 },
       { name: "Desktop Computer", power: 300, quantity: 5 },
       { name: "Laptop", power: 65, quantity: 3 },
       { name: "Printer", power: 300, quantity: 1 },
-      { name: "AC (1.5 Ton)", power: 1800, quantity: 1 }
+      { name: "Window AC (10,000 BTU)", power: 900, quantity: 1 },
+      { name: "Wi-Fi Router & Modem", power: 20, quantity: 1 }
     ]
   },
   {
     name: "Workshop",
     description: "Tools and equipment",
     appliances: [
-      { name: "Tube Light", power: 40, quantity: 10 },
-      { name: "Exhaust Fan", power: 35, quantity: 4 },
+      { name: "LED Shop Light", power: 40, quantity: 10 },
       { name: "Power Tools", power: 1500, quantity: 2 },
-      { name: "Welding Machine", power: 3000, quantity: 1 },
+      { name: "Welder", power: 3000, quantity: 1 },
       { name: "Air Compressor", power: 2000, quantity: 1 }
     ]
   }

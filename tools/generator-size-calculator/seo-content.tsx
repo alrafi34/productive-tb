@@ -1,4 +1,9 @@
+import { APPLIANCE_PRESETS } from "./logic";
+import ToolFaq from "@/components/ToolFaq";
+import { generatorSizeCalculatorConfig } from "./config";
+
 export default function GeneratorSizeCalculatorSEO() {
+  const { howToSteps, faq } = generatorSizeCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -156,108 +161,25 @@ export default function GeneratorSizeCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Appliance Power Ratings</h2>
-          
           <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Lighting & Fans</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">LED Bulb:</span>
-                  <span className="font-mono font-semibold">10-15W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">CFL Bulb:</span>
-                  <span className="font-mono font-semibold">15-20W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Tube Light:</span>
-                  <span className="font-mono font-semibold">40W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Ceiling Fan:</span>
-                  <span className="font-mono font-semibold">75W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Exhaust Fan:</span>
-                  <span className="font-mono font-semibold">35W</span>
+            {Array.from(new Set(APPLIANCE_PRESETS.map((a) => a.category))).map((category) => (
+              <div key={category}>
+                <h3 className="font-semibold text-gray-900 mb-3">{category}</h3>
+                <div className="space-y-2 text-sm">
+                  {APPLIANCE_PRESETS.filter((a) => a.category === category).map((a) => (
+                    <div key={a.name} className="flex justify-between">
+                      <span className="text-gray-700">{a.name}:</span>
+                      <span className="font-mono font-semibold">{a.power.toLocaleString("en-US")} W</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Kitchen Appliances</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Refrigerator:</span>
-                  <span className="font-mono font-semibold">150-200W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Microwave:</span>
-                  <span className="font-mono font-semibold">1200W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Electric Kettle:</span>
-                  <span className="font-mono font-semibold">1500W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Mixer Grinder:</span>
-                  <span className="font-mono font-semibold">500W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Induction Cooktop:</span>
-                  <span className="font-mono font-semibold">2000W</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Cooling & Heating</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Window AC (1 Ton):</span>
-                  <span className="font-mono font-semibold">1200W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Split AC (1.5 Ton):</span>
-                  <span className="font-mono font-semibold">1800W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Water Heater:</span>
-                  <span className="font-mono font-semibold">2000W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Room Heater:</span>
-                  <span className="font-mono font-semibold">1500W</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Electronics & Others</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">LED TV (32"):</span>
-                  <span className="font-mono font-semibold">60W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Desktop Computer:</span>
-                  <span className="font-mono font-semibold">300W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Laptop:</span>
-                  <span className="font-mono font-semibold">65W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Water Pump (0.5 HP):</span>
-                  <span className="font-mono font-semibold">370W</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Washing Machine:</span>
-                  <span className="font-mono font-semibold">500W</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
+          <p className="text-sm text-gray-500 mt-3">
+            Typical running watts; check the label on your own appliances. Motors and compressors (AC, heat pumps,
+            fridges, pumps) draw two to three times their running watts for a few seconds when they start.
+          </p>
         </section>
 
         <section>
@@ -361,74 +283,7 @@ export default function GeneratorSizeCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What size generator do I need for a 2000W load?</h3>
-              <p className="text-sm text-gray-700">
-                For a 2000W continuous load with 30% safety margin and 0.8 power factor, you need approximately 3.25 kVA 
-                (2000 × 1.3 / 0.8 / 1000). Choose a 3.5-4 kVA generator. If the load includes motors, use 50% safety 
-                margin and select a 5 kVA generator.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I convert kVA to kW?</h3>
-              <p className="text-sm text-gray-700">
-                Formula: kW = kVA × Power Factor. Example: A 5 kVA generator with 0.8 power factor delivers 4 kW 
-                (5 × 0.8). For resistive loads (power factor = 1), kVA = kW. For inductive loads (motors), kVA &gt; kW.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is power factor and why does it matter?</h3>
-              <p className="text-sm text-gray-700">
-                Power factor is the ratio of real power (kW) to apparent power (kVA). It accounts for reactive power 
-                in inductive loads like motors. Typical values: 1.0 for resistive loads (heaters, lights), 0.8 for 
-                mixed loads, 0.6-0.7 for motor-heavy loads. Lower power factor means larger generator needed.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I run an AC on a 3 kVA generator?</h3>
-              <p className="text-sm text-gray-700">
-                A 1.5 ton AC consumes 1800W and needs 3000-4000W surge capacity for compressor starting. A 3 kVA 
-                generator (2.4 kW at 0.8 PF) is too small. You need minimum 5 kVA generator for 1.5 ton AC plus some 
-                lights and fans. For AC alone, 4 kVA is minimum.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is the difference between continuous and surge rating?</h3>
-              <p className="text-sm text-gray-700">
-                Continuous rating is the power a generator can deliver indefinitely. Surge (or peak) rating is the 
-                maximum power it can deliver for a few seconds during motor startup. A good generator has surge rating 
-                1.5-2x continuous rating. Example: 5 kVA continuous, 7.5-10 kVA surge.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How much safety margin should I use?</h3>
-              <p className="text-sm text-gray-700">
-                Use 20-30% for standard residential loads (lights, fans, TV, refrigerator). Use 50% for motor-heavy 
-                loads (AC, water pump, power tools) or when planning future expansion. Never size generator exactly 
-                to load - always include safety margin for surge currents and efficiency losses.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What happens if generator is undersized?</h3>
-              <p className="text-sm text-gray-700">
-                An undersized generator will overload, overheat, and shut down when load exceeds capacity. Repeated 
-                overloading damages the generator, shortens lifespan, and can damage connected appliances. Symptoms 
-                include voltage drop, frequent shutdowns, and inability to start motor loads. Always size with adequate 
-                safety margin.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -442,6 +297,17 @@ export default function GeneratorSizeCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Generator Size Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }

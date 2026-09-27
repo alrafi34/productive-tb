@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { relayCalculatorConfig } from "./config";
+
 export default function RelayCalculatorSEO() {
+  const { howToSteps, faq } = relayCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -384,79 +388,7 @@ export default function RelayCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I drive a relay directly from Arduino/MCU GPIO?</h3>
-              <p className="text-sm text-gray-700">
-                Only if the relay coil current is below 20mA AND the coil voltage matches the MCU voltage (5V or 3.3V). 
-                Most relays draw 50-100mA, exceeding GPIO limits. Always use a transistor driver for safety. Even for 
-                low-current relays, a transistor provides protection from back EMF and electrical isolation.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What transistor should I use for relay driver?</h3>
-              <p className="text-sm text-gray-700">
-                For most relays, use NPN transistors like 2N2222 (800mA), BC547 (100mA), or 2N3904 (200mA). Choose 
-                transistor with Ic rating at least 2× relay coil current. For high-current relays (&gt;500mA), use TIP120 
-                Darlington (5A) or MOSFET like 2N7000. Always check transistor Vce rating exceeds supply voltage.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Why do I need a flyback diode?</h3>
-              <p className="text-sm text-gray-700">
-                When relay coil is de-energized, the collapsing magnetic field generates a voltage spike (back EMF) 
-                that can reach 100-200V, damaging the transistor and MCU. The flyback diode (1N4007) provides a path 
-                for this current, clamping the voltage to safe levels. Always connect diode across relay coil with 
-                cathode (stripe) to positive supply.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I calculate base resistor for transistor?</h3>
-              <p className="text-sm text-gray-700">
-                First calculate base current: Ib = (Ic / hFE) × 2, where Ic is coil current and hFE is transistor gain 
-                (typically 100-300). The ×2 safety factor ensures saturation. Then calculate base resistor: 
-                Rb = (Vcc - 0.7V) / Ib. For 5V MCU, 71mA coil, hFE=100: Ib = (0.071/100)×2 = 1.42mA, 
-                Rb = (5-0.7)/0.00142 = 3028Ω ≈ 3kΩ.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I use a 5V relay with 3.3V MCU?</h3>
-              <p className="text-sm text-gray-700">
-                Yes, using a transistor driver. The 3.3V MCU controls the transistor base through a base resistor. 
-                The transistor switches the 5V supply to the relay coil. This is voltage level shifting - the MCU 
-                operates at 3.3V while the relay operates at 5V. Common in ESP32/ESP8266 projects. Never connect 
-                5V directly to 3.3V MCU pins.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What is relay coil resistance and how to measure it?</h3>
-              <p className="text-sm text-gray-700">
-                Coil resistance is the DC resistance of the relay electromagnet coil, typically 30-1000Ω depending on 
-                voltage rating. Measure with a multimeter in resistance mode across coil terminals (not contact 
-                terminals). 5V relays: 70-125Ω, 12V relays: 90-400Ω, 24V relays: 400-1000Ω. If resistance is infinite, 
-                coil is open (damaged). If near zero, coil is shorted.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How do I know if my relay is safe for the load?</h3>
-              <p className="text-sm text-gray-700">
-                Check relay datasheet for contact voltage and current ratings. Load voltage must be ≤ rated voltage, 
-                and load current must be ≤ rated current. For inductive loads (motors, solenoids), use 2-3× safety 
-                margin due to inrush current. For AC loads, check AC rating specifically. A 250V 10A relay can safely 
-                switch 220V 5A resistive load, but only 220V 3A motor load.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>
@@ -471,6 +403,17 @@ export default function RelayCalculatorSEO() {
         </section>
 
       </div>
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Relay Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }
