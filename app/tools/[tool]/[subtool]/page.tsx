@@ -1,8 +1,5 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import { tools } from "@/config/tools";
-import { tipCalculatorConfig } from "@/tools/tip-calculator/config";
-import { toolConfig as romanNumeralConverterConfig } from "@/tools/roman-numeral-converter/config";
-import { roiCalculatorMarketingConfig } from "@/tools/roi-calculator-marketing/config";
 
 /*
  * Every tool has its own static route, app/tools/<category>/<slug>/page.tsx
@@ -12,14 +9,8 @@ import { roiCalculatorMarketingConfig } from "@/tools/roi-calculator-marketing/c
  * anything else is a 404.
  */
 
-// Live but unregistered (ALLOW_UNREGISTERED in scripts/check-tools.mjs)
-const UNREGISTERED = [tipCalculatorConfig, romanNumeralConverterConfig, roiCalculatorMarketingConfig];
-
 function canonicalCategory(slug: string): string | undefined {
-  return (
-    tools.find((t) => t.slug === slug)?.category ??
-    UNREGISTERED.find((c) => c.slug === slug)?.category
-  );
+  return tools.find((t) => t.slug === slug)?.category;
 }
 
 export default async function WrongCategoryRedirect({

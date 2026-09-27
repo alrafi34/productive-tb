@@ -219,6 +219,8 @@ export const tools: Tool[] = [
   { slug: "simple-interest-calculator", name: "Simple Interest Calculator", description: "Calculate simple interest and total amount based on principal, rate, and time instantly.", category: "calculator", icon: "💰", free: true },
   { slug: "compound-interest-calculator", name: "Compound Interest Calculator", description: "Calculate compound interest and visualize investment growth over time.", category: "calculator", icon: "📈", free: true },
   { slug: "investment-return-calculator", name: "Investment Return (ROI) Calculator", description: "Calculate gain or loss percentage.", category: "calculator", icon: "💹", free: true },
+  { slug: "tip-calculator", name: "Tip Calculator", description: "Work out the tip and split the bill between any number of people.", category: "calculator", icon: "💵", free: true },
+  { slug: "roman-numeral-converter", name: "Roman Numeral Converter", description: "Convert numbers to Roman numerals and back, from 1 to 3,999.", category: "calculator", icon: "🏛️", free: true },
   { slug: "salary-calculator", name: "Salary Calculator", description: "Convert annual salary to hourly, monthly, weekly.", category: "calculator", icon: "💸", free: true },
   { slug: "gst-vat-calculator", name: "GST / VAT Calculator", description: "Add or remove tax from price.", category: "calculator", icon: "🧾", free: true },
   { slug: "bmr-calculator", name: "BMR Calculator", description: "Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) instantly.", category: "health", icon: "🔥", free: true },

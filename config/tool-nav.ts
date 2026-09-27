@@ -39,7 +39,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["user-agent-parser", "screen-resolution-checker", "http-status-code-lookup"],
 
   /* ── Everyday calculators ── */
-  ["percentage-calculator", "percentage-increase-decrease", "discount-calculator", "gst-vat-calculator"],
+  ["percentage-calculator", "percentage-increase-decrease", "discount-calculator", "gst-vat-calculator", "tip-calculator"],
   ["loan-calculator", "mortgage-calculator", "loan-interest-calculator-property", "down-payment-calculator"],
   ["simple-interest-calculator", "compound-interest-calculator", "investment-return-calculator", "salary-calculator"],
   ["bmi-calculator", "bmr-calculator", "body-fat-calculator", "ideal-weight-calculator", "daily-calorie-calculator"],
@@ -47,7 +47,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["centimeter-to-meter-converter", "meter-to-km-converter", "inch-to-cm-converter", "feet-to-meter-converter"],
   ["celsius-to-fahrenheit-converter", "temperature-conversion-scientific", "kg-to-pound-converter", "gram-to-ounce-converter", "liter-to-ml-converter"],
   ["square-meter-to-square-foot-converter", "acre-to-hectare-converter", "hectare-to-acre-converter", "acre-to-square-feet-converter", "square-feet-to-acre-converter"],
-  ["scientific-calculator", "fraction-calculator", "exponent-calculator", "square-root-calculator", "prime-number-checker", "matrix-calculator", "binary-hex-decimal-converter"],
+  ["scientific-calculator", "fraction-calculator", "exponent-calculator", "square-root-calculator", "prime-number-checker", "matrix-calculator", "binary-hex-decimal-converter", "roman-numeral-converter"],
   ["random-number-generator", "random-name-picker", "decision-wheel", "dice-roller"],
   ["fuel-cost-calculator", "unit-ratio-calculator", "currency-format-previewer"],
 
@@ -171,6 +171,7 @@ export const POPULAR_POOL: readonly string[] = [
   "celsius-to-fahrenheit-converter",
   "kg-to-pound-converter",
   "feet-to-meter-converter",
+  "tip-calculator",
   "discount-calculator",
   "compound-interest-calculator",
   "date-difference-calculator",

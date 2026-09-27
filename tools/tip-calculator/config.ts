@@ -8,7 +8,7 @@ export const tipCalculatorConfig = {
   backend: false,
   seo: {
     title: "Tip Calculator — Split Bills & Calculate Tips Instantly",
-    description: "Free online Tip Calculator. Calculate tips, split bills between multiple people, and see per-person costs instantly. Fast, mobile-friendly, and runs entirely in your browser.",
+    description: "Work out the tip and split the bill between any number of people. Preset 10–20% tips or your own, round-up per person, in $, €, £, CA$ or A$.",
     keywords: [
       "tip calculator",
       "bill splitter",
@@ -30,8 +30,23 @@ export const tipCalculatorConfig = {
       title: "Tip Calculator — Split Bills & Calculate Tips Instantly",
       description: "Calculate tips, split bills between multiple people, and see per-person costs instantly. Fast, mobile-friendly, and runs entirely in your browser.",
       type: "website",
-      url: "/tip-calculator"
-    }
+      url: "/tools/calculator/tip-calculator"
+    },
+    howToSteps: [
+      { name: "Enter the bill", text: "Type the bill amount. Tip on the amount before tax or after tax, whichever is the custom where you are." },
+      { name: "Choose the tip", text: "Pick 10%, 15%, 18% or 20%, or set any percentage with the slider or the custom box." },
+      { name: "Split it", text: "Enter how many people are paying. The total, including the tip, is divided equally." },
+      { name: "Round and copy", text: "Turn on round-up to make each share a whole amount, then copy the tip, total or per-person share." },
+    ],
+    faq: [
+      { q: "How much should I tip in the US?", a: "At sit-down restaurants in the United States 15–20% of the pre-tax bill is standard: about 15% for average service, 18–20% for good service and more for excellent service. Bartenders, hairdressers and taxi or rideshare drivers are usually tipped 15–20% too." },
+      { q: "How much do people tip in the UK and Europe?", a: "Much less than in the US. In the UK 10–12.5% is usual at restaurants, and many add it to the bill as a discretionary service charge, so check before adding more. In most of continental Europe service is included in prices; rounding up or leaving 5–10% for good service is common." },
+      { q: "Should I tip on the amount before or after tax?", a: "Etiquette guides say the pre-tax amount, but many people tip on the total because it is the number on the receipt. The difference is small: on a $60 bill with 8% sales tax, 20% is $12.00 before tax and $12.96 after." },
+      { q: "How is the tip calculated?", a: "Tip = bill × tip % ÷ 100, total = bill + tip, and each person pays total ÷ number of people. An $80 bill with an 18% tip is $14.40 in tip and $94.40 in total, or $23.60 each for four people." },
+      { q: "What does round-up do?", a: "It rounds each person's share up to the next whole amount, so $23.60 becomes $24.00. Everyone pays a round number and the extra goes to the tip." },
+      { q: "Which currencies can I use?", a: "US dollars, euros, pounds, Canadian dollars and Australian dollars. The currency is guessed from your location and can be changed at any time; the maths is the same in every currency." },
+      { q: "Is my data saved?", a: "Your last bill, tip and currency are kept in your browser's local storage so they are there next time. Nothing is sent to a server." },
+    ],
   },
   features: [
     "Real-time tip calculation as you type",
@@ -40,7 +55,7 @@ export const tipCalculatorConfig = {
     "Split bill between multiple people",
     "Interactive tip percentage slider",
     "Round-up to nearest dollar option",
-    "Currency selector (USD, EUR, GBP, BDT)",
+    "Currency selector (USD, EUR, GBP, CAD, AUD)",
     "Copy results to clipboard",
     "Bill split visualization",
     "Per-person breakdown display",

@@ -33,6 +33,10 @@ const nextConfig: NextConfig = {
       "home-loan-emi-calculator": "/tools/calculator/mortgage-calculator",
       // #65: "loan calculator" is the global search term; EMI is regional
       "loan-emi-calculator": "/tools/calculator/loan-calculator",
+      // #22: held unregistered duplicates, merged into the registered tool
+      "roi-calculator-marketing": "/tools/calculator/investment-return-calculator",
+      "binary-to-decimal-calculator": "/tools/math/binary-hex-decimal-converter",
+      "decimal-to-binary-calculator": "/tools/math/binary-hex-decimal-converter",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },

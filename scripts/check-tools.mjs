@@ -24,15 +24,9 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 
-/* Built and live, but deliberately kept out of the registry until the
-   catalogue triage in #22 decides keep / consolidate / remove. */
-const ALLOW_UNREGISTERED = new Set([
-  'tip-calculator',
-  'roman-numeral-converter',
-  'roi-calculator-marketing',
-  'binary-to-decimal-calculator',
-  'decimal-to-binary-calculator',
-]);
+/* Built and live but kept out of the registry. Empty since the #22 triage
+   registered or merged the last ones; add a slug here only with a reason. */
+const ALLOW_UNREGISTERED = new Set([]);
 
 // ── config/tools.ts — active (uncommented) entries only
 const registry = new Map();
