@@ -28,10 +28,10 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS: { label: string; area: string; unit: Unit; price: string }[] = [
-  { label: "5 Katha @ $5k",    area: "5",    unit: "katha",   price: "5000"   },
-  { label: "10 Decimal @ $2k", area: "10",   unit: "decimal", price: "2000"   },
-  { label: "1 Acre @ $50k",    area: "1",    unit: "acre",    price: "50000"  },
-  { label: "2500 Sq Ft @ $200",area: "2500", unit: "sqft",    price: "200"    },
+  { label: "1 Acre @ $50k",     area: "1",    unit: "acre",    price: "50000"  },
+  { label: "2500 Sq Ft @ $200", area: "2500", unit: "sqft",    price: "200"    },
+  { label: "600 m² @ 250",      area: "600",  unit: "sqm",     price: "250"    },
+  { label: "2 Hectare @ 20k",   area: "2",    unit: "hectare", price: "20000"  },
 ];
 
 const DEFAULT_INPUTS: CalculatorInputs = {

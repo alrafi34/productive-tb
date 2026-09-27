@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { landValuationCalculatorConfig } from "./config";
 
 export default function LandValuationCalculatorSEO() {
+  const { howToSteps, faq } = landValuationCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -31,46 +34,14 @@ export default function LandValuationCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Land Valuation Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the land area (e.g. 5)",
-                "Select the unit type (e.g. Katha, Acre, Sq Ft)",
-                "Enter the price per unit (e.g. 500,000)",
-                "Optionally enter extra costs like registration or tax fees",
-                "Choose your currency (USD, EUR, GBP, CAD or AUD)",
-                "View the estimated total property value instantly",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time calculation as you type",
-                "9 land measurement units supported",
-                "Optional extra cost field for fees and taxes",
-                "Value breakdown table at multiple area scales",
-                "Multi-currency support (USD, EUR, GBP, CAD, AUD)",
-                "Save and export calculation history",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -166,40 +137,7 @@ export default function LandValuationCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is total land value calculated?",
-              a: "Total Value = (Land Area × Price Per Unit) + Extra Costs. The formula multiplies the area by the unit price and adds any optional additional costs such as registration fees or taxes.",
-            },
-            {
-              q: "What extra costs should I include?",
-              a: "Common extra costs include property registration fees, legal fees, stamp duty, survey fees, and any applicable taxes. These vary by country and region.",
-            },
-            {
-              q: "What is the difference between Marla and Kanal?",
-              a: "Both are traditional land units used in Pakistan and parts of India. 1 Marla = 272.25 sq ft and 1 Kanal = 20 Marla = 5,445 sq ft.",
-            },
-            {
-              q: "What currencies are supported?",
-              a: "The calculator supports USD ($), EUR (€), GBP (£), CAD (CA$) and AUD (A$). The currency symbol is applied to the result display only.",
-            },
-            {
-              q: "Is my data saved anywhere?",
-              a: "No. All calculations happen entirely in your browser. History is saved only in your browser's localStorage and is never sent to any server.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

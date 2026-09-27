@@ -11,10 +11,10 @@ export const CURRENCY_LABELS: Record<Currency, string> = {
 export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const THICKNESS_LABELS: Record<Thickness, string> = {
-  "4in": "4 inch (Light)",
-  "5in": "5 inch",
-  "9in": "9 inch (Standard)",
-  "12in": "12 inch (Heavy)",
+  "4in": "4 in / 100 mm (one wythe of brick)",
+  "5in": "5 in / 125 mm",
+  "9in": "8–9 in / 200–215 mm (block or two wythes)",
+  "12in": "12 in / 300 mm (heavy)",
 };
 
 export const ALL_THICKNESSES: Thickness[] = ["4in", "5in", "9in", "12in"];

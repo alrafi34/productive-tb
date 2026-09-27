@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { triangleLandAreaCalculatorConfig } from "./config";
 
 export default function TriangleLandAreaCalculatorSEO() {
+  const { howToSteps, faq } = triangleLandAreaCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function TriangleLandAreaCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Triangle Land Area Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select your calculation method (Base×Height, Three Sides, or Coordinates)",
-                "Choose your input unit (feet, meters, yards, inches, or cm)",
-                "Enter the required measurements for your chosen method",
-                "Select your preferred primary output unit",
-                "View the instant area result and all unit conversions",
-                "Click Show on the breakdown to see step-by-step math",
-                "Copy, save, or export the result as needed",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Three calculation methods in one tool",
-                "Real-time calculation as you type",
-                "Step-by-step math breakdown",
-                "7 output units including acres and hectares",
-                "Input units: ft, m, yd, in, cm",
-                "Quick presets for common plot sizes",
-                "Save history and export to TXT",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -155,44 +124,7 @@ export default function TriangleLandAreaCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "When should I use Base × Height vs Heron's Formula?",
-              a: "Use Base × Height when you know the base length and the perpendicular height (the vertical distance from the base to the opposite vertex). Use Heron's Formula when you only know the three side lengths but not the height — this is common in field surveying where sides are measured directly.",
-            },
-            {
-              q: "What is the triangle inequality?",
-              a: "For a valid triangle, the sum of any two sides must be greater than the third side: a+b > c, b+c > a, and a+c > b. If this condition is not met, the three sides cannot form a triangle and the calculator will show a validation error.",
-            },
-            {
-              q: "How do I find the height of a triangle for land measurement?",
-              a: "In field surveying, the height is the perpendicular distance from the base line to the opposite corner. You can measure this directly with a tape measure by finding the point on the base line that forms a right angle to the opposite vertex.",
-            },
-            {
-              q: "Can I use GPS coordinates with this calculator?",
-              a: "Yes. Switch to Coordinates mode and enter the decimal degree coordinates for each vertex. Set the scale appropriately — for GPS coordinates in degrees, the raw area will be in square degrees, so you'll need to apply a conversion factor for your latitude.",
-            },
-            {
-              q: "What is a 30-40-50 right triangle?",
-              a: "A 30-40-50 triangle is a right triangle (a scaled version of the 3-4-5 Pythagorean triple). Its area is (30 × 40) ÷ 2 = 600 sq ft. You can verify this with either the Base×Height method (base=40, height=30) or Heron's Formula.",
-            },
-            {
-              q: "How accurate are the results?",
-              a: "The calculator uses full JavaScript floating-point precision (15+ significant digits) for all calculations. Results are displayed with smart formatting that shows appropriate decimal places based on the magnitude of the value.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

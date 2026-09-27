@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { wallBoundaryCostCalculatorConfig } from "./config";
 
 export default function WallBoundaryCostCalculatorSEO() {
+  const { howToSteps, faq } = wallBoundaryCostCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function WallBoundaryCostCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Wall Boundary Cost Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter your boundary length and wall height",
-                "Select your measurement unit (feet or meters)",
-                "Choose wall thickness (4, 5, 9, or 12 inches)",
-                "Input material cost per square foot",
-                "Enter labor cost per square foot",
-                "Add optional costs (plaster, gate, miscellaneous)",
-                "View instant cost breakdown and total estimate",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "Real-time cost calculation as you type",
-                "Support for feet and meter measurements",
-                "Multiple currency options (USD, EUR, GBP, etc.)",
-                "Wall thickness selection (4-12 inches)",
-                "Detailed cost breakdown display",
-                "Quick preset templates for common projects",
-                "Save and export calculation history",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -227,44 +196,7 @@ export default function WallBoundaryCostCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How accurate are the cost estimates?",
-              a: "The calculator provides estimates based on your input costs. Actual costs may vary due to local material prices, labor rates, site conditions, and project complexity. Always get quotes from local contractors for final budgeting.",
-            },
-            {
-              q: "What's included in material costs per square foot?",
-              a: "Material costs typically include bricks, cement, sand, and mortar. Steel reinforcement, foundation materials, and finishing supplies may be additional. Adjust your rate based on local material prices.",
-            },
-            {
-              q: "How do I estimate labor costs?",
-              a: "Labor costs vary by region and skill level. Contact local masons for current rates. Include costs for skilled masons, helpers, and any supervision or project management fees.",
-            },
-            {
-              q: "Should I add a buffer to the estimate?",
-              a: "Yes, it's recommended to add 10-20% buffer for unexpected costs, material waste, design changes, or price fluctuations. The calculator helps you plan, but real projects often have additional expenses.",
-            },
-            {
-              q: "What about foundation costs?",
-              a: "Foundation costs depend on soil conditions, wall height, and local requirements. For walls over 4 feet, factor in excavation and concrete foundation costs separately from the wall calculation.",
-            },
-            {
-              q: "Can I use this for retaining walls?",
-              a: "This calculator is designed for boundary walls. Retaining walls require structural engineering, drainage systems, and specialized construction techniques with different cost structures.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

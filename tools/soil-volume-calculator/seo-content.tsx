@@ -1,6 +1,9 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { soilVolumeCalculatorConfig } from "./config";
 
 export default function SoilVolumeCalculatorSEO() {
+  const { howToSteps, faq } = soilVolumeCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -25,48 +28,14 @@ export default function SoilVolumeCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           How to Use the Soil Volume Calculator
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-            <ol className="space-y-3 text-gray-700">
-              {[
-                "Select Excavation or Fill mode",
-                "Choose your input unit (feet, meters, or yards)",
-                "Select the excavation shape that matches your project",
-                "Enter the required dimensions for that shape",
-                "Optionally enter soil density for weight estimation",
-                "Optionally enter cost per unit for budget estimation",
-                "View instant volume results in all three units",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Features</h3>
-            <ul className="space-y-2 text-gray-700">
-              {[
-                "5 excavation shapes: rectangular, circular, trench, triangular, custom",
-                "Excavation and fill mode toggle",
-                "Real-time calculation as you type",
-                "Cubic meters, feet, and yards output",
-                "Optional weight estimation (kg and metric tons)",
-                "Optional cost estimation per unit",
-                "Step-by-step calculation breakdown",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -191,44 +160,7 @@ export default function SoilVolumeCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the difference between excavation and fill volume?",
-              a: "Excavation volume is the amount of soil removed from a site. Fill volume is the amount of soil needed to raise or level an area. The same formula applies to both — the mode toggle simply labels the result appropriately for your project type.",
-            },
-            {
-              q: "How do I convert cubic meters to cubic yards?",
-              a: "1 cubic meter = 1.30795 cubic yards. The calculator handles this conversion automatically. For example, 100 m³ = 130.8 yd³.",
-            },
-            {
-              q: "What soil density should I use?",
-              a: "Typical values range from 1,400 kg/m³ for loose topsoil to 1,800 kg/m³ for compacted clay. Use 1,600 kg/m³ as a general default for mixed soil. Check with your geotechnical report for site-specific values.",
-            },
-            {
-              q: "How do I calculate volume for an irregular shape?",
-              a: "Use the Custom Area mode. First calculate the cross-sectional area of your irregular shape using another tool (such as the Polygon Area Calculator), then enter that area value along with the depth to get the volume.",
-            },
-            {
-              q: "Does the calculator account for soil swell or compaction?",
-              a: "No — the calculator gives the in-situ (bank) volume. Excavated soil typically swells 10–30% when loose, and fill soil compacts 10–20% when placed. Apply a swell or compaction factor to the result for accurate truck load or fill material estimates.",
-            },
-            {
-              q: "How accurate is the circular excavation formula?",
-              a: "The formula V = π × r² × depth gives the exact volume of a perfect cylinder. For tapered or conical excavations, the actual volume will be less. Use the triangular or custom area mode for tapered shapes.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );
