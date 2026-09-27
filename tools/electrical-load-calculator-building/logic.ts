@@ -3,8 +3,25 @@ import { Appliance, ElectricalCalculation, HistoryEntry, ApplianceTemplate, Volt
 const HISTORY_KEY = "electrical-load-calculator-history";
 const MAX_HISTORY = 10;
 
-// Standard breaker sizes (Amps)
-const BREAKER_SIZES = [6, 10, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200];
+// Standard breaker ratings (A): North American (NEC 240.6) and IEC
+const BREAKER_SIZES_NA = [15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200];
+const BREAKER_SIZES_IEC = [6, 10, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200];
+
+/* 120 V and 240 V (and the old 110 V option) are North American supplies */
+export function isNorthAmerican(voltage: Voltage): boolean {
+  return voltage === 120 || voltage === 240 || voltage === 110;
+}
+
+/* A default supply voltage from the visitor's timezone; always editable */
+export function guessVoltage(): Voltage {
+  try {
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? "";
+    if (zone.startsWith("America/")) return 120;
+  } catch {
+    // fall through
+  }
+  return 230;
+}
 
 // Calculate total watts from appliances
 export function calculateTotalWatts(appliances: Appliance[]): number {
@@ -30,34 +47,32 @@ export function calculateCurrent(demandLoad: number, voltage: Voltage, powerFact
 }
 
 // Recommend breaker size
-export function recommendBreaker(current: number): number {
-  // Add 25% safety margin
+export function recommendBreaker(current: number, voltage: Voltage): number {
+  // 125% of the load, as for continuous loads (NEC 210.20), rounded up to a standard rating
   const requiredBreaker = current * 1.25;
-  
-  // Find next standard breaker size
-  for (const size of BREAKER_SIZES) {
+  const sizes = isNorthAmerican(voltage) ? BREAKER_SIZES_NA : BREAKER_SIZES_IEC;
+  for (const size of sizes) {
     if (size >= requiredBreaker) {
       return size;
     }
   }
-  
-  return BREAKER_SIZES[BREAKER_SIZES.length - 1];
+  return sizes[sizes.length - 1];
 }
 
-// Estimate cable size (basic reference)
-export function estimateCableSize(current: number): string {
-  if (current <= 6) return "1.5 mm²";
-  if (current <= 10) return "2.5 mm²";
-  if (current <= 16) return "4 mm²";
-  if (current <= 20) return "6 mm²";
-  if (current <= 25) return "10 mm²";
-  if (current <= 32) return "16 mm²";
-  if (current <= 40) return "25 mm²";
-  if (current <= 50) return "35 mm²";
-  if (current <= 63) return "50 mm²";
-  if (current <= 80) return "70 mm²";
-  if (current <= 100) return "95 mm²";
-  return "120 mm² or larger";
+/* Typical copper conductor for a breaker rating: NEC Table 310.16 (60/75 °C)
+   and IEC 60364-5-52 (PVC, clipped direct). A reference only: length,
+   voltage drop, grouping and installation method change the size. */
+export function estimateCableSize(breaker: number): string {
+  if (breaker <= 10) return "1.5 mm² (14 AWG)";
+  if (breaker <= 16) return "1.5–2.5 mm² (14 AWG)";
+  if (breaker <= 20) return "2.5 mm² (12 AWG)";
+  if (breaker <= 30) return "4 mm² (10 AWG)";
+  if (breaker <= 40) return "6 mm² (8 AWG)";
+  if (breaker <= 50) return "10 mm² (8–6 AWG)";
+  if (breaker <= 63) return "16 mm² (6–4 AWG)";
+  if (breaker <= 80) return "25 mm² (4–3 AWG)";
+  if (breaker <= 100) return "35 mm² (3–1 AWG)";
+  return "50 mm² (1/0 AWG) or larger";
 }
 
 // Main calculation function
@@ -72,8 +87,8 @@ export function performElectricalCalculation(
   const totalKW = wattsToKW(totalWatts);
   const demandLoad = applyDemandFactor(totalKW, demandFactor);
   const current = calculateCurrent(demandLoad, voltage, powerFactor);
-  const recommendedBreaker = recommendBreaker(current);
-  const estimatedCableSize = estimateCableSize(current);
+  const recommendedBreaker = recommendBreaker(current, voltage);
+  const estimatedCableSize = estimateCableSize(recommendedBreaker);
   
   return {
     appliances,

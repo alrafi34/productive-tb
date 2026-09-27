@@ -1,4 +1,5 @@
-export type Voltage = 110 | 220;
+// 110 and 220 are kept so older saved calculations still load
+export type Voltage = 120 | 240 | 230 | 220 | 110;
 export type LoadType = "residential" | "commercial";
 export type ApplianceCategory = "lighting" | "hvac" | "kitchen" | "electronics" | "motors" | "other";
 

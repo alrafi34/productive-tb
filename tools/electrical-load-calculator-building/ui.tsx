@@ -13,14 +13,21 @@ import {
   exportToCSV,
   downloadFile,
   formatNumber,
-  validateAppliance
+  validateAppliance,
+  guessVoltage
 } from "./logic";
 import ElectricalLoadCalculatorBuildingSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ElectricalLoadCalculatorBuildingUI() {
-  const [voltage, setVoltage] = useState<Voltage>(220);
+  const [voltage, setVoltage] = useState<Voltage>(120);
+
+  // The local supply voltage, guessed after hydration so the server markup matches
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setVoltage(guessVoltage()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [loadType, setLoadType] = useState<LoadType>("residential");
   const [demandFactor, setDemandFactor] = useState(0.8);
   const [powerFactor, setPowerFactor] = useState(0.8);
@@ -82,7 +89,7 @@ export default function ElectricalLoadCalculatorBuildingUI() {
 
   const handleReset = () => {
     setAppliances([createAppliance()]);
-    setVoltage(220);
+    setVoltage(guessVoltage());
     setLoadType("residential");
     setDemandFactor(0.8);
     setPowerFactor(0.8);
@@ -168,8 +175,10 @@ export default function ElectricalLoadCalculatorBuildingUI() {
                   onChange={(e) => setVoltage(parseInt(e.target.value) as Voltage)}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
-                  <option value={220}>220V (Single Phase)</option>
-                  <option value={110}>110V (Single Phase)</option>
+                  <option value={120}>120V (US, Canada)</option>
+                  <option value={240}>240V (US, Canada split-phase)</option>
+                  <option value={230}>230V (UK, Europe, Australia)</option>
+                  <option value={220}>220V</option>
                 </select>
               </div>
 

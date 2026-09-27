@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { coolingLoadCalculatorArchitectureConfig } from "./config";
+
 export default function CoolingLoadCalculatorSEO() {
+  const { howToSteps, faq } = coolingLoadCalculatorArchitectureConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100">
@@ -70,32 +74,14 @@ export default function CoolingLoadCalculatorSEO() {
         </div>
 
         <h3 className="text-xl font-bold text-gray-900 mb-4 mt-8">How to Use the Calculator</h3>
-        
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-6">
-          <ol className="space-y-3 text-gray-700">
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">1.</span>
-              <span><strong>Enter Room Dimensions:</strong> Input length, width, and height in feet or meters</span>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
             </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">2.</span>
-              <span><strong>Set Occupancy:</strong> Enter the number of people who will use the space</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">3.</span>
-              <span><strong>Configure Environment:</strong> Select sun exposure, insulation quality, and equipment load</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">4.</span>
-              <span><strong>Add Windows:</strong> Specify the number of windows in the room</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-blue-600 flex-shrink-0">5.</span>
-              <span><strong>View Results:</strong> See cooling load in BTU/hr, tonnage, and AC recommendations</span>
-            </li>
-          </ol>
-        </div>
-
+          ))}
+        </ol>
         <h3 className="text-xl font-bold text-gray-900 mb-4">Understanding the Calculation</h3>
         
         <div className="bg-gray-50 p-6 rounded-xl mb-6">
@@ -384,6 +370,7 @@ export default function CoolingLoadCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

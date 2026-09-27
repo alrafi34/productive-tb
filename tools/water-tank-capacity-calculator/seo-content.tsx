@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { waterTankCapacityCalculatorConfig } from "./config";
+
 export default function WaterTankCapacityCalculatorSEO() {
+  const { howToSteps, faq } = waterTankCapacityCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -12,27 +16,14 @@ export default function WaterTankCapacityCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Select Tank Shape</h3>
-              <p className="text-gray-700">Choose between Rectangular, Cylindrical (Vertical), or Cylindrical (Horizontal) tank shapes. The input fields will adjust based on your selection.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Choose Measurement Unit</h3>
-              <p className="text-gray-700">Select your preferred unit: meters, centimeters, feet, or inches. All calculations will use your selected unit.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Enter Dimensions</h3>
-              <p className="text-gray-700">For rectangular tanks, enter length, width, and height. For cylindrical tanks, enter radius and height. The calculator updates results in real-time.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Review Results</h3>
-              <p className="text-gray-700">The calculator instantly displays tank capacity in liters and gallons, plus volume in cubic meters and cubic feet.</p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -199,45 +190,7 @@ export default function WaterTankCapacityCalculatorSEO() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How do I calculate the capacity of my water tank?</h3>
-              <p className="text-gray-700">
-                Measure your tank dimensions (length, width, height for rectangular; radius and height for cylindrical), select the appropriate shape in the calculator, enter your measurements, and get instant capacity results in liters and gallons.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">What size water tank do I need for my home?</h3>
-              <p className="text-gray-700">
-                For residential use, calculate daily water consumption (typically 150-200 liters per person) and multiply by the number of days of storage needed. A family of 4 typically needs 2,000-5,000 liters for 2-3 days of backup supply.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Which is better: rectangular or cylindrical tank?</h3>
-              <p className="text-gray-700">
-                Cylindrical tanks are structurally stronger and more efficient for large capacities. Rectangular tanks are better for tight spaces and easier to install in corners. Choose based on your space constraints and capacity needs.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How much does a full water tank weigh?</h3>
-              <p className="text-gray-700">
-                Water weighs approximately 1 kg per liter (or 8.34 lbs per gallon). Add the tank's empty weight to the water weight. For example, a 5,000-liter tank holds 5,000 kg (5 tons) of water plus the tank structure weight.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Can I use this calculator for other liquids?</h3>
-              <p className="text-gray-700">
-                Yes, the volume calculations work for any liquid. However, capacity conversions (liters, gallons) assume water. For other liquids, use the volume in cubic meters or cubic feet and apply the appropriate density conversion.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Related Calculations</h2>

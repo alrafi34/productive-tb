@@ -339,13 +339,20 @@ export default function ConcreteVolumeCalculatorUI() {
                     <span className="text-primary-100">In Cubic Feet:</span>
                     <span className="font-semibold">{formatNumber(calculation.totalVolume * 35.3147)} ft³</span>
                   </div>
+                  <div className="flex justify-between">
+                    <span className="text-primary-100">In Cubic Yards:</span>
+                    <span className="font-semibold">{formatNumber(calculation.totalVolume * 1.30795)} yd³</span>
+                  </div>
                   
                   {calculation.materials && (
                     <>
                       <div className="pt-2 border-t border-white/20"></div>
                       <div className="flex justify-between">
                         <span className="text-primary-100">Cement:</span>
-                        <span className="font-semibold">{calculation.materials.cementBags} bags</span>
+                        <span className="font-semibold text-right">
+                          {formatNumber(calculation.materials.cementWeight)} kg: {calculation.materials.cementBags} × 50 kg
+                          or {Math.ceil(calculation.materials.cementWeight / 42.64)} × 94 lb bags
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-primary-100">Sand:</span>

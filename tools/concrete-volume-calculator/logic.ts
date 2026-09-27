@@ -4,7 +4,7 @@ import { Unit, ShapeType, ConcreteCalculation, CalculationHistory, MixRatio, Mat
 const CUBIC_FEET_TO_CUBIC_METER = 35.3147;
 const DRY_VOLUME_FACTOR = 1.54;
 const CEMENT_DENSITY = 1440; // kg/m³
-const CEMENT_BAG_SIZE = 50; // kg
+const CEMENT_BAG_SIZE = 50; // kg; the UI also shows US 94 lb bags
 
 // Generate unique ID
 export const generateId = (): string => {
@@ -203,19 +203,19 @@ export const clearHistory = (): void => {
 export const getMixRatioPresets = (): Array<{ name: string; ratio: MixRatio; description: string }> => {
   return [
     {
-      name: 'M15 (1:2:4)',
+      name: '1:2:4 General purpose',
       ratio: { cement: 1, sand: 2, aggregate: 4 },
-      description: 'Standard concrete for general use'
+      description: 'Slabs, footings and paths, about 15 MPa (2,200 psi)'
     },
     {
-      name: 'M20 (1:1.5:3)',
+      name: '1:1.5:3 Structural',
       ratio: { cement: 1, sand: 1.5, aggregate: 3 },
-      description: 'Structural concrete'
+      description: 'Beams, columns and suspended slabs, about 20 MPa (2,900 psi)'
     },
     {
-      name: 'M25 (1:1:2)',
+      name: '1:1:2 High strength',
       ratio: { cement: 1, sand: 1, aggregate: 2 },
-      description: 'High strength concrete'
+      description: 'Heavily loaded members, about 25 MPa (3,600 psi)'
     }
   ];
 };
@@ -269,7 +269,7 @@ export const exportToText = (batch: ConcreteCalculation[]): string => {
     text += `   Total Volume: ${formatNumber(calc.totalVolume)} m³\n`;
     
     if (calc.materials) {
-      text += `   Cement: ${calc.materials.cementBags} bags (${formatNumber(calc.materials.cementWeight)} kg)\n`;
+      text += `   Cement: ${calc.materials.cementBags} × 50 kg bags (${formatNumber(calc.materials.cementWeight)} kg)\n`;
       text += `   Sand: ${formatNumber(calc.materials.sandVolume)} m³\n`;
       text += `   Aggregate: ${formatNumber(calc.materials.aggregateVolume)} m³\n`;
     }
