@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { roofAreaCalculatorConfig } from "./config";
+
 export default function RoofAreaCalculatorSEO() {
+  const { howToSteps, faq } = roofAreaCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -23,15 +27,14 @@ export default function RoofAreaCalculatorSEO() {
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>
-        <ol className="list-decimal list-inside text-gray-700 space-y-2 mb-4">
-          <li>Select your roof type from the dropdown</li>
-          <li>Enter roof length and width</li>
-          <li>If applicable, enter roof pitch angle</li>
-          <li>Choose unit system (metric or imperial)</li>
-          <li>View instant results with area calculation</li>
-          <li>Export calculations or save to history</li>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
         </ol>
-
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Supported Roof Types</h3>
         
         <h4 className="text-lg font-semibold text-gray-800 mt-4 mb-2">Flat Roof</h4>
@@ -55,7 +58,7 @@ export default function RoofAreaCalculatorSEO() {
           Four sloped sides meeting at a peak or ridge. More complex than gable, provides better wind resistance.
         </p>
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
-          <p className="text-sm font-mono text-gray-700">Formula: Area ≈ Length × Width × factor (based on pitch)</p>
+          <p className="text-sm font-mono text-gray-700">Formula: Area = Length × Width ÷ cos(pitch), when all four faces share one pitch</p>
         </div>
 
         <h4 className="text-lg font-semibold text-gray-800 mt-4 mb-2">Shed Roof</h4>
@@ -255,6 +258,7 @@ export default function RoofAreaCalculatorSEO() {
         </div>
 
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

@@ -31,7 +31,7 @@ export const getRoofTypeInfo = (): RoofTypeInfo[] => {
       name: 'Hip Roof',
       description: 'Four sloped sides meeting at a peak',
       requiresPitch: true,
-      formula: 'Area ≈ Length × Width × 1.3'
+      formula: 'Area = Length × Width ÷ cos(pitch)'
     },
     {
       type: 'shed',
@@ -56,11 +56,10 @@ const calculateGableRoof = (length: number, width: number, pitch: number): numbe
 
 // Calculate hip roof area
 const calculateHipRoof = (length: number, width: number, pitch: number): number => {
-  // Simplified formula using approximation factor
-  // More accurate would require ridge length calculation
+  // With all four faces at the same pitch, every point of the plan lies under
+  // a face at that slope, so the roof area is exactly plan area ÷ cos(pitch)
   const pitchRad = pitch * Math.PI / 180;
-  const factor = 1 / Math.cos(pitchRad);
-  return length * width * factor * 1.1; // 1.1 accounts for hip geometry
+  return (length * width) / Math.cos(pitchRad);
 };
 
 // Calculate shed roof area

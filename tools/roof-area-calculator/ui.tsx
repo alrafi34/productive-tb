@@ -220,6 +220,11 @@ export default function RoofAreaCalculatorUI() {
                   <div className="text-xl text-primary-100">
                     {calculation.unit === 'metric' ? 'square meters (m²)' : 'square feet (sq ft)'}
                   </div>
+                  <div className="text-sm text-primary-100 mt-1">
+                    {calculation.unit === 'metric'
+                      ? `= ${formatNumber(calculation.area * 10.7639)} sq ft`
+                      : `= ${formatNumber(calculation.area / 100)} roofing squares · ${formatNumber(calculation.area / 10.7639)} m²`}
+                  </div>
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-white/20 text-sm space-y-2">
