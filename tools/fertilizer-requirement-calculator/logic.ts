@@ -16,7 +16,6 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: "$",
   EUR: "€",
   GBP: "£",
-  INR: "₹",
   CAD: "CA$",
   AUD: "A$",
 };
@@ -25,12 +24,11 @@ export const CURRENCY_LABELS: Record<Currency, string> = {
   USD: "USD – US Dollar",
   EUR: "EUR – Euro", 
   GBP: "GBP – British Pound",
-  INR: "INR – Indian Rupee",
   CAD: "CAD – Canadian Dollar",
   AUD: "AUD – Australian Dollar",
 };
 
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "INR", "CAD", "AUD"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export const AREA_UNIT_LABELS: Record<AreaUnit, string> = {
   acre: "Acre",
@@ -119,7 +117,7 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): 
 // ── Formatting ────────────────────────────────────────────────────────────────
 
 export function fmt(value: number, currency: Currency, decimals = 2): string {
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   return `${sym}${value.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
@@ -248,13 +246,13 @@ export function clearHistory(): void {
 // ── Export Functions ──────────────────────────────────────────────────────────
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[result.currency];
+  const sym = (CURRENCY_SYMBOLS[result.currency] ?? "$");
   return [
     "Fertilizer Requirement Calculator – Results",
     "=".repeat(45),
-    `Crop: ${CROP_LABELS[result.cropType]}`,
-    `Land Area: ${fmtNum(result.landArea, 2)} ${AREA_UNIT_LABELS[result.areaUnit]} (${fmtNum(result.landAreaInAcres, 2)} acres)`,
-    `Fertilizer: ${FERTILIZER_LABELS[result.fertilizerType]}`,
+    `Crop: ${(CROP_LABELS[result.cropType] ?? result.cropType)}`,
+    `Land Area: ${fmtNum(result.landArea, 2)} ${(AREA_UNIT_LABELS[result.areaUnit] ?? result.areaUnit)} (${fmtNum(result.landAreaInAcres, 2)} acres)`,
+    `Fertilizer: ${(FERTILIZER_LABELS[result.fertilizerType] ?? result.fertilizerType)}`,
     "",
     "Nutrient Requirements:",
     ...result.calculations.map(c => 

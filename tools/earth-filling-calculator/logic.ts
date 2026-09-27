@@ -293,7 +293,7 @@ export function exportToText(inputs: CalculatorInputs, result: CalculationResult
     lines.push(`Truckloads       : ${result.truckloads} trucks (${smartFormat(result.truckCapacity)} ${OUTPUT_UNIT_SHORT[result.outputUnit]}/truck)`);
   }
   if (result.estimatedCost !== undefined) {
-    lines.push(`Estimated Cost   : $${smartFormat(result.estimatedCost)}`);
+    lines.push(`Estimated Cost   : ${smartFormat(result.estimatedCost)}`);
   }
   lines.push("", "=".repeat(45), `Generated: ${new Date().toLocaleString()}`);
   return lines.join("\n");

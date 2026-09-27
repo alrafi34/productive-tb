@@ -31,21 +31,23 @@ export const UNIT_SHORT: Record<Unit, string> = {
 };
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
-  BDT: "৳",
   USD: "$",
-  INR: "₹",
   EUR: "€",
+  GBP: "£",
+  CAD: "CA$",
+  AUD: "A$",
 };
 
 export const CURRENCY_LABELS: Record<Currency, string> = {
-  BDT: "BDT (৳)",
   USD: "USD ($)",
-  INR: "INR (₹)",
   EUR: "EUR (€)",
+  GBP: "GBP (£)",
+  CAD: "CAD (CA$)",
+  AUD: "AUD (A$)",
 };
 
-export const ALL_UNITS: Unit[] = ["sqft", "sqm", "decimal", "acre", "katha", "bigha", "hectare"];
-export const ALL_CURRENCIES: Currency[] = ["USD", "BDT", "INR", "EUR"];
+export const ALL_UNITS: Unit[] = ["sqft", "sqm", "acre", "hectare", "decimal", "katha", "bigha"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export function validatePrice(value: string): string | null {
   if (!value || value.trim() === "") return "Please enter a valid land price.";
@@ -118,7 +120,7 @@ export function clearHistory(): void {
 }
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const p = inputs.precision;
   return [
     "Price per Square Feet Calculator – Result",

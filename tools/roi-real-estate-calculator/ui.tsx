@@ -64,7 +64,7 @@ export default function RoiRealEstateCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     const text = `Real Estate ROI Summary\nInvestment: ${sym}${result.totalInvestment.toLocaleString("en-US")}\nCash-on-Cash ROI: ${fmtPct(result.cashOnCashROI)}\nMonthly Cash Flow: ${fmtCF(result.monthlyCashFlow, result.currency)}\nTotal ROI (${inputs.investmentDuration}yr): ${fmtPct(result.totalROI)}\nRating: ${result.rating}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -83,7 +83,7 @@ export default function RoiRealEstateCalculatorUI() {
     if (confirm("Clear all calculation history?")) { clearHistory(); setHistory([]); }
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const inputCls  = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
   const selectCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium";
 
@@ -114,7 +114,7 @@ export default function RoiRealEstateCalculatorUI() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
-                  {ALL_CURRENCIES.map((c) => <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>)}
+                  {ALL_CURRENCIES.map((c) => <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>)}
                 </select>
               </div>
 
@@ -411,7 +411,7 @@ export default function RoiRealEstateCalculatorUI() {
                         onClick={() => { setInputs(entry.inputs); setShowHistory(false); }}>
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-gray-900 text-sm">
-                            {CURRENCY_SYMBOLS[entry.inputs.currency]}{parseFloat(entry.inputs.purchasePrice).toLocaleString("en-US")} · {CURRENCY_SYMBOLS[entry.inputs.currency]}{parseFloat(entry.inputs.monthlyRent).toLocaleString("en-US")}/mo
+                            {(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}{parseFloat(entry.inputs.purchasePrice).toLocaleString("en-US")} · {(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}{parseFloat(entry.inputs.monthlyRent).toLocaleString("en-US")}/mo
                           </span>
                           <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>
                         </div>

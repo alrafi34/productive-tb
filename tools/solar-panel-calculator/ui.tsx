@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import CurrencySelect from "@/components/CurrencySelect";
+import { type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import { SolarPanelInputs, SolarPanelResult, PanelWattage } from "./types";
 import {
   calculateSolarPanel,
@@ -34,6 +36,13 @@ export default function SolarPanelCalculatorUI() {
     systemEfficiency: savedSettings.systemEfficiency || 0.80,
     electricityRate: savedSettings.electricityRate || 0.12
   });
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   const [result, setResult] = useState<SolarPanelResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -343,9 +352,12 @@ export default function SolarPanelCalculatorUI() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Electricity Rate ($ per kWh) - Optional
-                </label>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Electricity Rate per kWh - Optional
+                  </label>
+                  <CurrencySelect value={currency} onChange={setCurrency} />
+                </div>
                 <input
                   type="number"
                   value={inputs.electricityRate || ''}
@@ -486,12 +498,12 @@ export default function SolarPanelCalculatorUI() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
                     <div className="text-xs text-yellow-600 uppercase tracking-wider mb-1 font-semibold">Monthly</div>
-                    <div className="text-2xl font-bold text-yellow-900">${formatNumber(result.monthlySavings, 2)}</div>
+                    <div className="text-2xl font-bold text-yellow-900">{formatMoney(result.monthlySavings, currency)}</div>
                     <div className="text-xs text-yellow-700 mt-1">Estimated savings</div>
                   </div>
                   <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
                     <div className="text-xs text-yellow-600 uppercase tracking-wider mb-1 font-semibold">Yearly</div>
-                    <div className="text-2xl font-bold text-yellow-900">${formatNumber(result.yearlySavings, 2)}</div>
+                    <div className="text-2xl font-bold text-yellow-900">{formatMoney(result.yearlySavings, currency)}</div>
                     <div className="text-xs text-yellow-700 mt-1">Estimated savings</div>
                   </div>
                 </div>

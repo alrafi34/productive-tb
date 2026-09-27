@@ -1,4 +1,4 @@
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface CalculatorInputs {
   propertyPrice: string;

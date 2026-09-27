@@ -57,7 +57,7 @@ export default function LoanInterestCalculatorPropertySEO() {
                 "Rate comparison table (4%–10%)",
                 "Full repayment schedule (yearly and periodic views)",
                 "CSV export of full amortization schedule",
-                "Multi-currency: USD, EUR, GBP, INR, BDT",
+                "Multi-currency: USD, EUR, GBP, CAD, AUD",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>

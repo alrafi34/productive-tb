@@ -2,7 +2,7 @@ export type Unit =
   | "sqft" | "sqm" | "acre" | "hectare"
   | "decimal" | "katha" | "bigha" | "marla" | "kanal";
 
-export type Currency = "USD" | "EUR" | "GBP" | "BDT" | "INR";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface CalculatorInputs {
   area: string;

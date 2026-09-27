@@ -1,4 +1,4 @@
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "CAD" | "AUD";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 export type CompoundFrequency = "yearly" | "quarterly" | "monthly";
 
 export interface CalculatorInputs {

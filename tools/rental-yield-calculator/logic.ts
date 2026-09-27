@@ -9,12 +9,12 @@ import {
 // ── Labels ────────────────────────────────────────────────────────────────────
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
-  USD: "$", EUR: "€", GBP: "£", INR: "₹", BDT: "৳",
+  USD: "$", EUR: "€", GBP: "£", AUD: "A$", CAD: "CA$",
 };
 export const CURRENCY_LABELS: Record<Currency, string> = {
-  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", INR: "INR (₹)", BDT: "BDT (৳)",
+  USD: "USD ($)", EUR: "EUR (€)", GBP: "GBP (£)", AUD: "AUD (A$)", CAD: "CAD (CA$)",
 };
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "INR", "BDT"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 // ── Mortgage helper ───────────────────────────────────────────────────────────
 
@@ -106,7 +106,7 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
 // ── Formatting ────────────────────────────────────────────────────────────────
 
 export function fmt(value: number, currency: Currency, decimals = 0): string {
-  return `${CURRENCY_SYMBOLS[currency]}${value.toLocaleString("en-US", {
+  return `${(CURRENCY_SYMBOLS[currency] ?? "$")}${value.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   })}`;
@@ -117,7 +117,7 @@ export function fmtPct(value: number): string {
 }
 
 export function fmtCashFlow(value: number, currency: Currency): string {
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   const abs = Math.abs(value);
   const sign = value >= 0 ? "+" : "−";
   return `${sign}${sym}${abs.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
@@ -162,7 +162,7 @@ export function clearHistory(): void {
 // ── Export ────────────────────────────────────────────────────────────────────
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[result.currency];
+  const sym = (CURRENCY_SYMBOLS[result.currency] ?? "$");
   return [
     "Rental Yield Calculator – Summary",
     "=".repeat(45),

@@ -16,7 +16,7 @@ export default function ExcavationCostCalculatorSEO() {
             This calculator computes excavation volume from length, width, and depth, then applies a soil type multiplier to account for harder or softer ground conditions. Hard rock excavation can cost up to 1.8× more than loose soil due to the additional equipment and time required.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Optional fields for labor, equipment, and transport costs provide a complete project budget estimate. Results are shown in cubic yards, cubic meters, or cubic feet, with support for USD, EUR, GBP, BDT, and INR currencies.
+            Optional fields for labor, equipment, and transport costs provide a complete project budget estimate. Results are shown in cubic yards, cubic meters, or cubic feet, with support for US dollars, euros, pounds, Canadian and Australian dollars.
           </p>
         </div>
       </section>
@@ -54,7 +54,7 @@ export default function ExcavationCostCalculatorSEO() {
                 "6 excavation types: foundation, basement, trench, pond, leveling, custom",
                 "6 soil types with automatic cost multipliers",
                 "Optional labor, equipment, and transport costs",
-                "Multi-currency support (USD, EUR, GBP, BDT, INR)",
+                "Multi-currency support (USD, EUR, GBP, CAD, AUD)",
                 "Volume output in yd³, m³, or ft³",
                 "Step-by-step cost breakdown",
                 "4 quick presets for common projects",

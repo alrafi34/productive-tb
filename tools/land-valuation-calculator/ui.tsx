@@ -92,7 +92,7 @@ export default function LandValuationCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     const extra = result.extraCost > 0 ? `\nAdditional Cost: ${sym}${formatNumber(result.extraCost, inputs.precision)}` : "";
     navigator.clipboard.writeText(
       `Estimated Land Value\nArea: ${formatNumber(result.area, inputs.precision)} ${UNIT_SHORT[result.unit]}\nPrice per Unit: ${sym}${formatNumber(result.pricePerUnit, inputs.precision)}${extra}\nTotal Estimated Value: ${sym}${formatNumber(result.totalValue, inputs.precision)}`
@@ -125,7 +125,7 @@ export default function LandValuationCalculatorUI() {
     if (e.key === "Escape") handleReset();
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const unitNote = UNIT_NOTES[inputs.unit];
 
   return (
@@ -164,7 +164,7 @@ export default function LandValuationCalculatorUI() {
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -302,7 +302,7 @@ export default function LandValuationCalculatorUI() {
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                   >
                     {ALL_UNITS.map((u) => (
-                      <option key={u} value={u}>{UNIT_LABELS[u]}</option>
+                      <option key={u} value={u}>{(UNIT_LABELS[u] ?? u)}</option>
                     ))}
                   </select>
                 </div>
@@ -476,7 +476,7 @@ export default function LandValuationCalculatorUI() {
                     <div className="p-8 text-center text-gray-400">No calculations saved yet</div>
                   ) : (
                     history.map((entry) => {
-                      const esym = CURRENCY_SYMBOLS[entry.inputs.currency];
+                      const esym = (CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$");
                       return (
                         <div
                           key={entry.id}

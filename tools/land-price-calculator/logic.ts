@@ -1,6 +1,6 @@
 import { CalculatorInputs, CalculationResult, Currency, HistoryEntry, Unit } from "./types";
 
-// All values in sq ft per unit (Bangladesh/global standard)
+// Square feet per unit. Decimal, Katha and Bigha use the Bangladesh / West Bengal values
 export const UNIT_TO_SQFT: Record<Unit, number> = {
   sqft:    1,
   sqm:     10.7639,
@@ -35,20 +35,20 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: "$",
   EUR: "€",
   GBP: "£",
-  BDT: "৳",
-  INR: "₹",
+  CAD: "CA$",
+  AUD: "A$",
 };
 
 export const CURRENCY_LABELS: Record<Currency, string> = {
   USD: "USD ($)",
   EUR: "EUR (€)",
   GBP: "GBP (£)",
-  BDT: "BDT (৳)",
-  INR: "INR (₹)",
+  CAD: "CAD (CA$)",
+  AUD: "AUD (A$)",
 };
 
-export const ALL_UNITS: Unit[] = ["decimal", "acre", "katha", "bigha", "sqft", "sqm", "hectare"];
-export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "BDT", "INR"];
+export const ALL_UNITS: Unit[] = ["acre", "sqft", "sqm", "hectare", "decimal", "katha", "bigha"];
+export const ALL_CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD"];
 
 export function convertArea(value: number, fromUnit: Unit, toUnit: Unit): number {
   if (fromUnit === toUnit) return value;
@@ -95,7 +95,7 @@ export function formatNumber(value: number, decimals: number): string {
 }
 
 export function formatCurrency(value: number, currency: Currency, decimals: number = 2): string {
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   return `${sym}${formatNumber(value, decimals)}`;
 }
 
@@ -132,22 +132,22 @@ export function clearHistory(): void {
 }
 
 export function exportToText(inputs: CalculatorInputs, result: CalculationResult): string {
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const p = inputs.precision;
   const sameUnit = inputs.areaUnit === inputs.rateUnit;
   return [
     "Land Price Calculator – Result",
     "=".repeat(45),
     "",
-    `Land Area    : ${formatNumber(parseFloat(inputs.area), p)} ${UNIT_LABELS[inputs.areaUnit]}`,
-    `Rate Per Unit: ${sym}${formatNumber(result.rateApplied, p)} per ${UNIT_LABELS[inputs.rateUnit]}`,
+    `Land Area    : ${formatNumber(parseFloat(inputs.area), p)} ${(UNIT_LABELS[inputs.areaUnit] ?? inputs.areaUnit)}`,
+    `Rate Per Unit: ${sym}${formatNumber(result.rateApplied, p)} per ${(UNIT_LABELS[inputs.rateUnit] ?? inputs.rateUnit)}`,
     !sameUnit
-      ? `Converted    : ${formatNumber(result.areaInRateUnit, p)} ${UNIT_LABELS[inputs.rateUnit]}`
+      ? `Converted    : ${formatNumber(result.areaInRateUnit, p)} ${(UNIT_LABELS[inputs.rateUnit] ?? inputs.rateUnit)}`
       : "",
     "",
     `Total Price  : ${sym}${formatNumber(result.totalPrice, p)}`,
     "",
-    `Formula: ${formatNumber(result.areaInRateUnit, p)} ${UNIT_LABELS[inputs.rateUnit]} × ${sym}${formatNumber(result.rateApplied, p)} = ${sym}${formatNumber(result.totalPrice, p)}`,
+    `Formula: ${formatNumber(result.areaInRateUnit, p)} ${(UNIT_LABELS[inputs.rateUnit] ?? inputs.rateUnit)} × ${sym}${formatNumber(result.rateApplied, p)} = ${sym}${formatNumber(result.totalPrice, p)}`,
     "",
     "=".repeat(45),
     `Generated: ${new Date().toLocaleString()}`,

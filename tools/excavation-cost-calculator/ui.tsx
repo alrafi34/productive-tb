@@ -90,7 +90,7 @@ export default function ExcavationCostCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     const text = `Excavation Cost Estimate\nVolume: ${smartFormat(result.volumeInUnit)} ${OUTPUT_UNIT_SHORT[result.outputUnit]}\nAdjusted Excavation: ${sym}${smartFormat(result.adjustedExcavationCost)}\nTotal: ${sym}${smartFormat(result.totalCost)}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -110,7 +110,7 @@ export default function ExcavationCostCalculatorUI() {
   };
 
   const u = INPUT_UNIT_SHORT[inputs.unit];
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const inputCls  = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
   const selectCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium";
 
@@ -146,7 +146,7 @@ export default function ExcavationCostCalculatorUI() {
                   {(["ft", "m"] as InputUnit[]).map((u) => (
                     <button key={u} onClick={() => set("unit", u)}
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${inputs.unit === u ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
-                      {INPUT_UNIT_LABELS[u]}
+                      {(INPUT_UNIT_LABELS[u] ?? u)}
                     </button>
                   ))}
                 </div>
@@ -157,7 +157,7 @@ export default function ExcavationCostCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Volume Unit</label>
                 <select value={inputs.outputUnit} onChange={(e) => set("outputUnit", e.target.value as OutputUnit)} className={selectCls}>
                   {ALL_OUTPUT_UNITS.map((u) => (
-                    <option key={u} value={u}>{OUTPUT_UNIT_LABELS[u]}</option>
+                    <option key={u} value={u}>{(OUTPUT_UNIT_LABELS[u] ?? u)}</option>
                   ))}
                 </select>
               </div>
@@ -167,7 +167,7 @@ export default function ExcavationCostCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -177,7 +177,7 @@ export default function ExcavationCostCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Soil Type</label>
                 <select value={inputs.soilType} onChange={(e) => set("soilType", e.target.value as SoilType)} className={selectCls}>
                   {ALL_SOIL_TYPES.map((s) => (
-                    <option key={s} value={s}>{SOIL_LABELS[s]}</option>
+                    <option key={s} value={s}>{(SOIL_LABELS[s] ?? s)}</option>
                   ))}
                 </select>
                 <p className="text-xs text-gray-500 mt-1">
@@ -273,7 +273,7 @@ export default function ExcavationCostCalculatorUI() {
                 {ALL_EXCAVATION_TYPES.map((t) => (
                   <button key={t} onClick={() => set("excavationType", t)}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${inputs.excavationType === t ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
-                    {EXCAVATION_TYPE_LABELS[t]}
+                    {(EXCAVATION_TYPE_LABELS[t] ?? t)}
                   </button>
                 ))}
               </div>
@@ -437,7 +437,7 @@ export default function ExcavationCostCalculatorUI() {
                         onClick={() => { setInputs(entry.inputs); setShowHistory(false); }}>
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-gray-900 text-sm">
-                            {EXCAVATION_TYPE_LABELS[entry.inputs.excavationType]}
+                            {(EXCAVATION_TYPE_LABELS[entry.inputs.excavationType] ?? entry.inputs.excavationType)}
                           </span>
                           <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>
                         </div>

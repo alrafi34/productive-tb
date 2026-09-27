@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { guessMainsVoltage } from "@/lib/voltage";
 import { CalculationMode, VoltageUnit, CurrentUnit, PowerUnit, PowerCalculation } from "./types";
 import {
   calculatePower,
@@ -23,7 +24,13 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 export default function PowerCalculatorElectricalUI() {
-  const [voltage, setVoltage] = useState(220);
+  const [voltage, setVoltage] = useState(120);
+  // The local mains voltage, guessed after hydration so the server markup matches
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setVoltage(guessMainsVoltage()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   const [current, setCurrent] = useState(2);
   const [power, setPower] = useState(440);
   const [voltageUnit, setVoltageUnit] = useState<VoltageUnit>("V");
@@ -77,7 +84,7 @@ export default function PowerCalculatorElectricalUI() {
   }, [voltage, current, power, voltageUnit, currentUnit, powerUnit, mode, debouncedCalculate]);
 
   const handleReset = () => {
-    setVoltage(220);
+    setVoltage(guessMainsVoltage());
     setCurrent(2);
     setPower(440);
     setVoltageUnit("V");
@@ -295,7 +302,7 @@ export default function PowerCalculatorElectricalUI() {
                       value={voltage || ''}
                       onChange={(e) => setVoltage(parseFloat(e.target.value) || 0)}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                      placeholder="220"
+                      placeholder="120"
                       min="0"
                       step="0.1"
                     />

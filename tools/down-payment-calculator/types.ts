@@ -1,5 +1,5 @@
 export type DownPaymentMode = "percentage" | "fixed";
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT" | "SGD";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 export type LoanTerm = 5 | 10 | 15 | 20 | 25 | 30;
 
 export interface CalculatorInputs {

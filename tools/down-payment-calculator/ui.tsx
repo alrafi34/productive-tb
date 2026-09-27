@@ -36,7 +36,7 @@ function PaymentBar({ downPct, currency, downAmt, remaining }: {
   downPct: number; currency: Currency; downAmt: number; remaining: number;
 }) {
   const pct = Math.min(100, Math.max(0, downPct));
-  const sym = CURRENCY_SYMBOLS[currency];
+  const sym = (CURRENCY_SYMBOLS[currency] ?? "$");
   return (
     <div className="space-y-2">
       <div className="flex rounded-lg overflow-hidden h-8 text-xs font-semibold">
@@ -107,7 +107,7 @@ export default function DownPaymentCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     const text = `Down Payment Summary\nPurchase Price: ${sym}${result.purchasePrice.toLocaleString("en-US")}\nDown Payment: ${sym}${result.downPaymentAmount.toLocaleString("en-US", { maximumFractionDigits: 0 })} (${fmtPct(result.downPaymentPercent)})\nRemaining Loan: ${sym}${result.remainingLoan.toLocaleString("en-US", { maximumFractionDigits: 0 })}${result.monthlyPayment ? `\nEst. Monthly: ${sym}${result.monthlyPayment.toLocaleString("en-US", { maximumFractionDigits: 2 })}` : ""}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -129,7 +129,7 @@ export default function DownPaymentCalculatorUI() {
     if (confirm("Clear all calculation history?")) { clearHistory(); setHistory([]); }
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const inputCls  = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
   const selectCls = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium";
 
@@ -171,7 +171,7 @@ export default function DownPaymentCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -463,7 +463,7 @@ export default function DownPaymentCalculatorUI() {
                         onClick={() => { setInputs(entry.inputs); setShowHistory(false); }}>
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-gray-900 text-sm">
-                            {CURRENCY_SYMBOLS[entry.inputs.currency]}{parseFloat(entry.inputs.purchasePrice).toLocaleString("en-US")} · {entry.inputs.downPaymentMode === "percentage" ? `${entry.inputs.downPaymentValue}%` : `${CURRENCY_SYMBOLS[entry.inputs.currency]}${parseFloat(entry.inputs.downPaymentValue).toLocaleString("en-US")}`}
+                            {(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}{parseFloat(entry.inputs.purchasePrice).toLocaleString("en-US")} · {entry.inputs.downPaymentMode === "percentage" ? `${entry.inputs.downPaymentValue}%` : `${(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}${parseFloat(entry.inputs.downPaymentValue).toLocaleString("en-US")}`}
                           </span>
                           <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>
                         </div>

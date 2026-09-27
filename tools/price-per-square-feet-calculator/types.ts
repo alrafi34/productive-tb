@@ -1,5 +1,5 @@
 export type Unit = "sqft" | "sqm" | "decimal" | "acre" | "katha" | "bigha" | "hectare";
-export type Currency = "BDT" | "USD" | "INR" | "EUR";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface CalculatorInputs {
   totalPrice: string;

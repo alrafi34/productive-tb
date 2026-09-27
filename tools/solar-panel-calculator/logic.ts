@@ -131,9 +131,9 @@ export function calculateSolarPanel(inputs: SolarPanelInputs): SolarPanelResult 
     monthlySavings = monthlyProduction * electricityRate;
     yearlySavings = yearlyProduction * electricityRate;
     steps.push(`Monthly Savings = ${monthlyProduction.toFixed(2)} × ${electricityRate}`);
-    steps.push(`Monthly Savings = $${monthlySavings.toFixed(2)}`);
+    steps.push(`Monthly Savings = ${monthlySavings.toFixed(2)}`);
     steps.push(`Yearly Savings = ${yearlyProduction.toFixed(2)} × ${electricityRate}`);
-    steps.push(`Yearly Savings = $${yearlySavings.toFixed(2)}`);
+    steps.push(`Yearly Savings = ${yearlySavings.toFixed(2)}`);
   }
   
   return {
@@ -303,8 +303,8 @@ export function exportToText(inputs: SolarPanelInputs, result: SolarPanelResult)
     lines.push('');
     lines.push('COST SAVINGS:');
     lines.push('-'.repeat(50));
-    lines.push(`Monthly Savings: $${formatNumber(result.monthlySavings, 2)}`);
-    lines.push(`Yearly Savings: $${formatNumber(result.yearlySavings, 2)}`);
+    lines.push(`Monthly Savings: ${formatNumber(result.monthlySavings, 2)}`);
+    lines.push(`Yearly Savings: ${formatNumber(result.yearlySavings, 2)}`);
   }
   
   lines.push('');
@@ -344,8 +344,8 @@ export function exportToCSV(inputs: SolarPanelInputs, result: SolarPanelResult):
   if (result.monthlySavings && result.yearlySavings) {
     csv += '\n';
     csv += 'Cost Savings\n';
-    csv += `Monthly ($),${formatNumber(result.monthlySavings, 2)}\n`;
-    csv += `Yearly ($),${formatNumber(result.yearlySavings, 2)}\n`;
+    csv += `Monthly savings,${formatNumber(result.monthlySavings, 2)}\n`;
+    csv += `Yearly savings,${formatNumber(result.yearlySavings, 2)}\n`;
   }
   
   return csv;

@@ -189,15 +189,15 @@ export const exportToText = (calculation: EnergyCalculation): string => {
     text += `  Usage: ${appliance.hours}h ${appliance.minutes}m\n`;
     text += `  Quantity: ${appliance.quantity}\n`;
     text += `  Energy: ${formatNumber(energy, 3)} kWh\n`;
-    text += `  Cost: $${formatNumber(cost, 2)}\n\n`;
+    text += `  Cost: ${formatNumber(cost, 2)}\n\n`;
   });
   
   text += "=".repeat(50) + "\n";
   text += `Total Energy: ${formatNumber(calculation.totalEnergy, 3)} kWh\n`;
-  text += `Total Cost: $${formatNumber(calculation.totalCost, 2)}\n\n`;
-  text += `Daily: ${formatNumber(calculation.dailyEnergy, 3)} kWh ($${formatNumber(calculation.dailyCost, 2)})\n`;
-  text += `Monthly: ${formatNumber(calculation.monthlyEnergy, 3)} kWh ($${formatNumber(calculation.monthlyCost, 2)})\n`;
-  text += `Yearly: ${formatNumber(calculation.yearlyEnergy, 3)} kWh ($${formatNumber(calculation.yearlyCost, 2)})\n`;
+  text += `Total Cost: ${formatNumber(calculation.totalCost, 2)}\n\n`;
+  text += `Daily: ${formatNumber(calculation.dailyEnergy, 3)} kWh (${formatNumber(calculation.dailyCost, 2)})\n`;
+  text += `Monthly: ${formatNumber(calculation.monthlyEnergy, 3)} kWh (${formatNumber(calculation.monthlyCost, 2)})\n`;
+  text += `Yearly: ${formatNumber(calculation.yearlyEnergy, 3)} kWh (${formatNumber(calculation.yearlyCost, 2)})\n`;
   
   return text;
 };

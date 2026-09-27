@@ -40,7 +40,7 @@ export default function LandValuationCalculatorSEO() {
                 "Select the unit type (e.g. Katha, Acre, Sq Ft)",
                 "Enter the price per unit (e.g. 500,000)",
                 "Optionally enter extra costs like registration or tax fees",
-                "Choose your currency (USD, EUR, BDT, INR, etc.)",
+                "Choose your currency (USD, EUR, GBP, CAD or AUD)",
                 "View the estimated total property value instantly",
               ].map((step, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -60,7 +60,7 @@ export default function LandValuationCalculatorSEO() {
                 "9 land measurement units supported",
                 "Optional extra cost field for fees and taxes",
                 "Value breakdown table at multiple area scales",
-                "Multi-currency support (USD, EUR, GBP, BDT, INR)",
+                "Multi-currency support (USD, EUR, GBP, CAD, AUD)",
                 "Save and export calculation history",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -186,7 +186,7 @@ export default function LandValuationCalculatorSEO() {
             },
             {
               q: "What currencies are supported?",
-              a: "The calculator supports USD ($), EUR (€), GBP (£), BDT (৳), and INR (₹). The currency symbol is applied to the result display only.",
+              a: "The calculator supports USD ($), EUR (€), GBP (£), CAD (CA$) and AUD (A$). The currency symbol is applied to the result display only.",
             },
             {
               q: "Is my data saved anywhere?",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { guessMainsVoltage } from "@/lib/voltage";
 import { Appliance, LoadCalculatorInputs, LoadCalculatorResult } from "./types";
 import {
   calculateLoad,
@@ -30,7 +31,13 @@ export default function HouseWiringLoadCalculatorUI() {
     return saved.length > 0 ? saved : [createEmptyAppliance()];
   });
   
-  const [voltage, setVoltage] = useState(220);
+  const [voltage, setVoltage] = useState(120);
+  // The local mains voltage, guessed after hydration so the server markup matches
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setVoltage(guessMainsVoltage()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   const [diversityFactor, setDiversityFactor] = useState(0.8);
   const [result, setResult] = useState<LoadCalculatorResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -133,7 +140,7 @@ export default function HouseWiringLoadCalculatorUI() {
 
   const handleReset = () => {
     setAppliances([createEmptyAppliance()]);
-    setVoltage(220);
+    setVoltage(guessMainsVoltage());
     setDiversityFactor(0.8);
     setResult(null);
     setError(null);
@@ -265,10 +272,10 @@ export default function HouseWiringLoadCalculatorUI() {
                   onChange={(e) => setVoltage(parseInt(e.target.value))}
                   className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-semibold"
                 >
-                  <option value="110">110V (US)</option>
-                  <option value="220">220V (EU/Asia)</option>
-                  <option value="230">230V (UK)</option>
-                  <option value="240">240V (AU)</option>
+                  <option value="120">120V (US, Canada)</option>
+                  <option value="240">240V (US split-phase, Australia)</option>
+                  <option value="230">230V (UK, Europe)</option>
+                  <option value="220">220V</option>
                 </select>
               </div>
 

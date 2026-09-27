@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import CurrencySelect from "@/components/CurrencySelect";
+import { type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import {
   CalculatorInputs,
   CalculationResult,
@@ -64,6 +66,13 @@ const DEFAULT_INPUTS: CalculatorInputs = {
 
 export default function EarthFillingCalculatorUI() {
   const [inputs, setInputs] = useState<CalculatorInputs>(DEFAULT_INPUTS);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [copied, setCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
@@ -87,7 +96,7 @@ export default function EarthFillingCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const text = `Earth Fill Estimate\nVolume: ${smartFormat(result.volumeInUnit)} ${OUTPUT_UNIT_SHORT[result.outputUnit]}\n${smartFormat(result.ft3)} ft³ | ${smartFormat(result.m3)} m³ | ${smartFormat(result.yd3)} yd³${result.truckloads ? `\nTruckloads: ${result.truckloads}` : ""}${result.estimatedCost ? `\nEst. Cost: $${smartFormat(result.estimatedCost)}` : ""}`;
+    const text = `Earth Fill Estimate\nVolume: {formatMoney(result.volumeInUnit, currency)} ${OUTPUT_UNIT_SHORT[result.outputUnit]}\n{formatMoney(result.ft3, currency)} ft³ | {formatMoney(result.m3, currency)} m³ | {formatMoney(result.yd3, currency)} yd³${result.truckloads ? `\nTruckloads: ${result.truckloads}` : ""}${result.estimatedCost ? `\nEst. Cost: ${formatMoney(result.estimatedCost, currency)}` : ""}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -246,7 +255,7 @@ export default function EarthFillingCalculatorUI() {
                   {result.estimatedCost !== undefined && (
                     <div className="flex justify-between">
                       <span className="text-primary-100">Est. Cost:</span>
-                      <span className="font-semibold">${smartFormat(result.estimatedCost)}</span>
+                      <span className="font-semibold">{formatMoney(result.estimatedCost, currency)}</span>
                     </div>
                   )}
                 </div>
@@ -371,9 +380,12 @@ export default function EarthFillingCalculatorUI() {
                   <p className="text-xs text-gray-500 mt-1">Leave blank to use soil-type default</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Cost per {OUTPUT_UNIT_SHORT[inputs.outputUnit]} ($)
-                  </label>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Cost per {OUTPUT_UNIT_SHORT[inputs.outputUnit]}
+                    </label>
+                    <CurrencySelect value={currency} onChange={setCurrency} />
+                  </div>
                   <input type="number" inputMode="decimal"
                     value={inputs.costPerUnit} onChange={(e) => setNum("costPerUnit", e.target.value)}
                     className={inputCls} placeholder="e.g. 25" min="0" step="any" />

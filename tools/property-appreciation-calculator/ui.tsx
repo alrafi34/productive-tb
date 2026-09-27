@@ -136,7 +136,7 @@ export default function PropertyAppreciationCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const sym = CURRENCY_SYMBOLS[inputs.currency];
+    const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
     const text = `Property Appreciation Summary\nInitial Value: ${sym}${result.initialValue.toLocaleString("en-US")}\nFuture Value: ${sym}${result.futureValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}\nTotal Gain: ${sym}${result.totalGain.toLocaleString("en-US", { maximumFractionDigits: 0 })}\nGrowth: ${fmtPct(result.growthPercent)}\nCAGR: ${result.annualizedReturn.toFixed(2)}%`;
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -176,7 +176,7 @@ export default function PropertyAppreciationCalculatorUI() {
     if (confirm("Clear all calculation history?")) { clearHistory(); setHistory([]); }
   };
 
-  const sym = CURRENCY_SYMBOLS[inputs.currency];
+  const sym = (CURRENCY_SYMBOLS[inputs.currency] ?? "$");
   const hasInflation = !!inputs.inflationRate && !isNaN(parseFloat(inputs.inflationRate));
 
   const inputCls  = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
@@ -212,7 +212,7 @@ export default function PropertyAppreciationCalculatorUI() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select value={inputs.currency} onChange={(e) => set("currency", e.target.value as Currency)} className={selectCls}>
                   {ALL_CURRENCIES.map((c) => (
-                    <option key={c} value={c}>{CURRENCY_LABELS[c]}</option>
+                    <option key={c} value={c}>{(CURRENCY_LABELS[c] ?? c)}</option>
                   ))}
                 </select>
               </div>
@@ -223,7 +223,7 @@ export default function PropertyAppreciationCalculatorUI() {
                   {(["yearly", "quarterly", "monthly"] as const).map((f) => (
                     <button key={f} onClick={() => set("compoundFrequency", f)}
                       className={`px-2 py-2 rounded-lg text-xs font-medium transition-colors ${inputs.compoundFrequency === f ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
-                      {COMPOUND_FREQUENCY_LABELS[f]}
+                      {(COMPOUND_FREQUENCY_LABELS[f] ?? f)}
                     </button>
                   ))}
                 </div>
@@ -584,7 +584,7 @@ export default function PropertyAppreciationCalculatorUI() {
                       >
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-gray-900 text-sm">
-                            {CURRENCY_SYMBOLS[entry.inputs.currency]}{parseFloat(entry.inputs.initialValue).toLocaleString("en-US")}
+                            {(CURRENCY_SYMBOLS[entry.inputs.currency] ?? "$")}{parseFloat(entry.inputs.initialValue).toLocaleString("en-US")}
                             {" · "}{entry.inputs.appreciationRate}% · {entry.inputs.years}yr
                           </span>
                           <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>

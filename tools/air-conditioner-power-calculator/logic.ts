@@ -1,3 +1,4 @@
+import { type CurrencyCode, formatMoney } from "@/lib/currency";
 import { ACPowerInputs, ACPowerResult, ACPreset, ACCapacityTon, HistoryEntry } from "./types";
 
 // 1 ton of refrigeration = 12,000 BTU/h of *cooling*. Electrical input is
@@ -378,11 +379,11 @@ export function loadSettings(): Partial<ACPowerInputs> {
 }
 
 // Get energy saving tips
-export function getEnergySavingTip(result: ACPowerResult, inputs: ACPowerInputs): string {
+export function getEnergySavingTip(result: ACPowerResult, inputs: ACPowerInputs, currency: CurrencyCode = "USD"): string {
   if (result.consumptionLevel === 'very-high') {
-    return `Your AC consumes ${formatNumber(result.monthlyEnergy, 0)} kWh/month. Consider reducing usage by 2 hours/day to save approximately $${formatNumber(result.monthlyCost * (2 / inputs.hoursPerDay), 2)}/month.`;
+    return `Your AC consumes ${formatNumber(result.monthlyEnergy, 0)} kWh/month. Consider reducing usage by 2 hours/day to save approximately ${formatMoney(result.monthlyCost * (2 / inputs.hoursPerDay), currency)}/month.`;
   } else if (result.consumptionLevel === 'high') {
-    return `Setting your AC temperature 1-2°C higher can reduce power consumption by 6-8%, saving $${formatNumber(result.monthlyCost * 0.07, 2)}/month.`;
+    return `Setting your AC 1–2 °C (2–4 °F) warmer can reduce power consumption by 6–8%, saving ${formatMoney(result.monthlyCost * 0.07, currency)}/month.`;
   } else if (result.consumptionLevel === 'moderate') {
     return `Your AC usage is moderate. Regular filter cleaning can maintain efficiency and prevent increased power consumption.`;
   } else {

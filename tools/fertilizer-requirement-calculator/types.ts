@@ -1,4 +1,4 @@
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "CAD" | "AUD";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 export type AreaUnit = "acre" | "hectare" | "sqft" | "sqm";
 export type CropType = "rice" | "wheat" | "corn" | "tomato" | "potato" | "vegetables" | "custom";
 export type FertilizerType = "urea" | "dap" | "mop" | "npk-10-10-10" | "npk-20-20-20" | "organic" | "custom";

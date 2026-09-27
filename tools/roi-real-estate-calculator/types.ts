@@ -1,4 +1,4 @@
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 export type MortgageTerm = 15 | 20 | 30;
 export type InvestmentDuration = 1 | 5 | 10 | 20 | 30;
 

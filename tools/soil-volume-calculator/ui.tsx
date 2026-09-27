@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import CurrencySelect from "@/components/CurrencySelect";
+import { type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import {
   CalculatorInputs,
   CalculationResult,
@@ -110,6 +112,13 @@ function ShapeDiagram({ type }: { type: ExcavationType }) {
 
 export default function SoilVolumeCalculatorUI() {
   const [inputs, setInputs] = useState<CalculatorInputs>(DEFAULT_INPUTS);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [copied, setCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
@@ -150,7 +159,7 @@ export default function SoilVolumeCalculatorUI() {
 
   const handleCopy = () => {
     if (!result) return;
-    const text = `Soil Volume: ${smartFormat(result.volumeInUnit)} ${OUTPUT_UNIT_SHORT[result.outputUnit]}\n${smartFormat(result.m3)} m³ | ${smartFormat(result.ft3)} ft³ | ${smartFormat(result.yd3)} yd³`;
+    const text = `Soil Volume: {formatMoney(result.volumeInUnit, currency)} ${OUTPUT_UNIT_SHORT[result.outputUnit]}\n{formatMoney(result.m3, currency)} m³ | {formatMoney(result.ft3, currency)} ft³ | {formatMoney(result.yd3, currency)} yd³`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -298,7 +307,7 @@ export default function SoilVolumeCalculatorUI() {
                   {result.estimatedCost !== undefined && (
                     <div className="flex justify-between pt-1 border-t border-white/20 mt-1">
                       <span className="text-primary-100">Est. Cost:</span>
-                      <span className="font-semibold">${smartFormat(result.estimatedCost)}</span>
+                      <span className="font-semibold">{formatMoney(result.estimatedCost, currency)}</span>
                     </div>
                   )}
                 </div>
@@ -479,9 +488,12 @@ export default function SoilVolumeCalculatorUI() {
                   <p className="text-xs text-gray-500 mt-1">Typical: 1400–1800 kg/m³</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Cost per {OUTPUT_UNIT_SHORT[inputs.outputUnit]} ($)
-                  </label>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Cost per {OUTPUT_UNIT_SHORT[inputs.outputUnit]}
+                    </label>
+                    <CurrencySelect value={currency} onChange={setCurrency} />
+                  </div>
                   <input type="number" inputMode="decimal"
                     value={inputs.costPerUnit}
                     onChange={(e) => set("costPerUnit", e.target.value.replace(/[^0-9.]/g, ""))}

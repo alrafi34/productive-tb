@@ -8,7 +8,7 @@ export type ExcavationType =
   | "pond"
   | "custom";
 export type SoilType = "loose" | "clay" | "sand" | "gravel" | "mixed" | "rock";
-export type Currency = "USD" | "EUR" | "GBP" | "BDT" | "INR";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD";
 
 export interface CalculatorInputs {
   unit: InputUnit;

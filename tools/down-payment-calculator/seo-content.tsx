@@ -57,7 +57,7 @@ export default function DownPaymentCalculatorSEO() {
                 "Visual payment bar showing down vs loan split",
                 "Optional monthly payment estimate with interest rate",
                 "Scenario comparison table for all common percentages",
-                "Multi-currency: USD, EUR, GBP, INR, BDT, SGD",
+                "Multi-currency: USD, EUR, GBP, CAD, AUD",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>

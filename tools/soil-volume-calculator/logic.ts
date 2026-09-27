@@ -250,7 +250,7 @@ export function exportToText(inputs: CalculatorInputs, result: CalculationResult
     lines.push(`                 : ${smartFormat(result.weightTons!)} metric tons`);
   }
   if (result.estimatedCost !== undefined) {
-    lines.push("", `Estimated Cost   : $${smartFormat(result.estimatedCost)}`);
+    lines.push("", `Estimated Cost   : ${smartFormat(result.estimatedCost)}`);
   }
   lines.push("", "=".repeat(45), `Generated: ${new Date().toLocaleString()}`);
   return lines.join("\n");
