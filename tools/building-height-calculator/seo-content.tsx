@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { buildingHeightCalculatorConfig } from "./config";
+
 export default function BuildingHeightCalculatorSEO() {
+  const { howToSteps, faq } = buildingHeightCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -15,43 +19,14 @@ export default function BuildingHeightCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Enter Plot Area</h3>
-              <p className="text-gray-700">
-                Input the total plot area in square feet or square meters. This is the land area available for 
-                construction.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Specify FAR (Floor Area Ratio)</h3>
-              <p className="text-gray-700">
-                Enter the FAR value as specified by local zoning regulations. FAR determines the total buildable floor 
-                area relative to the plot size.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Set Floor Height</h3>
-              <p className="text-gray-700">
-                Input the average floor-to-floor height (typically 10-12 feet for residential, 12-15 feet for commercial). 
-                This affects the total building height.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Enter Road Width and Setback</h3>
-              <p className="text-gray-700">
-                Specify the adjacent road width and required setback distance. These parameters may limit building height 
-                based on local regulations.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 5: Select Calculation Mode</h3>
-              <p className="text-gray-700">
-                Choose between FAR-based, road width-based, or custom calculation mode. The calculator instantly displays 
-                the maximum allowable height with detailed breakdown.
-              </p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -247,59 +222,7 @@ export default function BuildingHeightCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What is FAR (Floor Area Ratio)?</h3>
-              <p className="text-gray-700">
-                FAR is the ratio of total building floor area to the plot area. For example, a FAR of 2.0 on a 1000 sq ft 
-                plot allows 2000 sq ft of total floor area, which could be built as a 2-story building with 1000 sq ft per 
-                floor, or a 4-story building with 500 sq ft per floor.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How does road width affect building height?</h3>
-              <p className="text-gray-700">
-                Many building codes limit height based on adjacent road width to ensure adequate light, air, and emergency 
-                access. A common rule is that building height should not exceed 1.5 to 2 times the road width, though this 
-                varies by jurisdiction.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What is the typical floor height for residential buildings?</h3>
-              <p className="text-gray-700">
-                Standard residential floor-to-floor height is 10 feet (3 meters), providing 8-9 feet of ceiling height 
-                after accounting for floor structure. Luxury residences may have 11-14 feet floor heights for more spacious 
-                interiors.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Can I exceed the calculated height?</h3>
-              <p className="text-gray-700">
-                The calculated height represents the maximum allowed under standard regulations. Exceeding this requires 
-                special permits, variances, or exemptions from local authorities. Some jurisdictions allow height bonuses 
-                for public amenities or sustainable design features.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">How do setbacks affect buildable area?</h3>
-              <p className="text-gray-700">
-                Setbacks reduce the buildable footprint of your plot. If you have a 2000 sq ft plot with 5 ft setbacks on 
-                all sides, the actual buildable area may be significantly less. However, FAR is typically calculated on the 
-                total plot area, not the reduced footprint.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What factors are not included in this calculator?</h3>
-              <p className="text-gray-700">
-                This calculator provides estimates based on FAR and road width rules. It does not account for height 
-                restrictions near airports, heritage zones, view corridors, shadow regulations, or other special zoning 
-                overlays. Always verify with local planning authorities.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Planning Best Practices</h2>

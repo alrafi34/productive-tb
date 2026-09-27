@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { septicTankSizeCalculatorConfig } from "./config";
+
 export default function SepticTankSizeCalculatorSEO() {
+  const { howToSteps, faq } = septicTankSizeCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -12,32 +16,14 @@ export default function SepticTankSizeCalculatorSEO() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 1: Enter Number of Users</h3>
-              <p className="text-gray-700">Input the total number of people who will use the septic system. This includes all household members or building occupants.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 2: Set Water Usage per Person</h3>
-              <p className="text-gray-700">Enter the average daily water consumption per person in liters. Typical residential usage ranges from 100-150 L/day per person.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 3: Select Retention Time</h3>
-              <p className="text-gray-700">Choose the retention period (1-3 days). Standard residential systems use 2 days, allowing adequate time for solids to settle.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 4: Choose Sludge Factor</h3>
-              <p className="text-gray-700">Select the sludge accumulation factor (20-50%). This adds extra capacity for sludge buildup between pump-outs. Medium (30%) is typical for residential use.</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Step 5: Review Results</h3>
-              <p className="text-gray-700">The calculator instantly displays the recommended tank size in liters, cubic meters, and gallons, plus suggested tank dimensions.</p>
-            </div>
-          </div>
+          <ol className="space-y-3 text-gray-600 leading-relaxed">
+            {howToSteps.map(({ name, text }, i) => (
+              <li key={name} className="flex items-start">
+                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+                <span><strong>{name}:</strong> {text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
@@ -189,45 +175,7 @@ export default function SepticTankSizeCalculatorSEO() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">What size septic tank do I need for a 3-bedroom house?</h3>
-              <p className="text-gray-700">
-                For a typical 3-bedroom house with 4-5 occupants, you'll need approximately 1,500-2,000 liters (1.5-2 m³). Use 120 L/day per person with 2-day retention and 30% sludge factor.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How often should I pump my septic tank?</h3>
-              <p className="text-gray-700">
-                Residential septic tanks should be pumped every 2-3 years. Frequency depends on tank size, household size, and water usage. Larger tanks or smaller households can extend to 3-5 years.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Can I use a smaller tank to save money?</h3>
-              <p className="text-gray-700">
-                No. Undersized tanks lead to frequent overflows, poor treatment, and system failure. Always size tanks according to actual usage and local regulations. Oversizing slightly is better than undersizing.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">What is the minimum septic tank size required by code?</h3>
-              <p className="text-gray-700">
-                Minimum sizes vary by jurisdiction but typically range from 1,000-1,500 liters for small residential systems. Always check local building codes and health department requirements.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How accurate is this calculator?</h3>
-              <p className="text-gray-700">
-                The calculator uses standard engineering formulas and provides estimates suitable for preliminary planning. Final sizing should be verified by a licensed engineer or septic system professional and must comply with local regulations.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Related Calculations</h2>

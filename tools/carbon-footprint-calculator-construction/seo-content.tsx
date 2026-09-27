@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { carbonFootprintCalculatorConstructionConfig } from "./config";
+
 export default function CarbonFootprintCalculatorConstructionSEO() {
+  const { howToSteps, faq } = carbonFootprintCalculatorConstructionConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-12">
       
@@ -32,44 +36,14 @@ export default function CarbonFootprintCalculatorConstructionSEO() {
       {/* How to Use */}
       <section className="prose prose-slate max-w-none">
         <h3 className="text-2xl font-bold text-gray-900 mb-4">How to Use This Calculator</h3>
-        <div className="grid md:grid-cols-2 gap-4 not-prose">
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">Enter Material Quantities</h4>
-                <p className="text-sm text-gray-600">Input the quantity of each construction material you plan to use in your project</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">Select Emission Factors</h4>
-                <p className="text-sm text-gray-600">Choose from preset materials or customize emission factors for accuracy</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">View Real-Time Results</h4>
-                <p className="text-sm text-gray-600">See instant CO₂ calculations with visual breakdowns and percentage contributions</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</span>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">Export & Save</h4>
-                <p className="text-sm text-gray-600">Download results as CSV or text file for documentation and reporting</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Material Emission Factors */}
@@ -269,46 +243,7 @@ export default function CarbonFootprintCalculatorConstructionSEO() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="prose prose-slate max-w-none">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
-        <div className="space-y-4 not-prose">
-          {[
-            {
-              q: "How accurate are the emission factors?",
-              a: "The emission factors provided are industry averages based on published research and databases like ICE (Inventory of Carbon & Energy) and EPDs. Actual values may vary by ±20-30% depending on manufacturing processes, regional energy sources, and transportation distances. For precise calculations, use manufacturer-specific Environmental Product Declarations (EPDs)."
-            },
-            {
-              q: "Can I add custom materials?",
-              a: "Yes! Click 'Add Material' to include custom materials with your own emission factors. You can also modify the emission factors of preset materials to match specific product EPDs or regional data."
-            },
-            {
-              q: "What units are supported?",
-              a: "The calculator supports various units including kg (kilograms), m³ (cubic meters), liters, and units (for countable items like bricks). You can customize units for each material to match your project specifications and regional standards."
-            },
-            {
-              q: "How do I reduce my construction carbon footprint?",
-              a: "Focus on the highest contributors first (usually cement, steel, and concrete). Replace high-carbon materials with alternatives like timber, recycled materials, or low-carbon concrete mixes. Optimize structural design to use less material overall, and source materials locally to reduce transportation emissions."
-            },
-            {
-              q: "What's the difference between embodied and operational carbon?",
-              a: "Embodied carbon refers to emissions from materials and construction, while operational carbon comes from building energy use during occupancy. Both are important for achieving net-zero buildings, with embodied carbon becoming increasingly significant as operational efficiency improves."
-            },
-            {
-              q: "Can I export my calculations?",
-              a: "Yes! You can export your results as CSV for spreadsheet analysis or as a text file for documentation. The export includes all materials, quantities, emission factors, and total CO₂ calculations."
-            }
-          ].map((faq, index) => (
-            <div key={index} className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-              <h4 className="font-semibold text-gray-900 mb-2 flex items-start gap-2">
-                <span className="text-primary">Q:</span>
-                {faq.q}
-              </h4>
-              <p className="text-sm text-gray-700 pl-6">{faq.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Related Tools */}
       <section className="bg-gradient-to-r from-primary/5 to-blue-50 rounded-xl p-8 border border-primary/20">
