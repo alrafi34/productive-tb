@@ -8,8 +8,8 @@ export const momentOfInertiaCalculatorConfig = {
   icon: "📐",
   free: true,
   seo: {
-    title: "Moment of Inertia Calculator – Area Moment of Inertia for Engineering",
-    description: "Calculate area moment of inertia instantly for rectangles, circles, hollow sections, beams, and structural shapes. Free engineering calculator with formulas and diagrams.",
+    title: "Moment of Inertia Calculator – Beams, Tubes & Sections",
+    description: "Find the area moment of inertia (Ix, Iy), polar moment, section modulus, area and centroid of rectangles, circles, tubes, triangles, I-, T- and C-sections.",
     keywords: [
       "moment of inertia calculator",
       "area moment of inertia calculator",
@@ -26,10 +26,25 @@ export const momentOfInertiaCalculatorConfig = {
       "rectangle moment of inertia",
     ],
     og: {
-      title: "Moment of Inertia Calculator – Area Moment of Inertia for Engineering",
-      description: "Calculate area moment of inertia instantly for rectangles, circles, hollow sections, beams, and structural shapes. Free engineering calculator with formulas and diagrams.",
+      title: "Moment of Inertia Calculator – Beams, Tubes & Sections",
+      description: "Find the area moment of inertia (Ix, Iy), polar moment, section modulus, area and centroid of rectangles, circles, tubes, triangles, I-, T- and C-sections.",
       url: `${siteConfig.url}/tools/mechanical/moment-of-inertia-calculator`,
     },
+    howToSteps: [
+      { name: "Choose the shape", text: "Pick a rectangle, hollow rectangle, circle, hollow circle or pipe, isosceles triangle, I-beam, T-beam or channel, or start from a preset section." },
+      { name: "Choose the unit", text: "Select mm, cm, m, in or ft; all dimensions use the same unit and the results come out in that unit to the fourth power." },
+      { name: "Enter the dimensions", text: "Type the widths, heights, diameters and thicknesses shown in the diagram for the selected shape." },
+      { name: "Read the results", text: "Ix, Iy, the polar moment Ip, the section moduli Sx and Sy, the area and the centroid update as you type, with the formula used." },
+      { name: "Copy or export", text: "Copy the results or export them as a text report." },
+    ],
+    faq: [
+      { q: "What is the area moment of inertia?", a: "A measure of how a cross-section's area is spread around an axis, in length⁴ (mm⁴ or in⁴). The larger it is, the stiffer the beam in bending: deflection is inversely proportional to E × I. For a rectangle, I = bh³/12, so doubling the depth makes a beam eight times stiffer." },
+      { q: "What is the difference between Ix and Iy?", a: "Ix is taken about the horizontal axis through the centroid and governs bending under vertical loads, the usual case for a floor beam. Iy is about the vertical axis and governs sideways bending and buckling about the weak axis. For a circle or square they are equal." },
+      { q: "What is the section modulus?", a: "S = I ÷ c, where c is the distance from the centroid to the farthest edge. The bending stress is σ = M ÷ S. For shapes that are not symmetric, such as a T-beam, a channel or a triangle, the calculator uses the farthest edge, which gives the largest stress." },
+      { q: "What is the polar moment of inertia?", a: "Ip = Ix + Iy, the resistance of a section to twisting about its centroid. For solid and hollow circular shafts it equals the torsion constant J used in τ = T·r ÷ J. For open sections such as I-beams and channels the real torsion constant is much smaller, so do not use Ip for their twist." },
+      { q: "Why are I-beams so efficient?", a: "Most of their material sits in the flanges, far from the neutral axis, and moment of inertia grows with the square of that distance. An I-beam therefore gives a much higher Ix than a solid rectangle of the same weight, while the thin web carries the shear." },
+      { q: "Is this the same as mass moment of inertia?", a: "No. The area moment of inertia (length⁴) describes a cross-section's resistance to bending. The mass moment of inertia (kg·m² or lb·ft²) describes a body's resistance to angular acceleration and is used for flywheels, rotors and anything that spins." },
+    ],
   },
   relatedTools: [
     "beam-deflection-calculator",

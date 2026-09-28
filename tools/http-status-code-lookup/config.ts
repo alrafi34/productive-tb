@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "HTTP Status Code Lookup – Complete HTTP Response Code Reference",
-    description: "Search and understand every HTTP status code instantly. Learn meanings, use cases, and examples for 1xx, 2xx, 3xx, 4xx, and 5xx response codes in a fast developer-friendly reference.",
+    title: "HTTP Status Codes – Lookup & Meaning of Every Code",
+    description: "Look up the meaning of any HTTP status code, from 100 Continue to 511, with use cases and examples. Search by number or keyword and filter 1xx to 5xx.",
     keywords: [
       "http status codes",
       "http status code list",
@@ -27,11 +27,26 @@ export const toolConfig = {
       "web development reference"
     ],
     openGraph: {
-      title: "HTTP Status Code Lookup – Complete HTTP Response Code Reference",
-      description: "Search and understand every HTTP status code instantly. Learn meanings, use cases, and examples for 1xx, 2xx, 3xx, 4xx, and 5xx response codes.",
+      title: "HTTP Status Codes – Lookup & Meaning of Every Code",
+      description: "Look up the meaning of any HTTP status code, from 100 Continue to 511, with use cases and examples. Search by number or keyword and filter 1xx to 5xx.",
       type: "website",
-      url: "/tools/developer/http-status-code-lookup"
-    }
+      url: "https://productivetoolbox.com/tools/developer/http-status-code-lookup"
+    },
+    howToSteps: [
+      { name: "Search for a code", text: "Type a code number such as 404, a name such as Not Found, or a keyword such as redirect or timeout." },
+      { name: "Filter by class", text: "Pick Informational (1xx), Success (2xx), Redirection (3xx), Client Error (4xx) or Server Error (5xx) to narrow the list, or use the buttons for the most common codes." },
+      { name: "Open the details", text: "Click a code to see what it means, when servers send it and an example request and response." },
+      { name: "Copy or export", text: "Copy the explanation to the clipboard or export it; codes you open are kept in Recent for quick access." },
+    ],
+    faq: [
+      { q: "What do the five classes of HTTP status codes mean?", a: "The first digit gives the class: 1xx informational (the request is being processed), 2xx success, 3xx redirection (the client must go somewhere else), 4xx client error (the request is wrong or not allowed) and 5xx server error (the server failed on a valid request)." },
+      { q: "What is the difference between 401 and 403?", a: "401 Unauthorized means the request has no valid credentials: log in or send a token and try again. 403 Forbidden means the server knows who you are but you are not allowed to access the resource, so logging in again will not help." },
+      { q: "Should I use a 301 or 302 redirect?", a: "Use 301 (or 308) when a page has moved permanently: browsers cache it and search engines pass ranking signals to the new URL. Use 302 (or 307) for temporary moves such as maintenance pages or A/B tests. 307 and 308 also keep the request method, so a POST stays a POST." },
+      { q: "What is the difference between 404 and 410?", a: "404 Not Found says nothing about whether the resource will return. 410 Gone says it was removed on purpose and will not come back, so search engines usually drop a 410 URL from their index sooner." },
+      { q: "What causes a 500, 502, 503 or 504 error?", a: "500 is a generic failure in the application itself. 502 Bad Gateway means a proxy or load balancer got an invalid response from the server behind it. 503 Service Unavailable means the server is overloaded or down for maintenance, often with a Retry-After header. 504 Gateway Timeout means the server behind the proxy took too long to answer." },
+      { q: "When should an API return 400, 409, 422 or 429?", a: "400 for a request that is malformed, such as invalid JSON. 422 when the syntax is fine but the data fails validation, for example a missing required field. 409 when the request conflicts with the current state, such as a duplicate username. 429 when the client has sent too many requests and must slow down." },
+      { q: "How do status codes affect SEO?", a: "Search engines index 200 pages, follow 301 and 308 redirects and pass their ranking signals on, and remove pages that keep returning 404 or 410. Repeated 5xx errors slow crawling, and a 503 tells crawlers an outage is temporary. A missing page that returns 200 is reported as a soft 404." },
+    ],
   },
   features: [
     "Instant search across all HTTP status codes",

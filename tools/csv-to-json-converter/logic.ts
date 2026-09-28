@@ -18,36 +18,56 @@ const DEFAULT_OPTIONS: ConversionOptions = {
   handleQuotes: true,
 };
 
-function parseCSVLine(line: string, delimiter: string, handleQuotes: boolean): string[] {
-  if (!handleQuotes) {
-    return line.split(delimiter).map(v => v.trim());
-  }
+/* Splits CSV text into rows of fields (RFC 4180): quoted fields may contain
+   the delimiter, line breaks and doubled quotes (""), and both LF and CRLF
+   line endings work. */
+function parseRecords(text: string, delimiter: string, handleQuotes: boolean): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = "";
+  let inQuotes = false;
+  let quoted = false; // the current field started with a quote
 
-  const result: string[] = [];
-  let current = "";
-  let insideQuotes = false;
+  const endField = () => {
+    row.push(field);
+    field = "";
+    quoted = false;
+  };
+  const endRow = () => {
+    endField();
+    // Skip blank lines
+    if (row.length > 1 || row[0] !== "") rows.push(row);
+    row = [];
+  };
 
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    const nextChar = line[i + 1];
-
-    if (char === '"') {
-      if (insideQuotes && nextChar === '"') {
-        current += '"';
-        i++;
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (inQuotes) {
+      if (char === '"') {
+        if (text[i + 1] === '"') {
+          field += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
       } else {
-        insideQuotes = !insideQuotes;
+        field += char;
       }
-    } else if (char === delimiter && !insideQuotes) {
-      result.push(current.trim());
-      current = "";
+    } else if (handleQuotes && char === '"' && (field.trim() === "" && !quoted)) {
+      inQuotes = true;
+      quoted = true;
+      field = "";
+    } else if (char === delimiter) {
+      endField();
+    } else if (char === "\n" || char === "\r") {
+      if (char === "\r" && text[i + 1] === "\n") i++;
+      endRow();
     } else {
-      current += char;
+      field += char;
     }
   }
-
-  result.push(current.trim());
-  return result;
+  if (field !== "" || row.length) endRow();
+  return rows;
 }
 
 export function parseCSV(csvText: string, options: Partial<ConversionOptions> = {}): ParseResult {
@@ -58,35 +78,40 @@ export function parseCSV(csvText: string, options: Partial<ConversionOptions> = 
   }
 
   try {
-    const lines = csvText.trim().split("\n").filter(line => line.trim());
+    // Excel adds a byte-order mark to UTF-8 CSV files
+    const text = csvText.replace(/^\uFEFF/, "");
+    const clean = (v: string) => (opts.trimValues ? v.trim() : v);
+    const rows = parseRecords(text, opts.delimiter, opts.handleQuotes).map((r) => r.map(clean));
 
-    if (lines.length === 0) {
+    if (rows.length === 0) {
       return { success: false, error: "No data found in CSV." };
     }
 
-    const headers = parseCSVLine(lines[0], opts.delimiter, opts.handleQuotes);
+    const width = Math.max(...rows.map((r) => r.length));
 
     if (!opts.useFirstRowAsHeaders) {
-      const data = lines.map((line, idx) => {
-        const values = parseCSVLine(line, opts.delimiter, opts.handleQuotes);
-        const obj: any = {};
-        headers.forEach((_, i) => {
-          obj[`column_${i + 1}`] = values[i] || "";
-        });
+      const data = rows.map((values) => {
+        const obj: Record<string, string> = {};
+        for (let i = 0; i < width; i++) obj[`column_${i + 1}`] = values[i] ?? "";
         return obj;
       });
       return { success: true, data };
     }
 
-    const data = lines.slice(1).map((line, idx) => {
-      const values = parseCSVLine(line, opts.delimiter, opts.handleQuotes);
-      const obj: any = {};
+    // Blank or repeated headers get a name of their own so no column is lost
+    const seen = new Map<string, number>();
+    const headers = Array.from({ length: width }, (_, i) => {
+      const base = (rows[0][i] ?? "").trim() || `column_${i + 1}`;
+      const n = (seen.get(base) ?? 0) + 1;
+      seen.set(base, n);
+      return n === 1 ? base : `${base}_${n}`;
+    });
 
+    const data = rows.slice(1).map((values) => {
+      const obj: Record<string, string> = {};
       headers.forEach((header, i) => {
-        const key = opts.trimValues ? header.trim() : header;
-        obj[key] = values[i] || "";
+        obj[header] = values[i] ?? "";
       });
-
       return obj;
     });
 
@@ -117,7 +142,7 @@ export function downloadJSON(jsonString: string, filename: string = "data.json")
 }
 
 export function detectDelimiter(csvText: string): string {
-  const firstLine = csvText.split("\n")[0];
+  const firstLine = csvText.replace(/^\uFEFF/, "").split(/\r?\n/)[0];
   const delimiters = [",", ";", "\t", "|"];
 
   let maxCount = 0;

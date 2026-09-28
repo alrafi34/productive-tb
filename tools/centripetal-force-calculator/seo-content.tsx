@@ -1,6 +1,10 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { centripetalForceCalculatorConfig } from "./config";
 
 export default function CentripetalForceSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = centripetalForceCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -36,19 +40,12 @@ export default function CentripetalForceSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select the calculation method — velocity formula or angular velocity formula",
-                "Enter the mass value and select the unit (kg, g, lb, or metric ton)",
-                "Enter velocity (m/s, km/h, mph) or angular velocity (rad/s)",
-                "Enter the radius of the circular path and select the unit",
-                "View the centripetal force result instantly in N, kN, and lbf",
-                "Use the step-by-step breakdown to understand the calculation",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
+              {howToSteps.map(({ name, text }, i) => (
+                <li key={name} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
                   </span>
-                  <span>{step}</span>
+                  <span><strong>{name}:</strong> {text}</span>
                 </li>
               ))}
             </ol>
@@ -170,40 +167,7 @@ export default function CentripetalForceSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is centripetal force?",
-              a: "Centripetal force is the net inward force that keeps an object moving in a circular path. It always points toward the center of the circle. Without it, the object would move in a straight line (Newton's First Law). It is not a separate type of force — it can be provided by gravity, tension, friction, or a normal force depending on the scenario.",
-            },
-            {
-              q: "What is the difference between centripetal and centrifugal force?",
-              a: "Centripetal force is a real inward force that acts on the object. Centrifugal force is a fictitious outward force that appears in a rotating reference frame. In an inertial (non-rotating) frame, only centripetal force exists. The 'feeling of being pushed outward' in a turning car is actually your body's inertia resisting the centripetal acceleration.",
-            },
-            {
-              q: "Why does velocity appear squared in the formula?",
-              a: "Because both the rate of direction change and the speed itself increase with velocity. Doubling speed means the object covers twice the arc in the same time AND changes direction twice as fast — both effects double the required force, resulting in a squared relationship. This is why high-speed turns require dramatically more force.",
-            },
-            {
-              q: "What happens if the centripetal force is removed?",
-              a: "The object immediately moves in a straight line tangent to the circle at the point where the force was removed. This is why a ball on a string flies off tangentially when released, and why cars skid outward when they exceed the friction limit on a curve.",
-            },
-            {
-              q: "Is this calculator accurate for engineering use?",
-              a: "Yes. The calculator uses exact SI conversion factors and IEEE 754 double-precision arithmetic. Results are accurate to the selected decimal precision. For safety-critical applications such as structural design or vehicle dynamics, always verify with a licensed engineer.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

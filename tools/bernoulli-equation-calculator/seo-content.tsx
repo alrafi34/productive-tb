@@ -1,6 +1,10 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { bernoulliEquationCalculatorConfig } from "./config";
 
 export default function BernoulliEquationCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = bernoulliEquationCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -36,20 +40,12 @@ export default function BernoulliEquationCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select the variable you want to solve for (P₁, P₂, V₁, V₂, h₁, or h₂)",
-                "The selected field will be disabled — it will be calculated automatically",
-                "Enter all other known values with appropriate units",
-                "Select a fluid preset or enter a custom density",
-                "Results update instantly as you type",
-                "View the step-by-step solution and energy breakdown",
-                "Copy, save, or export the result",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
+              {howToSteps.map(({ name, text }, i) => (
+                <li key={name} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
                   </span>
-                  <span>{step}</span>
+                  <span><strong>{name}:</strong> {text}</span>
                 </li>
               ))}
             </ol>
@@ -168,40 +164,7 @@ export default function BernoulliEquationCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the Bernoulli equation formula?",
-              a: "P₁ + ½ρV₁² + ρgh₁ = P₂ + ½ρV₂² + ρgh₂, where P is pressure (Pa), ρ is fluid density (kg/m³), V is velocity (m/s), g is gravity (m/s²), and h is elevation (m).",
-            },
-            {
-              q: "What are the assumptions of the Bernoulli equation?",
-              a: "The equation assumes steady, incompressible, inviscid (frictionless) flow along a single streamline. It does not account for viscous losses, turbulence, or compressibility effects.",
-            },
-            {
-              q: "Why does pressure decrease when velocity increases?",
-              a: "Because total energy is conserved. When a fluid speeds up (higher kinetic energy), its pressure energy must decrease to maintain the constant total. This is the core of the Bernoulli principle.",
-            },
-            {
-              q: "Can I use this for compressible fluids like air at high speeds?",
-              a: "The standard Bernoulli equation applies to incompressible flow (Mach < 0.3). For high-speed air or gas flows, a compressible form of the energy equation should be used instead.",
-            },
-            {
-              q: "What units does this calculator use?",
-              a: "All inputs are converted to SI units (Pa, m/s, m, kg/m³) for calculation. Results are then converted back to your selected output unit. You can mix units freely.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

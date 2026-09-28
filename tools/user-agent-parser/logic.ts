@@ -17,35 +17,41 @@ export interface UAHistory {
 
 // Browser detection patterns
 const browserPatterns = [
+  // Browsers built on Chromium also send "Chrome/", so they are checked first
   { name: 'Edge', pattern: /Edg(?:e|A|iOS)?\/([0-9\.]+)/ },
+  { name: 'Samsung Browser', pattern: /SamsungBrowser\/([0-9\.]+)/ },
+  { name: 'UC Browser', pattern: /UCBrowser\/([0-9\.]+)/ },
+  { name: 'Opera', pattern: /(?:Opera|OPR)\/([0-9\.]+)/ },
+  // Chrome and Firefox on iPhone and iPad
+  { name: 'Chrome', pattern: /CriOS\/([0-9\.]+)/ },
+  { name: 'Firefox', pattern: /FxiOS\/([0-9\.]+)/ },
   { name: 'Chrome', pattern: /Chrome\/([0-9\.]+)/, exclude: /Edg|OPR/ },
   { name: 'Firefox', pattern: /Firefox\/([0-9\.]+)/ },
   { name: 'Safari', pattern: /Version\/([0-9\.]+).*Safari/, exclude: /Chrome|Chromium/ },
-  { name: 'Opera', pattern: /(?:Opera|OPR)\/([0-9\.]+)/ },
   { name: 'Internet Explorer', pattern: /(?:MSIE |Trident.*rv:)([0-9\.]+)/ },
-  { name: 'Samsung Browser', pattern: /SamsungBrowser\/([0-9\.]+)/ },
-  { name: 'UC Browser', pattern: /UCBrowser\/([0-9\.]+)/ }
 ];
 
 // OS detection patterns
 const osPatterns = [
-  { name: 'Windows 11', pattern: /Windows NT 10\.0.*(?:Build 22000|Build 22621)/ },
-  { name: 'Windows 10', pattern: /Windows NT 10\.0/ },
+  // Windows 11 still reports "Windows NT 10.0"; only Client Hints can tell them apart
+  { name: 'Windows 10/11', pattern: /Windows NT 10\.0/ },
   { name: 'Windows 8.1', pattern: /Windows NT 6\.3/ },
   { name: 'Windows 8', pattern: /Windows NT 6\.2/ },
   { name: 'Windows 7', pattern: /Windows NT 6\.1/ },
   { name: 'macOS', pattern: /Mac OS X ([0-9_\.]+)/ },
   { name: 'iOS', pattern: /(?:iPhone|iPad).*OS ([0-9_\.]+)/ },
   { name: 'Android', pattern: /Android ([0-9\.]+)/ },
-  { name: 'Linux', pattern: /Linux/ },
+  { name: 'Chrome OS', pattern: /CrOS/ },
   { name: 'Ubuntu', pattern: /Ubuntu/ },
-  { name: 'Chrome OS', pattern: /CrOS/ }
+  { name: 'Linux', pattern: /Linux/ }
 ];
 
 // Device detection patterns
 const devicePatterns = [
-  { type: 'Mobile', pattern: /Mobile|Android.*Mobile|iPhone/ },
-  { type: 'Tablet', pattern: /Tablet|iPad|Android(?!.*Mobile)/ },
+  // iPads also send "Mobile/…", so tablets are checked first
+  { type: 'Tablet', pattern: /iPad|Tablet/ },
+  { type: 'Mobile', pattern: /Mobile|iPhone/ },
+  { type: 'Tablet', pattern: /Android/ },
   { type: 'Desktop', pattern: /.*/ } // Default fallback
 ];
 
@@ -97,9 +103,10 @@ export function parseUserAgent(userAgent: string): ParsedUserAgent {
     }
   }
   
-  // Detect engine
+  // Detect engine; every browser on iPhone and iPad uses WebKit
   let engine = 'Unknown';
-  for (const { name, pattern } of enginePatterns) {
+  if (os === 'iOS') engine = 'WebKit';
+  else for (const { name, pattern } of enginePatterns) {
     if (pattern.test(ua)) {
       engine = name;
       break;
@@ -178,7 +185,7 @@ export function exportHistoryAsJSON(history: UAHistory[]): void {
 // Example User-Agent strings for testing
 export const exampleUserAgents = [
   {
-    name: "Chrome on Windows 10",
+    name: "Chrome on Windows",
     ua: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
   },
   {
@@ -194,7 +201,15 @@ export const exampleUserAgents = [
     ua: "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36"
   },
   {
-    name: "Edge on Windows 11",
+    name: "Edge on Windows",
     ua: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+  },
+  {
+    name: "Chrome on iPhone",
+    ua: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/120.0.6099.119 Mobile/15E148 Safari/604.1"
+  },
+  {
+    name: "Samsung Internet on Android",
+    ua: "Mozilla/5.0 (Linux; Android 14; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/23.0 Chrome/115.0.0.0 Mobile Safari/537.36"
   }
 ];

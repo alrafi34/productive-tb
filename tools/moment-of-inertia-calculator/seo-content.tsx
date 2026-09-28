@@ -1,6 +1,10 @@
 import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { momentOfInertiaCalculatorConfig } from "./config";
 
 export default function MomentOfInertiaSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = momentOfInertiaCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -36,19 +40,12 @@ export default function MomentOfInertiaSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select the cross-section shape from the dropdown",
-                "Choose your unit (mm, cm, m, in, or ft)",
-                "Enter the dimensions for the selected shape",
-                "Results update instantly — Ix, Iy, Ip, Sx, Sy, Area, and Centroid",
-                "Use presets for common structural sections",
-                "Export the result as a TXT report or copy to clipboard",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
+              {howToSteps.map(({ name, text }, i) => (
+                <li key={name} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
                   </span>
-                  <span>{step}</span>
+                  <span><strong>{name}:</strong> {text}</span>
                 </li>
               ))}
             </ol>
@@ -61,7 +58,7 @@ export default function MomentOfInertiaSEO() {
                 "Hollow Rectangle — box beam section",
                 "Solid Circle — round bar or rod",
                 "Hollow Circle — pipe or hollow shaft",
-                "Triangle — triangular cross-section",
+                "Triangle — isosceles triangular cross-section",
                 "I-Beam — standard structural steel section",
                 "T-Beam — reinforced concrete T-section",
                 "Channel Section — C-channel structural member",
@@ -93,10 +90,10 @@ export default function MomentOfInertiaSEO() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {[
-                ["Rectangle",     "b=4 in, h=8 in",         "170.67 in⁴",   "21.33 in⁴"],
+                ["Rectangle",     "b=4 in, h=8 in",         "170.67 in⁴",   "42.67 in⁴"],
                 ["Solid Circle",  "d=4 in",                  "12.57 in⁴",    "12.57 in⁴"],
-                ["Hollow Circle", "D=5 in, d=3 in",          "42.88 in⁴",    "42.88 in⁴"],
-                ["Triangle",      "b=6 in, h=8 in",          "85.33 in⁴",    "27.00 in⁴"],
+                ["Hollow Circle", "D=5 in, d=3 in",          "26.70 in⁴",    "26.70 in⁴"],
+                ["Triangle (isosceles)", "b=6 in, h=8 in",   "85.33 in⁴",    "36.00 in⁴"],
                 ["Rectangle",     "b=200 mm, h=400 mm",      "1,066,666,666.67 mm⁴", "266,666,666.67 mm⁴"],
                 ["Solid Circle",  "d=100 mm",                "4,908,738.52 mm⁴", "4,908,738.52 mm⁴"],
               ].map(([shape, dims, ix, iy]) => (
@@ -131,7 +128,7 @@ export default function MomentOfInertiaSEO() {
                 ["Hollow Rect",     "(bh³ − b_i·h_i³) / 12",      "(hb³ − h_i·b_i³) / 12"],
                 ["Solid Circle",    "πd⁴ / 64",                    "πd⁴ / 64"],
                 ["Hollow Circle",   "π(D⁴ − d⁴) / 64",            "π(D⁴ − d⁴) / 64"],
-                ["Triangle",        "bh³ / 36",                    "hb³ / 48"],
+                ["Isosceles Triangle", "bh³ / 36",                 "hb³ / 48"],
                 ["I-Beam",          "(bf·H³ − (bf−tw)·hw³) / 12", "(2tf·bf³ + hw·tw³) / 12"],
               ].map(([shape, ix, iy]) => (
                 <tr key={shape} className="hover:bg-gray-50">
@@ -167,40 +164,7 @@ export default function MomentOfInertiaSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the difference between Ix and Iy?",
-              a: "Ix is the moment of inertia about the horizontal (x) axis, resisting vertical bending. Iy is about the vertical (y) axis, resisting horizontal bending. For symmetric shapes like circles, Ix = Iy.",
-            },
-            {
-              q: "What is the polar moment of inertia?",
-              a: "The polar moment of inertia (Ip = Ix + Iy) measures resistance to torsion (twisting). It is used in shaft design to calculate shear stress under torque.",
-            },
-            {
-              q: "What is the section modulus?",
-              a: "Section modulus S = I / c, where c is the distance from the neutral axis to the extreme fiber. It is used to calculate bending stress: σ = M / S. A higher section modulus means lower bending stress for the same moment.",
-            },
-            {
-              q: "Why does the I-beam have a high moment of inertia?",
-              a: "The I-beam concentrates material far from the neutral axis (in the flanges), which maximizes the moment of inertia for a given cross-sectional area. This makes it very efficient for resisting bending.",
-            },
-            {
-              q: "Is this calculator accurate for engineering use?",
-              a: "Yes. All formulas are based on standard engineering mechanics. Results are computed using double-precision floating point arithmetic. For critical structural applications, always verify with a licensed engineer.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

@@ -88,6 +88,8 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
 
   const d = inputs.dims;
   let Ix = 0, Iy = 0, area = 0, centroidX = 0, centroidY = 0, formula = "";
+  // Overall width and height of the section, for the extreme-fibre distances
+  let extentX = 0, extentY = 0;
 
   switch (inputs.shape) {
     case "rectangle": {
@@ -98,6 +100,7 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       centroidX = b / 2;
       centroidY = h / 2;
       formula = `Ix = bh³/12 = ${b}×${h}³/12 | Iy = hb³/12 = ${h}×${b}³/12`;
+      extentX = b; extentY = h;
       break;
     }
     case "hollow-rectangle": {
@@ -108,6 +111,7 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       centroidX = b / 2;
       centroidY = h / 2;
       formula = `Ix = (bh³ - b_i·h_i³)/12 | Iy = (hb³ - h_i·b_i³)/12`;
+      extentX = b; extentY = h;
       break;
     }
     case "circle": {
@@ -118,6 +122,7 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       centroidX = r;
       centroidY = r;
       formula = `I = πd⁴/64 = π×${p(d.diameter)}⁴/64`;
+      extentX = extentY = 2 * r;
       break;
     }
     case "hollow-circle":
@@ -129,6 +134,7 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       centroidX = D / 2;
       centroidY = D / 2;
       formula = `I = π(D⁴ - d⁴)/64 = π(${D}⁴ - ${di}⁴)/64`;
+      extentX = extentY = D;
       break;
     }
     case "triangle": {
@@ -136,9 +142,11 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       Ix = (b * Math.pow(h, 3)) / 36;
       Iy = (h * Math.pow(b, 3)) / 48;
       area = (b * h) / 2;
-      centroidX = b / 3;
+      // Isosceles triangle: the centroid lies on the axis of symmetry
+      centroidX = b / 2;
       centroidY = h / 3;
       formula = `Ix = bh³/36 | Iy = hb³/48`;
+      extentX = b; extentY = h;
       break;
     }
     case "i-beam": {
@@ -153,6 +161,7 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       centroidX = bf / 2;
       centroidY = H / 2;
       formula = `Ix = (bf·H³ - (bf-tw)·hw³)/12 | Iy = (2tf·bf³ + hw·tw³)/12`;
+      extentX = bf; extentY = H;
       break;
     }
     case "t-beam": {
@@ -172,6 +181,7 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       Ix = Ix_flange + Ix_web;
       Iy = (tf * Math.pow(bf, 3) + hw * Math.pow(tw, 3)) / 12;
       formula = `Ix = Σ(I_centroid + A·d²) using parallel axis theorem`;
+      extentX = bf; extentY = H;
       break;
     }
     case "channel": {
@@ -186,15 +196,21 @@ export function calculate(inputs: MOIInputs): MOIResult | null {
       const xc = (A_flanges * (bf / 2) + A_web * (tw / 2)) / area;
       centroidX = xc;
       centroidY = H / 2;
-      Iy = (2 * tf * Math.pow(bf, 3) / 3 + hw * Math.pow(tw, 3) / 12) - area * xc * xc;
+      // About the back of the web, then moved to the centroid (parallel axis)
+      Iy = (2 * tf * Math.pow(bf, 3) / 3 + hw * Math.pow(tw, 3) / 3) - area * xc * xc;
       formula = `Ix = (bf·H³ - (bf-tw)·hw³)/12 | Iy via parallel axis`;
+      extentX = bf; extentY = H;
       break;
     }
   }
 
   const Ip = Ix + Iy;
-  const Sx = centroidY > 0 ? Ix / centroidY : 0;
-  const Sy = centroidX > 0 ? Iy / centroidX : 0;
+  // Elastic section modulus to the extreme fibre farthest from the centroid,
+  // which gives the highest bending stress
+  const cy = Math.max(centroidY, extentY - centroidY);
+  const cx = Math.max(centroidX, extentX - centroidX);
+  const Sx = cy > 0 ? Ix / cy : 0;
+  const Sy = cx > 0 ? Iy / cx : 0;
 
   return {
     Ix,
