@@ -107,7 +107,10 @@ export function formatValue(value: number, precision: number, scientific: boolea
   if (scientific && (Math.abs(value) >= 1e6 || (Math.abs(value) < 1e-4 && value !== 0))) {
     return value.toExponential(precision);
   }
-  return Number(value.toFixed(precision)).toString();
+  const rounded = Number(value.toFixed(precision));
+  // A non-zero result that rounds to 0 (2^-20 at 4 decimals) keeps four significant digits
+  if (rounded === 0 && value !== 0) return Number(value.toPrecision(4)).toString();
+  return rounded.toString();
 }
 
 export function getExpansionSteps(base: number, exponent: number): string {

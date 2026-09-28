@@ -18,7 +18,10 @@ export function convertValue(value: number, mode: ConversionMode): number {
 
 export function formatValue(value: number): string {
   // Format to maximum 4 decimal places
-  return Number(value.toFixed(4)).toString();
+  const rounded = Number(value.toFixed(4));
+  // A non-zero value that rounds to 0 keeps four significant digits instead
+  if (rounded === 0 && value !== 0) return Number(value.toPrecision(4)).toString();
+  return rounded.toString();
 }
 
 const STORAGE_KEY = 'inch_to_cm_history';

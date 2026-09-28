@@ -35,14 +35,14 @@ const faqItems = [
       "Not always. High muscle mass, body composition, and sport-specific factors can make formula-only interpretation less reliable. Use these estimates with broader health context.",
   },
   {
-    question: "What is Broca range in this calculator?",
+    question: "What is the healthy weight range in this calculator?",
     answer:
-      "Broca gives a central estimate from height and this tool shows a practical ±10% range to represent a flexible healthy window rather than a single strict value.",
+      "The range is the weight that gives a body mass index (BMI) of 18.5 to 24.9, the World Health Organization's healthy band: 18.5 × height² to 24.9 × height², with height in meters. For 1.75 m that is about 56.7 to 76.3 kg (125 to 168 lb).",
   },
   {
     question: "Can I compare my current weight to the calculated healthy range?",
     answer:
-      "Yes. If you enter current weight, the calculator labels whether you are below, within, or above the healthy range based on Broca range boundaries.",
+      "Yes. If you enter current weight, the calculator labels whether you are below, within, or above the healthy range based on the BMI 18.5–24.9 range.",
   },
   {
     question: "Is my data stored online?",
@@ -84,7 +84,7 @@ const examples = [
   {
     title: "Example 1: 170 cm male",
     input: "Height = 170 cm, Gender = male",
-    output: "Calculator returns values for Devine, Robinson, Miller, and Broca range immediately.",
+    output: "Calculator returns Devine, Robinson, Miller and Broca values and the healthy BMI weight range immediately.",
   },
   {
     title: "Example 2: 5'7\" female",
@@ -231,7 +231,7 @@ export default function IdealWeightCalculatorSEO() {
             </div>
             <div className="rounded-lg border border-gray-100 p-4 bg-gray-50">
               <h3 className="font-medium text-gray-900 mb-1">Broca Method</h3>
-              <p>Simple height-based estimate shown with a practical range window.</p>
+              <p>(Height in cm − 100) × 0.9 for men or × 0.85 for women; a simple European rule of thumb.</p>
             </div>
           </div>
         </section>

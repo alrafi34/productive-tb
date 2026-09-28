@@ -131,13 +131,13 @@ export function simulateExtraPayments(principal: number, annualRate: number, ori
 export function formatCurrency(amount: number, currency: string = 'USD'): string {
   // Try to use native Intl.NumberFormat if standard currency provided
   try {
-     const formatter = new Intl.NumberFormat(undefined, {
+     const formatter = new Intl.NumberFormat('en-US', {
        style: currency !== 'NONE' ? 'currency' : 'decimal',
        currency: currency !== 'NONE' ? currency : undefined,
        maximumFractionDigits: 0
      });
      return formatter.format(Math.round(amount));
   } catch (e) {
-     return Math.round(amount).toLocaleString(); // Fallback
+     return Math.round(amount).toLocaleString('en-US'); // Fallback
   }
 }

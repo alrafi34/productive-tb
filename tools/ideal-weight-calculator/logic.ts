@@ -35,34 +35,36 @@ export function calculateIdealWeight(heightCm: number, gender: 'male' | 'female'
   }
 
   const heightInches = cmToInches(heightCm);
+  // Inches above (or, for shorter people, below) 5 ft; the formulas are linear in height
   const inchesOver5Ft = heightInches - 60;
 
-  let devine = 0;
-  let robinson = 0;
-  let miller = 0;
+  let devine: number;
+  let robinson: number;
+  let miller: number;
 
-  if (heightInches >= 60) {
-    if (gender === 'male') {
-      devine = 50.0 + 2.3 * inchesOver5Ft;
-      robinson = 52.0 + 1.9 * inchesOver5Ft;
-      miller = 56.2 + 1.41 * inchesOver5Ft;
-    } else {
-      devine = 45.5 + 2.3 * inchesOver5Ft;
-      robinson = 49.0 + 1.7 * inchesOver5Ft;
-      miller = 53.1 + 1.36 * inchesOver5Ft;
-    }
+  if (gender === 'male') {
+    devine = 50.0 + 2.3 * inchesOver5Ft;
+    robinson = 52.0 + 1.9 * inchesOver5Ft;
+    miller = 56.2 + 1.41 * inchesOver5Ft;
+  } else {
+    devine = 45.5 + 2.3 * inchesOver5Ft;
+    robinson = 49.0 + 1.7 * inchesOver5Ft;
+    miller = 53.1 + 1.36 * inchesOver5Ft;
   }
 
-  const broca = heightCm - 100;
-  const brocarange = broca * 0.1;
+  // Modified Broca: (height in cm − 100) × 0.9 for men, × 0.85 for women
+  const broca = (heightCm - 100) * (gender === 'male' ? 0.9 : 0.85);
+
+  // Healthy range: the weights that give a BMI of 18.5 to 24.9 (WHO)
+  const heightM = heightCm / 100;
 
   return {
-    devine: parseFloat(devine.toFixed(1)),
-    robinson: parseFloat(robinson.toFixed(1)),
-    miller: parseFloat(miller.toFixed(1)),
-    broca: parseFloat(broca.toFixed(1)),
-    min: parseFloat((broca - brocarange).toFixed(1)),
-    max: parseFloat((broca + brocarange).toFixed(1))
+    devine: parseFloat(Math.max(0, devine).toFixed(1)),
+    robinson: parseFloat(Math.max(0, robinson).toFixed(1)),
+    miller: parseFloat(Math.max(0, miller).toFixed(1)),
+    broca: parseFloat(Math.max(0, broca).toFixed(1)),
+    min: parseFloat((18.5 * heightM * heightM).toFixed(1)),
+    max: parseFloat((24.9 * heightM * heightM).toFixed(1))
   };
 }
 

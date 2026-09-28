@@ -22,7 +22,7 @@ const faqItems = [
   {
     question: "Why does this ROI result differ from annual return percentages?",
     answer:
-      "Standard ROI does not include time. Annualized return metrics account for how long the investment was held. ROI is best for quick profit/loss comparison.",
+      "Standard ROI does not include time. Enter the holding period in years to also see the annualized return (CAGR): ((current ÷ initial)^(1 ÷ years) − 1) × 100. A 50% gain over 3 years is about 14.5% a year.",
   },
   {
     question: "Is this calculator better than basic ROI tools online?",
@@ -237,7 +237,7 @@ ROI (%) = (Gain/Loss / Initial Investment) * 100`}
             </div>
           </div>
           <p className="mt-5 text-xs text-gray-500" style={{ fontFamily: "var(--font-body)" }}>
-            Note: ROI alone does not include time duration. For time-based growth analysis, evaluate annualized return separately.
+            Note: ROI alone does not include time. Add the holding period to see the annualized return (CAGR) as well.
           </p>
         </section>
 

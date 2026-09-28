@@ -31,6 +31,20 @@ export function calculateSalary(
   };
 }
 
+export type PayPeriod = "annual" | "monthly" | "weekly" | "daily" | "hourly";
+
+/* Any pay rate to an annual salary: 12 months, 52 weeks, and the visitor's
+   own working days and hours per week. */
+export function toAnnual(amount: number, period: PayPeriod, workHoursPerWeek: number, workDaysPerWeek: number): number {
+  switch (period) {
+    case "monthly": return amount * 12;
+    case "weekly": return amount * 52;
+    case "daily": return amount * workDaysPerWeek * 52;
+    case "hourly": return amount * workHoursPerWeek * 52;
+    default: return amount;
+  }
+}
+
 export function formatCurrency(amount: number, precision: number = 2, currency: string = "USD"): string {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',

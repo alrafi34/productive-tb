@@ -23,7 +23,6 @@ const CURRENCIES = [
   { code: 'CAD', name: 'CAD (CA$)', symbol: 'CA$' },
   { code: 'AUD', name: 'AUD (A$)', symbol: 'A$' },
   { code: 'CHF', name: 'CHF', symbol: 'CHF' },
-  { code: 'INR', name: 'INR (₹)', symbol: '₹' },
   { code: 'NONE', name: 'Generic', symbol: '' },
 ];
 
@@ -34,12 +33,11 @@ function guessCurrency(): string {
     const zone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? '';
     if (zone === 'Europe/London') return 'GBP';
     if (zone === 'Europe/Zurich') return 'CHF';
-    if (zone === 'Asia/Kolkata' || zone === 'Asia/Calcutta') return 'INR';
     if (zone.startsWith('Australia/')) return 'AUD';
     if (/^America\/(Toronto|Vancouver|Montreal|Edmonton|Winnipeg|Halifax|Regina|St_Johns)$/.test(zone)) return 'CAD';
     if (zone.startsWith('Europe/')) return 'EUR';
     const region = /[-_]([A-Za-z]{2})\b/.exec(navigator.language || '')?.[1]?.toUpperCase();
-    const byRegion: Record<string, string> = { GB: 'GBP', CA: 'CAD', AU: 'AUD', CH: 'CHF', IN: 'INR' };
+    const byRegion: Record<string, string> = { GB: 'GBP', CA: 'CAD', AU: 'AUD', CH: 'CHF' };
     if (region && byRegion[region]) return byRegion[region];
   } catch {
     // fall through
@@ -56,24 +54,21 @@ export default function LoanEmiCalculatorUI() {
   }, []);
 
   // Primary Loan Inputs
-  const [principal, setPrincipal] = useState(500000);
-  const [rate, setRate] = useState(10);
+  const [principal, setPrincipal] = useState(25000);
+  const [rate, setRate] = useState(7);
   const [tenure, setTenure] = useState(5);
   const [tenureUnit, setTenureUnit] = useState<'years' | 'months'>('years');
   const [extraPayment, setExtraPayment] = useState(0);
 
-  // Comparison Loan Inputs
-  const [principalB, setPrincipalB] = useState(500000);
+  // Comparison: the same loan amount and term at a second interest rate
   const [rateB, setRateB] = useState(8);
-  const [tenureB, setTenureB] = useState(5);
 
   const [copied, setCopied] = useState("");
 
   const months = tenureUnit === 'years' ? tenure * 12 : tenure;
-  const monthsB = tenure * 12; // tenureUnit in compare usually matches A
 
   const result = useMemo(() => calculateEmiValue(principal, rate, months), [principal, rate, months]);
-  const resultB = useMemo(() => calculateEmiValue(principalB, rateB, monthsB), [principalB, rateB, monthsB]);
+  const resultB = useMemo(() => calculateEmiValue(principal, rateB, months), [principal, rateB, months]);
   
   const simulation = useMemo(() => simulateExtraPayments(principal, rate, months, extraPayment), [principal, rate, months, extraPayment]);
   
@@ -182,9 +177,9 @@ Calculated via Productive Toolbox`;
                    </div>
                    <input 
                      type="range" 
-                     min="10000" 
-                     max="10000000" 
-                     step="10000"
+                     min="1000" 
+                     max="2000000" 
+                     step="1000"
                      value={principal}
                      onChange={(e) => setPrincipal(Number(e.target.value))}
                      className="w-full h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-primary"
@@ -413,9 +408,11 @@ Calculated via Productive Toolbox`;
                                  {formatCurrency(Math.abs(result.totalPayment - resultB.totalPayment), currency)}
                                </h3>
                                <p className={`text-xs font-bold mt-1 ${result.totalPayment > resultB.totalPayment ? 'text-green-400' : 'text-red-400'}`}>
-                                 {result.totalPayment > resultB.totalPayment 
-                                   ? `Option B saves you more over ${tenure} years` 
-                                   : `Option A is the better choice internally`}
+                                 {Math.abs(result.totalPayment - resultB.totalPayment) < 0.5
+                                   ? `Both options cost the same`
+                                   : result.totalPayment > resultB.totalPayment
+                                     ? `Option B costs less over ${tenure} ${tenureUnit}`
+                                     : `Option A costs less over ${tenure} ${tenureUnit}`}
                                </p>
                             </div>
                             <div className="text-center bg-white/10 p-3 rounded-xl border border-white/10">

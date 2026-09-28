@@ -13,7 +13,10 @@ export function convertMeterToKm(meter: number): number {
 export function formatValue(value: number, precision: number): string {
   // Handle edge cases
   if (Object.is(value, -0)) value = 0;
-  return Number(value.toFixed(precision)).toString();
+  const rounded = Number(value.toFixed(precision));
+  // A non-zero value that rounds to 0 keeps four significant digits instead
+  if (rounded === 0 && value !== 0) return Number(value.toPrecision(4)).toString();
+  return rounded.toString();
 }
 
 const STORAGE_KEY = 'm_to_km_history';
