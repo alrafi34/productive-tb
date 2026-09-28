@@ -6,6 +6,8 @@ import {
   simplifyRatio,
   generateEquivalentRatios,
   formatRatio,
+  unitRatio,
+  formatUnitRatio,
   calculateRatioPercentages
 } from "./logic";
 import UnitRatioCalculatorSEO from "./seo-content";
@@ -16,6 +18,7 @@ export default function UnitRatioCalculatorUI() {
   const [input, setInput] = useState<string>("100:50");
   const [result, setResult] = useState<{
     simplified: number[];
+    normalized: number[];
     gcd: number;
     original: number[];
   } | null>(null);
@@ -190,6 +193,11 @@ export default function UnitRatioCalculatorUI() {
                       GCD: {result.gcd}
                     </p>
                   )}
+                  {result && result.simplified.length > 1 && (
+                    <p className="text-primary-100 text-sm mt-2">
+                      Unit ratio: <span className="font-mono text-white">{formatUnitRatio(unitRatio(result.simplified))}</span>
+                    </p>
+                  )}
                 </div>
 
                 {result && showSteps && (
@@ -197,6 +205,9 @@ export default function UnitRatioCalculatorUI() {
                     <div className="font-semibold">Steps:</div>
                     <div className="font-mono text-xs space-y-1">
                       <div>Original: {formatRatio(result.original)}</div>
+                      {result.normalized.some((n, i) => n !== result.original[i]) && (
+                        <div>Scale to whole numbers: {formatRatio(result.normalized)}</div>
+                      )}
                       <div>GCD: {result.gcd}</div>
                       <div>Divide each by {result.gcd}</div>
                       <div className="text-white font-semibold">Result: {formatRatio(result.simplified)}</div>

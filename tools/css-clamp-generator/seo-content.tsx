@@ -1,50 +1,24 @@
 import React from 'react';
+import ToolFaq from "@/components/ToolFaq";
+import { cssClampGeneratorConfig } from "./config";
 
 export default function CSSClampGeneratorSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = cssClampGeneratorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* How to Use Guide */}
       <section className="bg-white rounded-xl border border-gray-200 p-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use the CSS Clamp Generator</h2>
         
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">1. Configure Your Values</h3>
-            <p className="text-gray-600 mb-3">
-              Set your minimum and maximum values along with the viewport range where the scaling should occur:
-            </p>
-            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
-              <li><strong>Min Value:</strong> The smallest size your property should be</li>
-              <li><strong>Max Value:</strong> The largest size your property should be</li>
-              <li><strong>Min Viewport:</strong> The viewport width where min value applies</li>
-              <li><strong>Max Viewport:</strong> The viewport width where max value applies</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">2. Choose Your Property</h3>
-            <p className="text-gray-600">
-              Select the CSS property you want to make fluid. Options include font-size, padding, margin, 
-              gap, width, height, border-radius, and more. Each property has sensible defaults to get you started.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">3. Preview in Real-Time</h3>
-            <p className="text-gray-600">
-              See your clamp value in action with live preview elements. Use the viewport simulator slider 
-              to test how your value scales across different screen sizes.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">4. Copy Your Code</h3>
-            <p className="text-gray-600">
-              Get your generated code in multiple formats: plain CSS, CSS variables, SCSS variables, 
-              or Tailwind CSS classes. One-click copy makes it easy to use in your projects.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-4">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name}>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">{i + 1}. {name}</h3>
+              <p className="text-gray-600">{text}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* Understanding CSS Clamp */}
@@ -206,65 +180,7 @@ export default function CSSClampGeneratorSEOContent() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-        
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">What is CSS clamp() and why should I use it?</h3>
-            <p className="text-gray-600">
-              CSS clamp() is a function that creates fluid, responsive values that scale between a minimum 
-              and maximum based on viewport size. It eliminates the need for multiple media queries and 
-              creates smoother transitions between breakpoints, resulting in more maintainable and elegant code.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">How is clamp() different from min() and max()?</h3>
-            <p className="text-gray-600">
-              While min() returns the smallest value and max() returns the largest, clamp() combines both 
-              by constraining a preferred value between minimum and maximum bounds. Think of it as 
-              min(MAX, max(MIN, PREFERRED)) in a single function.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">What browsers support CSS clamp()?</h3>
-            <p className="text-gray-600">
-              CSS clamp() is supported in all modern browsers including Chrome 79+, Firefox 75+, Safari 13.1+, 
-              and Edge 79+. For older browsers, you can provide fallback values or use PostCSS plugins 
-              to generate media query alternatives.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Can I use clamp() with any CSS property?</h3>
-            <p className="text-gray-600">
-              Yes! Clamp() works with any CSS property that accepts length values, including font-size, 
-              padding, margin, width, height, gap, border-radius, and more. It's particularly useful 
-              for typography and spacing.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Should I use px, rem, or em for clamp values?</h3>
-            <p className="text-gray-600">
-              It depends on your use case. Use px for precise control, rem for scalability with user 
-              font preferences, and em for values relative to parent elements. For typography, rem is 
-              often the best choice for accessibility.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">How do I calculate the preferred value?</h3>
-            <p className="text-gray-600">
-              The preferred value uses a linear interpolation formula: slope × viewport + intercept. 
-              Our generator calculates this automatically based on your min/max values and viewport range, 
-              so you don't need to do the math manually.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Advanced Tips */}
       <section className="bg-white rounded-xl border border-gray-200 p-6">

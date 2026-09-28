@@ -1,6 +1,10 @@
 import React from 'react';
+import ToolFaq from "@/components/ToolFaq";
+import { gradientTextGeneratorConfig } from "./config";
 
 export default function GradientTextGeneratorSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = gradientTextGeneratorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       <section>
@@ -75,40 +79,12 @@ export default function GradientTextGeneratorSEOContent() {
           How to Use the Gradient Text Generator
         </h2>
         <div className="space-y-4">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">1. Enter Your Text</h3>
-            <p className="text-gray-700 text-sm">
-              Type your desired text in the input field or click directly on the preview text to edit it inline. The gradient effect updates in real-time as you type.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">2. Choose Gradient Type</h3>
-            <p className="text-gray-700 text-sm">
-              Select from linear, radial, or conic gradients. Linear gradients flow in straight lines, radial gradients emanate from a center point, and conic gradients rotate around a center.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">3. Customize Colors</h3>
-            <p className="text-gray-700 text-sm">
-              Add multiple color stops using the color picker. Adjust the position of each color stop to control where colors transition in the gradient.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">4. Adjust Typography</h3>
-            <p className="text-gray-700 text-sm">
-              Fine-tune font size, weight, and alignment to match your design needs. The preview updates instantly to show your changes.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">5. Copy Generated Code</h3>
-            <p className="text-gray-700 text-sm">
-              Choose your preferred format (CSS, Tailwind, SCSS, or HTML) and copy the generated code to use in your projects.
-            </p>
-          </div>
+          {howToSteps.map(({ name, text }, i) => (
+            <div key={name} className="bg-blue-50 p-4 rounded-lg">
+              <h3 className="font-semibold mb-2">{i + 1}. {name}</h3>
+              <p className="text-gray-700 text-sm">{text}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -239,40 +215,7 @@ export default function GradientTextGeneratorSEOContent() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Why isn't my gradient text working?</h3>
-            <p className="text-gray-700 text-sm">
-              Ensure you're using both -webkit-background-clip: text and -webkit-text-fill-color: transparent. Also include the standard properties for broader browser support.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can I animate gradient text?</h3>
-            <p className="text-gray-700 text-sm">
-              Yes! You can animate gradient positions, colors, and angles using CSS transitions and keyframe animations for dynamic effects.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How do I make gradient text accessible?</h3>
-            <p className="text-gray-700 text-sm">
-              Always provide sufficient color contrast and include a fallback color for users with CSS disabled or older browsers.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can I use gradient text with any font?</h3>
-            <p className="text-gray-700 text-sm">
-              Yes, gradient text works with any font family. Thicker fonts and larger sizes typically show gradients more effectively.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

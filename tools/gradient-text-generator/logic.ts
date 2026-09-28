@@ -105,7 +105,7 @@ export const gradientPresets: GradientPreset[] = [
 ];
 
 export const generateGradientCSS = (gradient: GradientSettings): string => {
-  const stops = gradient.colorStops
+  const stops = [...gradient.colorStops]
     .sort((a, b) => a.position - b.position)
     .map(stop => `${stop.color} ${stop.position}%`)
     .join(', ');
@@ -140,24 +140,26 @@ export const generateTextCSS = (gradient: GradientSettings, text: TextSettings):
 }`;
 };
 
-export const generateTailwindCSS = (gradient: GradientSettings, text: TextSettings): string => {
-  // Simplified Tailwind-like classes
-  const sizeClass = text.fontSize >= 96 ? 'text-9xl' : 
-                   text.fontSize >= 72 ? 'text-8xl' :
-                   text.fontSize >= 60 ? 'text-6xl' :
-                   text.fontSize >= 48 ? 'text-5xl' :
-                   text.fontSize >= 36 ? 'text-4xl' :
-                   text.fontSize >= 30 ? 'text-3xl' :
-                   text.fontSize >= 24 ? 'text-2xl' : 'text-xl';
-  
-  const weightClass = text.fontWeight === 'bold' ? 'font-bold' :
-                     text.fontWeight === '600' ? 'font-semibold' :
-                     text.fontWeight === '500' ? 'font-medium' : 'font-normal';
-  
-  const alignClass = text.textAlign === 'center' ? 'text-center' :
-                    text.textAlign === 'right' ? 'text-right' : 'text-left';
+const TAILWIND_WEIGHTS: Record<string, string> = {
+  '100': 'font-thin', '200': 'font-extralight', '300': 'font-light', '400': 'font-normal', normal: 'font-normal',
+  '500': 'font-medium', '600': 'font-semibold', '700': 'font-bold', bold: 'font-bold', '800': 'font-extrabold', '900': 'font-black',
+};
 
-  return `<div class="${sizeClass} ${weightClass} ${alignClass} bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+/* Tailwind classes with arbitrary values, so the output matches the
+   preview exactly (spaces become underscores inside [ ]). */
+export const generateTailwindCSS = (gradient: GradientSettings, text: TextSettings): string => {
+  const arb = (v: string) => v.replace(/\s+/g, '_');
+  const classes = [
+    `text-[${text.fontSize}px]`,
+    TAILWIND_WEIGHTS[String(text.fontWeight)] ?? `font-[${text.fontWeight}]`,
+    `tracking-[${text.letterSpacing}px]`,
+    `leading-[${text.lineHeight}]`,
+    text.textAlign === 'center' ? 'text-center' : text.textAlign === 'right' ? 'text-right' : 'text-left',
+    `bg-[${arb(generateGradientCSS(gradient))}]`,
+    'bg-clip-text',
+    'text-transparent',
+  ];
+  return `<div class="${classes.join(' ')}">
   ${text.content}
 </div>`;
 };

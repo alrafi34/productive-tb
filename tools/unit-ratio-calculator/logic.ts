@@ -31,14 +31,27 @@ export function normalizeDecimals(numbers: number[]): number[] {
   return numbers.map(n => Math.round(n * multiplier));
 }
 
-export function simplifyRatio(numbers: number[]): { simplified: number[], gcd: number, original: number[] } {
-  if (numbers.length === 0) return { simplified: [], gcd: 1, original: [] };
+export function simplifyRatio(numbers: number[]): { simplified: number[], gcd: number, original: number[], normalized: number[] } {
+  if (numbers.length === 0) return { simplified: [], gcd: 1, original: [], normalized: [] };
   
+  // Decimals are scaled to whole numbers first (1.5 : 0.5 → 15 : 5)
   const normalized = normalizeDecimals(numbers);
   const divisor = gcdArray(normalized);
   const simplified = normalized.map(n => n / divisor);
   
-  return { simplified, gcd: divisor, original: numbers };
+  return { simplified, gcd: divisor, original: numbers, normalized };
+}
+
+/* The unit ratio: every term divided by the first, so the ratio reads 1 : n
+   (4 : 10 → 1 : 2.5). */
+export function unitRatio(numbers: number[]): number[] {
+  if (numbers.length === 0 || numbers[0] === 0) return [];
+  return numbers.map(n => n / numbers[0]);
+}
+
+/* Up to 4 decimals without trailing zeros: 2.5, 0.3333, 1 */
+export function formatUnitRatio(numbers: number[]): string {
+  return numbers.map(n => String(parseFloat(n.toFixed(4)))).join(' : ');
 }
 
 export function generateEquivalentRatios(simplified: number[], count: number = 5): number[][] {

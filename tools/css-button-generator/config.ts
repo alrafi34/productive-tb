@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "CSS Button Generator - Create Custom Button Styles with Live Preview",
-    description: "Free CSS Button Generator with live preview. Design buttons with colors, shadows, hover effects, and get copy-ready CSS and Tailwind classes instantly.",
+    title: "CSS Button Generator – Design Buttons, Copy CSS & Tailwind",
+    description: "Design a button with colors, padding, radius, border, shadow and hover color in a live preview, then copy the CSS or matching Tailwind classes.",
     keywords: [
       "css button generator",
       "button css generator",
@@ -32,11 +32,25 @@ export const toolConfig = {
       "gradient button generator"
     ],
     openGraph: {
-      title: "CSS Button Generator - Design Custom Buttons with Live Preview",
-      description: "Create production-ready button CSS with live preview, hover effects, shadows, and instant copy output for CSS and Tailwind classes.",
+      title: "CSS Button Generator – Design Buttons, Copy CSS & Tailwind",
+      description: "Design a button with colors, padding, radius, border, shadow and hover color in a live preview, then copy the CSS or matching Tailwind classes.",
       type: "website",
-      url: "/tools/design/css-button-generator"
-    }
+      url: "https://productivetoolbox.com/tools/design/css-button-generator"
+    },
+    howToSteps: [
+      { name: "Start from a preset", text: "Pick Primary, Success, Danger, Ghost or Pill, or start from the default button." },
+      { name: "Style the button", text: "Set the text, background and text colors, font size (12–28 px), padding, border radius (0–50 px), border width, style and color, and the shadow." },
+      { name: "Set the hover effect", text: "Choose the hover background, which is suggested as a darker shade of the button color, and the transition time, then hover over the preview or toggle the hover state to check it." },
+      { name: "Copy the code", text: "Copy the CSS, which includes the hover and keyboard focus styles, or the equivalent Tailwind classes." },
+    ],
+    faq: [
+      { q: "Can I use the generated CSS in production?", a: "Yes. It uses standard properties supported by every current browser: background, color, padding, border-radius, border, box-shadow and transition, plus :hover and :focus-visible states. Rename the button selector to a class such as .btn-primary so it does not style every button on the site." },
+      { q: "Do the Tailwind classes need any configuration?", a: "No. Custom colors and sizes are written as arbitrary values such as bg-[#3b82f6], px-[20px] and rounded-[8px], which Tailwind CSS v3 and v4 generate on demand, so the classes reproduce the preview exactly." },
+      { q: "How do I make a button accessible?", a: "Use a real <button> element (or <a> for links), give the text a contrast ratio of at least 4.5:1 against the background, keep a visible focus outline for keyboard users, and make the button at least 24 × 24 CSS pixels, or 44 × 44 for touch." },
+      { q: "How much padding and radius should a button have?", a: "Common values are 8–12 px vertical and 16–24 px horizontal padding, with a radius of 4–8 px for a modern look or 9999 px for a pill. Use the same values for every button in a design system." },
+      { q: "What transition duration looks best?", a: "Between 150 and 300 ms. Shorter feels abrupt and longer feels sluggish. Transition color and background changes; avoid animating width, height or padding, which forces the page to re-layout." },
+      { q: "Are my button designs saved?", a: "No. The tool runs in your browser and does not store designs, so copy the CSS or Tailwind classes to keep a design." },
+    ],
   },
   features: [
     "Live button preview",

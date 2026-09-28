@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 export default function UnitRatioCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -90,21 +94,11 @@ export default function UnitRatioCalculatorSEO() {
           How to Use the Unit Ratio Calculator
         </h2>
         <ol className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-          <li>
-            <strong>Enter values:</strong> Use colon, comma, or spaces (example: 30:45, 12 18 24, or 2.5,5).
-          </li>
-          <li>
-            <strong>Get instant simplification:</strong> The tool computes the GCD and returns the ratio in simplest form.
-          </li>
-          <li>
-            <strong>Review ratio insights:</strong> Check equivalent ratios, percentages, and optional visual comparison bars.
-          </li>
-          <li>
-            <strong>Copy or export:</strong> Copy the final ratio with one click or export equivalent ratios as CSV.
-          </li>
-          <li>
-            <strong>Reuse history:</strong> Open recent calculations directly from local history and continue working faster.
-          </li>
+          {howToSteps.map(({ name, text }) => (
+            <li key={name}>
+              <strong>{name}:</strong> {text}
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -227,74 +221,7 @@ export default function UnitRatioCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              What is a unit ratio calculator?
-            </h3>
-            <p className="leading-relaxed">
-              A unit ratio calculator simplifies one ratio into its lowest equivalent form, so you can compare values faster
-              and with fewer mistakes.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is this the same as a ratio simplifier?
-            </h3>
-            <p className="leading-relaxed">
-              Yes. People also search for ratio simplifier, ratio reducer, and simplify ratio calculator. This tool is built
-              to satisfy all of those use cases.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I simplify more than two numbers?
-            </h3>
-            <p className="leading-relaxed">
-              Yes. You can simplify ratios with up to 10 values, which is useful for multi-part comparisons in math, finance,
-              and operations.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Does it support decimal ratio inputs?
-            </h3>
-            <p className="leading-relaxed">
-              Yes. Decimal values are normalized to integers before simplification, then reduced using GCD logic to preserve
-              exact proportional relationships.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I get equivalent ratios from one result?
-            </h3>
-            <p className="leading-relaxed">
-              Yes. The calculator automatically generates equivalent ratio sets and lets you export them in CSV format.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is this tool free to use?
-            </h3>
-            <p className="leading-relaxed">
-              Yes. The unit ratio calculator is free and available directly in the browser with no login requirement.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is my data private?
-            </h3>
-            <p className="leading-relaxed">
-              Calculations run on your device. Ratio entries are not sent to a server, and recent history is kept locally in
-              your own browser storage.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

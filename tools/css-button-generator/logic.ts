@@ -56,66 +56,39 @@ export function generateCSS(state: ButtonState): string {
 
 button:hover {
   background: ${state.hoverBg};
+}
+
+button:focus-visible {
+  outline: 2px solid ${state.bgColor === 'transparent' ? state.textColor : state.bgColor};
+  outline-offset: 2px;
 }`;
 }
 
+/* Tailwind classes matching the CSS above exactly, using arbitrary values
+   ([#hex], [px]) wherever there is no built-in utility. */
 export function generateTailwindClasses(state: ButtonState): string {
-  const colorMap: Record<string, string> = {
-    '#3b82f6': 'bg-blue-500',
-    '#ef4444': 'bg-red-500',
-    '#10b981': 'bg-emerald-500',
-    '#f59e0b': 'bg-amber-500',
-    '#8b5cf6': 'bg-violet-500',
-    '#ec4899': 'bg-pink-500',
-    '#6b7280': 'bg-gray-500',
-    '#000000': 'bg-black',
-    '#ffffff': 'bg-white'
+  const color = (c: string) => (c === 'transparent' ? 'transparent' : `[${c}]`);
+  const shadowMap: Record<ButtonState['shadow'], string> = {
+    none: 'shadow-none', small: 'shadow-sm', medium: 'shadow-md', large: 'shadow-lg',
   };
-
-  const textColorMap: Record<string, string> = {
-    '#ffffff': 'text-white',
-    '#000000': 'text-black',
-    '#374151': 'text-gray-700',
-    '#6b7280': 'text-gray-500'
-  };
-
-  const paddingXMap: Record<number, string> = {
-    8: 'px-2', 12: 'px-3', 16: 'px-4', 20: 'px-5', 24: 'px-6', 32: 'px-8'
-  };
-
-  const paddingYMap: Record<number, string> = {
-    4: 'py-1', 8: 'py-2', 10: 'py-2.5', 12: 'py-3', 16: 'py-4'
-  };
-
-  const radiusMap: Record<number, string> = {
-    0: 'rounded-none', 4: 'rounded', 6: 'rounded-md', 8: 'rounded-lg',
-    12: 'rounded-xl', 16: 'rounded-2xl', 24: 'rounded-3xl', 999: 'rounded-full'
-  };
-
-  const shadowMap: Record<string, string> = {
-    none: '', small: 'shadow-sm', medium: 'shadow-md', large: 'shadow-lg'
-  };
-
-  const classes = [];
-  
-  classes.push(colorMap[state.bgColor] || 'bg-blue-500');
-  classes.push(textColorMap[state.textColor] || 'text-white');
-  classes.push(paddingXMap[state.paddingX] || 'px-5');
-  classes.push(paddingYMap[state.paddingY] || 'py-2');
-  classes.push(radiusMap[state.borderRadius] || 'rounded-lg');
-  
-  if (state.shadow !== 'none') {
-    classes.push(shadowMap[state.shadow]);
+  const classes = [
+    `bg-${color(state.bgColor)}`,
+    `text-${color(state.textColor)}`,
+    `text-[${state.fontSize}px]`,
+    `py-[${state.paddingY}px]`,
+    `px-[${state.paddingX}px]`,
+    state.borderRadius >= 999 ? 'rounded-full' : `rounded-[${state.borderRadius}px]`,
+    shadowMap[state.shadow],
+    `hover:bg-${color(state.hoverBg)}`,
+    'transition-all',
+    `duration-[${state.transition}ms]`,
+    'cursor-pointer',
+    `focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color(state.bgColor === 'transparent' ? state.textColor : state.bgColor)}`,
+  ];
+  if (state.borderWidth > 0 && state.borderStyle !== 'none') {
+    classes.push(`border-[${state.borderWidth}px]`, `border-${state.borderStyle}`, `border-${color(state.borderColor)}`);
   }
-  
-  classes.push('transition');
-  
-  if (state.borderWidth > 0) {
-    classes.push(`border-${state.borderWidth}`);
-    classes.push('border-gray-300');
-  }
-
-  return classes.filter(Boolean).join(' ');
+  return classes.join(' ');
 }
 
 export function generateDarkerColor(hex: string): string {

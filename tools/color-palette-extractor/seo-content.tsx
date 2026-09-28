@@ -1,6 +1,10 @@
 import React from 'react';
+import ToolFaq from "@/components/ToolFaq";
+import { colorPaletteExtractorConfig } from "./config";
 
 export default function ColorPaletteExtractorSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = colorPaletteExtractorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 bg-white rounded-xl shadow-sm mt-8">
       <section>
@@ -220,65 +224,19 @@ export default function ColorPaletteExtractorSEOContent() {
 
       <section>
         <h2 className="text-2xl font-bold text-slate-800 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Frequently Asked Questions
+          How to Extract a Color Palette
         </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">How accurate is the color extraction?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Our tool uses the median cut algorithm, which is highly accurate for identifying dominant colors. The algorithm analyzes 
-              pixel distribution and groups similar colors together to find the most representative colors in your image.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Are my images uploaded to a server?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              No! All image processing happens entirely in your browser using JavaScript and the Canvas API. Your images never leave 
-              your device, ensuring complete privacy and security.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">What image formats are supported?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              The tool supports PNG, JPEG, WEBP, and GIF formats. For GIF files, only the first frame is analyzed.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Can I extract more than 5 colors?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              The tool is optimized to extract the 5 most dominant colors, which provides the best balance between variety and usability 
-              for most design projects. This number is ideal for creating cohesive color schemes.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">What are WCAG AA and AAA standards?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              WCAG (Web Content Accessibility Guidelines) defines contrast ratios for accessible design. AA requires a 4.5:1 ratio for 
-              normal text, while AAA requires 7:1. Our tool automatically checks all color combinations against these standards.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">How do I use the exported CSS variables?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Add the exported CSS to your stylesheet's :root selector, then reference colors using var(--color-1), var(--color-2), etc. 
-              This makes it easy to maintain consistent colors across your entire website.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Can I use this tool for commercial projects?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Yes! The Color Palette Extractor is completely free to use for both personal and commercial projects. Extract colors from 
-              any image and use them in your designs without restrictions.
-            </p>
-          </div>
-        </div>
+        <ol className="space-y-3 text-slate-600">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
       </section>
+
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-slate-800 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
