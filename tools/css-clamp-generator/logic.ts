@@ -30,28 +30,35 @@ export const propertyPresets: PropertyPreset[] = [
   { name: 'Line Height', property: 'line-height', defaultMin: 1.2, defaultMax: 1.8, unit: 'em', description: 'Line spacing' }
 ];
 
-// Core clamp calculation
+// Trims "1.500" to "1.5" and "2.000" to "2"
+const num = (n: number) => String(parseFloat(n.toFixed(3)));
+
+// Core clamp calculation. Min and max are in the selected unit; the viewport
+// widths are in px, so the line is worked out in px and converted back.
 export const calculateClamp = (config: ClampConfig): ClampResult => {
   const { minValue, maxValue, minViewport, maxViewport, unit, rootFontSize } = config;
-  
-  // Calculate slope and intercept for linear interpolation
-  const slope = (maxValue - minValue) / (maxViewport - minViewport);
-  const intercept = minValue - slope * minViewport;
-  
-  // Convert to viewport units (vw)
-  const slopeVw = slope * 100; // Convert to vw
-  const interceptConverted = convertUnit(intercept, 'px', unit, rootFontSize);
-  
-  // Format preferred value
-  const preferredValue = `${slopeVw.toFixed(3)}vw + ${interceptConverted.toFixed(3)}${unit}`;
-  
-  // Format min and max values
-  const minFormatted = `${convertUnit(minValue, 'px', unit, rootFontSize).toFixed(3)}${unit}`;
-  const maxFormatted = `${convertUnit(maxValue, 'px', unit, rootFontSize).toFixed(3)}${unit}`;
-  
-  // Generate CSS
+  const minPx = convertUnit(minValue, unit, 'px', rootFontSize);
+  const maxPx = convertUnit(maxValue, unit, 'px', rootFontSize);
+
+  // Straight line through (minViewport, minPx) and (maxViewport, maxPx)
+  const slope = (maxPx - minPx) / (maxViewport - minViewport);
+  const interceptPx = minPx - slope * minViewport;
+
+  // 1vw is 1% of the viewport width
+  const slopeVw = slope * 100;
+  const interceptConverted = convertUnit(interceptPx, 'px', unit, rootFontSize);
+
+  const sign = interceptConverted < 0 ? '-' : '+';
+  const preferredValue = `${num(slopeVw)}vw ${sign} ${num(Math.abs(interceptConverted))}${unit}`;
+
+  // clamp() needs the smaller bound first, also when the value shrinks on wider screens
+  const lo = Math.min(minValue, maxValue);
+  const hi = Math.max(minValue, maxValue);
+  const minFormatted = `${num(lo)}${unit}`;
+  const maxFormatted = `${num(hi)}${unit}`;
+
   const css = `clamp(${minFormatted}, ${preferredValue}, ${maxFormatted})`;
-  
+
   return {
     css,
     minFormatted,
@@ -144,12 +151,20 @@ export const parseClampValue = (clampString: string): ParsedClamp => {
 };
 
 // Generate code in different formats
+const TAILWIND_PREFIX: Record<string, string> = {
+  'font-size': 'text', padding: 'p', margin: 'm', gap: 'gap', width: 'w', height: 'h',
+  'border-radius': 'rounded', 'letter-spacing': 'tracking', 'line-height': 'leading',
+};
+
 export const generateCodeFormats = (result: ClampResult, property: string) => {
+  // Tailwind arbitrary values cannot contain spaces; underscores stand in for them
+  const arbitrary = result.css.replace(/\s+/g, '_');
+  const prefix = TAILWIND_PREFIX[property];
   return {
     css: `${property}: ${result.css};`,
-    cssVariable: `--fluid-${property.replace('-', '')}: ${result.css};`,
-    scssVariable: `$fluid-${property.replace('-', '')}: ${result.css};`,
-    tailwind: `${property === 'font-size' ? 'text' : property}-[${result.css}]`
+    cssVariable: `--fluid-${property.replace(/-/g, '')}: ${result.css};`,
+    scssVariable: `$fluid-${property.replace(/-/g, '')}: ${result.css};`,
+    tailwind: prefix ? `${prefix}-[${arbitrary}]` : `[${property}:${arbitrary}]`
   };
 };
 

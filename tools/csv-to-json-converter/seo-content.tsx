@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 export default function CSVToJSONSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -13,10 +17,9 @@ export default function CSVToJSONSEOContent() {
       <section>
         <h3 className="text-xl font-bold mb-3 text-gray-900">How It Works</h3>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Paste CSV data or upload a .csv/.txt file</li>
-          <li>Configure parsing options (delimiter, headers, trimming)</li>
-          <li>Preview the structured data in a table</li>
-          <li>Copy or download the JSON output</li>
+          {howToSteps.map(({ name, text }) => (
+            <li key={name}><strong>{name}:</strong> {text}</li>
+          ))}
         </ol>
       </section>
 
@@ -84,6 +87,7 @@ Alice,25,Los Angeles`}
           All processing happens 100% in your browser. No data is sent to any server. The converter handles large CSV files efficiently with real-time parsing and preview rendering.
         </p>
       </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { cidrCalculatorConfig } from "./config";
 export default function CidrCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = cidrCalculatorConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -11,12 +15,7 @@ export default function CidrCalculatorSEO() {
               Quick Start Guide
             </h3>
             <ol className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                ["Enter IP/CIDR", "Type an IPv4 address with CIDR prefix (e.g. 192.168.1.1/24) in the input field, or switch to Manual mode to enter IP and subnet mask separately."],
-                ["Adjust CIDR Prefix", "Use the slider or quick-select buttons (/8, /16, /24, /28…) to change the prefix length instantly."],
-                ["View Instant Results", "Network address, broadcast, host range, wildcard mask, IP class, and more update in real time as you type."],
-                ["Export or Copy", "Copy all results to clipboard, or download as TXT or JSON for documentation and infrastructure-as-code."],
-              ].map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                     {i + 1}
@@ -133,44 +132,7 @@ export default function CidrCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is CIDR notation?",
-              a: "CIDR (Classless Inter-Domain Routing) notation represents an IP address and its associated network prefix length. For example, 192.168.1.0/24 means the first 24 bits are the network portion and the remaining 8 bits identify hosts. CIDR replaced the older class-based (A/B/C) addressing system to allow flexible subnet allocation.",
-            },
-            {
-              q: "How is the network address calculated?",
-              a: "The network address is calculated by performing a bitwise AND between the IP address and the subnet mask. For 192.168.1.25/24, the subnet mask is 255.255.255.0 and the result is 192.168.1.0 — the base address of the subnet.",
-            },
-            {
-              q: "What is the broadcast address?",
-              a: "The broadcast address is the last IP in the subnet, calculated by performing a bitwise OR between the network address and the inverted subnet mask (wildcard mask). Any packet sent to the broadcast address reaches all hosts in the subnet.",
-            },
-            {
-              q: "How many usable hosts does a /24 have?",
-              a: "A /24 subnet has 256 total addresses (2^8). Two are reserved — the network address and broadcast address — leaving 254 usable host addresses. The formula is 2^(32 - CIDR) - 2 for any prefix from /1 to /30.",
-            },
-            {
-              q: "What are /31 and /32 subnets used for?",
-              a: "A /31 subnet contains exactly 2 addresses, both usable for point-to-point links between routers (RFC 3021). A /32 is a host route representing a single device — commonly used in loopback interfaces and static routes.",
-            },
-            {
-              q: "What is a wildcard mask?",
-              a: "The wildcard mask is the bitwise inverse of the subnet mask. It indicates which bits are 'free' (host bits). For /24 (mask 255.255.255.0), the wildcard is 0.0.0.255. Wildcard masks are used extensively in Cisco ACLs and OSPF network statements.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>

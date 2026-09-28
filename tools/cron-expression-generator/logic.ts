@@ -99,150 +99,152 @@ export function parseCronExpression(expression: string): CronState | null {
   };
 }
 
+const MONTH_NAMES = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const MONTH_ABBR = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const DAY_ABBR = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+type FieldSpec = { min: number; max: number; names?: string[]; nameBase?: number };
+const FIELDS: Record<keyof CronState, FieldSpec> = {
+  minute: { min: 0, max: 59 },
+  hour: { min: 0, max: 23 },
+  dayOfMonth: { min: 1, max: 31 },
+  month: { min: 1, max: 12, names: MONTH_ABBR, nameBase: 1 },
+  // 7 is also accepted for Sunday, as in most cron implementations
+  dayOfWeek: { min: 0, max: 7, names: DAY_ABBR, nameBase: 0 },
+};
+
+function toNumber(token: string, spec: FieldSpec): number | null {
+  if (/^\d+$/.test(token)) return Number(token);
+  const i = spec.names?.indexOf(token.toUpperCase()) ?? -1;
+  return i >= 0 ? i + (spec.nameBase ?? 0) : null;
+}
+
+/* Expands one cron field ("*", "5", "1-5", "* /15", "10-50/10", "MON-FRI", lists
+   of these) to the sorted values it matches, or null when it is invalid. */
+export function expandField(field: string, spec: FieldSpec): number[] | null {
+  const values = new Set<number>();
+  for (const item of field.split(",")) {
+    const m = /^([^/]+)(?:\/(\d+))?$/.exec(item);
+    if (!m) return null;
+    const step = m[2] === undefined ? 1 : Number(m[2]);
+    if (step < 1) return null;
+    let start: number | null;
+    let end: number | null;
+    if (m[1] === "*") {
+      start = spec.min;
+      end = spec.max;
+    } else if (m[1].includes("-")) {
+      const [x, y, extra] = m[1].split("-");
+      if (extra !== undefined) return null;
+      start = toNumber(x, spec);
+      end = toNumber(y, spec);
+    } else {
+      start = toNumber(m[1], spec);
+      // "5/15" means from 5 to the maximum in steps of 15
+      end = m[2] === undefined ? start : spec.max;
+    }
+    if (start === null || end === null || start < spec.min || end > spec.max || start > end) return null;
+    for (let v = start; v <= end; v += step) values.add(v);
+  }
+  return [...values].sort((x, y) => x - y);
+}
+
 export function validateCronExpression(expression: string): { valid: boolean; error?: string } {
   const parts = expression.trim().split(/\s+/);
-  
   if (parts.length !== 5) {
     return { valid: false, error: "Cron expression must have exactly 5 fields" };
   }
-  
-  const [minute, hour, dayOfMonth, month, dayOfWeek] = parts;
-  
-  // Basic validation
-  if (!isValidCronField(minute, 0, 59)) {
-    return { valid: false, error: "Invalid minute field (0-59)" };
+  const labels: [keyof CronState, string][] = [
+    ["minute", "minute field (0-59)"],
+    ["hour", "hour field (0-23)"],
+    ["dayOfMonth", "day of month field (1-31)"],
+    ["month", "month field (1-12 or JAN-DEC)"],
+    ["dayOfWeek", "day of week field (0-7 or SUN-SAT)"],
+  ];
+  for (let i = 0; i < 5; i++) {
+    const [key, label] = labels[i];
+    if (!expandField(parts[i], FIELDS[key])) return { valid: false, error: `Invalid ${label}` };
   }
-  if (!isValidCronField(hour, 0, 23)) {
-    return { valid: false, error: "Invalid hour field (0-23)" };
-  }
-  if (!isValidCronField(dayOfMonth, 1, 31)) {
-    return { valid: false, error: "Invalid day of month field (1-31)" };
-  }
-  if (!isValidCronField(month, 1, 12)) {
-    return { valid: false, error: "Invalid month field (1-12)" };
-  }
-  if (!isValidCronField(dayOfWeek, 0, 6)) {
-    return { valid: false, error: "Invalid day of week field (0-6)" };
-  }
-  
   return { valid: true };
 }
 
-function isValidCronField(field: string, min: number, max: number): boolean {
-  if (field === "*") return true;
-  
-  // Handle step values (*/5)
-  if (field.startsWith("*/")) {
-    const step = parseInt(field.substring(2));
-    return !isNaN(step) && step > 0 && step <= max;
-  }
-  
-  // Handle ranges (1-5)
-  if (field.includes("-")) {
-    const [start, end] = field.split("-").map(n => parseInt(n));
-    return !isNaN(start) && !isNaN(end) && start >= min && end <= max && start <= end;
-  }
-  
-  // Handle lists (1,3,5)
-  if (field.includes(",")) {
-    const values = field.split(",").map(n => parseInt(n));
-    return values.every(v => !isNaN(v) && v >= min && v <= max);
-  }
-  
-  // Handle single values
-  const value = parseInt(field);
-  return !isNaN(value) && value >= min && value <= max;
+const pad = (n: number) => String(n).padStart(2, "0");
+
+function joinList(items: string[]): string {
+  if (items.length <= 1) return items.join("");
+  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
 }
 
+function ordinal(n: number): string {
+  const s = n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] ?? "th";
+  return `${n}${s}`;
+}
+
+/* "1-5" → "Monday to Friday", "1,15" → "1st and 15th" … */
+function describeList(field: string, spec: FieldSpec, name: (n: number) => string): string {
+  return joinList(
+    field.split(",").map((item) => {
+      const [range, step] = item.split("/");
+      if (range === "*") return step ? `every ${ordinal(Number(step))}` : "every";
+      if (range.includes("-")) {
+        const [x, y] = range.split("-").map((t) => toNumber(t, spec)!);
+        return `${name(x)} to ${name(y)}${step ? ` (every ${ordinal(Number(step))})` : ""}`;
+      }
+      const v = toNumber(range, spec)!;
+      return step ? `every ${ordinal(Number(step))} from ${name(v)}` : name(v);
+    }),
+  );
+}
+
+/* A plain-English reading of a cron schedule, e.g. "At 09:00 on Monday to Friday". */
 export function generateHumanDescription(state: CronState): string {
-  const parts: string[] = [];
-  
-  // Frequency
-  if (state.minute === "*" && state.hour === "*") {
-    parts.push("Runs every minute");
-  } else if (state.minute.startsWith("*/") && state.hour === "*") {
-    const interval = state.minute.substring(2);
-    parts.push(`Runs every ${interval} minutes`);
-  } else if (state.minute === "0" && state.hour.startsWith("*/")) {
-    const interval = state.hour.substring(2);
-    parts.push(`Runs every ${interval} hours`);
-  } else if (state.minute === "0" && state.hour === "*") {
-    parts.push("Runs every hour");
+  const expr = buildCronExpression(state);
+  if (!validateCronExpression(expr).valid) return "Invalid cron expression";
+
+  const minutes = expandField(state.minute, FIELDS.minute)!;
+  const hours = expandField(state.hour, FIELDS.hour)!;
+  const everyMinute = state.minute === "*";
+  const everyHour = state.hour === "*";
+  const minuteStep = /^\*\/(\d+)$/.exec(state.minute)?.[1];
+  const hourStep = /^\*\/(\d+)$/.exec(state.hour)?.[1];
+  // A plain hour range such as 9-17
+  const hourRange = /^(\d+)-(\d+)$/.exec(state.hour)?.slice(1).map(Number);
+
+  let time: string;
+  if (everyMinute && everyHour) time = "Every minute";
+  else if (minuteStep && everyHour) time = `Every ${minuteStep} minutes`;
+  else if ((everyMinute || minuteStep) && hourRange) {
+    time = `Every ${minuteStep ? `${minuteStep} minutes` : "minute"} from ${pad(hourRange[0])}:00 to ${pad(hourRange[1])}:59`;
+  } else if (everyMinute) time = `Every minute during hour ${describeList(state.hour, FIELDS.hour, pad)}`;
+  else if (everyHour && minutes.length === 1) time = minutes[0] === 0 ? "Every hour, on the hour" : `At minute ${minutes[0]} of every hour`;
+  else if (everyHour && minutes.length <= 12) time = `At minutes ${joinList(minutes.map(String))} of every hour`;
+  else if (hourRange && minutes.length === 1) {
+    time = `Every hour from ${pad(hourRange[0])}:${pad(minutes[0])} to ${pad(hourRange[1])}:${pad(minutes[0])}`;
+  }
+  else if (hourStep && minutes.length === 1) time = `Every ${hourStep} hours${minutes[0] ? ` at minute ${minutes[0]}` : ""}`;
+  else if (!everyHour && minutes.length * hours.length <= 8) {
+    time = `At ${joinList(hours.flatMap((h) => minutes.map((m) => `${pad(h)}:${pad(m)}`)))}`;
+  } else if (everyHour) {
+    time = `At minute ${describeList(state.minute, FIELDS.minute, String)} of every hour`;
   } else {
-    // Specific time
-    const minute = state.minute === "*" ? "every minute" : `minute ${state.minute}`;
-    const hour = state.hour === "*" ? "every hour" : formatHour(state.hour);
-    
-    if (state.hour === "*") {
-      parts.push(`Runs at ${minute} of every hour`);
-    } else {
-      parts.push(`Runs at ${hour}:${state.minute.padStart(2, "0")}`);
-    }
+    time = `At minute ${describeList(state.minute, FIELDS.minute, String)} past hour ${describeList(state.hour, FIELDS.hour, String)}`;
   }
-  
-  // Day constraints
+
+  const parts = [time];
+  const dayName = (n: number) => DAY_NAMES[n % 7];
+  const dom = state.dayOfMonth !== "*" ? `on the ${describeList(state.dayOfMonth, FIELDS.dayOfMonth, ordinal)} of the month` : "";
+  let dow = "";
   if (state.dayOfWeek !== "*") {
-    if (state.dayOfWeek === "1-5") {
-      parts.push("on weekdays");
-    } else if (state.dayOfWeek === "6,0") {
-      parts.push("on weekends");
-    } else {
-      const days = formatDayOfWeek(state.dayOfWeek);
-      parts.push(`on ${days}`);
-    }
-  } else if (state.dayOfMonth !== "*") {
-    if (state.dayOfMonth === "1") {
-      parts.push("on the 1st of the month");
-    } else {
-      parts.push(`on day ${state.dayOfMonth} of the month`);
-    }
+    const days = expandField(state.dayOfWeek, FIELDS.dayOfWeek)!.map((d) => d % 7);
+    const set = [...new Set(days)].sort().join(",");
+    dow = set === "1,2,3,4,5" ? "on weekdays" : set === "0,6" ? "on weekends" : `on ${describeList(state.dayOfWeek, FIELDS.dayOfWeek, dayName)}`;
   }
-  
-  // Month constraints
-  if (state.month !== "*") {
-    const monthName = formatMonth(state.month);
-    parts.push(`in ${monthName}`);
-  }
-  
+  // When both day fields are restricted, cron runs on days matching either one
+  if (dom && dow) parts.push(`${dom} or ${dow}`);
+  else if (dom || dow) parts.push(dom || dow);
+  if (state.month !== "*") parts.push(`in ${describeList(state.month, FIELDS.month, (n) => MONTH_NAMES[n])}`);
   return parts.join(" ");
-}
-
-function formatHour(hour: string): string {
-  if (hour === "*") return "every hour";
-  if (hour.startsWith("*/")) return `every ${hour.substring(2)} hours`;
-  
-  const h = parseInt(hour);
-  if (h === 0) return "00";
-  if (h < 10) return `0${h}`;
-  return h.toString();
-}
-
-function formatDayOfWeek(dayOfWeek: string): string {
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  
-  if (dayOfWeek.includes(",")) {
-    return dayOfWeek.split(",").map(d => days[parseInt(d)]).join(", ");
-  }
-  
-  if (dayOfWeek.includes("-")) {
-    const [start, end] = dayOfWeek.split("-").map(d => parseInt(d));
-    return `${days[start]} to ${days[end]}`;
-  }
-  
-  return days[parseInt(dayOfWeek)];
-}
-
-function formatMonth(month: string): string {
-  const months = [
-    "", "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  
-  if (month.includes(",")) {
-    return month.split(",").map(m => months[parseInt(m)]).join(", ");
-  }
-  
-  return months[parseInt(month)];
 }
 
 export function copyToClipboard(text: string): Promise<void> {

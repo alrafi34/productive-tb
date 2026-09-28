@@ -1,5 +1,10 @@
+import ToolFaq from "@/components/ToolFaq";
+import { precisionRecallCalculatorConfig } from "./config";
 export default function PrecisionRecallCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = precisionRecallCalculatorConfig.seo;
   return (
+    <>
     <section className="mt-16 space-y-10 text-sm text-gray-600 leading-relaxed">
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">How the Precision Recall Calculator Works</h2>
@@ -109,37 +114,15 @@ MCC          = (TP×TN − FP×FN) ÷ √((TP+FP)(TP+FN)(TN+FP)(TN+FN))`}
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the difference between precision and recall?",
-              a: "Precision answers: of all predictions labeled positive, how many were correct? Recall answers: of all actual positives in the dataset, how many did the model identify? A model can have high precision with low recall (conservative) or high recall with low precision (aggressive).",
-            },
-            {
-              q: "When should I use F1 score instead of accuracy?",
-              a: "Use F1 when your dataset is imbalanced. If 95% of samples are class 0, a model predicting class 0 always achieves 95% accuracy but is completely useless. F1 balances precision and recall and is not inflated by a dominant class.",
-            },
-            {
-              q: "What is MCC (Matthews Correlation Coefficient)?",
-              a: "MCC is a correlation coefficient between actual and predicted binary classifications. It ranges from -1 (inverse prediction) to +1 (perfect prediction), with 0 representing random prediction. It is considered the most informative single metric for binary classification on imbalanced data.",
-            },
-            {
-              q: "What does a False Positive mean?",
-              a: "A False Positive (Type I error) occurs when the model predicts Positive but the true label is Negative. In spam detection: a legitimate email flagged as spam. In medical testing: a healthy patient testing positive for a disease.",
-            },
-            {
-              q: "Can this calculator handle multi-class classification?",
-              a: "This tool is designed for binary classification (one positive class vs one negative class). For multi-class problems, compute per-class TP/FP/FN/TN using a one-vs-rest approach and then macro/micro average the metrics.",
-            },
-          ].map(({ q, a }) => (
-            <div key={q}>
-              <h3 className="font-semibold text-gray-800 mb-1">{q}</h3>
-              <p>{a}</p>
-            </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
+        <ol className="space-y-2 list-decimal list-inside">
+          {howToSteps.map(({ name, text }) => (
+            <li key={name}><strong>{name}:</strong> {text}</li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
+    <ToolFaq items={faq} />
+    </>
   );
 }

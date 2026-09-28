@@ -7,8 +7,8 @@ export const colorPaletteExtractorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Color Palette Extractor – Get Dominant Colors from Images",
-    description: "Upload an image and instantly extract the top 5 dominant colors. Generate palettes, gradients, CSS variables, and accessibility checks. Free online tool.",
+    title: "Color Palette Extractor – Get Colors from an Image",
+    description: "Pull the 5 dominant colors from any photo as HEX, RGB and HSL, with lighter, darker and muted variations, gradients, contrast checks and CSS or Tailwind export.",
     keywords: [
       "color palette extractor",
       "extract colors from image",
@@ -27,11 +27,26 @@ export const colorPaletteExtractorConfig = {
       "color scheme generator"
     ],
     openGraph: {
-      title: "Color Palette Extractor – Get Dominant Colors from Images",
-      description: "Upload an image and instantly extract dominant colors with HEX, RGB, HSL formats. Generate gradients and check accessibility.",
+      title: "Color Palette Extractor – Get Colors from an Image",
+      description: "Pull the 5 dominant colors from any photo as HEX, RGB and HSL, with lighter, darker and muted variations, gradients, contrast checks and CSS or Tailwind export.",
       type: "website",
-      url: "/color-palette-extractor"
-    }
+      url: "https://productivetoolbox.com/tools/design/color-palette-extractor"
+    },
+    howToSteps: [
+      { name: "Add an image", text: "Upload a PNG, JPG, WebP or GIF, drag it onto the page, or paste it from the clipboard with Ctrl+V (Cmd+V on a Mac)." },
+      { name: "Get the palette", text: "The five dominant colors appear with their HEX, RGB and HSL values; click a value to copy it." },
+      { name: "Explore variations", text: "See lighter, darker, more saturated and muted versions of the palette, and gradients made from its colors." },
+      { name: "Check the contrast", text: "Look at the contrast ratio of every color pair and whether it passes WCAG AA (4.5:1) or AAA (7:1) for normal text." },
+      { name: "Export", text: "Copy the palette as CSS custom properties, SCSS variables, JSON or a Tailwind colors object, or download it as a PNG image." },
+    ],
+    faq: [
+      { q: "How are the dominant colors chosen?", a: "The image is scaled down and its pixels grouped with the median cut algorithm, which repeatedly splits the colors along their widest channel until there are five groups. Each group's average color becomes a palette color, so large areas of similar color count most." },
+      { q: "Why is a small but eye-catching color missing?", a: "The algorithm ranks colors by how much of the image they cover, so a small red logo on a large blue sky may not make the top five. Crop the image to the area you care about and extract again." },
+      { q: "What is the difference between HEX, RGB and HSL?", a: "They describe the same color in different ways. HEX (#3b82f6) is the compact form used in CSS and design tools, RGB (59, 130, 246) gives the red, green and blue amounts from 0 to 255, and HSL (217°, 91%, 60%) gives hue, saturation and lightness, which is easiest for making lighter or darker shades." },
+      { q: "What do WCAG AA and AAA mean here?", a: "They are contrast levels from the Web Content Accessibility Guidelines. Normal-size text needs a contrast ratio of at least 4.5:1 against its background for AA and 7:1 for AAA; large text (about 24 px, or 19 px bold) needs 3:1 and 4.5:1." },
+      { q: "How do I use the exported CSS variables?", a: "Paste the :root block into your stylesheet and use the colors with var(--color-1), var(--color-2) and so on, for example background: var(--color-1);. Rename them to roles such as --brand or --accent once you decide how each color is used." },
+      { q: "Are my images uploaded?", a: "No. The image is read and analyzed in your browser with the Canvas API and never leaves your device." },
+    ],
   },
   features: [
     "Extract 5 dominant colors from any image",

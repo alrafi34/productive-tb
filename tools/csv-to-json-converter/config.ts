@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free CSV to JSON Converter Online – Parse CSV to JSON Instantly",
-    description: "Free online CSV to JSON Converter. Parse CSV data into structured JSON format. Upload files, preview tables, copy or download JSON. Fast browser-based conversion.",
+    title: "CSV to JSON Converter – Free, Private, In Your Browser",
+    description: "Convert CSV to a JSON array of objects. Paste text or upload a file, pick comma, semicolon, tab or pipe, preview the table, then copy or download the JSON.",
     keywords: [
       "csv to json",
       "csv converter",
@@ -27,11 +27,26 @@ export const toolConfig = {
       "csv to json converter online"
     ],
     openGraph: {
-      title: "Free CSV to JSON Converter – Convert CSV to JSON Online",
-      description: "Instantly convert CSV data into JSON format. Parse CSV files, preview tables, and download JSON. Free online tool.",
+      title: "CSV to JSON Converter – Free, Private, In Your Browser",
+      description: "Convert CSV to a JSON array of objects. Paste text or upload a file, pick comma, semicolon, tab or pipe, preview the table, then copy or download the JSON.",
       type: "website",
-      url: "/csv-to-json-converter"
-    }
+      url: "https://productivetoolbox.com/tools/developer/csv-to-json-converter"
+    },
+    howToSteps: [
+      { name: "Add your CSV", text: "Paste CSV text into the input box or upload a .csv or .txt file, such as an export from Excel, Google Sheets or a database." },
+      { name: "Set the delimiter", text: "Choose comma, semicolon, tab or pipe, or turn on auto-detect. Files saved by Excel in much of Europe use semicolons." },
+      { name: "Choose the options", text: "Use the first row as JSON keys, trim spaces around values, handle quoted fields, and pick pretty-printed or minified JSON." },
+      { name: "Check the preview", text: "The table preview shows how rows and columns were read, with the row and column count." },
+      { name: "Copy or download", text: "Copy the JSON to the clipboard or download it as a .json file." },
+    ],
+    faq: [
+      { q: "How does CSV map to JSON?", a: "With Use first row as headers on, each following row becomes one JSON object whose keys are the header names, and the whole file becomes an array of those objects. With it off, the keys are column_1, column_2 and so on." },
+      { q: "Are numbers and true/false converted?", a: "No. Every value is kept as a JSON string, for example \"30\" rather than 30, because CSV has no data types and values such as ZIP codes (\"02115\") or IDs with leading zeros would be damaged by automatic conversion. Convert the fields you need in your own code." },
+      { q: "How are commas, quotes and line breaks inside a value handled?", a: "As in the CSV standard (RFC 4180): a value wrapped in double quotes may contain the delimiter and line breaks, and a doubled quote (\"\") inside it becomes one quote. For example \"Los Angeles, CA\" stays one value." },
+      { q: "Why is my file split into the wrong columns?", a: "The delimiter is probably different. Excel uses a semicolon in countries where the comma is the decimal separator, such as Germany, France and Spain; choose Semicolon or turn on auto-detect. Tab-separated files need Tab." },
+      { q: "What happens with blank or repeated column names?", a: "A blank header becomes column_1, column_2 and so on by position, and a repeated header gets a suffix such as email_2, so no column is dropped from the JSON. Empty lines in the file are skipped." },
+      { q: "Is my data uploaded?", a: "No. The file is read and converted in your browser, so it never leaves your device, which makes the tool safe for customer lists and other private data." },
+    ],
   },
   features: [
     "Real-time CSV to JSON conversion",

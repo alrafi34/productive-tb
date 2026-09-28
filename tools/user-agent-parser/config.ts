@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "User Agent Parser – Detect Browser, OS, and Device Instantly",
-    description: "Instantly detect your browser, operating system, device type, and rendering engine from the User-Agent string. Free developer tool for QA testing and browser debugging.",
+    title: "User Agent Parser – Detect Browser, OS & Device",
+    description: "See what your browser's User-Agent string says, or paste any UA to find the browser and version, operating system, device type and rendering engine.",
     keywords: [
       "user agent parser",
       "user agent checker",
@@ -27,11 +27,27 @@ export const toolConfig = {
       "free user agent tool"
     ],
     openGraph: {
-      title: "User Agent Parser – Detect Browser, OS, and Device Instantly",
-      description: "Instantly detect your browser, operating system, device type, and rendering engine from the User-Agent string. Free developer tool for QA testing.",
+      title: "User Agent Parser – Detect Browser, OS & Device",
+      description: "See what your browser's User-Agent string says, or paste any UA to find the browser and version, operating system, device type and rendering engine.",
       type: "website",
-      url: "/tools/developer/user-agent-parser"
-    }
+      url: "https://productivetoolbox.com/tools/developer/user-agent-parser"
+    },
+    howToSteps: [
+      { name: "See your own browser", text: "The tool reads your browser's User-Agent string when the page opens and shows the browser, version, operating system, device type and engine." },
+      { name: "Test another User-Agent", text: "Paste any User-Agent string, for example from a server log or bug report, into the manual testing box to parse it." },
+      { name: "Try the examples", text: "Click an example such as Safari on iPhone or Samsung Internet on Android to see how common browsers identify themselves." },
+      { name: "Copy the result", text: "Copy the parsed result as JSON or the raw string for documentation or a bug report." },
+      { name: "Reuse your history", text: "Your last 10 parsed strings are kept in this browser; click one to parse it again, or export the list as JSON." },
+    ],
+    faq: [
+      { q: "What is a User-Agent string?", a: "A line of text every browser sends in the User-Agent HTTP header to say which browser, version, operating system and device it runs on. For example, Chrome on Windows sends \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"." },
+      { q: "Why does almost every User-Agent start with Mozilla/5.0?", a: "For historical compatibility. In the 1990s, sites sent better pages to Netscape (Mozilla), so other browsers copied its token, and later browsers copied each other's. That is why Chrome also mentions Safari, AppleWebKit and Gecko." },
+      { q: "Why does Windows 11 show as Windows 10/11?", a: "Windows 11 browsers still send \"Windows NT 10.0\", exactly like Windows 10, so the User-Agent string alone cannot tell them apart. Sites that need the difference ask for the platform version through User-Agent Client Hints (Sec-CH-UA-Platform-Version) in Chromium browsers." },
+      { q: "Why is my Mac version shown as 10.15?", a: "Safari, Chrome and Firefox freeze the macOS version at 10.15 (Catalina) in the User-Agent string for privacy and compatibility, so any recent macOS release appears as 10.15." },
+      { q: "Why is Chrome on my iPhone reported with the WebKit engine?", a: "Apple requires every browser on iPhone and iPad to use WebKit, Safari's engine, so Chrome (CriOS), Firefox (FxiOS) and Edge on iOS all render with WebKit even though their names differ." },
+      { q: "Can a User-Agent string be faked?", a: "Yes. Any browser, script or bot can send any User-Agent, and browser developer tools include a switcher for testing. Use it for statistics and compatibility hints, not for security decisions." },
+      { q: "Is the User-Agent string being replaced?", a: "Partly. Chromium browsers now reduce the detail in the string and offer User-Agent Client Hints, which let a site request the exact platform version, device model or full browser version only when it needs them. Firefox and Safari still send a traditional, partly frozen string." },
+    ],
   },
   features: [
     "Automatic detection on page load",

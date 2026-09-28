@@ -1,6 +1,10 @@
 import React from 'react';
+import ToolFaq from "@/components/ToolFaq";
+import { colorBlindnessSimulatorConfig } from "./config";
 
 export default function ColorBlindnessSimulatorSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = colorBlindnessSimulatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       <section>
@@ -8,14 +12,14 @@ export default function ColorBlindnessSimulatorSEOContent() {
           Understanding Color Vision Deficiency
         </h2>
         <p className="text-gray-700 mb-4">
-          Color blindness, more accurately called color vision deficiency (CVD), affects approximately 8% of men and 0.5% of women worldwide. It's not actually "blindness" but rather a reduced ability to distinguish between certain colors. Understanding these differences is crucial for creating inclusive designs that work for everyone.
+          Color blindness, more accurately called color vision deficiency (CVD), affects about 8% of men and 0.5% of women of Northern European descent, and somewhat fewer in most other populations. It's not actually "blindness" but rather a reduced ability to distinguish between certain colors. Understanding these differences is crucial for creating inclusive designs that work for everyone.
         </p>
         
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           <div className="bg-red-50 p-4 rounded-lg">
             <h3 className="font-semibold text-red-800 mb-2">Red-Green Color Blindness</h3>
             <p className="text-red-700 text-sm">
-              The most common type, affecting about 6% of males. Includes Protanopia, Protanomaly, Deuteranopia, and Deuteranomaly.
+              The most common type, affecting about 8% of men of Northern European descent. Includes Protanopia, Protanomaly, Deuteranopia, and Deuteranomaly.
             </p>
           </div>
           <div className="bg-blue-50 p-4 rounded-lg">
@@ -89,40 +93,12 @@ export default function ColorBlindnessSimulatorSEOContent() {
           How to Use the Color Blindness Simulator
         </h2>
         <div className="space-y-4">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">1. Select Vision Type</h3>
-            <p className="text-gray-700 text-sm">
-              Choose from different types of color vision deficiency to see how they affect color perception. Start with Deuteranopia (most common) or Protanopia.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">2. Upload Your Design</h3>
-            <p className="text-gray-700 text-sm">
-              Upload screenshots of your website, app interface, or any design you want to test. Supported formats include PNG, JPG, and WebP.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">3. Use Comparison Mode</h3>
-            <p className="text-gray-700 text-sm">
-              Toggle between single view and side-by-side comparison to see the difference between normal vision and simulated color blindness.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">4. Test UI Components</h3>
-            <p className="text-gray-700 text-sm">
-              Use the UI Demo mode to see how common interface elements like buttons, alerts, and status indicators appear to users with color vision deficiency.
-            </p>
-          </div>
-          
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">5. Adjust Simulation Intensity</h3>
-            <p className="text-gray-700 text-sm">
-              Use the intensity slider to simulate partial color vision deficiency, which is more common than complete color blindness.
-            </p>
-          </div>
+          {howToSteps.map(({ name, text }, i) => (
+            <div key={name} className="bg-blue-50 p-4 rounded-lg">
+              <h3 className="font-semibold mb-2">{i + 1}. {name}</h3>
+              <p className="text-gray-700 text-sm">{text}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -287,40 +263,7 @@ export default function ColorBlindnessSimulatorSEOContent() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How accurate are color blindness simulators?</h3>
-            <p className="text-gray-700 text-sm">
-              Simulators provide a good approximation but can't perfectly replicate individual experiences. Color vision deficiency varies between people, and factors like screen settings and lighting conditions affect perception.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Should I design specifically for colorblind users?</h3>
-            <p className="text-gray-700 text-sm">
-              Rather than designing specifically for color blindness, focus on inclusive design principles that work for everyone. Use sufficient contrast, multiple visual cues, and don't rely solely on color.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">What's the difference between color blindness and color vision deficiency?</h3>
-            <p className="text-gray-700 text-sm">
-              "Color blindness" is a common term, but "color vision deficiency" is more accurate. Most people with CVD can see colors, but have difficulty distinguishing between certain color combinations.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Do I need to test for all types of color blindness?</h3>
-            <p className="text-gray-700 text-sm">
-              Focus on the most common types: Deuteranopia and Protanopia (red-green color blindness). These affect the majority of colorblind users. Testing for Tritanopia and monochromacy is also valuable but less critical.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

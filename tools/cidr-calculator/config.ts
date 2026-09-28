@@ -8,8 +8,8 @@ export const cidrCalculatorConfig = {
   icon: "🌐",
   free: true,
   seo: {
-    title: "Free CIDR Calculator Online – IP Subnet Calculator & CIDR Tool",
-    description: "Calculate CIDR notation, subnet masks, IP ranges, broadcast addresses, and usable hosts instantly. Free online CIDR calculator for networking, DevOps, cloud, and cybersecurity.",
+    title: "CIDR Calculator – IPv4 Subnet Mask & IP Range Tool",
+    description: "Find the network and broadcast address, subnet and wildcard mask, usable host range and host count of any IPv4 CIDR block. Free and instant.",
     keywords: [
       "CIDR calculator",
       "subnet calculator",
@@ -27,10 +27,25 @@ export const cidrCalculatorConfig = {
       "online subnet tool",
     ],
     openGraph: {
-      title: "Free CIDR Calculator Online – IP Subnet Calculator & CIDR Tool",
-      description: "Calculate CIDR notation, subnet masks, IP ranges, broadcast addresses, and usable hosts instantly. Free online CIDR calculator for networking, DevOps, cloud, and cybersecurity.",
+      title: "CIDR Calculator – IPv4 Subnet Mask & IP Range Tool",
+      description: "Find the network and broadcast address, subnet and wildcard mask, usable host range and host count of any IPv4 CIDR block. Free and instant.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/cidr-calculator`,
     },
+    howToSteps: [
+      { name: "Enter the IP and prefix", text: "Type an IPv4 address with its CIDR prefix, such as 192.168.1.1/24, or switch to Manual mode to enter the IP address and subnet mask separately." },
+      { name: "Adjust the prefix", text: "Use the slider or the quick-select buttons (/8, /16, /24, /28 …) to change the prefix length." },
+      { name: "Read the results", text: "The network address, broadcast address, usable host range, subnet and wildcard masks, IP class and address type update as you type." },
+      { name: "Copy, export or share", text: "Copy the summary, download it as TXT or JSON, or share a link that opens the same calculation." },
+    ],
+    faq: [
+      { q: "What is CIDR notation?", a: "CIDR (Classless Inter-Domain Routing) notation writes an IP address with the length of its network prefix. In 192.168.1.0/24, the first 24 bits identify the network and the remaining 8 bits identify hosts. CIDR replaced the old class A/B/C system so networks can be any size." },
+      { q: "How is the network address calculated?", a: "By a bitwise AND of the IP address and the subnet mask. For 192.168.1.25/24 the mask is 255.255.255.0, so the network address is 192.168.1.0." },
+      { q: "What is the broadcast address?", a: "The last address in the subnet: the network address with every host bit set to 1 (a bitwise OR with the wildcard mask). A packet sent to it reaches every host on the subnet. For 192.168.1.0/24 it is 192.168.1.255." },
+      { q: "How many usable hosts does a /24 have?", a: "A /24 has 2^8 = 256 addresses. The network and broadcast addresses are reserved, leaving 254 usable hosts. In general a prefix from /1 to /30 has 2^(32 − prefix) − 2 usable hosts." },
+      { q: "What are /31 and /32 subnets used for?", a: "A /31 has two addresses, both usable, for point-to-point links between routers (RFC 3021). A /32 is a single address, used for loopback interfaces, host routes and firewall rules that match one IP." },
+      { q: "What is a wildcard mask?", a: "The bitwise inverse of the subnet mask: it marks the host bits. For /24 (255.255.255.0) the wildcard mask is 0.0.0.255. Cisco access lists and OSPF network statements use wildcard masks." },
+      { q: "Does the calculator support IPv6?", a: "No, it works with IPv4 addresses only. IPv6 uses 128-bit addresses and a /64 is the standard subnet size, so IPv4 host counts and broadcast addresses do not apply." },
+    ],
   },
 };

@@ -1,4 +1,8 @@
+import ToolFaq from "@/components/ToolFaq";
+import { seoScoreCalculatorConfig } from "./config";
 export default function SEOScoreCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = seoScoreCalculatorConfig.seo;
   return (
     <>
       {/* ── 1. Introduction ── */}
@@ -67,13 +71,7 @@ export default function SEOScoreCalculatorSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {[
-                ["Enter Your Page Details", "Fill in the page title, meta description, target keyword, and URL slug. These four fields together account for 40 of the 100 possible points and are the highest-leverage items to get right before publishing."],
-                ["Add Content Statistics", "Enter your word count, H1 heading text, total image count, how many images have ALT text, and your internal and external link counts. Pull these from your CMS or from a browser inspection of the published page."],
-                ["Set Technical Flags", "Toggle HTTPS on or off to reflect your server setup. Toggle mobile-friendly if your page uses responsive design. Enable the canonical tag flag if your page template includes a canonical URL. Set the robots meta to index unless the page is intentionally excluded."],
-                ["Read Your Score & Grade", "Your SEO score (0–100), letter grade (F to A+), health status, and a prioritised list of recommendations update in real time as you fill in each field. Start fixing from the top of the recommendations list — those carry the most point weight."],
-                ["Export or Copy the Report", "Use the Export button to save a structured report as a text file, or copy the results to clipboard. Paste into a client report, a Notion audit doc, or a Linear issue tracker to keep a record of the before and after."],
-              ].map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -274,60 +272,7 @@ export default function SEOScoreCalculatorSEO() {
       </section>
 
       {/* ── 6. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is an SEO score and how is it measured?",
-              a: "An SEO score is a numerical estimate (0–100) of how well a page follows on-page optimisation best practices. It is not a metric that Google publishes or uses internally — it is a diagnostic tool built on publicly documented ranking signals. This calculator scores 13 factors including title length, meta description quality, keyword placement, content depth, image optimisation, internal linking, and technical settings like HTTPS and canonical tags. Each factor carries a specific point weight, and the total reflects how completely the page addresses the known on-page ranking signals.",
-            },
-            {
-              q: "What is the ideal title length for SEO?",
-              a: "Google truncates title tags in search results at roughly 600 pixels, which corresponds to 50–60 characters for standard fonts. Titles shorter than 50 characters tend to miss opportunities to include target keywords and secondary terms. Titles longer than 60–65 characters are cut off with an ellipsis, which reduces click-through rate. The most effective format places the primary keyword at the start of the title, followed by a secondary qualifier and the brand name at the end.",
-            },
-            {
-              q: "What is the ideal meta description length?",
-              a: "Meta descriptions should be 140–160 characters. Shorter descriptions miss the opportunity to include both the target keyword and a clear call to action. Longer descriptions are truncated in SERPs. While Google's algorithm does not use meta descriptions as a direct ranking factor, they appear as the text snippet beneath your title in search results and directly influence whether a user clicks through. A well-written meta description can improve click-through rate by 10–30%, making it one of the highest-leverage fields to optimise.",
-            },
-            {
-              q: "How much content do I need for good SEO?",
-              a: "For competitive keywords, pages ranking on page one typically have 1,500–2,500 words — not because length is rewarded directly, but because comprehensive pages naturally cover the full range of related questions, which earns them relevance across hundreds of long-tail queries. For informational queries with low competition, 600–800 well-structured words can be sufficient. The correct target is to be more complete than the pages currently ranking above you for your keyword, not to hit an arbitrary word count.",
-            },
-            {
-              q: "What keyword density should I aim for?",
-              a: "A keyword density of 0.5–2.5% is the safe target range. Below 0.5%, the page may not send a strong enough relevance signal. Above 2.5%, the page risks being flagged for keyword stuffing — an over-optimisation signal that Google's algorithms penalise. More important than density is placement: a keyword in the title tag, H1, first 100 words of the page, URL slug, and meta description sends a much stronger relevance signal than repetition in the body text alone.",
-            },
-            {
-              q: "Does HTTPS affect Google rankings?",
-              a: "Yes. Google confirmed HTTPS as a lightweight ranking signal in 2014, and it has been weighted more heavily as part of their security initiatives since. More importantly, Chrome marks non-HTTPS pages as 'Not Secure' in the address bar, which erodes user trust and increases bounce rate — an indirect negative ranking signal. Migrating from HTTP to HTTPS is a one-time technical task with a permanent SEO benefit and no downside if implemented correctly with proper 301 redirects.",
-            },
-            {
-              q: "What is a canonical tag and why does it matter?",
-              a: "A canonical tag is an HTML element in a page's <head> that tells search engines which URL is the authoritative version of the content. Without it, Google may index multiple URL variants of the same page — the version with tracking parameters, with and without trailing slashes, with different capitalisation — as separate pages with duplicate content. Duplicate content dilutes ranking signals across variants. A self-referencing canonical on every page pre-emptively prevents this and is worth the 3 points it adds to the score.",
-            },
-            {
-              q: "Why do image ALT attributes matter for SEO?",
-              a: "ALT attributes serve two purposes: accessibility and relevance. For accessibility, screen readers announce ALT text to visually impaired users — missing ALT is a WCAG 2.1 compliance failure. For SEO, Google's crawlers cannot interpret visual content in images; they rely on ALT text to understand what an image depicts and how it relates to the page's topic. Pages with fully described images rank better in Google Image Search and send stronger topical relevance signals to the main organic index.",
-            },
-            {
-              q: "Is this tool a replacement for Ahrefs, SEMrush, or Screaming Frog?",
-              a: "No — it is a complement to them, not a replacement. This calculator provides an instant on-page checklist for a single page, which is ideal for pre-publish checks and quick audits. Enterprise SEO platforms like Ahrefs and SEMrush crawl entire sites, measure backlink profiles, track rankings over time, and analyse Core Web Vitals. Screaming Frog can crawl thousands of URLs in a batch. This tool is most useful as a first-pass filter before you invest time in deeper analysis with those platforms.",
-            },
-            {
-              q: "Does this calculator store my data?",
-              a: "No. Every calculation in this tool runs entirely in your browser using JavaScript. No page data, keywords, titles, or descriptions are transmitted to any server. This makes the calculator safe to use for auditing client pages, proprietary content, or pages under embargo before launch. When you close the tab, the data is gone — nothing is stored in cookies, localStorage, or any server-side database.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 7. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
