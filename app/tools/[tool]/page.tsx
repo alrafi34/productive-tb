@@ -14,6 +14,7 @@ const categoryAccent: Record<string, { badge: string; icon: string }> = {
   design:           { badge: "bg-pink-100 text-pink-700",      icon: "bg-pink-50 border-pink-100"      },
   security:         { badge: "bg-red-100 text-red-700",        icon: "bg-red-50 border-red-100"        },
   image:            { badge: "bg-amber-100 text-amber-700",    icon: "bg-amber-50 border-amber-100"    },
+  pdf:              { badge: "bg-red-100 text-red-700",        icon: "bg-red-50 border-red-100"        },
   creator:          { badge: "bg-orange-100 text-orange-700",  icon: "bg-orange-50 border-orange-100"  },
   visualization:    { badge: "bg-cyan-100 text-cyan-700",      icon: "bg-cyan-50 border-cyan-100"      },
   productivity:     { badge: "bg-lime-100 text-lime-700",      icon: "bg-lime-50 border-lime-100"      },
