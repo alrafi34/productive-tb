@@ -17,6 +17,10 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   /* ── Image ── */
   ["image-compressor", "image-resizer", "exif-remover", "favicon-generator", "base64-image-encoder", "aspect-ratio-calculator"],
   ["image-to-grayscale", "dithering-filter", "duotone-filter", "color-blindness-simulator"],
+  ["image-converter", "image-cropper", "image-to-text"],
+
+  /* ── PDF ── */
+  ["jpg-to-pdf", "merge-pdf", "split-pdf"],
 
   /* ── Design ── */
   ["hex-to-rgb-converter", "hex-to-rgba-converter", "color-format-converter", "hsl-color-slider", "random-hex-color-generator"],
@@ -140,6 +144,12 @@ export const NEXT_STEPS: Readonly<Record<string, readonly string[]>> = {
   "word-counter": ["reading-time-calculator", "keyword-density-checker", "sentence-case-converter"],
   "image-compressor": ["image-resizer", "exif-remover", "base64-image-encoder"],
   "image-resizer": ["image-compressor", "aspect-ratio-calculator", "favicon-generator"],
+  "image-converter": ["image-compressor", "image-resizer", "jpg-to-pdf"],
+  "image-cropper": ["image-resizer", "image-compressor", "image-converter"],
+  "image-to-text": ["word-counter", "sentence-case-converter", "image-cropper"],
+  "jpg-to-pdf": ["merge-pdf", "image-compressor", "image-cropper"],
+  "merge-pdf": ["split-pdf", "jpg-to-pdf"],
+  "split-pdf": ["merge-pdf", "jpg-to-pdf"],
   "password-generator": ["password-strength-meter", "hash-generator", "username-generator"],
   "json-validator": ["json-formatter", "json-to-csv", "yaml-to-json-converter"],
   "base64-encoder-decoder": ["url-encoder-decoder", "jwt-debugger", "base32-encoder"],
@@ -215,6 +225,12 @@ export const POPULAR_POOL: readonly string[] = [
   "lorem-ipsum-generator",
   "whitespace-remover",
   "image-resizer",
+  "image-converter",
+  "image-cropper",
+  "image-to-text",
+  "jpg-to-pdf",
+  "merge-pdf",
+  "split-pdf",
   "favicon-generator",
   "exif-remover",
   "image-to-grayscale",
