@@ -42,11 +42,14 @@ function generateSentence(wordPool: string[], minWords = 5, maxWords = 15): stri
   return capitalize(words.join(' ')) + '.';
 }
 
-function generateParagraph(wordPool: string[], minSentences = 3, maxSentences = 7): string {
+const CLASSIC_OPENING = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+function generateParagraph(wordPool: string[], minSentences = 3, maxSentences = 7, classicStart = false): string {
   const sentenceCount = Math.floor(Math.random() * (maxSentences - minSentences + 1)) + minSentences;
   const sentences: string[] = [];
   for (let i = 0; i < sentenceCount; i++) {
-    sentences.push(generateSentence(wordPool));
+    // The classic opening replaces the first sentence, so the count stays the same
+    sentences.push(i === 0 && classicStart ? CLASSIC_OPENING : generateSentence(wordPool));
   }
   return sentences.join(' ');
 }
@@ -59,11 +62,7 @@ export function generateText(options: GeneratorOptions): GeneratedResult {
   if (options.type === 'paragraphs') {
     const paragraphs: string[] = [];
     for (let i = 0; i < options.count; i++) {
-      let para = generateParagraph(wordPool);
-      if (i === 0 && options.startWithLorem) {
-        para = 'Lorem ipsum ' + para.substring(para.indexOf(' ') + 1);
-      }
-      paragraphs.push(para);
+      paragraphs.push(generateParagraph(wordPool, 3, 7, i === 0 && options.startWithLorem));
     }
     text = paragraphs.join('\n\n');
     html = options.includeHtml 
@@ -72,11 +71,7 @@ export function generateText(options: GeneratorOptions): GeneratedResult {
   } else if (options.type === 'sentences') {
     const sentences: string[] = [];
     for (let i = 0; i < options.count; i++) {
-      let sentence = generateSentence(wordPool);
-      if (i === 0 && options.startWithLorem) {
-        sentence = 'Lorem ipsum ' + sentence.substring(sentence.indexOf(' ') + 1);
-      }
-      sentences.push(sentence);
+      sentences.push(i === 0 && options.startWithLorem ? CLASSIC_OPENING : generateSentence(wordPool));
     }
     text = sentences.join(' ');
     html = options.includeHtml 
@@ -84,9 +79,9 @@ export function generateText(options: GeneratorOptions): GeneratedResult {
       : text;
   } else {
     const words = generateWords(options.count, wordPool);
-    if (options.startWithLorem && words.length > 0) {
-      words[0] = 'Lorem';
-      if (words.length > 1) words[1] = 'ipsum';
+    if (options.startWithLorem) {
+      // "Lorem ipsum dolor sit amet …" for as many of the first words as were asked for
+      ['lorem', 'ipsum', 'dolor', 'sit', 'amet'].slice(0, words.length).forEach((w, k) => { words[k] = w; });
     }
     text = capitalize(words.join(' ')) + '.';
     html = options.includeHtml 

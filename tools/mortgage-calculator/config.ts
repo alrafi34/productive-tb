@@ -58,7 +58,7 @@ export const mortgageCalculatorConfig = {
     "Compare 15, 20 and 30-year terms",
     "Extra payment savings",
     "Full amortization schedule with CSV export",
-    "Multi-currency: USD, EUR, GBP, CAD, AUD, CHF, INR",
+    "Multi-currency: USD, EUR, GBP, CAD, AUD, CHF",
     "100% client-side processing"
   ]
 };

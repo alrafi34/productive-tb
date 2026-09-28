@@ -52,11 +52,11 @@ const faqItems = [
 ];
 
 const howToSteps = [
-  "Enter your annual salary amount.",
+  "Enter your pay and choose whether it is per year, month, week, day or hour.",
   "Set your work hours per week.",
   "Set your work days per week.",
   "Select preferred currency and decimal precision.",
-  "Review monthly, weekly, daily, and hourly values instantly.",
+  "Review the annual, monthly, weekly, daily and hourly values instantly.",
   "Copy hourly or full summary values when needed.",
   "Save salary scenarios in local history for quick comparison.",
 ];

@@ -51,7 +51,7 @@ export default function DateDifferenceCalculatorSEO() {
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">3</span>
                 <span>
                   <strong>Read instant results:</strong> Get the difference in years, months, and days, plus total days,
-                  total weeks, and total months. If needed, enable time details for hours, minutes, and seconds.
+                  total weeks, total months and weekdays. Tick the end-date option to count the last day too.
                 </span>
               </li>
             </ol>
@@ -71,7 +71,7 @@ export default function DateDifferenceCalculatorSEO() {
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Include time difference when precision matters
+                Count the end date and see weekdays (Mon–Fri)
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
@@ -116,11 +116,11 @@ export default function DateDifferenceCalculatorSEO() {
           </div>
           <div className="bg-gray-50 rounded-lg p-5">
             <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Optional Time Component
+              End Date and Weekdays
             </h3>
             <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Enable time details to include hours, minutes, and seconds. This helps with deadline planning, detailed
-              countdowns, and precise duration checks.
+              Include the end date when both days count, such as a hotel stay or a leave request, and use the weekday
+              count to plan working days (public holidays are not subtracted).
             </p>
           </div>
         </div>
@@ -265,8 +265,8 @@ export default function DateDifferenceCalculatorSEO() {
               dates around February 29.
             </p>
             <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              When you enable time difference, the tool also shows hours, minutes, and seconds to add precision for detailed
-              scheduling and countdown use cases.
+              The tool also counts the weekdays (Monday to Friday) in the range, and can include the end date when both the
+              first and last day should count.
             </p>
           </div>
         </div>
@@ -300,11 +300,10 @@ export default function DateDifferenceCalculatorSEO() {
 
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I include hours, minutes, and seconds?
+              Does it count the end date and working days?
             </h3>
             <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Yes. Turn on the include-time option to add hours, minutes, and seconds to the date difference result for more
-              precise countdowns and deadline planning.
+              By default the end date is not counted, so 1 January to 2 January is 1 day. Tick Include the end date to count both days (2 days). The result also shows the weekdays (Monday to Friday) in the range; public holidays are not subtracted.
             </p>
           </div>
           

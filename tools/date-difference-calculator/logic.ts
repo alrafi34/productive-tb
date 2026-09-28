@@ -84,6 +84,20 @@ export function calculateDateDifference(
   return result;
 }
 
+/* Weekdays (Monday to Friday) from start up to, but not including, end. */
+export function countWeekdays(startDate: Date, endDate: Date): number {
+  const total = daysBetween(startDate, endDate);
+  if (total <= 0) return 0;
+  const full = Math.floor(total / 7);
+  let count = full * 5;
+  const startDow = startOfDay(startDate).getDay();
+  for (let i = 0; i < total % 7; i++) {
+    const dow = (startDow + i) % 7;
+    if (dow !== 0 && dow !== 6) count++;
+  }
+  return count;
+}
+
 export function formatDateDifference(diff: DateDifference, format: 'full' | 'years' | 'months' | 'days' | 'weeks' = 'full'): string {
   switch (format) {
     case 'years':

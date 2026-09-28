@@ -30,6 +30,15 @@ export function calculateROI(
   };
 }
 
+/* Annualized return (CAGR) over a holding period in years:
+   ((current / initial)^(1 / years) − 1) × 100. A total loss is −100%. */
+export function calculateAnnualizedReturn(initialInvestment: number, currentValue: number, years: number): number | null {
+  if (!(initialInvestment > 0) || !(years > 0) || !(currentValue >= 0)) return null;
+  if (currentValue === 0) return -100;
+  const r = (Math.pow(currentValue / initialInvestment, 1 / years) - 1) * 100;
+  return isFinite(r) ? r : null;
+}
+
 export function formatCurrency(value: number, currency: Currency, precision: number = 2): string {
   if (isNaN(value)) return `${currency}0`;
   return `${currency}${new Intl.NumberFormat('en-US', {

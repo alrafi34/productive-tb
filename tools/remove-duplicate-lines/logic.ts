@@ -4,7 +4,7 @@ export function removeDuplicateLines(
   text: string,
   options: ProcessingOptions
 ): ProcessingResult {
-  const lines = text.split('\n');
+  const lines = text.split(/\r?\n/);
   const totalLines = lines.length;
   let emptyLinesRemoved = 0;
 
@@ -86,7 +86,12 @@ export function applySorting(lines: string[], order: SortOrder): string[] {
   } else if (order === 'desc') {
     return sorted.sort((a, b) => b.localeCompare(a, undefined, { numeric: true }));
   } else if (order === 'random') {
-    return sorted.sort(() => Math.random() - 0.5);
+    // Fisher–Yates: every order equally likely (sort with a random comparator is biased)
+    for (let i = sorted.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [sorted[i], sorted[j]] = [sorted[j], sorted[i]];
+    }
+    return sorted;
   }
   
   return sorted;
@@ -100,7 +105,7 @@ export function applyTextTransform(text: string, transform: TextTransform): stri
   } else if (transform === 'lowercase') {
     return text.toLowerCase();
   } else if (transform === 'capitalize') {
-    return text.split('\n').map(line => 
+    return text.split(/\r?\n/).map(line => 
       line.charAt(0).toUpperCase() + line.slice(1).toLowerCase()
     ).join('\n');
   }
@@ -109,7 +114,7 @@ export function applyTextTransform(text: string, transform: TextTransform): stri
 }
 
 export function findDuplicates(text: string, ignoreCase: boolean, trimWhitespace: boolean): string[] {
-  const lines = text.split('\n').map(line => trimWhitespace ? line.trim() : line);
+  const lines = text.split(/\r?\n/).map(line => trimWhitespace ? line.trim() : line);
   const seen = new Set<string>();
   const duplicates = new Set<string>();
 

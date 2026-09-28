@@ -153,7 +153,7 @@ export function calculateAffordability(
   return principal;
 }
 
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'CHF' | 'INR';
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'CHF';
 
 export const CURRENCIES: { code: CurrencyCode; label: string }[] = [
   { code: 'USD', label: 'USD ($)' },
@@ -162,7 +162,6 @@ export const CURRENCIES: { code: CurrencyCode; label: string }[] = [
   { code: 'CAD', label: 'CAD (CA$)' },
   { code: 'AUD', label: 'AUD (A$)' },
   { code: 'CHF', label: 'CHF' },
-  { code: 'INR', label: 'INR (₹)' },
 ];
 
 /* The visitor's likely currency, from the timezone first (browsers are often
@@ -173,12 +172,11 @@ export function guessCurrency(timeZone?: string, language?: string): CurrencyCod
     const lang = language ?? (typeof navigator !== 'undefined' ? navigator.language : '');
     if (zone === 'Europe/London') return 'GBP';
     if (zone === 'Europe/Zurich') return 'CHF';
-    if (zone === 'Asia/Kolkata' || zone === 'Asia/Calcutta') return 'INR';
     if (zone.startsWith('Australia/')) return 'AUD';
     if (/^America\/(Toronto|Vancouver|Montreal|Edmonton|Winnipeg|Halifax|Regina|St_Johns)$/.test(zone)) return 'CAD';
     if (zone.startsWith('Europe/')) return 'EUR';
     const region = /[-_]([A-Za-z]{2})\b/.exec(lang || '')?.[1]?.toUpperCase();
-    const byRegion: Record<string, CurrencyCode> = { GB: 'GBP', CA: 'CAD', AU: 'AUD', CH: 'CHF', IN: 'INR', DE: 'EUR', FR: 'EUR', ES: 'EUR', IT: 'EUR', NL: 'EUR', IE: 'EUR' };
+    const byRegion: Record<string, CurrencyCode> = { GB: 'GBP', CA: 'CAD', AU: 'AUD', CH: 'CHF', DE: 'EUR', FR: 'EUR', ES: 'EUR', IT: 'EUR', NL: 'EUR', IE: 'EUR' };
     if (region && byRegion[region]) return byRegion[region];
   } catch {
     // fall through
@@ -275,11 +273,11 @@ export function clearHistory(): void {
 
 // Validate inputs
 export function validateInputs(inputs: MortgageInputs): string | null {
-  if (inputs.loanAmount <= 0) return "Loan amount must be greater than 0";
+  if (inputs.loanAmount <= 0) return "Home price must be greater than 0";
   if (inputs.interestRate < 0 || inputs.interestRate > 30) return "Interest rate must be between 0% and 30%";
   if (inputs.loanTermYears <= 0 || inputs.loanTermYears > 50) return "Loan term must be between 1 and 50 years";
   if (inputs.downPayment < 0) return "Down payment cannot be negative";
-  if (inputs.downPayment >= inputs.loanAmount) return "Down payment must be less than loan amount";
+  if (inputs.downPayment >= inputs.loanAmount) return "Down payment must be less than the home price";
   if (inputs.extraPayment < 0) return "Extra payment cannot be negative";
   if ((inputs.propertyTaxRate ?? 0) < 0 || (inputs.propertyTaxRate ?? 0) > 10) return "Property tax rate must be between 0% and 10% a year";
   if ((inputs.homeInsurance ?? 0) < 0) return "Home insurance cannot be negative";

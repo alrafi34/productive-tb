@@ -32,92 +32,139 @@ export function formatNumber(num: number): string {
 }
 
 // Evaluate mathematical expression
+/*
+ * Evaluates a calculator expression with a small recursive-descent parser
+ * (no eval): numbers (including 1.2e+10), π and e, + − × ÷ * /, ^ (right
+ * associative, so 2^3^2 = 2^9 and −2^2 = −4), postfix ! for factorials,
+ * brackets (missing closing ones at the end are added), implied
+ * multiplication (2π, 3(4+1), 2sin(30)) and sin, cos, tan, asin, acos,
+ * atan, log (base 10), ln and sqrt / √, in degrees or radians.
+ */
 export function evaluateExpression(expr: string, angleMode: AngleMode): { result: number; error?: string } {
+  if (!expr || expr.trim() === '') return { result: 0 };
+
+  const src = expr.replace(/\s+/g, '').replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+  let i = 0;
+  const peek = () => src[i];
+  const fail = (msg: string): never => { throw new Error(msg); };
+  const FUNCS = ['asin', 'acos', 'atan', 'sqrt', 'sin', 'cos', 'tan', 'log', 'ln'];
+
+  const toRad = (x: number) => (angleMode === 'deg' ? toRadians(x) : x);
+  const fromRad = (x: number) => (angleMode === 'deg' ? toDegrees(x) : x);
+
+  const applyFunc = (fn: string, x: number): number => {
+    switch (fn) {
+      case 'sin': return Math.sin(toRad(x));
+      case 'cos': return Math.cos(toRad(x));
+      case 'tan': {
+        const r = toRad(x);
+        // tan(90°), tan(270°), …: undefined rather than a huge number
+        if (Math.abs(Math.cos(r)) < 1e-12) fail('tan is undefined here');
+        return Math.tan(r);
+      }
+      case 'asin': if (x < -1 || x > 1) fail('asin needs a value from −1 to 1'); return fromRad(Math.asin(x));
+      case 'acos': if (x < -1 || x > 1) fail('acos needs a value from −1 to 1'); return fromRad(Math.acos(x));
+      case 'atan': return fromRad(Math.atan(x));
+      case 'log': if (x <= 0) fail('log needs a positive number'); return Math.log10(x);
+      case 'ln': if (x <= 0) fail('ln needs a positive number'); return Math.log(x);
+      case 'sqrt': if (x < 0) fail('Square root of a negative number'); return Math.sqrt(x);
+      default: return fail('Unknown function');
+    }
+  };
+
+  const startsPrimary = () => {
+    const c = peek();
+    return c !== undefined && (/[\d.(πe√]/.test(c) || FUNCS.some((f) => src.startsWith(f, i)));
+  };
+
+  function primary(): number {
+    const c = peek();
+    if (c === undefined) return fail('Incomplete expression');
+    if (c === '(') {
+      i++;
+      const v = expression();
+      if (peek() === ')') i++;
+      else if (i < src.length) fail('Missing )');
+      return v;
+    }
+    if (/[\d.]/.test(c)) {
+      const m = /^(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/i.exec(src.slice(i));
+      if (!m) return fail('Invalid number');
+      i += m[0].length;
+      return parseFloat(m[0]);
+    }
+    if (c === 'π') { i++; return Math.PI; }
+    if (c === '√') { i++; return applyFunc('sqrt', postfix()); }
+    const fn = FUNCS.find((f) => src.startsWith(f, i));
+    if (fn) {
+      i += fn.length;
+      if (peek() !== '(') return fail(`${fn} needs brackets, e.g. ${fn}(30)`);
+      return applyFunc(fn, primary());
+    }
+    if (c === 'e') { i++; return Math.E; }
+    return fail(`Unexpected "${c}"`);
+  }
+
+  function postfix(): number {
+    let v = primary();
+    while (peek() === '!') {
+      i++;
+      if (!Number.isInteger(v) || v < 0) fail('Factorial needs a whole number ≥ 0');
+      v = factorial(v);
+    }
+    return v;
+  }
+
+  function power(): number {
+    const base = postfix();
+    if (peek() === '^') {
+      i++;
+      return Math.pow(base, unary());
+    }
+    return base;
+  }
+
+  function unary(): number {
+    if (peek() === '-') { i++; return -unary(); }
+    if (peek() === '+') { i++; return unary(); }
+    return power();
+  }
+
+  function term(): number {
+    let v = unary();
+    for (;;) {
+      const c = peek();
+      if (c === '*') { i++; v *= unary(); }
+      else if (c === '/') {
+        i++;
+        const d = unary();
+        if (d === 0) fail('Cannot divide by zero');
+        v /= d;
+      } else if (startsPrimary()) v *= power();
+      else return v;
+    }
+  }
+
+  function expression(): number {
+    let v = term();
+    for (;;) {
+      const c = peek();
+      if (c === '+') { i++; v += term(); }
+      else if (c === '-') { i++; v -= term(); }
+      else return v;
+    }
+  }
+
   try {
-    if (!expr || expr.trim() === '') {
-      return { result: 0 };
-    }
-
-    // Replace mathematical symbols and functions
-    let processedExpr = expr
-      .replace(/×/g, '*')
-      .replace(/÷/g, '/')
-      .replace(/π/g, Math.PI.toString())
-      .replace(/e(?![0-9])/g, Math.E.toString())
-      .replace(/\^/g, '**');
-
-    // Handle trigonometric functions
-    const trigFunctions = ['sin', 'cos', 'tan', 'asin', 'acos', 'atan'];
-    trigFunctions.forEach(fn => {
-      const regex = new RegExp(`${fn}\\(([^)]+)\\)`, 'g');
-      processedExpr = processedExpr.replace(regex, (match, arg) => {
-        const value = evaluateExpression(arg, angleMode).result;
-        let result: number;
-        
-        if (fn === 'sin') {
-          result = angleMode === 'deg' ? Math.sin(toRadians(value)) : Math.sin(value);
-        } else if (fn === 'cos') {
-          result = angleMode === 'deg' ? Math.cos(toRadians(value)) : Math.cos(value);
-        } else if (fn === 'tan') {
-          result = angleMode === 'deg' ? Math.tan(toRadians(value)) : Math.tan(value);
-        } else if (fn === 'asin') {
-          result = Math.asin(value);
-          result = angleMode === 'deg' ? toDegrees(result) : result;
-        } else if (fn === 'acos') {
-          result = Math.acos(value);
-          result = angleMode === 'deg' ? toDegrees(result) : result;
-        } else if (fn === 'atan') {
-          result = Math.atan(value);
-          result = angleMode === 'deg' ? toDegrees(result) : result;
-        } else {
-          result = 0;
-        }
-        
-        return result.toString();
-      });
-    });
-
-    // Handle logarithmic functions
-    processedExpr = processedExpr.replace(/log\(([^)]+)\)/g, (match, arg) => {
-      const value = evaluateExpression(arg, angleMode).result;
-      return Math.log10(value).toString();
-    });
-
-    processedExpr = processedExpr.replace(/ln\(([^)]+)\)/g, (match, arg) => {
-      const value = evaluateExpression(arg, angleMode).result;
-      return Math.log(value).toString();
-    });
-
-    // Handle square root
-    processedExpr = processedExpr.replace(/√\(([^)]+)\)/g, (match, arg) => {
-      const value = evaluateExpression(arg, angleMode).result;
-      return Math.sqrt(value).toString();
-    });
-
-    processedExpr = processedExpr.replace(/sqrt\(([^)]+)\)/g, (match, arg) => {
-      const value = evaluateExpression(arg, angleMode).result;
-      return Math.sqrt(value).toString();
-    });
-
-    // Handle factorial
-    processedExpr = processedExpr.replace(/(\d+)!/g, (match, num) => {
-      return factorial(parseInt(num)).toString();
-    });
-
-    // Evaluate the expression safely
-    const result = Function(`'use strict'; return (${processedExpr})`)();
-    
-    if (typeof result !== 'number' || !isFinite(result)) {
-      return { result: 0, error: 'Invalid calculation' };
-    }
-
+    const result = expression();
+    if (i < src.length) fail(`Unexpected "${src[i]}"`);
+    if (!isFinite(result)) return { result: 0, error: 'Result is too large' };
     return { result };
-  } catch (error) {
-    return { result: 0, error: 'Invalid expression' };
+  } catch (err) {
+    return { result: 0, error: err instanceof Error ? err.message : 'Invalid expression' };
   }
 }
 
-// Calculate factorial
 export function factorial(n: number): number {
   if (n < 0) return NaN;
   if (n === 0 || n === 1) return 1;

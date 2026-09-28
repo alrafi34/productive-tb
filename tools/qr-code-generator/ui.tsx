@@ -32,6 +32,7 @@ export default function QRCodeGeneratorUI() {
   
   const [inputType, setInputType] = useState<string>("text");
   const [validation, setValidation] = useState<{ valid: boolean; message?: string }>({ valid: true });
+  const [renderError, setRenderError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [history, setHistory] = useState<QRHistory[]>([]);
   const [showHistory, setShowHistory] = useState(false);
@@ -54,7 +55,7 @@ export default function QRCodeGeneratorUI() {
   const debouncedGenerate = useCallback(
     debounce((opts: QROptions) => {
       if (canvasRef.current && opts.text.trim()) {
-        generateQRCode(opts, canvasRef.current);
+        generateQRCode(opts, canvasRef.current).then(setRenderError);
       }
     }, 150),
     []
@@ -97,7 +98,7 @@ export default function QRCodeGeneratorUI() {
   
   // Download QR code
   const handleDownload = () => {
-    if (canvasRef.current && options.text.trim()) {
+    if (canvasRef.current && options.text.trim() && validation.valid && !renderError) {
       const filename = `qr-code-${Date.now()}`;
       downloadQRCode(canvasRef.current, filename);
       
@@ -109,7 +110,7 @@ export default function QRCodeGeneratorUI() {
   
   // Copy to clipboard
   const handleCopy = async () => {
-    if (canvasRef.current && options.text.trim()) {
+    if (canvasRef.current && options.text.trim() && validation.valid && !renderError) {
       const success = await copyQRCodeToClipboard(canvasRef.current);
       if (success) {
         setCopied(true);
@@ -225,6 +226,9 @@ export default function QRCodeGeneratorUI() {
                 className="w-full h-32 px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-primary resize-none"
               />
               
+              {validation.valid && renderError && (
+                <p className="text-red-600 text-sm mt-2">{renderError}</p>
+              )}
               {!validation.valid && validation.message && (
                 <p className="text-red-600 text-sm mt-2">{validation.message}</p>
               )}

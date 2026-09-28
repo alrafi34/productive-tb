@@ -32,6 +32,8 @@ export default function ScientificCalculatorUI() {
   const [showHistory, setShowHistory] = useState<boolean>(true);
   const [copied, setCopied] = useState<string>("");
   const [error, setError] = useState<string>("");
+  // After "=", a digit or function starts a new expression; an operator continues from the result
+  const [justEvaluated, setJustEvaluated] = useState(false);
 
   useEffect(() => {
     setHistory(getHistory());
@@ -41,7 +43,10 @@ export default function ScientificCalculatorUI() {
 
   const appendToken = (value: string) => {
     setError("");
+    const fresh = justEvaluated;
+    setJustEvaluated(false);
     setExpression((prev) => {
+      if (fresh) prev = "";
       if ((prev === "" || prev === "0") && /^\d$/.test(value)) {
         setDisplay(value);
         return value;
@@ -55,7 +60,10 @@ export default function ScientificCalculatorUI() {
 
   const appendFunction = (fn: string) => {
     setError("");
+    const fresh = justEvaluated;
+    setJustEvaluated(false);
     setExpression((prev) => {
+      if (fresh || prev === "0") prev = "";
       const next = `${prev}${fn}(`;
       setDisplay(next);
       return next;
@@ -64,6 +72,7 @@ export default function ScientificCalculatorUI() {
 
   const appendOperator = (operator: string) => {
     setError("");
+    setJustEvaluated(false);
     setExpression((prev) => {
       if (!prev && operator !== "-") return prev;
 
@@ -107,6 +116,7 @@ export default function ScientificCalculatorUI() {
     setDisplay(formatted);
     setExpression(formatted);
     setError("");
+    setJustEvaluated(true);
 
     if (saveHistoryItem) {
       saveToHistory(sourceExpr, formatted);
@@ -151,6 +161,7 @@ export default function ScientificCalculatorUI() {
     setDisplay(formatted);
     setExpression(formatted);
     setError("");
+    setJustEvaluated(true);
   };
 
   const handleRandom = () => {

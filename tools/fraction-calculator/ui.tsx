@@ -23,6 +23,9 @@ export default function FractionCalculatorUI() {
 
   // Fraction B
   const [numB, setNumB] = useState<string>("3");
+  // Optional whole-number parts, for mixed numbers such as 1 1/2
+  const [wholeA, setWholeA] = useState<string>("");
+  const [wholeB, setWholeB] = useState<string>("");
   const [denB, setDenB] = useState<string>("4");
 
   // Operation
@@ -50,55 +53,65 @@ export default function FractionCalculatorUI() {
     setHistory(getHistory());
   }, []);
 
+  /* A fraction from its inputs, or an error message. Whole numbers only:
+     1.5 must not be read as 1 the way parseInt would. */
+  const readFraction = (whole: string, num: string, den: string, name: string): Fraction | string => {
+    const isInt = (s: string) => /^\s*-?\d+\s*$/.test(s);
+    if (!isInt(num) || !isInt(den) || (whole.trim() !== "" && !isInt(whole))) {
+      return `Fraction ${name}: use whole numbers (for 1.5 enter 3/2 or 1 1/2)`;
+    }
+    const n = parseInt(num, 10);
+    const d = parseInt(den, 10);
+    if (d === 0) return `Fraction ${name}: the denominator cannot be 0`;
+    if (whole.trim() === "") return { numerator: n, denominator: d };
+    // A mixed number such as -2 1/3 is −(2 + 1/3); the sign comes from the whole part
+    const negative = whole.trim().startsWith("-");
+    const improper = Math.abs(parseInt(whole, 10)) * Math.abs(d) + Math.abs(n);
+    return { numerator: negative ? -improper : improper, denominator: Math.abs(d) };
+  };
+
+  const compute = (): { a: Fraction; b: Fraction; r: FractionResult } | string => {
+    const a = readFraction(wholeA, numA, denA, "A");
+    if (typeof a === "string") return a;
+    const b = readFraction(wholeB, numB, denB, "B");
+    if (typeof b === "string") return b;
+    if (operation === "divide" && b.numerator === 0) return "Cannot divide by zero: Fraction B is 0";
+    return { a, b, r: calculateFractions(a, b, operation) };
+  };
+
   // Calculate
   const handleCalculate = () => {
-    const nA = parseInt(numA);
-    const dA = parseInt(denA);
-    const nB = parseInt(numB);
-    const dB = parseInt(denB);
-
-    // Validation
-    if (!isValidFraction(nA, dA)) {
-      setError("Invalid Fraction A");
+    const c = compute();
+    if (typeof c === "string") {
+      setError(c);
+      setResult(null);
       return;
     }
-    if (!isValidFraction(nB, dB)) {
-      setError("Invalid Fraction B");
-      return;
-    }
-
     setError("");
-
-    const fractionA: Fraction = { numerator: nA, denominator: dA };
-    const fractionB: Fraction = { numerator: nB, denominator: dB };
-
-    const calcResult = calculateFractions(fractionA, fractionB, operation);
-    setResult(calcResult);
-
-    saveToHistory(fractionA, fractionB, operation, calcResult);
+    setResult(c.r);
+    saveToHistory(c.a, c.b, operation, c.r);
     setHistory(getHistory());
   };
 
   // Auto-calculate on input change
   useEffect(() => {
-    const nA = parseInt(numA);
-    const dA = parseInt(denA);
-    const nB = parseInt(numB);
-    const dB = parseInt(denB);
-
-    if (isValidFraction(nA, dA) && isValidFraction(nB, dB)) {
-      const fractionA: Fraction = { numerator: nA, denominator: dA };
-      const fractionB: Fraction = { numerator: nB, denominator: dB };
-      const calcResult = calculateFractions(fractionA, fractionB, operation);
-      setResult(calcResult);
+    const c = compute();
+    if (typeof c === "string") {
+      setError(c);
+      setResult(null);
+    } else {
+      setResult(c.r);
       setError("");
     }
-  }, [numA, denA, numB, denB, operation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wholeA, numA, denA, wholeB, numB, denB, operation]);
 
   // Clear inputs
   const handleClear = () => {
+    setWholeA("");
     setNumA("0");
     setDenA("1");
+    setWholeB("");
     setNumB("0");
     setDenB("1");
     setResult(null);
@@ -109,6 +122,8 @@ export default function FractionCalculatorUI() {
   const handleRandom = () => {
     const fracA = generateRandomFraction(12);
     const fracB = generateRandomFraction(12);
+    setWholeA("");
+    setWholeB("");
     setNumA(fracA.numerator.toString());
     setDenA(fracA.denominator.toString());
     setNumB(fracB.numerator.toString());
@@ -227,6 +242,17 @@ export default function FractionCalculatorUI() {
                     Fraction A
                   </label>
                   <div className="flex items-center gap-3">
+                    <div className="w-20 flex-shrink-0">
+                      <input
+                        type="number"
+                        value={wholeA}
+                        onChange={(e) => setWholeA(e.target.value)}
+                        className="w-full rounded-lg border border-gray-200 bg-gray-50 px-2 py-3 text-center text-2xl font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="–"
+                        aria-label="Whole number (optional)"
+                      />
+                      <div className="text-center text-xs text-gray-500 mt-1">Whole</div>
+                    </div>
                     <div className="flex-1">
                       <input
                         type="number"
@@ -272,6 +298,17 @@ export default function FractionCalculatorUI() {
                     Fraction B
                   </label>
                   <div className="flex items-center gap-3">
+                    <div className="w-20 flex-shrink-0">
+                      <input
+                        type="number"
+                        value={wholeB}
+                        onChange={(e) => setWholeB(e.target.value)}
+                        className="w-full rounded-lg border border-gray-200 bg-gray-50 px-2 py-3 text-center text-2xl font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="–"
+                        aria-label="Whole number (optional)"
+                      />
+                      <div className="text-center text-xs text-gray-500 mt-1">Whole</div>
+                    </div>
                     <div className="flex-1">
                       <input
                         type="number"

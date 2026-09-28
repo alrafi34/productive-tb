@@ -2,25 +2,47 @@ import QRCodeLib from 'qrcode';
 import { QROptions, QRHistory, WiFiConfig } from "./types";
 
 // Generate QR code and render to canvas using the qrcode library
-export async function generateQRCode(options: QROptions, canvas: HTMLCanvasElement): Promise<void> {
+/* Draws the QR code; returns an error message when it cannot be drawn
+   (text too long for the chosen error correction level, unreadable colors). */
+export async function generateQRCode(options: QROptions, canvas: HTMLCanvasElement): Promise<string | null> {
   const { text, size, errorCorrectionLevel, foregroundColor, backgroundColor } = options;
   
-  if (!text.trim()) return;
+  if (!text.trim()) return null;
+  if (contrastRatio(foregroundColor, backgroundColor) < 3) {
+    return 'The colors are too similar for scanners to read. Use a dark code on a light background.';
+  }
   
   try {
-    // Generate QR code to canvas
     await QRCodeLib.toCanvas(canvas, text, {
       width: size,
-      margin: 1,
+      // ISO/IEC 18004 asks for a quiet zone of 4 modules around the code
+      margin: 4,
       errorCorrectionLevel: errorCorrectionLevel,
       color: {
         dark: foregroundColor,
         light: backgroundColor
       }
     });
-  } catch (error) {
-    console.error('Error generating QR code:', error);
+    return null;
+  } catch {
+    return 'This text is too long for a QR code at this error correction level. Shorten it or choose a lower level (L holds the most).';
   }
+}
+
+/* WCAG contrast ratio of two #rrggbb colors (1 to 21). */
+export function contrastRatio(a: string, b: string): number {
+  const lum = (hex: string) => {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+    if (!m) return 0.5;
+    const n = parseInt(m[1], 16);
+    const ch = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
+      const c = v / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+  };
+  const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
 }
 
 // Download QR code as PNG

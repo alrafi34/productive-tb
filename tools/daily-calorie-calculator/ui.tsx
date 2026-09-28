@@ -347,7 +347,7 @@ export default function DailyCalorieCalculatorUI() {
                       
                       <div className="relative inline-block w-full">
                          <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-900 mb-1">
-                            {targetCalories.toLocaleString()}
+                            {targetCalories.toLocaleString('en-US')}
                          </h2>
                          <p className="text-lg font-bold uppercase tracking-wider text-primary">
                             Calories per day
@@ -358,6 +358,12 @@ export default function DailyCalorieCalculatorUI() {
                         <p className="font-medium">{selectedGoal?.label}</p>
                         <p>{selectedActivity?.label}</p>
                       </div>
+                      {targetCalories < (gender === 'male' ? 1500 : 1200) && (
+                        <p className="text-xs text-orange-700 bg-orange-50 border border-orange-200 rounded-lg px-3 py-2">
+                          This is below the {gender === 'male' ? '1,500' : '1,200'} calories a day usually advised as a minimum
+                          without medical supervision. Choose a milder goal or more activity.
+                        </p>
+                      )}
                    </div>
 
                    {/* Breakdown */}

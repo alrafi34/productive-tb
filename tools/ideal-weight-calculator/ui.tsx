@@ -45,11 +45,12 @@ export default function IdealWeightCalculatorUI() {
   }, [unit, heightCm, heightFt, heightIn]);
 
   const result: IdealWeightResult | null = useMemo(() => {
-    if (resolvedHeightCm <= 0) return null;
+    // The formulas are for adults: 120–250 cm (about 3 ft 11 in to 8 ft 2 in)
+    if (resolvedHeightCm < 120 || resolvedHeightCm > 250) return null;
     return calculateIdealWeight(resolvedHeightCm, gender);
   }, [resolvedHeightCm, gender]);
 
-  const isValidHeight = resolvedHeightCm > 0;
+  const isValidHeight = resolvedHeightCm >= 120 && resolvedHeightCm <= 250;
 
   const currentWeightKg = useMemo(() => {
     if (unit === "metric") return parseFloat(currentWeight) || 0;
@@ -84,7 +85,7 @@ export default function IdealWeightCalculatorUI() {
     devine: "Devine is widely used in clinical settings for quick ideal body weight estimates.",
     robinson: "Robinson typically provides a slightly more conservative estimate than Devine.",
     miller: "Miller offers a moderate estimate and is often used for comparison with other formulas.",
-    broca: "Broca uses height-based estimation and gives a practical range around the central value.",
+    broca: "Modified Broca: height in cm minus 100, times 0.9 for men or 0.85 for women.",
   };
 
   const toggleUnit = (targetUnit: "metric" | "imperial") => {
@@ -154,7 +155,7 @@ export default function IdealWeightCalculatorUI() {
     text += `Robinson: ${unit === "metric" ? result.robinson.toFixed(1) : kgToLb(result.robinson).toFixed(1)} ${displayUnit}\n`;
     text += `Miller: ${unit === "metric" ? result.miller.toFixed(1) : kgToLb(result.miller).toFixed(1)} ${displayUnit}\n`;
     text += `Broca: ${unit === "metric" ? result.broca.toFixed(1) : kgToLb(result.broca).toFixed(1)} ${displayUnit}\n`;
-    text += `Broca Range: ${unit === "metric" ? result.min.toFixed(1) : kgToLb(result.min).toFixed(1)} - ${unit === "metric" ? result.max.toFixed(1) : kgToLb(result.max).toFixed(1)} ${displayUnit}`;
+    text += `Healthy BMI range (18.5–24.9): ${unit === "metric" ? result.min.toFixed(1) : kgToLb(result.min).toFixed(1)} - ${unit === "metric" ? result.max.toFixed(1) : kgToLb(result.max).toFixed(1)} ${displayUnit}`;
 
     return text;
   };
@@ -358,7 +359,7 @@ export default function IdealWeightCalculatorUI() {
             <div className="xl:col-span-7 flex flex-col gap-4">
               {!isValidHeight && (
                 <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm font-medium">
-                  Enter a valid height to calculate ideal weight.
+                  Enter an adult height between 120 and 250 cm (3 ft 11 in to 8 ft 2 in).
                 </div>
               )}
 
@@ -395,7 +396,7 @@ export default function IdealWeightCalculatorUI() {
                     <p className="text-xl font-bold text-gray-900">{unit === "metric" ? result.miller.toFixed(1) : kgToLb(result.miller).toFixed(1)} {displayUnit}</p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Broca Range</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Healthy BMI Range (18.5–24.9)</p>
                     <p className="text-xl font-bold text-gray-900">
                       {unit === "metric" ? result.min.toFixed(1) : kgToLb(result.min).toFixed(1)} - {unit === "metric" ? result.max.toFixed(1) : kgToLb(result.max).toFixed(1)} {displayUnit}
                     </p>

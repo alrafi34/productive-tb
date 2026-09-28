@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import {
   calculateDateDifference,
+  countWeekdays,
   formatDateDifference,
   formatDate,
   parseDate,
@@ -27,7 +28,9 @@ interface HistoryEntry {
 export default function DateDifferenceCalculatorUI() {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>(getTodayString());
-  const [includeTime, setIncludeTime] = useState<boolean>(false);
+  // Count the end date as a whole day too (1 Jan to 1 Jan = 1 day)
+  const [includeEnd, setIncludeEnd] = useState<boolean>(false);
+  const [weekdays, setWeekdays] = useState<number>(0);
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('full');
   const [result, setResult] = useState<DateDifference | null>(null);
   const [error, setError] = useState<string>("");
@@ -63,20 +66,22 @@ export default function DateDifferenceCalculatorUI() {
       }
 
       setError("");
-      const diff = calculateDateDifference(start, end, includeTime);
+      const endForCount = includeEnd ? new Date(end.getFullYear(), end.getMonth(), end.getDate() + 1) : end;
+      const diff = calculateDateDifference(start, endForCount);
       setResult(diff);
+      setWeekdays(countWeekdays(start, endForCount));
     } else {
       setResult(null);
       setError("");
     }
-  }, [startDate, endDate, includeTime]);
+  }, [startDate, endDate, includeEnd]);
 
   const handleClear = () => {
     setStartDate("");
     setEndDate(getTodayString());
     setResult(null);
     setError("");
-    setIncludeTime(false);
+    setIncludeEnd(false);
   };
 
   const handleCopy = () => {
@@ -166,13 +171,13 @@ export default function DateDifferenceCalculatorUI() {
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
-                  id="includeTime"
-                  checked={includeTime}
-                  onChange={(e) => setIncludeTime(e.target.checked)}
+                  id="includeEnd"
+                  checked={includeEnd}
+                  onChange={(e) => setIncludeEnd(e.target.checked)}
                   className="w-4 h-4 text-primary rounded focus:ring-2 focus:ring-primary/50"
                 />
-                <label htmlFor="includeTime" className="text-sm text-gray-700 font-medium">
-                  Include time difference
+                <label htmlFor="includeEnd" className="text-sm text-gray-700 font-medium">
+                  Include the end date (add 1 day)
                 </label>
               </div>
 
@@ -293,11 +298,15 @@ export default function DateDifferenceCalculatorUI() {
                     <div className="bg-white/10 rounded-lg p-4 space-y-2">
                       <div className="flex justify-between">
                         <span className="text-primary-100">Total Days:</span>
-                        <span className="font-semibold">{result.totalDays.toLocaleString()}</span>
+                        <span className="font-semibold">{result.totalDays.toLocaleString('en-US')}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-primary-100">Weekdays (Mon–Fri):</span>
+                        <span className="font-semibold">{weekdays.toLocaleString('en-US')}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-primary-100">Total Weeks:</span>
-                        <span className="font-semibold">{result.totalWeeks.toLocaleString()}</span>
+                        <span className="font-semibold">{result.totalWeeks.toLocaleString('en-US')}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-primary-100">Total Months:</span>
@@ -305,16 +314,6 @@ export default function DateDifferenceCalculatorUI() {
                       </div>
                     </div>
 
-                    {includeTime && (result.hours !== undefined || result.minutes !== undefined || result.seconds !== undefined) && (
-                      <div className="bg-white/10 rounded-lg p-4">
-                        <div className="text-primary-100 text-xs mb-2">Time Component</div>
-                        <div className="font-mono text-lg">
-                          {result.hours !== undefined && `${result.hours}h `}
-                          {result.minutes !== undefined && `${result.minutes}m `}
-                          {result.seconds !== undefined && `${result.seconds}s`}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 )}
 

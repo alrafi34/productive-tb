@@ -5,6 +5,8 @@ import {
   SalaryResult,
   SalarySettings,
   calculateSalary,
+  toAnnual,
+  type PayPeriod,
   formatCurrency,
   getSettings,
   saveSettings,
@@ -13,17 +15,25 @@ import {
   clearHistory
 } from "./logic";
 import SalaryCalculatorSEO from "./seo-content";
+import { guessCurrency } from "@/lib/currency";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 const CURRENCIES = [
   { code: "USD", symbol: "$" },
-  { code: "EUR", symbol: "EUR" },
-  { code: "GBP", symbol: "GBP" },
-  { code: "JPY", symbol: "JPY" },
-  { code: "INR", symbol: "INR" },
-  { code: "AUD", symbol: "AUD" },
-  { code: "CAD", symbol: "CAD" },
+  { code: "EUR", symbol: "€" },
+  { code: "GBP", symbol: "£" },
+  { code: "CAD", symbol: "CA$" },
+  { code: "AUD", symbol: "A$" },
+  { code: "JPY", symbol: "¥" },
+];
+
+const PAY_PERIODS: { value: PayPeriod; label: string }[] = [
+  { value: "annual", label: "per year" },
+  { value: "monthly", label: "per month" },
+  { value: "weekly", label: "per week" },
+  { value: "daily", label: "per day" },
+  { value: "hourly", label: "per hour" },
 ];
 
 const SALARY_PRESETS = [30000, 50000, 75000, 100000, 150000, 200000];
@@ -32,6 +42,7 @@ type HistoryEntry = { salary: number; timestamp: number };
 
 export default function SalaryCalculatorUI() {
   const [salary, setSalary] = useState<string>("60000");
+  const [period, setPeriod] = useState<PayPeriod>("annual");
   const [workHoursPerWeek, setWorkHoursPerWeek] = useState<string>("40");
   const [workDaysPerWeek, setWorkDaysPerWeek] = useState<string>("5");
   const [currency, setCurrency] = useState<string>("USD");
@@ -47,16 +58,19 @@ export default function SalaryCalculatorUI() {
       const settings = getSettings();
       setWorkHoursPerWeek(settings.workHoursPerWeek.toString());
       setWorkDaysPerWeek(settings.workDaysPerWeek.toString());
-      setCurrency(settings.currency);
+      // Saved currency first; otherwise a guess from the visitor's region
+      const saved = CURRENCIES.some((c) => c.code === settings.currency) && localStorage.getItem('salaryCalculatorSettings');
+      setCurrency(saved ? settings.currency : guessCurrency());
       setHistory(getSalaryHistory());
     });
 
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
-  const salaryNum = parseFloat(salary);
+  const amountNum = parseFloat(salary);
   const hoursNum = parseFloat(workHoursPerWeek);
   const daysNum = parseFloat(workDaysPerWeek);
+  const salaryNum = toAnnual(amountNum, period, hoursNum, daysNum);
 
   const isValid =
     !isNaN(salaryNum) &&
@@ -65,7 +79,8 @@ export default function SalaryCalculatorUI() {
     salaryNum > 0 &&
     hoursNum > 0 &&
     daysNum > 0 &&
-    daysNum <= 7;
+    daysNum <= 7 &&
+    hoursNum <= 168;
 
   const result: SalaryResult | null = useMemo(() => {
     if (!isValid) return null;
@@ -73,7 +88,7 @@ export default function SalaryCalculatorUI() {
   }, [salaryNum, hoursNum, daysNum, isValid]);
 
   const validationMessage = useMemo(() => {
-    if (salary === "" && workHoursPerWeek !== "" && workDaysPerWeek !== "") return "Enter annual salary.";
+    if (salary === "" && workHoursPerWeek !== "" && workDaysPerWeek !== "") return "Enter your pay.";
     if (workHoursPerWeek === "") return "Enter work hours per week.";
     if (workDaysPerWeek === "") return "Enter work days per week.";
     if (!isNaN(daysNum) && daysNum > 7) return "Work days per week cannot exceed 7.";
@@ -124,6 +139,7 @@ export default function SalaryCalculatorUI() {
 
   const handleLoadFromHistory = (histSalary: number) => {
     setSalary(histSalary.toString());
+    setPeriod("annual");
     setShowHistory(false);
   };
 
@@ -154,14 +170,26 @@ export default function SalaryCalculatorUI() {
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
           <div className="xl:col-span-5 space-y-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Annual Salary</label>
-              <input
-                type="number"
-                value={salary}
-                onChange={(e) => setSalary(e.target.value)}
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
-                placeholder="e.g. 60000"
-              />
+              <label className="block text-sm font-semibold text-gray-700">Your Pay</label>
+              <div className="flex gap-2">
+                <input
+                  type="number"
+                  value={salary}
+                  onChange={(e) => setSalary(e.target.value)}
+                  className="min-w-0 flex-1 px-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
+                  placeholder={period === "hourly" ? "e.g. 25" : "e.g. 60000"}
+                />
+                <select
+                  value={period}
+                  onChange={(e) => setPeriod(e.target.value as PayPeriod)}
+                  aria-label="Pay period"
+                  className="px-3 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white text-sm font-semibold text-gray-800"
+                >
+                  {PAY_PERIODS.map((p) => (
+                    <option key={p.value} value={p.value}>{p.label}</option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -234,7 +262,7 @@ export default function SalaryCalculatorUI() {
                 {SALARY_PRESETS.map((preset) => (
                   <button
                     key={preset}
-                    onClick={() => setSalary(preset.toString())}
+                    onClick={() => { setSalary(preset.toString()); setPeriod("annual"); }}
                     className="px-3 py-2 text-xs font-semibold rounded-lg border border-gray-200 bg-white text-gray-700 hover:border-primary hover:text-primary transition-colors"
                   >
                     {formatCurrency(preset, 0, currency)}

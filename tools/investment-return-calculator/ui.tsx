@@ -5,6 +5,7 @@ import {
   Currency,
   HistoryEntry,
   calculateROI,
+  calculateAnnualizedReturn,
   formatCurrency,
   formatPercentage,
   generateCSV,
@@ -28,6 +29,7 @@ const quickScenarios = [
 export default function InvestmentROICalculatorUI() {
   const [initialInvestment, setInitialInvestment] = useState<string>("1000");
   const [currentValue, setCurrentValue] = useState<string>("1200");
+  const [years, setYears] = useState<string>("");
   const [currency, setCurrency] = useState<Currency>("$");
   const [precision, setPrecision] = useState<number>(2);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -52,6 +54,9 @@ export default function InvestmentROICalculatorUI() {
     if (!isValid) return { gainLoss: 0, roiPercentage: 0, isProfit: true };
     return calculateROI(initialNum, currentNum);
   }, [initialNum, currentNum, isValid]);
+
+  const yearsNum = parseFloat(years);
+  const annualized = isValid ? calculateAnnualizedReturn(initialNum, currentNum, yearsNum) : null;
 
   const absoluteROI = useMemo(() => Math.abs(result.roiPercentage), [result.roiPercentage]);
   const progressWidth = useMemo(() => Math.min(100, absoluteROI), [absoluteROI]);
@@ -159,6 +164,20 @@ export default function InvestmentROICalculatorUI() {
               </div>
             </div>
 
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-gray-700">Holding Period in Years (optional)</label>
+              <input
+                type="number"
+                min="0"
+                step="any"
+                value={years}
+                onChange={(e) => setYears(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="w-full px-4 py-3 bg-gray-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-lg font-bold text-gray-800"
+                placeholder="e.g. 3 — for the annualized return"
+              />
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Currency</label>
@@ -240,6 +259,15 @@ export default function InvestmentROICalculatorUI() {
                       </h3>
                     </div>
                   </div>
+
+                  {annualized !== null && (
+                    <p className="mt-4 text-sm text-gray-700">
+                      Annualized return (CAGR) over {yearsNum} {yearsNum === 1 ? "year" : "years"}:{" "}
+                      <span className={`font-bold ${annualized >= 0 ? "text-emerald-700" : "text-red-700"}`}>
+                        {annualized > 0 ? "+" : ""}{formatPercentage(annualized, precision)} a year
+                      </span>
+                    </p>
+                  )}
 
                   <div className="mt-6 space-y-2">
                     <div className="flex items-center justify-between text-xs font-semibold">

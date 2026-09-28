@@ -8,7 +8,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Salary Calculator – Annual to Hourly, Weekly & Monthly Pay",
-    description: "Convert an annual salary to monthly, weekly, daily and hourly pay using your own hours per week and working days, and compare pay scenarios.",
+    description: "Convert pay between annual, monthly, weekly, daily and hourly rates, both ways, using your own hours per week and working days.",
     keywords: [
       "salary calculator",
       "hourly rate calculator",
@@ -31,8 +31,8 @@ export const toolConfig = {
       "payroll calculator"
     ],
     openGraph: {
-      title: "Salary Calculator - Annual to Hourly, Daily, Weekly, Monthly",
-      description: "Calculate salary conversions instantly with schedule-aware inputs, multi-currency support, and history-based comparison.",
+      title: "Salary Calculator – Annual to Hourly, Weekly & Monthly Pay",
+      description: "Convert pay between annual, monthly, weekly, daily and hourly rates, both ways, using your own hours per week and working days.",
       type: "website",
       url: "/tools/salary-calculator"
     }

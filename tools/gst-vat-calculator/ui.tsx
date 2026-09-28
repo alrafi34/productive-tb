@@ -190,6 +190,10 @@ export default function GSTVATCalculatorUI() {
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-gray-500">
+                Standard rates as published by each tax authority, 2026. Reduced rates and US state and local sales
+                taxes vary — type your own rate.
+              </p>
             </div>
 
             <div className="space-y-2">

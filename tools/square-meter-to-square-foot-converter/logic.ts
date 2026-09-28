@@ -22,7 +22,10 @@ export function convertArea(value: number, from: AreaType): number {
 export function formatAreaValue(value: number, precision: number): string {
   if (Object.is(value, -0)) value = 0;
   // Use toFixed but remove trailing zeros if not needed, or keep fixed precision
-  return Number(value.toFixed(precision)).toString();
+  const rounded = Number(value.toFixed(precision));
+  // A non-zero value that rounds to 0 keeps four significant digits instead
+  if (rounded === 0 && value !== 0) return Number(value.toPrecision(4)).toString();
+  return rounded.toString();
 }
 
 const STORAGE_KEY = 'area_conversion_history';

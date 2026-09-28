@@ -42,12 +42,12 @@ export const ACTIVITY_LEVELS = [
 ];
 
 export const GOALS = [
-  { value: 'loss-aggressive', label: 'Aggressive Weight Loss', description: '2 lbs/week', deficit: -1000 },
-  { value: 'loss-moderate', label: 'Moderate Weight Loss', description: '1 lb/week', deficit: -500 },
-  { value: 'loss-mild', label: 'Mild Weight Loss', description: '0.5 lbs/week', deficit: -250 },
+  { value: 'loss-aggressive', label: 'Aggressive Weight Loss', description: '≈ 2 lb (0.9 kg)/week', deficit: -1000 },
+  { value: 'loss-moderate', label: 'Moderate Weight Loss', description: '≈ 1 lb (0.45 kg)/week', deficit: -500 },
+  { value: 'loss-mild', label: 'Mild Weight Loss', description: '≈ 0.5 lb (0.23 kg)/week', deficit: -250 },
   { value: 'maintenance', label: 'Maintain Weight', description: 'Stay current weight', deficit: 0 },
-  { value: 'gain-mild', label: 'Mild Weight Gain', description: '0.5 lbs/week', deficit: 250 },
-  { value: 'gain-moderate', label: 'Moderate Weight Gain', description: '1 lb/week', deficit: 500 }
+  { value: 'gain-mild', label: 'Mild Weight Gain', description: '≈ 0.5 lb (0.23 kg)/week', deficit: 250 },
+  { value: 'gain-moderate', label: 'Moderate Weight Gain', description: '≈ 1 lb (0.45 kg)/week', deficit: 500 }
 ];
 
 // Mifflin-St Jeor Equation for BMR
