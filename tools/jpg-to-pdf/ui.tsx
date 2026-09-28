@@ -101,7 +101,7 @@ export default function JpgToPdfUI() {
 
       {items.length > 0 && (
         <>
-          <div className="mt-6 bg-white rounded-xl border border-gray-100 shadow-sm p-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 bg-white rounded-xl border border-gray-100 shadow-sm p-6 grid gap-5 sm:grid-cols-2">
             <label className="block">
               <span className="block text-sm font-medium text-gray-700 mb-2">Page size</span>
               <select value={size} onChange={(e) => set(setSize)(e.target.value as PageSize)} className={select}>
