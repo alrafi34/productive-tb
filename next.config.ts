@@ -16,6 +16,18 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000,
   },
 
+  /* Keep non-page files out of Google's index. The Open Graph image endpoint
+     (/og?title=…) and the self-hosted font files were being crawled and
+     listed under "Crawled – currently not indexed". X-Robots-Tag keeps them
+     fetchable (social cards still render) but tells search engines not to
+     index them; robots.txt would block the social crawlers too. */
+  async headers() {
+    return [
+      { source: "/og", headers: [{ key: "X-Robots-Tag", value: "noindex" }] },
+      { source: "/_next/static/media/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] },
+    ];
+  },
+
   /* Tools merged into an earning sibling (#22 triage, GSC export 2026-09-24).
      Each source had zero impressions in six months; its target covers the same
      calculation and earns clicks. Any category segment is matched, so old and
