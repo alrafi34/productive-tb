@@ -9,8 +9,8 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 export default function UpsideDownTextGeneratorUI() {
-  const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
+  const [inputText, setInputText] = useState("Hello World!");
+  const [outputText, setOutputText] = useState("¡pꞁɹoM oꞁꞁǝH");
   const [mode, setMode] = useState<'text-to-upside' | 'upside-to-text'>('text-to-upside');
   const [flipMode, setFlipMode] = useState<FlipMode>('upside-down');
   const [options, setOptions] = useState<UpsideDownOptions>({
@@ -189,7 +189,7 @@ export default function UpsideDownTextGeneratorUI() {
                 onChange={(e) => setOptions({ ...options, preserveSpaces: e.target.checked })}
                 className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
               />
-              <span className="text-sm text-gray-700">Preserve Spaces</span>
+              <span className="text-sm text-gray-700">Keep spaces</span>
             </label>
             <label className="flex items-center space-x-2 cursor-pointer">
               <input
@@ -198,7 +198,7 @@ export default function UpsideDownTextGeneratorUI() {
                 onChange={(e) => setOptions({ ...options, preservePunctuation: e.target.checked })}
                 className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
               />
-              <span className="text-sm text-gray-700">Preserve Punctuation</span>
+              <span className="text-sm text-gray-700">Flip punctuation (¡ ¿ ˙)</span>
             </label>
             <label className="flex items-center space-x-2 cursor-pointer">
               <input
@@ -207,7 +207,7 @@ export default function UpsideDownTextGeneratorUI() {
                 onChange={(e) => setOptions({ ...options, preserveLineBreaks: e.target.checked })}
                 className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
               />
-              <span className="text-sm text-gray-700">Preserve Line Breaks</span>
+              <span className="text-sm text-gray-700">Keep line breaks</span>
             </label>
             <label className="flex items-center space-x-2 cursor-pointer">
               <input

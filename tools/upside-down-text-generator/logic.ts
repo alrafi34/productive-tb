@@ -1,82 +1,72 @@
 import { UpsideDownOptions, FlipMode } from "./types";
 
+/* Letters turned 180°, as look-alike Unicode characters. Every entry is a
+   left-to-right character: Hebrew or Arabic look-alikes (ן, ؛) would make
+   the browser reorder the line. */
 export const UPSIDE_DOWN_MAP: Record<string, string> = {
   'a': 'ɐ', 'b': 'q', 'c': 'ɔ', 'd': 'p', 'e': 'ǝ', 'f': 'ɟ', 'g': 'ƃ', 'h': 'ɥ',
-  'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': 'ן', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd',
+  'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': 'ꞁ', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd',
   'q': 'b', 'r': 'ɹ', 's': 's', 't': 'ʇ', 'u': 'n', 'v': 'ʌ', 'w': 'ʍ', 'x': 'x',
   'y': 'ʎ', 'z': 'z',
   'A': '∀', 'B': 'ᙠ', 'C': 'Ɔ', 'D': 'ᗡ', 'E': 'Ǝ', 'F': 'Ⅎ', 'G': '⅁', 'H': 'H',
-  'I': 'I', 'J': 'ſ', 'K': 'ʞ', 'L': '˥', 'M': 'W', 'N': 'N', 'O': 'O', 'P': 'Ԁ',
-  'Q': 'Ὸ', 'R': 'ᴚ', 'S': 'S', 'T': '⊥', 'U': '∩', 'V': 'Λ', 'W': 'M', 'X': 'X',
+  'I': 'I', 'J': 'ſ', 'K': 'ꓘ', 'L': '˥', 'M': 'W', 'N': 'N', 'O': 'O', 'P': 'Ԁ',
+  'Q': 'Ό', 'R': 'ᴚ', 'S': 'S', 'T': '⊥', 'U': '∩', 'V': 'Λ', 'W': 'M', 'X': 'X',
   'Y': '⅄', 'Z': 'Z',
   '0': '0', '1': 'Ɩ', '2': 'ᄅ', '3': 'Ɛ', '4': 'ㄣ', '5': 'ϛ', '6': '9', '7': 'ㄥ',
   '8': '8', '9': '6',
-  '!': '¡', '?': '¿', '.': '˙', ',': '\'', '\'': ',', '"': '„', ';': '؛', '(': ')',
+  '!': '¡', '?': '¿', '.': '˙', ',': '\'', '\'': ',', '"': '„', ';': '⸵', '(': ')',
   ')': '(', '[': ']', ']': '[', '{': '}', '}': '{', '<': '>', '>': '<', '&': '⅋',
   '_': '‾', '/': '\\', '\\': '/'
 };
 
+/* Letters flipped left to right. Letters with no mirrored look-alike stay as they are. */
 export const MIRROR_MAP: Record<string, string> = {
-  'a': 'ɒ', 'b': 'd', 'c': 'ɔ', 'd': 'b', 'e': 'ɘ', 'f': 'ʇ', 'g': 'ǫ', 'h': 'ʜ',
-  'i': 'i', 'j': 'ꞁ', 'k': 'ʞ', 'l': 'l', 'm': 'm', 'n': 'n', 'o': 'o', 'p': 'q',
-  'q': 'p', 'r': 'ɿ', 's': 's', 't': 't', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x',
-  'y': 'y', 'z': 'z'
+  'a': 'ɒ', 'b': 'd', 'c': 'ɔ', 'd': 'b', 'e': 'ɘ', 'h': 'ʜ', 'n': 'ᴎ', 'p': 'q',
+  'q': 'p', 'r': 'ɿ', 's': 'ƨ', 'z': 'ƹ',
+  'B': 'ᙠ', 'C': 'Ɔ', 'D': 'ᗡ', 'E': 'Ǝ', 'F': 'ꟻ', 'J': 'Ⴑ', 'K': 'ꓘ', 'L': '⅃',
+  'N': 'И', 'P': 'ꟼ', 'R': 'Я', 'S': 'Ƨ', 'Z': 'Ƹ',
+  '3': 'Ɛ', '?': '⸮', '(': ')', ')': '(', '[': ']', ']': '[', '{': '}', '}': '{',
+  '<': '>', '>': '<', '/': '\\', '\\': '/'
 };
 
+const isPunctuation = (ch: string) => /[.,!?;:'"()[\]{}<>&_/\\]/.test(ch);
+
+/* Flips each line separately, keeping lines in their order, and reverses the
+   characters (not UTF-16 halves, so emoji survive) when `reverseText` is on. */
 export function textToUpsideDown(
   text: string,
   options: UpsideDownOptions,
   mode: FlipMode = 'upside-down'
 ): string {
   if (!text) return '';
-
   const charMap = mode === 'mirror' ? MIRROR_MAP : UPSIDE_DOWN_MAP;
-  let result = '';
+  const reverse = mode !== 'no-reverse' && options.reverseText;
 
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    
-    if (char === '\n' && options.preserveLineBreaks) {
-      result += '\n';
-    } else if (char === ' ' && options.preserveSpaces) {
-      result += ' ';
-    } else if (/[.,!?;:'"()\[\]{}]/.test(char) && options.preservePunctuation) {
-      result += charMap[char] || char;
-    } else {
-      result += charMap[char] || char;
-    }
-  }
+  const flipLine = (line: string) => {
+    let chars = Array.from(line)
+      .filter((ch) => options.preserveSpaces || ch !== ' ')
+      .map((ch) => (isPunctuation(ch) && !options.preservePunctuation ? ch : charMap[ch] ?? ch));
+    if (reverse) chars = chars.reverse();
+    return chars.join('');
+  };
 
-  if (mode === 'no-reverse') {
-    return result;
-  }
-
-  if (options.reverseText) {
-    if (options.preserveLineBreaks && text.includes('\n')) {
-      return result.split('\n').map(line => line.split('').reverse().join('')).join('\n');
-    }
-    return result.split('').reverse().join('');
-  }
-
-  return result;
+  const lines = text.split('\n');
+  return options.preserveLineBreaks ? lines.map(flipLine).join('\n') : flipLine(lines.join(' '));
 }
 
+const REVERSE_MAP: Record<string, string> = Object.fromEntries(
+  Object.entries(UPSIDE_DOWN_MAP).map(([k, v]) => [v, k])
+);
+// Characters that map to themselves are ambiguous in case; prefer lowercase
+Object.assign(REVERSE_MAP, { o: 'o', s: 's', x: 'x', z: 'z' });
+
+/* Turns upside-down text back into normal text, line by line. */
 export function upsideDownToText(text: string): string {
   if (!text) return '';
-
-  const reverseMap: Record<string, string> = {};
-  Object.entries(UPSIDE_DOWN_MAP).forEach(([key, value]) => {
-    reverseMap[value] = key;
-  });
-
-  let result = '';
-  const reversed = text.split('').reverse().join('');
-
-  for (const char of reversed) {
-    result += reverseMap[char] || char;
-  }
-
-  return result;
+  return text
+    .split('\n')
+    .map((line) => Array.from(line).reverse().map((ch) => REVERSE_MAP[ch] ?? ch).join(''))
+    .join('\n');
 }
 
 export function getPresetOptions(preset: string): Partial<UpsideDownOptions> & { mode: FlipMode } {
@@ -86,7 +76,7 @@ export function getPresetOptions(preset: string): Partial<UpsideDownOptions> & {
     case 'mirrored':
       return { reverseText: true, preserveSpaces: true, preservePunctuation: true, mode: 'mirror' };
     case 'fully-flipped':
-      return { reverseText: true, preserveSpaces: false, preservePunctuation: false, mode: 'upside-down' };
+      return { reverseText: true, preserveSpaces: false, preservePunctuation: true, mode: 'upside-down' };
     default:
       return { reverseText: true, preserveSpaces: true, preservePunctuation: true, mode: 'upside-down' };
   }

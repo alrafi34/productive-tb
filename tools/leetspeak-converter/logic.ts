@@ -59,23 +59,34 @@ export function textToLeetspeak(text: string, options: LeetspeakOptions): string
   }).join('');
 }
 
-export function leetspeakToText(leetText: string): string {
-  const reverseMap: Record<string, string> = {
-    '4': 'A', '8': 'B', '(': 'C', '|)': 'D', '3': 'E', '|=': 'F',
-    '6': 'G', '#': 'H', '1': 'I', '_|': 'J', '|<': 'K',
-    '/\\/\\': 'M', '|\\|': 'N', '0': 'O', '|>': 'P', '0_': 'Q',
-    '|2': 'R', '5': 'S', '7': 'T', '|_|': 'U', '\\/': 'V',
-    '\\/\\/': 'W', '><': 'X', '`/': 'Y', '2': 'Z',
-    '@': 'A', '€': 'E', '!': 'I', '()': 'O', '$': 'S', '+': 'T'
-  };
+const REVERSE_MAP: Record<string, string> = {
+  '4': 'a', '8': 'b', '(': 'c', '|)': 'd', '3': 'e', '|=': 'f',
+  '6': 'g', '#': 'h', '1': 'i', '_|': 'j', '|<': 'k',
+  '/\\/\\': 'm', '|\\|': 'n', '0': 'o', '|>': 'p', '0_': 'q',
+  '|2': 'r', '5': 's', '7': 't', '|_|': 'u', '\\/': 'v',
+  '\\/\\/': 'w', '><': 'x', '`/': 'y', '2': 'z',
+  '@': 'a', '/-\\': 'a', '€': 'e', '!': 'i', '|': 'i', '()': 'o', '$': 's', '+': 't',
+};
+const REVERSE_KEYS = Object.keys(REVERSE_MAP).sort((a, b) => b.length - a.length);
 
-  let result = leetText;
-  
-  Object.entries(reverseMap).sort((a, b) => b[0].length - a[0].length).forEach(([leet, normal]) => {
-    result = result.replace(new RegExp(leet.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), normal);
-  });
-  
-  return result;
+/* Reads the text once from left to right, always taking the longest leet
+   sequence that matches (|_| is u, not i_i), so no replacement is ever
+   applied to the output of another. Letters come out lowercase; 1 is read
+   as i, although it can also stand for l. */
+export function leetspeakToText(leetText: string): string {
+  let out = '';
+  let i = 0;
+  while (i < leetText.length) {
+    const key = REVERSE_KEYS.find((k) => leetText.startsWith(k, i));
+    if (key) {
+      out += REVERSE_MAP[key];
+      i += key.length;
+    } else {
+      out += leetText[i];
+      i += 1;
+    }
+  }
+  return out;
 }
 
 export function getPresetOptions(preset: string): Partial<LeetspeakOptions> {

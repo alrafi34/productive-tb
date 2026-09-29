@@ -8,8 +8,8 @@ import RelatedTools from '@/components/RelatedTools';
 import RelatedStrip from '@/components/RelatedStrip';
 
 export default function LeetspeakConverterUI() {
-  const [inputText, setInputText] = useState('');
-  const [outputText, setOutputText] = useState('');
+  const [inputText, setInputText] = useState('Leet speak is elite');
+  const [outputText, setOutputText] = useState('1337 5p34k 15 31173');
   const [isReverse, setIsReverse] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [preset, setPreset] = useState<PresetType>('custom');
@@ -22,12 +22,13 @@ export default function LeetspeakConverterUI() {
   });
 
   useEffect(() => {
-    if (options.realtimeConvert && inputText) {
+    if (options.realtimeConvert) {
       const timer = setTimeout(() => {
         handleConvert();
       }, 300);
       return () => clearTimeout(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputText, options, isReverse]);
 
   const handleConvert = () => {

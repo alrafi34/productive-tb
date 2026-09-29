@@ -9,7 +9,7 @@ import RelatedStrip from '@/components/RelatedStrip';
 
 export default function TextToSlugConverterUI() {
   const [mode, setMode] = useState<ConversionMode>('single');
-  const [text, setText] = useState('');
+  const [text, setText] = useState("10 Best Café Tips & Tricks for 2026");
   const [bulkText, setBulkText] = useState('');
   const [baseUrl, setBaseUrl] = useState('https://example.com/blog/');
   const [realtimeConvert, setRealtimeConvert] = useState(true);
@@ -28,18 +28,13 @@ export default function TextToSlugConverterUI() {
   });
 
   const handleConvert = useCallback(() => {
-    if (mode === 'single' && text.trim()) {
-      const res = convertSingle(text, options);
-      setResult(res);
-      if (res.slug && !history.includes(res.slug)) {
-        setHistory(prev => [res.slug, ...prev].slice(0, 10));
-      }
-    } else if (mode === 'bulk' && bulkText.trim()) {
+    if (mode === 'single') {
+      setResult(text.trim() ? convertSingle(text, options) : null);
+    } else {
       const lines = bulkText.split('\n').filter(l => l.trim());
-      const res = convertBulk(lines, options);
-      setBulkResults(res);
+      setBulkResults(convertBulk(lines, options));
     }
-  }, [mode, text, bulkText, options, history]);
+  }, [mode, text, bulkText, options]);
 
   useEffect(() => {
     if (realtimeConvert) {
@@ -55,8 +50,10 @@ export default function TextToSlugConverterUI() {
     setBulkResults([]);
   };
 
+  // Slugs you copy are kept as recent ones; the ones typed along the way are not
   const handleCopy = async (slug: string) => {
     await copyToClipboard(slug);
+    setHistory(prev => [slug, ...prev.filter(s => s !== slug)].slice(0, 10));
     setCopySuccess(true);
     setTimeout(() => setCopySuccess(false), 2000);
   };

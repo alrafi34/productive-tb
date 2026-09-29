@@ -1,63 +1,50 @@
+import { siteConfig } from "@/config/site";
+
 export const htmlEntityEncoderConfig = {
   slug: "html-entity-encoder",
   name: "HTML Entity Encoder / Decoder",
-  description: "Encode and decode HTML entities with named, decimal, and hex format support.",
+  description: "Encode special characters as HTML entities (named, decimal or hex) and decode entities back to text, with a reference table of common entities.",
   category: "writing",
   icon: "🏷️",
   free: true,
   backend: false,
   seo: {
-    title: "HTML Entity Encoder / Decoder Online - Convert Special Characters Safely",
-    description:
-      "Free HTML Entity Encoder and Decoder with auto mode, named/decimal/hex formats, local history, and export-ready output.",
+    title: "HTML Entity Encoder & Decoder – Escape HTML Online",
+    description: "Encode < > & \" ' and accented letters as HTML entities, or decode &amp;, &nbsp; and &#8364; back to text. Named, decimal and hex, with an entity chart.",
     keywords: [
       "html entity encoder",
       "html entity decoder",
       "html escape",
-      "html encode",
-      "html decode",
-      "html entities",
+      "html unescape",
+      "html encode online",
+      "html decode online",
+      "html entities list",
       "html special characters",
-      "encode html",
-      "decode html",
-      "html entity converter",
-      "online html encoder",
-      "html character encoding",
-      "named entities",
-      "numeric entities",
-      "html safe encoding",
-      "named decimal hex entities",
-      "auto html entity converter",
-      "decode html entities online"
+      "nbsp entity",
+      "html character codes",
+      "escape html characters",
+      "decode html entities",
     ],
-    openGraph: {
-      title: "HTML Entity Encoder / Decoder - Encode, Decode, and Auto-Detect Entities",
-      description:
-        "Transform HTML-sensitive text with multi-format entity conversion, history, and quick export tools.",
-      type: "website",
-      url: "/tools/writing/html-entity-encoder"
-    }
+    og: {
+      title: "HTML Entity Encoder & Decoder – Escape HTML Online",
+      description: "Encode < > & \" ' and accented letters as HTML entities, or decode &amp;, &nbsp; and &#8364; back to text. Named, decimal and hex, with an entity chart.",
+      url: `${siteConfig.url}/tools/writing/html-entity-encoder`,
+    },
+    howToSteps: [
+      { name: "Paste your text", text: "Paste HTML, code or text into the input box; a sample is loaded so you can see the result straight away." },
+      { name: "Choose a mode", text: "Pick Encode to turn characters into entities, Decode to turn entities back into characters, or Auto to let the tool decide from the text." },
+      { name: "Pick the entity format", text: "Choose named entities (&lt;), decimal references (&#60;) or hexadecimal references (&#x3C;), and tick the option to also encode accented letters, symbols and emoji if your page or email is not UTF-8." },
+      { name: "Copy the result", text: "Copy the converted text or export it as a TXT file; conversions you copy or export are kept in the history for later." },
+    ],
+    faq: [
+      { q: "What is an HTML entity?", a: "A code that stands for a character in HTML. It starts with & and ends with a semicolon: &lt; is <, &amp; is &, and &copy; is ©. Browsers show the character, but the code itself cannot be mistaken for markup." },
+      { q: "Which characters must be escaped in HTML?", a: "The ampersand (&) and the less-than sign (<) in text, and quotes inside attribute values (\" as &quot;, ' as &#39;). Escaping > as &gt; is not required but is common practice. All other characters can be written as they are on a UTF-8 page." },
+      { q: "What is the difference between named, decimal and hex entities?", a: "They are three ways to write the same character. Named entities use a word (&eacute;), decimal references use the Unicode code point in base 10 (&#233;) and hex references use it in base 16 (&#xE9;). Every character has a numeric reference, but only some have a name." },
+      { q: "What does &nbsp; mean?", a: "A non-breaking space (U+00A0). It looks like a normal space but keeps the words on either side on the same line, for example between a number and its unit (10&nbsp;kg), and it is not collapsed when several are written in a row." },
+      { q: "Do I need to encode accented letters like é or symbols like €?", a: "Not on a page saved and served as UTF-8, which is the standard today: write é and € directly. Encode them only for systems that use another character set, some older email clients or when you must keep a file pure ASCII." },
+      { q: "Why does &amp;lt; show as &lt; instead of <?", a: "Because it was encoded twice: & became &amp; and the result was encoded again. Decoding once gives &lt;, and decoding again gives <. This tool decodes exactly one level, so you can see and fix double-escaped text." },
+      { q: "Does encoding HTML entities protect against XSS?", a: "Escaping text before putting it into HTML is one essential layer, but safety depends on the context: text in a <script> block, a URL or a CSS value needs different escaping. Use your framework's built-in escaping or a sanitizer for user input rather than escaping by hand." },
+      { q: "Is my text sent to a server?", a: "No. Encoding and decoding run entirely in your browser; nothing you paste is uploaded or stored anywhere except the optional local history on your own device." },
+    ],
   },
-  features: [
-    "Encode HTML to safe entities",
-    "Decode HTML entities to characters",
-    "Named entities support (&lt;, &gt;, &amp;, &quot;, &#39;)",
-    "Numeric entities (decimal) support (&#60;, &#62;, etc.)",
-    "Numeric entities (hex) support (&#x3C;, &#x3E;, etc.)",
-    "Auto-detect mode (smart detection)",
-    "Live real-time encoding/decoding",
-    "Character counter",
-    "Entity count display",
-    "Swap input/output",
-    "Copy to clipboard with feedback",
-    "Clear all button",
-    "Transformation history (last 20)",
-    "Export as TXT file",
-    "Keyboard shortcuts (Ctrl+Enter)",
-    "Large text support",
-    "Debounced input processing",
-    "Mobile responsive design",
-    "100% client-side processing",
-    "No backend or API required"
-  ]
 };
