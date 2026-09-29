@@ -9,12 +9,13 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 export default function ListPrefixSuffixUI() {
-  const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
+  const [inputText, setInputText] = useState("apples\nbananas\ncherries");
+  const [outputText, setOutputText] = useState("- apples\n- bananas\n- cherries");
   const [originalText, setOriginalText] = useState("");
   const [options, setOptions] = useState<PrefixSuffixOptions>({
-    prefix: '',
+    prefix: '- ',
     suffix: '',
+    skipLastSuffix: false,
     enableNumbering: false,
     numberStart: 1,
     numberSeparator: '.',
@@ -145,6 +146,20 @@ export default function ListPrefixSuffixUI() {
               <Sparkles className="w-4 h-4 inline mr-1" />
               CSV
             </button>
+            <button
+              onClick={() => applyTemplate('quoted')}
+              className="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg hover:bg-indigo-100 transition-colors text-sm font-medium"
+            >
+              <Sparkles className="w-4 h-4 inline mr-1" />
+              &quot;Quoted&quot;, list
+            </button>
+            <button
+              onClick={() => applyTemplate('html-li')}
+              className="px-4 py-2 bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 transition-colors text-sm font-medium"
+            >
+              <Sparkles className="w-4 h-4 inline mr-1" />
+              HTML &lt;li&gt;
+            </button>
           </div>
         </div>
 
@@ -169,6 +184,15 @@ export default function ListPrefixSuffixUI() {
               placeholder="e.g., ; or . or :"
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
+            <label className="mt-2 flex items-center space-x-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={!!options.skipLastSuffix}
+                onChange={(e) => setOptions({ ...options, skipLastSuffix: e.target.checked })}
+                className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-700">No trailing comma or semicolon on the last line</span>
+            </label>
           </div>
         </div>
 

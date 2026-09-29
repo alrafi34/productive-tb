@@ -11,15 +11,16 @@ import {
   formatResultAsText
 } from './logic';
 import AnagramFinderSEOContent from './seo-content';
+import AnagramWordFinder from './finder';
 import RelatedTools from '@/components/RelatedTools';
 import RelatedStrip from '@/components/RelatedStrip';
 
 export default function AnagramFinderUI() {
   const [mode, setMode] = useState<CheckMode>('single');
-  const [textA, setTextA] = useState('');
-  const [textB, setTextB] = useState('');
+  const [textA, setTextA] = useState('Dormitory');
+  const [textB, setTextB] = useState('Dirty room');
   const [bulkCandidates, setBulkCandidates] = useState('');
-  const [realtimeCheck, setRealtimeCheck] = useState(false);
+  const [realtimeCheck, setRealtimeCheck] = useState(true);
   const [result, setResult] = useState<AnagramResult | null>(null);
   const [bulkResult, setBulkResult] = useState<BulkAnagramResult | null>(null);
   const [generatedAnagrams, setGeneratedAnagrams] = useState<string[]>([]);
@@ -91,8 +92,12 @@ export default function AnagramFinderUI() {
   return (
     <>
     <div className="max-w-6xl mx-auto space-y-6">
+      <AnagramWordFinder />
+
       {/* Mode Selection */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 className="text-xl font-semibold text-gray-800 mb-1">Check Two Words or a List</h2>
+        <p className="text-sm text-gray-500 mb-4">Test whether two words or phrases are anagrams of each other, with a letter-by-letter comparison.</p>
         <div className="flex gap-4">
           <button
             onClick={() => setMode('single')}
@@ -239,7 +244,7 @@ export default function AnagramFinderUI() {
             disabled={!textA.trim()}
             className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Generate Anagrams
+            Shuffle Letters
           </button>
         )}
       </div>

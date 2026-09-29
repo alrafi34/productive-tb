@@ -61,22 +61,97 @@ export function cmykToRgb(c: number, m: number, y: number, k: number): { r: numb
   return { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
 }
 
-export function parseColorInput(input: string): { r: number; g: number; b: number } | null {
-  input = input.trim();
-  if (input.startsWith('#')) {
-    return hexToRgb(input);
+/* HSV (also called HSB): hue, saturation and value/brightness, the model
+   used by the colour pickers in Photoshop, Figma and most design apps. */
+export function rgbToHsv(r: number, g: number, b: number): { h: number; s: number; v: number } {
+  const { h } = rgbToHsl(r, g, b);
+  const max = Math.max(r, g, b) / 255, min = Math.min(r, g, b) / 255;
+  return { h, s: Math.round(max === 0 ? 0 : ((max - min) / max) * 100), v: Math.round(max * 100) };
+}
+
+export type ParsedColor = { r: number; g: number; b: number; a?: number };
+
+const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
+
+// "50%" → 0.5 of `scale`, "128" → 128; NaN when not a number
+function num(token: string, scale: number): number {
+  const t = token.trim();
+  return t.endsWith('%') ? (parseFloat(t) / 100) * scale : parseFloat(t);
+}
+
+function alphaOf(token: string | undefined): number | undefined {
+  if (token === undefined) return undefined;
+  const a = num(token, 1);
+  return Number.isFinite(a) ? clamp(a, 0, 1) : undefined;
+}
+
+/* Values inside rgb()/hsl()/cmyk(), comma- or space-separated, with an
+   optional "/ alpha" as in modern CSS: rgb(255 87 51 / 50%). */
+function args(body: string): { parts: string[]; alpha?: string } {
+  const [main, alpha] = body.split('/');
+  return { parts: main.split(/[\s,]+/).filter(Boolean), alpha: alpha?.trim() };
+}
+
+/* Reads #RGB, #RGBA, #RRGGBB and #RRGGBBAA (with or without #), rgb()/rgba(),
+   hsl()/hsla() with deg or plain hue, cmyk(), and, in the browser, any CSS
+   colour name such as tomato or rebeccapurple. */
+export function parseColorInput(raw: string): ParsedColor | null {
+  const input = raw.trim().toLowerCase();
+  if (!input) return null;
+
+  const hex = input.replace(/^#/, '');
+  if (/^([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/.test(hex) && (input.startsWith('#') || /\d/.test(hex) || hex.length >= 6)) {
+    const full = hex.length <= 4 ? [...hex].map((c) => c + c).join('') : hex;
+    const color: ParsedColor = { r: parseInt(full.slice(0, 2), 16), g: parseInt(full.slice(2, 4), 16), b: parseInt(full.slice(4, 6), 16) };
+    if (full.length === 8) color.a = Math.round((parseInt(full.slice(6, 8), 16) / 255) * 100) / 100;
+    return color;
   }
-  const rgbMatch = input.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-  if (rgbMatch) {
-    return { r: parseInt(rgbMatch[1]), g: parseInt(rgbMatch[2]), b: parseInt(rgbMatch[3]) };
+
+  const fn = input.match(/^(rgba?|hsla?|cmyk)\s*\(([^)]*)\)$/);
+  if (fn) {
+    const { parts, alpha } = args(fn[2]);
+    const name = fn[1];
+    if (name.startsWith('rgb') && parts.length >= 3) {
+      const [r, g, b] = parts.slice(0, 3).map((p) => num(p, 255));
+      if ([r, g, b].some((n) => !Number.isFinite(n))) return null;
+      const color: ParsedColor = { r: Math.round(clamp(r, 0, 255)), g: Math.round(clamp(g, 0, 255)), b: Math.round(clamp(b, 0, 255)) };
+      const a = alphaOf(alpha ?? parts[3]);
+      if (a !== undefined) color.a = a;
+      return color;
+    }
+    if (name.startsWith('hsl') && parts.length >= 3) {
+      const h = parseFloat(parts[0].replace(/deg$/, ''));
+      const s = parseFloat(parts[1]), l = parseFloat(parts[2]);
+      if ([h, s, l].some((n) => !Number.isFinite(n))) return null;
+      const color: ParsedColor = hslToRgb(((h % 360) + 360) % 360, clamp(s, 0, 100), clamp(l, 0, 100));
+      const a = alphaOf(alpha ?? parts[3]);
+      if (a !== undefined) color.a = a;
+      return color;
+    }
+    if (name === 'cmyk' && parts.length === 4) {
+      const v = parts.map((p) => parseFloat(p));
+      if (v.some((n) => !Number.isFinite(n))) return null;
+      // Accept 0–100 and 0–1 scales
+      const scale = v.every((n) => n <= 1) && parts.every((p) => !p.endsWith('%')) ? 100 : 1;
+      const [c, m, y, k] = v.map((n) => clamp(n * scale, 0, 100));
+      return cmykToRgb(c, m, y, k);
+    }
+    return null;
   }
-  const hslMatch = input.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
-  if (hslMatch) {
-    return hslToRgb(parseInt(hslMatch[1]), parseInt(hslMatch[2]), parseInt(hslMatch[3]));
-  }
-  const cmykMatch = input.match(/cmyk\((\d+),\s*(\d+),\s*(\d+),\s*(\d+)\)/);
-  if (cmykMatch) {
-    return cmykToRgb(parseInt(cmykMatch[1]), parseInt(cmykMatch[2]), parseInt(cmykMatch[3]), parseInt(cmykMatch[4]));
+
+  // CSS colour names, resolved by the browser's own parser
+  if (/^[a-z]+$/.test(input) && typeof document !== 'undefined') {
+    const ctx = document.createElement('canvas').getContext('2d');
+    if (!ctx) return null;
+    ctx.fillStyle = '#010203';
+    ctx.fillStyle = input;
+    const resolved = String(ctx.fillStyle);
+    if (resolved === '#010203' && input !== 'black') return null;
+    return input === 'transparent' ? { r: 0, g: 0, b: 0, a: 0 } : parseColorInput(resolved);
   }
   return null;
+}
+
+export function rgbaToHex8(r: number, g: number, b: number, a: number): string {
+  return rgbToHex(r, g, b) + Math.round(clamp(a, 0, 1) * 255).toString(16).padStart(2, '0').toUpperCase();
 }

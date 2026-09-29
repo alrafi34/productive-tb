@@ -20,8 +20,8 @@ export function validateSVGPath(path: string): { isValid: boolean; error?: strin
     return { isValid: false, error: "Path cannot be empty" };
   }
 
-  // Basic SVG path command validation
-  const validCommands = /^[MmLlHhVvCcSsQqTtAaZz0-9\s,.-]+$/;
+  // Commands, numbers (including 1e-3 and +5), commas and spaces only
+  const validCommands = /^[MmLlHhVvCcSsQqTtAaZzEe0-9\s,.+-]+$/;
   if (!validCommands.test(path)) {
     return { isValid: false, error: "Invalid characters in path" };
   }
@@ -30,6 +30,10 @@ export function validateSVGPath(path: string): { isValid: boolean; error?: strin
   const trimmedPath = path.trim();
   if (!/^[Mm]/.test(trimmedPath)) {
     return { isValid: false, error: "Path must start with M or m command" };
+  }
+
+  if (!parsePath(trimmedPath)) {
+    return { isValid: false, error: "A command is missing some of its numbers" };
   }
 
   return { isValid: true };
@@ -68,12 +72,12 @@ export const samplePaths: SamplePath[] = [
   {
     name: "Triangle",
     path: "M50 10 L90 90 L10 90 Z",
-    description: "Equilateral triangle"
+    description: "Isosceles triangle"
   },
   {
     name: "Circle",
-    path: "M50 10 A20 20 0 1 1 49.9 10",
-    description: "Circle using arc commands"
+    path: "M10 50 A40 40 0 1 0 90 50 A40 40 0 1 0 10 50 Z",
+    description: "Circle made of two half-circle arcs"
   },
   {
     name: "Star",
@@ -92,7 +96,7 @@ export const samplePaths: SamplePath[] = [
   },
   {
     name: "Arrow",
-    path: "M10 50 L40 50 L40 30 L80 50 L40 70 L40 50",
+    path: "M10 40 H50 V25 L90 50 L50 75 V60 H10 Z",
     description: "Right-pointing arrow"
   },
   {
@@ -114,19 +118,108 @@ export function extractPathFromSVG(svgContent: string): string[] {
   return paths;
 }
 
+// ── Path parsing ──
+
+const PARAMS: Record<string, number> = { M: 2, L: 2, H: 1, V: 1, C: 6, S: 4, Q: 4, T: 2, A: 7, Z: 0 };
+const NAMES: Record<string, string> = {
+  M: "Move to", L: "Line to", H: "Horizontal line to", V: "Vertical line to", C: "Cubic Bézier curve to",
+  S: "Smooth cubic curve to", Q: "Quadratic Bézier curve to", T: "Smooth quadratic curve to", A: "Arc to", Z: "Close path",
+};
+
+export interface PathSegment {
+  command: string; // as written: upper case is absolute, lower case relative
+  params: number[];
+  /* End point in absolute coordinates */
+  end: { x: number; y: number };
+  /* Control points in absolute coordinates, for curves */
+  controls: { x: number; y: number }[];
+  description: string;
+}
+
+const fmt = (n: number) => String(Math.round(n * 100) / 100);
+
+/* Splits a path into commands with their numbers, resolving relative
+   coordinates and repeated parameters (M 0 0 10 10 is a move then a line).
+   Returns null when the path cannot be read. */
+export function parsePath(d: string): PathSegment[] | null {
+  const tokens = d.match(/[MmLlHhVvCcSsQqTtAaZz]|[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/g);
+  if (!tokens || !/^[Mm]$/.test(tokens[0])) return null;
+  const segments: PathSegment[] = [];
+  let x = 0, y = 0, startX = 0, startY = 0;
+  let i = 0;
+  let cmd = "";
+  while (i < tokens.length) {
+    if (/^[A-Za-z]$/.test(tokens[i])) cmd = tokens[i++];
+    else if (!cmd) return null;
+    const upper = cmd.toUpperCase();
+    const rel = cmd !== upper;
+    const n = PARAMS[upper];
+    if (upper === "Z") {
+      x = startX; y = startY;
+      segments.push({ command: cmd, params: [], end: { x, y }, controls: [], description: NAMES.Z });
+      cmd = "";
+      continue;
+    }
+    const p = tokens.slice(i, i + n).map(Number);
+    if (p.length < n || p.some((v) => !Number.isFinite(v))) return null;
+    i += n;
+    const ox = rel ? x : 0, oy = rel ? y : 0;
+    const controls: { x: number; y: number }[] = [];
+    let desc = "";
+    switch (upper) {
+      case "M": case "L": case "T":
+        x = ox + p[0]; y = oy + p[1];
+        desc = `${NAMES[upper]} (${fmt(x)}, ${fmt(y)})`;
+        break;
+      case "H": x = ox + p[0]; desc = `${NAMES.H} x = ${fmt(x)}`; break;
+      case "V": y = oy + p[0]; desc = `${NAMES.V} y = ${fmt(y)}`; break;
+      case "C":
+        controls.push({ x: ox + p[0], y: oy + p[1] }, { x: ox + p[2], y: oy + p[3] });
+        x = ox + p[4]; y = oy + p[5];
+        desc = `${NAMES.C} (${fmt(x)}, ${fmt(y)}) with control points (${fmt(controls[0].x)}, ${fmt(controls[0].y)}) and (${fmt(controls[1].x)}, ${fmt(controls[1].y)})`;
+        break;
+      case "S": case "Q":
+        controls.push({ x: ox + p[0], y: oy + p[1] });
+        x = ox + p[2]; y = oy + p[3];
+        desc = `${NAMES[upper]} (${fmt(x)}, ${fmt(y)}) with control point (${fmt(controls[0].x)}, ${fmt(controls[0].y)})`;
+        break;
+      case "A":
+        x = ox + p[5]; y = oy + p[6];
+        desc = `${NAMES.A} (${fmt(x)}, ${fmt(y)}): radii ${fmt(p[0])} × ${fmt(p[1])}, rotation ${fmt(p[2])}°, ${p[3] ? "large" : "small"} arc, ${p[4] ? "clockwise" : "counter-clockwise"}`;
+        break;
+    }
+    if (upper === "M") { startX = x; startY = y; }
+    segments.push({ command: cmd, params: p, end: { x, y }, controls, description: (rel ? "Relative " + desc.charAt(0).toLowerCase() + desc.slice(1) : desc) });
+    // Extra coordinate pairs after M are implicit line-to commands
+    if (upper === "M") cmd = rel ? "l" : "L";
+  }
+  return segments;
+}
+
+/* Exact bounds from the browser's SVG engine, which accounts for curves
+   and arcs; falls back to the parsed end and control points elsewhere. */
 export function calculatePathBounds(path: string): { minX: number; minY: number; maxX: number; maxY: number } | null {
-  // Simple bounds calculation - in a real implementation, you'd parse the path more thoroughly
-  const numbers = path.match(/[-+]?[0-9]*\.?[0-9]+/g);
-  if (!numbers || numbers.length < 2) return null;
-  
-  const coords = numbers.map(Number);
-  const xCoords = coords.filter((_, i) => i % 2 === 0);
-  const yCoords = coords.filter((_, i) => i % 2 === 1);
-  
+  if (typeof document !== "undefined") {
+    try {
+      const ns = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("style", "position:absolute;width:0;height:0;visibility:hidden");
+      const el = document.createElementNS(ns, "path");
+      el.setAttribute("d", path);
+      svg.appendChild(el);
+      document.body.appendChild(svg);
+      const box = el.getBBox();
+      svg.remove();
+      if (box.width || box.height) return { minX: box.x, minY: box.y, maxX: box.x + box.width, maxY: box.y + box.height };
+    } catch {}
+  }
+  const segs = parsePath(path);
+  if (!segs || !segs.length) return null;
+  const pts = segs.flatMap((s) => [s.end, ...s.controls]);
   return {
-    minX: Math.min(...xCoords),
-    minY: Math.min(...yCoords),
-    maxX: Math.max(...xCoords),
-    maxY: Math.max(...yCoords)
+    minX: Math.min(...pts.map((p) => p.x)),
+    minY: Math.min(...pts.map((p) => p.y)),
+    maxX: Math.max(...pts.map((p) => p.x)),
+    maxY: Math.max(...pts.map((p) => p.y)),
   };
 }

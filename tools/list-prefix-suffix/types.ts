@@ -7,6 +7,16 @@ export interface PrefixSuffixOptions {
   removeEmptyLines: boolean;
   trimSpaces: boolean;
   realtimeConvert: boolean;
+  /* Drop a trailing comma or semicolon from the suffix on the last line */
+  skipLastSuffix?: boolean;
 }
 
-export type TemplateType = 'markdown-bullet' | 'numbered-list' | 'checklist' | 'quote' | 'code-comment' | 'csv';
+export type TemplateType =
+  | 'markdown-bullet'
+  | 'numbered-list'
+  | 'checklist'
+  | 'quote'
+  | 'code-comment'
+  | 'csv'
+  | 'quoted'
+  | 'html-li';

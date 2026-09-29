@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   transformEntity,
   countEntities,
-  debounce,
   saveToHistory,
   getHistory,
   clearHistory,
@@ -20,12 +19,10 @@ import RelatedStrip from "@/components/RelatedStrip";
 const EXAMPLE_TEXT = "<div class=\"container\">Hello & Welcome</div>";
 
 export default function HTMLEntityEncoderUI() {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
+  const [input, setInput] = useState(EXAMPLE_TEXT);
   const [mode, setMode] = useState<EntityMode>("auto");
   const [entityType, setEntityType] = useState<EntityType>("named");
-  const [detectedMode, setDetectedMode] = useState<'encode' | 'decode' | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [nonAscii, setNonAscii] = useState(false);
   const [copiedType, setCopiedType] = useState<string | null>(null);
   const [history, setHistory] = useState<EntityHistory[]>([]);
   const [showHistory, setShowHistory] = useState(false);
@@ -33,110 +30,47 @@ export default function HTMLEntityEncoderUI() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const outputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Load history on mount
+  // History lives in localStorage, read after hydration
   useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setHistory(getHistory()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  // Conversion is a single pass over the text, fast enough to run on every keystroke
+  const { result: output, detectedMode } = transformEntity(input, mode, entityType, nonAscii);
+
+  // A conversion is kept in history when it is used (copied or exported), not on every keystroke
+  const remember = () => {
+    if (!input || !output) return;
+    saveToHistory({
+      id: Math.random().toString(36).slice(2),
+      mode,
+      entityType,
+      input: input.slice(0, 500),
+      output: output.slice(0, 500),
+      timestamp: Date.now(),
+    });
     setHistory(getHistory());
-  }, []);
-
-  // Transform with debouncing
-  const performTransform = useCallback((text: string, currentMode: EntityMode, currentEntityType: EntityType) => {
-    const { result, detectedMode: detected } = transformEntity(text, currentMode, currentEntityType);
-    setOutput(result);
-    setDetectedMode(detected || null);
-
-    // Save to history
-    if (text && result) {
-      const historyItem: EntityHistory = {
-        id: crypto.randomUUID(),
-        mode: currentMode,
-        entityType: currentEntityType,
-        input: text.slice(0, 100),
-        output: result.slice(0, 100),
-        timestamp: Date.now()
-      };
-      saveToHistory(historyItem);
-      setHistory(getHistory());
-    }
-  }, []);
-
-  // Debounced transform for large text
-  const debouncedTransform = useCallback(
-    debounce((text: string, currentMode: EntityMode, currentEntityType: EntityType) => {
-      performTransform(text, currentMode, currentEntityType);
-    }, 300),
-    [performTransform]
-  );
-
-  // Handle input change
-  const handleInputChange = (text: string) => {
-    setInput(text);
-
-    if (text.length > 1000) {
-      debouncedTransform(text, mode, entityType);
-    } else {
-      performTransform(text, mode, entityType);
-    }
   };
 
-  // Handle mode change
-  const handleModeChange = (newMode: EntityMode) => {
-    setMode(newMode);
-    if (input) {
-      performTransform(input, newMode, entityType);
-    }
-  };
-
-  // Handle entity type change
-  const handleEntityTypeChange = (newType: EntityType) => {
-    setEntityType(newType);
-    if (input) {
-      performTransform(input, mode, newType);
-    }
-  };
-
-  // Copy to clipboard
   const copyToClipboard = (text: string, type: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedType(type);
-    setTimeout(() => setCopiedType(null), 2000);
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedType(type);
+      setTimeout(() => setCopiedType(null), 2000);
+    }, () => {});
+    remember();
   };
 
-  // Swap input and output
-  const swapTexts = () => {
-    setInput(output);
-    handleInputChange(output);
-  };
+  const swapTexts = () => setInput(output);
 
-  // Clear all
-  const clearAll = () => {
-    setInput("");
-    setOutput("");
-    setDetectedMode(null);
-  };
+  const clearAll = () => setInput("");
 
-  // Load from history
   const loadFromHistory = (item: EntityHistory) => {
     setMode(item.mode);
     setEntityType(item.entityType);
     setInput(item.input);
-    handleInputChange(item.input);
     setShowHistory(false);
   };
-
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-        e.preventDefault();
-        if (input) {
-          performTransform(input, mode, entityType);
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [input, mode, entityType, performTransform]);
 
   return (
     <>
@@ -161,14 +95,13 @@ export default function HTMLEntityEncoderUI() {
             <textarea
               ref={inputRef}
               value={input}
-              onChange={(e) => handleInputChange(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
               className="w-full h-80 px-4 py-3 rounded-xl border-2 border-gray-200 font-mono text-sm resize-none focus:outline-none focus:border-primary"
               placeholder={`Paste HTML or text to encode or decode...\n\nExample:\n${EXAMPLE_TEXT}`}
             />
 
             <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
-              <span>{input.length.toLocaleString()} characters</span>
-              <span>Ctrl+Enter to transform</span>
+              <span>{input.length.toLocaleString("en-US")} characters</span>
             </div>
           </div>
 
@@ -207,7 +140,7 @@ export default function HTMLEntityEncoderUI() {
             />
 
             <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
-              <span>{output.length.toLocaleString()} characters</span>
+              <span>{output.length.toLocaleString("en-US")} characters</span>
               <span>{countEntities(output)} entities</span>
             </div>
           </div>
@@ -227,7 +160,7 @@ export default function HTMLEntityEncoderUI() {
                 {(["encode", "decode", "auto"] as EntityMode[]).map((m) => (
                   <button
                     key={m}
-                    onClick={() => handleModeChange(m)}
+                    onClick={() => setMode(m)}
                     className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       mode === m
                         ? "bg-primary text-white"
@@ -252,7 +185,7 @@ export default function HTMLEntityEncoderUI() {
                 {(["named", "decimal", "hex"] as EntityType[]).map((t) => (
                   <button
                     key={t}
-                    onClick={() => handleEntityTypeChange(t)}
+                    onClick={() => setEntityType(t)}
                     className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       entityType === t
                         ? "bg-primary text-white"
@@ -263,6 +196,10 @@ export default function HTMLEntityEncoderUI() {
                   </button>
                 ))}
               </div>
+              <label className="mt-3 flex items-start gap-2 text-sm text-gray-700">
+                <input type="checkbox" checked={nonAscii} onChange={(e) => setNonAscii(e.target.checked)} className="mt-1 accent-[#058554]" />
+                <span>Also encode non-ASCII characters (é, €, ©, emoji) — for emails or systems that are not UTF-8</span>
+              </label>
             </div>
           </div>
 
@@ -276,7 +213,7 @@ export default function HTMLEntityEncoderUI() {
               📋 Copy Output
             </button>
             <button
-              onClick={() => exportAsText(output, "html-entities")}
+              onClick={() => { exportAsText(output, "html-entities"); remember(); }}
               disabled={!output}
               className="px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-lg text-sm font-semibold transition-colors disabled:opacity-40"
             >

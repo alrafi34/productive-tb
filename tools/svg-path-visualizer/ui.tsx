@@ -9,7 +9,8 @@ import {
   createGridPattern,
   samplePaths,
   extractPathFromSVG,
-  calculatePathBounds
+  calculatePathBounds,
+  parsePath
 } from "./logic";
 import SVGPathVisualizerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -31,6 +32,8 @@ export default function SVGPathVisualizerUI() {
       setError(validation.error || "Invalid path");
     }
   }, [config]);
+
+  const segments = error ? null : parsePath(config.path);
 
   const updateConfig = (key: keyof PathConfig, value: any) => {
     setConfig(prev => ({ ...prev, [key]: value }));
@@ -368,6 +371,27 @@ export default function SVGPathVisualizerUI() {
             </button>
           </div>
         </div>
+
+        {/* Command-by-command explanation */}
+        {segments && segments.length > 0 && (
+          <div className="mt-8">
+            <h2 className="text-sm font-semibold text-gray-700 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+              Path Commands Explained ({segments.length})
+            </h2>
+            <div className="max-h-80 overflow-y-auto rounded-xl border border-gray-100">
+              <table className="w-full text-xs">
+                <tbody className="divide-y divide-gray-100">
+                  {segments.map((s, i) => (
+                    <tr key={i} className="hover:bg-gray-50">
+                      <td className="px-3 py-1.5 font-mono font-semibold text-primary whitespace-nowrap">{s.command} {s.params.join(" ")}</td>
+                      <td className="px-3 py-1.5 text-gray-600">{s.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
 
       <RelatedStrip />

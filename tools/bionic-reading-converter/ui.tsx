@@ -3,14 +3,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BionicOptions, DisplayOptions, ConversionResult, HistoryState } from './types';
 import { convertToBionicReading, copyToClipboard, downloadAsFile, readFileAsText, exportAsHtml, saveToLocalStorage, loadFromLocalStorage } from './logic';
-import { bionicReadingConverterConfig } from './config';
 import SEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
 import RelatedStrip from '@/components/RelatedStrip';
 
+const SAMPLE_TEXT = "Bionic Reading bolds the first part of every word. Some readers find the bold letters guide their eyes along the line and help them stay focused on long articles.";
+
 export default function BionicReadingConverterUI() {
-  const [inputText, setInputText] = useState('');
-  const [result, setResult] = useState<ConversionResult | null>(null);
+  const [inputText, setInputText] = useState(SAMPLE_TEXT);
+  const [result, setResult] = useState<ConversionResult | null>(() =>
+    convertToBionicReading(SAMPLE_TEXT, { boldPercentage: 50, ignoreSmallWords: true, smallWordLength: 3, autoCopyOnConvert: false, autoConvertOnPaste: false })
+  );
   const [copied, setCopied] = useState<'html' | 'plain' | 'markdown' | null>(null);
   
   const [bionicOptions, setBionicOptions] = useState<BionicOptions>({

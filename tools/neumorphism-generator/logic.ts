@@ -16,7 +16,10 @@ export const defaultConfig: NeumorphismConfig = {
 };
 
 export function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  // #eee is short for #eeeeee
+  const short = /^#?([a-f\d])([a-f\d])([a-f\d])$/i.exec(hex.trim());
+  if (short) hex = short.slice(1).map((c) => c + c).join('');
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
   return result ? {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),

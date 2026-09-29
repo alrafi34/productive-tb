@@ -1,48 +1,61 @@
 import { PrefixSuffixOptions, TemplateType } from "./types";
 
+/* Splits into lines (Windows \r\n too) and applies the empty-line and trim options */
+function prepareLines(text: string, options: PrefixSuffixOptions): string[] {
+  let lines = text.replace(/\r\n?/g, '\n').split('\n');
+  if (options.removeEmptyLines) lines = lines.filter(line => line.trim() !== '');
+  if (options.trimSpaces) lines = lines.map(line => line.trim());
+  return lines;
+}
+
+/* Adds the prefix, optional number and suffix to every non-empty line.
+   Blank lines stay blank and are not numbered, so a list split into
+   groups keeps its gaps and its numbering runs 1, 2, 3… */
+function formatLines(
+  lines: string[],
+  options: PrefixSuffixOptions,
+  affixes: (index: number) => { prefix: string; suffix: string }
+): string {
+  const lastContent = lines.map((l) => l.trim() !== '').lastIndexOf(true);
+  let n = 0;
+  return lines
+    .map((line, i) => {
+      if (line.trim() === '') return line;
+      const { prefix, suffix } = affixes(n);
+      const number = options.enableNumbering ? `${options.numberStart + n}${options.numberSeparator} ` : '';
+      n++;
+      // The last line drops only the separator: "blue" rather than "blue", or "blue
+      const end = options.skipLastSuffix && i === lastContent ? suffix.replace(/[,;]\s*$/, '') : suffix;
+      return `${prefix}${number}${line}${end}`;
+    })
+    .join('\n');
+}
+
 export function applyPrefixSuffix(text: string, options: PrefixSuffixOptions): string {
   if (!text) return '';
-
-  let lines = text.split('\n');
-
-  if (options.removeEmptyLines) {
-    lines = lines.filter(line => line.trim() !== '');
-  }
-
-  if (options.trimSpaces) {
-    lines = lines.map(line => line.trim());
-  }
-
-  const formattedLines = lines.map((line, index) => {
-    let result = line;
-
-    if (options.enableNumbering) {
-      const number = options.numberStart + index;
-      result = `${number}${options.numberSeparator} ${result}`;
-    }
-
-    result = `${options.prefix}${result}${options.suffix}`;
-
-    return result;
-  });
-
-  return formattedLines.join('\n');
+  return formatLines(prepareLines(text, options), options, () => ({ prefix: options.prefix, suffix: options.suffix }));
 }
+
+const PLAIN = { prefix: '', suffix: '', enableNumbering: false, skipLastSuffix: false };
 
 export function getTemplateOptions(template: TemplateType): Partial<PrefixSuffixOptions> {
   switch (template) {
     case 'markdown-bullet':
-      return { prefix: '- ', suffix: '', enableNumbering: false };
+      return { ...PLAIN, prefix: '- ' };
     case 'numbered-list':
-      return { prefix: '', suffix: '', enableNumbering: true, numberStart: 1, numberSeparator: '.' };
+      return { ...PLAIN, enableNumbering: true, numberStart: 1, numberSeparator: '.' };
     case 'checklist':
-      return { prefix: '[ ] ', suffix: '', enableNumbering: false };
+      return { ...PLAIN, prefix: '- [ ] ' };
     case 'quote':
-      return { prefix: '> ', suffix: '', enableNumbering: false };
+      return { ...PLAIN, prefix: '> ' };
     case 'code-comment':
-      return { prefix: '// ', suffix: '', enableNumbering: false };
+      return { ...PLAIN, prefix: '// ' };
     case 'csv':
-      return { prefix: '', suffix: ',', enableNumbering: false };
+      return { ...PLAIN, suffix: ',', skipLastSuffix: true };
+    case 'quoted':
+      return { ...PLAIN, prefix: '"', suffix: '",', skipLastSuffix: true };
+    case 'html-li':
+      return { ...PLAIN, prefix: '<li>', suffix: '</li>' };
     default:
       return {};
   }
@@ -50,36 +63,11 @@ export function getTemplateOptions(template: TemplateType): Partial<PrefixSuffix
 
 const RANDOM_EMOJIS = ['🍎', '🍌', '🍒', '🍇', '🍉', '🍊', '🍋', '🍓', '🥝', '🍑', '🍍', '🥭', '🍏', '🍐', '🥥'];
 
+const pick = () => RANDOM_EMOJIS[Math.floor(Math.random() * RANDOM_EMOJIS.length)];
+
 export function applyRandomPrefixSuffix(text: string, options: PrefixSuffixOptions): string {
   if (!text) return '';
-
-  let lines = text.split('\n');
-
-  if (options.removeEmptyLines) {
-    lines = lines.filter(line => line.trim() !== '');
-  }
-
-  if (options.trimSpaces) {
-    lines = lines.map(line => line.trim());
-  }
-
-  const formattedLines = lines.map((line, index) => {
-    const randomPrefix = RANDOM_EMOJIS[Math.floor(Math.random() * RANDOM_EMOJIS.length)];
-    const randomSuffix = RANDOM_EMOJIS[Math.floor(Math.random() * RANDOM_EMOJIS.length)];
-    
-    let result = line;
-
-    if (options.enableNumbering) {
-      const number = options.numberStart + index;
-      result = `${number}${options.numberSeparator} ${result}`;
-    }
-
-    result = `${randomPrefix}${result}${randomSuffix}`;
-
-    return result;
-  });
-
-  return formattedLines.join('\n');
+  return formatLines(prepareLines(text, options), options, () => ({ prefix: `${pick()} `, suffix: ` ${pick()}` }));
 }
 
 export function copyToClipboard(text: string): Promise<void> {
