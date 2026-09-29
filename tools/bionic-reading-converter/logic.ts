@@ -16,76 +16,42 @@ export function convertToBionicReading(text: string, options: BionicOptions): Co
     };
   }
 
-  const words = text.split(/(\s+|[.,!?;:()[\]{}'"—–-])/);
-  let htmlParts: string[] = [];
-  let plainParts: string[] = [];
-  let markdownParts: string[] = [];
+  /* Words are runs of letters (any alphabet), digits and inner apostrophes,
+     so "don't" and "über" stay whole; everything else passes through. */
+  const tokens = text.match(/[\p{L}\p{M}\p{N}]+(?:['’][\p{L}\p{M}]+)*|[^\p{L}\p{M}\p{N}]+/gu) ?? [];
+  const htmlParts: string[] = [];
+  const plainParts: string[] = [];
+  const markdownParts: string[] = [];
   let wordCount = 0;
   let boldedWords = 0;
 
-  for (const token of words) {
-    // Skip empty tokens
-    if (!token) continue;
-
-    // Check if it's whitespace or punctuation
-    if (/^\s+$/.test(token) || /^[.,!?;:()[\]{}'"—–-]+$/.test(token)) {
+  for (const token of tokens) {
+    const isWord = /[\p{L}\p{N}]/u.test(token);
+    const skip = () => {
       htmlParts.push(escapeHtml(token));
       plainParts.push(token);
       markdownParts.push(token);
-      continue;
-    }
-
-    // It's a word
-    const cleanWord = token.replace(/^[^\w]+|[^\w]+$/g, '');
-    if (!cleanWord) {
-      htmlParts.push(escapeHtml(token));
-      plainParts.push(token);
-      markdownParts.push(token);
-      continue;
-    }
+    };
+    if (!isWord) { skip(); continue; }
 
     wordCount++;
-
-    // Check if we should skip this word
-    if (options.ignoreSmallWords && 
-        (cleanWord.length <= options.smallWordLength || SMALL_WORDS.has(cleanWord.toLowerCase()))) {
-      htmlParts.push(escapeHtml(token));
-      plainParts.push(token);
-      markdownParts.push(token);
+    // Numbers are read at a glance; fixation points only help with words
+    if (!/\p{L}/u.test(token)) { skip(); continue; }
+    if (options.ignoreSmallWords &&
+        (token.length <= options.smallWordLength || SMALL_WORDS.has(token.toLowerCase()))) {
+      skip();
       continue;
     }
 
-    // Calculate bold length
-    const boldLength = Math.max(1, Math.ceil(cleanWord.length * (options.boldPercentage / 100)));
-    
-    // Extract prefix and suffix punctuation
-    const prefixMatch = token.match(/^[^\w]+/);
-    const suffixMatch = token.match(/[^\w]+$/);
-    const prefix = prefixMatch ? prefixMatch[0] : '';
-    const suffix = suffixMatch ? suffixMatch[0] : '';
+    // The first part of the word, by the chosen share, is bolded (at least one letter)
+    const letters = Array.from(token);
+    const boldLength = Math.max(1, Math.ceil(letters.length * (options.boldPercentage / 100)));
+    const boldPart = letters.slice(0, boldLength).join('');
+    const normalPart = letters.slice(boldLength).join('');
 
-    const boldPart = cleanWord.substring(0, boldLength);
-    const normalPart = cleanWord.substring(boldLength);
-
-    // HTML version
-    htmlParts.push(
-      escapeHtml(prefix) +
-      `<strong>${escapeHtml(boldPart)}</strong>` +
-      escapeHtml(normalPart) +
-      escapeHtml(suffix)
-    );
-
-    // Plain text version (no formatting)
+    htmlParts.push(`<strong>${escapeHtml(boldPart)}</strong>${escapeHtml(normalPart)}`);
     plainParts.push(token);
-
-    // Markdown version
-    markdownParts.push(
-      prefix +
-      `**${boldPart}**` +
-      normalPart +
-      suffix
-    );
-
+    markdownParts.push(`**${boldPart}**${normalPart}`);
     boldedWords++;
   }
 
@@ -99,9 +65,7 @@ export function convertToBionicReading(text: string, options: BionicOptions): Co
 }
 
 function escapeHtml(text: string): string {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 export async function copyToClipboard(text: string, isHtml: boolean = false): Promise<boolean> {

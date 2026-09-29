@@ -157,6 +157,89 @@ export function generateAnagrams(word: string, maxResults: number = 10): string[
   return Array.from(results).filter(r => r !== word.toLowerCase()).slice(0, maxResults);
 }
 
+// ── Dictionary search ──
+
+/* Frequency level from the SCOWL lists: 10 = among the most common words,
+   50 = less common. Used to show everyday words first. */
+export type WordEntry = { word: string; level: number };
+
+/* public/data/anagram-words.txt: "## comment", then "#10" followed by one
+   line of space-separated words, "#20" and its words, and so on. */
+export function parseWordList(text: string): WordEntry[] {
+  const out: WordEntry[] = [];
+  let level = 0;
+  for (const line of text.split('\n')) {
+    if (line.startsWith('##') || !line.trim()) continue;
+    if (line.startsWith('#')) { level = Number(line.slice(1)) || 0; continue; }
+    for (const word of line.split(' ')) if (word) out.push({ word, level });
+  }
+  return out;
+}
+
+function counts(word: string): number[] {
+  const c = new Array(26).fill(0);
+  for (const ch of word) {
+    const i = ch.charCodeAt(0) - 97;
+    if (i >= 0 && i < 26) c[i]++;
+  }
+  return c;
+}
+
+/* Can `word` be spelled from the letter counts, using up to `blanks`
+   wildcard tiles for missing letters? */
+function spellable(word: string, available: number[], blanks: number): boolean {
+  const need = counts(word);
+  let missing = 0;
+  for (let i = 0; i < 26; i++) {
+    if (need[i] > available[i]) {
+      missing += need[i] - available[i];
+      if (missing > blanks) return false;
+    }
+  }
+  return true;
+}
+
+export interface WordSearchResult {
+  letters: string;
+  /* Words that use every letter (true anagrams) */
+  exact: string[];
+  /* Shorter words that can be made from the letters, longest first */
+  byLength: { length: number; words: string[] }[];
+  total: number;
+}
+
+/* Finds dictionary words made from the given letters. Letters outside a–z
+   are ignored; ? or * are blank tiles that can stand for any letter. */
+export function findWords(input: string, dictionary: WordEntry[], minLength = 3): WordSearchResult {
+  const lower = input.toLowerCase();
+  const letters = lower.replace(/[^a-z]/g, '');
+  const blanks = (lower.match(/[?*]/g) || []).length;
+  const size = letters.length + blanks;
+  const available = counts(letters);
+  const sorted = [...letters].sort().join('');
+
+  const matches = dictionary.filter(
+    (e) => e.word.length >= Math.min(minLength, size) && e.word.length <= size && spellable(e.word, available, blanks)
+  );
+  // Everyday words first, then alphabetical
+  matches.sort((a, b) => a.level - b.level || a.word.localeCompare(b.word));
+
+  const exact = matches
+    .filter((e) => e.word.length === size && (blanks > 0 || [...e.word].sort().join('') === sorted))
+    .map((e) => e.word)
+    .filter((w) => w !== letters);
+
+  const groups = new Map<number, string[]>();
+  for (const e of matches) {
+    if (e.word.length === size) continue;
+    const list = groups.get(e.word.length) ?? [];
+    list.push(e.word);
+    groups.set(e.word.length, list);
+  }
+  const byLength = [...groups.entries()].sort((a, b) => b[0] - a[0]).map(([length, words]) => ({ length, words }));
+  return { letters, exact, byLength, total: matches.length };
+}
+
 export function copyToClipboard(text: string): Promise<void> {
   return navigator.clipboard.writeText(text);
 }
