@@ -199,8 +199,38 @@ ${html}
                 background: #9ca3af;
               }
             `}</style>
+            {/* The page's CSS reset removes heading sizes and list bullets, so the
+                rendered Markdown gets its own GitHub-like styles here */}
+            <style jsx global>{`
+              .md-preview { color: #1f2937; line-height: 1.6; }
+              .md-preview > :first-child { margin-top: 0; }
+              .md-preview h1, .md-preview h2, .md-preview h3, .md-preview h4, .md-preview h5, .md-preview h6 { font-weight: 600; line-height: 1.25; margin: 1.5em 0 0.6em; }
+              .md-preview h1 { font-size: 2em; padding-bottom: 0.3em; border-bottom: 1px solid #e5e7eb; }
+              .md-preview h2 { font-size: 1.5em; padding-bottom: 0.3em; border-bottom: 1px solid #e5e7eb; }
+              .md-preview h3 { font-size: 1.25em; }
+              .md-preview h4 { font-size: 1em; }
+              .md-preview h5 { font-size: 0.875em; }
+              .md-preview h6 { font-size: 0.85em; color: #6b7280; }
+              .md-preview p, .md-preview ul, .md-preview ol, .md-preview blockquote, .md-preview pre, .md-preview table { margin: 0 0 1em; }
+              .md-preview ul { list-style: disc; padding-left: 2em; }
+              .md-preview ol { list-style: decimal; padding-left: 2em; }
+              .md-preview li { margin: 0.25em 0; }
+              .md-preview li:has(> input[type="checkbox"]) { list-style: none; margin-left: -1.4em; }
+              .md-preview input[type="checkbox"] { margin-right: 0.4em; }
+              .md-preview a { color: #0969da; text-decoration: underline; }
+              .md-preview code { background: #f3f4f6; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.875em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+              .md-preview pre { background: #f6f8fa; padding: 1em; border-radius: 6px; overflow-x: auto; }
+              .md-preview pre code { background: none; padding: 0; font-size: 0.85em; }
+              .md-preview blockquote { border-left: 4px solid #d1d5db; padding: 0 1em; color: #6b7280; }
+              .md-preview hr { border: 0; border-top: 1px solid #e5e7eb; margin: 1.5em 0; }
+              .md-preview img { max-width: 100%; }
+              .md-preview table { border-collapse: collapse; display: block; overflow-x: auto; }
+              .md-preview th, .md-preview td { border: 1px solid #d1d5db; padding: 0.4em 0.8em; }
+              .md-preview th { background: #f6f8fa; font-weight: 600; }
+              .md-preview del { color: #6b7280; }
+            `}</style>
             <div
-              className="preview-scroll w-full h-[700px] px-6 pt-12 pb-6 bg-white border border-gray-200 rounded-xl overflow-y-auto prose prose-slate max-w-none"
+              className="preview-scroll md-preview w-full h-[700px] px-6 pt-12 pb-6 bg-white border border-gray-200 rounded-xl overflow-y-auto"
               style={{ fontSize: `${settings.fontSize}px` }}
               dangerouslySetInnerHTML={{ __html: html }}
             />
