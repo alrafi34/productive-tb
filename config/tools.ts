@@ -54,11 +54,11 @@ export const tools: Tool[] = [
   
   // Text & Writing Utilities (New)
   { slug: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", description: "Generate placeholder paragraphs, sentences, or words with copy and download support.", category: "writing", icon: "📄", free: true },
-  { slug: "markdown-previewer", name: "Markdown Previewer", description: "Preview Markdown as HTML with live rendering, file load, and export options.", category: "writing", icon: "📋", free: true },
+  { slug: "markdown-previewer", name: "Markdown Previewer", description: "Live Markdown editor with GitHub tables and task lists, and HTML export.", category: "writing", icon: "📋", free: true },
   { slug: "remove-duplicate-lines", name: "Remove Duplicate Lines", description: "Deduplicate line-based text with case, whitespace, and sort controls.", category: "writing", icon: "🧹", free: true },
   { slug: "find-and-replace", name: "Find and Replace", description: "Search and replace text with regex, batch rules, and preview controls.", category: "writing", icon: "🔍", free: true },
   { slug: "text-diff-checker", name: "Text Diff Checker", description: "Compare text versions by line, word, or character with visual diff output.", category: "writing", icon: "🔀", free: true },
-  { slug: "bionic-reading-converter", name: "Bionic Reading Converter", description: "Convert text into adjustable bionic-style emphasis with export options.", category: "writing", icon: "👁️", free: true },
+  { slug: "bionic-reading-converter", name: "Bionic Reading Converter", description: "Bold the first letters of every word, Bionic Reading style.", category: "writing", icon: "👁️", free: true },
   { slug: "whitespace-remover", name: "White Space Remover", description: "Clean leading/trailing spaces, extra gaps, tabs, and empty lines.", category: "writing", icon: "🧽", free: true },
   
   // Developer & Coding Helpers (New)
@@ -70,9 +70,9 @@ export const tools: Tool[] = [
   // Design & CSS Tools (New)
   { slug: "css-gradient-generator", name: "CSS Gradient Generator", description: "Create linear and radial gradients with copy-ready CSS.", category: "design", icon: "🌈", free: true },
   { slug: "css-box-shadow-generator", name: "CSS Box Shadow Generator", description: "Build layered shadows with live preview and copy-ready CSS.", category: "design", icon: "📦", free: true },
-  { slug: "color-format-converter", name: "Color Format Converter", description: "Convert HEX, RGB, HSL, RGBA, HSLA, and CMYK instantly.", category: "design", icon: "🎨", free: true },
+  { slug: "color-format-converter", name: "Color Format Converter", description: "Convert HEX, RGB, HSL, HSV and CMYK, including alpha and CSS color names.", category: "design", icon: "🎨", free: true },
   { slug: "css-glassmorphism-generator", name: "CSS Glassmorphism Generator", description: "Create frosted glass effects with live preview and copy-ready code.", category: "design", icon: "🪟", free: true },
-  { slug: "svg-path-visualizer", name: "SVG Path Visualizer", description: "Render and debug SVG path data with live preview.", category: "design", icon: "🖌️", free: true },
+  { slug: "svg-path-visualizer", name: "SVG Path Visualizer", description: "Draw SVG path data on a grid with every command explained.", category: "design", icon: "🖌️", free: true },
   { slug: "aspect-ratio-calculator", name: "Aspect Ratio Calculator", description: "Calculate dimensions based on aspect ratio.", category: "calculator", icon: "📐", free: true },
   { slug: "floor-area-calculator", name: "Floor Area Calculator", description: "Calculate total built-up floor area of a building.", category: "architecture", icon: "📐", free: true },
   { slug: "contrast-checker", name: "Contrast Checker", description: "Test WCAG AA and AAA color contrast accessibility.", category: "design", icon: "♿", free: true },
@@ -90,7 +90,7 @@ export const tools: Tool[] = [
   { slug: "table-to-markdown", name: "Table to Markdown", description: "Convert CSV, TSV, or spreadsheet data into aligned markdown tables.", category: "writing", icon: "📊", free: true },
   
   // Advanced Text & Writing (New)
-  { slug: "anagram-finder", name: "Anagram Finder", description: "Check single or bulk words for anagrams with detailed letter analysis.", category: "writing", icon: "🔤", free: true },
+  { slug: "anagram-finder", name: "Anagram Finder", description: "Find every word you can make from a set of letters, and check anagrams.", category: "writing", icon: "🔤", free: true },
   { slug: "palindrome-checker", name: "Palindrome Checker", description: "Check single or bulk text for palindromes with rule-based filtering.", category: "writing", icon: "🔄", free: true },
   { slug: "text-to-slug-converter", name: "Text-to-Slug Converter", description: "Convert single or bulk titles into SEO-friendly URL slugs.", category: "writing", icon: "🔗", free: true },
   { slug: "morse-code-translator", name: "Morse Code Translator", description: "Translate text and Morse code with audio playback and custom symbol settings.", category: "writing", icon: "📡", free: true },
@@ -140,7 +140,7 @@ export const tools: Tool[] = [
   { slug: "gradient-text-generator", name: "Gradient Text Generator", description: "Generate background-clip: text CSS code.", category: "design", icon: "🌈", free: true },
   
   // Misc & Utility (New)
-  { slug: "list-prefix-suffix", name: "List Item Prefix/Suffix", description: "Bulk format list lines with custom prefix/suffix, numbering, and cleanup options.", category: "writing", icon: "📝", free: true },
+  { slug: "list-prefix-suffix", name: "Add Prefix and Suffix to Lines", description: "Add text, numbers, quotes or bullets to the start and end of every line.", category: "writing", icon: "📝", free: true },
   { slug: "unit-ratio-calculator", name: "Unit Ratio Calculator", description: "Simplify ratios like 100:50 to 2:1 instantly.", category: "calculator", icon: "⚖️", free: true },
   { slug: "date-difference-calculator", name: "Date Difference Calculator", description: "Calculate years, months, days between two dates.", category: "calculator", icon: "📅", free: true },
   { slug: "color-palette-extractor", name: "Color Palette Extractor", description: "Upload image to get 5 dominant colors.", category: "design", icon: "🎨", free: true },
