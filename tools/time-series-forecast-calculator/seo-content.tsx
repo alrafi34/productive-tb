@@ -1,4 +1,10 @@
+import ToolFaq from "@/components/ToolFaq";
+import { timeSeriesForecastCalculatorConfig } from "./config";
+
 export default function TimeSeriesForecastCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = timeSeriesForecastCalculatorConfig.seo;
+
   return (
     <>
       {/* ── 1. Introduction ── */}
@@ -8,10 +14,10 @@ export default function TimeSeriesForecastCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>time series forecast calculator</strong> is a free browser-based tool that analyzes historical data and predicts future values using proven statistical forecasting techniques. It supports eight methods — <strong>Naive</strong>, <strong>Drift</strong>, <strong>Moving Average</strong>, <strong>Weighted Moving Average</strong>, <strong>Simple Exponential Smoothing</strong>, <strong>Linear Trend Regression</strong>, <strong>Polynomial Trend</strong>, and <strong>Seasonal Naive</strong> — covering everything from a quick baseline forecast to trend-aware and seasonal projections.
+            A <strong>time series forecast calculator</strong> is a free browser-based tool that analyzes historical data and predicts future values using proven statistical forecasting techniques. It supports nine methods — <strong>Naive</strong>, <strong>Drift</strong>, <strong>Moving Average</strong>, <strong>Weighted Moving Average</strong>, <strong>Simple Exponential Smoothing</strong>, <strong>Holt&apos;s Linear Trend</strong>, <strong>Linear Trend</strong>, <strong>Polynomial Trend</strong> and <strong>Seasonal Naive</strong> — and ranks them on your own data so you can see which one fits best.
           </p>
           <p>
-            This tool accepts manually typed numbers, pasted single-column or two-column Date,Value datasets, or uploaded CSV and TXT files. It instantly fits the selected model to your history, projects future periods, calculates accuracy metrics like MAE, RMSE, and MAPE, and visualizes historical, fitted, and forecast values on an interactive chart.
+            This tool accepts manually typed numbers, pasted single-column or two-column Date,Value datasets, or uploaded CSV and TXT files. It instantly fits the selected model to your history, projects future periods with a 95% prediction interval, calculates accuracy metrics like MAE, RMSE and MAPE, and visualizes historical, fitted and forecast values on an interactive chart.
           </p>
           <p>
             Built for <strong>business analysts, financial analysts, sales teams, inventory managers, supply chain professionals, small business owners, students, and researchers</strong>, the calculator runs entirely in your browser with instant results, no signup, and support for large datasets.
@@ -34,8 +40,10 @@ export default function TimeSeriesForecastCalculatorSEO() {
               <p>Moving Average: Forecast = Σ(last N values) / N</p>
               <p>Weighted Moving Average: Forecast = Σ(Value × Weight) / ΣWeights</p>
               <p>Exponential Smoothing: Fₜ = αAₜ₋₁ + (1 − α)Fₜ₋₁</p>
+              <p>Holt: Forecastₜ₊ₕ = Levelₜ + h × Trendₜ</p>
               <p>Linear Trend: y = a + bx</p>
               <p>Drift: Forecastₕ = Last Value + h × ((Last − First) / (n − 1))</p>
+              <p>95% interval ≈ Forecast ± 1.96 × RMSE (wider further ahead)</p>
             </div>
           </div>
           <ul className="space-y-2 text-sm">
@@ -43,7 +51,8 @@ export default function TimeSeriesForecastCalculatorSEO() {
               ["Naive Forecast", "Simply repeats the last observed value for every future period — the simplest possible baseline."],
               ["Drift Method", "Extends a straight line between the first and last observations, projecting the average historical rate of change forward."],
               ["Moving Average / Weighted Moving Average", "Averages the most recent N observations (equally or with increasing weight on recent data) and holds that value flat for future periods."],
-              ["Exponential Smoothing", "Weights recent observations more heavily than older ones using a smoothing factor α between 0.01 and 1.00."],
+              ["Exponential Smoothing", "Weights recent observations more heavily than older ones using a smoothing factor α between 0.01 and 1.00, and holds the smoothed level flat for future periods."],
+              ["Holt's Linear Trend", "Smooths both the level and the trend (α and β), then projects the latest trend forward, adapting when growth speeds up or slows down."],
               ["Linear / Polynomial Trend", "Fits a straight line or curve to the entire history using least-squares regression, then extrapolates it into future periods."],
               ["Seasonal Naive", "Repeats the value from the same point in the previous seasonal cycle — ideal for data with a clear repeating pattern."],
             ].map(([factor, desc]) => (
@@ -65,17 +74,10 @@ export default function TimeSeriesForecastCalculatorSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {[
-                ["Enter Your Historical Data", "Type or paste values one per line or comma-separated, use Date,Value CSV format, or upload a CSV or TXT file."],
-                ["Choose a Forecasting Method", "Select from Naive, Drift, Moving Average, Weighted Moving Average, Exponential Smoothing, Linear Trend, Polynomial Trend, or Seasonal Naive."],
-                ["Adjust Method Parameters", "Set the window size, smoothing alpha, or seasonal period depending on the method chosen."],
-                ["Set the Forecast Period", "Choose how many future periods to forecast, from 1 up to 365."],
-                ["Review the Chart and Table", "Check the historical, fitted, and forecast lines along with MAE, RMSE, and MAPE accuracy metrics."],
-                ["Export Your Results", "Copy the forecast or download it as CSV, Excel-compatible CSV, JSON, PNG chart, or a printed report."],
-              ].map(([title, desc], i) => (
-                <li key={i} className="flex items-start">
+              {howToSteps.map(({ name, text }, i) => (
+                <li key={name} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
-                  <span><strong>{title}:</strong> {desc}</span>
+                  <span><strong>{name}:</strong> {text}</span>
                 </li>
               ))}
             </ol>
@@ -85,11 +87,13 @@ export default function TimeSeriesForecastCalculatorSEO() {
             <ul className="space-y-2 text-gray-600">
               {[
                 "Live forecasting with a 150ms debounced update",
-                "Eight forecasting methods in one tool",
-                "Single-column or two-column Date,Value CSV parsing",
-                "Adjustable window size, alpha, and seasonal period",
+                "Nine forecasting methods in one tool",
+                "Compare all methods on your data, ranked by error",
+                "95% prediction interval for every forecast period",
+                "Single-column or Date,Value CSV parsing, including quoted numbers, semicolons and decimal commas",
+                "Adjustable window size, alpha, beta and seasonal period",
                 "Adjustable forecast horizon from 1 to 365 periods",
-                "Interactive chart with toggleable actual, fitted, forecast, and confidence lines",
+                "Interactive chart with toggleable actual, fitted and forecast lines and the prediction interval",
                 "MAE, RMSE, and MAPE accuracy metrics",
                 "Drag-and-drop CSV and TXT file upload",
                 "Sample datasets and a random dataset generator",
@@ -99,7 +103,6 @@ export default function TimeSeriesForecastCalculatorSEO() {
                 "Print-friendly report generation",
                 "Forecast history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "Keyboard shortcuts — Esc to reset, Ctrl+L for a random dataset",
                 "All processing runs locally — no data leaves your browser",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -147,7 +150,7 @@ export default function TimeSeriesForecastCalculatorSEO() {
                 "Use Linear or Polynomial Trend only when your data shows a genuinely consistent directional pattern, not random fluctuation.",
                 "Only use Seasonal Naive when you have at least two full seasonal cycles of history — one cycle isn't enough to validate the pattern.",
                 "Check MAPE alongside RMSE — MAPE is easier to interpret as a percentage and works well for comparing accuracy across different datasets.",
-                "Enable the confidence area on the chart to get a visual sense of forecast uncertainty based on historical fit error.",
+                "Look at the 95% interval, not just the forecast line: a wide band means the history is too noisy for a precise forecast.",
               ].map((tip, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
@@ -197,6 +200,7 @@ export default function TimeSeriesForecastCalculatorSEO() {
                 ["Moving Average", "Smoothing short-term noise", "Window size"],
                 ["Weighted Moving Average", "Emphasizing recent observations", "Window size"],
                 ["Exponential Smoothing", "Reactive short-term forecasting", "Alpha (α)"],
+                ["Holt's Linear Trend", "Trending data whose growth rate changes", "Alpha (α), beta (β)"],
                 ["Linear Trend Regression", "Consistent linear growth or decline", "None"],
                 ["Polynomial Trend", "Accelerating or decelerating growth", "None"],
                 ["Seasonal Naive", "Data with a repeating seasonal cycle", "Seasonal period"],
@@ -213,60 +217,7 @@ export default function TimeSeriesForecastCalculatorSEO() {
       </section>
 
       {/* ── 6. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is a time series forecast calculator?",
-              a: "A time series forecast calculator is a free browser-based tool that analyzes historical data and predicts future values using statistical forecasting methods such as moving average, exponential smoothing, linear trend regression, and seasonal naive forecasting.",
-            },
-            {
-              q: "Which forecasting method should I use?",
-              a: "Use Naive or Drift for a quick baseline, Moving Average or Weighted Moving Average to smooth short-term noise, Exponential Smoothing when recent observations should matter more, Linear or Polynomial Trend for data with a consistent directional trend, and Seasonal Naive for data with a clear repeating cycle.",
-            },
-            {
-              q: "How is the Moving Average forecast calculated?",
-              a: "The forecast equals the average of the last N values, where N is the window size. For example, with a window of 3 and the last three values 260, 280, 300, the forecast is (260 + 280 + 300) / 3 = 280.",
-            },
-            {
-              q: "How does the Drift Method work?",
-              a: "The Drift Method extends a straight line between the first and last observed values. The forecast for h periods ahead equals the last value plus h times the average change per period, calculated as (last value − first value) / (n − 1).",
-            },
-            {
-              q: "What is the difference between Linear and Polynomial Trend?",
-              a: "Linear Trend fits a straight line (y = a + bx) using least squares regression, best for data with a constant rate of change. Polynomial Trend fits a curve (y = a + bx + cx²), better suited to data whose growth rate is itself increasing or decreasing over time.",
-            },
-            {
-              q: "When should I use Seasonal Naive forecasting?",
-              a: "Use Seasonal Naive when your data repeats a pattern at a fixed interval, such as monthly sales with yearly seasonality (period 12) or daily traffic with weekly seasonality (period 7). It requires at least two full seasonal cycles of historical data.",
-            },
-            {
-              q: "What do MAE, RMSE, and MAPE mean?",
-              a: "MAE is the average absolute error between actual and fitted values. RMSE penalizes larger errors more heavily by squaring them. MAPE expresses the average error as a percentage, useful for comparing accuracy across datasets with different scales.",
-            },
-            {
-              q: "Can I upload a CSV or TXT file instead of typing numbers?",
-              a: "Yes. Use the Import CSV button or drag and drop a file directly onto the input box. The calculator supports a single column of numbers or two-column Date,Value CSV format, and automatically ignores header rows and invalid entries.",
-            },
-            {
-              q: "How large a dataset can this calculator handle?",
-              a: "The calculator uses efficient algorithms and comfortably handles thousands of observations with instant, debounced recalculation and smooth chart rendering.",
-            },
-            {
-              q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 7. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

@@ -111,7 +111,6 @@ export const NOINDEX_TOOLS: ReadonlySet<string> = new Set([
   "svg-pattern-generator",
   "text-to-speech-preview",
   "thread-pitch-calculator",
-  "time-series-forecast-calculator",
   "torque-calculator",
   "traffic-growth-calculator",
   "user-growth-rate-calculator",

@@ -5,8 +5,8 @@ import {
   parseDataset, computeForecast, isForecastError,
   debounce, formatNum, saveInput, loadInput, saveHistory, getHistory, clearHistory,
   buildTextReport, buildCSVReport, buildJSONReport, buildPrintHTML,
-  SAMPLE_DATASETS, generateRandomSample, METHODS, methodMeta,
-  type ForecastMethod, type ForecastResult, type HistoryEntry,
+  SAMPLE_DATASETS, generateRandomSample, METHODS, methodMeta, compareMethods,
+  type ForecastMethod, type ForecastResult, type HistoryEntry, type MethodScore,
 } from "./logic";
 import { ForecastChart, exportCanvasAsPng, copyCanvasToClipboard } from "./chart";
 import TimeSeriesForecastCalculatorSEO from "./seo-content";
@@ -15,11 +15,15 @@ import RelatedStrip from "@/components/RelatedStrip";
 
 const PRECISION_OPTIONS = [0, 2, 4, 6];
 
+// First visit: show a worked example instead of an empty tool
+const FIRST_SAMPLE = SAMPLE_DATASETS[0];
+
 export default function TimeSeriesForecastCalculatorUI() {
-  const [input, setInput] = useState("");
-  const [method, setMethod] = useState<ForecastMethod>("sma");
+  const [input, setInput] = useState(FIRST_SAMPLE.text);
+  const [method, setMethod] = useState<ForecastMethod>(FIRST_SAMPLE.method);
   const [windowSize, setWindowSize] = useState(3);
   const [alpha, setAlpha] = useState(0.3);
+  const [beta, setBeta] = useState(0.2);
   const [seasonalPeriod, setSeasonalPeriod] = useState(4);
   const [horizon, setHorizon] = useState(5);
   const [decimals, setDecimals] = useState(2);
@@ -28,8 +32,9 @@ export default function TimeSeriesForecastCalculatorUI() {
   const [labels, setLabels] = useState<string[]>([]);
   const [invalidLines, setInvalidLines] = useState<string[]>([]);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [scores, setScores] = useState<MethodScore[]>([]);
 
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
   const [chartCopied, setChartCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -39,7 +44,7 @@ export default function TimeSeriesForecastCalculatorUI() {
   const [showActual, setShowActual] = useState(true);
   const [showFitted, setShowFitted] = useState(true);
   const [showForecast, setShowForecast] = useState(true);
-  const [showConfidence, setShowConfidence] = useState(false);
+  const [showConfidence, setShowConfidence] = useState(true);
   const [showTable, setShowTable] = useState(false);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -47,13 +52,15 @@ export default function TimeSeriesForecastCalculatorUI() {
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
   const runRef = useRef(debounce((
-    text: string, m: ForecastMethod, w: number, a: number, sp: number, h: number, dec: number
+    text: string, m: ForecastMethod, w: number, a: number, b: number, sp: number, h: number, dec: number
   ) => {
     const { values, labels: lbls, invalidLines: invalid } = parseDataset(text);
     setInvalidLines(invalid);
     setLabels(lbls);
 
-    const r = computeForecast(values, { method: m, window: w, alpha: a, seasonalPeriod: sp, horizon: h, decimals: dec });
+    const params = { method: m, window: w, alpha: a, beta: b, seasonalPeriod: sp, horizon: h, decimals: dec };
+    const r = computeForecast(values, params);
+    setScores(values.length >= 3 ? compareMethods(values, params) : []);
     if (isForecastError(r)) {
       setResult(null);
       setValidationError(r.error);
@@ -64,46 +71,46 @@ export default function TimeSeriesForecastCalculatorUI() {
   }, 150));
 
   const persistRef = useRef(debounce((
-    text: string, m: ForecastMethod, w: number, a: number, sp: number, h: number, dec: number
+    text: string, m: ForecastMethod, w: number, a: number, b: number, sp: number, h: number, dec: number
   ) => {
-    saveInput({ text, method: m, window: w, alpha: a, seasonalPeriod: sp, horizon: h, decimals: dec });
+    saveInput({ text, method: m, window: w, alpha: a, beta: b, seasonalPeriod: sp, horizon: h, decimals: dec });
   }, 400));
 
+  // Saved history and the last session live in localStorage, read after hydration
   useEffect(() => {
-    setHistory(getHistory());
-    const saved = loadInput();
-    if (saved) {
-      setInput(saved.text); setMethod(saved.method); setWindowSize(saved.window); setAlpha(saved.alpha);
-      setSeasonalPeriod(saved.seasonalPeriod); setHorizon(saved.horizon); setDecimals(saved.decimals);
-    } else {
-      textareaRef.current?.focus();
-    }
-    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+    const frame = window.requestAnimationFrame(() => {
+      setHistory(getHistory());
+      const saved = loadInput();
+      if (saved && saved.text.trim() && METHODS.some((m) => m.id === saved.method)) {
+        setInput(saved.text); setMethod(saved.method); setWindowSize(saved.window); setAlpha(saved.alpha);
+        if (typeof saved.beta === "number") setBeta(saved.beta);
+        setSeasonalPeriod(saved.seasonalPeriod); setHorizon(saved.horizon); setDecimals(saved.decimals);
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
-    runRef.current(input, method, windowSize, alpha, seasonalPeriod, horizon, decimals);
-  }, [input, method, windowSize, alpha, seasonalPeriod, horizon, decimals]);
+    runRef.current(input, method, windowSize, alpha, beta, seasonalPeriod, horizon, decimals);
+  }, [input, method, windowSize, alpha, beta, seasonalPeriod, horizon, decimals]);
 
   useEffect(() => {
-    persistRef.current(input, method, windowSize, alpha, seasonalPeriod, horizon, decimals);
-  }, [input, method, windowSize, alpha, seasonalPeriod, horizon, decimals]);
+    persistRef.current(input, method, windowSize, alpha, beta, seasonalPeriod, horizon, decimals);
+  }, [input, method, windowSize, alpha, beta, seasonalPeriod, horizon, decimals]);
 
   const handleClear = () => {
     setInput(""); setResult(null); setLabels([]); setInvalidLines([]); setFileError(null);
-    setValidationError(null);
+    setValidationError(null); setScores([]);
     textareaRef.current?.focus();
   };
 
+  // Esc closes the examples menu (it used to wipe the data from anywhere on the page)
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { handleClear(); return; }
-      if (e.ctrlKey && e.key.toLowerCase() === "l") { e.preventDefault(); handleRandomSample(); return; }
-    };
+    if (!showSamples) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setShowSamples(false); };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [showSamples]);
 
   const handleLoadSample = (sample: { text: string; method: ForecastMethod; window?: number; seasonalPeriod?: number }) => {
     setInput(sample.text); setMethod(sample.method);
@@ -142,22 +149,25 @@ export default function TimeSeriesForecastCalculatorUI() {
     if (file) loadFile(file);
   };
 
+  const copyText = (key: string, text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(key); setTimeout(() => setCopied((c) => (c === key ? null : c)), 2000);
+    }, () => {});
+  };
+
   const handleCopyForecast = () => {
     if (!result) return;
-    navigator.clipboard.writeText(result.forecast.map((f) => `${f.period}: ${f.value}`).join("\n"));
-    setCopied(true); setTimeout(() => setCopied(false), 2000);
+    copyText("forecast", result.forecast.map((f) => `${f.period}: ${f.value}`).join("\n"));
   };
 
   const handleCopyResults = () => {
     if (!result) return;
-    navigator.clipboard.writeText(result.points.map((p) => formatNum(p.fitted)).join("\n"));
-    setCopied(true); setTimeout(() => setCopied(false), 2000);
+    copyText("results", result.points.map((p) => formatNum(p.fitted)).join("\n"));
   };
 
   const handleCopyReport = () => {
     if (!result) return;
-    navigator.clipboard.writeText(buildTextReport(result, { method, window: windowSize, alpha, seasonalPeriod, horizon, decimals }));
-    setCopied(true); setTimeout(() => setCopied(false), 2000);
+    copyText("report", buildTextReport(result, { method, window: windowSize, alpha, beta, seasonalPeriod, horizon, decimals }));
   };
 
   const handleDownloadCsv = (excelCompatible: boolean) => {
@@ -194,7 +204,7 @@ export default function TimeSeriesForecastCalculatorUI() {
   const handleSave = () => {
     if (!result || result.forecast.length === 0) return;
     saveHistory({
-      input: { text: input, method, window: windowSize, alpha, seasonalPeriod, horizon, decimals },
+      input: { text: input, method, window: windowSize, alpha, beta, seasonalPeriod, horizon, decimals },
       nextForecast: result.forecast[0].value,
       method,
     });
@@ -277,6 +287,19 @@ export default function TimeSeriesForecastCalculatorUI() {
                   </div>
                   <input id="tsf-alpha" type="range" min={0.01} max={1} step={0.01} value={alpha}
                     onChange={(e) => setAlpha(parseFloat(e.target.value))} className="w-full accent-primary" />
+                  <p className="text-[11px] text-gray-400 mt-1">Higher α reacts faster to recent values.</p>
+                </div>
+              )}
+
+              {meta.usesBeta && (
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label htmlFor="tsf-beta" className="text-xs font-medium text-gray-600">Beta (β), trend smoothing</label>
+                    <span className="text-xs font-mono font-semibold text-primary">{beta.toFixed(2)}</span>
+                  </div>
+                  <input id="tsf-beta" type="range" min={0.01} max={1} step={0.01} value={beta}
+                    onChange={(e) => setBeta(parseFloat(e.target.value))} className="w-full accent-primary" />
+                  <p className="text-[11px] text-gray-400 mt-1">Higher β lets the trend change direction faster.</p>
                 </div>
               )}
 
@@ -304,7 +327,6 @@ export default function TimeSeriesForecastCalculatorUI() {
                   </select>
                 </div>
               </div>
-              <p className="text-xs text-gray-400">Press <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs font-mono">Esc</kbd> to reset, <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs font-mono">Ctrl+L</kbd> for a random dataset</p>
             </div>
 
             {/* Statistics panel */}
@@ -351,17 +373,20 @@ export default function TimeSeriesForecastCalculatorUI() {
                     ))}
                     {result.forecast.length > 5 && <span className="text-sm text-primary-100">+{result.forecast.length - 5} more</span>}
                   </div>
+                  <p className="text-sm text-white/90 mb-1" data-testid="tsf-next-range">
+                    Next period: <strong className="font-mono">{formatNum(result.forecast[0].value)}</strong>, 95% range {formatNum(result.forecast[0].lower)} to {formatNum(result.forecast[0].upper)}
+                  </p>
                   <p className="text-xs text-primary-100 mb-4">
                     {result.forecast.length} forecast period{result.forecast.length === 1 ? "" : "s"} generated from {result.points.length} observations
                   </p>
 
                   <div className="space-y-2">
                     <button onClick={handleCopyForecast} className="w-full bg-white text-primary font-semibold py-2 rounded-lg hover:bg-gray-50 transition-colors text-sm">
-                      {copied ? "✓ Copied!" : "Copy Forecast"}
+                      {copied === "forecast" ? "✓ Copied!" : "Copy Forecast"}
                     </button>
                     <div className="flex gap-2">
-                      <button onClick={handleCopyResults} className="flex-1 border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-xs">Copy Results</button>
-                      <button onClick={handleCopyReport} className="flex-1 border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-xs">Copy Report</button>
+                      <button onClick={handleCopyResults} className="flex-1 border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-xs">{copied === "results" ? "✓ Copied" : "Copy Results"}</button>
+                      <button onClick={handleCopyReport} className="flex-1 border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-xs">{copied === "report" ? "✓ Copied" : "Copy Report"}</button>
                       <button onClick={handleSave} className="flex-1 border border-white/30 text-white font-medium py-2 rounded-lg hover:bg-white/10 transition-colors text-xs">Save</button>
                     </div>
                   </div>
@@ -383,7 +408,7 @@ export default function TimeSeriesForecastCalculatorUI() {
                     <button onClick={() => setShowForecast(!showForecast)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${showForecast ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>Forecast</button>
                     <button onClick={() => setShowConfidence(!showConfidence)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${showConfidence ? "bg-blue-200 text-blue-800" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>Confidence</button>
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${showConfidence ? "bg-blue-200 text-blue-800" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>95% Interval</button>
                   </div>
                   <div className="flex gap-2">
                     <button onClick={handleCopyChart} className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-medium transition-colors">{chartCopied ? "✓ Copied" : "Copy"}</button>
@@ -391,8 +416,53 @@ export default function TimeSeriesForecastCalculatorUI() {
                   </div>
                 </div>
                 <div ref={chartContainerRef} className="p-5">
-                  <ForecastChart points={result.points} forecast={result.forecast} rmse={result.rmse} showActual={showActual} showFitted={showFitted} showForecast={showForecast} showConfidence={showConfidence} />
+                  <ForecastChart points={result.points} forecast={result.forecast} showActual={showActual} showFitted={showFitted} showForecast={showForecast} showConfidence={showConfidence} />
                 </div>
+              </div>
+            )}
+
+            {/* Method comparison */}
+            {scores.length > 1 && (
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="p-4 border-b border-gray-100 bg-gray-50/50">
+                  <h3 className="font-semibold text-gray-800 text-sm" style={{ fontFamily: "var(--font-heading)" }}>Compare All Methods</h3>
+                  <p className="text-xs text-gray-500 mt-0.5">Same data and settings, lowest error first. Click a row to use that method.</p>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="text-left px-4 py-2 font-semibold text-gray-600">Method</th>
+                        <th className="text-right px-4 py-2 font-semibold text-gray-600">RMSE</th>
+                        <th className="text-right px-4 py-2 font-semibold text-gray-600">MAE</th>
+                        <th className="text-right px-4 py-2 font-semibold text-gray-600">MAPE</th>
+                        <th className="text-right px-4 py-2 font-semibold text-gray-600">Next</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                      {scores.map((sc, i) => (
+                        <tr
+                          key={sc.method}
+                          onClick={() => setMethod(sc.method)}
+                          className={`cursor-pointer hover:bg-gray-50 ${sc.method === method ? "bg-primary/5" : ""}`}
+                          data-testid={`tsf-score-${sc.method}`}
+                        >
+                          <td className="px-4 py-1.5">
+                            <span className={sc.method === method ? "font-semibold text-primary" : "text-gray-800"}>{methodMeta(sc.method).shortLabel}</span>
+                            {i === 0 && <span className="ml-2 px-1.5 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-semibold">Lowest error</span>}
+                          </td>
+                          <td className="px-4 py-1.5 text-right font-mono">{formatNum(sc.rmse)}</td>
+                          <td className="px-4 py-1.5 text-right font-mono">{formatNum(sc.mae)}</td>
+                          <td className="px-4 py-1.5 text-right font-mono">{formatNum(sc.mape)}%</td>
+                          <td className="px-4 py-1.5 text-right font-mono">{formatNum(sc.next)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="px-4 py-2 text-[11px] text-gray-400 border-t border-gray-100">
+                  Linear and polynomial trends are scored on how closely the fitted line follows your history; the other methods on true one-step-ahead forecasts, so trend lines can look a little better here than they will forecast.
+                </p>
               </div>
             )}
 
@@ -410,8 +480,9 @@ export default function TimeSeriesForecastCalculatorUI() {
                         <tr>
                           <th className="text-left px-4 py-2 font-semibold text-gray-600">Label</th>
                           <th className="text-left px-4 py-2 font-semibold text-gray-600">Actual</th>
-                          <th className="text-left px-4 py-2 font-semibold text-gray-600">Fitted</th>
+                          <th className="text-left px-4 py-2 font-semibold text-gray-600">Fitted / Forecast</th>
                           <th className="text-left px-4 py-2 font-semibold text-gray-600">Residual</th>
+                          <th className="text-left px-4 py-2 font-semibold text-gray-600">95% Interval</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-50">
@@ -421,14 +492,16 @@ export default function TimeSeriesForecastCalculatorUI() {
                             <td className="px-4 py-1.5 font-mono">{formatNum(p.actual)}</td>
                             <td className="px-4 py-1.5 font-mono font-semibold text-primary">{formatNum(p.fitted)}</td>
                             <td className="px-4 py-1.5 font-mono">{formatNum(p.residual)}</td>
+                            <td className="px-4 py-1.5 font-mono text-gray-300">—</td>
                           </tr>
                         ))}
                         {result.forecast.map((f) => (
                           <tr key={`f-${f.period}`} className="bg-blue-50">
-                            <td className="px-4 py-1.5 font-mono text-blue-600">{f.period}</td>
-                            <td className="px-4 py-1.5 font-mono text-blue-400">—</td>
+                            <td className="px-4 py-1.5 font-mono text-blue-600">Forecast {f.period}</td>
                             <td className="px-4 py-1.5 font-mono text-blue-400">—</td>
                             <td className="px-4 py-1.5 font-mono font-semibold text-blue-700">{formatNum(f.value)}</td>
+                            <td className="px-4 py-1.5 font-mono text-blue-400">—</td>
+                            <td className="px-4 py-1.5 font-mono text-blue-700 whitespace-nowrap">{formatNum(f.lower)} to {formatNum(f.upper)}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -463,6 +536,7 @@ export default function TimeSeriesForecastCalculatorUI() {
                     <div key={entry.id} onClick={() => {
                       setInput(entry.input.text); setMethod(entry.input.method); setWindowSize(entry.input.window);
                       setAlpha(entry.input.alpha); setSeasonalPeriod(entry.input.seasonalPeriod); setHorizon(entry.input.horizon);
+                      setDecimals(entry.input.decimals); if (typeof entry.input.beta === "number") setBeta(entry.input.beta);
                       setShowHistory(false);
                     }} className="p-4 hover:bg-gray-50 cursor-pointer transition-colors">
                       <div className="flex items-center justify-between mb-1">
