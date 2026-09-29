@@ -27,7 +27,7 @@ export const METHODS: MethodMeta[] = [
   { id: "sma", label: "Moving Average", shortLabel: "Moving Avg", usesWindow: true },
   { id: "wma", label: "Weighted Moving Average", shortLabel: "Weighted MA", usesWindow: true },
   { id: "ses", label: "Simple Exponential Smoothing", shortLabel: "Exp. Smoothing", usesAlpha: true },
-  { id: "holt", label: "Holt's Linear Trend (Double Exponential)", shortLabel: "Holt", usesAlpha: true, usesBeta: true },
+  { id: "holt", label: "Holt's Linear Trend", shortLabel: "Holt", usesAlpha: true, usesBeta: true },
   { id: "linear", label: "Linear Trend Regression", shortLabel: "Linear Trend" },
   { id: "poly2", label: "Polynomial Trend", shortLabel: "Polynomial" },
   { id: "seasonal-naive", label: "Seasonal Naive", shortLabel: "Seasonal Naive", usesSeasonalPeriod: true },

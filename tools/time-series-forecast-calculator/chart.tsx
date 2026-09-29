@@ -103,12 +103,10 @@ export function ForecastChart({ points, forecast, showActual, showFitted, showFo
         ctx.lineWidth = 2.5;
         ctx.setLineDash([5, 4]);
         ctx.beginPath();
-        const lastFitted = [...points].reverse().find((p) => p.fitted !== null);
-        if (lastFitted) ctx.moveTo(toX(lastFitted.index), toY(lastFitted.fitted as number));
-        forecast.forEach((f, i) => {
-          const px = toX(points.length + i), py = toY(f.value);
-          if (i === 0 && !lastFitted) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-        });
+        // The forecast continues from the last actual observation
+        const last = points[points.length - 1];
+        ctx.moveTo(toX(last.index), toY(last.actual));
+        forecast.forEach((f, i) => ctx.lineTo(toX(points.length + i), toY(f.value)));
         ctx.stroke();
         ctx.setLineDash([]);
 

@@ -449,7 +449,7 @@ export default function TimeSeriesForecastCalculatorUI() {
                         >
                           <td className="px-4 py-1.5">
                             <span className={sc.method === method ? "font-semibold text-primary" : "text-gray-800"}>{methodMeta(sc.method).shortLabel}</span>
-                            {i === 0 && <span className="ml-2 px-1.5 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-semibold">Lowest error</span>}
+                            {i === 0 && <span className="ml-2 whitespace-nowrap px-1.5 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-semibold">Lowest error</span>}
                           </td>
                           <td className="px-4 py-1.5 text-right font-mono">{formatNum(sc.rmse)}</td>
                           <td className="px-4 py-1.5 text-right font-mono">{formatNum(sc.mae)}</td>
