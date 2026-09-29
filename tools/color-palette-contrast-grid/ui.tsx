@@ -14,7 +14,8 @@ import {
   generateSCSSVariables,
   generateRandomPalette,
   generateId,
-  getContrastRatio
+  getContrastRatio,
+  formatRatio
 } from './logic';
 import ColorPaletteContrastGridSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
@@ -98,7 +99,7 @@ export default function ColorPaletteContrastGrid() {
           {result.wcagLevel}
         </div>
         <div className="text-xs mt-1 opacity-75">
-          {result.ratio.toFixed(1)}:1
+          {formatRatio(result.ratio)}:1
         </div>
       </div>
     </div>
@@ -313,7 +314,7 @@ export default function ColorPaletteContrastGrid() {
                       
                       <div className="pt-2 border-t">
                         <div className="text-xs sm:text-sm font-medium">Contrast Ratio</div>
-                        <div className="text-xl sm:text-2xl font-bold text-primary">{selectedPair.ratio.toFixed(2)}:1</div>
+                        <div className="text-xl sm:text-2xl font-bold text-primary">{formatRatio(selectedPair.ratio)}:1</div>
                         <div className={`inline-block px-2 py-1 rounded text-xs font-bold mt-1 ${getWCAGColor(selectedPair.wcagLevel)}`}>
                           {selectedPair.wcagLevel}
                         </div>

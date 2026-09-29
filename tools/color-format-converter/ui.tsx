@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { hexToRgb, rgbToHex, rgbToHsl, rgbToCmyk, parseColorInput } from "./logic";
+import { useState } from "react";
+import { rgbToHex, rgbToHsl, rgbToHsv, rgbToCmyk, rgbaToHex8, parseColorInput } from "./logic";
 import ColorFormatConverterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
@@ -12,17 +12,15 @@ export default function ColorFormatConverterUI() {
   const [alpha, setAlpha] = useState(1);
   const [history, setHistory] = useState<string[]>([]);
   const [copied, setCopied] = useState("");
-
-  useEffect(() => {
-    const parsed = parseColorInput(input);
-    if (parsed) setRgb(parsed);
-  }, []);
+  const [invalid, setInvalid] = useState(false);
 
   const handleInputChange = (value: string) => {
     setInput(value);
     const parsed = parseColorInput(value);
+    setInvalid(!parsed && value.trim() !== "");
     if (parsed) {
-      setRgb(parsed);
+      setRgb({ r: parsed.r, g: parsed.g, b: parsed.b });
+      if (parsed.a !== undefined) setAlpha(parsed.a);
       const hex = rgbToHex(parsed.r, parsed.g, parsed.b);
       if (!history.includes(hex)) {
         setHistory([hex, ...history.slice(0, 9)]);
@@ -48,15 +46,19 @@ export default function ColorFormatConverterUI() {
 
   const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
   const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+  const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
   const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+  const a = Math.round(alpha * 100) / 100;
 
   const formats = [
     { label: 'HEX', value: hex, type: 'hex' },
+    { label: 'HEX with alpha (#RRGGBBAA)', value: rgbaToHex8(rgb.r, rgb.g, rgb.b, a), type: 'hex8' },
     { label: 'RGB', value: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`, type: 'rgb' },
-    { label: 'RGBA', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`, type: 'rgba' },
+    { label: 'RGBA', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${a})`, type: 'rgba' },
     { label: 'HSL', value: `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`, type: 'hsl' },
-    { label: 'HSLA', value: `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alpha})`, type: 'hsla' },
-    { label: 'CMYK', value: `cmyk(${cmyk.c}, ${cmyk.m}, ${cmyk.y}, ${cmyk.k})`, type: 'cmyk' }
+    { label: 'HSLA', value: `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${a})`, type: 'hsla' },
+    { label: 'HSV / HSB', value: `${hsv.h}°, ${hsv.s}%, ${hsv.v}%`, type: 'hsv' },
+    { label: 'CMYK (approximate)', value: `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`, type: 'cmyk' }
   ];
 
   return (
@@ -67,11 +69,16 @@ export default function ColorFormatConverterUI() {
             <h2 className="text-lg font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Input Color</h2>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Enter HEX / RGB / HSL / CMYK</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Enter HEX, RGB, HSL, CMYK or a color name</label>
               <div className="flex gap-2">
                 <input type="text" value={input} onChange={(e) => handleInputChange(e.target.value)} className="flex-1 rounded-xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="#FF5733" />
                 <input type="color" value={hex} onChange={(e) => handleInputChange(e.target.value)} className="w-12 h-10 rounded-xl cursor-pointer border border-gray-200" />
               </div>
+              {invalid ? (
+                <p className="text-xs text-amber-700 mt-2">Not a color yet. Try #F53, #FF5733, rgb(255 87 51 / 50%), hsl(11deg 100% 60%), cmyk(0, 66, 80, 0) or tomato.</p>
+              ) : (
+                <p className="text-xs text-gray-400 mt-2">Examples: #F53, rgba(255, 87, 51, 0.5), hsl(11, 100%, 60%), cmyk(0, 66, 80, 0), tomato</p>
+              )}
             </div>
 
             <div className="space-y-3">

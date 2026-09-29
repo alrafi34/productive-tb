@@ -52,7 +52,10 @@ export const palettePresets: ColorPalette[] = [
 
 // Convert hex to RGB
 export const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  // #fff is short for #ffffff (it used to be read as black)
+  const short = /^#?([a-f\d])([a-f\d])([a-f\d])$/i.exec(hex.trim());
+  if (short) hex = short.slice(1).map((c) => c + c).join('');
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
   return result ? {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
@@ -82,6 +85,11 @@ export const getContrastRatio = (color1: string, color2: string): number => {
   const darkest = Math.min(lum1, lum2);
   return (brightest + 0.05) / (darkest + 0.05);
 };
+
+/* Shown rounded DOWN, as WebAIM's checker does: a ratio of 4.46 must not
+   appear as "4.5:1" when it fails the 4.5:1 requirement. */
+export const formatRatio = (ratio: number, decimals = 2): string =>
+  (Math.floor(ratio * 10 ** decimals) / 10 ** decimals).toFixed(decimals);
 
 // Get WCAG compliance level
 export const getWCAGLevel = (ratio: number, isLargeText: boolean = false): 'AAA' | 'AA' | 'AA Large' | 'Fail' => {
