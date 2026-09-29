@@ -6,7 +6,6 @@ import type { FitPoint, ForecastPoint } from "./logic";
 interface ForecastChartProps {
   points: FitPoint[];
   forecast: ForecastPoint[];
-  rmse: number;
   showActual: boolean;
   showFitted: boolean;
   showForecast: boolean;
@@ -14,7 +13,7 @@ interface ForecastChartProps {
   height?: number;
 }
 
-export function ForecastChart({ points, forecast, rmse, showActual, showFitted, showForecast, showConfidence, height = 320 }: ForecastChartProps) {
+export function ForecastChart({ points, forecast, showActual, showFitted, showForecast, showConfidence, height = 320 }: ForecastChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -40,12 +39,11 @@ export function ForecastChart({ points, forecast, rmse, showActual, showFitted, 
       const plotH = height - padding.top - padding.bottom;
 
       const totalN = points.length + forecast.length;
-      const band = showConfidence ? rmse * 1.28 : 0;
       const allVals = [
         ...points.map((p) => p.actual),
         ...points.map((p) => p.fitted).filter((v): v is number => v !== null),
-        ...forecast.map((f) => f.value + band),
-        ...forecast.map((f) => f.value - band),
+        ...forecast.map((f) => f.value),
+        ...(showConfidence ? forecast.flatMap((f) => [f.lower, f.upper]) : []),
       ];
       const yMin = Math.min(...allVals);
       const yMax = Math.max(...allVals);
@@ -63,17 +61,17 @@ export function ForecastChart({ points, forecast, rmse, showActual, showFitted, 
         ctx.beginPath(); ctx.moveTo(padding.left, gy); ctx.lineTo(padding.left + plotW, gy); ctx.stroke();
       }
 
-      if (showConfidence && forecast.length > 0 && band > 0) {
-        const lastFitted = [...points].reverse().find((p) => p.fitted !== null);
+      // 95% prediction interval, widening from the last observation
+      if (showConfidence && forecast.length > 0 && forecast.some((f) => f.upper > f.lower)) {
         const startIdx = points.length - 1;
-        const startVal = lastFitted ? (lastFitted.fitted as number) : forecast[0].value;
+        const startVal = points[startIdx].actual;
         ctx.beginPath();
         ctx.moveTo(toX(startIdx), toY(startVal));
-        forecast.forEach((f, i) => ctx.lineTo(toX(points.length + i), toY(f.value + band)));
-        for (let i = forecast.length - 1; i >= 0; i--) ctx.lineTo(toX(points.length + i), toY(forecast[i].value - band));
+        forecast.forEach((f, i) => ctx.lineTo(toX(points.length + i), toY(f.upper)));
+        for (let i = forecast.length - 1; i >= 0; i--) ctx.lineTo(toX(points.length + i), toY(forecast[i].lower));
         ctx.lineTo(toX(startIdx), toY(startVal));
         ctx.closePath();
-        ctx.fillStyle = "rgba(37, 99, 235, 0.08)";
+        ctx.fillStyle = "rgba(37, 99, 235, 0.12)";
         ctx.fill();
       }
 
@@ -105,12 +103,10 @@ export function ForecastChart({ points, forecast, rmse, showActual, showFitted, 
         ctx.lineWidth = 2.5;
         ctx.setLineDash([5, 4]);
         ctx.beginPath();
-        const lastFitted = [...points].reverse().find((p) => p.fitted !== null);
-        if (lastFitted) ctx.moveTo(toX(lastFitted.index), toY(lastFitted.fitted as number));
-        forecast.forEach((f, i) => {
-          const px = toX(points.length + i), py = toY(f.value);
-          if (i === 0 && !lastFitted) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-        });
+        // The forecast continues from the last actual observation
+        const last = points[points.length - 1];
+        ctx.moveTo(toX(last.index), toY(last.actual));
+        forecast.forEach((f, i) => ctx.lineTo(toX(points.length + i), toY(f.value)));
         ctx.stroke();
         ctx.setLineDash([]);
 
@@ -150,7 +146,7 @@ export function ForecastChart({ points, forecast, rmse, showActual, showFitted, 
     const ro = new ResizeObserver(() => draw());
     ro.observe(container);
     return () => ro.disconnect();
-  }, [points, forecast, rmse, showActual, showFitted, showForecast, showConfidence, height]);
+  }, [points, forecast, showActual, showFitted, showForecast, showConfidence, height]);
 
   return (
     <div ref={containerRef} className="w-full">

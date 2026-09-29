@@ -478,7 +478,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "tile-quantity-calculator": "2026-09-27",
   "time-complexity-calculator": "2026-07-07",
   "time-duration-calculator": "2026-09-26",
-  "time-series-forecast-calculator": "2026-08-02",
+  "time-series-forecast-calculator": "2026-09-29",
   "time-zone-converter": "2026-09-26",
   "timeline-creator": "2026-08-07",
   "timer-stopwatch": "2026-09-26",
