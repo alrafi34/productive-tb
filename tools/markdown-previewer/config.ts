@@ -8,7 +8,7 @@ export const toolConfig = {
   icon: "📝",
   seo: {
     title: "Markdown Previewer – Live Editor & Markdown to HTML",
-    description: "Write Markdown and see it rendered as you type, with GitHub Flavored Markdown tables, task lists and code blocks. Copy or download the HTML. Includes a cheat sheet.",
+    description: "Write Markdown and see it rendered as you type, with GitHub Flavored Markdown tables, task lists and code blocks. Export HTML; cheat sheet included.",
     keywords: [
       "markdown previewer",
       "markdown editor online",
@@ -23,7 +23,7 @@ export const toolConfig = {
     ],
     og: {
       title: "Markdown Previewer – Live Editor & Markdown to HTML",
-      description: "Write Markdown and see it rendered as you type, with GitHub Flavored Markdown tables, task lists and code blocks. Copy or download the HTML. Includes a cheat sheet.",
+      description: "Write Markdown and see it rendered as you type, with GitHub Flavored Markdown tables, task lists and code blocks. Export HTML; cheat sheet included.",
       url: `${siteConfig.url}/tools/writing/markdown-previewer`,
     },
     howToSteps: [

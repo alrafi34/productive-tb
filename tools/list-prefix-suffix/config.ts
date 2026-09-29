@@ -8,7 +8,7 @@ export const toolConfig = {
   icon: "📝",
   seo: {
     title: "Add Prefix and Suffix to Each Line – List Formatter",
-    description: "Add text before or after every line of a list: bullets, numbers, quotes and commas for SQL or JSON, Markdown checklists or HTML <li> tags. Free and private.",
+    description: "Add text before or after every line of a list: bullets, numbers, quotes and commas for SQL or JSON, Markdown checklists or HTML <li> tags.",
     keywords: [
       "add prefix to each line",
       "add suffix to each line",
@@ -23,7 +23,7 @@ export const toolConfig = {
     ],
     og: {
       title: "Add Prefix and Suffix to Each Line – List Formatter",
-      description: "Add text before or after every line of a list: bullets, numbers, quotes and commas for SQL or JSON, Markdown checklists or HTML <li> tags. Free and private.",
+      description: "Add text before or after every line of a list: bullets, numbers, quotes and commas for SQL or JSON, Markdown checklists or HTML <li> tags.",
       url: `${siteConfig.url}/tools/writing/list-prefix-suffix`,
     },
     howToSteps: [
