@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NumberField, { num } from "@/components/NumberField";
 import RelatedStrip from "@/components/RelatedStrip";
 import RelatedTools from "@/components/RelatedTools";
@@ -16,12 +16,19 @@ export default function SleepCalculatorUI() {
   const [fallAsleep, setFallAsleep] = useState("15");
   const [cycle, setCycle] = useState("90");
   const [nowMinutes, setNowMinutes] = useState<number | null>(null);
+  // Times are shown in the visitor's 12- or 24-hour format, which the server cannot know
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setMounted(true));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const cycleMin = Math.min(Math.max(num(cycle) || 90, 60), 120);
   const latency = Math.min(num(fallAsleep), 120);
 
-  const options =
-    mode === "wake"
+  const options = !mounted
+    ? []
+    : mode === "wake"
       ? (() => { const w = parseTime(wake); return w === null ? [] : bedtimesFor(w, cycleMin, latency); })()
       : mode === "bed"
         ? (() => { const b = parseTime(bed); return b === null ? [] : wakeTimesFor(b, cycleMin, latency); })()
