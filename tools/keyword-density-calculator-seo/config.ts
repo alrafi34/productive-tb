@@ -10,9 +10,9 @@ export const keywordDensityCalculatorSeoConfig = {
   free: true,
   seo: {
     title:
-      "Free Keyword Density Calculator Online | SEO Keyword Analyzer & Word Frequency Checker",
+      "Keyword Density Calculator – SEO Keyword Analyzer",
     description:
-      "Analyze keyword density, word frequency, phrase frequency, reading time, character count, and SEO statistics instantly. Free online keyword density calculator with CSV export and real-time analysis.",
+      "Analyze keyword density, word and phrase frequency, reading time and character count for any text, with CSV export.",
     keywords: [
       "keyword density calculator",
       "seo keyword analyzer",
@@ -28,9 +28,9 @@ export const keywordDensityCalculatorSeoConfig = {
       "text analysis tool",
     ],
     openGraph: {
-      title: "Free Keyword Density Calculator – SEO Keyword Analyzer",
+      title: "Keyword Density Calculator – SEO Keyword Analyzer",
       description:
-        "Paste your content and instantly get keyword density, word frequency, phrase analysis, and reading time. Free, browser-based, no signup required.",
+        "Analyze keyword density, word and phrase frequency, reading time and character count for any text, with CSV export.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/keyword-density-calculator-seo`,
     },

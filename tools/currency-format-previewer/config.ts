@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Currency Format Previewer - Intl Number & Money Formatter by Locale",
-    description: "Free online currency format previewer for developers and global businesses. Test locale-aware money formatting, accounting style, decimal precision, grouping, and Intl.NumberFormat output instantly.",
+    title: "Currency Format Previewer – Intl Money Format by Locale",
+    description: "Preview how amounts are formatted as money in any locale with Intl.NumberFormat: currency symbols, accounting style, decimals and grouping.",
     keywords: [
       "currency formatter",
       "currency format previewer",
@@ -38,8 +38,8 @@ export const toolConfig = {
       "global currency styles"
     ],
     openGraph: {
-      title: "Currency Format Previewer - Locale-Aware Intl Number Formatting Tool",
-      description: "Preview and compare localized currency output with Intl.NumberFormat. Test grouping, precision, accounting style, and currency display options in seconds.",
+      title: "Currency Format Previewer – Intl Money Format by Locale",
+      description: "Preview how amounts are formatted as money in any locale with Intl.NumberFormat: currency symbols, accounting style, decimals and grouping.",
       type: "website",
       url: "/tools/currency-format-previewer"
     }

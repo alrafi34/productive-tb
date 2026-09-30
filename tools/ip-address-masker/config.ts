@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free IP Address Masker & CIDR Calculator - Subnet Practice Tool",
-    description: "Free online IP address masker and CIDR calculator. Convert IPs to CIDR notation, calculate network ranges, practice subnetting exercises. Perfect for network students and IT professionals.",
+    title: "IP Address Masker & CIDR Calculator – Subnet Practice",
+    description: "Convert IP addresses to CIDR notation, work out network ranges and practice subnetting exercises. Useful for networking students and IT staff.",
     keywords: [
       "ip address masker",
       "cidr calculator",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "network address calculator"
     ],
     openGraph: {
-      title: "Free IP Address Masker & CIDR Calculator - Practice Subnetting",
-      description: "Convert IP addresses to CIDR notation, calculate network ranges, and practice subnetting with instant feedback. Free online tool for network professionals.",
+      title: "IP Address Masker & CIDR Calculator – Subnet Practice",
+      description: "Convert IP addresses to CIDR notation, work out network ranges and practice subnetting exercises. Useful for networking students and IT staff.",
       type: "website",
       url: "/ip-address-masker"
     }

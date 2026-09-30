@@ -8,7 +8,7 @@ export const cssKeyframeAnimatorConfig = {
   backend: false,
   seo: {
     title: "CSS Keyframe Animator – Visual Timeline Animation Generator",
-    description: "Create CSS @keyframes animations visually using a timeline editor. Generate production-ready CSS with live preview, presets, and export options. Free online tool.",
+    description: "Create CSS @keyframes animations on a visual timeline with a live preview and presets, then copy or export production-ready CSS.",
     keywords: [
       "css keyframe animator",
       "css animation generator",
@@ -28,7 +28,7 @@ export const cssKeyframeAnimatorConfig = {
     ],
     openGraph: {
       title: "CSS Keyframe Animator – Visual Timeline Animation Generator",
-      description: "Create CSS animations visually with timeline editor. Generate @keyframes instantly with live preview and presets.",
+      description: "Create CSS @keyframes animations on a visual timeline with a live preview and presets, then copy or export production-ready CSS.",
       type: "website",
       url: "/css-keyframe-animator"
     }

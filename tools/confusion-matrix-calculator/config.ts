@@ -20,12 +20,12 @@ export const confusionMatrixCalculatorConfig = {
     "specificity calculator",
   ],
   seo: {
-    title: "Free Confusion Matrix Calculator – Accuracy, Precision, Recall & F1 Score",
-    description: "Calculate confusion matrix metrics instantly online. Get accuracy, precision, recall, specificity, F1 score, MCC, and more for machine learning classification models.",
+    title: "Confusion Matrix Calculator – Precision, Recall & F1",
+    description: "Enter TP, FP, FN and TN to get accuracy, precision, recall, specificity, F1 score, MCC and more for a classification model.",
     keywords: "confusion matrix calculator, precision recall calculator, machine learning metrics calculator, accuracy precision recall tool, AI model evaluation, classification metrics calculator, F1 score calculator",
     og: {
-      title: "Free Confusion Matrix Calculator – Calculate Accuracy, Precision & Recall",
-      description: "Instantly calculate all confusion matrix metrics: accuracy, precision, recall, F1 score, MCC, and more. Free online ML evaluation tool.",
+      title: "Confusion Matrix Calculator – Precision, Recall & F1",
+      description: "Enter TP, FP, FN and TN to get accuracy, precision, recall, specificity, F1 score, MCC and more for a classification model.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/confusion-matrix-calculator`,
     },

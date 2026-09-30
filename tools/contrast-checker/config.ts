@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "WCAG Contrast Checker Online - Test AA and AAA Color Accessibility",
-    description: "Free WCAG Contrast Checker for testing text and background color combinations. Get live contrast ratio results, AA and AAA pass status, and accessibility-focused color guidance.",
+    title: "WCAG Contrast Checker – Test AA & AAA Color Contrast",
+    description: "Check the contrast ratio of text and background colors and see whether they pass WCAG AA and AAA for normal and large text.",
     keywords: [
       "wcag contrast checker",
       "color contrast checker",
@@ -35,8 +35,8 @@ export const toolConfig = {
       "design accessibility tool"
     ],
     openGraph: {
-      title: "WCAG Contrast Checker - Validate Color Accessibility Fast",
-      description: "Check contrast ratios instantly and verify WCAG AA or AAA compliance for text and UI color combinations.",
+      title: "WCAG Contrast Checker – Test AA & AAA Color Contrast",
+      description: "Check the contrast ratio of text and background colors and see whether they pass WCAG AA and AAA for normal and large text.",
       type: "website",
       url: "/tools/design/contrast-checker"
     }

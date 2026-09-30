@@ -8,7 +8,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "JWT Debugger Online – Decode JSON Web Tokens Instantly",
-    description: "Free online JWT debugger. Decode JSON Web Tokens, inspect header and payload, view claims and expiration time instantly in your browser. No data leaves your device.",
+    description: "Decode a JSON Web Token to inspect its header, payload, claims and expiry time. Decoding happens in your browser; the token never leaves your device.",
     keywords: [
       "jwt debugger",
       "jwt decoder",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "free jwt debugger"
     ],
     openGraph: {
-      title: "JWT Debugger – Decode & Inspect JSON Web Tokens Online",
-      description: "Instantly decode JWT tokens, inspect header and payload, view claims and expiration. 100% client-side, no data leaves your browser.",
+      title: "JWT Debugger Online – Decode JSON Web Tokens Instantly",
+      description: "Decode a JSON Web Token to inspect its header, payload, claims and expiry time. Decoding happens in your browser; the token never leaves your device.",
       type: "website",
       url: "/tools/jwt-debugger"
     }

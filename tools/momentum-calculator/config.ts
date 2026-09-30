@@ -8,8 +8,8 @@ export const momentumCalculatorConfig = {
   icon: "🏃",
   free: true,
   seo: {
-    title: "Momentum Calculator – Calculate Momentum Online Instantly",
-    description: "Free online Momentum Calculator. Calculate momentum using mass and velocity with unit conversion, instant results, and step-by-step explanations. Supports kg, g, lb, m/s, km/h, mph, ft/s.",
+    title: "Momentum Calculator – Mass × Velocity (p = mv)",
+    description: "Calculate momentum from mass and velocity, with step-by-step working. Supports kg, g and lb, and m/s, km/h, mph and ft/s.",
     keywords: [
       "momentum calculator",
       "calculate momentum",
@@ -25,8 +25,8 @@ export const momentumCalculatorConfig = {
       "collision momentum calculator",
     ],
     og: {
-      title: "Momentum Calculator – Calculate Momentum Online Instantly",
-      description: "Free online Momentum Calculator. Calculate momentum using mass and velocity with unit conversion, instant results, and step-by-step explanations.",
+      title: "Momentum Calculator – Mass × Velocity (p = mv)",
+      description: "Calculate momentum from mass and velocity, with step-by-step working. Supports kg, g and lb, and m/s, km/h, mph and ft/s.",
       url: `${siteConfig.url}/tools/mechanical/momentum-calculator`,
     },
   },

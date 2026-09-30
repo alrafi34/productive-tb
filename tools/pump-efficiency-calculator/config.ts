@@ -9,9 +9,9 @@ export const toolConfig = {
   slug: "pump-efficiency-calculator",
   seo: {
     title:
-      "Pump Efficiency Calculator – Calculate Pump Performance Online | Free Tool",
+      "Pump Efficiency Calculator – Hydraulic Power & Efficiency",
     description:
-      "Free online pump efficiency calculator. Calculate hydraulic power and pump efficiency instantly using flow rate, head, power, and fluid density. Supports metric and imperial units.",
+      "Calculate hydraulic power and pump efficiency from flow rate, head, input power and fluid density, in metric or imperial units.",
     keywords: [
       "pump efficiency calculator",
       "pump performance calculator",
@@ -31,9 +31,9 @@ export const toolConfig = {
     ],
     og: {
       title:
-        "Pump Efficiency Calculator – Calculate Pump Performance Online",
+        "Pump Efficiency Calculator – Hydraulic Power & Efficiency",
       description:
-        "Free online pump efficiency calculator. Calculate hydraulic power and pump efficiency instantly using flow rate, head, power, and fluid density.",
+        "Calculate hydraulic power and pump efficiency from flow rate, head, input power and fluid density, in metric or imperial units.",
       url: `${siteConfig.url}/tools/mechanical/pump-efficiency-calculator`,
     },
   },

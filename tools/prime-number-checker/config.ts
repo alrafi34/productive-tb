@@ -8,7 +8,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Prime Number Checker – Check Prime Numbers Instantly",
-    description: "Check if a number is prime and generate all prime numbers up to N using the Sieve of Eratosthenes algorithm. Fast, educational, and interactive with visualization.",
+    description: "Check whether a number is prime and list all primes up to N with the Sieve of Eratosthenes, with an interactive visualization.",
     keywords: [
       "prime number checker",
       "is this number prime",
@@ -20,8 +20,8 @@ export const toolConfig = {
       "number theory"
     ],
     openGraph: {
-      title: "Prime Number Checker - Instant Prime Detection & Generation",
-      description: "Fast prime number checker with Sieve of Eratosthenes visualization. Check individual numbers or generate all primes up to N.",
+      title: "Prime Number Checker – Check Prime Numbers Instantly",
+      description: "Check whether a number is prime and list all primes up to N with the Sieve of Eratosthenes, with an interactive visualization.",
       type: "website",
       url: "/tools/prime-number-checker"
     }

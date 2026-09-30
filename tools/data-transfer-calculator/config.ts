@@ -8,8 +8,8 @@ export const dataTransferCalculatorConfig = {
   icon: "⏱️",
   free: true,
   seo: {
-    title: "Data Transfer Calculator – Calculate Upload & Download Time Online",
-    description: "Calculate transfer time instantly based on file size and internet speed. Estimate upload, download, backup, or network transfer duration using Mbps, Gbps, MB/s, GB, TB, and more.",
+    title: "Data Transfer Calculator – Upload & Download Time",
+    description: "Estimate how long an upload, download or backup takes from file size and connection speed, in Mbps, Gbps or MB/s and GB or TB.",
     keywords: [
       "data transfer calculator",
       "download time calculator",
@@ -25,8 +25,8 @@ export const dataTransferCalculatorConfig = {
       "transfer speed estimator",
     ],
     openGraph: {
-      title: "Data Transfer Calculator – Calculate Upload & Download Time Online",
-      description: "Calculate transfer time instantly based on file size and internet speed. Estimate upload, download, backup, or network transfer duration using Mbps, Gbps, MB/s, GB, TB, and more.",
+      title: "Data Transfer Calculator – Upload & Download Time",
+      description: "Estimate how long an upload, download or backup takes from file size and connection speed, in Mbps, Gbps or MB/s and GB or TB.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/data-transfer-calculator`,
     },

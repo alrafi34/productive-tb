@@ -15,8 +15,8 @@ export const costPerClickCpcCalculatorConfig = {
     "customer-lifetime-value-calculator",
   ],
   seo: {
-    title: "CPC Calculator — Free Cost Per Click Calculator for Google Ads & PPC",
-    description: "Calculate Cost Per Click (CPC) instantly from ad spend and clicks. Free CPC calculator for Google Ads, Facebook, LinkedIn, Amazon PPC. Average CPC benchmarks by industry included.",
+    title: "CPC Calculator – Cost Per Click for Google Ads & PPC",
+    description: "Calculate cost per click from ad spend and clicks for Google Ads, Facebook, LinkedIn and Amazon PPC, with average CPC benchmarks by industry.",
     keywords: [
       "cpc calculator",
       "cost per click calculator",
@@ -45,14 +45,14 @@ export const costPerClickCpcCalculatorConfig = {
       "online cpc calculator",
     ],
     openGraph: {
-      title: "CPC Calculator — Free Cost Per Click Calculator for Google Ads & PPC",
-      description: "Calculate Cost Per Click instantly from ad spend and clicks. Industry CPC benchmarks for Google Ads, Facebook, LinkedIn, and Amazon included.",
+      title: "CPC Calculator – Cost Per Click for Google Ads & PPC",
+      description: "Calculate cost per click from ad spend and clicks for Google Ads, Facebook, LinkedIn and Amazon PPC, with average CPC benchmarks by industry.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/cost-per-click-cpc-calculator`,
     },
     og: {
-      title: "CPC Calculator — Free Cost Per Click Calculator for Google Ads & PPC",
-      description: "Calculate Cost Per Click instantly from ad spend and clicks. Industry CPC benchmarks for Google Ads, Facebook, LinkedIn, and Amazon included.",
+      title: "CPC Calculator – Cost Per Click for Google Ads & PPC",
+      description: "Calculate cost per click from ad spend and clicks for Google Ads, Facebook, LinkedIn and Amazon PPC, with average CPC benchmarks by industry.",
       url: `${siteConfig.url}/tools/marketing/cost-per-click-cpc-calculator`,
     },
     howToSteps: [

@@ -8,7 +8,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Ohm's Law Calculator Online – V = I × R",
-    description: "Free online Ohm's Law Calculator. Calculate Voltage, Current, or Resistance instantly. Enter any two values and get the third using V = I × R, entirely in your browser.",
+    description: "Enter any two of voltage, current and resistance to get the third with V = I × R, in volts, amps and ohms, entirely in your browser.",
     keywords: [
       "ohms law calculator",
       "calculate voltage",
@@ -19,7 +19,7 @@ export const toolConfig = {
     ],
     openGraph: {
       title: "Ohm's Law Calculator Online – V = I × R",
-      description: "Fast, accurate Ohm's Law Calculator for dynamic Voltage, Current, and Resistance calculations.",
+      description: "Enter any two of voltage, current and resistance to get the third with V = I × R, in volts, amps and ohms, entirely in your browser.",
       type: "website",
       url: "/tools/ohms-law-calculator"
     }

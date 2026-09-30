@@ -7,8 +7,8 @@ export const textEncryptDecryptConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Text Encrypt & Decrypt Tool — ROT13 & Base64 Online",
-    description: "Encrypt or decrypt text instantly using ROT13, Base64, Base32, and binary. Fast, front-end-only tool with live preview, copy buttons, history, and export functionality.",
+    title: "Text Encrypt & Decrypt Tool – ROT13 & Base64 Online",
+    description: "Encode or decode text with ROT13, Base64, Base32 and binary, with a live preview, copy buttons and history. Runs entirely in your browser.",
     keywords: [
       "text encrypt",
       "text decrypt",
@@ -26,8 +26,8 @@ export const textEncryptDecryptConfig = {
       "text transformation"
     ],
     openGraph: {
-      title: "Text Encrypt & Decrypt Tool — ROT13 & Base64 Online",
-      description: "Transform text using ROT13, Base64, and more. Live preview, history, and export options. 100% client-side processing.",
+      title: "Text Encrypt & Decrypt Tool – ROT13 & Base64 Online",
+      description: "Encode or decode text with ROT13, Base64, Base32 and binary, with a live preview, copy buttons and history. Runs entirely in your browser.",
       type: "website",
       url: "/text-encrypt-decrypt"
     }

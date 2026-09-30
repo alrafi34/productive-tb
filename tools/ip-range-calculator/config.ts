@@ -8,8 +8,8 @@ export const ipRangeCalculatorConfig = {
   icon: "🌐",
   free: true,
   seo: {
-    title: "Free IP Range Calculator – Calculate Subnet, CIDR & Host Range Online",
-    description: "Calculate IP ranges instantly using CIDR or subnet mask. Find network address, broadcast address, host range, usable IPs, wildcard mask, and subnet details online for free.",
+    title: "IP Range Calculator – Subnet, CIDR & Host Range",
+    description: "Find the network and broadcast addresses, host range, usable IPs and wildcard mask from a CIDR block or subnet mask.",
     keywords: [
       "ip range calculator",
       "subnet calculator",
@@ -25,8 +25,8 @@ export const ipRangeCalculatorConfig = {
       "free ip calculator",
     ],
     openGraph: {
-      title: "Free IP Range Calculator – Calculate Subnet, CIDR & Host Range Online",
-      description: "Calculate IP ranges instantly using CIDR or subnet mask. Find network address, broadcast address, host range, usable IPs, wildcard mask, and subnet details online for free.",
+      title: "IP Range Calculator – Subnet, CIDR & Host Range",
+      description: "Find the network and broadcast addresses, host range, usable IPs and wildcard mask from a CIDR block or subnet mask.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/ip-range-calculator`,
     },

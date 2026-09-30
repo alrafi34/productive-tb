@@ -8,8 +8,8 @@ export const toolConfig = {
   icon: "✅",
   free: true,
   seo: {
-    title: "Free Checksum Calculator Online – MD5, SHA-256, SHA-512 Hash Generator",
-    description: "Calculate checksums instantly online using MD5, SHA-1, SHA-256, SHA-384, SHA-512, CRC32, and Adler-32. Verify files, validate downloads, and generate secure hashes in your browser.",
+    title: "Checksum Calculator – MD5, SHA-256, SHA-512 & CRC32",
+    description: "Calculate MD5, SHA-1, SHA-256, SHA-384, SHA-512, CRC32 and Adler-32 checksums for text or files to verify downloads, in your browser.",
     keywords: [
       "checksum calculator",
       "sha256 generator",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "compare checksum online",
     ],
     openGraph: {
-      title: "Free Checksum Calculator Online – MD5, SHA-256, SHA-512 Hash Generator",
-      description: "Calculate checksums for text or files using MD5, SHA-1, SHA-256, SHA-512, CRC32, Adler-32. 100% browser-based, no uploads.",
+      title: "Checksum Calculator – MD5, SHA-256, SHA-512 & CRC32",
+      description: "Calculate MD5, SHA-1, SHA-256, SHA-384, SHA-512, CRC32 and Adler-32 checksums for text or files to verify downloads, in your browser.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/checksum-calculator`,
     },

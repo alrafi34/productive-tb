@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Bcrypt Hash Verifier - Check Password Against Bcrypt Hash",
-    description: "Verify if a password matches a Bcrypt hash instantly in your browser. Secure client-side verification with hash metadata analysis. No server required.",
+    title: "Bcrypt Hash Verifier – Check a Password Against a Hash",
+    description: "Check whether a password matches a bcrypt hash and see the hash's cost and salt. Verification runs in your browser; nothing is sent to a server.",
     keywords: [
       "bcrypt verifier",
       "bcrypt hash checker",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "bcrypt cost factor"
     ],
     openGraph: {
-      title: "Free Bcrypt Hash Verifier - Verify Passwords Securely",
-      description: "Check if passwords match Bcrypt hashes locally in your browser. No data sent to servers.",
+      title: "Bcrypt Hash Verifier – Check a Password Against a Hash",
+      description: "Check whether a password matches a bcrypt hash and see the hash's cost and salt. Verification runs in your browser; nothing is sent to a server.",
       type: "website",
       url: "/bcrypt-hash-verifier"
     }

@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Venn Diagram Maker - Create 2 or 3 Circle Diagrams Online",
-    description: "Create interactive Venn diagrams with 2 or 3 circles. Customize colors, labels, and transparency. Export as PNG or SVG entirely in your browser.",
+    title: "Venn Diagram Maker – Create 2 or 3 Circle Diagrams",
+    description: "Create Venn diagrams with 2 or 3 circles. Customize colors, labels and transparency, then export as PNG or SVG, all in your browser.",
     keywords: [
       "venn diagram maker",
       "venn diagram creator",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "logic diagram"
     ],
     openGraph: {
-      title: "Free Venn Diagram Maker - Create Interactive Diagrams Online",
-      description: "Create interactive Venn diagrams with 2 or 3 circles. Customize colors, labels, and transparency. Export as PNG or SVG.",
+      title: "Venn Diagram Maker – Create 2 or 3 Circle Diagrams",
+      description: "Create Venn diagrams with 2 or 3 circles. Customize colors, labels and transparency, then export as PNG or SVG, all in your browser.",
       type: "website",
       url: "/venn-diagram-maker"
     }

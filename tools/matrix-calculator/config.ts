@@ -16,8 +16,8 @@ export const matrixCalculatorConfig = {
     "confusion-matrix-calculator",
   ],
   seo: {
-    title: "Matrix Calculator — Free Online Matrix Operations Tool",
-    description: "Calculate matrix addition, multiplication, determinant, inverse, and transpose instantly. Free online matrix calculator with CSV export. Browser-based, no signup.",
+    title: "Matrix Calculator – Multiply, Determinant & Inverse",
+    description: "Add and multiply matrices and find the determinant, inverse and transpose, with the results ready to export as CSV. Runs in your browser.",
     keywords: [
       "matrix calculator",
       "online matrix calculator",
@@ -44,14 +44,14 @@ export const matrixCalculatorConfig = {
       "inverse matrix online",
     ],
     openGraph: {
-      title: "Matrix Calculator — Free Online Matrix Operations Tool",
-      description: "Calculate matrix addition, multiplication, determinant, inverse, and transpose instantly. Browser-based, free, no signup.",
+      title: "Matrix Calculator – Multiply, Determinant & Inverse",
+      description: "Add and multiply matrices and find the determinant, inverse and transpose, with the results ready to export as CSV. Runs in your browser.",
       type: "website",
       url: `${siteConfig.url}/tools/math/matrix-calculator`,
     },
     og: {
-      title: "Matrix Calculator — Free Online Matrix Operations Tool",
-      description: "Calculate matrix addition, multiplication, determinant, inverse, and transpose instantly. Browser-based, free, no signup.",
+      title: "Matrix Calculator – Multiply, Determinant & Inverse",
+      description: "Add and multiply matrices and find the determinant, inverse and transpose, with the results ready to export as CSV. Runs in your browser.",
       url: `${siteConfig.url}/tools/math/matrix-calculator`,
     },
     howToSteps: [

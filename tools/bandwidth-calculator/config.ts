@@ -15,8 +15,8 @@ export const bandwidthCalculatorConfig = {
     "network-speed-converter",
   ],
   seo: {
-    title: "Bandwidth Calculator — Free Network Bandwidth & Transfer Time Calculator",
-    description: "Calculate file transfer time, monthly website bandwidth, streaming data usage, and multi-user network capacity. Free, browser-based, no signup required.",
+    title: "Bandwidth Calculator – Transfer Time & Monthly Usage",
+    description: "Calculate file transfer time, monthly website bandwidth, streaming data usage and the network capacity needed for multiple users.",
     keywords: [
       "bandwidth calculator",
       "network bandwidth calculator",
@@ -43,14 +43,14 @@ export const bandwidthCalculatorConfig = {
       "bandwidth planning tool",
     ],
     openGraph: {
-      title: "Bandwidth Calculator — Free Network Bandwidth & Transfer Time Calculator",
-      description: "Calculate file transfer time, monthly website bandwidth, streaming data usage, and multi-user network capacity. Free, browser-based.",
+      title: "Bandwidth Calculator – Transfer Time & Monthly Usage",
+      description: "Calculate file transfer time, monthly website bandwidth, streaming data usage and the network capacity needed for multiple users.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/bandwidth-calculator`,
     },
     og: {
-      title: "Bandwidth Calculator — Free Network Bandwidth & Transfer Time Calculator",
-      description: "Calculate file transfer time, monthly website bandwidth, streaming data usage, and multi-user network capacity. Free, browser-based.",
+      title: "Bandwidth Calculator – Transfer Time & Monthly Usage",
+      description: "Calculate file transfer time, monthly website bandwidth, streaming data usage and the network capacity needed for multiple users.",
       url: `${siteConfig.url}/tools/computer-science/bandwidth-calculator`,
     },
     howToSteps: [

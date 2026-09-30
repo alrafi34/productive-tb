@@ -9,9 +9,9 @@ export const angularVelocityCalculatorConfig = {
   icon: "🔄",
   free: true,
   seo: {
-    title: "Angular Velocity Calculator – Free Online Mechanical Calculator",
+    title: "Angular Velocity Calculator – From RPM, Frequency & More",
     description:
-      "Calculate angular velocity instantly using RPM, frequency, displacement, radius, or period formulas. Free online angular velocity calculator with unit conversions and step-by-step explanations.",
+      "Calculate angular velocity from RPM, frequency, period, angular displacement or linear speed and radius, with unit conversion and steps.",
     keywords: [
       "angular velocity calculator",
       "rpm to rad/s calculator",
@@ -27,9 +27,9 @@ export const angularVelocityCalculatorConfig = {
       "omega calculator",
     ],
     og: {
-      title: "Angular Velocity Calculator – Free Online Mechanical Calculator",
+      title: "Angular Velocity Calculator – From RPM, Frequency & More",
       description:
-        "Calculate angular velocity instantly using RPM, frequency, displacement, radius, or period formulas. Free online angular velocity calculator with unit conversions and step-by-step explanations.",
+        "Calculate angular velocity from RPM, frequency, period, angular displacement or linear speed and radius, with unit conversion and steps.",
       url: `${siteConfig.url}/tools/mechanical/angular-velocity-calculator`,
     },
   },

@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Visual Timeline Creator - Build & Export Timelines Online",
-    description: "Create beautiful visual timelines online for projects, history events, or roadmaps. Add dates, customize layout, and export timelines as PNG images instantly for free.",
+    title: "Timeline Creator – Build & Export Visual Timelines",
+    description: "Create visual timelines for projects, history or roadmaps. Add dates and events, customize the layout and export the timeline as a PNG image.",
     keywords: [
       "timeline creator",
       "visual timeline maker",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "interactive timeline"
     ],
     openGraph: {
-      title: "Free Visual Timeline Creator - Build & Export Timelines Online",
-      description: "Create beautiful visual timelines online for projects, history events, or roadmaps. Add dates, customize layout, and export timelines as PNG images instantly.",
+      title: "Timeline Creator – Build & Export Visual Timelines",
+      description: "Create visual timelines for projects, history or roadmaps. Add dates and events, customize the layout and export the timeline as a PNG image.",
       type: "website",
       url: "/timeline-creator"
     }

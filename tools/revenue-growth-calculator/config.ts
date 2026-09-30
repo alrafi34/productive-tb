@@ -10,9 +10,9 @@ export const revenueGrowthCalculatorConfig = {
   free: true,
   seo: {
     title:
-      "Revenue Growth Calculator – Calculate Business Growth Percentage Free Online",
+      "Revenue Growth Calculator – Growth Rate Percentage",
     description:
-      "Calculate revenue growth percentage instantly using our free Revenue Growth Calculator. Compare previous and current revenue, measure business growth, identify trends, and export professional reports directly in your browser.",
+      "Calculate revenue growth between two periods as an amount and a percentage, spot trends across periods and export a report.",
     keywords: [
       "revenue growth calculator",
       "business growth calculator",
@@ -29,9 +29,9 @@ export const revenueGrowthCalculatorConfig = {
       "startup growth calculator",
     ],
     openGraph: {
-      title: "Revenue Growth Calculator – Calculate Business Growth Instantly",
+      title: "Revenue Growth Calculator – Growth Rate Percentage",
       description:
-        "Compare previous and current revenue to instantly calculate your growth rate. Free, browser-based, no signup required.",
+        "Calculate revenue growth between two periods as an amount and a percentage, spot trends across periods and export a report.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/revenue-growth-calculator`,
     },

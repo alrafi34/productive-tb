@@ -9,9 +9,9 @@ export const heatTransferCalculatorConfig = {
   icon: "🌡️",
   free: true,
   seo: {
-    title: "Free Heat Transfer Calculator – Conduction, Convection & Radiation",
+    title: "Heat Transfer Calculator – Conduction, Convection, Radiation",
     description:
-      "Calculate heat transfer rate instantly using conduction, convection, or radiation formulas. Free online heat transfer calculator with formulas, unit conversion, and engineering breakdowns.",
+      "Calculate heat transfer rate by conduction, convection or radiation, with the formulas, unit conversion and a step-by-step breakdown.",
     keywords: [
       "heat transfer calculator",
       "thermal calculator",
@@ -27,9 +27,9 @@ export const heatTransferCalculatorConfig = {
       "thermal engineering tool",
     ],
     og: {
-      title: "Free Heat Transfer Calculator – Conduction, Convection & Radiation",
+      title: "Heat Transfer Calculator – Conduction, Convection, Radiation",
       description:
-        "Calculate heat transfer rate instantly using conduction, convection, or radiation formulas. Free online heat transfer calculator with formulas, unit conversion, and engineering breakdowns.",
+        "Calculate heat transfer rate by conduction, convection or radiation, with the formulas, unit conversion and a step-by-step breakdown.",
       url: `${siteConfig.url}/tools/mechanical/heat-transfer-calculator`,
     },
   },

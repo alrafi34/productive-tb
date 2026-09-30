@@ -18,12 +18,12 @@ export const f1ScoreCalculatorConfig = {
     "f1 formula calculator",
   ],
   seo: {
-    title: "Free F1 Score Calculator – Calculate Precision, Recall & F1 Score Online",
-    description: "Calculate F1 Score instantly using confusion matrix or precision and recall. Free online F1 score calculator for AI, machine learning, classification, and data science.",
+    title: "F1 Score Calculator – From Precision & Recall",
+    description: "Calculate the F1 score from precision and recall or from confusion matrix counts, for machine learning and data science.",
     keywords: "f1 score calculator, precision recall calculator, machine learning metrics, ai evaluation calculator, classification metrics, confusion matrix calculator, f1 formula calculator",
     og: {
-      title: "Free F1 Score Calculator – Calculate Precision, Recall & F1 Score Online",
-      description: "Calculate F1 score from confusion matrix or precision/recall values instantly. Free online ML evaluation tool.",
+      title: "F1 Score Calculator – From Precision & Recall",
+      description: "Calculate the F1 score from precision and recall or from confusion matrix counts, for machine learning and data science.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/f1-score-calculator`,
     },

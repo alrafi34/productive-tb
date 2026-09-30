@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Glassmorphism Layer Tester - Test Backdrop Filter Blur Effects",
-    description: "Design glassmorphism UI layers visually. Adjust blur, transparency, borders, and shadows with live preview and export-ready CSS. Test on multiple backgrounds instantly.",
+    title: "Glassmorphism Generator – Test Backdrop Blur Effects",
+    description: "Design glassmorphism layers by adjusting blur, transparency, borders and shadows with a live preview on several backgrounds, then copy the CSS.",
     keywords: [
       "glassmorphism generator",
       "backdrop filter tester",
@@ -29,8 +29,8 @@ export const toolConfig = {
       "frosted ui generator"
     ],
     openGraph: {
-      title: "Free Glassmorphism Layer Tester - Design Glass UI Effects",
-      description: "Design and test glassmorphism UI layers with live preview. Adjust blur, transparency, and export production-ready CSS instantly.",
+      title: "Glassmorphism Generator – Test Backdrop Blur Effects",
+      description: "Design glassmorphism layers by adjusting blur, transparency, borders and shadows with a live preview on several backgrounds, then copy the CSS.",
       type: "website",
       url: "/glassmorphism-layer-tester"
     }

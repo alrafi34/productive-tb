@@ -7,8 +7,8 @@ export const base32EncoderConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Base32 Encoder/Decoder Online — Encode & Decode Base32 Instantly",
-    description: "Free online Base32 encoder and decoder. Convert text to Base32 or decode Base32 back to text instantly in your browser. Perfect for 2FA secrets, TOTP authentication, and developer workflows.",
+    title: "Base32 Encoder & Decoder – Encode and Decode Base32",
+    description: "Convert text to Base32 or decode Base32 back to text in your browser. Useful for 2FA and TOTP secrets and other developer work.",
     keywords: [
       "base32 encoder",
       "base32 decoder",
@@ -28,8 +28,8 @@ export const base32EncoderConfig = {
       "base32 history"
     ],
     openGraph: {
-      title: "Base32 Encoder/Decoder Online — Encode & Decode Base32 Instantly",
-      description: "Convert text to Base32 or decode Base32 back to text instantly. Perfect for 2FA secrets and TOTP authentication. 100% client-side processing.",
+      title: "Base32 Encoder & Decoder – Encode and Decode Base32",
+      description: "Convert text to Base32 or decode Base32 back to text in your browser. Useful for 2FA and TOTP secrets and other developer work.",
       type: "website",
       url: "/tools/developer/base32-encoder"
     }

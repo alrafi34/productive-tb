@@ -10,9 +10,9 @@ export const customerLifetimeValueCalculatorConfig = {
   free: true,
   seo: {
     title:
-      "Free Customer Lifetime Value (CLV) Calculator Online | Calculate CLV Instantly",
+      "Customer Lifetime Value (CLV) Calculator",
     description:
-      "Calculate Customer Lifetime Value (CLV) instantly using our free online calculator. Supports Basic, Margin-Adjusted, Subscription, and SaaS formulas. Mobile-friendly and 100% browser-based.",
+      "Calculate customer lifetime value with basic, margin-adjusted, subscription and SaaS formulas from order value, frequency and churn.",
     keywords: [
       "customer lifetime value calculator",
       "CLV calculator",
@@ -31,9 +31,9 @@ export const customerLifetimeValueCalculatorConfig = {
     ],
     openGraph: {
       title:
-        "Free CLV Calculator – Calculate Customer Lifetime Value Instantly",
+        "Customer Lifetime Value (CLV) Calculator",
       description:
-        "Instantly calculate Customer Lifetime Value using four proven formulas. Works in the browser with no signup required.",
+        "Calculate customer lifetime value with basic, margin-adjusted, subscription and SaaS formulas from order value, frequency and churn.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/customer-lifetime-value-calculator`,
     },

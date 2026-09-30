@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Text to Clipboard Tool Online - Copy Text Blocks in One Click",
-    description: "Free Text to Clipboard tool for one-click copy, multi-block management, copy-all workflow, and plain/HTML/Markdown output. Ideal for writing and documentation tasks.",
+    title: "Text to Clipboard – Copy Text Blocks in One Click",
+    description: "Keep several text blocks and copy any of them, or all at once, in one click as plain text, HTML or Markdown. Handy for writing and documentation.",
     keywords: [
       "text to clipboard",
       "copy text online",
@@ -39,8 +39,8 @@ export const toolConfig = {
       "text block copy tool"
     ],
     openGraph: {
-      title: "Text to Clipboard - Copy Snippets and Text Blocks Instantly",
-      description: "Copy text in plain, markdown, or HTML format with one-click and copy-all options.",
+      title: "Text to Clipboard – Copy Text Blocks in One Click",
+      description: "Keep several text blocks and copy any of them, or all at once, in one click as plain text, HTML or Markdown. Handy for writing and documentation.",
       type: "website",
       url: "/tools/writing/text-to-clipboard"
     }

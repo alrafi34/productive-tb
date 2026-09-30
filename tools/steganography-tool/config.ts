@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Image Steganography Tool - Hide Secret Messages in Images",
-    description: "Hide secret text inside images using steganography directly in your browser. Encode and decode hidden messages without uploading files. 100% client-side processing.",
+    title: "Image Steganography Tool – Hide Messages in Images",
+    description: "Hide secret text inside an image and decode hidden messages, directly in your browser. Files are processed on your device and never uploaded.",
     keywords: [
       "steganography tool",
       "hide message in image",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "hide data in image"
     ],
     openGraph: {
-      title: "Free Image Steganography Tool - Hide Messages Securely",
-      description: "Hide and extract secret messages from images using LSB steganography. All processing happens locally in your browser.",
+      title: "Image Steganography Tool – Hide Messages in Images",
+      description: "Hide secret text inside an image and decode hidden messages, directly in your browser. Files are processed on your device and never uploaded.",
       type: "website",
       url: "/steganography-tool"
     }

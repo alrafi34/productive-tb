@@ -16,8 +16,8 @@ export const cloudCostCalculatorConfig = {
     "data-transfer-calculator",
   ],
   seo: {
-    title: "Cloud Cost Calculator — Free AWS, GCP & Azure Pricing Estimator",
-    description: "Estimate cloud infrastructure costs across AWS, GCP, Azure, DigitalOcean, and more. Compare providers, model compute, storage, and egress. Free, browser-based.",
+    title: "Cloud Cost Calculator – AWS, GCP & Azure Estimator",
+    description: "Estimate cloud infrastructure costs across AWS, GCP, Azure, DigitalOcean and more. Compare providers for compute, storage and egress.",
     keywords: [
       "cloud cost calculator",
       "cloud pricing calculator",
@@ -44,13 +44,13 @@ export const cloudCostCalculatorConfig = {
       "cloud provider comparison tool",
     ],
     og: {
-      title: "Cloud Cost Calculator — Free AWS, GCP & Azure Pricing Estimator",
-      description: "Estimate cloud infrastructure costs across AWS, GCP, Azure, DigitalOcean, and more. Compare providers with real-time pricing breakdowns.",
+      title: "Cloud Cost Calculator – AWS, GCP & Azure Estimator",
+      description: "Estimate cloud infrastructure costs across AWS, GCP, Azure, DigitalOcean and more. Compare providers for compute, storage and egress.",
       url: `${siteConfig.url}/tools/computer-science/cloud-cost-calculator`,
     },
     openGraph: {
-      title: "Cloud Cost Calculator — Free AWS, GCP & Azure Pricing Estimator",
-      description: "Estimate cloud infrastructure costs across AWS, GCP, Azure, DigitalOcean, and more. Compare providers with real-time pricing breakdowns.",
+      title: "Cloud Cost Calculator – AWS, GCP & Azure Estimator",
+      description: "Estimate cloud infrastructure costs across AWS, GCP, Azure, DigitalOcean and more. Compare providers for compute, storage and egress.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/cloud-cost-calculator`,
     },

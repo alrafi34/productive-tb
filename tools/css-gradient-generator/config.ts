@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "CSS Gradient Generator Online - Linear and Radial Gradient Maker",
-    description: "Free CSS Gradient Generator with linear and radial modes, angle and shape controls, editable color stops, live preview, presets, and instant copy-ready CSS output.",
+    title: "CSS Gradient Generator – Linear & Radial Gradients",
+    description: "Build linear and radial CSS gradients with angle and shape controls, editable color stops, presets and a live preview, then copy the CSS.",
     keywords: [
       "css gradient generator",
       "linear gradient",
@@ -34,8 +34,8 @@ export const toolConfig = {
       "gradient export"
     ],
     openGraph: {
-      title: "CSS Gradient Generator - Build Linear and Radial Gradients Fast",
-      description: "Design gradients with live preview, stop editing, presets, and direct CSS copy for production workflows.",
+      title: "CSS Gradient Generator – Linear & Radial Gradients",
+      description: "Build linear and radial CSS gradients with angle and shape controls, editable color stops, presets and a live preview, then copy the CSS.",
       type: "website",
       url: "/tools/design/css-gradient-generator"
     }

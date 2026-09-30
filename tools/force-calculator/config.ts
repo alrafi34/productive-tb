@@ -8,8 +8,8 @@ export const forceCalculatorConfig = {
   icon: "⚡",
   free: true,
   seo: {
-    title: "Force Calculator (F = ma) – Calculate Force Online Instantly",
-    description: "Free online Force Calculator using Newton's Second Law (F = ma). Calculate force instantly using mass and acceleration with formulas, unit conversion, and step-by-step explanations.",
+    title: "Force Calculator (F = ma) – Calculate Force Online",
+    description: "Calculate force from mass and acceleration with Newton's second law (F = ma), with unit conversion and step-by-step working.",
     keywords: [
       "force calculator",
       "F ma calculator",
@@ -23,8 +23,8 @@ export const forceCalculatorConfig = {
       "force in newtons calculator",
     ],
     og: {
-      title: "Force Calculator (F = ma) – Calculate Force Online Instantly",
-      description: "Free online Force Calculator using Newton's Second Law (F = ma). Calculate force instantly using mass and acceleration with formulas, unit conversion, and step-by-step explanations.",
+      title: "Force Calculator (F = ma) – Calculate Force Online",
+      description: "Calculate force from mass and acceleration with Newton's second law (F = ma), with unit conversion and step-by-step working.",
       url: `${siteConfig.url}/tools/mechanical/force-calculator`,
     },
   },

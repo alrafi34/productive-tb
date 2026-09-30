@@ -15,8 +15,8 @@ export const conversionRateCalculatorConfig = {
     "break-even-calculator",
   ],
   seo: {
-    title: "Conversion Rate Calculator — Free CVR Calculator Online",
-    description: "Calculate conversion rate instantly from visitors and conversions. Free CVR calculator for ecommerce, Google Ads, SaaS, email, and landing pages. Benchmarks by industry included.",
+    title: "Conversion Rate Calculator – CVR From Visitors",
+    description: "Calculate conversion rate from visitors and conversions for ecommerce, ads, SaaS, email and landing pages, with benchmarks by industry.",
     keywords: [
       "conversion rate calculator",
       "calculate conversion rate",
@@ -42,14 +42,14 @@ export const conversionRateCalculatorConfig = {
       "conversion rate vs ctr",
     ],
     openGraph: {
-      title: "Conversion Rate Calculator — Free CVR Calculator Online",
-      description: "Calculate conversion rate instantly from visitors and conversions. Industry benchmarks for ecommerce, Google Ads, SaaS, and email included.",
+      title: "Conversion Rate Calculator – CVR From Visitors",
+      description: "Calculate conversion rate from visitors and conversions for ecommerce, ads, SaaS, email and landing pages, with benchmarks by industry.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/conversion-rate-calculator`,
     },
     og: {
-      title: "Conversion Rate Calculator — Free CVR Calculator Online",
-      description: "Calculate conversion rate instantly from visitors and conversions. Industry benchmarks for ecommerce, Google Ads, SaaS, and email included.",
+      title: "Conversion Rate Calculator – CVR From Visitors",
+      description: "Calculate conversion rate from visitors and conversions for ecommerce, ads, SaaS, email and landing pages, with benchmarks by industry.",
       url: `${siteConfig.url}/tools/marketing/conversion-rate-calculator`,
     },
     howToSteps: [

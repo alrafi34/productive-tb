@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Heatmap Grid Generator - Visualize Density Interactively",
-    description: "Create interactive heatmap grids by clicking cells to visualize density with color intensity. Customize grid size, colors, and export as PNG or SVG entirely in your browser.",
+    title: "Heatmap Grid Generator – Visualize Density by Cell",
+    description: "Click cells to build a heatmap grid with color intensity. Set the grid size and colors, then export it as PNG or SVG, all in your browser.",
     keywords: [
       "heatmap grid",
       "heatmap generator",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "density map"
     ],
     openGraph: {
-      title: "Free Heatmap Grid Generator - Visualize Density Interactively",
-      description: "Create interactive heatmap grids by clicking cells to visualize density with color intensity. Customize grid size, colors, and export as PNG or SVG.",
+      title: "Heatmap Grid Generator – Visualize Density by Cell",
+      description: "Click cells to build a heatmap grid with color intensity. Set the grid size and colors, then export it as PNG or SVG, all in your browser.",
       type: "website",
       url: "/heatmap-grid"
     }

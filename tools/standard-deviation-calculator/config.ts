@@ -16,8 +16,8 @@ export const standardDeviationCalculatorConfig = {
     "session-duration-calculator",
   ],
   seo: {
-    title: "Free Standard Deviation Calculator Online | Sample & Population Statistics",
-    description: "Calculate sample and population standard deviation instantly. Analyze datasets with variance, mean, median, range, quartiles, histograms, and downloadable reports using this free online Standard Deviation Calculator.",
+    title: "Standard Deviation Calculator – Sample & Population",
+    description: "Calculate sample and population standard deviation, variance, mean, median, range and quartiles for a dataset, with a histogram.",
     keywords: [
       "standard deviation calculator",
       "sample standard deviation calculator",
@@ -41,14 +41,14 @@ export const standardDeviationCalculatorConfig = {
       "online statistics tool",
     ],
     openGraph: {
-      title: "Free Standard Deviation Calculator Online",
-      description: "Calculate sample and population standard deviation instantly with variance, quartiles, histogram and box plot visualization, and downloadable reports.",
+      title: "Standard Deviation Calculator – Sample & Population",
+      description: "Calculate sample and population standard deviation, variance, mean, median, range and quartiles for a dataset, with a histogram.",
       type: "website",
       url: `${siteConfig.url}/tools/data-analytics/standard-deviation-calculator`,
     },
     og: {
-      title: "Free Standard Deviation Calculator Online",
-      description: "Calculate sample and population standard deviation instantly with variance, quartiles, histogram and box plot visualization, and downloadable reports.",
+      title: "Standard Deviation Calculator – Sample & Population",
+      description: "Calculate sample and population standard deviation, variance, mean, median, range and quartiles for a dataset, with a histogram.",
       url: `${siteConfig.url}/tools/data-analytics/standard-deviation-calculator`,
     },
     howToSteps: [

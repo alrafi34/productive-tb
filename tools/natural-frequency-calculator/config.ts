@@ -8,8 +8,8 @@ export const naturalFrequencyCalculatorConfig = {
   icon: "〰️",
   free: true,
   seo: {
-    title: "Free Natural Frequency Calculator – Mechanical Vibration Frequency Tool",
-    description: "Calculate natural frequency instantly using spring-mass and pendulum formulas. Free mechanical engineering calculator with unit conversion and step-by-step explanation.",
+    title: "Natural Frequency Calculator – Spring-Mass & Pendulum",
+    description: "Calculate the natural frequency of a spring-mass system or pendulum, with unit conversion and a step-by-step explanation.",
     keywords: [
       "natural frequency calculator",
       "spring mass frequency calculator",
@@ -25,8 +25,8 @@ export const naturalFrequencyCalculatorConfig = {
       "mechanical engineering calculator",
     ],
     og: {
-      title: "Free Natural Frequency Calculator – Mechanical Vibration Frequency Tool",
-      description: "Calculate natural frequency instantly using spring-mass and pendulum formulas. Free mechanical engineering calculator with unit conversion and step-by-step explanation.",
+      title: "Natural Frequency Calculator – Spring-Mass & Pendulum",
+      description: "Calculate the natural frequency of a spring-mass system or pendulum, with unit conversion and a step-by-step explanation.",
       url: `${siteConfig.url}/tools/mechanical/natural-frequency-calculator`,
     },
   },

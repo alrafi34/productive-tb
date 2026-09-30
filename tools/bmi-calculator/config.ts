@@ -9,8 +9,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "BMI Calculator — Free Body Mass Index Calculator Online",
-    description: "Free BMI calculator with metric and imperial support. Instantly calculate your Body Mass Index, BMI category, healthy weight range, and ideal weight. No sign-up, 100% browser-based.",
+    title: "BMI Calculator – Body Mass Index in Metric or Imperial",
+    description: "Calculate your body mass index in kg and cm or lb and ft/in. See your BMI category, the healthy weight range for your height and an ideal weight.",
     keywords: [
       "bmi calculator",
       "bmi calculator online",
@@ -39,8 +39,8 @@ export const toolConfig = {
       "calculate body mass index online",
     ],
     openGraph: {
-      title: "BMI Calculator — Free Body Mass Index Calculator Online",
-      description: "Instantly calculate BMI, check your category, healthy weight range, and ideal weight estimates. Free, metric and imperial, no sign-up.",
+      title: "BMI Calculator – Body Mass Index in Metric or Imperial",
+      description: "Calculate your body mass index in kg and cm or lb and ft/in. See your BMI category, the healthy weight range for your height and an ideal weight.",
       type: "website",
       url: `${siteConfig.url}/tools/calculator/bmi-calculator`,
     },
