@@ -108,11 +108,11 @@ export default function EnergyConsumptionCalculatorSEO() {
           {[
             {
               title: "Air Conditioner Summer Budget",
-              scenario: "A homeowner running a 1.5-ton (1,800W) air conditioner 8 hours a day during summer enters these values at a rate of $0.14/kWh. The calculator returns 14.4 kWh per day, 432 kWh per month, and a monthly cost of $60.48 — prompting them to raise the thermostat from 22°C to 25°C and re-run the numbers at 6 hours/day, cutting the estimate to $45.36/month.",
+              scenario: "A homeowner running an 18,000 BTU mini-split (about 1,500W) 8 hours a day in summer enters these values at $0.18/kWh. The calculator returns 12 kWh per day, 360 kWh per month and a monthly cost of $64.80, so they raise the thermostat from 72°F to 77°F (22°C to 25°C) and re-run the numbers at 6 hours a day, cutting the estimate to $48.60 a month.",
             },
             {
               title: "Renter Pre-Move Cost Estimate",
-              scenario: "A renter evaluating a new apartment lists a refrigerator (150W, 24h/day), 6 LED bulbs (10W each, 5h/day), a laptop (60W, 8h/day), and a washing machine (500W, 1h/day) at $0.15/kWh. Combined, the calculator returns 4.95 kWh/day and $0.74/day — about $22.28/month for these devices, which they use to budget alongside rent before signing the lease.",
+              scenario: "A renter evaluating a new apartment lists a refrigerator (60W average draw, 24h/day), 6 LED bulbs (10W each, 5h/day), a laptop (60W, 8h/day), and a washing machine (500W, 1h/day) at $0.15/kWh. Combined, the calculator returns 2.72 kWh/day and $0.41/day, about $12.24/month for these devices, which they use to budget alongside rent before signing the lease.",
             },
             {
               title: "Standby Power Audit",
@@ -201,13 +201,16 @@ export default function EnergyConsumptionCalculatorSEO() {
               {[
                 ["LED bulb", "10W", "5 hours/day", "0.05 kWh"],
                 ["Ceiling fan", "75W", "8 hours/day", "0.6 kWh"],
-                ["Refrigerator", "150W", "24 hours/day", "3.6 kWh"],
+                ["Refrigerator (average draw)", "60W", "24 hours/day", "1.44 kWh"],
                 ["Laptop", "60W", "8 hours/day", "0.48 kWh"],
                 ["Microwave oven", "1,200W", "0.5 hours/day", "0.6 kWh"],
-                ["Air conditioner (1.5 ton)", "1,800W", "8 hours/day", "14.4 kWh"],
+                ["Window AC (10,000 BTU)", "900W", "8 hours/day", "7.2 kWh"],
+                ["Central AC (3 ton)", "3,500W", "8 hours/day", "28 kWh"],
                 ["Washing machine", "500W", "1 hour/day", "0.5 kWh"],
                 ["Electric kettle", "1,500W", "0.5 hours/day", "0.75 kWh"],
-                ["Water heater (geyser)", "2,000W", "1 hour/day", "2 kWh"],
+                ["Electric water heater (tank)", "4,500W", "3 hours/day", "13.5 kWh"],
+                ["Clothes dryer", "3,000W", "1 hour/day", "3 kWh"],
+                ["EV charger (Level 2)", "7,200W", "1 hour/day", "7.2 kWh"],
               ].map(([name, power, usage, kwh]) => (
                 <tr key={name} className="hover:bg-gray-50">
                   <td className="py-2 px-3 font-semibold text-primary text-xs">{name}</td>

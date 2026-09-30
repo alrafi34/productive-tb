@@ -3,7 +3,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { 
   MToKmEntry,
-  convertMeterToKm, 
+  convertMeterToKm,
+  metersToMiles,
+  metersToFeet,
   formatValue,
   getHistory,
   saveToHistory,
@@ -151,6 +153,10 @@ export default function MeterToKmUI() {
             <div className="uppercase tracking-widest text-violet-600 text-xs font-bold mb-2 z-10">{reverse ? "Meters (m)" : "Kilometers (km)"}</div>
             <div className="text-5xl md:text-6xl font-black z-10 break-all text-center px-4" style={{ fontFamily: "var(--font-heading)" }}>
               {formatValue(result, precision)} <span className="text-violet-700 font-bold ml-1">{toUnit}</span>
+            </div>
+            {/* The same distance in miles and feet, for US and UK readers */}
+            <div className="mt-3 text-sm text-violet-800 z-10" data-testid="m-km-imperial">
+              = {formatValue(metersToMiles(reverse ? result : currentVal), 3)} mi = {formatValue(metersToFeet(reverse ? result : currentVal), 1)} ft
             </div>
             {/* Background design */}
             <div className="absolute -right-8 -bottom-8 text-9xl text-violet-500 opacity-5 select-none font-bold">

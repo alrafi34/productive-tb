@@ -119,7 +119,7 @@ export const wireSizeCalculatorConfig = {
   relatedTools: [
     "voltage-drop-calculator",
     "circuit-breaker-calculator",
-    "power-consumption-calculator",
+    "energy-consumption-calculator",
     "electric-motor-power-calculator",
     "electrical-load-calculator-building",
     "ohms-law-calculator",

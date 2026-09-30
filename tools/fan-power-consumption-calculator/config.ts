@@ -119,7 +119,6 @@ export const fanPowerConsumptionCalculatorConfig = {
     "air-conditioner-power-calculator",
     "energy-consumption-calculator",
     "electric-bill-calculator",
-    "power-consumption-calculator",
     "electric-motor-power-calculator",
     "room-lighting-calculator",
   ],

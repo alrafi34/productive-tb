@@ -112,7 +112,6 @@ export const tools: Tool[] = [
   { slug: "percentage-increase-decrease", name: "Percentage Increase/Decrease", description: "Calculate % change between two numbers.", category: "calculator", icon: "📈", free: true },
   { slug: "fuel-cost-calculator", name: "Fuel Cost Calculator", description: "Calculate trip cost based on distance and MPG.", category: "calculator", icon: "⛽", free: true },
   { slug: "ohms-law-calculator", name: "Ohm's Law Calculator", description: "Calculate Voltage, Current, or Resistance instantly using Ohm's Law.", category: "calculator", icon: "⚡", free: true },
-  { slug: "power-consumption-calculator", name: "Power Consumption Calculator", description: "Estimate electric bill based on appliance usage.", category: "calculator", icon: "🔌", free: true },
 
   
   // Privacy & Security (New)
