@@ -26,8 +26,8 @@ export const palindromeCheckerConfig = {
     'free palindrome checker'
   ],
   seo: {
-    title: 'Palindrome Checker Online - Single and Bulk Sentence Validation Tool',
-    description: 'Free Palindrome Checker with single and bulk checks, similarity score, cleaned/reversed text analysis, frequency breakdown, and configurable ignore rules.',
+    title: "Palindrome Checker – Words, Sentences & Bulk Lists",
+    description: "Check whether words or sentences are palindromes, one at a time or in bulk, with the cleaned and reversed text, a similarity score and ignore rules.",
     keywords: [
       'palindrome checker',
       'palindrome tool',
@@ -55,8 +55,8 @@ export const palindromeCheckerConfig = {
       'online palindrome validator'
     ],
     openGraph: {
-      title: 'Palindrome Checker - Rule-Based Text and Sentence Validation',
-      description: 'Check words and phrases with configurable filters, bulk mode, and detailed palindrome diagnostics.',
+      title: "Palindrome Checker – Words, Sentences & Bulk Lists",
+      description: "Check whether words or sentences are palindromes, one at a time or in bulk, with the cleaned and reversed text, a similarity score and ignore rules.",
       type: 'website',
       url: '/tools/writing/palindrome-checker',
     },

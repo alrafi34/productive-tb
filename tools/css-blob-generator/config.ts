@@ -7,8 +7,8 @@ export const cssBlobGeneratorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "CSS Border-Radius Blob Maker – Create Organic, Non-Round Shapes",
-    description: "Generate organic CSS blob shapes instantly using border-radius. Includes random blobs, animation generator, SVG export, and responsive CSS output.",
+    title: "CSS Blob Generator – Organic Shapes With border-radius",
+    description: "Generate organic CSS blob shapes with border-radius: random blobs, an animation generator, SVG export and responsive CSS output.",
     keywords: [
       "css blob generator",
       "border radius generator",
@@ -27,8 +27,8 @@ export const cssBlobGeneratorConfig = {
       "free blob generator"
     ],
     openGraph: {
-      title: "CSS Border-Radius Blob Maker – Create Organic, Non-Round Shapes",
-      description: "Generate organic blob shapes with live preview, animation, and SVG export.",
+      title: "CSS Blob Generator – Organic Shapes With border-radius",
+      description: "Generate organic CSS blob shapes with border-radius: random blobs, an animation generator, SVG export and responsive CSS output.",
       type: "website",
       url: "/css-border-radius-blob"
     }

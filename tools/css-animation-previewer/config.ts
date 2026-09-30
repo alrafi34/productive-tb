@@ -19,8 +19,8 @@ export const cssAnimationPreviewerConfig = {
     'Mobile-responsive design'
   ],
   seo: {
-    title: 'CSS Animation Previewer Online - Easing and Cubic Bezier Tester',
-    description: 'Free CSS Animation Previewer with live timing function playback, cubic-bezier curve control, duration tuning, and instant copy-ready animation CSS output.',
+    title: "CSS Animation Previewer – Easing & Cubic-Bezier Tester",
+    description: "Preview CSS timing functions with live playback, tune cubic-bezier curves and duration, and copy the animation CSS.",
     keywords: [
       'css animation previewer',
       'easing functions',
@@ -42,8 +42,8 @@ export const cssAnimationPreviewerConfig = {
       'interaction animation tester'
     ],
     openGraph: {
-      title: 'CSS Animation Previewer - Tune Easing Curves with Live Playback',
-      description: 'Test timing functions and cubic-bezier curves visually, then copy production-ready CSS animation settings.',
+      title: "CSS Animation Previewer – Easing & Cubic-Bezier Tester",
+      description: "Preview CSS timing functions with live playback, tune cubic-bezier curves and duration, and copy the animation CSS.",
       type: 'website',
       url: '/tools/design/css-animation-previewer'
     },

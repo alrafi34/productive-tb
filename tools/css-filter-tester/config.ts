@@ -19,8 +19,8 @@ export const cssFilterTesterConfig = {
     'Reset and undo functionality'
   ],
   seo: {
-    title: 'CSS Filter Tester Online - Live Image Filter Preview and CSS Generator',
-    description: 'Free CSS Filter Tester with real-time preview, image upload, slider controls, filter presets, and instant copy-ready CSS output for production UI work.',
+    title: "CSS Filter Tester – Blur, Brightness, Contrast & More",
+    description: "Test CSS filters on your own image with sliders and presets and a real-time preview, then copy the filter CSS.",
     keywords: [
       'css filter tester',
       'image filter tool',
@@ -42,8 +42,8 @@ export const cssFilterTesterConfig = {
       'frontend filter tool'
     ],
     openGraph: {
-      title: 'CSS Filter Tester - Build and Preview Image Effects Instantly',
-      description: 'Adjust CSS filters in real time and copy production-ready filter code for modern web interfaces.',
+      title: "CSS Filter Tester – Blur, Brightness, Contrast & More",
+      description: "Test CSS filters on your own image with sliders and presets and a real-time preview, then copy the filter CSS.",
       type: 'website',
       url: '/tools/design/css-filter-tester'
     },

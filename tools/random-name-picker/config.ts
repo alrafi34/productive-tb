@@ -18,9 +18,9 @@ export const randomNamePickerConfig = {
     'free random picker',
   ],
   seo: {
-    title: 'Random Name Picker Online - Fair Winner Draws with Multi-Select and History',
+    title: "Random Name Picker – Draw Winners From a List",
     description:
-      'Free Random Name Picker with duplicate filtering, multiple winners, optional winner removal, TXT/CSV import-export, and round history tracking.',
+      "Pick one or more random winners from a list, remove duplicates, optionally drop winners after each draw, import or export TXT/CSV and keep round history.",
     keywords: [
       'random name picker',
       'random winner picker',
@@ -34,9 +34,9 @@ export const randomNamePickerConfig = {
       'online random draw tool',
     ],
     openGraph: {
-      title: 'Random Name Picker - Fair Multi-Winner Draw Tool',
+      title: "Random Name Picker – Draw Winners From a List",
       description:
-        'Run transparent random draws with duplicate control, winner history, and export-ready results.',
+        "Pick one or more random winners from a list, remove duplicates, optionally drop winners after each draw, import or export TXT/CSV and keep round history.",
       type: 'website',
       url: '/tools/writing/random-name-picker',
     },
