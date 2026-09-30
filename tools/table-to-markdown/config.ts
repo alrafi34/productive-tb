@@ -25,8 +25,8 @@ export const tableToMarkdownConfig = {
     "markdown syntax"
   ],
   seo: {
-    title: "Table to Markdown Converter Online - Convert CSV, TSV, and Sheets Data Fast",
-    description: "Free Table to Markdown converter with delimiter auto-detect, custom headers, column alignment, escape options, and live preview. Copy or download clean .md output.",
+    title: "Table to Markdown Converter – CSV, TSV & Spreadsheets",
+    description: "Paste a table from a spreadsheet, CSV or TSV and get a Markdown table, with delimiter detection, column alignment and escaping. Copy or download it.",
     keywords: [
       "table to markdown",
       "markdown table",
@@ -57,8 +57,8 @@ export const tableToMarkdownConfig = {
       "documentation table converter"
     ],
     openGraph: {
-      title: "Table to Markdown Converter - Structured Markdown Tables from Spreadsheet Data",
-      description: "Convert spreadsheet and delimited data into markdown tables with alignment, formatting, and preview controls.",
+      title: "Table to Markdown Converter – CSV, TSV & Spreadsheets",
+      description: "Paste a table from a spreadsheet, CSV or TSV and get a Markdown table, with delimiter detection, column alignment and escaping. Copy or download it.",
       type: "website",
       url: "/tools/writing/table-to-markdown"
     }

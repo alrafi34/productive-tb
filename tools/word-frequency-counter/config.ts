@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Word Frequency Counter Online - Analyze Word Usage and Percentages",
-    description: "Free Word Frequency Counter to analyze word counts, percentages, and repetition patterns. Apply filters, sort terms, and export CSV or JSON reports for writing and SEO workflows.",
+    title: "Word Frequency Counter – Count Word Usage & Percentages",
+    description: "Count how often each word appears and its share of the text. Filter stop words, sort terms and export the results as CSV or JSON.",
     keywords: [
       "word frequency counter",
       "word frequency analyzer",
@@ -39,8 +39,8 @@ export const toolConfig = {
       "frequency counter for text"
     ],
     openGraph: {
-      title: "Word Frequency Counter - Analyze Text with Filtered Frequency Reports",
-      description: "Measure word usage, sort results, apply filters, and export detailed frequency data instantly.",
+      title: "Word Frequency Counter – Count Word Usage & Percentages",
+      description: "Count how often each word appears and its share of the text. Filter stop words, sort terms and export the results as CSV or JSON.",
       type: "website",
       url: "/tools/writing/word-frequency-counter"
     }

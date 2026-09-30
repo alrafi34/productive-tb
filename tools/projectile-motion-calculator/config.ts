@@ -6,8 +6,8 @@ export const projectileMotionCalculatorConfig = {
   icon: "🎯",
   free: true,
   seo: {
-    title: "Projectile Motion Calculator – Range, Height & Trajectory Online",
-    description: "Free Projectile Motion Calculator for students and engineers. Calculate trajectory, range, maximum height, flight time, and visualize projectile motion instantly online.",
+    title: "Projectile Motion Calculator – Range, Height & Trajectory",
+    description: "Calculate a projectile's range, maximum height and flight time from launch speed and angle, and see the trajectory plotted.",
     keywords: [
       "projectile motion calculator",
       "trajectory calculator",
@@ -24,7 +24,7 @@ export const projectileMotionCalculatorConfig = {
     ],
     og: {
       title: "Projectile Motion Calculator – Range, Height & Trajectory",
-      description: "Calculate projectile range, maximum height, flight time, and visualize the trajectory instantly. Free online physics calculator.",
+      description: "Calculate a projectile's range, maximum height and flight time from launch speed and angle, and see the trajectory plotted.",
       type: "website",
       url: "/tools/mechanical/projectile-motion-calculator",
     },

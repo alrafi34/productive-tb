@@ -7,8 +7,8 @@ export const thermalEfficiencyCalculatorConfig = {
   category: "mechanical",
   slug: "thermal-efficiency-calculator",
   seo: {
-    title: "Thermal Efficiency Calculator – Calculate Engine & Heat Engine Efficiency Online",
-    description: "Calculate thermal efficiency instantly for engines, heat engines, turbines, and thermodynamic systems. Supports Carnot efficiency, power calculations, formulas, and step-by-step solutions.",
+    title: "Thermal Efficiency Calculator – Engines & Carnot Limit",
+    description: "Calculate the thermal efficiency of engines, turbines and other heat engines, compare it with the Carnot limit and see the working.",
     keywords: [
       "thermal efficiency calculator",
       "engine efficiency calculator",
@@ -22,8 +22,8 @@ export const thermalEfficiencyCalculatorConfig = {
       "boiler efficiency calculator",
     ],
     og: {
-      title: "Thermal Efficiency Calculator – Calculate Engine Efficiency Online",
-      description: "Calculate thermal efficiency instantly for engines, heat engines, turbines, and thermodynamic systems. Free online tool with step-by-step solutions.",
+      title: "Thermal Efficiency Calculator – Engines & Carnot Limit",
+      description: "Calculate the thermal efficiency of engines, turbines and other heat engines, compare it with the Carnot limit and see the working.",
       url: `${siteConfig.url}/tools/mechanical/thermal-efficiency-calculator`,
     },
   },

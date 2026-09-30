@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free YAML to JSON Converter Online – Convert YAML to JSON Instantly",
-    description: "Free online YAML to JSON converter for developers. Paste YAML and instantly convert it into valid JSON with formatting, syntax highlighting, and error detection.",
+    title: "YAML to JSON Converter – Convert YAML to JSON Instantly",
+    description: "Paste YAML and convert it into valid, formatted JSON with syntax highlighting and clear error messages for invalid input.",
     keywords: [
       "yaml to json",
       "yaml converter",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "yaml transformation"
     ],
     openGraph: {
-      title: "Free YAML to JSON Converter – Convert YAML to JSON Online",
-      description: "Instantly convert YAML data into JSON format. Paste YAML, get formatted JSON with syntax highlighting. Free online tool for developers.",
+      title: "YAML to JSON Converter – Convert YAML to JSON Instantly",
+      description: "Paste YAML and convert it into valid, formatted JSON with syntax highlighting and clear error messages for invalid input.",
       type: "website",
       url: "/tools/developer/yaml-to-json-converter"
     }

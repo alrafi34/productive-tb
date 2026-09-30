@@ -8,8 +8,8 @@ export const springForceCalculatorConfig = {
   icon: "🌀",
   free: true,
   seo: {
-    title: "Spring Force Calculator – Hooke's Law Force Calculator Online",
-    description: "Calculate spring force instantly using Hooke's Law. Enter spring constant and displacement to compute force with step-by-step explanation and unit conversion. Free online spring force calculator.",
+    title: "Spring Force Calculator – Hooke's Law (F = kx)",
+    description: "Calculate spring force from the spring constant and displacement with Hooke's law, with step-by-step working and unit conversion.",
     keywords: [
       "spring force calculator",
       "Hooke's law calculator",
@@ -25,8 +25,8 @@ export const springForceCalculatorConfig = {
       "Hooke law online",
     ],
     og: {
-      title: "Spring Force Calculator – Hooke's Law Force Calculator Online",
-      description: "Calculate spring force instantly using Hooke's Law. Enter spring constant and displacement to compute force with step-by-step explanation and unit conversion.",
+      title: "Spring Force Calculator – Hooke's Law (F = kx)",
+      description: "Calculate spring force from the spring constant and displacement with Hooke's law, with step-by-step working and unit conversion.",
       url: `${siteConfig.url}/tools/mechanical/spring-force-calculator`,
     },
   },

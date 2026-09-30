@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free Flowchart Logic Mapper - Create Interactive Flowcharts Online",
-    description: "Create interactive flowcharts with drag-and-drop boxes and arrows. Map processes, algorithms, and workflows entirely in your browser. No backend required.",
+    title: "Flowchart Maker – Create Interactive Flowcharts Online",
+    description: "Create flowcharts with drag-and-drop boxes and arrows to map processes, algorithms and workflows, entirely in your browser.",
     keywords: [
       "flowchart maker",
       "flowchart creator",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "flowchart generator"
     ],
     openGraph: {
-      title: "Free Flowchart Logic Mapper - Create Interactive Flowcharts Online",
-      description: "Create interactive flowcharts with drag-and-drop boxes and arrows. Map processes, algorithms, and workflows entirely in your browser.",
+      title: "Flowchart Maker – Create Interactive Flowcharts Online",
+      description: "Create flowcharts with drag-and-drop boxes and arrows to map processes, algorithms and workflows, entirely in your browser.",
       type: "website",
       url: "/flowchart-logic-mapper"
     }

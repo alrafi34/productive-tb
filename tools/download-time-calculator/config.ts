@@ -18,12 +18,12 @@ export const downloadTimeCalculatorConfig = {
     "download time estimator",
   ],
   seo: {
-    title: "Download Time Calculator – Estimate File Download Speed & Time",
-    description: "Calculate how long downloads take based on file size and internet speed. Estimate download time instantly for games, movies, software, and large files.",
+    title: "Download Time Calculator – How Long Will It Take?",
+    description: "Calculate how long a download takes from the file size and your internet speed, for games, movies, software and other large files.",
     keywords: "download time calculator, internet speed calculator, estimate download time, download speed estimator, file download calculator, how long will a download take",
     og: {
-      title: "Download Time Calculator – Estimate File Download Speed & Time",
-      description: "Calculate how long downloads take based on file size and internet speed. Estimate download time instantly for games, movies, software, and large files.",
+      title: "Download Time Calculator – How Long Will It Take?",
+      description: "Calculate how long a download takes from the file size and your internet speed, for games, movies, software and other large files.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/download-time-calculator`,
     },

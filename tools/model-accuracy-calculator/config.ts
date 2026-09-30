@@ -18,12 +18,12 @@ export const modelAccuracyCalculatorConfig = {
     "confusion matrix calculator",
   ],
   seo: {
-    title: "Model Accuracy Calculator – Free ML Accuracy Checker Online",
-    description: "Calculate machine learning model accuracy instantly. Compare actual vs predicted labels, evaluate AI performance, upload CSV data, and get instant results online for free.",
+    title: "Model Accuracy Calculator – ML Accuracy Checker Online",
+    description: "Calculate a machine learning model's accuracy by comparing actual and predicted labels, typed in or uploaded as CSV.",
     keywords: "model accuracy calculator, machine learning accuracy calculator, classification accuracy calculator, AI model evaluation, prediction accuracy checker, ML accuracy tool",
     og: {
-      title: "Model Accuracy Calculator – Free ML Accuracy Checker Online",
-      description: "Calculate machine learning model accuracy instantly. Compare actual vs predicted labels and evaluate AI classification performance.",
+      title: "Model Accuracy Calculator – ML Accuracy Checker Online",
+      description: "Calculate a machine learning model's accuracy by comparing actual and predicted labels, typed in or uploaded as CSV.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/model-accuracy-calculator`,
     },

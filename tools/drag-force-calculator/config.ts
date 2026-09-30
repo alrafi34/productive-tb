@@ -8,8 +8,8 @@ export const dragForceCalculatorConfig = {
   icon: "💨",
   free: true,
   seo: {
-    title: "Free Drag Force Calculator – Calculate Air & Fluid Resistance Online",
-    description: "Calculate drag force instantly using velocity, drag coefficient, fluid density, and area. Free online drag force calculator for engineering, physics, and aerodynamics.",
+    title: "Drag Force Calculator – Air & Fluid Resistance",
+    description: "Calculate drag force from velocity, drag coefficient, fluid density and frontal area, for physics, engineering and aerodynamics.",
     keywords: [
       "drag force calculator",
       "air resistance calculator",
@@ -25,8 +25,8 @@ export const dragForceCalculatorConfig = {
       "drag force formula online",
     ],
     og: {
-      title: "Free Drag Force Calculator – Calculate Air & Fluid Resistance Online",
-      description: "Calculate drag force instantly using velocity, drag coefficient, fluid density, and area. Free online drag force calculator for engineering, physics, and aerodynamics.",
+      title: "Drag Force Calculator – Air & Fluid Resistance",
+      description: "Calculate drag force from velocity, drag coefficient, fluid density and frontal area, for physics, engineering and aerodynamics.",
       url: `${siteConfig.url}/tools/mechanical/drag-force-calculator`,
     },
   },

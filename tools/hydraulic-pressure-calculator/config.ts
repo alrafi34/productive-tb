@@ -9,9 +9,9 @@ export const hydraulicPressureCalculatorConfig = {
   icon: "🔩",
   free: true,
   seo: {
-    title: "Hydraulic Pressure Calculator – Calculate Pressure, Force & Area Online",
+    title: "Hydraulic Pressure Calculator – Pressure, Force & Area",
     description:
-      "Free hydraulic pressure calculator for engineers and technicians. Calculate hydraulic pressure, force, piston area, and diameter instantly with PSI, bar, Pa, and MPa conversions.",
+      "Calculate hydraulic pressure, force, piston area or diameter, with conversions between psi, bar, Pa and MPa.",
     keywords: [
       "hydraulic pressure calculator",
       "pressure calculator",
@@ -27,9 +27,9 @@ export const hydraulicPressureCalculatorConfig = {
       "fluid power calculator",
     ],
     og: {
-      title: "Hydraulic Pressure Calculator – Calculate Pressure, Force & Area Online",
+      title: "Hydraulic Pressure Calculator – Pressure, Force & Area",
       description:
-        "Free hydraulic pressure calculator for engineers and technicians. Calculate hydraulic pressure, force, piston area, and diameter instantly with PSI, bar, Pa, and MPa conversions.",
+        "Calculate hydraulic pressure, force, piston area or diameter, with conversions between psi, bar, Pa and MPa.",
       url: `${siteConfig.url}/tools/mechanical/hydraulic-pressure-calculator`,
     },
   },

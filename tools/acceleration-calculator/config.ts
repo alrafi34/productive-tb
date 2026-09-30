@@ -9,8 +9,8 @@ export const accelerationCalculatorConfig = {
   color: "#058554",
   free: true,
   seo: {
-    title: "Free Acceleration Calculator – Calculate Velocity Change Online",
-    description: "Calculate acceleration instantly using velocity and time. Free online acceleration calculator with step-by-step formulas, unit conversion, and real-time results.",
+    title: "Acceleration Calculator – From Velocity Change & Time",
+    description: "Calculate acceleration from the change in velocity over time, with step-by-step formulas and unit conversion.",
     keywords: [
       "acceleration calculator",
       "calculate acceleration",
@@ -26,8 +26,8 @@ export const accelerationCalculatorConfig = {
       "acceleration formula",
     ],
     og: {
-      title: "Free Acceleration Calculator Online",
-      description: "Calculate acceleration instantly using velocity and time with automatic unit conversion and real-time results.",
+      title: "Acceleration Calculator – From Velocity Change & Time",
+      description: "Calculate acceleration from the change in velocity over time, with step-by-step formulas and unit conversion.",
       type: "website",
       url: `${siteConfig.url}/tools/mechanical/acceleration-calculator`,
     },

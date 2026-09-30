@@ -9,9 +9,9 @@ export const reynoldsNumberCalculatorConfig = {
   icon: "💧",
   free: true,
   seo: {
-    title: "Reynolds Number Calculator – Determine Fluid Flow Regime Online",
+    title: "Reynolds Number Calculator – Laminar or Turbulent Flow",
     description:
-      "Calculate Reynolds Number instantly online. Determine whether fluid flow is laminar, transitional, or turbulent using velocity, density, viscosity, and diameter. Free engineering calculator.",
+      "Calculate the Reynolds number from velocity, density, viscosity and diameter, and see whether flow is laminar, transitional or turbulent.",
     keywords: [
       "reynolds number calculator",
       "fluid flow calculator",
@@ -27,9 +27,9 @@ export const reynoldsNumberCalculatorConfig = {
       "dimensionless number calculator",
     ],
     og: {
-      title: "Reynolds Number Calculator – Determine Fluid Flow Regime Online",
+      title: "Reynolds Number Calculator – Laminar or Turbulent Flow",
       description:
-        "Calculate Reynolds Number instantly online. Determine whether fluid flow is laminar, transitional, or turbulent using velocity, density, viscosity, and diameter.",
+        "Calculate the Reynolds number from velocity, density, viscosity and diameter, and see whether flow is laminar, transitional or turbulent.",
       url: `${siteConfig.url}/tools/mechanical/reynolds-number-calculator`,
     },
   },

@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Mock Data Generator – Generate Fake Test Data Online | Names, Emails, Phones",
-    description: "Generate fake test data instantly for development and testing. Create mock names, emails, phone numbers, addresses, and JSON or CSV datasets directly in your browser.",
+    title: "Mock Data Generator – Fake Names, Emails & Test Data",
+    description: "Generate fake test data for development: names, emails, phone numbers and addresses, as JSON or CSV datasets, directly in your browser.",
     keywords: [
       "mock data generator",
       "fake data generator", 
@@ -26,8 +26,8 @@ export const toolConfig = {
       "development test data"
     ],
     openGraph: {
-      title: "Mock Data Generator – Generate Fake Test Data Online",
-      description: "Generate realistic fake data for testing: names, emails, phones, addresses. Export as JSON/CSV. Perfect for developers and testers.",
+      title: "Mock Data Generator – Fake Names, Emails & Test Data",
+      description: "Generate fake test data for development: names, emails, phone numbers and addresses, as JSON or CSV datasets, directly in your browser.",
       type: "website",
       url: "/tools/developer/mock-data-generator"
     }

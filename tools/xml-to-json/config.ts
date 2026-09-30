@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free XML to JSON Converter Online – Translate XML into Modern JSON",
-    description: "Free online XML to JSON Converter. Convert XML data into readable JSON instantly. Copy, download, and preview JSON entirely in your browser with optional pretty-print and array detection.",
+    title: "XML to JSON Converter – Convert XML to JSON Online",
+    description: "Convert XML into readable JSON with optional pretty-printing and array detection. Preview, copy or download the result in your browser.",
     keywords: [
       "xml to json",
       "xml converter",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "xml to json converter online"
     ],
     openGraph: {
-      title: "Free XML to JSON Converter – Convert XML to JSON Online",
-      description: "Instantly convert XML data into JSON format. Handle attributes, nested elements, and arrays. Copy or download JSON. Free online tool.",
+      title: "XML to JSON Converter – Convert XML to JSON Online",
+      description: "Convert XML into readable JSON with optional pretty-printing and array detection. Preview, copy or download the result in your browser.",
       type: "website",
       url: "/xml-to-json"
     }

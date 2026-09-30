@@ -9,9 +9,9 @@ export const thermalExpansionCalculatorConfig = {
   icon: "🌡️",
   free: true,
   seo: {
-    title: "Thermal Expansion Calculator – Calculate Heat Expansion Online",
+    title: "Thermal Expansion Calculator – Steel, Aluminum & More",
     description:
-      "Calculate thermal expansion instantly for steel, aluminum, copper, concrete, and more. Free online thermal expansion calculator with formulas, unit conversion, and engineering breakdowns.",
+      "Calculate how much steel, aluminum, copper, concrete and other materials expand with temperature, with the formula and unit conversion.",
     keywords: [
       "thermal expansion calculator",
       "heat expansion calculator",
@@ -27,9 +27,9 @@ export const thermalExpansionCalculatorConfig = {
       "aluminum thermal expansion",
     ],
     og: {
-      title: "Free Thermal Expansion Calculator",
+      title: "Thermal Expansion Calculator – Steel, Aluminum & More",
       description:
-        "Calculate material expansion due to temperature changes instantly with formulas and engineering explanations.",
+        "Calculate how much steel, aluminum, copper, concrete and other materials expand with temperature, with the formula and unit conversion.",
       url: `${siteConfig.url}/tools/mechanical/thermal-expansion-calculator`,
     },
   },

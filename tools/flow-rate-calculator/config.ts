@@ -9,9 +9,9 @@ export const flowRateCalculatorConfig = {
   icon: "🌊",
   free: true,
   seo: {
-    title: "Free Flow Rate Calculator Online – Volumetric & Mass Flow Rate",
+    title: "Flow Rate Calculator – Volumetric & Mass Flow Rate",
     description:
-      "Calculate volumetric and mass flow rate instantly using engineering formulas. Supports pipe flow, fluid velocity, unit conversion, and real-time calculations online.",
+      "Calculate volumetric and mass flow rate from pipe size and fluid velocity, with unit conversion between common flow units.",
     keywords: [
       "flow rate calculator",
       "volumetric flow calculator",
@@ -27,9 +27,9 @@ export const flowRateCalculatorConfig = {
       "fluid mechanics calculator",
     ],
     og: {
-      title: "Free Flow Rate Calculator Online – Volumetric & Mass Flow Rate",
+      title: "Flow Rate Calculator – Volumetric & Mass Flow Rate",
       description:
-        "Calculate volumetric and mass flow rate instantly using engineering formulas. Supports pipe flow, fluid velocity, unit conversion, and real-time calculations online.",
+        "Calculate volumetric and mass flow rate from pipe size and fluid velocity, with unit conversion between common flow units.",
       url: `${siteConfig.url}/tools/mechanical/flow-rate-calculator`,
     },
   },

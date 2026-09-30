@@ -10,9 +10,9 @@ export const breakEvenCalculatorConfig = {
   free: true,
   seo: {
     title:
-      "Free Break Even Calculator Online | Calculate Break-even Point Instantly",
+      "Break-Even Calculator – Break-Even Point in Units & Sales",
     description:
-      "Calculate your business break-even point instantly using our free Break Even Calculator. Determine break-even units, revenue, contribution margin, profit, margin of safety, and target sales. Fast, mobile-friendly, and completely browser-based.",
+      "Find your break-even point in units and revenue, plus contribution margin, profit, margin of safety and the sales needed for a target profit.",
     keywords: [
       "break even calculator",
       "break-even point calculator",
@@ -29,9 +29,9 @@ export const breakEvenCalculatorConfig = {
       "unit break even calculator",
     ],
     openGraph: {
-      title: "Free Break Even Calculator – Calculate Break-even Point Instantly",
+      title: "Break-Even Calculator – Break-Even Point in Units & Sales",
       description:
-        "Find your break-even units, revenue, and contribution margin instantly. Free, browser-based, no signup required.",
+        "Find your break-even point in units and revenue, plus contribution margin, profit, margin of safety and the sales needed for a target profit.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/break-even-calculator`,
     },

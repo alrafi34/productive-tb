@@ -8,7 +8,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Unix Timestamp Converter (Epoch to Date & Date to Unix)",
-    description: "Free Unix Timestamp Converter for epoch to date and date to Unix conversion. Auto-detects seconds/milliseconds with batch conversion, timezone views, and timestamp diff.",
+    description: "Convert Unix epoch time to a date and a date to a timestamp. Detects seconds or milliseconds, with batch conversion, time zones and differences.",
     keywords: [
       "unix timestamp converter",
       "epoch time converter",
@@ -25,8 +25,8 @@ export const toolConfig = {
       "batch timestamp converter"
     ],
     openGraph: {
-      title: "Unix Timestamp Converter - Epoch to Date and Date to Unix",
-      description: "Convert Unix timestamps in seconds or milliseconds, compare timestamp differences, and batch-convert values directly in your browser.",
+      title: "Unix Timestamp Converter (Epoch to Date & Date to Unix)",
+      description: "Convert Unix epoch time to a date and a date to a timestamp. Detects seconds or milliseconds, with batch conversion, time zones and differences.",
       type: "website",
       url: "/tools/calculator/timestamp-unix-converter"
     }

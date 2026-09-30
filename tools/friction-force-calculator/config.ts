@@ -8,8 +8,8 @@ export const frictionForceCalculatorConfig = {
   icon: "🔩",
   free: true,
   seo: {
-    title: "Friction Force Calculator – Calculate Friction Force Online (F = μN)",
-    description: "Calculate friction force instantly using coefficient of friction and normal force. Free online friction force calculator with static/kinetic modes, surface presets, formulas, and step-by-step explanations.",
+    title: "Friction Force Calculator (F = μN) – Static & Kinetic",
+    description: "Calculate friction force from the coefficient of friction and normal force, with static and kinetic modes, surface presets and working.",
     keywords: [
       "friction force calculator",
       "coefficient of friction calculator",
@@ -25,8 +25,8 @@ export const frictionForceCalculatorConfig = {
       "engineering friction tool",
     ],
     og: {
-      title: "Friction Force Calculator – Calculate Friction Force Online (F = μN)",
-      description: "Calculate friction force instantly using coefficient of friction and normal force. Free online friction force calculator with static/kinetic modes, surface presets, and step-by-step explanations.",
+      title: "Friction Force Calculator (F = μN) – Static & Kinetic",
+      description: "Calculate friction force from the coefficient of friction and normal force, with static and kinetic modes, surface presets and working.",
       url: `${siteConfig.url}/tools/mechanical/friction-force-calculator`,
     },
   },

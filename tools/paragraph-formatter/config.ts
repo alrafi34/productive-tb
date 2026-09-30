@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Paragraph Formatter Online - Remove Extra Spaces and Fix Line Breaks",
-    description: "Free Paragraph Formatter to clean messy text online. Remove extra spaces, fix line breaks, trim empty lines, and format paragraphs for publishing-ready content.",
+    title: "Paragraph Formatter – Remove Extra Spaces & Line Breaks",
+    description: "Clean up messy text: remove extra spaces, fix broken line breaks, trim empty lines and reflow paragraphs so they are ready to publish.",
     keywords: [
       "paragraph formatter",
       "text formatter",
@@ -35,8 +35,8 @@ export const toolConfig = {
       "text cleanup for seo"
     ],
     openGraph: {
-      title: "Paragraph Formatter - Clean and Normalize Text Online",
-      description: "Remove extra spaces, fix broken line wraps, and format paragraphs instantly for clean, readable content.",
+      title: "Paragraph Formatter – Remove Extra Spaces & Line Breaks",
+      description: "Clean up messy text: remove extra spaces, fix broken line breaks, trim empty lines and reflow paragraphs so they are ready to publish.",
       type: "website",
       url: "/tools/writing/paragraph-formatter"
     }

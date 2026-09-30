@@ -8,8 +8,8 @@ export const stressCalculatorConfig = {
   icon: "🔩",
   free: true,
   seo: {
-    title: "Free Stress Calculator Online – Calculate Mechanical Stress Instantly",
-    description: "Calculate mechanical stress instantly using force and area. Free online stress calculator with engineering unit conversion for MPa, psi, Pa, ksi, and more.",
+    title: "Stress Calculator – Force per Area in MPa, psi & ksi",
+    description: "Calculate mechanical stress from force and area, with unit conversion between Pa, MPa, psi, ksi and more.",
     keywords: [
       "stress calculator",
       "mechanical stress calculator",
@@ -25,8 +25,8 @@ export const stressCalculatorConfig = {
       "online stress calculator",
     ],
     og: {
-      title: "Free Stress Calculator Online – Calculate Mechanical Stress Instantly",
-      description: "Calculate mechanical stress instantly using force and area. Free online stress calculator with engineering unit conversion for MPa, psi, Pa, ksi, and more.",
+      title: "Stress Calculator – Force per Area in MPa, psi & ksi",
+      description: "Calculate mechanical stress from force and area, with unit conversion between Pa, MPa, psi, ksi and more.",
       url: `${siteConfig.url}/tools/mechanical/stress-calculator`,
     },
   },

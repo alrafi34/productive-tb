@@ -10,9 +10,9 @@ export const profitMarginCalculatorMarketingConfig = {
   free: true,
   seo: {
     title:
-      "Profit Margin Calculator – Free Online Margin, Profit & Markup Calculator",
+      "Profit Margin Calculator – Margin, Markup & Price",
     description:
-      "Calculate profit margin, markup, selling price, cost price, and profit instantly using this free online Profit Margin Calculator. Fast, accurate, mobile-friendly, and completely browser-based.",
+      "Calculate profit margin, markup, selling price, cost price and profit from any two known values.",
     keywords: [
       "profit margin calculator",
       "margin calculator",
@@ -28,9 +28,9 @@ export const profitMarginCalculatorMarketingConfig = {
       "business profit calculator",
     ],
     openGraph: {
-      title: "Free Profit Margin Calculator – Calculate Margin & Markup Instantly",
+      title: "Profit Margin Calculator – Margin, Markup & Price",
       description:
-        "Calculate profit margin, markup, and selling price instantly. Supports multiple modes and currencies. No signup required.",
+        "Calculate profit margin, markup, selling price, cost price and profit from any two known values.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/profit-margin-calculator-marketing`,
     },

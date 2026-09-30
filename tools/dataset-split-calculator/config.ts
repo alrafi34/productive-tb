@@ -20,12 +20,12 @@ export const datasetSplitCalculatorConfig = {
     "data split tool",
   ],
   seo: {
-    title: "Free Dataset Split Calculator – Train Test Validation Split Tool",
-    description: "Calculate train, validation, and test dataset splits instantly online. Split datasets for machine learning using custom ratios or percentages.",
+    title: "Dataset Split Calculator – Train, Validation & Test",
+    description: "Work out how many rows go into training, validation and test sets for a machine learning dataset using custom ratios or percentages.",
     keywords: "dataset split calculator, train test split calculator, machine learning dataset split, validation split calculator, AI dataset tool, ML train validation test split, dataset ratio calculator",
     og: {
-      title: "Free Dataset Split Calculator – Train Test Validation Split Tool",
-      description: "Instantly calculate training, validation, and testing dataset splits with custom ratios or percentages. Free online ML dataset split tool.",
+      title: "Dataset Split Calculator – Train, Validation & Test",
+      description: "Work out how many rows go into training, validation and test sets for a machine learning dataset using custom ratios or percentages.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/dataset-split-calculator`,
     },

@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Free JSON to CSV Converter Online – Flatten JSON into Spreadsheet",
-    description: "Free online JSON to CSV Converter. Flatten nested JSON objects into CSV for Excel or Google Sheets. Copy, download, and preview CSV instantly in your browser.",
+    title: "JSON to CSV Converter – Flatten JSON for Excel & Sheets",
+    description: "Flatten nested JSON objects into CSV for Excel or Google Sheets. Preview the table, then copy or download the CSV, all in your browser.",
     keywords: [
       "json to csv",
       "json converter",
@@ -27,8 +27,8 @@ export const toolConfig = {
       "json to csv converter online"
     ],
     openGraph: {
-      title: "Free JSON to CSV Converter – Convert JSON to CSV Online",
-      description: "Instantly convert JSON data into CSV format. Flatten nested objects and arrays. Copy or download CSV. Free online tool.",
+      title: "JSON to CSV Converter – Flatten JSON for Excel & Sheets",
+      description: "Flatten nested JSON objects into CSV for Excel or Google Sheets. Preview the table, then copy or download the CSV, all in your browser.",
       type: "website",
       url: "/json-to-csv"
     }

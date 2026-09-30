@@ -21,12 +21,12 @@ export const combinatoricsCalculatorConfig = {
     "multiset permutation calculator",
   ],
   seo: {
-    title: "Free Combinatorics Calculator – Permutation & Combination Calculator",
-    description: "Calculate permutations, combinations, factorials, circular arrangements, and more instantly online. Includes formulas, step-by-step explanations, and educational breakdowns.",
+    title: "Combinatorics Calculator – Permutations & Combinations",
+    description: "Calculate permutations, combinations, factorials and circular arrangements, with the formulas and step-by-step explanations.",
     keywords: "combinatorics calculator, permutation calculator, combination calculator, nCr calculator, nPr calculator, factorial calculator, probability calculator, math calculator online",
     og: {
-      title: "Free Combinatorics Calculator – Permutation & Combination Calculator",
-      description: "Instantly calculate permutations, combinations, factorials, and circular arrangements with step-by-step formulas. Free online math tool.",
+      title: "Combinatorics Calculator – Permutations & Combinations",
+      description: "Calculate permutations, combinations, factorials and circular arrangements, with the formulas and step-by-step explanations.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/combinatorics-calculator`,
     },

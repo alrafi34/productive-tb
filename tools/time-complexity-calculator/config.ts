@@ -8,8 +8,8 @@ export const timeComplexityCalculatorConfig = {
   icon: "📊",
   free: true,
   seo: {
-    title: "Free Time Complexity Calculator – Estimate Big-O Growth Online",
-    description: "Analyze and estimate algorithm time complexity instantly. Learn Big-O notation with visual graphs, comparisons, and real-world examples for coding interviews and computer science learning.",
+    title: "Time Complexity Calculator – Estimate Big-O Growth",
+    description: "Compare how O(1), O(log n), O(n), O(n²) and other complexities grow with input size, with graphs and examples for coding interviews.",
     keywords: [
       "time complexity calculator",
       "big o calculator",
@@ -25,8 +25,8 @@ export const timeComplexityCalculatorConfig = {
       "computer science learning tool",
     ],
     openGraph: {
-      title: "Free Time Complexity Calculator – Estimate Big-O Growth Online",
-      description: "Analyze and estimate algorithm time complexity instantly. Learn Big-O notation with visual graphs, comparisons, and real-world examples.",
+      title: "Time Complexity Calculator – Estimate Big-O Growth",
+      description: "Compare how O(1), O(log n), O(n), O(n²) and other complexities grow with input size, with graphs and examples for coding interviews.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/time-complexity-calculator`,
     },

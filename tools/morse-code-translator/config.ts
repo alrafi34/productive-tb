@@ -26,12 +26,12 @@ export const toolConfig = {
     "free morse converter"
   ],
   seo: {
-    title: "Morse Code Translator Online - Convert Text, Decode Signals, and Play Audio",
-    description: "Free Morse Code Translator for text-to-morse and morse-to-text conversion with custom symbols, spacing controls, reference table, and adjustable audio playback.",
+    title: "Morse Code Translator – Text to Morse, Decode & Audio",
+    description: "Translate text to Morse code and Morse to text, with custom symbols and spacing, a reference chart and audio playback at adjustable speed.",
     keywords: "morse code translator, text to morse code, morse to text, morse code converter, morse decoder, morse encoder, morse code audio, cw translator, learn morse code, dot dash converter, real time morse translator, free morse converter",
     openGraph: {
-      title: "Morse Code Translator - Two-Way Conversion with Audio and Custom Formatting",
-      description: "Translate Morse code instantly with configurable symbols, spacing, playback speed, and downloadable output.",
+      title: "Morse Code Translator – Text to Morse, Decode & Audio",
+      description: "Translate text to Morse code and Morse to text, with custom symbols and spacing, a reference chart and audio playback at adjustable speed.",
       type: "website",
       url: "/tools/writing/morse-code-translator",
     },

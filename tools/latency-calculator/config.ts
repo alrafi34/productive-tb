@@ -19,12 +19,12 @@ export const latencyCalculatorConfig = {
     "propagation delay calculator",
   ],
   seo: {
-    title: "Free Latency Calculator – Estimate Network Delay & Ping Online",
-    description: "Calculate network latency, ping, RTT, transmission delay, and propagation delay instantly. Free online latency calculator for networking, gaming, cloud, and DevOps.",
+    title: "Latency Calculator – Network Delay, Ping & RTT",
+    description: "Estimate network latency, round-trip time, transmission and propagation delay for networking, gaming, cloud and DevOps work.",
     keywords: "latency calculator, network latency calculator, ping calculator, RTT calculator, transmission delay calculator, network delay estimator, gaming ping calculator",
     og: {
-      title: "Free Latency Calculator – Estimate Network Delay & Ping Online",
-      description: "Calculate network latency, ping, RTT, transmission delay, and propagation delay instantly. Free online tool for networking, gaming, cloud, and DevOps.",
+      title: "Latency Calculator – Network Delay, Ping & RTT",
+      description: "Estimate network latency, round-trip time, transmission and propagation delay for networking, gaming, cloud and DevOps work.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/latency-calculator`,
     },

@@ -9,8 +9,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Age Calculator — Free Online Age Calculator from Date of Birth",
-    description: "Free age calculator from date of birth. Get exact age in years, months, and days, total days lived, next birthday countdown, milestones, and zodiac sign. No sign-up, 100% browser-based.",
+    title: "Age Calculator – Exact Age From Date of Birth",
+    description: "Find your exact age in years, months and days from your date of birth, plus total days lived, a countdown to your next birthday and milestones.",
     keywords: [
       "age calculator",
       "age calculator online",
@@ -39,8 +39,8 @@ export const toolConfig = {
       "free age calculator no sign up",
     ],
     openGraph: {
-      title: "Age Calculator — Free Online Age Calculator from Date of Birth",
-      description: "Calculate exact age in years, months, and days. Get lifetime stats, birthday countdown, milestones, and zodiac sign. Free and browser-based.",
+      title: "Age Calculator – Exact Age From Date of Birth",
+      description: "Find your exact age in years, months and days from your date of birth, plus total days lived, a countdown to your next birthday and milestones.",
       type: "website",
       url: `${siteConfig.url}/tools/calculator/age-calculator`,
     },

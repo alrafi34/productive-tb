@@ -15,8 +15,8 @@ export const ctrCalculatorConfig = {
     "profit-margin-calculator-marketing",
   ],
   seo: {
-    title: "CTR Calculator — Free Click Through Rate Calculator Online",
-    description: "Calculate click-through rate (CTR) instantly from clicks and impressions. Free CTR calculator for Google Ads, Facebook, SEO, email, and Amazon PPC. Benchmarks by channel included.",
+    title: "CTR Calculator – Click-Through Rate From Clicks",
+    description: "Calculate click-through rate from clicks and impressions for Google Ads, Facebook, SEO, email and Amazon PPC, with benchmarks by channel.",
     keywords: [
       "ctr calculator",
       "click through rate calculator",
@@ -43,14 +43,14 @@ export const ctrCalculatorConfig = {
       "click through rate formula",
     ],
     openGraph: {
-      title: "CTR Calculator — Free Click Through Rate Calculator Online",
-      description: "Calculate click-through rate instantly from clicks and impressions. Benchmarks for Google Ads, Facebook, SEO, email, and Amazon PPC included.",
+      title: "CTR Calculator – Click-Through Rate From Clicks",
+      description: "Calculate click-through rate from clicks and impressions for Google Ads, Facebook, SEO, email and Amazon PPC, with benchmarks by channel.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/ctr-calculator`,
     },
     og: {
-      title: "CTR Calculator — Free Click Through Rate Calculator Online",
-      description: "Calculate click-through rate instantly from clicks and impressions. Benchmarks for Google Ads, Facebook, SEO, email, and Amazon PPC included.",
+      title: "CTR Calculator – Click-Through Rate From Clicks",
+      description: "Calculate click-through rate from clicks and impressions for Google Ads, Facebook, SEO, email and Amazon PPC, with benchmarks by channel.",
       url: `${siteConfig.url}/tools/marketing/ctr-calculator`,
     },
     howToSteps: [

@@ -8,8 +8,8 @@ export const subnetCalculatorConfig = {
   icon: "🌐",
   free: true,
   seo: {
-    title: "Free Subnet Calculator – Calculate CIDR, Network Address & Hosts Online",
-    description: "Calculate subnet masks, CIDR notation, broadcast address, network range, and usable hosts instantly. Free online subnet calculator for IT professionals, students, and network engineers.",
+    title: "Subnet Calculator – CIDR, Network Address & Hosts",
+    description: "Calculate the subnet mask, CIDR notation, network and broadcast addresses, host range and number of usable hosts for any IPv4 subnet.",
     keywords: [
       "subnet calculator",
       "CIDR calculator",
@@ -25,8 +25,8 @@ export const subnetCalculatorConfig = {
       "wildcard mask calculator",
     ],
     openGraph: {
-      title: "Free Subnet Calculator – Calculate CIDR, Network Address & Hosts Online",
-      description: "Calculate subnet masks, CIDR notation, broadcast address, network range, and usable hosts instantly.",
+      title: "Subnet Calculator – CIDR, Network Address & Hosts",
+      description: "Calculate the subnet mask, CIDR notation, network and broadcast addresses, host range and number of usable hosts for any IPv4 subnet.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/subnet-calculator`,
     },

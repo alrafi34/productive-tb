@@ -10,9 +10,9 @@ export const costPerAcquisitionCpaCalculatorConfig = {
   free: true,
   seo: {
     title:
-      "Free Cost Per Acquisition (CPA) Calculator Online | Calculate CPA Instantly",
+      "CPA Calculator – Cost Per Acquisition From Ad Spend",
     description:
-      "Calculate Cost Per Acquisition (CPA) instantly using our free online calculator. Enter your marketing spend and total acquisitions to get accurate CPA metrics in real time. Fast, mobile-friendly, and 100% browser-based.",
+      "Calculate cost per acquisition by dividing marketing spend by the number of customers or conversions it brought in.",
     keywords: [
       "cost per acquisition calculator",
       "CPA calculator",
@@ -30,9 +30,9 @@ export const costPerAcquisitionCpaCalculatorConfig = {
       "PPC CPA calculator",
     ],
     openGraph: {
-      title: "Free CPA Calculator – Calculate Cost Per Acquisition Instantly",
+      title: "CPA Calculator – Cost Per Acquisition From Ad Spend",
       description:
-        "Quickly calculate your marketing Cost Per Acquisition (CPA) using this free online calculator. Works instantly with no signup required.",
+        "Calculate cost per acquisition by dividing marketing spend by the number of customers or conversions it brought in.",
       type: "website",
       url: `${siteConfig.url}/tools/marketing/cost-per-acquisition-cpa-calculator`,
     },

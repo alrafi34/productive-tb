@@ -19,12 +19,12 @@ export const aiTokenCostCalculatorConfig = {
     "prompt token calculator",
   ],
   seo: {
-    title: "AI Token Cost Calculator – Estimate OpenAI, Claude & Gemini API Costs",
-    description: "Calculate AI API token costs instantly. Estimate OpenAI, Claude, Gemini, and custom model pricing using prompt and completion tokens. Free token cost calculator online.",
+    title: "AI Token Cost Calculator – Estimate LLM API Costs",
+    description: "Estimate AI API costs from prompt and completion tokens for OpenAI, Claude, Gemini or a custom model price per million tokens.",
     keywords: "AI token calculator, OpenAI token cost calculator, GPT API pricing calculator, Claude token pricing, Gemini token cost, LLM pricing calculator, AI API cost estimator, prompt token calculator",
     og: {
-      title: "AI Token Cost Calculator – Estimate OpenAI, Claude & Gemini API Costs",
-      description: "Calculate AI API token costs instantly for OpenAI, Claude, Gemini, and custom models. Free online token cost estimator.",
+      title: "AI Token Cost Calculator – Estimate LLM API Costs",
+      description: "Estimate AI API costs from prompt and completion tokens for OpenAI, Claude, Gemini or a custom model price per million tokens.",
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/ai-token-cost-calculator`,
     },
