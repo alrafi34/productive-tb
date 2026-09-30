@@ -31,7 +31,14 @@ export const hashGeneratorConfig = {
       description: "Generate MD5, SHA-1, or SHA-256 hashes instantly in your browser with file hashing, bulk processing, and verification.",
       type: "website",
       url: "/hash-generator"
-    }
+    },
+    faq: [
+      { q: "Can I reverse a hash to get the original data?", a: "No, hash functions are one-way. You cannot reverse a hash to get the original input. This is by design for security purposes." },
+      { q: "Why do I get different hashes for the same text?", a: "Check for hidden whitespace, line breaks, or case differences. Even a single character change produces a completely different hash." },
+      { q: "Is this tool safe for sensitive data?", a: "Yes, all processing happens in your browser. However, remember that hashing is not encryption—don't share hashes of sensitive passwords." },
+      { q: "Which algorithm should I use?", a: "Use SHA-256 for security-critical applications, SHA-1 for legacy compatibility, and MD5 for simple checksums and non-security purposes." },
+      { q: "Can two different inputs produce the same hash?", a: "Theoretically yes (called a collision), but it's extremely rare with SHA-256. MD5 and SHA-1 have known collision vulnerabilities." },
+    ],
   },
   features: [
     "MD5, SHA-1, and SHA-256 support",

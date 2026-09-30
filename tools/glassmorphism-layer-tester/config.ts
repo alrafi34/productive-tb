@@ -33,7 +33,15 @@ export const toolConfig = {
       description: "Design glassmorphism layers by adjusting blur, transparency, borders and shadows with a live preview on several backgrounds, then copy the CSS.",
       type: "website",
       url: "/glassmorphism-layer-tester"
-    }
+    },
+    faq: [
+      { q: "What is glassmorphism and how does it work?", a: "Glassmorphism is a UI design trend that creates frosted glass effects using CSS backdrop-filter property. It applies blur to the background behind an element while maintaining semi-transparency, creating a layered, depth-filled interface. Our glassmorphism layer tester lets you experiment with blur intensity, transparency levels, and border effects to achieve the perfect glass aesthetic for your design." },
+      { q: "How do I use backdrop-filter in CSS?", a: "The backdrop-filter CSS property applies effects to the area behind an element. Use backdrop-filter: blur(12px) to create glass effects. Always include -webkit-backdrop-filter for Safari compatibility. Our tool automatically generates both vendor-prefixed and standard CSS code, ensuring cross-browser compatibility for your glassmorphism designs." },
+      { q: "What's the best blur intensity for glassmorphism?", a: "For subtle UI elements like navigation bars, use 8-12px blur. For cards and panels, 12-20px works well. For dramatic effects or large overlays, 20-40px creates strong visual impact. The optimal blur depends on your background complexity and desired effect strength. Test different values using our live preview to find the perfect balance for your design." },
+      { q: "Can I use glassmorphism on all browsers?", a: "Backdrop-filter is supported in modern browsers including Chrome, Safari, Edge, and Firefox. Safari requires the -webkit- prefix. For older browsers, provide fallback styles with solid backgrounds. Our tool includes vendor prefixes automatically and you can test compatibility by checking if the glass effect renders in your target browsers." },
+      { q: "How do I add noise texture to glass effects?", a: "Enable the noise overlay option in advanced settings to add subtle grain texture. Adjust noise intensity (0-100) and opacity (0-0.3) for realistic frosted glass appearance. Noise adds depth and prevents the glass from looking too digital. Our tool generates canvas-based noise that overlays your glass layer for authentic texture." },
+      { q: "Is the glassmorphism layer tester free to use?", a: "Yes, our glassmorphism layer tester is completely free with unlimited usage. Generate unlimited glass effects, test on multiple backgrounds, export in any format (CSS, Tailwind, SCSS, JSON), and use the generated code in personal or commercial projects. No registration, watermarks, or hidden fees. All processing happens in your browser for instant results." },
+    ],
   },
   features: [
     "Live preview with multiple backgrounds",

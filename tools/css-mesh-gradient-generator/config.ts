@@ -27,6 +27,12 @@ export const cssMeshGradientGeneratorConfig = {
       description: "Create mesh gradients for websites by layering multi-color radial gradients, then export a clean CSS background.",
       type: 'website',
       url: '/tools/css-mesh-gradient-generator'
-    }
+    },
+    faq: [
+      { q: "How many gradient points should I use?", a: "3-6 gradient points typically work best. Too few points create simple gradients, while too many can become chaotic and impact performance." },
+      { q: "Can mesh gradients be animated?", a: "Yes! You can animate gradient positions, colors, and opacity using CSS transitions or keyframe animations for dynamic effects." },
+      { q: "Do mesh gradients work in all browsers?", a: "CSS radial gradients are supported in all modern browsers. For older browsers, provide solid color fallbacks using progressive enhancement." },
+      { q: "How do I make text readable over mesh gradients?", a: "Use semi-transparent overlays, text shadows, or ensure your gradient has areas of consistent lightness where text will be placed." },
+    ],
   }
 };

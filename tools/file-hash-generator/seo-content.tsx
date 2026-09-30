@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function FileHashGeneratorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -241,42 +246,7 @@ export default function FileHashGeneratorSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Are my files uploaded to a server?</h3>
-            <p className="text-gray-600">No. All hashing happens locally in your browser using the Web Crypto API. Your files never leave your device.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I hash large files?</h3>
-            <p className="text-gray-600">Yes, the tool supports files of any size. Large files are processed with a progress indicator to show the hashing status.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Which algorithm should I use?</h3>
-            <p className="text-gray-600">SHA-256 is recommended for most use cases. Use SHA-384 or SHA-512 for higher security requirements. SHA-1 is only for legacy compatibility.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What if the hashes don't match?</h3>
-            <p className="text-gray-600">If hashes don't match, the file may be corrupted, modified, or tampered with. Do not use the file and download it again from a trusted source.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I hash multiple files at once?</h3>
-            <p className="text-gray-600">Currently, the tool processes one file at a time. You can hash multiple files sequentially by selecting them one after another.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Is this tool free?</h3>
-            <p className="text-gray-600">Yes, completely free for personal and commercial use. No registration or payment required.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How accurate is the hash?</h3>
-            <p className="text-gray-600">The Web Crypto API provides cryptographically secure hashing. The results are identical to command-line tools like sha256sum.</p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Technical Details */}
       <section className="mt-8 bg-gray-50 rounded-xl border border-gray-200 shadow-sm p-8">

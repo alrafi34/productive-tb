@@ -31,7 +31,16 @@ export const toolConfig = {
       description: "Generate cryptographic hashes of files locally in your browser. No uploads required.",
       type: "website",
       url: "/file-hash-generator"
-    }
+    },
+    faq: [
+      { q: "Are my files uploaded to a server?", a: "No. All hashing happens locally in your browser using the Web Crypto API. Your files never leave your device." },
+      { q: "Can I hash large files?", a: "Yes, the tool supports files of any size. Large files are processed with a progress indicator to show the hashing status." },
+      { q: "Which algorithm should I use?", a: "SHA-256 is recommended for most use cases. Use SHA-384 or SHA-512 for higher security requirements. SHA-1 is only for legacy compatibility." },
+      { q: "What if the hashes don't match?", a: "If hashes don't match, the file may be corrupted, modified, or tampered with. Do not use the file and download it again from a trusted source." },
+      { q: "Can I hash multiple files at once?", a: "Currently, the tool processes one file at a time. You can hash multiple files sequentially by selecting them one after another." },
+      { q: "Is this tool free?", a: "Yes, completely free for personal and commercial use. No registration or payment required." },
+      { q: "How accurate is the hash?", a: "The Web Crypto API provides cryptographically secure hashing. The results are identical to command-line tools like sha256sum." },
+    ],
   },
   features: [
     "SHA-256, SHA-1, SHA-384, SHA-512 support",

@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { customScrollbarStylerConfig } from "./config";
+
 import React from 'react';
 
 export default function CustomScrollbarStylerSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = customScrollbarStylerConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 bg-white rounded-xl shadow-sm mt-8">
       <section>
@@ -273,71 +278,7 @@ export default function CustomScrollbarStylerSEOContent() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-slate-800 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Do custom scrollbars work on mobile devices?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Custom scrollbar styling primarily works on desktop browsers. Mobile browsers (iOS Safari, Chrome Mobile) typically 
-              hide scrollbars or use native OS scrollbars that cannot be styled. However, the CSS won't cause any issues on mobile 
-              devices—it simply won't apply.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Will custom scrollbars affect website performance?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              No. Custom scrollbar CSS is extremely lightweight and has no measurable impact on performance. The styles are applied 
-              using native browser capabilities and don't require any JavaScript.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Can I use custom scrollbars in specific containers?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Yes! Instead of using the universal selector (*), target specific elements. For example: 
-              .my-container::-webkit-scrollbar will only style scrollbars within elements with the "my-container" class.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">What's the difference between WebKit and Firefox scrollbar styling?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              WebKit browsers (Chrome, Safari, Edge) support detailed customization with pseudo-elements, allowing control over 
-              width, colors, borders, shadows, and more. Firefox uses simpler properties (scrollbar-width and scrollbar-color) 
-              with limited customization options.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Should I always customize scrollbars?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Not necessarily. Default scrollbars are familiar to users and work well in most cases. Customize scrollbars when 
-              you want to match your brand, improve aesthetics, or create a unique user experience. Avoid over-styling that 
-              might confuse users or reduce usability.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Can I animate custom scrollbars?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Yes, you can add CSS transitions to scrollbar properties like background color. However, complex animations may 
-              not work consistently across all browsers. Stick to simple transitions for hover effects for best compatibility.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">How do I implement the generated CSS?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Copy the generated CSS and paste it into your stylesheet (CSS file) or within a &lt;style&gt; tag in your HTML. 
-              The styles will apply globally unless you scope them to specific elements.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-slate-800 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>

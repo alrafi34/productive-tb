@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function SEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use */}
@@ -94,54 +99,7 @@ export default function SEOContent() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Why is the Base64 string larger than the original image?
-            </h3>
-            <p className="text-gray-600">
-              Base64 encoding converts binary data to text, which increases the size by approximately 33%. This is because 
-              Base64 uses 4 ASCII characters to represent 3 bytes of binary data. However, the convenience of inline embedding 
-              often outweighs the size increase for small images.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              Should I use Base64 for all images on my website?
-            </h3>
-            <p className="text-gray-600">
-              No. Base64 is best for small images (under 10KB) like icons, logos, and UI elements. Large images should be 
-              served as separate files to take advantage of browser caching, lazy loading, and CDN optimization. Base64 images 
-              can't be cached separately and increase HTML/CSS file sizes.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              How do I use a Base64 image in HTML or CSS?
-            </h3>
-            <p className="text-gray-600">
-              In HTML, use it in an img tag: <code className="bg-gray-100 px-2 py-1 rounded">&lt;img src="data:image/png;base64,..."&gt;</code>. 
-              In CSS, use it as a background: <code className="bg-gray-100 px-2 py-1 rounded">background-image: url(data:image/png;base64,...);</code>. 
-              The entire Base64 string replaces the normal file path.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">
-              What's the difference between PNG, JPEG, and WebP output formats?
-            </h3>
-            <p className="text-gray-600">
-              PNG is lossless and best for graphics with transparency. JPEG is lossy and better for photographs, offering 
-              smaller file sizes. WebP provides superior compression for both photos and graphics but has slightly less browser 
-              support. Choose based on your image type and browser compatibility requirements.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </>
   );
 }

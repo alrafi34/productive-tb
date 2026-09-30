@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { sriGeneratorConfig } from "./config";
+
 export default function SRIGeneratorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = sriGeneratorConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -93,74 +98,7 @@ export default function SRIGeneratorSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Do I need SRI for all external resources?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              While not required, it's highly recommended for any external scripts or stylesheets, especially from 
-              third-party CDNs. It adds minimal overhead but significantly improves security by protecting against 
-              compromised CDN resources and man-in-the-middle attacks.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What happens if the CDN updates the file?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              The browser will block the resource because the hash won't match. This is intentional security behavior - you should 
-              pin specific versions in your CDN URLs and update hashes deliberately when upgrading. Avoid using "latest" or version ranges.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Which hash algorithm should I choose?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              SHA-384 is recommended for most use cases as it provides strong security with reasonable hash length and is the industry standard. 
-              Use SHA-512 for maximum security or SHA-256 if you need shorter hashes. You can also specify multiple algorithms for broader compatibility.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Is my data secure when using this tool?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Absolutely! All hashing is performed locally in your browser using the Web Crypto API. No data is sent to any server or third party. 
-              Your scripts, URLs, and content remain completely private. The tool even works offline after initial page load.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I use SRI with dynamic content?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              SRI is designed for static resources with predictable content. It's not suitable for dynamically 
-              generated scripts or resources that change frequently. Use SRI for versioned CDN libraries, frameworks, and static assets.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Does SRI slow down my website?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              The performance impact is negligible. Browsers compute hashes very quickly using native cryptographic functions, and the security benefits 
-              far outweigh any minimal overhead. SRI actually helps prevent security incidents that could severely impact performance.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits Section */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

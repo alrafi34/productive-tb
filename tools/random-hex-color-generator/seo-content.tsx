@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { randomHexColorGeneratorConfig } from "./config";
+
 import React from 'react';
 
 export default function RandomHexColorGeneratorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = randomHexColorGeneratorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 bg-white">
       <section>
@@ -265,40 +270,7 @@ export default function RandomHexColorGeneratorSEOContent() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How random are the generated colors?</h3>
-            <p className="text-gray-700 text-sm">
-              The colors are generated using JavaScript's Math.random() function, which provides pseudo-random numbers. Each of the 16.7 million possible hex colors has an equal chance of being generated.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can I save my favorite color palettes?</h3>
-            <p className="text-gray-700 text-sm">
-              Yes! The tool automatically saves your recent colors to browser localStorage. You can also export palettes in various formats for permanent storage and sharing.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">What's the difference between RGB and HSL?</h3>
-            <p className="text-gray-700 text-sm">
-              RGB defines colors by red, green, and blue light intensity. HSL uses hue (color), saturation (intensity), and lightness (brightness), which is often more intuitive for designers.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How do I create harmonious color palettes?</h3>
-            <p className="text-gray-700 text-sm">
-              While this tool generates random colors, you can create harmony by locking one color and regenerating others, or by using color theory principles to select complementary or analogous colors from your generated options.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

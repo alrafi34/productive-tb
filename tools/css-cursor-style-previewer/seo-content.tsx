@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { cssCursorStylePreviewerConfig } from "./config";
+
 import React from 'react';
 
 export default function CSSCursorStylePreviewerSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = cssCursorStylePreviewerConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* How to Use Guide */}
@@ -176,66 +181,7 @@ export default function CSSCursorStylePreviewerSEOContent() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-        
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">What are CSS cursors?</h3>
-            <p className="text-gray-600">
-              CSS cursors are visual indicators that show what action will occur when a user interacts with an element. 
-              They provide important visual feedback and improve user experience by indicating clickable areas, 
-              text fields, draggable elements, and more.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">How many cursor types are available in CSS?</h3>
-            <p className="text-gray-600">
-              CSS provides over 30 standard cursor types, including basic cursors (auto, default), 
-              interactive cursors (pointer, help), text cursors, drag cursors, resize cursors, 
-              zoom cursors, and special cursors. You can also use custom cursor images.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Can I use custom cursor images?</h3>
-            <p className="text-gray-600">
-              Yes! You can use custom cursor images in PNG, SVG, or ICO format. Use the url() function 
-              with hotspot coordinates and always provide a fallback cursor. Keep images small (32x32px or less) 
-              for optimal performance.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Do cursors look the same across all browsers?</h3>
-            <p className="text-gray-600">
-              While all modern browsers support standard CSS cursors, the exact appearance may vary 
-              between browsers and operating systems. It's important to test your cursor implementations 
-              across different platforms to ensure consistent user experience.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">When should I use the 'grab' vs 'grabbing' cursor?</h3>
-            <p className="text-gray-600">
-              Use 'grab' (open hand) to indicate that an element can be dragged, and 'grabbing' (closed hand) 
-              during the actual drag operation. This provides clear visual feedback about the current state 
-              of the interaction.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">How do I make cursors accessible?</h3>
-            <p className="text-gray-600">
-              Ensure cursor changes are meaningful and consistent with user expectations. Don't rely solely 
-              on cursor changes to convey important information. Provide additional visual cues like hover 
-              states, and ensure your interface works well with keyboard navigation.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Technical Details */}
       <section className="bg-white rounded-xl border border-gray-200 p-6">

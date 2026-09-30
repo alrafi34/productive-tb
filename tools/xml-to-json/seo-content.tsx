@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function XMLToJsonSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -68,76 +73,7 @@ export default function XMLToJsonSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is XML to JSON conversion?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              XML to JSON conversion transforms data from XML (eXtensible Markup Language) format into JSON (JavaScript Object Notation) format. This is useful when working with legacy XML data that needs to be used in modern web applications that prefer JSON.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              How does the converter handle XML attributes?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              When Include XML attributes is enabled, attributes are converted to JSON keys with an @ prefix. For example, XML attributes become JSON properties with the @ symbol prepended to the attribute name.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is array detection?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Array detection automatically converts repeated sibling elements into JSON arrays. For example, multiple book elements become a book array in JSON instead of individual objects.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I convert large XML files?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes! This tool runs entirely in your browser and can handle large XML files (100KB+) efficiently. All processing happens locally on your device with no server limitations.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Is this tool free to use?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes, our XML to JSON Converter is completely free and runs entirely in your browser. No registration, no limits, and no backend processing required. All conversion happens locally on your device.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What happens to my data?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Your data never leaves your device. All XML parsing and JSON generation happens entirely in your browser. We do not store, transmit, or process your data on any server.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I download the converted JSON?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes! After conversion, you can download the JSON as a file with a single click. The file will be named converted.json and ready to use in your projects.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits Section */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

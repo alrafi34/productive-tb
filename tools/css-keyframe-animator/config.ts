@@ -31,7 +31,16 @@ export const cssKeyframeAnimatorConfig = {
       description: "Create CSS @keyframes animations on a visual timeline with a live preview and presets, then copy or export production-ready CSS.",
       type: "website",
       url: "/css-keyframe-animator"
-    }
+    },
+    faq: [
+      { q: "What's the difference between CSS animations and transitions?", a: "Transitions animate between two states when triggered (like hover). Animations use keyframes to define multiple intermediate states and can run automatically, loop, and have more complex timing control." },
+      { q: "Can I animate any CSS property?", a: "Most CSS properties can be animated, but for best performance, stick to transform and opacity. These properties are GPU-accelerated and won't trigger layout recalculations." },
+      { q: "How do I make animations accessible?", a: "Use the prefers-reduced-motion media query to disable or simplify animations for users who have motion sensitivity. Example: @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }" },
+      { q: "What does fill-mode do?", a: "Fill-mode controls the element's state before and after animation. \"forwards\" keeps the final keyframe state, \"backwards\" applies the first keyframe during delay, \"both\" does both, and \"none\" (default) doesn't apply either." },
+      { q: "Can I use these animations in production?", a: "Yes! The generated CSS is production-ready and works in all modern browsers. CSS animations have excellent browser support (IE10+) and are widely used in professional websites and applications." },
+      { q: "How many keyframes should I use?", a: "Start with 2-3 keyframes for simple animations. Add more for complex motion sequences, but avoid excessive keyframes as they make animations harder to maintain. Most animations work well with 3-5 keyframes." },
+      { q: "What's the difference between alternate and alternate-reverse?", a: "\"alternate\" plays forward on odd iterations and backward on even iterations. \"alternate-reverse\" does the opposite— backward on odd iterations and forward on even iterations." },
+    ],
   },
   features: [
     "Visual timeline editor (0% to 100%)",

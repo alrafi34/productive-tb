@@ -31,7 +31,15 @@ export const toolConfig = {
       description: "Check whether a password matches a bcrypt hash and see the hash's cost and salt. Verification runs in your browser; nothing is sent to a server.",
       type: "website",
       url: "/bcrypt-hash-verifier"
-    }
+    },
+    faq: [
+      { q: "Is this tool secure for production use?", a: "This tool is designed for development and testing. For production systems, always verify passwords on the server-side to prevent exposing hashes to clients." },
+      { q: "Are my passwords sent to a server?", a: "No. All verification happens locally in your browser using bcryptjs. No data is transmitted to any server." },
+      { q: "What cost factor should I use?", a: "Cost factor 10 is recommended for most applications. Use 12 or higher for sensitive data. The higher the cost, the more secure but slower." },
+      { q: "Can I verify hashes from different Bcrypt versions?", a: "Yes, this tool supports $2a$, $2b$, and $2y$ versions of Bcrypt hashes." },
+      { q: "Why is verification slow?", a: "Bcrypt is intentionally slow to prevent brute-force attacks. Higher cost factors take longer to verify." },
+      { q: "Can I use this to crack passwords?", a: "No. This tool only verifies if a known password matches a hash. It cannot reverse or crack hashes." },
+    ],
   },
   features: [
     "Verify passwords against Bcrypt hashes",
