@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { hydraulicPressureCalculatorConfig } from "./config";
 
 export default function HydraulicPressureCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = hydraulicPressureCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -39,14 +42,7 @@ export default function HydraulicPressureCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select a calculation mode — Pressure, Force, Area, or Diameter",
-                "Enter the known values (force, area, or pressure)",
-                "Select the appropriate units for each input",
-                "View the result instantly in all common engineering units",
-                "Use Quick Presets for common hydraulic scenarios",
-                "Copy, save, or export the result as needed",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -209,40 +205,7 @@ export default function HydraulicPressureCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is Pascal's Law?",
-              a: "Pascal's Law states that pressure applied to a confined, incompressible fluid is transmitted equally in all directions. Mathematically: P = F / A. This principle is the foundation of all hydraulic systems, from car brakes to industrial presses.",
-            },
-            {
-              q: "What is the difference between bar and PSI?",
-              a: "Both are units of pressure. 1 bar = 14.504 PSI. Bar is the metric standard used in Europe and most industrial applications. PSI (pounds per square inch) is the US customary unit. This calculator converts between all pressure units automatically.",
-            },
-            {
-              q: "How do I calculate piston diameter from force and pressure?",
-              a: "First calculate the required area: A = F / P. Then derive the diameter using d = √(4A / π). For example, to achieve 10,000 N at 100 bar (10 MPa): A = 10,000 / 10,000,000 = 0.001 m² = 10 cm², giving d = √(4 × 0.001 / π) ≈ 35.7 mm.",
-            },
-            {
-              q: "What pressure units does this calculator support?",
-              a: "Pascal (Pa), Kilopascal (kPa), Megapascal (MPa), bar, and PSI. All inputs are converted to Pascals internally before calculation. Results are shown in all five units simultaneously.",
-            },
-            {
-              q: "Is this calculator accurate for engineering design?",
-              a: "Yes. The calculator uses exact conversion factors and IEEE 754 double-precision arithmetic. For safety-critical hydraulic system design, always verify calculations with a licensed mechanical or hydraulic engineer and account for system losses, safety factors, and dynamic loads.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

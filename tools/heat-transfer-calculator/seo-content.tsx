@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { heatTransferCalculatorConfig } from "./config";
 
 export default function HeatTransferCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = heatTransferCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -34,14 +37,7 @@ export default function HeatTransferCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select the transfer mode: Conduction, Convection, or Radiation",
-                "Enter the required inputs for the selected mode",
-                "Choose your preferred unit system (SI or Imperial)",
-                "For conduction, use material presets to auto-fill conductivity",
-                "View the heat transfer rate instantly in all units",
-                "Save results to history or export as a TXT report",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -210,40 +206,7 @@ export default function HeatTransferCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is heat transfer?",
-              a: "Heat transfer is the movement of thermal energy from a hotter region to a cooler one. It occurs through three mechanisms: conduction (through solids), convection (through fluids), and radiation (through electromagnetic waves).",
-            },
-            {
-              q: "What is the Stefan-Boltzmann constant?",
-              a: "The Stefan-Boltzmann constant (σ) equals 5.67×10⁻⁸ W/m²·K⁴. It appears in the radiation formula and relates the heat radiated by a blackbody to the fourth power of its absolute temperature.",
-            },
-            {
-              q: "Why must radiation temperatures be in Kelvin?",
-              a: "The Stefan-Boltzmann Law uses absolute temperatures raised to the fourth power. Celsius and Fahrenheit scales have arbitrary zero points, so they cannot be used directly. The calculator automatically converts °C and °F to Kelvin.",
-            },
-            {
-              q: "What is emissivity?",
-              a: "Emissivity (ε) is a dimensionless value between 0 and 1 that describes how efficiently a surface emits thermal radiation compared to a perfect blackbody (ε = 1). Polished metals have low emissivity (~0.05), while painted surfaces and most non-metals have high emissivity (~0.9).",
-            },
-            {
-              q: "What is the difference between conduction and convection?",
-              a: "Conduction transfers heat through direct molecular contact within a solid material. Convection transfers heat between a solid surface and a moving fluid (liquid or gas). Convection is generally faster than conduction in fluids because fluid motion carries heat away.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

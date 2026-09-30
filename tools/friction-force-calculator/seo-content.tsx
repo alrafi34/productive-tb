@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { frictionForceCalculatorConfig } from "./config";
 
 export default function FrictionForceCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = frictionForceCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -36,14 +39,7 @@ export default function FrictionForceCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select calculation mode — Static or Kinetic friction",
-                "Choose a surface preset or enter a custom coefficient (μ)",
-                "Enter the normal force value acting on the surface",
-                "Select the normal force unit — N, kN, or lbf",
-                "View the friction force result instantly in N, kN, and lbf",
-                "Save or export the result for your records",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -222,40 +218,7 @@ export default function FrictionForceCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the difference between static and kinetic friction?",
-              a: "Static friction acts when two surfaces are at rest relative to each other and prevents motion from starting. Kinetic (sliding) friction acts when surfaces are already moving against each other. Static friction is generally higher than kinetic friction for the same surface pair.",
-            },
-            {
-              q: "What is the coefficient of friction?",
-              a: "The coefficient of friction (μ) is a dimensionless number that describes how much friction exists between two surfaces. It depends on the materials and surface conditions. A higher μ means more friction. Typical values range from 0.04 (Teflon on steel) to 0.94 (glass on glass).",
-            },
-            {
-              q: "Does friction depend on contact area?",
-              a: "No. According to Amontons' laws of friction, the friction force is independent of the apparent contact area. It depends only on the normal force and the coefficient of friction. This is why a wide tire and a narrow tire with the same weight have similar friction forces.",
-            },
-            {
-              q: "What is normal force?",
-              a: "Normal force is the force perpendicular to the contact surface between two objects. For a flat horizontal surface, it equals the weight of the object (mass × gravity). On an inclined surface, it equals the component of weight perpendicular to the slope.",
-            },
-            {
-              q: "Is this calculator accurate for engineering use?",
-              a: "Yes. The calculator uses exact conversion factors and standard friction formulas. Results are accurate to the selected decimal precision. Coefficient values in the presets are based on published engineering references. For safety-critical applications, always verify with a licensed engineer.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

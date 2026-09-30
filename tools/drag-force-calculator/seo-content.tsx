@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { dragForceCalculatorConfig } from "./config";
 
 export default function DragForceCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = dragForceCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -34,14 +37,7 @@ export default function DragForceCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select a fluid type — Air, Water, or Custom",
-                "Enter the object velocity and choose a unit (m/s, km/h, mph, ft/s)",
-                "Confirm or adjust the fluid density (auto-filled for Air and Water)",
-                "Enter or select a drag coefficient (Cd) from the preset library",
-                "Enter the frontal cross-sectional area in m²",
-                "View the drag force result instantly in N, kN, and lbf",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -204,44 +200,7 @@ export default function DragForceCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is drag force?",
-              a: "Drag force is the resistive force that opposes the motion of an object moving through a fluid (gas or liquid). It acts in the direction opposite to the object's velocity and is caused by pressure differences and surface friction between the object and the fluid.",
-            },
-            {
-              q: "Why does drag force increase with the square of velocity?",
-              a: "As an object moves faster, it collides with more fluid molecules per second (linear increase) and each collision transfers more momentum (another linear increase). These two effects multiply together, resulting in a quadratic (v²) relationship. This is why aerodynamics become critical at high speeds.",
-            },
-            {
-              q: "What is the drag coefficient (Cd)?",
-              a: "The drag coefficient is a dimensionless number that quantifies how aerodynamically efficient a shape is. A lower Cd means less drag for the same frontal area and speed. Streamlined shapes like airfoils have Cd ≈ 0.04, while blunt shapes like flat plates have Cd ≈ 1.28.",
-            },
-            {
-              q: "What is frontal area and how do I measure it?",
-              a: "Frontal area (A) is the cross-sectional area of the object projected onto a plane perpendicular to the direction of motion. For a car, it is roughly the width × height of the front face. For a cyclist, it is the projected area of the rider and bike as seen from the front.",
-            },
-            {
-              q: "What fluid density should I use for air?",
-              a: "Standard air at sea level and 15°C has a density of 1.225 kg/m³. At higher altitudes, air density decreases — at 3,000 m it is about 0.909 kg/m³. Temperature also affects density: warmer air is less dense. For most engineering calculations, 1.225 kg/m³ is the standard reference value.",
-            },
-            {
-              q: "Is this calculator accurate for engineering use?",
-              a: "Yes. The calculator uses the standard drag equation with exact unit conversion factors. Results are accurate to the selected decimal precision. For safety-critical or high-precision applications, always verify with a licensed engineer and consider additional factors like Reynolds number effects and turbulence.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

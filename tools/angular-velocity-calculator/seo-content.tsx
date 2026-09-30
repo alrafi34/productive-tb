@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { angularVelocityCalculatorConfig } from "./config";
 
 export default function AngularVelocitySEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = angularVelocityCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -29,14 +32,7 @@ export default function AngularVelocitySEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select a formula mode from the dropdown (e.g. RPM Conversion)",
-                "Enter the required input value(s) with appropriate units",
-                "The angular velocity updates instantly in rad/s, deg/s, rev/s, and RPM",
-                "Change the primary output unit in Settings to match your need",
-                "Use presets to quickly load common engineering scenarios",
-                "Click Copy Result or Export TXT to share or record your calculation",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -201,40 +197,7 @@ export default function AngularVelocitySEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is angular velocity?",
-              a: "Angular velocity (ω) is the rate of change of angular position of a rotating body. It tells you how fast something is spinning. The SI unit is rad/s. It differs from angular speed in that angular velocity is a vector quantity with a direction along the axis of rotation.",
-            },
-            {
-              q: "How do I convert RPM to rad/s?",
-              a: "Multiply RPM by π/30. For example, 1200 RPM × (π/30) = 125.66 rad/s. This is because one revolution = 2π radians, and one minute = 60 seconds, so the factor is 2π/60 = π/30 ≈ 0.10472.",
-            },
-            {
-              q: "What is the difference between angular velocity and angular frequency?",
-              a: "In many contexts they are the same (both equal ω = 2πf). Angular frequency is used in oscillation and wave physics, while angular velocity refers to the rotation of a rigid body. Both have units of rad/s.",
-            },
-            {
-              q: "How is angular velocity related to linear velocity?",
-              a: "v = ω × r, where v is linear velocity, ω is angular velocity, and r is the radius from the axis of rotation. A point farther from the center moves faster in a straight-line sense even though all points rotate at the same angular velocity.",
-            },
-            {
-              q: "What is the period of rotation?",
-              a: "The period T is the time for one complete rotation. T = 2π / ω = 1 / f. For a motor at 1200 RPM: T = 60/1200 = 0.05 seconds per revolution.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

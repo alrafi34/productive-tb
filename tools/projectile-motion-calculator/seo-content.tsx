@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { projectileMotionCalculatorConfig } from "./config";
 
 export default function ProjectileMotionSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = projectileMotionCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -34,15 +37,7 @@ export default function ProjectileMotionSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the initial velocity (e.g. 50 m/s)",
-                "Select the velocity unit — m/s, km/h, ft/s, or mph",
-                "Set the launch angle using the slider or number input (0°–90°)",
-                "Choose a gravity preset (Earth, Moon, Mars, Jupiter) or enter a custom value",
-                "Optionally set a launch height above ground",
-                "View range, height, flight time, and velocity components instantly",
-                "Click Animate to watch the projectile travel along the trajectory",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -196,40 +191,7 @@ export default function ProjectileMotionSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is projectile motion?",
-              a: "Projectile motion is the motion of an object thrown or projected into the air, subject only to gravity. The horizontal and vertical components of motion are independent — horizontal velocity is constant, while vertical velocity changes due to gravitational acceleration.",
-            },
-            {
-              q: "What angle gives maximum range?",
-              a: "In ideal conditions (no air resistance, flat ground), a launch angle of 45° gives the maximum horizontal range. Complementary angles like 30° and 60° produce the same range but different heights and flight times.",
-            },
-            {
-              q: "How does launch height affect the trajectory?",
-              a: "Launching from an elevated position increases both the range and flight time. The calculator uses the quadratic formula T = (vy + √(vy² + 2g·h₀)) / g to account for the initial height h₀.",
-            },
-            {
-              q: "Why is gravity different on other planets?",
-              a: "Gravitational acceleration depends on a planet's mass and radius. Earth's gravity is 9.81 m/s², the Moon's is 1.62 m/s² (about 1/6th), Mars is 3.71 m/s², and Jupiter is 24.79 m/s². Lower gravity means longer flight times and greater ranges.",
-            },
-            {
-              q: "Does this calculator account for air resistance?",
-              a: "No — this calculator uses ideal projectile motion equations without air resistance. In real-world scenarios, drag significantly reduces range and alters the trajectory shape. The ideal model is accurate for dense, slow-moving objects over short distances.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

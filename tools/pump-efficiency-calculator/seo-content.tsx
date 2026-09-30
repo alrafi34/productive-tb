@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function PumpEfficiencyCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-gray">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-6">
@@ -85,38 +90,30 @@ export default function PumpEfficiencyCalculatorSEO() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {[
-              {
-                q: "What is a good pump efficiency?",
-                a: "For centrifugal pumps, 70–85% is considered good efficiency. Large, well-designed pumps can reach 88–92%. Small pumps (below 5 kW) typically achieve 50–70%. Efficiency above 80% is excellent for most industrial applications.",
-              },
-              {
-                q: "How do I improve pump efficiency?",
-                a: "Operate the pump near its Best Efficiency Point (BEP), trim or replace worn impellers, reduce unnecessary pipe fittings and bends, use variable speed drives (VFDs) to match flow demand, and ensure proper alignment and lubrication.",
-              },
-              {
-                q: "What is the difference between pump efficiency and motor efficiency?",
-                a: "Pump efficiency measures how well the pump converts shaft power to hydraulic power. Motor efficiency measures how well the motor converts electrical power to shaft power. Overall system efficiency = pump efficiency × motor efficiency.",
-              },
-              {
-                q: "Why does pump efficiency matter for energy costs?",
-                a: "A pump running at 60% efficiency instead of 80% consumes 33% more energy for the same output. For a 50 kW pump running 8,000 hours/year at $0.12/kWh, that difference costs over $8,000 annually.",
-              },
-              {
-                q: "What units does this calculator support?",
-                a: "The calculator supports both metric (m³/s, m³/h, L/s, L/min, meters, kW) and imperial (GPM, ft³/s, feet, horsepower) unit systems. All conversions are handled automatically.",
-              },
-            ].map((item) => (
-              <div key={item.q}>
-                <h3 className="font-semibold text-gray-900 mb-1">{item.q}</h3>
-                <p className="text-sm text-gray-700">{item.a}</p>
-              </div>
+        <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 not-prose">
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
+
+          <ol className="space-y-3 text-gray-700">
+
+            {howToSteps.map(({ name, text }, i) => (
+
+              <li key={name} className="flex items-start gap-3">
+
+                <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">{i + 1}</span>
+
+                <span><strong>{name}:</strong> {text}</span>
+
+              </li>
+
             ))}
-          </div>
+
+          </ol>
+
         </section>
+
+
+        <ToolFaq items={faq} />
 
         <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-blue-900 mb-3">💡 Pro Tip</h2>

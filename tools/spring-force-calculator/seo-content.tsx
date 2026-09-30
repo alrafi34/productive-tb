@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { springForceCalculatorConfig } from "./config";
 
 export default function SpringForceCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = springForceCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -37,14 +40,7 @@ export default function SpringForceCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the spring constant (k) — e.g. 100",
-                "Select the spring constant unit — N/m, lb/in, or kN/m",
-                "Enter the displacement (x) — e.g. 0.2",
-                "Select the displacement unit — m, cm, mm, or in",
-                "Choose motion type — Compression or Extension",
-                "View the spring force result instantly in N, kN, and lbf",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -208,40 +204,7 @@ export default function SpringForceCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is Hooke's Law?",
-              a: "Hooke's Law states that the force exerted by a spring is directly proportional to its displacement from the natural (equilibrium) position: F = k × x. The law holds as long as the spring is not stretched or compressed beyond its elastic limit.",
-            },
-            {
-              q: "What is the spring constant (k)?",
-              a: "The spring constant k (also called stiffness) measures how resistant a spring is to deformation. It is measured in N/m (Newtons per meter). A higher k means a stiffer spring that requires more force to compress or extend by the same distance.",
-            },
-            {
-              q: "What is the difference between compression and extension?",
-              a: "Compression refers to pushing the spring shorter than its natural length. Extension (or tension) refers to pulling the spring longer. Both produce a restoring force described by F = kx, but in opposite directions. The magnitude of force is the same for equal displacements.",
-            },
-            {
-              q: "What units does this calculator support?",
-              a: "Spring constant: N/m, kN/m, lb/in. Displacement: m, cm, mm, in. All inputs are automatically converted to SI units (N/m and m) before calculation. Results are shown in N, kN, and lbf.",
-            },
-            {
-              q: "Is this calculator accurate for engineering use?",
-              a: "Yes. The calculator uses exact conversion factors and IEEE 754 double-precision arithmetic. Results are accurate to the selected decimal precision. For safety-critical spring design, always verify with a licensed mechanical engineer.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

@@ -28,6 +28,22 @@ export const projectileMotionCalculatorConfig = {
       type: "website",
       url: "/tools/mechanical/projectile-motion-calculator",
     },
+    howToSteps: [
+      { name: "Enter the initial velocity", text: "Enter the initial velocity (e.g. 50 m/s)" },
+      { name: "Select the velocity unit", text: "Select the velocity unit — m/s, km/h, ft/s, or mph" },
+      { name: "Set the launch angle using the slider or number input", text: "Set the launch angle using the slider or number input (0°–90°)" },
+      { name: "Choose a gravity preset", text: "Choose a gravity preset (Earth, Moon, Mars, Jupiter) or enter a custom value" },
+      { name: "Optionally set a launch height above ground", text: "Optionally set a launch height above ground" },
+      { name: "View range, height, flight time, and velocity components instantly", text: "View range, height, flight time, and velocity components instantly" },
+      { name: "Click Animate to watch the projectile travel along the trajectory", text: "Click Animate to watch the projectile travel along the trajectory" },
+    ],
+    faq: [
+      { q: "What is projectile motion?", a: "Projectile motion is the motion of an object thrown or projected into the air, subject only to gravity. The horizontal and vertical components of motion are independent — horizontal velocity is constant, while vertical velocity changes due to gravitational acceleration." },
+      { q: "What angle gives maximum range?", a: "In ideal conditions (no air resistance, flat ground), a launch angle of 45° gives the maximum horizontal range. Complementary angles like 30° and 60° produce the same range but different heights and flight times." },
+      { q: "How does launch height affect the trajectory?", a: "Launching from an elevated position increases both the range and flight time. The calculator uses the quadratic formula T = (vy + √(vy² + 2g·h₀)) / g to account for the initial height h₀." },
+      { q: "Why is gravity different on other planets?", a: "Gravitational acceleration depends on a planet's mass and radius. Earth's gravity is 9.81 m/s², the Moon's is 1.62 m/s² (about 1/6th), Mars is 3.71 m/s², and Jupiter is 24.79 m/s². Lower gravity means longer flight times and greater ranges." },
+      { q: "Does this calculator account for air resistance?", a: "No — this calculator uses ideal projectile motion equations without air resistance. In real-world scenarios, drag significantly reduces range and alters the trajectory shape. The ideal model is accurate for dense, slow-moving objects over short distances." },
+    ],
   },
   relatedTools: [
     "kinetic-energy-calculator",

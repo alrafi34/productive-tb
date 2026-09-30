@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { gearRatioCalculatorConfig } from "./config";
 
 export default function GearRatioCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = gearRatioCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -35,14 +38,7 @@ export default function GearRatioCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the number of teeth on the driving (input) gear",
-                "Enter the number of teeth on the driven (output) gear",
-                "Optionally enter input speed in RPM or rad/s",
-                "Optionally enter input torque in Nm, lb-ft, or lb-in",
-                "View the gear ratio, output speed, and torque instantly",
-                "Use presets for bicycle, automotive, or robotics setups",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -165,40 +161,7 @@ export default function GearRatioCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is gear ratio calculated?",
-              a: "Gear Ratio = Driven Gear Teeth ÷ Driver Gear Teeth. For example, if the driver has 20 teeth and the driven has 40 teeth, the gear ratio is 40 ÷ 20 = 2:1.",
-            },
-            {
-              q: "What does a 2:1 gear ratio mean?",
-              a: "A 2:1 ratio means the driven gear completes one full rotation for every two rotations of the driver gear. The output speed is halved, but the output torque is doubled.",
-            },
-            {
-              q: "What is the difference between gear ratio and speed ratio?",
-              a: "They are inversely related. A gear ratio of 2:1 means the speed ratio is 1:2 — the output shaft rotates at half the input speed.",
-            },
-            {
-              q: "How do I calculate output RPM?",
-              a: "Output RPM = Input RPM ÷ Gear Ratio. If input is 1000 RPM and gear ratio is 2:1, output RPM = 1000 ÷ 2 = 500 RPM.",
-            },
-            {
-              q: "Does gear ratio affect torque?",
-              a: "Yes. Output Torque = Input Torque × Gear Ratio. A higher gear ratio increases torque at the output shaft while reducing speed proportionally.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { stressCalculatorConfig } from "./config";
 
 export default function StressCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = stressCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -35,14 +38,7 @@ export default function StressCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the applied force magnitude (e.g. 1000)",
-                "Select the force unit — N, kN, lbf, or kgf",
-                "Enter the cross-sectional area (e.g. 0.01)",
-                "Select the area unit — m², cm², mm², in², or ft²",
-                "Choose your preferred output stress unit",
-                "View the stress result instantly in all units",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -208,40 +204,7 @@ export default function StressCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is mechanical stress?",
-              a: "Mechanical stress is the internal force per unit area within a material caused by an external load. It is measured in Pascals (Pa) or pounds per square inch (psi). Stress determines whether a material will deform or fail under load.",
-            },
-            {
-              q: "What is the stress formula?",
-              a: "The normal stress formula is σ = F / A, where σ is stress, F is the applied force in Newtons, and A is the cross-sectional area in square meters. The result is in Pascals (Pa).",
-            },
-            {
-              q: "What is the difference between stress and strain?",
-              a: "Stress is the force per unit area (σ = F/A), while strain is the deformation per unit length (ε = ΔL/L). They are related by Young's Modulus: E = σ / ε. Stress causes strain in elastic materials.",
-            },
-            {
-              q: "What is a safe stress level for steel?",
-              a: "Mild structural steel typically has a yield strength of 250–350 MPa. Design stress is usually kept below 60–70% of yield strength, so roughly 150–250 MPa for most structural applications. Always verify against the specific material specification.",
-            },
-            {
-              q: "Is this calculator accurate for engineering use?",
-              a: "Yes. The calculator uses exact conversion factors and IEEE 754 double-precision floating-point arithmetic. Results are accurate to the selected decimal precision. For safety-critical applications, always verify with a licensed engineer.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

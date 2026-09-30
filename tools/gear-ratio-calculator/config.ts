@@ -14,6 +14,21 @@ export const gearRatioCalculatorConfig = {
       description: "Calculate a gear ratio from tooth counts and find the output speed, torque multiplication and RPM for cars, bicycles, robots and machines.",
       url: "/tools/mechanical/gear-ratio-calculator",
     },
+    howToSteps: [
+      { name: "Enter the number of teeth on the driving", text: "Enter the number of teeth on the driving (input) gear" },
+      { name: "Enter the number of teeth on the driven", text: "Enter the number of teeth on the driven (output) gear" },
+      { name: "Optionally enter input speed in RPM or rad/s", text: "Optionally enter input speed in RPM or rad/s" },
+      { name: "Optionally enter input torque in Nm, lb-ft, or lb-in", text: "Optionally enter input torque in Nm, lb-ft, or lb-in" },
+      { name: "View the gear ratio, output speed, and torque instantly", text: "View the gear ratio, output speed, and torque instantly" },
+      { name: "Use presets for bicycle, automotive, or robotics setups", text: "Use presets for bicycle, automotive, or robotics setups" },
+    ],
+    faq: [
+      { q: "How is gear ratio calculated?", a: "Gear Ratio = Driven Gear Teeth ÷ Driver Gear Teeth. For example, if the driver has 20 teeth and the driven has 40 teeth, the gear ratio is 40 ÷ 20 = 2:1." },
+      { q: "What does a 2:1 gear ratio mean?", a: "A 2:1 ratio means the driven gear completes one full rotation for every two rotations of the driver gear. The output speed is halved, but the output torque is doubled." },
+      { q: "What is the difference between gear ratio and speed ratio?", a: "They are inversely related. A gear ratio of 2:1 means the speed ratio is 1:2 — the output shaft rotates at half the input speed." },
+      { q: "How do I calculate output RPM?", a: "Output RPM = Input RPM ÷ Gear Ratio. If input is 1000 RPM and gear ratio is 2:1, output RPM = 1000 ÷ 2 = 500 RPM." },
+      { q: "Does gear ratio affect torque?", a: "Yes. Output Torque = Input Torque × Gear Ratio. A higher gear ratio increases torque at the output shaft while reducing speed proportionally." },
+    ],
   },
   relatedTools: [
     "torque-calculator",

@@ -29,6 +29,21 @@ export const momentumCalculatorConfig = {
       description: "Calculate momentum from mass and velocity, with step-by-step working. Supports kg, g and lb, and m/s, km/h, mph and ft/s.",
       url: `${siteConfig.url}/tools/mechanical/momentum-calculator`,
     },
+    howToSteps: [
+      { name: "Enter the mass value", text: "Enter the mass value (e.g. 1500 for a car)" },
+      { name: "Select the mass unit", text: "Select the mass unit — kg, g, mg, or lb" },
+      { name: "Enter the velocity value", text: "Enter the velocity value (negative for reverse direction)" },
+      { name: "Select the velocity unit", text: "Select the velocity unit — m/s, km/h, mph, or ft/s" },
+      { name: "View the momentum result instantly in all units", text: "View the momentum result instantly in all units" },
+      { name: "Use presets for common real-world scenarios", text: "Use presets for common real-world scenarios" },
+    ],
+    faq: [
+      { q: "What is momentum in physics?", a: "Momentum is the product of an object's mass and velocity (p = m × v). It is a vector quantity — it has both magnitude and direction. The SI unit is kg·m/s. Momentum describes how difficult it is to stop a moving object." },
+      { q: "What is the momentum formula?", a: "p = m × v, where p is momentum in kg·m/s, m is mass in kilograms, and v is velocity in meters per second. This calculator automatically converts any supported unit to SI before computing." },
+      { q: "What is the difference between momentum and kinetic energy?", a: "Momentum (p = mv) is a vector and grows linearly with velocity. Kinetic energy (KE = ½mv²) is a scalar and grows with the square of velocity. Both are conserved in elastic collisions, but only momentum is conserved in all collisions." },
+      { q: "Can momentum be negative?", a: "Yes. Momentum is a vector, so its sign indicates direction. If velocity is negative (object moving in the opposite direction), momentum is also negative. This is important in collision problems where objects move toward each other." },
+      { q: "What is conservation of momentum?", a: "In a closed system with no external forces, the total momentum before a collision equals the total momentum after. This law holds for all types of collisions and is one of the most fundamental principles in physics." },
+    ],
   },
   relatedTools: [
     "kinetic-energy-calculator",

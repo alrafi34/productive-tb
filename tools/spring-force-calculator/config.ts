@@ -29,6 +29,21 @@ export const springForceCalculatorConfig = {
       description: "Calculate spring force from the spring constant and displacement with Hooke's law, with step-by-step working and unit conversion.",
       url: `${siteConfig.url}/tools/mechanical/spring-force-calculator`,
     },
+    howToSteps: [
+      { name: "Enter the spring constant", text: "Enter the spring constant (k) — e.g. 100" },
+      { name: "Select the spring constant unit", text: "Select the spring constant unit — N/m, lb/in, or kN/m" },
+      { name: "Enter the displacement", text: "Enter the displacement (x) — e.g. 0.2" },
+      { name: "Select the displacement unit", text: "Select the displacement unit — m, cm, mm, or in" },
+      { name: "Choose motion type", text: "Choose motion type — Compression or Extension" },
+      { name: "View the spring force result instantly in N, kN, and lbf", text: "View the spring force result instantly in N, kN, and lbf" },
+    ],
+    faq: [
+      { q: "What is Hooke's Law?", a: "Hooke's Law states that the force exerted by a spring is directly proportional to its displacement from the natural (equilibrium) position: F = k × x. The law holds as long as the spring is not stretched or compressed beyond its elastic limit." },
+      { q: "What is the spring constant (k)?", a: "The spring constant k (also called stiffness) measures how resistant a spring is to deformation. It is measured in N/m (Newtons per meter). A higher k means a stiffer spring that requires more force to compress or extend by the same distance." },
+      { q: "What is the difference between compression and extension?", a: "Compression refers to pushing the spring shorter than its natural length. Extension (or tension) refers to pulling the spring longer. Both produce a restoring force described by F = kx, but in opposite directions. The magnitude of force is the same for equal displacements." },
+      { q: "What units does this calculator support?", a: "Spring constant: N/m, kN/m, lb/in. Displacement: m, cm, mm, in. All inputs are automatically converted to SI units (N/m and m) before calculation. Results are shown in N, kN, and lbf." },
+      { q: "Is this calculator accurate for engineering use?", a: "Yes. The calculator uses exact conversion factors and IEEE 754 double-precision arithmetic. Results are accurate to the selected decimal precision. For safety-critical spring design, always verify with a licensed mechanical engineer." },
+    ],
   },
   relatedTools: [
     "force-calculator",
