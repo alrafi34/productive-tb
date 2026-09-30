@@ -6,7 +6,6 @@ import {
   rgbaToHex,
   rgbaToHsla,
   formatRgba,
-  formatRgb,
   formatHsla,
   isValidHex,
   generateShades,
@@ -16,7 +15,11 @@ import {
   isLowOpacity,
   getContrastWarning,
   saveLastColor,
-  loadLastColor
+  loadLastColor,
+  hexHasAlpha,
+  formatArgbHex,
+  formatCssRgbSlash,
+  blendOver
 } from "./logic";
 import HexToRgbaConverterSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -32,10 +35,14 @@ export default function HexToRgbaConverterUI() {
     const saved = loadLastColor();
     if (saved && isValidHex(saved)) {
       setHexInput(saved);
+      const parsed = hexToRgba(saved);
+      if (parsed && hexHasAlpha(saved)) setAlpha(parsed.a);
     }
   }, []);
 
-  const rgba = hexToRgba(hexInput, alpha);
+  // The slider owns the alpha; an 8-digit HEX only sets it when typed
+  const base = hexToRgba(hexInput);
+  const rgba = base ? { ...base, a: alpha } : null;
   const isValid = rgba !== null;
   const hsla = rgba ? rgbaToHsla(rgba) : null;
   const shades = rgba ? generateShades(rgba) : [];
@@ -48,6 +55,8 @@ export default function HexToRgbaConverterUI() {
     setHexInput(value);
     if (isValidHex(value)) {
       saveLastColor(value);
+      const parsed = hexToRgba(value);
+      if (parsed && hexHasAlpha(value)) setAlpha(parsed.a);
     }
   };
 
@@ -83,6 +92,8 @@ export default function HexToRgbaConverterUI() {
                   onChange={(e) => handleHexChange(e.target.value)}
                   className={`flex-1 rounded-xl border ${isValid ? 'border-gray-200' : 'border-red-300'} px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary font-mono`}
                   placeholder="#3498db"
+                  aria-label="HEX color"
+                  spellCheck={false}
                 />
                 <input
                   type="color"
@@ -92,14 +103,14 @@ export default function HexToRgbaConverterUI() {
                 />
               </div>
               {!isValid && hexInput && (
-                <p className="text-xs text-red-500 mt-1">Invalid HEX format. Use #RGB, #RRGGBB, or #RRGGBBAA</p>
+                <p className="text-xs text-red-500 mt-1">Invalid HEX format. Use #RGB, #RGBA, #RRGGBB or #RRGGBBAA</p>
               )}
-              <p className="text-xs text-gray-500 mt-1">Supports: #RGB, #RRGGBB, #RRGGBBAA</p>
+              <p className="text-xs text-gray-500 mt-1">Supports #RGB, #RGBA, #RRGGBB and #RRGGBBAA; alpha digits in the code move the slider.</p>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Alpha Transparency: {alpha.toFixed(2)}
+                Alpha: {alpha.toFixed(2)} ({Math.round(alpha * 100)}% opaque)
               </label>
               <input
                 type="range"
@@ -108,6 +119,7 @@ export default function HexToRgbaConverterUI() {
                 step="0.01"
                 value={alpha}
                 onChange={(e) => setAlpha(parseFloat(e.target.value))}
+                aria-label="Alpha"
                 className="w-full h-2.5 rounded-lg appearance-none cursor-pointer bg-gradient-to-r from-transparent to-primary"
                 style={{ background: `linear-gradient(to right, transparent, ${isValid ? rgbaToHex(rgba!) : '#000'})` }}
               />
@@ -128,12 +140,20 @@ export default function HexToRgbaConverterUI() {
             {/* Solid Preview */}
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
               <h3 className="text-sm font-semibold text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-                Solid Background Preview
+                On White and on Black
               </h3>
-              <div
-                className="h-48 rounded-xl border-2 border-gray-200 shadow-inner"
-                style={{ backgroundColor: formatRgba(rgba!) }}
-              />
+              <div className="grid grid-cols-2 h-48 rounded-xl border-2 border-gray-200 overflow-hidden">
+                <div className="bg-white p-4 flex">
+                  <div className="flex-1 rounded-lg flex items-end justify-center pb-2 text-xs font-mono text-gray-900" style={{ backgroundColor: formatRgba(rgba!) }}>
+                    {blendOver(rgba!, { r: 255, g: 255, b: 255 })}
+                  </div>
+                </div>
+                <div className="bg-black p-4 flex">
+                  <div className="flex-1 rounded-lg flex items-end justify-center pb-2 text-xs font-mono text-white" style={{ backgroundColor: formatRgba(rgba!) }}>
+                    {blendOver(rgba!, { r: 0, g: 0, b: 0 })}
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Transparent Preview */}
@@ -168,17 +188,18 @@ export default function HexToRgbaConverterUI() {
             
             <div className="grid md:grid-cols-2 gap-3">
               {[
-                { label: 'RGBA', value: formatRgba(rgba!), type: 'rgba' },
-                { label: 'RGB', value: formatRgb(rgba!), type: 'rgb' },
-                { label: 'HEX', value: rgbaToHex(rgba!), type: 'hex' },
-                { label: 'HEX with Alpha', value: rgbaToHex(rgba!, true), type: 'hex-alpha' },
+                { label: 'RGBA (CSS)', value: formatRgba(rgba!), type: 'rgba' },
+                { label: 'Modern CSS (slash syntax)', value: formatCssRgbSlash(rgba!), type: 'css4' },
+                { label: '8-digit HEX (#RRGGBBAA, CSS)', value: rgbaToHex(rgba!, true), type: 'hex-alpha' },
+                { label: 'Android / .NET (#AARRGGBB)', value: formatArgbHex(rgba!), type: 'argb' },
                 { label: 'HSLA', value: formatHsla(hsla!), type: 'hsla' },
-                { label: 'HSL', value: `hsl(${hsla!.h}, ${hsla!.s}%, ${hsla!.l}%)`, type: 'hsl' }
+                { label: 'Solid equivalent on white', value: blendOver(rgba!, { r: 255, g: 255, b: 255 }), type: 'on-white' },
+                { label: 'Solid equivalent on black', value: blendOver(rgba!, { r: 0, g: 0, b: 0 }), type: 'on-black' },
               ].map(({ label, value, type }) => (
                 <div key={type} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                   <div className="flex-1 min-w-0">
                     <div className="text-xs text-gray-500 font-medium mb-0.5">{label}</div>
-                    <div className="font-mono text-sm text-gray-800 truncate">{value}</div>
+                    <div className="font-mono text-sm text-gray-800 truncate" data-testid={`out-${type}`}>{value}</div>
                   </div>
                   <button
                     onClick={() => copy(value, type)}

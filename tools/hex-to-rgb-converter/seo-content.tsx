@@ -1,274 +1,107 @@
-const faqItems = [
-  {
-    question: "What is a HEX to RGB converter?",
-    answer:
-      "A HEX to RGB converter transforms hexadecimal color codes like #FF5733 into RGB values such as rgb(255, 87, 51) for CSS, design tools, and development workflows.",
-  },
-  {
-    question: "Can I also convert RGB to HEX?",
-    answer:
-      "Yes. This tool supports reverse conversion from RGB sliders back to HEX, so you can move between design and code formats quickly.",
-  },
-  {
-    question: "Does this converter support RGBA and HSL formats?",
-    answer:
-      "Yes. You can view RGB, RGBA, HSL, and HSLA outputs, including alpha transparency controls for CSS usage.",
-  },
-  {
-    question: "Why use this tool instead of a basic color converter?",
-    answer:
-      "This page combines conversion, color picker, sliders, palette generation, and gradient output in one interface, reducing tool switching during design work.",
-  },
-  {
-    question: "Can I copy converted color codes instantly?",
-    answer:
-      "Yes. Each format includes one-click copy actions to speed up workflow for CSS, Tailwind, design systems, and UI implementation.",
-  },
-  {
-    question: "Do I need to include the # symbol in HEX input?",
-    answer:
-      "You can enter HEX with or without #. The tool normalizes valid input and displays standard format output.",
-  },
-  {
-    question: "Is shorthand HEX like #FFF supported?",
-    answer:
-      "Yes. Shorthand HEX values are supported and expanded internally for accurate conversion.",
-  },
-  {
-    question: "Can this help build color palettes for UI design?",
-    answer:
-      "Yes. The palette generator creates lighter, darker, and complementary variants to help build practical color systems quickly.",
-  },
-  {
-    question: "Is this HEX to RGB converter free?",
-    answer:
-      "Yes. The tool is fully free and runs directly in your browser with no account required.",
-  },
-  {
-    question: "Does this tool send my color data to a server?",
-    answer:
-      "No. Conversions run in-browser for fast and private usage.",
-  },
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
+// Common colors with their CSS names; RGB values are computed from the HEX code
+const COLORS: [string, string][] = [
+  ["White", "#FFFFFF"],
+  ["Black", "#000000"],
+  ["Red", "#FF0000"],
+  ["Lime (pure green)", "#00FF00"],
+  ["Blue", "#0000FF"],
+  ["Yellow", "#FFFF00"],
+  ["Cyan / Aqua", "#00FFFF"],
+  ["Magenta / Fuchsia", "#FF00FF"],
+  ["Silver", "#C0C0C0"],
+  ["Gray", "#808080"],
+  ["Orange", "#FFA500"],
+  ["Tomato", "#FF6347"],
+  ["Navy", "#000080"],
+  ["Teal", "#008080"],
+  ["Rebecca Purple", "#663399"],
 ];
 
-const howToSteps = [
-  "Enter a HEX code or choose a color with the picker.",
-  "Adjust R, G, B sliders if you want manual tuning.",
-  "Set alpha to preview RGBA and HSLA transparency.",
-  "Copy HEX, RGB, RGBA, HSL, or HSLA with one click.",
-  "Use generated palette swatches for design exploration.",
-  "Copy the gradient CSS snippet for immediate use in stylesheets.",
-];
+const DIGITS = "0123456789ABCDEF".split("");
 
-const strengths = [
-  {
-    title: "Multi-format output in one place",
-    text: "You get HEX, RGB, RGBA, HSL, and HSLA together, which is more practical than single-format converters.",
-  },
-  {
-    title: "Design workflow ready",
-    text: "Palette and gradient helpers support real UI/UX and frontend workflows, not just one-off code conversion.",
-  },
-  {
-    title: "Fast copy actions",
-    text: "Built-in copy buttons reduce repetitive manual formatting and speed up implementation.",
-  },
-  {
-    title: "Visual + numeric control",
-    text: "Color picker plus sliders gives both intuitive selection and precise numerical tuning.",
-  },
-];
-
-const examples = [
-  {
-    title: "Brand color conversion",
-    input: "#1D4ED8",
-    output: "Convert to RGB/RGBA and HSL for design tokens and CSS variables.",
-  },
-  {
-    title: "Transparency for overlays",
-    input: "RGBA with alpha 0.35",
-    output: "Build readable hero overlays and modal backgrounds quickly.",
-  },
-  {
-    title: "Palette extension",
-    input: "Generate lighter and darker shades",
-    output: "Create button states, borders, and hover variants from one base color.",
-  },
-  {
-    title: "Gradient setup",
-    input: "Base color + complementary",
-    output: "Copy a production-ready linear-gradient declaration.",
-  },
-  {
-    title: "RGB to HEX migration",
-    input: "Set RGB sliders from existing project values",
-    output: "Get standardized HEX codes for design system consistency.",
-  },
-  {
-    title: "Quick QA checks",
-    input: "Compare multiple output formats side by side",
-    output: "Validate color format consistency across CSS and design files.",
-  },
-];
-
-const mistakesToAvoid = [
-  "Using 3-digit and 6-digit HEX interchangeably without validation.",
-  "Forgetting alpha when replicating transparent UI layers.",
-  "Copying RGB values where HEX format is required by tooling.",
-  "Ignoring HSL when hue/saturation tuning would be faster.",
-  "Skipping palette consistency for hover/active UI states.",
-];
+const rgbOf = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(", ");
 
 export default function HexToRgbSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the HEX to RGB converter",
-    description:
-      "Convert HEX color values to RGB, RGBA, HSL, and HSLA with palette and gradient support.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  const card = "mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8";
+  const h2 = "text-2xl font-semibold text-gray-900 mb-4";
+  const th = "text-left py-2 px-3 font-semibold text-gray-700";
+  const td = "py-1.5 px-3 font-mono text-xs text-gray-700";
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
-
-      <div className="mt-12 space-y-8">
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-            HEX to RGB Converter Online for Designers and Developers
-          </h2>
-          <p className="text-gray-600 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
-            This free <strong>HEX to RGB Converter</strong> helps you convert color codes instantly between HEX, RGB,
-            RGBA, HSL, and HSLA formats. It is designed for practical frontend and design-system workflows where quick
-            format conversion and copy-friendly output are essential.
-          </p>
-          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            Users searching for terms like "hex to rgb converter", "color code converter", and "hex to rgba" typically
-            need fast conversion plus real design context. This page combines conversion, palette generation, gradient output,
-            usage examples, and FAQ depth to improve usability and indexing quality.
-          </p>
-        </section>
-
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Why This HEX to RGB Converter Is Better Than Basic Alternatives
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {strengths.map((point) => (
-              <div key={point.title} className="rounded-lg border border-gray-100 p-5 bg-gray-50/60">
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {point.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {point.text}
-                </p>
-              </div>
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>How HEX Color Codes Work</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>A HEX color code is an RGB color written in base 16. The six digits after the # form three pairs, one each for red, green and blue, and each pair runs from 00 (none of that light) to FF (full intensity, 255). That gives 256 × 256 × 256 = 16,777,216 possible colors.</p>
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 font-mono text-sm text-gray-900 space-y-2">
+            <p>#RRGGBB → rgb(RR, GG, BB)</p>
+            <p>value = first digit × 16 + second digit&nbsp;&nbsp;(A=10 … F=15)</p>
+            <p>#FF5733 → FF = 255, 57 = 87, 33 = 51 → rgb(255, 87, 51)</p>
+          </div>
+          <p>Hex digits run 0–9 and then A–F:</p>
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+            {DIGITS.map((d, i) => (
+              <div key={d} className="font-mono text-xs text-gray-700 bg-gray-50 border border-gray-100 rounded px-2 py-1 text-center">{d} = {i}</div>
             ))}
           </div>
-          <p className="text-xs text-gray-500 mt-5" style={{ fontFamily: "var(--font-body)" }}>
-            Many tools only convert one value at a time. This one is built for complete color workflow speed.
-          </p>
-        </section>
+        </div>
+      </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            How to Use the HEX to RGB Converter
-          </h2>
-          <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
-              <li key={step} className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
-                  {index + 1}
-                </span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Common Colors: HEX to RGB Chart</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead><tr className="border-b-2 border-gray-200"><th className={th}>Color</th><th className={th}>HEX</th><th className={th}>RGB</th></tr></thead>
+            <tbody className="divide-y divide-gray-100">
+              {COLORS.map(([name, hex]) => (
+                <tr key={hex} className="hover:bg-gray-50">
+                  <td className="py-1.5 px-3 text-xs text-gray-900">
+                    <span className="inline-block w-3 h-3 rounded-sm border border-gray-300 mr-2 align-middle" style={{ backgroundColor: hex }} />
+                    {name}
+                  </td>
+                  <td className={td}>{hex}</td>
+                  <td className={td}>rgb({rgbOf(hex)})</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-500 mt-4">In CSS, “green” is #008000; the pure green channel #00FF00 is named “lime”.</p>
+      </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Real Workflow Examples
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
-            {examples.map((example) => (
-              <div key={example.title} className="rounded-lg border border-gray-100 p-4 bg-gray-50">
-                <p className="font-semibold text-gray-900">{example.title}</p>
-                <p className="mt-1">{example.input}</p>
-                <p className="mt-1 font-medium text-gray-700">{example.output}</p>
-              </div>
-            ))}
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Converting RGB Back to HEX</h2>
+        <div className="space-y-3 text-gray-600 leading-relaxed">
+          <p>Divide each channel by 16: the whole-number part is the first hex digit and the remainder is the second. For rgb(52, 152, 219):</p>
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 font-mono text-sm text-gray-900 space-y-1">
+            <p>52 ÷ 16 = 3 remainder 4 → 34</p>
+            <p>152 ÷ 16 = 9 remainder 8 → 98</p>
+            <p>219 ÷ 16 = 13 remainder 11 → DB</p>
+            <p>→ #3498DB</p>
           </div>
-        </section>
+          <p>Transparency is not part of RGB. To add it, use the <a href="/tools/design/hex-to-rgba-converter" className="text-primary underline">HEX to RGBA converter</a>; for HSV, CMYK or CSS color names, use the <a href="/tools/design/color-format-converter" className="text-primary underline">color format converter</a>.</p>
+        </div>
+      </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Mistakes to Avoid in Color Conversion
-          </h2>
-          <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {mistakesToAvoid.map((mistake) => (
-              <li key={mistake} className="flex items-start gap-3">
-                <span className="mt-1 text-red-500">-</span>
-                <span>{mistake}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>How to Use the HEX to RGB Converter</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-            Use This Tool for Faster, Cleaner Color Workflows
-          </h2>
-          <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            This converter is built for practical implementation: quick color conversion, palette generation, gradient export,
-            and instant copy actions. It provides stronger workflow value than single-output converters and supports real-world
-            UI design and frontend development needs.
-          </p>
-        </section>
-      </div>
+      <ToolFaq items={faq} />
     </>
   );
 }
