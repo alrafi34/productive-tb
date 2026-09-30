@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { cssKeyframeAnimatorConfig } from "./config";
+
 import React from 'react';
 
 export default function CSSKeyframeAnimatorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = cssKeyframeAnimatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 bg-white rounded-xl shadow-sm mt-8">
       <section>
@@ -262,68 +267,7 @@ export default function CSSKeyframeAnimatorSEOContent() {
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-slate-800 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">What's the difference between CSS animations and transitions?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Transitions animate between two states when triggered (like hover). Animations use keyframes to define multiple 
-              intermediate states and can run automatically, loop, and have more complex timing control.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Can I animate any CSS property?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Most CSS properties can be animated, but for best performance, stick to transform and opacity. These properties 
-              are GPU-accelerated and won't trigger layout recalculations.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">How do I make animations accessible?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Use the prefers-reduced-motion media query to disable or simplify animations for users who have motion sensitivity. 
-              Example: @media (prefers-reduced-motion: reduce) &#123; * &#123; animation: none !important; &#125; &#125;
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">What does fill-mode do?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Fill-mode controls the element's state before and after animation. "forwards" keeps the final keyframe state, 
-              "backwards" applies the first keyframe during delay, "both" does both, and "none" (default) doesn't apply either.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">Can I use these animations in production?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Yes! The generated CSS is production-ready and works in all modern browsers. CSS animations have excellent browser 
-              support (IE10+) and are widely used in professional websites and applications.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">How many keyframes should I use?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Start with 2-3 keyframes for simple animations. Add more for complex motion sequences, but avoid excessive keyframes 
-              as they make animations harder to maintain. Most animations work well with 3-5 keyframes.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-2">What's the difference between alternate and alternate-reverse?</h3>
-            <p className="text-slate-600 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-              "alternate" plays forward on odd iterations and backward on even iterations. "alternate-reverse" does the opposite—
-              backward on odd iterations and forward on even iterations.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-slate-800 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>

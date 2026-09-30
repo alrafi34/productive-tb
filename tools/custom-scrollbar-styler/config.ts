@@ -31,7 +31,16 @@ export const customScrollbarStylerConfig = {
       description: "Design custom scrollbars with live preview. Generate WebKit and Firefox CSS instantly with presets and effects.",
       type: "website",
       url: "/custom-scrollbar-styler"
-    }
+    },
+    faq: [
+      { q: "Do custom scrollbars work on mobile devices?", a: "Custom scrollbar styling primarily works on desktop browsers. Mobile browsers (iOS Safari, Chrome Mobile) typically hide scrollbars or use native OS scrollbars that cannot be styled. However, the CSS won't cause any issues on mobile devices—it simply won't apply." },
+      { q: "Will custom scrollbars affect website performance?", a: "No. Custom scrollbar CSS is extremely lightweight and has no measurable impact on performance. The styles are applied using native browser capabilities and don't require any JavaScript." },
+      { q: "Can I use custom scrollbars in specific containers?", a: "Yes! Instead of using the universal selector (*), target specific elements. For example: .my-container::-webkit-scrollbar will only style scrollbars within elements with the \"my-container\" class." },
+      { q: "What's the difference between WebKit and Firefox scrollbar styling?", a: "WebKit browsers (Chrome, Safari, Edge) support detailed customization with pseudo-elements, allowing control over width, colors, borders, shadows, and more. Firefox uses simpler properties (scrollbar-width and scrollbar-color) with limited customization options." },
+      { q: "Should I always customize scrollbars?", a: "Not necessarily. Default scrollbars are familiar to users and work well in most cases. Customize scrollbars when you want to match your brand, improve aesthetics, or create a unique user experience. Avoid over-styling that might confuse users or reduce usability." },
+      { q: "Can I animate custom scrollbars?", a: "Yes, you can add CSS transitions to scrollbar properties like background color. However, complex animations may not work consistently across all browsers. Stick to simple transitions for hover effects for best compatibility." },
+      { q: "How do I implement the generated CSS?", a: "Copy the generated CSS and paste it into your stylesheet (CSS file) or within a <style> tag in your HTML. The styles will apply globally unless you scope them to specific elements." },
+    ],
   },
   features: [
     "Visual scrollbar design controls",

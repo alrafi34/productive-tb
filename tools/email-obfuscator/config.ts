@@ -31,7 +31,16 @@ export const toolConfig = {
       description: "Encode email addresses instantly to prevent spam scraping. Multiple encoding methods available.",
       type: "website",
       url: "/email-obfuscator"
-    }
+    },
+    faq: [
+      { q: "Does email obfuscation really work?", a: "Yes, it significantly reduces spam by making it harder for basic bots to harvest emails. However, sophisticated scrapers may still detect them, so combine with other methods like contact forms." },
+      { q: "Will obfuscated emails work in all browsers?", a: "Yes, HTML character entities are supported by all modern browsers and have been for decades. They render correctly and remain clickable." },
+      { q: "Does obfuscation affect SEO?", a: "No, search engines can read HTML entities correctly. Your content remains indexable and SEO-friendly." },
+      { q: "Which encoding method is best?", a: "Mixed encoding provides the best protection as it's harder for bots to detect patterns. JavaScript obfuscation is also very effective but requires JavaScript to be enabled." },
+      { q: "Can I decode obfuscated emails?", a: "Yes, use the Decode tab in this tool to convert obfuscated emails back to plain text." },
+      { q: "Is this tool free to use?", a: "Yes, completely free for personal and commercial use. All processing happens in your browser with no data sent to servers." },
+      { q: "Do I need to install anything?", a: "No, this is a web-based tool that works entirely in your browser. No installation or registration required." },
+    ],
   },
   features: [
     "HTML character code encoding",

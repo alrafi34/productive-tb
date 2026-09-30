@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function EmailObfuscatorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -241,42 +246,7 @@ export default function EmailObfuscatorSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Does email obfuscation really work?</h3>
-            <p className="text-gray-600">Yes, it significantly reduces spam by making it harder for basic bots to harvest emails. However, sophisticated scrapers may still detect them, so combine with other methods like contact forms.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Will obfuscated emails work in all browsers?</h3>
-            <p className="text-gray-600">Yes, HTML character entities are supported by all modern browsers and have been for decades. They render correctly and remain clickable.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Does obfuscation affect SEO?</h3>
-            <p className="text-gray-600">No, search engines can read HTML entities correctly. Your content remains indexable and SEO-friendly.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Which encoding method is best?</h3>
-            <p className="text-gray-600">Mixed encoding provides the best protection as it's harder for bots to detect patterns. JavaScript obfuscation is also very effective but requires JavaScript to be enabled.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I decode obfuscated emails?</h3>
-            <p className="text-gray-600">Yes, use the Decode tab in this tool to convert obfuscated emails back to plain text.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Is this tool free to use?</h3>
-            <p className="text-gray-600">Yes, completely free for personal and commercial use. All processing happens in your browser with no data sent to servers.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Do I need to install anything?</h3>
-            <p className="text-gray-600">No, this is a web-based tool that works entirely in your browser. No installation or registration required.</p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Technical Details */}
       <section className="mt-8 bg-gray-50 rounded-xl border border-gray-200 shadow-sm p-8">

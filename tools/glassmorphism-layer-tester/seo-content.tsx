@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function GlassmorphismLayerTesterSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -218,67 +223,7 @@ export default function GlassmorphismLayerTesterSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              What is glassmorphism and how does it work?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Glassmorphism is a UI design trend that creates frosted glass effects using CSS backdrop-filter property. It applies blur to the background behind an element while maintaining semi-transparency, creating a layered, depth-filled interface. Our glassmorphism layer tester lets you experiment with blur intensity, transparency levels, and border effects to achieve the perfect glass aesthetic for your design.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              How do I use backdrop-filter in CSS?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              The backdrop-filter CSS property applies effects to the area behind an element. Use backdrop-filter: blur(12px) to create glass effects. Always include -webkit-backdrop-filter for Safari compatibility. Our tool automatically generates both vendor-prefixed and standard CSS code, ensuring cross-browser compatibility for your glassmorphism designs.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              What's the best blur intensity for glassmorphism?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              For subtle UI elements like navigation bars, use 8-12px blur. For cards and panels, 12-20px works well. For dramatic effects or large overlays, 20-40px creates strong visual impact. The optimal blur depends on your background complexity and desired effect strength. Test different values using our live preview to find the perfect balance for your design.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I use glassmorphism on all browsers?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Backdrop-filter is supported in modern browsers including Chrome, Safari, Edge, and Firefox. Safari requires the -webkit- prefix. For older browsers, provide fallback styles with solid backgrounds. Our tool includes vendor prefixes automatically and you can test compatibility by checking if the glass effect renders in your target browsers.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              How do I add noise texture to glass effects?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Enable the noise overlay option in advanced settings to add subtle grain texture. Adjust noise intensity (0-100) and opacity (0-0.3) for realistic frosted glass appearance. Noise adds depth and prevents the glass from looking too digital. Our tool generates canvas-based noise that overlays your glass layer for authentic texture.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is the glassmorphism layer tester free to use?
-            </h3>
-            <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Yes, our glassmorphism layer tester is completely free with unlimited usage. Generate unlimited glass effects, test on multiple backgrounds, export in any format (CSS, Tailwind, SCSS, JSON), and use the generated code in personal or commercial projects. No registration, watermarks, or hidden fees. All processing happens in your browser for instant results.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits Section */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

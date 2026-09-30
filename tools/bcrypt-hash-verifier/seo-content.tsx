@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function BcryptHashVerifierSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -281,38 +286,7 @@ export default function BcryptHashVerifierSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Is this tool secure for production use?</h3>
-            <p className="text-gray-600">This tool is designed for development and testing. For production systems, always verify passwords on the server-side to prevent exposing hashes to clients.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Are my passwords sent to a server?</h3>
-            <p className="text-gray-600">No. All verification happens locally in your browser using bcryptjs. No data is transmitted to any server.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What cost factor should I use?</h3>
-            <p className="text-gray-600">Cost factor 10 is recommended for most applications. Use 12 or higher for sensitive data. The higher the cost, the more secure but slower.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I verify hashes from different Bcrypt versions?</h3>
-            <p className="text-gray-600">Yes, this tool supports $2a$, $2b$, and $2y$ versions of Bcrypt hashes.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Why is verification slow?</h3>
-            <p className="text-gray-600">Bcrypt is intentionally slow to prevent brute-force attacks. Higher cost factors take longer to verify.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I use this to crack passwords?</h3>
-            <p className="text-gray-600">No. This tool only verifies if a known password matches a hash. It cannot reverse or crack hashes.</p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </>
   );
 }

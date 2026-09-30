@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { hashGeneratorConfig } from "./config";
+
 import React from 'react';
 
 export default function HashGeneratorSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = hashGeneratorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 text-slate-700" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Introduction */}
@@ -248,34 +253,7 @@ export default function HashGeneratorSEO() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Can I reverse a hash to get the original data?</h3>
-            <p className="text-sm">No, hash functions are one-way. You cannot reverse a hash to get the original input. This is by design for security purposes.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Why do I get different hashes for the same text?</h3>
-            <p className="text-sm">Check for hidden whitespace, line breaks, or case differences. Even a single character change produces a completely different hash.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Is this tool safe for sensitive data?</h3>
-            <p className="text-sm">Yes, all processing happens in your browser. However, remember that hashing is not encryption—don't share hashes of sensitive passwords.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Which algorithm should I use?</h3>
-            <p className="text-sm">Use SHA-256 for security-critical applications, SHA-1 for legacy compatibility, and MD5 for simple checksums and non-security purposes.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Can two different inputs produce the same hash?</h3>
-            <p className="text-sm">Theoretically yes (called a collision), but it's extremely rare with SHA-256. MD5 and SHA-1 have known collision vulnerabilities.</p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Footer Note */}
       <section className="pt-6 border-t border-slate-200">

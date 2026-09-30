@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function IPAddressMaskerSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -56,73 +61,7 @@ export default function IPAddressMaskerSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is CIDR notation?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              CIDR (Classless Inter-Domain Routing) notation is a compact representation of an IP address and its associated network mask. 
-              For example, 192.168.1.0/24 means the IP address 192.168.1.0 with a subnet mask of 255.255.255.0, providing 256 total addresses.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              How do I calculate the number of hosts in a subnet?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              The number of usable hosts in a subnet is calculated as 2^(32-CIDR) - 2. We subtract 2 because the network address and broadcast 
-              address cannot be assigned to hosts. For example, a /24 network has 2^8 - 2 = 254 usable hosts.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is the difference between network address and broadcast address?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              The network address is the first IP in a subnet and identifies the network itself. The broadcast address is the last IP and is 
-              used to send data to all hosts in the network. Neither can be assigned to individual devices. All IPs between these are usable host addresses.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              How does the practice mode help me learn subnetting?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Practice mode generates random IP addresses and subnet masks, then asks you to convert them to CIDR notation. You get instant 
-              feedback on your answers with explanations, helping you master subnet calculations through repetition and immediate correction.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I process multiple IP addresses at once?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes! The batch processing mode allows you to enter multiple IP addresses with CIDR notation (one per line) and calculate all 
-              network information simultaneously. You can then copy all results at once for documentation or network planning.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is a wildcard mask and how is it used?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              A wildcard mask is the inverse of a subnet mask and is commonly used in access control lists (ACLs) and routing protocols. 
-              For example, if the subnet mask is 255.255.255.0, the wildcard mask is 0.0.0.255. It indicates which bits should be ignored when matching addresses.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits Section */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function DuotoneFilterSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="space-y-12">
       <section className="mt-12">
@@ -88,35 +93,7 @@ export default function DuotoneFilterSEOContent() {
         </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <h3 className="font-semibold mb-3">What color combinations work best for duotone effects?</h3>
-            <p className="text-gray-700">
-              Complementary colors (opposite on the color wheel) create bold, high-contrast effects—like teal and orange or purple and yellow. Analogous colors (next to each other) produce more subtle, harmonious results. For professional designs, try using your brand colors. The presets in this tool showcase popular combinations used by designers worldwide.
-            </p>
-          </div>
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <h3 className="font-semibold mb-3">What does the intensity slider control?</h3>
-            <p className="text-gray-700">
-              The intensity slider determines how strongly the duotone effect is applied. At 100%, the image is fully converted to the two-color gradient. Lower values blend the duotone effect with the original colors, creating a more subtle result that retains some of the original image's color information.
-            </p>
-          </div>
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <h3 className="font-semibold mb-3">When should I use the "Invert Gradient" option?</h3>
-            <p className="text-gray-700">
-              Inverting the gradient swaps which color appears in shadows versus highlights. Use this when you want your light color in the dark areas and your dark color in the bright areas. This can create dramatically different moods—for example, making a sunset photo feel cooler or a portrait more dramatic.
-            </p>
-          </div>
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <h3 className="font-semibold mb-3">Can I use duotone images commercially?</h3>
-            <p className="text-gray-700">
-              Yes, the duotone effect itself is just a color processing technique. However, make sure you have the rights to use the original photograph. If you own the photo or have proper licensing, you can freely use the duotone version in commercial projects, including websites, marketing materials, and products.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

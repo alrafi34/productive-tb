@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function JSONToCSVSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -68,76 +73,7 @@ export default function JSONToCSVSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What is JSON to CSV conversion?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              JSON to CSV conversion transforms data from JSON (JavaScript Object Notation) format into CSV (Comma-Separated Values) format. This is useful when you need to import JSON data into spreadsheet applications like Excel or Google Sheets.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What does flattening do?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Flattening converts nested JSON objects and arrays into a flat structure with dot-notation keys. For example, an object with nested address becomes separate columns like address.city and address.zip, making it compatible with spreadsheet formats.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I use different delimiters?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes! You can choose between comma, semicolon, or tab as your delimiter. This is useful when your data contains commas or when working with different regional CSV formats.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              How are arrays handled?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Arrays are flattened with index-based keys. For example, an array of tags becomes tags.0, tags.1, tags.2, etc. Each array element gets its own column in the CSV output.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Is this tool free to use?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes, our JSON to CSV Converter is completely free and runs entirely in your browser. No registration, no limits, and no backend processing required. All conversion happens locally on your device.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What happens to my data?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Your data never leaves your device. All JSON parsing and CSV generation happens entirely in your browser. We do not store, transmit, or process your data on any server.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I download the CSV file?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes! After conversion, you can download the CSV as a file with a single click. The file will be named data.csv and is ready to open in Excel or Google Sheets.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Benefits Section */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

@@ -28,7 +28,14 @@ export const toolConfig = {
       description: "Instantly convert pixel values to rem or em units with configurable base font size. Perfect for responsive web design.",
       type: "website",
       url: "/tools/design/px-to-rem-converter"
-    }
+    },
+    faq: [
+      { q: "What is the difference between rem and em?", a: "rem is relative to the root (html) font size, so 1rem is the same everywhere on the page, usually 16px. em is relative to the parent element's font size, so it compounds when elements are nested: 1.2em inside 1.2em is 1.44 times the root size." },
+      { q: "How do I convert px to rem?", a: "Divide the pixel value by the root font size: rem = px ÷ 16 with the browser default. 24px is 1.5rem, 14px is 0.875rem and 32px is 2rem." },
+      { q: "What's the default base font size?", a: "The default is 16px, which is the standard browser default. You can change it to match your project." },
+      { q: "Can I convert multiple values at once?", a: "Yes! Enter values separated by commas, spaces, or on new lines, and the tool will convert them all instantly." },
+      { q: "Why use rem instead of px?", a: "Sizes in rem scale when a visitor raises the browser's default font size, which helps people who need larger text. Pixel sizes stay fixed and ignore that setting." },
+    ],
   },
   features: [
     "Real-time px to rem/em conversion",

@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function SteganographyToolSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       {/* How to Use Section */}
@@ -241,42 +246,7 @@ export default function SteganographyToolSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Are my images uploaded to a server?</h3>
-            <p className="text-gray-600">No. All image processing happens locally in your browser using the Canvas API. Your images and messages never leave your device.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can the hidden message be detected?</h3>
-            <p className="text-gray-600">LSB steganography is visually undetectable. However, specialized steganalysis tools can detect the presence of hidden data through statistical analysis.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What image format should I use?</h3>
-            <p className="text-gray-600">PNG is strongly recommended as it&apos;s lossless. JPEG uses lossy compression which may corrupt the hidden message.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">How much text can I hide?</h3>
-            <p className="text-gray-600">It depends on image size. A 1920×1080 image can hide approximately 700,000 characters. The tool shows capacity for each image.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">What if I forget the password?</h3>
-            <p className="text-gray-600">The message cannot be recovered without the correct password. Make sure to remember or securely store your password.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Can I hide files instead of text?</h3>
-            <p className="text-gray-600">This tool is designed for text messages only. For file hiding, you would need specialized steganography software.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Is this secure for sensitive data?</h3>
-            <p className="text-gray-600">While LSB steganography hides data well, it&apos;s not cryptographically secure. For highly sensitive data, combine with strong encryption.</p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Technical Details */}
       <section className="mt-8 bg-gray-50 rounded-xl border border-gray-200 shadow-sm p-8">

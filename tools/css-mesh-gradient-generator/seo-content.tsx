@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { cssMeshGradientGeneratorConfig } from "./config";
+
 import React from 'react';
 
 export default function CSSMeshGradientGeneratorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = cssMeshGradientGeneratorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 bg-white">
       <section>
@@ -282,40 +287,7 @@ background-color: #0f172a;`}
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How many gradient points should I use?</h3>
-            <p className="text-gray-700 text-sm">
-              3-6 gradient points typically work best. Too few points create simple gradients, while too many can become chaotic and impact performance.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Can mesh gradients be animated?</h3>
-            <p className="text-gray-700 text-sm">
-              Yes! You can animate gradient positions, colors, and opacity using CSS transitions or keyframe animations for dynamic effects.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Do mesh gradients work in all browsers?</h3>
-            <p className="text-gray-700 text-sm">
-              CSS radial gradients are supported in all modern browsers. For older browsers, provide solid color fallbacks using progressive enhancement.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">How do I make text readable over mesh gradients?</h3>
-            <p className="text-gray-700 text-sm">
-              Use semi-transparent overlays, text shadows, or ensure your gradient has areas of consistent lightness where text will be placed.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
