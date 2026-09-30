@@ -46,6 +46,24 @@ export const cssAnimationPreviewerConfig = {
       description: 'Test timing functions and cubic-bezier curves visually, then copy production-ready CSS animation settings.',
       type: 'website',
       url: '/tools/design/css-animation-previewer'
-    }
+    },
+    howToSteps: [
+      { name: "Choose a base timing function or select cubic-bezier mode", text: "Choose a base timing function or select cubic-bezier mode." },
+      { name: "Adjust duration", text: "Adjust duration, delay, and iteration settings for realistic playback." },
+      { name: "Fine tune curve values until motion feels smooth and intentional", text: "Fine tune curve values until motion feels smooth and intentional." },
+      { name: "Test the result with different animation types and distances", text: "Test the result with different animation types and distances." },
+      { name: "Copy the generated CSS and use it in your project styles", text: "Copy the generated CSS and use it in your project styles." },
+    ],
+    faq: [
+      { q: "What is a CSS animation previewer?", a: "A CSS animation previewer is a tool that lets you test animation timing functions and easing curves visually, then copy production-ready CSS values." },
+      { q: "What are CSS timing functions?", a: "Timing functions control how animation speed changes over time, such as linear, ease-in, ease-out, and custom cubic-bezier curves." },
+      { q: "When should I use linear timing?", a: "Use linear when motion should remain constant, such as progress indicators, rotations, and continuous background effects." },
+      { q: "When should I use ease-in or ease-out?", a: "Ease-in is useful for elements accelerating into motion, while ease-out works well for elements settling naturally into place." },
+      { q: "What does cubic-bezier do?", a: "Cubic-bezier lets you define custom acceleration and deceleration curves with four control values for precise motion behavior." },
+      { q: "Can I use this tool for UI micro-interactions?", a: "Yes. It is ideal for hover states, modal transitions, button feedback, and onboarding animations." },
+      { q: "Can I copy generated CSS directly into my project?", a: "Yes. You can copy animation timing and related CSS settings directly for immediate implementation." },
+      { q: "Is this tool free?", a: "Yes. The CSS animation previewer is free to use without account registration." },
+      { q: "Does this tool process animation data on a server?", a: "No. Animation preview and curve calculations are handled client-side for speed and privacy." },
+    ],
   }
 };

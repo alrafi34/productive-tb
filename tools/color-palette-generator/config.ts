@@ -40,7 +40,27 @@ export const toolConfig = {
       description: "Generate analogous, complementary, triadic, tetradic and monochrome palettes. Lock colors, check contrast and export CSS, SCSS, JSON or Tailwind.",
       type: "website",
       url: "/tools/design/color-palette-generator"
-    }
+    },
+    howToSteps: [
+      { name: "Set a base color with HEX input or the color picker", text: "Set a base color with HEX input or the color picker." },
+      { name: "Choose a palette type based on your design goal", text: "Choose a palette type based on your design goal." },
+      { name: "Generate a 5-color palette instantly", text: "Generate a 5-color palette instantly." },
+      { name: "Lock colors you want to keep and regenerate others", text: "Lock colors you want to keep and regenerate others." },
+      { name: "Check contrast ratio for accessibility confidence", text: "Check contrast ratio for accessibility confidence." },
+      { name: "Copy or export palette values for your design or code workflow", text: "Copy or export palette values for your design or code workflow." },
+    ],
+    faq: [
+      { q: "What is a color palette generator?", a: "A color palette generator creates sets of colors that work well together using color harmony principles such as analogous, complementary, triadic, monochromatic, and tetradic schemes." },
+      { q: "Why use a color palette generator instead of picking colors manually?", a: "It helps you avoid inconsistent combinations by generating balanced color relationships quickly, which is useful for UI design, branding, and frontend development." },
+      { q: "Which palette modes are supported in this tool?", a: "This generator supports analogous, complementary, triadic, monochromatic, tetradic, and random palette modes." },
+      { q: "Can I lock specific colors while regenerating a palette?", a: "Yes. You can lock individual swatches so fixed brand colors stay in place while other colors are regenerated." },
+      { q: "Does this tool include accessibility checks?", a: "Yes. It includes contrast ratio checks and shows WCAG pass/fail guidance to support readable and accessible interfaces." },
+      { q: "Can I export palettes for development workflows?", a: "Yes. You can export palette values as CSS variables, SCSS, JSON, and Tailwind-style formats for direct project usage." },
+      { q: "Is gradient generation included?", a: "Yes. The tool provides gradient previews and copy-ready CSS gradient output from your generated palette." },
+      { q: "Is this color palette generator free to use?", a: "Yes. The tool is free and works directly in your browser with no sign-up required." },
+      { q: "Does this tool store my design data on a server?", a: "No. Palette generation and color operations run client-side in your browser." },
+      { q: "Who benefits most from this palette generator?", a: "UI/UX designers, frontend developers, brand designers, students, and content creators can use it for quick and consistent color systems." },
+    ],
   },
   features: [
     "Multiple color harmony algorithms",

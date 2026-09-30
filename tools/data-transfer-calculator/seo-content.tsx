@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { dataTransferCalculatorConfig } from "./config";
+
 export default function DataTransferCalculatorSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = dataTransferCalculatorConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -129,44 +134,7 @@ export default function DataTransferCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "How is transfer time calculated?",
-              a: "Transfer Time = Data Size (bits) ÷ Effective Speed (bps). The effective speed is your stated speed reduced by the efficiency loss percentage to simulate real-world conditions like TCP overhead, retransmissions, and network congestion.",
-            },
-            {
-              q: "What is efficiency loss and why does it matter?",
-              a: "Theoretical speed is rarely achieved in practice. Protocol overhead (TCP/IP headers), packet retransmissions, network congestion, server throttling, and hardware limitations typically reduce real throughput by 5–20%. The default 10% loss gives a realistic estimate.",
-            },
-            {
-              q: "Why is Mbps different from MB/s?",
-              a: "Mbps means megabits per second; MB/s means megabytes per second. Since 1 byte = 8 bits, a 100 Mbps connection transfers at approximately 12.5 MB/s. ISPs advertise in Mbps; file sizes are measured in MB/GB. This calculator converts everything automatically.",
-            },
-            {
-              q: "What is the difference between KB and Kbps?",
-              a: "KB (kilobytes) is a storage unit for file sizes using binary multiples (1 KB = 1,024 bytes). Kbps (kilobits per second) is a network speed unit using decimal multiples (1 Kbps = 1,000 bits/s). The calculator handles both correctly.",
-            },
-            {
-              q: "Can I use this for cloud backup time estimates?",
-              a: "Yes. Select 'Cloud Backup' as the transfer type, enter your backup size (e.g. 2 TB), and set your upload speed (typically much slower than download). Increase the efficiency loss to 15–25% to account for cloud storage API overhead.",
-            },
-            {
-              q: "Why does the URL update automatically?",
-              a: "The calculator encodes your inputs into the browser URL so you can bookmark or share a specific calculation. Anyone opening the link will see the same pre-filled values.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>

@@ -46,6 +46,24 @@ export const cssFilterTesterConfig = {
       description: 'Adjust CSS filters in real time and copy production-ready filter code for modern web interfaces.',
       type: 'website',
       url: '/tools/design/css-filter-tester'
-    }
+    },
+    howToSteps: [
+      { name: "Upload an image or use the default preview asset", text: "Upload an image or use the default preview asset." },
+      { name: "Adjust filter sliders such as blur", text: "Adjust filter sliders such as blur, contrast, and saturate." },
+      { name: "Apply a preset if you want a faster starting point", text: "Apply a preset if you want a faster starting point." },
+      { name: "Review visual output and fine tune filter order and intensity", text: "Review visual output and fine tune filter order and intensity." },
+      { name: "Copy the generated CSS filter code and use it in your project", text: "Copy the generated CSS filter code and use it in your project." },
+    ],
+    faq: [
+      { q: "What is a CSS filter tester?", a: "A CSS filter tester is a tool that lets you apply and adjust filter effects visually, then copy the generated CSS filter property for production use." },
+      { q: "Which filter functions can I test?", a: "You can test popular functions such as grayscale, sepia, blur, brightness, contrast, saturate, hue-rotate, and invert, then combine them in one filter chain." },
+      { q: "Can I combine multiple CSS filters together?", a: "Yes. Multiple filter functions can be chained, and the order matters because each function affects the result of the previous one." },
+      { q: "Can I animate CSS filters?", a: "Yes. Filter properties can be animated with transitions or keyframes for hover states and interactive UI effects." },
+      { q: "Does this tool support image uploads?", a: "Yes. You can upload an image and adjust filters on a live preview to test real visual output before implementation." },
+      { q: "Are CSS filters performance-heavy?", a: "Most filters are efficient in modern browsers, but heavy blur on large assets can increase rendering cost, especially on lower-end devices." },
+      { q: "Is the generated CSS production-ready?", a: "Yes. The output uses standard CSS filter syntax and can be pasted directly into stylesheets or component styles." },
+      { q: "Is this CSS filter tester free?", a: "Yes. The tool is free and does not require registration." },
+      { q: "Does this tool process images server-side?", a: "No. Filter preview and generation happen in the browser for speed and privacy." },
+    ],
   }
 };

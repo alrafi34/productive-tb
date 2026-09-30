@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a random name picker?",
-    answer:
-      "A random name picker selects one or more winners from a list using a randomized selection process so each valid entry has a fair chance.",
-  },
-  {
-    question: "Why is this tool better than basic random picker tools?",
-    answer:
-      "It combines file import, duplicate filtering, multi-winner drawing, optional winner removal, animated reveal, history tracking, and TXT/CSV export in one workflow.",
-  },
-  {
-    question: "Can I pick multiple winners in one draw?",
-    answer:
-      "Yes. Set the number of winners and the tool will select up to that many names from the current list.",
-  },
-  {
-    question: "Can I remove duplicates before drawing?",
-    answer:
-      "Yes. Enable duplicate removal to ensure repeated names do not increase selection weight.",
-  },
-  {
-    question: "What does remove winner after pick do?",
-    answer:
-      "When enabled, selected winners are removed from the list so future rounds cannot pick the same names again.",
-  },
-  {
-    question: "Can I import a list from TXT or CSV?",
-    answer:
-      "Yes. You can upload TXT or CSV files and the tool parses names into the participant list automatically.",
-  },
-  {
-    question: "Can I export winners and draw history?",
-    answer:
-      "Yes. Winners can be downloaded as TXT and history can be exported as CSV with round and timestamp details.",
-  },
-  {
-    question: "Is the selection process fair?",
-    answer:
-      "The tool shuffles the list using a Fisher-Yates style approach and draws from that randomized order.",
-  },
-  {
-    question: "Does this tool keep a history of rounds?",
-    answer:
-      "Yes. It records winner name, round number, and time so you can audit and share draw outcomes.",
-  },
-  {
-    question: "Is my participant data private?",
-    answer:
-      "Yes. Name processing and drawing happen in your browser without requiring server-side submission.",
-  },
-];
-
-const howToSteps = [
-  "Paste names (one per line) or import a TXT/CSV file.",
-  "Set options like number of winners, duplicate removal, and remove-winner-after-pick.",
-  "Click Pick Winner to run the draw with optional animation.",
-  "Review winners, then copy or download the results.",
-  "Use winner history for multi-round tracking and export CSV when needed.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { randomNamePickerConfig } from "./config";
 
 const strengths = [
   {
@@ -149,41 +91,11 @@ const mistakesToAvoid = [
 ];
 
 export default function RandomNamePickerSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the random name picker",
-    description:
-      "Add participant names, configure winner rules, run random draws, and export results and history.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = randomNamePickerConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -225,7 +137,7 @@ export default function RandomNamePickerSEOContent() {
             How to Use the Random Name Picker
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -278,23 +190,7 @@ export default function RandomNamePickerSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

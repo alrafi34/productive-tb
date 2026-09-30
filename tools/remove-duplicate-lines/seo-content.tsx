@@ -1,62 +1,5 @@
-const faqItems = [
-  {
-    question: "What does a remove duplicate lines tool do?",
-    answer:
-      "It scans line-by-line text input, removes repeated entries, and returns a cleaned list based on your selected matching rules.",
-  },
-  {
-    question: "Why is this tool better than basic duplicate removers?",
-    answer:
-      "It includes options for case handling, whitespace trimming, empty-line removal, duplicate-only mode, sorting, text transforms, and quick copy or download.",
-  },
-  {
-    question: "Can I ignore case when checking duplicates?",
-    answer:
-      "Yes. Enable ignore-case mode to treat lines like Apple and apple as duplicates.",
-  },
-  {
-    question: "Can I remove blank lines while cleaning text?",
-    answer:
-      "Yes. The remove-empty-lines option removes empty rows before final output.",
-  },
-  {
-    question: "What is keep-only-duplicates mode?",
-    answer:
-      "Instead of returning unique lines, it returns only entries that appeared more than once.",
-  },
-  {
-    question: "Can I sort the final output?",
-    answer:
-      "Yes. You can keep original order, sort A-Z, sort Z-A, or randomize output order.",
-  },
-  {
-    question: "Can I transform text before deduplication?",
-    answer:
-      "Yes. You can apply uppercase, lowercase, or capitalize transformations before duplicate processing.",
-  },
-  {
-    question: "Can I upload a file instead of pasting text?",
-    answer:
-      "Yes. You can upload or drag-and-drop supported text files such as .txt and .csv.",
-  },
-  {
-    question: "Is this remove duplicate lines tool free?",
-    answer: "Yes. It is free to use without registration.",
-  },
-  {
-    question: "Is my text private?",
-    answer:
-      "Yes. Processing happens in your browser and does not require sending content to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Paste text, upload a file, or drag and drop your line list.",
-  "Set processing options such as ignore case, trim whitespace, and remove empty lines.",
-  "Choose optional sort and text transform behavior.",
-  "Run Remove Duplicates or enable auto process for instant updates.",
-  "Copy or download the cleaned output and review summary stats.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { removeDuplicateLinesConfig } from "./config";
 
 const strengths = [
   {
@@ -140,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use Remove Duplicate Lines",
-    description:
-      "Add line-based text, configure dedupe options, process instantly, and copy or download cleaned output.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = removeDuplicateLinesConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -217,7 +130,7 @@ export default function SEOContent() {
             How to Use Remove Duplicate Lines
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -270,23 +183,7 @@ export default function SEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

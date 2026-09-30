@@ -43,7 +43,25 @@ export const toolConfig = {
       description: "Keep several text blocks and copy any of them, or all at once, in one click as plain text, HTML or Markdown. Handy for writing and documentation.",
       type: "website",
       url: "/tools/writing/text-to-clipboard"
-    }
+    },
+    howToSteps: [
+      { name: "Add your text in one or more text blocks", text: "Add your text in one or more text blocks." },
+      { name: "Choose output format", text: "Choose output format: plain, html, or markdown." },
+      { name: "Enable line numbers if needed", text: "Enable line numbers if needed." },
+      { name: "Copy one block or use copy all for batch output", text: "Copy one block or use copy all for batch output." },
+      { name: "Paste the copied result into your app", text: "Paste the copied result into your app, editor, or document." },
+    ],
+    faq: [
+      { q: "What is a text to clipboard tool?", a: "A text to clipboard tool helps you copy prepared text in one click without manually selecting each block every time." },
+      { q: "Which output formats are supported?", a: "You can copy text as plain text, markdown code block format, or HTML code wrapper format depending on your use case." },
+      { q: "Can I copy multiple text blocks at once?", a: "Yes. Use the copy-all action to combine non-empty blocks and copy them in one operation." },
+      { q: "What does line number mode do?", a: "Line number mode prefixes each line so copied snippets are easier to review in documentation and code discussions." },
+      { q: "What is auto-select used for?", a: "Auto-select highlights text when a block gains focus, which speeds up editing and copy workflows." },
+      { q: "Is this helpful for writers and content teams?", a: "Yes. It is useful for copying snippets, templates, short responses, and content blocks into editors or CMS tools." },
+      { q: "Can developers use this for docs and code sharing?", a: "Yes. Markdown and HTML copy formats are useful for documentation, issue reports, and technical communication." },
+      { q: "Is the text to clipboard tool free?", a: "Yes. It is free to use without sign-up." },
+      { q: "Is my text private?", a: "Yes. Text handling is browser-based and does not require uploading content to external servers." },
+    ],
   },
   features: [
     "One-click copy to clipboard",

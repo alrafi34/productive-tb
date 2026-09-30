@@ -27,6 +27,13 @@ export const f1ScoreCalculatorConfig = {
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/f1-score-calculator`,
     },
+    faq: [
+      { q: "What is a good F1 score?", a: "It depends on the problem. For most production ML systems, an F1 score ≥ 0.85 is considered good. For safety-critical domains (medical diagnosis, fraud detection), you may target ≥ 0.90 or higher. For research baselines, 0.75+ is often acceptable." },
+      { q: "Can F1 score be calculated without a confusion matrix?", a: "Yes. If you already know your model's precision and recall values, you can calculate F1 directly: F1 = 2 × (Precision × Recall) ÷ (Precision + Recall). Use the Precision & Recall mode in this calculator." },
+      { q: "What is macro vs micro F1 score?", a: "For multi-class problems, micro F1 aggregates TP/FP/FN across all classes before computing the metric. Macro F1 computes F1 per class then averages them. Macro F1 gives equal weight to all classes; micro F1 is influenced by larger classes." },
+      { q: "When should I use F1 score over precision or recall alone?", a: "Use F1 when both false positives and false negatives carry meaningful cost. If one type of error is much more costly than the other, optimise directly for precision (if FP is costly) or recall (if FN is costly) instead." },
+      { q: "What is the F-beta score?", a: "F-beta is a generalisation of F1 where you can weight precision or recall more heavily. F1 uses β=1 (equal weight). F0.5 weights precision twice as much; F2 weights recall twice as much. This calculator computes the standard F1 (β=1)." },
+    ],
   },
   relatedTools: [
     "precision-recall-calculator",

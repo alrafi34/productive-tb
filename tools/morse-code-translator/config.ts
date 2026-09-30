@@ -35,5 +35,23 @@ export const toolConfig = {
       type: "website",
       url: "/tools/writing/morse-code-translator",
     },
+    howToSteps: [
+      { name: "Choose Text to Morse or Morse to Text mode", text: "Choose Text to Morse or Morse to Text mode." },
+      { name: "Enter your source text or Morse sequence in the input area", text: "Enter your source text or Morse sequence in the input area." },
+      { name: "Adjust settings for symbols", text: "Adjust settings for symbols, spacing, case handling, and playback speed if needed." },
+      { name: "Convert instantly or use real-time mode for live output updates", text: "Convert instantly or use real-time mode for live output updates." },
+      { name: "Copy", text: "Copy, download, or play Morse audio and verify with the reference table." },
+    ],
+    faq: [
+      { q: "What is a Morse code translator?", a: "A Morse code translator converts normal text into Morse code signals and can also decode Morse code back into readable text." },
+      { q: "Can this tool translate both directions?", a: "Yes. You can switch between Text to Morse and Morse to Text modes instantly." },
+      { q: "Does the translator support numbers and punctuation?", a: "Yes. It supports letters, numbers, spaces, and common punctuation symbols defined in the built-in Morse map." },
+      { q: "Can I customize dot and dash symbols?", a: "Yes. You can choose different dot and dash characters to match your visual preference or platform format requirements." },
+      { q: "Can I adjust spacing rules?", a: "Yes. You can control letter spacing and word separation for readable output or specific transmission formats." },
+      { q: "Does this tool include Morse audio playback?", a: "Yes. In text-to-morse mode, you can play the output as audio beeps and set playback speed in words per minute." },
+      { q: "What is real-time conversion?", a: "When enabled, the output updates automatically while you type so you can refine text without extra clicks." },
+      { q: "Can I copy or download translated output?", a: "Yes. You can copy translated text to clipboard or download results as TXT files." },
+      { q: "Is my message private when using this tool?", a: "Yes. Translation runs in your browser and your message is not sent to external servers." },
+    ],
   },
 };

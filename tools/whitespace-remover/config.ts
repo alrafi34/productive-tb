@@ -61,6 +61,24 @@ export const whitespaceRemoverConfig = {
       description: "Remove unwanted spaces and tabs with configurable cleanup rules and export-ready output.",
       type: "website",
       url: "/tools/writing/whitespace-remover"
-    }
+    },
+    howToSteps: [
+      { name: "Paste text or upload a supported file", text: "Paste text or upload a supported file." },
+      { name: "Choose cleanup rules such as leading/trailing", text: "Choose cleanup rules such as leading/trailing, multiple spaces, empty lines, or full space removal." },
+      { name: "Configure tab conversion options when needed", text: "Configure tab conversion options when needed." },
+      { name: "Run Clean Whitespace and review the output and statistics", text: "Run Clean Whitespace and review the output and statistics." },
+      { name: "Copy or download cleaned text in TXT", text: "Copy or download cleaned text in TXT, MD, or CSV format." },
+    ],
+    faq: [
+      { q: "What is a whitespace remover tool?", a: "A whitespace remover cleans text by removing unwanted spaces, tabs, or empty lines based on selected rules." },
+      { q: "Can I remove leading and trailing spaces only?", a: "Yes. You can control leading-space and trailing-space cleanup independently." },
+      { q: "What does remove multiple spaces do?", a: "It collapses repeated spaces into single spaces while preserving normal word separation." },
+      { q: "What happens when remove all spaces is enabled?", a: "It strips all whitespace groups in text segments, which is useful for compact formatting tasks." },
+      { q: "Can I remove empty lines?", a: "Yes. Enable remove-empty-lines to delete blank rows after processing." },
+      { q: "Can I convert tabs to spaces or spaces to tabs?", a: "Yes. Tab conversion supports both directions and lets you choose tab size." },
+      { q: "Can I upload files for cleanup?", a: "Yes. You can upload or drag-and-drop text files such as .txt, .md, and .csv." },
+      { q: "Is this whitespace remover free?", a: "Yes. It is free to use with no account required." },
+      { q: "Is my text private?", a: "Yes. Cleaning runs in your browser, so your text is not sent to external servers." },
+    ],
   }
 };

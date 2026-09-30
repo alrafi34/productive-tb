@@ -1,62 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a text diff checker?",
-    answer:
-      "A text diff checker compares two text versions and highlights what was added, removed, or unchanged.",
-  },
-  {
-    question: "Why is this tool better than basic text comparison tools?",
-    answer:
-      "It offers line, word, and character-level comparison, side-by-side and inline views, filtering options, stats, and export actions in one workflow.",
-  },
-  {
-    question: "Can I compare text line by line, word by word, and character by character?",
-    answer:
-      "Yes. You can choose the comparison level that best matches your review task.",
-  },
-  {
-    question: "What does ignore case do?",
-    answer:
-      "Ignore case compares text without treating uppercase and lowercase letters as different.",
-  },
-  {
-    question: "What does ignore whitespace do?",
-    answer:
-      "It normalizes spacing differences so you can focus on content changes instead of formatting noise.",
-  },
-  {
-    question: "Can I switch between side-by-side and inline diff views?",
-    answer:
-      "Yes. You can toggle between side-by-side and inline modes based on how you want to review changes.",
-  },
-  {
-    question: "Can I upload files for comparison?",
-    answer:
-      "Yes. You can upload or drag-and-drop supported text files such as .txt, .md, and .csv.",
-  },
-  {
-    question: "Can I export diff results?",
-    answer:
-      "Yes. You can copy the diff output and download results in TXT or HTML formats.",
-  },
-  {
-    question: "Is this text diff checker free?",
-    answer: "Yes. It is free to use without registration.",
-  },
-  {
-    question: "Is my text private?",
-    answer:
-      "Yes. Comparison runs in your browser and does not require sending text to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Paste or load original text into Text A and modified text into Text B.",
-  "Select comparison level: line, word, or character.",
-  "Choose optional filters such as ignore case and ignore whitespace.",
-  "Run Compare or enable auto compare for instant updates.",
-  "Review highlighted results, then copy or download diff output.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { textDiffCheckerConfig } from "./config";
 
 const strengths = [
   {
@@ -140,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use Text Diff Checker",
-    description:
-      "Load two text versions, choose comparison settings, review highlighted differences, and export results.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = textDiffCheckerConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -216,7 +129,7 @@ export default function SEOContent() {
             How to Use Text Diff Checker
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -269,23 +182,7 @@ export default function SEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

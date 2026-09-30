@@ -1,62 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a word frequency counter?",
-    answer:
-      "A word frequency counter analyzes text and shows how often each word appears, including count and percentage values.",
-  },
-  {
-    question: "Why is this tool better than basic word counting tools?",
-    answer:
-      "It combines frequency ranking, search, sorting, stop-word removal, case sensitivity, number filtering, and export options in one workflow.",
-  },
-  {
-    question: "Can I remove common stop words from the analysis?",
-    answer:
-      "Yes. You can enable the stop-word filter to remove common words and focus on more meaningful terms.",
-  },
-  {
-    question: "Can I ignore numbers in results?",
-    answer:
-      "Yes. The ignore-numbers option removes numeric tokens so your analysis focuses on words.",
-  },
-  {
-    question: "Can I set minimum word length?",
-    answer:
-      "Yes. You can define a minimum word length to exclude short terms from the frequency table.",
-  },
-  {
-    question: "Can I sort results in different ways?",
-    answer:
-      "Yes. You can sort by frequency or alphabetically and also search within results.",
-  },
-  {
-    question: "Can I export word frequency data?",
-    answer:
-      "Yes. Export options include CSV and JSON, and you can also copy formatted results to clipboard.",
-  },
-  {
-    question: "Who should use a word frequency analyzer?",
-    answer:
-      "Writers, editors, students, researchers, and SEO teams can use it to analyze vocabulary patterns and keyword distribution.",
-  },
-  {
-    question: "Is this word frequency counter free?",
-    answer: "Yes. It is free to use without account registration.",
-  },
-  {
-    question: "Is my text private?",
-    answer:
-      "Yes. Analysis runs in your browser, so your text is not uploaded to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Paste or type your text into the input area.",
-  "Choose filters such as stop words, case sensitivity, minimum word length, and ignore numbers.",
-  "Click Analyze Text to generate the frequency report.",
-  "Sort by frequency or A-Z and use search to find specific terms.",
-  "Copy the results or export them as CSV or JSON.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -136,41 +79,11 @@ const mistakesToAvoid = [
 ];
 
 export default function WordFrequencyCounterSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the Word Frequency Counter",
-    description:
-      "Paste text, apply filters, analyze frequency data, then sort, search, and export results.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -213,7 +126,7 @@ export default function WordFrequencyCounterSEOContent() {
             How to Use the Word Frequency Counter
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -266,23 +179,7 @@ export default function WordFrequencyCounterSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

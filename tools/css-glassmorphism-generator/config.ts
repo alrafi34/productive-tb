@@ -39,7 +39,25 @@ export const toolConfig = {
       description: "Create production-ready frosted glass styles with live preview and instant CSS or Tailwind copy.",
       type: "website",
       url: "/tools/design/css-glassmorphism-generator"
-    }
+    },
+    howToSteps: [
+      { name: "Start with a preset or default glass card style", text: "Start with a preset or default glass card style." },
+      { name: "Adjust blur intensity and transparency for the frosted effect", text: "Adjust blur intensity and transparency for the frosted effect." },
+      { name: "Tune border", text: "Tune border, radius, and shadow values for depth and shape." },
+      { name: "Test the card over different backgrounds to verify visibility", text: "Test the card over different backgrounds to verify visibility." },
+      { name: "Copy CSS or Tailwind output and paste into your project", text: "Copy CSS or Tailwind output and paste into your project." },
+    ],
+    faq: [
+      { q: "What is a CSS glassmorphism generator?", a: "A CSS glassmorphism generator is a tool that helps you create frosted-glass UI styles using backdrop blur, transparency, border, and shadow settings, then copy production-ready code." },
+      { q: "What properties create the glassmorphism effect?", a: "Core properties include backdrop-filter, semi-transparent background color, subtle border opacity, border radius, and soft shadow for depth." },
+      { q: "Can I export both CSS and Tailwind classes?", a: "Yes. You can copy standard CSS properties and Tailwind-compatible output depending on your stack." },
+      { q: "Why is my glass effect not visible?", a: "Glassmorphism needs visual content behind the element. Use a gradient, image, or textured background to make blur and transparency visible." },
+      { q: "Is this tool useful for production UI work?", a: "Yes. It helps teams move from design experiments to consistent implementation with reusable values and quick code handoff." },
+      { q: "Can I customize radius, border, and shadows?", a: "Yes. You can tune border radius, transparency, blur, and shadow intensity to match your design language." },
+      { q: "Does this tool support mobile and desktop design workflows?", a: "Yes. You can fine-tune styles and copy output for responsive interfaces across desktop and mobile layouts." },
+      { q: "Is this CSS glassmorphism generator free?", a: "Yes. It is free to use without sign-up." },
+      { q: "Does the tool process styles locally?", a: "Yes. Style generation happens client-side in the browser for fast and private use." },
+    ],
   },
   features: [
     "Live preview with real-time updates",

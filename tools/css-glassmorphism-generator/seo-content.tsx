@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a CSS glassmorphism generator?",
-    answer:
-      "A CSS glassmorphism generator is a tool that helps you create frosted-glass UI styles using backdrop blur, transparency, border, and shadow settings, then copy production-ready code.",
-  },
-  {
-    question: "Why is this generator better than basic glass effect tools?",
-    answer:
-      "It combines real-time preview, practical presets, detailed control of blur and opacity, CSS and Tailwind output, and copy-ready code in one workflow.",
-  },
-  {
-    question: "What properties create the glassmorphism effect?",
-    answer:
-      "Core properties include backdrop-filter, semi-transparent background color, subtle border opacity, border radius, and soft shadow for depth.",
-  },
-  {
-    question: "Can I export both CSS and Tailwind classes?",
-    answer:
-      "Yes. You can copy standard CSS properties and Tailwind-compatible output depending on your stack.",
-  },
-  {
-    question: "Why is my glass effect not visible?",
-    answer:
-      "Glassmorphism needs visual content behind the element. Use a gradient, image, or textured background to make blur and transparency visible.",
-  },
-  {
-    question: "Is this tool useful for production UI work?",
-    answer:
-      "Yes. It helps teams move from design experiments to consistent implementation with reusable values and quick code handoff.",
-  },
-  {
-    question: "Can I customize radius, border, and shadows?",
-    answer:
-      "Yes. You can tune border radius, transparency, blur, and shadow intensity to match your design language.",
-  },
-  {
-    question: "Does this tool support mobile and desktop design workflows?",
-    answer:
-      "Yes. You can fine-tune styles and copy output for responsive interfaces across desktop and mobile layouts.",
-  },
-  {
-    question: "Is this CSS glassmorphism generator free?",
-    answer:
-      "Yes. It is free to use without sign-up.",
-  },
-  {
-    question: "Does the tool process styles locally?",
-    answer:
-      "Yes. Style generation happens client-side in the browser for fast and private use.",
-  },
-];
-
-const howToSteps = [
-  "Start with a preset or default glass card style.",
-  "Adjust blur intensity and transparency for the frosted effect.",
-  "Tune border, radius, and shadow values for depth and shape.",
-  "Test the card over different backgrounds to verify visibility.",
-  "Copy CSS or Tailwind output and paste into your project.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -114,41 +56,11 @@ const mistakesToAvoid = [
 ];
 
 export default function GlassmorphismSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the CSS glassmorphism generator",
-    description:
-      "Create frosted glass UI styles with adjustable blur, opacity, border, and shadow, then copy ready-to-use CSS or Tailwind output.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -190,7 +102,7 @@ export default function GlassmorphismSEOContent() {
             How to Use the CSS Glassmorphism Generator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -229,23 +141,7 @@ export default function GlassmorphismSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

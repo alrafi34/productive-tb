@@ -43,7 +43,25 @@ export const toolConfig = {
       description: "Count how often each word appears and its share of the text. Filter stop words, sort terms and export the results as CSV or JSON.",
       type: "website",
       url: "/tools/writing/word-frequency-counter"
-    }
+    },
+    howToSteps: [
+      { name: "Paste or type your text into the input area", text: "Paste or type your text into the input area." },
+      { name: "Choose filters such as stop words", text: "Choose filters such as stop words, case sensitivity, minimum word length, and ignore numbers." },
+      { name: "Click Analyze Text to generate the frequency report", text: "Click Analyze Text to generate the frequency report." },
+      { name: "Sort by frequency or A-Z and use search to find specific terms", text: "Sort by frequency or A-Z and use search to find specific terms." },
+      { name: "Copy the results or export them as CSV or JSON", text: "Copy the results or export them as CSV or JSON." },
+    ],
+    faq: [
+      { q: "What is a word frequency counter?", a: "A word frequency counter analyzes text and shows how often each word appears, including count and percentage values." },
+      { q: "Can I remove common stop words from the analysis?", a: "Yes. You can enable the stop-word filter to remove common words and focus on more meaningful terms." },
+      { q: "Can I ignore numbers in results?", a: "Yes. The ignore-numbers option removes numeric tokens so your analysis focuses on words." },
+      { q: "Can I set minimum word length?", a: "Yes. You can define a minimum word length to exclude short terms from the frequency table." },
+      { q: "Can I sort results in different ways?", a: "Yes. You can sort by frequency or alphabetically and also search within results." },
+      { q: "Can I export word frequency data?", a: "Yes. Export options include CSV and JSON, and you can also copy formatted results to clipboard." },
+      { q: "Who should use a word frequency analyzer?", a: "Writers, editors, students, researchers, and SEO teams can use it to analyze vocabulary patterns and keyword distribution." },
+      { q: "Is this word frequency counter free?", a: "Yes. It is free to use without account registration." },
+      { q: "Is my text private?", a: "Yes. Analysis runs in your browser, so your text is not uploaded to external servers." },
+    ],
   },
   features: [
     "On-demand word frequency analysis",

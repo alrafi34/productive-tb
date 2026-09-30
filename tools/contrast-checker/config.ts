@@ -39,7 +39,25 @@ export const toolConfig = {
       description: "Check the contrast ratio of text and background colors and see whether they pass WCAG AA and AAA for normal and large text.",
       type: "website",
       url: "/tools/design/contrast-checker"
-    }
+    },
+    howToSteps: [
+      { name: "Enter or pick a text color and a background color", text: "Enter or pick a text color and a background color." },
+      { name: "Review the live contrast ratio and AA or AAA pass status", text: "Review the live contrast ratio and AA or AAA pass status." },
+      { name: "Switch between normal and large text contexts if needed", text: "Switch between normal and large text contexts if needed." },
+      { name: "Adjust colors until required accessibility levels pass", text: "Adjust colors until required accessibility levels pass." },
+      { name: "Copy or reuse compliant color combinations in your project", text: "Copy or reuse compliant color combinations in your project." },
+    ],
+    faq: [
+      { q: "What is a WCAG contrast checker?", a: "A WCAG contrast checker measures the contrast ratio between foreground and background colors and shows whether the combination meets accessibility standards such as WCAG AA or AAA." },
+      { q: "What contrast ratio is required for normal text?", a: "For WCAG AA, normal text usually requires at least 4.5:1. For WCAG AAA, normal text typically requires 7:1." },
+      { q: "What contrast ratio is required for large text?", a: "For WCAG AA, large text typically requires 3:1. For WCAG AAA, large text usually requires 4.5:1." },
+      { q: "Can I test hover and focus states with this tool?", a: "Yes. You can test different text and background combinations for default, hover, active, and focus states to keep accessibility consistent." },
+      { q: "What if my brand colors fail contrast checks?", a: "You can preserve brand identity by using adjusted tints or shades for text and UI states while keeping decorative usage for original brand colors." },
+      { q: "Does this checker support accessibility-first workflows?", a: "Yes. It is useful during design, development, and QA to catch contrast issues early and reduce last-minute accessibility fixes." },
+      { q: "Is this contrast checker free to use?", a: "Yes. It is free and available without registration." },
+      { q: "Do I need to install software?", a: "No. The checker runs directly in the browser." },
+      { q: "Does it send my color data to a server?", a: "No. Contrast calculation runs client-side for speed and privacy." },
+    ],
   },
   features: [
     "WCAG 2.1 compliance testing",

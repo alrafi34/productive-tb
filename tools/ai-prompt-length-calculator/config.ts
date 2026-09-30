@@ -28,6 +28,13 @@ export const aiPromptLengthCalculatorConfig = {
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/ai-prompt-length-calculator`,
     },
+    faq: [
+      { q: "How accurate is the token estimate?", a: "For standard English text, the Fast Estimate is typically within 5–10% of the actual token count used by OpenAI models. Code prompts are best estimated with the Code-Heavy mode. For critical applications, use OpenAI's Tiktoken library for exact counts." },
+      { q: "What happens if my prompt exceeds the context window?", a: "The API will return an error. For OpenAI models this is a 400 error with a context_length_exceeded message. You need to either shorten your prompt, truncate conversation history, or switch to a model with a larger context window." },
+      { q: "Why do output tokens cost more than input tokens?", a: "Generating tokens requires significantly more GPU compute than processing input tokens. The model must run a full forward pass for each generated token, while input tokens are processed in parallel." },
+      { q: "How can I reduce my token usage?", a: "Common strategies: shorten system prompts, remove redundant context, use structured formats instead of prose instructions, implement prompt caching for repeated prefixes, and truncate conversation history to a rolling window." },
+      { q: "Does this tool work for non-English text?", a: "Yes. Switch to Multilingual Estimate mode for better accuracy with CJK, Arabic, Hebrew, or other non-Latin scripts. These languages tokenize differently — each CJK character is often a single token while Latin text averages 4 characters per token." },
+    ],
   },
   relatedTools: [
     "ai-token-cost-calculator",

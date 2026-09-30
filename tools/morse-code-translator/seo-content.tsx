@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a Morse code translator?",
-    answer:
-      "A Morse code translator converts normal text into Morse code signals and can also decode Morse code back into readable text.",
-  },
-  {
-    question: "Can this tool translate both directions?",
-    answer:
-      "Yes. You can switch between Text to Morse and Morse to Text modes instantly.",
-  },
-  {
-    question: "Does the translator support numbers and punctuation?",
-    answer:
-      "Yes. It supports letters, numbers, spaces, and common punctuation symbols defined in the built-in Morse map.",
-  },
-  {
-    question: "Can I customize dot and dash symbols?",
-    answer:
-      "Yes. You can choose different dot and dash characters to match your visual preference or platform format requirements.",
-  },
-  {
-    question: "Can I adjust spacing rules?",
-    answer:
-      "Yes. You can control letter spacing and word separation for readable output or specific transmission formats.",
-  },
-  {
-    question: "Does this tool include Morse audio playback?",
-    answer:
-      "Yes. In text-to-morse mode, you can play the output as audio beeps and set playback speed in words per minute.",
-  },
-  {
-    question: "What is real-time conversion?",
-    answer:
-      "When enabled, the output updates automatically while you type so you can refine text without extra clicks.",
-  },
-  {
-    question: "Why is this better than basic Morse converters?",
-    answer:
-      "It combines two-way translation, custom symbol settings, spacing control, audio playback, downloadable output, and reference table in one workflow.",
-  },
-  {
-    question: "Can I copy or download translated output?",
-    answer:
-      "Yes. You can copy translated text to clipboard or download results as TXT files.",
-  },
-  {
-    question: "Is my message private when using this tool?",
-    answer:
-      "Yes. Translation runs in your browser and your message is not sent to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Choose Text to Morse or Morse to Text mode.",
-  "Enter your source text or Morse sequence in the input area.",
-  "Adjust settings for symbols, spacing, case handling, and playback speed if needed.",
-  "Convert instantly or use real-time mode for live output updates.",
-  "Copy, download, or play Morse audio and verify with the reference table.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -141,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the Morse code translator",
-    description:
-      "Choose translation direction, configure Morse settings, translate text, and copy, download, or play audio output.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -217,7 +129,7 @@ export default function SEOContent() {
             How to Use Morse Code Translator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -270,23 +182,7 @@ export default function SEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

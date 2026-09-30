@@ -1,62 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a sentence case converter?",
-    answer:
-      "A sentence case converter changes text capitalization formats, such as uppercase, lowercase, title case, and sentence case, in seconds.",
-  },
-  {
-    question: "Why is this tool better than basic case changers?",
-    answer:
-      "It offers fast multi-format conversion, clear workflow steps, instant copy-ready output, and browser-based privacy in one simple interface.",
-  },
-  {
-    question: "What is the difference between title case and sentence case?",
-    answer:
-      "Title case capitalizes each major word, while sentence case usually capitalizes only the first letter of each sentence and proper nouns.",
-  },
-  {
-    question: "When should I use uppercase conversion?",
-    answer:
-      "Uppercase can be useful for headings, labels, visual emphasis, and style consistency in certain publishing contexts.",
-  },
-  {
-    question: "When should I use lowercase conversion?",
-    answer:
-      "Lowercase is useful when fixing accidentally capitalized text or matching a minimal content style.",
-  },
-  {
-    question: "Can this help with social media and marketing copy?",
-    answer:
-      "Yes. It helps quickly adapt captions, headlines, and ad text for platform-specific style and tone.",
-  },
-  {
-    question: "Is this useful for editing academic or professional documents?",
-    answer:
-      "Yes. It helps standardize capitalization across essays, reports, presentations, and internal documentation.",
-  },
-  {
-    question: "Can I copy converted text quickly?",
-    answer:
-      "Yes. You can convert and copy text in one workflow for fast reuse in other tools and platforms.",
-  },
-  {
-    question: "Is this case converter free?",
-    answer: "Yes. It is free to use without registration.",
-  },
-  {
-    question: "Is my text private?",
-    answer:
-      "Yes. Text processing happens in your browser, so your content is not uploaded to remote servers.",
-  },
-];
-
-const howToSteps = [
-  "Paste or type your text in the editor.",
-  "Select a conversion format: uppercase, lowercase, title case, or sentence case.",
-  "Review the converted result instantly.",
-  "Copy the output and paste it into your document or platform.",
-  "Repeat with another case format if you need alternate versions.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -132,41 +75,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SentenceCaseConverterSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the Sentence Case Converter",
-    description:
-      "Paste text, choose a case format, review the result, and copy converted output for documents or publishing workflows.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -209,7 +122,7 @@ export default function SentenceCaseConverterSEOContent() {
             How to Use the Sentence Case Converter
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -262,23 +175,7 @@ export default function SentenceCaseConverterSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

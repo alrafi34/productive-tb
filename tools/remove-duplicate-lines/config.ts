@@ -61,6 +61,24 @@ export const removeDuplicateLinesConfig = {
       description: "Clean repeated lines from text quickly with matching, sorting, and copy/download options.",
       type: "website",
       url: "/tools/writing/remove-duplicate-lines"
-    }
+    },
+    howToSteps: [
+      { name: "Paste text", text: "Paste text, upload a file, or drag and drop your line list." },
+      { name: "Set processing options such as ignore case", text: "Set processing options such as ignore case, trim whitespace, and remove empty lines." },
+      { name: "Choose optional sort and text transform behavior", text: "Choose optional sort and text transform behavior." },
+      { name: "Run Remove Duplicates or enable auto process for instant updates", text: "Run Remove Duplicates or enable auto process for instant updates." },
+      { name: "Copy or download the cleaned output and review summary stats", text: "Copy or download the cleaned output and review summary stats." },
+    ],
+    faq: [
+      { q: "What does a remove duplicate lines tool do?", a: "It scans line-by-line text input, removes repeated entries, and returns a cleaned list based on your selected matching rules." },
+      { q: "Can I ignore case when checking duplicates?", a: "Yes. Enable ignore-case mode to treat lines like Apple and apple as duplicates." },
+      { q: "Can I remove blank lines while cleaning text?", a: "Yes. The remove-empty-lines option removes empty rows before final output." },
+      { q: "What is keep-only-duplicates mode?", a: "Instead of returning unique lines, it returns only entries that appeared more than once." },
+      { q: "Can I sort the final output?", a: "Yes. You can keep original order, sort A-Z, sort Z-A, or randomize output order." },
+      { q: "Can I transform text before deduplication?", a: "Yes. You can apply uppercase, lowercase, or capitalize transformations before duplicate processing." },
+      { q: "Can I upload a file instead of pasting text?", a: "Yes. You can upload or drag-and-drop supported text files such as .txt and .csv." },
+      { q: "Is this remove duplicate lines tool free?", a: "Yes. It is free to use without registration." },
+      { q: "Is my text private?", a: "Yes. Processing happens in your browser and does not require sending content to external servers." },
+    ],
   }
 };

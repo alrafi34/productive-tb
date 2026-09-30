@@ -61,6 +61,24 @@ export const tableToMarkdownConfig = {
       description: "Paste a table from a spreadsheet, CSV or TSV and get a Markdown table, with delimiter detection, column alignment and escaping. Copy or download it.",
       type: "website",
       url: "/tools/writing/table-to-markdown"
-    }
+    },
+    howToSteps: [
+      { name: "Paste table data or upload a TXT", text: "Paste table data or upload a TXT, CSV, or TSV file." },
+      { name: "Select delimiter mode", text: "Select delimiter mode (auto, tab, comma, pipe, or multi-space)." },
+      { name: "Choose header mode", text: "Choose header mode: first-row, no-header, or custom headers." },
+      { name: "Set column alignments and optional formatting options", text: "Set column alignments and optional formatting options." },
+      { name: "Convert to markdown", text: "Convert to markdown, review source and preview, then copy or download." },
+    ],
+    faq: [
+      { q: "What is a table to markdown converter?", a: "A table to markdown converter transforms spreadsheet-like rows and columns into valid markdown table syntax that works in GitHub, docs, and markdown editors." },
+      { q: "What input formats are supported?", a: "You can paste data from Excel or Google Sheets, upload TXT/CSV/TSV files, and process tab, comma, pipe, or multi-space separated text." },
+      { q: "How does delimiter auto-detection work?", a: "The tool checks your first row and detects tab, pipe, comma, or space-based separation to parse columns quickly without manual setup." },
+      { q: "Can I define my own headers?", a: "Yes. You can use the first row as header, auto-generate headers, or provide custom header labels for each column." },
+      { q: "Can I control markdown alignment for each column?", a: "Yes. You can set left, center, or right alignment per column, and the tool generates proper markdown separator syntax." },
+      { q: "Does it handle markdown special characters?", a: "Yes. Enable escape mode to prevent markdown symbols from breaking table formatting in rendered output." },
+      { q: "Can I wrap cell values in backticks?", a: "Yes. Backtick wrapping is available for code-oriented tables and technical documentation workflows." },
+      { q: "Can I preview the output before copying?", a: "Yes. The tool shows both markdown source and rendered HTML table preview so you can validate layout before publishing." },
+      { q: "Is this table to markdown tool private?", a: "Yes. Conversion runs in your browser, so your table content is not sent to external servers." },
+    ],
   }
 };

@@ -60,5 +60,23 @@ export const palindromeCheckerConfig = {
       type: 'website',
       url: '/tools/writing/palindrome-checker',
     },
+    howToSteps: [
+      { name: "Choose Single Check for one input or Bulk Check for multiple lines", text: "Choose Single Check for one input or Bulk Check for multiple lines." },
+      { name: "Enter your word", text: "Enter your word, phrase, sentence, or line list." },
+      { name: "Set options such as ignore case", text: "Set options such as ignore case, spaces, punctuation, or numbers." },
+      { name: "Run the checker or enable real-time mode for live updates", text: "Run the checker or enable real-time mode for live updates." },
+      { name: "Review the analysis and copy or download the result when needed", text: "Review the analysis and copy or download the result when needed." },
+    ],
+    faq: [
+      { q: "What is a palindrome checker?", a: "A palindrome checker tests whether a word, phrase, or sentence reads the same forward and backward after applying selected cleanup rules." },
+      { q: "Can this tool check full sentences and phrases?", a: "Yes. It supports phrase-level checks and can ignore spaces, punctuation, and case to evaluate natural-language palindromes accurately." },
+      { q: "What is the difference between single and bulk mode?", a: "Single mode provides detailed analysis for one input. Bulk mode checks multiple lines at once and marks each line as palindrome or not." },
+      { q: "How does real-time checking work?", a: "When real-time mode is enabled, the checker automatically updates results while you type so you do not need to click check repeatedly." },
+      { q: "What does the similarity score mean?", a: "Similarity shows how closely the cleaned text matches its reversed form, even when the input is not a perfect palindrome." },
+      { q: "Does this tool show cleaned and reversed text?", a: "Yes. The result panel shows original, cleaned, and reversed text so you can validate why a match passed or failed." },
+      { q: "Can I check numbers as part of palindrome logic?", a: "Yes. You can keep numbers or enable ignore-numbers depending on whether numeric characters should affect the result." },
+      { q: "Can I copy or download results?", a: "Yes. In single mode, you can copy a detailed report or download it as a TXT file for documentation and sharing." },
+      { q: "Is my text private when using this tool?", a: "Yes. Processing is done in your browser, so your input is not sent to external servers." },
+    ],
   },
 };
