@@ -34,7 +34,7 @@ export const tools: Tool[] = [
   { slug: "jpg-to-pdf", name: "JPG to PDF Converter", description: "Combine JPG, PNG, WebP and HEIC images into one PDF.", category: "pdf", icon: "📄", free: true },
   { slug: "merge-pdf", name: "Merge PDF", description: "Combine PDF files into one, in any order.", category: "pdf", icon: "📑", free: true },
   { slug: "split-pdf", name: "Split PDF", description: "Split a PDF, extract pages or delete pages.", category: "pdf", icon: "✂️", free: true },
-  { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "Convert HEX, RGB, RGBA, and HSL color formats instantly.", category: "design", icon: "🎨", free: true },
+  { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "Convert HEX to RGB and RGB to HEX, with the math shown step by step.", category: "design", icon: "🎨", free: true },
   { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate harmony-based palettes with export and contrast checks.", category: "design", icon: "🌈", free: true },
   { slug: "favicon-generator", name: "Favicon Generator", description: "Resize image to 16×16 or 32×32 for web.", category: "image", icon: "🌐", free: true },
   
@@ -194,7 +194,7 @@ export const tools: Tool[] = [
   { slug: "celsius-to-fahrenheit-converter", name: "Celsius to Fahrenheit Converter", description: "Convert °C to °F and back with the formula and a chart.", category: "calculator", icon: "🌡️", free: true },
   { slug: "temperature-conversion-scientific", name: "Temperature Conversion (Scientific)", description: "Kelvin, Celsius, Fahrenheit, Rankine.", category: "calculator", icon: "🌡️", free: true },
   // Niche & Advanced Utilities (New)
-  { slug: "hex-to-rgba-converter", name: "Hex-to-RGBA Converter", description: "Adds an alpha channel slider.", category: "design", icon: "🎨", free: true },
+  { slug: "hex-to-rgba-converter", name: "Hex-to-RGBA Converter", description: "Add opacity to a HEX color: rgba(), 8-digit HEX and Android #AARRGGBB.", category: "design", icon: "🎨", free: true },
   
   // Advanced Developer Productivity (New)
   

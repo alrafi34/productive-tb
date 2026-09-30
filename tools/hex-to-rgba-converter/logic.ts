@@ -2,24 +2,24 @@ import { RGBAColor, HSLAColor, ColorShade, OpacityStep } from "./types";
 
 // Validate HEX color
 export function isValidHex(hex: string): boolean {
-  const cleaned = hex.replace('#', '');
-  return /^[0-9A-F]{3}$|^[0-9A-F]{6}$|^[0-9A-F]{8}$/i.test(cleaned);
+  const cleaned = hex.trim().replace(/^#/, '');
+  return /^[0-9A-F]{3}$|^[0-9A-F]{4}$|^[0-9A-F]{6}$|^[0-9A-F]{8}$/i.test(cleaned);
 }
 
 // Convert HEX to RGBA
 export function hexToRgba(hex: string, alpha: number = 1): RGBAColor | null {
   if (!isValidHex(hex)) return null;
   
-  let h = hex.replace('#', '');
+  let h = hex.trim().replace(/^#/, '');
   
-  // Convert 3-digit to 6-digit
-  if (h.length === 3) {
+  // Convert #RGB / #RGBA shorthand to #RRGGBB / #RRGGBBAA
+  if (h.length === 3 || h.length === 4) {
     h = h.split('').map(c => c + c).join('');
   }
   
-  // Extract alpha from 8-digit hex
+  // Extract alpha from 8-digit hex, rounded to two decimals (80 → 0.5)
   if (h.length === 8) {
-    alpha = parseInt(h.substring(6, 8), 16) / 255;
+    alpha = roundAlpha(parseInt(h.substring(6, 8), 16) / 255);
     h = h.substring(0, 6);
   }
   
@@ -35,11 +35,40 @@ export function rgbaToHex(rgba: RGBAColor, includeAlpha: boolean = false): strin
   const toHex = (n: number) => Math.max(0, Math.min(255, Math.round(n))).toString(16).padStart(2, '0');
   const hex = '#' + toHex(rgba.r) + toHex(rgba.g) + toHex(rgba.b);
   
-  if (includeAlpha && rgba.a < 1) {
-    return hex + toHex(rgba.a * 255);
+  if (includeAlpha) {
+    return (hex + toHex(rgba.a * 255)).toUpperCase();
   }
   
   return hex.toUpperCase();
+}
+
+export function roundAlpha(a: number): number {
+  return Math.round(a * 100) / 100;
+}
+
+/** Whether the typed HEX code carries its own alpha (#RGBA or #RRGGBBAA) */
+export function hexHasAlpha(hex: string): boolean {
+  return /^([0-9A-F]{4}|[0-9A-F]{8})$/i.test(hex.trim().replace(/^#/, ''));
+}
+
+/** Android and .NET put alpha first: #AARRGGBB */
+export function formatArgbHex(rgba: RGBAColor): string {
+  const toHex = (n: number) => Math.max(0, Math.min(255, Math.round(n))).toString(16).padStart(2, '0');
+  return ('#' + toHex(rgba.a * 255) + toHex(rgba.r) + toHex(rgba.g) + toHex(rgba.b)).toUpperCase();
+}
+
+/** Modern CSS Color 4 syntax: rgb(52 152 219 / 50%) */
+export function formatCssRgbSlash(rgba: RGBAColor): string {
+  return `rgb(${rgba.r} ${rgba.g} ${rgba.b} / ${Math.round(rgba.a * 100)}%)`;
+}
+
+/**
+ * The solid color the semi-transparent color looks like over a solid background:
+ * result = alpha × color + (1 − alpha) × background, per channel.
+ */
+export function blendOver(rgba: RGBAColor, bg: { r: number; g: number; b: number }): string {
+  const mix = (c: number, b: number) => Math.round(rgba.a * c + (1 - rgba.a) * b);
+  return rgbaToHex({ r: mix(rgba.r, bg.r), g: mix(rgba.g, bg.g), b: mix(rgba.b, bg.b), a: 1 });
 }
 
 // Convert RGBA to HSLA

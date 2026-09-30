@@ -1,140 +1,80 @@
+import Link from "next/link";
+import ToolFaq from "@/components/ToolFaq";
+import { hexToRgbaConverterConfig } from "./config";
+
+const OPACITIES = [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0];
+const alphaHex = (pct: number) => Math.round((pct / 100) * 255).toString(16).padStart(2, "0").toUpperCase();
+
 export default function HexToRgbaConverterSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = hexToRgbaConverterConfig.seo;
+
+  const card = "mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8";
+  const h2 = "text-2xl font-semibold text-gray-900 mb-4";
+  const th = "text-left py-2 px-3 font-semibold text-gray-700";
+  const td = "py-1.5 px-3 font-mono text-xs text-gray-700";
+
   return (
-    <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          About HEX to RGBA Converter
-        </h2>
-        <p className="text-gray-700 leading-relaxed">
-          The HEX to RGBA Converter is a powerful, fast, and developer-friendly tool that converts HEX color codes 
-          into RGBA values with full alpha transparency control. Perfect for web designers, front-end developers, 
-          and UI/UX professionals who need precise color control with transparency.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Key Features
-        </h2>
-        <ul className="space-y-2 text-gray-700">
-          <li><strong>Instant Conversion:</strong> Convert HEX to RGBA in real-time with zero lag</li>
-          <li><strong>Alpha Transparency Slider:</strong> Smooth slider control from 0 to 1 with 0.01 precision</li>
-          <li><strong>Dual Preview Panels:</strong> See your color on solid and transparent backgrounds</li>
-          <li><strong>Multiple Output Formats:</strong> Get RGBA, RGB, HEX, HEX with Alpha, HSLA, and HSL</li>
-          <li><strong>Color Shade Generator:</strong> Automatically generate lighter and darker variations</li>
-          <li><strong>Opacity Scale:</strong> Full opacity scale from 100% to 0% for design systems</li>
-          <li><strong>Gradient Generator:</strong> Create transparent gradients for overlays and fades</li>
-          <li><strong>CSS Utilities:</strong> Generate ready-to-use CSS classes with opacity variants</li>
-          <li><strong>Smart Validation:</strong> Instant feedback for invalid HEX codes</li>
-          <li><strong>Local Storage:</strong> Automatically saves your last used color</li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          How to Use
-        </h2>
-        <ol className="space-y-2 text-gray-700 list-decimal list-inside">
-          <li>Enter a HEX color code (supports #RGB, #RRGGBB, or #RRGGBBAA formats)</li>
-          <li>Use the color picker for visual selection</li>
-          <li>Adjust the alpha transparency slider to control opacity</li>
-          <li>View live previews on solid and transparent backgrounds</li>
-          <li>Copy any output format with one click</li>
-          <li>Explore color shades, opacity scales, gradients, and CSS utilities in tabs</li>
-        </ol>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Supported HEX Formats
-        </h2>
-        <ul className="space-y-2 text-gray-700">
-          <li><strong>#RGB:</strong> 3-digit shorthand (e.g., #f00 = #ff0000)</li>
-          <li><strong>#RRGGBB:</strong> Standard 6-digit format (e.g., #3498db)</li>
-          <li><strong>#RRGGBBAA:</strong> 8-digit format with alpha channel (e.g., #3498dbcc)</li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Use Cases
-        </h2>
-        <ul className="space-y-2 text-gray-700">
-          <li><strong>Web Design:</strong> Create transparent overlays, modals, and UI elements</li>
-          <li><strong>CSS Development:</strong> Generate RGBA values for modern CSS properties</li>
-          <li><strong>Design Systems:</strong> Build consistent opacity scales for brand colors</li>
-          <li><strong>UI/UX:</strong> Test color accessibility and contrast with transparency</li>
-          <li><strong>Gradient Design:</strong> Create smooth transparent gradients for hero sections</li>
-          <li><strong>Utility Classes:</strong> Generate Tailwind-style CSS utilities for projects</li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Why Use RGBA?
-        </h2>
-        <p className="text-gray-700 leading-relaxed mb-3">
-          RGBA (Red, Green, Blue, Alpha) is a CSS color format that extends RGB by adding an alpha channel 
-          for transparency control. Unlike opacity which affects the entire element, RGBA only affects the 
-          color itself, making it perfect for:
-        </p>
-        <ul className="space-y-2 text-gray-700">
-          <li>Transparent backgrounds without affecting text</li>
-          <li>Layered UI elements with precise opacity</li>
-          <li>Smooth color transitions and gradients</li>
-          <li>Modern glassmorphism and neumorphism effects</li>
-          <li>Accessible design with proper contrast ratios</li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Advanced Features
-        </h2>
-        <div className="space-y-4 text-gray-700">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Color Shade Generator</h3>
-            <p>Automatically generates 20% lighter, 10% lighter, 10% darker, and 20% darker variations 
-            of your color, perfect for hover states and UI variations.</p>
+    <>
+      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>HEX, RGBA and the Alpha Channel</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>RGBA is RGB plus a fourth value, alpha, which sets how opaque the color is: 1 is solid, 0 is invisible and 0.5 lets half of the background show through. The same transparency can be written several ways, depending on where the color is used:</p>
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 font-mono text-sm text-gray-900 space-y-2">
+            <p>rgba(52, 152, 219, 0.5)&nbsp;&nbsp;&nbsp;&nbsp;CSS, all browsers</p>
+            <p>rgb(52 152 219 / 50%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modern CSS</p>
+            <p>#3498DB80&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSS, Figma (#RRGGBBAA)</p>
+            <p>#803498DB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Android, .NET (#AARRGGBB)</p>
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Opacity Scale</h3>
-            <p>Creates a complete opacity scale from 100% to 0% in 10% increments, ideal for building 
-            design systems and maintaining consistency across projects.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Transparent Gradient</h3>
-            <p>Generates CSS linear gradients that fade from solid to transparent, commonly used for 
-            image overlays, hero sections, and fade effects.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">CSS Utility Generator</h3>
-            <p>Creates ready-to-use CSS utility classes for background, text, and border colors with 
-            opacity variants (100, 90, 80, 70, 60, 50, 40, 30, 20, 10).</p>
-          </div>
+          <p>Only the color itself becomes transparent. Text inside an element with an rgba() background stays fully solid, unlike the CSS <code>opacity</code> property, which fades everything in the element.</p>
         </div>
       </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Performance & Privacy
-        </h2>
-        <p className="text-gray-700 leading-relaxed">
-          This tool runs entirely in your browser using vanilla JavaScript. No data is sent to any server, 
-          ensuring complete privacy. All calculations happen instantly on your device with zero lag, even 
-          on low-end hardware. The tool uses local storage only to save your last used color for convenience.
-        </p>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Opacity to HEX Alpha Chart</h2>
+        <p className="text-gray-600 leading-relaxed mb-4">Add these two digits after a six-digit HEX code (or before it on Android). Each is the opacity × 255, rounded and written in hex.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead><tr className="border-b-2 border-gray-200"><th className={th}>Opacity</th><th className={th}>Alpha (0–1)</th><th className={th}>HEX digits</th><th className={th}>Example (CSS)</th></tr></thead>
+            <tbody className="divide-y divide-gray-100">
+              {OPACITIES.map((pct) => (
+                <tr key={pct} className="hover:bg-gray-50">
+                  <td className={td}>{pct}%</td>
+                  <td className={td}>{pct / 100}</td>
+                  <td className={td}>{alphaHex(pct)}</td>
+                  <td className={td}>#3498DB{alphaHex(pct)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          Browser Compatibility
-        </h2>
-        <p className="text-gray-700 leading-relaxed">
-          RGBA colors are supported in all modern browsers including Chrome, Firefox, Safari, Edge, and Opera. 
-          The format has been part of the CSS3 specification since 2011 and is widely used in production websites.
-        </p>
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>The Solid Color Behind a Transparent One</h2>
+        <div className="space-y-3 text-gray-600 leading-relaxed">
+          <p>A transparent color looks different on every background. Over a solid background, each channel mixes as:</p>
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 font-mono text-sm text-gray-900">
+            result = alpha × color + (1 − alpha) × background
+          </div>
+          <p>For rgba(52, 152, 219, 0.5) over white, red is 0.5 × 52 + 0.5 × 255 ≈ 154, which gives #9ACCED. The converter shows this solid equivalent for white and black backgrounds, which is useful for email templates, PDFs and design tools that flatten transparency.</p>
+          <p>For plain HEX to RGB without transparency, with the working shown, use the <Link href="/tools/design/hex-to-rgb-converter" className="text-primary underline">HEX to RGB converter</Link>; for HSV, CMYK or CSS color names, the <Link href="/tools/design/color-format-converter" className="text-primary underline">color format converter</Link>.</p>
+        </div>
       </section>
-    </div>
+
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>How to Use the HEX to RGBA Converter</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name, text }, i) => (
+            <li key={name} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{name}:</strong> {text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <ToolFaq items={faq} />
+    </>
   );
 }
