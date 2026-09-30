@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { randomIDGeneratorConfig } from "./config";
 
 export default function RandomIDGeneratorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = randomIDGeneratorConfig.seo;
   return (
     <div className="mt-12 space-y-8 max-w-4xl mx-auto">
       <section className="space-y-4">
@@ -203,6 +206,7 @@ export default function RandomIDGeneratorSEOContent() {
           </div>
         </div>
       </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

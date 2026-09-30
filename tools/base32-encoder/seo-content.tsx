@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { base32EncoderConfig } from "./config";
+
 import React from 'react';
 
 export default function Base32EncoderSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = base32EncoderConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 px-4">
       <div className="prose prose-gray max-w-none">
@@ -83,6 +88,7 @@ export default function Base32EncoderSEOContent() {
           </p>
         </div>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

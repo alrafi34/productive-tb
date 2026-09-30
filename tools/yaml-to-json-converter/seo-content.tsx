@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function YAMLToJSONSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="mt-12 space-y-8 text-gray-700">
       <section>
@@ -111,6 +116,7 @@ database:
           <li>Use minified JSON for production APIs</li>
         </ul>
       </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

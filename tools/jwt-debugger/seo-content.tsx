@@ -1,6 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
 import { toolConfig } from "./config";
 
 export default function JWTDebuggerSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 text-gray-700">
       <div className="prose prose-sm max-w-none">
@@ -100,6 +103,7 @@ export default function JWTDebuggerSEOContent() {
           <li>Copy decoded sections for documentation or debugging</li>
         </ul>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

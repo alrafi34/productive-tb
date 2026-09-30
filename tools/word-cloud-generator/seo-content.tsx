@@ -1,6 +1,12 @@
 "use client";
 
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
+
 export default function WordCloudGeneratorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="max-w-3xl mx-auto mt-12 space-y-8 text-gray-700">
       <section>
@@ -64,6 +70,7 @@ export default function WordCloudGeneratorSEOContent() {
           Your text is processed entirely in your browser. No data is sent to any server, ensuring complete privacy and security. You can safely analyze sensitive documents without worrying about data exposure.
         </p>
       </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

@@ -31,7 +31,14 @@ export const toolConfig = {
       description: "Fast, free pie chart maker. Create and customize pie charts instantly in your browser. Export as PNG or SVG.",
       type: "website",
       url: "/tools/pie-chart-maker"
-    }
+    },
+    faq: [
+      { q: "How are pie chart percentages calculated?", a: "Each slice's share is its value divided by the total, times 100. For values 40, 35 and 25 the total is 100, so the slices are 40%, 35% and 25%, covering 144°, 126° and 90° of the circle." },
+      { q: "Can I import data from a spreadsheet?", a: "Yes. Paste or import CSV with a label and a value on each row, and the chart updates with one slice per row." },
+      { q: "Which export formats are supported?", a: "PNG for documents and slides, SVG for crisp scaling on the web and in design tools, and CSV for the underlying data." },
+      { q: "When should I not use a pie chart?", a: "When there are more than about 5–7 categories, when the values are close to each other, or when you want to compare changes over time. A bar chart is easier to read in those cases." },
+      { q: "Is my data saved?", a: "Yes, the chart data is stored in your browser so it is still there when you return. Nothing is uploaded." },
+    ],
   },
   features: [
     "Dynamic pie chart rendering with SVG",
