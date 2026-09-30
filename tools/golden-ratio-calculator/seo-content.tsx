@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { goldenRatioCalculatorConfig } from "./config";
+
 import React from 'react';
 
 export default function GoldenRatioCalculatorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = goldenRatioCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 text-slate-700" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Introduction */}
@@ -285,49 +290,7 @@ export default function GoldenRatioCalculatorSEOContent() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Why is the golden ratio considered aesthetically pleasing?</h3>
-            <p className="text-sm">
-              The golden ratio creates proportions that feel naturally balanced and harmonious. It appears throughout nature, 
-              and humans have evolved to find these proportions visually appealing.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Should I use golden ratio for all my designs?</h3>
-            <p className="text-sm">
-              No. The golden ratio is a helpful guideline, not a strict rule. Use it where it makes sense, but prioritize 
-              usability, accessibility, and your specific design requirements.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">How do I apply golden ratio to responsive design?</h3>
-            <p className="text-sm">
-              Use CSS Grid with fr units (1.618fr and 1fr) or Flexbox with flex values. These scale proportionally across 
-              different screen sizes while maintaining the golden ratio.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Can I use golden ratio for mobile layouts?</h3>
-            <p className="text-sm">
-              Yes, but consider stacking elements vertically on mobile instead of side-by-side. Apply golden ratio to 
-              vertical spacing, typography scales, and component sizing.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">What's the difference between golden ratio and rule of thirds?</h3>
-            <p className="text-sm">
-              Rule of thirds divides space into equal thirds (33.3% each), while golden ratio uses 61.8% and 38.2%. 
-              Golden ratio is more precise and creates slightly different visual balance.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* Footer Note */}
       <section className="pt-6 border-t border-slate-200">

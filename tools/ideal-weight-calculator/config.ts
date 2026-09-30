@@ -35,7 +35,27 @@ export const toolConfig = {
       description: "Calculate ideal body weight with multi-formula comparison, unit conversion, and healthy range interpretation.",
       type: "website",
       url: "/tools/ideal-weight-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Choose your preferred unit system", text: "Choose your preferred unit system: metric or imperial." },
+      { name: "Enter your height in cm or ft/in", text: "Enter your height in cm or ft/in." },
+      { name: "Select your gender", text: "Select your gender." },
+      { name: "Optionally enter your current weight", text: "Optionally enter your current weight." },
+      { name: "Select a formula", text: "Select a formula (Devine, Robinson, Miller, or Broca)." },
+      { name: "Review ideal weight values and formula comparison cards", text: "Review ideal weight values and formula comparison cards." },
+      { name: "Copy the selected result or full breakdown for tracking", text: "Copy the selected result or full breakdown for tracking." },
+    ],
+    faq: [
+      { q: "What does an ideal weight calculator do?", a: "An ideal weight calculator estimates a healthy target weight based on height and gender using established formulas. It helps you compare multiple methods quickly." },
+      { q: "Which formulas are used in this ideal weight calculator?", a: "This calculator uses Devine, Robinson, Miller, and Broca methods so you can compare different clinically used and practical estimation approaches in one place." },
+      { q: "Why are formula results slightly different from each other?", a: "Each formula is built from different assumptions and datasets. Slight variation is expected and useful for understanding a realistic target range instead of one fixed number." },
+      { q: "Can I use imperial units like feet and pounds?", a: "Yes. The tool supports metric and imperial unit systems and converts values instantly without requiring manual conversion." },
+      { q: "Does this calculator provide medical diagnosis?", a: "No. It provides educational and planning estimates. For diagnosis or treatment decisions, consult a licensed healthcare professional." },
+      { q: "Can athletes or muscular people rely only on ideal weight formulas?", a: "Not always. High muscle mass, body composition, and sport-specific factors can make formula-only interpretation less reliable. Use these estimates with broader health context." },
+      { q: "What is the healthy weight range in this calculator?", a: "The range is the weight that gives a body mass index (BMI) of 18.5 to 24.9, the World Health Organization's healthy band: 18.5 × height² to 24.9 × height², with height in meters. For 1.75 m that is about 56.7 to 76.3 kg (125 to 168 lb)." },
+      { q: "Can I compare my current weight to the calculated healthy range?", a: "Yes. If you enter current weight, the calculator labels whether you are below, within, or above the healthy range based on the BMI 18.5–24.9 range." },
+      { q: "Is my data stored online?", a: "No. Calculations run in your browser and no personal health data is sent to external servers by this tool." },
+    ],
   },
   features: [
     "Calculate ideal body weight using Devine, Robinson, Miller, and Broca formulas",

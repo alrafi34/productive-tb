@@ -1,80 +1,12 @@
-const faqItems = [
-  {
-    question: "What is a Unix timestamp?",
-    answer:
-      "A Unix timestamp is the number of seconds since 00:00:00 UTC on January 1, 1970. Some systems store the same value in milliseconds for higher precision.",
-  },
-  {
-    question: "How does this converter detect seconds vs milliseconds?",
-    answer:
-      "Numeric inputs with up to 11 digits are treated as seconds, and longer numeric inputs are treated as milliseconds. This avoids manual mode switching for common developer workflows.",
-  },
-  {
-    question: "Can I convert dates to Unix timestamps too?",
-    answer:
-      "Yes. The date-to-Unix mode accepts standard date strings and returns both Unix seconds and Unix milliseconds instantly.",
-  },
-  {
-    question: "Why is this better than many basic timestamp converters?",
-    answer:
-      "Many tools only do one-way conversion. This page includes four workflows in one place: Unix to date, date to Unix, timestamp difference, and batch conversion with multiple output formats.",
-  },
-  {
-    question: "Does this tool support timezone checks?",
-    answer:
-      "Yes. It shows timezone views for UTC, GMT, New York, London, Tokyo, and Sydney so you can validate cross-region logs and schedules quickly.",
-  },
-  {
-    question: "Is my data uploaded to a server?",
-    answer:
-      "No. Conversions run in your browser, so your timestamp inputs and date values are not sent to a backend for processing.",
-  },
-];
-
-const howToSteps = [
-  "Choose a mode: Unix to Date, Date to Unix, Compare Difference, or Batch Convert.",
-  "Paste your timestamp or date input.",
-  "Review converted values including UTC/local formats and developer-friendly outputs.",
-  "Copy Unix seconds, milliseconds, ISO 8601, RFC 2822, or timezone values as needed.",
-  "Use batch mode for multiple rows or compare mode to calculate exact time differences.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 export default function UnixTimestampConverterSEO() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the Unix Timestamp Converter",
-    description:
-      "Convert Unix timestamps to readable date formats, parse dates to Unix seconds and milliseconds, and compare timestamp differences.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
@@ -208,22 +140,18 @@ export default function UnixTimestampConverterSEO() {
       </section>
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map((item) => (
-            <div key={item.question}>
-              <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                {item.question}
-              </h3>
-              <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                {item.answer}
-              </p>
-            </div>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Unix Timestamp Converter</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ text }, i) => (
+            <li key={text} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span>{text}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
+
+      <ToolFaq items={faq} />
     </>
   );
 }

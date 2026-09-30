@@ -1,64 +1,5 @@
-const faqItems = [
-  {
-    question: "What does a body fat calculator measure?",
-    answer:
-      "A body fat calculator estimates the percentage of your total body weight that comes from fat mass. It gives a better composition signal than weight alone.",
-  },
-  {
-    question: "Which methods are available in this body fat calculator?",
-    answer:
-      "This tool supports both the US Navy method (measurement-based) and a BMI-based body fat estimate, so you can compare two common approaches in one place.",
-  },
-  {
-    question: "Why can US Navy and BMI body fat results differ?",
-    answer:
-      "The methods rely on different inputs and assumptions. Navy focuses on circumference measurements, while BMI-based estimates use height, weight, age, and sex.",
-  },
-  {
-    question: "Is the US Navy method more useful than BMI-only checks?",
-    answer:
-      "For many users, yes. Navy can capture body-shape differences through waist/neck/hip measurements, which BMI alone does not directly include.",
-  },
-  {
-    question: "Can I use metric and imperial units?",
-    answer:
-      "Yes. You can switch between metric and imperial units instantly, and this calculator converts values without requiring manual conversion.",
-  },
-  {
-    question: "Is this tool suitable for men and women?",
-    answer:
-      "Yes. The formulas include gender-specific handling and thresholds, and the interface adapts required inputs accordingly.",
-  },
-  {
-    question: "How accurate is an online body fat calculator compared with DEXA?",
-    answer:
-      "Online calculators provide practical estimates, not clinical-grade precision. DEXA and lab assessments are generally more accurate for medical use.",
-  },
-  {
-    question: "Can I save and track results over time?",
-    answer:
-      "Yes. You can save entries in local browser history and compare progress across dates and methods.",
-  },
-  {
-    question: "Does this body fat calculator store my personal data on a server?",
-    answer:
-      "No. Calculations and saved history are handled in your browser for local use.",
-  },
-  {
-    question: "Can this calculator replace medical advice?",
-    answer:
-      "No. It is a planning and educational tool. For diagnosis or treatment decisions, consult a qualified healthcare professional.",
-  },
-];
-
-const howToSteps = [
-  "Select your unit system (metric or imperial).",
-  "Choose gender and method (US Navy or BMI).",
-  "Enter required measurements (waist/neck/hip/height for Navy, or weight/height/age for BMI).",
-  "Review your estimated body fat percentage and category.",
-  "Copy the result or full summary when needed.",
-  "Save entries in history to track body composition trends.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -124,41 +65,11 @@ const mistakesToAvoid = [
 ];
 
 export default function BodyFatCalculatorSEO() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the body fat calculator",
-    description:
-      "Estimate body fat percentage using US Navy and BMI methods with metric or imperial inputs.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -202,7 +113,7 @@ export default function BodyFatCalculatorSEO() {
             How to Use the Body Fat Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -256,23 +167,7 @@ export default function BodyFatCalculatorSEO() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

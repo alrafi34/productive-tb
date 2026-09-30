@@ -24,7 +24,15 @@ export const toolConfig = {
       description: "Calculate your daily calorie requirements for weight maintenance, loss, or gain with personalized recommendations.",
       type: "website",
       url: "/tools/daily-calorie-calculator"
-    }
+    },
+    faq: [
+      { q: "What is a daily calorie calculator?", a: "It is a tool that estimates your daily calorie needs for goals like fat loss, maintenance, or weight gain based on your profile and activity level." },
+      { q: "What is the difference between BMR and TDEE?", a: "BMR reflects calories needed at complete rest. TDEE includes your total daily activity and is more useful for setting calorie intake." },
+      { q: "How many calories should I cut to lose weight?", a: "A deficit of about 250 to 500 calories per day is common for steady progress. Aggressive deficits can work short-term but may be harder to sustain." },
+      { q: "Does this tool also estimate macros?", a: "Yes. It calculates protein, carbs, and fats in both calories and grams to make your nutrition target easier to execute." },
+      { q: "Is my data private?", a: "Calculations run in-browser. Saved history is kept in local storage on your device and can be cleared at any time." },
+      { q: "Is this tool enough for medical nutrition planning?", a: "No. Use it as a baseline estimator. For medical or therapeutic plans, work with a licensed professional." },
+    ],
   },
   features: [
     "Calculate Total Daily Energy Expenditure (TDEE) using Mifflin-St Jeor equation",

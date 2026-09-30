@@ -31,7 +31,14 @@ export const goldenRatioCalculatorConfig = {
       description: "Calculate perfect proportions using the golden ratio for design, typography, and layouts.",
       type: "website",
       url: "/golden-ratio-calculator"
-    }
+    },
+    faq: [
+      { q: "Is the golden ratio really more pleasing to the eye?", a: "It is widely used in design because 1:1.618 gives a balanced but non-symmetric split, and it is easy to repeat at every scale. Claims that people are naturally drawn to it are weaker than often stated: studies of preferences for golden rectangles have produced mixed results." },
+      { q: "Should I use golden ratio for all my designs?", a: "No. The golden ratio is a helpful guideline, not a strict rule. Use it where it makes sense, but prioritize usability, accessibility, and your specific design requirements." },
+      { q: "How do I apply golden ratio to responsive design?", a: "Use CSS Grid with fr units (1.618fr and 1fr) or Flexbox with flex values. These scale proportionally across different screen sizes while maintaining the golden ratio." },
+      { q: "Can I use golden ratio for mobile layouts?", a: "Yes, but consider stacking elements vertically on mobile instead of side-by-side. Apply golden ratio to vertical spacing, typography scales, and component sizing." },
+      { q: "What's the difference between the golden ratio and the rule of thirds?", a: "The rule of thirds places guide lines at 33.3% and 66.7% of the frame; the golden ratio places them at 38.2% and 61.8%. The golden ratio lines sit closer to the center, which gives a slightly tighter composition." },
+    ],
   },
   features: [
     "Forward and reverse calculations",

@@ -1,65 +1,5 @@
-const faqItems = [
-  {
-    question: "What is ROI in simple terms?",
-    answer:
-      "ROI (Return on Investment) shows how much you gained or lost compared with your original investment. A positive ROI means profit, and a negative ROI means loss.",
-  },
-  {
-    question: "What formula does this investment return calculator use?",
-    answer:
-      "The calculator uses ROI = ((Current Value - Initial Investment) / Initial Investment) * 100. It also shows the absolute gain or loss amount in your selected currency.",
-  },
-  {
-    question: "Can I use this tool as a stock ROI calculator?",
-    answer:
-      "Yes. Enter the amount you originally invested in a stock and its current value. The tool instantly returns your gain/loss and ROI percentage.",
-  },
-  {
-    question: "Can I calculate crypto investment returns with this calculator?",
-    answer:
-      "Yes. It works for crypto, ETFs, mutual funds, real estate estimates, and business project returns, as long as you can define initial and current values.",
-  },
-  {
-    question: "Why does this ROI result differ from annual return percentages?",
-    answer:
-      "Standard ROI does not include time. Enter the holding period in years to also see the annualized return (CAGR): ((current ÷ initial)^(1 ÷ years) − 1) × 100. A 50% gain over 3 years is about 14.5% a year.",
-  },
-  {
-    question: "Is this calculator better than basic ROI tools online?",
-    answer:
-      "This page combines real-time calculation, precision control, quick scenarios, copy-ready summary, and local history with CSV export, which many basic tools do not provide together.",
-  },
-  {
-    question: "Is my data private when using this ROI calculator?",
-    answer:
-      "Yes. Calculations run in your browser, and saved history is stored locally on your device. You can clear history at any time.",
-  },
-  {
-    question: "Do I need to sign up to use this free ROI calculator?",
-    answer:
-      "No sign-up is required for standard use. You can calculate unlimited investment returns directly on the page.",
-  },
-  {
-    question: "How do I compare multiple investment opportunities quickly?",
-    answer:
-      "Run multiple scenarios one after another, save each result in history, and export CSV for side-by-side review in a spreadsheet.",
-  },
-  {
-    question: "What is considered a good ROI percentage?",
-    answer:
-      "A good ROI depends on risk, market conditions, and holding period. Use ROI as one decision input alongside volatility, fees, taxes, and time horizon.",
-  },
-];
-
-const howToSteps = [
-  "Enter your initial investment amount (the capital you put in).",
-  "Enter your current value (what the investment is worth now).",
-  "Select your preferred currency symbol.",
-  "Choose decimal precision for output formatting.",
-  "Review gain/loss amount and ROI percentage instantly.",
-  "Copy summary text or save the scenario in local history.",
-  "Download CSV when you want a report of multiple scenarios.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -122,41 +62,11 @@ const mistakesToAvoid = [
 ];
 
 export default function ToolSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the investment return ROI calculator",
-    description:
-      "Calculate gain/loss and return on investment percentage from initial investment and current value.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -203,7 +113,7 @@ export default function ToolSEOContent() {
             How to Use the Investment ROI Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -323,23 +233,7 @@ ROI (%) = (Gain/Loss / Initial Investment) * 100`}
           </div>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

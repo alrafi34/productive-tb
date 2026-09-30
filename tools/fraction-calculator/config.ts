@@ -37,7 +37,22 @@ export const fractionCalculatorConfig = {
       description: "Perform fraction operations with simplification, mixed numbers, decimals, and optional step-by-step output.",
       type: "website",
       url: "/tools/fraction-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Enter numerator and denominator for Fraction A", text: "Enter numerator and denominator for Fraction A." },
+      { name: "Enter numerator and denominator for Fraction B", text: "Enter numerator and denominator for Fraction B." },
+      { name: "Choose add", text: "Choose add, subtract, multiply, or divide." },
+      { name: "Review simplified fraction", text: "Review simplified fraction, mixed number, and decimal output." },
+      { name: "Turn on steps", text: "Turn on steps, copy result text, or reuse values from history." },
+    ],
+    faq: [
+      { q: "How do I add fractions with different denominators?", a: "The calculator finds a common denominator, adjusts each numerator, adds the values, and then simplifies the final fraction automatically." },
+      { q: "Can this tool simplify fractions to lowest terms?", a: "Yes. Every result is reduced using a greatest common divisor method, so you get a clean simplified answer by default." },
+      { q: "Does it convert improper fractions to mixed numbers?", a: "Yes. When the result is improper, the tool also shows a mixed number view so the output is easier to read and use in classwork or real-world tasks." },
+      { q: "Can I see decimal values from fraction results?", a: "Yes. The result panel can display a decimal form alongside the fraction and mixed number, useful for conversion and quick comparison." },
+      { q: "Does this fraction calculator show step-by-step math?", a: "Yes. Enable the steps option to see each operation line, including intermediate expressions and simplification." },
+      { q: "Is the calculator free and private?", a: "Yes. It is free to use and calculations run in your browser, so your numbers stay on your device while you work." },
+    ],
   },
   features: [
     "Add, subtract, multiply, and divide fractions",

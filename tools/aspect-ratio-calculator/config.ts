@@ -41,7 +41,15 @@ export const aspectRatioCalculatorConfig = {
       description: "Calculate dimensions, visualize ratios, and generate responsive CSS instantly in your browser.",
       type: "website",
       url: "/aspect-ratio-calculator"
-    }
+    },
+    faq: [
+      { q: "What is the most common video aspect ratio?", a: "16:9 is the most common standard for modern video playback across web, streaming, and presentation contexts." },
+      { q: "How do I calculate height from width and ratio?", a: "Use Height = (Width x Ratio Height) / Ratio Width. This calculator does it instantly and updates all related outputs." },
+      { q: "Can this tool simplify ratios automatically?", a: "Yes. Enter dimensions like 3840 x 2160 and the tool simplifies to 16:9 automatically." },
+      { q: "What aspect ratio is 1920 × 1080?", a: "16:9. Divide both numbers by their greatest common divisor, 120, to get 16 and 9. 1280 × 720, 2560 × 1440 and 3840 × 2160 (4K) are 16:9 as well." },
+      { q: "Can I use this for responsive web design?", a: "Yes. Use generated CSS to maintain consistent media blocks and reduce layout shift on different screen sizes." },
+      { q: "Does image upload help detect unknown ratios?", a: "Yes. Upload any image and the tool reads dimensions and calculated ratio so you can resize accurately." },
+    ],
   },
   features: [
     "Auto-calculate width, height, or ratio",

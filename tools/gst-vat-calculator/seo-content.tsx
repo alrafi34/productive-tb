@@ -1,65 +1,5 @@
-const faqItems = [
-  {
-    question: "What does a GST/VAT calculator do?",
-    answer:
-      "A GST/VAT calculator helps you add tax to a base amount or remove tax from a tax-inclusive amount. It shows base price, tax amount, and final price instantly.",
-  },
-  {
-    question: "What is the formula to add GST or VAT?",
-    answer:
-      "To add tax: Final Price = Base Price * (1 + Tax Rate/100). Tax Amount = Base Price * (Tax Rate/100).",
-  },
-  {
-    question: "What is the formula to remove GST or VAT?",
-    answer:
-      "To remove tax from a tax-inclusive amount: Base Price = Final Price / (1 + Tax Rate/100). Tax Amount = Final Price - Base Price.",
-  },
-  {
-    question: "Can I use this for both GST and VAT?",
-    answer:
-      "Yes. The mathematics is the same for inclusive and exclusive tax calculations. You can use this tool for GST, VAT, and similar percentage-based consumption taxes.",
-  },
-  {
-    question: "Does this calculator support custom tax rates?",
-    answer:
-      "Yes. You can enter any tax rate manually and also use quick buttons for common VAT and GST rates.",
-  },
-  {
-    question: "Why is this GST/VAT calculator better than many basic calculators?",
-    answer:
-      "This page combines real-time add/remove modes, predefined and custom rates, precision control, copy/export, and local history in one workflow.",
-  },
-  {
-    question: "Can I export calculations for accounting records?",
-    answer:
-      "Yes. You can export the current calculation to CSV and keep a local calculation history for repeated tax checks.",
-  },
-  {
-    question: "Are these calculations tax-compliance advice?",
-    answer:
-      "No. This tool is for accurate arithmetic conversion. Always verify legal tax treatment, exemptions, and jurisdiction-specific rules with official guidance.",
-  },
-  {
-    question: "Is my calculation data private?",
-    answer:
-      "Yes. Calculations run in your browser and local history is stored on your device. You can clear history anytime.",
-  },
-  {
-    question: "What should I input in Add vs Remove mode?",
-    answer:
-      "In Add mode, input the tax-exclusive base amount. In Remove mode, input the tax-inclusive final amount.",
-  },
-];
-
-const howToSteps = [
-  "Enter the price amount.",
-  "Enter or select the GST/VAT rate.",
-  "Choose Add Tax or Remove Tax mode.",
-  "Review base amount, tax amount, and final amount instantly.",
-  "Adjust decimal precision if required.",
-  "Copy, save, or export the calculation as needed.",
-  "Use history to reload previous scenarios quickly.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -122,41 +62,11 @@ const mistakesToAvoid = [
 ];
 
 export default function ToolSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the GST VAT calculator",
-    description:
-      "Add or remove GST/VAT from prices using custom or predefined tax rates.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -201,7 +111,7 @@ export default function ToolSEOContent() {
             How to Use the GST / VAT Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -283,23 +193,7 @@ Tax Amount = Final Price - Base Price`}
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

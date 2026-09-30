@@ -1,64 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a scientific calculator used for?",
-    answer:
-      "A scientific calculator handles advanced operations such as trigonometry, logarithms, powers, roots, and expression evaluation beyond basic arithmetic.",
-  },
-  {
-    question: "Does this calculator support degrees and radians?",
-    answer:
-      "Yes. You can switch between DEG and RAD modes for trigonometric and inverse-trigonometric calculations.",
-  },
-  {
-    question: "Which scientific functions are included?",
-    answer:
-      "The calculator includes sin, cos, tan, asin, acos, atan, log, ln, square root, powers, constants like pi and e, and factorial.",
-  },
-  {
-    question: "Can I calculate nested expressions with parentheses?",
-    answer:
-      "Yes. You can build expressions using parentheses and operators, then evaluate the complete formula in one step.",
-  },
-  {
-    question: "How is this better than very basic online calculators?",
-    answer:
-      "This tool combines scientific functions, angle mode control, memory operations, keyboard shortcuts, local history, and export in one workflow.",
-  },
-  {
-    question: "Does it keep calculation history?",
-    answer:
-      "Yes. The calculator stores history in your browser so you can review and reuse previous expressions quickly.",
-  },
-  {
-    question: "Can I use keyboard shortcuts?",
-    answer:
-      "Yes. Numeric keys, arithmetic operators, Enter, Escape, Backspace, and parentheses are supported for faster input.",
-  },
-  {
-    question: "Is my data sent to a server?",
-    answer:
-      "No. Calculations run client-side in your browser and history is stored locally on your device.",
-  },
-  {
-    question: "Can I export my history?",
-    answer:
-      "Yes. You can export your calculation history as JSON for backup, review, or workflow reuse.",
-  },
-  {
-    question: "Is this suitable for students and engineers?",
-    answer:
-      "Yes. It is useful for students, engineers, developers, and professionals who need quick scientific math operations without installing extra software.",
-  },
-];
-
-const howToSteps = [
-  "Select the angle mode (DEG or RAD).",
-  "Enter numbers, operators, and scientific functions.",
-  "Use parentheses for grouped expressions when needed.",
-  "Press equals to evaluate the full expression.",
-  "Use memory and history features for repeated calculations.",
-  "Copy result or export history for documentation.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { scientificCalculatorConfig } from "./config";
 
 const strengths = [
   {
@@ -128,41 +69,11 @@ const useCases = [
 ];
 
 export default function ScientificCalculatorSEO() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the scientific calculator",
-    description:
-      "Evaluate scientific expressions using trigonometric, logarithmic, exponential, and memory features.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = scientificCalculatorConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -205,7 +116,7 @@ export default function ScientificCalculatorSEO() {
             How to Use the Scientific Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -259,23 +170,7 @@ export default function ScientificCalculatorSEO() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

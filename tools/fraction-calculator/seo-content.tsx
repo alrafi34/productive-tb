@@ -1,48 +1,5 @@
-const faqItems = [
-  {
-    question: "How do I add fractions with different denominators?",
-    answer:
-      "The calculator finds a common denominator, adjusts each numerator, adds the values, and then simplifies the final fraction automatically.",
-  },
-  {
-    question: "Can this tool simplify fractions to lowest terms?",
-    answer:
-      "Yes. Every result is reduced using a greatest common divisor method, so you get a clean simplified answer by default.",
-  },
-  {
-    question: "Does it convert improper fractions to mixed numbers?",
-    answer:
-      "Yes. When the result is improper, the tool also shows a mixed number view so the output is easier to read and use in classwork or real-world tasks.",
-  },
-  {
-    question: "Can I see decimal values from fraction results?",
-    answer:
-      "Yes. The result panel can display a decimal form alongside the fraction and mixed number, useful for conversion and quick comparison.",
-  },
-  {
-    question: "Does this fraction calculator show step-by-step math?",
-    answer:
-      "Yes. Enable the steps option to see each operation line, including intermediate expressions and simplification.",
-  },
-  {
-    question: "Why is this better than many basic fraction calculators?",
-    answer:
-      "Many tools only return one final number. This calculator combines simplified fraction, mixed number, decimal output, optional step view, history, and quick examples in one page.",
-  },
-  {
-    question: "Is the calculator free and private?",
-    answer:
-      "Yes. It is free to use and calculations run in your browser, so your numbers stay on your device while you work.",
-  },
-];
-
-const howToSteps = [
-  "Enter numerator and denominator for Fraction A.",
-  "Enter numerator and denominator for Fraction B.",
-  "Choose add, subtract, multiply, or divide.",
-  "Review simplified fraction, mixed number, and decimal output.",
-  "Turn on steps, copy result text, or reuse values from history.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { fractionCalculatorConfig } from "./config";
 
 const comparisonPoints = [
   {
@@ -64,41 +21,11 @@ const comparisonPoints = [
 ];
 
 export default function FractionCalculatorSEO() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use a fraction calculator online",
-    description:
-      "Calculate fraction addition, subtraction, multiplication, and division with simplification, mixed numbers, and decimal conversion.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = fractionCalculatorConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
@@ -139,7 +66,7 @@ export default function FractionCalculatorSEO() {
           How to Use the Fraction Calculator
         </h2>
         <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-          {howToSteps.map((step, index) => (
+          {howToSteps.map(({ text: step }, index) => (
             <li key={step} className="flex items-start">
               <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                 {index + 1}
@@ -209,23 +136,7 @@ export default function FractionCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map((item) => (
-            <div key={item.question}>
-              <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                {item.question}
-              </h3>
-              <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                {item.answer}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </>
   );
 }

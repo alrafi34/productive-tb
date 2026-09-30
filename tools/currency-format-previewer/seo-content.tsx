@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function CurrencyFormatPreviewerSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -178,61 +183,7 @@ export default function CurrencyFormatPreviewerSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is this tool useful if I already have currency conversion elsewhere?
-            </h3>
-            <p>
-              Yes. Conversion and formatting solve different problems. Conversion changes numeric value between currencies, while formatting controls how that value is displayed to users. This tool is focused on display quality and localization accuracy.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I test multiple values quickly?
-            </h3>
-            <p>
-              Yes. Use the batch processor to paste one value per line and instantly get formatted results. This is ideal for QA checks, data cleanup, and validating large price lists.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Does it support accounting format for negative values?
-            </h3>
-            <p>
-              Yes. Enable accounting style to preview negative amounts with parentheses, which is common in billing systems, accounting interfaces, and financial statements.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Can I use this for localization testing in web apps?
-            </h3>
-            <p>
-              Absolutely. You can test locale codes, grouping, decimal precision, and currency presentation options before implementing them in production.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Why is this better than manual formatting with string replace?
-            </h3>
-            <p>
-              Manual formatting is fragile and often fails with regional edge cases. Intl.NumberFormat applies language and locale rules correctly, and this tool helps you validate those rules visually.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Is this free to use?
-            </h3>
-            <p>
-              Yes. The Currency Format Previewer is free and available instantly, making it practical for developers, product teams, students, and business owners.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </>
   );
 }

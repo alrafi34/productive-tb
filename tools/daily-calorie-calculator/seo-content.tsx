@@ -1,81 +1,12 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function DailyCalorieCalculatorSEO() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What is a daily calorie calculator?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "A daily calorie calculator estimates how many calories you need each day based on age, sex, height, weight, activity level, and goal."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "How accurate are calorie calculator results?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Calorie targets are evidence-based estimates. Real-world needs vary, so adjust intake based on 2 to 4 weeks of consistent progress tracking."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "What is the difference between BMR and TDEE?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "BMR is the calories your body needs at complete rest. TDEE includes BMR plus movement, exercise, and digestion, so it reflects full daily energy burn."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "How many calories should I cut to lose weight?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "A common approach is a 250 to 500 calorie daily deficit for slower, sustainable fat loss. Larger deficits may be harder to maintain."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Can I use imperial units in this tool?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. You can switch between metric and imperial units, and the calculator converts values so your results stay consistent."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Does this calculator provide macronutrient targets?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. It provides daily protein, carbohydrate, and fat targets in both calories and grams based on your selected goal."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Is my calorie history stored privately?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Saved history is stored in your browser local storage on your own device and can be cleared anytime."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Is this a medical diagnosis tool?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. This is an educational planning tool. For medical conditions or nutrition therapy, consult a licensed healthcare professional."
-        }
-      }
-    ]
-  };
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
 
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
@@ -301,66 +232,7 @@ export default function DailyCalorieCalculatorSEO() {
         </p>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-5">
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-              What is a daily calorie calculator?
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              It is a tool that estimates your daily calorie needs for goals like fat loss, maintenance, or weight
-              gain based on your profile and activity level.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-              What is the difference between BMR and TDEE?
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              BMR reflects calories needed at complete rest. TDEE includes your total daily activity and is more useful
-              for setting calorie intake.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-              How many calories should I cut to lose weight?
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              A deficit of about 250 to 500 calories per day is common for steady progress. Aggressive deficits can
-              work short-term but may be harder to sustain.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-              Does this tool also estimate macros?
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Yes. It calculates protein, carbs, and fats in both calories and grams to make your nutrition target
-              easier to execute.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-              Is my data private?
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Calculations run in-browser. Saved history is kept in local storage on your device and can be cleared
-              at any time.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-              Is this tool enough for medical nutrition planning?
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              No. Use it as a baseline estimator. For medical or therapeutic plans, work with a licensed professional.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

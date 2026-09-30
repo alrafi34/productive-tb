@@ -28,7 +28,22 @@ export const toolConfig = {
       description: "Calculate future value with annual, quarterly, monthly, or daily compounding and review yearly growth breakdowns.",
       type: "website",
       url: "/tools/compound-interest-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Enter principal amount", text: "Enter principal amount." },
+      { name: "Enter annual interest rate in percent", text: "Enter annual interest rate in percent." },
+      { name: "Enter time in years", text: "Enter time in years." },
+      { name: "Choose compounding frequency", text: "Choose compounding frequency." },
+      { name: "Review future value and total interest earned instantly", text: "Review future value and total interest earned instantly." },
+      { name: "Use chart/table", text: "Use chart/table, copy summary, export CSV, or save history as needed." },
+    ],
+    faq: [
+      { q: "What does this compound interest calculator calculate?", a: "It calculates future value, total interest earned, and an annual growth breakdown using principal, annual rate, time, and compounding frequency." },
+      { q: "What formula is used for compound interest?", a: "The calculator uses FV = P * (1 + r/n)^(n*t), where P is principal, r is annual rate (decimal), n is compounding periods per year, and t is years." },
+      { q: "What compounding frequencies are supported?", a: "Annual, semi-annual, quarterly, monthly, and daily compounding are supported." },
+      { q: "Can I use this for savings and investment planning?", a: "Yes. It is useful for forecasting growth scenarios for savings, recurring investment comparisons, and long-term financial planning assumptions." },
+      { q: "Is this calculator free and private?", a: "Yes. It is free to use and runs directly in your browser for standard calculations." },
+    ],
   },
   features: [
     "Real-time compound interest calculations",

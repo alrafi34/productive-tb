@@ -1,49 +1,5 @@
-const faqItems = [
-  {
-    question: "What does an exponent calculator do?",
-    answer:
-      "An exponent calculator raises a base number to a chosen power, such as 2^5 or 10^-3, and returns the result instantly. This tool also supports fractional exponents and optional scientific notation for very large or very small results.",
-  },
-  {
-    question: "How do negative exponents work?",
-    answer:
-      "A negative exponent means reciprocal power. For example, 2^-3 equals 1/(2^3), which is 1/8 or 0.125. The calculator applies this rule automatically.",
-  },
-  {
-    question: "How do fractional exponents work?",
-    answer:
-      "Fractional exponents represent roots. For example, x^(1/2) is the square root of x, and x^(1/3) is the cube root of x. The calculator supports decimal inputs so you can evaluate these forms directly.",
-  },
-  {
-    question: "Is 0^0 valid in this calculator?",
-    answer:
-      "Most programming environments evaluate 0^0 as 1 by convention, and this calculator follows that behavior. In pure mathematics, 0^0 can be treated as indeterminate depending on context.",
-  },
-  {
-    question: "Why is this exponent calculator better than many basic online power calculators?",
-    answer:
-      "Many tools only return one output line. This page combines instant input updates, optional step display for integer powers, decimal precision control, scientific notation toggle, copy-ready output, and local history in one workflow.",
-  },
-  {
-    question: "Can I use this tool on mobile and desktop?",
-    answer:
-      "Yes. The interface is responsive and works on phones, tablets, and desktop browsers, making it useful for quick checks in class, at work, or while studying.",
-  },
-  {
-    question: "Are my calculations private?",
-    answer:
-      "Yes. Calculations run in your browser, and saved history is stored locally in your device storage. No account is required.",
-  },
-];
-
-const howToSteps = [
-  "Enter your base value in the Base (x) input.",
-  "Enter the exponent value in the Exponent (y) input, or adjust it with the slider.",
-  "Review the instant result in the output panel.",
-  "Enable Show Steps to see multiplication expansion for positive integer exponents.",
-  "Set decimal precision or enable scientific notation to format output as needed.",
-  "Copy the result or save it to local history for later reference.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const comparisonPoints = [
   {
@@ -74,41 +30,11 @@ const exponentRules = [
 ];
 
 export default function ToolSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the exponent calculator",
-    description:
-      "Calculate x to the power y online with support for negative and fractional exponents, precision control, and optional scientific notation.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
@@ -155,7 +81,7 @@ export default function ToolSEOContent() {
             How to Use the Exponent Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -250,23 +176,7 @@ export default function ToolSEOContent() {
           </div>
         </section>
 
-        <section className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
       </div>
     </>
   );
