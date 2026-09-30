@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 export default function ToolSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
   return (
     <div className="mt-12 space-y-12">
       {/* What is Section */}
@@ -24,27 +27,15 @@ export default function ToolSEOContent() {
           <span>🛠️</span> How to Use the Calculator
         </h2>
         <div className="space-y-4">
-          <div className="flex gap-4">
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">1</div>
-            <div>
-              <h3 className="font-semibold text-gray-900 text-lg">Input Two Values</h3>
-              <p className="text-gray-600">Provide numerals for exactly two of the three available variables (Voltage, Current, or Resistance). Ensure you correctly set their respective units to avoid errors.</p>
+          {howToSteps.map(({ name, text }, i) => (
+            <div key={name} className="flex gap-4">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">{i + 1}</div>
+              <div>
+                <h3 className="font-semibold text-gray-900 text-lg">{name}</h3>
+                <p className="text-gray-600">{text}</p>
+              </div>
             </div>
-          </div>
-          <div className="flex gap-4">
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">2</div>
-            <div>
-              <h3 className="font-semibold text-gray-900 text-lg">Instant Calculations</h3>
-              <p className="text-gray-600">The calculator auto-detects the omitted field and performs a real-time computation to find its value. If three fields are filled simultaneously, no target can be deduced and you'll be prompted to clear one.</p>
-            </div>
-          </div>
-          <div className="flex gap-4">
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">3</div>
-            <div>
-              <h3 className="font-semibold text-gray-900 text-lg">Interact with Data</h3>
-              <p className="text-gray-600">Use the UI buttons below the outputs to quickly duplicate results to your local clipboard, or hit the "Save to History" button to keep a browser-based log of your previous problems for fast recall.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -77,26 +68,7 @@ export default function ToolSEOContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 inline-flex items-center gap-2">
-          <span>💬</span> Frequently Asked Questions (FAQ)
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">What handles the conversion between milli, micro, and kilo units?</h3>
-            <p className="text-gray-600 leading-relaxed">The application algorithm normalizes all inputs explicitly into standard Volts (V), Amperes (A), and Ohms (Ω) internally before calculations, ensuring accurate derivations without requiring the user to execute manual scaling operations.</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Why can't I put "0" for Resistance or Current when obtaining voltage?</h3>
-            <p className="text-gray-600 leading-relaxed">Dividing any value by zero is highly problematic mathematically and in programming calculations. To combat edge case infinity variables, the system incorporates logic specifically built to flag these scenarios as calculation errors immediately.</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Is the calculation history stored securely?</h3>
-            <p className="text-gray-600 leading-relaxed">Yes. Because this is a true client application, all history is appended directly to your browser's local storage. Not a single dataset or variable travels over the internet to intermediate servers. When you drop history data, it is permanently deleted exclusively from your device.</p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

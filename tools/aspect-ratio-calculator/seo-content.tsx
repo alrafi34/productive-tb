@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { aspectRatioCalculatorConfig } from "./config";
 
 export default function AspectRatioCalculatorSEOContent() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = aspectRatioCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 text-slate-700" style={{ fontFamily: "Inter, sans-serif" }}>
       <section className="space-y-4">
@@ -218,11 +221,9 @@ export default function AspectRatioCalculatorSEOContent() {
           <div>
             <h3 className="font-semibold text-slate-800 mb-2">Basic Calculator Workflow</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Enter width, height, or ratio values.</li>
-              <li>Use any two inputs and the third value is calculated automatically.</li>
-              <li>Review the simplified ratio for clean reporting.</li>
-              <li>Use the preview box to confirm visual proportions.</li>
-              <li>Copy dimensions or export output as JSON or text.</li>
+              {howToSteps.map(({ text }) => (
+                <li key={text}>{text}</li>
+              ))}
             </ol>
           </div>
           <div>
@@ -322,49 +323,7 @@ export default function AspectRatioCalculatorSEOContent() {
         </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">What is the most common video aspect ratio?</h3>
-            <p className="text-sm">
-              16:9 is the most common standard for modern video playback across web, streaming, and presentation contexts.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">How do I calculate height from width and ratio?</h3>
-            <p className="text-sm">
-              Use Height = (Width x Ratio Height) / Ratio Width. This calculator does it instantly and updates all related outputs.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Can this tool simplify ratios automatically?</h3>
-            <p className="text-sm">
-              Yes. Enter dimensions like 3840 x 2160 and the tool simplifies to 16:9 automatically.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Is this aspect ratio tool free?</h3>
-            <p className="text-sm">
-              Yes. Core calculator, converter, presets, and CSS output are available without sign-up.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Can I use this for responsive web design?</h3>
-            <p className="text-sm">
-              Yes. Use generated CSS to maintain consistent media blocks and reduce layout shift on different screen sizes.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800 mb-1">Does image upload help detect unknown ratios?</h3>
-            <p className="text-sm">
-              Yes. Upload any image and the tool reads dimensions and calculated ratio so you can resize accurately.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="pt-6 border-t border-slate-200">
         <p className="text-sm text-slate-600 text-center">

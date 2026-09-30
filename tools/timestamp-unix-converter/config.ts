@@ -29,7 +29,21 @@ export const toolConfig = {
       description: "Convert Unix epoch time to a date and a date to a timestamp. Detects seconds or milliseconds, with batch conversion, time zones and differences.",
       type: "website",
       url: "/tools/calculator/timestamp-unix-converter"
-    }
+    },
+    howToSteps: [
+      { name: "Choose a mode", text: "Choose a mode: Unix to Date, Date to Unix, Compare Difference, or Batch Convert." },
+      { name: "Paste your timestamp or date input", text: "Paste your timestamp or date input." },
+      { name: "Review converted values including UTC/local formats and developer-friendly outputs", text: "Review converted values including UTC/local formats and developer-friendly outputs." },
+      { name: "Copy Unix seconds", text: "Copy Unix seconds, milliseconds, ISO 8601, RFC 2822, or timezone values as needed." },
+      { name: "Use batch mode for multiple rows or compare mode to calculate exact time differences", text: "Use batch mode for multiple rows or compare mode to calculate exact time differences." },
+    ],
+    faq: [
+      { q: "What is a Unix timestamp?", a: "A Unix timestamp is the number of seconds since 00:00:00 UTC on January 1, 1970. Some systems store the same value in milliseconds for higher precision." },
+      { q: "How does this converter detect seconds vs milliseconds?", a: "Numeric inputs with up to 11 digits are treated as seconds, and longer numeric inputs are treated as milliseconds. This avoids manual mode switching for common developer workflows." },
+      { q: "Can I convert dates to Unix timestamps too?", a: "Yes. The date-to-Unix mode accepts standard date strings and returns both Unix seconds and Unix milliseconds instantly." },
+      { q: "Does this tool support timezone checks?", a: "Yes. It shows timezone views for UTC, GMT, New York, London, Tokyo, and Sydney so you can validate cross-region logs and schedules quickly." },
+      { q: "Is my data uploaded to a server?", a: "No. Conversions run in your browser, so your timestamp inputs and date values are not sent to a backend for processing." },
+    ],
   },
   features: [
     "Convert Unix timestamps to dates instantly",

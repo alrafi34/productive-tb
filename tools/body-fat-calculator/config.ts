@@ -37,7 +37,27 @@ export const toolConfig = {
       description: "Estimate body fat percentage instantly with dual methods, category guidance, and mobile-friendly inputs.",
       type: "website",
       url: "/tools/body-fat-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Select your unit system", text: "Select your unit system (metric or imperial)." },
+      { name: "Choose gender and method", text: "Choose gender and method (US Navy or BMI)." },
+      { name: "Enter required measurements", text: "Enter required measurements (waist/neck/hip/height for Navy, or weight/height/age for BMI)." },
+      { name: "Review your estimated body fat percentage and category", text: "Review your estimated body fat percentage and category." },
+      { name: "Copy the result or full summary when needed", text: "Copy the result or full summary when needed." },
+      { name: "Save entries in history to track body composition trends", text: "Save entries in history to track body composition trends." },
+    ],
+    faq: [
+      { q: "What does a body fat calculator measure?", a: "A body fat calculator estimates the percentage of your total body weight that comes from fat mass. It gives a better composition signal than weight alone." },
+      { q: "Which methods are available in this body fat calculator?", a: "This tool supports both the US Navy method (measurement-based) and a BMI-based body fat estimate, so you can compare two common approaches in one place." },
+      { q: "Why can US Navy and BMI body fat results differ?", a: "The methods rely on different inputs and assumptions. Navy focuses on circumference measurements, while BMI-based estimates use height, weight, age, and sex." },
+      { q: "Is the US Navy method more useful than BMI-only checks?", a: "For many users, yes. Navy can capture body-shape differences through waist/neck/hip measurements, which BMI alone does not directly include." },
+      { q: "Can I use metric and imperial units?", a: "Yes. You can switch between metric and imperial units instantly, and this calculator converts values without requiring manual conversion." },
+      { q: "Is this tool suitable for men and women?", a: "Yes. The formulas include gender-specific handling and thresholds, and the interface adapts required inputs accordingly." },
+      { q: "How accurate is an online body fat calculator compared with DEXA?", a: "Online calculators provide practical estimates, not clinical-grade precision. DEXA and lab assessments are generally more accurate for medical use." },
+      { q: "Can I save and track results over time?", a: "Yes. You can save entries in local browser history and compare progress across dates and methods." },
+      { q: "Does this body fat calculator store my personal data on a server?", a: "No. Calculations and saved history are handled in your browser for local use." },
+      { q: "Can this calculator replace medical advice?", a: "No. It is a planning and educational tool. For diagnosis or treatment decisions, consult a qualified healthcare professional." },
+    ],
   },
   features: [
     "Calculate body fat percentage using US Navy measurement method",

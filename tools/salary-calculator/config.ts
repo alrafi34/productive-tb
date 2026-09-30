@@ -35,7 +35,27 @@ export const toolConfig = {
       description: "Convert pay between annual, monthly, weekly, daily and hourly rates, both ways, using your own hours per week and working days.",
       type: "website",
       url: "/tools/salary-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Enter your pay and choose whether it is per year", text: "Enter your pay and choose whether it is per year, month, week, day or hour." },
+      { name: "Set your work hours per week", text: "Set your work hours per week." },
+      { name: "Set your work days per week", text: "Set your work days per week." },
+      { name: "Select preferred currency and decimal precision", text: "Select preferred currency and decimal precision." },
+      { name: "Review the annual", text: "Review the annual, monthly, weekly, daily and hourly values instantly." },
+      { name: "Copy hourly or full summary values when needed", text: "Copy hourly or full summary values when needed." },
+      { name: "Save salary scenarios in local history for quick comparison", text: "Save salary scenarios in local history for quick comparison." },
+    ],
+    faq: [
+      { q: "What does a salary calculator do?", a: "A salary calculator converts annual salary into monthly, weekly, daily, and hourly income estimates so you can compare offers and plan budgets faster." },
+      { q: "How is hourly pay calculated from annual salary?", a: "Hourly pay is estimated by dividing annual salary by 52 weeks and then dividing by work hours per week. Formula: Hourly = Annual / 52 / Hours per Week." },
+      { q: "Can I customize work hours and work days in this tool?", a: "Yes. You can set custom hours per week and days per week to reflect part-time, full-time, shift-based, or freelance schedules." },
+      { q: "Is this salary converter useful for freelancers and contractors?", a: "Yes. Freelancers can use it to convert target annual income into practical daily and hourly rates for project pricing and negotiation." },
+      { q: "Why are my results different from payroll checks?", a: "This calculator estimates gross pay conversions. Payroll checks include deductions like tax, retirement, insurance, and other withholdings." },
+      { q: "Does this tool calculate net salary after tax?", a: "No. This tool focuses on gross salary conversion. Use a dedicated tax or take-home pay calculator for net paycheck estimation." },
+      { q: "Is this salary calculator free and private?", a: "Yes. It is free to use and runs in your browser. Saved settings/history are stored locally and can be cleared anytime." },
+      { q: "Can I use this for job offer comparisons?", a: "Yes. You can enter different salary values, save scenarios, and compare monthly, weekly, daily, and hourly equivalents quickly." },
+      { q: "What is a good hourly rate from annual salary?", a: "A good rate depends on industry, location, experience, and benefits. This tool helps you standardize numbers so comparisons are more objective." },
+    ],
   },
   features: [
     "Real-time salary conversions",

@@ -1,44 +1,5 @@
-const faqItems = [
-  {
-    question: "What does this compound interest calculator calculate?",
-    answer:
-      "It calculates future value, total interest earned, and an annual growth breakdown using principal, annual rate, time, and compounding frequency.",
-  },
-  {
-    question: "What formula is used for compound interest?",
-    answer:
-      "The calculator uses FV = P * (1 + r/n)^(n*t), where P is principal, r is annual rate (decimal), n is compounding periods per year, and t is years.",
-  },
-  {
-    question: "What compounding frequencies are supported?",
-    answer:
-      "Annual, semi-annual, quarterly, monthly, and daily compounding are supported.",
-  },
-  {
-    question: "Why is this better than many basic compound interest tools?",
-    answer:
-      "Many tools only return one final number. This tool combines future value, interest earned, yearly checkpoints, growth chart preview, CSV export, copy summary, and local history in one place.",
-  },
-  {
-    question: "Can I use this for savings and investment planning?",
-    answer:
-      "Yes. It is useful for forecasting growth scenarios for savings, recurring investment comparisons, and long-term financial planning assumptions.",
-  },
-  {
-    question: "Is this calculator free and private?",
-    answer:
-      "Yes. It is free to use and runs directly in your browser for standard calculations.",
-  },
-];
-
-const howToSteps = [
-  "Enter principal amount.",
-  "Enter annual interest rate in percent.",
-  "Enter time in years.",
-  "Choose compounding frequency.",
-  "Review future value and total interest earned instantly.",
-  "Use chart/table, copy summary, export CSV, or save history as needed.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const comparisonPoints = [
   {
@@ -60,41 +21,11 @@ const comparisonPoints = [
 ];
 
 export default function ToolSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the compound interest calculator",
-    description:
-      "Calculate future value and interest earned from principal, annual rate, years, and compounding frequency.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -134,7 +65,7 @@ export default function ToolSEOContent() {
             How to Use the Compound Interest Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -256,23 +187,7 @@ FV = Future value`}
           </p>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
       </div>
     </>
   );

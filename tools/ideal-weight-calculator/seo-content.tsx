@@ -1,65 +1,5 @@
-const faqItems = [
-  {
-    question: "What does an ideal weight calculator do?",
-    answer:
-      "An ideal weight calculator estimates a healthy target weight based on height and gender using established formulas. It helps you compare multiple methods quickly.",
-  },
-  {
-    question: "Which formulas are used in this ideal weight calculator?",
-    answer:
-      "This calculator uses Devine, Robinson, Miller, and Broca methods so you can compare different clinically used and practical estimation approaches in one place.",
-  },
-  {
-    question: "Why are formula results slightly different from each other?",
-    answer:
-      "Each formula is built from different assumptions and datasets. Slight variation is expected and useful for understanding a realistic target range instead of one fixed number.",
-  },
-  {
-    question: "Can I use imperial units like feet and pounds?",
-    answer:
-      "Yes. The tool supports metric and imperial unit systems and converts values instantly without requiring manual conversion.",
-  },
-  {
-    question: "Is this ideal weight calculator better than basic online tools?",
-    answer:
-      "This page combines four formulas, metric/imperial conversion, formula comparison, optional current-weight status feedback, and copy-ready output in one workflow.",
-  },
-  {
-    question: "Does this calculator provide medical diagnosis?",
-    answer:
-      "No. It provides educational and planning estimates. For diagnosis or treatment decisions, consult a licensed healthcare professional.",
-  },
-  {
-    question: "Can athletes or muscular people rely only on ideal weight formulas?",
-    answer:
-      "Not always. High muscle mass, body composition, and sport-specific factors can make formula-only interpretation less reliable. Use these estimates with broader health context.",
-  },
-  {
-    question: "What is the healthy weight range in this calculator?",
-    answer:
-      "The range is the weight that gives a body mass index (BMI) of 18.5 to 24.9, the World Health Organization's healthy band: 18.5 × height² to 24.9 × height², with height in meters. For 1.75 m that is about 56.7 to 76.3 kg (125 to 168 lb).",
-  },
-  {
-    question: "Can I compare my current weight to the calculated healthy range?",
-    answer:
-      "Yes. If you enter current weight, the calculator labels whether you are below, within, or above the healthy range based on the BMI 18.5–24.9 range.",
-  },
-  {
-    question: "Is my data stored online?",
-    answer:
-      "No. Calculations run in your browser and no personal health data is sent to external servers by this tool.",
-  },
-];
-
-const howToSteps = [
-  "Choose your preferred unit system: metric or imperial.",
-  "Enter your height in cm or ft/in.",
-  "Select your gender.",
-  "Optionally enter your current weight.",
-  "Select a formula (Devine, Robinson, Miller, or Broca).",
-  "Review ideal weight values and formula comparison cards.",
-  "Copy the selected result or full breakdown for tracking.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -122,41 +62,11 @@ const mistakesToAvoid = [
 ];
 
 export default function IdealWeightCalculatorSEO() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the ideal weight calculator",
-    description:
-      "Estimate ideal weight using Devine, Robinson, Miller, and Broca formulas with metric or imperial inputs.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -201,7 +111,7 @@ export default function IdealWeightCalculatorSEO() {
             How to Use the Ideal Weight Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -265,23 +175,7 @@ export default function IdealWeightCalculatorSEO() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

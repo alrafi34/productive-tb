@@ -1,85 +1,12 @@
-const faqItems = [
-  {
-    question: "How is this time duration calculator better than many other calculators?",
-    answer:
-      "Many tools only return one value or fail on overnight ranges. This calculator gives live results, supports overnight shifts automatically, offers optional seconds precision, and shows detailed totals in hours, minutes, and seconds in one place.",
-  },
-  {
-    question: "Can I calculate time across midnight?",
-    answer:
-      "Yes. If your end time is earlier than your start time, the tool treats it as next-day time. For example, 22:30 to 06:15 is calculated as 7 hours and 45 minutes.",
-  },
-  {
-    question: "Does this tool support seconds?",
-    answer:
-      "Yes. Enable seconds precision to enter HH:MM:SS values and get second-level duration output for sports, production, lab work, and detailed timing tasks.",
-  },
-  {
-    question: "Can I use this as a work hours or shift duration calculator?",
-    answer:
-      "Yes. It works well for shift planning, attendance checks, overtime estimates, and daily time tracking. Quick presets and swap controls help speed up repeated calculations.",
-  },
-  {
-    question: "Is my time data stored or sent to a server?",
-    answer:
-      "Calculations are processed in your browser. Recent history is stored locally on your device for convenience, and your inputs are not required to be sent to a backend for calculation.",
-  },
-  {
-    question: "What time format should I use?",
-    answer:
-      "Use 24-hour format. Enter HH:MM for standard mode or HH:MM:SS when seconds precision is enabled.",
-  },
-  {
-    question: "Can I copy results quickly?",
-    answer:
-      "Yes. Use the copy button to copy the main duration result and paste it directly into timesheets, reports, chat messages, or planning notes.",
-  },
-];
-
-const howToSteps = [
-  "Enter your start time.",
-  "Enter your end time.",
-  "Enable seconds precision if needed.",
-  "Read instant duration plus total hours, minutes, and seconds.",
-  "Copy or save the result for later use.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 export default function TimeDurationCalculatorSEO() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to calculate time duration between two times",
-    description:
-      "Use this online time duration calculator to find hours, minutes, and seconds between start and end times, including overnight shifts.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
@@ -381,22 +308,18 @@ export default function TimeDurationCalculatorSEO() {
       </section>
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map((item) => (
-            <div key={item.question}>
-              <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                {item.question}
-              </h3>
-              <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                {item.answer}
-              </p>
-            </div>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>How to Use the Time Duration Calculator</h2>
+        <ol className="space-y-3 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ text }, i) => (
+            <li key={text} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span>{text}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
+
+      <ToolFaq items={faq} />
     </>
   );
 }

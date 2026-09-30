@@ -1,65 +1,5 @@
-const faqItems = [
-  {
-    question: "What does a salary calculator do?",
-    answer:
-      "A salary calculator converts annual salary into monthly, weekly, daily, and hourly income estimates so you can compare offers and plan budgets faster.",
-  },
-  {
-    question: "How is hourly pay calculated from annual salary?",
-    answer:
-      "Hourly pay is estimated by dividing annual salary by 52 weeks and then dividing by work hours per week. Formula: Hourly = Annual / 52 / Hours per Week.",
-  },
-  {
-    question: "Can I customize work hours and work days in this tool?",
-    answer:
-      "Yes. You can set custom hours per week and days per week to reflect part-time, full-time, shift-based, or freelance schedules.",
-  },
-  {
-    question: "Is this salary converter useful for freelancers and contractors?",
-    answer:
-      "Yes. Freelancers can use it to convert target annual income into practical daily and hourly rates for project pricing and negotiation.",
-  },
-  {
-    question: "Why are my results different from payroll checks?",
-    answer:
-      "This calculator estimates gross pay conversions. Payroll checks include deductions like tax, retirement, insurance, and other withholdings.",
-  },
-  {
-    question: "Why is this salary calculator better than many basic calculators?",
-    answer:
-      "This page combines real-time conversion, custom schedule inputs, precision control, multi-currency formatting, copy tools, and local history in one workflow.",
-  },
-  {
-    question: "Does this tool calculate net salary after tax?",
-    answer:
-      "No. This tool focuses on gross salary conversion. Use a dedicated tax or take-home pay calculator for net paycheck estimation.",
-  },
-  {
-    question: "Is this salary calculator free and private?",
-    answer:
-      "Yes. It is free to use and runs in your browser. Saved settings/history are stored locally and can be cleared anytime.",
-  },
-  {
-    question: "Can I use this for job offer comparisons?",
-    answer:
-      "Yes. You can enter different salary values, save scenarios, and compare monthly, weekly, daily, and hourly equivalents quickly.",
-  },
-  {
-    question: "What is a good hourly rate from annual salary?",
-    answer:
-      "A good rate depends on industry, location, experience, and benefits. This tool helps you standardize numbers so comparisons are more objective.",
-  },
-];
-
-const howToSteps = [
-  "Enter your pay and choose whether it is per year, month, week, day or hour.",
-  "Set your work hours per week.",
-  "Set your work days per week.",
-  "Select preferred currency and decimal precision.",
-  "Review the annual, monthly, weekly, daily and hourly values instantly.",
-  "Copy hourly or full summary values when needed.",
-  "Save salary scenarios in local history for quick comparison.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -122,41 +62,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SalaryCalculatorSEO() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the salary calculator",
-    description:
-      "Convert annual salary to monthly, weekly, daily, and hourly pay using custom work schedule settings.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -201,7 +111,7 @@ export default function SalaryCalculatorSEO() {
             How to Use the Salary Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -280,23 +190,7 @@ Hourly = Weekly / Work Hours per Week`}
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

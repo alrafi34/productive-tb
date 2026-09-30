@@ -1,49 +1,5 @@
-const faqItems = [
-  {
-    question: "What does a simple interest calculator do?",
-    answer:
-      "A simple interest calculator estimates how much interest is earned or owed based on principal amount, annual interest rate, and time period. It also shows the total amount after adding interest to principal.",
-  },
-  {
-    question: "What is the formula for simple interest?",
-    answer:
-      "The core formula is SI = (P * R * T) / 100, where P is principal, R is annual rate in percent, and T is time in years. Total amount is A = P + SI.",
-  },
-  {
-    question: "Can I calculate interest in months or days?",
-    answer:
-      "Yes. This calculator accepts years, months, and days. It converts months to years by dividing by 12 and days to years by dividing by 365 before calculating the final interest.",
-  },
-  {
-    question: "How is this different from compound interest?",
-    answer:
-      "Simple interest is calculated only on the original principal. Compound interest adds interest to principal and then calculates future interest on that growing balance.",
-  },
-  {
-    question: "Why is this tool better than many basic simple interest calculators?",
-    answer:
-      "Many basic tools return only one number. This calculator gives instant updates, time unit conversion, precision control, copy-ready summaries, and local history in one page.",
-  },
-  {
-    question: "Can I use this for loans and savings estimates?",
-    answer:
-      "Yes. It is useful for quick planning across personal loans, informal borrowing, and basic savings growth where simple interest applies.",
-  },
-  {
-    question: "Is this calculator free and private?",
-    answer:
-      "Yes. It is free to use and calculations happen in your browser. No sign-up is required for standard use.",
-  },
-];
-
-const howToSteps = [
-  "Enter the principal amount.",
-  "Enter annual interest rate in percent.",
-  "Enter the time period value.",
-  "Choose the time unit: years, months, or days.",
-  "Read the calculated interest and total amount instantly.",
-  "Adjust decimal precision or copy/save the result if needed.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const comparisonPoints = [
   {
@@ -65,41 +21,11 @@ const comparisonPoints = [
 ];
 
 export default function ToolSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the simple interest calculator",
-    description:
-      "Calculate simple interest and total amount using principal, annual rate, and time in years, months, or days.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -140,7 +66,7 @@ export default function ToolSEOContent() {
             How to Use the Simple Interest Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -222,23 +148,7 @@ A = Total amount`}
           </p>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
       </div>
     </>
   );

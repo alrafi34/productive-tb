@@ -42,7 +42,23 @@ export const toolConfig = {
       description: "Preview how amounts are formatted as money in any locale with Intl.NumberFormat: currency symbols, accounting style, decimals and grouping.",
       type: "website",
       url: "/tools/currency-format-previewer"
-    }
+    },
+    howToSteps: [
+      { name: "Enter the number you want to format", text: "Enter the number you want to format, such as product price, invoice total, or transaction amount." },
+      { name: "Select a main locale or type a custom locale code", text: "Select a main locale or type a custom locale code (for example, en-US, en-GB, de-DE or fr-FR)." },
+      { name: "Choose currency or decimal style and decide how currency is shown", text: "Choose currency or decimal style and decide how currency is shown: symbol, narrow symbol, code, or full name." },
+      { name: "Set decimal precision and optionally enable accounting format to display negative values in parentheses", text: "Set decimal precision and optionally enable accounting format to display negative values in parentheses." },
+      { name: "Review the global comparison table", text: "Review the global comparison table, copy any formatted output, and use the generated Intl snippet in your project." },
+      { name: "Use the batch processor to validate multiple values at once for QA", text: "Use the batch processor to validate multiple values at once for QA, content updates, or spreadsheet cleanup." },
+    ],
+    faq: [
+      { q: "Is this tool useful if I already have currency conversion elsewhere?", a: "Yes. Conversion and formatting solve different problems. Conversion changes numeric value between currencies, while formatting controls how that value is displayed to users. This tool is focused on display quality and localization accuracy." },
+      { q: "Can I test multiple values quickly?", a: "Yes. Use the batch processor to paste one value per line and instantly get formatted results. This is ideal for QA checks, data cleanup, and validating large price lists." },
+      { q: "Does it support accounting format for negative values?", a: "Yes. Enable accounting style to preview negative amounts with parentheses, which is common in billing systems, accounting interfaces, and financial statements." },
+      { q: "Can I use this for localization testing in web apps?", a: "Absolutely. You can test locale codes, grouping, decimal precision, and currency presentation options before implementing them in production." },
+      { q: "Why use Intl.NumberFormat instead of formatting by hand?", a: "Hand-written formatting with string replacements breaks on regional rules such as which separator groups thousands, where the symbol goes and how many decimals a currency uses. Intl.NumberFormat applies each locale's rules for you, and this tool shows the output so you can check it." },
+      { q: "Why does the same amount look different in each locale?", a: "Each locale has its own conventions. 1234.5 euros is shown as €1,234.50 in en-US, 1.234,50 € in de-DE and 1 234,50 € in fr-FR, which uses a narrow space to group thousands." },
+    ],
   },
   features: [
     "Preview major global currencies using Intl.NumberFormat",

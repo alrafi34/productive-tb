@@ -33,7 +33,27 @@ export const toolConfig = {
       description: "Calculate ROI for investments with real-time updates, scenario testing, local history, and downloadable CSV reports.",
       type: "website",
       url: "/tools/investment-return-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Enter your initial investment amount", text: "Enter your initial investment amount (the capital you put in)." },
+      { name: "Enter your current value", text: "Enter your current value (what the investment is worth now)." },
+      { name: "Select your preferred currency symbol", text: "Select your preferred currency symbol." },
+      { name: "Choose decimal precision for output formatting", text: "Choose decimal precision for output formatting." },
+      { name: "Review gain/loss amount and ROI percentage instantly", text: "Review gain/loss amount and ROI percentage instantly." },
+      { name: "Copy summary text or save the scenario in local history", text: "Copy summary text or save the scenario in local history." },
+      { name: "Download CSV when you want a report of multiple scenarios", text: "Download CSV when you want a report of multiple scenarios." },
+    ],
+    faq: [
+      { q: "What is ROI in simple terms?", a: "ROI (Return on Investment) shows how much you gained or lost compared with your original investment. A positive ROI means profit, and a negative ROI means loss." },
+      { q: "What formula does this investment return calculator use?", a: "The calculator uses ROI = ((Current Value - Initial Investment) / Initial Investment) * 100. It also shows the absolute gain or loss amount in your selected currency." },
+      { q: "Can I use this tool as a stock ROI calculator?", a: "Yes. Enter the amount you originally invested in a stock and its current value. The tool instantly returns your gain/loss and ROI percentage." },
+      { q: "Can I calculate crypto investment returns with this calculator?", a: "Yes. It works for crypto, ETFs, mutual funds, real estate estimates, and business project returns, as long as you can define initial and current values." },
+      { q: "Why does this ROI result differ from annual return percentages?", a: "Standard ROI does not include time. Enter the holding period in years to also see the annualized return (CAGR): ((current ÷ initial)^(1 ÷ years) − 1) × 100. A 50% gain over 3 years is about 14.5% a year." },
+      { q: "Is my data private when using this ROI calculator?", a: "Yes. Calculations run in your browser, and saved history is stored locally on your device. You can clear history at any time." },
+      { q: "Do I need to sign up to use this free ROI calculator?", a: "No sign-up is required for standard use. You can calculate unlimited investment returns directly on the page." },
+      { q: "How do I compare multiple investment opportunities quickly?", a: "Run multiple scenarios one after another, save each result in history, and export CSV for side-by-side review in a spreadsheet." },
+      { q: "What is considered a good ROI percentage?", a: "A good ROI depends on risk, market conditions, and holding period. Use ROI as one decision input alongside volatility, fees, taxes, and time horizon." },
+    ],
   },
   features: [
     "Real-time gain/loss calculations",

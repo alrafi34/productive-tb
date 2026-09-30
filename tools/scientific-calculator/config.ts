@@ -39,7 +39,26 @@ export const scientificCalculatorConfig = {
       description: "Perform advanced calculations with trig, logs, powers, angle modes, and exportable local history.",
       type: "website",
       url: "/tools/scientific-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Select the angle mode", text: "Select the angle mode (DEG or RAD)." },
+      { name: "Enter numbers", text: "Enter numbers, operators, and scientific functions." },
+      { name: "Use parentheses for grouped expressions when needed", text: "Use parentheses for grouped expressions when needed." },
+      { name: "Press equals to evaluate the full expression", text: "Press equals to evaluate the full expression." },
+      { name: "Use memory and history features for repeated calculations", text: "Use memory and history features for repeated calculations." },
+      { name: "Copy result or export history for documentation", text: "Copy result or export history for documentation." },
+    ],
+    faq: [
+      { q: "What is a scientific calculator used for?", a: "A scientific calculator handles advanced operations such as trigonometry, logarithms, powers, roots, and expression evaluation beyond basic arithmetic." },
+      { q: "Does this calculator support degrees and radians?", a: "Yes. You can switch between DEG and RAD modes for trigonometric and inverse-trigonometric calculations." },
+      { q: "Which scientific functions are included?", a: "The calculator includes sin, cos, tan, asin, acos, atan, log, ln, square root, powers, constants like pi and e, and factorial." },
+      { q: "Can I calculate nested expressions with parentheses?", a: "Yes. You can build expressions using parentheses and operators, then evaluate the complete formula in one step." },
+      { q: "Does it keep calculation history?", a: "Yes. The calculator stores history in your browser so you can review and reuse previous expressions quickly." },
+      { q: "Can I use keyboard shortcuts?", a: "Yes. Numeric keys, arithmetic operators, Enter, Escape, Backspace, and parentheses are supported for faster input." },
+      { q: "Is my data sent to a server?", a: "No. Calculations run client-side in your browser and history is stored locally on your device." },
+      { q: "Can I export my history?", a: "Yes. You can export your calculation history as JSON for backup, review, or workflow reuse." },
+      { q: "Is this suitable for students and engineers?", a: "Yes. It is useful for students, engineers, developers, and professionals who need quick scientific math operations without installing extra software." },
+    ],
   },
   features: [
     "Basic arithmetic operations (+, -, ×, ÷)",

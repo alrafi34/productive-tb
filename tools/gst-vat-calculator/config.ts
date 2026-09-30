@@ -40,7 +40,27 @@ export const toolConfig = {
       description: "Calculate GST/VAT quickly with add/remove tax modes, predefined rates, and export-ready outputs.",
       type: "website",
       url: "/tools/gst-vat-calculator"
-    }
+    },
+    howToSteps: [
+      { name: "Enter the price amount", text: "Enter the price amount." },
+      { name: "Enter or select the GST/VAT rate", text: "Enter or select the GST/VAT rate." },
+      { name: "Choose Add Tax or Remove Tax mode", text: "Choose Add Tax or Remove Tax mode." },
+      { name: "Review base amount", text: "Review base amount, tax amount, and final amount instantly." },
+      { name: "Adjust decimal precision if required", text: "Adjust decimal precision if required." },
+      { name: "Copy", text: "Copy, save, or export the calculation as needed." },
+      { name: "Use history to reload previous scenarios quickly", text: "Use history to reload previous scenarios quickly." },
+    ],
+    faq: [
+      { q: "What does a GST/VAT calculator do?", a: "A GST/VAT calculator helps you add tax to a base amount or remove tax from a tax-inclusive amount. It shows base price, tax amount, and final price instantly." },
+      { q: "What is the formula to add GST or VAT?", a: "To add tax: Final Price = Base Price * (1 + Tax Rate/100). Tax Amount = Base Price * (Tax Rate/100)." },
+      { q: "What is the formula to remove GST or VAT?", a: "To remove tax from a tax-inclusive amount: Base Price = Final Price / (1 + Tax Rate/100). Tax Amount = Final Price - Base Price." },
+      { q: "Can I use this for both GST and VAT?", a: "Yes. The mathematics is the same for inclusive and exclusive tax calculations. You can use this tool for GST, VAT, and similar percentage-based consumption taxes." },
+      { q: "Does this calculator support custom tax rates?", a: "Yes. You can enter any tax rate manually and also use quick buttons for common VAT and GST rates." },
+      { q: "Can I export calculations for accounting records?", a: "Yes. You can export the current calculation to CSV and keep a local calculation history for repeated tax checks." },
+      { q: "Are these calculations tax-compliance advice?", a: "No. This tool is for accurate arithmetic conversion. Always verify legal tax treatment, exemptions, and jurisdiction-specific rules with official guidance." },
+      { q: "Is my calculation data private?", a: "Yes. Calculations run in your browser and local history is stored on your device. You can clear history anytime." },
+      { q: "What should I input in Add vs Remove mode?", a: "In Add mode, input the tax-exclusive base amount. In Remove mode, input the tax-inclusive final amount." },
+    ],
   },
   features: [
     "Calculate tax-inclusive prices (add tax)",
