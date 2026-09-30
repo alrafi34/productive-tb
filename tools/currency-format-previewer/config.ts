@@ -43,6 +43,14 @@ export const toolConfig = {
       type: "website",
       url: "/tools/currency-format-previewer"
     },
+    howToSteps: [
+      { name: "Enter the number you want to format", text: "Enter the number you want to format, such as product price, invoice total, or transaction amount." },
+      { name: "Select a main locale or type a custom locale code", text: "Select a main locale or type a custom locale code (for example, en-US, en-GB, de-DE or fr-FR)." },
+      { name: "Choose currency or decimal style and decide how currency is shown", text: "Choose currency or decimal style and decide how currency is shown: symbol, narrow symbol, code, or full name." },
+      { name: "Set decimal precision and optionally enable accounting format to display negative values in parentheses", text: "Set decimal precision and optionally enable accounting format to display negative values in parentheses." },
+      { name: "Review the global comparison table", text: "Review the global comparison table, copy any formatted output, and use the generated Intl snippet in your project." },
+      { name: "Use the batch processor to validate multiple values at once for QA", text: "Use the batch processor to validate multiple values at once for QA, content updates, or spreadsheet cleanup." },
+    ],
     faq: [
       { q: "Is this tool useful if I already have currency conversion elsewhere?", a: "Yes. Conversion and formatting solve different problems. Conversion changes numeric value between currencies, while formatting controls how that value is displayed to users. This tool is focused on display quality and localization accuracy." },
       { q: "Can I test multiple values quickly?", a: "Yes. Use the batch processor to paste one value per line and instantly get formatted results. This is ideal for QA checks, data cleanup, and validating large price lists." },

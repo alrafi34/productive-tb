@@ -2,8 +2,8 @@ import ToolFaq from "@/components/ToolFaq";
 import { toolConfig } from "./config";
 
 export default function CurrencyFormatPreviewerSEO() {
-  // Same questions as the FAQPage schema
-  const { faq } = toolConfig.seo;
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -100,30 +100,12 @@ export default function CurrencyFormatPreviewerSEO() {
           How to Use the Currency Format Previewer
         </h2>
         <ol className="space-y-4 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
-          <li className="flex items-start">
-            <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">1</span>
-            <span>Enter the number you want to format, such as product price, invoice total, or transaction amount.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">2</span>
-            <span>Select a main locale or type a custom locale code (for example, <code>en-US</code>, <code>de-DE</code>, <code>hi-IN</code>, or <code>bn-BD</code>).</span>
-          </li>
-          <li className="flex items-start">
-            <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">3</span>
-            <span>Choose currency or decimal style and decide how currency is shown: symbol, narrow symbol, code, or full name.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">4</span>
-            <span>Set decimal precision and optionally enable accounting format to display negative values in parentheses.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">5</span>
-            <span>Review the global comparison table, copy any formatted output, and use the generated Intl snippet in your project.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">6</span>
-            <span>Use the batch processor to validate multiple values at once for QA, content updates, or spreadsheet cleanup.</span>
-          </li>
+          {howToSteps.map(({ text }, i) => (
+            <li key={text} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">{i + 1}</span>
+              <span>{text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 

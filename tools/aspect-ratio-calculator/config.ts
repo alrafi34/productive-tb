@@ -42,6 +42,13 @@ export const aspectRatioCalculatorConfig = {
       type: "website",
       url: "/aspect-ratio-calculator"
     },
+    howToSteps: [
+      { name: "Enter width", text: "Enter width, height, or ratio values." },
+      { name: "Use any two inputs and the third value is calculated automatically", text: "Use any two inputs and the third value is calculated automatically." },
+      { name: "Review the simplified ratio for clean reporting", text: "Review the simplified ratio for clean reporting." },
+      { name: "Use the preview box to confirm visual proportions", text: "Use the preview box to confirm visual proportions." },
+      { name: "Copy dimensions or export output as JSON or text", text: "Copy dimensions or export output as JSON or text." },
+    ],
     faq: [
       { q: "What is the most common video aspect ratio?", a: "16:9 is the most common standard for modern video playback across web, streaming, and presentation contexts." },
       { q: "How do I calculate height from width and ratio?", a: "Use Height = (Width x Ratio Height) / Ratio Width. This calculator does it instantly and updates all related outputs." },

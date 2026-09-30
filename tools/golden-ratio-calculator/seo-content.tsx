@@ -4,8 +4,8 @@ import { goldenRatioCalculatorConfig } from "./config";
 import React from 'react';
 
 export default function GoldenRatioCalculatorSEOContent() {
-  // Same questions as the FAQPage schema
-  const { faq } = goldenRatioCalculatorConfig.seo;
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = goldenRatioCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 text-slate-700" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Introduction */}
@@ -143,11 +143,9 @@ export default function GoldenRatioCalculatorSEOContent() {
           <div>
             <h3 className="font-semibold text-slate-800 mb-2">Basic Calculator</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Choose calculation mode (Forward, From Small, or From Large)</li>
-              <li>Enter your value (supports numbers, px, %)</li>
-              <li>View the golden ratio split instantly</li>
-              <li>See visual representation with golden spiral</li>
-              <li>Copy results or export as JSON/TXT</li>
+              {howToSteps.map(({ text }) => (
+                <li key={text}>{text}</li>
+              ))}
             </ol>
           </div>
 

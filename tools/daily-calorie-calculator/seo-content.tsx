@@ -2,8 +2,8 @@ import ToolFaq from "@/components/ToolFaq";
 import { toolConfig } from "./config";
 
 export default function DailyCalorieCalculatorSEO() {
-  // Same questions as the FAQPage schema
-  const { faq } = toolConfig.seo;
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
@@ -153,13 +153,9 @@ export default function DailyCalorieCalculatorSEO() {
           How to Use This Daily Calorie Calculator
         </h2>
         <ol className="space-y-3 leading-relaxed list-decimal list-inside" style={{ fontFamily: "var(--font-body)" }}>
-          <li>Choose metric or imperial units.</li>
-          <li>Enter your age, sex, weight, and height.</li>
-          <li>Select the activity level that matches your weekly movement.</li>
-          <li>Pick your goal: loss, maintenance, or gain.</li>
-          <li>Review your target daily calories plus BMR and TDEE.</li>
-          <li>Use macro grams to plan meals and track consistency.</li>
-          <li>Save results in local history and compare over time.</li>
+          {howToSteps.map(({ text }) => (
+            <li key={text}>{text}</li>
+          ))}
         </ol>
       </section>
 

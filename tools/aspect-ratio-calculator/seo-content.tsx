@@ -2,8 +2,8 @@ import ToolFaq from "@/components/ToolFaq";
 import { aspectRatioCalculatorConfig } from "./config";
 
 export default function AspectRatioCalculatorSEOContent() {
-  // Same questions as the FAQPage schema
-  const { faq } = aspectRatioCalculatorConfig.seo;
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = aspectRatioCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8 text-slate-700" style={{ fontFamily: "Inter, sans-serif" }}>
       <section className="space-y-4">
@@ -221,11 +221,9 @@ export default function AspectRatioCalculatorSEOContent() {
           <div>
             <h3 className="font-semibold text-slate-800 mb-2">Basic Calculator Workflow</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li>Enter width, height, or ratio values.</li>
-              <li>Use any two inputs and the third value is calculated automatically.</li>
-              <li>Review the simplified ratio for clean reporting.</li>
-              <li>Use the preview box to confirm visual proportions.</li>
-              <li>Copy dimensions or export output as JSON or text.</li>
+              {howToSteps.map(({ text }) => (
+                <li key={text}>{text}</li>
+              ))}
             </ol>
           </div>
           <div>

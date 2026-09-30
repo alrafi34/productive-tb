@@ -32,6 +32,13 @@ export const goldenRatioCalculatorConfig = {
       type: "website",
       url: "/golden-ratio-calculator"
     },
+    howToSteps: [
+      { name: "Choose calculation mode", text: "Choose calculation mode (Forward, From Small, or From Large)" },
+      { name: "Enter your value", text: "Enter your value (supports numbers, px, %)" },
+      { name: "View the golden ratio split instantly", text: "View the golden ratio split instantly" },
+      { name: "See visual representation with golden spiral", text: "See visual representation with golden spiral" },
+      { name: "Copy results or export as JSON/TXT", text: "Copy results or export as JSON/TXT" },
+    ],
     faq: [
       { q: "Is the golden ratio really more pleasing to the eye?", a: "It is widely used in design because 1:1.618 gives a balanced but non-symmetric split, and it is easy to repeat at every scale. Claims that people are naturally drawn to it are weaker than often stated: studies of preferences for golden rectangles have produced mixed results." },
       { q: "Should I use golden ratio for all my designs?", a: "No. The golden ratio is a helpful guideline, not a strict rule. Use it where it makes sense, but prioritize usability, accessibility, and your specific design requirements." },

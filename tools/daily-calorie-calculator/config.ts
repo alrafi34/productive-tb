@@ -25,6 +25,15 @@ export const toolConfig = {
       type: "website",
       url: "/tools/daily-calorie-calculator"
     },
+    howToSteps: [
+      { name: "Choose metric or imperial units", text: "Choose metric or imperial units." },
+      { name: "Enter your age", text: "Enter your age, sex, weight, and height." },
+      { name: "Select the activity level that matches your weekly movement", text: "Select the activity level that matches your weekly movement." },
+      { name: "Pick your goal", text: "Pick your goal: loss, maintenance, or gain." },
+      { name: "Review your target daily calories plus BMR and TDEE", text: "Review your target daily calories plus BMR and TDEE." },
+      { name: "Use macro grams to plan meals and track consistency", text: "Use macro grams to plan meals and track consistency." },
+      { name: "Save results in local history and compare over time", text: "Save results in local history and compare over time." },
+    ],
     faq: [
       { q: "What is a daily calorie calculator?", a: "It is a tool that estimates your daily calorie needs for goals like fat loss, maintenance, or weight gain based on your profile and activity level." },
       { q: "What is the difference between BMR and TDEE?", a: "BMR reflects calories needed at complete rest. TDEE includes your total daily activity and is more useful for setting calorie intake." },
