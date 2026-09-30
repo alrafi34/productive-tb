@@ -8,8 +8,8 @@ export const landAreaCalculatorSquareMeterConfig = {
   icon: "📐",
   free: true,
   seo: {
-    title: "Land Area Calculator – Square Meters from Any Unit",
-    description: "Calculate land area in square meters from length and width, or convert acres, hectares, sq ft, sq yd and other units to m², with instant conversions.",
+    title: "Land Area Calculator in Square Meters – m², Acre, Hectare",
+    description: "Work out plot area in m² from length × width, or convert acres (4,046.86 m²), hectares (10,000 m²), sq ft and sq yd to square meters, with every unit at once.",
     keywords: [
       "land area calculator",
       "square meter calculator", 
@@ -23,8 +23,8 @@ export const landAreaCalculatorSquareMeterConfig = {
       "bigha to square meter",
     ],
     og: {
-      title: "Land Area Calculator – Square Meters from Any Unit",
-      description: "Calculate land area in square meters from length and width, or convert acres, hectares, sq ft, sq yd and other units to m², with instant conversions.",
+      title: "Land Area Calculator in Square Meters – m², Acre, Hectare",
+      description: "Work out plot area in m² from length × width, or convert acres (4,046.86 m²), hectares (10,000 m²), sq ft and sq yd to square meters, with every unit at once.",
       url: `${siteConfig.url}/tools/land/land-area-calculator-square-meter`,
     },
     howToSteps: [

@@ -7,8 +7,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Discount Calculator — Free Percent Off Calculator Online",
-    description: "Calculate sale price with percent off or fixed discounts. Stacked coupons, tax, reverse pricing, batch CSV export. Free, no signup.",
+    title: "Discount Calculator – Percent Off, Sale Price & Tax",
+    description: "Find the sale price and savings for any percent-off or fixed discount. Stack coupons (20% + 10% = 28% off), add sales tax or VAT, or work back to the price.",
     keywords: [
       // Primary
       "discount calculator",
@@ -42,8 +42,8 @@ export const toolConfig = {
       "batch discount calculator",
     ],
     openGraph: {
-      title: "Discount Calculator — Free Percent Off Calculator Online",
-      description: "Calculate sale price with percent off or fixed discounts. Stacked coupons, tax, reverse pricing, batch CSV export. Free, no signup.",
+      title: "Discount Calculator – Percent Off, Sale Price & Tax",
+      description: "Find the sale price and savings for any percent-off or fixed discount. Stack coupons (20% + 10% = 28% off), add sales tax or VAT, or work back to the price.",
       type: "website",
       url: "/tools/calculator/discount-calculator",
     },

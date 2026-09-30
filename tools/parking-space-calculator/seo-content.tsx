@@ -1,56 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { parkingSpaceCalculatorConfig } from "./config";
+
 export default function ParkingSpaceCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a parking space calculator?",
-      a: "A parking space calculator is a free online tool that determines how many parking stalls fit in a given area, or how much space is required for a given number of vehicles. It accounts for stall dimensions, aisle width, parking angle, drive lane layout, and ADA accessibility requirements. It is used by architects, civil engineers, urban planners, developers, and business owners planning surface lots or structured parking facilities.",
-    },
-    {
-      q: "How many square feet does a parking space require?",
-      a: "A standard 90-degree parking stall requires approximately 162–180 square feet of stall area (8.5–9 ft wide × 18–20 ft deep). Including the proportional share of the drive aisle (typically 24 ft wide for two-way traffic), the total area per stall is approximately 300–350 square feet. A compact stall requires around 270–300 square feet per space including aisle. These figures vary by local code, stall angle, and whether aisles are one-way or two-way.",
-    },
-    {
-      q: "What is parking lot layout and how does angle affect it?",
-      a: "Parking lot layout refers to the arrangement of stalls and drive aisles within a parking area. The most common angles are 90°, 60°, and 45°. At 90°, stalls are perpendicular to the aisle — this maximizes stall count per area and works with two-way aisles. At 60° and 45°, stalls are angled — this simplifies entering and exiting stalls but requires one-way aisles and typically reduces total stall count per area. 90° layouts are most efficient for standard parking lots; angled layouts are common in urban street parking and smaller lots.",
-    },
-    {
-      q: "How many parking spaces are required by code?",
-      a: "Parking requirements vary by jurisdiction, land use type, and local zoning ordinance. Common baselines: retail typically requires 3–5 spaces per 1,000 sq ft of gross floor area; offices require 3–4 per 1,000 sq ft; restaurants require 1 space per 3–4 seats; residential requires 1–2 spaces per dwelling unit. ADA requirements mandate that 1 in every 25 spaces (4%) be accessible, with van-accessible spaces at a ratio of 1 in every 6 accessible spaces. Always verify against your local zoning code.",
-    },
-    {
-      q: "What are standard parking space dimensions?",
-      a: "Standard dimensions by category: Standard stall — 8.5–9 ft wide × 18–20 ft deep. Compact stall — 7.5–8 ft wide × 15–16 ft deep. ADA accessible stall — 8 ft wide with a 5 ft access aisle (or 8 ft aisle for van-accessible). Drive aisle — 24 ft wide for 90° two-way traffic; 18–20 ft for one-way 60°/45° angled layouts. These are US-standard dimensions. UK and metric standards differ: a standard UK bay is 2.4m × 4.8m with a 6m aisle.",
-    },
-    {
-      q: "How many parking spaces fit in an acre?",
-      a: "A gross acre is 43,560 square feet. At approximately 300–350 sq ft per stall (including aisle), a surface lot fits approximately 124–145 stalls per acre at 90° layout. In practice, after accounting for entrance drives, landscaping buffers, pedestrian pathways, and unusable corners, a well-designed surface parking lot typically achieves 100–120 stalls per usable acre. Structured parking garages achieve significantly higher stall density by stacking levels.",
-    },
-    {
-      q: "What is a parking demand calculator?",
-      a: "A parking demand calculator estimates how many parking spaces a facility needs based on occupancy patterns, peak usage, and building type. Unlike a simple stall-count calculator (which tells you how many spaces fit in an area), a demand calculator answers how many spaces are required given expected users. For example, an office building with 200 employees and a 85% peak occupancy rate needs approximately 170 spaces. This tool covers both: physical capacity from area, and demand estimation from occupancy.",
-    },
-    {
-      q: "How do I calculate the number of parking spaces for a building?",
-      a: "Multiply the building's gross floor area (or seat/unit count) by the applicable parking ratio from your local zoning code. For example: a 10,000 sq ft retail store at a ratio of 4 spaces per 1,000 sq ft requires 40 spaces. Add the required ADA spaces on top: 40 spaces requires 2 ADA spaces (1 per 25), of which 1 must be van-accessible. Then calculate whether your available lot area can accommodate those spaces using the stall count calculation.",
-    },
-    {
-      q: "What is the difference between a parking lot calculator and a parking space calculator?",
-      a: "A parking space calculator focuses on stall dimensions and how many individual stalls fit in a given layout. A parking lot calculator is broader — it includes stall count, aisle count, total area required, landscaping setbacks, and sometimes cost estimation. This tool functions as both: enter the lot dimensions to get stall count, or enter a target stall count to get the required lot area.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your lot dimensions, stall counts, and other inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you. The tool works fully offline once the page is loaded.",
-    },
-  ];
-
-  const howToSteps: [string, string][] = [
-    ["Enter your lot dimensions", "Input the available parking area length and width in feet or meters. If you have an irregular lot, use the total usable area in square feet or square meters instead of dimensions. The calculator converts between units automatically."],
-    ["Select parking angle and stall type", "Choose your parking layout angle — 90° (perpendicular), 60°, or 45° — and select the stall type: standard, compact, or ADA. The stall dimensions and required aisle width update automatically based on your selection."],
-    ["Configure aisle and traffic direction", "Select one-way or two-way traffic flow for your drive aisles. Two-way aisles require 24 ft width and work with 90° layouts; one-way aisles are 18–20 ft and suit 60° and 45° angled layouts."],
-    ["Read the stall count and layout summary", "The calculator returns the total number of stalls, ADA-required spaces, drive aisle count, total paved area, and the efficiency ratio (useful stall area vs total lot area). The visual layout diagram shows how stalls and aisles are arranged."],
-    ["Use the demand calculator to verify requirements", "Switch to demand mode, enter your building type and gross floor area (or seat/unit count), and the tool shows how many spaces your local zoning baseline requires — so you can confirm your lot can meet the code minimum."],
-    ["Export your layout summary", "Download the stall count report as a PDF or text file for use in planning applications, design briefs, or client presentations."],
-  ];
-
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = parkingSpaceCalculatorConfig.seo;
   return (
     <>
       {/* ── 1. Introduction ── */}
@@ -120,7 +73,7 @@ export default function ParkingSpaceCalculatorSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -344,20 +297,7 @@ export default function ParkingSpaceCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

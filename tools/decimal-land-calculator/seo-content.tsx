@@ -1,55 +1,9 @@
-export default function DecimalLandCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a decimal land calculator?",
-      a: "A decimal land calculator is a free online tool that converts land area measurements between Decimal and other units — Acre, Katha, Bigha, Shotok, Square Feet, Square Meter, Hectare, and Cent. It is used across South Asia, particularly in Bangladesh, West Bengal, Bihar, and Nepal, where Decimal (also called Shotok in Bengali) is the standard base unit for residential and agricultural land records.",
-    },
-    {
-      q: "What is Decimal in land measurement?",
-      a: "Decimal is a unit of land area equal to 435.6 square feet or 40.47 square meters. It is 1/100th of an Acre — meaning 100 Decimal equals exactly 1 Acre. The unit is widely used in Bangladesh and eastern India for recording plot sizes in property deeds, government land records, and real estate transactions. It is also called Shotok in Bengali, and the two terms are used interchangeably.",
-    },
-    {
-      q: "What is Shotok and how does it relate to Decimal?",
-      a: "Shotok is the Bengali word for Decimal. They represent the same unit of land measurement — 1 Shotok equals 1 Decimal equals 435.6 square feet. In Bangladesh, land records, property deeds, and sales agreements often use 'Shotok' while official government documents may use 'Decimal.' This calculator accepts input in either term and converts correctly to all other units.",
-    },
-    {
-      q: "How many Decimal in 1 Acre?",
-      a: "1 Acre equals exactly 100 Decimal (or 100 Shotok). Since 1 Acre = 43,560 square feet and 1 Decimal = 435.6 square feet, dividing gives precisely 100. This is the most important relationship to remember: Decimal is simply a percentage of an Acre. A 50 Decimal plot is half an acre; a 25 Decimal plot is a quarter acre.",
-    },
-    {
-      q: "How many square feet in 1 Decimal?",
-      a: "1 Decimal equals 435.6 square feet. This value is fixed and consistent across Bangladesh, West Bengal, Bihar, Nepal, and global standards. It does not change by region. What does vary by region is how many Decimals make up 1 Katha and 1 Bigha — those relationships differ between Bangladesh, Bihar, and Nepal, which is why this calculator includes a regional preset selector.",
-    },
-    {
-      q: "How many Decimal in 1 Katha (Bangladesh)?",
-      a: "In Bangladesh, 1 Katha equals 720 square feet. Since 1 Decimal equals 435.6 square feet, 1 Katha equals approximately 1.653 Decimal. Going the other way, 1 Decimal equals approximately 0.605 Katha. This ratio applies to Bangladesh and West Bengal. In Bihar, 1 Katha equals 1,361.25 square feet, making 1 Katha equal to approximately 3.125 Decimal — a significantly different value.",
-    },
-    {
-      q: "How many Decimal in 1 Bigha (Bangladesh)?",
-      a: "In Bangladesh, 1 Bigha equals 14,400 square feet, which equals approximately 33.06 Decimal. So 1 Decimal equals approximately 0.0302 Bigha. In Bihar, 1 Bigha equals 27,225 square feet (approximately 62.5 Decimal), and in Nepal, 1 Bigha equals 72,900 square feet (approximately 167.3 Decimal). Always confirm which regional standard applies to your land records before converting.",
-    },
-    {
-      q: "How do I convert Shotok to Decimal?",
-      a: "No conversion is needed — 1 Shotok equals 1 Decimal exactly. They are the same unit. If a land document lists a plot as 8 Shotok, that plot is 8 Decimal, which equals 3,484.8 square feet (8 × 435.6) or 0.08 Acre. Enter the value in this calculator and select Decimal/Shotok as the input unit to see conversions to all other units instantly.",
-    },
-    {
-      q: "How do I convert 1 Acre to Decimal?",
-      a: "1 Acre equals 100 Decimal. To convert any acreage to Decimal, multiply by 100. For example: 0.5 Acres = 50 Decimal, 2.5 Acres = 250 Decimal, 0.25 Acres = 25 Decimal. To convert Decimal back to Acres, divide by 100. Enter any value in this calculator and it performs all conversions instantly without manual arithmetic.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your land values and inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you. This means you can safely enter real property measurements, plot sizes from legal documents, or confidential real estate data without any information leaving your device.",
-    },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
-  const howToSteps: [string, string][] = [
-    ["Enter your land area value", "Type the numeric land area into the input field. You can enter whole numbers or decimals — for example, 8, 2.5, or 33.06. The calculator accepts any positive value and begins converting immediately as you type."],
-    ["Select your input unit", "Choose the unit you are converting from — Decimal/Shotok, Acre, Katha, Bigha, Square Feet, Square Meter, Hectare, or Cent. The input unit determines the base value for all output conversions."],
-    ["Choose your regional standard", "Select the region that matches your land records: Bangladesh, West Bengal, Bihar, Nepal, or Global Standard. This affects how Katha and Bigha are calculated, since those units have different sizes by region. Decimal and Acre are the same across all regions."],
-    ["Read all conversions simultaneously", "The results panel displays your value converted into all supported units at once — no need to run separate calculations. Scroll through to find the output unit you need."],
-    ["Use the conversion reference table", "Check the reference table below for common pre-calculated values. This is useful for quick lookups without entering a value — for example, confirming that 5 Decimal equals 2,178 square feet."],
-    ["Copy or export your result", "Click any result to copy it to clipboard, or use the export button to download the full conversion as a text file for use in legal documents, property records, or client reports."],
-  ];
+export default function DecimalLandCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
@@ -121,7 +75,7 @@ export default function DecimalLandCalculatorSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -350,20 +304,7 @@ export default function DecimalLandCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

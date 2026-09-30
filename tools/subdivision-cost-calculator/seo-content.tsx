@@ -1,8 +1,40 @@
-import React from "react";
 import ToolFaq from "@/components/ToolFaq";
 import { subdivisionCostCalculatorConfig } from "./config";
 
+// Illustrative line items (US dollars), not quotes; the calculator takes your own figures
+const EXAMPLES: { title: string; setup: string; plots: number; items: [string, number][] }[] = [
+  {
+    title: "Minor split: one lot into two",
+    setup: "A 2-acre lot on an existing street is split into two 1-acre lots; both connect to existing water, sewer and power.",
+    plots: 2,
+    items: [
+      ["Boundary survey and plat", 4000],
+      ["Engineering (grading, utility plans)", 3500],
+      ["Legal and title", 2500],
+      ["Application and permit fees", 3000],
+      ["Utility connections", 10000],
+    ],
+  },
+  {
+    title: "Small subdivision: 20 lots with a new street",
+    setup: "A 10-acre parcel becomes 20 lots served by a new public street, water and sewer mains, and a stormwater pond.",
+    plots: 20,
+    items: [
+      ["Survey, engineering and plat", 80000],
+      ["Legal and title", 15000],
+      ["Permits, review and impact fees", 100000],
+      ["Water, sewer and power mains", 400000],
+      ["Street, curbs and sidewalks", 600000],
+      ["Stormwater drainage", 150000],
+      ["Contingency (10%)", 134500],
+    ],
+  },
+];
+
+const usd = (n: number) => "$" + n.toLocaleString("en-US");
+
 export default function SubdivisionCostCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
   const { howToSteps, faq } = subdivisionCostCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
@@ -71,43 +103,45 @@ export default function SubdivisionCostCalculatorSEO() {
           </table>
         </div>
         <p className="text-xs text-gray-500 mt-3">
-          Ranges are approximate US averages. Actual costs vary significantly by location, project size, and local regulations.
+          Rough whole-project ranges for small US subdivisions, for orientation only. New public streets and utility mains for larger subdivisions can cost far more; get local quotes.
         </p>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Example Subdivision Cost Estimates
+          Worked Examples: Cost per Lot
         </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b-2 border-gray-200">
-                <th className="text-left py-3 px-4 font-semibold text-gray-800">Scenario</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-800">Land / Plots</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-800">Total Cost</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-800">Cost/Plot</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {[
-                ["Small residential",  "10 acres / 20 plots",  "$25,500",  "$1,275"],
-                ["Medium development", "5 acres / 8 plots",    "$12,500",  "$1,563"],
-                ["Large subdivision",  "50,000 sq ft / 12 plots","$21,500","$1,792"],
-                ["Rural subdivision",  "50 acres / 5 plots",   "$18,000",  "$3,600"],
-              ].map(([scenario, land, total, perPlot]) => (
-                <tr key={scenario} className="hover:bg-gray-50">
-                  <td className="py-3 px-4 font-medium text-gray-800">{scenario}</td>
-                  <td className="py-3 px-4 text-gray-600">{land}</td>
-                  <td className="py-3 px-4 font-mono text-primary font-semibold">{total}</td>
-                  <td className="py-3 px-4 font-mono text-gray-700">{perPlot}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid md:grid-cols-2 gap-6">
+          {EXAMPLES.map(({ title, setup, plots, items }) => {
+            const total = items.reduce((sum, [, v]) => sum + v, 0);
+            return (
+              <div key={title} className="p-5 bg-gray-50 border border-gray-200 rounded-lg">
+                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+                <p className="text-sm text-gray-600 mb-3">{setup}</p>
+                <table className="w-full text-sm">
+                  <tbody className="divide-y divide-gray-200">
+                    {items.map(([label, v]) => (
+                      <tr key={label}>
+                        <td className="py-1.5 pr-3 text-gray-700">{label}</td>
+                        <td className="py-1.5 font-mono text-right text-gray-800">{usd(v)}</td>
+                      </tr>
+                    ))}
+                    <tr className="font-semibold">
+                      <td className="py-2 pr-3 text-gray-900">Total</td>
+                      <td className="py-2 font-mono text-right text-gray-900">{usd(total)}</td>
+                    </tr>
+                    <tr className="font-semibold">
+                      <td className="py-1.5 pr-3 text-primary">Cost per lot ({plots} lots)</td>
+                      <td className="py-1.5 font-mono text-right text-primary">{usd(Math.round(total / plots))}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            );
+          })}
         </div>
         <p className="text-xs text-gray-500 mt-3">
-          Example estimates based on typical US costs. Use the calculator above for your specific project inputs.
+          Illustrative figures only; costs vary widely with location, terrain and local requirements. The cost of the land itself is not included. Enter your own quotes in the calculator above, in any currency.
         </p>
       </section>
 

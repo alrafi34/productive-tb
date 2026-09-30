@@ -95,15 +95,15 @@ export function getDoorPresets(): DoorPreset[] {
     },
     {
       name: "Standard Exterior Door",
-      description: "Main entry door",
-      height: 7,
+      description: "Main entry door, 36 × 80 in",
+      height: 6.67,
       width: 3,
       unit: "ft"
     },
     {
       name: "Double Door",
-      description: "Wide entry or patio",
-      height: 7,
+      description: "Entry or patio pair, 72 × 80 in",
+      height: 6.67,
       width: 6,
       unit: "ft"
     },

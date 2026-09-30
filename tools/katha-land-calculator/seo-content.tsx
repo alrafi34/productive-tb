@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { kathaLandCalculatorConfig } from "./config";
 
 export default function KathaLandCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = kathaLandCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -69,13 +72,7 @@ export default function KathaLandCalculatorSEO() {
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <ol className="space-y-5 text-gray-600">
-            {[
-              ["Enter Your Land Area", "Type the numeric value of your plot — whole numbers or decimals are both accepted. For example, enter 8.5 for a plot of 8.5 Katha or 2.75 for 2.75 Decimal. The calculator starts converting immediately as you type."],
-              ["Select Your Input Unit", "Choose the unit your measurement is already in — Katha, Decimal, Bigha, Acre, Square Feet, Square Meter, or Hectare. This is the 'from' unit that anchors all output conversions."],
-              ["Choose Your Regional Standard", "Select Bangladesh, West Bengal, Bihar, or Nepal from the region dropdown. This setting changes the Katha and Bigha sizes to match local land records. Decimal and Acre remain constant regardless of region."],
-              ["Read All Conversions at Once", "The results panel shows your value converted into every supported unit simultaneously — no need to run the calculator separately for each target unit. All outputs update in real time."],
-              ["Copy or Export Results", "Click any individual result to copy it to your clipboard. Use the export button to download the full conversion summary as a text file suitable for attaching to property documents or client reports."],
-            ].map(([title, desc], i) => (
+            {howToSteps.map(({ name: title, text: desc }, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="flex-shrink-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
                   {i + 1}
@@ -265,61 +262,7 @@ export default function KathaLandCalculatorSEO() {
         <p className="text-xs text-gray-500">* Decimal = 435.6 sq ft and Acre = 43,560 sq ft are consistent across all regions.</p>
       </section>
 
-      {/* ── 7. FAQ ── */}
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is Katha in land measurement?",
-              a: "Katha (also spelled Kata or Katha) is a traditional land measurement unit used across South Asia, particularly in Bangladesh, West Bengal, Bihar, and Nepal. It is subdivided from Bigha — there are always 20 Katha in 1 Bigha — but the absolute size of 1 Katha in square feet varies significantly by region. It is commonly used in property deeds, residential plot sales, and agricultural land records throughout eastern India and Bangladesh.",
-            },
-            {
-              q: "How many square feet is 1 Katha?",
-              a: "It depends on the region. In Bangladesh and West Bengal, 1 Katha equals 720 square feet. In Bihar, 1 Katha equals 1,361.25 square feet. In Nepal, 1 Katha equals 3,645 square feet. Always confirm which regional standard applies to a property before performing any conversion — using the wrong standard can introduce errors of hundreds of square feet.",
-            },
-            {
-              q: "How many Decimal is 1 Katha in Bangladesh?",
-              a: "In Bangladesh, 1 Katha equals 720 sq ft and 1 Decimal (Shotok) equals 435.6 sq ft, giving 1 Katha ≈ 1.653 Decimal. So a 5 Katha plot is approximately 8.264 Decimal, and a 10 Katha plot is approximately 16.529 Decimal. Decimal is fixed at 435.6 sq ft in all regions.",
-            },
-            {
-              q: "How many Katha in 1 Bigha?",
-              a: "1 Bigha equals 20 Katha in all regions — Bangladesh, West Bengal, Bihar, and Nepal. The Bigha-to-Katha ratio is constant, but because the size of 1 Katha differs by region, 1 Bigha in Nepal (72,900 sq ft) is more than five times larger than 1 Bigha in Bangladesh (14,400 sq ft). Always specify the region when comparing Bigha values.",
-            },
-            {
-              q: "How many Katha in 1 Acre (Bangladesh)?",
-              a: "1 Acre = 43,560 sq ft. In Bangladesh where 1 Katha = 720 sq ft, there are 43,560 ÷ 720 = 60.5 Katha in 1 Acre. In Bihar (1 Katha = 1,361.25 sq ft), there are approximately 32 Katha per Acre. In Nepal (1 Katha = 3,645 sq ft), there are approximately 11.95 Katha per Acre.",
-            },
-            {
-              q: "What is the difference between Katha and Decimal?",
-              a: "Katha and Decimal are both units of land area used in South Asia, but they measure different quantities. Decimal (Shotok) is fixed at 435.6 sq ft everywhere. Katha varies — it is 720 sq ft in Bangladesh but 1,361.25 sq ft in Bihar. In Bangladesh, 1 Katha = 1.653 Decimal, meaning Katha is the larger unit. The two units are used for different property types: Decimal for smaller residential plots and Katha for medium to large plots.",
-            },
-            {
-              q: "Is 'kata land' the same as 'katha land'?",
-              a: "Yes. 'Kata' and 'Katha' refer to the same unit of land measurement. The spelling difference comes from transliteration variations between Bengali, Hindi, and Nepali scripts. In Google Search, queries for 'kata land calculator' and 'katha land calculator' are looking for the same tool. This calculator handles both spellings and all regional standards.",
-            },
-            {
-              q: "Can I convert from Decimal to Katha using this tool?",
-              a: "Yes. Select Decimal as your input unit and the calculator will output the equivalent value in Katha (along with Bigha, Acre, Square Feet, Square Meter, and Hectare) simultaneously. Remember to set your regional standard first — the Katha output for the same Decimal input will differ between Bangladesh and Bihar.",
-            },
-            {
-              q: "How do I find out which Katha standard my land deed uses?",
-              a: "Check the district or upazila listed in your deed. Bangladesh and West Bengal deeds use 720 sq ft per Katha. Bihar deeds use 1,361.25 sq ft. Nepal deeds use 3,645 sq ft. If you have an older deed without a clear region, cross-reference the listed square footage with the Katha count — the ratio will identify which standard was used.",
-            },
-            {
-              q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your land area values, region selections, and conversion results are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">

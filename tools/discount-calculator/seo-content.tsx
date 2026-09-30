@@ -1,26 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function DiscountCalculatorSEO() {
-  const faqItems = [
-    { q: "What is a discount calculator?", a: "A discount calculator is a free online tool that computes the final sale price after one or more discounts are applied to an original price. Enter the original price and a percentage or fixed-amount discount, and the calculator instantly returns the discounted price, the amount saved, and the savings percentage. This tool extends the basic formula to support stacked discounts, optional tax, reverse pricing, and batch processing." },
-    { q: "How is percent off calculated?", a: "Percent off is calculated as: Sale Price = Original Price × (1 − Discount% ÷ 100). For example, 25% off a $120 item: $120 × (1 − 0.25) = $120 × 0.75 = $90. Amount saved: $120 − $90 = $30. This tool applies the formula automatically — enter any original price and discount percentage and the sale price updates instantly." },
-    { q: "How do stacked discounts work?", a: "Stacked discounts are applied sequentially, each to the running subtotal — not to the original price. A 30% discount followed by a 10% discount on a $100 item gives: $100 × 0.70 = $70, then $70 × 0.90 = $63. The combined effect is 37% off — not 40%. This tool shows each step so you can see exactly how the price changes at every stage, which is how real checkout systems actually apply multiple coupons." },
-    { q: "How is the original price calculated from a sale price?", a: "The reverse discount formula is: Original Price = Sale Price ÷ (1 − Discount% ÷ 100). For example, if a sale price is $70 after a 30% discount: $70 ÷ (1 − 0.30) = $70 ÷ 0.70 = $100. Use reverse mode in this tool when you know the final price and the discount percentage but need to recover the original price — common for retail pricing analysis and margin calculations." },
-    { q: "How is tax applied after a discount?", a: "Tax is applied to the discounted subtotal, not the original price. Formula: Final Total = Discounted Price × (1 + Tax Rate ÷ 100). For a $90 discounted item with 8% tax: $90 × 1.08 = $97.20. This matches how most tax jurisdictions work — sales tax is calculated on the actual amount paid, after discounts. This tool applies tax in the correct order to give you a realistic checkout total." },
-    { q: "What is the difference between a percentage discount and a fixed discount?", a: "A percentage discount reduces the price by a proportion of the original amount — 20% off $80 saves $16. A fixed discount reduces the price by a set dollar amount regardless of the original price — $15 off a $80 item saves $15. This tool supports both types and lets you mix them in a single stacked calculation, which mirrors how stores combine campaign discounts with coupon codes." },
-    { q: "How do I calculate the original price before a discount?", a: "Use the reverse discount formula: Original Price = Sale Price ÷ (1 − Discount% ÷ 100). If an item is now $51 and was discounted by 15%: $51 ÷ 0.85 = $60 original price. This is useful for retail shelf pricing analysis, checking whether a 'sale' price implies a reasonable original price, and margin verification when you only see the final price tag." },
-    { q: "Can I calculate discounts for multiple items at once?", a: "Yes. Use batch mode to paste a list of original prices (one per line) and the tool applies the same discount configuration to every item simultaneously, displaying the sale price and savings for each. The full batch results can be exported as CSV for use in spreadsheets, inventory pricing tools, or client reports." },
-    { q: "What is a good discount percentage?", a: "From a retail perspective, discounts of 10–20% are standard promotional discounts that drive traffic without significantly eroding margin. Discounts of 25–40% signal clearance or seasonal events. Discounts over 50% typically indicate end-of-line, damaged goods, or loss-leader pricing. From a buyer's perspective, any discount is good if the sale price is below alternative sources — always compare the discounted price against other retailers, not just the stated 'original' price." },
-    { q: "Is my pricing data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your prices, discount values, and tax rates are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
-  ];
-
-  const howToSteps: [string, string][] = [
-    ["Enter the original price", "Type the pre-discount price of the item. This is the starting price before any coupons, promotions, or reductions are applied. Results update instantly as you type."],
-    ["Add a discount step", "Enter a percentage or fixed-amount discount. Click 'Add Step' to stack a second discount — each step applies to the running subtotal from the previous step, matching real checkout logic."],
-    ["Add tax if needed", "Enter your local tax rate to include tax in the final total. Tax is applied after all discounts to produce a realistic checkout amount. Leave blank to skip."],
-    ["Review the step-by-step breakdown", "The results panel shows each price change in sequence — original price, after each discount, and after tax. This makes it easy to see exactly where each dollar was saved."],
-    ["Use reverse mode to find original price", "Switch to reverse mode, enter a sale price and the discount percentage, and the calculator returns the original pre-discount price. Useful for retail analysis and margin verification."],
-    ["Use batch mode for multiple items", "Paste a list of prices one per line, configure your discount, and export the full results as CSV for spreadsheets, inventory pricing, or client handoff."],
-  ];
-
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
   return (
     <>
       {/* ── 1. Introduction ── */}
@@ -86,7 +69,7 @@ export default function DiscountCalculatorSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -285,20 +268,7 @@ export default function DiscountCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

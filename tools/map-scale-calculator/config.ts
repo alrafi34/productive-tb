@@ -8,7 +8,7 @@ export const mapScaleCalculatorConfig = {
   icon: "🗺️",
   free: true,
   seo: {
-    title: "Map Scale Calculator – Map to Real Distance",
+    title: "Map Scale Calculator – Convert Map Distance to Real Distance",
     description: "Convert map distance to real-world distance, or real distance to map distance, for any scale such as 1:24,000 or 1:50,000. Metric and imperial units.",
     keywords: [
       "map scale calculator",
@@ -25,7 +25,7 @@ export const mapScaleCalculatorConfig = {
       "topographic map scale",
     ],
     og: {
-      title: "Map Scale Calculator – Map to Real Distance",
+      title: "Map Scale Calculator – Convert Map Distance to Real Distance",
       description: "Convert map distance to real-world distance, or real distance to map distance, for any scale such as 1:24,000 or 1:50,000. Metric and imperial units.",
       url: `${siteConfig.url}/tools/land/map-scale-calculator`,
     },

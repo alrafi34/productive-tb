@@ -1,8 +1,12 @@
-import React from "react";
 import ToolFaq from "@/components/ToolFaq";
 import { plotDivisionCalculatorConfig } from "./config";
 
+const ACRE_SQFT = 43560;
+const LOT_SIZES = [2500, 5000, 7500, 10000, 21780];
+const ROAD_SHARES = [0, 0.15, 0.25];
+
 export default function PlotDivisionCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
   const { howToSteps, faq } = plotDivisionCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
@@ -69,6 +73,51 @@ export default function PlotDivisionCalculatorSEO() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Worked Example: Dividing Land With Roads
+        </h2>
+        <div className="space-y-4 text-gray-700 leading-relaxed">
+          <p>A 5-acre parcel (217,800 sq ft) is to be split into 10 building lots, with 20% of the land set aside for an access road and sidewalks.</p>
+          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 font-mono text-sm text-gray-900 space-y-1">
+            <p>Road area = 217,800 × 0.20 = 43,560 sq ft (1 acre)</p>
+            <p>Net land = 217,800 − 43,560 = 174,240 sq ft</p>
+            <p>Each lot = 174,240 ÷ 10 = 17,424 sq ft ≈ 0.40 acre (1,619 m²)</p>
+          </div>
+          <p>If the parcel is 330 ft wide and 660 ft deep, a 66 ft road down the middle takes exactly that acre and leaves a 5 × 2 grid of square lots, each 132 × 132 ft (17,424 sq ft). Enter the land&apos;s width, length and road width in the calculator to see the layout.</p>
+        </div>
+      </section>
+
+      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          How Many Lots Fit in an Acre?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">Whole lots per acre (43,560 sq ft) for common lot sizes, with no roads and with 15% or 25% of the land used for streets. Minimum lot sizes come from your local zoning code.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-3 px-4 font-semibold text-gray-800">Lot size</th>
+                {ROAD_SHARES.map((r) => (
+                  <th key={r} className="text-left py-3 px-4 font-semibold text-gray-800">{r === 0 ? "No roads" : `${r * 100}% roads`}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {LOT_SIZES.map((lot) => (
+                <tr key={lot} className="hover:bg-gray-50">
+                  <td className="py-3 px-4 font-mono">{lot.toLocaleString("en-US")} sq ft ({Math.round(lot / 10.7639).toLocaleString("en-US")} m²)</td>
+                  {ROAD_SHARES.map((r) => (
+                    <td key={r} className="py-3 px-4 font-mono">{Math.floor((ACRE_SQFT * (1 - r)) / lot)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-500 mt-4">For a hectare (10,000 m²), multiply the lot counts by about 2.47.</p>
       </section>
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">

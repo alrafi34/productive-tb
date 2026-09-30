@@ -1,7 +1,21 @@
 import ToolFaq from "@/components/ToolFaq";
 import { concreteMixRatioCalculatorConfig } from "./config";
 
+// Materials for 1 m³ and 1 yd³ of concrete, using the calculator's own method:
+// dry volume = 1.54 × wet volume, cement at 1,440 kg/m³
+const MIXES: [string, number, number, number][] = [
+  ["1:3:6", 1, 3, 6],
+  ["1:2:4", 1, 2, 4],
+  ["1:1.5:3", 1, 1.5, 3],
+  ["1:1:2", 1, 1, 2],
+];
+const DRY = 1.54;
+const CEMENT_DENSITY = 1440;
+const YD3_M3 = 0.764555;
+const US_BAG_KG = 42.6377; // 94 lb
+
 export default function ConcreteMixRatioCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
   const { howToSteps, faq } = concreteMixRatioCalculatorConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto space-y-8 text-gray-700">
@@ -120,6 +134,39 @@ export default function ConcreteMixRatioCalculatorSEO() {
           Strengths are typical for well-made site-batched concrete, not guaranteed. Structural concrete is specified by
           strength class (ACI 318 in the US, EN 206 in Europe), so follow the engineer&apos;s specification where there is one.
         </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Materials per Cubic Meter and Cubic Yard</h2>
+        <p className="mb-4">Cement, sand and gravel for one cubic meter (and one cubic yard) of finished concrete, using the 1.54 dry volume factor. Sand and gravel are loose volumes; buy 5–10% extra for waste.</p>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Mix</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Cement per m³</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Sand per m³</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Gravel per m³</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">94 lb bags per yd³</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {MIXES.map(([name, c, sa, g]) => {
+                const parts = c + sa + g;
+                const cementKg = (DRY * c / parts) * CEMENT_DENSITY;
+                return (
+                  <tr key={name}>
+                    <td className="px-4 py-3 text-sm font-mono font-semibold">{name}</td>
+                    <td className="px-4 py-3 text-sm font-mono">{Math.round(cementKg)} kg ({(cementKg / 50).toFixed(1)} × 50 kg, {(cementKg / 25).toFixed(1)} × 25 kg)</td>
+                    <td className="px-4 py-3 text-sm font-mono">{(DRY * sa / parts).toFixed(2)} m³</td>
+                    <td className="px-4 py-3 text-sm font-mono">{(DRY * g / parts).toFixed(2)} m³</td>
+                    <td className="px-4 py-3 text-sm font-mono">{((cementKg * YD3_M3) / US_BAG_KG).toFixed(1)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section>

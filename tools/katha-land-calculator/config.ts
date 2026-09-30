@@ -16,8 +16,8 @@ export const kathaLandCalculatorConfig = {
     "price-per-square-feet-calculator",
   ],
   seo: {
-    title: "Katha to Sq Ft Calculator — BD, WB, Bihar",
-    description: "Katha size varies by region — 720 sq ft in Bangladesh and West Bengal, 1,361.25 sq ft in Bihar. Convert to Sq Ft, Decimal, Bigha and Acre.",
+    title: "Katha Calculator – 1 Katha = 720 sq ft, Decimal & Bigha",
+    description: "1 katha = 720 sq ft (1.653 decimal) in Bangladesh and West Bengal, 1,361.25 sq ft in Bihar, 3,645 in Nepal. Convert katha to decimal, bigha, acre and m².",
     keywords: [
       "katha land calculator",
       "kata land calculator",
@@ -45,13 +45,13 @@ export const kathaLandCalculatorConfig = {
       "regional katha converter",
     ],
     og: {
-      title: "Katha Land Calculator — Free Katha to Decimal & Sq Ft Converter",
-      description: "Convert Katha to Decimal, Bigha, Acre, Square Feet, and more. Regional presets for Bangladesh, West Bengal, Bihar, and Nepal.",
+      title: "Katha Calculator – 1 Katha = 720 sq ft, Decimal & Bigha",
+      description: "1 katha = 720 sq ft (1.653 decimal) in Bangladesh and West Bengal, 1,361.25 sq ft in Bihar, 3,645 in Nepal. Convert katha to decimal, bigha, acre and m².",
       url: `${siteConfig.url}/tools/land/katha-land-calculator`,
     },
     openGraph: {
-      title: "Katha Land Calculator — Free Katha to Decimal & Sq Ft Converter",
-      description: "Convert Katha to Decimal, Bigha, Acre, Square Feet, and more. Regional presets for Bangladesh, West Bengal, Bihar, and Nepal.",
+      title: "Katha Calculator – 1 Katha = 720 sq ft, Decimal & Bigha",
+      description: "1 katha = 720 sq ft (1.653 decimal) in Bangladesh and West Bengal, 1,361.25 sq ft in Bihar, 3,645 in Nepal. Convert katha to decimal, bigha, acre and m².",
       type: "website",
       url: `${siteConfig.url}/tools/land/katha-land-calculator`,
     },
