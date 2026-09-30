@@ -207,7 +207,9 @@ export default function SquareRootCalculatorUI() {
                       <div className="text-sm font-semibold text-gray-700" data-testid="sqrt-simplified">
                         {simplified.radicand === 1
                           ? <>√{valNum} = {simplified.coefficient} (a perfect square)</>
-                          : <>Simplest radical form: √{valNum} = {formatRadical(simplified)}</>}
+                          : simplified.coefficient === 1
+                            ? <>√{valNum} is already in simplest radical form</>
+                            : <>Simplest radical form: √{valNum} = {formatRadical(simplified)}</>}
                       </div>
                     )}
                     <div className="text-xs text-gray-500">Cube root: ∛{valNum} = {formatValue(Math.cbrt(valNum), precision)}</div>
