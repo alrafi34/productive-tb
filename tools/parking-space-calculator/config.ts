@@ -9,8 +9,8 @@ export const parkingSpaceCalculatorConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Parking Lot Layout Calculator — Free Tool",
-    description: "Work out how many parking spaces fit your lot, including aisle width, accessible bays and layout angle. Free, runs in your browser, no sign-up.",
+    title: "Parking Space Calculator – Stalls per Lot, Aisles & ADA",
+    description: "How many parking spaces fit your lot? Enter its area or size for 90°, 60°, 45° or parallel stalls with aisles and ADA bays, or size a lot for a stall count.",
     keywords: [
       "parking space calculator",
       "parking lot layout calculator",
@@ -39,8 +39,8 @@ export const parkingSpaceCalculatorConfig = {
       "parking calculator free",
     ],
     openGraph: {
-      title: "Parking Space Calculator — Free Parking Lot Layout Tool Online",
-      description: "Calculate parking stall count from lot area or required area from stall count. ADA compliance, 90°/60°/45° layouts, demand mode. Browser-based, free.",
+      title: "Parking Space Calculator – Stalls per Lot, Aisles & ADA",
+      description: "How many parking spaces fit your lot? Enter its area or size for 90°, 60°, 45° or parallel stalls with aisles and ADA bays, or size a lot for a stall count.",
       type: "website",
       url: `${siteConfig.url}/tools/architecture/parking-space-calculator`,
     },

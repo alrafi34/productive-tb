@@ -17,12 +17,12 @@ export const doorAreaCalculatorConfig = {
     "material estimation"
   ],
   seo: {
-    title: "Door Area Calculator — Sq Ft & Sq M",
-    description: "Calculate door area in square feet and square metres for single, double and sliding doors. For painting, glazing and material take-offs.",
+    title: "Door Area Calculator – Sq Ft & m² for Single & Double Doors",
+    description: "A standard 36 × 80 in door is 20 sq ft (1.86 m²). Work out door area in sq ft and m² for interior, exterior, double and garage doors, for paint and materials.",
     keywords: "door area calculator, calculate door size, door opening area, construction calculator, area calculator",
     og: {
-      title: "Door Area Calculator – Free Online Tool",
-      description: "Calculate door opening area instantly with multiple unit support.",
+      title: "Door Area Calculator – Sq Ft & m² for Single & Double Doors",
+      description: "A standard 36 × 80 in door is 20 sq ft (1.86 m²). Work out door area in sq ft and m² for interior, exterior, double and garage doors, for paint and materials.",
       type: "website",
       url: "/tools/architecture/door-area-calculator"
     },

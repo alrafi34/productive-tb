@@ -9,8 +9,8 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Decimal to Katha, Bigha & Sq Ft Converter",
-    description: "Convert Decimal (Shotok) to Katha, Bigha, Acre and Square Feet. 1 Decimal = 435.6 sq ft. Regional presets for Bangladesh, West Bengal, Bihar and Nepal.",
+    title: "Decimal to Sq Ft, Katha & Acre – 1 Decimal = 435.6 sq ft",
+    description: "1 decimal (shotok) = 435.6 sq ft = 40.47 m² = 1/100 acre. Convert decimal to sq ft, katha, bigha, acre and hectare; 1 katha = 1.653 decimal.",
     keywords: [
       "decimal land calculator",
       "shotok to decimal",
@@ -39,14 +39,14 @@ export const toolConfig = {
       "south asia land calculator",
     ],
     openGraph: {
-      title: "Decimal Land Calculator — Free Shotok to Decimal Converter",
-      description: "Convert Decimal and Shotok land units to Acre, Katha, Bigha, Square Feet, and more. Free, regional presets for Bangladesh, India, Nepal.",
+      title: "Decimal to Sq Ft, Katha & Acre – 1 Decimal = 435.6 sq ft",
+      description: "1 decimal (shotok) = 435.6 sq ft = 40.47 m² = 1/100 acre. Convert decimal to sq ft, katha, bigha, acre and hectare; 1 katha = 1.653 decimal.",
       type: "website",
       url: `${siteConfig.url}/tools/land/decimal-land-calculator`,
     },
     og: {
-      title: "Decimal Land Calculator — Free Shotok to Decimal Converter",
-      description: "Convert Decimal and Shotok land units to Acre, Katha, Bigha, Square Feet, and more. Free, regional presets for Bangladesh, India, Nepal.",
+      title: "Decimal to Sq Ft, Katha & Acre – 1 Decimal = 435.6 sq ft",
+      description: "1 decimal (shotok) = 435.6 sq ft = 40.47 m² = 1/100 acre. Convert decimal to sq ft, katha, bigha, acre and hectare; 1 katha = 1.653 decimal.",
       url: `${siteConfig.url}/tools/land/decimal-land-calculator`,
     },
     howToSteps: [

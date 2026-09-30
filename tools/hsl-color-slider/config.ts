@@ -29,8 +29,8 @@ export const hslColorSliderConfig = {
     "color-format-converter",
   ],
   seo: {
-    title: "HSL Color Slider — Free Online Hue Saturation Lightness Picker",
-    description: "Free HSL color slider with live preview. Adjust hue, saturation, and lightness to generate HSL, HEX, and RGB values, build harmony palettes, and copy production-ready CSS colors. No sign-up, browser-based.",
+    title: "HSL Color Picker – Hue, Saturation & Lightness Sliders",
+    description: "Pick a color with hue, saturation and lightness sliders and copy it as HSL, HEX or RGB. Build complementary, analogous, triadic and tetradic palettes.",
     keywords: [
       "hsl color slider",
       "hsl color picker",
@@ -56,8 +56,8 @@ export const hslColorSliderConfig = {
       "ui color picker",
     ],
     openGraph: {
-      title: "HSL Color Slider — Free Online Hue Saturation Lightness Picker",
-      description: "Adjust HSL values, generate harmony palettes, and copy HSL, HEX, or RGB output instantly. Free and browser-based.",
+      title: "HSL Color Picker – Hue, Saturation & Lightness Sliders",
+      description: "Pick a color with hue, saturation and lightness sliders and copy it as HSL, HEX or RGB. Build complementary, analogous, triadic and tetradic palettes.",
       type: "website",
       url: `${siteConfig.url}/tools/design/hsl-color-slider`,
     },

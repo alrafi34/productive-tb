@@ -8,8 +8,8 @@ export const subdivisionCostCalculatorConfig = {
   icon: "🏗️",
   free: true,
   seo: {
-    title: "Land Subdivision Cost Estimator — Free",
-    description: "Estimate the cost of subdividing land — survey, permits, utilities, roads and engineering. Adjust each line item to match your local rates.",
+    title: "Land Subdivision Cost Calculator – Cost per Lot",
+    description: "Estimate what it costs to subdivide land: survey, legal, permits, utilities, roads and drainage, with the total and cost per lot. Enter your own local rates.",
     keywords: [
       "subdivision cost calculator",
       "land subdivision calculator",
@@ -21,8 +21,8 @@ export const subdivisionCostCalculatorConfig = {
       "land development cost calculator",
     ],
     og: {
-      title: "Land Subdivision Cost Estimator — Free",
-      description: "Estimate the cost of subdividing land — survey, permits, utilities, roads and engineering. Adjust each line item to match your local rates.",
+      title: "Land Subdivision Cost Calculator – Cost per Lot",
+      description: "Estimate what it costs to subdivide land: survey, legal, permits, utilities, roads and drainage, with the total and cost per lot. Enter your own local rates.",
       url: `${siteConfig.url}/tools/land/subdivision-cost-calculator`,
     },
     howToSteps: [

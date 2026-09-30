@@ -8,8 +8,8 @@ export const plotDivisionCalculatorConfig = {
   icon: "📐",
   free: true,
   seo: {
-    title: "Plot Division Calculator – Divide Land into Equal Plots Online",
-    description: "Calculate and divide land into equal plots instantly. Enter land size, dimensions, and plot count to plan subdivisions with visual layouts and accurate calculations.",
+    title: "Plot Division Calculator – Divide Land Into Equal Plots",
+    description: "Divide land into equal plots: enter the total area, number of plots and road allowance to get each plot's size, dimensions and grid layout, in any unit.",
     keywords: [
       "plot division calculator",
       "land division calculator",
@@ -23,8 +23,8 @@ export const plotDivisionCalculatorConfig = {
       "plot area calculator",
     ],
     og: {
-      title: "Plot Division Calculator – Divide Land into Equal Plots Online",
-      description: "Calculate and divide land into equal plots instantly. Enter land size, dimensions, and plot count to plan subdivisions with visual layouts and accurate calculations.",
+      title: "Plot Division Calculator – Divide Land Into Equal Plots",
+      description: "Divide land into equal plots: enter the total area, number of plots and road allowance to get each plot's size, dimensions and grid layout, in any unit.",
       url: `${siteConfig.url}/tools/land/plot-division-calculator`,
     },
     howToSteps: [

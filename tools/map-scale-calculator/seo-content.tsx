@@ -98,8 +98,10 @@ export default function MapScaleCalculatorSEO() {
                 ["1:2,500",   "25 m",    "208 ft",     "Town maps, cadastral surveys"],
                 ["1:5,000",   "50 m",    "417 ft",     "City maps, engineering surveys"],
                 ["1:10,000",  "100 m",   "833 ft",     "Topographic maps"],
-                ["1:25,000",  "250 m",   "2,083 ft",   "Hiking maps, military maps"],
+                ["1:24,000",  "240 m",   "2,000 ft",   "USGS 7.5-minute topographic maps (US)"],
+                ["1:25,000",  "250 m",   "2,083 ft",   "Hiking maps, Ordnance Survey Explorer (UK)"],
                 ["1:50,000",  "500 m",   "4,167 ft",   "Regional maps"],
+                ["1:63,360",  "633.6 m", "1 mile",     "Classic “inch to the mile” maps"],
                 ["1:100,000", "1 km",    "8,333 ft",   "Road maps, atlas maps"],
               ].map(([scale, cm, inch, use]) => (
                 <tr key={scale} className="hover:bg-gray-50">
@@ -116,21 +118,57 @@ export default function MapScaleCalculatorSEO() {
 
       <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          Drawing Scales Written in Inches and Feet
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          US site plans and architectural drawings state the scale as a length equation rather than a ratio. Convert both sides to the same unit to get the ratio: 1 in = 20 ft is 1 in = 240 in, so 1:240. Enter that ratio in the calculator.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-3 px-4 font-semibold text-gray-800">Written scale</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-800">Ratio</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-800">Typical use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ["1/4 in = 1 ft", "1:48", "House floor plans"],
+                ["1/8 in = 1 ft", "1:96", "Larger building plans"],
+                ["1 in = 20 ft", "1:240", "Site and plot plans"],
+                ["1 in = 50 ft", "1:600", "Subdivision plats"],
+                ["1 in = 100 ft", "1:1,200", "Large subdivisions, master plans"],
+              ].map(([written, ratio, use]) => (
+                <tr key={written} className="hover:bg-gray-50">
+                  <td className="py-3 px-4 font-mono">{written}</td>
+                  <td className="py-3 px-4 font-mono font-semibold text-primary">{ratio}</td>
+                  <td className="py-3 px-4 text-gray-600">{use}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-500 mt-4">Metric drawings use ratios directly: 1:100 or 1:50 for building plans and 1:200 to 1:500 for site plans.</p>
+      </section>
+
+      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Who Uses This Calculator?
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { icon: "📐", title: "Land Surveyors",       color: "blue",   desc: "Convert field measurements to map distances and verify survey accuracy." },
-            { icon: "🏗️", title: "Civil Engineers",      color: "green",  desc: "Scale engineering drawings and calculate real-world dimensions from plans." },
-            { icon: "🗺️", title: "Cartographers",        color: "purple", desc: "Design and verify map scales for accurate geographic representation." },
-            { icon: "🎓", title: "Students",              color: "orange", desc: "Learn map reading and scale conversion for geography and GIS courses." },
-            { icon: "🌍", title: "GIS Professionals",    color: "red",    desc: "Validate spatial data and convert between map and ground coordinates." },
-            { icon: "🏛️", title: "Urban Planners",       color: "gray",   desc: "Analyze site plans and calculate distances for development projects." },
-          ].map(({ icon, title, color, desc }) => (
-            <div key={title} className={`bg-${color}-50 border border-${color}-200 rounded-lg p-6`}>
+            { icon: "📐", title: "Land Surveyors", desc: "Convert field measurements to map distances and verify survey accuracy." },
+            { icon: "🏗️", title: "Civil Engineers", desc: "Scale engineering drawings and calculate real-world dimensions from plans." },
+            { icon: "🗺️", title: "Cartographers", desc: "Design and verify map scales for accurate geographic representation." },
+            { icon: "🎓", title: "Students", desc: "Learn map reading and scale conversion for geography and GIS courses." },
+            { icon: "🌍", title: "GIS Professionals", desc: "Validate spatial data and convert between map and ground coordinates." },
+            { icon: "🏛️", title: "Urban Planners", desc: "Analyze site plans and calculate distances for development projects." },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-gray-50 border border-gray-200 rounded-lg p-6">
               <div className="text-2xl mb-3">{icon}</div>
-              <h3 className={`font-semibold text-${color}-900 mb-2`}>{title}</h3>
-              <p className={`text-sm text-${color}-800`}>{desc}</p>
+              <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+              <p className="text-sm text-gray-700">{desc}</p>
             </div>
           ))}
         </div>

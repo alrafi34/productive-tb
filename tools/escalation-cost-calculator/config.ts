@@ -16,12 +16,12 @@ export const escalationCostCalculatorConfig = {
     "project cost estimator"
   ],
   seo: {
-    title: "Escalation Cost Calculator – Estimate Construction Cost Increase Online",
-    description: "Calculate construction cost escalation instantly. Estimate future project costs using compound or simple escalation rates with this free online calculator.",
+    title: "Escalation Cost Calculator – Construction Cost Increase",
+    description: "Estimate future construction costs with compound or simple escalation. Enter today's cost, the annual rate and years, and get a year-by-year breakdown.",
     keywords: "escalation cost calculator, construction cost increase calculator, project cost escalation, inflation calculator construction, cost growth calculator",
     og: {
-      title: "Escalation Cost Calculator – Free Construction Cost Estimator",
-      description: "Calculate future project costs with compound or simple escalation rates. Instant results with yearly breakdown.",
+      title: "Escalation Cost Calculator – Construction Cost Increase",
+      description: "Estimate future construction costs with compound or simple escalation. Enter today's cost, the annual rate and years, and get a year-by-year breakdown.",
       type: "website",
       url: "/tools/architecture/escalation-cost-calculator"
     },

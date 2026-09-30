@@ -123,12 +123,12 @@ export default function DoorAreaCalculatorSEO() {
           
           <div className="bg-white p-4 rounded-lg border border-gray-200">
             <h4 className="font-semibold text-gray-900">Standard Exterior Door</h4>
-            <p className="text-sm mt-1">7 ft × 3 ft (84 in × 36 in) - Main entry door for homes</p>
+            <p className="text-sm mt-1">6.67 ft × 3 ft (80 in × 36 in) - Main entry door for homes; 20 sq ft (1.86 m²)</p>
           </div>
           
           <div className="bg-white p-4 rounded-lg border border-gray-200">
             <h4 className="font-semibold text-gray-900">Double Door</h4>
-            <p className="text-sm mt-1">7 ft × 6 ft (84 in × 72 in) - Wide entry or patio doors</p>
+            <p className="text-sm mt-1">6.67 ft × 6 ft (80 in × 72 in) - Pair of 36 in doors for an entry or patio</p>
           </div>
           
           <div className="bg-white p-4 rounded-lg border border-gray-200">

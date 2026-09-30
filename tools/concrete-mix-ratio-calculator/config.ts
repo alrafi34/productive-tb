@@ -21,8 +21,8 @@ export const concreteMixRatioCalculatorConfig = {
       "construction material estimator"
     ],
     openGraph: {
-      title: "Concrete Mix Ratio Calculator – Cement, Sand & Aggregate Calculator",
-      description: "Calculate exact proportions of cement, sand, and aggregate for concrete with accurate formulas.",
+      title: "Concrete Mix Ratio Calculator – Cement, Sand & Gravel",
+      description: "Work out cement bags, sand and gravel for any concrete mix ratio such as 1:2:4 or 1:1.5:3. Volumes in cubic meters or cubic feet; bag size is your choice.",
       type: "website",
       url: "/tools/architecture/concrete-mix-ratio-calculator"
     },
