@@ -10,6 +10,15 @@ export function convertMeterToKm(meter: number): number {
   return meter / 1000;
 }
 
+/* International mile = 1,609.344 m and foot = 0.3048 m, both exact */
+export function metersToMiles(meter: number): number {
+  return meter / 1609.344;
+}
+
+export function metersToFeet(meter: number): number {
+  return meter / 0.3048;
+}
+
 export function formatValue(value: number, precision: number): string {
   // Handle edge cases
   if (Object.is(value, -0)) value = 0;

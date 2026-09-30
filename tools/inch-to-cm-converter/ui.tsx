@@ -6,6 +6,9 @@ import {
   ConversionHistoryEntry,
   convertValue, 
   formatValue,
+  parseInches,
+  toFractionalInches,
+  toFeetInches,
   getHistory,
   saveToHistory,
   clearHistory,
@@ -27,7 +30,8 @@ export default function InchToCmConverterUI() {
     setHistory(getHistory());
   }, []);
 
-  const valNum = parseFloat(inputValue);
+  // Inches may be typed as on a tape measure or a height: 5 3/8, 5' 10"
+  const valNum = mode === 'inch-to-cm' ? parseInches(inputValue) : parseFloat(inputValue);
   const isValid = !isNaN(valNum);
   const result = isValid ? convertValue(valNum, mode) : 0;
 
@@ -96,11 +100,13 @@ export default function InchToCmConverterUI() {
               </label>
               <div className="relative group">
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="decimal"
+                  aria-label={mode === 'inch-to-cm' ? 'Inches' : 'Centimeters'}
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   className="w-full px-4 py-4 bg-gray-50 border-2 border-transparent rounded-2xl focus:outline-none focus:border-primary focus:bg-white transition-all text-xl font-semibold text-gray-800"
-                  placeholder={mode === 'inch-to-cm' ? "Enter inches" : "Enter cm"}
+                  placeholder={mode === 'inch-to-cm' ? "e.g. 10, 5 3/8 or 5' 10\"" : "Enter cm"}
                   autoFocus
                 />
                 <button 
@@ -145,6 +151,13 @@ export default function InchToCmConverterUI() {
             <p className="text-sm text-gray-500 font-medium italic">
               {mode === 'inch-to-cm' ? 'Inches to Centimeters' : 'Centimeters to Inches'}
             </p>
+            {isValid && (
+              <p className="text-sm text-gray-700" data-testid="inch-extra">
+                {mode === 'cm-to-inch'
+                  ? <>≈ {toFractionalInches(result)}″ on a tape measure{result >= 12 && <> · {toFeetInches(result)}</>}</>
+                  : <>{formatValue(valNum)} in{valNum >= 12 && <> = {toFeetInches(valNum)}</>}</>}
+              </p>
+            )}
             
             {/* Visual scale indicator */}
             <div className="mt-6 w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">

@@ -9,7 +9,9 @@ import {
   saveToHistory,
   clearHistory,
   deleteHistoryEntry,
-  generateBatchResults
+  generateBatchResults,
+  simplifySqrt,
+  formatRadical
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -33,7 +35,8 @@ export default function SquareRootCalculatorUI() {
   const valNum = parseFloat(inputValue);
   const isValid = !isNaN(valNum);
   const result = isValid && valNum >= 0 ? calculateSqrt(valNum) : 0;
-  const error = isValid && valNum < 0 ? "Square root of negative numbers requires complex numbers." : !isValid && inputValue.trim() !== "" ? "Please enter a valid number." : null;
+  const simplified = isValid && valNum >= 0 && !batchMode ? simplifySqrt(valNum) : null;
+  const error = isValid && valNum < 0 ? "A negative number has no real square root; the result is imaginary (i = √−1)." : !isValid && inputValue.trim() !== "" ? "Please enter a valid number." : null;
 
   const batchResults = useMemo(() => {
     if (!batchMode || inputValue.trim() === "") return [];
@@ -200,6 +203,14 @@ export default function SquareRootCalculatorUI() {
                         {formatValue(result, precision)}
                       </span>
                     </div>
+                    {simplified && (
+                      <div className="text-sm font-semibold text-gray-700" data-testid="sqrt-simplified">
+                        {simplified.radicand === 1
+                          ? <>√{valNum} = {simplified.coefficient} (a perfect square)</>
+                          : <>Simplest radical form: √{valNum} = {formatRadical(simplified)}</>}
+                      </div>
+                    )}
+                    <div className="text-xs text-gray-500">Cube root: ∛{valNum} = {formatValue(Math.cbrt(valNum), precision)}</div>
                     {showVerification && (
                       <div className="mt-4 p-3 bg-white/50 rounded-xl border border-primary/10 text-xs font-bold text-gray-500">
                         Verification: {formatValue(result, precision)} × {formatValue(result, precision)} ≈ {formatValue(result * result, 2)}
@@ -207,7 +218,11 @@ export default function SquareRootCalculatorUI() {
                     )}
                   </>
                 ) : (
-                  <span className="text-3xl font-black text-gray-300 italic">No Input</span>
+                  isValid && valNum < 0 ? (
+                    <span className="text-3xl font-black text-gray-700" data-testid="sqrt-imaginary">{formatValue(calculateSqrt(-valNum), precision)}i</span>
+                  ) : (
+                    <span className="text-3xl font-black text-gray-300 italic">No Input</span>
+                  )
                 )}
                 <div className="absolute -right-8 -bottom-8 text-9xl text-primary opacity-5 select-none font-bold">√</div>
               </div>
@@ -237,6 +252,14 @@ export default function SquareRootCalculatorUI() {
               <div className="p-4 bg-yellow-50/50 rounded-2xl border border-yellow-100 text-xs text-yellow-800 leading-relaxed italic">
                 The square root of {valNum} is a number which, when multiplied by itself, is equal to {valNum}. In mathematical terms: 
                 <span className="not-italic font-bold block mt-1">√{valNum} = {formatValue(result, precision)}</span>
+                {simplified && simplified.radicand !== 1 && simplified.coefficient !== 1 && (
+                  <span className="not-italic block mt-2" data-testid="sqrt-steps">
+                    To simplify, split off the largest perfect square factor: {valNum} = {simplified.square} × {simplified.radicand}, so √{valNum} = √{simplified.square} × √{simplified.radicand} = {formatRadical(simplified)}.
+                  </span>
+                )}
+                {simplified && simplified.radicand !== 1 && simplified.coefficient === 1 && (
+                  <span className="not-italic block mt-2">{valNum} has no perfect square factor other than 1, so √{valNum} is already in simplest form.</span>
+                )}
               </div>
             )}
           </div>

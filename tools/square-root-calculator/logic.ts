@@ -63,3 +63,32 @@ export function generateBatchResults(input: string, precision: number): { input:
     return { input: p, result: formatValue(calculateSqrt(n), precision) };
   });
 }
+
+export interface SimplifiedRadical {
+  coefficient: number; // a in a√b
+  radicand: number;    // b in a√b (1 for a perfect square)
+  square: number;      // the largest perfect square dividing n (a²)
+}
+
+/**
+ * Writes √n for a whole number n as a√b with b square-free, e.g. √50 = 5√2.
+ * Returns null for non-integers, negatives and numbers too large to factor quickly.
+ */
+export function simplifySqrt(n: number): SimplifiedRadical | null {
+  if (!Number.isInteger(n) || n < 1 || n > 1e12) return null;
+  let coefficient = 1;
+  let radicand = n;
+  for (let f = 2; f * f <= radicand; f++) {
+    while (radicand % (f * f) === 0) {
+      radicand /= f * f;
+      coefficient *= f;
+    }
+  }
+  return { coefficient, radicand, square: coefficient * coefficient };
+}
+
+/** Text form of a√b: "5√2", "√7" or "6" */
+export function formatRadical({ coefficient, radicand }: SimplifiedRadical): string {
+  if (radicand === 1) return String(coefficient);
+  return `${coefficient === 1 ? "" : coefficient}√${radicand}`;
+}
