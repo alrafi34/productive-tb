@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ToolFaq from "@/components/ToolFaq";
 import { hexToRgbaConverterConfig } from "./config";
 
@@ -57,7 +58,7 @@ export default function HexToRgbaConverterSEOContent() {
             result = alpha × color + (1 − alpha) × background
           </div>
           <p>For rgba(52, 152, 219, 0.5) over white, red is 0.5 × 52 + 0.5 × 255 ≈ 154, which gives #9ACCED. The converter shows this solid equivalent for white and black backgrounds, which is useful for email templates, PDFs and design tools that flatten transparency.</p>
-          <p>For plain HEX to RGB without transparency, with the working shown, use the <a href="/tools/design/hex-to-rgb-converter" className="text-primary underline">HEX to RGB converter</a>; for HSV, CMYK or CSS color names, the <a href="/tools/design/color-format-converter" className="text-primary underline">color format converter</a>.</p>
+          <p>For plain HEX to RGB without transparency, with the working shown, use the <Link href="/tools/design/hex-to-rgb-converter" className="text-primary underline">HEX to RGB converter</Link>; for HSV, CMYK or CSS color names, the <Link href="/tools/design/color-format-converter" className="text-primary underline">color format converter</Link>.</p>
         </div>
       </section>
 

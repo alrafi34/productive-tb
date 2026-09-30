@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { hexToRgb, rgbToHex, rgbToHsl, generatePalette, hexHasAlpha, parseRgb, hexSteps, rgbToUnit } from "./logic";
 import HexToRgbSEOContent from "./seo-content";
@@ -88,7 +89,7 @@ export default function HexToRgbConverterUI() {
               )}
               {hexValid && hexHasAlpha(hex) && (
                 <p className="text-xs text-amber-700 mt-1" data-testid="hex-alpha-note">
-                  The last digits are transparency, which RGB cannot hold. Use the <a href="/tools/design/hex-to-rgba-converter" className="underline">HEX to RGBA converter</a> to keep it.
+                  The last digits are transparency, which RGB cannot hold. Use the <Link href="/tools/design/hex-to-rgba-converter" className="underline">HEX to RGBA converter</Link> to keep it.
                 </p>
               )}
             </div>
@@ -163,7 +164,7 @@ export default function HexToRgbConverterUI() {
               ))}
             </div>
             <p className="text-xs text-gray-500 mt-3">
-              Need HSV, CMYK or CSS color names? Try the <a href="/tools/design/color-format-converter" className="underline">color format converter</a>.
+              Need HSV, CMYK or CSS color names? Try the <Link href="/tools/design/color-format-converter" className="underline">color format converter</Link>.
             </p>
           </div>
         </div>

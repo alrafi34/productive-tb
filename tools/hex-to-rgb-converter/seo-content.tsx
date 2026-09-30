@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ToolFaq from "@/components/ToolFaq";
 import { toolConfig } from "./config";
 
@@ -85,7 +86,7 @@ export default function HexToRgbSEOContent() {
             <p>219 ÷ 16 = 13 remainder 11 → DB</p>
             <p>→ #3498DB</p>
           </div>
-          <p>Transparency is not part of RGB. To add it, use the <a href="/tools/design/hex-to-rgba-converter" className="text-primary underline">HEX to RGBA converter</a>; for HSV, CMYK or CSS color names, use the <a href="/tools/design/color-format-converter" className="text-primary underline">color format converter</a>.</p>
+          <p>Transparency is not part of RGB. To add it, use the <Link href="/tools/design/hex-to-rgba-converter" className="text-primary underline">HEX to RGBA converter</Link>; for HSV, CMYK or CSS color names, use the <Link href="/tools/design/color-format-converter" className="text-primary underline">color format converter</Link>.</p>
         </div>
       </section>
 
