@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { subnetCalculatorConfig } from "./config";
+
 export default function SubnetCalculatorSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = subnetCalculatorConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -123,44 +128,7 @@ export default function SubnetCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is a subnet calculator?",
-              a: "A subnet calculator is a tool that takes an IPv4 address and CIDR prefix and computes the network address, broadcast address, usable host range, subnet mask, wildcard mask, and number of hosts. It eliminates manual bitwise calculations for network engineers and students.",
-            },
-            {
-              q: "What is CIDR notation?",
-              a: "CIDR (Classless Inter-Domain Routing) notation represents an IP address and its associated network prefix. For example, 192.168.1.0/24 means the first 24 bits are the network portion, leaving 8 bits for host addresses (256 total, 254 usable).",
-            },
-            {
-              q: "How is the network address calculated?",
-              a: "The network address is computed by performing a bitwise AND between the IP address and the subnet mask. For 192.168.1.100 with mask 255.255.255.0, the result is 192.168.1.0.",
-            },
-            {
-              q: "How many usable hosts are in a /24 subnet?",
-              a: "A /24 subnet has 256 total addresses (2^8). Subtracting the network address and broadcast address gives 254 usable hosts.",
-            },
-            {
-              q: "What is a wildcard mask?",
-              a: "A wildcard mask is the inverse of the subnet mask. It's used in access control lists (ACLs) and routing protocols. For a /24 subnet mask of 255.255.255.0, the wildcard mask is 0.0.0.255.",
-            },
-            {
-              q: "Who should use this tool?",
-              a: "Network engineers, system administrators, DevOps engineers, cloud engineers, cybersecurity professionals, and students studying for CCNA, Network+, AWS, or Azure certifications.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>

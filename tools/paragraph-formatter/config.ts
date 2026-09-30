@@ -39,7 +39,25 @@ export const toolConfig = {
       description: "Clean up messy text: remove extra spaces, fix broken line breaks, trim empty lines and reflow paragraphs so they are ready to publish.",
       type: "website",
       url: "/tools/writing/paragraph-formatter"
-    }
+    },
+    howToSteps: [
+      { name: "Paste your raw text into the editor", text: "Paste your raw text into the editor." },
+      { name: "Choose a specific action such as remove extra spaces", text: "Choose a specific action such as remove extra spaces, fix line breaks, or trim empty lines." },
+      { name: "Use auto format when you want complete cleanup in one click", text: "Use auto format when you want complete cleanup in one click." },
+      { name: "Review the cleaned output and verify paragraph flow", text: "Review the cleaned output and verify paragraph flow." },
+      { name: "Copy formatted text and paste it into your blog", text: "Copy formatted text and paste it into your blog, CMS, or document." },
+    ],
+    faq: [
+      { q: "What is a paragraph formatter tool?", a: "A paragraph formatter cleans messy text by fixing spacing, line breaks, and paragraph structure so content is easier to read and publish." },
+      { q: "Can this fix text copied from PDF files?", a: "Yes. It helps repair broken lines, extra spaces, and irregular paragraph breaks that commonly appear when copying from PDFs." },
+      { q: "What does auto format do?", a: "Auto format applies several cleanup actions together, such as reducing extra spaces, normalizing line breaks, and removing blank lines." },
+      { q: "Can I remove only extra spaces without changing paragraphs?", a: "Yes. You can run individual actions like space cleanup or line-break fixes so you keep control over final formatting." },
+      { q: "Who should use a paragraph formatting tool?", a: "Writers, students, editors, marketers, and support teams can use it to quickly clean text before publishing or sharing." },
+      { q: "Is this paragraph formatter free?", a: "Yes. It is free to use with no signup requirement for standard text formatting tasks." },
+      { q: "Is my text private when I use this tool?", a: "Yes. Formatting runs in the browser, so your text does not need to be uploaded to external servers." },
+      { q: "Can I copy or export formatted text?", a: "Yes. You can copy the cleaned text directly and use it in documents, CMS editors, or other writing tools." },
+      { q: "Does this help SEO writing workflows?", a: "Yes. Cleaner paragraph structure improves readability, editorial consistency, and content quality before indexing and publication." },
+    ],
   },
   features: [
     "Remove extra spaces",

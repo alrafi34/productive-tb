@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a reading time calculator?",
-    answer:
-      "A reading time calculator estimates how long a reader needs to finish a piece of text based on word count and reading speed.",
-  },
-  {
-    question: "Why is this tool better than basic reading time estimators?",
-    answer:
-      "It combines multiple speed profiles, custom WPM, speaking-time estimates, text analytics, copy-ready results, and badge output in one workflow.",
-  },
-  {
-    question: "How is reading time calculated?",
-    answer:
-      "Reading time is calculated by dividing total words by words-per-minute speed, then converting that value into minutes.",
-  },
-  {
-    question: "Can I estimate reading time for different reader types?",
-    answer:
-      "Yes. The tool includes slow, average, fast, and speed-reader profiles with separate results.",
-  },
-  {
-    question: "Can I use my own words-per-minute value?",
-    answer:
-      "Yes. You can enable custom reading speed and adjust WPM to match your target audience.",
-  },
-  {
-    question: "Does this tool estimate speaking time too?",
-    answer:
-      "Yes. It includes speaking-time estimation based on average speech pace.",
-  },
-  {
-    question: "What text stats are included besides reading time?",
-    answer:
-      "It reports words, characters, characters without spaces, sentences, paragraphs, and a length-based difficulty category.",
-  },
-  {
-    question: "Can I copy results or a reading-time badge?",
-    answer:
-      "Yes. You can copy full summary results or copy a compact badge string such as minutes-read output.",
-  },
-  {
-    question: "Does the tool save my input text?",
-    answer:
-      "It can keep input in local browser storage for convenience, so your draft remains available in your own browser context.",
-  },
-  {
-    question: "Is my content private while using this tool?",
-    answer:
-      "Yes. Calculations run in the browser and do not require sending your text to external processing services.",
-  },
-];
-
-const howToSteps = [
-  "Paste or type your article, post, or script text into the editor.",
-  "Review instant reading-time estimates across default speed profiles.",
-  "Enable custom WPM if you want audience-specific timing.",
-  "Check supporting stats like words, sentences, paragraphs, and speaking time.",
-  "Copy full results or copy a minutes-read badge for publishing.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -149,41 +91,11 @@ const mistakesToAvoid = [
 ];
 
 export default function ReadingTimeCalculatorSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the reading time calculator",
-    description:
-      "Paste your text, review reading and speaking estimates, customize WPM, and copy results for publishing.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -225,7 +137,7 @@ export default function ReadingTimeCalculatorSEOContent() {
             How to Use the Reading Time Calculator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -278,23 +190,7 @@ export default function ReadingTimeCalculatorSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

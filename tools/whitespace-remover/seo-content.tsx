@@ -1,62 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a whitespace remover tool?",
-    answer:
-      "A whitespace remover cleans text by removing unwanted spaces, tabs, or empty lines based on selected rules.",
-  },
-  {
-    question: "Why is this whitespace remover better than basic alternatives?",
-    answer:
-      "It supports selective whitespace cleanup, tab conversion, highlight mode, file input, undo/redo history, and multi-format export in one workflow.",
-  },
-  {
-    question: "Can I remove leading and trailing spaces only?",
-    answer:
-      "Yes. You can control leading-space and trailing-space cleanup independently.",
-  },
-  {
-    question: "What does remove multiple spaces do?",
-    answer:
-      "It collapses repeated spaces into single spaces while preserving normal word separation.",
-  },
-  {
-    question: "What happens when remove all spaces is enabled?",
-    answer:
-      "It strips all whitespace groups in text segments, which is useful for compact formatting tasks.",
-  },
-  {
-    question: "Can I remove empty lines?",
-    answer:
-      "Yes. Enable remove-empty-lines to delete blank rows after processing.",
-  },
-  {
-    question: "Can I convert tabs to spaces or spaces to tabs?",
-    answer:
-      "Yes. Tab conversion supports both directions and lets you choose tab size.",
-  },
-  {
-    question: "Can I upload files for cleanup?",
-    answer:
-      "Yes. You can upload or drag-and-drop text files such as .txt, .md, and .csv.",
-  },
-  {
-    question: "Is this whitespace remover free?",
-    answer: "Yes. It is free to use with no account required.",
-  },
-  {
-    question: "Is my text private?",
-    answer:
-      "Yes. Cleaning runs in your browser, so your text is not sent to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Paste text or upload a supported file.",
-  "Choose cleanup rules such as leading/trailing, multiple spaces, empty lines, or full space removal.",
-  "Configure tab conversion options when needed.",
-  "Run Clean Whitespace and review the output and statistics.",
-  "Copy or download cleaned text in TXT, MD, or CSV format.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { whitespaceRemoverConfig } from "./config";
 
 const strengths = [
   {
@@ -140,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use White Space Remover",
-    description:
-      "Load text, select whitespace rules, clean instantly, and copy or download output.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = whitespaceRemoverConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -216,7 +129,7 @@ export default function SEOContent() {
             How to Use White Space Remover
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -269,23 +182,7 @@ export default function SEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

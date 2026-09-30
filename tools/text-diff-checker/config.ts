@@ -61,6 +61,24 @@ export const textDiffCheckerConfig = {
       description: "Detect additions and removals with multi-level comparison, visual views, and export-ready output.",
       type: "website",
       url: "/tools/writing/text-diff-checker"
-    }
+    },
+    howToSteps: [
+      { name: "Paste or load original text into Text A and modified text into Text B", text: "Paste or load original text into Text A and modified text into Text B." },
+      { name: "Select comparison level", text: "Select comparison level: line, word, or character." },
+      { name: "Choose optional filters such as ignore case and ignore whitespace", text: "Choose optional filters such as ignore case and ignore whitespace." },
+      { name: "Run Compare or enable auto compare for instant updates", text: "Run Compare or enable auto compare for instant updates." },
+      { name: "Review highlighted results", text: "Review highlighted results, then copy or download diff output." },
+    ],
+    faq: [
+      { q: "What is a text diff checker?", a: "A text diff checker compares two text versions and highlights what was added, removed, or unchanged." },
+      { q: "Can I compare text line by line, word by word, and character by character?", a: "Yes. You can choose the comparison level that best matches your review task." },
+      { q: "What does ignore case do?", a: "Ignore case compares text without treating uppercase and lowercase letters as different." },
+      { q: "What does ignore whitespace do?", a: "It normalizes spacing differences so you can focus on content changes instead of formatting noise." },
+      { q: "Can I switch between side-by-side and inline diff views?", a: "Yes. You can toggle between side-by-side and inline modes based on how you want to review changes." },
+      { q: "Can I upload files for comparison?", a: "Yes. You can upload or drag-and-drop supported text files such as .txt, .md, and .csv." },
+      { q: "Can I export diff results?", a: "Yes. You can copy the diff output and download results in TXT or HTML formats." },
+      { q: "Is this text diff checker free?", a: "Yes. It is free to use without registration." },
+      { q: "Is my text private?", a: "Yes. Comparison runs in your browser and does not require sending text to external servers." },
+    ],
   }
 };

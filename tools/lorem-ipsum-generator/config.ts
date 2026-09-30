@@ -43,7 +43,25 @@ export const toolConfig = {
       description: "Generate paragraphs, sentences, or words with configurable options and quick copy/download actions.",
       type: "website",
       url: "/tools/writing/lorem-ipsum-generator"
-    }
+    },
+    howToSteps: [
+      { name: "Choose output type", text: "Choose output type: paragraphs, sentences, or words." },
+      { name: "Set how many units you want to generate", text: "Set how many units you want to generate." },
+      { name: "Configure options like start with Lorem ipsum", text: "Configure options like start with Lorem ipsum, HTML output, and randomization mode." },
+      { name: "Optionally add custom dictionary words for medium or full mode", text: "Optionally add custom dictionary words for medium or full mode." },
+      { name: "Generate text", text: "Generate text, then copy or download it as needed." },
+    ],
+    faq: [
+      { q: "What is a Lorem Ipsum generator?", a: "A Lorem Ipsum generator creates placeholder text for mockups, wireframes, templates, and layout testing before final copy is ready." },
+      { q: "Can I generate paragraphs, sentences, and words?", a: "Yes. You can choose output type and set the amount you want to generate." },
+      { q: "What does 'Start with Lorem ipsum' do?", a: "It forces the generated output to begin with the familiar Lorem ipsum opening for traditional placeholder text formatting." },
+      { q: "Can I generate HTML-ready placeholder text?", a: "Yes. Enable the HTML option to generate output wrapped for web content usage, then copy or download the HTML version." },
+      { q: "What are classic, medium, and full randomization modes?", a: "Classic uses traditional lorem vocabulary, medium mixes lorem and additional words, and full focuses on broader random vocabulary." },
+      { q: "Can I add custom words?", a: "Yes. Add custom dictionary terms and they are mixed into output when using medium or full randomization modes." },
+      { q: "Can I download generated text?", a: "Yes. You can copy output instantly and download as TXT. When HTML mode is enabled, HTML download is also available." },
+      { q: "Is this lorem ipsum tool free?", a: "Yes. It is free to use without signup." },
+      { q: "Is my content private?", a: "Yes. Generation runs in your browser, so text is not uploaded to external servers." },
+    ],
   },
   features: [
     "Generate paragraphs, sentences, or words",

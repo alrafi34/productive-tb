@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { ipRangeCalculatorConfig } from "./config";
+
 export default function IpRangeCalculatorSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = ipRangeCalculatorConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -129,44 +134,7 @@ export default function IpRangeCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is an IP range calculator?",
-              a: "An IP range calculator takes an IPv4 address and CIDR prefix (or subnet mask) and computes the full network information: network address, broadcast address, usable host range, total hosts, subnet mask, wildcard mask, and IP class. It eliminates manual binary math for network engineers and students.",
-            },
-            {
-              q: "How is the host range calculated?",
-              a: "The network address is the first address in the subnet (IP AND mask), the broadcast is the last (network OR inverted mask). Usable hosts are all addresses between them (first host = network + 1, last host = broadcast - 1). A /24 gives 254 usable hosts out of 256 total.",
-            },
-            {
-              q: "What is the wildcard mask?",
-              a: "The wildcard mask is the bitwise inverse of the subnet mask. It's used in ACLs and routing protocols. For a /24 subnet (255.255.255.0), the wildcard mask is 0.0.0.255.",
-            },
-            {
-              q: "What does CIDR mean?",
-              a: "CIDR (Classless Inter-Domain Routing) notation represents an IP address and its associated network prefix. For example, 192.168.1.0/24 means the first 24 bits are network bits, leaving 8 bits for host addresses.",
-            },
-            {
-              q: "How are /31 and /32 subnets handled?",
-              a: "A /31 subnet has 2 addresses, both usable for point-to-point links (RFC 3021). A /32 is a host route with a single address. This calculator handles both cases correctly.",
-            },
-            {
-              q: "How does the shareable URL work?",
-              a: "The calculator automatically updates the browser URL with ?ip=x.x.x.x&cidr=xx as you type. You can copy and share this URL to pre-fill the calculator for anyone.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>

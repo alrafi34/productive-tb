@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function ChecksumCalculatorSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -74,40 +79,7 @@ export default function ChecksumCalculatorSEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-5">
-          {[
-            {
-              q: "What is a checksum and why do I need it?",
-              a: "A checksum is a fixed-length value derived from data using a hash algorithm. It acts as a unique fingerprint — if the data changes even slightly, the checksum changes entirely. It is used to verify file integrity, detect corruption, and validate downloads.",
-            },
-            {
-              q: "Is this tool safe to use with sensitive files?",
-              a: "Yes. All computation happens entirely in your browser. Your files are never uploaded to any server. You can even disconnect from the internet while using this tool.",
-            },
-            {
-              q: "Which algorithm should I use?",
-              a: "Use SHA-256 for general file integrity checks and security verification. Use MD5 or CRC32 only for quick non-security checks. Avoid SHA-1 and MD5 for cryptographic or security-critical use cases.",
-            },
-            {
-              q: "Can I process multiple files at once?",
-              a: "Yes. Drag and drop multiple files into the upload zone simultaneously and each will be processed with a live progress indicator.",
-            },
-            {
-              q: "How do I verify a downloaded file?",
-              a: "Upload the downloaded file, select the same algorithm listed on the software's download page (usually SHA-256), then paste the official checksum into the Compare panel. A match means the file is authentic and unaltered.",
-            },
-          ].map(({ q, a }) => (
-            <div key={q}>
-              <h3 className="text-base font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed text-sm" style={{ fontFamily: "var(--font-body)" }}>{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
     </>
   );
 }

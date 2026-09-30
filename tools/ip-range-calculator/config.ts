@@ -30,5 +30,13 @@ export const ipRangeCalculatorConfig = {
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/ip-range-calculator`,
     },
+    faq: [
+      { q: "What is an IP range calculator?", a: "An IP range calculator takes an IPv4 address and CIDR prefix (or subnet mask) and computes the full network information: network address, broadcast address, usable host range, total hosts, subnet mask, wildcard mask, and IP class. It eliminates manual binary math for network engineers and students." },
+      { q: "How is the host range calculated?", a: "The network address is the first address in the subnet (IP AND mask), the broadcast is the last (network OR inverted mask). Usable hosts are all addresses between them (first host = network + 1, last host = broadcast - 1). A /24 gives 254 usable hosts out of 256 total." },
+      { q: "What is the wildcard mask?", a: "The wildcard mask is the bitwise inverse of the subnet mask. It's used in ACLs and routing protocols. For a /24 subnet (255.255.255.0), the wildcard mask is 0.0.0.255." },
+      { q: "What does CIDR mean?", a: "CIDR (Classless Inter-Domain Routing) notation represents an IP address and its associated network prefix. For example, 192.168.1.0/24 means the first 24 bits are network bits, leaving 8 bits for host addresses." },
+      { q: "How are /31 and /32 subnets handled?", a: "A /31 subnet has 2 addresses, both usable for point-to-point links (RFC 3021). A /32 is a host route with a single address. This calculator handles both cases correctly." },
+      { q: "How does the shareable URL work?", a: "The calculator automatically updates the browser URL with ?ip=x.x.x.x&cidr=xx as you type. You can copy and share this URL to pre-fill the calculator for anyone." },
+    ],
   },
 };

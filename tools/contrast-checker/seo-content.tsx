@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a WCAG contrast checker?",
-    answer:
-      "A WCAG contrast checker measures the contrast ratio between foreground and background colors and shows whether the combination meets accessibility standards such as WCAG AA or AAA.",
-  },
-  {
-    question: "Why is this contrast checker better than basic alternatives?",
-    answer:
-      "This tool combines live ratio calculation, AA and AAA validation, text-size context, practical suggestions, and preview-based testing in one workflow.",
-  },
-  {
-    question: "What contrast ratio is required for normal text?",
-    answer:
-      "For WCAG AA, normal text usually requires at least 4.5:1. For WCAG AAA, normal text typically requires 7:1.",
-  },
-  {
-    question: "What contrast ratio is required for large text?",
-    answer:
-      "For WCAG AA, large text typically requires 3:1. For WCAG AAA, large text usually requires 4.5:1.",
-  },
-  {
-    question: "Can I test hover and focus states with this tool?",
-    answer:
-      "Yes. You can test different text and background combinations for default, hover, active, and focus states to keep accessibility consistent.",
-  },
-  {
-    question: "What if my brand colors fail contrast checks?",
-    answer:
-      "You can preserve brand identity by using adjusted tints or shades for text and UI states while keeping decorative usage for original brand colors.",
-  },
-  {
-    question: "Does this checker support accessibility-first workflows?",
-    answer:
-      "Yes. It is useful during design, development, and QA to catch contrast issues early and reduce last-minute accessibility fixes.",
-  },
-  {
-    question: "Is this contrast checker free to use?",
-    answer:
-      "Yes. It is free and available without registration.",
-  },
-  {
-    question: "Do I need to install software?",
-    answer:
-      "No. The checker runs directly in the browser.",
-  },
-  {
-    question: "Does it send my color data to a server?",
-    answer:
-      "No. Contrast calculation runs client-side for speed and privacy.",
-  },
-];
-
-const howToSteps = [
-  "Enter or pick a text color and a background color.",
-  "Review the live contrast ratio and AA or AAA pass status.",
-  "Switch between normal and large text contexts if needed.",
-  "Adjust colors until required accessibility levels pass.",
-  "Copy or reuse compliant color combinations in your project.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -137,41 +79,11 @@ const mistakesToAvoid = [
 ];
 
 export default function ContrastCheckerSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the WCAG Contrast Checker",
-    description:
-      "Test text and background color combinations, verify WCAG AA or AAA compliance, and refine colors with live contrast feedback.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -214,7 +126,7 @@ export default function ContrastCheckerSEOContent() {
             How to Use the WCAG Contrast Checker
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -268,23 +180,7 @@ export default function ContrastCheckerSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

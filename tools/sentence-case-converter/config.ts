@@ -39,7 +39,25 @@ export const toolConfig = {
       description: "Convert text between uppercase, lowercase, title case, and sentence case in one click.",
       type: "website",
       url: "/tools/writing/sentence-case-converter"
-    }
+    },
+    howToSteps: [
+      { name: "Paste or type your text in the editor", text: "Paste or type your text in the editor." },
+      { name: "Select a conversion format", text: "Select a conversion format: uppercase, lowercase, title case, or sentence case." },
+      { name: "Review the converted result instantly", text: "Review the converted result instantly." },
+      { name: "Copy the output and paste it into your document or platform", text: "Copy the output and paste it into your document or platform." },
+      { name: "Repeat with another case format if you need alternate versions", text: "Repeat with another case format if you need alternate versions." },
+    ],
+    faq: [
+      { q: "What is a sentence case converter?", a: "A sentence case converter changes text capitalization formats, such as uppercase, lowercase, title case, and sentence case, in seconds." },
+      { q: "What is the difference between title case and sentence case?", a: "Title case capitalizes each major word, while sentence case usually capitalizes only the first letter of each sentence and proper nouns." },
+      { q: "When should I use uppercase conversion?", a: "Uppercase can be useful for headings, labels, visual emphasis, and style consistency in certain publishing contexts." },
+      { q: "When should I use lowercase conversion?", a: "Lowercase is useful when fixing accidentally capitalized text or matching a minimal content style." },
+      { q: "Can this help with social media and marketing copy?", a: "Yes. It helps quickly adapt captions, headlines, and ad text for platform-specific style and tone." },
+      { q: "Is this useful for editing academic or professional documents?", a: "Yes. It helps standardize capitalization across essays, reports, presentations, and internal documentation." },
+      { q: "Can I copy converted text quickly?", a: "Yes. You can convert and copy text in one workflow for fast reuse in other tools and platforms." },
+      { q: "Is this case converter free?", a: "Yes. It is free to use without registration." },
+      { q: "Is my text private?", a: "Yes. Text processing happens in your browser, so your content is not uploaded to remote servers." },
+    ],
   },
   features: [
     "Real-time case conversion",

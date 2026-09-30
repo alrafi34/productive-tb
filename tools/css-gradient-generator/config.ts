@@ -38,7 +38,26 @@ export const toolConfig = {
       description: "Build linear and radial CSS gradients with angle and shape controls, editable color stops, presets and a live preview, then copy the CSS.",
       type: "website",
       url: "/tools/design/css-gradient-generator"
-    }
+    },
+    howToSteps: [
+      { name: "Choose gradient type", text: "Choose gradient type: linear or radial." },
+      { name: "Set angle for linear gradients or shape for radial gradients", text: "Set angle for linear gradients or shape for radial gradients." },
+      { name: "Add and edit color stops with position controls", text: "Add and edit color stops with position controls." },
+      { name: "Use reverse", text: "Use reverse, random, or presets to explore options quickly." },
+      { name: "Review the live gradient preview in real time", text: "Review the live gradient preview in real time." },
+      { name: "Copy the generated CSS and paste into your project", text: "Copy the generated CSS and paste into your project." },
+    ],
+    faq: [
+      { q: "What is a CSS gradient generator?", a: "A CSS gradient generator is a tool that creates linear and radial gradients visually and outputs copy-ready CSS code for websites, apps, and UI components." },
+      { q: "What gradient types are supported by this tool?", a: "This generator supports both linear and radial gradients with adjustable settings for direction, shape, and color stops." },
+      { q: "Can I use multiple color stops?", a: "Yes. You can add, remove, and reposition multiple color stops to build simple or complex gradients." },
+      { q: "Can I generate gradients for production CSS?", a: "Yes. The generated output is valid CSS and can be copied directly into stylesheets or component styles." },
+      { q: "What is the difference between linear and radial gradients?", a: "Linear gradients transition colors along a direction line, while radial gradients transition colors outward from a center point in circle or ellipse form." },
+      { q: "Can I reverse a gradient quickly?", a: "Yes. Use the reverse option to invert the stop order without manually editing each stop." },
+      { q: "Are gradient presets included?", a: "Yes. Presets are available for quick starting points, and you can customize them further." },
+      { q: "Is this CSS gradient generator free?", a: "Yes. It is free to use and runs directly in your browser." },
+      { q: "Is my gradient data uploaded anywhere?", a: "No. Gradient generation is handled client-side in-browser." },
+    ],
   },
   features: [
     "Linear and radial gradients",

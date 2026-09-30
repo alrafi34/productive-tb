@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { timeComplexityCalculatorConfig } from "./config";
+
 export default function TimeComplexitySEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = timeComplexityCalculatorConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -135,40 +140,7 @@ export default function TimeComplexitySEO() {
         </div>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is Big-O notation?",
-              a: "Big-O notation describes the upper bound of an algorithm's time or space complexity as input size grows. It focuses on the dominant term and ignores constants, giving a machine-independent way to compare algorithm efficiency.",
-            },
-            {
-              q: "What is the difference between best, average, and worst case?",
-              a: "Best case (Ω) is the minimum operations, average case (Θ) is the expected operations, and worst case (O) is the maximum. Big-O typically describes worst case. For example, quicksort is O(n log n) on average but O(n²) worst case with bad pivots.",
-            },
-            {
-              q: "Why is O(log n) so efficient?",
-              a: "Logarithmic algorithms halve the problem space at each step. For n = 1,000,000, O(log n) only needs ~20 steps, while O(n) needs 1,000,000. This is why binary search is vastly superior to linear search on sorted data.",
-            },
-            {
-              q: "When is O(n²) acceptable?",
-              a: "Quadratic complexity is acceptable for small inputs (n < 1,000 in most cases). Bubble sort or insertion sort are fine for small arrays and have low constant factors. For large datasets, O(n log n) algorithms like merge sort are required.",
-            },
-            {
-              q: "How do I reduce exponential complexity?",
-              a: "Dynamic programming (memoization or tabulation) eliminates redundant recursive calls. Fibonacci changes from O(2ⁿ) to O(n) with memoization. Greedy algorithms and approximations can also replace exact exponential solutions for NP-hard problems.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>

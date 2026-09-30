@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a text to clipboard tool?",
-    answer:
-      "A text to clipboard tool helps you copy prepared text in one click without manually selecting each block every time.",
-  },
-  {
-    question: "Why is this tool better than basic copy tools?",
-    answer:
-      "It supports multiple text blocks, copy-all mode, plain or formatted output, optional line numbers, and fast clipboard actions in one workflow.",
-  },
-  {
-    question: "Which output formats are supported?",
-    answer:
-      "You can copy text as plain text, markdown code block format, or HTML code wrapper format depending on your use case.",
-  },
-  {
-    question: "Can I copy multiple text blocks at once?",
-    answer:
-      "Yes. Use the copy-all action to combine non-empty blocks and copy them in one operation.",
-  },
-  {
-    question: "What does line number mode do?",
-    answer:
-      "Line number mode prefixes each line so copied snippets are easier to review in documentation and code discussions.",
-  },
-  {
-    question: "What is auto-select used for?",
-    answer:
-      "Auto-select highlights text when a block gains focus, which speeds up editing and copy workflows.",
-  },
-  {
-    question: "Is this helpful for writers and content teams?",
-    answer:
-      "Yes. It is useful for copying snippets, templates, short responses, and content blocks into editors or CMS tools.",
-  },
-  {
-    question: "Can developers use this for docs and code sharing?",
-    answer:
-      "Yes. Markdown and HTML copy formats are useful for documentation, issue reports, and technical communication.",
-  },
-  {
-    question: "Is the text to clipboard tool free?",
-    answer:
-      "Yes. It is free to use without sign-up.",
-  },
-  {
-    question: "Is my text private?",
-    answer:
-      "Yes. Text handling is browser-based and does not require uploading content to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Add your text in one or more text blocks.",
-  "Choose output format: plain, html, or markdown.",
-  "Enable line numbers if needed.",
-  "Copy one block or use copy all for batch output.",
-  "Paste the copied result into your app, editor, or document.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -129,41 +71,11 @@ const mistakesToAvoid = [
 ];
 
 export default function TextToClipboardSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the Text to Clipboard tool",
-    description:
-      "Add text blocks, pick output format, copy one block or all blocks, and paste where needed.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -206,7 +118,7 @@ export default function TextToClipboardSEOContent() {
             How to Use the Text to Clipboard Tool
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -259,23 +171,7 @@ export default function TextToClipboardSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a palindrome checker?",
-    answer:
-      "A palindrome checker tests whether a word, phrase, or sentence reads the same forward and backward after applying selected cleanup rules.",
-  },
-  {
-    question: "Can this tool check full sentences and phrases?",
-    answer:
-      "Yes. It supports phrase-level checks and can ignore spaces, punctuation, and case to evaluate natural-language palindromes accurately.",
-  },
-  {
-    question: "What is the difference between single and bulk mode?",
-    answer:
-      "Single mode provides detailed analysis for one input. Bulk mode checks multiple lines at once and marks each line as palindrome or not.",
-  },
-  {
-    question: "How does real-time checking work?",
-    answer:
-      "When real-time mode is enabled, the checker automatically updates results while you type so you do not need to click check repeatedly.",
-  },
-  {
-    question: "What does the similarity score mean?",
-    answer:
-      "Similarity shows how closely the cleaned text matches its reversed form, even when the input is not a perfect palindrome.",
-  },
-  {
-    question: "Does this tool show cleaned and reversed text?",
-    answer:
-      "Yes. The result panel shows original, cleaned, and reversed text so you can validate why a match passed or failed.",
-  },
-  {
-    question: "Can I check numbers as part of palindrome logic?",
-    answer:
-      "Yes. You can keep numbers or enable ignore-numbers depending on whether numeric characters should affect the result.",
-  },
-  {
-    question: "Why is this checker better than simple palindrome tools?",
-    answer:
-      "It combines rule-based normalization, bulk workflows, similarity scoring, character frequency insights, and export options in one interface.",
-  },
-  {
-    question: "Can I copy or download results?",
-    answer:
-      "Yes. In single mode, you can copy a detailed report or download it as a TXT file for documentation and sharing.",
-  },
-  {
-    question: "Is my text private when using this tool?",
-    answer:
-      "Yes. Processing is done in your browser, so your input is not sent to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Choose Single Check for one input or Bulk Check for multiple lines.",
-  "Enter your word, phrase, sentence, or line list.",
-  "Set options such as ignore case, spaces, punctuation, or numbers.",
-  "Run the checker or enable real-time mode for live updates.",
-  "Review the analysis and copy or download the result when needed.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { palindromeCheckerConfig } from "./config";
 
 const strengths = [
   {
@@ -141,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function PalindromeCheckerSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the palindrome checker",
-    description:
-      "Enter text, configure filtering rules, run single or bulk checks, and review palindrome analysis output.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = palindromeCheckerConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -217,7 +129,7 @@ export default function PalindromeCheckerSEOContent() {
             How to Use the Palindrome Checker
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -270,23 +182,7 @@ export default function PalindromeCheckerSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

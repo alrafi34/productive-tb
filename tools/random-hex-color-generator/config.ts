@@ -19,12 +19,12 @@ export const randomHexColorGeneratorConfig = {
     'Smooth animations and transitions'
   ],
   seo: {
-    title: 'Random Hex Color Generator – Press Space for Color Inspiration',
-    description: 'Generate random hex colors instantly. Press spacebar to create color palettes, copy HEX, RGB, and HSL values for design inspiration.',
+    title: "Random Hex Color Generator – Colors & Palettes",
+    description: "Generate random hex colors and palettes; press the spacebar for new ones and copy each color as HEX, RGB or HSL.",
     keywords: ['random color generator', 'hex color generator', 'color palette generator', 'design inspiration', 'color picker'],
     openGraph: {
-      title: 'Random Hex Color Generator – Press Space for Color Inspiration',
-      description: 'Generate beautiful random colors instantly with spacebar. Perfect for designers and developers.',
+      title: "Random Hex Color Generator – Colors & Palettes",
+      description: "Generate random hex colors and palettes; press the spacebar for new ones and copy each color as HEX, RGB or HSL.",
       type: 'website',
       url: '/tools/random-hex-color-generator'
     }

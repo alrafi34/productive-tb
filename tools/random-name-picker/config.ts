@@ -18,9 +18,9 @@ export const randomNamePickerConfig = {
     'free random picker',
   ],
   seo: {
-    title: 'Random Name Picker Online - Fair Winner Draws with Multi-Select and History',
+    title: "Random Name Picker – Draw Winners From a List",
     description:
-      'Free Random Name Picker with duplicate filtering, multiple winners, optional winner removal, TXT/CSV import-export, and round history tracking.',
+      "Pick one or more random winners from a list, remove duplicates, optionally drop winners after each draw, import or export TXT/CSV and keep round history.",
     keywords: [
       'random name picker',
       'random winner picker',
@@ -34,11 +34,29 @@ export const randomNamePickerConfig = {
       'online random draw tool',
     ],
     openGraph: {
-      title: 'Random Name Picker - Fair Multi-Winner Draw Tool',
+      title: "Random Name Picker – Draw Winners From a List",
       description:
-        'Run transparent random draws with duplicate control, winner history, and export-ready results.',
+        "Pick one or more random winners from a list, remove duplicates, optionally drop winners after each draw, import or export TXT/CSV and keep round history.",
       type: 'website',
       url: '/tools/writing/random-name-picker',
     },
+    howToSteps: [
+      { name: "Paste names", text: "Paste names (one per line) or import a TXT/CSV file." },
+      { name: "Set options like number of winners", text: "Set options like number of winners, duplicate removal, and remove-winner-after-pick." },
+      { name: "Click Pick Winner to run the draw with optional animation", text: "Click Pick Winner to run the draw with optional animation." },
+      { name: "Review winners", text: "Review winners, then copy or download the results." },
+      { name: "Use winner history for multi-round tracking and export CSV when needed", text: "Use winner history for multi-round tracking and export CSV when needed." },
+    ],
+    faq: [
+      { q: "What is a random name picker?", a: "A random name picker selects one or more winners from a list using a randomized selection process so each valid entry has a fair chance." },
+      { q: "Can I pick multiple winners in one draw?", a: "Yes. Set the number of winners and the tool will select up to that many names from the current list." },
+      { q: "Can I remove duplicates before drawing?", a: "Yes. Enable duplicate removal to ensure repeated names do not increase selection weight." },
+      { q: "What does remove winner after pick do?", a: "When enabled, selected winners are removed from the list so future rounds cannot pick the same names again." },
+      { q: "Can I import a list from TXT or CSV?", a: "Yes. You can upload TXT or CSV files and the tool parses names into the participant list automatically." },
+      { q: "Can I export winners and draw history?", a: "Yes. Winners can be downloaded as TXT and history can be exported as CSV with round and timestamp details." },
+      { q: "Is the selection process fair?", a: "The tool shuffles the list using a Fisher-Yates style approach and draws from that randomized order." },
+      { q: "Does this tool keep a history of rounds?", a: "Yes. It records winner name, round number, and time so you can audit and share draw outcomes." },
+      { q: "Is my participant data private?", a: "Yes. Name processing and drawing happen in your browser without requiring server-side submission." },
+    ],
   },
 };

@@ -1,62 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a CSS animation previewer?",
-    answer:
-      "A CSS animation previewer is a tool that lets you test animation timing functions and easing curves visually, then copy production-ready CSS values.",
-  },
-  {
-    question: "Why is this animation previewer better than basic easing tools?",
-    answer:
-      "It combines live animation playback, cubic-bezier editing, preset curves, duration controls, and copy-ready output in one workflow.",
-  },
-  {
-    question: "What are CSS timing functions?",
-    answer:
-      "Timing functions control how animation speed changes over time, such as linear, ease-in, ease-out, and custom cubic-bezier curves.",
-  },
-  {
-    question: "When should I use linear timing?",
-    answer:
-      "Use linear when motion should remain constant, such as progress indicators, rotations, and continuous background effects.",
-  },
-  {
-    question: "When should I use ease-in or ease-out?",
-    answer:
-      "Ease-in is useful for elements accelerating into motion, while ease-out works well for elements settling naturally into place.",
-  },
-  {
-    question: "What does cubic-bezier do?",
-    answer:
-      "Cubic-bezier lets you define custom acceleration and deceleration curves with four control values for precise motion behavior.",
-  },
-  {
-    question: "Can I use this tool for UI micro-interactions?",
-    answer:
-      "Yes. It is ideal for hover states, modal transitions, button feedback, and onboarding animations.",
-  },
-  {
-    question: "Can I copy generated CSS directly into my project?",
-    answer:
-      "Yes. You can copy animation timing and related CSS settings directly for immediate implementation.",
-  },
-  {
-    question: "Is this tool free?",
-    answer: "Yes. The CSS animation previewer is free to use without account registration.",
-  },
-  {
-    question: "Does this tool process animation data on a server?",
-    answer:
-      "No. Animation preview and curve calculations are handled client-side for speed and privacy.",
-  },
-];
-
-const howToSteps = [
-  "Choose a base timing function or select cubic-bezier mode.",
-  "Adjust duration, delay, and iteration settings for realistic playback.",
-  "Fine tune curve values until motion feels smooth and intentional.",
-  "Test the result with different animation types and distances.",
-  "Copy the generated CSS and use it in your project styles.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { cssAnimationPreviewerConfig } from "./config";
 
 const strengths = [
   {
@@ -140,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function CSSAnimationPreviewerSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the CSS Animation Previewer",
-    description:
-      "Preview timing functions and cubic-bezier curves live, refine motion behavior, and copy implementation-ready CSS animation settings.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = cssAnimationPreviewerConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -217,7 +130,7 @@ export default function CSSAnimationPreviewerSEOContent() {
             How to Use the CSS Animation Previewer
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -270,23 +183,7 @@ export default function CSSAnimationPreviewerSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

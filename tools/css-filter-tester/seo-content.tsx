@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a CSS filter tester?",
-    answer:
-      "A CSS filter tester is a tool that lets you apply and adjust filter effects visually, then copy the generated CSS filter property for production use.",
-  },
-  {
-    question: "Why is this CSS filter tester better than basic alternatives?",
-    answer:
-      "It combines live preview, full slider control, presets, before or after comparison support, image upload, and copy-ready output in one workflow.",
-  },
-  {
-    question: "Which filter functions can I test?",
-    answer:
-      "You can test popular functions such as grayscale, sepia, blur, brightness, contrast, saturate, hue-rotate, and invert, then combine them in one filter chain.",
-  },
-  {
-    question: "Can I combine multiple CSS filters together?",
-    answer:
-      "Yes. Multiple filter functions can be chained, and the order matters because each function affects the result of the previous one.",
-  },
-  {
-    question: "Can I animate CSS filters?",
-    answer:
-      "Yes. Filter properties can be animated with transitions or keyframes for hover states and interactive UI effects.",
-  },
-  {
-    question: "Does this tool support image uploads?",
-    answer:
-      "Yes. You can upload an image and adjust filters on a live preview to test real visual output before implementation.",
-  },
-  {
-    question: "Are CSS filters performance-heavy?",
-    answer:
-      "Most filters are efficient in modern browsers, but heavy blur on large assets can increase rendering cost, especially on lower-end devices.",
-  },
-  {
-    question: "Is the generated CSS production-ready?",
-    answer:
-      "Yes. The output uses standard CSS filter syntax and can be pasted directly into stylesheets or component styles.",
-  },
-  {
-    question: "Is this CSS filter tester free?",
-    answer:
-      "Yes. The tool is free and does not require registration.",
-  },
-  {
-    question: "Does this tool process images server-side?",
-    answer:
-      "No. Filter preview and generation happen in the browser for speed and privacy.",
-  },
-];
-
-const howToSteps = [
-  "Upload an image or use the default preview asset.",
-  "Adjust filter sliders such as blur, contrast, and saturate.",
-  "Apply a preset if you want a faster starting point.",
-  "Review visual output and fine tune filter order and intensity.",
-  "Copy the generated CSS filter code and use it in your project.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { cssFilterTesterConfig } from "./config";
 
 const strengths = [
   {
@@ -137,41 +79,11 @@ const mistakesToAvoid = [
 ];
 
 export default function CSSFilterTesterSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the CSS Filter Tester",
-    description:
-      "Upload an image, adjust filter sliders, preview effects live, and copy production-ready CSS filter code.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = cssFilterTesterConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -214,7 +126,7 @@ export default function CSSFilterTesterSEOContent() {
             How to Use the CSS Filter Tester
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -267,23 +179,7 @@ export default function CSSFilterTesterSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

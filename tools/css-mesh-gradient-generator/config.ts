@@ -19,12 +19,12 @@ export const cssMeshGradientGeneratorConfig = {
     'Fullscreen preview mode'
   ],
   seo: {
-    title: 'CSS Mesh Gradient Generator – Create Modern Multi Color Backgrounds',
-    description: 'Create beautiful mesh gradients for websites. Generate multi-color radial gradients and export clean CSS backgrounds instantly.',
+    title: "CSS Mesh Gradient Generator – Multi-Color Backgrounds",
+    description: "Create mesh gradients for websites by layering multi-color radial gradients, then export a clean CSS background.",
     keywords: ['css mesh gradient', 'gradient generator', 'mesh background', 'radial gradient', 'modern gradients', 'css background'],
     openGraph: {
-      title: 'CSS Mesh Gradient Generator – Create Modern Multi Color Backgrounds',
-      description: 'Design trendy mesh gradients with interactive editing and instant CSS code generation.',
+      title: "CSS Mesh Gradient Generator – Multi-Color Backgrounds",
+      description: "Create mesh gradients for websites by layering multi-color radial gradients, then export a clean CSS background.",
       type: 'website',
       url: '/tools/css-mesh-gradient-generator'
     }

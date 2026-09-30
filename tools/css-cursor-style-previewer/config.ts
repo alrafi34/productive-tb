@@ -18,8 +18,8 @@ export const cssCursorStylePreviewerConfig = {
     'Copy CSS properties'
   ],
   seo: {
-    title: 'CSS Cursor Style Previewer – Test All Cursor Types | Free Online Tool',
-    description: 'Preview and test every CSS cursor style with interactive examples. Explore pointer, resize, zoom, drag cursors and copy the CSS code instantly. Perfect for developers and designers.',
+    title: "CSS Cursor Previewer – Test Every cursor Value",
+    description: "Hover to preview every CSS cursor style, from pointer and grab to resize and zoom cursors, and copy the CSS for the one you need.",
     keywords: [
       'css cursor',
       'cursor styles',
@@ -33,8 +33,8 @@ export const cssCursorStylePreviewerConfig = {
       'cursor generator'
     ],
     openGraph: {
-      title: 'CSS Cursor Style Previewer – Test All Cursor Types',
-      description: 'Preview and test every CSS cursor style with interactive examples and instant code generation.',
+      title: "CSS Cursor Previewer – Test Every cursor Value",
+      description: "Hover to preview every CSS cursor style, from pointer and grab to resize and zoom cursors, and copy the CSS for the one you need.",
       type: 'website',
       url: '/css-cursor-style-previewer'
     }

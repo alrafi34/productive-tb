@@ -1,64 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a color palette generator?",
-    answer:
-      "A color palette generator creates sets of colors that work well together using color harmony principles such as analogous, complementary, triadic, monochromatic, and tetradic schemes.",
-  },
-  {
-    question: "Why use a color palette generator instead of picking colors manually?",
-    answer:
-      "It helps you avoid inconsistent combinations by generating balanced color relationships quickly, which is useful for UI design, branding, and frontend development.",
-  },
-  {
-    question: "Which palette modes are supported in this tool?",
-    answer:
-      "This generator supports analogous, complementary, triadic, monochromatic, tetradic, and random palette modes.",
-  },
-  {
-    question: "Can I lock specific colors while regenerating a palette?",
-    answer:
-      "Yes. You can lock individual swatches so fixed brand colors stay in place while other colors are regenerated.",
-  },
-  {
-    question: "Does this tool include accessibility checks?",
-    answer:
-      "Yes. It includes contrast ratio checks and shows WCAG pass/fail guidance to support readable and accessible interfaces.",
-  },
-  {
-    question: "Can I export palettes for development workflows?",
-    answer:
-      "Yes. You can export palette values as CSS variables, SCSS, JSON, and Tailwind-style formats for direct project usage.",
-  },
-  {
-    question: "Is gradient generation included?",
-    answer:
-      "Yes. The tool provides gradient previews and copy-ready CSS gradient output from your generated palette.",
-  },
-  {
-    question: "Is this color palette generator free to use?",
-    answer:
-      "Yes. The tool is free and works directly in your browser with no sign-up required.",
-  },
-  {
-    question: "Does this tool store my design data on a server?",
-    answer:
-      "No. Palette generation and color operations run client-side in your browser.",
-  },
-  {
-    question: "Who benefits most from this palette generator?",
-    answer:
-      "UI/UX designers, frontend developers, brand designers, students, and content creators can use it for quick and consistent color systems.",
-  },
-];
-
-const howToSteps = [
-  "Set a base color with HEX input or the color picker.",
-  "Choose a palette type based on your design goal.",
-  "Generate a 5-color palette instantly.",
-  "Lock colors you want to keep and regenerate others.",
-  "Check contrast ratio for accessibility confidence.",
-  "Copy or export palette values for your design or code workflow.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 const strengths = [
   {
@@ -121,41 +62,11 @@ const mistakesToAvoid = [
 ];
 
 export default function ColorPaletteGeneratorSEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use the color palette generator",
-    description:
-      "Generate accessible and export-ready color palettes using multiple harmony algorithms and locking controls.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = toolConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -198,7 +109,7 @@ export default function ColorPaletteGeneratorSEOContent() {
             How to Use the Color Palette Generator
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -238,23 +149,7 @@ export default function ColorPaletteGeneratorSEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

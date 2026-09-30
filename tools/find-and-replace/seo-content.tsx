@@ -1,62 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a find and replace tool?",
-    answer:
-      "A find and replace tool searches text for matching words or patterns and replaces them with new content automatically.",
-  },
-  {
-    question: "Why is this tool better than basic alternatives?",
-    answer:
-      "It supports single and batch replacements, regex mode, case and whole-word controls, preview mode, undo/redo, and file upload in one workflow.",
-  },
-  {
-    question: "Can I replace only the first match?",
-    answer:
-      "Yes. You can use Replace First to change only the first detected occurrence.",
-  },
-  {
-    question: "Can I replace all matches at once?",
-    answer:
-      "Yes. Replace All updates every matching occurrence in one action.",
-  },
-  {
-    question: "Does this support regex search and replace?",
-    answer:
-      "Yes. Enable regex mode to search with pattern-based expressions.",
-  },
-  {
-    question: "What does whole words only do?",
-    answer:
-      "It limits matches to complete words so partial word fragments are not replaced unintentionally.",
-  },
-  {
-    question: "Can I run multiple replacements in one pass?",
-    answer:
-      "Yes. Batch mode allows multiple enabled find-replace rules to be applied sequentially.",
-  },
-  {
-    question: "Can I upload files for editing?",
-    answer:
-      "Yes. You can upload or drag and drop .txt, .md, and .csv files.",
-  },
-  {
-    question: "Is this find and replace tool free?",
-    answer: "Yes. It is free to use with no sign-up required.",
-  },
-  {
-    question: "Is my text private?",
-    answer:
-      "Yes. Processing runs in your browser, so your text is not uploaded to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Paste text or load a file into the input area.",
-  "Enter find and replace values, or switch to batch mode for multiple rules.",
-  "Choose options such as match case, whole words, regex, and preview mode.",
-  "Run Replace First, Replace All, or Batch Replace based on your goal.",
-  "Review stats, then copy, download, or apply preview output to continue editing.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { findAndReplaceConfig } from "./config";
 
 const strengths = [
   {
@@ -140,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use Find and Replace",
-    description:
-      "Load text, configure matching options, run replacements, and copy or download updated output.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = findAndReplaceConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -216,7 +129,7 @@ export default function SEOContent() {
             How to Use Find and Replace
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -269,23 +182,7 @@ export default function SEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>

@@ -61,6 +61,24 @@ export const findAndReplaceConfig = {
       description: "Search and replace text with advanced controls, preview mode, and file-based workflows.",
       type: "website",
       url: "/tools/writing/find-and-replace"
-    }
+    },
+    howToSteps: [
+      { name: "Paste text or load a file into the input area", text: "Paste text or load a file into the input area." },
+      { name: "Enter find and replace values", text: "Enter find and replace values, or switch to batch mode for multiple rules." },
+      { name: "Choose options such as match case", text: "Choose options such as match case, whole words, regex, and preview mode." },
+      { name: "Run Replace First", text: "Run Replace First, Replace All, or Batch Replace based on your goal." },
+      { name: "Review stats", text: "Review stats, then copy, download, or apply preview output to continue editing." },
+    ],
+    faq: [
+      { q: "What is a find and replace tool?", a: "A find and replace tool searches text for matching words or patterns and replaces them with new content automatically." },
+      { q: "Can I replace only the first match?", a: "Yes. You can use Replace First to change only the first detected occurrence." },
+      { q: "Can I replace all matches at once?", a: "Yes. Replace All updates every matching occurrence in one action." },
+      { q: "Does this support regex search and replace?", a: "Yes. Enable regex mode to search with pattern-based expressions." },
+      { q: "What does whole words only do?", a: "It limits matches to complete words so partial word fragments are not replaced unintentionally." },
+      { q: "Can I run multiple replacements in one pass?", a: "Yes. Batch mode allows multiple enabled find-replace rules to be applied sequentially." },
+      { q: "Can I upload files for editing?", a: "Yes. You can upload or drag and drop .txt, .md, and .csv files." },
+      { q: "Is this find and replace tool free?", a: "Yes. It is free to use with no sign-up required." },
+      { q: "Is my text private?", a: "Yes. Processing runs in your browser, so your text is not uploaded to external servers." },
+    ],
   }
 };

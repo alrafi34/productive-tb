@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { revenueGrowthCalculatorConfig } from "./config";
+
 export default function RevenueGrowthCalculatorSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = revenueGrowthCalculatorConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -131,44 +136,7 @@ export default function RevenueGrowthCalculatorSEO() {
         </p>
       </section>
 
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is revenue growth rate?",
-              a: "Revenue growth rate is the percentage change in a company's revenue between two periods — typically month-over-month, quarter-over-quarter, or year-over-year. It is one of the most important KPIs for measuring business performance, attracting investors, and benchmarking against competitors.",
-            },
-            {
-              q: "How is revenue growth calculated?",
-              a: "Revenue growth is calculated using the formula: ((Current Revenue − Previous Revenue) ÷ Previous Revenue) × 100. For example, if previous revenue was $10,000 and current revenue is $12,500, growth = ((12,500 − 10,000) ÷ 10,000) × 100 = 25%.",
-            },
-            {
-              q: "What is a good revenue growth rate?",
-              a: "A good revenue growth rate depends on your business stage and industry. Early-stage startups often target 10–20% monthly growth. SaaS companies use the 'Rule of 40' — growth rate plus profit margin should exceed 40%. For established SMBs, 10–20% annual growth is generally considered healthy.",
-            },
-            {
-              q: "What is the difference between revenue growth and profit growth?",
-              a: "Revenue growth measures the increase in total sales or income before expenses. Profit growth measures the increase in what remains after all costs are deducted. A business can have strong revenue growth but declining profit growth if costs are rising faster. Both metrics are important but serve different purposes.",
-            },
-            {
-              q: "Why is tracking revenue growth important?",
-              a: "Revenue growth tracking helps businesses identify trends, validate strategies, allocate resources effectively, and make data-driven decisions. Investors, banks, and acquirers use growth rates to assess valuation and risk. Consistent tracking also helps identify seasonality patterns and the impact of marketing campaigns.",
-            },
-            {
-              q: "What causes revenue to decline?",
-              a: "Revenue decline can result from increased competition, customer churn, pricing changes, product issues, reduced marketing spend, economic downturns, or seasonal factors. Identifying the root cause quickly is critical — compare revenue by channel, product, or customer segment to pinpoint the source.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>

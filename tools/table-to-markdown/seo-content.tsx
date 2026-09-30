@@ -1,63 +1,5 @@
-const faqItems = [
-  {
-    question: "What is a table to markdown converter?",
-    answer:
-      "A table to markdown converter transforms spreadsheet-like rows and columns into valid markdown table syntax that works in GitHub, docs, and markdown editors.",
-  },
-  {
-    question: "What input formats are supported?",
-    answer:
-      "You can paste data from Excel or Google Sheets, upload TXT/CSV/TSV files, and process tab, comma, pipe, or multi-space separated text.",
-  },
-  {
-    question: "How does delimiter auto-detection work?",
-    answer:
-      "The tool checks your first row and detects tab, pipe, comma, or space-based separation to parse columns quickly without manual setup.",
-  },
-  {
-    question: "Can I define my own headers?",
-    answer:
-      "Yes. You can use the first row as header, auto-generate headers, or provide custom header labels for each column.",
-  },
-  {
-    question: "Can I control markdown alignment for each column?",
-    answer:
-      "Yes. You can set left, center, or right alignment per column, and the tool generates proper markdown separator syntax.",
-  },
-  {
-    question: "Does it handle markdown special characters?",
-    answer:
-      "Yes. Enable escape mode to prevent markdown symbols from breaking table formatting in rendered output.",
-  },
-  {
-    question: "Can I wrap cell values in backticks?",
-    answer:
-      "Yes. Backtick wrapping is available for code-oriented tables and technical documentation workflows.",
-  },
-  {
-    question: "Why is this tool better than basic converters?",
-    answer:
-      "It combines flexible parsing, header strategies, per-column alignment, pretty formatting, escaping, backtick mode, preview, and export in one focused workflow.",
-  },
-  {
-    question: "Can I preview the output before copying?",
-    answer:
-      "Yes. The tool shows both markdown source and rendered HTML table preview so you can validate layout before publishing.",
-  },
-  {
-    question: "Is this table to markdown tool private?",
-    answer:
-      "Yes. Conversion runs in your browser, so your table content is not sent to external servers.",
-  },
-];
-
-const howToSteps = [
-  "Paste table data or upload a TXT, CSV, or TSV file.",
-  "Select delimiter mode (auto, tab, comma, pipe, or multi-space).",
-  "Choose header mode: first-row, no-header, or custom headers.",
-  "Set column alignments and optional formatting options.",
-  "Convert to markdown, review source and preview, then copy or download.",
-];
+import ToolFaq from "@/components/ToolFaq";
+import { tableToMarkdownConfig } from "./config";
 
 const strengths = [
   {
@@ -141,41 +83,11 @@ const mistakesToAvoid = [
 ];
 
 export default function SEOContent() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to convert a table to markdown",
-    description:
-      "Paste or upload table data, configure delimiter and formatting options, then convert to markdown table syntax.",
-    step: howToSteps.map((step) => ({
-      "@type": "HowToStep",
-      text: step,
-    })),
-  };
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = tableToMarkdownConfig.seo;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
 
       <div className="max-w-4xl mx-auto mt-12 space-y-8">
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -217,7 +129,7 @@ export default function SEOContent() {
             How to Use Table to Markdown
           </h2>
           <ol className="space-y-4 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-            {howToSteps.map((step, index) => (
+            {howToSteps.map(({ text: step }, index) => (
               <li key={step} className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                   {index + 1}
@@ -270,23 +182,7 @@ export default function SEOContent() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.question}>
-                <h3 className="text-lg font-medium text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ToolFaq items={faq} />
 
         <section className="bg-gray-50 rounded-2xl border border-gray-200 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
