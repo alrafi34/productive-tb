@@ -1,6 +1,12 @@
 "use client";
 
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
+
 export default function VennDiagramSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="max-w-5xl mx-auto mt-12 mb-8 px-4">
       <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-100 p-8">
@@ -60,6 +66,7 @@ export default function VennDiagramSEOContent() {
           </p>
         </div>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

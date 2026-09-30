@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { textEncryptDecryptConfig } from "./config";
+
 export default function TextEncryptDecryptSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = textEncryptDecryptConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto prose prose-sm">
       <section className="mb-8">
@@ -269,6 +274,7 @@ export default function TextEncryptDecryptSEOContent() {
           All other encoding methods use standard JavaScript string operations with universal support.
         </p>
       </section>
+      <ToolFaq items={faq} />
     </div>
   );
 }

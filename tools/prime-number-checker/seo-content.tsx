@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function PrimeNumberCheckerSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="mt-12 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -69,6 +74,7 @@ export default function PrimeNumberCheckerSEO() {
           </div>
         </div>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

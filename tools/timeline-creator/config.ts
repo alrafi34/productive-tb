@@ -31,7 +31,14 @@ export const toolConfig = {
       description: "Create visual timelines for projects, history or roadmaps. Add dates and events, customize the layout and export the timeline as a PNG image.",
       type: "website",
       url: "/timeline-creator"
-    }
+    },
+    faq: [
+      { q: "What can I make with the timeline creator?", a: "Project plans and roadmaps, historical timelines for school work, company milestones and personal events. Each entry has a date, a title and an optional description." },
+      { q: "Are events sorted automatically?", a: "Yes. Events are placed in date order on the timeline, whatever order you add them in." },
+      { q: "Which export formats are available?", a: "PNG for presentations and documents, SVG for scalable graphics, and JSON to save the timeline and load it again." },
+      { q: "Is my timeline saved?", a: "Yes, it is stored in your browser, so it is still there when you come back on the same device. Export JSON to move it elsewhere." },
+      { q: "How many events should a timeline have?", a: "Timelines are easiest to read with about 5–15 events. For longer histories, split them into periods or show only the key milestones." },
+    ],
   },
   features: [
     "Add events with dates and descriptions",

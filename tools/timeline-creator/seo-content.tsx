@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 export default function TimelineCreatorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="mt-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <div className="prose prose-sm max-w-none">
@@ -84,6 +87,7 @@ export default function TimelineCreatorSEOContent() {
           Whether you're documenting historical events, planning a project roadmap, creating educational materials, or designing marketing content, our Visual Timeline Creator provides the tools you need to create professional-looking timelines without any design experience.
         </p>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

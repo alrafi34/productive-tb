@@ -32,7 +32,14 @@ export const base32EncoderConfig = {
       description: "Convert text to Base32 or decode Base32 back to text in your browser. Useful for 2FA and TOTP secrets and other developer work.",
       type: "website",
       url: "/tools/developer/base32-encoder"
-    }
+    },
+    faq: [
+      { q: "What is Base32 encoding?", a: "Base32 writes binary data using 32 characters: A–Z and 2–7 in the standard RFC 4648 alphabet. Every 5 bytes become 8 characters, so the output is about 60% longer than the input, and = signs pad the last block." },
+      { q: "Where is Base32 used?", a: "Most often for two-factor authentication: the secret behind a TOTP QR code (Google Authenticator, Authy, 1Password) is a Base32 string. It is also used in some file names and URLs because it avoids characters that look alike and is not case-sensitive." },
+      { q: "What is the difference between Base32 and Base64?", a: "Base64 uses 64 characters including lowercase letters, + and /, so it is shorter (about 33% overhead) but case-sensitive and not URL-safe by default. Base32 is longer but uses only uppercase letters and digits, which makes it easier to read aloud or type." },
+      { q: "What is Crockford Base32?", a: "A variant by Douglas Crockford that uses 0–9 and A–Z without I, L, O and U, so 0/O and 1/I/L cannot be confused. Choose it when people will read or type the codes; choose RFC 4648 for TOTP secrets and anything that expects the standard alphabet." },
+      { q: "Why does decoding fail?", a: "Usually because the input contains a character outside the chosen alphabet, such as 0, 1, 8 or 9 in standard Base32, or because it was encoded with the other variant. Spaces and lowercase letters are also a common cause when a secret is copied by hand." },
+    ],
   },
   features: [
     "Encode text to Base32",

@@ -1,6 +1,11 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 import React from 'react';
 
 export default function PieChartSEO() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="space-y-12 py-12 border-t border-gray-200">
       <div className="space-y-6">
@@ -170,6 +175,7 @@ export default function PieChartSEO() {
           Start using this free Pie Chart Maker today. No signup required, no server processing, 100% browser-based. Perfect for students, professionals, and data enthusiasts!
         </p>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

@@ -1,6 +1,12 @@
 "use client";
 
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
+
 export default function FlowchartSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="max-w-5xl mx-auto mt-12 mb-8 px-4">
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100 p-8">
@@ -60,6 +66,7 @@ export default function FlowchartSEOContent() {
           </p>
         </div>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

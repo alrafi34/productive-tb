@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
 export default function MockDataGeneratorSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="mt-16 prose prose-gray max-w-4xl mx-auto">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
@@ -95,6 +100,7 @@ export default function MockDataGeneratorSEOContent() {
           </p>
         </div>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

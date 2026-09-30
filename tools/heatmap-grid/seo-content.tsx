@@ -1,6 +1,12 @@
 "use client";
 
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
+
+
 export default function HeatmapGridSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="max-w-5xl mx-auto mt-12 mb-8 px-4">
       <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border border-red-100 p-8">
@@ -61,6 +67,7 @@ export default function HeatmapGridSEOContent() {
           </p>
         </div>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }

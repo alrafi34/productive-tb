@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
 export default function AudioVisualizerSEOContent() {
+  // Same questions as the FAQPage schema
+  const { faq } = toolConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-12 px-4">
       <div className="bg-gray-50 rounded-xl p-8 border border-gray-200">
@@ -68,6 +71,7 @@ export default function AudioVisualizerSEOContent() {
           </p>
         </div>
       </div>
+      <ToolFaq items={faq} />
     </div>
   );
 }
