@@ -41,7 +41,7 @@ export const electricalLoadCalculatorBuildingConfig = {
   },
   relatedTools: [
     "lighting-load-calculator",
-    "power-consumption-calculator",
+    "energy-consumption-calculator",
     "ohms-law-calculator"
   ]
 };

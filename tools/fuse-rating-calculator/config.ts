@@ -115,6 +115,6 @@ export const fuseRatingCalculatorConfig = {
     "wire-size-calculator",
     "short-circuit-current-calculator",
     "ohms-law-calculator",
-    "power-consumption-calculator",
+    "energy-consumption-calculator",
   ],
 };
