@@ -6,11 +6,12 @@ export const APPLIANCE_PRESETS: Record<string, AppliancePreset> = {
   "cfl-bulb": { name: "CFL Bulb", power: 15, category: "Lighting", typicalHours: 5 },
   "incandescent-bulb": { name: "Incandescent Bulb", power: 60, category: "Lighting", typicalHours: 5 },
   "ceiling-fan": { name: "Ceiling Fan", power: 75, category: "Cooling", typicalHours: 8 },
-  "table-fan": { name: "Table Fan", power: 50, category: "Cooling", typicalHours: 6 },
-  "air-conditioner-1ton": { name: "Air Conditioner (1 Ton)", power: 1200, category: "Cooling", typicalHours: 8 },
-  "air-conditioner-1-5ton": { name: "Air Conditioner (1.5 Ton)", power: 1800, category: "Cooling", typicalHours: 8 },
-  "air-conditioner-2ton": { name: "Air Conditioner (2 Ton)", power: 2400, category: "Cooling", typicalHours: 8 },
-  "refrigerator": { name: "Refrigerator", power: 150, category: "Kitchen", typicalHours: 24 },
+  "table-fan": { name: "Desk Fan", power: 50, category: "Cooling", typicalHours: 6 },
+  "window-ac": { name: "Window AC (10,000 BTU)", power: 900, category: "Cooling", typicalHours: 8 },
+  "mini-split": { name: "Mini-Split AC (18,000 BTU)", power: 1500, category: "Cooling", typicalHours: 8 },
+  "central-ac": { name: "Central AC (3 ton / 36,000 BTU)", power: 3500, category: "Cooling", typicalHours: 8 },
+  // The compressor cycles on and off, so the average draw is far below the nameplate
+  "refrigerator": { name: "Refrigerator (average draw)", power: 60, category: "Kitchen", typicalHours: 24 },
   "microwave": { name: "Microwave Oven", power: 1200, category: "Kitchen", typicalHours: 0.5 },
   "electric-kettle": { name: "Electric Kettle", power: 1500, category: "Kitchen", typicalHours: 0.5 },
   "toaster": { name: "Toaster", power: 800, category: "Kitchen", typicalHours: 0.25 },
@@ -22,7 +23,9 @@ export const APPLIANCE_PRESETS: Record<string, AppliancePreset> = {
   "vacuum-cleaner": { name: "Vacuum Cleaner", power: 1000, category: "Appliances", typicalHours: 0.5 },
   "iron": { name: "Electric Iron", power: 1000, category: "Appliances", typicalHours: 1 },
   "hair-dryer": { name: "Hair Dryer", power: 1500, category: "Personal Care", typicalHours: 0.25 },
-  "water-heater": { name: "Water Heater (Geyser)", power: 2000, category: "Heating", typicalHours: 1 },
+  "water-heater": { name: "Electric Water Heater (tank)", power: 4500, category: "Heating", typicalHours: 3 },
+  "clothes-dryer": { name: "Clothes Dryer", power: 3000, category: "Appliances", typicalHours: 1 },
+  "ev-charger": { name: "EV Charger (Level 2)", power: 7200, category: "Electronics", typicalHours: 1 },
   "room-heater": { name: "Room Heater", power: 1500, category: "Heating", typicalHours: 4 },
   "tv-led-32": { name: "LED TV (32 inch)", power: 50, category: "Entertainment", typicalHours: 5 },
   "tv-led-55": { name: "LED TV (55 inch)", power: 100, category: "Entertainment", typicalHours: 5 },
@@ -39,14 +42,16 @@ export const generateId = (): string => {
 };
 
 // Create default appliance
-export const createDefaultAppliance = (): ApplianceInput => ({
+/* `rate` is the starting price per kWh for the visitor's currency
+   (TYPICAL_RATE in the electric bill calculator, with its sources). */
+export const createDefaultAppliance = (rate = 0.18): ApplianceInput => ({
   id: generateId(),
   name: "Appliance",
   power: 100,
   hours: 5,
   minutes: 0,
   quantity: 1,
-  rate: 0.12,
+  rate,
 });
 
 // Calculate energy for single appliance

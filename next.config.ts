@@ -49,6 +49,10 @@ const nextConfig: NextConfig = {
       "roi-calculator-marketing": "/tools/calculator/investment-return-calculator",
       "binary-to-decimal-calculator": "/tools/math/binary-hex-decimal-converter",
       "decimal-to-binary-calculator": "/tools/math/binary-hex-decimal-converter",
+      // Three pages competed for "electricity bill / power consumption calculator";
+      // this one had no impressions and no currency choice. Its query is about
+      // usage, which the energy consumption calculator answers.
+      "power-consumption-calculator": "/tools/electrical/energy-consumption-calculator",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },

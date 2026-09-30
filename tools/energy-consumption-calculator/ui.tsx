@@ -20,18 +20,28 @@ import {
   debounce,
   calculateApplianceEnergy,
 } from "./logic";
+import { TYPICAL_RATE } from "@/tools/electric-bill-calculator/logic";
 import EnergyConsumptionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 export default function EnergyConsumptionCalculatorUI() {
-  const [appliances, setAppliances] = useState<ApplianceInput[]>([createDefaultAppliance()]);
-  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+  const [appliances, setAppliances] = useState<ApplianceInput[]>([createDefaultAppliance(TYPICAL_RATE.USD)]);
+  const [currency, setCurrencyState] = useState<CurrencyCode>("USD");
+
+  /* Switching currency also switches the starting price per kWh, but only on
+     appliances still at the previous typical rate, never on one the visitor typed. */
+  const setCurrency = (next: CurrencyCode) => {
+    const prev = currency;
+    setAppliances((list) => list.map((a) => (a.rate === TYPICAL_RATE[prev] ? { ...a, rate: TYPICAL_RATE[next] } : a)));
+    setCurrencyState(next);
+  };
 
   // Guessed after hydration so the server markup matches; always editable
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
     return () => window.cancelAnimationFrame(frame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [calculation, setCalculation] = useState<EnergyCalculation | null>(null);
   const [copied, setCopied] = useState(false);
@@ -59,7 +69,7 @@ export default function EnergyConsumptionCalculatorUI() {
   };
 
   const handleAddAppliance = () => {
-    setAppliances(prev => [...prev, createDefaultAppliance()]);
+    setAppliances(prev => [...prev, createDefaultAppliance(TYPICAL_RATE[currency])]);
   };
 
   const handleRemoveAppliance = (id: string) => {
@@ -87,7 +97,7 @@ export default function EnergyConsumptionCalculatorUI() {
   };
 
   const handleReset = () => {
-    setAppliances([createDefaultAppliance()]);
+    setAppliances([createDefaultAppliance(TYPICAL_RATE[currency])]);
     setCalculation(null);
   };
 
@@ -333,7 +343,7 @@ export default function EnergyConsumptionCalculatorUI() {
                         value={appliance.rate || ""}
                         onChange={(e) => handleFieldChange(appliance.id, 'rate', parseFloat(e.target.value) || 0)}
                         className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono"
-                        placeholder="0.12"
+                        placeholder={String(TYPICAL_RATE[currency])}
                         min="0"
                         step="0.01"
                       />
@@ -367,7 +377,7 @@ export default function EnergyConsumptionCalculatorUI() {
                           <div className="flex items-center justify-between mt-1">
                             <span className="text-sm font-medium text-gray-700">Cost:</span>
                             <span className="text-lg font-bold text-green-600">
-                              ${formatNumber(calculateApplianceEnergy(appliance) * appliance.rate, 2)}
+                              {formatMoney(calculateApplianceEnergy(appliance) * appliance.rate, currency)}
                             </span>
                           </div>
                         )}

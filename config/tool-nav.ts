@@ -102,7 +102,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   /* ── Electrical ── */
   ["ohms-law-calculator", "voltage-divider-calculator", "current-divider-calculator", "series-resistor-calculator", "parallel-resistor-calculator", "resistor-color-code-calculator", "led-resistor-calculator"],
   ["power-calculator-electrical", "real-power-calculator", "reactive-power-calculator", "apparent-power-calculator", "power-factor-calculator", "three-phase-power-calculator", "phase-angle-calculator"],
-  ["energy-consumption-calculator", "electric-bill-calculator", "power-consumption-calculator", "fan-power-consumption-calculator", "air-conditioner-power-calculator", "room-lighting-calculator"],
+  ["energy-consumption-calculator", "electric-bill-calculator", "fan-power-consumption-calculator", "air-conditioner-power-calculator", "room-lighting-calculator"],
   ["capacitor-calculator", "capacitor-charge-time-calculator", "inductor-calculator", "inductive-reactance-calculator", "capacitive-reactance-calculator", "impedance-calculator", "rc-time-constant-calculator", "rl-time-constant-calculator", "rlc-resonance-calculator"],
   ["transformer-turns-ratio-calculator", "transformer-efficiency-calculator", "transformer-current-calculator", "electric-motor-power-calculator", "motor-efficiency-calculator", "motor-speed-calculator", "slip-calculator"],
   ["battery-capacity-calculator", "battery-backup-time-calculator", "battery-charging-time-calculator", "ups-load-calculator", "ups-backup-calculator", "generator-size-calculator"],
