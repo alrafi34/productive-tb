@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { thermalExpansionCalculatorConfig } from "./config";
 
 export default function ThermalExpansionCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = thermalExpansionCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -37,16 +40,7 @@ export default function ThermalExpansionCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Select the expansion type: Linear, Area, or Volume",
-                "Choose a material from the searchable dropdown (auto-fills α)",
-                "Or enter a custom coefficient of thermal expansion",
-                "Enter the initial dimension (length, area, or volume)",
-                "Select the dimension unit (m, cm, mm, ft, in)",
-                "Enter initial and final temperatures",
-                "Select the temperature unit (°C, °F, or K)",
-                "View instant results with formula breakdown",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -178,40 +172,7 @@ export default function ThermalExpansionCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is the coefficient of thermal expansion?",
-              a: "The coefficient of thermal expansion (α) measures how much a material's dimensions change per unit length (or area/volume) per degree of temperature change. It is expressed in units of per °C (or per K). A higher α means the material expands more for the same temperature change.",
-            },
-            {
-              q: "What is the difference between linear, area, and volumetric expansion?",
-              a: "Linear expansion (ΔL = α·L₀·ΔT) applies to one-dimensional changes like the length of a rod or pipe. Area expansion (ΔA = 2α·A₀·ΔT) applies to two-dimensional surfaces like plates. Volumetric expansion (ΔV = 3α·V₀·ΔT) applies to three-dimensional objects like tanks or blocks.",
-            },
-            {
-              q: "Why does the area formula use 2α and volume use 3α?",
-              a: "Because expansion occurs in all dimensions simultaneously. A plate expands in both length and width, so the area coefficient is approximately 2α. A solid expands in length, width, and height, so the volumetric coefficient is approximately 3α. These are first-order approximations valid for small expansions.",
-            },
-            {
-              q: "Can I enter the coefficient in scientific notation?",
-              a: "Yes. The calculator accepts standard decimal notation (0.000012) and scientific notation (1.2e-5). Both formats are equivalent and will produce the same result.",
-            },
-            {
-              q: "Why is thermal expansion important in engineering?",
-              a: "Unaccounted thermal expansion can cause structural failure, pipe bursts, rail buckling, and precision errors in machinery. Engineers design expansion joints, flexible couplings, and clearances to safely accommodate dimensional changes across operating temperature ranges.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

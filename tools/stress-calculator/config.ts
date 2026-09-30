@@ -29,6 +29,21 @@ export const stressCalculatorConfig = {
       description: "Calculate mechanical stress from force and area, with unit conversion between Pa, MPa, psi, ksi and more.",
       url: `${siteConfig.url}/tools/mechanical/stress-calculator`,
     },
+    howToSteps: [
+      { name: "Enter the applied force magnitude", text: "Enter the applied force magnitude (e.g. 1000)" },
+      { name: "Select the force unit", text: "Select the force unit — N, kN, lbf, or kgf" },
+      { name: "Enter the cross-sectional area", text: "Enter the cross-sectional area (e.g. 0.01)" },
+      { name: "Select the area unit", text: "Select the area unit — m², cm², mm², in², or ft²" },
+      { name: "Choose your preferred output stress unit", text: "Choose your preferred output stress unit" },
+      { name: "View the stress result instantly in all units", text: "View the stress result instantly in all units" },
+    ],
+    faq: [
+      { q: "What is mechanical stress?", a: "Mechanical stress is the internal force per unit area within a material caused by an external load. It is measured in Pascals (Pa) or pounds per square inch (psi). Stress determines whether a material will deform or fail under load." },
+      { q: "What is the stress formula?", a: "The normal stress formula is σ = F / A, where σ is stress, F is the applied force in Newtons, and A is the cross-sectional area in square meters. The result is in Pascals (Pa)." },
+      { q: "What is the difference between stress and strain?", a: "Stress is the force per unit area (σ = F/A), while strain is the deformation per unit length (ε = ΔL/L). They are related by Young's Modulus: E = σ / ε. Stress causes strain in elastic materials." },
+      { q: "What is a safe stress level for steel?", a: "Mild structural steel typically has a yield strength of 250–350 MPa. Design stress is usually kept below 60–70% of yield strength, so roughly 150–250 MPa for most structural applications. Always verify against the specific material specification." },
+      { q: "Is this calculator accurate for engineering use?", a: "Yes. The calculator uses exact conversion factors and IEEE 754 double-precision floating-point arithmetic. Results are accurate to the selected decimal precision. For safety-critical applications, always verify with a licensed engineer." },
+    ],
   },
   relatedTools: [
     "torque-calculator",

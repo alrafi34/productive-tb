@@ -1,6 +1,9 @@
-import React from "react";
+import ToolFaq from "@/components/ToolFaq";
+import { momentumCalculatorConfig } from "./config";
 
 export default function MomentumCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = momentumCalculatorConfig.seo;
   return (
     <div className="max-w-4xl mx-auto mt-16 space-y-12">
 
@@ -38,14 +41,7 @@ export default function MomentumCalculatorSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
-              {[
-                "Enter the mass value (e.g. 1500 for a car)",
-                "Select the mass unit — kg, g, mg, or lb",
-                "Enter the velocity value (negative for reverse direction)",
-                "Select the velocity unit — m/s, km/h, mph, or ft/s",
-                "View the momentum result instantly in all units",
-                "Use presets for common real-world scenarios",
-              ].map((step, i) => (
+              {howToSteps.map(({ text: step }, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                     {i + 1}
@@ -172,40 +168,7 @@ export default function MomentumCalculatorSEO() {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What is momentum in physics?",
-              a: "Momentum is the product of an object's mass and velocity (p = m × v). It is a vector quantity — it has both magnitude and direction. The SI unit is kg·m/s. Momentum describes how difficult it is to stop a moving object.",
-            },
-            {
-              q: "What is the momentum formula?",
-              a: "p = m × v, where p is momentum in kg·m/s, m is mass in kilograms, and v is velocity in meters per second. This calculator automatically converts any supported unit to SI before computing.",
-            },
-            {
-              q: "What is the difference between momentum and kinetic energy?",
-              a: "Momentum (p = mv) is a vector and grows linearly with velocity. Kinetic energy (KE = ½mv²) is a scalar and grows with the square of velocity. Both are conserved in elastic collisions, but only momentum is conserved in all collisions.",
-            },
-            {
-              q: "Can momentum be negative?",
-              a: "Yes. Momentum is a vector, so its sign indicates direction. If velocity is negative (object moving in the opposite direction), momentum is also negative. This is important in collision problems where objects move toward each other.",
-            },
-            {
-              q: "What is conservation of momentum?",
-              a: "In a closed system with no external forces, the total momentum before a collision equals the total momentum after. This law holds for all types of collisions and is one of the most fundamental principles in physics.",
-            },
-          ].map(({ q, a }, i) => (
-            <div key={i} className={i < 4 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2">{q}</h3>
-              <p className="text-gray-700">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
     </div>
   );

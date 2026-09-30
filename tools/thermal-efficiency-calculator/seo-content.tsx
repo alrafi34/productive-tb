@@ -1,4 +1,9 @@
+import ToolFaq from "@/components/ToolFaq";
+import { thermalEfficiencyCalculatorConfig } from "./config";
+
 export default function ThermalEfficiencyCalculatorSEO() {
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = thermalEfficiencyCalculatorConfig.seo;
   return (
     <div className="mt-12 prose prose-slate max-w-none">
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 space-y-8">
@@ -137,23 +142,30 @@ export default function ThermalEfficiencyCalculatorSEO() {
           </ol>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {[
-              ["What is thermal efficiency?", "Thermal efficiency measures how well a heat engine converts thermal energy into useful work. It is expressed as a percentage — a 40% efficient engine converts 40% of its heat input into work and rejects the remaining 60% as waste heat."],
-              ["Why can't thermal efficiency reach 100%?", "The second law of thermodynamics prohibits 100% efficiency. All real heat engines must reject some heat to a cold reservoir. The Carnot efficiency sets the theoretical upper limit for any engine operating between two given temperatures."],
-              ["What is Carnot efficiency?", "Carnot efficiency is the maximum possible efficiency for a heat engine operating between a hot reservoir at temperature Th and a cold reservoir at Tc (both in Kelvin): η = (1 − Tc/Th) × 100. Real engines always fall below this limit due to irreversibilities."],
-              ["What units should I use for Carnot calculations?", "Temperatures must be in absolute units (Kelvin) for the Carnot formula to work correctly. This calculator automatically converts Celsius to Kelvin when you select the °C option."],
-              ["How do I improve thermal efficiency?", "Increase the hot reservoir temperature, decrease the cold reservoir temperature, reduce friction and heat losses, use regenerative heat exchangers, and optimize the thermodynamic cycle design."],
-            ].map(([q, a]) => (
-              <div key={q as string}>
-                <h3 className="font-semibold text-gray-900 mb-2">{q}</h3>
-                <p className="text-gray-700">{a}</p>
-              </div>
+        <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 not-prose">
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Use the Calculator</h2>
+
+          <ol className="space-y-3 text-gray-700">
+
+            {howToSteps.map(({ name, text }, i) => (
+
+              <li key={name} className="flex items-start gap-3">
+
+                <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">{i + 1}</span>
+
+                <span><strong>{name}:</strong> {text}</span>
+
+              </li>
+
             ))}
-          </div>
+
+          </ol>
+
         </section>
+
+
+        <ToolFaq items={faq} />
 
       </div>
     </div>

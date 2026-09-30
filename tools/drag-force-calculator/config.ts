@@ -29,6 +29,22 @@ export const dragForceCalculatorConfig = {
       description: "Calculate drag force from velocity, drag coefficient, fluid density and frontal area, for physics, engineering and aerodynamics.",
       url: `${siteConfig.url}/tools/mechanical/drag-force-calculator`,
     },
+    howToSteps: [
+      { name: "Select a fluid type", text: "Select a fluid type — Air, Water, or Custom" },
+      { name: "Enter the object velocity and choose a unit", text: "Enter the object velocity and choose a unit (m/s, km/h, mph, ft/s)" },
+      { name: "Confirm or adjust the fluid density", text: "Confirm or adjust the fluid density (auto-filled for Air and Water)" },
+      { name: "Enter or select a drag coefficient", text: "Enter or select a drag coefficient (Cd) from the preset library" },
+      { name: "Enter the frontal cross-sectional area in m²", text: "Enter the frontal cross-sectional area in m²" },
+      { name: "View the drag force result instantly in N, kN, and lbf", text: "View the drag force result instantly in N, kN, and lbf" },
+    ],
+    faq: [
+      { q: "What is drag force?", a: "Drag force is the resistive force that opposes the motion of an object moving through a fluid (gas or liquid). It acts in the direction opposite to the object's velocity and is caused by pressure differences and surface friction between the object and the fluid." },
+      { q: "Why does drag force increase with the square of velocity?", a: "As an object moves faster, it collides with more fluid molecules per second (linear increase) and each collision transfers more momentum (another linear increase). These two effects multiply together, resulting in a quadratic (v²) relationship. This is why aerodynamics become critical at high speeds." },
+      { q: "What is the drag coefficient (Cd)?", a: "The drag coefficient is a dimensionless number that quantifies how aerodynamically efficient a shape is. A lower Cd means less drag for the same frontal area and speed. Streamlined shapes like airfoils have Cd ≈ 0.04, while blunt shapes like flat plates have Cd ≈ 1.28." },
+      { q: "What is frontal area and how do I measure it?", a: "Frontal area (A) is the cross-sectional area of the object projected onto a plane perpendicular to the direction of motion. For a car, it is roughly the width × height of the front face. For a cyclist, it is the projected area of the rider and bike as seen from the front." },
+      { q: "What fluid density should I use for air?", a: "Standard air at sea level and 15°C has a density of 1.225 kg/m³. At higher altitudes, air density decreases — at 3,000 m it is about 0.909 kg/m³. Temperature also affects density: warmer air is less dense. For most engineering calculations, 1.225 kg/m³ is the standard reference value." },
+      { q: "Is this calculator accurate for engineering use?", a: "Yes. The calculator uses the standard drag equation with exact unit conversion factors. Results are accurate to the selected decimal precision. For safety-critical or high-precision applications, always verify with a licensed engineer and consider additional factors like Reynolds number effects and turbulence." },
+    ],
   },
   relatedTools: [
     "friction-force-calculator",

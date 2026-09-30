@@ -29,6 +29,21 @@ export const frictionForceCalculatorConfig = {
       description: "Calculate friction force from the coefficient of friction and normal force, with static and kinetic modes, surface presets and working.",
       url: `${siteConfig.url}/tools/mechanical/friction-force-calculator`,
     },
+    howToSteps: [
+      { name: "Select calculation mode", text: "Select calculation mode — Static or Kinetic friction" },
+      { name: "Choose a surface preset or enter a custom coefficient", text: "Choose a surface preset or enter a custom coefficient (μ)" },
+      { name: "Enter the normal force value acting on the surface", text: "Enter the normal force value acting on the surface" },
+      { name: "Select the normal force unit", text: "Select the normal force unit — N, kN, or lbf" },
+      { name: "View the friction force result instantly in N, kN, and lbf", text: "View the friction force result instantly in N, kN, and lbf" },
+      { name: "Save or export the result for your records", text: "Save or export the result for your records" },
+    ],
+    faq: [
+      { q: "What is the difference between static and kinetic friction?", a: "Static friction acts when two surfaces are at rest relative to each other and prevents motion from starting. Kinetic (sliding) friction acts when surfaces are already moving against each other. Static friction is generally higher than kinetic friction for the same surface pair." },
+      { q: "What is the coefficient of friction?", a: "The coefficient of friction (μ) is a dimensionless number that describes how much friction exists between two surfaces. It depends on the materials and surface conditions. A higher μ means more friction. Typical values range from 0.04 (Teflon on steel) to 0.94 (glass on glass)." },
+      { q: "Does friction depend on contact area?", a: "No. According to Amontons' laws of friction, the friction force is independent of the apparent contact area. It depends only on the normal force and the coefficient of friction. A brick slides with the same friction on its wide face as on its narrow edge. Rubber tires are an exception, because rubber grips by deforming into the road surface." },
+      { q: "What is normal force?", a: "Normal force is the force perpendicular to the contact surface between two objects. For a flat horizontal surface, it equals the weight of the object (mass × gravity). On an inclined surface, it equals the component of weight perpendicular to the slope." },
+      { q: "Is this calculator accurate for engineering use?", a: "Yes. The calculator uses exact conversion factors and standard friction formulas. Results are accurate to the selected decimal precision. Coefficient values in the presets are based on published engineering references. For safety-critical applications, always verify with a licensed engineer." },
+    ],
   },
   relatedTools: [
     "force-calculator",

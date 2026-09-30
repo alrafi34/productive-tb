@@ -29,6 +29,21 @@ export const naturalFrequencyCalculatorConfig = {
       description: "Calculate the natural frequency of a spring-mass system or pendulum, with unit conversion and a step-by-step explanation.",
       url: `${siteConfig.url}/tools/mechanical/natural-frequency-calculator`,
     },
+    howToSteps: [
+      { name: "Select the mechanical system type", text: "Select the mechanical system type (spring-mass, pendulum, beam, or torsional)" },
+      { name: "Enter the required parameters for the selected system", text: "Enter the required parameters for the selected system" },
+      { name: "Choose appropriate units for each input", text: "Choose appropriate units for each input" },
+      { name: "View the natural frequency result instantly in Hz", text: "View the natural frequency result instantly in Hz" },
+      { name: "Check angular frequency", text: "Check angular frequency (rad/s) and period (s) in the results table" },
+      { name: "Expand the step-by-step panel to see the full calculation", text: "Expand the step-by-step panel to see the full calculation" },
+    ],
+    faq: [
+      { q: "What is natural frequency?", a: "Natural frequency is the frequency at which a mechanical system oscillates when disturbed from equilibrium without any external forcing or damping. Every physical system has one or more natural frequencies determined by its mass and stiffness properties." },
+      { q: "What is the difference between natural frequency and resonance?", a: "Natural frequency is an intrinsic property of the system. Resonance occurs when an external periodic force is applied at or near the natural frequency, causing the amplitude of oscillation to grow dramatically. Avoiding resonance is a key goal in mechanical design." },
+      { q: "What is angular frequency and how does it relate to Hz?", a: "Angular frequency ω (rad/s) = 2π × f (Hz). It represents the rate of oscillation in radians per second rather than cycles per second. Both describe the same oscillation — ω is more convenient in mathematical analysis while Hz is more intuitive for practical use." },
+      { q: "Why does the pendulum formula not include mass?", a: "For a simple pendulum, the restoring force and the inertia both scale with mass, so mass cancels out. The natural frequency depends only on the pendulum length and gravitational acceleration. This is why all pendulums of the same length swing at the same rate regardless of their bob mass." },
+      { q: "What units does this calculator support?", a: "Spring-Mass: mass in kg/g/lb, spring constant in N/m, kN/m, lb/in. Pendulum: length in m, cm, ft, in. Beam: length in m/cm/ft/in, Young's modulus in GPa/MPa/psi, moment of inertia in m⁴/cm⁴/in⁴, density in kg/m³ or lb/ft³. Torsional: stiffness in N·m/rad or lb·in/rad, inertia in kg·m² or lb·in²." },
+    ],
   },
   relatedTools: [
     "spring-force-calculator",
