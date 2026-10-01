@@ -10,13 +10,39 @@ export const generateId = (): string => {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 };
 
+const CUBIC_METERS_PER_CUBIC_YARD = 0.764554857984;
+
 // Convert to cubic meters
 export const convertToCubicMeters = (value: number, unit: Unit): number => {
   if (unit === 'ft') {
     return value / CUBIC_FEET_TO_CUBIC_METER;
   }
+  if (unit === 'yd') {
+    return value * CUBIC_METERS_PER_CUBIC_YARD;
+  }
   return value;
 };
+
+// Cubic meters back into the chosen unit
+export const fromCubicMeters = (valueM3: number, unit: Unit): number =>
+  unit === 'ft' ? valueM3 * CUBIC_FEET_TO_CUBIC_METER : unit === 'yd' ? valueM3 / CUBIC_METERS_PER_CUBIC_YARD : valueM3;
+
+export const UNIT_SYMBOL: Record<Unit, string> = { m: 'm³', ft: 'ft³', yd: 'yd³' };
+
+/* Volume of a slab, footing or path from its size. Length and width are in
+   meters (metric) or feet (US); thickness in centimeters or inches. */
+export const slabVolume = (length: number, width: number, thickness: number, unit: Unit): number => {
+  if (unit === 'm') return length * width * (thickness / 100);
+  const cubicFeet = length * width * (thickness / 12);
+  return unit === 'yd' ? cubicFeet / 27 : cubicFeet;
+};
+
+/* Bagged premix yields printed on common US bags (cubic feet of concrete). */
+export const PREMIX_BAGS: { label: string; yieldFt3: number }[] = [
+  { label: '40 lb', yieldFt3: 0.3 },
+  { label: '60 lb', yieldFt3: 0.45 },
+  { label: '80 lb', yieldFt3: 0.6 },
+];
 
 // Convert to cubic feet
 export const convertToCubicFeet = (valueM3: number): number => {

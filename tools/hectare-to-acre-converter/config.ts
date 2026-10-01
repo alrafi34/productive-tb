@@ -53,7 +53,7 @@ export const hectareToAcreConverterConfig = {
       { name: "Enter Your Hectare Value", text: "Type any number of hectares into the input field. Decimals are fully supported — for example, 0.5, 2.47, or 1000. The conversion result appears instantly as you type." },
       { name: "Read the Acre Result", text: "The acre equivalent appears immediately below the input. For a 1 hectare input, the result is 2.47105 acres. The result updates with every keystroke." },
       { name: "Adjust Decimal Precision", text: "Use the precision selector to choose 2, 4, 6, or 8 decimal places depending on how precise your conversion needs to be. 4 decimal places is suitable for most practical applications." },
-      { name: "Use Presets for Common Values", text: "Click a preset button (1, 5, 10, 50 or 100 ha) to load that value instantly. Presets are ideal for quickly checking standard land parcel sizes without manual input." },
+      { name: "Use Presets or the Chart", text: "Click a preset (1, 5, 10, 50 or 100 ha) or any value in the hectares-to-acres chart further down the page to load it. Links such as ?ha=2.5 open the converter with that value." },
       { name: "Swap to Acres to Hectares", text: "Click the Swap button to reverse the conversion direction — so you can enter acres and receive hectares. The same tool covers both ha to acres and acres to ha." },
       { name: "Copy or Export", text: "Click the copy button to copy the result to clipboard, or download a text report of your conversion history for documentation or client handoff." },
     ],

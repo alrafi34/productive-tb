@@ -1,7 +1,17 @@
 import ToolFaq from "@/components/ToolFaq";
 import { ipRangeCalculatorConfig } from "./config";
 
-export default function IpRangeCalculatorSEO() {
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+// Dotted mask for a prefix length, e.g. 26 → 255.255.255.192
+function mask(prefix: number): string {
+  const m = prefix === 0 ? 0 : (0xffffffff << (32 - prefix)) >>> 0;
+  return [m >>> 24, (m >>> 16) & 255, (m >>> 8) & 255, m & 255].join(".");
+}
+
+const PREFIXES = Array.from({ length: 25 }, (_, i) => i + 8); // /8 … /32
+
+export default function IpRangeCalculatorSEO({ onPick }: { onPick?: (cidr: number) => void }) {
   // Same steps and questions as the HowTo / FAQPage schema
   const { howToSteps, faq } = ipRangeCalculatorConfig.seo;
   return (
@@ -37,6 +47,9 @@ export default function IpRangeCalculatorSEO() {
                 "Binary visualization of IP, mask, and network",
                 "Private / public / loopback / multicast detection",
                 "IP class detection (A, B, C, D, E)",
+                "Split a network into equal subnets",
+                "IP range to CIDR block conversion",
+                "Clickable CIDR cheat sheet from /8 to /32",
                 "Shareable URL with ip + cidr parameters",
                 "Calculation history saved in browser",
                 "Export results as TXT or JSON",
@@ -124,6 +137,55 @@ export default function IpRangeCalculatorSEO() {
                   <td className="py-2.5 px-4 font-semibold">{usable}</td>
                 </tr>
               ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+          CIDR Cheat Sheet: /8 to /32
+        </h2>
+        <p className="text-gray-600 mb-4">
+          Click a prefix to use it in the calculator. Usable hosts subtract the network and broadcast addresses,
+          except for /31 point-to-point links and single-host /32 routes.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Prefix</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Subnet mask</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Addresses</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Usable hosts</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {PREFIXES.map((p) => {
+                const total = 2 ** (32 - p);
+                const usable = p === 32 ? 1 : p === 31 ? 2 : total - 2;
+                return (
+                  <tr key={p} className="hover:bg-gray-50">
+                    <td className="py-1.5 px-3">
+                      <a
+                        href={`?cidr=${p}`}
+                        rel="nofollow"
+                        onClick={(e) => {
+                          if (!onPick || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                          e.preventDefault();
+                          onPick(p);
+                        }}
+                        className="font-mono font-semibold text-primary hover:underline"
+                      >
+                        /{p}
+                      </a>
+                    </td>
+                    <td className="py-1.5 px-3 font-mono text-xs text-gray-700">{mask(p)}</td>
+                    <td className="py-1.5 px-3 text-right font-mono text-xs text-gray-700">{fmt(total)}</td>
+                    <td className="py-1.5 px-3 text-right font-mono text-xs text-gray-900">{fmt(usable)}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

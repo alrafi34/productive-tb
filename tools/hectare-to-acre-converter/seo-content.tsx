@@ -1,7 +1,23 @@
+import Link from "next/link";
 import ToolFaq from "@/components/ToolFaq";
+import ValueLink from "@/components/ValueLink";
 import { hectareToAcreConverterConfig } from "./config";
 
-export default function HectareToAcreConverterSEO() {
+const ACRES_PER_HA = 2.4710538147;
+const SQFT_PER_HA = 107639.1042;
+
+const fmt = (n: number, digits: number) =>
+  n.toLocaleString("en-US", { maximumFractionDigits: digits });
+
+/* Hectare values people look up: tenths of a hectare, then whole hectares,
+   then farm and estate sizes. */
+const HA_ROWS = [
+  ...Array.from({ length: 10 }, (_, i) => ((i + 1) / 10).toFixed(1)),
+  ...Array.from({ length: 19 }, (_, i) => String(i + 2)),
+  "25", "30", "40", "50", "60", "75", "100", "150", "200", "250", "300", "400", "500", "750", "1000", "2500",
+];
+
+export default function HectareToAcreConverterSEO({ onPick }: { onPick?: (value: string) => void }) {
   const { howToSteps, faq } = hectareToAcreConverterConfig.seo;
 
 
@@ -87,7 +103,8 @@ export default function HectareToAcreConverterSEO() {
                 "Reverse conversion: acres to hectares",
                 "2, 4, 6, and 8 decimal precision",
                 "Presets: 1, 5, 10, 50, 100 ha",
-                "Full reference table (common values both directions)",
+                "Clickable chart from 0.1 to 2,500 ha",
+                "Shareable links to any value, e.g. ?ha=2.5",
                 "Land size context descriptions",
                 "Conversion history (last 10 entries)",
                 "Copy result to clipboard",
@@ -133,92 +150,43 @@ export default function HectareToAcreConverterSEO() {
         </div>
       </section>
 
-      {/* ── 5. Reference Table ── */}
+      {/* ── 5. Conversion Chart ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Hectare to Acre Conversion Reference Table
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+          Hectares to Acres Chart
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Hectares → Acres</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Hectares (ha)</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Acres</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Context</th>
+        <p className="text-gray-600 mb-6">
+          Click any hectare value to load it into the converter. 1 ha = 10,000 m² = 2.47105 acres; a FIFA-size
+          soccer pitch (105 × 68 m) is about 0.71 ha.
+        </p>
+        <div className="grid md:grid-cols-3 gap-x-6">
+          {[HA_ROWS.slice(0, 15), HA_ROWS.slice(15, 30), HA_ROWS.slice(30)].map((rows, col) => (
+            <table key={col} className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-left py-2 px-2 font-semibold text-gray-700">Hectares</th>
+                  <th className="text-right py-2 px-2 font-semibold text-gray-700">Acres</th>
+                  <th className="text-right py-2 px-2 font-semibold text-gray-700">Sq ft</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {rows.map((ha) => (
+                  <tr key={ha} className="hover:bg-gray-50">
+                    <td className="py-1 px-2 text-xs">
+                      <ValueLink param="ha" value={ha} onPick={onPick}>{fmt(Number(ha), 1)}</ValueLink>
+                    </td>
+                    <td className="py-1 px-2 text-right font-mono text-xs text-gray-900">{fmt(Number(ha) * ACRES_PER_HA, 3)}</td>
+                    <td className="py-1 px-2 text-right font-mono text-xs text-gray-500">{fmt(Number(ha) * SQFT_PER_HA, 0)}</td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[
-                    ["0.1",   "0.2471",   "Small garden plot"],
-                    ["0.25",  "0.6178",   "Quarter hectare"],
-                    ["0.5",   "1.2355",   "Half hectare"],
-                    ["1",     "2.4711",   "1 football pitch (approx)"],
-                    ["2",     "4.9421",   "Smallholding"],
-                    ["2.5",   "6.1776",   "Typical small farm field"],
-                    ["5",     "12.355",   "Small farm"],
-                    ["10",    "24.711",   "Medium farm parcel"],
-                    ["20",    "49.421",   "Large field"],
-                    ["50",    "123.55",   "Small estate"],
-                    ["100",   "247.11",   "1 km² = 100 ha"],
-                    ["250",   "617.76",   "Medium farm"],
-                    ["500",   "1235.5",   "Large farm"],
-                    ["1000",  "2471.1",   "Large estate / ranch"],
-                    ["10000", "24711",    "National park scale"],
-                  ].map(([ha, ac, ctx]) => (
-                    <tr key={ha} className="hover:bg-gray-50">
-                      <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{ha} ha</td>
-                      <td className="py-1.5 px-3 font-mono text-gray-900 font-semibold text-xs">{ac}</td>
-                      <td className="py-1.5 px-3 text-gray-500 text-xs">{ctx}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Acres → Hectares</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Acres</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Hectares (ha)</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Context</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[
-                    ["0.25",  "0.1012",  "Quarter acre lot"],
-                    ["0.5",   "0.2023",  "Half acre"],
-                    ["1",     "0.4047",  "Standard acre"],
-                    ["2",     "0.8094",  "Large residential lot"],
-                    ["5",     "2.0234",  "Small farm plot"],
-                    ["10",    "4.0469",  "Medium farm field"],
-                    ["25",    "10.117",  "Small farm"],
-                    ["50",    "20.234",  "Medium farm"],
-                    ["100",   "40.469",  "Large farm"],
-                    ["247",   "99.957",  "≈ 100 hectares"],
-                    ["320",   "129.5",   "Half section (US)"],
-                    ["640",   "259.0",   "1 section = 1 sq mile"],
-                    ["1000",  "404.69",  "Large ranch"],
-                    ["5000",  "2023.4",  "Very large estate"],
-                    ["10000", "4046.9",  "Large agricultural region"],
-                  ].map(([ac, ha, ctx]) => (
-                    <tr key={ac} className="hover:bg-gray-50">
-                      <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{ac} ac</td>
-                      <td className="py-1.5 px-3 font-mono text-gray-900 font-semibold text-xs">{ha}</td>
-                      <td className="py-1.5 px-3 text-gray-500 text-xs">{ctx}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                ))}
+              </tbody>
+            </table>
+          ))}
         </div>
-        <p className="text-xs text-gray-400 mt-4">* All values use the exact factor: 1 ha = 2.47105 acres. Rounded to 4 decimal places for display.</p>
+        <p className="text-xs text-gray-400 mt-4">
+          Exact factors: 1 ha = 10,000 m² = 2.4710538 acres = 107,639.1 sq ft. Going the other way? Use the{" "}
+          <Link href="/tools/land/acre-to-hectare-converter" className="text-primary hover:underline">acres to hectares converter</Link>.
+        </p>
       </section>
 
       {/* ── 6. FAQ ── */}

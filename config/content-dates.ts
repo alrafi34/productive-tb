@@ -90,7 +90,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "column-load-calculator": "2026-09-27",
   "combinatorics-calculator": "2026-09-30",
   "compound-interest-calculator": "2026-09-30",
-  "concrete-mix-ratio-calculator": "2026-09-30",
+  "concrete-mix-ratio-calculator": "2026-10-01",
   "concrete-volume-calculator": "2026-09-27",
   "confidence-interval-calculator": "2026-08-07",
   "confusion-matrix-calculator": "2026-09-30",

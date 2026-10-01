@@ -10,7 +10,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Keyword Density Checker — Free Word Density Tool Online",
-    description: "Check keyword and word density instantly. Track target keywords, flag overused terms, export CSV. Free keyword density checker — browser-based, no signup.",
+    description: "Check keyword density for single words and 2- or 3-word phrases, track target keywords and phrases, flag overused terms and export CSV. Free.",
     keywords: [
       // Primary — 500/mo (Google Ads Keyword Planner, May 2026)
       "keyword density checker",
@@ -43,35 +43,17 @@ export const toolConfig = {
     ],
     openGraph: {
       title: "Keyword Density Checker — Free Word Density Tool Online",
-      description: "Check keyword and word density instantly. Track target keywords, flag overused terms, export CSV. Free keyword density checker — browser-based, no signup.",
+      description: "Check keyword density for single words and 2- or 3-word phrases, track target keywords and phrases, flag overused terms and export CSV. Free.",
       type: "website",
       url: `${siteConfig.url}/tools/writing/keyword-density-checker`,
     },
     howToSteps: [
-      {
-        name: "Paste Your Content",
-        text: "Copy and paste your article, blog post, landing page copy, or any draft text into the editor. The analysis begins automatically as you type or paste — no submit button required.",
-      },
-      {
-        name: "Configure Analysis Options",
-        text: "Choose your settings: toggle stop-word filtering to remove common filler words, enable case-sensitive mode if capitalization matters for your content, and set a minimum word length to exclude short words from the results.",
-      },
-      {
-        name: "Add Target Keywords",
-        text: "Enter the single words you want to check in Target Keywords, separated by commas. The results table then shows just those words with their count and density, so you can see at a glance whether each appears often enough.",
-      },
-      {
-        name: "Review the Results Table",
-        text: "The table displays every word with its count, density percentage, and an overuse flag for terms above 5%. Sort by count or density to prioritize your review — highest-frequency terms first reveals your content's topical weight.",
-      },
-      {
-        name: "Adjust Content and Re-analyze",
-        text: "Make edits in your writing tool based on the findings, then re-paste to verify the changes. Repeat until keyword distribution matches your SEO strategy and the text reads naturally.",
-      },
-      {
-        name: "Export Results",
-        text: "Click Export CSV or Export JSON to download the full analysis for reporting, client handoff, or archiving in a content audit workflow.",
-      },
+      { name: "Paste your content", text: "Paste your article, page copy or draft into the editor; the analysis updates as you type." },
+      { name: "Set the options", text: "Turn stop-word filtering on or off, choose case-sensitive counting and set a minimum word length." },
+      { name: "Switch between words and phrases", text: "Use the tabs to see single words, two-word phrases or three-word phrases. Phrases are counted within sentences and listed when they appear at least twice." },
+      { name: "Check your target keywords", text: "Add the words or phrases you want to rank for, separated by commas. Each one shows how many times it appears, its density and whether it was found at all." },
+      { name: "Review the results", text: "Sort the table by count or density; anything at 5% or more is flagged so you can check whether it reads naturally." },
+      { name: "Copy or export", text: "Copy the list or download it as CSV or JSON." },
     ],
     faq: [
       {
@@ -104,7 +86,7 @@ export const toolConfig = {
       },
       {
         q: "Can I track specific target keywords?",
-        a: "Yes. Add one or more target words in the Target Keywords field and the results table narrows to those words, with their count and density. Each target is matched as a single word; remove the targets to see the full word list again.",
+        a: "Yes. Add one or more target words or phrases, such as keyword density checker, in the Target keywords field. Each target gets its own row with the number of whole-word matches, its density and a note if it was not found. Matches never span two sentences.",
       },
       {
         q: "What does the overuse highlight mean?",
@@ -122,6 +104,8 @@ export const toolConfig = {
         q: "Is my text private when using this tool?",
         a: "Yes. All analysis runs entirely in your browser using JavaScript. Your text is never transmitted to any server, stored in any database, or accessible to anyone other than you. This means you can safely paste unpublished drafts, client content, or proprietary documents without any data leaving your device.",
       },
+      { q: "Does it check two- and three-word phrases?", a: "Yes. Switch to the 2-word or 3-word tab to see the phrases you repeat, such as project management or keyword density checker. With stop words ignored, phrases that start or end with a word like the, of or and are skipped, and only phrases used at least twice are listed." },
+      { q: "How is phrase density calculated?", a: "The same way as for single words: the number of times the phrase appears divided by the total number of words, times 100. A three-word phrase used 4 times in an 800-word article has a density of 0.5%." },
     ],
   },
   features: [

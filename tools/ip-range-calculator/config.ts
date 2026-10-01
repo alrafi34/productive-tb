@@ -32,8 +32,10 @@ export const ipRangeCalculatorConfig = {
     },
     howToSteps: [
       { name: "Enter an IPv4 address", text: "Type any IPv4 address, such as 192.168.1.10, or click a preset for a common network." },
-      { name: "Set the CIDR prefix or subnet mask", text: "Drag the CIDR slider (/0 to /32) or type a subnet mask such as 255.255.255.0; each updates the other." },
+      { name: "Set the CIDR prefix or subnet mask", text: "Drag the CIDR slider (/0 to /32), type a subnet mask such as 255.255.255.0, or click a prefix in the cheat sheet further down the page." },
       { name: "Read the results", text: "See the network and broadcast addresses, first and last usable host, number of usable hosts, wildcard mask, IP class and whether the address is private, public, loopback or multicast." },
+      { name: "Split the network into subnets", text: "Choose a longer prefix to see every subnet it creates, with each subnet's usable range and broadcast address." },
+      { name: "Turn an IP range into CIDR blocks", text: "Enter a first and last IP to get the smallest list of CIDR blocks that covers exactly that range." },
       { name: "Copy, share or export", text: "Copy the summary, share the URL (it carries the ip and cidr), or export the result as TXT or JSON." },
     ],
     faq: [
@@ -43,6 +45,8 @@ export const ipRangeCalculatorConfig = {
       { q: "What does CIDR mean?", a: "CIDR (Classless Inter-Domain Routing) notation represents an IP address and its associated network prefix. For example, 192.168.1.0/24 means the first 24 bits are network bits, leaving 8 bits for host addresses." },
       { q: "How are /31 and /32 subnets handled?", a: "A /31 subnet has 2 addresses, both usable for point-to-point links (RFC 3021). A /32 is a host route with a single address. This calculator handles both cases correctly." },
       { q: "How does the shareable URL work?", a: "The calculator automatically updates the browser URL with ?ip=x.x.x.x&cidr=xx as you type. You can copy and share this URL to pre-fill the calculator for anyone." },
+      { q: "How do I convert an IP range to CIDR?", a: "Enter the first and last address in IP range to CIDR blocks. The calculator returns the smallest set of aligned blocks that covers exactly that range. For example, 10.0.0.5 to 10.0.0.20 becomes 10.0.0.5/32, 10.0.0.6/31, 10.0.0.8/29, 10.0.0.16/30 and 10.0.0.20/32." },
+      { q: "How do I split a /24 into smaller subnets?", a: "Pick a longer prefix in Split into subnets. Each extra bit doubles the number of subnets and halves their size: a /24 splits into two /25s of 126 usable hosts, four /26s of 62, or eight /27s of 30." },
     ],
   },
 };
