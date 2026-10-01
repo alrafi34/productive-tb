@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import AcreToHectareConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import { useValueParam } from "@/lib/use-value-param";
 import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
@@ -86,6 +87,14 @@ export default function AcreToHectareConverterUI() {
     setInputs((prev) => ({ ...prev, value }));
     inputRef.current?.focus();
   };
+
+  // A value from the URL or a chart link: load it and bring the converter into view
+  const pickValue = (value: string) => {
+    setInputs((prev) => ({ ...prev, value }));
+    inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  useValueParam("acres", inputs.value, pickValue);
 
   const handleReset = () => {
     setInputs({ value: "", precision: 4 });
@@ -421,7 +430,7 @@ export default function AcreToHectareConverterUI() {
       </div>
 
       <RelatedStrip />
-      <AcreToHectareConverterSEO />
+      <AcreToHectareConverterSEO onPick={pickValue} />
       <RelatedTools />
     </>
   );
