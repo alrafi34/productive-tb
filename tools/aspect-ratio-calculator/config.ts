@@ -8,7 +8,7 @@ export const aspectRatioCalculatorConfig = {
   backend: false,
   seo: {
     title: "Aspect Ratio Calculator – Calculate Image & Video Dimensions",
-    description: "Free online aspect ratio calculator to calculate width and height, convert resolutions, detect image ratio, simplify proportions, and generate responsive CSS.",
+    description: "Find a missing width or height, simplify ratios like 1920×1080 to 16:9, convert resolutions, read an image's ratio and get responsive CSS.",
     keywords: [
       "aspect ratio calculator",
       "free aspect ratio calculator",
@@ -43,11 +43,11 @@ export const aspectRatioCalculatorConfig = {
       url: "/aspect-ratio-calculator"
     },
     howToSteps: [
-      { name: "Enter width", text: "Enter width, height, or ratio values." },
-      { name: "Use any two inputs and the third value is calculated automatically", text: "Use any two inputs and the third value is calculated automatically." },
-      { name: "Review the simplified ratio for clean reporting", text: "Review the simplified ratio for clean reporting." },
-      { name: "Use the preview box to confirm visual proportions", text: "Use the preview box to confirm visual proportions." },
-      { name: "Copy dimensions or export output as JSON or text", text: "Copy dimensions or export output as JSON or text." },
+      { name: "Enter two of width, height and ratio", text: "Type a width and height to get the simplified ratio, or a width or height plus a ratio such as 16:9 to get the missing side." },
+      { name: "Pick a common size", text: "Click a resolution such as 1920 × 1080 or 1080 × 1920, or any size in the chart further down the page, to load it into the calculator." },
+      { name: "Check the preview and slider", text: "The preview box shows the proportions, and the slider rescales the size while keeping the ratio." },
+      { name: "Convert or detect a ratio", text: "Use the converter tab to fit a resolution into a different ratio, or upload an image to read its dimensions and ratio." },
+      { name: "Copy the results", text: "Copy the dimensions or the generated CSS for a responsive container, or export the result." },
     ],
     faq: [
       { q: "What is the most common video aspect ratio?", a: "16:9 is the most common standard for modern video playback across web, streaming, and presentation contexts." },
@@ -56,6 +56,7 @@ export const aspectRatioCalculatorConfig = {
       { q: "What aspect ratio is 1920 × 1080?", a: "16:9. Divide both numbers by their greatest common divisor, 120, to get 16 and 9. 1280 × 720, 2560 × 1440 and 3840 × 2160 (4K) are 16:9 as well." },
       { q: "Can I use this for responsive web design?", a: "Yes. Use generated CSS to maintain consistent media blocks and reduce layout shift on different screen sizes." },
       { q: "Does image upload help detect unknown ratios?", a: "Yes. Upload any image and the tool reads dimensions and calculated ratio so you can resize accurately." },
+      { q: "What size is a 9:16 vertical video?", a: "1080 × 1920 pixels is the usual size for Stories, Reels, TikTok and YouTube Shorts; 720 × 1280 is the smaller HD version. Both are 9:16, the 16:9 landscape frame turned on its side." },
     ],
   },
   features: [

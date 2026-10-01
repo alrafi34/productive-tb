@@ -1,7 +1,20 @@
 import ToolFaq from "@/components/ToolFaq";
 import { aspectRatioCalculatorConfig } from "./config";
 
-export default function AspectRatioCalculatorSEOContent() {
+/* Sizes per ratio, from the formats people most often look up. Each one is
+   a link (?w=&h=) that loads it into the calculator above. */
+const SIZE_CHART: { ratio: string; use: string; sizes: [number, number][] }[] = [
+  { ratio: "16:9", use: "HD and 4K video, YouTube, most monitors and TVs", sizes: [[1280, 720], [1920, 1080], [2560, 1440], [3840, 2160]] },
+  { ratio: "9:16", use: "Stories, Reels, TikTok, YouTube Shorts", sizes: [[720, 1280], [1080, 1920]] },
+  { ratio: "4:3", use: "Classic slides, iPad, older TVs", sizes: [[1024, 768], [1440, 1080], [1600, 1200], [2048, 1536]] },
+  { ratio: "3:2", use: "DSLR and mirrorless photos, 6×4 in prints", sizes: [[1200, 800], [3000, 2000], [6000, 4000]] },
+  { ratio: "1:1", use: "Square social posts and profile images", sizes: [[1080, 1080], [2048, 2048]] },
+  { ratio: "4:5", use: "Portrait posts on Instagram and Facebook", sizes: [[1080, 1350]] },
+  { ratio: "2:3", use: "Pinterest pins, portrait prints and posters", sizes: [[1000, 1500]] },
+  { ratio: "≈21:9", use: "Ultrawide monitors and cinema-style video", sizes: [[2560, 1080], [3440, 1440], [5120, 2160]] },
+];
+
+export default function AspectRatioCalculatorSEOContent({ onPick }: { onPick?: (w: number, h: number) => void }) {
   // Same steps and questions as the HowTo / FAQPage schema
   const { howToSteps, faq } = aspectRatioCalculatorConfig.seo;
   return (
@@ -163,51 +176,48 @@ export default function AspectRatioCalculatorSEOContent() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: "Poppins, sans-serif" }}>
-          Quick Size Reference for Common Platforms
+          Common Aspect Ratios and Resolutions
         </h2>
         <p className="leading-relaxed">
-          Exact platform requirements can change, but these popular dimension targets are widely used as production baselines.
+          Click any size to load it into the calculator. Platform requirements change, so check the current specs
+          before publishing; these are widely used production sizes.
         </p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
             <thead className="bg-slate-100 text-slate-800">
               <tr>
-                <th className="text-left p-3 border-b border-slate-200">Use Case</th>
-                <th className="text-left p-3 border-b border-slate-200">Suggested Size</th>
                 <th className="text-left p-3 border-b border-slate-200">Ratio</th>
+                <th className="text-left p-3 border-b border-slate-200">Sizes (px)</th>
+                <th className="text-left p-3 border-b border-slate-200">Typical use</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-slate-200">
-                <td className="p-3">Full HD Video</td>
-                <td className="p-3">1920 x 1080</td>
-                <td className="p-3">16:9</td>
-              </tr>
-              <tr className="border-b border-slate-200">
-                <td className="p-3">4K UHD</td>
-                <td className="p-3">3840 x 2160</td>
-                <td className="p-3">16:9</td>
-              </tr>
-              <tr className="border-b border-slate-200">
-                <td className="p-3">Square Social Post</td>
-                <td className="p-3">1080 x 1080</td>
-                <td className="p-3">1:1</td>
-              </tr>
-              <tr className="border-b border-slate-200">
-                <td className="p-3">Portrait Social Post</td>
-                <td className="p-3">1080 x 1350</td>
-                <td className="p-3">4:5</td>
-              </tr>
-              <tr className="border-b border-slate-200">
-                <td className="p-3">Vertical Story / Short</td>
-                <td className="p-3">1080 x 1920</td>
-                <td className="p-3">9:16</td>
-              </tr>
-              <tr>
-                <td className="p-3">Classic Presentation</td>
-                <td className="p-3">1024 x 768</td>
-                <td className="p-3">4:3</td>
-              </tr>
+              {SIZE_CHART.map(({ ratio, use, sizes }) => (
+                <tr key={ratio} className="border-b border-slate-200 align-top">
+                  <td className="p-3 font-semibold whitespace-nowrap">{ratio}</td>
+                  <td className="p-3">
+                    <div className="flex flex-wrap gap-x-3 gap-y-1">
+                      {sizes.map(([w, h]) => (
+                        <a
+                          key={`${w}x${h}`}
+                          href={`?w=${w}&h=${h}`}
+                          rel="nofollow"
+                          onClick={(e) => {
+                            if (!onPick || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                            e.preventDefault();
+                            onPick(w, h);
+                            window.history.replaceState(window.history.state, "", `?w=${w}&h=${h}`);
+                          }}
+                          className="font-mono text-[#058554] hover:underline whitespace-nowrap"
+                        >
+                          {w}×{h}
+                        </a>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="p-3 text-slate-600">{use}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

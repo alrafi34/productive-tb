@@ -46,6 +46,32 @@ export default function AspectRatioCalculatorUI() {
   const [targetRatio, setTargetRatio] = useState<string>('4:3');
   const [conversionResult, setConversionResult] = useState<any>(null);
 
+  const toolTop = useRef<HTMLDivElement>(null);
+
+  // Load a size from the URL (?w=1920&h=1080) or a chart link, and keep the
+  // address bar in step so a result can be shared
+  const pickSize = (w: number, h: number) => {
+    setActiveTab('calculator');
+    setWidth(String(w));
+    setHeight(String(h));
+    setSliderWidth(w);
+    toolTop.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const params = new URLSearchParams(window.location.search);
+      const w = Number(params.get('w'));
+      const h = Number(params.get('h'));
+      if (w > 0 && h > 0 && w <= 100000 && h <= 100000) {
+        setWidth(String(w));
+        setHeight(String(h));
+        setSliderWidth(w);
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   // Update calculations when inputs change
   useEffect(() => {
     const w = parseFloat(width);
@@ -181,7 +207,7 @@ export default function AspectRatioCalculatorUI() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <div className="max-w-6xl mx-auto p-4 lg:p-6 space-y-6">
+      <div ref={toolTop} className="max-w-6xl mx-auto p-4 lg:p-6 space-y-6 scroll-mt-20">
 
         {/* Tabs */}
         <div className="flex justify-center gap-2 flex-wrap">
@@ -606,7 +632,7 @@ export default function AspectRatioCalculatorUI() {
       </div>
 
       <RelatedStrip />
-      <AspectRatioCalculatorSEOContent />
+      <AspectRatioCalculatorSEOContent onPick={pickSize} />
       <RelatedTools />
     </div>
   );
