@@ -10,7 +10,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Word Counter & Character Counter — Free Online Tool",
-    description: "Count words and characters instantly — free online word count counter. Works for essays, PDFs, and Google Docs. Paragraph counter included. No sign-up.",
+    description: "Paste or type any text to count words, characters with and without spaces, sentences, paragraphs and reading time, live as you type. Free, no sign-up.",
     keywords: [
       // 500K/mo — primary
       "word counter",
@@ -67,7 +67,7 @@ export const toolConfig = {
     ],
     openGraph: {
       title: "Word Counter & Character Counter — Free Online Tool",
-      description: "Count words and characters instantly — free online word count counter. Works for essays, PDFs, and Google Docs. Paragraph counter included. No sign-up.",
+      description: "Paste or type any text to count words, characters with and without spaces, sentences, paragraphs and reading time, live as you type. Free, no sign-up.",
       type: "website",
       url: `${siteConfig.url}/tools/writing/word-counter`,
     },

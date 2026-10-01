@@ -3,14 +3,14 @@ import { siteConfig } from "@/config/site";
 export const acreToHectareConverterConfig = {
   name: "Acre to Hectare Converter",
   slug: "acre-to-hectare-converter",
-  description: "Convert acres to hectares and hectares to acres instantly. Free online land area converter with comprehensive reference table, precision control, and conversion history.",
+  description: "Convert acres to hectares instantly. Free online land area converter with comprehensive reference table, precision control, and conversion history.",
   category: "land",
   icon: "🔄",
   free: true,
   backend: false,
   seo: {
     title: "Acre to Hectare Converter — Free Acres to ha Calculator",
-    description: "Convert acres to hectares instantly. Free acres to ha calculator with full reference table, reverse conversion, and common values. Browser-based, no signup.",
+    description: "Convert acres to hectares instantly. Free acres to ha calculator with full reference table and one-click common values. Browser-based, no signup.",
     keywords: [
       "acre to hectare converter",
       "acres to hectares",
@@ -40,26 +40,27 @@ export const acreToHectareConverterConfig = {
     ],
     openGraph: {
       title: "Acre to Hectare Converter — Free Acres to ha Calculator",
-      description: "Convert acres to hectares and hectares to acres instantly. Full reference table, precision control, reverse conversion. Browser-based, free.",
+      description: "Convert acres to hectares instantly, with a hectares-to-acres table, precision control and one-click common values. Browser-based, free.",
       type: "website",
       url: `${siteConfig.url}/tools/land/acre-to-hectare-converter`,
     },
     og: {
       title: "Acre to Hectare Converter — Free Acres to ha Calculator",
-      description: "Convert acres to hectares and hectares to acres instantly. Full reference table, precision control, reverse conversion. Browser-based, free.",
+      description: "Convert acres to hectares instantly, with a hectares-to-acres table, precision control and one-click common values. Browser-based, free.",
       url: `${siteConfig.url}/tools/land/acre-to-hectare-converter`,
     },
     howToSteps: [
       { name: "Enter Your Acre Value", text: "Type any number of acres into the input field. Decimals are fully supported — for example, 0.25, 1.5, or 640. The conversion result appears instantly as you type." },
       { name: "Read the Hectare Result", text: "The hectare equivalent appears immediately. For a 1 acre input, the result is 0.404686 hectares. The result updates with every keystroke." },
       { name: "Adjust Decimal Precision", text: "Use the precision selector to choose 2, 4, 6, or 8 decimal places. 4 decimal places is suitable for most practical applications; 6+ for scientific or legal precision." },
-      { name: "Use Presets for Common Values", text: "Click any preset button (0.25, 0.5, 1, 5, 10, 100 acres) to instantly load standard values. Ideal for quickly checking residential lot or farm field sizes." },
-      { name: "Swap to Hectares to Acres", text: "Click the swap button to reverse the conversion direction — so you can enter hectares and receive acres. The same tool covers both acres to ha and ha to acres." },
+      { name: "Use Presets for Common Values", text: "Click a preset button (1, 5, 10, 50 or 100 acres) to load a standard value instantly. Ideal for quickly checking residential lot or farm field sizes." },
+      { name: "Pick a Row from the Table", text: "Click any row in the Common Conversions table (0.25 to 100 acres) to load it into the converter. To go the other way, use the hectare to acre converter or the formula acres = hectares × 2.47105." },
       { name: "Copy or Export", text: "Click the copy button to copy the result to clipboard, or download a text report of your conversion history for documentation or client handoff." },
     ],
     faq: [
       { q: "How many hectares is 1 acre?", a: "1 acre equals 0.404686 hectares. This is derived from the exact definitions: 1 acre = 4,046.856 square meters and 1 hectare = 10,000 square meters. Dividing: 4,046.856 ÷ 10,000 = 0.404686." },
       { q: "How many acres is 1 hectare?", a: "1 hectare equals 2.47105 acres. This is the reciprocal of the acre-to-hectare factor: 1 ÷ 0.404686 = 2.47105. So 5 hectares equals 12.3553 acres." },
+      { q: "Which is bigger — an acre or a hectare?", a: "A hectare is larger. 1 hectare = 2.47105 acres, so a hectare is about 2.47 times the size of an acre. An acre is 4,046.86 square meters; a hectare is 10,000 square meters." },
       { q: "How many hectares is 0.5 acres?", a: "0.5 acres equals 0.202343 hectares. Calculation: 0.5 × 0.404686 = 0.202343. A half-acre lot is approximately 0.20 hectares." },
       { q: "How many hectares is 2.5 acres?", a: "2.5 acres equals 1.01172 hectares. Calculation: 2.5 × 0.404686 = 1.01172." },
       { q: "How many hectares is 10 acres?", a: "10 acres equals 4.04686 hectares. Calculation: 10 × 0.404686 = 4.04686." },
@@ -72,7 +73,7 @@ export const acreToHectareConverterConfig = {
   },
   features: [
     "Instant acres to hectares conversion",
-    "Reverse conversion: hectares to acres",
+    "Hectares-to-acres reference table on the page",
     "2, 4, 6, and 8 decimal precision options",
     "Quick presets for common land sizes",
     "Comprehensive reference table",
