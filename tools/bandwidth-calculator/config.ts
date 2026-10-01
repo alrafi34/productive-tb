@@ -94,7 +94,7 @@ export const bandwidthCalculatorConfig = {
       },
       {
         q: "How much bandwidth does 4K streaming use per month?",
-        a: "4K streaming uses approximately 20 to 25 Mbps per stream, or roughly 10 to 12.5 GB per hour. At 2 hours per day for 30 days, that equals 600 to 750 GB per month per stream. A household with two simultaneous 4K streams can consume 1.2 to 1.5 TB per month from streaming alone, before accounting for web browsing, gaming, or file downloads.",
+        a: "It depends on the service and codec. This calculator assumes about 10 GB per hour for 4K; Netflix quotes up to about 7 GB per hour for Ultra HD. At 10 GB per hour, 2 hours a day for 30 days is about 600 GB a month per stream, and two simultaneous 4K streams double that.",
       },
       {
         q: "What is a business bandwidth calculator and how is it different from home use?",
@@ -106,7 +106,7 @@ export const bandwidthCalculatorConfig = {
       },
       {
         q: "Why is my actual download speed slower than my advertised bandwidth?",
-        a: "Several factors reduce real-world throughput: TCP protocol overhead consumes roughly 5 percent of bandwidth, TLS encryption adds 2 to 3 percent, ISP congestion during peak hours can reduce effective speeds by 20 to 50 percent, and Wi-Fi introduces additional latency and packet loss. Test your actual speed at fast.com or speedtest.net and use the measured result when calculating transfer times.",
+        a: "Real throughput is lower than the line rate because of protocol overhead (TCP/IP headers, encryption), congestion on the provider's network at busy times, Wi-Fi interference and distance, and the speed of the server you download from. Test your actual speed with a service such as fast.com or speedtest.net and use the measured figure when calculating transfer times.",
       },
       {
         q: "How do I estimate bandwidth for a network with many users?",
