@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site";
 export const landAreaCalculatorSquareMeterConfig = {
   name: "Land Area Calculator (Square Meter)",
   slug: "land-area-calculator-square-meter",
-  description: "Calculate and convert land area into square meters instantly. Convert square feet, acres, hectares, katha, bigha, decimal, and more with real-time results.",
+  description: "Calculate and convert land area into square meters instantly. Convert square feet, square yards, acres, hectares and square kilometers with real-time results.",
   category: "land",
   icon: "📐",
   free: true,
@@ -19,8 +19,6 @@ export const landAreaCalculatorSquareMeterConfig = {
       "land measurement calculator",
       "property area calculator",
       "hectare to square meter",
-      "katha to square meter",
-      "bigha to square meter",
     ],
     og: {
       title: "Land Area Calculator in Square Meters – m², Acre, Hectare",
@@ -38,7 +36,6 @@ export const landAreaCalculatorSquareMeterConfig = {
       { q: "How many square meters are in an acre or a hectare?", a: "1 acre = 4,046.86 m² and 1 hectare = 10,000 m², so a hectare is about 2.47 acres." },
       { q: "How do I convert square feet to square meters?", a: "Divide by 10.764 (or multiply by 0.0929). 2,500 sq ft is 232.3 m²." },
       { q: "How do I measure an irregular plot?", a: "Split it into rectangles and triangles, work out each area and add them, or use the polygon area calculator with the corner coordinates." },
-      { q: "Are regional units such as Katha supported?", a: "Yes, Decimal, Katha and Bigha are included with their Bangladesh / West Bengal values; they differ by region, so check the local value for legal documents." },
     ],
   },
 };

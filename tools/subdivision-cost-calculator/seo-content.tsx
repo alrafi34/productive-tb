@@ -145,28 +145,6 @@ export default function SubdivisionCostCalculatorSEO() {
         </p>
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This Calculator?
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { icon: "🏠", title: "Property Owners",     desc: "Estimate subdivision feasibility before engaging professionals or applying for permits." },
-            { icon: "💼", title: "Land Investors",      desc: "Quickly assess whether a subdivision project will be profitable before purchasing land." },
-            { icon: "🏗️", title: "Land Developers",    desc: "Build detailed project budgets and track costs across all subdivision expense categories." },
-            { icon: "📐", title: "Surveyors",           desc: "Provide clients with preliminary cost estimates during initial project consultations." },
-            { icon: "⚙️", title: "Civil Engineers",     desc: "Estimate infrastructure costs for road, drainage, and utility installation planning." },
-            { icon: "🏦", title: "Real Estate Consultants", desc: "Advise clients on subdivision costs and help structure development financing." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <div className="text-2xl mb-3">{icon}</div>
-              <h3 className="font-semibold text-blue-900 mb-2">{title}</h3>
-              <p className="text-sm text-blue-800">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <ToolFaq items={faq} />
 
     </div>

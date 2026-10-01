@@ -10,7 +10,7 @@ export default function LandAreaCalculatorSquareMeterSEO() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">About Land Area Calculator (Square Meter)</h2>
           <p className="text-gray-700 leading-relaxed">
-            The Land Area Calculator (Square Meter) is a comprehensive browser-based tool that calculates and converts land measurements into square meters (m²). Whether you need to calculate area from dimensions or convert from other units like acres, hectares, square feet, or regional units like katha and bigha, this tool provides instant, accurate results.
+            The Land Area Calculator (Square Meter) is a comprehensive browser-based tool that calculates and converts land measurements into square meters (m²). Whether you need to calculate area from dimensions or convert from other units like acres, hectares or square feet, this tool provides instant, accurate results.
           </p>
           <p className="text-gray-700 leading-relaxed mt-4">
             Perfect for real estate professionals, surveyors, engineers, architects, farmers, and property buyers who need quick and reliable land area calculations in the internationally recognized square meter unit.
@@ -26,7 +26,7 @@ export default function LandAreaCalculatorSquareMeterSEO() {
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">•</span>
-              <span><strong>Multiple Unit Support:</strong> Convert from square feet, acres, hectares, square yards, katha, bigha, decimal, and square kilometers.</span>
+              <span><strong>Multiple Unit Support:</strong> Convert from square feet, square yards, acres, hectares and square kilometers.</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">•</span>
@@ -110,21 +110,6 @@ export default function LandAreaCalculatorSquareMeterSEO() {
                   <td className="px-4 py-3 text-sm text-gray-700">× 0.836127</td>
                   <td className="px-4 py-3 text-sm text-gray-700">100 sq yd = 83.61 m²</td>
                 </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm font-medium text-gray-900">Katha</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">× 66.89</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">1 katha = 66.89 m²</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm font-medium text-gray-900">Bigha</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">× 1337.8</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">1 bigha = 1337.8 m²</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-sm font-medium text-gray-900">Decimal</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">× 40.4686</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">1 decimal = 40.47 m²</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -187,25 +172,6 @@ export default function LandAreaCalculatorSquareMeterSEO() {
                 Teaching land measurement concepts, research projects, and academic calculations.
               </p>
             </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Regional Land Units</h2>
-          
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 space-y-2">
-            <p className="text-sm text-yellow-900">
-              <strong>Katha:</strong> Traditional land measurement unit used in Bangladesh and parts of India. 1 katha = 66.89 square meters.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Bigha:</strong> Common land unit in South Asia, varying by region. Standard bigha = 1337.8 square meters.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Decimal:</strong> Land measurement unit used in Bangladesh and West Bengal. 1 decimal = 40.47 square meters.
-            </p>
-            <p className="text-sm text-yellow-900">
-              <strong>Note:</strong> Regional units may vary in different areas. This calculator uses standard conversion factors.
-            </p>
           </div>
         </section>
 
