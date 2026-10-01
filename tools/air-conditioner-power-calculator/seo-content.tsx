@@ -14,26 +14,15 @@ export default function AirConditionerPowerCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>air conditioner power calculator</strong> is a free online tool that computes AC
-            electricity consumption in watts and kilowatts, estimates monthly running cost, and determines
-            the generator or inverter size needed to run the unit. It converts between tons, BTU/h, watts,
-            and kWh — giving you every number you need to understand, budget for, and power your air
-            conditioner.
+            This <strong>air conditioner power calculator</strong> works out how many watts an AC draws from
+            its capacity in tons and its EER or SEER rating (or from the power input on its label), then turns
+            that into daily, monthly and yearly <strong>kWh and running cost</strong> at your own electricity
+            tariff and currency.
           </p>
           <p>
-            The common questions this tool answers: <em>how many watts does a 1.5 ton AC use, what size
-            generator is required for a 1.5 ton AC, what will it cost per month at my electricity rate?</em>
-            These seem simple but the answer depends on two variables most people overlook — the unit's EER
-            (Energy Efficiency Ratio) and how many hours per day it actually runs. A 1.5 ton AC can consume
-            anywhere from 1,100W to 2,200W depending on EER alone. This calculator makes those variables
-            explicit and shows their impact on cost instantly.
-          </p>
-          <p>
-            Built for <strong>homeowners estimating electricity bills, electricians sizing circuits and
-            generators, HVAC engineers selecting equipment, facility managers tracking energy consumption,
-            and anyone buying a new AC who wants to know the real running cost before purchase</strong>.
-            Supports tons, BTU/h, EER, SEER, multiple currencies, and room sizing. Browser-based, free,
-            no signup.
+            The answer to &quot;how many watts does a 1.5 ton AC use?&quot; depends mostly on efficiency: at
+            18,000 BTU/h a unit rated EER 8 draws about 2,250 W, while one rated EER 14 draws about 1,290 W.
+            Hours of use matter just as much for the bill, so both are inputs you can change and compare.
           </p>
         </div>
       </section>
@@ -50,7 +39,7 @@ export default function AirConditionerPowerCalculatorSEO() {
               <p><span className="font-semibold">Power (W)</span> = Capacity (BTU/h) ÷ EER</p>
               <p><span className="font-semibold">Monthly kWh</span> = (Power ÷ 1000) × Hours/Day × Days/Month</p>
               <p><span className="font-semibold">Monthly Cost</span> = Monthly kWh × Rate ($/kWh)</p>
-              <p><span className="font-semibold">Generator kVA</span> = (Running Watts × 2.5) ÷ 1000</p>
+              <p><span className="font-semibold">Generator (rule of thumb)</span> ≈ Running Watts × 2.5 for start-up surge</p>
               <p className="text-gray-500 text-xs mt-2">Example: 1.5 ton (18,000 BTU/h) ÷ EER 10 = <span className="text-green-600 font-semibold">1,800W</span></p>
               <p className="text-gray-500 text-xs">1.8 kW × 8h × 30 days × $0.12 = <span className="text-green-600 font-semibold">$51.84/month</span></p>
             </div>
@@ -86,18 +75,13 @@ export default function AirConditionerPowerCalculatorSEO() {
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Provides</h3>
             <ul className="space-y-2 text-gray-600">
               {[
-                "Running wattage from tons and EER/SEER",
-                "Monthly kWh energy consumption",
-                "Monthly electricity cost in your currency",
-                "Annual energy cost",
-                "Required circuit breaker size",
-                "Recommended generator/inverter kVA",
-                "Tons ↔ BTU/h ↔ kW conversion",
-                "Room sizing mode (sq ft → required tons)",
-                "EER vs SEER comparison",
-                "Side-by-side comparison of two AC units",
-                "100% browser-based — no data sent to any server",
-                "No signup required",
+                "Running power from capacity in tons and an EER or SEER rating",
+                "Or start from the unit's power input in watts",
+                "Daily, monthly and yearly energy use (kWh)",
+                "Monthly and yearly cost at your own tariff and currency",
+                "Current draw at 230 V",
+                "Energy-saving tip for your rating",
+                "Runs in your browser — nothing is uploaded",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>
@@ -109,10 +93,10 @@ export default function AirConditionerPowerCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 4. Use Cases ── */}
+      {/* ── 4. Worked Examples ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Real-World Use Cases
+          Worked Examples
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {[
@@ -121,20 +105,8 @@ export default function AirConditionerPowerCalculatorSEO() {
               scenario: "A homeowner in Texas has a 1.5 ton mini-split (EER 11) running 10 hours/day during summer. They enter 1.5 tons, EER 11, 10 hours, 30 days, and $0.15/kWh. The calculator returns: 1,636W running load, 16.4 kWh/day, 491 kWh/month and about $73.60/month in electricity. Cutting the run time to 8 hours a day brings it to 393 kWh and about $58.90 — saving roughly $14.70 a month.",
             },
             {
-              title: "Generator Sizing for Backup Power",
-              scenario: "An electrician is sizing a backup generator for a home with a 2 ton AC (EER 10), a refrigerator (200W), and lights (300W). The AC draws 2,400W running; startup surge is 2,400 × 2.5 = 6,000W. Adding refrigerator and lights: 6,000 + 200 + 300 = 6,500W peak. The calculator recommends a 7.5 kVA generator minimum. The electrician specifies an 8 kVA unit for a 20% safety margin.",
-            },
-            {
               title: "Comparing Inverter vs Non-Inverter AC",
-              scenario: "A buyer is deciding between a basic 1.5 ton unit (EER 9) and an inverter model (SEER 18) that costs $1,000 more. They enter both and set 8 hours/day, 180 days/year, $0.16/kWh. Basic unit: 2,000W × 8h × 180 = 2,880 kWh/year, about $461/year. Inverter at SEER 18 (≈EER 15.75): 1,143W × 8h × 180 = 1,646 kWh, about $263/year. The annual saving of about $198 pays back the $1,000 premium in roughly 5 years.",
-            },
-            {
-              title: "HVAC Equipment Selection",
-              scenario: "An HVAC engineer is selecting AC equipment for a 350 sq ft server room that generates significant internal heat. Using the room sizing mode: 350 sq ft × 25 BTU/sq ft (high internal load) = 8,750 BTU/h = 0.73 ton. The engineer rounds up to a 1 ton unit (12,000 BTU/h) for thermal headroom. They check the power draw at 1 ton / EER 12 = 1,000W and confirm the existing 20A circuit can handle it (max 16A continuous = 1,840W at 115V).",
-            },
-            {
-              title: "Office Building Energy Audit",
-              scenario: "A facility manager is auditing power consumption for 20 office split units (all 2 ton, EER 10). Running 9 hours/day, 22 working days/month at $0.11/kWh: each unit draws 2,400W → 52.8 kWh/month → $5.81/month. 20 units: $116.16/month. Replacing 10 units with EER 14 models reduces their consumption to $41.50/month — a saving of $74.66/month, payback in 18 months at typical equipment cost.",
+              scenario: "A buyer is deciding between a basic 1.5 ton unit (EER 9) and an inverter model (SEER 18) that costs $1,000 more. They run the calculator for each at 8 hours/day, 180 days/year, $0.16/kWh. Basic unit: 2,000W × 8h × 180 = 2,880 kWh/year, about $461/year. Inverter at SEER 18 (≈EER 15.75): 1,143W × 8h × 180 = 1,646 kWh, about $263/year. The annual saving of about $198 pays back the $1,000 premium in roughly 5 years.",
             },
             {
               title: "Solar System Sizing for AC Load",
@@ -149,50 +121,7 @@ export default function AirConditionerPowerCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 5. Tips & Mistakes ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips &amp; Common Mistakes
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Use the actual nameplate wattage (input power, not output cooling capacity) if it is printed on the AC unit or in the manual — it is more accurate than calculating from BTU/EER. The BTU/EER method gives a theoretical value; nameplate input watts give the real-world consumption figure.",
-                "For inverter ACs, the rated wattage is the maximum (compressor at full speed). Actual average consumption is typically 40–70% of rated input, depending on ambient temperature and thermostat setpoint. Use 60% of rated watts as a conservative average for monthly cost estimation.",
-                "When sizing a generator, always use 2.5–3× the running wattage for the surge calculation. AC compressors draw 3–6× rated current at startup for 0.5–2 seconds. A generator that cannot handle this surge will stall even if its continuous rating exceeds the running load.",
-                "Higher EER saves more money in hot climates with long cooling seasons. In a climate where the AC runs 6 months/year, going from EER 10 to EER 14 on a 1.5 ton unit saves approximately 400 kWh/year — worth $40–60 at typical residential electricity rates.",
-                "For circuit breaker sizing, divide the running wattage by the supply voltage to get running amps, then multiply by 1.25 for the NEC continuous load factor. A 1.5 ton AC at 1,800W on 240V: 1,800 ÷ 240 = 7.5A × 1.25 = 9.4A — a 15A breaker is correct.",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Don't confuse cooling capacity (BTU/h or tons) with power consumption (watts or kW). They are related through EER but are not the same thing. A 1.5 ton AC does not consume 1.5 kW — it consumes 1,500–2,250W depending on efficiency, while delivering 18,000 BTU/h of cooling.",
-                "Don't use SEER directly in the BTU/EER formula without converting. SEER is a seasonal average always higher than EER. Using SEER instead of EER in the Power = BTU/EER formula will underestimate peak wattage. For generator and circuit sizing, always use EER or convert: EER ≈ SEER × 0.875.",
-                "Don't undersize a generator by using only running watts. The startup surge of an AC compressor can trip a generator sized only to its running load. Always apply a 2.5–3× surge multiplier when selecting backup power equipment.",
-                "Don't assume a bigger AC cools faster. An oversized AC cycles on and off too quickly, failing to dehumidify the room properly and wearing out the compressor faster. Use the room sizing mode to select the correct capacity, not the largest available.",
-                "Don't calculate monthly cost from the nameplate BTU rating alone. That rating is the cooling output, not the electrical input. You need the EER to convert BTU/h to watts, then multiply by operating hours and electricity rate. Skipping EER always overstates or understates the actual cost.",
-              ].map((mistake, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
-                  <span>{mistake}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Reference Table ── */}
+      {/* ── 5. Reference Table ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           AC Power Consumption Reference Tables
@@ -267,7 +196,7 @@ export default function AirConditionerPowerCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 7. FAQ ── */}
+      {/* ── 6. FAQ ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Frequently Asked Questions
@@ -282,28 +211,6 @@ export default function AirConditionerPowerCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 8. Who Uses This ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This AC Power Calculator?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            { icon: "🏠", title: "Homeowners", desc: "Estimate monthly electricity costs before buying a new AC, compare inverter vs non-inverter running costs, and decide the right tonnage for each room." },
-            { icon: "⚡", title: "Electricians", desc: "Size circuits, MCBs, and backup generators for AC installations. Confirm the existing wiring gauge can handle the running and startup load." },
-            { icon: "🌡️", title: "HVAC Engineers", desc: "Select equipment for commercial and residential projects, document power requirements for load schedules, and advise clients on efficiency tradeoffs." },
-            { icon: "☀️", title: "Solar Installers", desc: "Size solar arrays and battery banks to offset AC loads. Calculate daily kWh consumption and required panel capacity for AC-heavy homes." },
-            { icon: "🏢", title: "Facility Managers", desc: "Audit energy consumption across multiple AC units, identify inefficient equipment for replacement, and build the business case for efficiency upgrades." },
-            { icon: "🛒", title: "AC Buyers", desc: "Compare the true total cost of ownership between models before purchase. Factor in running cost over 5–10 years to justify spending more on a higher-efficiency unit." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <div className="text-2xl mb-2">{icon}</div>
-              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

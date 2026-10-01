@@ -1,56 +1,9 @@
-export default function BmiCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is BMI?",
-      a: "BMI (Body Mass Index) is a numerical value derived from a person's weight and height. It is calculated by dividing weight in kilograms by the square of height in metres (kg/m²). The World Health Organization uses BMI as a population-level screening tool to classify underweight, normal weight, overweight, and obesity in adults. It does not directly measure body fat, but it correlates with body fat percentage in most adults and is widely used because it requires only two measurements and no specialist equipment.",
-    },
-    {
-      q: "What is a healthy BMI range?",
-      a: "For adults aged 18 and over, the WHO defines a healthy BMI as 18.5 to 24.9. Below 18.5 is classified as underweight, 25.0 to 29.9 as overweight, and 30.0 and above as obese. These thresholds are population-level guidelines — individual health depends on many additional factors including muscle mass, bone density, age, sex, and ethnicity. Some health authorities use adjusted thresholds for Asian populations, where health risks begin at lower BMI values.",
-    },
-    {
-      q: "Is BMI the same for men and women?",
-      a: "The BMI formula itself is identical for men and women. However, the same BMI value may represent different body fat percentages between sexes — women naturally carry more body fat than men at the same BMI. A BMI of 24 in a woman typically corresponds to a higher body fat percentage than the same BMI in a man. This is why some clinicians complement BMI with waist circumference or body fat percentage measurements when assessing health risk.",
-    },
-    {
-      q: "Does BMI apply to children and teenagers?",
-      a: "Standard adult BMI categories do not apply to children and adolescents. For people under 18, clinicians use BMI-for-age percentile charts that account for normal growth patterns and sex differences at different ages. A child in the 85th–94th BMI percentile for their age and sex is considered overweight; at or above the 95th percentile is considered obese. This calculator is designed for adults aged 18 and over.",
-    },
-    {
-      q: "Can BMI be inaccurate?",
-      a: "Yes, BMI has well-documented limitations. Athletes and heavily muscular individuals often fall into the overweight or obese category despite having low body fat — their extra weight is lean muscle mass, not fat. Conversely, older adults can have a normal BMI while carrying too little muscle (sarcopenia) and too much visceral fat. Pregnant women, people with edema, and those with certain medical conditions will also get misleading BMI readings. BMI is best used as a starting point, not a definitive health verdict.",
-    },
-    {
-      q: "What are the Devine and Robinson ideal weight formulas?",
-      a: "The Devine formula (1974) and Robinson formula (1983) are two of the most commonly cited medical formulas for estimating ideal body weight from height. Both are applied in clinical settings — particularly in pharmacology for drug dosing — and are expressed in terms of height above 5 feet (60 inches). Devine: males = 50 kg + 2.3 kg per inch over 5 ft; females = 45.5 kg + 2.3 kg per inch over 5 ft. Robinson: males = 52 kg + 1.9 kg per inch over 5 ft; females = 49 kg + 1.7 kg per inch over 5 ft. The two formulas typically differ by 2–5 kg for the same height, which is why this calculator shows both as a range rather than a single target.",
-    },
-    {
-      q: "How do I calculate BMI in imperial units?",
-      a: "In imperial units, the formula is: BMI = (weight in pounds × 703) ÷ (height in inches)². For example, someone who is 5 ft 9 in (69 inches) and weighs 170 lbs: BMI = (170 × 703) ÷ (69²) = 119,510 ÷ 4,761 ≈ 25.1. This calculator handles the conversion automatically — select Imperial, enter your height in feet and inches and your weight in pounds, and it applies the formula correctly without any manual conversion.",
-    },
-    {
-      q: "What BMI is considered obese?",
-      a: "A BMI of 30.0 or above is classified as obese by the WHO and most national health authorities. Obesity is further subdivided into Class I (30.0–34.9), Class II (35.0–39.9), and Class III or severe obesity (40.0 and above). Each class carries progressively higher risks of type 2 diabetes, cardiovascular disease, hypertension, and other conditions. If your BMI falls in the obese range, this calculator's healthy weight range output shows exactly how many kilograms or pounds would bring you into the normal range.",
-    },
-    {
-      q: "Is my data stored when I use this BMI calculator?",
-      a: "No data is sent to any server. All calculations happen locally in your browser using JavaScript. The optional history feature stores previous results in your browser's localStorage — this data stays on your device and is not accessible to anyone else. Clearing your browser data will remove the saved history.",
-    },
-    {
-      q: "What should I do if my BMI is outside the healthy range?",
-      a: "A BMI result outside the 18.5–24.9 healthy range is a prompt to investigate further, not a diagnosis. If your BMI indicates underweight, overweight, or obesity, the most useful next step is to consult a doctor or registered dietitian who can assess your full health picture — including body composition, blood markers, blood pressure, and lifestyle factors. Small, sustained changes (500-calorie daily deficit for weight loss, or strength training to build muscle) typically have greater long-term impact than rapid interventions.",
-    },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
-  const howToSteps = [
-    ["Select your unit system", "Choose Metric (kg and cm) or Imperial (lb, ft, in) using the toggle at the top of the calculator. The inputs and outputs update instantly — you can switch at any time without re-entering values."],
-    ["Enter your height", "Type your height in the height field. In metric mode, enter centimetres (e.g. 175). In imperial mode, enter feet and inches separately (e.g. 5 ft 9 in)."],
-    ["Enter your weight", "Type your current weight. In metric mode, enter kilograms. In imperial mode, enter pounds. The BMI result updates as soon as both fields have valid values."],
-    ["Read your BMI result", "Your BMI score appears immediately alongside your category (Underweight, Normal Weight, Overweight, or Obese) and a color-coded visual scale showing where you sit in the range."],
-    ["Check your healthy weight range", "Below the BMI score, the calculator shows the minimum and maximum weight that corresponds to a healthy BMI (18.5–24.9) for your exact height — in whichever unit system you selected."],
-    ["Review ideal weight estimates", "The Devine and Robinson formula results give you a clinical reference point for ideal weight. These are used in medical settings for drug dosing and provide a more nuanced target than a simple BMI midpoint."],
-    ["Use the weight simulator", "Drag the simulator slider to explore how your BMI would change at different weights. This is useful for setting a realistic weight goal — you can see the BMI impact of losing or gaining 5, 10, or 20 kg/lbs."],
-  ];
+export default function BmiCalculatorSEO() {
+  const { howToSteps, faq } = toolConfig.seo;
+
 
   return (
     <>
@@ -123,7 +76,7 @@ export default function BmiCalculatorSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -170,7 +123,7 @@ export default function BmiCalculatorSEO() {
             },
             {
               title: "Pre-Appointment Health Screening",
-              scenario: "A person scheduling their annual physical checks their BMI the day before so they can have an informed conversation with their doctor. They calculate a BMI of 26.2 — borderline overweight — and note their healthy weight range is 128–172 lbs for their 5 ft 6 in height. Armed with this context, they ask their doctor about waist circumference and cholesterol as additional risk indicators rather than just hearing their BMI read out in the appointment.",
+              scenario: "A person scheduling their annual physical checks their BMI the day before so they can have an informed conversation with their doctor. They calculate a BMI of 26.2 — borderline overweight — and note their healthy weight range is about 115–154 lbs for their 5 ft 6 in height. Armed with this context, they ask their doctor about waist circumference and cholesterol as additional risk indicators rather than just hearing their BMI read out in the appointment.",
             },
             {
               title: "Fitness Plan Progress Tracking",
@@ -186,7 +139,7 @@ export default function BmiCalculatorSEO() {
             },
             {
               title: "Insurance and Health Assessment Forms",
-              scenario: "Many health insurance applications, employer wellness programs, and gym membership intake forms ask for BMI. Rather than calculating manually or using a formula from memory, someone fills in their height and weight here, gets the precise BMI value with two decimal places, and copies it directly into the form — confident the number is accurate.",
+              scenario: "Many health insurance applications, employer wellness programs, and gym membership intake forms ask for BMI. Rather than calculating manually or using a formula from memory, someone fills in their height and weight here, gets the BMI to one decimal place, and copies it directly into the form — confident the number is accurate.",
             },
           ].map(({ title, scenario }) => (
             <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
@@ -197,51 +150,7 @@ export default function BmiCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 5. Tips & Best Practices ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips &amp; Best Practices
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Weigh yourself at the same time each day — ideally first thing in the morning before eating or drinking — to get a consistent baseline. Body weight can fluctuate 1–3 kg throughout the day due to food, water, and activity.",
-                "Use BMI alongside waist circumference for a more complete picture. A waist measurement above 88 cm (35 in) for women or 102 cm (40 in) for men indicates elevated cardiovascular risk regardless of BMI category.",
-                "If you are highly muscular (strength athletes, bodybuilders), your BMI will likely over-estimate your health risk. In this case, body fat percentage — measured by DEXA scan, skinfold calipers, or bioelectrical impedance — is a more accurate indicator.",
-                "The healthy weight range shows the full span of normal BMI weights for your height. Aiming for the middle of that range (around BMI 21–22) rather than the upper boundary gives you a buffer for natural weight fluctuations.",
-                "Use the weight simulator before setting a weight goal. If reaching a healthy BMI requires losing 40 kg, start with a 10 kg milestone — the simulator shows you exactly what BMI that intermediate target produces.",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Don't use BMI as the sole basis for a health decision. It is a screening metric, not a diagnosis. A result outside the normal range means 'investigate further with a healthcare professional,' not 'you are unhealthy.'",
-                "Don't apply adult BMI categories to children or teenagers. BMI-for-age percentile charts are required for anyone under 18 — adult thresholds will give misleading results.",
-                "Don't round your height or weight to a nearby number. A 2 cm or 2 lb error in your inputs can shift your BMI by 0.5–1.0 points, which can place you in a different category. Use accurate measurements.",
-                "Don't confuse the Devine/Robinson ideal weight estimates with a personal goal weight. These are clinical pharmacology formulas primarily used for drug dosing — your personal healthy weight range is the more useful target for everyday fitness planning.",
-                "Don't ignore a BMI in the underweight range. Underweight (BMI < 18.5) carries health risks — including bone density loss, immune suppression, and cardiac stress — that are often less discussed than overweight risks but equally important to address.",
-              ].map((mistake, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
-                  <span>{mistake}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── 6. BMI Reference Table ── */}
+      {/* ── 5. BMI Reference Table ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           BMI Categories &amp; Healthy Weight Reference
@@ -315,67 +224,8 @@ export default function BmiCalculatorSEO() {
         </p>
       </section>
 
-      {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 8. Who Uses This ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This BMI Calculator?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            {
-              icon: "🏃",
-              title: "Fitness Enthusiasts",
-              desc: "Track BMI changes during weight-loss or muscle-gain programs, set data-driven weight goals, and use the simulator to plan realistic milestones before starting a new training block.",
-            },
-            {
-              icon: "🩺",
-              title: "Healthcare Students & Clinicians",
-              desc: "Cross-reference Devine and Robinson ideal weight values during drug dosing calculations, or quickly screen a patient's weight category before a consultation without specialist equipment.",
-            },
-            {
-              icon: "👨‍👩‍👧",
-              title: "General Adults",
-              desc: "Check weight status before a medical appointment, complete insurance or wellness program intake forms, or simply understand where their current weight sits relative to the healthy range for their height.",
-            },
-            {
-              icon: "🥗",
-              title: "Dietitians & Nutritionists",
-              desc: "Use as a client-facing tool during consultations to show healthy weight ranges visually, set incremental targets, and explain the clinical ideal weight formulas in plain language.",
-            },
-            {
-              icon: "💪",
-              title: "Personal Trainers",
-              desc: "Onboard new clients with a quick BMI baseline, use the healthy weight range to set realistic programme outcomes, and track client progress across sessions with the history log.",
-            },
-            {
-              icon: "🎓",
-              title: "Health & Biology Students",
-              desc: "Apply the BMI formula hands-on for coursework and assignments, compare Devine and Robinson formula outputs, and understand the mathematical relationship between height, weight, and BMI categories.",
-            },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <div className="text-2xl mb-2">{icon}</div>
-              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ── 6. FAQ ── */}
+      <ToolFaq items={faq} />
 
       {/* ── Medical Disclaimer ── */}
       <section className="mt-8 bg-amber-50 rounded-xl border border-amber-100 p-6">

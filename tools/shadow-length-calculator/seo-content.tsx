@@ -1,55 +1,9 @@
-export default function ShadowLengthCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "What is a shadow length calculator?",
-      a: "A shadow length calculator is a free online tool that computes the length of a shadow cast by any object based on the object's height and the sun's elevation angle. It uses the trigonometric formula Shadow Length = Object Height ÷ tan(Sun Angle) to produce an accurate result instantly. It is used by architects checking building shadow impact, photographers planning outdoor shoots, teachers demonstrating trigonometry, and anyone who needs to estimate how long a shadow will be at a specific time of day.",
-    },
-    {
-      q: "How do you calculate shadow length from sun angle?",
-      a: "Shadow length is calculated by dividing the object height by the tangent of the sun's elevation angle: Shadow Length = Height ÷ tan(Angle°). For a 10-meter building at a sun angle of 30°, the shadow is 10 ÷ tan(30°) = 10 ÷ 0.577 = 17.3 meters. At 45°, tan(45°) = 1, so the shadow equals the object height exactly. At 60°, the shadow is 5.77 meters — shorter because the sun is higher. Enter any height and angle into this calculator to get the result without manual arithmetic.",
-    },
-    {
-      q: "How do I find the sun's elevation angle?",
-      a: "Sun elevation angle varies by location, date, and time of day. At solar noon, elevation approximately equals 90° minus your latitude plus a seasonal correction (up to ±23.5° depending on the time of year). Near the equator at midday in summer, the sun may reach 80°+. In northern Europe in winter, noon elevation can be as low as 10–15°. You can find the exact angle for any location and time using a sun position app, a solar elevation chart, or an online ephemeris tool. Once you have the angle, enter it here for the shadow calculation.",
-    },
-    {
-      q: "What is the shadow length when the sun is at 45 degrees?",
-      a: "When the sun is at exactly 45° elevation, the shadow length equals the object height. This is because tan(45°) = 1, making the formula Shadow = Height ÷ 1 = Height. A 5-meter fence post casts a 5-meter shadow. A 20-meter building casts a 20-meter shadow. This 45° relationship is the easiest reference point for shadow estimation — if the shadow is longer than the object, the sun is below 45°; if shorter, the sun is above 45°.",
-    },
-    {
-      q: "Why are shadows longer in the morning and evening?",
-      a: "Shadow length is determined by the tangent of the sun's angle. At sunrise and sunset, the sun is near 0° elevation — and tan(0°) approaches zero, making the divisor very small and the resulting shadow extremely long. As the sun rises through the morning, the elevation angle increases, the tangent grows, and shadows shorten. The shortest shadows of the day occur at solar noon when the elevation is at its peak. This is why the golden hour produces long dramatic shadows ideal for photography.",
-    },
-    {
-      q: "How do architects use shadow length calculations?",
-      a: "Architects use shadow calculations during site analysis and design review to determine whether a proposed building will cast shadows onto neighboring properties, public spaces, streets, or existing buildings. Many planning authorities require shadow impact studies as part of building permit applications, especially for tall or dense urban projects. The calculation is run for multiple times of day (morning, noon, afternoon) and multiple dates (summer solstice, winter solstice, equinox) to show the full range of shadow conditions the design will create across the year.",
-    },
-    {
-      q: "Can this calculator be used for objects other than buildings?",
-      a: "Yes. The formula applies to any vertical object: trees, flagpoles, fences, utility poles, solar panel arrays, antennas, or people. The only inputs are the object height and the sun's elevation angle. A 15-meter tree at 60° sun casts an 8.66-meter shadow. A 1.8-meter person at 20° sun casts a 4.95-meter shadow. The calculator works for anything that stands vertically on flat ground.",
-    },
-    {
-      q: "Does terrain slope affect shadow length?",
-      a: "Yes. This calculator assumes flat, level ground. On an upward slope toward the sun, the shadow will appear shorter because the ground rises to meet it sooner. On a downward slope away from the sun, the shadow will appear longer because the ground drops away. For sloped terrain, the effective shadow length must account for the gradient, which requires a more complex calculation. For most architectural site analysis purposes, the flat-ground result is used as a baseline with slope adjustments noted separately.",
-    },
-    {
-      q: "What sun angle should I use for solar panel shading analysis?",
-      a: "For solar panel shading analysis, use the winter solstice noon elevation angle for your latitude — this is the lowest sun position of the year and produces the longest shadows. Any object that doesn't shade the panels at winter solstice noon won't shade them at any other time either. For example, at 51° north latitude (London), winter solstice noon elevation is approximately 15°. A 3-meter obstacle must be at least 3 ÷ tan(15°) = 11.2 meters from the panels to avoid shading them.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs — object height and sun angle — are never transmitted to any server, stored in any database, or accessible to anyone other than you. The tool works offline once the page is loaded.",
-    },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
-  const howToSteps: [string, string][] = [
-    ["Enter the object height", "Type the height of the object casting the shadow into the height field. You can enter values in meters or feet — select your preferred unit using the unit toggle. The calculator accepts any positive number, including decimals like 2.5 or 12.75."],
-    ["Set the sun elevation angle", "Use the angle slider or type directly into the angle field to set the sun's elevation above the horizon in degrees. Values range from 1° (sun near the horizon, very long shadows) to 89° (sun nearly overhead, very short shadows). At 45°, the shadow equals the object height."],
-    ["Read the shadow length", "The shadow length result appears instantly as you adjust either input. The result is displayed in the same unit as your height input. The visual diagram updates in real time to show the geometric relationship between the object, the sun angle, and the shadow."],
-    ["Try different angles for time-of-day analysis", "Change the sun angle to model different times of day. Use low angles (10–20°) for morning and evening, mid angles (40–60°) for mid-morning and mid-afternoon, and high angles (70–80°) for midday in summer. This lets you see the full range of shadow lengths your object will cast."],
-    ["Use the reference table for quick lookup", "Check the shadow length reference table below for pre-calculated values across common sun angles. This is useful for quick checks without entering a specific value — for example, confirming that a 10-meter object casts a 17.3-meter shadow at 30°."],
-    ["Export your result", "Click the copy button to copy the result to clipboard, or export the diagram as an image for use in design presentations, planning documents, or client reports."],
-  ];
+export default function ShadowLengthCalculatorSEO() {
+  const { howToSteps, faq } = toolConfig.seo;
+
 
   return (
     <>
@@ -121,7 +75,7 @@ export default function ShadowLengthCalculatorSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -194,50 +148,7 @@ export default function ShadowLengthCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 5. Tips & Mistakes ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips &amp; Common Mistakes
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "For architectural shadow studies, always run calculations for the winter solstice noon angle at your site's latitude — this gives the longest shadows of the year and is the worst-case condition required by most planning authorities. Summer shadows will always be shorter.",
-                "Use the 45° angle as your mental reference point. If you know the sun is above 45° (typical midday in summer at mid-latitudes), the shadow is shorter than the object. If below 45° (mornings, evenings, winter midday), the shadow is longer. This lets you sanity-check any result instantly.",
-                "For solar panel shading calculations, add a 10–15% safety buffer to the calculated shading distance to account for atmospheric refraction, slightly uneven ground, and diffuse light effects near the edge of the shadow zone.",
-                "Shadow direction matters as much as length. This calculator gives you the length, but shadows always point directly away from the sun. In the Northern Hemisphere, midday shadows point north. Morning shadows point west. Combine length with direction for a complete shadow footprint.",
-                "When planning photography shoots, golden hour (sun angle 5–10°) produces shadows 5–11× the object height. Blue hour (angle 0–5°) produces shadows effectively too long to work with compositionally. The sweet spot for long dramatic shadows with still-usable light is 10–20° elevation.",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Don't use the same sun angle for all seasons. At 51° N, noon sun elevation ranges from about 15° in December to 62° in June — a 47° difference that produces dramatically different shadow lengths. Always use the angle for the specific date and time you are analyzing.",
-                "Don't forget that sun elevation tables give the angle at solar noon (true south), not at a specific clock time. Solar noon can differ from 12:00 by up to 30 minutes depending on your position within your time zone and the equation of time correction.",
-                "Don't assume the formula works for angled or leaning objects. The formula Shadow = Height ÷ tan(Angle) only applies to objects that are perfectly vertical. A slanted wall, pitched roof overhang, or leaning post will cast a shadow with a different length that requires a more complex calculation.",
-                "Don't ignore surrounding buildings when doing site analysis. A shadow study that models only the proposed building in isolation will miss cumulative shading effects from adjacent existing structures, which can compound the shadow impact significantly.",
-                "Don't use 0° or very low angles (under 2°) in calculations — the tangent approaches zero and shadow lengths become theoretically infinite. Sunrise and sunset shadows aren't meaningfully calculable with a simple formula; atmospheric effects and terrain dominate at those angles.",
-              ].map((mistake, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
-                  <span>{mistake}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Reference Table ── */}
+      {/* ── 5. Reference Table ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Shadow Length Reference Tables
@@ -313,67 +224,9 @@ export default function ShadowLengthCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ── 6. FAQ ── */}
+      <ToolFaq items={faq} />
 
-      {/* ── 8. Who Uses This ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This Shadow Length Calculator?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            {
-              icon: "🏛️",
-              title: "Architects & Designers",
-              desc: "Conduct shadow impact studies for planning applications, assess shading on neighboring properties, and optimize building orientation for natural light at any time of day or year.",
-            },
-            {
-              icon: "🌆",
-              title: "Urban Planners",
-              desc: "Evaluate shadow effects of proposed developments on streets, parks, and pedestrian areas. Verify compliance with local sunlight access requirements and shadow regulations.",
-            },
-            {
-              icon: "☀️",
-              title: "Solar Installers",
-              desc: "Calculate minimum setback distances from obstacles to avoid panel shading — especially critical for winter solstice conditions when the sun is lowest and shadows are longest.",
-            },
-            {
-              icon: "📷",
-              title: "Photographers & Filmmakers",
-              desc: "Plan golden-hour and blue-hour shoots by predicting exact shadow lengths at specific times and locations. Create or avoid long shadows based on creative intent.",
-            },
-            {
-              icon: "🌳",
-              title: "Landscape Architects",
-              desc: "Size and position trees and structures to create or block shade in gardens, courtyards, and outdoor spaces. Plan shade coverage for patios, play areas, and seating zones.",
-            },
-            {
-              icon: "🎓",
-              title: "Teachers & Students",
-              desc: "Demonstrate real-world applications of trigonometry. Use the visual diagram to show how tan, opposite, and adjacent sides relate in right triangles with immediate practical examples.",
-            },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <div className="text-2xl mb-2">{icon}</div>
-              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

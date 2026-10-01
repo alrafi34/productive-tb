@@ -10,7 +10,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Shadow Length Calculator by Time & Date",
-    description: "Calculate shadow length from object height, latitude, date and time of day. For site planning, solar access studies and building setback checks.",
+    description: "Calculate shadow length from object height and sun elevation angle, with a live diagram and winter-noon sun angles by latitude. For site and solar planning.",
     keywords: [
       "shadow length calculator",
       "sun shadow calculator",
@@ -101,7 +101,7 @@ export const toolConfig = {
       },
       {
         q: "What sun angle should I use for solar panel shading analysis?",
-        a: "For solar panel shading analysis, use the winter solstice noon elevation angle for your latitude — this is the lowest sun position of the year and produces the longest shadows. Any obstacle that does not shade the panels at winter solstice noon will not shade them at any other time. At 51° N, winter solstice noon elevation is approximately 15°.",
+        a: "Start with the lowest sun of the year: the noon elevation on the winter solstice, roughly 90° − latitude − 23.5°. At 51° N that is about 15.5°, so a 2 m fence casts a shadow about 7 m long. Shadows are longer still in the early morning and late afternoon, so a full shading check also looks at the hours either side of noon.",
       },
       {
         q: "Is my data private when using this calculator?",

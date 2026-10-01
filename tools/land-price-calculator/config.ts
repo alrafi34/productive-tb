@@ -43,7 +43,6 @@ export const landPriceCalculatorConfig = {
       { q: "What affects the price of land?", a: "Location and access, zoning and what can be built, road frontage, utilities (water, sewer, power), topography, flood risk, lot size and recent comparable sales. Small building lots usually cost far more per square foot than large rural parcels." },
       { q: "How much is an acre of land worth?", a: "It varies enormously. The USDA put the average US farmland value at about $4,170 per acre in 2024, while residential lots in metro areas can exceed $500,000 per acre. In the UK, farmland averaged roughly £10,000 per acre. Use local listings and recent sales for real figures." },
       { q: "Which currencies can I use?", a: "US dollars, euros, pounds, Canadian dollars and Australian dollars. The calculator does not convert between currencies; the total is in the same currency as the rate you enter." },
-      { q: "What are Decimal, Katha and Bigha?", a: "Traditional land units used in Bangladesh and eastern India: 1 Decimal = 435.6 sq ft (1/100 acre), 1 Katha = 720 sq ft and 1 Bigha = 14,400 sq ft. They are included for plots measured in those units; local values of Katha and Bigha vary." },
       { q: "Is my data private?", a: "Yes. Everything runs in your browser; nothing you enter is sent to a server. History is saved only in your browser's local storage." },
     ],
   },

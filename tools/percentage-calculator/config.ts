@@ -9,7 +9,7 @@ export const toolConfig = {
   free: true,
   backend: false,
   seo: {
-    title: "Percentage Calculator – X% of Y, What Percent, % Change",
+    title: "Percentage Calculator – X% of Y, What Percent, Increase",
     description: "Solve any percentage problem: X% of Y, what percent X is of Y, percentage increase or decrease, and reverse percentages, with steps and batch mode.",
     keywords: [
       "percentage calculator",
@@ -39,8 +39,8 @@ export const toolConfig = {
       "online percent calculator",
     ],
     openGraph: {
-      title: "Percentage Calculator — Free Online Percentage Calculator",
-      description: "Solve any percentage problem: X% of Y, what % is X of Y, increase/decrease, reverse, multi-step, batch. Free and 100% browser-based.",
+      title: "Percentage Calculator – X% of Y, What Percent, Increase",
+      description: "Solve any percentage problem: X% of Y, what percent X is of Y, percentage increase or decrease, and reverse percentages, with steps and batch mode.",
       type: "website",
       url: `${siteConfig.url}/tools/calculator/percentage-calculator`,
     },
@@ -93,7 +93,7 @@ export const toolConfig = {
       },
       {
         q: "What is the difference between this calculator and the percentage increase/decrease calculator?",
-        a: "This calculator covers all four percentage formula types. The percentage increase/decrease calculator specialises in change analysis between two values and adds batch mode for processing lists and multi-step compounding. Use this tool when your question is what is 15% of 200. Use the change calculator when your question is by how much did this value change between two points.",
+        a: "This calculator answers X% of Y, X is what percent of Y, and increasing or decreasing a value by a percentage, plus reverse, multi-step and batch calculations. To find the percentage change between two numbers, such as a price that went from $80 to $92, use the percentage increase/decrease calculator.",
       },
       {
         q: "What does Multi-Step mode do?",
