@@ -20,7 +20,7 @@ export default function PlotDivisionCalculatorSEO() {
             A <strong>Plot Division Calculator</strong> is a land planning tool that helps you divide a total land area into equal plots instantly. Whether you're a real estate developer, surveyor, farmer, or property owner, this calculator simplifies the process of subdividing land by automatically calculating individual plot sizes, suggesting optimal layouts, and accounting for road spacing.
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
-            The calculator supports all major land measurement units including Square Feet, Square Meter, Decimal, Acre, Katha, Bigha, and Hectare. It provides instant results showing plot size, suggested grid layout (rows × columns), and optional plot dimensions when land width and length are provided.
+            The calculator supports all major land measurement units including square feet, square meters, acres and hectares, plus a few regional units. It provides instant results showing plot size, suggested grid layout (rows × columns), and optional plot dimensions when land width and length are provided.
           </p>
           <p className="text-gray-700 leading-relaxed">
             Advanced features include road width allocation, custom grid layouts, visual plot previews, and calculation history. All computations happen instantly in your browser with complete privacy.
@@ -146,28 +146,6 @@ export default function PlotDivisionCalculatorSEO() {
             <div key={title} className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
               <h3 className="font-semibold text-gray-800 mb-2">{title}</h3>
               <p className="text-sm text-gray-700">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This Calculator?
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { icon: "🏗️", title: "Real Estate Developers", desc: "Plan residential and commercial subdivisions with accurate plot sizing." },
-            { icon: "📐", title: "Surveyors", desc: "Calculate plot divisions for land survey and mapping projects." },
-            { icon: "👷", title: "Civil Engineers", desc: "Design land layouts for infrastructure and development projects." },
-            { icon: "🌾", title: "Farmers", desc: "Divide agricultural land into manageable plots for cultivation or sale." },
-            { icon: "🏘️", title: "Property Planners", desc: "Create subdivision plans for residential housing developments." },
-            { icon: "🏛️", title: "Architects", desc: "Plan site layouts with accurate plot dimensions and spacing." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <div className="text-2xl mb-3">{icon}</div>
-              <h3 className="font-semibold text-blue-900 mb-2">{title}</h3>
-              <p className="text-sm text-blue-800">{desc}</p>
             </div>
           ))}
         </div>

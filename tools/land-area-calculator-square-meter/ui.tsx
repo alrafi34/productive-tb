@@ -401,10 +401,12 @@ export default function LandAreaCalculatorSquareMeterUI() {
                       <option value="sqyd">Square Yards (sq yd)</option>
                       <option value="acre">Acres</option>
                       <option value="hectare">Hectares</option>
-                      <option value="decimal">Decimals</option>
-                      <option value="katha">Katha</option>
-                      <option value="bigha">Bigha</option>
                       <option value="sqkm">Square Kilometers (km²)</option>
+                      <optgroup label="Regional units (South Asia)">
+                        <option value="decimal">Decimals</option>
+                        <option value="katha">Katha</option>
+                        <option value="bigha">Bigha</option>
+                      </optgroup>
                     </select>
                   </div>
                 </div>

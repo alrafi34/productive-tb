@@ -58,7 +58,7 @@ export const toolConfig = {
       },
       {
         name: "Add Target Keywords",
-        text: "Enter any specific keywords you want to track in the Target Keywords field, separated by commas. The tool highlights these terms in the results table so you can verify they appear with the right frequency.",
+        text: "Enter the single words you want to check in Target Keywords, separated by commas. The results table then shows just those words with their count and density, so you can see at a glance whether each appears often enough.",
       },
       {
         name: "Review the Results Table",
@@ -104,7 +104,7 @@ export const toolConfig = {
       },
       {
         q: "Can I track specific target keywords?",
-        a: "Yes. Add one or more target keywords in the Target Keywords field and the tool highlights those terms in the results table, showing their count and density alongside the full word analysis. This is useful when you know which keywords you are trying to rank for and want to verify they appear with appropriate frequency before publishing.",
+        a: "Yes. Add one or more target words in the Target Keywords field and the results table narrows to those words, with their count and density. Each target is matched as a single word; remove the targets to see the full word list again.",
       },
       {
         q: "What does the overuse highlight mean?",

@@ -2,8 +2,8 @@ import ToolFaq from "@/components/ToolFaq";
 import { ipRangeCalculatorConfig } from "./config";
 
 export default function IpRangeCalculatorSEO() {
-  // Same questions as the FAQPage schema
-  const { faq } = ipRangeCalculatorConfig.seo;
+  // Same steps and questions as the HowTo / FAQPage schema
+  const { howToSteps, faq } = ipRangeCalculatorConfig.seo;
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
@@ -16,12 +16,7 @@ export default function IpRangeCalculatorSEO() {
               Quick Start Guide
             </h3>
             <ol className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                ["Enter IPv4 Address", "Type any valid IPv4 address (e.g. 192.168.1.10) in the input field."],
-                ["Set CIDR or Subnet Mask", "Use the CIDR slider or enter a subnet mask — they auto-convert each other."],
-                ["View Instant Results", "Network address, broadcast, host range, IP class, and more update in real time."],
-                ["Export or Copy", "Copy all results to clipboard, or export as TXT or JSON for documentation."],
-              ].map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                     {i + 1}
@@ -135,28 +130,6 @@ export default function IpRangeCalculatorSEO() {
       </section>
 
       <ToolFaq items={faq} />
-
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses IP Range Calculators?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            { icon: "🔧", title: "Network Engineers", desc: "Plan IP addressing schemes, VLAN segmentation, and route summarization for enterprise networks." },
-            { icon: "☁️", title: "Cloud Engineers", desc: "Design VPC CIDR blocks, subnet splits, and security group rules for AWS, Azure, and GCP." },
-            { icon: "🛡️", title: "Security Professionals", desc: "Configure firewall ACLs, network segmentation, and zero-trust architecture with precision." },
-            { icon: "🎓", title: "Certification Learners", desc: "Practice subnetting for CCNA, Network+, and cloud certifications with instant feedback." },
-            { icon: "⚙️", title: "System Admins", desc: "Manage DHCP pools, static IP assignments, and troubleshoot IP conflicts efficiently." },
-            { icon: "🚀", title: "DevOps Engineers", desc: "Define infrastructure-as-code network configurations with Terraform, Ansible, and CloudFormation." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <div className="text-2xl mb-2">{icon}</div>
-              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

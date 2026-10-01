@@ -30,6 +30,12 @@ export const ipRangeCalculatorConfig = {
       type: "website",
       url: `${siteConfig.url}/tools/computer-science/ip-range-calculator`,
     },
+    howToSteps: [
+      { name: "Enter an IPv4 address", text: "Type any IPv4 address, such as 192.168.1.10, or click a preset for a common network." },
+      { name: "Set the CIDR prefix or subnet mask", text: "Drag the CIDR slider (/0 to /32) or type a subnet mask such as 255.255.255.0; each updates the other." },
+      { name: "Read the results", text: "See the network and broadcast addresses, first and last usable host, number of usable hosts, wildcard mask, IP class and whether the address is private, public, loopback or multicast." },
+      { name: "Copy, share or export", text: "Copy the summary, share the URL (it carries the ip and cidr), or export the result as TXT or JSON." },
+    ],
     faq: [
       { q: "What is an IP range calculator?", a: "An IP range calculator takes an IPv4 address and CIDR prefix (or subnet mask) and computes the full network information: network address, broadcast address, usable host range, total hosts, subnet mask, wildcard mask, and IP class. It eliminates manual binary math for network engineers and students." },
       { q: "How is the host range calculated?", a: "The network address is the first address in the subnet (IP AND mask), the broadcast is the last (network OR inverted mask). Usable hosts are all addresses between them (first host = network + 1, last host = broadcast - 1). A /24 gives 254 usable hosts out of 256 total." },

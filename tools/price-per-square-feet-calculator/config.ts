@@ -60,10 +60,10 @@ export const pricePerSquareFeetCalculatorConfig = {
   ],
   relatedTools: [
     "land-price-calculator",
-    "decimal-land-calculator",
+    "square-feet-to-acre-converter",
     "land-area-calculator-square-meter",
     "acre-to-square-feet-converter",
     "land-valuation-calculator",
-    "katha-land-calculator",
+    "subdivision-cost-calculator",
   ],
 };
