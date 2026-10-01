@@ -12,21 +12,47 @@ import {
   FuelCalculation,
   HistoryEntry,
   formatCurrency,
-  getCalculationSummary
+  getCalculationSummary,
+  toDistancePerFuel,
+  electricTripCost,
+  type EconomyUnit,
 } from "./logic";
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CurrencySelect from "@/components/CurrencySelect";
+import { currencySymbol } from "@/lib/currency";
+import { useCurrency } from "@/lib/use-currency";
+
+type CompareMode = "none" | "car" | "ev";
+
+type TripResult = {
+  trip: FuelCalculation;
+  people: number;
+  roundTrip: boolean;
+  compare?: { label: string; cost: number; amount: number; unit: string };
+};
+
+const INPUT =
+  "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none";
 
 export default function FuelCostCalculatorUI() {
   const [distance, setDistance] = useState<string>("100");
   const [efficiency, setEfficiency] = useState<string>("25");
   const [fuelPrice, setFuelPrice] = useState<string>("3.50");
   const [distanceUnit, setDistanceUnit] = useState<"miles" | "km">("miles");
-  const [efficiencyUnit, setEfficiencyUnit] = useState<"mpg" | "kml">("mpg");
-  const [currency, setCurrency] = useState<string>("USD");
+  const [economyUnit, setEconomyUnit] = useState<EconomyUnit>("mpg");
+  const [currency, setCurrency] = useCurrency("fuel-cost-calculator:currency");
+  const [roundTrip, setRoundTrip] = useState(false);
+  const [people, setPeople] = useState<string>("1");
+  const [compareMode, setCompareMode] = useState<CompareMode>("none");
+  const [efficiency2, setEfficiency2] = useState<string>("40");
+  const [evUse, setEvUse] = useState<string>("30");
+  const [evPrice, setEvPrice] = useState<string>("0.17");
 
-  const [result, setResult] = useState<FuelCalculation | null>(null);
+  const [result, setResult] = useState<TripResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
 
   // Toggle state for advanced/history view
@@ -37,22 +63,55 @@ export default function FuelCostCalculatorUI() {
     setHistory(getHistoryFromStorage());
   }, []);
 
+  const metric = distanceUnit === "km";
+  const distLabel = metric ? "km" : "mi";
+  const fuelUnit = metric ? "L" : "gal";
+  const economyLabel = economyUnit === "mpg" ? "MPG" : economyUnit === "kml" ? "km/L" : "L/100 km";
+
   const handleCalculate = () => {
     const d = parseFloat(distance);
     const e = parseFloat(efficiency);
     const p = parseFloat(fuelPrice);
+    const n = Math.max(1, Math.floor(parseFloat(people) || 1));
 
     if (isNaN(d) || isNaN(e) || isNaN(p) || d <= 0 || e <= 0 || p < 0) {
-      alert("Please enter valid positive numbers for distance, efficiency, and fuel price.");
+      setError("Enter a distance, fuel economy and fuel price greater than zero.");
+      setResult(null);
       return;
     }
+    setError(null);
 
-    const calcResult = calculateFuelCost(d, e, p, distanceUnit, efficiencyUnit, currency);
-    setResult(calcResult);
-    
+    const totalDistance = roundTrip ? d * 2 : d;
+    const trip = calculateFuelCost(
+      totalDistance,
+      toDistancePerFuel(e, economyUnit),
+      p,
+      distanceUnit,
+      metric ? "kml" : "mpg",
+      currency,
+    );
+
+    let compare: TripResult["compare"];
+    if (compareMode === "car") {
+      const e2 = parseFloat(efficiency2);
+      if (e2 > 0) {
+        const other = calculateFuelCost(totalDistance, toDistancePerFuel(e2, economyUnit), p, distanceUnit, metric ? "kml" : "mpg", currency);
+        compare = { label: `Car at ${e2} ${economyLabel}`, cost: other.tripCost, amount: other.fuelNeeded, unit: fuelUnit };
+      }
+    } else if (compareMode === "ev") {
+      const use = parseFloat(evUse);
+      const price = parseFloat(evPrice);
+      if (use > 0 && price >= 0) {
+        const ev = electricTripCost(totalDistance, use, price);
+        compare = { label: `Electric car at ${use} kWh/100 ${distLabel}`, cost: ev.cost, amount: ev.kwh, unit: "kWh" };
+      }
+    }
+
+    setResult({ trip, people: n, roundTrip, compare });
+
     // Save to history automatically
-    if (calcResult.tripCost > 0) {
-      saveToHistory(calcResult);
+    if (trip.tripCost > 0) {
+      saveToHistory(trip);
       // Reload history
       setHistory(getHistoryFromStorage());
     }
@@ -78,36 +137,53 @@ export default function FuelCostCalculatorUI() {
   };
 
   const handleCopyResult = () => {
-    if (result) {
-      const summary = getCalculationSummary(result);
-      navigator.clipboard.writeText(summary);
-      alert("Result copied to clipboard!");
-    }
+    if (!result) return;
+    const lines = [getCalculationSummary(result.trip)];
+    if (result.roundTrip) lines.push("Round trip: yes (distance doubled)");
+    if (result.people > 1) lines.push(`Cost per person (${result.people}): ${formatCurrency(result.trip.tripCost / result.people, result.trip.currency)}`);
+    if (result.compare) lines.push(`${result.compare.label}: ${formatCurrency(result.compare.cost, result.trip.currency)}`);
+    navigator.clipboard.writeText(lines.join("\n"));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   // Switch units cleanly
   const toggleUnitSystem = (system: "imperial" | "metric") => {
+    // Economy, prices and EV use mean different things in each system, so
+    // switch them to typical starting values rather than keep stale numbers
     if (system === "imperial") {
       setDistanceUnit("miles");
-      setEfficiencyUnit("mpg");
+      setEconomyUnit("mpg");
+      setEfficiency("25");
+      setEfficiency2("40");
+      setFuelPrice("3.50");
+      setEvUse("30");
     } else {
       setDistanceUnit("km");
-      setEfficiencyUnit("kml");
+      setEconomyUnit("l100km");
+      setEfficiency("6.5");
+      setEfficiency2("4.5");
+      setFuelPrice("1.75");
+      setEvUse("18");
     }
+    setResult(null);
   };
 
-  const currencySymbols: Record<string, string> = {
-    USD: "$",
-    EUR: "€",
-    GBP: "£",
-    BDT: "৳"
-  };
+  const field = (label: string, value: string, set: (v: string) => void, suffix: string, placeholder: string, step = "any") => (
+    <div className="space-y-2">
+      <label className="text-sm font-medium text-gray-700 block">{label}</label>
+      <div className="relative">
+        <input type="number" value={value} onChange={(e) => set(e.target.value)} className={`${INPUT} pr-24`} placeholder={placeholder} min="0" step={step} />
+        <div className="absolute inset-y-0 right-4 flex items-center text-sm text-gray-400 font-medium">{suffix}</div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
         <div className="p-6 md:p-8">
-          
+
           {/* Quick Unit Toggles */}
           <div className="flex flex-wrap items-center justify-between mb-8 pb-6 border-b border-gray-100 gap-4">
             <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
@@ -117,173 +193,174 @@ export default function FuelCostCalculatorUI() {
               <button
                 onClick={() => toggleUnitSystem("imperial")}
                 className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${
-                  distanceUnit === "miles" ? "bg-white text-emerald-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                  !metric ? "bg-white text-emerald-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
                 }`}
               >
-                Imperial (Miles / MPG)
+                Miles · MPG · gallons
               </button>
               <button
                 onClick={() => toggleUnitSystem("metric")}
                 className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${
-                  distanceUnit === "km" ? "bg-white text-emerald-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                  metric ? "bg-white text-emerald-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
                 }`}
               >
-                Metric (Km / Km/L)
+                Km · liters
               </button>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* INPUT SECTION */}
-            <div className="space-y-6">
-              
-              {/* Distance Input */}
+            <div className="space-y-5">
+              {field("Trip distance (one way)", distance, setDistance, distLabel, "E.g., 100")}
+              <label className="flex items-center gap-2 text-sm text-gray-700 -mt-2">
+                <input type="checkbox" checked={roundTrip} onChange={(e) => setRoundTrip(e.target.checked)} />
+                Round trip (there and back)
+              </label>
+
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex justify-between">
-                  <span>Trip Distance</span>
-                  <span className="text-gray-400 capitalize">{distanceUnit}</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    value={distance}
-                    onChange={(e) => setDistance(e.target.value)}
-                    className="w-full pl-4 pr-16 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
-                    placeholder="E.g., 100"
-                    min="0"
-                  />
-                  <div className="absolute inset-y-0 right-4 flex items-center text-sm text-gray-400 font-medium">
-                    {distanceUnit === 'miles' ? 'mi' : 'km'}
-                  </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium text-gray-700">Fuel economy</label>
+                  {metric && (
+                    <select
+                      value={economyUnit}
+                      onChange={(e) => {
+                        const unit = e.target.value as EconomyUnit;
+                        setEconomyUnit(unit);
+                        setEfficiency(unit === "kml" ? "15" : "6.5");
+                        setEfficiency2(unit === "kml" ? "22" : "4.5");
+                      }}
+                      aria-label="Fuel economy unit"
+                      className="px-2 py-1 border border-gray-200 rounded-md text-xs bg-white"
+                    >
+                      <option value="l100km">L/100 km</option>
+                      <option value="kml">km/L</option>
+                    </select>
+                  )}
                 </div>
+                <div className="relative">
+                  <input type="number" value={efficiency} onChange={(e) => setEfficiency(e.target.value)} className={`${INPUT} pr-24`} placeholder={economyUnit === "l100km" ? "E.g., 6.5" : "E.g., 25"} min="0" step="any" />
+                  <div className="absolute inset-y-0 right-4 flex items-center text-sm text-gray-400 font-medium">{economyLabel}</div>
+                </div>
+                {!metric && <p className="text-xs text-gray-400">US MPG. For UK MPG (imperial gallons), multiply by 0.833.</p>}
               </div>
 
-              {/* Efficiency Input */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex justify-between">
-                  <span>Fuel Efficiency</span>
-                  <span className="text-gray-400 capitalize">{efficiencyUnit}</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    value={efficiency}
-                    onChange={(e) => setEfficiency(e.target.value)}
-                    className="w-full pl-4 pr-16 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
-                    placeholder="E.g., 25"
-                    min="0"
-                  />
-                  <div className="absolute inset-y-0 right-4 flex items-center text-sm text-gray-400 font-medium">
-                    {efficiencyUnit === 'mpg' ? 'MPG' : 'km/L'}
-                  </div>
-                </div>
-              </div>
-
-              {/* Grid for Price and Currency */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 block">
-                    Fuel Price <span className="text-gray-400 text-xs font-normal">(per {efficiencyUnit === 'mpg' ? 'gallon' : 'liter'})</span>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium text-gray-700">
+                    Fuel price <span className="text-gray-400 text-xs font-normal">(per {metric ? "liter" : "gallon"})</span>
                   </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-4 flex items-center text-gray-500">
-                      {currencySymbols[currency] || '$'}
-                    </div>
-                    <input
-                      type="number"
-                      value={fuelPrice}
-                      onChange={(e) => setFuelPrice(e.target.value)}
-                      className="w-full pl-8 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
-                      placeholder="3.50"
-                      min="0"
-                      step="0.01"
-                    />
+                  <CurrencySelect value={currency} onChange={setCurrency} className="text-xs" />
+                </div>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-4 flex items-center text-gray-500">{currencySymbol(currency)}</div>
+                  <input type="number" value={fuelPrice} onChange={(e) => setFuelPrice(e.target.value)} className={`${INPUT} pl-12`} placeholder={metric ? "1.75" : "3.50"} min="0" step="0.01" />
+                </div>
+              </div>
+
+              {field("Split the cost between", people, setPeople, "people", "1", "1")}
+
+              {/* Comparison */}
+              <div className="space-y-3 rounded-xl border border-gray-100 p-4">
+                <label className="text-sm font-medium text-gray-700 block">Compare with</label>
+                <div className="flex flex-wrap gap-2">
+                  {([["none", "Nothing"], ["car", "Another car"], ["ev", "An electric car"]] as const).map(([mode, label]) => (
+                    <button
+                      key={mode}
+                      onClick={() => setCompareMode(mode)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                        compareMode === mode ? "border-emerald-500 bg-emerald-50 text-emerald-700" : "border-gray-200 text-gray-600 hover:border-gray-300"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                {compareMode === "car" && field("Other car's fuel economy", efficiency2, setEfficiency2, economyLabel, "E.g., 40")}
+                {compareMode === "ev" && (
+                  <div className="grid grid-cols-2 gap-3">
+                    {field("Consumption", evUse, setEvUse, `kWh/100 ${distLabel}`, "30")}
+                    {field(`Electricity (${currencySymbol(currency)}/kWh)`, evPrice, setEvPrice, "per kWh", "0.17", "0.01")}
                   </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 block">Currency</label>
-                  <select
-                    value={currency}
-                    onChange={(e) => setCurrency(e.target.value)}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none appearance-none"
-                  >
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
-                    <option value="GBP">GBP (£)</option>
-                    <option value="BDT">BDT (৳)</option>
-                  </select>
-                </div>
+                )}
+                {compareMode === "ev" && (
+                  <p className="text-xs text-gray-400">Use your own tariff; home charging and public fast charging can differ several times over.</p>
+                )}
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4">
+              <div className="pt-2">
                 <button
                   onClick={handleCalculate}
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-[0.98] flex justify-center items-center gap-2"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"/><rect width="12" height="12" x="6" y="10" rx="2" ry="2"/><path d="m14 14-2 2 2 2"/></svg>
                   Calculate Cost
                 </button>
+                {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
               </div>
             </div>
 
             {/* RESULTS SECTION */}
-            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex flex-col justify-between h-full">
+            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex flex-col h-full">
               {!result ? (
                 <div className="flex flex-col items-center justify-center text-center h-full text-gray-400 space-y-4 py-12">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300"><path d="M3 22v-8c0-2.2 1.8-4 4-4h6c2.2 0 4 1.8 4 4v8"/><path d="M14 22v-4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v4"/><path d="M21 22V6M21 6A5 5 0 0 0 11 6h0M21 6h0a5 5 0 0 1-10 0"/></svg>
-                  </div>
                   <p>Enter your trip details to calculate estimated fuel costs.</p>
                 </div>
               ) : (
-                <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                <div className="space-y-5">
                   <div className="flex justify-between items-start">
                     <h3 className="text-lg font-semibold text-gray-800">Trip Estimate</h3>
-                    <button 
-                      onClick={handleCopyResult}
-                      className="text-gray-400 hover:text-emerald-600 transition-colors p-1"
-                      title="Copy Summary"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <button onClick={handleCopyResult} className="text-xs text-gray-500 hover:text-emerald-600 transition-colors">
+                      {copied ? "Copied" : "Copy summary"}
                     </button>
                   </div>
 
-                  <div className="bg-white rounded-xl p-5 border border-emerald-100 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full -z-0 opacity-50"></div>
-                    <div className="relative z-10">
-                      <p className="text-sm font-medium text-emerald-600 mb-1 uppercase tracking-wider">Total Cost</p>
-                      <p className="text-4xl font-bold text-gray-900 mb-2">
-                        {formatCurrency(result.tripCost, result.currency)}
-                      </p>
-                      <p className="text-sm font-medium text-gray-500">
-                        {formatCurrency(result.costPerDistance, result.currency)} / {result.distanceUnit === 'miles' ? 'mi' : 'km'}
-                      </p>
-                    </div>
+                  <div className="bg-white rounded-xl p-5 border border-emerald-100 shadow-sm">
+                    <p className="text-sm font-medium text-emerald-600 mb-1 uppercase tracking-wider">Total Cost</p>
+                    <p className="text-4xl font-bold text-gray-900 mb-2">{formatCurrency(result.trip.tripCost, result.trip.currency)}</p>
+                    <p className="text-sm font-medium text-gray-500">
+                      {formatCurrency(result.trip.costPerDistance, result.trip.currency)} / {distLabel}
+                      {result.roundTrip && " · round trip"}
+                    </p>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
                       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Fuel Required</p>
                       <p className="text-xl font-bold text-gray-800">
-                        {result.fuelNeeded.toFixed(2)} <span className="text-sm font-medium text-gray-500">{result.efficiencyUnit === 'mpg' ? 'gal' : 'L'}</span>
+                        {result.trip.fuelNeeded.toFixed(2)} <span className="text-sm font-medium text-gray-500">{fuelUnit}</span>
                       </p>
                     </div>
                     <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Total Dist.</p>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Total Distance</p>
                       <p className="text-xl font-bold text-gray-800">
-                         {result.distance} <span className="text-sm font-medium text-gray-500">{result.distanceUnit === 'miles' ? 'mi' : 'km'}</span>
+                        {result.trip.distance.toLocaleString("en-US")} <span className="text-sm font-medium text-gray-500">{distLabel}</span>
                       </p>
                     </div>
+                    {result.people > 1 && (
+                      <div className="col-span-2 bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Each of {result.people} people pays</p>
+                        <p className="text-xl font-bold text-gray-800">{formatCurrency(result.trip.tripCost / result.people, result.trip.currency)}</p>
+                      </div>
+                    )}
                   </div>
-                  
-                  <div className="pt-2">
-                     <p className="text-xs text-gray-400 text-center flex items-center justify-center gap-1">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
-                       Estimates may vary based on driving conditions
-                     </p>
-                  </div>
+
+                  {result.compare && (
+                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm space-y-1">
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{result.compare.label}</p>
+                      <p className="text-xl font-bold text-gray-800">
+                        {formatCurrency(result.compare.cost, result.trip.currency)}{" "}
+                        <span className="text-sm font-medium text-gray-500">({result.compare.amount.toFixed(1)} {result.compare.unit})</span>
+                      </p>
+                      <p className={`text-sm font-medium ${result.compare.cost <= result.trip.tripCost ? "text-emerald-600" : "text-red-500"}`}>
+                        {result.compare.cost <= result.trip.tripCost
+                          ? `Saves ${formatCurrency(result.trip.tripCost - result.compare.cost, result.trip.currency)} on this trip`
+                          : `Costs ${formatCurrency(result.compare.cost - result.trip.tripCost, result.trip.currency)} more on this trip`}
+                      </p>
+                    </div>
+                  )}
+
+                  <p className="text-xs text-gray-400 text-center">Estimates vary with speed, traffic, load and weather.</p>
                 </div>
               )}
             </div>
@@ -345,7 +422,7 @@ export default function FuelCostCalculatorUI() {
                           {entry.calculation.distance} <span className="text-xs font-normal text-gray-400">{entry.calculation.distanceUnit === 'miles' ? 'mi' : 'km'}</span>
                         </td>
                         <td className="px-4 py-3 text-gray-600">
-                          {entry.calculation.efficiency} <span className="text-xs font-normal text-gray-400">{entry.calculation.efficiencyUnit === 'mpg' ? 'mpg' : 'kml'}</span>
+                          {entry.calculation.efficiency} <span className="text-xs font-normal text-gray-400">{entry.calculation.efficiencyUnit === 'mpg' ? 'mpg' : 'km/L'}</span>
                         </td>
                         <td className="px-4 py-3 text-gray-600">
                           {formatCurrency(entry.calculation.fuelPrice, entry.calculation.currency)}

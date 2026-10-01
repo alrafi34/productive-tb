@@ -17,6 +17,10 @@ import {
   type Unit,
   type Standard,
   type ConversionResult,
+  SPEED_PRESETS,
+  transferSeconds,
+  formatSeconds,
+  bestUnit,
 } from "./logic";
 import FileSizeConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -36,6 +40,7 @@ export default function FileSizeConverterUI() {
   const [inputValue, setInputValue] = useState("1");
   const [inputUnit, setInputUnit] = useState<Unit>("GB");
   const [standard, setStandard] = useState<Standard>("binary");
+  const [speed, setSpeed] = useState("100");
   const [result, setResult] = useState<ConversionResult | null>(null);
   const [error, setError]   = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
@@ -377,14 +382,76 @@ export default function FileSizeConverterUI() {
               <div className="grid sm:grid-cols-2 gap-3 text-xs text-amber-800">
                 <div>
                   <p className="font-semibold mb-1">Binary (1024-based)</p>
-                  <p>Used by operating systems (Windows, macOS, Linux). 1 KB = 1,024 Bytes. Also called kibibyte (KiB).</p>
+                  <p>Used by Windows, RAM and many Linux tools. 1 KiB = 1,024 bytes; Windows still labels it &quot;KB&quot;.</p>
                 </div>
                 <div>
                   <p className="font-semibold mb-1">Decimal (1000-based)</p>
-                  <p>Used by storage manufacturers and cloud providers. 1 KB = 1,000 Bytes. A 1 TB hard drive is ~931 GiB.</p>
+                  <p>Used by drive makers, macOS (since 10.6), iOS and network speeds. 1 KB = 1,000 bytes. A 1 TB drive is about 931 GiB.</p>
                 </div>
               </div>
             </div>
+
+            {/* How it shows up, and how long it takes to send */}
+            {result && (
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-5">
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                    How your computer shows this size
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    {[
+                      { os: "Windows", ...bestUnit(result.bytes, 1024) },
+                      { os: "macOS / iOS", ...bestUnit(result.bytes, 1000) },
+                    ].map(({ os, value, unit }) => (
+                      <div key={os} className="bg-gray-50 rounded-lg px-3 py-2">
+                        <div className="text-xs text-gray-500">{os}</div>
+                        <div className="font-mono font-semibold text-gray-900">
+                          {formatValue(parseFloat(value.toPrecision(4)))} {unit === "B" ? "bytes" : unit}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <h3 className="text-sm font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
+                      Download or upload time
+                    </h3>
+                    <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                      <input
+                        type="number"
+                        min="0"
+                        step="any"
+                        value={speed}
+                        onChange={(e) => setSpeed(e.target.value)}
+                        aria-label="Connection speed in megabits per second"
+                        className="w-20 px-2 py-1 border border-gray-200 rounded-md text-sm"
+                      />
+                      Mbps
+                    </div>
+                  </div>
+                  <p className="font-mono text-lg font-semibold text-gray-900">
+                    {formatSeconds(transferSeconds(result.bytes, parseFloat(speed)))}
+                  </p>
+                  <table className="w-full text-xs mt-2">
+                    <tbody className="divide-y divide-gray-50">
+                      {SPEED_PRESETS.map((mbps) => (
+                        <tr key={mbps}>
+                          <td className="py-1">
+                            <button onClick={() => setSpeed(String(mbps))} className="text-primary hover:underline">
+                              {mbps >= 1000 ? `${mbps / 1000} Gbps` : `${mbps} Mbps`}
+                            </button>
+                          </td>
+                          <td className="py-1 text-right font-mono text-gray-700">{formatSeconds(transferSeconds(result.bytes, mbps))}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p className="text-xs text-gray-400 mt-2">Best case at full speed; protocol overhead and busy connections make real transfers slower.</p>
+                </div>
+              </div>
+            )}
 
             {/* Share-ready text */}
             {result && (

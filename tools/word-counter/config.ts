@@ -10,7 +10,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Word Counter & Character Counter — Free Online Tool",
-    description: "Paste or type any text to count words, characters with and without spaces, sentences, paragraphs and reading time, live as you type. Free, no sign-up.",
+    description: "Count words, characters, sentences and pages as you type, with reading and speaking time, a word goal and character limits for X, SMS and meta tags.",
     keywords: [
       // 500K/mo — primary
       "word counter",
@@ -67,92 +67,84 @@ export const toolConfig = {
     ],
     openGraph: {
       title: "Word Counter & Character Counter — Free Online Tool",
-      description: "Paste or type any text to count words, characters with and without spaces, sentences, paragraphs and reading time, live as you type. Free, no sign-up.",
+      description: "Count words, characters, sentences and pages as you type, with reading and speaking time, a word goal and character limits for X, SMS and meta tags.",
       type: "website",
       url: `${siteConfig.url}/tools/writing/word-counter`,
     },
     howToSteps: [
       {
         name: "Paste or type your text",
-        text: "Click inside the editor and paste text from your clipboard (Ctrl+V / Cmd+V) or start typing directly. The counter updates with every keystroke — no submit button needed.",
+        text: "Click into the editor and paste (Ctrl+V or Cmd+V) or start typing. Every count updates as you type, with no button to press.",
       },
       {
-        name: "Read the live metric panel",
-        text: "Check the word count, character count (with and without spaces), sentence count, paragraph count, and estimated reading time — all displayed at once above or beside the editor.",
+        name: "Read the counts",
+        text: "The tiles show words, characters with and without spaces, sentences, paragraphs and reading time. Below them you get speaking time, single- and double-spaced pages, unique words and average sentence length.",
       },
       {
-        name: "Compare against your target",
-        text: "If you have a minimum or maximum word count requirement (for an essay, SEO article, or social post), compare the displayed count against that target and adjust your content accordingly.",
+        name: "Set a word goal",
+        text: "Type the length you need into Word goal, for example 1500. The bar fills as you write and shows how many words are left or how far over you are.",
       },
       {
-        name: "Trim or expand as needed",
-        text: "Delete or add content in the editor and watch the counts update in real time. This makes it easy to hit exact word count targets without manual counting.",
+        name: "Check character limits",
+        text: "The Character limits panel compares your text with a title tag, meta description, SMS, X post, Instagram caption and LinkedIn post, and turns red when you go over.",
       },
       {
-        name: "Copy the final content",
-        text: "Once your text meets its target length and structure, copy it from the editor and paste it into your publishing destination — Google Docs, WordPress, email client, or anywhere else.",
+        name: "Spot repeated words",
+        text: "Most used words lists the ten words you use most, with common words like \"the\" skipped by default, so you can vary overused terms.",
+      },
+      {
+        name: "Copy or clear",
+        text: "Copy Results copies every count to the clipboard. Your draft and goal stay saved in this browser until you press Reset.",
       },
     ],
     faq: [
       {
-        q: "What is a word counter?",
-        a: "A word counter is an online tool that analyzes a block of text and reports key writing metrics — total words, characters (with and without spaces), sentences, paragraphs, and estimated reading time. Unlike the word count feature built into Microsoft Word or Google Docs, a browser-based word counter works on any text from any source: copied web content, draft emails, social media posts, or raw notes — without needing to open a document editor.",
-      },
-      {
-        q: "Can this tool work as a character counter and letter counter?",
-        a: "Yes. In addition to word count, this tool displays a full character counter — showing total characters both with and without spaces — making it a free letter counter online as well. Use the with-spaces count for platform character limits like Twitter (280), LinkedIn (3,000), and SMS (160). Use the without-spaces count for programming character fields and database constraints where whitespace is excluded from the limit.",
-      },
-      {
-        q: "How do I count words in Google Docs?",
-        a: "In Google Docs, go to Tools > Word count (or press Ctrl+Shift+C on Windows / Cmd+Shift+C on Mac) to see word, character, and page counts for the full document or a selected range. For text outside Google Docs — copied from web pages, emails, PDFs, or other sources — paste it into this word counter for an instant count without opening Docs. You can also enable 'Display word count while typing' in the same menu to keep a live count visible in the corner of your document.",
+        q: "What does this word counter count?",
+        a: "Words, characters with and without spaces, sentences, paragraphs, reading time and speaking time, plus single- and double-spaced pages, unique words, average sentence length and your most used words. All of it updates as you type.",
       },
       {
         q: "How many pages is 1,000 words?",
-        a: "At standard formatting (12pt Times New Roman or Arial, double-spaced, 1-inch margins), 1,000 words equals approximately 4 pages. Single-spaced, the same 1,000 words produces about 2 pages. 500 words is roughly 1 page double-spaced; 250 words fills about half a page. These are estimates — actual page count depends on font size, line spacing, margin width, and paragraph spacing. For academic submissions, always verify using your institution's formatting requirements.",
-      },
-      {
-        q: "How does word count affect SEO?",
-        a: "Word count is not a direct Google ranking factor, but content length correlates strongly with rankings because longer content tends to cover a topic more thoroughly. Most pages that rank on page 1 for competitive keywords have 1,000–2,500 words. For blog posts and pillar pages, 1,500–2,500 words is the commonly recommended target. For product pages and landing pages, 300–800 words is typically enough. Use this tool to check your article length before publishing and compare it against the top-ranking pages for your target keyword.",
+        a: "About 2 pages single-spaced or 4 pages double-spaced, assuming 12 pt type and 1-inch margins. As a rule of thumb, a single-spaced page holds about 500 words and a double-spaced page about 250. Font, headings and paragraph breaks move the real number up or down.",
       },
       {
         q: "How is reading time calculated?",
-        a: "Reading time is estimated by dividing the total word count by 200 — the average adult silent reading speed in words per minute. So a 1,000-word article takes approximately 5 minutes to read. This is a useful signal for email subject lines, blog post headers, newsletter planning, and YouTube script timing. The result is always rounded up to the nearest minute.",
+        a: "Word count divided by 200 words per minute, a typical adult silent-reading pace. A 1,000-word article takes about 5 minutes. The tile rounds up to the next minute; the detail panel shows minutes and seconds.",
       },
       {
-        q: "What is the difference between character count with and without spaces?",
-        a: "Character count with spaces includes every character in the text, including spaces, tabs, and line breaks. Character count without spaces excludes all whitespace, counting only visible characters like letters, numbers, and punctuation. Most social media platforms (Twitter/X, LinkedIn, Instagram captions) count characters with spaces. Some programming environments and file size checks use without-spaces counts. This tool provides both so you can match whichever limit applies.",
+        q: "How long does it take to say my speech?",
+        a: "The speaking time uses 130 words per minute, a comfortable presentation pace; most people speak at 125–150. A 5-minute talk needs roughly 600–750 words and a 10-minute talk 1,250–1,500. Rehearse once with a timer to find your own pace.",
       },
       {
-        q: "What word count should a blog post be?",
-        a: "It depends on the topic and competition. For informational content competing in Google search, 1,500–2,500 words is a reliable target for most niches. Short-form listicles and news posts can rank at 600–900 words. Long-form guides and pillar pages often exceed 3,000 words. The best approach: search your target keyword, check the word counts of the top 3 results using this tool, and aim to match or modestly exceed them while keeping every section genuinely useful.",
+        q: "What is the difference between characters with and without spaces?",
+        a: "With spaces counts everything, including spaces and line breaks. Without spaces counts only letters, digits, punctuation and symbols. Social networks, SMS and meta descriptions limit characters with spaces; some forms and translation quotes use the count without spaces.",
       },
       {
-        q: "How many words should a Twitter (X) post be?",
-        a: "Twitter/X has a 280-character limit for standard accounts and 25,000 characters for X Premium (Blue) subscribers. The average tweet is around 33 characters. For maximum engagement, tweets between 71–100 characters tend to perform best. Use the character count (with spaces) display in this tool to check tweet length before posting.",
+        q: "Does an emoji count as one character?",
+        a: "Here, yes: each emoji or accented letter counts as one character. Some platforms weigh them differently. X counts most emoji as two characters, and a single emoji switches an SMS to a format that allows 70 characters per segment instead of 160.",
       },
       {
-        q: "What word count is ideal for an essay?",
-        a: "Essay length depends entirely on the assignment instructions. High school essays are typically 500–1,000 words. University undergraduate essays range from 1,500–3,000 words. Graduate and doctoral essays can run 5,000–10,000+ words. This tool handles all of these ranges — paste your full draft and the word count updates instantly so you can trim or expand to hit the exact required length.",
+        q: "How does the word goal work?",
+        a: "Enter the number of words you need. The progress bar fills as you write and shows how many words remain, or how many you are over once you pass the goal. The goal is remembered in this browser.",
       },
       {
-        q: "Does this word counter work offline?",
-        a: "Once the page is loaded, the word counting itself runs entirely in your browser using JavaScript — no internet connection is needed for the counting to continue working. However, you do need an internet connection to initially load the page.",
+        q: "What does the most used words list show?",
+        a: "The ten words that appear most often, with how many times and what share of all words. Common words such as \"the\", \"and\" and \"of\" are skipped unless you untick Skip common words. Use it to catch a term you repeat too often.",
       },
       {
-        q: "Is my text stored or sent to a server?",
-        a: "No. All analysis runs locally in your browser. The text you type or paste is never sent to any external server, stored in a database, or used for any purpose. This makes the tool safe for checking confidential drafts, client work, legal documents, or any sensitive writing.",
+        q: "How do I count words in Google Docs or Word?",
+        a: "In Google Docs use Tools > Word count (Ctrl+Shift+C, or Cmd+Shift+C on a Mac). In Microsoft Word the count is in the status bar, or under Review > Word Count. For text from anywhere else, such as an email, web page or PDF, paste it here.",
       },
       {
         q: "How do I count words in a PDF?",
-        a: "To count words in a PDF, open the PDF in your browser or a PDF viewer, select all text (Ctrl+A or Cmd+A), copy it (Ctrl+C or Cmd+C), then paste it into this word counter. The tool will instantly report the word count, character count, and reading time for the entire document. Note that PDFs with scanned images instead of selectable text will not have copyable content — in that case you will need an OCR tool first.",
+        a: "Open the PDF, select all text (Ctrl+A or Cmd+A), copy it and paste it into the editor. Scanned PDFs contain images rather than text, so they need OCR first; the image to text tool on this site can extract it.",
       },
       {
-        q: "How do I use this as a paragraph counter?",
-        a: "This tool counts paragraphs automatically alongside words, characters, and sentences — no extra steps needed. Paste your text and the paragraph count appears in the metrics panel immediately. A paragraph is counted as any block of text separated by one or more blank lines. This is useful for checking article structure, verifying section length balance, and ensuring long-form content is broken up for readability.",
+        q: "What word count should an essay be?",
+        a: "Follow the assignment. As typical ranges, high school essays run 500–1,000 words, undergraduate essays 1,500–3,000, and the Common App personal statement allows 250–650. Set the required length as your word goal to track it while you write.",
       },
       {
-        q: "How many words should a speech or presentation be?",
-        a: "For public speaking, the average adult speaks at 125–150 words per minute. A 5-minute speech needs approximately 625–750 words. A 10-minute presentation runs 1,250–1,500 words. A 20-minute keynote is around 2,500–3,000 words. Paste your speech script into this word counter, check the word count, and divide by your speaking pace to estimate delivery time. The reading time estimate (at 200 wpm) will also give a rough lower bound.",
+        q: "Is my text stored or sent anywhere?",
+        a: "Your text is never sent to a server. To keep your work if you close the tab, the draft and word goal are saved in this browser's local storage on your device only. Press Reset to clear them, or use a private window if you do not want anything saved.",
       },
     ],
   },
@@ -161,7 +153,11 @@ export const toolConfig = {
     "Character count with and without spaces",
     "Sentence and paragraph counting",
     "Reading time estimation (200 wpm baseline)",
-    "Detailed text statistics",
+    "Speaking time (130 wpm) and single/double-spaced page count",
+    "Word goal with progress bar",
+    "Character limits for titles, meta descriptions, SMS, X, Instagram and LinkedIn",
+    "Most used words, with or without common words",
+    "Draft and goal saved in your browser",
     "No registration required",
     "100% browser-based — your text never leaves your device",
   ],
