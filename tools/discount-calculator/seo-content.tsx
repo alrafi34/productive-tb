@@ -103,12 +103,12 @@ export default function DiscountCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 4. Use Cases ── */}
+      {/* ── 4. Worked Examples ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Real-World Use Cases
+          Worked Examples
         </h2>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {[
             {
               title: "Black Friday Stacked Coupon",
@@ -119,20 +119,8 @@ export default function DiscountCalculatorSEO() {
               scenario: "A Shopify seller sources a product for $18.50 including shipping. They want to run a 20% sale but need to verify the margin stays positive. Current list price: $44.99. After 20% discount: $44.99 × 0.80 = $35.99. Profit at sale price: $35.99 − $18.50 = $17.49. Margin: $17.49 ÷ $35.99 = 48.6%. The seller confirms the sale is viable and sets the discount live.",
             },
             {
-              title: "Retail Pricing Analysis",
-              scenario: "A buyer at a department store sees a $89 dress tagged 'Was $130.' They use reverse mode: $89 ÷ (1 − discount) — trying different percentages until they find 31.5% matches. They then compare: a competitor sells the same dress for $79 without any 'was' tag. The original-price recovery confirms the competitor's $79 is a better absolute price, not just a better headline discount.",
-            },
-            {
               title: "Invoice Discount Verification",
               scenario: "A purchasing manager receives a supplier invoice for 50 units at $24.60 each, with a stated 15% trade discount and a 2% early payment discount. Using stacked mode: $24.60 × 50 = $1,230 gross. Step 1: $1,230 × 0.85 = $1,045.50. Step 2: $1,045.50 × 0.98 = $1,024.59 net payable. The manager verifies this matches the invoice total before approving payment — a 30-second check that catches the common error of applying both discounts to the original amount.",
-            },
-            {
-              title: "Wholesale Pricing for Resellers",
-              scenario: "A wholesale buyer is offered a 40% trade discount on a product with an RRP of $65. They need to confirm the wholesale cost and their selling margin at 30% off RRP. Wholesale price: $65 × 0.60 = $39. Sale price at 30% off RRP: $65 × 0.70 = $45.50. Gross margin: ($45.50 − $39) ÷ $45.50 = 14.3%. The buyer determines 14.3% is below their 20% target and negotiates for 45% trade discount before committing to the order.",
-            },
-            {
-              title: "Classroom Pricing Problem",
-              scenario: "A high school teacher assigns: 'A bike originally costs $350. The store offers 25% off, then a further $30 coupon. How much does a student pay with 7% tax?' Students use this calculator to check their work: $350 × 0.75 = $262.50; $262.50 − $30 = $232.50; $232.50 × 1.07 = $248.78. The step-by-step breakdown in the tool shows each calculation line, making it easy to identify where a manual calculation went wrong.",
             },
           ].map(({ title, scenario }) => (
             <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
@@ -143,50 +131,7 @@ export default function DiscountCalculatorSEO() {
         </div>
       </section>
 
-      {/* ── 5. Tips & Mistakes ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips &amp; Common Mistakes
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "When comparing two competing discounts — for example, '30% off' vs '$40 off' on a $120 item — calculate both and compare sale prices directly. 30% off = $84; $40 off = $80. The fixed-amount coupon wins at this price, but at $200 the 30% off ($140) would beat $40 off ($160). The crossover point is where percent savings equal the fixed amount.",
-                "Order matters with stacked discounts. A percentage discount always reduces the base for the next step. Apply fixed-amount discounts first if you want to preserve the larger percentage base, or last if the percentage is larger than the fixed saving at the current subtotal.",
-                "Use reverse mode before assuming a 'sale' is genuine. If a $60 item is marked '25% off,' reverse mode confirms the claimed original was $80. If you can find the same product elsewhere at $65 without a sale, the discount is marketing rather than a saving.",
-                "When applying a trade discount to a wholesale invoice, add the early-payment discount as a second stacked step — not by adding the two percentages together. 15% + 2% stacked = 16.7% effective discount. Adding them as a single 17% is incorrect and produces a different result.",
-                "For e-commerce pricing, use batch mode to evaluate your entire product catalog at a proposed sale percentage. Paste all prices, set the discount, and scan the results to identify any items where the sale price would fall below your cost floor before running the promotion.",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Don't add stacked percentage discounts together before calculating. 20% off plus 10% off is not 30% off — it is 28% off. Adding them first and applying 30% to the original overstates the discount by 2 percentage points. Always apply each discount sequentially to the running subtotal.",
-                "Don't apply tax before discounts. Sales tax in most jurisdictions is calculated on the amount actually paid — the post-discount price — not the original price. Applying tax first and then discounting produces a lower result than what you will actually pay at checkout.",
-                "Don't confuse 'amount saved' with 'savings rate.' Saving $30 on a $60 item is a 50% saving. Saving $30 on a $300 item is only 10%. When comparing deals, express savings as a percentage of the original price to make meaningful comparisons across different price points.",
-                "Don't use a single discount for two sequential coupons from different sources. A store sale and a manufacturer coupon are almost always applied as separate steps — the coupon applies to the already-discounted price. Treating them as additive overestimates your saving.",
-                "Don't forget that some discounts are excluded from other promotions. 'Cannot be combined with other offers' means only one discount applies. If the first discount is 25% and the second is $10 off, enter each separately and check which gives a lower final price, rather than assuming you can stack them.",
-              ].map((mistake, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
-                  <span>{mistake}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Reference Table ── */}
+      {/* ── 5. Reference Tables ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Discount Reference Table
@@ -269,29 +214,6 @@ export default function DiscountCalculatorSEO() {
       </section>
 
       <ToolFaq items={faq} />
-
-      {/* ── 8. Who Uses This ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This Discount Calculator?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            { icon: "🛍️", title: "Shoppers", desc: "Verify sale prices before checkout, compare stacked coupon deals, and check whether a promoted discount is genuine by recovering the original price." },
-            { icon: "🏪", title: "Retail Managers", desc: "Plan promotional pricing, calculate margin at sale price, and verify that stacked coupons do not push prices below cost before activating a campaign." },
-            { icon: "🛒", title: "E-commerce Sellers", desc: "Calculate sale prices across entire product catalogs using batch mode, confirm margin at discount, and set up tiered pricing for different customer segments." },
-            { icon: "📊", title: "Accountants & Finance Teams", desc: "Verify trade discount chains on supplier invoices, confirm early-payment discount calculations, and check that sequential discounts are applied correctly." },
-            { icon: "🎓", title: "Students & Teachers", desc: "Work through retail math problems, check answers on percentage-off exercises, and explore how stacked discounts and tax interact in real-world pricing scenarios." },
-            { icon: "💼", title: "Procurement & Buyers", desc: "Evaluate supplier discount structures, compare net price across different discount arrangements, and confirm wholesale pricing before committing to purchase orders." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <div className="text-2xl mb-2">{icon}</div>
-              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

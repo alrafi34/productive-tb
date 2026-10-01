@@ -133,3 +133,35 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number) {
   let t: ReturnType<typeof setTimeout>;
   return (...args: Parameters<T>) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
 }
+
+/* Network speeds are quoted in decimal megabits per second, so a file's
+   bytes × 8 ÷ (Mbps × 1,000,000) gives the ideal transfer time; real
+   transfers add protocol overhead and rarely hold full speed. */
+export const SPEED_PRESETS = [10, 50, 100, 300, 1000];
+
+export function transferSeconds(bytes: number, mbps: number): number {
+  return mbps > 0 ? (bytes * 8) / (mbps * 1_000_000) : Infinity;
+}
+
+export function formatSeconds(seconds: number): string {
+  if (!isFinite(seconds)) return "—";
+  if (seconds < 1) return `${Math.max(seconds * 1000, 1).toFixed(0)} ms`;
+  if (seconds < 60) return `${seconds.toFixed(1)} sec`;
+  const total = Math.round(seconds);
+  const d = Math.floor(total / 86400);
+  const h = Math.floor((total % 86400) / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+  if (d) return `${d} d ${h} h`;
+  if (h) return `${h} h ${m} min`;
+  return s ? `${m} min ${s} sec` : `${m} min`;
+}
+
+/* The same byte count as each system's file manager labels it: Windows
+   divides by 1024 but writes KB/MB/GB; macOS (since 10.6) and iOS divide
+   by 1000. */
+export function bestUnit(bytes: number, base: number): { value: number; unit: Unit } {
+  let i = 0;
+  while (i < UNITS.length - 1 && bytes >= Math.pow(base, i + 1)) i++;
+  return { value: bytes / Math.pow(base, i), unit: UNITS[i] };
+}

@@ -1,3 +1,5 @@
+import { formatMoney, isCurrencyCode } from '@/lib/currency';
+
 export interface FuelCalculation {
   distance: number;
   efficiency: number;
@@ -101,15 +103,23 @@ export function estimateRange(
 }
 
 export function formatCurrency(amount: number, currency: string = 'USD'): string {
-  const currencySymbols: Record<string, string> = {
-    USD: '$',
-    EUR: '€',
-    GBP: '£',
-    BDT: '৳'
-  };
+  if (isCurrencyCode(currency)) return formatMoney(amount, currency);
+  // History saved before the currency list changed may hold another code
+  return `${amount.toFixed(2)} ${currency}`;
+}
 
-  const symbol = currencySymbols[currency] || '$';
-  return `${symbol}${amount.toFixed(2)}`;
+/* Fuel economy as entered → distance per unit of fuel (MPG or km/L).
+   L/100 km is the European convention: lower is better, so it inverts. */
+export type EconomyUnit = 'mpg' | 'kml' | 'l100km';
+
+export function toDistancePerFuel(value: number, unit: EconomyUnit): number {
+  return unit === 'l100km' ? 100 / value : value;
+}
+
+/* Electricity for the same trip: consumption is kWh per 100 miles or km. */
+export function electricTripCost(distance: number, kwhPer100: number, pricePerKwh: number) {
+  const kwh = (distance / 100) * kwhPer100;
+  return { kwh, cost: kwh * pricePerKwh };
 }
 
 export function getHistoryFromStorage(): HistoryEntry[] {
@@ -194,8 +204,8 @@ export function getCalculationSummary(calc: FuelCalculation): string {
   
   return `Trip Distance: ${calc.distance} ${distUnit}
 Fuel Efficiency: ${calc.efficiency} ${effUnit}
-Fuel Price: ${formatCurrency(calc.fuelPrice)}/${fuelUnit}
+Fuel Price: ${formatCurrency(calc.fuelPrice, calc.currency)}/${fuelUnit}
 Fuel Needed: ${calc.fuelNeeded.toFixed(2)} ${fuelUnit}
-Estimated Cost: ${formatCurrency(calc.tripCost)}
-Cost per ${distUnit === 'miles' ? 'mile' : 'km'}: ${formatCurrency(calc.costPerDistance)}`;
+Estimated Cost: ${formatCurrency(calc.tripCost, calc.currency)}
+Cost per ${distUnit === 'miles' ? 'mile' : 'km'}: ${formatCurrency(calc.costPerDistance, calc.currency)}`;
 }

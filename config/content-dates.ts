@@ -191,7 +191,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "fence-material-calculator": "2026-09-27",
   "fertilizer-requirement-calculator": "2026-09-27",
   "file-hash-generator": "2026-09-30",
-  "file-size-converter": "2026-09-26",
+  "file-size-converter": "2026-10-01",
   "final-grade-calculator": "2026-09-29",
   "find-and-replace": "2026-09-30",
   "fire-safety-load-calculator": "2026-09-27",

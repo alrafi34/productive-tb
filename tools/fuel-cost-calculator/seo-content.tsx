@@ -1,296 +1,163 @@
 import ToolFaq from "@/components/ToolFaq";
 import { toolConfig } from "./config";
 
+const H2 = "text-2xl font-semibold text-gray-900";
+const HEADING = { fontFamily: "var(--font-heading)" };
+const SECTION = "mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8";
+
+const money = (symbol: string, n: number) => `${symbol}${n.toFixed(2)}`;
+
+/* Example prices for the tables, not live prices: the calculator takes yours. */
+const US_PRICE = 3.5;
+const EU_PRICE = 1.75;
+const MPG_ROWS: [number, string][] = [
+  [15, "Large pickup or SUV"], [20, "Midsize SUV"], [25, "Average sedan"], [30, "Efficient sedan"],
+  [35, "Small car"], [40, "Economy car"], [50, "Hybrid"],
+];
+const L100_ROWS: [number, string][] = [
+  [4, "Hybrid"], [5, "Small diesel"], [6, "Small petrol car"], [7, "Family car"],
+  [8, "Compact SUV"], [10, "Large SUV"], [12, "Van or large 4×4"],
+];
+
+const EXAMPLES = [
+  {
+    title: "Weekend road trip, split four ways",
+    text: "Chicago to Nashville is about 470 miles each way. With Round trip ticked that is 940 miles; at 30 MPG the car needs 31.3 gallons, and at $3.50 a gallon the fuel costs $109.67. Split between four friends, each pays $27.42.",
+  },
+  {
+    title: "European car in L/100 km",
+    text: "A family car rated at 6.5 L/100 km drives the roughly 465 km from Paris to Lyon. It needs 465 × 6.5 ÷ 100 = 30.2 liters; at €1.75 a liter the trip costs €52.89, or about 11.4 cents per km.",
+  },
+  {
+    title: "Gas car or electric for the commute",
+    text: "A 40-mile daily round trip over 22 working days is 880 miles a month. At 28 MPG and $3.50 that is $110.00 of gasoline. An EV using 30 kWh per 100 miles needs 264 kWh; at $0.17 per kWh charging at home costs $44.88, saving $65.12 a month.",
+  },
+];
+
 export default function ToolSEOContent() {
   const { howToSteps, faq } = toolConfig.seo;
-
 
   return (
     <>
       {/* ── 1. Introduction ── */}
-      <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          What Is a Fuel Cost Calculator?
-        </h2>
+      <section className={`mt-12 ${SECTION.replace("mt-8 ", "")}`}>
+        <h2 className={`${H2} mb-4`} style={HEADING}>What This Fuel Cost Calculator Does</h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>fuel cost calculator</strong> is a free online tool that estimates how much a
-            trip will cost in fuel before you travel. Enter three values — distance, fuel efficiency
-            (MPG or km/L), and current fuel price — and it instantly returns total fuel needed,
-            total trip cost, and cost per mile or kilometer.
+            Enter a distance, your car&apos;s fuel economy and the fuel price, and the calculator returns the
+            <strong> fuel needed, the total trip cost and the cost per mile or kilometer</strong>. It works in
+            miles, MPG and gallons or in kilometers and liters, with economy as <strong>L/100 km</strong> (the
+            European convention) or km/L.
           </p>
           <p>
-            The formula is simple, but doing it correctly in your head is harder than it looks.
-            At 28 MPG and $3.65/gallon, a 240-mile trip takes 8.57 gallons and costs $31.29 —
-            not $32 (which you'd get from rounding to 8 gallons), not $33 (from rounding MPG to 30).
-            These small errors add up when planning multi-day road trips, comparing vehicles, or
-            submitting monthly mileage reimbursement reports where every dollar matters.
-          </p>
-          <p>
-            Built for <strong>commuters estimating monthly fuel spend, road trippers budgeting
-            multi-day routes, delivery drivers calculating per-job fuel costs, business travelers
-            preparing mileage reimbursement claims, and anyone comparing the running cost of two
-            vehicles before buying</strong>. Supports miles/MPG and km/km·L, multiple currencies,
-            CSV export. Browser-based, free, no signup.
+            For real trips it can double the distance for a <strong>round trip</strong>, <strong>split the
+            cost</strong> between passengers, and <strong>compare</strong> the same trip in another car or in an
+            <strong> electric car</strong> at your own electricity rate. Prices, currency and economy are always
+            yours to enter; the currency is only guessed from your location to start with.
           </p>
         </div>
       </section>
 
       {/* ── 2. How It Works ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-          How Fuel Cost Is Calculated
-        </h2>
-        <div className="space-y-4 text-gray-600 leading-relaxed">
-          <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
-            <p className="text-sm font-medium text-gray-500 mb-2">Core Formulas</p>
-            <div className="space-y-1 font-mono text-sm text-gray-900">
-              <p><span className="font-semibold">Fuel Needed</span> = Distance ÷ Fuel Efficiency (MPG or km/L)</p>
-              <p><span className="font-semibold">Trip Cost</span> = Fuel Needed × Fuel Price per unit</p>
-              <p><span className="font-semibold">Cost per Mile/km</span> = Trip Cost ÷ Distance</p>
-              <p className="text-gray-500 text-xs mt-2">Example (Imperial): 240 mi ÷ 28 MPG = 8.57 gal × $3.65 = <span className="text-green-600 font-semibold">$31.29</span></p>
-              <p className="text-gray-500 text-xs">Example (Metric): 380 km ÷ 14 km/L = 27.14 L × €1.75 = <span className="text-green-600 font-semibold">€47.50</span></p>
-            </div>
-          </div>
-          <p>Things that affect actual fuel consumption vs the calculated estimate:</p>
-          <ul className="space-y-1 ml-4 list-disc text-gray-600">
-            <li><strong>Speed</strong> — consumption rises sharply above 65–70 mph due to aerodynamic drag</li>
-            <li><strong>Terrain</strong> — uphill grades increase consumption 10–30%; downhill recovers some</li>
-            <li><strong>Traffic</strong> — stop-and-go city driving uses 20–40% more fuel than highway</li>
-            <li><strong>Climate</strong> — cold starts and AC use increase fuel consumption</li>
-            <li><strong>Load</strong> — additional cargo weight increases fuel use proportionally</li>
-          </ul>
-          <p className="text-sm text-gray-500">Use your vehicle's real-world average MPG or km/L from your fuel log — not the manufacturer's test figure — for the most accurate trip budget.</p>
+      <section className={SECTION}>
+        <h2 className={`${H2} mb-4`} style={HEADING}>How Fuel Cost Is Calculated</h2>
+        <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 mb-4 font-mono text-sm text-gray-900 space-y-1">
+          <p><span className="font-semibold">Fuel needed</span> = distance ÷ MPG (or km/L)</p>
+          <p><span className="font-semibold">Fuel needed</span> = distance × L/100 km ÷ 100</p>
+          <p><span className="font-semibold">Trip cost</span> = fuel needed × price per gallon or liter</p>
+          <p><span className="font-semibold">Electric</span> = distance ÷ 100 × kWh per 100 × price per kWh</p>
         </div>
+        <p className="text-gray-600 leading-relaxed">
+          Real consumption moves with speed, traffic, hills, load and temperature. Use your car&apos;s
+          real-world average from its trip computer or fill-ups rather than the official rating, and enter a
+          slightly worse figure for fast highway driving or winter trips.
+        </p>
       </section>
 
       {/* ── 3. Step-by-Step ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          How to Use the Fuel Cost Calculator
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
-            <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(({ name: title, text: desc }, i) => (
-                <li key={i} className="flex items-start">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
-                  <span><strong>{title}:</strong> {desc}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>What This Calculator Provides</h3>
-            <ul className="space-y-2 text-gray-600">
-              {[
-                "Total fuel needed for any trip",
-                "Total trip cost in your currency",
-                "Cost per mile or km",
-                "Imperial (miles/MPG) and Metric (km/km·L) modes",
-                "Currency selector (USD, EUR, GBP and more)",
-                "Real-time results as you type",
-                "Calculation history saved to browser",
-                "Export history to CSV",
-                "Copy result to clipboard",
-                "100% browser-based — no data sent to server",
-                "No registration required",
-              ].map((f, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-500 flex-shrink-0">✓</span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4. Use Cases ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Real-World Use Cases
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {[
-            {
-              title: "Monthly Commute Budget Planning",
-              scenario: "A commuter drives 22 miles each way to work, 5 days a week, 22 working days per month = 968 miles/month. Their car averages 32 MPG and local gas is $3.45/gallon. 968 ÷ 32 = 30.25 gallons × $3.45 = $104.36/month. They use the calculator each month when prices change to update their fuel budget before building the full household budget.",
-            },
-            {
-              title: "Road Trip Cost Comparison: Two Routes",
-              scenario: "A traveler is comparing two road trip routes from LA to Seattle: Route A is 1,135 miles (mostly highway); Route B is 1,050 miles but with mountain terrain. Their car gets 34 MPG on flat highway but around 26 MPG in hills. At $3.80/gallon: Route A = 1,135 ÷ 34 × $3.80 = $126.91. Route B = 1,050 ÷ 26 × $3.80 = $153.46. The shorter route costs $26 more due to the efficiency hit — they choose Route A.",
-            },
-            {
-              title: "Business Mileage Reimbursement",
-              scenario: "A sales representative drives 340 miles for a client visit. Their company reimburses actual fuel costs. Their car gets 29 MPG; current diesel price is $4.10/gallon. 340 ÷ 29 = 11.72 gal × $4.10 = $48.07. They enter this in the calculator, export the CSV, attach it to their expense report, and submit. The CSV includes distance, efficiency, price, and calculated cost — complete documentation for the finance team.",
-            },
-            {
-              title: "Comparing Two Vehicles Before Buying",
-              scenario: "A buyer is deciding between a 25 MPG SUV and a 42 MPG hybrid. They commute 15,000 miles per year at an average $3.70/gallon. SUV annual fuel cost: 15,000 ÷ 25 × $3.70 = $2,220. Hybrid: 15,000 ÷ 42 × $3.70 = $1,321. The hybrid saves $899/year in fuel. The hybrid costs $4,500 more to buy — payback in exactly 5 years. At 8 years of ownership, the hybrid saves $2,192 in net fuel costs after recouping the price premium.",
-            },
-            {
-              title: "Delivery Driver Per-Job Fuel Cost",
-              scenario: "A freelance delivery driver is evaluating whether a 45-km delivery job at €18 pay is worthwhile. Their van gets 11 km/L; diesel is €1.65/liter. 45 ÷ 11 = 4.09 L × €1.65 = €6.75 fuel one-way; round trip = €13.50. Net pay after fuel: €18 − €13.50 = €4.50 for 90 km of driving. They use the calculator to quickly screen jobs before accepting and set a minimum job pay rate relative to expected distance.",
-            },
-            {
-              title: "European Road Trip Multi-Segment Budget",
-              scenario: "A couple is planning a 10-day road trip through France, Switzerland, and Italy. They calculate each segment separately because fuel prices differ per country: France 420 km at €1.72/L; Switzerland 180 km at CHF 2.10/L; Italy 510 km at €1.85/L. Their car gets 18 km/L. France: €40.13; Switzerland: CHF 21.00; Italy: €52.42. Total fuel budget across all three: approximately €120–€130 depending on exchange rates — gives them a clear pre-trip number for the travel budget.",
-            },
-          ].map(({ title, scenario }) => (
-            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{scenario}</p>
-            </div>
+      <section className={SECTION}>
+        <h2 className={`${H2} mb-6`} style={HEADING}>How to Use the Fuel Cost Calculator</h2>
+        <ol className="space-y-4 text-gray-600 leading-relaxed">
+          {howToSteps.map(({ name: title, text: desc }, i) => (
+            <li key={i} className="flex items-start">
+              <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
+              <span><strong>{title}:</strong> {desc}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      {/* ── 5. Tips & Mistakes ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips &amp; Common Mistakes
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Track your real-world MPG from your own fuel log by dividing miles driven by gallons filled at each fill-up. Average your last 5–10 fill-ups. This is far more accurate than the manufacturer's test rating and reflects your actual driving conditions.",
-                "For long road trips, reduce your entered MPG by 10–15% if your route has significant mountain driving or you plan to cruise at 75+ mph. Aerodynamic drag at highway speeds disproportionately increases consumption.",
-                "Use the cost-per-mile or cost-per-km output when comparing vehicles or deciding between driving and other transport options. At $0.15/mile, a 200-mile trip costs $30 — directly comparable to a train ticket or ride-share fare.",
-                "For multi-country road trips in Europe, calculate each country separately with its own fuel price and distance. Fuel prices vary 20–40% between countries and using one average price misestimates the total.",
-                "Update the fuel price field before each long trip — prices can change 10–15% in a month. For a 500-mile trip, a $0.30/gallon price difference is about $5 on the total cost — small, but worth knowing for tight travel budgets.",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Don't use the manufacturer's EPA or WLTP fuel efficiency rating. These test cycle numbers are measured under ideal conditions and consistently overstate real-world efficiency. Most drivers achieve 10–20% lower MPG in real use. Using the rated figure will underestimate your actual fuel cost.",
-                "Don't forget to double the distance for round trips. One of the most common errors is entering one-way distance and wondering why the actual fuel spend was twice the estimate. For a return journey, enter total distance traveled.",
-                "Don't mix unit systems. If you enter distance in miles but accidentally enter fuel efficiency in km/L instead of MPG, the result will be wrong by a factor of approximately 2.35. Always verify both fields are in the same system before reading the result.",
-                "Don't use city MPG for a predominantly highway route or vice versa. If your car's city rating is 22 MPG and highway is 31 MPG, a mixed commute is approximately 26 MPG. Using the wrong figure can under- or over-estimate cost by 30%.",
-                "Don't ignore the fuel price direction when planning a long trip. If fuel prices are trending up, estimate based on the price you expect on the return leg, not today's price. A 10-cent/gallon rise on a 15-gallon return segment adds $1.50 — small but good planning practice for budgeting.",
-              ].map((mistake, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
-                  <span>{mistake}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Reference Table ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Fuel Cost Reference Tables
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Cost per 100 Miles at $3.50/gal</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">MPG</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Gallons / 100 mi</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Cost / 100 mi</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Vehicle Type</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[
-                    ["15", "6.67", "$23.33", "Large truck / SUV"],
-                    ["20", "5.00", "$17.50", "Mid SUV"],
-                    ["25", "4.00", "$14.00", "Average sedan"],
-                    ["30", "3.33", "$11.67", "Efficient sedan"],
-                    ["35", "2.86", "$10.00", "Small car"],
-                    ["40", "2.50", "$8.75",  "Economy car"],
-                    ["50", "2.00", "$7.00",  "Hybrid"],
-                    ["60", "1.67", "$5.83",  "Strong hybrid"],
-                  ].map(([mpg, gal, cost, type]) => (
-                    <tr key={mpg} className="hover:bg-gray-50">
-                      <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{mpg}</td>
-                      <td className="py-1.5 px-3 font-mono text-gray-600 text-xs">{gal}</td>
-                      <td className="py-1.5 px-3 font-mono text-green-600 font-semibold text-xs">{cost}</td>
-                      <td className="py-1.5 px-3 text-gray-500 text-xs">{type}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Cost per 100 km at €1.70/L</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">km/L</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">L/100km</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Cost / 100 km</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Vehicle Type</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[
-                    ["8",  "12.5 L", "€21.25", "Large diesel SUV"],
-                    ["10", "10.0 L", "€17.00", "Mid diesel"],
-                    ["12", "8.3 L",  "€14.17", "Typical petrol"],
-                    ["14", "7.1 L",  "€12.14", "Efficient petrol"],
-                    ["16", "6.25 L", "€10.63", "Small petrol"],
-                    ["20", "5.0 L",  "€8.50",  "Economy car"],
-                    ["25", "4.0 L",  "€6.80",  "Hybrid"],
-                  ].map(([kml, l100, cost, type]) => (
-                    <tr key={kml} className="hover:bg-gray-50">
-                      <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{kml}</td>
-                      <td className="py-1.5 px-3 font-mono text-gray-600 text-xs">{l100}</td>
-                      <td className="py-1.5 px-3 font-mono text-green-600 font-semibold text-xs">{cost}</td>
-                      <td className="py-1.5 px-3 text-gray-500 text-xs">{type}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. FAQ ── */}
-      <ToolFaq items={faq} />
-
-      {/* ── 8. Who Uses This ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This Fuel Cost Calculator?
-        </h2>
+      {/* ── 4. Worked Examples ── */}
+      <section className={SECTION}>
+        <h2 className={`${H2} mb-6`} style={HEADING}>Worked Examples</h2>
         <div className="grid md:grid-cols-3 gap-5">
-          {[
-            { icon: "🚗", title: "Daily Commuters", desc: "Calculate monthly fuel spend accurately for household budgeting. Update as fuel prices change to track the real cost of commuting against alternatives like transit." },
-            { icon: "🛣️", title: "Road Trippers", desc: "Budget fuel costs for multi-day trips and compare route options by total fuel cost. Plan stop locations based on expected fuel spend per leg." },
-            { icon: "🚚", title: "Delivery Drivers", desc: "Evaluate job profitability by calculating fuel cost against job pay before accepting. Track per-job fuel costs for accurate earnings accounting." },
-            { icon: "💼", title: "Business Travelers", desc: "Generate documented fuel cost calculations for expense reimbursement reports. Export CSV records for submission to finance departments." },
-            { icon: "🛒", title: "Car Buyers", desc: "Compare the real annual fuel cost of two vehicles before buying. Quantify the long-term fuel savings of a more efficient car against its price premium." },
-            { icon: "🌍", title: "International Travelers", desc: "Plan fuel budgets for multi-country road trips in Europe and Asia where both distances (km) and efficiency ratings (km/L or L/100km) use metric units." },
-          ].map(({ icon, title, desc }) => (
+          {EXAMPLES.map(({ title, text }) => (
             <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <div className="text-2xl mb-2">{icon}</div>
-              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600">{desc}</p>
+              <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={HEADING}>{title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">{text}</p>
             </div>
           ))}
         </div>
       </section>
+
+      {/* ── 5. Reference Tables ── */}
+      <section className={SECTION}>
+        <h2 className={`${H2} mb-6`} style={HEADING}>Fuel Cost per 100 Miles and per 100 km</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={HEADING}>Per 100 miles at ${US_PRICE.toFixed(2)}/gal</h3>
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-left py-2 px-3 font-semibold text-gray-700">MPG</th>
+                  <th className="text-right py-2 px-3 font-semibold text-gray-700">Gallons</th>
+                  <th className="text-right py-2 px-3 font-semibold text-gray-700">Cost</th>
+                  <th className="text-left py-2 px-3 font-semibold text-gray-700">Typical</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {MPG_ROWS.map(([mpg, label]) => (
+                  <tr key={mpg}>
+                    <td className="py-1.5 px-3 font-mono text-gray-800">{mpg}</td>
+                    <td className="py-1.5 px-3 text-right font-mono text-gray-600">{(100 / mpg).toFixed(2)}</td>
+                    <td className="py-1.5 px-3 text-right font-mono font-semibold text-gray-900">{money("$", (100 / mpg) * US_PRICE)}</td>
+                    <td className="py-1.5 px-3 text-xs text-gray-500">{label}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 mb-3" style={HEADING}>Per 100 km at €{EU_PRICE.toFixed(2)}/L</h3>
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-left py-2 px-3 font-semibold text-gray-700">L/100 km</th>
+                  <th className="text-right py-2 px-3 font-semibold text-gray-700">km/L</th>
+                  <th className="text-right py-2 px-3 font-semibold text-gray-700">Cost</th>
+                  <th className="text-left py-2 px-3 font-semibold text-gray-700">Typical</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {L100_ROWS.map(([l100, label]) => (
+                  <tr key={l100}>
+                    <td className="py-1.5 px-3 font-mono text-gray-800">{l100}</td>
+                    <td className="py-1.5 px-3 text-right font-mono text-gray-600">{(100 / l100).toFixed(1)}</td>
+                    <td className="py-1.5 px-3 text-right font-mono font-semibold text-gray-900">{money("€", l100 * EU_PRICE)}</td>
+                    <td className="py-1.5 px-3 text-xs text-gray-500">{label}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p className="text-xs text-gray-400 mt-4">
+          Example prices only. Enter today&apos;s local price in the calculator for your own figure.
+        </p>
+      </section>
+
+      {/* ── 6. FAQ ── */}
+      <ToolFaq items={faq} />
     </>
   );
 }
