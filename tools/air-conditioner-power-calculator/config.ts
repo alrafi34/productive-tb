@@ -54,7 +54,7 @@ export const airConditionerPowerCalculatorConfig = {
       { name: "Enter EER or SEER Rating", text: "Type the EER or SEER from the product label. Typical range: 8–10 for older units, 12–14 for modern units, 16–22 for premium inverter ACs. Use 10 if unknown." },
       { name: "Set Daily Hours and Days per Month", text: "Enter how many hours per day the AC runs and how many days per month (typically 30). This drives monthly energy and cost calculations." },
       { name: "Enter Your Electricity Rate", text: "Type your electricity cost per kWh from your bill and choose your currency; rates vary widely between countries and suppliers." },
-      { name: "Read the Results", text: "The calculator shows the running power, current draw at 230 V, daily, monthly and yearly energy use in kWh, and the monthly and yearly cost, updating as you change any input." },
+      { name: "Read the Results", text: "The calculator shows the running power, cooling capacity in BTU/h and kW, daily, monthly and yearly energy use in kWh, the monthly and yearly cost, and the current draw at the supply voltage you choose (120, 208, 230 or 240 V)." },
     ],
     faq: [
       { q: "How many watts does a 1 ton AC use?", a: "A 1 ton AC (12,000 BTU/h) consumes 12,000 ÷ EER watts. At EER 10: 1,200W. At EER 12: 1,000W. At EER 8 (older unit): 1,500W." },
@@ -74,7 +74,8 @@ export const airConditionerPowerCalculatorConfig = {
     "Or start from the unit's power input in watts",
     "Daily, monthly and yearly energy use (kWh)",
     "Monthly and yearly cost at your own tariff and currency",
-    "Current draw at 230 V",
+    "Current draw at 120, 208, 230 or 240 V",
+    "Cooling capacity in BTU/h and kW",
     "Energy-saving tip for your rating",
     "Runs in your browser — nothing is uploaded",
   ],

@@ -21,6 +21,7 @@ import {
 import ElectricMotorPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { guessMainsVoltage } from "@/lib/voltage";
 
 export default function ElectricMotorPowerCalculatorUI() {
   const savedSettings = loadSettings();
@@ -31,7 +32,7 @@ export default function ElectricMotorPowerCalculatorUI() {
     speed: savedSettings.mechanical?.speed || 1500
   });
   const [electricalInputs, setElectricalInputs] = useState<ElectricalInputs>({
-    voltage: savedSettings.electrical?.voltage || 220,
+    voltage: savedSettings.electrical?.voltage || 230,
     current: savedSettings.electrical?.current || 5,
     efficiency: savedSettings.electrical?.efficiency || 0.9,
     supply: savedSettings.electrical?.supply || 'single',
@@ -46,6 +47,15 @@ export default function ElectricMotorPowerCalculatorUI() {
   const [copied, setCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [history, setHistory] = useState(getHistory());
+
+  // First visit: start from the visitor's mains voltage (120 V or 230 V); always editable
+  useEffect(() => {
+    if (savedSettings.electrical?.voltage) return;
+    const frame = window.requestAnimationFrame(() =>
+      setElectricalInputs(prev => ({ ...prev, voltage: guessMainsVoltage() })));
+    return () => window.cancelAnimationFrame(frame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Build current inputs based on mode
   const getCurrentInputs = (): MotorPowerInputs => {
@@ -99,7 +109,7 @@ export default function ElectricMotorPowerCalculatorUI() {
 
   const handleReset = () => {
     setMechanicalInputs({ torque: 10, speed: 1500 });
-    setElectricalInputs({ voltage: 220, current: 5, efficiency: 0.9, supply: 'single', powerFactor: 0.85 });
+    setElectricalInputs({ voltage: guessMainsVoltage(), current: 5, efficiency: 0.9, supply: 'single', powerFactor: 0.85 });
     setHorsepowerInputs({ horsepower: 2 });
     setResult(null);
     setError(null);

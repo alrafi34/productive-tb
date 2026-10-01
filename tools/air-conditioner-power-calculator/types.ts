@@ -11,6 +11,7 @@ export interface ACPowerInputs {
   tariff: number; // Cost per kWh
   efficiency?: number; // EER or SEER rating, BTU/h per W
   ratingType?: ACRatingType;
+  voltage?: number; // supply voltage for the current draw
 }
 
 export interface ACPowerResult {
@@ -23,7 +24,8 @@ export interface ACPowerResult {
   dailyCost: number;
   monthlyCost: number;
   yearlyCost: number;
-  current: number; // Amperes (at 230V)
+  current: number; // Amperes at the supply voltage
+  voltage: number;
   consumptionLevel: 'low' | 'moderate' | 'high' | 'very-high';
   steps: string[];
 }

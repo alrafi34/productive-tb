@@ -15,6 +15,7 @@ import {
   debounce
 } from "./logic";
 import ShadowLengthCalculatorSEO from "./seo-content";
+import { PLACES, localToUtc, sunPosition, compassPoint, browserTimeZone } from "./sun";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
@@ -23,6 +24,15 @@ export default function ShadowLengthCalculatorUI() {
   const [sunAngle, setSunAngle] = useState(45);
   const [unit, setUnit] = useState<Unit>("meters");
   const [decimalPlaces, setDecimalPlaces] = useState(2);
+
+  // Sun angle typed in, or worked out from a date, time and place
+  const [mode, setMode] = useState<"angle" | "place">("angle");
+  const [placeIndex, setPlaceIndex] = useState(0); // -1 = custom coordinates
+  const [customLat, setCustomLat] = useState("");
+  const [customLon, setCustomLon] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("12:00");
+  const [locating, setLocating] = useState(false);
   
   const [calculation, setCalculation] = useState<ShadowCalculation | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -66,6 +76,64 @@ export default function ShadowLengthCalculatorUI() {
   useEffect(() => {
     debouncedCalculate();
   }, [objectHeight, sunAngle, unit, debouncedCalculate]);
+
+  // After hydration: today's date and the city in the visitor's own time zone
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const now = new Date();
+      const pad = (n: number) => String(n).padStart(2, "0");
+      setDate(`${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`);
+      const zone = browserTimeZone();
+      const match = PLACES.findIndex((p) => p.timeZone === zone);
+      if (match >= 0) setPlaceIndex(match);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const place = placeIndex >= 0
+    ? PLACES[placeIndex]
+    : { name: "Custom", lat: parseFloat(customLat), lon: parseFloat(customLon), timeZone: browserTimeZone() };
+  const placeValid = Number.isFinite(place.lat) && Math.abs(place.lat) <= 90 && Number.isFinite(place.lon) && Math.abs(place.lon) <= 180;
+  const sun = mode === "place" && placeValid && date && /^\d{1,2}:\d{2}$/.test(time)
+    ? sunPosition(localToUtc(date, time, place.timeZone), place.lat, place.lon)
+    : null;
+  const sunDown = sun !== null && sun.elevation <= 0;
+
+  // Feed the computed elevation into the same shadow calculation as the slider
+  useEffect(() => {
+    if (!sun) return;
+    const frame = window.requestAnimationFrame(() => setSunAngle(Math.round(sun.elevation * 10) / 10));
+    return () => window.cancelAnimationFrame(frame);
+  }, [sun?.elevation]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Shadow through the day at this place, on the hour while the sun is up
+  const dayTable = mode === "place" && placeValid && date
+    ? Array.from({ length: 19 }, (_, i) => i + 4).map((hour) => {
+        const at = `${String(hour).padStart(2, "0")}:00`;
+        const p = sunPosition(localToUtc(date, at, place.timeZone), place.lat, place.lon);
+        return { at, ...p };
+      }).filter((r) => r.elevation > 0.5)
+    : [];
+
+  const locateMe = () => {
+    if (!navigator.geolocation) return;
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setPlaceIndex(-1);
+        setCustomLat(pos.coords.latitude.toFixed(4));
+        setCustomLon(pos.coords.longitude.toFixed(4));
+        setLocating(false);
+      },
+      () => setLocating(false),
+      { timeout: 10000 },
+    );
+  };
+
+  const pickAngle = (angle: number) => {
+    setMode("angle");
+    setSunAngle(angle);
+  };
 
   // Draw visualization
   useEffect(() => {
@@ -202,6 +270,7 @@ export default function ShadowLengthCalculatorUI() {
   const handleReset = () => {
     setObjectHeight("10");
     setSunAngle(45);
+    setMode("angle");
     setUnit("meters");
     setDecimalPlaces(2);
     setCalculation(null);
@@ -255,6 +324,7 @@ export default function ShadowLengthCalculatorUI() {
 
   const loadFromHistory = (calc: ShadowCalculation) => {
     setObjectHeight(calc.objectHeight.toString());
+    setMode("angle");
     setSunAngle(calc.sunAngle);
     setUnit(calc.unit);
     setShowHistory(false);
@@ -403,6 +473,113 @@ export default function ShadowLengthCalculatorUI() {
                 />
               </div>
 
+              <div className="flex flex-wrap gap-2" role="tablist" aria-label="How to set the sun angle">
+                {([["angle", "Enter sun angle"], ["place", "Use date, time & place"]] as const).map(([m, label]) => (
+                  <button
+                    key={m}
+                    role="tab"
+                    aria-selected={mode === m}
+                    onClick={() => setMode(m)}
+                    className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
+                      mode === m ? "border-primary bg-primary/5 text-primary" : "border-gray-200 text-gray-600 hover:border-gray-300"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {mode === "place" && (
+                <div className="space-y-3 rounded-lg border border-gray-100 bg-gray-50 p-4">
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <label className="text-sm text-gray-700">
+                      Place
+                      <select
+                        value={placeIndex}
+                        onChange={(e) => setPlaceIndex(parseInt(e.target.value))}
+                        className="mt-1 w-full px-3 py-2 border border-gray-200 rounded-lg bg-white"
+                      >
+                        {PLACES.map((p, i) => <option key={p.name} value={i}>{p.name}</option>)}
+                        <option value={-1}>Custom coordinates</option>
+                      </select>
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <label className="text-sm text-gray-700">
+                        Date
+                        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="mt-1 w-full px-2 py-2 border border-gray-200 rounded-lg bg-white" />
+                      </label>
+                      <label className="text-sm text-gray-700">
+                        Local time
+                        <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="mt-1 w-full px-2 py-2 border border-gray-200 rounded-lg bg-white" />
+                      </label>
+                    </div>
+                  </div>
+                  {placeIndex === -1 && (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 items-end">
+                      <label className="text-sm text-gray-700">
+                        Latitude
+                        <input inputMode="decimal" value={customLat} onChange={(e) => setCustomLat(e.target.value)} placeholder="51.5074" className="mt-1 w-full px-2 py-2 border border-gray-200 rounded-lg bg-white" />
+                      </label>
+                      <label className="text-sm text-gray-700">
+                        Longitude
+                        <input inputMode="decimal" value={customLon} onChange={(e) => setCustomLon(e.target.value)} placeholder="-0.1278" className="mt-1 w-full px-2 py-2 border border-gray-200 rounded-lg bg-white" />
+                      </label>
+                      <button
+                        onClick={locateMe}
+                        className="col-span-2 sm:col-span-1 px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm text-gray-700 hover:border-gray-300"
+                      >
+                        {locating ? "Locating…" : "Use my location"}
+                      </button>
+                      <p className="col-span-2 sm:col-span-3 text-xs text-gray-500">
+                        North and east are positive. The time is read in your device&apos;s time zone ({place.timeZone}).
+                      </p>
+                    </div>
+                  )}
+                  {sun && (
+                    <p className="text-sm text-gray-700">
+                      {sunDown ? (
+                        <>The sun is below the horizon at this time, so there is no shadow.</>
+                      ) : (
+                        <>
+                          Sun <strong>{sun.elevation.toFixed(1)}°</strong> above the horizon, bearing{" "}
+                          <strong>{Math.round(sun.azimuth)}° ({compassPoint(sun.azimuth)})</strong>. The shadow points{" "}
+                          <strong>{compassPoint(sun.azimuth + 180)}</strong> ({Math.round((sun.azimuth + 180) % 360)}°).
+                        </>
+                      )}
+                  {dayTable.length > 0 && parseFloat(objectHeight) > 0 && (
+                    <details className="text-sm">
+                      <summary className="cursor-pointer text-primary font-medium">Shadow through the day</summary>
+                      <div className="overflow-x-auto mt-2">
+                        <table className="w-full text-xs">
+                          <thead>
+                            <tr className="text-left text-gray-500">
+                              <th className="py-1 pr-3 font-medium">Time</th>
+                              <th className="py-1 pr-3 font-medium text-right">Sun</th>
+                              <th className="py-1 pr-3 font-medium text-right">Shadow</th>
+                              <th className="py-1 font-medium">Points</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-100">
+                            {dayTable.map((r) => (
+                              <tr key={r.at}>
+                                <td className="py-1 pr-3 font-mono">{r.at}</td>
+                                <td className="py-1 pr-3 font-mono text-right">{r.elevation.toFixed(1)}°</td>
+                                <td className="py-1 pr-3 font-mono text-right">
+                                  {formatNumber(parseFloat(objectHeight) / Math.tan((r.elevation * Math.PI) / 180), 1)} {getUnitLabel(unit)}
+                                </td>
+                                <td className="py-1">{compassPoint(r.azimuth + 180)}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </details>
+                  )}
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Sun Elevation Angle: {sunAngle}°
@@ -410,7 +587,8 @@ export default function ShadowLengthCalculatorUI() {
                 <input
                   type="range"
                   value={sunAngle}
-                  onChange={(e) => setSunAngle(parseInt(e.target.value))}
+                  onChange={(e) => pickAngle(parseInt(e.target.value))}
+                  disabled={mode === "place"}
                   className="w-full"
                   min="1"
                   max="89"
@@ -437,7 +615,7 @@ export default function ShadowLengthCalculatorUI() {
               <div className="bg-red-50 border border-red-200 rounded-xl p-4">
                 <div className="flex items-center gap-2 text-red-800">
                   <span className="text-lg">⚠️</span>
-                  <span className="font-medium">{error}</span>
+                  <span className="font-medium">{sunDown ? "The sun is below the horizon at this time and place." : error}</span>
                 </div>
               </div>
             )}
@@ -486,7 +664,7 @@ export default function ShadowLengthCalculatorUI() {
                 <button
                   onClick={() => {
                     setObjectHeight("10");
-                    setSunAngle(45);
+                    pickAngle(45);
                     setUnit("meters");
                   }}
                   className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors text-left"
@@ -498,7 +676,7 @@ export default function ShadowLengthCalculatorUI() {
                 <button
                   onClick={() => {
                     setObjectHeight("5");
-                    setSunAngle(30);
+                    pickAngle(30);
                     setUnit("meters");
                   }}
                   className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors text-left"
@@ -510,7 +688,7 @@ export default function ShadowLengthCalculatorUI() {
                 <button
                   onClick={() => {
                     setObjectHeight("2");
-                    setSunAngle(60);
+                    pickAngle(60);
                     setUnit("meters");
                   }}
                   className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors text-left"

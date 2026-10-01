@@ -27,10 +27,28 @@ export const MOTOR_PRESETS: MotorPreset[] = [
     values: { torque: 15, speed: 1000 }
   },
   {
-    name: "AC Motor (230V, 5A)",
-    description: "Standard AC motor",
+    name: "Single-phase (120 V, 8 A)",
+    description: "US shop or pump motor",
+    mode: 'electrical',
+    values: { voltage: 120, current: 8, efficiency: 0.8, supply: 'single', powerFactor: 0.8 }
+  },
+  {
+    name: "Single-phase (230 V, 5 A)",
+    description: "UK / European motor",
     mode: 'electrical',
     values: { voltage: 230, current: 5, efficiency: 0.85, supply: 'single', powerFactor: 0.85 }
+  },
+  {
+    name: "Three-phase (480 V, 14 A)",
+    description: "US industrial motor",
+    mode: 'electrical',
+    values: { voltage: 480, current: 14, efficiency: 0.92, supply: 'three', powerFactor: 0.86 }
+  },
+  {
+    name: "Three-phase (400 V, 15 A)",
+    description: "European industrial motor",
+    mode: 'electrical',
+    values: { voltage: 400, current: 15, efficiency: 0.91, supply: 'three', powerFactor: 0.85 }
   },
   {
     name: "DC Motor (24V, 10A)",

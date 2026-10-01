@@ -19,9 +19,10 @@ export default function AverageCalculatorSEO() {
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
             Paste or type a list of numbers and the calculator returns the <strong>average (arithmetic
-            mean)</strong> as you type, together with the <strong>sum, count, minimum and maximum</strong>. Values
-            can be separated by commas, spaces, tabs or new lines, so a row or column copied from Excel or Google
-            Sheets works as it is.
+            mean)</strong> as you type, together with the <strong>count, sum, minimum, maximum, median, mode, range
+            and standard deviation</strong>. Tick <strong>Weighted average</strong> to give values different weights.
+            Values can be separated by commas, spaces, tabs or new lines, and figures like 1,000 or $25 are read as
+            numbers, so a row or column copied from Excel or Google Sheets works as it is.
           </p>
           <p>
             Use it for grades, prices, expenses, scores or measurements. The count is worth a glance: anything
@@ -65,8 +66,8 @@ export default function AverageCalculatorSEO() {
         </ul>
         <p className="text-gray-600 leading-relaxed mt-4">
           When a few values are far from the rest, as with incomes or house prices, the median is often the
-          fairer summary. When some values count more than others, such as a final exam worth 60% of a grade, use
-          a weighted average instead.
+          fairer summary. When some values count more than others, such as a final exam worth 60% of a grade, tick
+          Weighted average and enter the weights.
         </p>
       </section>
 

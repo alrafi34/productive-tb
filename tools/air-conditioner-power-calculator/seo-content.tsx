@@ -79,7 +79,8 @@ export default function AirConditionerPowerCalculatorSEO() {
                 "Or start from the unit's power input in watts",
                 "Daily, monthly and yearly energy use (kWh)",
                 "Monthly and yearly cost at your own tariff and currency",
-                "Current draw at 230 V",
+                "Current draw at 120, 208, 230 or 240 V",
+                "Cooling capacity in BTU/h and kW",
                 "Energy-saving tip for your rating",
                 "Runs in your browser — nothing is uploaded",
               ].map((f, i) => (

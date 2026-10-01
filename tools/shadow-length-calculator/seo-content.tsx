@@ -14,10 +14,10 @@ export default function ShadowLengthCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>shadow length calculator</strong> is a free online tool that computes how long a shadow will be
-            based on the height of an object and the sun's elevation angle. It answers a practical question that
-            architects, photographers, and anyone planning outdoor work regularly needs to solve: <em>how long will
-            this shadow be at this time of day?</em>
+            This <strong>shadow length calculator</strong> works out how long a shadow is from the height of an
+            object and the sun&apos;s elevation angle. You can set the angle yourself, or choose a city (or type
+            coordinates), a date and a local time and let it calculate where the sun is, how long the shadow is and
+            which way it points, with an hour-by-hour table for the whole day.
           </p>
           <p>
             The calculation relies on a single trigonometric relationship — <strong>Shadow Length = Object Height ÷
@@ -29,9 +29,8 @@ export default function ShadowLengthCalculatorSEO() {
           <p>
             Built for <strong>architects checking building shadow impact on neighboring properties, urban planners
             conducting shadow studies for permit applications, photographers planning golden-hour shoots, teachers
-            demonstrating trigonometry, and solar panel installers calculating shading distances</strong>. Enter any
-            object height and sun angle to get an accurate shadow length in meters or feet — no signup, fully
-            browser-based.
+            demonstrating trigonometry, and solar panel installers calculating shading distances</strong>. Everything,
+            including the sun position, is calculated in your browser.
           </p>
         </div>
       </section>
@@ -88,15 +87,13 @@ export default function ShadowLengthCalculatorSEO() {
             <ul className="space-y-2 text-gray-600">
               {[
                 "Shadow length from any object height and sun angle",
-                "Supports meters and feet",
-                "Real-time result as you adjust inputs",
-                "Visual diagram of the sun–object–shadow geometry",
-                "Shadow length reference table by angle",
-                "Copy result to clipboard",
-                "Export diagram as image",
-                "Works for buildings, trees, poles, people, and any vertical object",
-                "100% browser-based — no data sent to any server",
-                "No signup required",
+                "Sun elevation and direction from a date, local time and place",
+                "13 US, European and Australian cities, or your own coordinates",
+                "Shadow direction as a compass bearing",
+                "Hour-by-hour shadow table for the chosen day",
+                "Meters and feet, with a live diagram",
+                "Copy, history, and export as image or text",
+                "Runs in your browser — nothing is uploaded",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

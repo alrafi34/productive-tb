@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import CurrencySelect from "@/components/CurrencySelect";
 import { type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
+import { guessMainsVoltage } from "@/lib/voltage";
 import { ACPowerInputs, ACPowerResult, ACCapacityUnit, ACCapacityTon, ACRatingType } from "./types";
 import {
   calculateACPower,
@@ -41,13 +42,18 @@ export default function AirConditionerPowerCalculatorUI() {
     daysPerMonth: savedSettings.daysPerMonth || 30,
     tariff: savedSettings.tariff || 0.12,
     efficiency: savedSettings.efficiency || DEFAULT_EER,
-    ratingType: (savedSettings.ratingType as ACRatingType) || 'eer'
+    ratingType: (savedSettings.ratingType as ACRatingType) || 'eer',
+    voltage: savedSettings.voltage,
   });
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
 
   // Guessed after hydration so the server markup matches; always editable
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    const frame = window.requestAnimationFrame(() => {
+      setCurrency(guessCurrency());
+      // Mains voltage from the visitor's region unless they already chose one
+      setInputs(prev => (prev.voltage ? prev : { ...prev, voltage: guessMainsVoltage() }));
+    });
     return () => window.cancelAnimationFrame(frame);
   }, []);
   
@@ -110,6 +116,7 @@ export default function AirConditionerPowerCalculatorUI() {
 
   const handleReset = () => {
     setInputs({
+      voltage: inputs.voltage,
       capacityUnit: 'ton',
       capacityTon: 1.5,
       capacityWatt: 1800,
@@ -125,6 +132,7 @@ export default function AirConditionerPowerCalculatorUI() {
 
   const handleApplyPreset = (preset: typeof AC_PRESETS[0]) => {
     setInputs({
+      voltage: inputs.voltage,
       capacityUnit: 'ton',
       capacityTon: preset.capacityTon,
       capacityWatt: Math.round(tonsToWatts(preset.capacityTon, effectiveEER(inputs))),
@@ -237,7 +245,7 @@ export default function AirConditionerPowerCalculatorUI() {
                     <span className="font-semibold">{formatNumber(result.yearlyEnergy, 0)} kWh</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-primary-100">Current:</span>
+                    <span className="text-primary-100">Current ({result.voltage} V):</span>
                     <span className="font-semibold">{formatNumber(result.current, 2)} A</span>
                   </div>
                 </div>
@@ -442,11 +450,32 @@ export default function AirConditionerPowerCalculatorUI() {
                 </p>
               </div>
 
+              <div>
+                <label htmlFor="ac-voltage" className="block text-sm font-medium text-gray-700 mb-2">
+                  Supply Voltage
+                </label>
+                <select
+                  id="ac-voltage"
+                  value={inputs.voltage ?? 230}
+                  onChange={(e) => handleInputChange('voltage', parseInt(e.target.value))}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
+                >
+                  <option value={120}>120 V (US, Canada — window and portable units)</option>
+                  <option value={208}>208 V (US commercial)</option>
+                  <option value={230}>230 V (UK, Europe, Australia)</option>
+                  <option value={240}>240 V (US central and mini-split)</option>
+                </select>
+                <p className="text-xs text-gray-500 mt-1">Used for the current draw only; it does not change energy or cost.</p>
+              </div>
+
               {result && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="text-sm text-green-800">
                     {inputs.capacityUnit === 'ton' && (
                       <div><strong>Electrical draw</strong> = {formatNumber(result.coolingBtu ?? 0, 0)} BTU/h ÷ EER {formatNumber(result.eer ?? DEFAULT_EER, 2)} = {formatNumber(result.powerWatts, 0)} W</div>
+                    )}
+                    {inputs.capacityUnit === 'ton' && result.coolingBtu && (
+                      <div><strong>Cooling capacity</strong> = {formatNumber(result.coolingBtu, 0)} BTU/h = {formatNumber(result.coolingBtu / 3412.14, 2)} kW</div>
                     )}
                     <strong>Formula:</strong> Energy (kWh) = (Power × Hours × Days) / 1000
                   </div>
