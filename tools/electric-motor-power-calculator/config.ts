@@ -50,7 +50,7 @@ export const electricMotorPowerCalculatorConfig = {
       url: `${siteConfig.url}/tools/electrical/electric-motor-power-calculator`,
     },
     howToSteps: [
-      { name: "Choose a calculation method", text: "Pick Mechanical (torque and speed), Electrical (voltage and current) or Horsepower Conversion, or load a preset such as a conveyor motor or a 24 V DC motor." },
+      { name: "Choose a calculation method", text: "Pick Mechanical (torque and speed), Electrical (voltage and current) or Horsepower Conversion, or load a preset such as a 480 V or 400 V three-phase motor, a conveyor drive or a 24 V DC motor." },
       { name: "Mechanical: enter torque and speed", text: "Type the shaft torque in newton-meters and the speed in RPM. Power = 2π × RPM × torque ÷ 60." },
       { name: "Electrical: enter the supply values", text: "Choose single-phase AC, three-phase AC or DC, then enter voltage, current, power factor and efficiency from the nameplate. Three-phase uses the line-to-line voltage and the √3 factor." },
       { name: "Read the power", text: "The result shows the power in watts, kilowatts and horsepower, with each step of the working." },

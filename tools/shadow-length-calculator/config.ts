@@ -10,7 +10,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     title: "Shadow Length Calculator by Time & Date",
-    description: "Calculate shadow length from object height and sun elevation angle, with a live diagram and winter-noon sun angles by latitude. For site and solar planning.",
+    description: "Find a shadow's length and direction from object height and sun angle, or from a date, time and place. Hour-by-hour table and live diagram.",
     keywords: [
       "shadow length calculator",
       "sun shadow calculator",
@@ -45,26 +45,11 @@ export const toolConfig = {
       url: `${siteConfig.url}/tools/architecture/shadow-length-calculator`,
     },
     howToSteps: [
-      {
-        name: "Enter the Object Height",
-        text: "Type the height of the object casting the shadow into the height field. Select meters or feet using the unit toggle. The calculator accepts any positive number including decimals.",
-      },
-      {
-        name: "Set the Sun Elevation Angle",
-        text: "Use the angle slider or type directly into the angle field to set the sun's elevation above the horizon in degrees. Values range from 1° (sun near horizon, very long shadows) to 89° (sun nearly overhead, very short shadows). At 45°, the shadow equals the object height.",
-      },
-      {
-        name: "Read the Shadow Length",
-        text: "The shadow length result appears instantly as you adjust either input. The result is displayed in the same unit as your height input. The visual diagram updates in real time to show the geometric relationship between the object, the sun angle, and the shadow.",
-      },
-      {
-        name: "Try Different Angles for Time-of-Day Analysis",
-        text: "Change the sun angle to model different times of day. Use low angles (10–20°) for morning and evening, mid angles (40–60°) for mid-morning and mid-afternoon, and high angles (70–80°) for midday in summer.",
-      },
-      {
-        name: "Export Your Result",
-        text: "Click the copy button to copy the result to clipboard, or export the diagram as an image for use in design presentations, planning documents, or client reports.",
-      },
+      { name: "Enter the object height", text: "Type the height of the building, tree, pole or person and choose meters or feet." },
+      { name: "Set the sun angle — or let the tool find it", text: "Drag the sun elevation slider, or choose Use date, time & place and pick a city or enter coordinates, a date and a local time; the sun's elevation and direction are worked out for you." },
+      { name: "Read the shadow length and direction", text: "The shadow length appears in your unit and the other one. In date-and-place mode you also see which compass direction the shadow points." },
+      { name: "Check the whole day", text: "Open Shadow through the day to see the shadow length and direction on every hour while the sun is up." },
+      { name: "Copy, save or export", text: "Copy the result, save it to the history, or download the diagram as an image or the result as text." },
     ],
     faq: [
       {
@@ -77,7 +62,7 @@ export const toolConfig = {
       },
       {
         q: "How do I find the sun's elevation angle?",
-        a: "Sun elevation angle varies by location, date, and time of day. At solar noon it approximately equals 90° minus your latitude plus a seasonal correction of up to plus or minus 23.5°. You can find the exact angle for any location and time using a sun position app, a solar elevation chart, or an online ephemeris tool.",
+        a: "Choose Use date, time & place in the calculator: pick a city or type latitude and longitude, set the date and local time, and the sun's elevation and compass bearing are calculated with the NOAA solar position method. As a rule of thumb, the noon elevation is about 90° − latitude, plus up to 23.4° in summer and minus up to 23.4° in winter.",
       },
       {
         q: "What is the shadow length when the sun is at 45 degrees?",
@@ -105,8 +90,9 @@ export const toolConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs — object height and sun angle — are never transmitted to any server, stored in any database, or accessible to anyone other than you. The tool works offline once the page is loaded.",
+        a: "Yes. All calculations, including the sun position, run in your browser. If you press Use my location, your device shares its position with this page only to fill in the coordinates; nothing is sent to a server.",
       },
+      { q: "Which direction does a shadow point?", a: "Directly away from the sun. In the Northern Hemisphere the noon sun is to the south, so noon shadows point north; in the morning the sun is in the east and shadows point west, and in the evening the reverse. Date-and-place mode shows the exact bearing for the time you choose." },
     ],
   },
   features: [

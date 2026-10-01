@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { parseNumbers, calculateAverage, formatNumber, exportToCSV, downloadFile } from "./logic";
+import {
+  parseNumbers, calculateAverage, formatNumber, exportToCSV, downloadFile,
+  median, modes, standardDeviation, weightedAverage,
+} from "./logic";
 import AverageCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
@@ -11,6 +14,8 @@ export default function AverageCalculatorUI() {
   const [numbers, setNumbers] = useState<number[]>([]);
   const [average, setAverage] = useState<number>(0);
   const [copied, setCopied] = useState(false);
+  const [weighted, setWeighted] = useState(false);
+  const [weightInput, setWeightInput] = useState("");
 
   useEffect(() => {
     const parsed = parseNumbers(input);
@@ -18,8 +23,26 @@ export default function AverageCalculatorUI() {
     setAverage(calculateAverage(parsed));
   }, [input]);
 
+  const weights = parseNumbers(weightInput);
+  const weightedResult = weighted ? weightedAverage(numbers, weights) : null;
+  const modeValues = modes(numbers);
+  const stats = numbers.length > 0 ? [
+    { label: "Median", value: formatNumber(median(numbers)) },
+    { label: "Mode", value: modeValues.length ? modeValues.map(formatNumber).join(", ") : "none (no repeats)" },
+    { label: "Range", value: formatNumber(Math.max(...numbers) - Math.min(...numbers)) },
+    { label: "Std. deviation (sample)", value: numbers.length > 1 ? formatNumber(standardDeviation(numbers, "sample")) : "—" },
+    { label: "Std. deviation (population)", value: formatNumber(standardDeviation(numbers, "population")) },
+  ] : [];
+
   const handleCopy = () => {
-    navigator.clipboard.writeText(formatNumber(average));
+    navigator.clipboard.writeText(
+      [
+        `Average: ${formatNumber(average)}`,
+        ...(weightedResult !== null ? [`Weighted average: ${formatNumber(weightedResult)}`] : []),
+        `Count: ${numbers.length}`,
+        ...stats.map((x) => `${x.label}: ${x.value}`),
+      ].join("\n"),
+    );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -66,7 +89,28 @@ export default function AverageCalculatorUI() {
               />
               <div className="mt-3 text-xs text-gray-500">
                 {numbers.length > 0 ? `${numbers.length} numbers detected` : 'Enter at least one number'}
+                {" · "}1,000-style thousands separators and $ € £ signs are understood.
               </div>
+              <label className="mt-4 flex items-center gap-2 text-sm text-gray-700">
+                <input type="checkbox" checked={weighted} onChange={(e) => setWeighted(e.target.checked)} />
+                Weighted average (give each number a weight)
+              </label>
+              {weighted && (
+                <div className="mt-3">
+                  <textarea
+                    value={weightInput}
+                    onChange={(e) => setWeightInput(e.target.value)}
+                    placeholder="Weights in the same order, e.g. 0.2, 0.3, 0.5"
+                    aria-label="Weights"
+                    className="w-full rounded-lg border-2 border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 font-mono focus:outline-none focus:border-primary resize-none"
+                    rows={3}
+                  />
+                  <p className={`mt-1 text-xs ${weights.length && weights.length !== numbers.length ? "text-red-500" : "text-gray-500"}`}>
+                    {weights.length} weights for {numbers.length} numbers
+                    {weights.length && weights.length !== numbers.length ? " — the counts must match" : ""}
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -96,6 +140,11 @@ export default function AverageCalculatorUI() {
                   <h2 className="text-5xl font-bold tracking-tight break-words">
                     {formatNumber(average)}
                   </h2>
+                  {weightedResult !== null && (
+                    <p className="mt-3 text-primary-100">
+                      Weighted average: <span className="font-semibold text-white">{formatNumber(weightedResult)}</span>
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-3">
@@ -117,6 +166,12 @@ export default function AverageCalculatorUI() {
                         <span className="text-primary-100">Max:</span>
                         <span className="font-semibold">{Math.max(...numbers)}</span>
                       </div>
+                      {stats.map(({ label, value }) => (
+                        <div key={label} className="flex justify-between gap-4 text-sm">
+                          <span className="text-primary-100 text-left">{label}:</span>
+                          <span className="font-semibold text-right break-all">{value}</span>
+                        </div>
+                      ))}
                     </>
                   )}
                 </div>
@@ -127,7 +182,7 @@ export default function AverageCalculatorUI() {
                     disabled={numbers.length === 0}
                     className="w-full bg-white text-primary font-semibold py-2.5 rounded-lg hover:bg-gray-50 disabled:bg-white/50 disabled:text-primary/50 transition-colors shadow-sm disabled:cursor-not-allowed"
                   >
-                    {copied ? "✓ Copied!" : "📋 Copy Result"}
+                    {copied ? "✓ Copied!" : "📋 Copy Results"}
                   </button>
                 </div>
               </div>

@@ -126,11 +126,12 @@ export function calculateACPower(inputs: ACPowerInputs): ACPowerResult {
   steps.push(`Yearly Cost = ${yearlyEnergy.toFixed(2)} × ${tariff} = ${yearlyCost.toFixed(2)}`);
   steps.push('');
   
-  // Step 6: Calculate current draw (assuming 230V)
-  const current = powerWatts / 230;
-  steps.push('Step 6: Calculate Current Draw (at 230V)');
+  // Step 6: Current draw at the supply voltage (120 V North America, 230 V most other places)
+  const voltage = inputs.voltage && inputs.voltage > 0 ? inputs.voltage : 230;
+  const current = powerWatts / voltage;
+  steps.push(`Step 6: Calculate Current Draw (at ${voltage} V)`);
   steps.push(`Formula: Current (A) = Power (W) / Voltage (V)`);
-  steps.push(`Current = ${powerWatts.toFixed(2)} / 230 = ${current.toFixed(2)} A`);
+  steps.push(`Current = ${powerWatts.toFixed(2)} / ${voltage} = ${current.toFixed(2)} A`);
   
   // Determine consumption level
   let consumptionLevel: 'low' | 'moderate' | 'high' | 'very-high';
@@ -155,6 +156,7 @@ export function calculateACPower(inputs: ACPowerInputs): ACPowerResult {
     monthlyCost,
     yearlyCost,
     current,
+    voltage,
     consumptionLevel,
     steps
   };
@@ -293,7 +295,7 @@ export function exportToText(inputs: ACPowerInputs, result: ACPowerResult): stri
   lines.push(`Usage: ${inputs.hoursPerDay} hours/day`);
   lines.push(`Days per Month: ${inputs.daysPerMonth}`);
   lines.push(`Electricity Tariff: ${inputs.tariff} per kWh`);
-  lines.push(`Current Draw: ${formatNumber(result.current, 2)} A (at 230V)`);
+  lines.push(`Current Draw: ${formatNumber(result.current, 2)} A (at ${result.voltage} V)`);
   lines.push('');
   lines.push('ENERGY CONSUMPTION:');
   lines.push('-'.repeat(50));
