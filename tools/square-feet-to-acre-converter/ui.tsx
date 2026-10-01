@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import SquareFeetToAcreConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import { useValueParam } from "@/lib/use-value-param";
 import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
@@ -85,6 +86,15 @@ export default function SquareFeetToAcreConverterUI() {
     setInputs((prev) => ({ ...prev, value }));
     inputRef.current?.focus();
   };
+
+  // A value from the URL or a chart link: load it and bring the converter into view
+  const pickValue = (value: string) => {
+    setReversed(false);
+    setInputs((prev) => ({ ...prev, value }));
+    inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  useValueParam("sqft", inputs.value, pickValue);
 
   const handleReset = () => {
     setInputs({ value: "", precision: 4 });
@@ -452,7 +462,7 @@ export default function SquareFeetToAcreConverterUI() {
       </div>
 
       <RelatedStrip />
-      <SquareFeetToAcreConverterSEO />
+      <SquareFeetToAcreConverterSEO onPick={pickValue} />
       <RelatedTools />
     </>
   );

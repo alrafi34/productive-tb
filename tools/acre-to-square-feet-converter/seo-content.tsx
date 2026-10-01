@@ -1,9 +1,35 @@
+import Link from "next/link";
 import ToolFaq from "@/components/ToolFaq";
+import ValueLink from "@/components/ValueLink";
 import { acreToSquareFeetConverterConfig } from "./config";
 
-export default function AcreToSquareFeetConverterSEO() {
-  const { howToSteps, faq } = acreToSquareFeetConverterConfig.seo;
+const SQFT_PER_ACRE = 43560;
+const M2_PER_ACRE = 4046.8564224;
 
+const fmt = (n: number, digits: number) =>
+  n.toLocaleString("en-US", { maximumFractionDigits: digits });
+
+/* 0.10 to 1.00 acre in 0.01 steps: the lot sizes people search for one by one. */
+const LOT_ROWS = Array.from({ length: 91 }, (_, i) => ((i + 10) / 100).toFixed(2));
+
+const WHOLE_ROWS: [string, string][] = [
+  ["1", "About 90% of a football field between the goal lines"],
+  ["2", ""],
+  ["3", ""],
+  ["4", ""],
+  ["5", ""],
+  ["10", "A square about 660 ft on each side"],
+  ["20", ""],
+  ["40", "Quarter-quarter section — 1/16 square mile"],
+  ["80", "Half of a quarter section"],
+  ["100", ""],
+  ["160", "Quarter section — 1/4 square mile"],
+  ["320", "Half section"],
+  ["640", "One section — 1 square mile"],
+];
+
+export default function AcreToSquareFeetConverterSEO({ onPick }: { onPick?: (value: string) => void }) {
+  const { howToSteps, faq } = acreToSquareFeetConverterConfig.seo;
 
   return (
     <>
@@ -15,8 +41,8 @@ export default function AcreToSquareFeetConverterSEO() {
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
             An <strong>acres to square feet converter</strong> is a free online tool that instantly
-            converts any land area in acres to its equivalent in square feet — and handles the reverse
-            direction too. Enter acres, get square feet. The conversion uses the single exact factor:
+            converts any land area in acres to its equivalent in square feet. Enter acres, get square
+            feet — or pick a lot size from the chart below. The conversion uses the single exact factor:
             <strong> 1 acre = 43,560 square feet</strong>, applied to any decimal or whole-number input
             with up to 6 decimal places of precision.
           </p>
@@ -86,11 +112,12 @@ export default function AcreToSquareFeetConverterSEO() {
                 "0, 2, 4, and 6 decimal precision options",
                 "Presets: 0.25, 0.5, 1, 5, 10 acres",
                 "Comma-formatted output for large numbers",
-                "Full reference table (common acre values)",
+                "Clickable chart from 0.10 to 1.00 acre and up to 640 acres",
+                "Shareable links to any value, e.g. ?acres=0.25",
                 "Conversion history (last 10 entries)",
                 "Copy result to clipboard",
                 "Export conversion report as text",
-                "Keyboard shortcuts (Enter to convert, Esc to reset)",
+                "Press Esc to clear the input",
                 "100% browser-based — no data sent to server",
                 "No registration required",
               ].map((f, i) => (
@@ -104,10 +131,10 @@ export default function AcreToSquareFeetConverterSEO() {
         </div>
       </section>
 
-      {/* ── 4. Use Cases ── */}
+      {/* ── 4. Worked Examples ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Real-World Use Cases
+          Worked Examples
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {[
@@ -123,18 +150,6 @@ export default function AcreToSquareFeetConverterSEO() {
               title: "Agricultural Seed and Fertilizer Planning",
               scenario: "A market gardener is planting a 3.5-acre field of sweet corn. The seed supplier lists coverage rates in square feet per bag (1 bag per 1,000 sq ft at recommended spacing). 3.5 × 43,560 = 152,460 sq ft. At 1,000 sq ft per bag: 152,460 ÷ 1,000 = 152.46 bags — ordered as 153 bags. Fertilizer application rate is 0.5 lb per 100 sq ft: 152,460 × 0.005 = 762.3 lbs required.",
             },
-            {
-              title: "Real Estate Agent Listing Conversion",
-              scenario: "A real estate agent in Texas is listing a 7.8-acre rural property. The MLS listing platform requires area in both acres and square feet. 7.8 × 43,560 = 339,768 sq ft. The agent enters both values: '7.8 acres (339,768 sq ft)' — immediately readable for local buyers who think in acres and out-of-state buyers who think in square feet. The dual-unit listing gets 40% more inquiries than acreage-only listings on the same platform.",
-            },
-            {
-              title: "Comparing Multiple Parcels for Investment",
-              scenario: "A land investor is comparing three rural parcels: 12.4 acres, 8.75 acres, and 15.1 acres. Converting each: 12.4 × 43,560 = 540,144 sq ft; 8.75 × 43,560 = 381,150 sq ft; 15.1 × 43,560 = 657,756 sq ft. Total investable area across all three parcels: 1,579,050 sq ft = 36.25 acres. At $0.85 per sq ft asking price, the combined land cost is $1,342,192 — the investor evaluates whether the total square footage justifies the combined price.",
-            },
-            {
-              title: "Landscape and Irrigation Design",
-              scenario: "A landscaping contractor is designing an irrigation system for a 2.25-acre commercial property. The irrigation specification calls out coverage in square feet per zone, with each zone covering 8,000 sq ft. 2.25 × 43,560 = 98,010 sq ft total. Number of zones needed: 98,010 ÷ 8,000 = 12.25 — rounded up to 13 zones. Sod requirement at 1.1 sq ft per roll: 98,010 ÷ 1.1 = 89,100 rolls. Both the zone count and material order flow directly from the acre-to-sq-ft conversion.",
-            },
           ].map(({ title, scenario }) => (
             <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
               <h3 className="font-semibold text-gray-800 mb-2 text-sm" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
@@ -144,162 +159,79 @@ export default function AcreToSquareFeetConverterSEO() {
         </div>
       </section>
 
-      {/* ── 5. Tips & Mistakes ── */}
+      {/* ── 5. Conversion Charts ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Tips &amp; Common Mistakes
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+          Acres to Square Feet Chart
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Pro Tips</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Use 44,000 as a rough mental multiplier for quick estimates — multiply acres by 44,000 for an approximate square footage. This is 1% high (overestimates by about 440 sq ft per acre), acceptable for casual comparisons but not for permits, listings, or purchase contracts.",
-                "When evaluating a property for construction, subtract the house footprint from the total sq ft to find usable outdoor area. Most zoning codes express lot coverage limits as a percentage of total lot area in square feet — convert your deed's acreage first, then calculate coverage against the ordinance.",
-                "For agricultural applications, check whether your supplier's coverage rates are given in sq ft or acres. Fertilizer, seed, and pesticide rates are often listed in pounds per 1,000 sq ft or per acre — convert your field size to whichever unit matches the product label before calculating quantity.",
-                "Property deeds in the US often describe land in acres to four decimal places — for example, '2.4375 acres'. This is 2 + 7/16 acres, expressed decimally from the old surveying fraction system. Converting: 2.4375 × 43,560 = 106,181.25 sq ft. The fractional precision in the deed matters for boundary disputes and title insurance.",
-                "When comparing listings across different markets, some US states list rural properties in acres while urban listings use square feet. Converting everything to sq ft gives a consistent basis for price-per-sq-ft comparisons: divide the listing price by the converted sq ft to get the price per square foot regardless of how the original listing stated the size.",
-              ].map((tip, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-primary font-bold flex-shrink-0 mt-0.5">💡</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
-            <ul className="space-y-3 text-gray-600 leading-relaxed">
-              {[
-                "Don't round 43,560 to 43,500 or 44,000 for formal documents. On a 10-acre parcel, rounding to 44,000 gives 440,000 sq ft instead of the correct 435,600 sq ft — a difference of 4,400 sq ft, which at $10/sq ft is a $44,000 valuation error.",
-                "Don't confuse acres with hectares when reading international property listings. 1 acre ≠ 1 hectare. 1 hectare = 2.47 acres = 107,639 sq ft. A European listing of '2 hectares' is 215,278 sq ft, not 87,120 sq ft (which would be 2 acres). Always confirm which unit the listing uses before converting.",
-                "Don't assume a 'square acre' is the only shape. An acre is a unit of area, not shape. 43,560 sq ft can be a long narrow strip (e.g., 200 ft × 217.8 ft), a wide rectangle (e.g., 150 ft × 290.4 ft), or any irregular polygon. When evaluating buildability, dimensions matter as much as total area.",
-                "Don't use the US survey acre for modern transactions. The US survey acre (43,560.174 sq ft) differs from the international acre (43,560 sq ft) by 0.174 sq ft per acre — negligible for most purposes but occasionally found in older legal descriptions for government land parcels in the western US. Modern property transactions use the international acre.",
-                "Don't skip the conversion step when calculating setback compliance. Zoning ordinances set minimum setbacks in feet from property lines — these are linear dimensions, not area. Converting the lot from acres to sq ft gives you the total area, but you still need the actual lot dimensions (length × width) to check whether a structure meets the 15-ft side setback and 25-ft front setback requirements.",
-              ].map((mistake, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">✕</span>
-                  <span>{mistake}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Reference Table ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Acres to Square Feet Conversion Reference Table
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Acres → Square Feet</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Acres</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Square Feet</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Context</th>
+        <p className="text-gray-600 mb-6">
+          Click any acre value to load it into the converter. The square side is the length of each side
+          if the lot were a perfect square — a quick way to picture the size.
+        </p>
+        <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+          0.10 to 1.00 acre (residential lot sizes)
+        </h3>
+        <div className="grid md:grid-cols-3 gap-x-6">
+          {[LOT_ROWS.slice(0, 30), LOT_ROWS.slice(30, 60), LOT_ROWS.slice(60)].map((rows, col) => (
+            <table key={col} className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-left py-2 px-2 font-semibold text-gray-700">Acres</th>
+                  <th className="text-right py-2 px-2 font-semibold text-gray-700">Sq ft</th>
+                  <th className="text-right py-2 px-2 font-semibold text-gray-700">Square side</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {rows.map((acres) => (
+                  <tr key={acres} className="hover:bg-gray-50">
+                    <td className="py-1 px-2 text-xs">
+                      <ValueLink param="acres" value={acres} onPick={onPick}>{acres}</ValueLink>
+                    </td>
+                    <td className="py-1 px-2 text-right font-mono text-xs text-gray-900">{fmt(Number(acres) * SQFT_PER_ACRE, 1)}</td>
+                    <td className="py-1 px-2 text-right font-mono text-xs text-gray-500">{fmt(Math.sqrt(Number(acres) * SQFT_PER_ACRE), 1)} ft</td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[
-                    ["0.1",   "4,356",      "Small urban lot"],
-                    ["0.25",  "10,890",     "Quarter-acre residential lot"],
-                    ["0.5",   "21,780",     "Half-acre suburban plot"],
-                    ["0.75",  "32,670",     "Three-quarter acre"],
-                    ["1",     "43,560",     "Standard acre (≈ football field)"],
-                    ["1.5",   "65,340",     "Large residential lot"],
-                    ["2",     "87,120",     "Small rural parcel"],
-                    ["2.5",   "108,900",    "Small farm field"],
-                    ["5",     "217,800",    "Medium field or small farm"],
-                    ["10",    "435,600",    "Large land parcel"],
-                    ["25",    "1,089,000",  "Small ranch"],
-                    ["50",    "2,178,000",  "Medium farm"],
-                    ["100",   "4,356,000",  "Large farm / estate"],
-                    ["320",   "13,939,200", "Half-section (US survey)"],
-                    ["640",   "27,878,400", "1 square mile / 1 section"],
-                  ].map(([ac, sqft, ctx]) => (
-                    <tr key={ac} className="hover:bg-gray-50">
-                      <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{ac} ac</td>
-                      <td className="py-1.5 px-3 font-mono text-gray-900 font-semibold text-xs">{sqft}</td>
-                      <td className="py-1.5 px-3 text-gray-500 text-xs">{ctx}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Square Feet → Acres</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Square Feet</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Acres</th>
-                    <th className="text-left py-2 px-3 font-semibold text-gray-700">Context</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[
-                    ["5,000",      "0.1148", "Small urban lot"],
-                    ["10,000",     "0.2296", "Typical city lot"],
-                    ["10,890",     "0.25",   "Quarter acre — exact"],
-                    ["15,000",     "0.3444", "Medium suburban lot"],
-                    ["21,780",     "0.5",    "Half acre — exact"],
-                    ["27,000",     "0.6199", "Large suburban lot"],
-                    ["43,560",     "1.0",    "One acre — exact"],
-                    ["65,000",     "1.4923", "Large lot / small acreage"],
-                    ["87,120",     "2.0",    "Two acres — exact"],
-                    ["100,000",    "2.2957", "Large rural parcel"],
-                    ["217,800",    "5.0",    "Five acres — exact"],
-                    ["435,600",    "10.0",   "Ten acres — exact"],
-                    ["500,000",    "11.478", "Small ranch"],
-                    ["1,000,000",  "22.957", "Large development site"],
-                    ["4,356,000",  "100.0",  "100 acres — exact"],
-                  ].map(([sqft, ac, ctx]) => (
-                    <tr key={sqft} className="hover:bg-gray-50">
-                      <td className="py-1.5 px-3 font-mono font-semibold text-primary text-xs">{sqft}</td>
-                      <td className="py-1.5 px-3 font-mono text-gray-900 font-semibold text-xs">{ac}</td>
-                      <td className="py-1.5 px-3 text-gray-500 text-xs">{ctx}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <p className="text-xs text-gray-400 mt-4">* All values use the exact factor: 1 acre = 43,560 sq ft. Rounded to 4 decimal places for display where applicable.</p>
-      </section>
-
-      {/* ── 7. FAQ ── */}
-      <ToolFaq items={faq} />
-
-      {/* ── 8. Who Uses This ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Who Uses This Acres to Square Feet Converter?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            { icon: "🏡", title: "Home Buyers & Sellers", desc: "Translate acreage listings into square feet to evaluate lot size, estimate usable yard space, and compare properties listed with inconsistent units across different markets." },
-            { icon: "🏗️", title: "Architects & Contractors", desc: "Convert deed-described land area to square feet for site plans, lot coverage calculations, and permit applications that require total area in sq ft rather than acres." },
-            { icon: "🌾", title: "Farmers & Agronomists", desc: "Calculate seed, fertilizer, and pesticide quantities from supplier coverage rates expressed in square feet, using the converted field area from the deed or survey map." },
-            { icon: "📋", title: "Real Estate Agents", desc: "Add square footage equivalents to acreage listings for buyers unfamiliar with acres, and quickly convert between units when preparing comparative market analyses." },
-            { icon: "🏛️", title: "Planning & Zoning", desc: "Verify that proposed development areas comply with zoning ordinances that express lot coverage, open space, and impervious surface limits in square feet." },
-            { icon: "📐", title: "Land Surveyors & Appraisers", desc: "Cross-check survey plat totals, verify deed descriptions, and prepare appraisal reports that require area in both acres and square feet for different sections of the document." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">
-              <div className="text-2xl mb-2">{icon}</div>
-              <h3 className="font-semibold text-gray-800 mb-1" style={{ fontFamily: "var(--font-heading)" }}>{title}</h3>
-              <p className="text-sm text-gray-600">{desc}</p>
-            </div>
+                ))}
+              </tbody>
+            </table>
           ))}
         </div>
+
+        <h3 className="text-lg font-medium text-gray-800 mt-8 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+          Whole acres, farms and survey sections
+        </h3>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Acres</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Square feet</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Square meters</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Note</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {WHOLE_ROWS.map(([acres, note]) => (
+                <tr key={acres} className="hover:bg-gray-50">
+                  <td className="py-1.5 px-3 text-xs">
+                    <ValueLink param="acres" value={acres} onPick={onPick}>{acres}</ValueLink>
+                  </td>
+                  <td className="py-1.5 px-3 text-right font-mono text-xs text-gray-900">{fmt(Number(acres) * SQFT_PER_ACRE, 0)}</td>
+                  <td className="py-1.5 px-3 text-right font-mono text-xs text-gray-900">{fmt(Number(acres) * M2_PER_ACRE, 0)}</td>
+                  <td className="py-1.5 px-3 text-xs text-gray-500">{note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400 mt-4">
+          Exact factors: 1 acre = 43,560 sq ft = 4,046.856 m². Sections follow the US Public Land Survey
+          System. Going the other way? Use the{" "}
+          <Link href="/tools/land/square-feet-to-acre-converter" className="text-primary hover:underline">square feet to acres converter</Link>.
+        </p>
       </section>
+
+      {/* ── 6. FAQ ── */}
+      <ToolFaq items={faq} />
     </>
   );
 }

@@ -16,6 +16,7 @@ import {
 } from "./logic";
 import AcreToSquareFeetConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
+import { useValueParam } from "@/lib/use-value-param";
 import RelatedStrip from "@/components/RelatedStrip";
 
 const PRESETS = [
@@ -79,6 +80,14 @@ export default function AcreToSquareFeetConverterUI() {
     setInputs((prev) => ({ ...prev, value }));
     inputRef.current?.focus();
   };
+
+  // A value from the URL or a chart link: load it and bring the converter into view
+  const pickValue = (value: string) => {
+    setInputs((prev) => ({ ...prev, value }));
+    inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  useValueParam("acres", inputs.value, pickValue);
 
   const handleReset = () => {
     setInputs({ value: "", precision: 2 });
@@ -402,7 +411,7 @@ export default function AcreToSquareFeetConverterUI() {
       </div>
 
       <RelatedStrip />
-      <AcreToSquareFeetConverterSEO />
+      <AcreToSquareFeetConverterSEO onPick={pickValue} />
       <RelatedTools />
     </>
   );
