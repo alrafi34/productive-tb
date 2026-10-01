@@ -161,28 +161,31 @@ export default function BmiCalculatorSEO() {
               <tr className="border-b-2 border-gray-200">
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">BMI Range</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Category</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-700">Health Risk</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-700">Common Associations</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-700">Risk of related disease (WHO)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {[
-                ["Below 18.5",  "Underweight",     "Moderate–High",    "Malnutrition, bone density loss, immune suppression, anemia"],
-                ["18.5 – 24.9", "Normal Weight",   "Low",              "Associated with best long-term health outcomes in most populations"],
-                ["25.0 – 29.9", "Overweight",      "Increased",        "Elevated risk of hypertension, type 2 diabetes, metabolic syndrome"],
-                ["30.0 – 34.9", "Obese (Class I)",  "High",             "Significant cardiovascular and diabetes risk; sleep apnea common"],
-                ["35.0 – 39.9", "Obese (Class II)", "Very High",        "High surgical risk; strong association with metabolic disease"],
-                ["40.0+",       "Obese (Class III)","Extremely High",   "Severe comorbidity burden; bariatric intervention often considered"],
-              ].map(([range, category, risk, associations]) => (
+                ["Below 18.5",  "Underweight",      "Low, but the risk of other clinical problems rises"],
+                ["18.5 – 24.9", "Normal weight",    "Average"],
+                ["25.0 – 29.9", "Overweight",       "Increased"],
+                ["30.0 – 34.9", "Obesity class I",  "Moderate"],
+                ["35.0 – 39.9", "Obesity class II", "Severe"],
+                ["40.0+",       "Obesity class III","Very severe"],
+              ].map(([range, category, risk]) => (
                 <tr key={range} className="hover:bg-gray-50">
                   <td className="py-2.5 px-4 font-mono font-semibold text-primary">{range}</td>
                   <td className="py-2.5 px-4 font-semibold text-gray-800">{category}</td>
                   <td className="py-2.5 px-4 text-gray-600 text-xs">{risk}</td>
-                  <td className="py-2.5 px-4 text-gray-500 text-xs">{associations}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <p className="text-xs text-gray-500 mt-3">
+            Source: World Health Organization adult BMI classification (Technical Report Series 894); the US CDC
+            uses the same cut-offs for adults. These categories do not apply to children and teens, who are
+            assessed with BMI-for-age percentiles.
+          </p>
         </div>
 
         <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>

@@ -26,6 +26,8 @@ export default function RoomAreaCalculatorUI() {
     unit: 'ft'
   });
   
+  // Extra rectangles in the same unit, for L-shaped rooms or several rooms
+  const [extras, setExtras] = useState<{ length: string; width: string }[]>([]);
   const [area, setArea] = useState<number>(0);
   const [conversions, setConversions] = useState({ sqft: 0, sqm: 0, sqyd: 0 });
   const [precision, setPrecision] = useState<number>(2);
@@ -50,7 +52,12 @@ export default function RoomAreaCalculatorUI() {
     const width = parseFloat(dimensions.width);
     
     if (!isNaN(length) && !isNaN(width) && length > 0 && width > 0) {
-      const calculatedArea = calculateRoomArea(length, width);
+      const extraArea = extras.reduce((sum, x) => {
+        const l = parseFloat(x.length);
+        const w = parseFloat(x.width);
+        return l > 0 && w > 0 ? sum + calculateRoomArea(l, w) : sum;
+      }, 0);
+      const calculatedArea = calculateRoomArea(length, width) + extraArea;
       setArea(calculatedArea);
       
       const allConversions = getAllConversions(calculatedArea, dimensions.unit);
@@ -75,7 +82,7 @@ export default function RoomAreaCalculatorUI() {
       setTilesNeeded(0);
       setGallonsNeeded(0);
     }
-  }, [dimensions, tileLength, tileWidth, wastage, coverage]);
+  }, [dimensions, extras, tileLength, tileWidth, wastage, coverage]);
 
   const updateDimension = (field: keyof RoomDimensions, value: string | Unit) => {
     // Handle unit conversion
@@ -107,6 +114,11 @@ export default function RoomAreaCalculatorUI() {
         length: newLength,
         width: newWidth
       }));
+      const convert = (v: string) => {
+        const n = parseFloat(v);
+        return isNaN(n) ? v : convertDimension(n, oldUnit, newUnit).toString();
+      };
+      setExtras(prev => prev.map(x => ({ length: convert(x.length), width: convert(x.width) })));
     } else {
       setDimensions(prev => ({ ...prev, [field]: value }));
     }
@@ -131,6 +143,7 @@ export default function RoomAreaCalculatorUI() {
 
   const handleReset = () => {
     setDimensions({ length: '', width: '', unit: dimensions.unit });
+    setExtras([]);
     setArea(0);
     setConversions({ sqft: 0, sqm: 0, sqyd: 0 });
     setTileLength('');
@@ -140,7 +153,8 @@ export default function RoomAreaCalculatorUI() {
   };
 
   const handleCopy = () => {
-    const text = `Room: ${dimensions.length} × ${dimensions.width} ${dimensions.unit}\nArea: ${formatArea(area, dimensions.unit)}`;
+    const sections = [dimensions, ...extras].filter(x => parseFloat(x.length) > 0 && parseFloat(x.width) > 0);
+    const text = `${sections.length > 1 ? "Sections" : "Room"}: ${sections.map(x => `${x.length} × ${x.width}`).join(" + ")} ${dimensions.unit}\nArea: ${formatArea(area, dimensions.unit)}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -355,10 +369,58 @@ export default function RoomAreaCalculatorUI() {
                 </div>
               </div>
 
+              {extras.map((x, i) => (
+                <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-3 items-end">
+                  <label className="text-sm text-gray-700">
+                    Section {i + 2} length ({dimensions.unit})
+                    <input
+                      type="number"
+                      value={x.length}
+                      onChange={(e) => setExtras(prev => prev.map((p, j) => j === i ? { ...p, length: e.target.value } : p))}
+                      className="mt-1 w-full px-3 py-2 border-2 border-gray-200 rounded-lg font-mono"
+                      min="0"
+                      step="0.1"
+                    />
+                  </label>
+                  <label className="text-sm text-gray-700">
+                    Width ({dimensions.unit})
+                    <input
+                      type="number"
+                      value={x.width}
+                      onChange={(e) => setExtras(prev => prev.map((p, j) => j === i ? { ...p, width: e.target.value } : p))}
+                      className="mt-1 w-full px-3 py-2 border-2 border-gray-200 rounded-lg font-mono"
+                      min="0"
+                      step="0.1"
+                    />
+                  </label>
+                  <button
+                    onClick={() => setExtras(prev => prev.filter((_, j) => j !== i))}
+                    aria-label={`Remove section ${i + 2}`}
+                    className="px-3 py-2 rounded-lg border border-gray-200 text-gray-500 hover:text-red-500 hover:border-red-200"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+              <button
+                onClick={() => setExtras(prev => [...prev, { length: '', width: '' }])}
+                className="text-sm font-medium text-primary hover:underline"
+              >
+                + Add a section (L-shaped room or another room)
+              </button>
+              {extras.length === 0 && (
+                <p className="text-xs text-gray-500 -mt-2">
+                  For an L-shaped room, measure it as two rectangles that do not overlap and add the second one here.
+                </p>
+              )}
+
               {area > 0 && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="text-sm text-green-800">
-                    <strong>Formula:</strong> Area = Length × Width = {dimensions.length} × {dimensions.width} = {area.toFixed(precision)} {dimensions.unit}²
+                    <strong>Formula:</strong> Area = Length × Width = {dimensions.length} × {dimensions.width}
+                    {extras.filter(x => parseFloat(x.length) > 0 && parseFloat(x.width) > 0).map((x, i) => (
+                      <span key={i}> + {x.length} × {x.width}</span>
+                    ))}{" "}= {area.toFixed(precision)} {dimensions.unit}²
                   </div>
                 </div>
               )}
@@ -379,7 +441,7 @@ export default function RoomAreaCalculatorUI() {
                   </div>
                   {area > 0 && (
                     <div className="mt-2 text-sm text-gray-500">
-                      Area: {formatArea(area, dimensions.unit, precision)}
+                      Area{extras.length ? " (all sections)" : ""}: {formatArea(area, dimensions.unit, precision)}
                     </div>
                   )}
                 </div>
