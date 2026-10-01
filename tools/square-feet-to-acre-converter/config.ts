@@ -66,8 +66,8 @@ export const squareFeetToAcreConverterConfig = {
         text: "Click any preset button for common lot sizes — 10,890 (quarter acre), 21,780 (half acre), 43,560 (one acre), or 87,120 (two acres) sq ft — to instantly load that value.",
       },
       {
-        name: "Swap to Acres to Square Feet",
-        text: "Click the swap button to reverse the conversion direction — enter acres and receive square feet. The same tool covers both directions without navigating away.",
+        name: "Reverse to Acres to Square Feet",
+        text: "Click the Reverse button to switch the conversion direction — enter acres and receive square feet. The same tool covers both directions without navigating away.",
       },
       {
         name: "Copy or Export Your Result",
@@ -101,7 +101,7 @@ export const squareFeetToAcreConverterConfig = {
       },
       {
         q: "Can I convert acres back to square feet with this tool?",
-        a: "Yes. Use the swap button to reverse the direction and enter acres to receive square feet. The same tool covers both sq ft to acres and acres to sq ft. For dedicated reverse conversion, the acre-to-square-feet-converter is the companion tool linked from this page.",
+        a: "Yes. Use the Reverse button to switch direction and enter acres to receive square feet. The same tool covers both sq ft to acres and acres to sq ft. For dedicated reverse conversion, the acre-to-square-feet-converter is the companion tool linked from this page.",
       },
       {
         q: "Is the square foot the same everywhere?",

@@ -1,55 +1,9 @@
-export default function ToolSEOContent() {
-  const faqItems = [
-    {
-      q: "What is a fuel cost calculator?",
-      a: "A fuel cost calculator is a free online tool that estimates how much fuel you will need for a trip and what it will cost at current fuel prices. You enter three values — trip distance, vehicle fuel efficiency (MPG or km/L), and fuel price per gallon or liter — and the calculator returns total fuel needed, estimated trip cost, and cost per mile or kilometer.",
-    },
-    {
-      q: "How is trip fuel cost calculated?",
-      a: "Fuel cost is calculated in two steps. First: Fuel Needed = Distance ÷ Fuel Efficiency. Then: Trip Cost = Fuel Needed × Price per Unit. Example: 300 miles at 30 MPG needs 10 gallons. At $3.80/gallon, the trip costs $38.00. Cost per mile = $38.00 ÷ 300 = $0.127/mile.",
-    },
-    {
-      q: "How do I calculate fuel cost in km/L?",
-      a: "The formula is identical: Fuel Needed (liters) = Distance (km) ÷ Efficiency (km/L). Trip Cost = Fuel Needed × Price per liter. Example: 400 km at 15 km/L = 26.67 liters. At €1.80/liter, the trip costs €48.00. Cost per km = €48.00 ÷ 400 = €0.12/km.",
-    },
-    {
-      q: "How do I estimate monthly fuel cost for commuting?",
-      a: "Multiply your daily round-trip distance by the number of commuting days per month, then run the calculation. Example: 35-mile daily round trip × 22 days = 770 miles/month. At 28 MPG and $3.60/gallon: 770 ÷ 28 = 27.5 gallons × $3.60 = $99.00/month.",
-    },
-    {
-      q: "What is a good MPG to use for fuel cost planning?",
-      a: "For personal cars, 25–35 MPG is typical for modern sedans. SUVs and trucks average 18–25 MPG. Hybrids achieve 45–60 MPG. For fuel cost calculations, use your vehicle's real-world average from your actual fuel log rather than the EPA-rated value — actual consumption is typically 10–20% lower than manufacturer test ratings, particularly in city driving.",
-    },
-    {
-      q: "Can I calculate fuel cost in liters per 100km (L/100km)?",
-      a: "Convert L/100km to km/L first: km/L = 100 ÷ L/100km. A vehicle rated at 8 L/100km achieves 100 ÷ 8 = 12.5 km/L. Enter 12.5 in the km/L field. European fuel efficiency is typically quoted as L/100km; this conversion step lets you use European spec sheets directly.",
-    },
-    {
-      q: "How do I calculate fuel cost for a multi-stop road trip?",
-      a: "Add all driving legs together into a total distance, then run a single calculation. If fuel prices differ significantly between regions, run a separate calculation for each leg and sum the results. Use the CSV export to accumulate multiple results in a spreadsheet.",
-    },
-    {
-      q: "Does driving speed affect fuel consumption?",
-      a: "Yes, significantly. Most vehicles are most efficient at 45–65 mph (70–105 km/h). Above 70 mph, aerodynamic drag increases fuel consumption sharply — driving at 80 mph instead of 65 mph typically uses 15–25% more fuel. For highway trips at speed, reduce your entered MPG by 10–15% from your mixed average for a more accurate estimate.",
-    },
-    {
-      q: "Can I use this for diesel vehicles?",
-      a: "Yes. The formula is identical for diesel, gasoline, and any liquid fuel. Enter your diesel vehicle's MPG or km/L and the current diesel price per gallon or liter. The calculation logic is the same regardless of fuel type.",
-    },
-    {
-      q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your distance, efficiency, and price inputs are never sent to any server or stored outside your device. Calculation history is saved only in your browser's localStorage.",
-    },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
-  const howToSteps: [string, string][] = [
-    ["Choose unit system", "Select Imperial (miles and MPG) or Metric (kilometers and km/L). This sets the units for all inputs and outputs — distance, efficiency, and cost per distance."],
-    ["Enter trip distance", "Type your total route distance in miles or kilometers. For round trips, enter the full distance both ways. For a 150-mile one-way trip, enter 300 for the round trip."],
-    ["Enter fuel efficiency", "Type your vehicle's average real-world fuel efficiency in MPG or km/L. Use your actual average from your fuel log rather than the manufacturer's rated value — real-world consumption is typically 10–20% lower."],
-    ["Enter fuel price", "Type the current fuel price per gallon (US/Imperial) or per liter (Metric). Select your currency — USD, EUR, GBP, CAD, or INR. Check fuel prices on the day of a long trip for the most accurate estimate."],
-    ["Read your results", "The calculator returns total fuel needed, estimated trip cost, and cost per mile or km — all updated instantly. No submit button required."],
-    ["Export or save", "Click Export CSV to download a history of your calculations for travel reimbursement records, expense tracking, or monthly commute budget analysis."],
-  ];
+export default function ToolSEOContent() {
+  const { howToSteps, faq } = toolConfig.seo;
+
 
   return (
     <>
@@ -119,7 +73,7 @@ export default function ToolSEOContent() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -135,7 +89,7 @@ export default function ToolSEOContent() {
                 "Total trip cost in your currency",
                 "Cost per mile or km",
                 "Imperial (miles/MPG) and Metric (km/km·L) modes",
-                "Multi-currency: USD, EUR, GBP, CAD, INR",
+                "Currency selector (USD, EUR, GBP and more)",
                 "Real-time results as you type",
                 "Calculation history saved to browser",
                 "Export history to CSV",
@@ -313,19 +267,7 @@ export default function ToolSEOContent() {
       </section>
 
       {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

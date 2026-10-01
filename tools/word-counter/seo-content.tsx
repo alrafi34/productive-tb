@@ -1,74 +1,9 @@
-export default function WordCounterSEOContent() {
-  const faqItems = [
-    {
-      q: "What is a word counter?",
-      a: "A word counter is an online tool that analyzes a block of text and reports key writing metrics — total words, characters (with and without spaces), sentences, paragraphs, and estimated reading time. Unlike the word count feature built into Microsoft Word or Google Docs, a browser-based word counter works on any text from any source: copied web content, draft emails, social media posts, or raw notes — without needing to open a document editor.",
-    },
-    {
-      q: "Can this tool work as a character counter and letter counter?",
-      a: "Yes. In addition to word count, this tool displays a full character counter — showing total characters both with and without spaces — making it a free letter counter online as well. Use the with-spaces count for platform character limits like Twitter (280), LinkedIn (3,000), and SMS (160). Use the without-spaces count for programming character fields and database constraints where whitespace is excluded from the limit.",
-    },
-    {
-      q: "How do I count words in Google Docs?",
-      a: "In Google Docs, go to Tools > Word count (or press Ctrl+Shift+C on Windows / Cmd+Shift+C on Mac) to see word, character, and page counts for the full document or a selected range. For text outside Google Docs — copied from web pages, emails, PDFs, or other sources — paste it into this word counter for an instant count without opening Docs. You can also enable 'Display word count while typing' in the same menu to keep a live count visible in the corner of your document.",
-    },
-    {
-      q: "How many pages is 1,000 words?",
-      a: "At standard formatting (12pt Times New Roman or Arial, double-spaced, 1-inch margins), 1,000 words equals approximately 4 pages. Single-spaced, the same 1,000 words produces about 2 pages. 500 words is roughly 1 page double-spaced; 250 words fills about half a page. These are estimates — actual page count depends on font size, line spacing, margin width, and paragraph spacing. For academic submissions, always verify using your institution's formatting requirements.",
-    },
-    {
-      q: "How does word count affect SEO?",
-      a: "Word count is not a direct Google ranking factor, but content length correlates strongly with rankings because longer content tends to cover a topic more thoroughly. Most pages that rank on page 1 for competitive keywords have 1,000–2,500 words. For blog posts and pillar pages, 1,500–2,500 words is the commonly recommended target. For product pages and landing pages, 300–800 words is typically enough. Use this tool to check your article length before publishing and compare it against the top-ranking pages for your target keyword.",
-    },
-    {
-      q: "How is reading time calculated?",
-      a: "Reading time is estimated by dividing the total word count by 200 — the average adult silent reading speed in words per minute. So a 1,000-word article takes approximately 5 minutes to read. This is a useful signal for email subject lines ('5-min read'), blog post headers, newsletter planning, and YouTube script timing. The result is always rounded up to the nearest minute.",
-    },
-    {
-      q: "What is the difference between character count with and without spaces?",
-      a: "Character count with spaces includes every character in the text, including spaces, tabs, and line breaks. Character count without spaces excludes all whitespace, counting only visible characters like letters, numbers, and punctuation. Most social media platforms (Twitter/X, LinkedIn, Instagram captions) count characters with spaces. Some programming environments and file size checks use without-spaces counts. This tool provides both so you can match whichever limit applies.",
-    },
-    {
-      q: "What word count should a blog post be?",
-      a: "It depends on the topic and competition. For informational content competing in Google search, 1,500–2,500 words is a reliable target for most niches. Short-form listicles and news posts can rank at 600–900 words. Long-form guides and pillar pages often exceed 3,000 words. The best approach: search your target keyword, check the word counts of the top 3 results using this tool, and aim to match or modestly exceed them while keeping every section genuinely useful.",
-    },
-    {
-      q: "How many words should a Twitter (X) post be?",
-      a: "Twitter/X has a 280-character limit for standard accounts and 25,000 characters for X Premium (Blue) subscribers. The average tweet is around 33 characters. For maximum engagement, tweets between 71–100 characters tend to perform best. Use the character count (with spaces) display in this tool to check tweet length before posting.",
-    },
-    {
-      q: "What word count is ideal for an essay?",
-      a: "Essay length depends entirely on the assignment instructions. High school essays are typically 500–1,000 words. University undergraduate essays range from 1,500–3,000 words. Graduate and doctoral essays can run 5,000–10,000+ words. This tool is designed to handle all of these ranges — paste your full draft and the word count updates instantly so you can trim or expand to hit the exact required length.",
-    },
-    {
-      q: "Does this word counter work offline?",
-      a: "Once the page is loaded, the word counting itself runs entirely in your browser using JavaScript — no internet connection is needed for the counting to continue working. However, you do need an internet connection to initially load the page.",
-    },
-    {
-      q: "Is my text stored or sent to a server?",
-      a: "No. All analysis runs locally in your browser. The text you type or paste is never sent to any external server, stored in a database, or used for any purpose. This makes the tool safe for checking confidential drafts, client work, legal documents, or any sensitive writing.",
-    },
-    {
-      q: "How do I count words in a PDF?",
-      a: "To count words in a PDF, open the PDF in your browser or a PDF viewer, select all text (Ctrl+A or Cmd+A), copy it (Ctrl+C or Cmd+C), then paste it into this word counter. The tool will instantly report the word count, character count, and reading time for the entire document. Note that PDFs with scanned images instead of selectable text will not have copyable content — in that case you'll need an OCR tool first.",
-    },
-    {
-      q: "How do I use this as a paragraph counter?",
-      a: "This tool counts paragraphs automatically alongside words, characters, and sentences — no extra steps needed. Paste your text and the paragraph count appears in the metrics panel immediately. A paragraph is counted as any block of text separated by one or more blank lines. This is useful for checking article structure, verifying section length balance, and ensuring long-form content is broken up for readability.",
-    },
-    {
-      q: "How many words should a speech or presentation be?",
-      a: "For public speaking, the average adult speaks at 125–150 words per minute. A 5-minute speech needs approximately 625–750 words. A 10-minute presentation runs 1,250–1,500 words. A 20-minute keynote is around 2,500–3,000 words. Paste your speech script into this word counter, check the word count, and divide by your speaking pace to estimate delivery time. The reading time estimate (at 200 wpm) also gives a useful lower bound.",
-    },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
-  const howToSteps = [
-    ["Paste or type your text", "Click inside the editor and paste text from your clipboard (Ctrl+V / Cmd+V) or start typing directly. The counter updates with every keystroke — no submit button needed."],
-    ["Read the live metric panel", "Check the word count, character count (with and without spaces), sentence count, paragraph count, and estimated reading time — all displayed at once above or beside the editor."],
-    ["Compare against your target", "If you have a minimum or maximum word count requirement (for an essay, SEO article, or social post), compare the displayed count against that target and adjust your content accordingly."],
-    ["Trim or expand as needed", "Delete or add content in the editor and watch the counts update in real time. This makes it easy to hit exact word count targets without manual counting."],
-    ["Copy the final content", "Once your text meets its target length and structure, copy it from the editor and paste it into your publishing destination — Google Docs, WordPress, email client, or anywhere else."],
-  ];
+export default function WordCounterSEOContent() {
+  const { howToSteps, faq } = toolConfig.seo;
+
 
   return (
     <>
@@ -146,7 +81,7 @@ export default function WordCounterSEOContent() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">
                     {i + 1}
@@ -317,21 +252,7 @@ export default function WordCounterSEOContent() {
       </section>
 
       {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                {q}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

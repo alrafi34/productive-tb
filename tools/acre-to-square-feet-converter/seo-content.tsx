@@ -1,25 +1,9 @@
-export default function AcreToSquareFeetConverterSEO() {
-  const faqItems = [
-    { q: "How many square feet are in 1 acre?", a: "1 acre equals exactly 43,560 square feet. This is the legally defined value in the United States and internationally — derived from the historical chain-and-furlong surveying system (1 acre = 10 square chains = 10 × 66 ft × 66 ft = 43,560 sq ft). It is a fixed, non-approximated value used in all real estate, agricultural, and land surveying contexts." },
-    { q: "How many square feet is 0.25 acres?", a: "0.25 acres equals 10,890 square feet. Calculation: 0.25 × 43,560 = 10,890. A quarter-acre lot is the most common residential lot size in US suburban developments — roughly a 104 ft × 104 ft square, or a 75 ft × 145 ft rectangular lot typical of suburban neighborhoods." },
-    { q: "How many square feet is 0.5 acres?", a: "0.5 acres equals 21,780 square feet. Calculation: 0.5 × 43,560 = 21,780. A half-acre lot laid out as a square would be approximately 147.6 ft × 147.6 ft. Half-acre lots are common in semi-rural residential developments and larger suburban subdivisions." },
-    { q: "How many acres is 10,890 square feet?", a: "10,890 square feet equals exactly 0.25 acres. Calculation: 10,890 ÷ 43,560 = 0.25. This is one of the most searched conversions — a 10,890 sq ft lot is the standard quarter-acre residential parcel. This converter handles both directions: enter acres to get square feet, or use it as a reference for common sq ft values." },
-    { q: "How many acres is 43,560 square feet?", a: "43,560 square feet equals exactly 1 acre. This is the definition. If a property listing says 43,560 sq ft, that is precisely 1.0 acres — the size of a standard American football field from end zone to end zone including the sidelines." },
-    { q: "What is the formula to convert acres to square feet?", a: "Square Feet = Acres × 43,560. For the reverse direction: Acres = Square Feet ÷ 43,560. Both use the exact factor of 43,560 — there are no approximations involved. A common mental shortcut is 'multiply by 44,000' which gives a result about 1% high, fine for rough checks but not for legal documents or property transactions." },
-    { q: "How big is an acre visually?", a: "One acre is approximately the size of an American football field without the end zones (roughly 300 ft × 145 ft), or a square with sides of about 208.7 feet (63.6 meters). In practical terms: a standard city block is roughly 2–3 acres, a typical suburban quarter-acre lot is 10,890 sq ft, and an acre of farmland grows enough wheat for about 1,500 loaves of bread per harvest." },
-    { q: "Can I convert square feet back to acres with this tool?", a: "This tool converts acres to square feet. To convert square feet back to acres, use the square-feet-to-acre-converter tool, which is the companion tool designed for the reverse direction. Both tools are linked from this page. For quick reference: divide your square feet by 43,560 to get acres." },
-    { q: "Is the acre the same in the US and UK?", a: "Yes. The international acre used in the US, UK, and most countries is defined as exactly 43,560 square feet or 4,046.856 square meters. There is also a historical US survey acre (used in some older legal descriptions in the US) equal to 43,560.174 square feet — a difference of 0.0004% that is negligible for all practical purposes." },
-    { q: "Is my data private when using this converter?", a: "Yes. All conversions run entirely in your browser using JavaScript. Your inputs are never sent to any server, stored in any database, or accessible to anyone other than you. The tool works fully offline once the page has loaded." },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { acreToSquareFeetConverterConfig } from "./config";
 
-  const howToSteps: [string, string][] = [
-    ["Enter your acre value", "Type any number of acres into the input field. Decimals are fully supported — 0.25, 0.5, 1.75, or 100 all work. The square feet result appears instantly as you type, with no submit button needed."],
-    ["Read the square feet result", "The square feet equivalent displays immediately below the input. For 1 acre the result is 43,560 sq ft. For 0.25 acres it is 10,890 sq ft. The result updates with every keystroke and formats large numbers with commas for readability."],
-    ["Adjust decimal precision", "Use the precision selector to choose 0, 2, 4, or 6 decimal places. Zero decimals is standard for whole-number property sizes; 4 or 6 decimal places suits legal documents and survey applications where exact fractional areas matter."],
-    ["Use presets for common values", "Click any preset button — 0.25, 0.5, 1, 5, or 10 acres — to instantly load that value without typing. Presets cover the most common residential and agricultural lot sizes."],
-    ["Copy or export your result", "Click the copy button to send the result to clipboard for pasting into a listing, spreadsheet, or document. Use the download button to save a text report of your conversion history for project documentation."],
-    ["Check conversion history", "The tool saves your last 10 conversions locally in your browser. Click any history entry to reload that input value instantly — useful when comparing multiple property sizes side by side."],
-  ];
+export default function AcreToSquareFeetConverterSEO() {
+  const { howToSteps, faq } = acreToSquareFeetConverterConfig.seo;
+
 
   return (
     <>
@@ -86,7 +70,7 @@ export default function AcreToSquareFeetConverterSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -292,19 +276,7 @@ export default function AcreToSquareFeetConverterSEO() {
       </section>
 
       {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">

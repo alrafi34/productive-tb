@@ -93,7 +93,7 @@ export const acreToSquareFeetConverterConfig = {
       },
       {
         q: "How many acres is 43,560 square feet?",
-        a: "43,560 square feet equals exactly 1 acre. This is the definition of an acre. A property listing that says 43,560 sq ft is precisely 1.0 acres — the size of a standard American football field from end zone to end zone.",
+        a: "43,560 square feet equals exactly 1 acre. This is the definition of an acre. A property listing that says 43,560 sq ft is precisely 1.0 acres — about 90% of an American football field's playing area between the goal lines (300 × 160 ft = 48,000 sq ft).",
       },
       {
         q: "What is the formula to convert acres to square feet?",
@@ -101,7 +101,7 @@ export const acreToSquareFeetConverterConfig = {
       },
       {
         q: "How big is an acre visually?",
-        a: "One acre is approximately the size of an American football field without the end zones, or a square with sides of about 208.7 feet (63.6 meters). A standard city block is roughly 2 to 3 acres, and a typical suburban quarter-acre lot is 10,890 sq ft.",
+        a: "One acre is about 90% of an American football field without the end zones (48,000 sq ft), or a square with sides of about 208.7 feet (63.6 meters). A standard city block is roughly 2 to 3 acres, and a typical suburban quarter-acre lot is 10,890 sq ft.",
       },
       {
         q: "Can I convert square feet back to acres with this tool?",

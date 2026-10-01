@@ -1,25 +1,9 @@
-export default function AcreToHectareConverterSEO() {
-  const faqItems = [
-    { q: "How many hectares is 1 acre?", a: "1 acre equals 0.404686 hectares. This is derived from the exact international definitions: 1 acre = 4,046.856 square meters and 1 hectare = 10,000 square meters. Dividing: 4,046.856 ÷ 10,000 = 0.404686." },
-    { q: "How many acres is 1 hectare?", a: "1 hectare equals 2.47105 acres. This is the reciprocal of the acre-to-hectare factor: 1 ÷ 0.404686 = 2.47105. Use the swap button in this tool to convert hectares to acres directly." },
-    { q: "Which is bigger — an acre or a hectare?", a: "A hectare is larger. 1 hectare = 2.47105 acres, so a hectare is about 2.47 times the size of an acre. An acre is 4,046.86 square meters; a hectare is 10,000 square meters." },
-    { q: "How many hectares is 0.5 acres?", a: "0.5 acres equals 0.202343 hectares. Calculation: 0.5 × 0.404686 = 0.202343. Half an acre is approximately 0.20 hectares." },
-    { q: "How many hectares is 2.5 acres?", a: "2.5 acres equals 1.01172 hectares. Calculation: 2.5 × 0.404686 = 1.01172." },
-    { q: "How many hectares is 10 acres?", a: "10 acres equals 4.04686 hectares. Calculation: 10 × 0.404686 = 4.04686. A 10-acre field is approximately 4 hectares." },
-    { q: "How many hectares is 100 acres?", a: "100 acres equals 40.4686 hectares. Calculation: 100 × 0.404686 = 40.4686." },
-    { q: "How many hectares is 640 acres (1 square mile)?", a: "640 acres equals 258.999 hectares — approximately 259 hectares. One US section (1 square mile) of land is 640 acres or about 259 hectares." },
-    { q: "What is the acre to hectare formula?", a: "Hectares = Acres × 0.404686. For reverse conversion: Acres = Hectares × 2.47105. Quick mental shortcut: divide acres by 2.5 for a rough hectare estimate (1.2% low — fine for casual checks, not official documents)." },
-    { q: "Is my data private when using this converter?", a: "Yes. All conversions run entirely in your browser using JavaScript. Your inputs are never sent to any server, stored in any database, or accessible to anyone other than you. The tool works fully offline once the page has loaded." },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { acreToHectareConverterConfig } from "./config";
 
-  const howToSteps: [string, string][] = [
-    ["Enter your acre value", "Type any number of acres into the input field. Decimals are fully supported — 0.25, 1.5, or 640 all work. The hectare result appears instantly as you type."],
-    ["Read the hectare result", "The hectare equivalent displays immediately. For 1 acre, the result is 0.404686 hectares. For 10 acres, it is 4.04686 hectares. The result updates with every keystroke."],
-    ["Adjust decimal precision", "Use the precision selector to choose 2, 4, 6, or 8 decimal places. Four decimal places covers most agricultural and real estate needs; six or more for legal or scientific precision."],
-    ["Use presets for common values", "Click any preset button — 0.25, 0.5, 1, 5, 10, or 100 acres — to instantly load standard values. Presets cover the most common residential lot and farm field sizes."],
-    ["Swap to hectares-to-acres", "Click the swap button to reverse the conversion direction. Enter hectares and receive acres — the same tool covers both directions without navigating to a different page."],
-    ["Copy or export your result", "Click copy to send the result to clipboard, or download a text report of your conversion history for documentation, client handoff, or property records."],
-  ];
+export default function AcreToHectareConverterSEO() {
+  const { howToSteps, faq } = acreToHectareConverterConfig.seo;
+
 
   return (
     <>
@@ -32,9 +16,9 @@ export default function AcreToHectareConverterSEO() {
           <p>
             An <strong>acre to hectare converter</strong> is a free online tool that instantly converts
             any land area value between acres and hectares (ha) — in both directions. Enter acres and get
-            hectares; use the swap button and enter hectares to get acres. One tool covers the full
-            <strong> acres to hectares</strong> and <strong>hectares to acres</strong> conversion without
-            needing separate calculators.
+            hectares, and the tables on this page cover the reverse direction. For
+            <strong> hectares to acres</strong>, multiply by 2.47105 or use the companion hectare to acre
+            converter.
           </p>
           <p>
             The conversion is anchored to one fixed factor: <strong>1 acre = 0.404686 hectares</strong>,
@@ -86,7 +70,7 @@ export default function AcreToHectareConverterSEO() {
           <div>
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Step-by-Step Guide</h3>
             <ol className="space-y-4 text-gray-600 leading-relaxed">
-              {howToSteps.map(([title, desc], i) => (
+              {howToSteps.map(({ name: title, text: desc }, i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
                   <span><strong>{title}:</strong> {desc}</span>
@@ -99,9 +83,9 @@ export default function AcreToHectareConverterSEO() {
             <ul className="space-y-2 text-gray-600">
               {[
                 "Instant acres to hectares conversion",
-                "Reverse conversion: hectares to acres",
+                "Hectares-to-acres reference table on the page",
                 "2, 4, 6, and 8 decimal precision",
-                "Presets: 0.25, 0.5, 1, 5, 10, 100 acres",
+                "Presets: 1, 5, 10, 50, 100 acres",
                 "Full reference table (common values both directions)",
                 "Land size context descriptions",
                 "Conversion history (last 10 entries)",
@@ -292,19 +276,7 @@ export default function AcreToHectareConverterSEO() {
       </section>
 
       {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
