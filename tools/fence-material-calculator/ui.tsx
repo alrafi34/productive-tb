@@ -216,7 +216,7 @@ export default function FenceMaterialCalculatorUI() {
                   {inputs.includeGate && (
                     <div className="flex justify-between">
                       <span className="text-primary-100">Gate Posts:</span>
-                      <span className="font-semibold">+{result.gatePostsExtra}</span>
+                      <span className="font-semibold">{result.gatePostsExtra} (included in posts)</span>
                     </div>
                   )}
                 </div>
@@ -319,7 +319,7 @@ export default function FenceMaterialCalculatorUI() {
               <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg">
                 <div>
                   <div className="text-sm font-medium text-gray-700">Include Gate</div>
-                  <div className="text-xs text-gray-500">Adds 2 extra gate posts</div>
+                  <div className="text-xs text-gray-500">The two posts beside the gate should be heavier gate posts</div>
                 </div>
                 <button
                   onClick={() => set("includeGate", !inputs.includeGate)}

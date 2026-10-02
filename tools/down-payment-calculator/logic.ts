@@ -58,7 +58,9 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   }
 
   const remaining = price - downAmt;
-  const mp = rate > 0 ? monthlyPayment(remaining, rate, inputs.loanTerm) : null;
+  // A rate of 0 is a real (interest-free) loan; an empty field means no rate yet
+  const hasRate = inputs.interestRate.trim() !== "" && rate >= 0;
+  const mp = hasRate ? monthlyPayment(remaining, rate, inputs.loanTerm) : null;
   const totalPay = mp !== null ? mp * inputs.loanTerm * 12 : null;
   const totalInt = totalPay !== null ? totalPay - remaining : null;
 
