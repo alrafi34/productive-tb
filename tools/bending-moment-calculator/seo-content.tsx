@@ -16,8 +16,8 @@ export default function BendingMomentCalculatorSEO() {
             how much a beam will bend under load.
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
-            This calculator supports four beam configurations — simply supported, cantilever, fixed (both ends),
-            and overhanging — combined with point loads, uniformly distributed loads (UDL), and multiple point
+            This calculator supports three beam configurations — simply supported, cantilever and fixed (both ends) —
+            combined with point loads, uniformly distributed loads (UDL), and multiple point
             loads. Results are displayed in Nm, kNm, lb-ft, lb-in, and kip-ft simultaneously.
           </p>
           <p className="text-gray-700 leading-relaxed">
@@ -36,7 +36,7 @@ export default function BendingMomentCalculatorSEO() {
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
             <ol className="space-y-3 text-gray-700">
               {[
-                "Select the beam type (simply supported, cantilever, fixed, or overhanging)",
+                "Select the beam type (simply supported, cantilever or fixed)",
                 "Choose the load type — point load, UDL, or multiple point loads",
                 "Enter the beam length and select the length unit",
                 "Enter the load magnitude and select the force unit",
@@ -57,7 +57,7 @@ export default function BendingMomentCalculatorSEO() {
             <ul className="space-y-2 text-gray-700">
               {[
                 "Real-time calculation as you type",
-                "4 beam types — simply supported, cantilever, fixed, overhanging",
+                "3 beam types — simply supported, cantilever, fixed",
                 "4 load types — center point, any position, UDL, multiple loads",
                 "Interactive load position slider",
                 "Live bending moment and shear force diagrams (SVG)",

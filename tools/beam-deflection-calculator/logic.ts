@@ -283,10 +283,12 @@ export function calculate(inputs: BeamInputs): BeamResult {
       steps.push(`δ_max = ${maxDeflection.toFixed(4)} ${deflectionUnit(sys)}`);
     } else if (lt === "point-any") {
       const b = L - a;
-      maxDeflection = (P_base * b * (L * L - b * b) * Math.sqrt(3)) / (27 * EI * L) * Math.sqrt(L * L - b * b);
-      // More accurate: at x = sqrt((L²-b²)/3)
-      const x_max = Math.sqrt((L * L - b * b) / 3);
-      maxDeflection = (P_base * b * x_max * (L * L - b * b - x_max * x_max)) / (6 * EI * L);
+      // The maximum lies in the longer segment; the closed form uses the
+      // shorter distance from the load to a support, so a load near either
+      // end gives the same (mirror-image) result.
+      const bShort = Math.min(a, b);
+      const x_max = Math.sqrt((L * L - bShort * bShort) / 3);
+      maxDeflection = (P_base * bShort * x_max * (L * L - bShort * bShort - x_max * x_max)) / (6 * EI * L);
       slope = (P_base * a * b * (a + 2 * b)) / (6 * EI * L) * Math.sqrt(3 * a * (a + 2 * b));
       reactionA = P_base * b / L;
       reactionB = P_base * a / L;

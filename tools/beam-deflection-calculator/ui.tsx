@@ -28,6 +28,8 @@ function BeamDiagram({ inputs, result }: { inputs: BeamInputs; result: BeamResul
   const beamY = 90, beamX1 = 50, beamX2 = W - 50;
   const beamLen = beamX2 - beamX1;
   const bt = inputs.beamType;
+  // On a cantilever the "point" load sits at the free end, as the formulas assume
+  const centerLoadX = bt === "cantilever" ? beamX2 : (beamX1 + beamX2) / 2;
   const lt = inputs.loadType;
   const L = parseFloat(inputs.length) || 1;
   const a = parseFloat(inputs.loadPosition) || L / 2;
@@ -80,8 +82,8 @@ function BeamDiagram({ inputs, result }: { inputs: BeamInputs; result: BeamResul
       {/* Loads */}
       {(lt === "point-center") && (
         <>
-          <line x1={(beamX1 + beamX2) / 2} y1={beamY - 40} x2={(beamX1 + beamX2) / 2} y2={beamY - 8} stroke="#EF4444" strokeWidth="2.5" markerEnd="url(#bd-arrow)" />
-          <text x={(beamX1 + beamX2) / 2} y={beamY - 46} textAnchor="middle" fill="#EF4444" fontSize="11" fontWeight="600">P</text>
+          <line x1={centerLoadX} y1={beamY - 40} x2={centerLoadX} y2={beamY - 8} stroke="#EF4444" strokeWidth="2.5" markerEnd="url(#bd-arrow)" />
+          <text x={centerLoadX} y={beamY - 46} textAnchor="middle" fill="#EF4444" fontSize="11" fontWeight="600">P</text>
         </>
       )}
       {lt === "point-any" && (
@@ -470,7 +472,6 @@ export default function BeamDeflectionCalculatorUI() {
                     <option value="simply-supported">Simply Supported</option>
                     <option value="cantilever">Cantilever</option>
                     <option value="fixed">Fixed (Both Ends)</option>
-                    <option value="overhanging">Overhanging</option>
                   </select>
                 </div>
 
@@ -482,7 +483,7 @@ export default function BeamDeflectionCalculatorUI() {
                     onChange={e => set({ loadType: e.target.value as BeamInputs["loadType"] })}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                   >
-                    <option value="point-center">Point Load (Center)</option>
+                    <option value="point-center">{inputs.beamType === "cantilever" ? "Point Load (Free End)" : "Point Load (Center)"}</option>
                     <option value="point-any">Point Load (Any Position)</option>
                     <option value="udl">Uniformly Distributed Load (UDL)</option>
                     <option value="moment">Applied Moment</option>
