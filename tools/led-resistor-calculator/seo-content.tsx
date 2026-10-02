@@ -16,7 +16,7 @@ export default function LEDResistorCalculatorSEO() {
             An <strong>LED resistor calculator</strong> computes the current-limiting resistor value needed
             to safely power one or more LEDs from a given supply voltage. Enter supply voltage, LED forward
             voltage, desired current, and number of LEDs in series, and the calculator returns the required
-            resistance, the nearest standard E24 resistor value you can actually buy, and the resistor's
+            resistance, the next standard E24 resistor value up that you can actually buy, and the resistor's
             power rating.
           </p>
           <p>
@@ -82,7 +82,7 @@ export default function LEDResistorCalculatorSEO() {
             <ul className="space-y-2 text-gray-600">
               {[
                 "Real-time calculation as you type",
-                "Exact calculated resistance and nearest E24 standard value",
+                "Exact calculated resistance and the next E24 standard value up",
                 "Resistor power dissipation and recommended wattage",
                 "Support for multiple LEDs in series",
                 "Five color presets (red, green, yellow, blue, white)",
@@ -118,7 +118,7 @@ export default function LEDResistorCalculatorSEO() {
             },
             {
               title: "White LED on a 9V Battery",
-              scenario: "A hobbyist powering a single white LED (Vf = 3.2V, 20mA) from a 9V battery calculates R = (9 − 3.2) ÷ 0.02 = 290Ω, rounding to a standard 300Ω or 270Ω resistor depending on which the E24 series nearest-value calculation returns.",
+              scenario: "A hobbyist powering a single white LED (Vf = 3.2V, 20mA) from a 9V battery calculates R = (9 − 3.2) ÷ 0.02 = 290Ω, rounded up to the next E24 value, 300Ω, which gives about 19.3 mA.",
             },
             {
               title: "High-Brightness LED at Higher Current",

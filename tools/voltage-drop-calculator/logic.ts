@@ -98,8 +98,10 @@ export function calculateVoltageDrop(inputs: VoltageDropInputs): VoltageDropResu
   const voltageDropPercentage = (voltageDrop / voltage) * 100;
   const finalVoltage = voltage - voltageDrop;
   
-  // Calculate power loss
-  const powerLoss = current * voltageDrop;
+  // Power lost in the conductors: 2·I²R single phase or DC (I × VD),
+  // 3·I²R three phase (√3 × I × VD)
+  const lossFactor = systemType === 'three' ? Math.sqrt(3) : 1;
+  const powerLoss = lossFactor * current * voltageDrop;
   
   steps.push('');
   steps.push('Step 3: Calculate Percentage Drop');
@@ -112,8 +114,10 @@ export function calculateVoltageDrop(inputs: VoltageDropInputs): VoltageDropResu
   steps.push(`Final Voltage = ${finalVoltage.toFixed(4)} V`);
   steps.push('');
   steps.push('Step 5: Calculate Power Loss');
-  steps.push(`Power Loss = I × VD`);
-  steps.push(`Power Loss = ${current} × ${voltageDrop.toFixed(4)}`);
+  steps.push(systemType === 'three' ? `Power Loss = √3 × I × VD (= 3 × I² × R)` : `Power Loss = I × VD`);
+  steps.push(systemType === 'three'
+    ? `Power Loss = 1.7321 × ${current} × ${voltageDrop.toFixed(4)}`
+    : `Power Loss = ${current} × ${voltageDrop.toFixed(4)}`);
   steps.push(`Power Loss = ${powerLoss.toFixed(4)} W`);
   
   // Determine status

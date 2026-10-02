@@ -10,11 +10,11 @@ import {
 const HISTORY_KEY = "wire-size-calculator-history";
 const MAX_HISTORY = 20;
 
-// Standard wire sizes with ampacity and resistance values
+// Metric (IEC) cable sizes with ampacity and resistance values
 export const WIRE_TABLE: WireData[] = [
   {
     sizeMetric: "1.0",
-    sizeAWG: "18",
+    sizeAWG: "",
     ampacityCopper: 10,
     ampacityAluminum: 0,
     resistanceCopper: 18.1,
@@ -22,7 +22,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "1.5",
-    sizeAWG: "16",
+    sizeAWG: "",
     ampacityCopper: 15,
     ampacityAluminum: 12,
     resistanceCopper: 12.1,
@@ -30,7 +30,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "2.5",
-    sizeAWG: "14",
+    sizeAWG: "",
     ampacityCopper: 21,
     ampacityAluminum: 16,
     resistanceCopper: 7.41,
@@ -38,7 +38,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "4",
-    sizeAWG: "12",
+    sizeAWG: "",
     ampacityCopper: 28,
     ampacityAluminum: 22,
     resistanceCopper: 4.61,
@@ -46,7 +46,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "6",
-    sizeAWG: "10",
+    sizeAWG: "",
     ampacityCopper: 36,
     ampacityAluminum: 28,
     resistanceCopper: 3.08,
@@ -54,7 +54,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "10",
-    sizeAWG: "8",
+    sizeAWG: "",
     ampacityCopper: 50,
     ampacityAluminum: 39,
     resistanceCopper: 1.83,
@@ -62,7 +62,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "16",
-    sizeAWG: "6",
+    sizeAWG: "",
     ampacityCopper: 68,
     ampacityAluminum: 53,
     resistanceCopper: 1.15,
@@ -70,7 +70,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "25",
-    sizeAWG: "4",
+    sizeAWG: "",
     ampacityCopper: 89,
     ampacityAluminum: 69,
     resistanceCopper: 0.727,
@@ -78,7 +78,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "35",
-    sizeAWG: "2",
+    sizeAWG: "",
     ampacityCopper: 110,
     ampacityAluminum: 85,
     resistanceCopper: 0.524,
@@ -86,7 +86,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "50",
-    sizeAWG: "1",
+    sizeAWG: "",
     ampacityCopper: 134,
     ampacityAluminum: 104,
     resistanceCopper: 0.387,
@@ -94,7 +94,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "70",
-    sizeAWG: "1/0",
+    sizeAWG: "",
     ampacityCopper: 171,
     ampacityAluminum: 133,
     resistanceCopper: 0.268,
@@ -102,7 +102,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "95",
-    sizeAWG: "2/0",
+    sizeAWG: "",
     ampacityCopper: 207,
     ampacityAluminum: 161,
     resistanceCopper: 0.193,
@@ -110,7 +110,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "120",
-    sizeAWG: "3/0",
+    sizeAWG: "",
     ampacityCopper: 239,
     ampacityAluminum: 186,
     resistanceCopper: 0.153,
@@ -118,7 +118,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "150",
-    sizeAWG: "4/0",
+    sizeAWG: "",
     ampacityCopper: 276,
     ampacityAluminum: 215,
     resistanceCopper: 0.124,
@@ -126,7 +126,7 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "185",
-    sizeAWG: "250 kcmil",
+    sizeAWG: "",
     ampacityCopper: 322,
     ampacityAluminum: 251,
     resistanceCopper: 0.0991,
@@ -134,13 +134,40 @@ export const WIRE_TABLE: WireData[] = [
   },
   {
     sizeMetric: "240",
-    sizeAWG: "350 kcmil",
+    sizeAWG: "",
     ampacityCopper: 390,
     ampacityAluminum: 304,
     resistanceCopper: 0.0754,
     resistanceAluminum: 0.125,
   },
 ];
+
+/* US (NEC) conductor sizes. sizeMetric is the conductor's actual area in mm².
+   Ampacity: NEC Table 310.16, 75 °C column (typical terminations), capped by
+   the small-conductor rule of NEC 240.4(D): 14 AWG copper 15 A, 12 AWG 20 A,
+   10 AWG 30 A; 12 AWG aluminum 15 A, 10 AWG 25 A. Aluminum is not used at
+   14 AWG. Resistance: NEC Chapter 9 Table 8, stranded, at 75 °C, in Ω/km. */
+export const AWG_TABLE: WireData[] = [
+  { sizeAWG: "14", sizeMetric: "2.08", ampacityCopper: 15, ampacityAluminum: 0, resistanceCopper: 10.3018, resistanceAluminum: 0 },
+  { sizeAWG: "12", sizeMetric: "3.31", ampacityCopper: 20, ampacityAluminum: 15, resistanceCopper: 6.4961, resistanceAluminum: 10.6627 },
+  { sizeAWG: "10", sizeMetric: "5.26", ampacityCopper: 30, ampacityAluminum: 25, resistanceCopper: 4.0682, resistanceAluminum: 6.6929 },
+  { sizeAWG: "8", sizeMetric: "8.37", ampacityCopper: 50, ampacityAluminum: 40, resistanceCopper: 2.5525, resistanceAluminum: 4.1995 },
+  { sizeAWG: "6", sizeMetric: "13.3", ampacityCopper: 65, ampacityAluminum: 50, resistanceCopper: 1.6109, resistanceAluminum: 2.6509 },
+  { sizeAWG: "4", sizeMetric: "21.2", ampacityCopper: 85, ampacityAluminum: 65, resistanceCopper: 1.0105, resistanceAluminum: 1.6667 },
+  { sizeAWG: "3", sizeMetric: "26.7", ampacityCopper: 100, ampacityAluminum: 75, resistanceCopper: 0.8038, resistanceAluminum: 1.3222 },
+  { sizeAWG: "2", sizeMetric: "33.6", ampacityCopper: 115, ampacityAluminum: 90, resistanceCopper: 0.6365, resistanceAluminum: 1.0466 },
+  { sizeAWG: "1", sizeMetric: "42.4", ampacityCopper: 130, ampacityAluminum: 100, resistanceCopper: 0.5052, resistanceAluminum: 0.8301 },
+  { sizeAWG: "1/0", sizeMetric: "53.5", ampacityCopper: 150, ampacityAluminum: 120, resistanceCopper: 0.4003, resistanceAluminum: 0.6594 },
+  { sizeAWG: "2/0", sizeMetric: "67.4", ampacityCopper: 175, ampacityAluminum: 135, resistanceCopper: 0.3173, resistanceAluminum: 0.5217 },
+  { sizeAWG: "3/0", sizeMetric: "85.0", ampacityCopper: 200, ampacityAluminum: 155, resistanceCopper: 0.2513, resistanceAluminum: 0.4134 },
+  { sizeAWG: "4/0", sizeMetric: "107", ampacityCopper: 230, ampacityAluminum: 180, resistanceCopper: 0.1995, resistanceAluminum: 0.3281 },
+  { sizeAWG: "250 kcmil", sizeMetric: "127", ampacityCopper: 255, ampacityAluminum: 205, resistanceCopper: 0.169, resistanceAluminum: 0.2779 },
+  { sizeAWG: "350 kcmil", sizeMetric: "177", ampacityCopper: 310, ampacityAluminum: 250, resistanceCopper: 0.1204, resistanceAluminum: 0.1985 },
+];
+
+export function wireTable(unit: 'mm²' | 'AWG'): WireData[] {
+  return unit === 'AWG' ? AWG_TABLE : WIRE_TABLE;
+}
 
 // Debounce utility
 export function debounce<T extends (...args: any[]) => any>(
@@ -161,7 +188,8 @@ export function formatNumber(value: number, decimals: number = 2): string {
 
 // Get wire size display
 export function getWireSize(wire: WireData, unit: 'mm²' | 'AWG'): string {
-  return unit === 'mm²' ? `${wire.sizeMetric} mm²` : `${wire.sizeAWG} AWG`;
+  if (unit === 'mm²') return `${wire.sizeMetric} mm²`;
+  return wire.sizeAWG.includes('kcmil') ? wire.sizeAWG : `${wire.sizeAWG} AWG`;
 }
 
 // Calculate voltage drop
@@ -192,7 +220,8 @@ export function calculateWireSize(inputs: WireSizeInputs): WireSizeResult {
   const maxVoltageDrop = (voltage * voltageDropLimit) / 100;
 
   // Filter wires based on material and ampacity
-  const suitableWires = WIRE_TABLE.filter(wire => {
+  const table = wireTable(wireUnit);
+  const suitableWires = table.filter(wire => {
     const ampacity = material === 'copper' ? wire.ampacityCopper : wire.ampacityAluminum;
     return ampacity >= current && ampacity > 0;
   });
@@ -227,12 +256,13 @@ export function calculateWireSize(inputs: WireSizeInputs): WireSizeResult {
 
   const voltageDropPercentage = (actualVoltageDrop / voltage) * 100;
   const voltageAtLoad = voltage - actualVoltageDrop;
-  const powerLoss = current * actualVoltageDrop;
+  // Loss in the conductors: 2·I²R for single phase (I × VD), 3·I²R for three phase (√3 × I × VD)
+  const powerLoss = (phaseType === 'three' ? Math.sqrt(3) : 1) * current * actualVoltageDrop;
   const isSafe = voltageDropPercentage <= voltageDropLimit;
 
   // Get alternative wire sizes (next 2 larger sizes)
-  const recommendedIndex = WIRE_TABLE.findIndex(w => w.sizeMetric === recommendedWire!.sizeMetric);
-  const alternativeWires = WIRE_TABLE.slice(recommendedIndex + 1, recommendedIndex + 3).filter(wire => {
+  const recommendedIndex = table.findIndex(w => w.sizeMetric === recommendedWire!.sizeMetric);
+  const alternativeWires = table.slice(recommendedIndex + 1, recommendedIndex + 3).filter(wire => {
     const ampacity = material === 'copper' ? wire.ampacityCopper : wire.ampacityAluminum;
     return ampacity > 0;
   });

@@ -20,7 +20,8 @@ import {
   loadSettings,
   getOffsetStatusColor,
   getOffsetStatusBgColor,
-  getRecommendation
+  getRecommendation,
+  CO2_FACTORS
 } from "./logic";
 import SolarPanelCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -34,13 +35,22 @@ export default function SolarPanelCalculatorUI() {
     sunHours: savedSettings.sunHours || 5,
     panelWattage: (savedSettings.panelWattage as PanelWattage) || 400,
     systemEfficiency: savedSettings.systemEfficiency || 0.80,
-    electricityRate: savedSettings.electricityRate || 0.12
+    electricityRate: savedSettings.electricityRate || 0.12,
+    co2PerKwh: CO2_FACTORS[0].value
   });
+  const [co2Preset, setCo2Preset] = useState<string>(CO2_FACTORS[0].id);
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
 
   // Guessed after hydration so the server markup matches; always editable
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    const frame = window.requestAnimationFrame(() => {
+      setCurrency(guessCurrency());
+      // UK visitors start from the UK grid factor; everyone can change it
+      if (Intl.DateTimeFormat().resolvedOptions().timeZone === "Europe/London") {
+        setCo2Preset("uk");
+        setInputs(prev => ({ ...prev, co2PerKwh: CO2_FACTORS[1].value }));
+      }
+    });
     return () => window.cancelAnimationFrame(frame);
   }, []);
   
@@ -95,7 +105,8 @@ export default function SolarPanelCalculatorUI() {
       sunHours: 5,
       panelWattage: 400,
       systemEfficiency: 0.80,
-      electricityRate: 0.12
+      electricityRate: 0.12,
+      co2PerKwh: inputs.co2PerKwh
     });
     setResult(null);
     setError(null);
@@ -369,6 +380,44 @@ export default function SolarPanelCalculatorUI() {
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   For cost savings calculation
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Grid CO2 factor (kg CO2 per kWh)
+                </label>
+                <div className="flex gap-2">
+                  <select
+                    value={co2Preset}
+                    onChange={(e) => {
+                      setCo2Preset(e.target.value);
+                      const preset = CO2_FACTORS.find((f) => f.id === e.target.value);
+                      if (preset) handleInputChange('co2PerKwh', preset.value);
+                    }}
+                    className="px-3 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
+                    aria-label="Grid CO2 factor preset"
+                  >
+                    {CO2_FACTORS.map((f) => (
+                      <option key={f.id} value={f.id}>{f.label}</option>
+                    ))}
+                    <option value="custom">Custom</option>
+                  </select>
+                  <input
+                    type="number"
+                    value={inputs.co2PerKwh ?? ''}
+                    onChange={(e) => {
+                      setCo2Preset('custom');
+                      handleInputChange('co2PerKwh', parseFloat(e.target.value) || 0);
+                    }}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                    min="0"
+                    step="0.001"
+                    aria-label="Grid CO2 factor in kg per kWh"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  {CO2_FACTORS.find((f) => f.id === co2Preset)?.source ?? "Your own grid's emission factor, from your utility or national statistics"}
                 </p>
               </div>
 

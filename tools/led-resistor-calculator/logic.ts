@@ -63,7 +63,7 @@ export function calculateLEDResistor(inputs: LEDResistorInputs): LEDResistorResu
   
   // Find nearest standard resistor value
   const standardResistance = findNearestStandardResistor(resistance);
-  steps.push(`Step 5: Find Nearest Standard Resistor Value`);
+  steps.push(`Step 5: Next Standard Resistor Value (E24, rounded up)`);
   steps.push(`Calculated: ${formatNumber(resistance, 2)} Ω`);
   steps.push(`Standard Value: ${standardResistance} Ω (E24 series)`);
   steps.push(``);
@@ -99,26 +99,20 @@ export function calculateLEDResistor(inputs: LEDResistorInputs): LEDResistorResu
 }
 
 /**
- * Find nearest standard resistor value
+ * The E24 standard value at or above the calculated resistance. Rounding up
+ * keeps the current at or below the target; a lower value lets more through.
  */
 export function findNearestStandardResistor(resistance: number): number {
-  // Determine the magnitude (power of 10)
-  const magnitude = Math.pow(10, Math.floor(Math.log10(resistance)));
-  const normalized = resistance / magnitude;
-  
-  // Find closest value in E24 series
-  let closest = E24_SERIES[0];
-  let minDiff = Math.abs(normalized - closest);
-  
-  for (const value of E24_SERIES) {
-    const diff = Math.abs(normalized - value);
-    if (diff < minDiff) {
-      minDiff = diff;
-      closest = value;
+  if (!(resistance > 0) || !isFinite(resistance)) return 0;
+  // E24_SERIES runs from 10 to 91, so start one decade below the value
+  let decade = Math.pow(10, Math.floor(Math.log10(resistance)) - 1);
+  for (;;) {
+    for (const value of E24_SERIES) {
+      const candidate = Math.round(value * decade * 1e6) / 1e6;
+      if (candidate >= resistance * (1 - 1e-9)) return candidate;
     }
+    decade *= 10;
   }
-  
-  return closest * magnitude;
 }
 
 /**

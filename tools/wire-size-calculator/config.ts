@@ -58,7 +58,7 @@ export const wireSizeCalculatorConfig = {
       },
       {
         name: "Enter Cable Length",
-        text: "Enter the one-way distance from the power source to the load in meters or feet. The formula accounts for both conductors automatically — do not double the distance manually.",
+        text: "Enter the one-way distance from the power source to the load in meters. The formula accounts for both conductors automatically — do not double the distance manually.",
       },
       {
         name: "Choose Conductor Material",
@@ -70,7 +70,7 @@ export const wireSizeCalculatorConfig = {
       },
       {
         name: "Read and Apply the Result",
-        text: "The calculator returns the recommended wire size in mm² and AWG, actual voltage drop percentage, power loss in watts, and a conservative next-size-up alternative. Export the result for project documentation.",
+        text: "The calculator returns the recommended wire size in mm² or AWG (switch with the unit buttons), actual voltage drop percentage, power loss in watts, and a conservative next-size-up alternative. Export the result for project documentation.",
       },
     ],
     faq: [
@@ -84,11 +84,11 @@ export const wireSizeCalculatorConfig = {
       },
       {
         q: "What wire size do I need for a 20-amp circuit?",
-        a: "For a 20-amp, 120V single-phase branch circuit up to about 25 meters (80 feet), 2.5 mm² (12 AWG) copper is the standard choice. For longer runs — 40 meters or more — voltage drop pushes the requirement to 4 mm² (10 AWG). Always enter your actual cable length to get the correct size for your specific run.",
+        a: "In the US, a 20-amp circuit needs at least 12 AWG copper (NEC 240.4(D)). At 120V with a 3% voltage drop limit, 12 AWG reaches about 13 meters (45 feet); beyond that the calculator steps up to 10 AWG (to about 22 m / 72 ft) and then 8 AWG (to about 35 m / 115 ft). On a 230V metric installation, 2.5 mm² copper covers a 20A circuit up to about 23 meters at 3%. Enter your actual length for your run.",
       },
       {
         q: "What is the difference between AWG and mm²?",
-        a: "AWG (American Wire Gauge) is the North American sizing system where smaller numbers indicate larger conductors — 10 AWG is larger than 14 AWG. mm² (square millimeters) is the metric IEC system used internationally, directly expressing the conductor cross-sectional area. Common equivalents: 2.5 mm² is approximately 14 AWG, 4 mm² is approximately 12 AWG, 6 mm² is approximately 10 AWG, and 10 mm² is approximately 8 AWG.",
+        a: "AWG (American Wire Gauge) is the North American sizing system where smaller numbers indicate larger conductors — 10 AWG is larger than 14 AWG. mm² (square millimeters) is the metric IEC system used internationally, directly expressing the conductor cross-sectional area. 14 AWG is 2.08 mm², 12 AWG is 3.31 mm², 10 AWG is 5.26 mm² and 8 AWG is 8.37 mm², so the nearest larger metric sizes are 2.5, 4, 6 and 10 mm². The two systems are not swapped one-for-one; the calculator uses each system's own ratings.",
       },
       {
         q: "Should I use copper or aluminum wire?",
@@ -104,7 +104,7 @@ export const wireSizeCalculatorConfig = {
       },
       {
         q: "Why does the calculator recommend a larger wire than I expected?",
-        a: "Long cable runs are the most common reason. A 15-amp circuit at 120V over 60 meters requires 6 mm² (10 AWG) — three sizes larger than ampacity alone would suggest — because voltage drop forces the upgrade. Other factors that push toward larger conductors include low supply voltage, aluminum instead of copper, stricter voltage drop limits for sensitive loads, and three-phase versus single-phase system type.",
+        a: "Long cable runs are the most common reason. A 15-amp circuit at 120V over 60 meters needs 6 AWG (10 mm² in metric), four sizes larger than ampacity alone would allow, because voltage drop forces the upgrade. Other factors that push toward larger conductors include low supply voltage, aluminum instead of copper, stricter voltage drop limits for sensitive loads, and three-phase versus single-phase system type.",
       },
       {
         q: "Does the calculator account for temperature derating?",

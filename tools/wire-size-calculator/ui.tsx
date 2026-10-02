@@ -22,7 +22,7 @@ import {
   formatNumber,
   debounce,
   getWireSize,
-  WIRE_TABLE,
+  wireTable,
 } from "./logic";
 import WireSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -522,20 +522,20 @@ export default function WireSizeCalculatorUI() {
                 <table className="min-w-full text-sm">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-3 py-2 text-left font-semibold text-gray-900">mm²</th>
-                      <th className="px-3 py-2 text-left font-semibold text-gray-900">AWG</th>
+                      <th className="px-3 py-2 text-left font-semibold text-gray-900">{inputs.wireUnit === 'AWG' ? 'AWG' : 'mm²'}</th>
+                      {inputs.wireUnit === 'AWG' && <th className="px-3 py-2 text-left font-semibold text-gray-900">Area (mm²)</th>}
                       <th className="px-3 py-2 text-left font-semibold text-gray-900">Copper (A)</th>
                       <th className="px-3 py-2 text-left font-semibold text-gray-900">Aluminum (A)</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {WIRE_TABLE.slice(0, 10).map((wire, index) => (
+                    {wireTable(inputs.wireUnit).slice(0, 10).map((wire, index) => (
                       <tr 
                         key={index}
                         className={result && wire.sizeMetric === result.recommendedWire.sizeMetric ? 'bg-primary/10' : ''}
                       >
-                        <td className="px-3 py-2 text-gray-700">{wire.sizeMetric}</td>
-                        <td className="px-3 py-2 text-gray-700">{wire.sizeAWG}</td>
+                        <td className="px-3 py-2 text-gray-700">{inputs.wireUnit === 'AWG' ? wire.sizeAWG : wire.sizeMetric}</td>
+                        {inputs.wireUnit === 'AWG' && <td className="px-3 py-2 text-gray-700">{wire.sizeMetric}</td>}
                         <td className="px-3 py-2 text-gray-700">{wire.ampacityCopper}</td>
                         <td className="px-3 py-2 text-gray-700">{wire.ampacityAluminum || '-'}</td>
                       </tr>
@@ -543,6 +543,11 @@ export default function WireSizeCalculatorUI() {
                   </tbody>
                 </table>
               </div>
+              <p className="text-xs text-gray-500 mt-3">
+                {inputs.wireUnit === 'AWG'
+                  ? 'NEC Table 310.16, 75 °C column, limited by NEC 240.4(D) for 14–10 AWG. Resistance from NEC Chapter 9, Table 8.'
+                  : 'Typical IEC cable ratings for a few loaded conductors at 30 °C ambient. Check IEC 60364-5-52 or local rules for your installation method.'}
+              </p>
             </div>
 
             {/* History Panel */}

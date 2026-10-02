@@ -281,8 +281,10 @@ export default function SolarPanelCalculatorSEO() {
                 <div>
                   <h3 className="font-semibold text-green-900 mb-1">CO2 Emissions Reduction</h3>
                   <p className="text-sm text-green-800">
-                    Solar energy produces zero emissions during operation. A typical 5 kW residential system prevents approximately 
-                    4,600 kg of CO2 emissions annually, equivalent to planting 220 trees or taking a car off the road for 11,000 miles.
+                    Solar energy produces zero emissions during operation. A 5 kW system producing about 7,300 kWh a year
+                    (5 sun hours, 80% efficiency) avoids about 2,700 kg of CO2 at the US average grid factor of 0.373 kg/kWh
+                    (EPA eGRID), roughly the CO2 from 6,800 miles of driving an average car. Cleaner grids, such as the UK&apos;s,
+                    give smaller figures.
                   </p>
                 </div>
               </div>

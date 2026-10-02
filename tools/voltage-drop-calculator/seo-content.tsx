@@ -54,7 +54,7 @@ export default function VoltageDropCalculatorSEO() {
             <li><strong>Resistance lookup:</strong> the calculator starts from a copper resistance table (Ω/km at 20°C) for each standard wire size from 1.5 mm² to 120 mm²</li>
             <li><strong>Material adjustment:</strong> aluminum resistance is calculated as copper resistance × 1.63, reflecting aluminum's lower conductivity</li>
             <li><strong>Temperature adjustment:</strong> resistance is scaled from the 20°C reference using copper's temperature coefficient of 0.00393 per °C, so hotter cables show higher drop</li>
-            <li><strong>Final voltage &amp; power loss:</strong> final voltage = supply voltage − voltage drop, and power loss = current × voltage drop, showing the wasted energy in watts</li>
+            <li><strong>Final voltage &amp; power loss:</strong> final voltage = supply voltage − voltage drop, and power loss = current × voltage drop (×√3 for three phase), showing the energy lost in the cable in watts</li>
             <li><strong>Status thresholds:</strong> under 3% is flagged Good, 3–5% Acceptable with an optimization note, over 5% Too High with a suggested larger wire size</li>
           </ul>
         </div>
