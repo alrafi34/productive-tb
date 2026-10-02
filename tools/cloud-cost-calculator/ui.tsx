@@ -6,6 +6,7 @@ import {
   calculateCost,
   compareProviders,
   getRecommendation,
+  exchangeRateFor,
   projectScaling,
   formatCurrency,
   getCurrencySymbol,
@@ -20,7 +21,7 @@ import {
   DEFAULT_CONFIG,
   PRESETS,
 } from "./logic";
-import { PROVIDERS, REGION_LABELS, CURRENCY_SYMBOLS } from "./pricing";
+import { PROVIDERS, REGION_LABELS, CURRENCY_SYMBOLS, EXCHANGE_RATES, PRICES_AS_OF } from "./pricing";
 import type { SavedEstimate, ProviderComparison } from "./types";
 import CloudCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -200,7 +201,7 @@ export default function CloudCostCalculatorUI() {
 
   const maxComparison = comparisons.length > 0 ? comparisons[comparisons.length - 1].monthly : 1;
   const scaling = result ? projectScaling(result.monthly.total) : null;
-  const rec = result ? getRecommendation(result.monthly.total, config.provider, config.currency, sym) : null;
+  const rec = result ? getRecommendation(result.monthly.total, config.provider, config.currency, sym, exchangeRateFor(config)) : null;
 
   // ── Input number field ───────────────────────────────────────────────────────
   const NumField = ({
@@ -306,7 +307,7 @@ export default function CloudCostCalculatorUI() {
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Currency</label>
                   <select
                     value={config.currency}
-                    onChange={(e) => set("currency", e.target.value as Currency)}
+                    onChange={(e) => setConfig((prev) => ({ ...prev, currency: e.target.value as Currency, exchangeRate: undefined }))}
                     className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white"
                     aria-label="Currency"
                   >
@@ -316,6 +317,31 @@ export default function CloudCostCalculatorUI() {
                   </select>
                 </div>
               </div>
+
+              {config.currency !== "USD" && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">1 USD = ? {config.currency}</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="any"
+                    value={config.exchangeRate ?? ""}
+                    placeholder={String(EXCHANGE_RATES[config.currency])}
+                    onChange={(e) => {
+                      const v = parseFloat(e.target.value);
+                      set("exchangeRate", isNaN(v) || v <= 0 ? undefined : v);
+                    }}
+                    className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                    aria-label="Exchange rate"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">The placeholder is an example rate from {PRICES_AS_OF}; enter today&apos;s rate.</p>
+                </div>
+              )}
+
+              <p className="text-xs text-gray-500">
+                Provider prices are example on-demand list prices collected {PRICES_AS_OF}. Providers change them
+                often, so treat the result as an estimate and check the provider&apos;s pricing page before you commit.
+              </p>
             </div>
 
             {/* Compute */}

@@ -32,10 +32,17 @@ export function formatNumber(n: number): string {
 
 // ── Core calculation ──────────────────────────────────────────────────────────
 
+/* The visitor's own rate when entered, otherwise the example rate */
+export function exchangeRateFor(config: Pick<CloudConfig, "currency" | "exchangeRate">): number {
+  if (config.currency === "USD") return 1;
+  if (config.exchangeRate && config.exchangeRate > 0) return config.exchangeRate;
+  return EXCHANGE_RATES[config.currency] ?? 1;
+}
+
 export function calculateCost(config: CloudConfig): CostResult {
   const pricing = PROVIDERS[config.provider];
   const regionMul = REGION_MULTIPLIERS[config.region] ?? 1;
-  const exchangeRate = EXCHANGE_RATES[config.currency] ?? 1;
+  const exchangeRate = exchangeRateFor(config);
 
   // Runtime hours this month
   const hours =
@@ -137,9 +144,10 @@ export function getRecommendation(
   monthly: number,
   provider: Provider,
   currency: string,
-  symbol: string
+  symbol: string,
+  rate = EXCHANGE_RATES[currency as keyof typeof EXCHANGE_RATES] ?? 1
 ): Recommendation {
-  const usd = monthly / (EXCHANGE_RATES[currency as keyof typeof EXCHANGE_RATES] ?? 1);
+  const usd = monthly / rate;
 
   if (usd < 10) {
     return {

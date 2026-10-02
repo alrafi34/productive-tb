@@ -7,7 +7,12 @@ import type {
   HistoryEntry,
 } from "./types";
 
-// ── Model presets (prices as of mid-2025) ────────────────────────────────────
+// ── Model presets ────────────────────────────────────────────────────────────
+/* Example list prices (USD per 1M tokens) from the providers' pricing pages,
+   collected mid-2025. They are a starting point only: the UI says so and both
+   price fields stay editable. */
+export const PRICES_AS_OF = "mid-2025";
+
 export const MODEL_PRESETS: ModelPreset[] = [
   // OpenAI
   { id: "gpt-4.1-mini",   name: "GPT-4.1 Mini",    provider: "OpenAI",     inputPricePer1M: 0.40,   outputPricePer1M: 1.60,   contextWindow: 1_047_576 },
@@ -44,7 +49,8 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: "$", EUR: "€", GBP: "£", JPY: "¥", INR: "₹", AUD: "A$", CAD: "C$",
 };
 
-// Static fallback rates (USD base). Users can override.
+/* Example rates (units per 1 USD, mid-2025) used until the visitor enters
+   today's rate. */
 export const DEFAULT_EXCHANGE_RATES: Record<Currency, number> = {
   USD: 1.00, EUR: 0.92, GBP: 0.79, JPY: 149.50, INR: 83.40, AUD: 1.53, CAD: 1.36,
 };

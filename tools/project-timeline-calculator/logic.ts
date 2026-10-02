@@ -1,4 +1,5 @@
 import { Task, ProjectSettings, TimelineCalculation, ExecutionType, HistoryEntry, TaskPreset, ProjectPreset, GanttBarData } from "./types";
+import { addDays, parseDate, toIso, today } from "@/lib/dates";
 
 // Generate unique ID
 export function generateId(): string {
@@ -200,9 +201,9 @@ export function calculateTimeline(
   calculation.totalDuration = maxFinish;
 
   // Calculate completion date
-  const startDate = new Date(settings.startDate);
+  const startDate = parseDate(settings.startDate) ?? today();
   const completionDate = addWorkingDays(startDate, maxFinish, settings.workingDaysPerWeek);
-  calculation.completionDate = completionDate.toISOString().split('T')[0];
+  calculation.completionDate = toIso(completionDate);
 
   // Find critical path (tasks with zero slack)
   const criticalTasks = Array.from(taskMap.values()).filter(task => 
@@ -218,25 +219,29 @@ export function calculateTimeline(
   return calculation;
 }
 
-// Add working days to a date
+/* Finish date of a run of working days that starts on startDate (a noon-UTC
+   calendar date from lib/dates). The start day counts as day 1 when it is a
+   working day, so 5 working days from a Monday end on that Friday. Weekends
+   are Saturday and Sunday for a 5-day week and Sunday for a 6-day week. */
 export function addWorkingDays(startDate: Date, days: number, workingDaysPerWeek: number): Date {
-  const result = new Date(startDate);
-  let addedDays = 0;
-  let totalDays = 0;
+  const isWorkingDay = (d: Date) => {
+    const weekday = d.getUTCDay();
+    if (workingDaysPerWeek >= 7) return true;
+    if (workingDaysPerWeek === 6) return weekday !== 0;
+    return weekday !== 0 && weekday !== 6;
+  };
 
-  while (addedDays < days) {
-    totalDays++;
-    const dayOfWeek = (result.getDay() + totalDays - 1) % 7;
-    
-    if (workingDaysPerWeek === 7 || 
-        (workingDaysPerWeek === 6 && dayOfWeek !== 6) || 
-        (workingDaysPerWeek === 5 && dayOfWeek < 5)) {
-      addedDays++;
+  const target = Math.ceil(days);
+  let date = startDate;
+  if (target <= 0) return date;
+  let counted = 0;
+  for (;;) {
+    if (isWorkingDay(date)) {
+      counted++;
+      if (counted >= target) return date;
     }
+    date = addDays(date, 1);
   }
-
-  result.setDate(result.getDate() + totalDays);
-  return result;
 }
 
 // Format number

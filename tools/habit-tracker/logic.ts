@@ -1,3 +1,5 @@
+import { addDays, daysBetween, parseDate, toIso, today } from "@/lib/dates";
+
 export interface Habit {
   id: string;
   name: string;
@@ -35,86 +37,63 @@ export const HABIT_SUGGESTIONS = [
   'Learn new skill'
 ];
 
+/* Dates are stored as the visitor's own calendar day (YYYY-MM-DD), never the
+   UTC day, so a habit ticked at 9 pm in Los Angeles counts for that day. */
 export function getTodayString(): string {
-  return new Date().toISOString().split('T')[0];
+  return toIso(today());
+}
+
+/* "2026-10-05" for a day of a month shown in the calendar */
+export function dateString(year: number, month: number, day: number): string {
+  return toIso(new Date(Date.UTC(year, month, day, 12)));
 }
 
 export function calculateStreak(completedDates: string[]): number {
-  if (completedDates.length === 0) return 0;
-  
-  const today = getTodayString();
-  const sortedDates = [...completedDates].sort();
+  const done = new Set(completedDates);
+  let day = today();
+  // An open day today doesn't break the streak until it is over
+  if (!done.has(toIso(day))) day = addDays(day, -1);
+
   let streak = 0;
-  
-  // Check if today is completed
-  const lastDate = sortedDates[sortedDates.length - 1];
-  if (lastDate !== today) {
-    // Check if yesterday was completed (streak continues)
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
-    
-    if (lastDate !== yesterdayStr) return 0;
+  while (done.has(toIso(day))) {
+    streak++;
+    day = addDays(day, -1);
   }
-  
-  // Count consecutive days backwards from today/yesterday
-  const startDate = lastDate === today ? today : lastDate;
-  const start = new Date(startDate);
-  
-  for (let i = 0; i < sortedDates.length; i++) {
-    const checkDate = new Date(start);
-    checkDate.setDate(start.getDate() - i);
-    const checkStr = checkDate.toISOString().split('T')[0];
-    
-    if (sortedDates.includes(checkStr)) {
-      streak++;
-    } else {
-      break;
-    }
-  }
-  
   return streak;
 }
 
 export function calculateLongestStreak(completedDates: string[]): number {
-  if (completedDates.length === 0) return 0;
-  
-  const sortedDates = [...completedDates].sort();
+  const days = Array.from(new Set(completedDates))
+    .map(parseDate)
+    .filter((d): d is Date => d !== null)
+    .sort((a, b) => a.getTime() - b.getTime());
+  if (days.length === 0) return 0;
+
   let maxStreak = 1;
   let currentStreak = 1;
-  
-  for (let i = 1; i < sortedDates.length; i++) {
-    const prevDate = new Date(sortedDates[i - 1]);
-    const currDate = new Date(sortedDates[i]);
-    const diffTime = currDate.getTime() - prevDate.getTime();
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    
-    if (diffDays === 1) {
-      currentStreak++;
-      maxStreak = Math.max(maxStreak, currentStreak);
-    } else {
-      currentStreak = 1;
-    }
+  for (let i = 1; i < days.length; i++) {
+    currentStreak = daysBetween(days[i - 1], days[i]) === 1 ? currentStreak + 1 : 1;
+    maxStreak = Math.max(maxStreak, currentStreak);
   }
-  
   return maxStreak;
 }
 
 export function getWeeklyProgress(completedDates: string[]): number[] {
-  const today = new Date();
+  const now = today();
   const weekProgress = [];
-  
   for (let i = 6; i >= 0; i--) {
-    const date = new Date(today);
-    date.setDate(today.getDate() - i);
-    const dateStr = date.toISOString().split('T')[0];
-    weekProgress.push(completedDates.includes(dateStr) ? 1 : 0);
+    weekProgress.push(completedDates.includes(toIso(addDays(now, -i))) ? 1 : 0);
   }
-  
   return weekProgress;
 }
 
-export function getMonthlyCalendar(completedDates: string[], year: number, month: number): (number | null)[][] {
+/* Days since the habit was created, counting today */
+export function daysTracked(created: string): number {
+  const start = parseDate(created);
+  return start ? Math.max(1, daysBetween(start, today()) + 1) : 1;
+}
+
+export function getMonthlyCalendar(year: number, month: number): (number | null)[][] {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const startDate = new Date(firstDay);
@@ -128,9 +107,7 @@ export function getMonthlyCalendar(completedDates: string[], year: number, month
     currentDate.setDate(startDate.getDate() + i);
     
     if (currentDate.getMonth() === month) {
-      const dateStr = currentDate.toISOString().split('T')[0];
-      const isCompleted = completedDates.includes(dateStr);
-      week.push(isCompleted ? currentDate.getDate() : currentDate.getDate());
+      week.push(currentDate.getDate());
     } else {
       week.push(null);
     }

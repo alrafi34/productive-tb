@@ -18,7 +18,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "text-encryptor-aes": "2026-08-07",
   "age-calculator": "2026-09-30",
   "ai-prompt-length-calculator": "2026-09-30",
-  "ai-token-cost-calculator": "2026-09-30",
+  "ai-token-cost-calculator": "2026-10-02",
   "air-change-rate-calculator": "2026-09-27",
   "air-conditioner-power-calculator": "2026-10-01",
   "amplifier-gain-calculator": "2026-09-27",

@@ -1,3 +1,5 @@
+import { parseDate } from "@/lib/dates";
+
 export interface TimelineEvent {
   id: string;
   title: string;
@@ -21,8 +23,29 @@ export const DEFAULT_CONFIG: TimelineConfig = {
   autoSort: true,
 };
 
+/* Event dates are calendar days ("2025-01-01"). Read at noon UTC and shown in
+   UTC, so they never slip to the day before in the Americas, and the page
+   renders the same on the server and in the browser. */
+function eventDay(date: string): Date | null {
+  return parseDate(date);
+}
+
+export function eventTime(date: string): number {
+  return eventDay(date)?.getTime() ?? 0;
+}
+
+export function eventYear(date: string): number {
+  return eventDay(date)?.getUTCFullYear() ?? 0;
+}
+
+export function formatEventDate(date: string): string {
+  const d = eventDay(date);
+  if (!d) return date;
+  return new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeZone: "UTC" }).format(d);
+}
+
 export function sortEventsByDate(events: TimelineEvent[]): TimelineEvent[] {
-  return [...events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  return [...events].sort((a, b) => eventTime(a.date) - eventTime(b.date));
 }
 
 export function validateEvent(event: Partial<TimelineEvent>): boolean {
@@ -47,7 +70,7 @@ export function generateTimelineHTML(
       <div class="timeline-event" style="--spacing: ${config.spacing}px">
         <div class="timeline-node" style="background-color: ${config.nodeColor}"></div>
         <div class="timeline-content">
-          <div class="timeline-date">${new Date(event.date).toLocaleDateString()}</div>
+          <div class="timeline-date">${formatEventDate(event.date)}</div>
           <div class="timeline-title">${escapeHtml(event.title)}</div>
           ${event.description ? `<div class="timeline-description">${escapeHtml(event.description)}</div>` : ""}
         </div>
@@ -284,7 +307,7 @@ export function generateSVGTimeline(
       svg += `<circle cx="${x}" cy="${y}" r="${nodeRadius}" fill="${config.nodeColor}" stroke="white" stroke-width="2"/>`;
 
       const textY = y + 40;
-      const dateStr = new Date(event.date).toLocaleDateString();
+      const dateStr = formatEventDate(event.date);
 
       svg += `<text x="${x}" y="${textY}" text-anchor="middle" font-size="12" font-weight="600" fill="#666">${dateStr}</text>`;
       svg += `<text x="${x}" y="${textY + 18}" text-anchor="middle" font-size="14" font-weight="700" fill="#333">${escapeHtml(event.title)}</text>`;
@@ -312,7 +335,7 @@ export function generateSVGTimeline(
 
       svg += `<circle cx="${x}" cy="${y}" r="${nodeRadius}" fill="${config.nodeColor}" stroke="white" stroke-width="2"/>`;
 
-      const dateStr = new Date(event.date).toLocaleDateString();
+      const dateStr = formatEventDate(event.date);
       svg += `<text x="${textX}" y="${y - 10}" text-anchor="${textAnchor}" font-size="12" font-weight="600" fill="#666">${dateStr}</text>`;
       svg += `<text x="${textX}" y="${y + 8}" text-anchor="${textAnchor}" font-size="14" font-weight="700" fill="#333">${escapeHtml(event.title)}</text>`;
 

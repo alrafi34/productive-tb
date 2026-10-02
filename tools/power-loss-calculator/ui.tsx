@@ -19,6 +19,7 @@ import {
 import PowerLossCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { guessMainsVoltage } from "@/lib/voltage";
 
 export default function PowerLossCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>('i-r');
@@ -80,7 +81,7 @@ export default function PowerLossCalculatorUI() {
     } else if (newMode === 'v-i') {
       setInputs({ 
         mode: newMode, 
-        voltage: 220,
+        voltage: guessMainsVoltage(),
         current: 5,
         showEfficiency: false,
         precision: 2
@@ -88,7 +89,7 @@ export default function PowerLossCalculatorUI() {
     } else {
       setInputs({ 
         mode: newMode, 
-        voltage: 220,
+        voltage: guessMainsVoltage(),
         current: 5,
         resistance: 10,
         showEfficiency: true,
@@ -116,7 +117,7 @@ export default function PowerLossCalculatorUI() {
     } else if (mode === 'v-i') {
       setInputs({ 
         mode, 
-        voltage: 220,
+        voltage: guessMainsVoltage(),
         current: 5,
         showEfficiency: false,
         precision: 2
@@ -124,7 +125,7 @@ export default function PowerLossCalculatorUI() {
     } else {
       setInputs({ 
         mode, 
-        voltage: 220,
+        voltage: guessMainsVoltage(),
         current: 5,
         resistance: 10,
         showEfficiency: true,
@@ -399,7 +400,7 @@ export default function PowerLossCalculatorUI() {
                     value={inputs.voltage || ''}
                     onChange={(e) => handleInputChange('voltage', parseFloat(e.target.value) || 0)}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder="220"
+                    placeholder="230"
                     step="any"
                     min="0"
                   />

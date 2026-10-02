@@ -12,6 +12,7 @@ import {
   PROVIDERS,
   CURRENCY_SYMBOLS,
   DEFAULT_EXCHANGE_RATES,
+  PRICES_AS_OF,
   USAGE_TEMPLATES,
   COMPARISON_MODEL_IDS,
   calculateCost,
@@ -40,7 +41,7 @@ const TIMEFRAMES: { id: Timeframe; label: string }[] = [
   { id: "yearly", label: "Yearly" },
 ];
 
-const CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "JPY", "INR", "AUD", "CAD"];
+const CURRENCIES: Currency[] = ["USD", "EUR", "GBP", "CAD", "AUD", "JPY", "INR"];
 
 export default function AITokenCostCalculatorUI() {
   // ── Tab ────────────────────────────────────────────────────────────────────
@@ -359,6 +360,10 @@ export default function AITokenCostCalculatorUI() {
                     />
                   </div>
                 </div>
+                <p className="text-xs text-gray-500 -mt-2">
+                  Preset prices are example list prices collected {PRICES_AS_OF}. Providers change prices often, so
+                  check the provider&apos;s pricing page and edit both fields.
+                </p>
 
                 {/* Requests */}
                 <div>
@@ -411,7 +416,7 @@ export default function AITokenCostCalculatorUI() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Exchange Rate
+                      {currency === "USD" ? "Exchange Rate" : `1 USD = ? ${currency}`}
                     </label>
                     <input
                       type="number"
@@ -425,6 +430,11 @@ export default function AITokenCostCalculatorUI() {
                     />
                   </div>
                 </div>
+                {currency !== "USD" && (
+                  <p className="text-xs text-gray-500 -mt-2">
+                    The shown rate is only an example from {PRICES_AS_OF}; enter today&apos;s rate for an accurate figure.
+                  </p>
+                )}
 
                 {error && <p className="text-xs text-red-600">{error}</p>}
 

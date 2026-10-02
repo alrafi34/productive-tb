@@ -20,6 +20,7 @@ import {
 import RelayCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { guessMainsVoltage } from "@/lib/voltage";
 
 export default function RelayCalculatorUI() {
   const savedSettings = loadSettings();
@@ -30,12 +31,20 @@ export default function RelayCalculatorUI() {
     mcuVoltage: savedSettings.mcuVoltage || 5,
     transistorGain: savedSettings.transistorGain || 100,
     baseEmitterVoltage: savedSettings.baseEmitterVoltage || 0.7,
-    loadVoltage: savedSettings.loadVoltage || 220,
+    loadVoltage: savedSettings.loadVoltage || 230,
     loadCurrent: savedSettings.loadCurrent || 5,
     relayRatedVoltage: savedSettings.relayRatedVoltage || 250,
     relayRatedCurrent: savedSettings.relayRatedCurrent || 10
   });
   
+  // Mains voltage from the visitor's region unless a saved value exists
+  useEffect(() => {
+    if (savedSettings.loadVoltage) return;
+    const frame = window.requestAnimationFrame(() => setInputs(prev => ({ ...prev, loadVoltage: guessMainsVoltage() })));
+    return () => window.cancelAnimationFrame(frame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [result, setResult] = useState<RelayCalculatorResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -88,7 +97,7 @@ export default function RelayCalculatorUI() {
       mcuVoltage: 5,
       transistorGain: 100,
       baseEmitterVoltage: 0.7,
-      loadVoltage: 220,
+      loadVoltage: guessMainsVoltage(),
       loadCurrent: 5,
       relayRatedVoltage: 250,
       relayRatedCurrent: 10
@@ -428,7 +437,7 @@ export default function RelayCalculatorUI() {
                       value={inputs.loadVoltage || ''}
                       onChange={(e) => handleInputChange('loadVoltage', parseFloat(e.target.value) || 0)}
                       className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                      placeholder="220"
+                      placeholder="230"
                       min="0"
                       step="1"
                     />

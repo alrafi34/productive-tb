@@ -159,7 +159,7 @@ export default function MortgageCalculatorUI() {
                   className="w-full h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
                 <p className="text-xs text-gray-500 font-medium">
-                  {((downPayment / loanAmount) * 100).toFixed(1)}% down payment
+                  {(loanAmount > 0 ? (downPayment / loanAmount) * 100 : 0).toFixed(1)}% down payment
                 </p>
               </div>
 
@@ -357,6 +357,7 @@ export default function MortgageCalculatorUI() {
                   </div>
                 </div>
 
+                {result.totalPayment > 0 && (
                 <div className="bg-white rounded-xl border border-gray-100 p-6">
                   <div className="flex justify-between items-center mb-3">
                     <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Payment Breakdown</h4>
@@ -377,6 +378,7 @@ export default function MortgageCalculatorUI() {
                     </div>
                   </div>
                 </div>
+                )}
               </div>
             )}
 

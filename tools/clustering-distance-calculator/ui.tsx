@@ -35,11 +35,10 @@ export default function ClusteringDistanceCalculatorUI() {
   const parsedA = useMemo(() => parseVector(debouncedA), [debouncedA]);
   const parsedB = useMemo(() => parseVector(debouncedB), [debouncedB]);
 
-  const { result, ms } = useMemo(() => {
-    const start = performance.now();
-    const r = computeDistance(metric, parsedA.values, parsedB.values, parseFloat(minkowskiP));
-    return { result: r, ms: performance.now() - start };
-  }, [metric, parsedA.values, parsedB.values, minkowskiP]);
+  const result = useMemo(
+    () => computeDistance(metric, parsedA.values, parsedB.values, parseFloat(minkowskiP)),
+    [metric, parsedA.values, parsedB.values, minkowskiP],
+  );
 
   const meta = getMetricMeta(metric);
 
@@ -203,7 +202,7 @@ export default function ClusteringDistanceCalculatorUI() {
                 {result.error ? "—" : formatNum(result.value, precision)}
               </p>
               <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.75)" }}>
-                {dims} dimension{dims === 1 ? "" : "s"} · calculated in {ms.toFixed(2)} ms
+                {dims} dimension{dims === 1 ? "" : "s"}
               </p>
               <div className="space-y-2 mt-4 pt-4 border-t border-white/20">
                 <button onClick={handleCopy} className="w-full bg-white text-primary font-semibold py-2 rounded-lg hover:bg-gray-50 transition-colors text-sm">
