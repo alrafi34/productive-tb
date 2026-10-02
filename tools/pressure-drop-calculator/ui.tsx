@@ -44,7 +44,7 @@ const METRIC_DEFAULTS: PressureDropInputs = {
 const IMPERIAL_DEFAULTS: PressureDropInputs = {
   unitSystem:      "imperial",
   fluidType:       "water",
-  customDensity:   "62.4",
+  customDensity:   "1000",
   customViscosity: "0.001",
   pipeLength:      "100",
   pipeDiameter:    "2",
@@ -349,6 +349,16 @@ export default function PressureDropCalculatorUI() {
                     <option value="steam">Steam</option>
                     <option value="custom">Custom Fluid</option>
                   </select>
+                  {inputs.fluidType === "oil" && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      Viscosity from ASTM D341 (Walther) using typical SAE 30 values: 100 cSt at 40°C, 11 cSt at 100°C.
+                    </p>
+                  )}
+                  {inputs.fluidType === "steam" && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      Saturated steam density from IAPWS-IF97 tables, 100–200°C (212–392°F).
+                    </p>
+                  )}
                 </div>
               </div>
 

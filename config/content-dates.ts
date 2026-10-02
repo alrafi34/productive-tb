@@ -355,7 +355,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "power-loss-calculator": "2026-09-27",
   "power-supply-calculator": "2026-09-27",
   "precision-recall-calculator": "2026-09-28",
-  "pressure-drop-calculator": "2026-07-07",
+  "pressure-drop-calculator": "2026-10-02",
   "price-per-square-feet-calculator": "2026-10-01",
   "prime-number-checker": "2026-09-30",
   "profit-margin-calculator-marketing": "2026-09-30",

@@ -101,6 +101,18 @@ export function findClosestMetricThread(diamMm: number, pitchMm: number): string
   return `M${closestDiam} × ${closestPitch}`;
 }
 
+// ── Standard metric sizes for a pitch (no diameter given) ─────────────────
+export function metricSizesForPitch(pitchMm: number): string {
+  const all = Object.values(METRIC_STANDARD).flat();
+  const nearest = all.reduce((best, p) =>
+    Math.abs(p - pitchMm) < Math.abs(best - pitchMm) ? p : best, all[0]);
+  const sizes = Object.keys(METRIC_STANDARD)
+    .map(Number)
+    .sort((x, y) => x - y)
+    .filter((d) => METRIC_STANDARD[d].includes(nearest));
+  return sizes.map((d) => `M${d}`).join(", ") + ` × ${nearest}`;
+}
+
 // ── Find closest imperial standard ────────────────────────────────────────
 export function findClosestImperialThread(tpi: number): string {
   let closest = IMPERIAL_STANDARD[0];
@@ -136,7 +148,7 @@ export function calculate(inputs: ThreadInputs): ThreadResult | null {
       : `Pitch = ${pitch} mm`;
     const closest = !isNaN(diam) && diam > 0
       ? findClosestMetricThread(diam, pitch)
-      : findClosestMetricThread(6, pitch);
+      : metricSizesForPitch(pitch);
     return {
       mode,
       pitchMm: pitch,

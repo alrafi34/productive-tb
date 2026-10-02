@@ -77,6 +77,9 @@ export default function PressureDropCalculatorSEO() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
           Example Calculations
         </h2>
+        <p className="text-sm text-gray-600 mb-4">
+          Steel pipe (ε = 0.046 mm), fluid at 20°C (68°F).
+        </p>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm">
             <thead>
@@ -90,11 +93,11 @@ export default function PressureDropCalculatorSEO() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {[
-                ["30 m",   "25 mm", "2 L/s",  "Water", "≈ 7.4 kPa"],
-                ["100 ft", "2 in",  "40 GPM", "Water", "≈ 2.8 psi"],
-                ["50 m",   "50 mm", "5 L/s",  "Water", "≈ 3.1 kPa"],
-                ["200 m",  "100 mm","20 L/s", "Water", "≈ 5.8 kPa"],
-                ["30 m",   "25 mm", "1.8 m/s","Oil",   "≈ 12.4 kPa"],
+                ["30 m",   "25 mm", "2 L/s",  "Water", "≈ 247 kPa"],
+                ["100 ft", "2 in",  "40 GPM", "Water", "≈ 1.6 psi"],
+                ["50 m",   "50 mm", "5 L/s",  "Water", "≈ 70 kPa"],
+                ["200 m",  "100 mm","20 L/s", "Water", "≈ 119 kPa"],
+                ["30 m",   "25 mm", "1.8 m/s","Oil",   "≈ 826 kPa"],
               ].map(([len, dia, flow, fluid, dp]) => (
                 <tr key={len + dia} className="hover:bg-gray-50">
                   <td className="py-3 px-4 font-mono">{len}</td>

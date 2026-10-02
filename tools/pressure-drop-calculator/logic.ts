@@ -28,6 +28,19 @@ export const MATERIAL_LABELS: Record<PipeMaterial, string> = {
 };
 
 // ── Fluid properties at given temperature ────────────────────────────────────
+const walther = (cSt: number) => Math.log10(Math.log10(cSt + 0.7));
+const OIL_WALTHER_B =
+  (walther(100) - walther(11)) / (Math.log10(373.15) - Math.log10(313.15));
+const OIL_WALTHER_A = walther(100) + OIL_WALTHER_B * Math.log10(313.15);
+
+// Saturated steam (vapour) density, kg/m³, every 10°C from 100°C (IAPWS-IF97)
+const STEAM_DENSITY = [0.5981, 0.8269, 1.122, 1.4968, 1.9665, 2.5481, 3.2602, 4.1229, 5.1599, 6.3896, 7.8603];
+
+function steamDensity(t: number): number {
+  const x = (t - 100) / 10;
+  const i = Math.min(Math.floor(x), STEAM_DENSITY.length - 2);
+  return STEAM_DENSITY[i] + (x - i) * (STEAM_DENSITY[i + 1] - STEAM_DENSITY[i]);
+}
 // Returns { density (kg/m³), viscosity (Pa·s) }
 export function getFluidProperties(
   fluid: FluidType,
@@ -38,8 +51,8 @@ export function getFluidProperties(
       // Simplified polynomial fits for water (0–100°C)
       const t = Math.max(0, Math.min(100, tempC));
       const density = 999.842 - 0.0622 * t - 0.00363 * t * t;
-      // Dynamic viscosity (Pa·s) — Vogel equation approximation
-      const viscosity = 0.001 * Math.exp(-3.7188 + 578.919 / (t + 137.546));
+      // Dynamic viscosity (Pa·s) — Vogel equation, T in kelvin
+      const viscosity = 0.001 * Math.exp(-3.7188 + 578.919 / (t + 273.15 - 137.546));
       return { density, viscosity };
     }
     case "air": {
@@ -51,15 +64,18 @@ export function getFluidProperties(
       return { density, viscosity };
     }
     case "oil": {
-      // SAE 30 motor oil approximation
-      const density = 880 - 0.65 * tempC;
-      const viscosity = 0.1 * Math.exp(-0.04 * tempC);
+      // SAE 30 motor oil: ASTM D341 (Walther) line through typical
+      // kinematic viscosities of 100 cSt at 40°C and 11 cSt at 100°C
+      const t = Math.max(-20, Math.min(150, tempC));
+      const density = 880 - 0.65 * t;
+      const nuCSt = Math.pow(10, Math.pow(10, OIL_WALTHER_A - OIL_WALTHER_B * Math.log10(t + 273.15))) - 0.7;
+      const viscosity = nuCSt * 1e-6 * density;
       return { density, viscosity };
     }
     case "steam": {
       // Saturated steam approximation (100–200°C)
       const t = Math.max(100, Math.min(200, tempC));
-      const density = 0.6 + 0.012 * (t - 100);
+      const density = steamDensity(t);
       const viscosity = 1.2e-5 + 5e-8 * (t - 100);
       return { density, viscosity };
     }
@@ -121,7 +137,12 @@ export function getFlowRegime(
 
 // ── Main calculation ──────────────────────────────────────────────────────────
 export function calculate(inputs: PressureDropInputs): PressureDropResult | null {
-  const tempC = parseFloat(inputs.temperature) || 20;
+  const tempRaw = parseFloat(inputs.temperature);
+  const tempC = !isFinite(tempRaw)
+    ? 20
+    : inputs.unitSystem === "imperial"
+    ? (tempRaw - 32) * 5 / 9
+    : tempRaw;
 
   // Fluid properties
   let density: number;
@@ -292,7 +313,7 @@ export function exportToText(
     "INPUTS",
     `  Unit System   : ${inputs.unitSystem === "metric" ? "Metric (SI)" : "Imperial (US)"}`,
     `  Fluid         : ${inputs.fluidType}`,
-    `  Temperature   : ${inputs.temperature} °C`,
+    `  Temperature   : ${inputs.temperature} ${inputs.unitSystem === "imperial" ? "°F" : "°C"}`,
     `  Pipe Length   : ${inputs.pipeLength} ${inputs.unitSystem === "metric" ? "m" : "ft"}`,
     `  Pipe Diameter : ${inputs.pipeDiameter} ${inputs.unitSystem === "metric" ? "mm" : "in"}`,
     `  Pipe Material : ${inputs.pipeMaterial}`,

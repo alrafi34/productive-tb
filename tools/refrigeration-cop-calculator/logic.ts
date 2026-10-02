@@ -39,10 +39,10 @@ export function validatePositive(value: string, label: string): string | null {
   return null;
 }
 
-export function validateNotNegative(value: string, label: string): string | null {
+export function validateNotNegative(value: string, label: string, unit: TempUnit): string | null {
   const n = parseFloat(value);
   if (value.trim() === "" || isNaN(n)) return `${label} is required.`;
-  if (n < -273.15) return `${label} is below absolute zero.`;
+  if (toKelvin(n, unit) <= 0) return `${label} must be above absolute zero.`;
   return null;
 }
 
@@ -61,7 +61,7 @@ export const RATING_LABELS = {
 };
 
 export const RATING_DESCRIPTIONS = {
-  low:     "COP below 2 — the system uses more energy than it removes as cooling. Review system design.",
+  low:     "COP below 2 — the system removes less than twice the energy it consumes. Review system design.",
   average: "COP between 2 and 4 — acceptable performance for most refrigeration applications.",
   high:    "COP above 4 — excellent efficiency. The system delivers significantly more cooling than energy consumed.",
 };
