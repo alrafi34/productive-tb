@@ -108,9 +108,10 @@ export function feetInchesToCm(feet: number, inches: number): number {
 }
 
 export function cmToFeetInches(cm: number): { feet: number; inches: number } {
-  const totalInches = cm / 2.54;
+  // Whole inches first, so 182.5 cm is 6 ft 0 in rather than 5 ft 12 in
+  const totalInches = Math.round(cm / 2.54);
   const feet = Math.floor(totalInches / 12);
-  const inches = Math.round(totalInches % 12);
+  const inches = totalInches % 12;
   return { feet, inches };
 }
 

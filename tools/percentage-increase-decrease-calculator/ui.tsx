@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { 
   parseNumber, 
   calculatePercentageChange, 
+  formatPercentChange,
   calculateOriginalValue, 
   simulateSteps, 
   calculateBatchChanges,
@@ -103,7 +104,7 @@ export default function PercentageChangeCalculatorUI() {
                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 block">Percent Change</span>
                  <div className="flex items-center gap-3">
                     <span className={`text-5xl font-black ${basicResult.type === 'increase' ? 'text-green-600' : basicResult.type === 'decrease' ? 'text-red-600' : 'text-gray-900'}`} style={{ fontFamily: "var(--font-heading)" }}>
-                      {basicResult.type === 'increase' ? '↑' : basicResult.type === 'decrease' ? '↓' : ''} {Math.abs(basicResult.percent).toFixed(2)}%
+                      {basicResult.percent === null ? '' : basicResult.type === 'increase' ? '↑' : basicResult.type === 'decrease' ? '↓' : ''} {formatPercentChange(basicResult.percent)}
                     </span>
                  </div>
               </div>
@@ -150,7 +151,12 @@ export default function PercentageChangeCalculatorUI() {
                  </div>
                  <div className="bg-primary/5 p-4 rounded-xl border border-primary/10 text-center">
                     <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-1">Original was</span>
-                    <p className="text-2xl font-black text-primary">{reverseResult.toLocaleString(undefined, { maximumFractionDigits: 2 })}</p>
+                    <p className="text-2xl font-black text-primary">
+                      {reverseResult === null ? 'No answer' : reverseResult.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                    </p>
+                    {reverseResult === null && (
+                      <p className="text-xs text-gray-500 mt-1">A 100% decrease leaves 0 from any starting value.</p>
+                    )}
                  </div>
               </div>
            </div>
@@ -240,8 +246,10 @@ export default function PercentageChangeCalculatorUI() {
                </div>
                <div className="text-right">
                   <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">Net Change</span>
-                  <p className={`text-xl font-black ${simResult.totalChangePercent >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                    {simResult.totalChangePercent >= 0 ? '+' : ''}{simResult.totalChangePercent.toFixed(2)}%
+                  <p className={`text-xl font-black ${(simResult.totalChangePercent ?? 0) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    {simResult.totalChangePercent === null
+                      ? 'n/a'
+                      : `${simResult.totalChangePercent >= 0 ? '+' : ''}${simResult.totalChangePercent.toFixed(2)}%`}
                   </p>
                </div>
             </div>
@@ -275,7 +283,7 @@ export default function PercentageChangeCalculatorUI() {
                              <tr key={i} className="hover:bg-gray-50/50">
                                 <td className="px-3 py-2 text-gray-600">{res.from} → {res.to}</td>
                                 <td className={`px-3 py-2 text-right font-black ${res.type === 'increase' ? 'text-green-600' : res.type === 'decrease' ? 'text-red-600' : 'text-gray-400'}`}>
-                                  {res.percent > 0 ? '↑' : res.percent < 0 ? '↓' : ''} {Math.abs(res.percent).toFixed(2)}%
+                                  {res.percent === null ? '' : res.percent > 0 ? '↑' : res.percent < 0 ? '↓' : ''} {formatPercentChange(res.percent)}
                                 </td>
                              </tr>
                            ))}
@@ -287,7 +295,7 @@ export default function PercentageChangeCalculatorUI() {
             
             <button 
               onClick={() => {
-                const csv = "From,To,Change %\n" + batchResults.map(r => `${r.from},${r.to},${r.percent.toFixed(2)}%`).join("\n");
+                const csv = "From,To,Change %\n" + batchResults.map(r => `${r.from},${r.to},${r.percent === null ? 'n/a' : r.percent.toFixed(2) + '%'}`).join("\n");
                 const blob = new Blob([csv], { type: 'text/csv' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');

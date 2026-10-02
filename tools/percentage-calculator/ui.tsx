@@ -61,13 +61,15 @@ export default function PercentageCalculatorUI() {
         if (basicFormula === 'percentOf') setBasicResult(calcPercentOfNumber(x, y));
         else if (basicFormula === 'increase') setBasicResult(calcPercentIncrease(y, x)); // increase Y by X%
         else if (basicFormula === 'decrease') setBasicResult(calcPercentDecrease(y, x)); // decrease Y by X%
-        else if (basicFormula === 'whatPercent') setBasicResult(calcWhatPercentIs(x, y));
+        // Nothing is a percentage of 0
+        else if (basicFormula === 'whatPercent') setBasicResult(y === 0 ? null : calcWhatPercentIs(x, y));
         break;
       }
       case 'reverse': {
         const f = parseFloat(revFinal);
         const p = parseFloat(revPercent);
-        if (isNaN(f) || isNaN(p) || (p >= 100 && !revIsIncrease)) {
+        // A 100% decrease leaves 0 from any start; a −100% "increase" is the same
+        if (isNaN(f) || isNaN(p) || (p >= 100 && !revIsIncrease) || (p <= -100 && revIsIncrease)) {
           setRevResult(null);
           break;
         }
@@ -394,16 +396,19 @@ export default function PercentageCalculatorUI() {
                      <div className="text-center pb-6 border-b border-white/20">
                         <p className="text-primary-100 font-medium mb-1" style={{ fontFamily: "var(--font-heading)" }}>Result</p>
                         <h2 className="text-5xl font-bold tracking-tight mb-2 break-words">
-                           {basicResult !== null ? formatResultNumber(basicResult) : '0'}
+                           {basicResult !== null ? formatResultNumber(basicResult) : '—'}
                            {basicFormula === 'whatPercent' && basicResult !== null ? '%' : ''}
                         </h2>
+                        {basicFormula === 'whatPercent' && parseFloat(yValue) === 0 && (
+                           <p className="text-sm text-primary-100">A percentage of 0 is undefined. Enter a whole that is not 0.</p>
+                        )}
                      </div>
                      
                      <div className="text-center text-primary-100 font-medium">
                         {basicFormula === 'percentOf' && `${xValue || 0}% of ${yValue || 0}`}
                         {basicFormula === 'increase' && `Increasing ${yValue || 0} by ${xValue || 0}%`}
                         {basicFormula === 'decrease' && `Decreasing ${yValue || 0} by ${xValue || 0}%`}
-                        {basicFormula === 'whatPercent' && `${xValue || 0} is ${basicResult !== null ? formatResultNumber(basicResult) : '0'}% of ${yValue || 0}`}
+                        {basicFormula === 'whatPercent' && `${xValue || 0} is ${basicResult !== null ? formatResultNumber(basicResult) + '%' : 'not a percentage'} of ${yValue || 0}`}
                      </div>
 
                      {/* Visual Change Bar for Increase/Decrease */}
@@ -452,11 +457,14 @@ export default function PercentageCalculatorUI() {
                      <div className="pb-6 border-b border-white/20">
                         <p className="text-primary-100 font-medium mb-1" style={{ fontFamily: "var(--font-heading)" }}>Original Value</p>
                         <h2 className="text-5xl font-bold tracking-tight mb-2 break-words">
-                           {revResult !== null ? formatResultNumber(revResult) : '0'}
+                           {revResult !== null ? formatResultNumber(revResult) : '—'}
                         </h2>
+                        {revResult === null && !isNaN(parseFloat(revPercent)) && !isNaN(parseFloat(revFinal)) && (
+                           <p className="text-sm text-primary-100">A 100% decrease leaves 0 from any starting value, so there is no single original value.</p>
+                        )}
                      </div>
                      <p className="text-primary-100 text-sm leading-relaxed max-w-xs mx-auto">
-                        If a value {revIsIncrease ? 'increased' : 'decreased'} by <strong className="text-white">{parseFloat(revPercent) || 0}%</strong> to become <strong className="text-white">{parseFloat(revFinal) || 0}</strong>, its original value was <strong className="text-white">{revResult !== null ? formatResultNumber(revResult) : '0'}</strong>.
+                        If a value {revIsIncrease ? 'increased' : 'decreased'} by <strong className="text-white">{parseFloat(revPercent) || 0}%</strong> to become <strong className="text-white">{parseFloat(revFinal) || 0}</strong>, its original value was <strong className="text-white">{revResult !== null ? formatResultNumber(revResult) : '—'}</strong>.
                      </p>
                      <div className="pt-4">
                         <button 
