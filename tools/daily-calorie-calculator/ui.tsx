@@ -128,9 +128,9 @@ export default function DailyCalorieCalculatorUI() {
       
       if (kg > 0) setWeight(kgToLb(kg).toFixed(1));
       if (cm > 0) {
-        const totalInches = cmToInches(cm);
+        const totalInches = Math.round(cmToInches(cm));
         const ft = Math.floor(totalInches / 12);
-        const inches = Math.round(totalInches % 12);
+        const inches = totalInches % 12;
         setHeightFt(ft.toString());
         setHeightIn(inches.toString());
       }

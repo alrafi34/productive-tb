@@ -70,10 +70,25 @@ function daysBetween(a: Date, b: Date): number {
   return Math.round((startOfDay(b).getTime() - startOfDay(a).getTime()) / MS_PER_DAY);
 }
 
+/* The birthday in a given year. February 29 falls on February 28 in other
+   years, the day most leap-day babies celebrate. */
+export function birthdayInYear(birthDate: Date, year: number): Date {
+  const month = birthDate.getMonth();
+  return new Date(year, month, Math.min(birthDate.getDate(), getDaysInMonth(year, month + 1)));
+}
+
+/* The calendar date `days` days after `date`, at local midnight (adding
+   milliseconds would land on 11 pm the day before across a clock change). */
+function addCalendarDays(date: Date, days: number): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+}
+
 export function calculateExactAge(birthDate: Date, targetDate: Date): AgeResult {
   let years = targetDate.getFullYear() - birthDate.getFullYear();
   let months = targetDate.getMonth() - birthDate.getMonth();
-  if (targetDate.getDate() < birthDate.getDate()) months--;
+  // A birth day the target month lacks (the 31st, or 29 Feb) is reached on its last day
+  const dueDay = Math.min(birthDate.getDate(), getDaysInMonth(targetDate.getFullYear(), targetDate.getMonth() + 1));
+  if (targetDate.getDate() < dueDay) months--;
   if (months < 0) {
     years--;
     months += 12;
@@ -111,12 +126,12 @@ export function calculateLifetimeStats(birthDate: Date, targetDate: Date): Lifet
 export function calculateNextBirthday(birthDate: Date, targetDate: Date): NextBirthday {
   const today = startOfDay(targetDate);
   let nextBdayYear = today.getFullYear();
-  let nextBday = new Date(nextBdayYear, birthDate.getMonth(), birthDate.getDate());
+  let nextBday = birthdayInYear(birthDate, nextBdayYear);
 
   // A birthday earlier this year is next year's; one that is today stays today
   if (nextBday.getTime() < today.getTime()) {
     nextBdayYear++;
-    nextBday = new Date(nextBdayYear, birthDate.getMonth(), birthDate.getDate());
+    nextBday = birthdayInYear(birthDate, nextBdayYear);
   }
 
   const totalDaysLeft = daysBetween(today, nextBday);
@@ -156,8 +171,6 @@ export function getZodiacSigns(birthDate: Date): ZodiacInfo {
 }
 
 export function getMilestones(birthDate: Date, targetDate: Date): Milestone[] {
-  const msPerDay = 1000 * 60 * 60 * 24;
-  const bTime = birthDate.getTime();
   const tTime = targetDate.getTime();
 
   const daysMilestones = [1000, 5000, 10000, 15000, 20000];
@@ -168,19 +181,19 @@ export function getMilestones(birthDate: Date, targetDate: Date): Milestone[] {
 
   // Add Days Milestones
   for (const d of daysMilestones) {
-    const dTime = bTime + (d * msPerDay);
-    results.push({ name: `${d.toLocaleString()} Days`, date: new Date(dTime), completed: dTime <= tTime });
+    const date = addCalendarDays(birthDate, d);
+    results.push({ name: `${d.toLocaleString("en-US")} Days`, date, completed: date.getTime() <= tTime });
   }
 
   // Add Weeks Milestones
   for (const w of weeksMilestones) {
-    const dTime = bTime + (w * 7 * msPerDay);
-    results.push({ name: `${w.toLocaleString()} Weeks`, date: new Date(dTime), completed: dTime <= tTime });
+    const date = addCalendarDays(birthDate, w * 7);
+    results.push({ name: `${w.toLocaleString("en-US")} Weeks`, date, completed: date.getTime() <= tTime });
   }
 
   // Add Years Milestones
   for (const y of yearsMilestones) {
-    const dDate = new Date(birthDate.getFullYear() + y, birthDate.getMonth(), birthDate.getDate());
+    const dDate = birthdayInYear(birthDate, birthDate.getFullYear() + y);
     results.push({ name: `${y} Years Old`, date: dDate, completed: dDate.getTime() <= tTime });
   }
 
@@ -189,12 +202,12 @@ export function getMilestones(birthDate: Date, targetDate: Date): Milestone[] {
 }
 
 export function getAgeProgressDetails(birthDate: Date, targetDate: Date): { percent: number, daysPassedInYear: number, totalDaysInYear: number } {
-  let prevBday = new Date(targetDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+  let prevBday = birthdayInYear(birthDate, targetDate.getFullYear());
   if (prevBday.getTime() > targetDate.getTime()) {
-    prevBday = new Date(targetDate.getFullYear() - 1, birthDate.getMonth(), birthDate.getDate());
+    prevBday = birthdayInYear(birthDate, targetDate.getFullYear() - 1);
   }
 
-  let nextBday = new Date(prevBday.getFullYear() + 1, birthDate.getMonth(), birthDate.getDate());
+  const nextBday = birthdayInYear(birthDate, prevBday.getFullYear() + 1);
 
   const totalDaysInYear = Math.ceil((nextBday.getTime() - prevBday.getTime()) / (1000 * 60 * 60 * 24));
   const daysPassedInYear = Math.ceil((targetDate.getTime() - prevBday.getTime()) / (1000 * 60 * 60 * 24));

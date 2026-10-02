@@ -144,9 +144,10 @@ export default function BmiCalculatorUI() {
       const kg = parseFloat(weightKg) || 0;
       
       if (cm > 0) {
-        const totalInches = cmToInches(cm);
+        // Round to whole inches first, so 182.5 cm is 6 ft 0 in, not 5 ft 12 in
+        const totalInches = Math.round(cmToInches(cm));
         const ft = Math.floor(totalInches / 12);
-        const inv = Math.round(totalInches % 12);
+        const inv = totalInches % 12;
         setHeightFt(ft.toString());
         setHeightIn(inv.toString());
       }

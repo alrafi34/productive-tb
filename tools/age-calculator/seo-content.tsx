@@ -1,56 +1,10 @@
-export default function AgeCalculatorSEO() {
-  const faqItems = [
-    {
-      q: "How do I calculate my exact age from date of birth?",
-      a: "To calculate exact age, subtract the birth date from today's date accounting for actual calendar months and leap years — not just dividing total days by 365. For example, someone born on March 15, 1990 turns 35 years old on March 15, 2025. Between birthday milestones, you track the remaining months and days separately. This calculator handles all calendar edge cases automatically: leap year birthdays (February 29), months with different lengths, and historical dates.",
-    },
-    {
-      q: "How many days have I lived?",
-      a: "Your total days lived equals the number of calendar days from your date of birth to today, including leap years. Someone who is exactly 30 years old has lived approximately 10,957 days (30 × 365 + 7 or 8 leap days depending on birth year). This calculator shows your exact days, weeks, months, hours, minutes, and seconds lived in the Lifetime Statistics panel — updated to the current date each time you load the page.",
-    },
-    {
-      q: "What happens if I was born on February 29 (leap day)?",
-      a: "People born on February 29 officially turn a year older on March 1 in non-leap years — this is the most common legal convention used by most countries and this calculator follows the same rule. In leap years, your birthday falls on February 29 as expected. The next birthday countdown and milestone dates all account for this correctly.",
-    },
-    {
-      q: "Can I calculate how old I will be on a future date?",
-      a: "Yes. Change the 'comparison date' field to any future date and the calculator immediately shows your exact age on that date, including years, months, and days. This is useful for checking eligibility ages (retirement, pension, licensing), planning milestone celebrations, or simply satisfying curiosity about age at a future event.",
-    },
-    {
-      q: "Can I calculate someone's age on a past date?",
-      a: "Yes. Set the comparison date to any historical date to see exactly how old someone was at that point. This is commonly used to verify age at the time of a legal document signing, a historical event, or a family photo, and for genealogy research where birth and death records need to be cross-referenced.",
-    },
-    {
-      q: "What is the 10,000 days milestone?",
-      a: "The 10,000 days milestone — sometimes called '10K days' — falls at approximately 27 years and 4–5 months of age and has become a popular personal milestone to acknowledge. Other notable day milestones include 1,000 days (about 2 years 9 months), 5,000 days (about 13 years 8 months), 15,000 days (about 41 years), and 20,000 days (about 54 years 9 months). This calculator shows the exact date each milestone falls on and whether it has already passed.",
-    },
-    {
-      q: "What is chronological age and why does it matter?",
-      a: "Chronological age is your actual age in calendar time — the number of years, months, and days since you were born. It is distinct from biological age (how your body ages physically) or mental age. Chronological age is used for legal eligibility (voting, driving, retirement), medical dosing, educational enrollment, insurance actuarial tables, and statistical classification. This calculator computes chronological age precisely.",
-    },
-    {
-      q: "What is batch age calculation and when is it useful?",
-      a: "Batch mode lets you enter multiple dates of birth at once — one per line — and get all the ages calculated simultaneously, with an option to export the results as a CSV file. This is useful for teachers calculating student ages for class lists, HR administrators processing employee records, healthcare workers handling patient data, event planners checking guest eligibility, and anyone who regularly needs to process more than one DOB at a time.",
-    },
-    {
-      q: "How is the Western zodiac sign determined?",
-      a: "Western astrology divides the year into 12 signs based on the position of the sun at birth. The sign boundaries are fixed date ranges: Aries begins around March 21, Taurus April 20, Gemini May 21, Cancer June 21, Leo July 23, Virgo August 23, Libra September 23, Scorpio October 23, Sagittarius November 22, Capricorn December 22, Aquarius January 20, and Pisces February 19. This calculator determines your Western zodiac sign from your date of birth automatically.",
-    },
-    {
-      q: "Is my date of birth stored or shared?",
-      a: "No. All calculations happen entirely in your browser using JavaScript. The dates you enter are never sent to any server, stored in a database, or shared with third parties. The optional history feature uses browser localStorage — data stays only on your device and is cleared when you clear your browser data.",
-    },
-  ];
+import ToolFaq from "@/components/ToolFaq";
+import { toolConfig } from "./config";
 
-  const howToSteps = [
-    ["Enter your date of birth", "Click the date of birth field and select your birth date from the date picker, or type it in MM/DD/YYYY format. The calculator accepts any date from 1900 to the present."],
-    ["Set the comparison date", "By default the comparison date is today. Leave it as-is to calculate your current age, or change it to any past or future date to see your age at that specific point in time."],
-    ["Read your exact age", "Your age appears instantly in years, months, and days. The result updates automatically whenever you change either date — no submit button needed."],
-    ["Review lifetime statistics", "The Lifetime Stats panel shows your total months, weeks, days, hours, minutes, and seconds lived from birth to the comparison date. These numbers update in real time."],
-    ["Check your next birthday", "The birthday countdown shows how many months and days remain until your next birthday, the total days left, and what day of the week your next birthday falls on."],
-    ["Explore milestones and zodiac", "The milestones panel lists notable day and year milestones with their exact calendar dates, marking which ones you have already passed. Your zodiac sign is shown based on your birth date."],
-    ["Use batch mode for multiple people", "Switch to Batch mode, paste one birth date per line, and the calculator processes all entries simultaneously. Use the Export CSV button to download the results for school, HR, or admin use."],
-  ];
+export default function AgeCalculatorSEO() {
+  const { faq } = toolConfig.seo;
+
+  const howToSteps = toolConfig.seo.howToSteps.map(({ name, text }) => [name, text]);
 
   return (
     <>
@@ -350,19 +304,7 @@ export default function AgeCalculatorSEO() {
       </section>
 
       {/* ── 7. FAQ ── */}
-      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqItems.map(({ q, a }, i) => (
-            <div key={i} className={i < faqItems.length - 1 ? "border-b border-gray-100 pb-6" : ""}>
-              <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>{q}</h3>
-              <p className="text-gray-600 leading-relaxed">{a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ToolFaq items={faq} />
 
       {/* ── 8. Who Uses This ── */}
       <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
