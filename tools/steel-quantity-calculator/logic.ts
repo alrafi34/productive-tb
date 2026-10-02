@@ -15,21 +15,21 @@ export const getSteelFactorPresets = (): SteelFactorPreset[] => {
   return [
     {
       type: 'slab',
-      name: 'Light Slab',
+      name: 'Light (whole building)',
       value: 3,
-      description: '3 kg/sq ft - Residential light load'
+      description: '3 kg per sq ft of built-up area - light residential'
     },
     {
       type: 'slab',
-      name: 'Medium Slab',
+      name: 'Standard (whole building)',
       value: 4,
-      description: '4 kg/sq ft - Standard residential'
+      description: '4 kg per sq ft of built-up area - typical residential'
     },
     {
       type: 'slab',
-      name: 'Heavy Slab',
+      name: 'Heavy (whole building)',
       value: 5,
-      description: '5 kg/sq ft - Commercial/heavy load'
+      description: '5 kg per sq ft of built-up area - commercial / heavy load'
     },
     {
       type: 'beam',

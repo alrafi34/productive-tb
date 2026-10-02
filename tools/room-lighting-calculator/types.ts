@@ -9,6 +9,9 @@ export interface LightingInputs {
   customLux?: number;
   lumensPerLight: number;
   ceilingHeight?: number;
+  /* Share of the bulbs' lumens that reaches the work plane: utilization ×
+     maintenance factor of the lumen method (0.6 typical) */
+  lightLossFactor?: number;
 }
 
 export interface LightingResult {

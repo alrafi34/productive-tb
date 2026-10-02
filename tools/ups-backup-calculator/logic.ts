@@ -87,11 +87,13 @@ export function calculateBackupTime(inputs: UPSBackupInputs): UPSBackupResult {
   const backupTimeFormatted = formatTimeHHMM(backupTimeHours);
 
   // Check for overload
-  const isOverload = loadPower > totalEnergyWh;
+  // Overload means the load exceeds the UPS's power rating (VA × PF). Battery
+  // energy (Wh) only sets how long it runs, so it is not compared with watts.
+  const isOverload = capacityMode === 'va' && !!vaRating && loadPower > vaRating * powerFactor;
   let warning: string | undefined;
 
   if (isOverload) {
-    warning = "⚠️ WARNING: Load exceeds battery capacity. UPS may not start or will shut down immediately.";
+    warning = "⚠️ WARNING: Load exceeds the UPS power rating. It may not start or will shut down immediately.";
   } else if (backupTimeHours < 0.1) {
     warning = "⚠️ Very short backup time. Consider increasing battery capacity or reducing load.";
   } else if (backupTimeHours > 24) {

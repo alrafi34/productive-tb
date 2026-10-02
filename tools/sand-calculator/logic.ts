@@ -3,6 +3,8 @@ import { Unit, CalculationType, SandCalculation, CalculationHistory, MixRatioPre
 // Constants
 const CUBIC_FEET_TO_CUBIC_METER = 35.3147;
 const DRY_VOLUME_FACTOR = 1.54;
+const PLASTER_DRY_FACTOR = 1.27;
+const PLASTER_SAND_SHARE = 4 / 5; // 1:4 cement:sand
 
 // Generate unique ID
 export const generateId = (): string => {
@@ -98,8 +100,9 @@ export const calculateSandForPlaster = (
   // Calculate volume in cubic feet
   const volumeCubicFeet = areaFt * thicknessFt;
   
-  // Apply sand portion estimate (typically 50% of plaster volume is sand)
-  const sandVolumeFt = volumeCubicFeet * 0.5;
+  // Wet plaster → dry materials (+27%, the usual plaster factor), of which
+  // sand is 4 parts of a 1:4 cement:sand mortar
+  const sandVolumeFt = volumeCubicFeet * PLASTER_DRY_FACTOR * PLASTER_SAND_SHARE;
   
   // Convert to cubic meters
   const sandVolumeM3 = convertToCubicMeters(sandVolumeFt);

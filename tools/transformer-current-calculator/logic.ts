@@ -15,9 +15,10 @@ const SQRT3 = Math.sqrt(3);
  */
 export function calculateTransformerCurrent(inputs: TransformerCurrentInputs): TransformerCurrentResult {
   const { power, voltage, phase, powerFactor } = inputs;
+  const secondaryVoltage = inputs.secondaryVoltage && inputs.secondaryVoltage > 0 ? inputs.secondaryVoltage : undefined;
   
   let primaryCurrent: number;
-  let secondaryCurrent: number;
+  let secondaryCurrent: number | undefined;
   let lineCurrent: number | undefined;
   let apparentPower: number;
   const steps: string[] = [];
@@ -33,7 +34,8 @@ export function calculateTransformerCurrent(inputs: TransformerCurrentInputs): T
     // Single Phase Calculation
     // Current = Power / (Voltage × Power Factor)
     primaryCurrent = power / (voltage * powerFactor);
-    secondaryCurrent = primaryCurrent;
+    // Same power through the other winding at its own voltage (losses ignored)
+    secondaryCurrent = secondaryVoltage ? power / (secondaryVoltage * powerFactor) : undefined;
     apparentPower = power / powerFactor;
     
     steps.push(`Step 1: Calculate Current (Single Phase)`);
@@ -52,7 +54,7 @@ export function calculateTransformerCurrent(inputs: TransformerCurrentInputs): T
     // Three Phase Calculation
     // Current = Power / (√3 × Voltage × Power Factor)
     primaryCurrent = power / (SQRT3 * voltage * powerFactor);
-    secondaryCurrent = primaryCurrent;
+    secondaryCurrent = secondaryVoltage ? power / (SQRT3 * secondaryVoltage * powerFactor) : undefined;
     lineCurrent = primaryCurrent;
     apparentPower = power / powerFactor;
     
@@ -69,6 +71,12 @@ export function calculateTransformerCurrent(inputs: TransformerCurrentInputs): T
     steps.push(`S = ${formatNumber(SQRT3 * voltage * primaryCurrent, 2)} VA`);
   }
   
+  if (secondaryCurrent !== undefined && secondaryVoltage) {
+    steps.push(``);
+    steps.push(`Secondary side at ${secondaryVoltage} V: I = ${formatNumber(secondaryCurrent, 2)} A`);
+    steps.push(`(Current scales inversely with voltage: ${formatNumber(primaryCurrent, 2)} × ${voltage} ÷ ${secondaryVoltage})`);
+  }
+
   return {
     primaryCurrent,
     secondaryCurrent,
@@ -96,6 +104,10 @@ export function validateInputs(inputs: TransformerCurrentInputs): string | null 
   
   if (isNaN(powerFactor) || powerFactor <= 0 || powerFactor > 1) {
     return 'Power Factor must be between 0 and 1';
+  }
+
+  if (inputs.secondaryVoltage !== undefined && inputs.secondaryVoltage < 0) {
+    return 'Secondary voltage cannot be negative';
   }
   
   return null;
@@ -237,7 +249,7 @@ export function exportToText(inputs: TransformerCurrentInputs, result: Transform
     "CALCULATED RESULTS:",
     "-".repeat(50),
     `Primary Current: ${formatNumber(result.primaryCurrent, 2)} A`,
-    `Secondary Current: ${formatNumber(result.secondaryCurrent, 2)} A`,
+    `Secondary Current: ${result.secondaryCurrent !== undefined ? formatNumber(result.secondaryCurrent, 2) + ' A' : 'enter the secondary voltage'}`,
   ];
   
   if (result.lineCurrent) {
@@ -269,7 +281,7 @@ export function exportToJSON(inputs: TransformerCurrentInputs, result: Transform
     },
     results: {
       primaryCurrent: formatNumber(result.primaryCurrent, 2),
-      secondaryCurrent: formatNumber(result.secondaryCurrent, 2),
+      secondaryCurrent: result.secondaryCurrent !== undefined ? formatNumber(result.secondaryCurrent, 2) : null,
       lineCurrent: result.lineCurrent ? formatNumber(result.lineCurrent, 2) : null,
       apparentPower: formatNumber(result.apparentPower, 2)
     }

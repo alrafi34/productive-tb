@@ -45,9 +45,9 @@ export default function TransformerCurrentCalculatorSEO() {
   const howToSteps: [string, string][] = [
     ["Select single-phase or three-phase", "Choose the system configuration matching your transformer or circuit — single-phase for most residential loads, three-phase for industrial and commercial systems."],
     ["Enter power", "Input the real power in watts (W) that the transformer or load draws."],
-    ["Enter voltage", "Input the line voltage in volts (V) — line-to-neutral for single-phase, line-to-line for three-phase."],
+    ["Enter the voltages", "Input the primary voltage in volts (V) — line-to-neutral for single-phase, line-to-line for three-phase — and the secondary voltage to get the output-side current."],
     ["Enter power factor", "Input the load's power factor as a decimal between 0 and 1."],
-    ["Read the calculated current", "View primary current, secondary current, and (for three-phase) line current, all derived from the same inputs."],
+    ["Read the calculated current", "View the primary current, the secondary current at the secondary voltage, and (for three-phase) line current."],
     ["Apply a preset or export results", "Use a built-in preset for common residential and industrial systems, or export the full calculation as text or JSON."],
   ];
 
@@ -70,8 +70,8 @@ export default function TransformerCurrentCalculatorSEO() {
             introduces the √3 factor accounting for the 120-degree phase relationship between line
             conductors, and using the single-phase formula on a three-phase system produces a current figure
             that's off by that same factor. This tool applies the correct formula for whichever
-            configuration you select, and shows both primary and secondary current derived from the same
-            power and voltage inputs.
+            configuration you select, and shows the primary current and, once you enter the secondary voltage,
+            the secondary current for the same power.
           </p>
           <p>
             Built for <strong>electricians sizing cables and overload protection, electrical engineers

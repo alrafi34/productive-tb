@@ -43,9 +43,9 @@ export const transformerCurrentCalculatorConfig = {
     howToSteps: [
       { name: "Select Single-Phase or Three-Phase", text: "Choose the system configuration matching your transformer or circuit." },
       { name: "Enter Power", text: "Input the real power in watts (W) that the transformer or load draws." },
-      { name: "Enter Voltage", text: "Input the line voltage in volts (V)." },
+      { name: "Enter the Voltages", text: "Input the primary voltage in volts (V), and the secondary voltage to get the output-side current." },
       { name: "Enter Power Factor", text: "Input the load's power factor as a decimal between 0 and 1." },
-      { name: "Read the Calculated Current", text: "View primary, secondary, and (for three-phase) line current from the same inputs." },
+      { name: "Read the Calculated Current", text: "View the primary current, the secondary current at the secondary voltage, and (for three-phase) line current." },
     ],
     faq: [
       { q: "What is a transformer current calculator?", a: "A free online tool that computes transformer or circuit current from power, voltage, and power factor, for single-phase or three-phase systems." },

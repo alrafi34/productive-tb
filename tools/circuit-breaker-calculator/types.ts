@@ -10,7 +10,11 @@ export interface CircuitBreakerInputs {
   phaseType: PhaseType;
   loadType: LoadType;
   powerFactor: number;
+  /* Which standard breaker ratings to pick from; IEC when not given */
+  standard?: BreakerStandard;
 }
+
+export type BreakerStandard = 'nec' | 'iec';
 
 export interface CircuitBreakerResult {
   loadWatts: number;

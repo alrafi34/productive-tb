@@ -172,11 +172,12 @@ export default function SteelQuantityCalculatorUI() {
     setShowHistory(false);
   };
 
+  // Presets are per sq ft / per ft; convert them when working in meters
   const applyPreset = (value: number) => {
     if (calculationType === 'slab') {
-      setSlabSteelFactor(value.toString());
+      setSlabSteelFactor((unit === 'metric' ? Math.round(value * 10.7639) : value).toString());
     } else if (calculationType === 'beam') {
-      setBeamSteelPerLength(value.toString());
+      setBeamSteelPerLength((unit === 'metric' ? Math.round(value * 3.28084 * 10) / 10 : value).toString());
     }
   };
 
@@ -355,7 +356,7 @@ export default function SteelQuantityCalculatorUI() {
                       step="0.1"
                     />
                     <p className="text-xs text-gray-500 mt-1">
-                      Typical: 3-5 kg/{unit === 'metric' ? 'sq m' : 'sq ft'}
+                      Whole building, per built-up area: about {unit === 'metric' ? '32–54 kg/sq m' : '3–5 kg/sq ft'}
                     </p>
                   </div>
                 </div>
@@ -391,7 +392,7 @@ export default function SteelQuantityCalculatorUI() {
                       step="0.1"
                     />
                     <p className="text-xs text-gray-500 mt-1">
-                      Typical: 2-4 kg/{unit === 'metric' ? 'm' : 'ft'}
+                      Typical: {unit === 'metric' ? '6.5–13 kg/m' : '2–4 kg/ft'}
                     </p>
                   </div>
                 </div>

@@ -33,10 +33,10 @@ export const steelQuantityCalculatorConfig = {
       { name: "Read the quantity", text: "See the total steel in kg and metric tons, then export it as text or CSV." },
     ],
     faq: [
-      { q: "How is steel quantity estimated?", a: "Quantity = size × steel factor: slab area × kg per unit area, beam length × kg per meter, or number of columns or footings × kg each. A 100 m² slab at 32 kg/m² (about 3 kg/sq ft) needs 3,200 kg, or 3.2 t." },
+      { q: "How is steel quantity estimated?", a: "Quantity = size × steel factor: slab area × kg per unit area, beam length × kg per meter, or number of columns or footings × kg each. A building with 100 m² of built-up area at 32 kg/m² (about 3 kg/sq ft) needs about 3,200 kg, or 3.2 t, across all its slabs, beams, columns and footings." },
       { q: "Are these factors accurate enough to order steel?", a: "No. Rule-of-thumb factors are for early budgets. Orders are made from a bar bending schedule, or a rebar take-off, based on the structural drawings." },
       { q: "How much does rebar weigh?", a: "Weight per meter = d² ÷ 162 kg for a bar of d mm. A 12 mm bar weighs 0.89 kg/m and a 16 mm bar 1.58 kg/m. US bars weigh 0.376 lb/ft (#3), 0.668 lb/ft (#4) and 1.043 lb/ft (#5)." },
-      { q: "How much steel does a typical slab need?", a: "Roughly 0.5–1% of the concrete volume, which for a 150–200 mm (6–8 in) slab is about 20–40 kg/m² (2–4 kg/sq ft). Heavily loaded or long-span slabs need more." },
+      { q: "How much steel does a typical slab need?", a: "Roughly 0.5–1% of the concrete volume, which for a 150–200 mm (6–8 in) slab is about 6–16 kg/m² (0.5–1.5 kg/sq ft) of slab. The 3–5 kg/sq ft presets are whole-building figures per built-up area, covering beams, columns and footings as well. Heavily loaded or long-span slabs need more." },
       { q: "Should I add waste for laps and cutting?", a: "Yes. Add about 3–5% for cutting waste, plus the extra length of laps, which can add another 5–10% on long runs of bars." },
     ],
   },

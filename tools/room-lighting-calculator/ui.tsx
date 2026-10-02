@@ -16,7 +16,8 @@ import {
   formatNumber,
   debounce,
   saveSettings,
-  loadSettings
+  loadSettings,
+  DEFAULT_LIGHT_LOSS_FACTOR,
 } from "./logic";
 import RoomLightingCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -32,7 +33,8 @@ export default function RoomLightingCalculatorUI() {
     roomType: (savedSettings.roomType as RoomType) || 'bedroom',
     lumensPerLight: savedSettings.lumensPerLight || 800,
     customLux: savedSettings.customLux,
-    ceilingHeight: savedSettings.ceilingHeight
+    ceilingHeight: savedSettings.ceilingHeight,
+    lightLossFactor: savedSettings.lightLossFactor || DEFAULT_LIGHT_LOSS_FACTOR
   });
   
   const [result, setResult] = useState<LightingResult | null>(null);
@@ -90,7 +92,8 @@ export default function RoomLightingCalculatorUI() {
       roomType: 'bedroom',
       lumensPerLight: 800,
       customLux: undefined,
-      ceilingHeight: undefined
+      ceilingHeight: undefined,
+      lightLossFactor: DEFAULT_LIGHT_LOSS_FACTOR
     });
     setResult(null);
     setError(null);
@@ -104,7 +107,8 @@ export default function RoomLightingCalculatorUI() {
       roomType: preset.roomType,
       lumensPerLight: preset.lumensPerLight,
       customLux: undefined,
-      ceilingHeight: undefined
+      ceilingHeight: undefined,
+      lightLossFactor: DEFAULT_LIGHT_LOSS_FACTOR
     });
   };
 
@@ -383,10 +387,29 @@ export default function RoomLightingCalculatorUI() {
                 </p>
               </div>
 
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Light Loss Factor
+                </label>
+                <input
+                  type="number"
+                  value={inputs.lightLossFactor ?? ''}
+                  onChange={(e) => handleInputChange('lightLossFactor', parseFloat(e.target.value) || 0)}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                  placeholder="0.6"
+                  min="0.1"
+                  max="1"
+                  step="0.05"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Share of bulb light that reaches the floor or desk (utilization × maintenance). 0.6 is typical; lower for dark rooms or enclosed fixtures.
+                </p>
+              </div>
+
               {result && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="text-sm text-green-800">
-                    <strong>Formula:</strong> Lights = (Area × Lux) / Lumens per Light
+                    <strong>Formula:</strong> Lights = Area × Lux ÷ Light Loss Factor ÷ Lumens per Light
                   </div>
                 </div>
               )}
