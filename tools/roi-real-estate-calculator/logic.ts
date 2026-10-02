@@ -79,10 +79,13 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   let cumulativeCF = 0;
   for (let y = 1; y <= years; y++) {
     const propVal = price * Math.pow(1 + appRate / 100, y);
-    const loanBalance = loanAmount > 0
-      ? loanAmount * Math.pow(1 + mRate / 100 / 12, y * 12) -
-        monthlyMortgage * (Math.pow(1 + mRate / 100 / 12, y * 12) - 1) / (mRate / 100 / 12)
-      : 0;
+    // Balance left after y years of payments; a 0% loan just pays down evenly
+    const loanBalance = loanAmount <= 0
+      ? 0
+      : mRate === 0
+        ? loanAmount - monthlyMortgage * y * 12
+        : loanAmount * Math.pow(1 + mRate / 100 / 12, y * 12) -
+          monthlyMortgage * (Math.pow(1 + mRate / 100 / 12, y * 12) - 1) / (mRate / 100 / 12);
     const equity = propVal - Math.max(0, loanBalance);
     cumulativeCF += annualCashFlow;
     const totalRet = cumulativeCF + (propVal - price);

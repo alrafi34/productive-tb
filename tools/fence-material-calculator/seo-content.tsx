@@ -54,7 +54,7 @@ export default function FenceMaterialCalculatorSEO() {
             <tbody className="divide-y divide-gray-100">
               {[
                 ["Fence Panels",  "⌈Length ÷ Panel Width⌉",          "⌈100 ÷ 8⌉ = 13 panels"],
-                ["Fence Posts",   "Panels + 1",                       "13 + 1 = 14 posts"],
+                ["Fence Posts",   "Panels + 1 (straight run); Panels (closed yard); +1 for a gate", "13 + 1 = 14 posts"],
                 ["Concrete Bags", "Posts × Bags per Post",            "14 × 2 = 28 bags"],
                 ["Rails",         "Panels × Rails per Panel",         "13 × 2 = 26 rails"],
                 ["With Waste",    "Material × (1 + Waste%)",          "13 × 1.10 = 15 panels"],
@@ -124,7 +124,7 @@ export default function FenceMaterialCalculatorSEO() {
                 ["100 ft Wood Fence (8 ft spacing)",       "13",  "14", "28"],
                 ["200 ft Chain Link (10 ft spacing)",      "20",  "21", "21"],
                 ["150 ft Privacy Fence (8 ft spacing)",    "19",  "20", "40"],
-                ["50×70 ft Perimeter Wood Fence",          "30",  "31", "62"],
+                ["50×70 ft Perimeter Wood Fence",          "30",  "30", "60"],
                 ["120 ft Vinyl Fence (8 ft spacing)",      "15",  "16", "32"],
               ].map(([project, panels, posts, concrete]) => (
                 <tr key={project} className="hover:bg-gray-50">

@@ -44,7 +44,11 @@ export function calculate(inputs: FenceInputs): FenceResult | null {
   const defaults = FENCE_DEFAULTS[inputs.fenceType];
   const panels = Math.ceil(fencedLength / panelWidth);
   const panelsWithWaste = Math.ceil(panels * (1 + inputs.wastePercent / 100));
-  const posts = panels + 1 + (inputs.includeGate ? 2 : 0);
+  // A straight run of N panels has N + 1 posts; a closed perimeter has N
+  // (the last panel ends on the first post). A gate splits the fence, so the
+  // opening adds one post: the two posts beside it are the gate posts.
+  const basePosts = inputs.propertyMode === "perimeter" ? panels : panels + 1;
+  const posts = basePosts + (inputs.includeGate ? 1 : 0);
   const concreteBags = posts * defaults.concretePerPost;
   const rails = panels * defaults.railsPerPanel;
   const gatePostsExtra = inputs.includeGate ? 2 : 0;

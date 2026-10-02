@@ -77,10 +77,18 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   const hasInflation = !isNaN(inflationRate) && inflationRate >= 0;
 
   // FV = P × (1 + r/n)^(n×t)
-  const futureValue = initial * Math.pow(1 + rate / n, n * years) +
+  // Value after t years: the property compounds n times a year; the extra
+  // investment is added once a year (at year end) and grows at the same
+  // effective annual rate. With no growth it simply adds up.
+  const effectiveAnnual = Math.pow(1 + rate / n, n) - 1;
+  const valueAt = (t: number) =>
+    initial * Math.pow(1 + rate / n, n * t) +
     (additionalAnnual > 0
-      ? additionalAnnual * ((Math.pow(1 + rate / n, n * years) - 1) / (rate / n))
+      ? effectiveAnnual === 0
+        ? additionalAnnual * t
+        : additionalAnnual * ((Math.pow(1 + effectiveAnnual, t) - 1) / effectiveAnnual)
       : 0);
+  const futureValue = valueAt(years);
 
   const totalGain = futureValue - initial;
   const growthPercent = (totalGain / initial) * 100;
@@ -102,10 +110,7 @@ export function calculate(inputs: CalculatorInputs): CalculationResult | null {
   let runningValue = initial;
 
   for (let y = 1; y <= years; y++) {
-    const yearValue = initial * Math.pow(1 + rate / n, n * y) +
-      (additionalAnnual > 0
-        ? additionalAnnual * ((Math.pow(1 + rate / n, n * y) - 1) / (rate / n))
-        : 0);
+    const yearValue = valueAt(y);
 
     const yearGain = yearValue - runningValue;
     const cumulativeGain = yearValue - initial;
