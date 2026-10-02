@@ -13,6 +13,9 @@ import {
   clearHistory,
   subnetMaskFromCidr,
   intToIp,
+  ipToInt,
+  rangeToCidrs,
+  splitNetwork,
   type IpRangeResult,
   type HistoryEntry,
 } from "./logic";
@@ -45,6 +48,9 @@ export default function IpRangeCalculatorUI() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [showBinary, setShowBinary] = useState(false);
   const ipRef = useRef<HTMLInputElement>(null);
+  const [rangeStart, setRangeStart] = useState("10.0.0.5");
+  const [rangeEnd, setRangeEnd] = useState("10.0.0.20");
+  const [splitCidr, setSplitCidr] = useState(26);
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
@@ -84,6 +90,19 @@ export default function IpRangeCalculatorUI() {
     const params = new URLSearchParams({ ip, cidr: String(cidr) });
     router.replace(`?${params.toString()}`, { scroll: false });
   }, [urlLoaded, ip, cidr]);
+
+  // Range → CIDR blocks, and the current network split into equal subnets
+  const rangeValid = isValidIp(rangeStart) && isValidIp(rangeEnd) && ipToInt(rangeStart) <= ipToInt(rangeEnd);
+  const rangeBlocks = rangeValid ? rangeToCidrs(rangeStart, rangeEnd) : [];
+  const splitTarget = Math.max(splitCidr, cidr);
+  const subnets = isValidIp(ip) ? splitNetwork(ip, cidr, splitTarget, 64) : [];
+  const subnetTotal = 2 ** (splitTarget - cidr);
+
+  // Pick a prefix from the CIDR table below and bring the calculator into view
+  const pickCidr = (value: number) => {
+    setCidr(value);
+    ipRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
   const handleMaskInput = (val: string) => {
     setMaskInput(val);
@@ -467,6 +486,79 @@ export default function IpRangeCalculatorUI() {
               </div>
             )}
 
+            {/* Split into subnets */}
+            {result && cidr < 32 && (
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="text-sm font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
+                    Split {result.networkAddress}/{cidr} into subnets
+                  </h3>
+                  <label className="flex items-center gap-2 text-xs text-gray-600">
+                    New prefix
+                    <select
+                      value={splitTarget}
+                      onChange={(e) => setSplitCidr(parseInt(e.target.value))}
+                      className="px-2 py-1 border border-gray-200 rounded-md text-sm"
+                    >
+                      {Array.from({ length: Math.min(32, cidr + 8) - cidr }, (_, i) => cidr + i + 1).map((n) => (
+                        <option key={n} value={n}>/{n} — {formatNumber(2 ** (n - cidr))} subnets</option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs font-mono">
+                    <thead>
+                      <tr className="text-left text-gray-500">
+                        <th className="py-1 pr-3 font-medium">Subnet</th>
+                        <th className="py-1 pr-3 font-medium">Usable hosts</th>
+                        <th className="py-1 font-medium">Broadcast</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                      {subnets.map((sn) => (
+                        <tr key={sn.network}>
+                          <td className="py-1 pr-3 text-gray-900">{sn.network}/{sn.cidr}</td>
+                          <td className="py-1 pr-3 text-gray-600">{sn.firstHost} – {sn.lastHost}</td>
+                          <td className="py-1 text-gray-600">{sn.broadcast}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {subnetTotal > subnets.length && (
+                  <p className="text-xs text-gray-400">Showing the first {subnets.length} of {formatNumber(subnetTotal)} subnets.</p>
+                )}
+              </div>
+            )}
+
+            {/* Range to CIDR */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-3">
+              <h3 className="text-sm font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
+                IP range to CIDR blocks
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                <label className="text-xs text-gray-600">
+                  First IP
+                  <input value={rangeStart} onChange={(e) => setRangeStart(e.target.value.trim())} className="mt-1 w-full px-3 py-2 border border-gray-200 rounded-lg font-mono text-sm" />
+                </label>
+                <label className="text-xs text-gray-600">
+                  Last IP
+                  <input value={rangeEnd} onChange={(e) => setRangeEnd(e.target.value.trim())} className="mt-1 w-full px-3 py-2 border border-gray-200 rounded-lg font-mono text-sm" />
+                </label>
+              </div>
+              {rangeValid ? (
+                <div className="flex flex-wrap gap-2">
+                  {rangeBlocks.map((b) => (
+                    <code key={b} className="px-2 py-1 bg-gray-50 border border-gray-100 rounded text-xs text-gray-800">{b}</code>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-red-500">Enter two valid IPv4 addresses, the first not above the last.</p>
+              )}
+              <p className="text-xs text-gray-400">The smallest set of CIDR blocks that covers exactly this range — useful for firewall rules and allow lists.</p>
+            </div>
+
             {/* History */}
             {showHistory && (
               <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
@@ -513,7 +605,7 @@ export default function IpRangeCalculatorUI() {
       </div>
 
       <RelatedStrip />
-      <IpRangeCalculatorSEO />
+      <IpRangeCalculatorSEO onPick={pickCidr} />
 
       <RelatedTools />
     </>

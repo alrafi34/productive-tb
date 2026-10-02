@@ -59,7 +59,8 @@ export default function KeywordDensityCheckerSEO() {
             <li><strong>Minimum word length</strong> — excludes tokens shorter than your set threshold (default: 3 characters)</li>
             <li><strong>Case normalization</strong> — merges "SEO," "seo," and "Seo" into one count unless case-sensitive mode is on</li>
             <li><strong>Overuse threshold</strong> — flags any term above 5% density for manual review</li>
-            <li><strong>Target keyword isolation</strong> — highlights specific terms you add so they stand out in results</li>
+            <li><strong>Target keywords</strong> — each word or phrase you add gets its own count and density, with a note if it is missing</li>
+            <li><strong>Phrases</strong> — two- and three-word phrases used at least twice, counted within sentences</li>
           </ul>
         </div>
       </section>
@@ -92,7 +93,8 @@ export default function KeywordDensityCheckerSEO() {
                 "Stop-word filtering to surface meaningful keywords",
                 "Case-sensitive mode for brand and acronym precision",
                 "Minimum word length control",
-                "Target word filter for the words you are checking",
+                "Two- and three-word phrase density",
+                "Target keywords and phrases with their own count and density",
                 "Visual bar chart of top keywords",
                 "Sortable results table",
                 "Export to CSV and JSON",

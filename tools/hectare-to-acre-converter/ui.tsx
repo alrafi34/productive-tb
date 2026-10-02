@@ -17,6 +17,7 @@ import {
   ACRES_PER_HECTARE,
 } from "./logic";
 import HectareToAcreConverterSEO from "./seo-content";
+import { useValueParam } from "@/lib/use-value-param";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
@@ -86,6 +87,15 @@ export default function HectareToAcreConverterUI() {
     setInputs((prev) => ({ ...prev, value }));
     inputRef.current?.focus();
   };
+
+  // A value from the URL (?ha=2.5) or a chart link: load it and bring the converter into view
+  const pickValue = (value: string) => {
+    setReversed(false);
+    setInputs((prev) => ({ ...prev, value }));
+    inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  useValueParam("ha", inputs.value, pickValue);
 
   const handleReset = () => {
     setInputs({ value: "", precision: 4 });
@@ -473,7 +483,7 @@ export default function HectareToAcreConverterUI() {
       </div>
 
       <RelatedStrip />
-      <HectareToAcreConverterSEO />
+      <HectareToAcreConverterSEO onPick={pickValue} />
       <RelatedTools />
     </>
   );

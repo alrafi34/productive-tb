@@ -16,7 +16,11 @@ import {
   formatNumber,
   BAG_SIZES,
   bagLabel,
-  guessBagSize
+  guessBagSize,
+  fromCubicMeters,
+  slabVolume,
+  UNIT_SYMBOL,
+  PREMIX_BAGS
 } from "./logic";
 import ConcreteMixRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
@@ -30,6 +34,8 @@ export default function ConcreteMixRatioCalculatorUI() {
   const [bagSize, setBagSize] = useState<BagSize>(50);
   const [dryVolumeFactor, setDryVolumeFactor] = useState("1.54");
   const [showAdvanced, setShowAdvanced] = useState(false);
+  // Optional slab / footing size that fills in the volume
+  const [slab, setSlab] = useState({ length: "", width: "", thickness: "" });
   
   // Results
   const [calculation, setCalculation] = useState<ConcreteCalculation | null>(null);
@@ -67,6 +73,24 @@ export default function ConcreteMixRatioCalculatorUI() {
       setCalculation(null);
     }
   }, [volume, unit, mixRatio, bagSize, dryVolumeFactor]);
+
+  const updateSlab = (field: "length" | "width" | "thickness", value: string) => {
+    const next = { ...slab, [field]: value };
+    setSlab(next);
+    const l = parseFloat(next.length), w = parseFloat(next.width), t = parseFloat(next.thickness);
+    if (l > 0 && w > 0 && t > 0) setVolume(String(Number(slabVolume(l, w, t, unit).toFixed(3))));
+  };
+
+  // Switching units keeps the same amount of concrete
+  const changeUnit = (next: typeof unit) => {
+    const vol = parseFloat(volume);
+    if (vol > 0 && calculation) setVolume(String(Number(fromCubicMeters(calculation.volumeM3, next).toFixed(3))));
+    setSlab({ length: "", width: "", thickness: "" });
+    setUnit(next);
+  };
+
+  const sym = UNIT_SYMBOL[unit];
+  const inUnit = (m3: number) => (unit === "m" ? "" : ` (${formatNumber(fromCubicMeters(m3, unit))} ${sym})`);
 
   const handleReset = () => {
     setVolume("");
@@ -158,27 +182,18 @@ export default function ConcreteMixRatioCalculatorUI() {
               {/* Unit Selector */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Volume Unit</label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setUnit("m")}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      unit === "m"
-                        ? "bg-primary text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                  >
-                    m³
-                  </button>
-                  <button
-                    onClick={() => setUnit("ft")}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      unit === "ft"
-                        ? "bg-primary text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                  >
-                    ft³
-                  </button>
+                <div className="grid grid-cols-3 gap-2">
+                  {(["m", "ft", "yd"] as const).map((u) => (
+                    <button
+                      key={u}
+                      onClick={() => changeUnit(u)}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        unit === u ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      {UNIT_SYMBOL[u]}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -305,20 +320,39 @@ export default function ConcreteMixRatioCalculatorUI() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Total Volume ({unit === 'm' ? 'cubic meters' : 'cubic feet'})
+                    Total Volume ({unit === 'm' ? 'cubic meters' : unit === 'ft' ? 'cubic feet' : 'cubic yards'})
                   </label>
                   <input
                     type="number"
                     value={volume}
                     onChange={(e) => setVolume(e.target.value)}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder={unit === 'm' ? '1' : '35.31'}
+                    placeholder={unit === 'm' ? '1' : unit === 'ft' ? '35.31' : '1.31'}
                     min="0"
                     step="0.1"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Enter total concrete volume needed
+                    Enter the volume, or work it out from the slab size below
                   </p>
+                  <div className="mt-3 grid grid-cols-3 gap-2">
+                    {([
+                      ["length", unit === "m" ? "Length (m)" : "Length (ft)"],
+                      ["width", unit === "m" ? "Width (m)" : "Width (ft)"],
+                      ["thickness", unit === "m" ? "Thick (cm)" : "Thick (in)"],
+                    ] as const).map(([field, label]) => (
+                      <label key={field} className="text-xs text-gray-600">
+                        {label}
+                        <input
+                          type="number"
+                          min="0"
+                          step="any"
+                          value={slab[field]}
+                          onChange={(e) => updateSlab(field, e.target.value)}
+                          className="mt-1 w-full px-2 py-1.5 border border-gray-200 rounded-md font-mono text-sm"
+                        />
+                      </label>
+                    ))}
+                  </div>
                 </div>
                 
                 <div>
@@ -397,16 +431,23 @@ export default function ConcreteMixRatioCalculatorUI() {
                   </div>
                   <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                     <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Sand (m³)</div>
-                    <div className="text-lg font-bold text-gray-900">{formatNumber(calculation.sandVolume)}</div>
+                    <div className="text-lg font-bold text-gray-900">{formatNumber(calculation.sandVolume)}<span className="block text-xs font-normal text-gray-500">{inUnit(calculation.sandVolume).trim()}</span></div>
                   </div>
                   <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                     <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Aggregate (m³)</div>
-                    <div className="text-lg font-bold text-gray-900">{formatNumber(calculation.aggregateVolume)}</div>
+                    <div className="text-lg font-bold text-gray-900">{formatNumber(calculation.aggregateVolume)}<span className="block text-xs font-normal text-gray-500">{inUnit(calculation.aggregateVolume).trim()}</span></div>
                   </div>
                   <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                     <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Mix Ratio</div>
                     <div className="text-lg font-bold text-gray-900">{formatMixRatio(calculation.mixRatio)}</div>
                   </div>
+                </div>
+                <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200 text-sm text-gray-700">
+                  <strong>Using bagged premix instead?</strong>{" "}
+                  {PREMIX_BAGS.map((b) => `${Math.ceil(fromCubicMeters(calculation.volumeM3, "ft") / b.yieldFt3)} × ${b.label}`).join(" · ")}
+                  <span className="block text-xs text-gray-500 mt-1">
+                    From the yields printed on common US bags (40 lb ≈ 0.30 ft³, 60 lb ≈ 0.45 ft³, 80 lb ≈ 0.60 ft³); check your bag.
+                  </span>
                 </div>
               </div>
             )}

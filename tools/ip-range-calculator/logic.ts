@@ -104,6 +104,56 @@ export function calculate(ip: string, cidr: number): IpRangeResult {
   };
 }
 
+/* Smallest set of CIDR blocks that exactly covers start…end (inclusive):
+   take the largest aligned block that starts at the current address and
+   does not run past the end, then move on. */
+export function rangeToCidrs(startIp: string, endIp: string): string[] {
+  let start = ipToInt(startIp);
+  const end = ipToInt(endIp);
+  if (start > end) return [];
+  const blocks: string[] = [];
+  while (start <= end) {
+    let size = 32;
+    while (size > 0) {
+      const bigger = size - 1;
+      const blockSize = 2 ** (32 - bigger);
+      if (start % blockSize !== 0 || start + blockSize - 1 > end) break;
+      size = bigger;
+    }
+    blocks.push(`${intToIp(start)}/${size}`);
+    start += 2 ** (32 - size);
+  }
+  return blocks;
+}
+
+export interface Subnet {
+  network: string;
+  firstHost: string;
+  lastHost: string;
+  broadcast: string;
+  cidr: number;
+}
+
+/* Split the network containing ip/cidr into equal subnets of newCidr. */
+export function splitNetwork(ip: string, cidr: number, newCidr: number, limit = 256): Subnet[] {
+  if (newCidr < cidr || newCidr > 32) return [];
+  const network = (ipToInt(ip) & subnetMaskFromCidr(cidr)) >>> 0;
+  const size = 2 ** (32 - newCidr);
+  const count = Math.min(2 ** (newCidr - cidr), limit);
+  return Array.from({ length: count }, (_, i) => {
+    const start = network + i * size;
+    const end = start + size - 1;
+    const tiny = newCidr >= 31;
+    return {
+      network: intToIp(start),
+      firstHost: intToIp(tiny ? start : start + 1),
+      lastHost: intToIp(tiny ? end : end - 1),
+      broadcast: intToIp(end),
+      cidr: newCidr,
+    };
+  });
+}
+
 export function debounce<T extends (...args: any[]) => any>(fn: T, ms: number): T {
   let timer: ReturnType<typeof setTimeout>;
   return ((...args: any[]) => {

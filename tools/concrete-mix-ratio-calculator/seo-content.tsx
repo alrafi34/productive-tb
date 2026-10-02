@@ -182,7 +182,11 @@ export default function ConcreteMixRatioCalculatorSEO() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
-            <span>Unit conversion (m³ ↔ ft³)</span>
+            <span>Volume in m³, ft³ or yd³, or from slab length, width and thickness</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary mt-1">✓</span>
+            <span>Bagged premix count for 40, 60 and 80 lb bags</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>

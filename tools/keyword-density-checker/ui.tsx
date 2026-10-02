@@ -3,8 +3,8 @@
 import { useState, useMemo } from "react";
 import {
   countWords, countUniqueWords, calculateDensity,
-  highlightOverusedWords, filterTargetKeywords, sortDensityData,
-  exportToCSV, exportToJSON
+  highlightOverusedWords, sortDensityData,
+  exportToCSV, exportToJSON, countPhrases, countTarget
 } from "./logic";
 import type { DensityData, AnalysisOptions } from "./types";
 import KeywordDensityCheckerSEOContent from "./seo-content";
@@ -24,23 +24,28 @@ export default function KeywordDensityCheckerUI() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [showChart, setShowChart] = useState(true);
   const [copied, setCopied] = useState(false);
+  // 1 = single words, 2 and 3 = two- and three-word phrases
+  const [view, setView] = useState<1 | 2 | 3>(1);
 
   const analysis = useMemo(() => {
     if (!text.trim()) return { total: 0, data: [], overused: [] };
     
     const total = countWords(text);
-    const counts = countUniqueWords(text, options);
+    const counts = view === 1 ? countUniqueWords(text, options) : countPhrases(text, view, options);
     let data = calculateDensity(counts, total);
-    
-    if (options.targetKeywords?.length) {
-      data = filterTargetKeywords(data, options.targetKeywords);
-    }
     
     data = sortDensityData(data, sortBy, sortOrder);
     const overused = highlightOverusedWords(data, 5);
     
     return { total, data, overused };
-  }, [text, options, sortBy, sortOrder]);
+  }, [text, options, sortBy, sortOrder, view]);
+
+  // Each target word or phrase: whole-word matches and share of all words
+  const targets = (options.targetKeywords || []).map(keyword => {
+    const count = countTarget(text, keyword, options.caseSensitive);
+    return { keyword, count, density: analysis.total ? (count / analysis.total) * 100 : 0 };
+  });
+  const unit = view === 1 ? "word" : "phrase";
 
   const topWords = analysis.data.slice(0, 10);
 
@@ -155,7 +160,7 @@ export default function KeywordDensityCheckerUI() {
 
           <div>
             <label className="text-xs text-gray-500 mb-2 block">
-              Target Keywords (comma-separated)
+              Target keywords or phrases (comma-separated)
             </label>
             <div className="flex gap-2 mb-2">
               <input
@@ -163,7 +168,7 @@ export default function KeywordDensityCheckerUI() {
                 value={targetInput}
                 onChange={e => setTargetInput(e.target.value)}
                 onKeyPress={e => e.key === "Enter" && handleAddTarget()}
-                placeholder="e.g., SEO, marketing, content"
+                placeholder="e.g., keyword density, SEO checker"
                 className="flex-1 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <button
@@ -230,6 +235,54 @@ export default function KeywordDensityCheckerUI() {
           </div>
         )}
 
+        {/* Target keywords */}
+        {text && targets.length > 0 && (
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+            <h3 className="text-sm font-semibold text-gray-700 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+              Target keywords
+            </h3>
+            <table className="w-full text-sm">
+              <tbody className="divide-y divide-gray-100">
+                {targets.map(({ keyword, count, density }) => (
+                  <tr key={keyword}>
+                    <td className="py-2 font-medium text-gray-800">{keyword}</td>
+                    <td className="py-2 text-right text-gray-600">{count}×</td>
+                    <td className="py-2 text-right font-semibold text-primary w-20">{density.toFixed(2)}%</td>
+                    <td className={`py-2 pl-3 text-xs w-32 ${count === 0 ? "text-red-500" : density >= 5 ? "text-red-500" : "text-gray-500"}`}>
+                      {count === 0 ? "Not found" : density >= 5 ? "Very frequent" : "Present"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="mt-2 text-xs text-gray-400">Density = times found ÷ total words × 100. Matches whole words and never spans two sentences.</p>
+          </div>
+        )}
+
+        {text && (
+          <div className="flex flex-wrap gap-2 mb-4" role="tablist" aria-label="What to count">
+            {([[1, "Single words"], [2, "2-word phrases"], [3, "3-word phrases"]] as const).map(([n, label]) => (
+              <button
+                key={n}
+                role="tab"
+                aria-selected={view === n}
+                onClick={() => setView(n)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
+                  view === n ? "border-primary bg-primary/5 text-primary" : "border-gray-200 text-gray-600 hover:border-gray-300"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {text && view !== 1 && analysis.data.length === 0 && (
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6 text-sm text-gray-500">
+            No {view}-word phrase appears more than once yet.
+          </div>
+        )}
+
         {/* Results */}
         {analysis.data.length > 0 && (
           <>
@@ -237,7 +290,7 @@ export default function KeywordDensityCheckerUI() {
             {showChart && topWords.length > 0 && (
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
                 <h3 className="text-sm font-semibold text-gray-700 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-                  Top 10 Keywords
+                  Top 10 {view === 1 ? "Keywords" : `${view}-Word Phrases`}
                 </h3>
                 <div className="space-y-3">
                   {topWords.map((item, idx) => {
@@ -279,7 +332,7 @@ export default function KeywordDensityCheckerUI() {
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
               <div className="p-4 border-b border-gray-100">
                 <h3 className="text-sm font-semibold text-gray-700" style={{ fontFamily: "var(--font-heading)" }}>
-                  Keyword Density Analysis ({analysis.data.length} unique words)
+                  Keyword Density Analysis ({analysis.data.length} unique {unit}{analysis.data.length === 1 ? "" : "s"}{view !== 1 ? " used at least twice" : ""})
                 </h3>
               </div>
               <div className="overflow-x-auto">
@@ -293,7 +346,7 @@ export default function KeywordDensityCheckerUI() {
                         onClick={() => handleSort("word")}
                         className="text-left px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors"
                       >
-                        Word {sortBy === "word" && (sortOrder === "asc" ? "↑" : "↓")}
+                        {view === 1 ? "Word" : "Phrase"} {sortBy === "word" && (sortOrder === "asc" ? "↑" : "↓")}
                       </th>
                       <th
                         onClick={() => handleSort("count")}
@@ -338,7 +391,7 @@ export default function KeywordDensityCheckerUI() {
               </div>
               {analysis.data.length > 50 && (
                 <div className="p-4 bg-gray-50 border-t border-gray-100 text-center text-xs text-gray-500">
-                  Showing top 50 of {analysis.data.length} words. Download CSV/JSON for full results.
+                  Showing top 50 of {analysis.data.length} {unit}s. Download CSV/JSON for full results.
                 </div>
               )}
             </div>

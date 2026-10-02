@@ -1,4 +1,4 @@
-export type Unit = 'ft' | 'm';
+export type Unit = 'ft' | 'm' | 'yd';
 export type BagSize = number; // kg
 
 export interface MixRatio {
