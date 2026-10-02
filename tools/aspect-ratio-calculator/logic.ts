@@ -5,15 +5,24 @@ export function gcd(a: number, b: number): number {
   return b === 0 ? a : gcd(b, a % b);
 }
 
+function decimalPlaces(n: number): number {
+  const text = String(n);
+  const dot = text.indexOf('.');
+  return dot === -1 || text.includes('e') ? 0 : text.length - dot - 1;
+}
+
 // Simplify aspect ratio
 export function simplifyRatio(width: number, height: number): string {
   if (!width || !height || width <= 0 || height <= 0) return '';
   
-  const divisor = gcd(Math.round(width), Math.round(height));
-  const simplifiedWidth = Math.round(width / divisor);
-  const simplifiedHeight = Math.round(height / divisor);
-  
-  return `${simplifiedWidth}:${simplifiedHeight}`;
+  // Scale decimals (10.5 × 7, 2.39 × 1) to whole numbers before reducing,
+  // so 10.5 × 7 is 3:2 rather than 11:7 after rounding
+  const decimals = Math.min(Math.max(decimalPlaces(width), decimalPlaces(height)), 4);
+  const scale = 10 ** decimals;
+  const w = Math.round(width * scale);
+  const h = Math.round(height * scale);
+  const divisor = gcd(w, h);
+  return `${w / divisor}:${h / divisor}`;
 }
 
 // Parse aspect ratio string (e.g., "16:9" or "16/9")

@@ -1,6 +1,6 @@
 import ToolFaq from "@/components/ToolFaq";
 import { inflationCalculatorConfig } from "./config";
-import { CPI_LAST, CPI_SOURCE } from "./cpi-data";
+import { CPI_LAST_FULL_YEAR, CPI_SOURCE } from "./cpi-data";
 import { annualInflation, cpiFor } from "./logic";
 
 export default function InflationCalculatorSEO() {
@@ -9,9 +9,9 @@ export default function InflationCalculatorSEO() {
 
   const card = "mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8";
   const h2 = "text-2xl font-semibold text-gray-900 mb-4";
-  const recent = Array.from({ length: 10 }, (_, i) => CPI_LAST.year - i);
+  const recent = Array.from({ length: 10 }, (_, i) => CPI_LAST_FULL_YEAR - i);
   const decades = [1920, 1940, 1960, 1980, 2000, 2010, 2020];
-  const latest = cpiFor(CPI_LAST.year)!;
+  const latest = cpiFor(CPI_LAST_FULL_YEAR)!;
 
   return (
     <>
@@ -54,7 +54,7 @@ export default function InflationCalculatorSEO() {
             <thead>
               <tr className="border-b-2 border-gray-200">
                 <th className="text-left py-2 px-3 font-semibold text-gray-700">$100 in</th>
-                <th className="text-right py-2 px-3 font-semibold text-gray-700">Is worth in {CPI_LAST.year}</th>
+                <th className="text-right py-2 px-3 font-semibold text-gray-700">Is worth in {CPI_LAST_FULL_YEAR}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">

@@ -1,4 +1,5 @@
 import { AngleMode, CalculationHistory } from './types';
+import { calculatePower } from '@/tools/exponent-calculator/logic';
 
 const HISTORY_KEY = 'scientific-calculator-history';
 const MAX_HISTORY = 50;
@@ -119,7 +120,12 @@ export function evaluateExpression(expr: string, angleMode: AngleMode): { result
     const base = postfix();
     if (peek() === '^') {
       i++;
-      return Math.pow(base, unary());
+      const exponent = unary();
+      if (base === 0 && exponent < 0) fail('0 to a negative power is undefined (division by zero)');
+      // Odd roots of negative numbers are real: (−8)^(1/3) = −2
+      const v = calculatePower(base, exponent);
+      if (Number.isNaN(v)) fail('No real result: an even root of a negative number');
+      return v;
     }
     return base;
   }
@@ -158,6 +164,7 @@ export function evaluateExpression(expr: string, angleMode: AngleMode): { result
   try {
     const result = expression();
     if (i < src.length) fail(`Unexpected "${src[i]}"`);
+    if (Number.isNaN(result)) return { result: 0, error: 'No real result' };
     if (!isFinite(result)) return { result: 0, error: 'Result is too large' };
     return { result };
   } catch (err) {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import NumberField, { num } from "@/components/NumberField";
 import RelatedStrip from "@/components/RelatedStrip";
 import RelatedTools from "@/components/RelatedTools";
-import { CPI_LAST, CPI_SOURCE } from "./cpi-data";
+import { CPI_LAST, CPI_LAST_FULL_YEAR, CPI_SOURCE } from "./cpi-data";
 import { YEARS, adjustForInflation } from "./logic";
 import InflationCalculatorSEO from "./seo-content";
 
@@ -16,7 +16,8 @@ export default function InflationCalculatorUI() {
   const [fromYear, setFromYear] = useState(2000);
   const [fromMonth, setFromMonth] = useState(0);
   const [toYear, setToYear] = useState(CPI_LAST.year);
-  const [toMonth, setToMonth] = useState(0);
+  // Latest published month by default; a part-year average would mislead
+  const [toMonth, setToMonth] = useState(CPI_LAST.month < 12 ? CPI_LAST.month : 0);
 
   const r = adjustForInflation(
     num(amount),
@@ -53,7 +54,9 @@ export default function InflationCalculatorUI() {
           {dateInputs("In", fromYear, setFromYear, fromMonth, setFromMonth, "inf-from")}
           {dateInputs("Is worth in", toYear, setToYear, toMonth, setToMonth, "inf-to")}
           <p className="text-xs text-gray-500">
-            &quot;Whole year&quot; uses the annual average. Data: {CPI_SOURCE}. October 2025 was not collected.
+            &quot;Whole year&quot; uses the annual average
+            {CPI_LAST.year > CPI_LAST_FULL_YEAR && <> ({CPI_LAST.year}: average of January to {MONTHS[CPI_LAST.month - 1]} so far)</>}.
+            Data: {CPI_SOURCE}. October 2025 was not collected.
           </p>
         </div>
 

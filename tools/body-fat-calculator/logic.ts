@@ -17,34 +17,47 @@ export interface HistoryRecord {
   unit: 'metric' | 'imperial';
 }
 
-const CATEGORIES = [
-  { 
-    male: { min: 0, max: 6 }, 
-    female: { min: 0, max: 16 }, 
-    name: 'Underfat', 
-    color: 'text-blue-500', 
-    bg: 'bg-blue-500' 
+/* Body fat categories from the American Council on Exercise (ACE) chart:
+   men essential 2–5%, athletes 6–13%, fitness 14–17%, average 18–24%,
+   obese 25% and over; women 10–13%, 14–20%, 21–24%, 25–31%, 32% and over.
+   Each range runs up to the next one's start, so 13.6% counts as athletes. */
+export const BODY_FAT_SOURCE = "American Council on Exercise (ACE) body fat chart";
+
+export const CATEGORIES = [
+  {
+    male: { min: 0, max: 6 },
+    female: { min: 0, max: 14 },
+    name: 'Essential fat',
+    color: 'text-blue-500',
+    bg: 'bg-blue-500'
   },
-  { 
-    male: { min: 6, max: 24 }, 
-    female: { min: 16, max: 30 }, 
-    name: 'Fitness', 
-    color: 'text-green-500', 
-    bg: 'bg-green-500' 
+  {
+    male: { min: 6, max: 14 },
+    female: { min: 14, max: 21 },
+    name: 'Athletes',
+    color: 'text-teal-500',
+    bg: 'bg-teal-500'
   },
-  { 
-    male: { min: 24, max: 31 }, 
-    female: { min: 30, max: 36 }, 
-    name: 'Average', 
-    color: 'text-yellow-500', 
-    bg: 'bg-yellow-500' 
+  {
+    male: { min: 14, max: 18 },
+    female: { min: 21, max: 25 },
+    name: 'Fitness',
+    color: 'text-green-500',
+    bg: 'bg-green-500'
   },
-  { 
-    male: { min: 31, max: Infinity }, 
-    female: { min: 36, max: Infinity }, 
-    name: 'Obese', 
-    color: 'text-red-500', 
-    bg: 'bg-red-500' 
+  {
+    male: { min: 18, max: 25 },
+    female: { min: 25, max: 32 },
+    name: 'Average',
+    color: 'text-yellow-500',
+    bg: 'bg-yellow-500'
+  },
+  {
+    male: { min: 25, max: Infinity },
+    female: { min: 32, max: Infinity },
+    name: 'Obese',
+    color: 'text-red-500',
+    bg: 'bg-red-500'
   }
 ];
 
