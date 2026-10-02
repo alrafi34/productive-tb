@@ -4,15 +4,27 @@ import {
   HistoryEntry,
   Preset,
   PowerUnit,
+  BreakerStandard,
 } from "./types";
 
 const HISTORY_KEY = "circuit-breaker-calculator-history";
 const MAX_HISTORY = 20;
 
 // Standard breaker sizes in Amperes
+/* IEC 60898 / 60947 ratings used in Europe, the UK and most of the world */
 export const STANDARD_BREAKER_SIZES = [
   6, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200, 250, 315, 400
 ];
+
+/* Standard ampere ratings of NEC 240.6(A), used in the US */
+export const NEC_BREAKER_SIZES = [
+  15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200, 225, 250, 300, 350, 400
+];
+
+export const BREAKER_STANDARDS: Record<BreakerStandard, { label: string; sizes: number[] }> = {
+  nec: { label: "US (NEC 240.6)", sizes: NEC_BREAKER_SIZES },
+  iec: { label: "IEC (Europe, UK, most countries)", sizes: STANDARD_BREAKER_SIZES },
+};
 
 // Continuous load safety factor (125% or 1.25)
 const CONTINUOUS_LOAD_FACTOR = 1.25;
@@ -62,8 +74,9 @@ export function calculateCircuitBreaker(inputs: CircuitBreakerInputs): CircuitBr
     : current;
 
   // Find recommended breaker size
-  const recommendedBreaker = STANDARD_BREAKER_SIZES.find(size => size >= adjustedCurrent) || 
-    STANDARD_BREAKER_SIZES[STANDARD_BREAKER_SIZES.length - 1];
+  const sizes = BREAKER_STANDARDS[inputs.standard ?? 'iec'].sizes;
+  const recommendedBreaker = sizes.find(size => size >= adjustedCurrent) || 
+    sizes[sizes.length - 1];
 
   // Calculate safety margin
   const safetyMargin = ((recommendedBreaker - adjustedCurrent) / recommendedBreaker) * 100;

@@ -79,7 +79,7 @@ export const roomLightingCalculatorConfig = {
       },
       {
         q: "How is the number of lights calculated?",
-        a: "The calculator multiplies room area in square meters by the recommended lux level for the room type to get total lumens required, then divides by the lumen output of a single bulb and rounds up to the nearest whole fixture. The formula is Lights Needed = ceil((Width times Length in square meters times Lux Level) divided by Lumens per Light). The result is checked against the achieved lux to flag under-lit or over-lit outcomes.",
+        a: "The calculator multiplies room area in square meters by the recommended lux level for the room type and divides by a light loss factor (0.6 by default) to get total lumens required, then divides by the lumen output of a single bulb and rounds up to the nearest whole fixture. The formula is Lights Needed = ceil(Area in square meters × Lux Level ÷ Light Loss Factor ÷ Lumens per Light). The factor allows for light absorbed by fixtures and room surfaces and for lamps dimming with age. The result is checked against the achieved lux to flag under-lit or over-lit outcomes.",
       },
       {
         q: "What is a good lux level for my room?",

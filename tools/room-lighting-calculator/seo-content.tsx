@@ -45,15 +45,16 @@ export default function RoomLightingCalculatorSEO() {
             <p className="text-sm font-medium text-gray-500 mb-2">Core Formula</p>
             <div className="space-y-1 font-mono text-sm text-gray-900">
               <p><span className="font-semibold">Area (m²)</span> = Width × Length (converted to meters if entered in feet)</p>
-              <p><span className="font-semibold">Total Lumens Required</span> = Area (m²) × Lux Level</p>
+              <p><span className="font-semibold">Total Lumens Required</span> = Area (m²) × Lux Level ÷ Light Loss Factor</p>
               <p><span className="font-semibold">Lights Needed</span> = ceil(Total Lumens Required ÷ Lumens per Light)</p>
-              <p><span className="font-semibold">Lux Achieved</span> = (Lights Needed × Lumens per Light) ÷ Area (m²)</p>
-              <p className="text-gray-500 text-xs mt-2">Example: 15 ft × 20 ft living room (150 lux, 1,100 lm bulbs) → 27.87 m² × 150 = <span className="text-green-600 font-semibold">4,181 lm required → 4 lights → 157.9 lux achieved</span></p>
+              <p><span className="font-semibold">Lux Achieved</span> = Lights Needed × Lumens per Light × Light Loss Factor ÷ Area (m²)</p>
+              <p className="text-gray-500 text-xs mt-2">Example: 15 ft × 20 ft living room (150 lux, 1,100 lm bulbs, factor 0.6) → 27.87 m² × 150 ÷ 0.6 = <span className="text-green-600 font-semibold">6,968 lm required → 7 lights → 165.8 lux achieved</span></p>
             </div>
           </div>
           <ul className="space-y-1 ml-4 list-disc text-gray-600">
             <li><strong>Lux (lx)</strong> — illumination density, measured in lumens per square meter; this is the target the calculator solves for</li>
             <li><strong>Lumens (lm)</strong> — the total light output of a single bulb, printed on its packaging regardless of room size</li>
+            <li><strong>Light loss factor</strong> — the share of bulb output that reaches the floor or desk after the fixture, walls and ceiling absorb some, and lamps dim and gather dust (utilization × maintenance factor). 0.6 is a typical starting point; lower it for dark rooms or enclosed fixtures</li>
             <li><strong>Room type presets</strong> — standard lux levels from 100 (bedroom, hallway) to 400 (office) built into the tool, or a custom lux value for specialized spaces</li>
             <li><strong>Rounding behavior</strong> — the fixture count always rounds up, so achieved lux is checked separately and flagged as under-lit (more than 10% below target), optimal, or over-lit (more than 30% above target)</li>
             <li><strong>Unit conversion</strong> — feet-based dimensions are converted to square meters automatically since lux is internationally defined per square meter, not per square foot</li>
@@ -112,28 +113,28 @@ export default function RoomLightingCalculatorSEO() {
         <div className="grid md:grid-cols-2 gap-6">
           {[
             {
-              title: "Small Bedroom — Rounding to Over-Lit",
-              scenario: "A homeowner is fitting a 10 ft × 10 ft bedroom (100 sq ft = 9.29 m²) with 800-lumen LED bulbs. At the bedroom standard of 100 lux, the room needs only 929 total lumens — technically 1.16 bulbs. The calculator rounds up to 2 lights, delivering 1,600 lumens and 172 lux achieved, 72% above target. The tool flags this over-lit, so the homeowner adds a dimmer switch instead of removing a fixture entirely.",
+              title: "Small Bedroom — Two Bulbs",
+              scenario: "A homeowner is fitting a 10 ft × 10 ft bedroom (100 sq ft = 9.29 m²) with 800-lumen LED bulbs. At the bedroom standard of 100 lux and a light loss factor of 0.6, the room needs 1,548 lumens — 1.9 bulbs. The calculator rounds up to 2 lights, delivering 1,600 lumens and about 103 lux on the floor, 3% above target and optimal.",
             },
             {
               title: "Living Room — Optimal Fit",
-              scenario: "An interior designer is specifying fixtures for a 15 ft × 20 ft living room (27.87 m²) at the standard 150 lux, using 1,100-lumen LED bulbs. Total lumens required is 4,181; dividing by 1,100 and rounding up gives 4 lights, delivering 4,400 lumens and 157.9 lux achieved — just 5.3% above target. The design is confirmed optimal and specified as-is for the client.",
+              scenario: "An interior designer is specifying fixtures for a 15 ft × 20 ft living room (27.87 m²) at the standard 150 lux, using 1,100-lumen LED bulbs and a 0.6 light loss factor. Total lumens required is 6,968; dividing by 1,100 and rounding up gives 7 lights, delivering about 166 lux — 10.5% above target and optimal.",
             },
             {
               title: "Home Office — Task Lighting Check",
-              scenario: "A remote worker is lighting a 10 ft × 12 ft home office (11.15 m²) at the office standard of 400 lux with 1,100-lumen bulbs. Total lumens required is 4,459; dividing by 1,100 gives 4.05, rounded up to 5 lights, delivering 5,500 lumens and 493 lux achieved — 23% above target but still within the optimal band. The extra headroom is useful for close detail work at a desk.",
+              scenario: "A remote worker is lighting a 10 ft × 12 ft home office (11.15 m²) at the office standard of 400 lux with 1,100-lumen bulbs. With a 0.6 factor, total lumens required is 7,432; dividing by 1,100 gives 6.8, rounded up to 7 lights and about 414 lux — 3.6% above target, enough for close desk work.",
             },
             {
               title: "Kitchen — Bright Task Lighting",
-              scenario: "A homeowner is planning recessed lighting for a 12 ft × 12 ft kitchen (13.38 m²) at the kitchen standard of 300 lux using 1,100-lumen LEDs. Total lumens required is 4,014; dividing by 1,100 and rounding up gives 4 lights, delivering 4,400 lumens and 329 lux — 9.6% above target and comfortably optimal for food prep and reading labels.",
+              scenario: "A homeowner is planning recessed lighting for a 12 ft × 12 ft kitchen (13.38 m²) at the kitchen standard of 300 lux using 1,100-lumen LEDs. With a 0.6 factor, total lumens required is 6,689; rounding up gives 7 lights and about 345 lux — 15% above target and optimal for food prep and reading labels.",
             },
             {
               title: "Photography Studio — Custom Lux Mode",
-              scenario: "A photographer is lighting a 15 ft × 12 ft studio space (16.72 m²) that needs far more light than any residential preset. Using Custom mode at 500 lux with 1,600-lumen bulbs, total lumens required is 8,361; dividing by 1,600 and rounding up gives 6 lights, delivering 9,600 lumens and 574 lux achieved — 14.8% above target, comfortably optimal for consistent product photography.",
+              scenario: "A photographer is lighting a 15 ft × 12 ft studio space (16.72 m²) that needs more light than any residential preset. Using Custom mode at 500 lux with 1,600-lumen bulbs and a 0.6 factor, total lumens required is 13,935; rounding up gives 9 lights and about 517 lux — 3.3% above target.",
             },
             {
-              title: "Garage Workshop — Precise Match",
-              scenario: "A DIYer is wiring a 20 ft × 20 ft garage workshop (37.16 m²) at the garage standard of 300 lux using 1,600-lumen LED shop lights. Total lumens required is 11,148; dividing by 1,600 and rounding up gives 7 lights, delivering 11,200 lumens and 301.4 lux achieved — within 0.5% of the target, one of the closest possible matches the rounding method can produce.",
+              title: "Garage Workshop — Close Match",
+              scenario: "A DIYer is wiring a 20 ft × 20 ft garage workshop (37.16 m²) at the garage standard of 300 lux using 1,600-lumen LED shop lights. With a 0.6 factor, total lumens required is 18,581; rounding up gives 12 lights and about 310 lux — within 3.3% of the target.",
             },
           ].map(({ title, scenario }) => (
             <div key={title} className="bg-gray-50 border border-gray-100 rounded-lg p-5">

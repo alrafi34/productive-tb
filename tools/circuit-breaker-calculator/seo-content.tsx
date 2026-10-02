@@ -204,13 +204,13 @@ export default function CircuitBreakerCalculatorSEO() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {[
-                ["10A", "LED lighting circuits, low-power outlets", "14 AWG (1.5 mm²)"],
-                ["16A – 20A", "General power outlets, window AC units", "12 AWG (2.5 mm²)"],
-                ["25A", "Kitchen appliances, mid-size AC units", "10 AWG (4 mm²)"],
-                ["32A – 40A", "Electric ranges, water heaters, EV chargers (L1/L2)", "8 AWG (6 mm²)"],
-                ["50A", "Large water heaters, sub-panel feeders", "6 AWG (10 mm²)"],
-                ["63A – 80A", "Small industrial motors, workshop feeders", "4 AWG (16 mm²)"],
-                ["100A", "Sub-panel main, residential service upgrades", "2 AWG (25 mm²)"],
+                ["10A", "LED lighting circuits, low-power outlets", "1.5 mm² (IEC) · 14 AWG on a 15A US breaker"],
+                ["15A – 20A", "General power outlets, window AC units", "14 AWG for 15A, 12 AWG for 20A (US) · 2.5 mm² (IEC, 16–20A)"],
+                ["25A – 30A", "Kitchen appliances, mid-size AC units", "10 AWG (US) · 4 mm² (IEC, 25A)"],
+                ["32A – 40A", "Electric ranges, water heaters, EV chargers (L1/L2)", "8 AWG (US, 40A) · 6 mm² (IEC, 32A)"],
+                ["50A", "Large water heaters, sub-panel feeders", "8 AWG at 75°C or 6 AWG in NM cable (US) · 10 mm² (IEC)"],
+                ["63A – 80A", "Small industrial motors, workshop feeders", "4 AWG (US, 80A) · 16 mm² (IEC, 63A)"],
+                ["100A", "Sub-panel main, residential service upgrades", "3 AWG copper (US, 75°C) · 25 mm² (IEC)"],
                 ["125A – 200A", "Main service entrance, commercial feeders", "Consult NEC Table 310.16"],
                 ["250A – 400A", "Large commercial/industrial service, motor control centers", "Consult a licensed electrician"],
               ].map(([size, use, wire]) => (

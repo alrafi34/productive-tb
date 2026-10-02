@@ -454,7 +454,7 @@ export default function SandCalculatorUI() {
                     <strong>Formula:</strong> {
                       calculationType === "area" ? "Volume = Length × Width × Depth" :
                       calculationType === "concrete" ? "Sand = (Sand ratio / Total ratio) × Dry volume" :
-                      "Volume = Area × Thickness × 0.5 (sand portion)"
+                      "Sand = Area × Thickness × 1.27 (dry volume) × 4/5 (sand in a 1:4 mortar)"
                     }
                   </div>
                 </div>

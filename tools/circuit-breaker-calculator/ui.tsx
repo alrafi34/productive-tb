@@ -20,7 +20,7 @@ import {
   downloadFile,
   formatNumber,
   debounce,
-  STANDARD_BREAKER_SIZES,
+  BREAKER_STANDARDS,
   getWireGaugeRecommendation,
 } from "./logic";
 import CircuitBreakerCalculatorSEO from "./seo-content";
@@ -35,7 +35,18 @@ export default function CircuitBreakerCalculatorUI() {
     phaseType: 'single',
     loadType: 'non-continuous',
     powerFactor: 1.0,
+    standard: 'iec',
   });
+
+  // US visitors start with NEC breaker sizes and 120 V, guessed after hydration; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      if ((Intl.DateTimeFormat().resolvedOptions().timeZone ?? "").startsWith("America/")) {
+        setInputs(prev => ({ ...prev, standard: 'nec', voltage: 120 }));
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const [result, setResult] = useState<CircuitBreakerResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -89,6 +100,7 @@ export default function CircuitBreakerCalculatorUI() {
       phaseType: 'single',
       loadType: 'non-continuous',
       powerFactor: 1.0,
+      standard: inputs.standard,
     });
     setResult(null);
     setError(null);
@@ -102,6 +114,7 @@ export default function CircuitBreakerCalculatorUI() {
       phaseType: preset.phaseType,
       loadType: preset.loadType,
       powerFactor: preset.powerFactor,
+      standard: inputs.standard,
     });
   };
 
@@ -338,6 +351,23 @@ export default function CircuitBreakerCalculatorUI() {
                 </div>
               </div>
 
+              {/* Breaker standard */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Breaker Sizes
+                </label>
+                <select
+                  value={inputs.standard ?? 'iec'}
+                  onChange={(e) => handleInputChange('standard', e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
+                  aria-label="Breaker size standard"
+                >
+                  {Object.entries(BREAKER_STANDARDS).map(([key, s]) => (
+                    <option key={key} value={key}>{s.label}</option>
+                  ))}
+                </select>
+              </div>
+
               {/* Load Type */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -473,7 +503,7 @@ export default function CircuitBreakerCalculatorUI() {
               </h3>
               
               <div className="flex flex-wrap gap-2">
-                {STANDARD_BREAKER_SIZES.map((size) => (
+                {BREAKER_STANDARDS[inputs.standard ?? 'iec'].sizes.map((size) => (
                   <div
                     key={size}
                     className={`px-3 py-2 rounded-lg text-sm font-semibold ${

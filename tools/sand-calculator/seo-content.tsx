@@ -57,10 +57,11 @@ export default function SandCalculatorSEO() {
             <h3 className="font-semibold text-gray-800 mb-2">Plaster Formula</h3>
             <code className="block bg-white p-3 rounded border border-gray-300 text-sm">
               Volume = Area × (Thickness in feet)<br />
-              Sand = Volume × 0.5
+              Sand = Volume × 1.27 × 4/5
             </code>
             <p className="mt-2 text-sm">
-              Thickness is converted from inches to feet before calculation.
+              Thickness is converted from inches to feet before calculation. The wet plaster volume is
+              raised 27% for the dry materials, and sand is 4 of the 5 parts of a 1:4 cement:sand mortar.
             </p>
           </div>
         </div>

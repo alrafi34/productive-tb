@@ -91,7 +91,7 @@ export default function TransformerCurrentCalculatorUI() {
 
   const handleCopy = () => {
     if (result) {
-      const text = `Primary Current: ${formatNumber(result.primaryCurrent, 2)} A | Secondary Current: ${formatNumber(result.secondaryCurrent, 2)} A`;
+      const text = `Primary Current: ${formatNumber(result.primaryCurrent, 2)} A | Secondary Current: ${result.secondaryCurrent !== undefined ? `${formatNumber(result.secondaryCurrent, 2)} A` : 'n/a'}`;
       navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -171,7 +171,9 @@ export default function TransformerCurrentCalculatorUI() {
                 <div className="mt-4 pt-4 border-t border-white/20 text-sm space-y-2">
                   <div className="flex justify-between">
                     <span className="text-primary-100">Secondary Current:</span>
-                    <span className="font-semibold">{formatNumber(result.secondaryCurrent, 2)} A</span>
+                    <span className="font-semibold">
+                      {result.secondaryCurrent !== undefined ? `${formatNumber(result.secondaryCurrent, 2)} A` : 'Enter the secondary voltage'}
+                    </span>
                   </div>
                   {result.lineCurrent && (
                     <div className="flex justify-between">
@@ -276,7 +278,7 @@ export default function TransformerCurrentCalculatorUI() {
               {/* Voltage Input */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Voltage
+                  Primary Voltage
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -303,6 +305,28 @@ export default function TransformerCurrentCalculatorUI() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Secondary Voltage */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Secondary Voltage
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    value={inputs.secondaryVoltage || ''}
+                    onChange={(e) => handleInputChange('secondaryVoltage', parseFloat(e.target.value) || 0)}
+                    className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
+                    placeholder="e.g. 120"
+                    min="0"
+                    step="1"
+                  />
+                  <div className="px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-lg font-semibold text-gray-700 flex items-center">
+                    V
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 mt-1">The output winding&apos;s voltage; its current is the primary current × primary V ÷ secondary V.</p>
               </div>
 
               {/* Phase Selection */}
@@ -416,8 +440,8 @@ export default function TransformerCurrentCalculatorUI() {
                   </div>
                   <div className="p-3 bg-green-50 rounded-lg border border-green-200">
                     <div className="text-xs text-green-600 uppercase tracking-wider mb-1">Secondary Current</div>
-                    <div className="text-lg font-bold text-green-900">{formatNumber(result.secondaryCurrent, 2)}</div>
-                    <div className="text-xs text-green-700">Amperes</div>
+                    <div className="text-lg font-bold text-green-900">{result.secondaryCurrent !== undefined ? formatNumber(result.secondaryCurrent, 2) : '—'}</div>
+                    <div className="text-xs text-green-700">{result.secondaryCurrent !== undefined ? 'Amperes' : 'Enter the secondary voltage'}</div>
                   </div>
                   {result.lineCurrent && (
                     <div className="p-3 bg-purple-50 rounded-lg border border-purple-200">

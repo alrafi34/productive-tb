@@ -15,8 +15,16 @@ export const ROOM_TYPES: Record<RoomType, RoomTypeConfig> = {
 
 const FEET_TO_METERS = 0.3048;
 
+/* Lumen method: not all bulb output reaches the work plane. Utilization
+   (room shape, surfaces, fixture) × maintenance (dirt, ageing) is typically
+   around 0.5–0.7 for homes and offices. */
+export const DEFAULT_LIGHT_LOSS_FACTOR = 0.6;
+
 export function calculateLighting(inputs: LightingInputs): LightingResult {
   const { width, length, unit, roomType, customLux, lumensPerLight, ceilingHeight } = inputs;
+  const factor = inputs.lightLossFactor && inputs.lightLossFactor > 0 && inputs.lightLossFactor <= 1
+    ? inputs.lightLossFactor
+    : DEFAULT_LIGHT_LOSS_FACTOR;
   
   const steps: string[] = [];
   
@@ -47,11 +55,11 @@ export function calculateLighting(inputs: LightingInputs): LightingResult {
   steps.push('');
   
   // Calculate total lumens required
-  const totalLumensRequired = areaInMeters * luxLevel;
+  const totalLumensRequired = (areaInMeters * luxLevel) / factor;
   
   steps.push('Step 3: Calculate Total Lumens Required');
-  steps.push(`Formula: Total Lumens = Area (m²) × Lux Level`);
-  steps.push(`Total Lumens = ${areaInMeters.toFixed(2)} × ${luxLevel}`);
+  steps.push(`Formula: Total Lumens = Area (m²) × Lux Level ÷ Light Loss Factor`);
+  steps.push(`Total Lumens = ${areaInMeters.toFixed(2)} × ${luxLevel} ÷ ${factor}`);
   steps.push(`Total Lumens = ${totalLumensRequired.toFixed(2)} lm`);
   steps.push('');
   
@@ -67,11 +75,11 @@ export function calculateLighting(inputs: LightingInputs): LightingResult {
   
   // Calculate actual lumens and lux achieved
   const actualLumens = lightsNeeded * lumensPerLight;
-  const luxAchieved = actualLumens / areaInMeters;
+  const luxAchieved = (actualLumens * factor) / areaInMeters;
   
   steps.push('Step 5: Verify Lighting Level');
   steps.push(`Actual Lumens: ${lightsNeeded} × ${lumensPerLight} = ${actualLumens} lm`);
-  steps.push(`Lux Achieved: ${actualLumens} / ${areaInMeters.toFixed(2)} = ${luxAchieved.toFixed(2)} lux`);
+  steps.push(`Lux Achieved: ${actualLumens} × ${factor} / ${areaInMeters.toFixed(2)} = ${luxAchieved.toFixed(2)} lux`);
   
   // Determine status
   let status: 'under' | 'optimal' | 'over';

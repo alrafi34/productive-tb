@@ -62,19 +62,19 @@ export default function SteelQuantityCalculatorSEO() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               <tr>
-                <td className="px-4 py-2 text-sm text-gray-700">Light Slab</td>
-                <td className="px-4 py-2 text-sm text-gray-700">3 kg/sq ft</td>
-                <td className="px-4 py-2 text-sm text-gray-700">Residential light load</td>
+                <td className="px-4 py-2 text-sm text-gray-700">Whole building, light</td>
+                <td className="px-4 py-2 text-sm text-gray-700">3 kg/sq ft of built-up area</td>
+                <td className="px-4 py-2 text-sm text-gray-700">Light residential (slabs, beams, columns and footings together)</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 text-sm text-gray-700">Medium Slab</td>
-                <td className="px-4 py-2 text-sm text-gray-700">4 kg/sq ft</td>
-                <td className="px-4 py-2 text-sm text-gray-700">Standard residential</td>
+                <td className="px-4 py-2 text-sm text-gray-700">Whole building, standard</td>
+                <td className="px-4 py-2 text-sm text-gray-700">4 kg/sq ft of built-up area</td>
+                <td className="px-4 py-2 text-sm text-gray-700">Typical residential</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 text-sm text-gray-700">Heavy Slab</td>
-                <td className="px-4 py-2 text-sm text-gray-700">5 kg/sq ft</td>
-                <td className="px-4 py-2 text-sm text-gray-700">Commercial/heavy load</td>
+                <td className="px-4 py-2 text-sm text-gray-700">Whole building, heavy</td>
+                <td className="px-4 py-2 text-sm text-gray-700">5 kg/sq ft of built-up area</td>
+                <td className="px-4 py-2 text-sm text-gray-700">Commercial / heavy load</td>
               </tr>
               <tr>
                 <td className="px-4 py-2 text-sm text-gray-700">Light Beam</td>
