@@ -245,6 +245,12 @@ export default function BoltLoadCalculatorUI() {
                       {result.statusLabel}
                     </span>
                   </div>
+                  {parseFloat(inputs.externalLoad) > 0 && (
+                    <p className="text-xs text-primary-100 pt-2">
+                      Stress and status use the external load alone. The bolt also carries its preload; how much of the
+                      external load adds to it depends on the joint stiffness, which this tool does not model.
+                    </p>
+                  )}
                 </div>
               )}
 

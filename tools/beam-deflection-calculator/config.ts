@@ -4,7 +4,7 @@ export const beamDeflectionCalculatorConfig = {
   name: "Beam Deflection Calculator",
   slug: "beam-deflection-calculator",
   category: "mechanical",
-  description: "Calculate beam deflection, slope, reactions, bending moment, and shear force for simply supported, cantilever, fixed, and overhanging beams. Supports multiple materials, cross-sections, and load types.",
+  description: "Calculate beam deflection, slope, reactions, bending moment, and shear force for simply supported, cantilever and fixed beams. Supports multiple materials, cross-sections, and load types.",
   icon: "📐",
   color: "#058554",
   featured: true,
@@ -22,7 +22,7 @@ export const beamDeflectionCalculatorConfig = {
   ],
   seo: {
     title: "Free Beam Deflection Calculator – Calculate Beam Bending Online",
-    description: "Calculate beam deflection instantly for simply supported, cantilever, fixed, and overhanging beams. Supports multiple materials, load types, unit conversion, and beam diagrams.",
+    description: "Calculate beam deflection instantly for simply supported, cantilever and fixed beams. Supports multiple materials, load types, unit conversion, and beam diagrams.",
     keywords: "beam deflection calculator, beam bending calculator, cantilever beam calculator, structural engineering calculator, mechanical beam calculator, beam load calculator, deflection formula calculator",
     og: {
       title: "Free Beam Deflection Calculator – Calculate Beam Bending Online",

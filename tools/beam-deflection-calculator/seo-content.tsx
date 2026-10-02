@@ -5,7 +5,7 @@ export default function BeamDeflectionCalculatorSEO() {
       <p>
         The <strong>Beam Deflection Calculator</strong> is a free, browser-based structural engineering tool that
         computes beam deflection, slope, support reactions, bending moment, and shear force using
-        Euler–Bernoulli beam theory. It supports simply supported, cantilever, fixed-end, and overhanging
+        Euler–Bernoulli beam theory. It supports simply supported, cantilever and fixed-end
         beams under point loads, uniformly distributed loads (UDL), and applied moments.
       </p>
 
@@ -32,7 +32,6 @@ export default function BeamDeflectionCalculatorSEO() {
         <li><strong>Simply Supported Beam:</strong> Pinned at both ends, free to rotate. Most common in bridges and floor systems.</li>
         <li><strong>Cantilever Beam:</strong> Fixed at one end, free at the other. Used in balconies, overhangs, and brackets.</li>
         <li><strong>Fixed Beam:</strong> Both ends are fully restrained. Stiffer than simply supported — deflects less under the same load.</li>
-        <li><strong>Overhanging Beam:</strong> Extends beyond one or both supports. Common in crane girders and continuous structures.</li>
       </ul>
 
       <h3 className="text-lg font-semibold text-gray-800 not-prose">Material Properties</h3>
