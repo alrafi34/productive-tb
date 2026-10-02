@@ -17,15 +17,22 @@ import {
 import TransformerTurnsRatioCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { guessMainsVoltage } from "@/lib/voltage";
 
 export default function TransformerTurnsRatioCalculatorUI() {
+  // Mains in, 24 V out: a common control or doorbell transformer
   const [inputs, setInputs] = useState<TransformerInputs>({
-    primaryVoltage: 220,
-    secondaryVoltage: 110,
+    primaryVoltage: 230,
+    secondaryVoltage: 24,
     primaryTurns: 0,
     secondaryTurns: 0
   });
   
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setInputs(prev => ({ ...prev, primaryVoltage: guessMainsVoltage() })));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   const [result, setResult] = useState<TransformerResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -68,8 +75,8 @@ export default function TransformerTurnsRatioCalculatorUI() {
 
   const handleReset = () => {
     setInputs({
-      primaryVoltage: 220,
-      secondaryVoltage: 110,
+      primaryVoltage: guessMainsVoltage(),
+      secondaryVoltage: 24,
       primaryTurns: 0,
       secondaryTurns: 0
     });
@@ -262,7 +269,7 @@ export default function TransformerTurnsRatioCalculatorUI() {
                     value={inputs.primaryVoltage || ''}
                     onChange={(e) => handleInputChange('primaryVoltage', parseFloat(e.target.value) || 0)}
                     className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder="220"
+                    placeholder="230"
                     min="0"
                     step="1"
                   />
@@ -283,7 +290,7 @@ export default function TransformerTurnsRatioCalculatorUI() {
                     value={inputs.secondaryVoltage || ''}
                     onChange={(e) => handleInputChange('secondaryVoltage', parseFloat(e.target.value) || 0)}
                     className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                    placeholder="110"
+                    placeholder="24"
                     min="0"
                     step="1"
                   />

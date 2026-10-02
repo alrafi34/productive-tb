@@ -11,6 +11,8 @@ import {
   calculateLongestStreak,
   getWeeklyProgress,
   getMonthlyCalendar,
+  dateString,
+  daysTracked,
   exportHabits,
   triggerConfetti
 } from "./logic";
@@ -290,7 +292,7 @@ export default function HabitTrackerUI() {
                     const longestStreak = calculateLongestStreak(habit.completedDates);
                     const weeklyProgress = getWeeklyProgress(habit.completedDates);
                     const completionRate = habit.completedDates.length > 0
-                      ? Math.round((habit.completedDates.length / Math.max(1, Math.floor((new Date().getTime() - new Date(habit.created).getTime()) / (1000 * 60 * 60 * 24)) + 1)) * 100)
+                      ? Math.min(100, Math.round((habit.completedDates.length / daysTracked(habit.created)) * 100))
                       : 0;
 
                     return (
@@ -405,13 +407,13 @@ export default function HabitTrackerUI() {
                                   {day}
                                 </div>
                               ))}
-                              {getMonthlyCalendar(habit.completedDates, currentYear, currentMonth).flat().map((day, index) => (
+                              {getMonthlyCalendar(currentYear, currentMonth).flat().map((day, index) => (
                                 <div
                                   key={index}
                                   className={`text-xs p-1.5 rounded ${
                                     day === null
                                       ? ''
-                                      : habit.completedDates.includes(new Date(currentYear, currentMonth, day).toISOString().split('T')[0])
+                                      : habit.completedDates.includes(dateString(currentYear, currentMonth, day))
                                         ? 'bg-emerald-500 text-white font-semibold'
                                         : darkMode ? 'text-gray-300' : 'text-gray-600'
                                   }`}

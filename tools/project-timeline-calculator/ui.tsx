@@ -21,12 +21,13 @@ import {
 import ProjectTimelineCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { formatDate, parseDate, toIso, today } from "@/lib/dates";
 
 export default function ProjectTimelineCalculatorUI() {
   const [tasks, setTasks] = useState<Task[]>([createEmptyTask()]);
   const [settings, setSettings] = useState<ProjectSettings>({
-    workingDaysPerWeek: 7,
-    startDate: new Date().toISOString().split('T')[0]
+    workingDaysPerWeek: 5,
+    startDate: toIso(today())
   });
   
   // Results
@@ -110,8 +111,8 @@ export default function ProjectTimelineCalculatorUI() {
   const handleReset = () => {
     setTasks([createEmptyTask()]);
     setSettings({
-      workingDaysPerWeek: 7,
-      startDate: new Date().toISOString().split('T')[0]
+      workingDaysPerWeek: 5,
+      startDate: toIso(today())
     });
     setCalculation(null);
   };
@@ -227,7 +228,7 @@ export default function ProjectTimelineCalculatorUI() {
                     {calculation.totalDuration} days
                   </div>
                   <div className="text-sm text-primary-100">
-                    Completion: {new Date(calculation.completionDate).toLocaleDateString()}
+                    Completion: {formatDate(parseDate(calculation.completionDate) ?? today(), "medium")}
                   </div>
                 </div>
 

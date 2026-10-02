@@ -6,6 +6,8 @@ import {
   TimelineConfig,
   DEFAULT_CONFIG,
   sortEventsByDate,
+  eventYear,
+  formatEventDate,
   validateEvent,
   generateSVGTimeline,
   exportTimelineAsImage,
@@ -383,7 +385,7 @@ export default function TimelineCreatorUI() {
                 <div>
                   <div className="text-2xl font-bold text-primary">
                     {sorted.length > 0
-                      ? new Date(sorted[sorted.length - 1].date).getFullYear()
+                      ? eventYear(sorted[sorted.length - 1].date)
                       : "-"}
                   </div>
                   <div className="text-xs text-gray-500">Latest Year</div>
@@ -391,7 +393,7 @@ export default function TimelineCreatorUI() {
                 <div>
                   <div className="text-2xl font-bold text-primary">
                     {sorted.length > 0
-                      ? new Date(sorted[0].date).getFullYear()
+                      ? eventYear(sorted[0].date)
                       : "-"}
                   </div>
                   <div className="text-xs text-gray-500">Earliest Year</div>
@@ -414,7 +416,7 @@ export default function TimelineCreatorUI() {
                         <div className="flex-1">
                           <div className="font-semibold text-gray-800 text-sm">{event.title}</div>
                           <div className="text-xs text-gray-500 mt-1">
-                            {new Date(event.date).toLocaleDateString()}
+                            {formatEventDate(event.date)}
                           </div>
                           {event.description && (
                             <div className="text-xs text-gray-600 mt-2 line-clamp-2">

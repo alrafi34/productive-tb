@@ -70,19 +70,19 @@ export function calculateOriginalPrice(salePrice: number, discountPercent: numbe
 }
 
 export type CurrencyCode =
-  | 'USD' | 'EUR' | 'GBP' | 'BDT' | 'INR' | 'PKR' | 'AED' | 'SAR' | 'CAD' | 'AUD' | 'NONE';
+  | 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'INR' | 'BDT' | 'PKR' | 'AED' | 'SAR' | 'NONE';
 
 export const CURRENCIES: { code: CurrencyCode; label: string }[] = [
   { code: 'USD', label: 'USD – US Dollar ($)' },
   { code: 'EUR', label: 'EUR – Euro (€)' },
   { code: 'GBP', label: 'GBP – British Pound (£)' },
-  { code: 'BDT', label: 'BDT – Bangladeshi Taka (৳)' },
+  { code: 'CAD', label: 'CAD – Canadian Dollar' },
+  { code: 'AUD', label: 'AUD – Australian Dollar' },
   { code: 'INR', label: 'INR – Indian Rupee (₹)' },
+  { code: 'BDT', label: 'BDT – Bangladeshi Taka (৳)' },
   { code: 'PKR', label: 'PKR – Pakistani Rupee (Rs)' },
   { code: 'AED', label: 'AED – UAE Dirham' },
   { code: 'SAR', label: 'SAR – Saudi Riyal' },
-  { code: 'CAD', label: 'CAD – Canadian Dollar' },
-  { code: 'AUD', label: 'AUD – Australian Dollar' },
   { code: 'NONE', label: 'No currency symbol' },
 ];
 

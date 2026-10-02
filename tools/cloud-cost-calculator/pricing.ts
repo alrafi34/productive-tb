@@ -1,7 +1,9 @@
 import type { Provider, DatabaseType, Currency } from "./types";
 
 // ── Provider pricing models (USD/month unless noted) ─────────────────────────
-// All values are approximate mid-2025 on-demand pricing.
+// Example on-demand list prices collected mid-2025. Providers change prices
+// often; the UI labels them as examples.
+export const PRICES_AS_OF = "mid-2025";
 
 export interface ProviderPricing {
   label: string;
@@ -146,22 +148,25 @@ export const REGION_LABELS: Record<string, string> = {
   "global":       "Global Average",
 };
 
-// ── Currency exchange rates (relative to USD) ─────────────────────────────────
+// ── Currency exchange rates (units per 1 USD) ─────────────────────────────────
+// Example mid-2025 rates, used until the visitor enters today's rate.
 
 export const EXCHANGE_RATES: Record<Currency, number> = {
   USD: 1,
   EUR: 0.93,
   GBP: 0.79,
+  CAD: 1.37,
+  AUD: 1.53,
   INR: 83.5,
-  BDT: 110,
 };
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: "$",
   EUR: "€",
   GBP: "£",
+  CAD: "C$",
+  AUD: "A$",
   INR: "₹",
-  BDT: "৳",
 };
 
 // ── Runtime hours per month ───────────────────────────────────────────────────

@@ -21,12 +21,13 @@ export type Region =
   | "asia-pacific"
   | "global";
 
-export type Currency = "USD" | "EUR" | "GBP" | "INR" | "BDT";
+export type Currency = "USD" | "EUR" | "GBP" | "CAD" | "AUD" | "INR";
 
 export interface CloudConfig {
   provider: Provider;
   region: Region;
   currency: Currency;
+  exchangeRate?: number;     // units per 1 USD; unset uses the example rate
   // Compute
   cpu: number;
   ram: number;

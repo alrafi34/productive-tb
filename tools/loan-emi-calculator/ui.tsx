@@ -331,6 +331,7 @@ Calculated via Productive Toolbox`;
                    </div>
 
                    {/* Visual scale chart */}
+                   {result.totalPayment > 0 && (
                    <div className="bg-white rounded-xl border border-gray-100 p-6">
                       <div className="flex justify-between items-center mb-3">
                          <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Breakdown Percentage</h4>
@@ -351,6 +352,7 @@ Calculated via Productive Toolbox`;
                          </div>
                       </div>
                    </div>
+                   )}
                 </div>
              )}
 

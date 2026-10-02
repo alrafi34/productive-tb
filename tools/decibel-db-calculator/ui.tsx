@@ -21,18 +21,23 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
 export default function DecibelCalculatorUI() {
-  const [mode, setMode] = useState<CalculationMode>(() => loadMode());
-  const [inputs, setInputs] = useState<DecibelInputs>({
-    mode: mode,
-    value: mode === 'power_to_db' || mode === 'voltage_to_db' ? 10 : 10
-  });
+  const [mode, setMode] = useState<CalculationMode>('power_to_db');
+  const [inputs, setInputs] = useState<DecibelInputs>({ mode: 'power_to_db', value: 10 });
   
   const [result, setResult] = useState<DecibelResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
-  const [history, setHistory] = useState(getHistory());
+  const [history, setHistory] = useState<ReturnType<typeof getHistory>>([]);
   const [precision, setPrecision] = useState(4);
+
+  // Saved mode and history live in localStorage, so read them after hydration
+  useEffect(() => {
+    const saved = loadMode();
+    setMode(saved);
+    setInputs({ mode: saved, value: 10 });
+    setHistory(getHistory());
+  }, []);
 
   const presets = getPresets(mode);
 

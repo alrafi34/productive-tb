@@ -65,8 +65,8 @@ export function validateInputs(inputs: RFPowerInputs): string | null {
     if (watts === undefined || watts === null) {
       return "Power in Watts is required";
     }
-    if (watts < 0) {
-      return "Power cannot be negative";
+    if (watts <= 0) {
+      return "Power must be greater than zero (0 W is minus infinity in dBm)";
     }
   } else if (mode === 'dbm') {
     if (dbm === undefined || dbm === null) {
@@ -80,8 +80,8 @@ export function validateInputs(inputs: RFPowerInputs): string | null {
     if (voltage === undefined || voltage === null) {
       return "Voltage is required";
     }
-    if (voltage < 0) {
-      return "Voltage cannot be negative";
+    if (voltage <= 0) {
+      return "Voltage must be greater than zero (0 V is minus infinity in dBm)";
     }
     if (resistance === undefined || resistance === null) {
       return "Resistance is required";
