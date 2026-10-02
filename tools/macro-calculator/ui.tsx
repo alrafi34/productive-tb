@@ -118,6 +118,12 @@ export default function MacroCalculatorUI() {
                 <p className="text-primary-100 text-xs mt-1">
                   BMR {Math.round(r.bmr)} kcal · maintenance (TDEE) {Math.round(r.tdee)} kcal
                 </p>
+                {r.calories < (sex === "male" ? 1500 : 1200) && (
+                  <p className="text-xs bg-white/15 rounded-lg px-3 py-2 mt-3">
+                    This is below the {sex === "male" ? "1,500" : "1,200"} kcal a day usually advised as a minimum
+                    without medical supervision. Choose a slower goal or more activity.
+                  </p>
+                )}
               </div>
               <div className="grid grid-cols-3 gap-3 mt-4 text-center">
                 {[

@@ -1,13 +1,16 @@
 /* US Consumer Price Index for All Urban Consumers (CPI-U), U.S. city
    average, all items, not seasonally adjusted, 1982–84 = 100.
    Bureau of Labor Statistics series CUUR0000SA0, monthly from January 1913
-   to December 2025, via the public-domain cpi-us dataset (CC0).
+   to August 2026, via the public-domain cpi-us dataset (CC0).
    October 2025 was not collected because of the federal government shutdown,
-   so it is null here. Generated file: one row per year, January to December. */
+   so it is null here, as are the months of 2026 not yet published. Generated
+   file: one row per year, January to December. */
 
 export const CPI_FIRST_YEAR = 1913;
-export const CPI_LAST = { year: 2025, month: 12 };
-export const CPI_SOURCE = "US Bureau of Labor Statistics, CPI-U (series CUUR0000SA0), January 1913 – December 2025";
+export const CPI_LAST = { year: 2026, month: 8 };
+/* The latest year with all twelve months published */
+export const CPI_LAST_FULL_YEAR = 2025;
+export const CPI_SOURCE = "US Bureau of Labor Statistics, CPI-U (series CUUR0000SA0), January 1913 – August 2026";
 
 export const CPI_MONTHLY: (number | null)[][] = [
   [9.8, 9.8, 9.8, 9.8, 9.7, 9.8, 9.9, 9.9, 10, 10, 10.1, 10], // 1913
@@ -123,4 +126,5 @@ export const CPI_MONTHLY: (number | null)[][] = [
   [299.17, 300.84, 301.836, 303.363, 304.127, 305.109, 305.691, 307.026, 307.789, 307.671, 307.051, 306.746], // 2023
   [308.417, 310.326, 312.332, 313.548, 314.069, 314.175, 314.54, 314.796, 315.301, 315.664, 315.493, 315.605], // 2024
   [317.671, 319.082, 319.799, 320.795, 321.465, 322.561, 323.048, 323.976, 324.8, null, 324.122, 324.054], // 2025
+  [325.252, 326.785, 330.213, 333.02, 335.123, 333.952, 333.918, 334.98, null, null, null, null], // 2026
 ];

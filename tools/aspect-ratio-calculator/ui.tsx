@@ -31,6 +31,9 @@ export default function AspectRatioCalculatorUI() {
   const [ratio, setRatio] = useState<string>('16:9');
   const [simplified, setSimplified] = useState<string>('16:9');
   const [sliderWidth, setSliderWidth] = useState<number>(1920);
+  // Off: width and height are typed freely and the ratio follows them.
+  // On: changing one side resizes the other to keep the ratio.
+  const [keepRatio, setKeepRatio] = useState(false);
   
   // CSS output
   const [cssOutput, setCssOutput] = useState<CSSOutput | null>(null);
@@ -80,7 +83,8 @@ export default function AspectRatioCalculatorUI() {
     if (w > 0 && h > 0) {
       const simplified = simplifyRatio(w, h);
       setSimplified(simplified);
-      setRatio(simplified);
+      // With the ratio kept, rounding a side to whole pixels must not change it
+      if (!keepRatio) setRatio(simplified);
       
       const parsed = parseRatio(simplified);
       if (parsed) {
@@ -88,6 +92,7 @@ export default function AspectRatioCalculatorUI() {
         setCssOutput(css);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, height]);
 
   // Handle ratio change
@@ -112,8 +117,9 @@ export default function AspectRatioCalculatorUI() {
     setWidth(newWidth);
     const w = parseFloat(newWidth);
     const parsed = parseRatio(ratio);
-    
-    if (w > 0 && parsed) {
+    if (w > 0) setSliderWidth(w);
+
+    if (keepRatio && w > 0 && parsed) {
       const newHeight = calculateHeight(w, parsed.width, parsed.height);
       setHeight(newHeight.toString());
       setSliderWidth(w);
@@ -125,8 +131,8 @@ export default function AspectRatioCalculatorUI() {
     setHeight(newHeight);
     const h = parseFloat(newHeight);
     const parsed = parseRatio(ratio);
-    
-    if (h > 0 && parsed) {
+
+    if (keepRatio && h > 0 && parsed) {
       const newWidth = calculateWidth(h, parsed.width, parsed.height);
       setWidth(newWidth.toString());
       setSliderWidth(newWidth);
@@ -298,6 +304,11 @@ export default function AspectRatioCalculatorUI() {
                   </span>
                 </div>
               )}
+
+              <label className="flex items-center gap-2 text-sm text-slate-700">
+                <input type="checkbox" checked={keepRatio} onChange={(e) => setKeepRatio(e.target.checked)} className="accent-[#058554]" />
+                Keep the ratio when I change the width or height
+              </label>
             </div>
 
             {/* Visual Preview */}

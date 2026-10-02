@@ -8,6 +8,8 @@ import {
   calculateNavyFemale,
   calculateBMIBodyFat,
   getBodyFatDetails,
+  CATEGORIES,
+  BODY_FAT_SOURCE,
   inchesToCm,
   cmToInches,
   calculateBMI,
@@ -136,11 +138,17 @@ export default function BodyFatCalculatorUI() {
 
   const categoryTheme = useMemo(() => {
     switch (result?.category) {
-      case "Underfat":
+      case "Essential fat":
         return {
           text: "text-blue-700",
           band: "bg-blue-500",
           panel: "bg-blue-50 border-blue-200",
+        };
+      case "Athletes":
+        return {
+          text: "text-teal-700",
+          band: "bg-teal-500",
+          panel: "bg-teal-50 border-teal-200",
         };
       case "Fitness":
         return {
@@ -574,12 +582,19 @@ export default function BodyFatCalculatorUI() {
 
               <div className="rounded-xl border border-gray-200 p-4 bg-white">
                 <p className="text-xs font-bold uppercase tracking-wide text-gray-500 mb-3">Category Guide</p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                  <div className="rounded-lg bg-blue-50 border border-blue-100 p-2 text-blue-700 font-semibold">Underfat</div>
-                  <div className="rounded-lg bg-green-50 border border-green-100 p-2 text-green-700 font-semibold">Fitness</div>
-                  <div className="rounded-lg bg-yellow-50 border border-yellow-100 p-2 text-yellow-700 font-semibold">Average</div>
-                  <div className="rounded-lg bg-red-50 border border-red-100 p-2 text-red-700 font-semibold">Obese</div>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                  {CATEGORIES.map((c) => {
+                    const range = c[gender];
+                    const label = range.max === Infinity ? `${range.min}%+` : range.min === 0 ? `under ${range.max}%` : `${range.min}–${range.max - 1}%`;
+                    return (
+                      <div key={c.name} className="rounded-lg bg-gray-50 border border-gray-100 p-2">
+                        <span className={`font-semibold ${c.color.replace("-500", "-700")}`}>{c.name}</span>
+                        <span className="block text-gray-500">{label}</span>
+                      </div>
+                    );
+                  })}
                 </div>
+                <p className="text-xs text-gray-500 mt-2">Ranges for {gender === "male" ? "men" : "women"} from the {BODY_FAT_SOURCE}.</p>
               </div>
             </div>
           </div>

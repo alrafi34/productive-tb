@@ -43,7 +43,7 @@ export const aspectRatioCalculatorConfig = {
       url: "/aspect-ratio-calculator"
     },
     howToSteps: [
-      { name: "Enter two of width, height and ratio", text: "Type a width and height to get the simplified ratio, or a width or height plus a ratio such as 16:9 to get the missing side." },
+      { name: "Enter two of width, height and ratio", text: "Type a width and height to get the simplified ratio, or type a ratio such as 16:9 to get the height for your width. Tick Keep the ratio to resize one side and have the other follow." },
       { name: "Pick a common size", text: "Click a resolution such as 1920 × 1080 or 1080 × 1920, or any size in the chart further down the page, to load it into the calculator." },
       { name: "Check the preview and slider", text: "The preview box shows the proportions, and the slider rescales the size while keeping the ratio." },
       { name: "Convert or detect a ratio", text: "Use the converter tab to fit a resolution into a different ratio, or upload an image to read its dimensions and ratio." },
