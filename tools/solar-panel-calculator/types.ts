@@ -6,6 +6,7 @@ export interface SolarPanelInputs {
   panelWattage: PanelWattage;
   systemEfficiency: number; // 0.75 to 0.90 (default 0.80)
   electricityRate?: number; // Cost per kWh (optional)
+  co2PerKwh?: number; // kg CO2 avoided per kWh of grid power replaced
 }
 
 export interface SolarPanelResult {

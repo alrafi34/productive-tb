@@ -4,7 +4,14 @@ import { SolarPanelInputs, SolarPanelResult, SolarPreset, PanelWattage, HistoryE
 const DAYS_PER_MONTH = 30;
 const DAYS_PER_YEAR = 365;
 const PANEL_AREA_SQM = 2; // Average panel size in square meters
-const CO2_PER_KWH = 0.92; // kg CO2 per kWh (average grid electricity)
+/* Grid emission factors: how much CO2 each kWh of grid power replaced would
+   have emitted. They differ a lot by country and year, so the visitor picks
+   one or types their own. */
+export const CO2_FACTORS = [
+  { id: "us", label: "US average", value: 0.373, source: "US EPA eGRID2022: 823.1 lb CO2/MWh" },
+  { id: "uk", label: "UK", value: 0.131, source: "UK DESNZ greenhouse gas conversion factors 2026" },
+] as const;
+const DEFAULT_CO2_PER_KWH = CO2_FACTORS[0].value;
 
 // Solar presets for common scenarios
 export const SOLAR_PRESETS: SolarPreset[] = [
@@ -117,8 +124,9 @@ export function calculateSolarPanel(inputs: SolarPanelInputs): SolarPanelResult 
   
   // Step 7: Calculate CO2 savings
   steps.push('Step 7: Calculate CO2 Savings');
-  const co2Savings = yearlyProduction * CO2_PER_KWH;
-  steps.push(`CO2 Savings = ${yearlyProduction.toFixed(2)} kWh × ${CO2_PER_KWH} kg/kWh`);
+  const co2PerKwh = inputs.co2PerKwh && inputs.co2PerKwh > 0 ? inputs.co2PerKwh : DEFAULT_CO2_PER_KWH;
+  const co2Savings = yearlyProduction * co2PerKwh;
+  steps.push(`CO2 Savings = ${yearlyProduction.toFixed(2)} kWh × ${co2PerKwh} kg/kWh`);
   steps.push(`CO2 Savings = ${co2Savings.toFixed(2)} kg per year`);
   
   // Calculate cost savings if electricity rate provided

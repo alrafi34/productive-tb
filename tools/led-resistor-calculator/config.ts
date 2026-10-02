@@ -45,10 +45,10 @@ export const ledResistorCalculatorConfig = {
       { name: "Enter LED Forward Voltage", text: "Input the LED's forward voltage or use a preset for common colors." },
       { name: "Enter Desired LED Current", text: "Input the target current in milliamps — 20mA is standard for common indicator LEDs." },
       { name: "Enter Number of LEDs in Series", text: "Input how many identical LEDs share the same current-limiting resistor." },
-      { name: "Read Resistance and Power", text: "View the calculated resistance, nearest standard E24 resistor value, and required power rating." },
+      { name: "Read Resistance and Power", text: "View the calculated resistance, next standard E24 resistor value up, and required power rating." },
     ],
     faq: [
-      { q: "What is an LED resistor calculator?", a: "A free online tool that computes the current-limiting resistor needed to safely power LEDs, returning resistance, nearest standard value, and power rating." },
+      { q: "What is an LED resistor calculator?", a: "A free online tool that computes the current-limiting resistor needed to safely power LEDs, returning resistance, the next standard value up, and power rating." },
       { q: "What is the formula for an LED resistor?", a: "R = (Vs − N × Vf) ÷ If. A red LED (Vf 2.0V, 20mA) on 5V needs R = (5 − 2.0) ÷ 0.02 = 150Ω." },
       { q: "Why does an LED need a current-limiting resistor?", a: "LEDs have a steep current-voltage curve with no natural current limit — without a resistor they draw excessive current and burn out quickly." },
       { q: "What is LED forward voltage and why does it vary by color?", a: "The voltage drop when conducting, set by the semiconductor bandgap. Red/yellow ~1.8-2.2V, green ~2.0-2.2V, blue/white ~3.0-3.4V." },

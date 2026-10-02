@@ -85,7 +85,7 @@ export default function DiodeCalculatorSEO() {
                 "Real-time calculation as you type",
                 "Three modes: current, resistor, voltage-drop analysis",
                 "Support for silicon, germanium, Schottky, and LED diodes",
-                "Nearest standard E24 resistor value",
+                "Next standard E24 resistor value up",
                 "Power dissipation and recommended wattage",
                 "Full step-by-step derivation",
                 "Five built-in diode type presets",
