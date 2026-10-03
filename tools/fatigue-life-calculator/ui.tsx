@@ -706,6 +706,7 @@ export default function FatigueLifeCalculatorUI() {
                         <button
                           key={u}
                           onClick={() => {
+                            if (u === inputs.stressUnit) return;
                             const converted =
                               u === "psi"
                                 ? fromMPa(inputs.stressAmplitude, "MPa") / 0.00689476

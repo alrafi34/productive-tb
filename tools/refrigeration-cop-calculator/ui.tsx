@@ -72,8 +72,8 @@ export default function RefrigerationCOPCalculatorUI() {
         setErrors(newErrors);
         if (newErrors.coolingEffect || newErrors.powerInput) { setResult(null); return; }
       } else {
-        newErrors.coldTemp = validateNotNegative(inputs.carnot.coldTemp, "Cold Temperature");
-        newErrors.hotTemp  = validateNotNegative(inputs.carnot.hotTemp, "Hot Temperature");
+        newErrors.coldTemp = validateNotNegative(inputs.carnot.coldTemp, "Cold Temperature", inputs.carnot.coldTempUnit);
+        newErrors.hotTemp  = validateNotNegative(inputs.carnot.hotTemp, "Hot Temperature", inputs.carnot.hotTempUnit);
         setErrors(newErrors);
         if (newErrors.coldTemp || newErrors.hotTemp) { setResult(null); return; }
 
