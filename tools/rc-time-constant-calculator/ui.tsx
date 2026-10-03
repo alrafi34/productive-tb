@@ -22,6 +22,7 @@ import {
 import RCTimeConstantCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function RCTimeConstantCalculatorUI() {
   const [resistance, setResistance] = useState<string>("10");
@@ -219,6 +220,18 @@ export default function RCTimeConstantCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks
+                  links={[{
+                    label: "Capacitor charge time",
+                    href: `/tools/electrical/capacitor-charge-time-calculator?${new URLSearchParams({
+                      r: resistance.trim(),
+                      rUnit: resistanceUnit,
+                      c: capacitance.trim(),
+                      cUnit: capacitanceUnit,
+                    })}`,
+                  }]}
+                />
               </div>
             )}
 

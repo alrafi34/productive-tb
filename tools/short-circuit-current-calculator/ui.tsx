@@ -22,6 +22,7 @@ import {
 import ShortCircuitCurrentCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function ShortCircuitCurrentCalculatorUI() {
   const [inputs, setInputs] = useState<ShortCircuitInputs>({
@@ -219,6 +220,19 @@ export default function ShortCircuitCurrentCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                {/* The arc flash model (IEEE 1584) is for three-phase faults only */}
+                {result.systemType === 'three-phase' && result.shortCircuitCurrent > 0 && (
+                  <CarryOverLinks
+                    links={[{
+                      label: "Estimate arc flash",
+                      href: `/tools/electrical/arc-flash-calculator?${new URLSearchParams({
+                        voltage: String(inputs.voltage),
+                        ka: String(parseFloat((result.shortCircuitCurrent / 1000).toPrecision(10))),
+                      })}`,
+                    }]}
+                  />
+                )}
               </div>
             )}
 

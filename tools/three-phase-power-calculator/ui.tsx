@@ -18,6 +18,8 @@ import {
 import ThreePhasePowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
+import { breakerLink, wireSizeLink, presentLinks } from "@/lib/carry-over-targets";
 
 export default function ThreePhasePowerCalculatorUI() {
   const [inputs, setInputs] = useState<ThreePhasePowerInputs>({
@@ -204,6 +206,13 @@ export default function ThreePhasePowerCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks
+                  links={presentLinks([
+                    breakerLink(result.realPower * 1000, result.voltage, "three", result.powerFactor),
+                    wireSizeLink(result.current, result.voltage, "three"),
+                  ])}
+                />
               </div>
             )}
 

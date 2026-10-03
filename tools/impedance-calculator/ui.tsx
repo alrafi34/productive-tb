@@ -21,6 +21,7 @@ import {
 import ImpedanceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver } from "@/components/CarryOverLinks";
 
 export default function ImpedanceCalculatorUI() {
   const [resistance, setResistance] = useState<string>("10");
@@ -48,6 +49,30 @@ export default function ImpedanceCalculatorUI() {
   useEffect(() => {
     debouncedCalculate();
   }, [resistance, resistanceUnit, inductiveReactance, inductiveReactanceUnit, capacitiveReactance, capacitiveReactanceUnit, debouncedCalculate]);
+
+  // Values carried over from another tool (?xl= or ?xc=, in ohms)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const ohms = (key: string) => {
+        const v = q.get(key);
+        const n = v === null || v.trim() === "" ? NaN : Number(v);
+        return Number.isFinite(n) && n >= 0 ? n : undefined;
+      };
+      const xl = ohms("xl");
+      const xc = ohms("xc");
+      if (xl !== undefined) {
+        setInductiveReactance(String(xl));
+        setInductiveReactanceUnit("Ω");
+      }
+      if (xc !== undefined) {
+        setCapacitiveReactance(String(xc));
+        setCapacitiveReactanceUnit("Ω");
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const calculate = () => {
     setError(null);

@@ -17,11 +17,15 @@ import {
   clearHistory,
   exportToText,
   downloadFile,
-  debounce
+  debounce,
+  convertVoltageToVolts,
+  convertPowerToWatts,
 } from "./logic";
 import PowerCalculatorElectricalSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
+import { breakerLink, presentLinks } from "@/lib/carry-over-targets";
 
 export default function PowerCalculatorElectricalUI() {
   const [voltage, setVoltage] = useState(120);
@@ -276,6 +280,18 @@ export default function PowerCalculatorElectricalUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks
+                  links={presentLinks([
+                    /* P = V × I, so the breaker sees the same current at PF 1 */
+                    breakerLink(
+                      convertPowerToWatts(result.power, result.powerUnit),
+                      convertVoltageToVolts(result.voltage, result.voltageUnit),
+                      "single",
+                      1
+                    ),
+                  ])}
+                />
               </div>
             )}
 

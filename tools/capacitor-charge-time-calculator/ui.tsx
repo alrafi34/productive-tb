@@ -24,6 +24,11 @@ import {
 import CapacitorChargeTimeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
+
+/* Units this tool offers, for checking carried-over values */
+const RESISTANCE_UNITS: ResistanceUnit[] = ["Ω", "kΩ", "MΩ"];
+const CAPACITANCE_UNITS: CapacitanceUnit[] = ["F", "mF", "µF", "nF", "pF"];
 
 export default function CapacitorChargeTimeCalculatorUI() {
   const [resistance, setResistance] = useState<string>("10");
@@ -51,6 +56,27 @@ export default function CapacitorChargeTimeCalculatorUI() {
   useEffect(() => {
     debouncedCalculate();
   }, [resistance, resistanceUnit, capacitance, capacitanceUnit, targetPercentage, voltage, debouncedCalculate]);
+
+  // Values carried over from another tool (?r=&rUnit=&c=&cUnit=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const r = positiveParam(q, "r");
+      const c = positiveParam(q, "c");
+      const rUnit = q.get("rUnit") as ResistanceUnit | null;
+      const cUnit = q.get("cUnit") as CapacitanceUnit | null;
+      if (r !== undefined && rUnit && RESISTANCE_UNITS.includes(rUnit)) {
+        setResistance(String(r));
+        setResistanceUnit(rUnit);
+      }
+      if (c !== undefined && cUnit && CAPACITANCE_UNITS.includes(cUnit)) {
+        setCapacitance(String(c));
+        setCapacitanceUnit(cUnit);
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const calculate = () => {
     setError(null);

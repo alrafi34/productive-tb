@@ -18,6 +18,7 @@ import {
 import ArcFlashCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function ArcFlashCalculatorUI() {
   const [inputs, setInputs] = useState<ArcFlashInputs>({
@@ -65,6 +66,22 @@ export default function ArcFlashCalculatorUI() {
   useEffect(() => {
     debouncedCalculate();
   }, [inputs, debouncedCalculate]);
+
+  // Values carried over from another tool (?voltage= in V, &ka= bolted fault current in kA)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const voltage = positiveParam(q, "voltage");
+      const ka = positiveParam(q, "ka");
+      setInputs(prev => ({
+        ...prev,
+        ...(voltage !== undefined && { voltage }),
+        ...(ka !== undefined && { faultCurrent: ka }),
+      }));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const handleInputChange = (field: keyof ArcFlashInputs, value: number | boolean | string | undefined) => {
     setInputs(prev => ({ ...prev, [field]: value }));

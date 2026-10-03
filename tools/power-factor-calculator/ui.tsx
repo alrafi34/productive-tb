@@ -19,6 +19,7 @@ import {
 import PowerFactorCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function PowerFactorCalculatorUI() {
   const [inputs, setInputs] = useState<PowerFactorInputs>({
@@ -190,6 +191,19 @@ export default function PowerFactorCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                {inputs.realPower > 0 && inputs.realPower <= inputs.apparentPower && (
+                  <CarryOverLinks
+                    links={[{
+                      label: "Find the phase angle",
+                      /* kW and kVA here; the phase angle tool takes W and VA */
+                      href: `/tools/electrical/phase-angle-calculator?${new URLSearchParams({
+                        p: String(parseFloat((inputs.realPower * 1000).toPrecision(10))),
+                        s: String(parseFloat((inputs.apparentPower * 1000).toPrecision(10))),
+                      })}`,
+                    }]}
+                  />
+                )}
               </div>
             )}
 
