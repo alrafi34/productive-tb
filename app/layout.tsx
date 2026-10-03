@@ -103,7 +103,7 @@ export default function RootLayout({
         <SpeedInsights />
         {/* GA4 — loads after page is interactive, no render blocking */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-MW1V4JYC2D"
+          src="https://www.googletagmanager.com/gtag/js?id=G-6FDH4F2C7M"
           strategy="afterInteractive"
         />
         <Script id="ga4-init" strategy="afterInteractive">
@@ -111,7 +111,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-MW1V4JYC2D');
+            gtag('config', 'G-6FDH4F2C7M');
           `}
         </Script>
       </body>
