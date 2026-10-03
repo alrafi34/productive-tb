@@ -40,3 +40,9 @@
 ## Checks before pushing
 - `pnpm build`, `npx tsc --noEmit -p .`, ESLint on changed files (compare with
   main — the repo has pre-existing warnings).
+
+## Analytics – do not touch
+- The GA4 tag in `app/layout.tsx` (Measurement ID `G-MW1V4JYC2D`, the two
+  `<Script>` blocks) and the Vercel `<Analytics />` / `<SpeedInsights />`
+  components must not be changed, moved, removed or re-IDed as part of any
+  fix or refactor. Only the owner changes them, on explicit request.
