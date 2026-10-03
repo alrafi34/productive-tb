@@ -39,13 +39,13 @@ export function calculateAllRooms(rooms: Room[]): CalculatedRoom[] {
   });
 }
 
-// Calculate total area (all in same unit)
-export function calculateTotalArea(calculatedRooms: CalculatedRoom[]): number {
-  return calculatedRooms.reduce((sum, room) => sum + room.area, 0);
+// Calculate total area in `unit`; each room is converted from its own unit first
+export function calculateTotalArea(calculatedRooms: CalculatedRoom[], unit: Unit): number {
+  return calculatedRooms.reduce((sum, room) => sum + convertArea(room.area, room.unit, unit), 0);
 }
 
-// Group rooms by floor and calculate summaries
-export function calculateFloorSummaries(calculatedRooms: CalculatedRoom[]): FloorSummary[] {
+// Group rooms by floor and calculate summaries (areas in `unit`)
+export function calculateFloorSummaries(calculatedRooms: CalculatedRoom[], unit: Unit): FloorSummary[] {
   const floorMap = new Map<number, CalculatedRoom[]>();
   
   calculatedRooms.forEach(room => {
@@ -60,7 +60,7 @@ export function calculateFloorSummaries(calculatedRooms: CalculatedRoom[]): Floo
   floorMap.forEach((rooms, floorNumber) => {
     summaries.push({
       floorNumber,
-      totalArea: rooms.reduce((sum, room) => sum + room.area, 0),
+      totalArea: calculateTotalArea(rooms, unit),
       roomCount: rooms.length
     });
   });
@@ -79,7 +79,7 @@ export function generateId(): string {
 }
 
 // Export to CSV
-export function exportToCSV(calculatedRooms: CalculatedRoom[], totalArea: number): string {
+export function exportToCSV(calculatedRooms: CalculatedRoom[], totalArea: number, unit: Unit): string {
   let csv = 'Room Name,Length,Width,Unit,Area,Floor\n';
   
   calculatedRooms.forEach(room => {
@@ -88,7 +88,7 @@ export function exportToCSV(calculatedRooms: CalculatedRoom[], totalArea: number
     csv += `"${room.name}",${length},${width},${room.unit},${room.area.toFixed(2)},${room.floor || 1}\n`;
   });
   
-  csv += `\nTotal Floor Area,,,,${totalArea.toFixed(2)},\n`;
+  csv += `\nTotal Floor Area,,,${unit},${totalArea.toFixed(2)},\n`;
   
   return csv;
 }
@@ -111,7 +111,7 @@ export function exportToText(calculatedRooms: CalculatedRoom[], totalArea: numbe
   let text = 'FLOOR AREA CALCULATION SUMMARY\n';
   text += '================================\n\n';
   
-  const floorSummaries = calculateFloorSummaries(calculatedRooms);
+  const floorSummaries = calculateFloorSummaries(calculatedRooms, unit);
   
   if (floorSummaries.length > 1) {
     floorSummaries.forEach(floor => {
@@ -120,7 +120,7 @@ export function exportToText(calculatedRooms: CalculatedRoom[], totalArea: numbe
       floorRooms.forEach(room => {
         const length = parseFloat(room.length) || 0;
         const width = parseFloat(room.width) || 0;
-        text += `  ${room.name}: ${length} × ${width} ${room.unit} = ${formatArea(room.area, unit)}\n`;
+        text += `  ${room.name}: ${length} × ${width} ${room.unit} = ${formatArea(room.area, room.unit)}\n`;
       });
       text += `  Subtotal: ${formatArea(floor.totalArea, unit)}\n\n`;
     });
@@ -128,7 +128,7 @@ export function exportToText(calculatedRooms: CalculatedRoom[], totalArea: numbe
     calculatedRooms.forEach(room => {
       const length = parseFloat(room.length) || 0;
       const width = parseFloat(room.width) || 0;
-      text += `${room.name}: ${length} × ${width} ${room.unit} = ${formatArea(room.area, unit)}\n`;
+      text += `${room.name}: ${length} × ${width} ${room.unit} = ${formatArea(room.area, room.unit)}\n`;
     });
   }
   
@@ -141,7 +141,8 @@ export function exportToText(calculatedRooms: CalculatedRoom[], totalArea: numbe
 // Find largest room
 export function findLargestRoom(calculatedRooms: CalculatedRoom[]): CalculatedRoom | null {
   if (calculatedRooms.length === 0) return null;
-  return calculatedRooms.reduce((largest, room) => 
-    room.area > largest.area ? room : largest
+  // Compared in one unit, as rooms may be measured in different units
+  return calculatedRooms.reduce((largest, room) =>
+    convertArea(room.area, room.unit, 'm') > convertArea(largest.area, largest.unit, 'm') ? room : largest
   );
 }
