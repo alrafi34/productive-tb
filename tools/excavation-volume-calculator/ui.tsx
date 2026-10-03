@@ -22,6 +22,7 @@ import {
 import ExcavationVolumeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function ExcavationVolumeCalculatorUI() {
   const [shape, setShape] = useState<ExcavationShape>("rectangular");
@@ -67,6 +68,26 @@ export default function ExcavationVolumeCalculatorUI() {
   useEffect(() => {
     debouncedCalculate();
   }, [shape, unit, length, width, depth, radius, debouncedCalculate]);
+
+  // Values carried over from another tool (?shape=&unit=m|ft&length=&width=&depth=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const l = positiveParam(q, "length");
+      const w = positiveParam(q, "width");
+      const d = positiveParam(q, "depth");
+      const s = q.get("shape");
+      const u = q.get("unit");
+      if (s === "rectangular" || s === "trench") setShape(s);
+      if (u === "m") setUnit("meters");
+      if (u === "ft") setUnit("feet");
+      if (l !== undefined) setLength(String(l));
+      if (w !== undefined) setWidth(String(w));
+      if (d !== undefined) setDepth(String(d));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const handleShapeChange = (newShape: ExcavationShape) => {
     setShape(newShape);

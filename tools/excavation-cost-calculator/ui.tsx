@@ -38,6 +38,7 @@ import {
 import ExcavationCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -259,6 +260,23 @@ export default function ExcavationCostCalculatorUI() {
                   💾 Save to History
                 </button>
               </div>
+
+              {result && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Excavation volume & truckloads",
+                      href: `/tools/architecture/excavation-volume-calculator?${new URLSearchParams({
+                        shape: inputs.excavationType === "trench" ? "trench" : "rectangular",
+                        unit: inputs.unit,
+                        length: inputs.length.trim(),
+                        width: inputs.width.trim(),
+                        depth: inputs.depth.trim(),
+                      })}`,
+                    }]}
+                  />
+                </div>
+              )}
             </div>
 
           </div>
