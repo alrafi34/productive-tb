@@ -16,6 +16,7 @@ import {
 import FloorAreaCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function FloorAreaCalculatorUI() {
   const [rooms, setRooms] = useState<Room[]>([
@@ -220,6 +221,21 @@ export default function FloorAreaCalculatorUI() {
                   {copied === "total" ? "✓ Copied!" : "📋 Copy Total"}
                 </button>
               </div>
+
+              {/* The total is only meaningful when every room is measured in the global unit */}
+              {totalArea > 0 && rooms.every(r => r.unit === globalUnit) && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Estimate construction cost",
+                      /* The cost estimator works in sq ft */
+                      href: `/tools/architecture/construction-cost-estimator?${new URLSearchParams({
+                        area: String(parseFloat((globalUnit === "m" ? totalArea * 10.7639 : totalArea).toPrecision(10))),
+                      })}`,
+                    }]}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Floor Summaries */}

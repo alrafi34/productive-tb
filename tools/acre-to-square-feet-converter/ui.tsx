@@ -18,6 +18,7 @@ import AcreToSquareFeetConverterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import { useValueParam } from "@/lib/use-value-param";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 const PRESETS = [
   { label: "0.25 ac", value: "0.25" },
@@ -250,6 +251,18 @@ export default function AcreToSquareFeetConverterUI() {
                   💾 Save to History
                 </button>
               </div>
+
+              {result && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Price per square foot",
+                      /* The area as entered, in its own unit, so nothing is rounded on the way */
+                      href: `/tools/land/price-per-square-feet-calculator?${new URLSearchParams({ area: inputs.value.trim(), unit: "acre" })}`,
+                    }]}
+                  />
+                </div>
+              )}
             </div>
 
           </div>

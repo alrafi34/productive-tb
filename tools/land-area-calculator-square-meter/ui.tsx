@@ -20,6 +20,7 @@ import {
 import LandAreaCalculatorSquareMeterSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function LandAreaCalculatorSquareMeterUI() {
   const [inputs, setInputs] = useState<CalculationInputs>({
@@ -306,6 +307,20 @@ export default function LandAreaCalculatorSquareMeterUI() {
                   {shareCopied ? "✓ Link Copied!" : "🔗 Share Link"}
                 </button>
               </div>
+
+              {result && result.squareMeters > 0 && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Price this land",
+                      href: `/tools/land/land-price-calculator?${new URLSearchParams({
+                        area: String(parseFloat(result.squareMeters.toPrecision(10))),
+                        unit: "sqm",
+                      })}`,
+                    }]}
+                  />
+                </div>
+              )}
             </div>
 
           </div>

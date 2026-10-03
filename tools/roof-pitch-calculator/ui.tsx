@@ -18,6 +18,7 @@ import {
 import RoofPitchCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function RoofPitchCalculatorUI() {
   const [inputMode, setInputMode] = useState<InputMode>("rise-run");
@@ -262,6 +263,18 @@ export default function RoofPitchCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                {calculation.normalizedPitch > 0 && (
+                  <CarryOverLinks
+                    links={[{
+                      label: "Rafter length for this pitch",
+                      /* The pitch is unit-free (rise per 12 of run); the rafter tool asks for the run */
+                      href: `/tools/architecture/rafter-length-calculator?${new URLSearchParams({
+                        pitch: `${parseFloat(calculation.normalizedPitch.toPrecision(6))}/12`,
+                      })}`,
+                    }]}
+                  />
+                )}
               </div>
             )}
 

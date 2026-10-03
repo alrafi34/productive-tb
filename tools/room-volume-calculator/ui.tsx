@@ -19,6 +19,7 @@ import {
 import RoomVolumeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function RoomVolumeCalculatorUI() {
   const [dimensions, setDimensions] = useState<RoomDimensions>({
@@ -493,6 +494,23 @@ export default function RoomVolumeCalculatorUI() {
                   💾 Save to History
                 </button>
               </div>
+
+              {/* The HVAC load tool takes a box-shaped room */}
+              {volume > 0 && dimensions.shape === 'rectangular' && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Estimate HVAC load",
+                      href: `/tools/architecture/hvac-load-calculator?${new URLSearchParams({
+                        length: (dimensions.length ?? "").trim(),
+                        width: (dimensions.width ?? "").trim(),
+                        height: (dimensions.height ?? "").trim(),
+                        unit: dimensions.unit,
+                      })}`,
+                    }]}
+                  />
+                </div>
+              )}
             </div>
 
           </div>

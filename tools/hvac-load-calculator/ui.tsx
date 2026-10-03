@@ -18,6 +18,7 @@ import {
 import HVACLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function HVACLoadCalculatorUI() {
   const [dimensionUnit, setDimensionUnit] = useState<DimensionUnit>("ft");
@@ -40,6 +41,24 @@ export default function HVACLoadCalculatorUI() {
   const [history, setHistory] = useState(getHistory());
 
   const presets = getRoomPresets();
+
+  // Room size carried over from another tool (?length=&width=&height=&unit=m|ft)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const l = positiveParam(q, "length");
+      const w = positiveParam(q, "width");
+      const h = positiveParam(q, "height");
+      const unit = q.get("unit");
+      if (l === undefined || w === undefined || h === undefined || (unit !== "m" && unit !== "ft")) return;
+      setDimensionUnit(unit);
+      setLength(String(l));
+      setWidth(String(w));
+      setHeight(String(h));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   // Calculate in real-time
   useEffect(() => {
