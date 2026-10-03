@@ -55,8 +55,8 @@ export default function FloorAreaCalculatorUI() {
   useEffect(() => {
     const calculated = calculateAllRooms(rooms);
     setCalculatedRooms(calculated);
-    setTotalArea(calculateTotalArea(calculated));
-  }, [rooms]);
+    setTotalArea(calculateTotalArea(calculated, globalUnit));
+  }, [rooms, globalUnit]);
 
   const addRoom = () => {
     setRooms([...rooms, {
@@ -90,7 +90,7 @@ export default function FloorAreaCalculatorUI() {
   };
 
   const handleExportCSV = () => {
-    const csv = exportToCSV(calculatedRooms, totalArea);
+    const csv = exportToCSV(calculatedRooms, totalArea, globalUnit);
     downloadFile(csv, 'floor_area_calculation.csv');
   };
 
@@ -100,7 +100,7 @@ export default function FloorAreaCalculatorUI() {
   };
 
   const largestRoom = findLargestRoom(calculatedRooms);
-  const floorSummaries = enableFloors ? calculateFloorSummaries(calculatedRooms) : [];
+  const floorSummaries = enableFloors ? calculateFloorSummaries(calculatedRooms, globalUnit) : [];
 
   return (
     <>
@@ -222,8 +222,7 @@ export default function FloorAreaCalculatorUI() {
                 </button>
               </div>
 
-              {/* The total is only meaningful when every room is measured in the global unit */}
-              {totalArea > 0 && rooms.every(r => r.unit === globalUnit) && (
+              {totalArea > 0 && (
                 <div className="mt-4">
                   <CarryOverLinks
                     links={[{
