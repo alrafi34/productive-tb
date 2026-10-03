@@ -23,6 +23,11 @@ import {
 import SubdivisionCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks, { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
+
+/* Carry-over area units: the shared names (plot division calculator) ↔ this tool's */
+const FROM_SHARED_UNIT: Record<string, LandUnit> = { sqft: "sqft", sqm: "sqm", acre: "acres", hectare: "hectares" };
+const TO_SHARED_UNIT: Record<LandUnit, string> = { sqft: "sqft", sqm: "sqm", acres: "acre", hectares: "hectare" };
 
 // ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -88,6 +93,24 @@ export default function SubdivisionCostCalculatorUI() {
   useEffect(() => {
     setHistory(getHistory());
     firstRef.current?.focus();
+  }, []);
+
+  // Values carried over from another tool (?land=&unit=&plots=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const land = positiveParam(q, "land");
+      const plots = positiveParam(q, "plots");
+      const unit = FROM_SHARED_UNIT[q.get("unit") ?? ""];
+      setInputs(prev => ({
+        ...prev,
+        ...(land !== undefined && { landSize: String(land) }),
+        ...(unit !== undefined && { landUnit: unit }),
+        ...(plots !== undefined && Number.isInteger(plots) && { numPlots: String(plots) }),
+      }));
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const run = useCallback(
@@ -291,6 +314,12 @@ export default function SubdivisionCostCalculatorUI() {
                   💾 Save to History
                 </button>
               </div>
+
+              {result && parseFloat(inputs.landSize) > 0 && (
+                <div className="mt-4">
+                  <CarryOverLinks links={carryOverLinks(inputs)} />
+                </div>
+              )}
             </div>
 
           </div>
@@ -647,4 +676,14 @@ export default function SubdivisionCostCalculatorUI() {
       <RelatedTools />
     </>
   );
+}
+
+/* Next-tool link that opens the plot division calculator with this land and plot count */
+function carryOverLinks(inputs: CalculatorInputs) {
+  const q = new URLSearchParams({
+    land: inputs.landSize.trim(),
+    unit: TO_SHARED_UNIT[inputs.landUnit],
+    plots: inputs.numPlots.trim(),
+  });
+  return [{ label: "Lay out the plots", href: `/tools/land/plot-division-calculator?${q}` }];
 }

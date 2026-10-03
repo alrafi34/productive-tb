@@ -20,6 +20,7 @@ import {
 import VoltageDropCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks, { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function VoltageDropCalculatorUI() {
   const savedSettings = loadSettings();
@@ -42,6 +43,30 @@ export default function VoltageDropCalculatorUI() {
 
   const presets = getPresets();
   const wireSizes = getWireSizes();
+
+  // Values carried over from another tool (?current=&voltage=&length=&material=&phase=&wire=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const current = positiveParam(q, "current");
+      const voltage = positiveParam(q, "voltage");
+      const length = positiveParam(q, "length");
+      const wire = positiveParam(q, "wire");
+      const material = q.get("material");
+      const phase = q.get("phase");
+      setInputs(prev => ({
+        ...prev,
+        ...(current !== undefined && { current }),
+        ...(voltage !== undefined && { voltage }),
+        ...(length !== undefined && { length }),
+        ...(wire !== undefined && (getWireSizes() as number[]).includes(wire) && { wireSize: wire as WireSize }),
+        ...((material === "copper" || material === "aluminum") && { material }),
+        ...((phase === "single" || phase === "three" || phase === "dc") && { systemType: phase }),
+      }));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   // Debounced calculation
   const debouncedCalculate = useCallback(
@@ -247,6 +272,8 @@ export default function VoltageDropCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks links={carryOverLinks(inputs)} />
               </div>
             )}
 
@@ -549,4 +576,16 @@ export default function VoltageDropCalculatorUI() {
       <RelatedTools />
     </>
   );
+}
+
+/* Next-tool link that opens the wire size calculator with these values */
+function carryOverLinks(inputs: VoltageDropInputs) {
+  const q = new URLSearchParams({
+    current: String(inputs.current),
+    voltage: String(inputs.voltage),
+    length: String(inputs.length),
+    material: inputs.material,
+  });
+  if (inputs.systemType !== "dc") q.set("phase", inputs.systemType);
+  return [{ label: "Find the wire size", href: `/tools/electrical/wire-size-calculator?${q}` }];
 }

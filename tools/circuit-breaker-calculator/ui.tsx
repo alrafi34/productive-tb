@@ -26,6 +26,9 @@ import {
 import CircuitBreakerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
+
+const BREAKER_VOLTAGES: VoltageType[] = [120, 230, 240, 400, 415];
 
 export default function CircuitBreakerCalculatorUI() {
   const [inputs, setInputs] = useState<CircuitBreakerInputs>({
@@ -38,11 +41,24 @@ export default function CircuitBreakerCalculatorUI() {
     standard: 'iec',
   });
 
-  // US visitors start with NEC breaker sizes and 120 V, guessed after hydration; always editable
+  // US visitors start with NEC breaker sizes and 120 V, guessed after hydration; always editable.
+  // Values carried over from another tool (?load=&voltage=&phase=, load in W) then take priority.
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       if ((Intl.DateTimeFormat().resolvedOptions().timeZone ?? "").startsWith("America/")) {
         setInputs(prev => ({ ...prev, standard: 'nec', voltage: 120 }));
+      }
+      const q = readCarryOver();
+      if (q) {
+        const load = positiveParam(q, "load");
+        const voltage = positiveParam(q, "voltage");
+        const phase = q.get("phase");
+        setInputs(prev => ({
+          ...prev,
+          ...(load !== undefined && { load, loadUnit: 'W' as const }),
+          ...(voltage !== undefined && BREAKER_VOLTAGES.includes(voltage as VoltageType) && { voltage: voltage as VoltageType }),
+          ...((phase === 'single' || phase === 'three') && { phaseType: phase }),
+        }));
       }
     });
     return () => window.cancelAnimationFrame(frame);

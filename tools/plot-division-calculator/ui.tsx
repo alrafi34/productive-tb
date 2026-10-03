@@ -18,10 +18,15 @@ import {
   ALL_UNITS,
   lengthUnitFor,
   MAX_PREVIEW_PLOTS,
+  convertArea,
 } from "./logic";
 import PlotDivisionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks, { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
+
+/* Area units the subdivision cost calculator also offers */
+const SHARED_UNITS: Unit[] = ["sqft", "sqm", "acre", "hectare"];
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   totalLand: "",
@@ -48,6 +53,24 @@ export default function PlotDivisionCalculatorUI() {
   useEffect(() => {
     setHistory(getHistory());
     landRef.current?.focus();
+  }, []);
+
+  // Values carried over from another tool (?land=&unit=&plots=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const land = positiveParam(q, "land");
+      const plots = positiveParam(q, "plots");
+      const unit = q.get("unit") as Unit | null;
+      setInputs(prev => ({
+        ...prev,
+        ...(land !== undefined && { totalLand: String(land) }),
+        ...(unit !== null && SHARED_UNITS.includes(unit) && { landUnit: unit }),
+        ...(plots !== undefined && Number.isInteger(plots) && { numPlots: String(plots) }),
+      }));
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const run = useCallback(
@@ -272,6 +295,12 @@ export default function PlotDivisionCalculatorUI() {
                   💾 Save to History
                 </button>
               </div>
+
+              {result && (
+                <div className="mt-4">
+                  <CarryOverLinks links={carryOverLinks(inputs)} />
+                </div>
+              )}
             </div>
 
           </div>
@@ -515,4 +544,19 @@ export default function PlotDivisionCalculatorUI() {
       <RelatedTools />
     </>
   );
+}
+
+/* Next-tool link that opens the subdivision cost calculator with this land
+   and plot count; units it lacks (decimal, katha, bigha) go over as sq ft */
+function carryOverLinks(inputs: CalculatorInputs) {
+  const land = parseFloat(inputs.totalLand);
+  const shared = SHARED_UNITS.includes(inputs.landUnit);
+  const unit: Unit = shared ? inputs.landUnit : "sqft";
+  const value = shared ? land : convertArea(land, inputs.landUnit, "sqft");
+  const q = new URLSearchParams({
+    land: String(parseFloat(value.toPrecision(10))),
+    unit,
+    plots: inputs.numPlots.trim(),
+  });
+  return [{ label: "Estimate subdivision cost", href: `/tools/land/subdivision-cost-calculator?${q}` }];
 }

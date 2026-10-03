@@ -27,6 +27,13 @@ import {
 import WireSizeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks, { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
+
+const VOLTAGES: VoltageType[] = [110, 120, 220, 230, 240, 380, 400, 415];
+/* Wire sizes the voltage drop calculator offers (mm²) */
+const VD_WIRE_SIZES = [1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120];
+/* Supply voltages the circuit breaker calculator offers */
+const BREAKER_VOLTAGES = [120, 230, 240, 400, 415];
 
 export default function WireSizeCalculatorUI() {
   const [inputs, setInputs] = useState<WireSizeInputs>({
@@ -46,6 +53,28 @@ export default function WireSizeCalculatorUI() {
   const [history, setHistory] = useState(getHistory());
 
   const presets = getPresets();
+
+  // Values carried over from another tool (?current=&voltage=&length=&material=&phase=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const current = positiveParam(q, "current");
+      const voltage = positiveParam(q, "voltage");
+      const length = positiveParam(q, "length");
+      const material = q.get("material");
+      const phase = q.get("phase");
+      setInputs(prev => ({
+        ...prev,
+        ...(current !== undefined && { current }),
+        ...(voltage !== undefined && VOLTAGES.includes(voltage as VoltageType) && { voltage: voltage as VoltageType }),
+        ...(length !== undefined && { distance: length }),
+        ...((material === "copper" || material === "aluminum") && { material }),
+        ...((phase === "single" || phase === "three") && { phaseType: phase }),
+      }));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   // Debounced calculation
   const debouncedCalculate = useCallback(
@@ -217,6 +246,8 @@ export default function WireSizeCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks links={carryOverLinks(inputs, result)} />
               </div>
             )}
 
@@ -608,4 +639,28 @@ export default function WireSizeCalculatorUI() {
       <RelatedTools />
     </>
   );
+}
+
+/* Next-tool links that open with this calculation's values filled in */
+function carryOverLinks(inputs: WireSizeInputs, result: WireSizeResult) {
+  const vd = new URLSearchParams({
+    current: String(inputs.current),
+    voltage: String(inputs.voltage),
+    length: String(inputs.distance),
+    material: inputs.material,
+    phase: inputs.phaseType,
+  });
+  const size = Number(result.recommendedWire.sizeMetric);
+  if (VD_WIRE_SIZES.includes(size)) vd.set("wire", String(size));
+
+  const watts = Math.round(
+    inputs.voltage * inputs.current * (inputs.phaseType === "three" ? Math.sqrt(3) : 1)
+  );
+  const cb = new URLSearchParams({ load: String(watts), phase: inputs.phaseType });
+  if (BREAKER_VOLTAGES.includes(inputs.voltage)) cb.set("voltage", String(inputs.voltage));
+
+  return [
+    { label: "Check voltage drop", href: `/tools/electrical/voltage-drop-calculator?${vd}` },
+    { label: "Size the breaker", href: `/tools/electrical/circuit-breaker-calculator?${cb}` },
+  ];
 }
