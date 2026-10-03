@@ -23,6 +23,7 @@ import {
 import EscalationCostCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function EscalationCostCalculatorUI() {
   const [baseCost, setBaseCost] = useState("");
@@ -31,9 +32,20 @@ export default function EscalationCostCalculatorUI() {
   const [escalationType, setEscalationType] = useState<EscalationType>("compound");
   const [currency, setCurrency] = useState<Currency>("USD");
 
-  // Guessed after hydration so the server markup matches; always editable
+  // Guessed after hydration so the server markup matches; always editable.
+  // A cost carried over from another tool (?cost=&currency=) takes priority.
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    const frame = window.requestAnimationFrame(() => {
+      const q = readCarryOver();
+      const carriedCost = q ? positiveParam(q, "cost") : undefined;
+      const carriedCurrency = q?.get("currency");
+      if (carriedCost !== undefined && isCurrencyCode(carriedCurrency)) {
+        setCurrency(carriedCurrency);
+        setBaseCost(String(carriedCost));
+      } else {
+        setCurrency(guessCurrency());
+      }
+    });
     return () => window.cancelAnimationFrame(frame);
   }, []);
   

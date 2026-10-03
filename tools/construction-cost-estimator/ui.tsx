@@ -23,6 +23,7 @@ import {
 import ConstructionCostEstimatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks, { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function ConstructionCostEstimatorUI() {
   const [area, setArea] = useState("1000");
@@ -32,9 +33,15 @@ export default function ConstructionCostEstimatorUI() {
   const [regionFactor, setRegionFactor] = useState<RegionFactor>("standard");
   const [currency, setCurrency] = useState<Currency>("USD");
 
-  // Guessed after hydration so the server markup matches; always editable
+  // Guessed after hydration so the server markup matches; always editable.
+  // A floor area carried over from another tool (?area= in sq ft) is filled in too.
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    const frame = window.requestAnimationFrame(() => {
+      setCurrency(guessCurrency());
+      const q = readCarryOver();
+      const carriedArea = q ? positiveParam(q, "area") : undefined;
+      if (carriedArea !== undefined) setArea(String(carriedArea));
+    });
     return () => window.cancelAnimationFrame(frame);
   }, []);
   
@@ -262,6 +269,18 @@ export default function ConstructionCostEstimatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                {estimate.totalCost > 0 && (
+                  <CarryOverLinks
+                    links={[{
+                      label: "Add cost escalation",
+                      href: `/tools/architecture/escalation-cost-calculator?${new URLSearchParams({
+                        cost: String(parseFloat(estimate.totalCost.toPrecision(12))),
+                        currency,
+                      })}`,
+                    }]}
+                  />
+                )}
               </div>
             )}
 

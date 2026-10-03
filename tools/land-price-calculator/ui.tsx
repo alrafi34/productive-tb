@@ -21,10 +21,12 @@ import {
   CURRENCY_LABELS,
   ALL_UNITS,
   ALL_CURRENCIES,
+  UNIT_TO_SQFT,
 } from "./logic";
 import LandPriceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 import CarryOverLinks from "@/components/CarryOverLinks";
 
 const PRESETS: { label: string; area: string; areaUnit: Unit; rate: string }[] = [
@@ -63,6 +65,19 @@ export default function LandPriceCalculatorUI() {
   useEffect(() => {
     setHistory(getHistory());
     areaRef.current?.focus();
+  }, []);
+
+  // Land area carried over from another tool (?area=&unit=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const area = positiveParam(q, "area");
+      const unit = q.get("unit") ?? "";
+      if (area === undefined || !Object.prototype.hasOwnProperty.call(UNIT_TO_SQFT, unit)) return;
+      setInputs(prev => ({ ...prev, area: String(area), areaUnit: unit as Unit }));
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const run = useCallback(

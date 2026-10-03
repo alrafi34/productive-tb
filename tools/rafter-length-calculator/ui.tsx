@@ -20,6 +20,7 @@ import {
 import RafterLengthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver } from "@/components/CarryOverLinks";
 
 export default function RafterLengthCalculatorUI() {
   const [inputMode, setInputMode] = useState<InputMode>("run-rise");
@@ -39,6 +40,18 @@ export default function RafterLengthCalculatorUI() {
   const [copied, setCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [history, setHistory] = useState(getHistory());
+
+  // A pitch carried over from another tool (?pitch=6/12); the run is left to the visitor
+  useEffect(() => {
+    const q = readCarryOver();
+    const pitch = q?.get("pitch");
+    if (!pitch || !parsePitch(pitch)) return;
+    const frame = window.requestAnimationFrame(() => {
+      setInputMode('run-pitch');
+      setPitchInput(pitch);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   // Parse pitch input
   useEffect(() => {

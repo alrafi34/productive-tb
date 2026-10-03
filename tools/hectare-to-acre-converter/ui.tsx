@@ -20,6 +20,7 @@ import HectareToAcreConverterSEO from "./seo-content";
 import { useValueParam } from "@/lib/use-value-param";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 const PRESETS = [
   { label: "1 ha", value: "1" },
@@ -283,6 +284,18 @@ export default function HectareToAcreConverterUI() {
                   >
                     💾 Save to History
                   </button>
+                </div>
+              )}
+
+              {!reversed && result && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Price this land",
+                      /* The area as entered, in its own unit, so nothing is rounded on the way */
+                      href: `/tools/land/land-price-calculator?${new URLSearchParams({ area: inputs.value.trim(), unit: "hectare" })}`,
+                    }]}
+                  />
                 </div>
               )}
             </div>
