@@ -24,6 +24,7 @@ import {
 import PricePerSquareFeetCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 const PRESETS: { label: string; price: string; area: string; unit: Unit }[] = [
   { label: "450K / 2,000 sq ft",  price: "450000", area: "2000", unit: "sqft" },
@@ -53,6 +54,26 @@ export default function PricePerSquareFeetCalculatorUI() {
   useEffect(() => {
     setHistory(getHistory());
     priceRef.current?.focus();
+  }, []);
+
+  // Values carried over from another tool (?price=&area=&unit=&currency=)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const price = positiveParam(q, "price");
+      const area = positiveParam(q, "area");
+      const unit = q.get("unit") ?? "";
+      const currency = q.get("currency") ?? "";
+      setInputs(prev => ({
+        ...prev,
+        ...(price !== undefined && { totalPrice: String(price) }),
+        ...(area !== undefined && { area: String(area) }),
+        ...(Object.prototype.hasOwnProperty.call(UNIT_TO_SQFT, unit) && { areaUnit: unit as Unit }),
+        ...(Object.prototype.hasOwnProperty.call(CURRENCY_SYMBOLS, currency) && { currency: currency as Currency }),
+      }));
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const run = useCallback(

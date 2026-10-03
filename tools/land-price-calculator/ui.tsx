@@ -25,6 +25,7 @@ import {
 import LandPriceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 const PRESETS: { label: string; area: string; areaUnit: Unit; rate: string }[] = [
   { label: "1 Acre @ $50k",       area: "1",    areaUnit: "acre",    rate: "50000" },
@@ -287,6 +288,22 @@ export default function LandPriceCalculatorUI() {
                   💾 Save to History
                 </button>
               </div>
+
+              {result && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Price per square foot",
+                      href: `/tools/land/price-per-square-feet-calculator?${new URLSearchParams({
+                        price: String(parseFloat(result.totalPrice.toPrecision(12))),
+                        area: inputs.area.trim(),
+                        unit: inputs.areaUnit,
+                        currency: inputs.currency,
+                      })}`,
+                    }]}
+                  />
+                </div>
+              )}
             </div>
 
           </div>

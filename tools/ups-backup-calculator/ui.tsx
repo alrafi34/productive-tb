@@ -24,6 +24,7 @@ import {
 import UPSBackupCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function UPSBackupCalculatorUI() {
   const [inputs, setInputs] = useState<UPSBackupInputs>({
@@ -74,6 +75,17 @@ export default function UPSBackupCalculatorUI() {
   useEffect(() => {
     debouncedCalculate();
   }, [inputs, debouncedCalculate]);
+
+  // Values carried over from another tool (?load= in W)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const load = positiveParam(q, "load");
+      if (load !== undefined) setInputs(prev => ({ ...prev, loadPower: load }));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const handleInputChange = (field: keyof UPSBackupInputs, value: number | string) => {
     setInputs(prev => ({ ...prev, [field]: value }));

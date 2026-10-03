@@ -28,6 +28,7 @@ import {
 import ElectricBillCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function ElectricBillCalculatorUI() {
   const [units, setUnits] = useState("150");
@@ -55,12 +56,27 @@ export default function ElectricBillCalculatorUI() {
   const applianceTotal = Math.round(totalApplianceKwh(appliances, daysNum) * 100) / 100;
   const effectiveUnits = usageMode === "appliances" ? String(applianceTotal) : units;
 
-  // Start in the visitor's currency with a typical local price per kWh
+  // Start in the visitor's currency with a typical local price per kWh.
+  // Values carried over from another tool (?kwh=&rate=&currency=) take priority.
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      const guess = guessCurrency();
+      const q = readCarryOver();
+      const qCurrency = q?.get("currency");
+      const guess = qCurrency && Object.prototype.hasOwnProperty.call(TYPICAL_RATE, qCurrency) ? (qCurrency as Currency) : guessCurrency();
       setCurrency(guess);
       setFlatRate(String(TYPICAL_RATE[guess]));
+      if (q) {
+        const kwh = positiveParam(q, "kwh");
+        const rate = positiveParam(q, "rate");
+        if (kwh !== undefined) {
+          setUsageMode("meter");
+          setUnits(String(kwh));
+        }
+        if (rate !== undefined) {
+          setBillingType("flat");
+          setFlatRate(String(rate));
+        }
+      }
     });
     return () => window.cancelAnimationFrame(frame);
   }, []);

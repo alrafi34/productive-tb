@@ -21,6 +21,7 @@ import {
 import BandwidthCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 type Mode = "transfer" | "website" | "streaming" | "multiuser";
 
@@ -549,6 +550,11 @@ export default function BandwidthCalculatorUI() {
                       Save to History
                     </button>
                   </div>
+                  {mode === "transfer" && (
+                    <div className="mt-4">
+                      <CarryOverLinks links={transferCarryOverLinks(fileSize, fileSizeUnit, speed, speedUnit)} />
+                    </div>
+                  )}
                 </>
               ) : (
                 <div className="text-primary-100 text-sm">Enter values above to calculate</div>
@@ -699,4 +705,14 @@ export default function BandwidthCalculatorUI() {
       <RelatedTools />
     </>
   );
+}
+
+/* Next-tool links that open the download time and data transfer calculators
+   with this file size and speed (both read ?size=&unit=&speed=&speedUnit=) */
+function transferCarryOverLinks(size: string, unit: string, speed: string, speedUnit: string) {
+  const q = new URLSearchParams({ size: size.trim(), unit, speed: speed.trim(), speedUnit });
+  return [
+    { label: "Download time with overhead", href: `/tools/computer-science/download-time-calculator?${q}` },
+    { label: "Upload / download transfer", href: `/tools/computer-science/data-transfer-calculator?${q}` },
+  ];
 }

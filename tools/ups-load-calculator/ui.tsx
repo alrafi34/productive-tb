@@ -20,6 +20,7 @@ import {
 import UPSLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function UPSLoadCalculatorUI() {
   const [devices, setDevices] = useState<Device[]>([
@@ -256,6 +257,18 @@ export default function UPSLoadCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                {result.totalLoad > 0 && (
+                  <CarryOverLinks
+                    links={[{
+                      label: "Estimate backup time",
+                      /* The actual load: the backup calculator applies its own safety buffer */
+                      href: `/tools/electrical/ups-backup-calculator?${new URLSearchParams({
+                        load: String(parseFloat(result.totalLoad.toPrecision(10))),
+                      })}`,
+                    }]}
+                  />
+                )}
               </div>
             )}
 

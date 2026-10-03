@@ -30,6 +30,7 @@ import {
 import AirConditionerPowerCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function AirConditionerPowerCalculatorUI() {
   const savedSettings = loadSettings();
@@ -264,6 +265,19 @@ export default function AirConditionerPowerCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                {result.monthlyEnergy > 0 && inputs.tariff > 0 && (
+                  <CarryOverLinks
+                    links={[{
+                      label: "Add it to your electric bill",
+                      href: `/tools/electrical/electric-bill-calculator?${new URLSearchParams({
+                        kwh: String(parseFloat(result.monthlyEnergy.toPrecision(10))),
+                        rate: String(inputs.tariff),
+                        currency,
+                      })}`,
+                    }]}
+                  />
+                )}
               </div>
             )}
 
