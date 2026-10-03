@@ -22,6 +22,8 @@ import {
 import FanPowerConsumptionCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
+import { billLink, presentLinks } from "@/lib/carry-over-targets";
 
 export default function FanPowerConsumptionCalculatorUI() {
   const savedSettings = loadSettings();
@@ -219,6 +221,8 @@ export default function FanPowerConsumptionCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks links={presentLinks([billLink(result.monthlyEnergy, inputs.tariff, currency)])} />
               </div>
             )}
 

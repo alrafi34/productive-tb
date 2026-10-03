@@ -22,6 +22,7 @@ import {
 import InductiveReactanceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 export default function InductiveReactanceCalculatorUI() {
   const [frequency, setFrequency] = useState<string>("50");
@@ -223,6 +224,16 @@ export default function InductiveReactanceCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks
+                  links={[{
+                    label: "Add to an impedance calculation",
+                    /* The reactance in ohms */
+                    href: `/tools/electrical/impedance-calculator?${new URLSearchParams({
+                      xl: String(parseFloat(result.reactance.toPrecision(10))),
+                    })}`,
+                  }]}
+                />
               </div>
             )}
 

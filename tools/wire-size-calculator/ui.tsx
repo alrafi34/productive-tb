@@ -653,14 +653,24 @@ function carryOverLinks(inputs: WireSizeInputs, result: WireSizeResult) {
   const size = Number(result.recommendedWire.sizeMetric);
   if (VD_WIRE_SIZES.includes(size)) vd.set("wire", String(size));
 
-  const watts = Math.round(
-    inputs.voltage * inputs.current * (inputs.phaseType === "three" ? Math.sqrt(3) : 1)
-  );
-  const cb = new URLSearchParams({ load: String(watts), phase: inputs.phaseType });
-  if (BREAKER_VOLTAGES.includes(inputs.voltage)) cb.set("voltage", String(inputs.voltage));
-
-  return [
+  const links = [
     { label: "Check voltage drop", href: `/tools/electrical/voltage-drop-calculator?${vd}` },
-    { label: "Size the breaker", href: `/tools/electrical/circuit-breaker-calculator?${cb}` },
   ];
+
+  /* The breaker tool works out the current from load and voltage, so the
+     link only makes sense when it offers this voltage */
+  if (BREAKER_VOLTAGES.includes(inputs.voltage)) {
+    const watts = Math.round(
+      inputs.voltage * inputs.current * (inputs.phaseType === "three" ? Math.sqrt(3) : 1)
+    );
+    const cb = new URLSearchParams({
+      load: String(watts),
+      voltage: String(inputs.voltage),
+      phase: inputs.phaseType,
+      pf: "1",
+    });
+    links.push({ label: "Size the breaker", href: `/tools/electrical/circuit-breaker-calculator?${cb}` });
+  }
+
+  return links;
 }

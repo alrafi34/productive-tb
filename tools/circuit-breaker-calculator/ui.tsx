@@ -42,7 +42,8 @@ export default function CircuitBreakerCalculatorUI() {
   });
 
   // US visitors start with NEC breaker sizes and 120 V, guessed after hydration; always editable.
-  // Values carried over from another tool (?load=&voltage=&phase=, load in W) then take priority.
+  // Values carried over from another tool (?load=&voltage=&phase=&pf=, load in W) then take priority.
+  // The load is only taken with a voltage this tool offers: the current follows from both.
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       if ((Intl.DateTimeFormat().resolvedOptions().timeZone ?? "").startsWith("America/")) {
@@ -52,13 +53,18 @@ export default function CircuitBreakerCalculatorUI() {
       if (q) {
         const load = positiveParam(q, "load");
         const voltage = positiveParam(q, "voltage");
+        const pf = positiveParam(q, "pf");
         const phase = q.get("phase");
-        setInputs(prev => ({
-          ...prev,
-          ...(load !== undefined && { load, loadUnit: 'W' as const }),
-          ...(voltage !== undefined && BREAKER_VOLTAGES.includes(voltage as VoltageType) && { voltage: voltage as VoltageType }),
-          ...((phase === 'single' || phase === 'three') && { phaseType: phase }),
-        }));
+        if (load !== undefined && voltage !== undefined && BREAKER_VOLTAGES.includes(voltage as VoltageType)) {
+          setInputs(prev => ({
+            ...prev,
+            load,
+            loadUnit: 'W' as const,
+            voltage: voltage as VoltageType,
+            ...((phase === 'single' || phase === 'three') && { phaseType: phase }),
+            ...(pf !== undefined && pf <= 1 && { powerFactor: pf }),
+          }));
+        }
       }
     });
     return () => window.cancelAnimationFrame(frame);

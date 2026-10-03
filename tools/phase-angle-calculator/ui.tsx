@@ -22,6 +22,7 @@ import {
 import PhaseAngleCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 
 export default function PhaseAngleCalculatorUI() {
   const [mode, setMode] = useState<CalculationMode>("power");
@@ -58,6 +59,22 @@ export default function PhaseAngleCalculatorUI() {
   useEffect(() => {
     debouncedCalculate();
   }, [mode, realPower, apparentPower, resistance, reactance, powerFactor, debouncedCalculate]);
+
+  // Values carried over from another tool (?p= in W, &s= in VA)
+  useEffect(() => {
+    const q = readCarryOver();
+    if (!q) return;
+    const frame = window.requestAnimationFrame(() => {
+      const p = positiveParam(q, "p");
+      const s = positiveParam(q, "s");
+      if (p !== undefined && s !== undefined && p <= s) {
+        setMode("power");
+        setRealPower(String(p));
+        setApparentPower(String(s));
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const calculate = () => {
     setError(null);

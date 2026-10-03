@@ -24,6 +24,8 @@ import {
 import HouseWiringLoadCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
+import { wireSizeLink, presentLinks } from "@/lib/carry-over-targets";
 
 export default function HouseWiringLoadCalculatorUI() {
   const [appliances, setAppliances] = useState<Appliance[]>(() => {
@@ -256,6 +258,8 @@ export default function HouseWiringLoadCalculatorUI() {
                     💾 Save to History
                   </button>
                 </div>
+
+                <CarryOverLinks links={presentLinks([wireSizeLink(result.current, voltage, "single")])} />
               </div>
             )}
 
