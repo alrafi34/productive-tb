@@ -246,8 +246,8 @@ export default function ClockFrequencyCalculatorUI() {
     <>
       <div className="max-w-5xl mx-auto space-y-6">
 
-        {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        {/* Info Banner (repeats the page intro, so hidden on phones to keep the inputs on the first screen) */}
+        <div className="hidden sm:block bg-blue-50 border border-blue-200 rounded-xl p-4">
           <div className="flex items-start gap-3">
             <span className="text-2xl">⏱️</span>
             <div>
@@ -262,11 +262,11 @@ export default function ClockFrequencyCalculatorUI() {
         <div className="grid lg:grid-cols-12 gap-6">
           
           {/* Controls Panel */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="contents lg:block lg:col-span-4 lg:space-y-6">
             
             {/* Result Display */}
             {result && !error && (
-              <div className="bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white space-y-4">
+              <div className="order-[-1] bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white space-y-4">
                 <div>
                   <p className="text-primary-100 font-medium mb-2 text-xs uppercase tracking-wider" style={{ fontFamily: "var(--font-heading)" }}>
                     {mode === 'period-to-frequency' && 'Frequency'}
@@ -358,10 +358,10 @@ export default function ClockFrequencyCalculatorUI() {
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-8 space-y-6">
+          <div className="contents lg:block lg:col-span-8 lg:space-y-6">
             
             {/* Mode Selector */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
+            <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
               <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
                 Calculation Mode
               </h3>
@@ -411,7 +411,7 @@ export default function ClockFrequencyCalculatorUI() {
             </div>
 
             {/* Input Panel */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
+            <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
               <h3 className="font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
                 Input Parameters
               </h3>
