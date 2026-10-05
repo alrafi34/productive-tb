@@ -212,8 +212,8 @@ export default function PressureDropCalculatorUI() {
     <>
       <div className="max-w-5xl mx-auto space-y-6">
 
-        {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        {/* Info Banner (repeats the page intro, so hidden on phones to keep the inputs on the first screen) */}
+        <div className="hidden sm:block bg-blue-50 border border-blue-200 rounded-xl p-4">
           <div className="flex items-start gap-3">
             <span className="text-2xl">🔧</span>
             <div>
@@ -228,10 +228,10 @@ export default function PressureDropCalculatorUI() {
         <div className="grid lg:grid-cols-12 gap-6">
 
           {/* ── Left Panel ─────────────────────────────────────────────── */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="contents lg:block lg:col-span-4 lg:space-y-6">
 
             {/* Result Card */}
-            <div className="bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white">
+            <div className="order-[-1] bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white">
               <p className="text-primary-100 font-medium mb-2 text-xs uppercase tracking-wider">
                 Pressure Drop
               </p>
@@ -318,10 +318,10 @@ export default function PressureDropCalculatorUI() {
           </div>
 
           {/* ── Right Panel ────────────────────────────────────────────── */}
-          <div className="lg:col-span-8 space-y-6">
+          <div className="contents lg:block lg:col-span-8 lg:space-y-6">
 
             {/* Unit System + Fluid */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
+            <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
               <h3 className="font-semibold text-gray-800">System Settings</h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
@@ -417,7 +417,7 @@ export default function PressureDropCalculatorUI() {
             </div>
 
             {/* Pipe Parameters */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
+            <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
               <h3 className="font-semibold text-gray-800">Pipe Parameters</h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
@@ -488,7 +488,7 @@ export default function PressureDropCalculatorUI() {
             </div>
 
             {/* Flow Input */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
+            <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
               <h3 className="font-semibold text-gray-800">Flow Input</h3>
 
               {/* Method toggle */}

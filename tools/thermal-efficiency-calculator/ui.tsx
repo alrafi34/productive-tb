@@ -179,8 +179,8 @@ export default function ThermalEfficiencyCalculatorUI() {
     <>
       <div className="max-w-5xl mx-auto space-y-6">
 
-        {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        {/* Info Banner (repeats the page intro, so hidden on phones to keep the inputs on the first screen) */}
+        <div className="hidden sm:block bg-blue-50 border border-blue-200 rounded-xl p-4">
           <div className="flex items-start gap-3">
             <span className="text-2xl">🔥</span>
             <div>
@@ -215,10 +215,10 @@ export default function ThermalEfficiencyCalculatorUI() {
         <div className="grid lg:grid-cols-12 gap-6">
 
           {/* Left Panel */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="contents lg:block lg:col-span-4 lg:space-y-6">
 
             {/* Result Card */}
-            <div className="bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white">
+            <div className="order-[-1] bg-primary rounded-xl border border-primary-light shadow-lg shadow-primary/20 p-6 text-white">
               <p className="text-primary-100 font-medium mb-2 text-xs uppercase tracking-wider" style={{ fontFamily: "var(--font-heading)" }}>
                 Thermal Efficiency
               </p>
@@ -312,11 +312,11 @@ export default function ThermalEfficiencyCalculatorUI() {
           </div>
 
           {/* Right Panel */}
-          <div className="lg:col-span-8 space-y-6">
+          <div className="contents lg:block lg:col-span-8 lg:space-y-6">
 
             {/* ── BASIC MODE ─────────────────────────────────────────── */}
             {inputs.mode === "basic" && (
-              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
+              <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
                 <h3 className="font-semibold text-gray-800">Basic Thermal Efficiency</h3>
 
                 {/* Presets */}
@@ -400,7 +400,7 @@ export default function ThermalEfficiencyCalculatorUI() {
 
             {/* ── CARNOT MODE ────────────────────────────────────────── */}
             {inputs.mode === "carnot" && (
-              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
+              <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
                 <h3 className="font-semibold text-gray-800">Carnot Efficiency</h3>
 
                 {/* Presets */}
@@ -501,7 +501,7 @@ export default function ThermalEfficiencyCalculatorUI() {
 
             {/* ── ENGINE MODE ────────────────────────────────────────── */}
             {inputs.mode === "engine" && (
-              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
+              <div className="order-[-2] bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">
                 <h3 className="font-semibold text-gray-800">Engine Efficiency</h3>
 
                 {/* Presets */}
