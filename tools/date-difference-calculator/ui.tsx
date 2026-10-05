@@ -14,6 +14,7 @@ import {
 import DateDifferenceCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 
 type OutputFormat = 'full' | 'years' | 'months' | 'days' | 'weeks';
 
@@ -326,6 +327,18 @@ export default function DateDifferenceCalculatorUI() {
                     {copied ? "Copied!" : "📋 Copy Result"}
                   </button>
                 </div>
+
+                {/* The working days tool counts forwards only; ISO dates compare as strings */}
+                {result && /^\d{4}-\d{2}-\d{2}$/.test(startDate) && /^\d{4}-\d{2}-\d{2}$/.test(endDate) && startDate <= endDate && (
+                  <div className="mt-4">
+                    <CarryOverLinks
+                      links={[{
+                        label: "Count working days",
+                        href: `/tools/productivity/working-days-calculator?${new URLSearchParams({ start: startDate, end: endDate })}`,
+                      }]}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 

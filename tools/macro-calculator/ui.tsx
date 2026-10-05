@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import NumberField, { num } from "@/components/NumberField";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver } from "@/components/CarryOverLinks";
+import { readBody } from "@/lib/carry-body";
 import RelatedTools from "@/components/RelatedTools";
 import { guessCurrency } from "@/lib/currency";
 import { ACTIVITY, CM_PER_IN, GOALS, LB_PER_KG, SPLITS, macros, type Activity, type Goal, type Sex, type Split } from "./logic";
@@ -23,10 +25,26 @@ export default function MacroCalculatorUI() {
   const [custom, setCustom] = useState({ protein: "30", carbs: "40", fat: "30" });
   const [meals, setMeals] = useState(3);
 
-  // US visitors get pounds and feet by default
+  // US visitors get pounds and feet by default; body measurements carried over
+  // from another tool (see lib/carry-body) take priority
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      if (guessCurrency() === "USD") setUnits("imperial");
+      const body = readBody(readCarryOver());
+      if (!body) {
+        if (guessCurrency() === "USD") setUnits("imperial");
+        return;
+      }
+      setUnits(body.unit);
+      if (body.unit === "metric") {
+        setCm(String(body.cm));
+        setKg(String(body.kg));
+      } else {
+        setFt(String(body.ft));
+        setInch(String(body.inch));
+        setLb(String(body.lb));
+      }
+      if (body.sex) setSex(body.sex);
+      if (body.age !== undefined) setAge(String(body.age));
     });
     return () => window.cancelAnimationFrame(frame);
   }, []);

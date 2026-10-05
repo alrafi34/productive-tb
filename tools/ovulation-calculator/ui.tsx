@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import NumberField, { num } from "@/components/NumberField";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
 import RelatedTools from "@/components/RelatedTools";
 import { addDays, formatDate, parseDate, toIso, today } from "@/lib/dates";
 import { nextCycles } from "./logic";
@@ -71,6 +72,18 @@ export default function OvulationCalculatorUI() {
                   <dd className="font-semibold">{formatDate(first.dueDate, "long")}</dd>
                 </div>
               </dl>
+              {/* The due date tool dates from the period with a 14-day luteal phase, so it
+                  gives the same due date only then */}
+              {lutealLength === 14 && (
+                <div className="mt-4">
+                  <CarryOverLinks
+                    links={[{
+                      label: "Pregnancy week by week",
+                      href: `/tools/health/due-date-calculator?${new URLSearchParams({ lmp: date, cycle: String(cycleLength) })}`,
+                    }]}
+                  />
+                </div>
+              )}
             </>
           ) : (
             <p className="text-center text-primary-100">Choose the first day of your last period.</p>

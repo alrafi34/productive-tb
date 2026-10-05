@@ -18,6 +18,8 @@ import {
 import BmiCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks from "@/components/CarryOverLinks";
+import { bodyQuery } from "@/lib/carry-body";
 
 export default function BmiCalculatorUI() {
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
@@ -485,6 +487,20 @@ export default function BmiCalculatorUI() {
                  </button>
                </div>
             )}
+
+            {/* The values as entered (not the what-if slider) carried to the next tools */}
+            {bmiResult && !isSimulating && (() => {
+              const q = bodyQuery({ unit, sex: gender, cm: heightCm, kg: weightKg, ft: heightFt, inch: heightIn, lb: weightLb });
+              return q ? (
+                <CarryOverLinks
+                  tone="light"
+                  links={[
+                    { label: "Calories you burn (BMR)", href: `/tools/health/bmr-calculator?${q}` },
+                    { label: "Ideal weight", href: `/tools/calculator/ideal-weight-calculator?${q}` },
+                  ]}
+                />
+              ) : null;
+            })()}
 
             {/* Local History Array Box */}
             {history.length > 0 && (

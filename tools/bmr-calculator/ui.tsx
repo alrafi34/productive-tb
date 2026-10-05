@@ -20,6 +20,8 @@ import {
 import ToolSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks, { readCarryOver } from "@/components/CarryOverLinks";
+import { bodyQuery, readBody } from "@/lib/carry-body";
 
 export default function BMRCalculatorUI() {
   const [weight, setWeight] = useState<string>("70");
@@ -37,6 +39,26 @@ export default function BMRCalculatorUI() {
   useEffect(() => {
     setIsClient(true);
     setHistory(getHistory());
+  }, []);
+
+  // Body measurements carried over from another tool (see lib/carry-body)
+  useEffect(() => {
+    const body = readBody(readCarryOver());
+    if (!body) return;
+    const frame = window.requestAnimationFrame(() => {
+      setUnitSystem(body.unit);
+      if (body.unit === "metric") {
+        setHeight(String(body.cm));
+        setWeight(String(body.kg));
+      } else {
+        setHeightFeet(String(body.ft));
+        setHeightInches(String(body.inch));
+        setWeight(String(body.lb));
+      }
+      if (body.sex) setGender(body.sex);
+      if (body.age !== undefined) setAge(String(body.age));
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const weightNum = parseFloat(weight);
@@ -306,6 +328,17 @@ export default function BMRCalculatorUI() {
                         Clear
                       </button>
                     </div>
+                    {(() => {
+                      const q = bodyQuery({ unit: unitSystem, sex: gender, age, cm: height, kg: weight, ft: heightFeet, inch: heightInches, lb: weight });
+                      return q ? (
+                        <div className="mt-4 text-left relative z-10">
+                          <CarryOverLinks
+                            tone="light"
+                            links={[{ label: "Daily calories for your goal", href: `/tools/calculator/daily-calorie-calculator?${q}` }]}
+                          />
+                        </div>
+                      ) : null;
+                    })()}
                   </div>
                 )}
 

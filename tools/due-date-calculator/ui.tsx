@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import NumberField, { num } from "@/components/NumberField";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver, positiveParam } from "@/components/CarryOverLinks";
 import RelatedTools from "@/components/RelatedTools";
 import { addDays, formatDate, parseDate, toIso, today } from "@/lib/dates";
 import { MILESTONES, dueDate, gestationStart, progressOn, type DatingInput, type Method } from "./logic";
@@ -24,12 +25,22 @@ export default function DueDateCalculatorUI() {
   const [days, setDays] = useState("0");
   const [now, setNow] = useState<Date | null>(null);
 
-  // Dates depend on today's date in the visitor's timezone, so set them after hydration
+  // Dates depend on today's date in the visitor's timezone, so set them after hydration.
+  // A period date carried over from another tool (?lmp=YYYY-MM-DD&cycle=) takes priority.
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       const t = today();
       setNow(t);
-      setDate(toIso(addDays(t, -70)));
+      const q = readCarryOver();
+      const lmp = q?.get("lmp") ?? "";
+      const carriedCycle = q ? positiveParam(q, "cycle") : undefined;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(lmp) && parseDate(lmp)) {
+        setMethod("lmp");
+        setDate(lmp);
+        if (carriedCycle !== undefined && carriedCycle >= 20 && carriedCycle <= 45) setCycle(String(carriedCycle));
+      } else {
+        setDate(toIso(addDays(t, -70)));
+      }
     });
     return () => window.cancelAnimationFrame(frame);
   }, []);

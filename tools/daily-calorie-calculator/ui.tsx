@@ -18,6 +18,8 @@ import {
 import DailyCalorieCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import CarryOverLinks, { readCarryOver } from "@/components/CarryOverLinks";
+import { bodyQuery, readBody } from "@/lib/carry-body";
 
 export default function DailyCalorieCalculatorUI() {
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
@@ -45,6 +47,26 @@ export default function DailyCalorieCalculatorUI() {
       const saved = localStorage.getItem('calorieHistory');
       if (saved) setHistory(JSON.parse(saved));
     } catch (e) {}
+  }, []);
+
+  // Body measurements carried over from another tool (see lib/carry-body)
+  useEffect(() => {
+    const body = readBody(readCarryOver());
+    if (!body) return;
+    const frame = window.requestAnimationFrame(() => {
+      setUnit(body.unit);
+      if (body.unit === "metric") {
+        setHeight(String(body.cm));
+        setWeight(String(body.kg));
+      } else {
+        setHeightFt(String(body.ft));
+        setHeightIn(String(body.inch));
+        setWeight(String(body.lb));
+      }
+      if (body.sex) setGender(body.sex);
+      if (body.age !== undefined) setAge(String(body.age));
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const saveToHistory = () => {
@@ -452,6 +474,16 @@ export default function DailyCalorieCalculatorUI() {
                  </button>
                </div>
             )}
+
+            {result && targetCalories > 0 && (() => {
+              const q = bodyQuery({ unit, sex: gender, age, cm: height, kg: weight, ft: heightFt, inch: heightIn, lb: weight });
+              return q ? (
+                <CarryOverLinks
+                  tone="light"
+                  links={[{ label: "Split into protein, carbs and fat", href: `/tools/health/macro-calculator?${q}` }]}
+                />
+              ) : null;
+            })()}
 
             {/* History */}
             {history.length > 0 && (
