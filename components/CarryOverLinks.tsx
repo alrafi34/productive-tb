@@ -9,11 +9,19 @@ export interface CarryOverLink {
 /* "Continue with these values": opens the next tool with this result's
    inputs filled in. The query-string URLs are not separate pages (each tool
    page keeps its canonical), so the links are nofollow. */
-export default function CarryOverLinks({ links }: { links: CarryOverLink[] }) {
+export default function CarryOverLinks({
+  links,
+  tone = "dark",
+}: {
+  links: CarryOverLink[];
+  /* "dark" for the green result cards, "light" on white panels */
+  tone?: "dark" | "light";
+}) {
   if (links.length === 0) return null;
+  const light = tone === "light";
   return (
-    <div className="pt-4 border-t border-white/20">
-      <p className="text-xs font-semibold uppercase tracking-wide text-white/80 mb-2">
+    <div className={light ? "pt-1" : "pt-4 border-t border-white/20"}>
+      <p className={`text-xs font-semibold uppercase tracking-wide mb-2 ${light ? "text-gray-500" : "text-white/80"}`}>
         Continue with these values
       </p>
       <div className="flex flex-wrap gap-2">
@@ -22,7 +30,11 @@ export default function CarryOverLinks({ links }: { links: CarryOverLink[] }) {
             key={l.href}
             href={l.href}
             rel="nofollow"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-white/15 hover:bg-white/25 border border-white/30 px-3 py-1.5 text-sm font-medium text-white transition-colors"
+            className={
+              light
+                ? "inline-flex items-center gap-1.5 rounded-lg bg-white hover:border-primary hover:text-primary border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-800 transition-colors"
+                : "inline-flex items-center gap-1.5 rounded-lg bg-white/15 hover:bg-white/25 border border-white/30 px-3 py-1.5 text-sm font-medium text-white transition-colors"
+            }
           >
             {l.label}
             <span aria-hidden="true">→</span>

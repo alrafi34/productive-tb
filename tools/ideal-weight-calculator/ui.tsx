@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   IdealWeightResult,
   calculateIdealWeight,
@@ -15,6 +15,8 @@ import {
 import IdealWeightCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver } from "@/components/CarryOverLinks";
+import { readBody } from "@/lib/carry-body";
 
 const QUICK_HEIGHTS_CM = [150, 160, 170, 180, 190, 200];
 
@@ -36,6 +38,25 @@ export default function IdealWeightCalculatorUI() {
   const [currentWeightLb, setCurrentWeightLb] = useState("");
   const [selectedFormula, setSelectedFormula] = useState<"devine" | "robinson" | "miller" | "broca">("devine");
   const [copied, setCopied] = useState("");
+
+  // Body measurements carried over from another tool (see lib/carry-body)
+  useEffect(() => {
+    const body = readBody(readCarryOver());
+    if (!body) return;
+    const frame = window.requestAnimationFrame(() => {
+      setUnit(body.unit);
+      if (body.unit === "metric") {
+        setHeightCm(String(body.cm));
+        setCurrentWeight(String(body.kg));
+      } else {
+        setHeightFt(String(body.ft));
+        setHeightIn(String(body.inch));
+        setCurrentWeightLb(String(body.lb));
+      }
+      if (body.sex) setGender(body.sex);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const resolvedHeightCm = useMemo(() => {
     if (unit === "metric") return parseFloat(heightCm) || 0;

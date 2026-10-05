@@ -17,6 +17,7 @@ import {
 import WorkingDaysCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
+import { readCarryOver } from "@/components/CarryOverLinks";
 
 export default function WorkingDaysCalculatorUI() {
   const [startDate, setStartDate] = useState<string>(getTodayString());
@@ -30,7 +31,18 @@ export default function WorkingDaysCalculatorUI() {
 
   // Start from the weekend used where the visitor is (Fri–Sat in Bangladesh)
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => setWeekendType(getDefaultWeekendType()));
+    const frame = window.requestAnimationFrame(() => {
+      setWeekendType(getDefaultWeekendType());
+      // A date range carried over from another tool (?start=YYYY-MM-DD&end=YYYY-MM-DD)
+      const q = readCarryOver();
+      const start = q?.get("start") ?? "", end = q?.get("end") ?? "";
+      const iso = /^\d{4}-\d{2}-\d{2}$/;
+      if (iso.test(start) && iso.test(end) && start <= end
+        && !isNaN(parseDateInput(start).getTime()) && !isNaN(parseDateInput(end).getTime())) {
+        setStartDate(start);
+        setEndDate(end);
+      }
+    });
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
