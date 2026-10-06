@@ -53,13 +53,13 @@ export default function Footer() {
               <Image src="/favicon.svg" alt="" width={28} height={28} className="w-7 h-7" />
               {siteConfig.name}
             </Link>
-            <p className="text-sm text-gray-500 leading-relaxed max-w-md">
+            <p className="text-sm text-gray-400 leading-relaxed max-w-md">
               {TOTAL_TOOLS} free calculators and tools for engineering, construction, land
               and everyday work. They run in your browser — no sign-up, no paywalls.
             </p>
             <Link
               href="/tools"
-              className="inline-block mt-4 text-sm font-semibold text-primary hover:underline"
+              className="inline-block mt-4 text-sm font-semibold text-emerald-400 hover:underline"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Browse all {TOTAL_TOOLS} tools →
@@ -76,7 +76,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {COMPANY_LINKS.map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  <Link href={href} className="text-sm text-gray-400 hover:text-primary transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -103,10 +103,10 @@ export default function Footer() {
               <li key={cat.slug}>
                 <Link
                   href={`/tools/${cat.slug}`}
-                  className="group text-sm text-gray-500 hover:text-primary transition-colors"
+                  className="group text-sm text-gray-400 hover:text-primary transition-colors"
                 >
                   {cat.name}
-                  <span className="ml-1.5 text-[11px] font-semibold text-gray-700 group-hover:text-primary/70 tabular-nums">
+                  <span className="ml-1.5 text-[11px] font-semibold text-gray-400 group-hover:text-primary/70 tabular-nums">
                     {countByCategory[cat.slug] ?? 0}
                   </span>
                 </Link>
@@ -116,7 +116,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-6 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-gray-400">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex gap-5">
@@ -124,7 +124,7 @@ export default function Footer() {
               <Link
                 key={href}
                 href={href}
-                className="text-xs text-gray-600 hover:text-primary transition-colors"
+                className="text-xs text-gray-400 hover:text-primary transition-colors"
               >
                 {label}
               </Link>
