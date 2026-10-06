@@ -66,7 +66,7 @@ export const airConditionerPowerCalculatorConfig = {
       { q: "What is the power consumption of a 2 ton AC?", a: "A 2 ton AC (24,000 BTU/h) at EER 10 consumes 2,400W. At EER 12: 2,000W. Monthly cost at 8h/day, $0.12/kWh: EER 10 = $69.12; EER 12 = $57.60." },
       { q: "What is BTU and how does it relate to tons?", a: "1 ton = 12,000 BTU/h. Common conversions: 0.75 ton = 9,000 BTU/h; 1.5 ton = 18,000 BTU/h; 2 ton = 24,000 BTU/h; 2.5 ton = 30,000 BTU/h; 3 ton = 36,000 BTU/h." },
       { q: "How do I size a circuit breaker for an AC?", a: "Divide running watts by supply voltage to get running amps, then multiply by 1.25 (NEC continuous load factor). A 1.5 ton AC at 1,800W on 240V: 1,800 ÷ 240 = 7.5A × 1.25 = 9.4A — a 15A breaker is correct." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser. Your AC specs, operating hours, and electricity rates are never sent to any server or stored outside your device." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -77,7 +77,7 @@ export const airConditionerPowerCalculatorConfig = {
     "Current draw at 120, 208, 230 or 240 V",
     "Cooling capacity in BTU/h and kW",
     "Energy-saving tip for your rating",
-    "Runs in your browser — nothing is uploaded",
+    "Your inputs are not collected or stored",
   ],
   relatedTools: [
     "ups-load-calculator",

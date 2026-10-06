@@ -251,7 +251,7 @@ export default function CidrCalculatorUI() {
               IPv4 CIDR Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter an IPv4 address with CIDR prefix (e.g. 192.168.1.1/24) to instantly calculate network address, broadcast, host range, and more. All calculations run locally in your browser.
+              Enter an IPv4 address with CIDR prefix (e.g. 192.168.1.1/24) to instantly calculate network address, broadcast, host range, and more. We do not collect or store what you enter.
             </p>
           </div>
         </div>

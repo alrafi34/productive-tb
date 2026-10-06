@@ -32,7 +32,7 @@ export default function BandwidthCalculatorSEO() {
             sizing infrastructure, website owners choosing hosting plans, cloud architects estimating
             data egress costs, DevOps engineers planning deployments, content streamers tracking data
             caps, and networking students preparing for certifications</strong>. Four calculation modes,
-            real-time results, exportable summaries, browser-based with no signup required.
+            real-time results, exportable summaries, no signup required.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function BandwidthCalculatorSEO() {
                 "Traffic growth projection slider",
                 "Quick presets for common scenarios",
                 "Copy a summary or export TXT or JSON",
-                "Runs in your browser — nothing is uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>

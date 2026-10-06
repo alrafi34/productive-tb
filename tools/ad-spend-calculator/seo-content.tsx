@@ -8,13 +8,13 @@ export default function AdSpendCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>ad spend calculator</strong> is a free browser-based tool that estimates how much you need to budget for a digital advertising campaign, working backward from whichever goal you already know — a target number of clicks, impressions, conversions, a revenue target, or a desired return on ad spend. It answers the planning question every advertiser faces before a campaign launches: <em>how much do I actually need to spend to hit this goal?</em>
+            An <strong>ad spend calculator</strong> is a free tool that estimates how much you need to budget for a digital advertising campaign, working backward from whichever goal you already know — a target number of clicks, impressions, conversions, a revenue target, or a desired return on ad spend. It answers the planning question every advertiser faces before a campaign launches: <em>how much do I actually need to spend to hit this goal?</em>
           </p>
           <p>
             Every advertising platform — Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, Amazon Ads — prices campaigns using one of a handful of standard models: cost per click, cost per thousand impressions, cost per acquisition, or a target return on ad spend. Rather than manually multiplying and dividing these figures in a spreadsheet, this calculator supports seven calculation modes covering every common budgeting approach, then automatically breaks the result into daily, weekly, and monthly spend — with optional tax, management fee, and safety buffer layered on top for a realistic, invoice-ready total.
           </p>
           <p>
-            This tool is built for <strong>digital marketers, PPC specialists, Google Ads and Meta advertisers, TikTok and LinkedIn advertisers, Amazon sellers, Shopify store owners, agencies, freelancers, startup founders, small business owners, and marketing students</strong> who need to plan a budget before committing spend. It supports 16 global currencies, calculation history, scenario comparison, and export as CSV, JSON, or a print-ready report — entirely in your browser.
+            This tool is built for <strong>digital marketers, PPC specialists, Google Ads and Meta advertisers, TikTok and LinkedIn advertisers, Amazon sellers, Shopify store owners, agencies, freelancers, startup founders, small business owners, and marketing students</strong> who need to plan a budget before committing spend. It supports 16 global currencies, calculation history, scenario comparison, and export as CSV, JSON, or a print-ready report.
           </p>
         </div>
       </section>
@@ -103,7 +103,7 @@ export default function AdSpendCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past budgets",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -277,7 +277,7 @@ export default function AdSpendCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your budget figures, revenue goals, and campaign data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

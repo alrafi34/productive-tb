@@ -71,7 +71,7 @@ export const acreToSquareFeetConverterConfig = {
       },
       {
         name: "Check Conversion History",
-        text: "The tool saves your last 10 conversions locally in your browser. Click any history entry to reload that input value instantly — useful when comparing multiple property sizes.",
+        text: "The tool saves your last 10 conversions. Click any history entry to reload that input value instantly — useful when comparing multiple property sizes.",
       },
     ],
     faq: [
@@ -113,7 +113,7 @@ export const acreToSquareFeetConverterConfig = {
       },
       {
         q: "Is my data private when using this converter?",
-        a: "Yes. All conversions run entirely in your browser using JavaScript. Your inputs are never sent to any server, stored in any database, or accessible to anyone other than you. The tool works fully offline once the page has loaded.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

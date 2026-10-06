@@ -63,7 +63,7 @@ export const toolConfig = {
       { q: "What is chronological age?", a: "Chronological age is your actual age in calendar time — years, months, and days since birth. It is used for legal eligibility, medical dosing, educational enrollment, insurance tables, and statistical classification. This calculator computes chronological age precisely using calendar-aware date arithmetic." },
       { q: "What is batch age calculation?", a: "Batch mode lets you enter multiple dates of birth at once — one per line — and get all ages calculated simultaneously with an option to export as CSV. Useful for teachers, HR administrators, healthcare workers, and anyone regularly processing more than one date of birth." },
       { q: "How is the Western zodiac sign determined?", a: "Western astrology divides the year into 12 signs based on fixed date ranges. Aries begins around March 21, Taurus April 20, Gemini May 21, Cancer June 21, Leo July 23, Virgo August 23, Libra September 23, Scorpio October 23, Sagittarius November 22, Capricorn December 22, Aquarius January 20, and Pisces February 19." },
-      { q: "Is my date of birth stored or shared?", a: "No. All calculations happen entirely in your browser using JavaScript. The dates you enter are never sent to any server, stored in a database, or shared with third parties. The optional history feature uses browser localStorage — data stays only on your device." },
+      { q: "Is my date of birth stored or shared?", a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
   features: [
@@ -74,7 +74,7 @@ export const toolConfig = {
     "Zodiac sign with symbol",
     "Age at any past or future comparison date",
     "Batch mode for multiple DOBs with CSV export",
-    "100% browser-based — no data sent to any server",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "date-difference-calculator",

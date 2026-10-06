@@ -16,7 +16,7 @@ const strengths = [
   },
   {
     title: "Progress tracking without sign-up",
-    text: "Save local history entries in-browser for quick comparison during fitness and nutrition planning.",
+    text: "Save history entries for quick comparison during fitness and nutrition planning.",
   },
 ];
 

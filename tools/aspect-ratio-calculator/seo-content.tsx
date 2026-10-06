@@ -101,9 +101,9 @@ export default function AspectRatioCalculatorSEOContent({ onPick }: { onPick?: (
             </p>
           </div>
           <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
-            <h3 className="font-semibold text-slate-800 mb-2">4. Privacy-First and Browser-Based</h3>
+            <h3 className="font-semibold text-slate-800 mb-2">4. Privacy-First</h3>
             <p className="text-sm">
-              Calculations happen directly in your browser. No account setup, no unnecessary uploads to a server.
+              We do not collect or store what you enter.
             </p>
           </div>
           <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">

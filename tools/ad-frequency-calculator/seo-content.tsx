@@ -8,13 +8,13 @@ export default function AdFrequencyCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>ad frequency calculator</strong> is a free browser-based tool that instantly calculates the average number of times each unique person has seen an advertisement, using the industry-standard formula of impressions divided by reach. It answers a question every advertiser eventually has to face: <em>am I showing this ad to the same people too often, or not often enough?</em>
+            An <strong>ad frequency calculator</strong> is a free tool that instantly calculates the average number of times each unique person has seen an advertisement, using the industry-standard formula of impressions divided by reach. It answers a question every advertiser eventually has to face: <em>am I showing this ad to the same people too often, or not often enough?</em>
           </p>
           <p>
             Frequency is one of the most overlooked metrics in digital advertising, yet it directly drives cost efficiency. Facebook Ads, Google Ads, TikTok Ads, and LinkedIn Ads all report impressions and reach separately, but rarely surface frequency as a headline metric — leaving advertisers to calculate it manually or ignore it entirely. Left unmonitored, frequency creep is one of the leading causes of rising CPMs and falling CTR mid-campaign, because the same audience segment gets shown the same creative over and over until they stop responding.
           </p>
           <p>
-            This tool is built for <strong>digital marketers, Facebook Ads advertisers, Google Ads users, TikTok Ads advertisers, LinkedIn Ads marketers, media buyers, performance marketing agencies, marketing students, and small business owners</strong> who need an instant, accurate frequency reading along with a plain-language explanation of whether that number is healthy or a warning sign. Every calculation runs locally in your browser — no signup, no data collection — with results exportable as CSV, JSON, a downloadable PNG summary card, or a print-ready report.
+            This tool is built for <strong>digital marketers, Facebook Ads advertisers, Google Ads users, TikTok Ads advertisers, LinkedIn Ads marketers, media buyers, performance marketing agencies, marketing students, and small business owners</strong> who need an instant, accurate frequency reading along with a plain-language explanation of whether that number is healthy or a warning sign. No signup, no data collection — results are exportable as CSV, JSON, a downloadable PNG summary card, or a print-ready report.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function AdFrequencyCalculatorSEO() {
                 "Calculation history — save and reload up to 20 past results",
                 "Frequency benchmark reference table",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -266,7 +266,7 @@ export default function AdFrequencyCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your impressions, reach, and campaign data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

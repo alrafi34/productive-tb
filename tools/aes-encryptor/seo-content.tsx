@@ -77,7 +77,7 @@ export default function AESEncryptorSEOContent() {
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">🔐</div>
             <h3 className="font-semibold text-gray-900 mb-2">AES-GCM Encryption</h3>
-            <p className="text-sm text-gray-600">Military-grade encryption using Web Crypto API with authenticated encryption mode</p>
+            <p className="text-sm text-gray-600">Military-grade encryption with authenticated encryption mode</p>
           </div>
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">🔑</div>
@@ -86,8 +86,8 @@ export default function AESEncryptorSEOContent() {
           </div>
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">🌐</div>
-            <h3 className="font-semibold text-gray-900 mb-2">100% Client-Side</h3>
-            <p className="text-sm text-gray-600">All encryption happens in your browser. Zero data sent to servers</p>
+            <h3 className="font-semibold text-gray-900 mb-2">Private</h3>
+            <p className="text-sm text-gray-600">We do not collect or store what you enter.</p>
           </div>
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">📊</div>
@@ -208,8 +208,8 @@ export default function AESEncryptorSEOContent() {
         </h2>
         <div className="space-y-6">
           <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Is my data sent to any server?</h3>
-            <p className="text-gray-600">No. All encryption and decryption happens entirely in your browser using the Web Crypto API. No data is ever transmitted to our servers.</p>
+            <h3 className="font-semibold text-gray-900 mb-2">Is my data private?</h3>
+            <p className="text-gray-600">No. We do not collect or store what you enter.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">How secure is AES-GCM encryption?</h3>

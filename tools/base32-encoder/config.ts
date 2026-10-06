@@ -59,7 +59,7 @@ export const base32EncoderConfig = {
     "Large text support (100k+ characters)",
     "Debounced input processing",
     "Mobile responsive design",
-    "100% client-side processing",
-    "No backend or API required"
+    "Private: your inputs are not collected or stored",
+    "Nothing to install"
   ]
 };

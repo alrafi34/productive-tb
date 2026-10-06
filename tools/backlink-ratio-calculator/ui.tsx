@@ -114,7 +114,7 @@ export default function BacklinkRatioCalculatorUI() {
           <div>
             <h3 className="text-sm font-semibold text-blue-900" style={{ fontFamily: "var(--font-heading)" }}>Backlink Ratio Calculator</h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your backlink statistics to instantly calculate follow/nofollow ratios, anchor text distribution, domain diversity, and overall profile health. All calculations run locally in your browser.
+              Enter your backlink statistics to instantly calculate follow/nofollow ratios, anchor text distribution, domain diversity, and overall profile health. We do not collect or store what you enter.
             </p>
           </div>
         </div>

@@ -22,7 +22,7 @@ export default function BeamLoadCalculatorSEO() {
           <li>Real-time calculations as you type</li>
           <li>Unit conversion between meters and feet</li>
           <li>Export results to text and CSV formats</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Example scenarios for quick testing</li>
           <li>Formula display for educational purposes</li>
         </ul>
@@ -103,7 +103,7 @@ export default function BeamLoadCalculatorSEO() {
           <li>100% free with no registration required</li>
           <li>Instant results with real-time calculations</li>
           <li>Visual diagrams for better understanding</li>
-          <li>Works entirely in your browser - no installation needed</li>
+          <li>Nothing to install</li>
           <li>Mobile-friendly responsive design</li>
           <li>Export capabilities for documentation</li>
           <li>Educational formulas displayed for learning</li>

@@ -76,7 +76,7 @@ export const bigDataThroughputCalculatorConfig = {
     faq: [
       {
         q: "What is a big data throughput calculator?",
-        a: "A big data throughput calculator is a free browser-based tool that estimates data processing throughput, processing duration, and required data rates for big data pipelines, ETL workflows, streaming systems, and distributed computing environments like Apache Spark, Hadoop, and Kafka.",
+        a: "A big data throughput calculator is a free tool that estimates data processing throughput, processing duration, and required data rates for big data pipelines, ETL workflows, streaming systems, and distributed computing environments like Apache Spark, Hadoop, and Kafka.",
       },
       {
         q: "How is throughput calculated?",
@@ -112,7 +112,7 @@ export const bigDataThroughputCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

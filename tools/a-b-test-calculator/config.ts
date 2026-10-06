@@ -70,7 +70,7 @@ export const abTestCalculatorConfig = {
     faq: [
       {
         q: "What is an A/B test calculator?",
-        a: "An A/B test calculator is a free browser-based tool that determines whether the difference in conversion rate between two variants is statistically significant. It uses a two-proportion z-test to compute conversion rates, lift, a Z-score, a p-value, and a confidence interval from your visitor and conversion counts.",
+        a: "An A/B test calculator is a free tool that determines whether the difference in conversion rate between two variants is statistically significant. It uses a two-proportion z-test to compute conversion rates, lift, a Z-score, a p-value, and a confidence interval from your visitor and conversion counts.",
       },
       {
         q: "How is statistical significance calculated in an A/B test?",
@@ -106,7 +106,7 @@ export const abTestCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your visitor and conversion numbers are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

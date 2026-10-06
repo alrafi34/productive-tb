@@ -75,7 +75,7 @@ export const chiSquareCalculatorConfig = {
     faq: [
       {
         q: "What is a chi-square calculator?",
-        a: "A chi-square calculator is a free browser-based tool that performs chi-square hypothesis tests. It supports the Goodness of Fit test, which checks whether observed category counts match expected values, and the Test of Independence, which checks whether two categorical variables in a table are associated.",
+        a: "A chi-square calculator is a free tool that performs chi-square hypothesis tests. It supports the Goodness of Fit test, which checks whether observed category counts match expected values, and the Test of Independence, which checks whether two categorical variables in a table are associated.",
       },
       {
         q: "How is the chi-square statistic calculated?",
@@ -111,7 +111,7 @@ export const chiSquareCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your data is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

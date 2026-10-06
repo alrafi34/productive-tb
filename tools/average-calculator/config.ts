@@ -20,7 +20,7 @@ export const averageCalculatorConfig = {
       { q: "How do I calculate a weighted average?", a: "Multiply each value by its weight, add the results, and divide by the sum of the weights. A grade of 90 worth 60% and 80 worth 40% gives (90 × 0.6 + 80 × 0.4) ÷ 1.0 = 86. Tick Weighted average in the calculator and enter the weights in the same order as the values." },
       { q: "Can I paste data from Excel or Google Sheets?", a: "Yes. Copy a row or a column and paste it into the box. Tabs, spaces, line breaks, semicolons and commas all separate values, numbers written with thousands separators such as 1,000 or 12,345.67 are read as one number, and a leading $, €, £ or a trailing % is ignored." },
       { q: "Can I export the result?", a: "Yes. The CSV export downloads your numbered values followed by the count, sum, average, median and sample standard deviation, ready to open in a spreadsheet." },
-      { q: "Is my data private?", a: "Yes. The calculation runs in your browser and your numbers are not sent anywhere." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
       { q: "What is the difference between sample and population standard deviation?", a: "Both measure how spread out the values are. Use the population figure, which divides by n, when your list is the whole group, such as every student in one class. Use the sample figure, which divides by n − 1, when your list is a sample from a larger group; it is slightly larger to allow for that." },
     ],
     title: "Average Calculator – Mean, Median, Mode & Std Deviation",
@@ -67,7 +67,7 @@ export const averageCalculatorConfig = {
     "Paste from Excel or CSV",
     "Clear input with one click",
     "Mobile-responsive design",
-    "100% client-side processing",
-    "No backend or API required"
+    "Private: your inputs are not collected or stored",
+    "Nothing to install"
   ]
 };

@@ -64,7 +64,7 @@ export const cacheEfficiencyCalculatorConfig = {
     faq: [
       {
         q: "What is a cache efficiency calculator?",
-        a: "A cache efficiency calculator is a free browser-based tool that calculates cache hit rate, miss rate, and a performance rating from your cache hit and miss counts.",
+        a: "A cache efficiency calculator is a free tool that calculates cache hit rate, miss rate, and a performance rating from your cache hit and miss counts.",
       },
       {
         q: "How is cache hit rate calculated?",
@@ -88,7 +88,7 @@ export const cacheEfficiencyCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your hit and miss counts are never transmitted to any server.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

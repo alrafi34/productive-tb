@@ -8,13 +8,13 @@ export default function CacheEfficiencyCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>cache efficiency calculator</strong> is a free browser-based tool that instantly calculates cache hit rate, miss rate, and overall performance rating from your cache hit and miss counts.
+            A <strong>cache efficiency calculator</strong> is a free tool that instantly calculates cache hit rate, miss rate, and overall performance rating from your cache hit and miss counts.
           </p>
           <p>
             Enter your cache hits and misses — or total requests and hits — and the calculator instantly returns the hit rate, miss rate, total requests, and a performance rating from Poor to Outstanding.
           </p>
           <p>
-            This tool is built for <strong>software developers, data engineers, backend engineers, DevOps engineers, system architects, computer science students, performance engineers, cloud engineers, and technical interview candidates</strong>. It runs entirely in your browser — no data is ever transmitted anywhere.
+            This tool is built for <strong>software developers, data engineers, backend engineers, DevOps engineers, system architects, computer science students, performance engineers, cloud engineers, and technical interview candidates</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function CacheEfficiencyCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Clear validation for negative and invalid inputs, with divide-by-zero protection",
-                "All processing runs locally — no cache data is ever uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -227,7 +227,7 @@ export default function CacheEfficiencyCalculatorSEO() {
           {[
             {
               q: "What is a cache efficiency calculator?",
-              a: "A cache efficiency calculator is a free browser-based tool that calculates cache hit rate, miss rate, and a performance rating from your cache hit and miss counts.",
+              a: "A cache efficiency calculator is a free tool that calculates cache hit rate, miss rate, and a performance rating from your cache hit and miss counts.",
             },
             {
               q: "How is cache hit rate calculated?",
@@ -251,7 +251,7 @@ export default function CacheEfficiencyCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your hit and miss counts are never transmitted to any server.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 6 ? "border-b border-gray-100 pb-6" : ""}>

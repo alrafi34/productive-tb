@@ -56,7 +56,7 @@ export const batteryChargingTimeCalculatorConfig = {
       { q: "How long does it take to charge a car battery?", a: "A 60Ah battery, full range, with a 10A charger at 80% efficiency takes about 7.5 hours." },
       { q: "Does a higher-current charger always charge faster?", a: "Generally yes, but the battery's maximum safe charge rate (C-rate) sets a practical ceiling beyond which excess current just generates heat." },
       { q: "Why should I avoid always charging to 100%?", a: "Regularly charging lithium batteries to 100% and discharging to 0% accelerates capacity fade compared to a moderate range like 20-80%." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your capacity, current, and percentage values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

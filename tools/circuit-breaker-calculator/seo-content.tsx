@@ -29,8 +29,7 @@ export default function CircuitBreakerCalculatorSEO() {
             This <strong>breaker size calculator</strong> is built for <strong>licensed electricians sizing panel
             circuits, electrical engineers designing power distribution systems, panel builders speccing MCBs and
             MCCBs, and homeowners or DIYers planning permitted electrical work</strong>. It supports single-phase
-            and three-phase systems with instant results and a wire gauge recommendation. Browser-based, free, no
-            signup required.
+            and three-phase systems with instant results and a wire gauge recommendation. Free, no signup required.
           </p>
         </div>
       </section>
@@ -91,7 +90,7 @@ export default function CircuitBreakerCalculatorSEO() {
                 "Calculation history (last 20 entries)",
                 "Export results as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

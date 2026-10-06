@@ -48,11 +48,11 @@ export const binaryHexDecimalConverterConfig = {
     "Input validation for each base",
     "Auto base detection (0x, 0b prefixes)",
     "Keyboard shortcuts",
-    "LocalStorage history (last 20)",
+    "History (last 20)",
     "Export as JSON",
     "Dark/Light theme support",
     "Mobile responsive design",
-    "100% client-side processing",
-    "No backend or API required"
+    "Private: your inputs are not collected or stored",
+    "Nothing to install"
   ]
 };

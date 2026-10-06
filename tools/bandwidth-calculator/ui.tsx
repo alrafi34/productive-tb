@@ -329,7 +329,7 @@ export default function BandwidthCalculatorUI() {
               Bandwidth Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Estimate file transfer time, monthly website traffic, streaming data usage, or multi-user bandwidth requirements. All calculations run locally in your browser.
+              Estimate file transfer time, monthly website traffic, streaming data usage, or multi-user bandwidth requirements. We do not collect or store what you enter.
             </p>
           </div>
         </div>

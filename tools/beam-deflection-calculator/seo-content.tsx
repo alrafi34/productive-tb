@@ -3,7 +3,7 @@ export default function BeamDeflectionCalculatorSEO() {
     <section className="mt-16 prose prose-gray max-w-none text-sm text-gray-600 space-y-6">
       <h2 className="text-2xl font-bold text-gray-900 not-prose">About the Beam Deflection Calculator</h2>
       <p>
-        The <strong>Beam Deflection Calculator</strong> is a free, browser-based structural engineering tool that
+        The <strong>Beam Deflection Calculator</strong> is a free structural engineering tool that
         computes beam deflection, slope, support reactions, bending moment, and shear force using
         Euler–Bernoulli beam theory. It supports simply supported, cantilever and fixed-end
         beams under point loads, uniformly distributed loads (UDL), and applied moments.

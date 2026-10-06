@@ -38,7 +38,7 @@ export const bionicReadingConverterConfig = {
       { q: "Does Bionic Reading help with ADHD or dyslexia?", a: "Some readers with ADHD report that the bold anchors help them keep their place, but there is no solid research showing a benefit for ADHD or dyslexia. For dyslexia, larger text, more spacing between letters and lines, and familiar sans-serif fonts have more support." },
       { q: "How much of each word should be bold?", a: "Around half is the usual setting: in 'reading', the first three letters (rea) are bold at 40% and the first four (read) at 50%. Less bold looks calmer; more bold is heavier to read. This tool rounds up, so every word gets at least one bold letter." },
       { q: "Can I use Bionic Reading in Word, Google Docs or Kindle?", a: "Copy the result as rich text and paste it into Word, Google Docs or an email and the bold is kept. For e-readers, export HTML and convert it to an e-book with a tool such as Calibre." },
-      { q: "Is my text sent anywhere?", a: "No. The conversion runs in your browser, so the text you paste stays on your device." },
+      { q: "Is my text sent anywhere?", a: "No. We do not collect or store what you enter." },
     ],
   },
 };

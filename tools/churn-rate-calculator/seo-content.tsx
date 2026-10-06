@@ -8,13 +8,13 @@ export default function ChurnRateCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>churn rate calculator</strong> is a free browser-based tool that measures how many customers — or how much revenue — a business loses over a given period. It answers the question every subscription-based business needs to track: <em>what percentage of my customers or revenue am I losing, and is that number healthy or a warning sign?</em>
+            A <strong>churn rate calculator</strong> is a free tool that measures how many customers — or how much revenue — a business loses over a given period. It answers the question every subscription-based business needs to track: <em>what percentage of my customers or revenue am I losing, and is that number healthy or a warning sign?</em>
           </p>
           <p>
             Churn is one of the most important metrics for SaaS companies, subscription services, and any business built on recurring revenue, because even a small monthly churn rate compounds into a large annual customer loss. This calculator supports five calculation modes — Customer Churn Rate, Revenue Churn Rate, Monthly Churn, Quarterly Churn, and Annual Churn — and automatically converts between monthly, quarterly, and annual equivalents so you can compare churn on the same basis regardless of how your data is reported.
           </p>
           <p>
-            This tool is built for <strong>SaaS companies, startup founders, marketing teams, customer success teams, sales teams, business analysts, investors, agencies, students, and business consultants</strong> who need to measure customer retention and identify customer loss. It includes retention benchmarking, a customer lifetime value (LTV) estimate, LTV:CAC ratio, scenario comparison, and export as CSV, JSON, or a print-ready report — entirely in your browser, with no signup required.
+            This tool is built for <strong>SaaS companies, startup founders, marketing teams, customer success teams, sales teams, business analysts, investors, agencies, students, and business consultants</strong> who need to measure customer retention and identify customer loss. It includes retention benchmarking, a customer lifetime value (LTV) estimate, LTV:CAC ratio, scenario comparison, and export as CSV, JSON, or a print-ready report, with no signup required.
           </p>
         </div>
       </section>
@@ -101,7 +101,7 @@ export default function ChurnRateCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past results",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -274,7 +274,7 @@ export default function ChurnRateCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your customer counts, revenue figures, and business data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

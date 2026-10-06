@@ -14,7 +14,7 @@ export default function BreakEvenCalculatorSEO() {
             Break-even analysis is built on three core inputs: fixed costs (expenses that don't change with output, like rent and salaries), variable costs per unit (expenses that scale with each sale, like materials and shipping), and the selling price per unit. From these three numbers, the calculator derives the contribution margin, break-even units, break-even revenue, margin of safety, and the sales volume required to hit any target profit — all in real time.
           </p>
           <p>
-            This tool is designed for <strong>startup founders, ecommerce sellers, freelancers, small business owners, financial analysts, and students</strong> who need to validate pricing decisions, model cost scenarios, and plan for profitability without a spreadsheet or financial consultant. Supports 12 currencies, exports to CSV and TXT, and saves a shareable URL for every calculation — all processed locally in your browser with no data sent to any server.
+            This tool is designed for <strong>startup founders, ecommerce sellers, freelancers, small business owners, financial analysts, and students</strong> who need to validate pricing decisions, model cost scenarios, and plan for profitability without a spreadsheet or financial consultant. Supports 12 currencies, exports to CSV and TXT, and saves a shareable URL for every calculation.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function BreakEvenCalculatorSEO() {
                 "Shareable URL — every calculation gets a permanent link",
                 "Calculation history saved to browser (up to 20 entries)",
                 "Export full report as CSV or TXT",
-                "100% browser-based — no data leaves your device",
+                "Private: your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -304,7 +304,7 @@ export default function BreakEvenCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your financial inputs — fixed costs, variable costs, selling prices, and profit targets — are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature stores data only in your browser's localStorage, which is local to your device. This makes the tool safe to use for confidential business financial planning without data privacy concerns.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

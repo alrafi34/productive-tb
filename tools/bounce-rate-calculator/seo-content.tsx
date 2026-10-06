@@ -30,8 +30,7 @@ export default function BounceRateCalculatorSEO() {
             Analytics, ecommerce owners diagnosing product page drop-offs, content marketers
             measuring article engagement, PPC advertisers checking landing page quality, digital
             agencies reporting client website KPIs, and web analysts benchmarking site health</strong>.
-            Real-time calculation, benchmark context, export, and shareable URL. Browser-based,
-            free, no signup required.
+            Real-time calculation, benchmark context, export, and shareable URL. Free, no signup required.
           </p>
         </div>
       </section>
@@ -108,11 +107,11 @@ export default function BounceRateCalculatorSEO() {
                 "Performance badge (Excellent / Good / Average / High)",
                 "Contextual plain-language interpretation",
                 "Industry preset buttons for quick examples",
-                "Calculation history saved locally",
+                "Calculation history",
                 "Copy result or full breakdown to clipboard",
                 "Download as TXT or CSV",
                 "Shareable URL with pre-filled values",
-                "Browser-based — no signup required",
+                "No signup required",
                 "Works on mobile and tablet",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -323,7 +322,7 @@ export default function BounceRateCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your session counts, bounce figures, and any other values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -34,12 +34,12 @@ export const toolConfig = {
     }
   },
   features: [
-    "AES-GCM encryption with Web Crypto API",
+    "AES-GCM encryption",
     "PBKDF2 password-based key derivation",
     "Multiple output formats (Base64, Hex, JSON)",
     "Password strength indicator",
     "File encryption and decryption",
     "Export encrypted data packages",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

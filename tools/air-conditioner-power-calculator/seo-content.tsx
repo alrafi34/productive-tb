@@ -82,7 +82,7 @@ export default function AirConditionerPowerCalculatorSEO() {
                 "Current draw at 120, 208, 230 or 240 V",
                 "Cooling capacity in BTU/h and kW",
                 "Energy-saving tip for your rating",
-                "Runs in your browser — nothing is uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

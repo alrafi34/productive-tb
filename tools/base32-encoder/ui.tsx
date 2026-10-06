@@ -130,7 +130,7 @@ export default function Base32EncoderUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Base32 Encoder/Decoder</h3>
               <p className="text-sm text-blue-800">
-                Convert text to Base32 or decode Base32 back to text instantly. Perfect for 2FA secrets, TOTP authentication, and developer workflows. All processing happens locally in your browser.
+                Convert text to Base32 or decode Base32 back to text instantly. Perfect for 2FA secrets, TOTP authentication, and developer workflows. We do not collect or store what you enter.
               </p>
             </div>
           </div>

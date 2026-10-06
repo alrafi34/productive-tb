@@ -18,7 +18,7 @@ export default function BoundaryLengthCalculatorSEO() {
             The calculator supports multiple input modes including manual side entry for irregular shapes, and preset shapes like rectangles, squares, and triangles. It works with all common measurement units including Meter, Feet, Kilometer, Centimeter, and Inch, making it versatile for any measurement system.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations happen instantly in your browser with complete privacy. The tool includes features like calculation history, export options, and real-time updates as you type.
+            All calculations happen instantly with complete privacy. The tool includes features like calculation history, export options, and real-time updates as you type.
           </p>
         </div>
       </section>

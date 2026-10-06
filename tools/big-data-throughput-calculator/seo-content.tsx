@@ -8,13 +8,13 @@ export default function BigDataThroughputCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>big data throughput calculator</strong> is a free browser-based tool that estimates <strong>data processing throughput</strong>, <strong>processing duration</strong>, and <strong>required throughput</strong> for large-scale data pipelines. It helps you plan capacity for ETL workflows, streaming systems, and distributed computing platforms like Apache Spark, Hadoop, Kafka, Flink, Snowflake, Databricks, BigQuery, and Redshift.
+            A <strong>big data throughput calculator</strong> is a free tool that estimates <strong>data processing throughput</strong>, <strong>processing duration</strong>, and <strong>required throughput</strong> for large-scale data pipelines. It helps you plan capacity for ETL workflows, streaming systems, and distributed computing platforms like Apache Spark, Hadoop, Kafka, Flink, Snowflake, Databricks, BigQuery, and Redshift.
           </p>
           <p>
             Enter a dataset size, a throughput rate, or a target processing time, and the calculator solves for whichever value you're missing — instantly converting between KB, MB, GB, TB, and PB using standard binary units. It also models parallel processing across multiple workers or executors with an adjustable efficiency factor to account for real-world overhead.
           </p>
           <p>
-            Built for <strong>data engineers, data scientists, analytics engineers, cloud engineers, DevOps engineers, solution architects, database administrators, and students learning big data</strong>, the calculator runs entirely in your browser with instant results and no signup required.
+            Built for <strong>data engineers, data scientists, analytics engineers, cloud engineers, DevOps engineers, solution architects, database administrators, and students learning big data</strong>, the calculator works with instant results and no signup required.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function BigDataThroughputCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -212,7 +212,7 @@ export default function BigDataThroughputCalculatorSEO() {
           {[
             {
               q: "What is a big data throughput calculator?",
-              a: "A big data throughput calculator is a free browser-based tool that estimates data processing throughput, processing duration, and required data rates for big data pipelines, ETL workflows, streaming systems, and distributed computing environments.",
+              a: "A big data throughput calculator is a free tool that estimates data processing throughput, processing duration, and required data rates for big data pipelines, ETL workflows, streaming systems, and distributed computing environments.",
             },
             {
               q: "How is throughput calculated?",
@@ -248,7 +248,7 @@ export default function BigDataThroughputCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -13,7 +13,7 @@ export default function AudioVisualizerSEOContent() {
         
         <div className="space-y-4 text-gray-700">
           <p>
-            The Audio Visualizer transforms sound into stunning real-time visual animations using the Web Audio API. Whether you're a musician, content creator, or audio engineer, this tool lets you see the frequency spectrum of any audio source instantly in your browser.
+            The Audio Visualizer transforms sound into stunning real-time visual animations using the Web Audio API. Whether you're a musician, content creator, or audio engineer, this tool lets you see the frequency spectrum of any audio source instantly.
           </p>
 
           <h3 className="text-lg font-semibold text-gray-900 mt-6">Features</h3>
@@ -23,7 +23,7 @@ export default function AudioVisualizerSEOContent() {
             <li>Multiple visualization styles: bars, waveform, circular, and radial</li>
             <li>Adjustable sensitivity and FFT resolution</li>
             <li>Smooth 60 FPS animations</li>
-            <li>100% browser-based - no server uploads</li>
+            <li>Private: your inputs are not collected or stored</li>
             <li>Works on desktop and mobile devices</li>
           </ul>
 
@@ -67,7 +67,7 @@ export default function AudioVisualizerSEOContent() {
           </ul>
 
           <p className="text-sm text-gray-600 mt-6">
-            All audio processing happens locally in your browser. No audio data is sent to any server, ensuring complete privacy.
+            We do not collect or store what you enter.
           </p>
         </div>
       </div>

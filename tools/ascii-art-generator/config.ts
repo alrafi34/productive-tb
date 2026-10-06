@@ -45,9 +45,9 @@ export const asciiArtGeneratorConfig = {
     "Download as TXT file",
     "Download as PNG image",
     "Drag-and-drop image upload",
-    "History tracking with localStorage",
-    "100% browser-based processing",
-    "No server required",
+    "History tracking",
+    "Private: your inputs are not collected or stored",
+    "Nothing to install",
     "Mobile-optimized interface"
   ]
 };

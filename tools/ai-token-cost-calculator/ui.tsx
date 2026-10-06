@@ -236,7 +236,7 @@ export default function AITokenCostCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Estimate API costs for OpenAI, Claude, Gemini, and more. Enter token counts and requests to get instant
-              cost breakdowns and monthly forecasts. All calculations run locally in your browser.
+              cost breakdowns and monthly forecasts. We do not collect or store what you enter.
             </p>
           </div>
         </div>

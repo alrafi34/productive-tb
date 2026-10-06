@@ -38,7 +38,7 @@ export default function ApparentPowerCalculatorSEO() {
     },
     {
       q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage and current values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -76,7 +76,7 @@ export default function ApparentPowerCalculatorSEO() {
             Built for <strong>electrical engineers sizing supply infrastructure, electricians calculating
             breaker and cable requirements, and facility managers</strong> understanding utility demand
             charges billed in kVA. Includes six built-in presets from residential to industrial and DC
-            loads, full step-by-step calculation, and text export — free and entirely browser-based.
+            loads, full step-by-step calculation, and text export — free.
           </p>
         </div>
       </section>
@@ -129,9 +129,9 @@ export default function ApparentPowerCalculatorSEO() {
                 "Automatic VA, kVA, and MVA formatting",
                 "Full step-by-step calculation breakdown",
                 "Six built-in presets (residential, industrial, DC)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

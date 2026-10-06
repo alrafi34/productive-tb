@@ -46,6 +46,6 @@ export const toolConfig = {
     "Random data generator",
     "Responsive design",
     "Dark/Light mode support",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

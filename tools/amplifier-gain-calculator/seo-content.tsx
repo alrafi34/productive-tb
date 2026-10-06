@@ -31,8 +31,7 @@ export default function AmplifierGainCalculatorSEO() {
             power amp stages, RF engineers budgeting transmitter and receiver chains, electronics students
             learning gain and decibel theory, circuit designers verifying op-amp and transistor stages, and
             hobbyists checking a build against a datasheet spec</strong>. It runs every mode with instant
-            results, four presets per mode, saved calculation history, and full step-by-step working — free,
-            browser-based, no signup required.
+            results, four presets per mode, saved calculation history, and full step-by-step working — free, no signup required.
           </p>
         </div>
       </section>
@@ -91,7 +90,7 @@ export default function AmplifierGainCalculatorSEO() {
                 "Calculation history (last 10 entries saved)",
                 "Export results as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -55,7 +55,7 @@ export const toolConfig = {
       { q: "Is this tool suitable for men and women?", a: "Yes. The formulas include gender-specific handling and thresholds, and the interface adapts required inputs accordingly." },
       { q: "How accurate is an online body fat calculator compared with DEXA?", a: "Online calculators provide practical estimates, not clinical-grade precision. DEXA and lab assessments are generally more accurate for medical use." },
       { q: "Can I save and track results over time?", a: "Yes. You can save entries in local browser history and compare progress across dates and methods." },
-      { q: "Does this body fat calculator store my personal data on a server?", a: "No. Calculations and saved history are handled in your browser for local use." },
+      { q: "Does this body fat calculator store my personal data on a server?", a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "Can this calculator replace medical advice?", a: "No. It is a planning and educational tool. For diagnosis or treatment decisions, consult a qualified healthcare professional." },
     ],
   },
@@ -67,10 +67,10 @@ export const toolConfig = {
     "Gender-specific handling for formula inputs and categories",
     "Real-time result updates with category visualization",
     "Copy quick percentage or full result summary",
-    "Save and review local in-browser history entries",
+    "Save and review history entries",
     "Reset workflow and sample data shortcuts",
     "Mobile-first responsive UI for phone, tablet, and desktop",
     "SEO-rich educational content with FAQ, HowTo, and examples",
-    "100% client-side calculation with no account required"
+    "Private calculation with no account required"
   ]
 };

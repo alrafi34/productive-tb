@@ -59,7 +59,7 @@ export const capacitorChargeTimeCalculatorConfig = {
       { q: "How do I calculate charge time for 95%?", a: "t = -RC × ln(1 - 0.95) = RC × 2.996. Each target has its own multiplier: 50% ≈ 0.693τ, 63% ≈ 1.0τ, 90% ≈ 2.303τ, 95% ≈ 2.996τ, 99% ≈ 4.605τ." },
       { q: "Does supply voltage affect the charge time?", a: "No. Time constant and time to reach a given percentage depend only on R and C (τ = RC), not voltage. Voltage only affects how much charge and energy end up stored." },
       { q: "How do I use this calculator to design a 555 timer circuit?", a: "Use the 63% target (one time constant), which corresponds to standard 555 monostable timing, and adjust R and C until the calculated time matches your design target." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your resistance, capacitance, and target percentage values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

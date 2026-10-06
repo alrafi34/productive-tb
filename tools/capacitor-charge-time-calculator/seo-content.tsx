@@ -30,7 +30,7 @@ export default function CapacitorChargeTimeCalculatorSEO() {
             Built for <strong>electronics students learning RC circuit theory, hobbyists designing 555
             timer and debounce circuits, and engineers</strong> sizing timing components for filters and
             pulse circuits. Includes four built-in presets, full step-by-step derivation, and text export
-            — free and entirely browser-based.
+            — free.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function CapacitorChargeTimeCalculatorSEO() {
                 "Full step-by-step formula derivation",
                 "Automatic time unit conversion (µs, ms, s, min, hr)",
                 "Four built-in RC circuit presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

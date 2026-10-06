@@ -38,7 +38,7 @@ export default function CapacitorCalculatorSEO() {
     },
     {
       q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your capacitance, voltage, charge, and energy values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -76,7 +76,7 @@ export default function CapacitorCalculatorSEO() {
             Built for <strong>electronics students learning capacitor theory, hobbyists sizing energy
             storage or filter capacitors, and engineers verifying charge and energy figures</strong> during
             circuit design. Supports all four calculation modes, full unit prefix ranges for each quantity,
-            step-by-step working, and text export — free and entirely browser-based.
+            step-by-step working, and text export — free.
           </p>
         </div>
       </section>
@@ -133,9 +133,9 @@ export default function CapacitorCalculatorSEO() {
                 "Full unit prefix support: F/mF/µF/nF/pF, V/mV/kV, C/mC/µC/nC, J/mJ/µJ",
                 "Complete step-by-step derivation for every result",
                 "Automatic unit conversion display",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

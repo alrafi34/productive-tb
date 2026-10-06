@@ -147,7 +147,7 @@ export default function AIPromptLengthCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Paste any prompt to instantly count tokens, words, characters, and see how much of the model context window
-              it uses. All analysis runs locally — nothing is sent to any server.
+              it uses. We do not collect or store what you enter.
             </p>
           </div>
         </div>

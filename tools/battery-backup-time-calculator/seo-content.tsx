@@ -30,7 +30,7 @@ export default function BatteryBackupTimeCalculatorSEO() {
             Built for <strong>homeowners planning outage backup, RV and camper owners checking house
             battery runtime, and solar system owners</strong> verifying their battery bank against expected
             loads. Includes six built-in battery presets and eight common load presets, full step-by-step
-            derivation, and text export — free and entirely browser-based.
+            derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function BatteryBackupTimeCalculatorSEO() {
                 "Depth of discharge adjustment",
                 "Full step-by-step derivation",
                 "Six battery presets + eight load presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

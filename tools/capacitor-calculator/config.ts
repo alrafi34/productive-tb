@@ -60,7 +60,7 @@ export const capacitorCalculatorConfig = {
       { q: "What is the difference between charge and stored energy?", a: "Charge (Q, coulombs) scales linearly with voltage (Q = CV). Stored energy (E, joules) scales with voltage squared (E = ½CV²) — twice the voltage means twice the charge but four times the energy." },
       { q: "How do capacitor unit prefixes relate to each other?", a: "1F = 1,000mF = 1,000,000µF = 1,000,000,000nF = 1,000,000,000,000pF. Most practical capacitors range from picofarads to thousands of microfarads." },
       { q: "Why is my result shown in scientific notation?", a: "Capacitor values span many orders of magnitude, so very small or large results use scientific notation for readability, alongside conversions across standard unit prefixes." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your capacitance, voltage, charge, and energy values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

@@ -56,7 +56,7 @@ export const batteryBackupTimeCalculatorConfig = {
       { q: "Why is my actual backup time shorter than calculated?", a: "Common causes: aged battery with reduced capacity, cold temperatures, higher-than-estimated load, or lower actual system efficiency than assumed." },
       { q: "How do I estimate backup time for multiple appliances?", a: "Add up the power draw of every device running simultaneously into one total load power figure before calculating." },
       { q: "How is this different from a battery capacity calculator?", a: "This solves for backup time given a known battery. A capacity calculator solves the reverse: sizing a new battery for a target runtime." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, capacity, load power, and efficiency values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

@@ -6,10 +6,10 @@ export default function BinaryHexDecimalConverterSEOContent() {
           About Binary/Hex/Decimal Converter
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          The Binary/Hex/Decimal Converter is a fast, browser-based utility for converting numbers between 
+          The Binary/Hex/Decimal Converter is a fast, online utility for converting numbers between 
           different numeral systems. Whether you're a programmer, computer science student, or electronics 
           engineer, this tool makes it easy to convert between Binary (Base-2), Decimal (Base-10), 
-          Hexadecimal (Base-16), and Octal (Base-8) instantly in your browser.
+          Hexadecimal (Base-16), and Octal (Base-8) instantly.
         </p>
       </section>
 
@@ -29,10 +29,9 @@ export default function BinaryHexDecimalConverterSEOContent() {
           <li><strong>Copy All Bases:</strong> Copy all conversions at once</li>
           <li><strong>Random Number Generator:</strong> Generate random numbers for testing</li>
           <li><strong>Input Validation:</strong> Real-time validation for each base</li>
-          <li><strong>Conversion History:</strong> Save last 20 conversions locally</li>
+          <li><strong>Conversion History:</strong> Save last 20 conversions</li>
           <li><strong>Keyboard Shortcuts:</strong> Ctrl+R to generate random numbers</li>
-          <li><strong>100% Client-Side:</strong> All processing happens in your browser</li>
-          <li><strong>No Backend Required:</strong> Works completely offline</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
         </ul>
       </section>
 
@@ -213,7 +212,7 @@ export default function BinaryHexDecimalConverterSEOContent() {
           Conversion History
         </h2>
         <p className="text-gray-700 leading-relaxed mb-3">
-          The tool automatically saves your last 20 conversions in browser localStorage:
+          The tool automatically saves your last 20 conversions:
         </p>
         <ul className="space-y-2 text-gray-700">
           <li>View all recent conversions with timestamps</li>
@@ -299,11 +298,8 @@ export default function BinaryHexDecimalConverterSEOContent() {
           Your privacy is our priority:
         </p>
         <ul className="space-y-2 text-gray-700">
-          <li><strong>100% Client-Side:</strong> All conversions happen in your browser</li>
-          <li><strong>No Server Communication:</strong> Nothing is sent to any server</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
           <li><strong>No Tracking:</strong> We don't track what you convert</li>
-          <li><strong>Local Storage Only:</strong> History is stored only in your browser</li>
-          <li><strong>No Third-Party Scripts:</strong> No analytics or tracking code</li>
         </ul>
       </section>
 
@@ -324,7 +320,7 @@ export default function BinaryHexDecimalConverterSEOContent() {
         <div className="space-y-4 text-gray-700">
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">What's the maximum number I can convert?</h3>
-            <p className="text-sm">The tool supports numbers up to JavaScript's maximum safe integer (2^53 - 1).</p>
+            <p className="text-sm">The tool supports numbers up to 2^53 - 1 (9,007,199,254,740,991).</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Can I convert negative numbers?</h3>
@@ -339,12 +335,8 @@ export default function BinaryHexDecimalConverterSEOContent() {
             <p className="text-sm">Both are valid hexadecimal prefixes. The tool accepts both uppercase and lowercase versions.</p>
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Can I use this offline?</h3>
-            <p className="text-sm">Yes, once the page loads, all functionality works offline. No internet connection is required.</p>
-          </div>
-          <div>
             <h3 className="font-semibold text-gray-900 mb-1">Is my conversion history saved?</h3>
-            <p className="text-sm">Yes, the last 20 conversions are saved in your browser's localStorage and persist between sessions.</p>
+            <p className="text-sm">Yes, the last 20 conversions are saved and persist between sessions.</p>
           </div>
         </div>
       </section>
@@ -356,7 +348,7 @@ export default function BinaryHexDecimalConverterSEOContent() {
         <div className="space-y-3 text-gray-700">
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Conversion Algorithm</h3>
-            <p className="text-sm">Uses JavaScript's built-in parseInt() and toString() methods with radix parameters for accurate base conversions.</p>
+            <p className="text-sm">Uses standard positional base conversion for accurate results between binary, octal, decimal and hexadecimal.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Performance</h3>
@@ -364,7 +356,7 @@ export default function BinaryHexDecimalConverterSEOContent() {
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Precision</h3>
-            <p className="text-sm">All conversions are mathematically accurate. The tool uses JavaScript's native number handling.</p>
+            <p className="text-sm">All conversions are mathematically accurate.</p>
           </div>
         </div>
       </section>
