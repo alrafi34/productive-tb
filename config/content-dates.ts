@@ -533,7 +533,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
 
 /** Standalone page route → date its content last changed. */
 export const PAGE_CONTENT_DATES: Record<string, string> = {
-  "/": "2026-09-26",
+  "/": "2026-10-06",
   "/tools": "2026-08-07",
   "/about": "2026-08-07",
   "/contact": "2026-08-07",

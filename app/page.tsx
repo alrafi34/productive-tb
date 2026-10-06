@@ -170,7 +170,7 @@ const faqSchema = {
 
 export const metadata: Metadata = {
   title: `${TOTAL_TOOLS} Free Engineering & Technical Calculators | Productive Toolbox`,
-  description: `${TOTAL_TOOLS} free online calculators and tools for electrical, architectural, mechanical, land and data work — plus everyday text, image and developer utilities. No sign-up.`,
+  description: `${TOTAL_TOOLS} free online calculators and tools for electrical, architectural, mechanical, land and data work — plus everyday text, image and developer tools. No sign-up.`,
   openGraph: {
     title: `${TOTAL_TOOLS} Free Engineering & Technical Calculators`,
     description: `Electrical, structural, mechanical, land and data calculators — free, instant, no account required.`,
