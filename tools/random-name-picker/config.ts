@@ -56,7 +56,7 @@ export const randomNamePickerConfig = {
       { q: "Can I export winners and draw history?", a: "Yes. Winners can be downloaded as TXT and history can be exported as CSV with round and timestamp details." },
       { q: "Is the selection process fair?", a: "The tool shuffles the list using a Fisher-Yates style approach and draws from that randomized order." },
       { q: "Does this tool keep a history of rounds?", a: "Yes. It records winner name, round number, and time so you can audit and share draw outcomes." },
-      { q: "Is my participant data private?", a: "Yes. Name processing and drawing happen in your browser without requiring server-side submission." },
+      { q: "Is my participant data private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
 };

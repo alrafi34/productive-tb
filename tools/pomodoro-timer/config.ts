@@ -12,7 +12,7 @@ export const toolConfig = {
       { q: "Can I change the session lengths?", a: "Yes. Set your own focus, short break and long break lengths, and how many focus sessions come before a long break." },
       { q: "Will I be alerted when a session ends?", a: "Yes. The timer plays a sound and, if you allow browser notifications, shows a notification even when the tab is in the background." },
       { q: "Does the timer keep running if I switch tabs?", a: "Yes. It keeps counting while the tab is open. Closing the tab or the browser stops it." },
-      { q: "Is it free?", a: "Yes, with no sign-up. Everything runs in your browser." },
+      { q: "Is it free?", a: "Yes, with no sign-up." },
     ],
     title: "Pomodoro Timer – 25/5 Focus Timer with Breaks",
     description: "Free online Pomodoro timer: 25-minute focus sessions and 5-minute breaks with a longer break every four rounds, sound alerts and notifications.",
@@ -49,8 +49,8 @@ export const toolConfig = {
     "Keyboard shortcuts (Space, R, S)",
     "Light/Dark theme toggle",
     "Progress visualization with circular timer",
-    "Session history saved locally",
+    "Session history",
     "Mobile responsive design",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

@@ -16,7 +16,7 @@ const strengths = [
   },
   {
     title: "Local history and settings",
-    text: "Save salary entries and preferred configuration in-browser, then load scenarios quickly while comparing offers or rates.",
+    text: "Save salary entries and preferred configuration, then load scenarios quickly while comparing offers or rates.",
   },
 ];
 

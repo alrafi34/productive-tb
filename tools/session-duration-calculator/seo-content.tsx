@@ -8,13 +8,13 @@ export default function SessionDurationCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>session duration calculator</strong> is a free browser-based tool that computes average session duration, total session time, and related engagement metrics from website, app, or analytics data. It answers a question every analytics dashboard glosses over: <em>given a total amount of time and a number of sessions, what does a typical session actually look like?</em>
+            A <strong>session duration calculator</strong> is a free tool that computes average session duration, total session time, and related engagement metrics from website, app, or analytics data. It answers a question every analytics dashboard glosses over: <em>given a total amount of time and a number of sessions, what does a typical session actually look like?</em>
           </p>
           <p>
             The calculator supports three input modes — manual hours/minutes/seconds entry, a single total-seconds figure, or bulk-pasted analytics data with one duration per line. It automatically converts between seconds, human-readable strings, HH:MM:SS timecodes, and decimal minutes or hours, so the same result is ready for a dashboard, a spreadsheet, or a written report without manual conversion.
           </p>
           <p>
-            Built for <strong>website owners, SEO specialists, digital marketers, Google Analytics and GA4 users, product managers, mobile app developers, SaaS companies, UX researchers, and students</strong> learning analytics fundamentals, this tool processes everything locally in your browser — no session data ever leaves your device.
+            Built for <strong>website owners, SEO specialists, digital marketers, Google Analytics and GA4 users, product managers, mobile app developers, SaaS companies, UX researchers, and students</strong> learning analytics fundamentals. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function SessionDurationCalculatorSEO() {
                 "Inline validation with clear, friendly error messages",
                 "Ignores invalid or empty rows in bulk mode automatically",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -231,7 +231,7 @@ export default function SessionDurationCalculatorSEO() {
           {[
             {
               q: "What is a session duration calculator?",
-              a: "A session duration calculator is a free browser-based tool that computes the average length of a session by dividing total session time by the number of sessions, and converts the result into human-readable, HH:MM:SS, and decimal formats.",
+              a: "A session duration calculator is a free tool that computes the average length of a session by dividing total session time by the number of sessions, and converts the result into human-readable, HH:MM:SS, and decimal formats.",
             },
             {
               q: "How is average session duration calculated?",
@@ -263,11 +263,11 @@ export default function SessionDurationCalculatorSEO() {
             },
             {
               q: "Can I process thousands of session durations at once?",
-              a: "Yes. Bulk mode handles large pasted datasets efficiently in the browser, though the chart preview displays only the first 60 sessions while the calculation uses the complete dataset.",
+              a: "Yes. Bulk mode handles large pasted datasets efficiently, though the chart preview displays only the first 60 sessions while the calculation uses the complete dataset.",
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your session data is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

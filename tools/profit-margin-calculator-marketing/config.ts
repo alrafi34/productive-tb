@@ -52,7 +52,7 @@ export const profitMarginCalculatorMarketingConfig = {
       { q: "What is the margin on a 50% markup?", a: "A 50% markup equals a 33.33% margin. If a product costs $60 and you mark it up 50%, the selling price is $90. Profit is $30. Margin = $30 ÷ $90 = 33.33%. Markup is always a larger percentage than margin for the same transaction." },
       { q: "How does promotional pricing affect margin?", a: "A product with a 30% regular margin sold at a 20% discount has a net margin of only 12.5% — less than half the regular margin. The discount comes entirely from profit. Always calculate margin at the promotional price before approving campaigns." },
       { q: "Can this calculator be used for service businesses?", a: "Yes. Set cost to zero or to direct labour and tool costs per engagement. Your selling price is your fee. For Revenue & Total Cost mode, enter total billings as revenue and total operating costs as total cost." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser. Your cost prices, selling prices, and margin targets are never transmitted to any server or stored in any database." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you. This makes the tool safe for confidential pricing analysis and financial planning." },
     ],
   },
 };

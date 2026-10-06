@@ -77,7 +77,7 @@ export const sampleSizeCalculatorConfig = {
     faq: [
       {
         q: "What is a sample size calculator?",
-        a: "A sample size calculator is a free browser-based tool that determines the minimum number of responses needed for statistically reliable survey or research results. It uses your population size, confidence level, margin of error, and expected proportion to compute the required sample size using the standard statistical formula.",
+        a: "A sample size calculator is a free tool that determines the minimum number of responses needed for statistically reliable survey or research results. It uses your population size, confidence level, margin of error, and expected proportion to compute the required sample size using the standard statistical formula.",
       },
       {
         q: "How is sample size calculated?",
@@ -113,7 +113,7 @@ export const sampleSizeCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

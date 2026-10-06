@@ -29,8 +29,8 @@ export const randomHexColorGeneratorConfig = {
       url: '/tools/random-hex-color-generator'
     },
     faq: [
-      { q: "How random are the generated colors?", a: "The colors are generated using JavaScript's Math.random() function, which provides pseudo-random numbers. Each of the 16.7 million possible hex colors has an equal chance of being generated." },
-      { q: "Can I save my favorite color palettes?", a: "Yes! The tool automatically saves your recent colors to browser localStorage. You can also export palettes in various formats for permanent storage and sharing." },
+      { q: "How random are the generated colors?", a: "The colors are generated using a pseudo-random number generator, which provides pseudo-random numbers. Each of the 16.7 million possible hex colors has an equal chance of being generated." },
+      { q: "Can I save my favorite color palettes?", a: "Yes! The tool automatically saves your recent colors. You can also export palettes in various formats for permanent storage and sharing." },
       { q: "What's the difference between RGB and HSL?", a: "RGB defines colors by red, green, and blue light intensity. HSL uses hue (color), saturation (intensity), and lightness (brightness), which is often more intuitive for designers." },
       { q: "How do I create harmonious color palettes?", a: "While this tool generates random colors, you can create harmony by locking one color and regenerating others, or by using color theory principles to select complementary or analogous colors from your generated options." },
     ],

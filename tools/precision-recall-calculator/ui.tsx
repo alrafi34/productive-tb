@@ -210,7 +210,7 @@ export default function PrecisionRecallCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Enter your confusion matrix values (TP, FP, FN, TN) to instantly calculate precision, recall,
-              F1 score, accuracy, specificity, and more. All calculations run locally in your browser.
+              F1 score, accuracy, specificity, and more. We do not collect or store what you enter.
             </p>
           </div>
         </div>

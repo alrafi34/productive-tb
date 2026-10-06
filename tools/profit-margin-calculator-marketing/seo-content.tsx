@@ -14,7 +14,7 @@ export default function ProfitMarginCalculatorSEO() {
             Profit margin is built on two numbers — cost price and selling price — but the implications reach into every business decision: whether a product is worth stocking, whether a campaign is worth running, whether a price increase will help or hurt, and whether the business can survive a dip in volume. The calculator extends beyond the basic margin formula across five distinct calculation modes: Profit Margin, Markup, Find Selling Price, Find Cost Price, and Revenue &amp; Total Cost.
           </p>
           <p>
-            This tool is designed for <strong>ecommerce sellers, retail buyers, startup founders, marketing teams, financial analysts, accountants, and MBA students</strong> who need to evaluate unit economics, model pricing scenarios, and interpret profitability — without a spreadsheet. It supports 12 currencies, exports to CSV and TXT, saves a shareable URL for every calculation, and runs entirely in your browser with no data sent to any server.
+            This tool is designed for <strong>ecommerce sellers, retail buyers, startup founders, marketing teams, financial analysts, accountants, and MBA students</strong> who need to evaluate unit economics, model pricing scenarios, and interpret profitability — without a spreadsheet. It supports 12 currencies, exports to CSV and TXT, saves a shareable URL for every calculation, and is free to use.
           </p>
         </div>
       </section>
@@ -96,8 +96,8 @@ export default function ProfitMarginCalculatorSEO() {
                 "Copy result or full summary to clipboard",
                 "Export full report as CSV or TXT",
                 "Shareable URL — every calculation gets a permanent link",
-                "Calculation history saved locally (up to 20 entries)",
-                "100% browser-based — no data leaves your device",
+                "Calculation history (up to 20 entries)",
+                "Private: your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -307,7 +307,7 @@ export default function ProfitMarginCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your cost prices, selling prices, revenue figures, and margin targets are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature uses your browser's localStorage — data is local to your device and never leaves it. This makes the tool safe for confidential pricing analysis and financial planning.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you. This makes the tool safe for confidential pricing analysis and financial planning.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

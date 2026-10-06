@@ -193,7 +193,7 @@ export default function RegexTesterUI() {
             <div>
               <h3 className="font-semibold text-purple-900 mb-1">RegEx Tester</h3>
               <p className="text-sm text-purple-800">
-                Test regular expressions with live highlighting, capture groups, and replacement preview. All processing happens locally in your browser.
+                Test regular expressions with live highlighting, capture groups, and replacement preview. We do not collect or store what you enter.
               </p>
             </div>
           </div>

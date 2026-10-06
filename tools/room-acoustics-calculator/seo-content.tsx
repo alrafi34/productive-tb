@@ -221,7 +221,7 @@ export default function RoomAcousticsCalculatorSEO() {
             </li>
             <li className="flex items-start gap-3">
               <span className="text-primary text-xl flex-shrink-0">✓</span>
-              <span><strong>Free & Accessible:</strong> No registration required, works entirely in your browser</span>
+              <span><strong>Free & Accessible:</strong> No registration required</span>
             </li>
           </ul>
         </div>

@@ -8,13 +8,13 @@ export default function SampleSizeCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>sample size calculator</strong> is a free browser-based tool that determines the <strong>minimum number of responses</strong> you need to collect for statistically reliable results. It answers the core question every researcher faces before running a survey, poll, or study: <em>how many people do I actually need to ask?</em>
+            A <strong>sample size calculator</strong> is a free tool that determines the <strong>minimum number of responses</strong> you need to collect for statistically reliable results. It answers the core question every researcher faces before running a survey, poll, or study: <em>how many people do I actually need to ask?</em>
           </p>
           <p>
             Choosing a sample size by guesswork risks two costly mistakes — surveying too few people (producing results too imprecise to trust) or surveying far more than necessary (wasting time and budget). This calculator solves that with the standard statistical formula used by survey companies, pollsters, and researchers worldwide, factoring in your population size, confidence level, margin of error, expected response distribution, and design effect for complex sampling designs.
           </p>
           <p>
-            This tool is built for <strong>students, researchers, university faculty, healthcare professionals, survey companies, UX researchers, product managers, business analysts, marketing teams, polling organizations, data scientists, and government agencies</strong>. It runs entirely in your browser — no data is ever sent to a server, and results update instantly as you type.
+            This tool is built for <strong>students, researchers, university faculty, healthcare professionals, survey companies, UX researchers, product managers, business analysts, marketing teams, polling organizations, data scientists, and government agencies</strong>. Results update instantly as you type.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function SampleSizeCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Automatic recommendations for very large populations and high confidence levels",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -236,7 +236,7 @@ export default function SampleSizeCalculatorSEO() {
           {[
             {
               q: "What is a sample size calculator?",
-              a: "A sample size calculator is a free browser-based tool that determines the minimum number of responses needed for statistically reliable survey or research results. It uses your population size, confidence level, margin of error, and expected proportion to compute the required sample size using the standard statistical formula.",
+              a: "A sample size calculator is a free tool that determines the minimum number of responses needed for statistically reliable survey or research results. It uses your population size, confidence level, margin of error, and expected proportion to compute the required sample size using the standard statistical formula.",
             },
             {
               q: "How is sample size calculated?",
@@ -272,7 +272,7 @@ export default function SampleSizeCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

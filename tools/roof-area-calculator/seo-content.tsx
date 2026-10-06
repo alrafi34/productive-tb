@@ -21,7 +21,7 @@ export default function RoofAreaCalculatorSEO() {
           <li>Visual roof type diagrams</li>
           <li>Pitch angle support for sloped roofs</li>
           <li>Export results to text and CSV formats</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Mobile-responsive design</li>
           <li>Formula display for educational purposes</li>
         </ul>
@@ -148,7 +148,7 @@ export default function RoofAreaCalculatorSEO() {
         <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
           <li>100% free with no registration required</li>
           <li>Instant results with real-time calculations</li>
-          <li>Works entirely in your browser - no installation needed</li>
+          <li>Nothing to install</li>
           <li>Mobile-friendly responsive design</li>
           <li>Supports multiple roof types</li>
           <li>Export capabilities for documentation</li>

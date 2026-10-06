@@ -23,7 +23,7 @@ export default function PlotDivisionCalculatorSEO() {
             The calculator supports all major land measurement units including square feet, square meters, acres and hectares, plus a few regional units. It provides instant results showing plot size, suggested grid layout (rows × columns), and optional plot dimensions when land width and length are provided.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Advanced features include road width allocation, custom grid layouts, visual plot previews, and calculation history. All computations happen instantly in your browser with complete privacy.
+            Advanced features include road width allocation, custom grid layouts, visual plot previews, and calculation history. All computations happen instantly with complete privacy.
           </p>
         </div>
       </section>

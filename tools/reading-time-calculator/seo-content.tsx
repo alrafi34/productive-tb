@@ -47,7 +47,7 @@ const optionGuide = [
   },
   {
     option: "Auto Save",
-    use: "Preserve your current text locally in the browser for continuity between sessions.",
+    use: "Preserve your current text for continuity between sessions.",
   },
   {
     option: "Dark/Light Display",

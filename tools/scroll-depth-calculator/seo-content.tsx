@@ -8,13 +8,13 @@ export default function ScrollDepthCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>scroll depth calculator</strong> is a free browser-based tool that measures how far a visitor has scrolled through a webpage, expressed as both a percentage and a pixel value. It answers a question every content-heavy website needs to understand: <em>how much of my page do visitors actually see before they leave?</em>
+            A <strong>scroll depth calculator</strong> is a free tool that measures how far a visitor has scrolled through a webpage, expressed as both a percentage and a pixel value. It answers a question every content-heavy website needs to understand: <em>how much of my page do visitors actually see before they leave?</em>
           </p>
           <p>
             Unlike full analytics platforms that require tracking scripts, dashboards, and historical data, this calculator lets you compute scroll depth instantly from three numbers — document height, viewport height, and scroll position — or switch to Live Browser Simulation mode to see the real scroll depth of the page you're on right now, calculated from your actual browser window as you scroll.
           </p>
           <p>
-            This tool is built for <strong>digital marketers, SEO professionals, UX designers, product managers, web developers, bloggers, website owners, and analytics professionals</strong> who want to understand content engagement, optimize article length, and identify where visitors typically stop reading. It includes engagement scoring, calculation history, scenario comparison, an embeddable JavaScript scroll tracker snippet, and export as CSV, JSON, or a print-ready report — entirely in your browser.
+            This tool is built for <strong>digital marketers, SEO professionals, UX designers, product managers, web developers, bloggers, website owners, and analytics professionals</strong> who want to understand content engagement, optimize article length, and identify where visitors typically stop reading. It includes engagement scoring, calculation history, scenario comparison, an embeddable JavaScript scroll tracker snippet, and export as CSV, JSON, or a print-ready report.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function ScrollDepthCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past results",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -255,7 +255,7 @@ export default function ScrollDepthCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your page dimensions and scroll data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

@@ -165,7 +165,7 @@ export default function QRCodeGeneratorUI() {
             <div>
               <h3 className="font-semibold text-green-900 mb-1">100% Secure & Private</h3>
               <p className="text-sm text-green-800">
-                All QR codes are generated locally in your browser. No data is sent to any server.
+                We do not collect or store what you enter.
               </p>
             </div>
           </div>

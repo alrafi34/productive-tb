@@ -57,7 +57,7 @@ export const realPowerCalculatorConfig = {
       { q: "How does real power relate to my electricity bill?", a: "Most utility bills charge based on real power over time (kWh), not apparent power — which is why poor power factor can draw more current than billed energy suggests." },
       { q: "Can real power ever exceed apparent power?", a: "No. Since P = S × PF and PF can never exceed 1.0, real power can never be greater than apparent power. They're equal only when PF = 1.0." },
       { q: "How do I calculate real power for a motor?", a: "Use rated voltage, current, and power factor: P = V × I × PF. For three-phase, multiply the per-phase result by √3 for total real power." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, and power factor values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

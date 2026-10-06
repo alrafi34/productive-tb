@@ -8,13 +8,13 @@ export default function SeasonalityIndexCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>seasonality index calculator</strong> is a free browser-based tool that identifies and measures recurring seasonal patterns in historical data — monthly sales, quarterly revenue, weekly traffic, or any repeating time period. It answers a question every analyst eventually asks: <em>which periods consistently outperform or underperform the overall average, and by how much?</em>
+            A <strong>seasonality index calculator</strong> is a free tool that identifies and measures recurring seasonal patterns in historical data — monthly sales, quarterly revenue, weekly traffic, or any repeating time period. It answers a question every analyst eventually asks: <em>which periods consistently outperform or underperform the overall average, and by how much?</em>
           </p>
           <p>
             Enter your data manually, paste it directly from Excel or Google Sheets, or upload a CSV file, and the calculator instantly groups your values by period, computes a seasonality index for each one, and highlights your strongest and weakest seasons.
           </p>
           <p>
-            This tool is built for <strong>business analysts, data analysts, financial analysts, sales teams, marketing teams, inventory managers, retail and e-commerce businesses, students, and researchers</strong>. It runs entirely in your browser — no dataset is ever uploaded to a server.
+            This tool is built for <strong>business analysts, data analysts, financial analysts, sales teams, marketing teams, inventory managers, retail and e-commerce businesses, students, and researchers</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -90,9 +90,9 @@ export default function SeasonalityIndexCalculatorSEO() {
                 "Deseasonalized data view for trend-only analysis",
                 "Duplicate row and invalid data detection with clear warnings",
                 "Built-in sample datasets for monthly, weekly, and quarterly data",
-                "Automatic session recovery — your dataset is saved locally as you work",
+                "Automatic session recovery — your dataset is as you work",
                 "Export report as CSV or JSON, plus a printable layout",
-                "All processing runs locally — no dataset is ever uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -232,7 +232,7 @@ export default function SeasonalityIndexCalculatorSEO() {
           {[
             {
               q: "What is a seasonality index calculator?",
-              a: "A seasonality index calculator is a free browser-based tool that measures how much a repeating period, like a month or quarter, deviates from the overall average across a historical dataset. It groups your data by period and returns an index for each one.",
+              a: "A seasonality index calculator is a free tool that measures how much a repeating period, like a month or quarter, deviates from the overall average across a historical dataset. It groups your data by period and returns an index for each one.",
             },
             {
               q: "How is the seasonality index calculated?",
@@ -264,11 +264,11 @@ export default function SeasonalityIndexCalculatorSEO() {
             },
             {
               q: "Is my dataset saved anywhere?",
-              a: "Your dataset is automatically saved to your browser's local storage so you don't lose your work on refresh, but it is never transmitted to any server. Clearing your browser data will remove it.",
+              a: "We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations, parsing, and file reading happen entirely in your browser using JavaScript. Your dataset is never uploaded to any server.",
+              a: "Yes. We do not collect or store your files.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -29,8 +29,7 @@ export default function SeriesResistorCalculatorSEO() {
             Built for <strong>electronics students verifying homework, hobbyists building circuits with
             standard E12 resistor values, and electricians and technicians</strong> who need a fast total
             resistance figure without reaching for a calculator app and doing unit conversion by hand.
-            Supports unlimited resistors, bulk input, common value presets, and text export — free and
-            entirely browser-based.
+            Supports unlimited resistors, bulk input, common value presets, and text export — free.
           </p>
         </div>
       </section>
@@ -84,9 +83,9 @@ export default function SeriesResistorCalculatorSEO() {
                 "Bulk input via comma or newline-separated list",
                 "Built-in E12 standard resistor value presets",
                 "Automatic Ω, kΩ, MΩ unit conversion",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export result as a text file",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -8,7 +8,7 @@ export const toolConfig = {
   backend: false,
   seo: {
     faq: [
-      { q: "What is the difference between Standard and Secure random?", a: "Standard random uses `Math.random()`, which is fast but pseudorandom and potentially predictable. Secure mode uses `window.crypto.getRandomValues()`, which connects to hardware-level entropy for true cryptographic security." },
+      { q: "What is the difference between Standard and Secure random?", a: "Standard random uses a fast pseudo-random number generator, which is potentially predictable. Secure mode uses a cryptographically secure random generator for true cryptographic security." },
       { q: "How many numbers can I generate at once?", a: "Our tool is optimized for performance and can generate thousands of numbers in milliseconds. We've capped the UI display for smoothness, but you can export large batches via CSV." },
     ],
     title: "Random Number Generator – Generate Numbers Instantly",

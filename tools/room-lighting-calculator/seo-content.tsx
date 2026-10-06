@@ -30,7 +30,7 @@ export default function RoomLightingCalculatorSEO() {
             fixture counts, electricians quoting installation jobs, architects sizing lighting plans, and
             renters trying to improve a poorly lit apartment</strong>. Supports feet and meters, eight built-in
             room-type presets plus a custom lux mode, common bulb-type shortcuts, calculation history, and a
-            downloadable report. Browser-based, free, no signup required.
+            downloadable report. Free, no signup required.
           </p>
         </div>
       </section>
@@ -89,10 +89,10 @@ export default function RoomLightingCalculatorSEO() {
                 "Common bulb-type shortcuts (LED, CFL, halogen, incandescent)",
                 "Feet and meters unit support",
                 "Under-lit / optimal / over-lit status check",
-                "Calculation history (last 20 entries, saved locally)",
+                "Calculation history (last 20 entries)",
                 "Export full calculation as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to any server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

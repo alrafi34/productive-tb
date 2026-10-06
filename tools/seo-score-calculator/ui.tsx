@@ -102,7 +102,7 @@ export default function SEOScoreCalculatorUI() {
               SEO Score Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your page details to get an instant on-page SEO score with actionable recommendations. All analysis runs locally — nothing leaves your browser.
+              Enter your page details to get an instant on-page SEO score with actionable recommendations. We do not collect or store what you enter.
             </p>
           </div>
         </div>

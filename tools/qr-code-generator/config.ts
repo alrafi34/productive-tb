@@ -113,7 +113,7 @@ export const qrCodeGeneratorConfig = {
       },
       {
         q: "Is my data private when using this QR code generator?",
-        a: "Yes. All QR code generation runs entirely in your browser using JavaScript. The content you enter — whether a URL, WiFi password, or phone number — is never transmitted to any server, stored in any database, or accessible to anyone other than you. The PNG is generated locally using the HTML Canvas API and downloaded directly to your device.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },
@@ -126,10 +126,10 @@ export const qrCodeGeneratorConfig = {
     "Custom foreground and background colours",
     "One-click PNG download",
     "Copy to clipboard",
-    "Generation history — last 10 codes stored locally",
+    "Generation history — last 10 codes",
     "Keyboard shortcut: Ctrl+Enter to regenerate",
     "Mobile-optimised interface",
-    "100% browser-based — no uploads, no server",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "wifi-password-generator",

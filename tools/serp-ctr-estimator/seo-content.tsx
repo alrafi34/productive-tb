@@ -8,13 +8,13 @@ export default function SERPCTREstimatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>SERP CTR estimator</strong> is a free browser-based tool that predicts the click-through rate a webpage will receive based on its position in Google&apos;s Search Engine Results Pages. It answers the question every SEO professional asks before pitching a ranking project: <em>if I move this page from position 8 to position 3, how much more organic traffic will I actually get?</em>
+            A <strong>SERP CTR estimator</strong> is a free tool that predicts the click-through rate a webpage will receive based on its position in Google&apos;s Search Engine Results Pages. It answers the question every SEO professional asks before pitching a ranking project: <em>if I move this page from position 8 to position 3, how much more organic traffic will I actually get?</em>
           </p>
           <p>
             Estimating organic CTR is harder than it looks. Click-through rate for the same ranking position can swing widely depending on the study behind the data, the presence of SERP features like featured snippets or People Also Ask boxes, the searcher&apos;s device, and whether the query is informational, commercial, or navigational. This tool handles that complexity automatically by letting you choose between four published CTR curves — Industry Average, Backlinko, Advanced Web Ranking, and FirstPageSage — or build your own Custom curve from real Google Search Console data, then adjusts the estimate for device type and search intent.
           </p>
           <p>
-            This tool is built for <strong>SEO professionals, digital marketing agencies, bloggers, affiliate marketers, content creators, SaaS companies, eCommerce stores, website owners, and marketing students</strong> who need to forecast traffic potential, prioritize which keywords to target, or justify an SEO investment with data. It runs 100% in your browser with no signup, supports exporting results as CSV or JSON, printing a client-ready report, and sharing a calculation via URL — and none of your data ever leaves your device.
+            This tool is built for <strong>SEO professionals, digital marketing agencies, bloggers, affiliate marketers, content creators, SaaS companies, eCommerce stores, website owners, and marketing students</strong> who need to forecast traffic potential, prioritize which keywords to target, or justify an SEO investment with data. It requires no signup, supports exporting results as CSV or JSON, printing a client-ready report, and sharing a calculation via URL.
           </p>
         </div>
       </section>
@@ -99,7 +99,7 @@ export default function SERPCTREstimatorSEO() {
                 "Keyboard shortcuts — Enter to jump to results, Esc to reset",
                 "Inline validation with clear, friendly error messages",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -243,7 +243,7 @@ export default function SERPCTREstimatorSEO() {
           {[
             {
               q: "What is a SERP CTR estimator?",
-              a: "A SERP CTR estimator is a free browser-based tool that predicts the click-through rate a webpage will receive based on its ranking position in Google's search results, using CTR data compiled from industry studies. It converts a ranking position and search volume into an estimated number of monthly and annual organic clicks, helping you forecast traffic before or after a ranking change.",
+              a: "A SERP CTR estimator is a free tool that predicts the click-through rate a webpage will receive based on its ranking position in Google's search results, using CTR data compiled from industry studies. It converts a ranking position and search volume into an estimated number of monthly and annual organic clicks, helping you forecast traffic before or after a ranking change.",
             },
             {
               q: "How is organic CTR calculated by position?",
@@ -279,7 +279,7 @@ export default function SERPCTREstimatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your search volume, ranking positions, and any custom CTR values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history and saved inputs are stored only in your browser's local storage.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

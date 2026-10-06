@@ -140,7 +140,7 @@ export default function PomodoroSEO() {
       <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 space-y-4">
         <h3 className="text-xl font-black text-gray-900">Ready to Boost Your Productivity?</h3>
         <p className="text-gray-600">
-          Start using this free Pomodoro Timer today. No signup required, no distractions, 100% browser-based. Your productivity journey starts now!
+          Start using this free Pomodoro Timer today. No signup required and no distractions. Your productivity journey starts now!
         </p>
       </div>
       <ToolFaq items={toolConfig.seo.faq} />

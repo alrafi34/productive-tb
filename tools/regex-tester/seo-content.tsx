@@ -6,10 +6,10 @@ export default function RegexTesterSEOContent() {
           About RegEx Tester
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          The RegEx Tester is a powerful, browser-based tool for testing and debugging regular expressions. 
+          The RegEx Tester is a powerful, online tool for testing and debugging regular expressions. 
           Whether you are a beginner learning regex or an advanced developer optimizing complex patterns, 
           this tool provides instant visual feedback with live highlighting, capture group inspection, 
-          and replacement preview. All processing happens entirely in your browser with no server required.
+          and replacement preview. We do not collect or store what you enter.
         </p>
       </section>
 
@@ -31,7 +31,7 @@ export default function RegexTesterSEOContent() {
           <li><strong>Export Options:</strong> Download matches as JSON or CSV</li>
           <li><strong>Keyboard Shortcuts:</strong> Ctrl+Enter to test, Ctrl+L to clear, Ctrl+/ for cheat sheet</li>
           <li><strong>Large Text Support:</strong> Handle 200,000+ character inputs efficiently</li>
-          <li><strong>100% Client-Side:</strong> All processing happens in your browser</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
         </ul>
       </section>
 
@@ -226,7 +226,7 @@ export default function RegexTesterSEOContent() {
           History and Recent Tests
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          The tool automatically saves your last 20 regex tests in browser localStorage. You can quickly reload 
+          The tool automatically saves your last 20 regex tests. You can quickly reload 
           any previous test by clicking on it in the history panel. This is useful for iterating on complex patterns 
           or comparing different approaches.
         </p>
@@ -240,11 +240,8 @@ export default function RegexTesterSEOContent() {
           Your privacy is important:
         </p>
         <ul className="space-y-2 text-gray-700">
-          <li><strong>100% Client-Side:</strong> All regex processing happens in your browser</li>
-          <li><strong>No Server Communication:</strong> Nothing is sent to any server</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
           <li><strong>No Tracking:</strong> We do not track what patterns you test</li>
-          <li><strong>Local Storage Only:</strong> History is stored only in your browser</li>
-          <li><strong>No Third-Party Scripts:</strong> No analytics or tracking code</li>
         </ul>
       </section>
 
@@ -298,11 +295,7 @@ export default function RegexTesterSEOContent() {
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Is my data stored anywhere?</h3>
-            <p className="text-sm">No, all processing happens in your browser. Only your history is stored locally in your browser localStorage.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Can I use this offline?</h3>
-            <p className="text-sm">Yes, once the page loads, all functionality works offline. No internet connection is required.</p>
+            <p className="text-sm">We do not collect or store what you enter.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">What is the difference between global and non-global matching?</h3>

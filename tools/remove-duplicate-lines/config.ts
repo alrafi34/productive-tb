@@ -78,7 +78,7 @@ export const removeDuplicateLinesConfig = {
       { q: "Can I transform text before deduplication?", a: "Yes. You can apply uppercase, lowercase, or capitalize transformations before duplicate processing." },
       { q: "Can I upload a file instead of pasting text?", a: "Yes. You can upload or drag-and-drop supported text files such as .txt and .csv." },
       { q: "Is this remove duplicate lines tool free?", a: "Yes. It is free to use without registration." },
-      { q: "Is my text private?", a: "Yes. Processing happens in your browser and does not require sending content to external servers." },
+      { q: "Is my text private?", a: "Yes. We do not collect or store what you enter." },
     ],
   }
 };

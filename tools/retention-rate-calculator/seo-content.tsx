@@ -8,13 +8,13 @@ export default function RetentionRateCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>retention rate calculator</strong> is a free browser-based tool that instantly measures the percentage of customers, employees, users, subscribers, or members who remained over a chosen period, using the industry-standard retention formula. It answers a question every SaaS founder, HR leader, and community manager needs a straight number for: <em>of the people we started with, how many did we actually keep?</em>
+            A <strong>retention rate calculator</strong> is a free tool that instantly measures the percentage of customers, employees, users, subscribers, or members who remained over a chosen period, using the industry-standard retention formula. It answers a question every SaaS founder, HR leader, and community manager needs a straight number for: <em>of the people we started with, how many did we actually keep?</em>
           </p>
           <p>
             Retention is one of the most important — and most frequently miscalculated — metrics in business. A common mistake is dividing the ending count directly by the starting count, which inflates the result by counting brand-new acquisitions as if they were retained members of the original group. This calculator applies the correct formula automatically: it first isolates retained users by subtracting new acquisitions from the ending count, then divides by the starting count.
           </p>
           <p>
-            This tool is built for <strong>SaaS companies, startup founders, product managers, marketing teams, HR departments, community managers, mobile app developers, business analysts, students, and researchers</strong> who need an instant, accurate retention figure without building a spreadsheet. It supports five metric types (customers, employees, users, subscribers, members), six period options with compounded annual projection, and exports results as CSV, JSON, a print-ready report, or a native share sheet — all processed locally in your browser.
+            This tool is built for <strong>SaaS companies, startup founders, product managers, marketing teams, HR departments, community managers, mobile app developers, business analysts, students, and researchers</strong> who need an instant, accurate retention figure without building a spreadsheet. It supports five metric types (customers, employees, users, subscribers, members), six period options with compounded annual projection, and exports results as CSV, JSON, a print-ready report, or a native share sheet.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function RetentionRateCalculatorSEO() {
                 "Keyboard shortcuts — Enter to jump to results, Esc to reset",
                 "Inline validation with clear, friendly error messages",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -235,7 +235,7 @@ export default function RetentionRateCalculatorSEO() {
           {[
             {
               q: "What is a retention rate calculator?",
-              a: "A retention rate calculator is a free browser-based tool that measures the percentage of customers, employees, users, subscribers, or members who remain over a given period, using the industry-standard formula: Retention Rate (%) = ((Ending − New) ÷ Starting) × 100.",
+              a: "A retention rate calculator is a free tool that measures the percentage of customers, employees, users, subscribers, or members who remain over a given period, using the industry-standard formula: Retention Rate (%) = ((Ending − New) ÷ Starting) × 100.",
             },
             {
               q: "How is retention rate calculated?",
@@ -271,7 +271,7 @@ export default function RetentionRateCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your starting, ending, and new user counts are never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history is stored only in your browser's local storage.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

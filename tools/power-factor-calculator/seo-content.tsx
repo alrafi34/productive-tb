@@ -38,7 +38,7 @@ export default function PowerFactorCalculatorSEO() {
     },
     {
       q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your real power, apparent power, and calculated results are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -78,7 +78,7 @@ export default function PowerFactorCalculatorSEO() {
             Built for <strong>facility managers investigating utility power factor penalties, electrical
             engineers sizing correction equipment, and electricians</strong> assessing motor and industrial
             load efficiency. Includes six built-in presets from ideal to very poor systems, full step-by-step
-            derivation, and text export — free and entirely browser-based.
+            derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -136,7 +136,7 @@ export default function PowerFactorCalculatorSEO() {
                 "Automatic efficiency rating (Excellent/Good/Fair/Poor)",
                 "Full step-by-step derivation",
                 "Six built-in system presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

@@ -58,7 +58,7 @@ export const powerFactorCalculatorConfig = {
       { q: "Why do utilities charge penalties for low power factor?", a: "Low power factor means more current is drawn than the real power justifies, forcing higher-capacity infrastructure. Tariffs often include a penalty clause to recover this cost." },
       { q: "What causes a low power factor?", a: "Inductive loads — motors, transformers, lighting ballasts, welding equipment. Lightly loaded motors are especially prone since magnetizing current stays roughly constant as load drops." },
       { q: "How do I improve a poor power factor?", a: "Power factor correction capacitors supply reactive power locally, reducing what the utility must deliver. Sizing requires the existing reactive power (from this calculator) and a target PF." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your real power, apparent power, and results are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

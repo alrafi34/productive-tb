@@ -49,6 +49,6 @@ export const toolConfig = {
     "Real-time updates on resize",
     "Real-time updates on orientation change",
     "Mobile-responsive design",
-    "No server required - 100% client-side"
+    "Nothing to install"
   ]
 };

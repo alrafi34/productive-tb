@@ -74,7 +74,7 @@ export const rocAucCalculatorConfig = {
     faq: [
       {
         q: "What is a ROC AUC calculator?",
-        a: "A ROC AUC calculator is a free browser-based tool that computes the Receiver Operating Characteristic curve and its Area Under the Curve from binary classification results, evaluating how well a model separates positive from negative cases across every threshold.",
+        a: "A ROC AUC calculator is a free tool that computes the Receiver Operating Characteristic curve and its Area Under the Curve from binary classification results, evaluating how well a model separates positive from negative cases across every threshold.",
       },
       {
         q: "How is ROC AUC calculated?",
@@ -110,7 +110,7 @@ export const rocAucCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your labels and predicted probabilities are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

@@ -38,7 +38,7 @@ export default function QRCodeGeneratorSEO() {
     },
     {
       q: "Is my data private when using this QR code generator?",
-      a: "Yes. All QR code generation runs entirely in your browser using JavaScript. The content you enter — whether a URL, WiFi password, or phone number — is never transmitted to any server, stored in any database, or accessible to anyone other than you. The PNG is generated locally using the HTML Canvas API and downloaded directly to your device.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -82,8 +82,7 @@ export default function QRCodeGeneratorSEO() {
             text, email, phone, SMS, and WiFi — with <strong>customisable size up to
             1024px</strong>, four <strong>error correction levels</strong>, custom foreground
             and background colours, real-time preview, one-click PNG download, clipboard copy,
-            and a local generation history. Everything runs in your browser — no data is sent
-            to any server.
+            and a local generation history. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -111,7 +110,7 @@ export default function QRCodeGeneratorSEO() {
             </div>
           </div>
           <p>
-            This generator uses the Canvas API to render the matrix directly in your browser at
+            This generator renders the matrix at
             the selected pixel dimensions. Content type detection automatically formats your
             input — a phone number gets the <span className="font-mono text-sm">tel:</span>{" "}
             prefix, WiFi credentials are formatted as{" "}
@@ -156,10 +155,10 @@ export default function QRCodeGeneratorSEO() {
                 "Custom foreground and background colour pickers",
                 "One-click PNG download",
                 "Copy to clipboard without saving a file",
-                "Generation history — last 10 codes stored locally",
+                "Generation history — last 10 codes",
                 "Keyboard shortcut: Ctrl+Enter to regenerate",
                 "Mobile-optimised interface",
-                "100% browser-based — no uploads, no server",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

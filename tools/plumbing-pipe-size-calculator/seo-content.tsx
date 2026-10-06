@@ -229,8 +229,7 @@ export default function PlumbingPipeSizeCalculatorSEO() {
           <p className="text-gray-700 leading-relaxed">
             This calculator is designed for civil engineers, plumbing engineers, architects, and construction professionals 
             who need accurate pipe sizing calculations. It combines engineering precision with an intuitive interface, 
-            making complex hydraulic calculations accessible while maintaining professional-grade accuracy. All calculations 
-            run entirely in your browser with no data sent to servers, ensuring privacy and instant performance.
+            making complex hydraulic calculations accessible while maintaining professional-grade accuracy. We do not collect or store what you enter.
           </p>
         </section>
 

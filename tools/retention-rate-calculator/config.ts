@@ -76,7 +76,7 @@ export const retentionRateCalculatorConfig = {
     faq: [
       {
         q: "What is a retention rate calculator?",
-        a: "A retention rate calculator is a free browser-based tool that measures the percentage of customers, employees, users, subscribers, or members who remain over a given period, using the industry-standard formula: Retention Rate (%) = ((Ending − New) ÷ Starting) × 100. It instantly returns the retention rate, retained count, lost count, and a performance rating.",
+        a: "A retention rate calculator is a free tool that measures the percentage of customers, employees, users, subscribers, or members who remain over a given period, using the industry-standard formula: Retention Rate (%) = ((Ending − New) ÷ Starting) × 100. It instantly returns the retention rate, retained count, lost count, and a performance rating.",
       },
       {
         q: "How is retention rate calculated?",
@@ -112,7 +112,7 @@ export const retentionRateCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your starting, ending, and new user counts are never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history is stored only in your browser's local storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

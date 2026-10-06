@@ -43,7 +43,7 @@ export const pricePerSquareFeetCalculatorConfig = {
       { q: "Is a lower price per square foot always a better deal?", a: "No. Larger homes and lots usually have a lower price per square foot than small ones, and location, condition, age and lot size all change the value. Compare properties of similar size in the same area." },
       { q: "What is a typical price per square foot?", a: "It varies widely by market: US home prices range from under $150 per sq ft in many Midwestern cities to over $1,000 in Manhattan and San Francisco. In Europe, prices per m² range from about €2,000 in smaller cities to over €10,000 in central Paris and London (about £11,000)." },
       { q: "Which units and currencies are supported?", a: "Square feet, square meters, acres, hectares, Decimal, Katha and Bigha, with prices in US dollars, euros, pounds, Canadian or Australian dollars. The total is always in the currency you enter." },
-      { q: "Is my data private?", a: "Yes. The calculation runs in your browser and nothing is sent to a server." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -55,7 +55,7 @@ export const pricePerSquareFeetCalculatorConfig = {
     "Conversion reference table built in",
     "Calculation history saved to browser",
     "Export TXT summary",
-    "100% browser-based — no data sent to server",
+    "Private: your inputs are not collected or stored",
     "No registration required",
   ],
   relatedTools: [

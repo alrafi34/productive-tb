@@ -11,12 +11,12 @@ export default function RandomNumberGeneratorSEO() {
               Versatile Utility
             </h3>
             <p className="text-gray-600 mb-4" style={{ fontFamily: "var(--font-body)" }}>
-              Whether you are running a giveaway, sampling data for an experiment, or simply need to pick a random winner from a list, our tool provides the most robust browser-based solution available.
+              Whether you are running a giveaway, sampling data for an experiment, or simply need to pick a random winner from a list, our tool provides the most robust online solution available.
             </p>
             <ul className="space-y-3 text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
               <li className="flex items-start">
                 <span className="text-primary mr-2">✦</span>
-                <span><strong>Secure Randomness:</strong> Leverage the Web Crypto API for cryptographically strong random values that are suitable for security-sensitive applications.</span>
+                <span><strong>Secure Randomness:</strong> Use cryptographically strong random values that are suitable for security-sensitive applications.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-2">✦</span>
@@ -35,7 +35,7 @@ export default function RandomNumberGeneratorSEO() {
             <ul className="space-y-2 text-gray-600" style={{ fontFamily: "var(--font-body)" }}>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                100% Client-Side: No data ever leaves your computer.
+                Private: your inputs are not collected or stored
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
@@ -64,7 +64,7 @@ export default function RandomNumberGeneratorSEO() {
               What is the difference between Standard and Secure random?
             </h3>
             <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Standard random uses `Math.random()`, which is fast but pseudorandom and potentially predictable. Secure mode uses `window.crypto.getRandomValues()`, which connects to hardware-level entropy for true cryptographic security.
+              Standard random uses a fast pseudo-random number generator, which is potentially predictable. Secure mode uses a cryptographically secure random generator for true cryptographic security.
             </p>
           </div>
           <div>

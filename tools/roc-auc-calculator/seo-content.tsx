@@ -8,13 +8,13 @@ export default function ROCAUCCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>ROC AUC calculator</strong> is a free browser-based tool that computes the <strong>Receiver Operating Characteristic (ROC) curve</strong> and its <strong>Area Under the Curve (AUC)</strong> from binary classification results. AUC is one of the most widely used metrics for evaluating how well a classifier separates positive cases from negative ones, across every possible decision threshold at once.
+            A <strong>ROC AUC calculator</strong> is a free tool that computes the <strong>Receiver Operating Characteristic (ROC) curve</strong> and its <strong>Area Under the Curve (AUC)</strong> from binary classification results. AUC is one of the most widely used metrics for evaluating how well a classifier separates positive cases from negative ones, across every possible decision threshold at once.
           </p>
           <p>
             Paste in your actual labels and predicted probabilities — or upload a CSV — and the calculator sorts your data, computes the true positive rate and false positive rate at every threshold, plots the ROC curve, and integrates the area beneath it using the trapezoidal rule.
           </p>
           <p>
-            This tool is built for <strong>machine learning engineers, data scientists, AI researchers, students, teachers, Kaggle competitors, software engineers, and business analysts</strong> who need to evaluate a binary classifier without spinning up Python. It runs entirely in your browser, handles large datasets smoothly, and never sends your data to a server.
+            This tool is built for <strong>machine learning engineers, data scientists, AI researchers, students, teachers, Kaggle competitors, software engineers, and business analysts</strong> who need to evaluate a binary classifier without spinning up Python. It handles large datasets smoothly.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function ROCAUCCalculatorSEO() {
                 "Export ROC curve data as CSV, TXT, or JSON",
                 "Copy the AUC score or the full metrics report to your clipboard",
                 "Calculation history — save and review up to 20 past evaluations",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -229,7 +229,7 @@ export default function ROCAUCCalculatorSEO() {
           {[
             {
               q: "What is a ROC AUC calculator?",
-              a: "A ROC AUC calculator is a free browser-based tool that computes the Receiver Operating Characteristic curve and its Area Under the Curve from binary classification results — your actual labels and predicted probabilities — evaluating how well a model separates positive from negative cases across every threshold.",
+              a: "A ROC AUC calculator is a free tool that computes the Receiver Operating Characteristic curve and its Area Under the Curve from binary classification results — your actual labels and predicted probabilities — evaluating how well a model separates positive from negative cases across every threshold.",
             },
             {
               q: "How is ROC AUC calculated?",
@@ -265,7 +265,7 @@ export default function ROCAUCCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your labels and predicted probabilities are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

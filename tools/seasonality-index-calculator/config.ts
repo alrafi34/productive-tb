@@ -70,7 +70,7 @@ export const seasonalityIndexCalculatorConfig = {
     faq: [
       {
         q: "What is a seasonality index calculator?",
-        a: "A seasonality index calculator is a free browser-based tool that measures how much a repeating period, like a month or quarter, deviates from the overall average across a historical dataset. It groups your data by period and returns an index for each one.",
+        a: "A seasonality index calculator is a free tool that measures how much a repeating period, like a month or quarter, deviates from the overall average across a historical dataset. It groups your data by period and returns an index for each one.",
       },
       {
         q: "How is the seasonality index calculated?",
@@ -102,11 +102,11 @@ export const seasonalityIndexCalculatorConfig = {
       },
       {
         q: "Is my dataset saved anywhere?",
-        a: "Your dataset is automatically saved to your browser's local storage so you don't lose your work on refresh, but it is never transmitted to any server.",
+        a: "We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations, parsing, and file reading happen entirely in your browser using JavaScript. Your dataset is never uploaded to any server.",
+        a: "Yes. We do not collect or store your files.",
       },
     ],
   },

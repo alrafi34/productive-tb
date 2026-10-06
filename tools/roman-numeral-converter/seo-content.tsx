@@ -193,7 +193,7 @@ export default function RomanNumeralConverterSEO() {
           <div className="text-center">
             <div className="text-4xl mb-3">🔒</div>
             <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>100% Private</h3>
-            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>All conversions happen in your browser. Your data is never sent to any server.</p>
+            <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>We do not collect or store what you enter.</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">📚</div>

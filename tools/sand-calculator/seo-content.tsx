@@ -12,7 +12,7 @@ export default function SandCalculatorSEO() {
           The Sand Calculator is a professional construction tool designed to help civil engineers, contractors, architects, and DIY builders estimate the exact amount of sand required for various construction projects. Whether you're working on concrete mixing, plastering, or filling areas, this calculator provides instant, accurate results to optimize material usage and reduce waste.
         </p>
         <p>
-          This browser-based utility eliminates manual calculation errors and provides real-time estimates based on industry-standard formulas, making it an essential tool for construction planning and budgeting.
+          This online utility eliminates manual calculation errors and provides real-time estimates based on industry-standard formulas, making it an essential tool for construction planning and budgeting.
         </p>
       </section>
 
@@ -88,7 +88,7 @@ export default function SandCalculatorSEO() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
-            <span>Calculation history with localStorage</span>
+            <span>Calculation history</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
