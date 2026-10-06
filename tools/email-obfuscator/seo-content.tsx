@@ -269,7 +269,7 @@ export default function EmailObfuscatorSEOContent() {
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Privacy</h3>
-            <p>All encoding happens locally in your browser using JavaScript. No email addresses are sent to any server or stored anywhere.</p>
+            <p>We do not collect or store the email addresses you enter.</p>
           </div>
         </div>
       </section>

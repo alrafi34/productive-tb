@@ -145,7 +145,7 @@ export default function FileSizeConverterUI() {
               File Size Converter
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Convert between Bytes, KB, MB, GB, TB, and PB using binary (1024) or decimal (1000) standards. All calculations run locally in your browser.
+              Convert between Bytes, KB, MB, GB, TB, and PB using binary (1024) or decimal (1000) standards. We do not collect or store what you enter.
             </p>
           </div>
         </div>

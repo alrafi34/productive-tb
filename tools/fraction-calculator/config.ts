@@ -51,7 +51,7 @@ export const fractionCalculatorConfig = {
       { q: "Does it convert improper fractions to mixed numbers?", a: "Yes. When the result is improper, the tool also shows a mixed number view so the output is easier to read and use in classwork or real-world tasks." },
       { q: "Can I see decimal values from fraction results?", a: "Yes. The result panel can display a decimal form alongside the fraction and mixed number, useful for conversion and quick comparison." },
       { q: "Does this fraction calculator show step-by-step math?", a: "Yes. Enable the steps option to see each operation line, including intermediate expressions and simplification." },
-      { q: "Is the calculator free and private?", a: "Yes. It is free to use and calculations run in your browser, so your numbers stay on your device while you work." },
+      { q: "Is the calculator free and private?", a: "Yes. It is free to use, and we do not collect or store what you enter." },
     ],
   },
   features: [
@@ -61,12 +61,12 @@ export const fractionCalculatorConfig = {
     "Convert to decimal values",
     "Step-by-step calculation display",
     "Visual fraction representation",
-    "Calculation history with localStorage",
+    "Calculation history",
     "Copy results to clipboard",
     "Random fraction generator",
     "Keyboard navigation support",
     "Mobile-responsive design",
     "Input validation",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

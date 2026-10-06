@@ -8,13 +8,13 @@ export default function EngagementRateCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>engagement rate calculator</strong> is a free browser-based tool that measures how actively an audience interacts with social media content, using the industry-standard formulas built into platforms like Instagram, TikTok, Facebook, YouTube, LinkedIn, and X (Twitter). It answers the core question every creator, brand, and marketer asks after publishing a post: <em>how well did this actually perform, relative to the size of the audience that could have seen it?</em>
+            An <strong>engagement rate calculator</strong> is a free tool that measures how actively an audience interacts with social media content, using the industry-standard formulas built into platforms like Instagram, TikTok, Facebook, YouTube, LinkedIn, and X (Twitter). It answers the core question every creator, brand, and marketer asks after publishing a post: <em>how well did this actually perform, relative to the size of the audience that could have seen it?</em>
           </p>
           <p>
             Engagement rate is not a single formula — it changes depending on what you divide total engagement by. Dividing by followers tells you how much of your total audience engaged. Dividing by reach or impressions tells you how well the post converted the people who actually saw it. Dividing by video views tells you how engaging the content was to people who watched it. Each version answers a slightly different question, and mixing them up is one of the most common mistakes in social media reporting.
           </p>
           <p>
-            This tool is built for <strong>social media managers, digital marketing agencies, influencers, content creators, brand managers, startup founders, freelancers, and marketing students</strong> who need an accurate, instant engagement rate without exporting analytics or doing manual spreadsheet math. It supports four percentage-based formulas, a cost-per-engagement mode for paid campaigns, and a fully custom formula for any denominator you choose. All calculations run locally in your browser with no signup, and results export as TXT, CSV, or a print-ready PDF.
+            This tool is built for <strong>social media managers, digital marketing agencies, influencers, content creators, brand managers, startup founders, freelancers, and marketing students</strong> who need an accurate, instant engagement rate without exporting analytics or doing manual spreadsheet math. It supports four percentage-based formulas, a cost-per-engagement mode for paid campaigns, and a fully custom formula for any denominator you choose. No signup required, and results export as TXT, CSV, or a print-ready PDF.
           </p>
         </div>
       </section>
@@ -100,7 +100,7 @@ export default function EngagementRateCalculatorSEO() {
                 "Inline validation with clear, specific error messages",
                 "Industry engagement rate benchmark reference table",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -273,7 +273,7 @@ export default function EngagementRateCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your engagement numbers, follower counts, and campaign data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

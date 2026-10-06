@@ -30,7 +30,7 @@ export default function FanPowerConsumptionCalculatorSEO() {
             electricity costs across rental units, facility managers running industrial or workshop fans,
             electricians checking circuit current draw, and energy-conscious households comparing fan running
             cost against air conditioning</strong>. Includes nine built-in fan presets, calculation history,
-            and text and CSV export. Browser-based, free, no signup required.
+            and text and CSV export. Free, no signup required.
           </p>
         </div>
       </section>
@@ -89,11 +89,11 @@ export default function FanPowerConsumptionCalculatorSEO() {
                 "Estimated current draw at 230V",
                 "9 built-in fan type presets",
                 "Automatic energy-saving suggestion based on your inputs",
-                "Calculation history (last 20 entries, saved locally)",
+                "Calculation history (last 20 entries)",
                 "Export results as a text report",
                 "Export results as CSV",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to any server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

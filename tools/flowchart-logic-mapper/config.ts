@@ -35,7 +35,7 @@ export const toolConfig = {
     faq: [
       { q: "What shapes do flowcharts use?", a: "The standard symbols are an oval for start and end, a rectangle for a process step, a diamond for a decision with yes/no branches, and a parallelogram for input or output. Arrows show the order of steps." },
       { q: "How do I connect two boxes?", a: "Switch to Connect mode, click the box the arrow starts from, then click the box it points to. In Select mode you can drag boxes around; the arrows follow." },
-      { q: "Can I save and continue later?", a: "Yes. The chart is saved in your browser automatically, and you can export it as JSON to back it up or move it to another device." },
+      { q: "Can I save and continue later?", a: "Yes. The chart is saved automatically, and you can export it as JSON to back it up or move it to another device." },
       { q: "Which export formats are available?", a: "PNG for documents and slides, SVG for sharp scaling in design tools and on the web, and JSON to reload the chart in the tool." },
       { q: "What are flowcharts useful for?", a: "Planning algorithms before coding, documenting business processes and approval workflows, and explaining decision logic such as troubleshooting steps." },
     ],

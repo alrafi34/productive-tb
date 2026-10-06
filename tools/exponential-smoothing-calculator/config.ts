@@ -66,7 +66,7 @@ export const exponentialSmoothingCalculatorConfig = {
     faq: [
       {
         q: "What is an exponential smoothing calculator?",
-        a: "An exponential smoothing calculator is a free browser-based tool that smooths noisy time-series data and generates forecasts using Simple, Double (Holt), or Triple (Holt-Winters) exponential smoothing, giving more weight to recent observations than older ones.",
+        a: "An exponential smoothing calculator is a free tool that smooths noisy time-series data and generates forecasts using Simple, Double (Holt), or Triple (Holt-Winters) exponential smoothing, giving more weight to recent observations than older ones.",
       },
       {
         q: "What is the difference between Simple, Holt, and Holt-Winters smoothing?",
@@ -102,7 +102,7 @@ export const exponentialSmoothingCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

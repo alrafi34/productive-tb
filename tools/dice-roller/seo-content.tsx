@@ -10,7 +10,7 @@ export default function DiceRollerSEOContent() {
           About the Dice Roller Simulator
         </h2>
         <p className="text-base leading-relaxed">
-          The Dice Roller Simulator is a fast, browser-based tool for rolling virtual dice commonly used in tabletop RPGs, board games, and probability demonstrations. Roll D4, D6, D8, D10, D12, and D20 dice individually or as custom sets with smooth animations and instant results.
+          The Dice Roller Simulator is a fast, online tool for rolling virtual dice commonly used in tabletop RPGs, board games, and probability demonstrations. Roll D4, D6, D8, D10, D12, and D20 dice individually or as custom sets with smooth animations and instant results.
         </p>
       </section>
 
@@ -25,7 +25,7 @@ export default function DiceRollerSEOContent() {
           <li>Export roll history as JSON</li>
           <li>Keyboard shortcut (Spacebar to roll)</li>
           <li>Responsive design for all devices</li>
-          <li>Local storage persistence</li>
+          <li>Roll history that persists between visits</li>
         </ul>
       </section>
 
@@ -73,7 +73,7 @@ export default function DiceRollerSEOContent() {
       <section>
         <h3 className="text-xl font-bold text-gray-900 mb-3">Privacy & Performance</h3>
         <p className="text-base leading-relaxed">
-          All dice rolls are generated locally in your browser using JavaScript's Math.random() function. No data is sent to any server. Roll history is stored in your browser's local storage and can be cleared anytime. The tool runs entirely client-side for maximum speed and privacy.
+          All dice rolls use a random number generator, and roll history can be cleared at any time. We do not collect or store your rolls.
         </p>
       </section>
       <ToolFaq items={toolConfig.seo.faq} />

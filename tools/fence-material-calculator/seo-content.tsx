@@ -19,7 +19,7 @@ export default function FenceMaterialCalculatorSEO() {
             The calculator supports five common fence types: Wood, Vinyl, Chain Link, Metal, and Privacy fences. Each type has smart defaults for panel width, rails per panel, and concrete per post. You can also switch between straight fence mode and full perimeter mode for complete property fencing.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            A built-in waste percentage slider (0–20%) adds a material buffer to account for cutting errors and installation waste. All calculations happen instantly in your browser with no data sent to any server.
+            A built-in waste percentage slider (0–20%) adds a material buffer to account for cutting errors and installation waste. We do not collect or store what you enter.
           </p>
         </div>
       </section>

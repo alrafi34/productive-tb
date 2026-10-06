@@ -28,7 +28,7 @@ export default function EnergyConsumptionCalculatorSEO() {
             Built for <strong>homeowners tracking electricity bills, renters estimating costs before moving
             in, energy auditors, and students learning power-to-energy calculations</strong>. Supports
             unlimited appliances, built-in presets for common devices, CSV and text export, and calculation
-            history — entirely browser-based, free, with no signup.
+            history — free, no signup required.
           </p>
         </div>
       </section>
@@ -83,10 +83,10 @@ export default function EnergyConsumptionCalculatorSEO() {
                 "28 built-in appliance presets with typical wattage",
                 "Daily, monthly, and yearly energy and cost totals",
                 "Highest-consumer detection across your appliance list",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "CSV export for spreadsheets",
                 "Text export for reports",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

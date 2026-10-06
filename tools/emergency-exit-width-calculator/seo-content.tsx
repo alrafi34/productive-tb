@@ -290,8 +290,7 @@ export default function EmergencyExitWidthCalculatorSEO() {
             This calculator is designed for architects, civil engineers, safety inspectors, and building professionals 
             who need accurate exit width calculations for life safety compliance. It combines building code requirements 
             with an intuitive interface, making complex egress calculations accessible while maintaining professional-grade 
-            accuracy. All calculations run entirely in your browser with no data sent to servers, ensuring privacy and 
-            instant performance. Always consult with local authorities having jurisdiction for final approval.
+            accuracy. We do not collect or store what you enter. Always consult with local authorities having jurisdiction for final approval.
           </p>
         </section>
 

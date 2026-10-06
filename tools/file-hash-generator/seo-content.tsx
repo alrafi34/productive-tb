@@ -82,8 +82,8 @@ export default function FileHashGeneratorSEOContent() {
           </div>
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">🌐</div>
-            <h3 className="font-semibold text-gray-900 mb-2">100% Client-Side</h3>
-            <p className="text-sm text-gray-600">All processing happens in your browser. No files uploaded to servers</p>
+            <h3 className="font-semibold text-gray-900 mb-2">Private</h3>
+            <p className="text-sm text-gray-600">We do not collect or store your files.</p>
           </div>
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">📊</div>
@@ -256,19 +256,15 @@ export default function FileHashGeneratorSEOContent() {
         <div className="space-y-4 text-sm text-gray-600">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">How It Works</h3>
-            <p>The tool uses the Web Crypto API's <code className="bg-white px-2 py-1 rounded">crypto.subtle.digest()</code> method to generate cryptographic hashes. Files are read using the FileReader API and processed entirely in your browser.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Browser Compatibility</h3>
-            <p>Works in all modern browsers that support the Web Crypto API: Chrome, Firefox, Safari, Edge, and Opera.</p>
+            <p>The tool reads your file and computes its hash with standard SHA algorithms. We do not collect or store your files.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Performance</h3>
-            <p>Hashing speed depends on your device&apos;s CPU and the file size. Large files (&gt;100MB) show a progress indicator during processing.</p>
+            <p>Hashing speed depends on the file size. Large files (&gt;100MB) show a progress indicator during processing.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Privacy</h3>
-            <p>Zero data collection. No analytics, no tracking, no file uploads. Everything happens locally in your browser.</p>
+            <p>We do not collect or store your files.</p>
           </div>
         </div>
       </section>

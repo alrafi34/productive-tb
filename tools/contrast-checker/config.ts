@@ -56,7 +56,7 @@ export const toolConfig = {
       { q: "Does this checker support accessibility-first workflows?", a: "Yes. It is useful during design, development, and QA to catch contrast issues early and reduce last-minute accessibility fixes." },
       { q: "Is this contrast checker free to use?", a: "Yes. It is free and available without registration." },
       { q: "Do I need to install software?", a: "No. There is nothing to install." },
-      { q: "Is my data private?", a: "No. We do not collect or store what you enter." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

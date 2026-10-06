@@ -244,7 +244,7 @@ export default function DatasetSplitCalculatorUI() {
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Split your dataset into training, validation, and testing sets using percentages or ratios.
               Supports 2-way and 3-way splits with smart rounding to preserve the total count.
-              All calculations run locally in your browser.
+              We do not collect or store what you enter.
             </p>
           </div>
         </div>

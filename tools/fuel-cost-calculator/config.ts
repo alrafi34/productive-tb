@@ -63,7 +63,7 @@ export const toolConfig = {
       { q: "What fuel economy should I enter?", a: "Your car's real-world average, from its trip computer or fill-up records. Real-world figures are often 10–20% worse than the official rating, especially in city driving or cold weather." },
       { q: "Does driving speed affect fuel consumption?", a: "Yes. According to the US Department of Energy, fuel economy usually drops quickly at speeds above about 50 mph (80 km/h), because air resistance rises with speed. For a fast highway trip, enter a lower economy figure than your mixed average." },
       { q: "Can I use this for diesel?", a: "Yes. The formula is the same for gasoline and diesel. Enter the diesel price and your car's diesel economy." },
-      { q: "Is my data private?", a: "Yes. Everything is calculated in your browser. Recent calculations and your currency choice are kept only in this browser's local storage." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
   features: [
@@ -75,7 +75,7 @@ export const toolConfig = {
     "Currency selector (USD, EUR, GBP, CAD, AUD), guessed from your location",
     "Calculation history with CSV export",
     "Copy a text summary",
-    "Runs in your browser — nothing is uploaded",
+    "Your inputs are not collected or stored",
   ],
   relatedTools: [
     "electric-motor-power-calculator",

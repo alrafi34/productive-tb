@@ -44,11 +44,11 @@ export const toolConfig = {
     "Swap fonts instantly",
     "Random pair generator",
     "Popular font pair presets",
-    "Save favorite pairs to localStorage",
+    "Save favorite pairs",
     "Copy CSS snippet",
     "Copy Google Fonts link",
     "Search and filter fonts",
-    "100% browser-based, no server required"
+    "Your inputs are not collected or stored"
   ]
 };
 

@@ -154,7 +154,7 @@ export default function F1ScoreCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Calculate F1 score from confusion matrix values (TP, FP, FN) or directly from precision and recall.
-              Instant results with step-by-step formulas. All calculations run locally in your browser.
+              Instant results with step-by-step formulas. We do not collect or store what you enter.
             </p>
           </div>
         </div>

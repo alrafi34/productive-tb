@@ -62,7 +62,7 @@ export const energyConsumptionCalculatorConfig = {
       { q: "How much does it cost to run an air conditioner for a month?", a: "A 1,800W unit running 8 hours a day uses 14.4 kWh a day, or 432 kWh in a 30-day month. At $0.18 per kWh that is about $77.76 a month; enter your unit's actual wattage and hours for your own figure." },
       { q: "Why does my calculated cost not match my electricity bill?", a: "Bills include fixed service or standing charges, taxes, and sometimes tiered or time-of-use rates. This calculator estimates the energy your appliances use and its variable cost; for a full bill with tiers, fixed charges and tax, use the Electric Bill Calculator." },
       { q: "How can I reduce my appliance energy consumption?", a: "Replace incandescent lighting with LEDs (about 80% less energy), reduce AC and water heater run time, unplug standby devices, and run washing machines and dishwashers with full loads." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your appliance list, power ratings, and electricity rate are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [
