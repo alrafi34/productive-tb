@@ -55,7 +55,7 @@ export default function Footer() {
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed max-w-md">
               {TOTAL_TOOLS} free calculators and tools for engineering, construction, land
-              and everyday work. They run in your browser — no sign-up, no paywalls.
+              and everyday work. No sign-up, no paywalls.
             </p>
             <Link
               href="/tools"

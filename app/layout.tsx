@@ -24,7 +24,7 @@ const inter = Inter({
    never shipped to the browser. */
 const TOTAL_TOOLS = tools.length;
 
-const SITE_DESCRIPTION = `${TOTAL_TOOLS} free online calculators and tools for electrical, structural, mechanical, land and data work — plus everyday text, image and developer utilities. Runs in your browser. No sign-up needed.`;
+const SITE_DESCRIPTION = `${TOTAL_TOOLS} free online calculators and tools for electrical, structural, mechanical, land and data work — plus everyday text, image and developer utilities. No sign-up needed.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} - ${TOTAL_TOOLS} Free Engineering & Technical Calculators`,
-    description: `${TOTAL_TOOLS} free engineering, construction and data calculators. Runs in your browser. No sign-up needed.`,
+    description: `${TOTAL_TOOLS} free engineering, construction and data calculators. No sign-up needed.`,
     images: ["/og?title=Productive+Toolbox"]
   },
   icons: {
