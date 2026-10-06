@@ -39,8 +39,7 @@ export default function WireSizeCalculatorSEO() {
             branch circuits and feeders, electrical engineers designing building power systems, solar
             installers running AC wiring, DIY homeowners planning permitted work, and students
             studying NEC or IEC cable sizing</strong>. Results are given in mm² (IEC cable sizes) or AWG (US sizes,
-            rated to the NEC), with single-phase and three-phase support. Browser-based, free, no
-            signup required.
+            rated to the NEC), with single-phase and three-phase support. Free, no signup required.
           </p>
         </div>
       </section>
@@ -102,7 +101,7 @@ export default function WireSizeCalculatorSEO() {
                 "Calculation history (last 10 entries)",
                 "Export results as text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

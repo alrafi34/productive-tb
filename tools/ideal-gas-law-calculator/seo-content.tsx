@@ -65,7 +65,7 @@ export default function IdealGasLawCalculatorSEO() {
                 "Automatic SI unit conversion",
                 "Scientific notation for very large/small values",
                 "Formula visualization with substitution",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT file",
                 "Gas presets for common scenarios",
               ].map((tip, i) => (

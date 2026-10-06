@@ -63,7 +63,7 @@ export default function BendingMomentCalculatorSEO() {
                 "Live bending moment and shear force diagrams (SVG)",
                 "Multi-unit output — Nm, kNm, lb-ft, lb-in, kip-ft",
                 "Reaction force display (R_A and R_B)",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as TXT file",
                 "Quick presets for common engineering scenarios",
               ].map((tip, i) => (

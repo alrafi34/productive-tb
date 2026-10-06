@@ -62,7 +62,7 @@ export default function HydraulicPressureCalculatorSEO() {
                 "Piston diameter from area using d = √(4A/π)",
                 "Live formula display with your actual values",
                 "Full unit conversion breakdown table",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for common hydraulic scenarios",
                 "Scientific notation for very large/small values",

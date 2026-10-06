@@ -144,7 +144,7 @@ export const toolConfig = {
       },
       {
         q: "Is my text stored or sent anywhere?",
-        a: "Your text is never sent to a server. To keep your work if you close the tab, the draft and word goal are saved in this browser's local storage on your device only. Press Reset to clear them, or use a private window if you do not want anything saved.",
+        a: "We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },
@@ -157,9 +157,9 @@ export const toolConfig = {
     "Word goal with progress bar",
     "Character limits for titles, meta descriptions, SMS, X, Instagram and LinkedIn",
     "Most used words, with or without common words",
-    "Draft and goal saved in your browser",
+    "Draft and goal saved",
     "No registration required",
-    "100% browser-based — your text never leaves your device",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "reading-time-calculator",

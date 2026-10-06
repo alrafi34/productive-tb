@@ -65,7 +65,7 @@ export default function LatheSpeedCalculatorSEO() {
                 "Recommended RPM range display",
                 "Speed status indicator (Optimal / Low / High)",
                 "Safety messages and machining hints",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Copy result to clipboard",
                 "Export printable TXT report",
                 "Decimal precision control",

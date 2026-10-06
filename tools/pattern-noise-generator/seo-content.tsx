@@ -96,7 +96,7 @@ export default function PatternNoiseSEOContent() {
           <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
             <p className="text-sm font-medium text-gray-500 mb-3">Pattern Algorithms</p>
             <div className="space-y-2 text-sm text-gray-900">
-              <p><span className="font-semibold font-mono">Static Grain</span> — each pixel set to Math.random() × intensity; pure white noise</p>
+              <p><span className="font-semibold font-mono">Static Grain</span> — each pixel set to a random value × intensity; pure white noise</p>
               <p><span className="font-semibold font-mono">Film Grain</span> — clustered random particles with adjustable radius; mimics analog film grain</p>
               <p><span className="font-semibold font-mono">Perlin Noise</span> — gradient noise algorithm; smooth, organic, natural-looking patterns</p>
               <p><span className="font-semibold font-mono">Speckle</span> — random circular particles at varying sizes; visible dotted texture</p>

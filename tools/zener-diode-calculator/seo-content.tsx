@@ -31,8 +31,7 @@ export default function ZenerDiodeCalculatorSEO() {
             Built for <strong>electronics hobbyists building simple voltage reference circuits, students
             learning shunt regulator theory, and hardware designers</strong> prototyping low-current
             regulation before committing to a dedicated regulator IC. Includes four built-in presets for
-            common regulator voltages, full step-by-step derivation, and text export — free and entirely
-            browser-based.
+            common regulator voltages, full step-by-step derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -91,7 +90,7 @@ export default function ZenerDiodeCalculatorSEO() {
                 "Configurable minimum current and max power thresholds",
                 "Full step-by-step derivation",
                 "Four built-in regulator voltage presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

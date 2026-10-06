@@ -50,6 +50,6 @@ export const toolConfig = {
     "Export as PNG or SVG",
     "Download word frequency data",
     "Responsive design for all devices",
-    "No backend required - 100% client-side"
+    "Nothing to install"
   ]
 };

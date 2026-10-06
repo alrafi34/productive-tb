@@ -59,7 +59,7 @@ export default function FrictionForceCalculatorSEO() {
                 "Multi-unit support — N, kN, lbf",
                 "Live formula display with your actual values",
                 "Step-by-step calculation breakdown",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Copy result to clipboard",
                 "Scientific notation for very large/small values",

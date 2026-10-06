@@ -59,7 +59,7 @@ export default function PressureDropCalculatorSEO() {
                 "Flow regime detection (laminar/transitional/turbulent)",
                 "Visual flow regime indicator bar",
                 "Darcy–Weisbach with Swamee–Jain friction factor",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT report",
                 "Shareable URL with encoded parameters",
               ].map((tip, i) => (

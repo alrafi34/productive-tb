@@ -65,7 +65,7 @@ export default function MachNumberCalculatorSEO() {
                 "Automatic Mach regime classification (Subsonic → Hypersonic)",
                 "Visual Mach scale indicator",
                 "Quick presets for real-world aircraft and speeds",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Copy result and export to TXT",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -68,7 +68,7 @@ export default function BearingLifeCalculatorSEO() {
                 "Visual life gauge and health indicator",
                 "Bearing comparison mode (two setups side-by-side)",
                 "Life in revolutions, hours, and years",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as TXT file",
                 "Quick presets for common engineering scenarios",
               ].map((tip, i) => (

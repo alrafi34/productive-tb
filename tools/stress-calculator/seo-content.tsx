@@ -57,7 +57,7 @@ export default function StressCalculatorSEO() {
                 "Full unit conversion breakdown (Pa, kPa, MPa, GPa, psi, ksi)",
                 "Engineering interpretation of stress level",
                 "Live formula display with your actual values",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT report",
                 "Quick presets for common engineering scenarios",
               ].map((tip, i) => (

@@ -123,7 +123,7 @@ export default function UsernameGeneratorUI() {
               <h3 className="font-semibold text-indigo-900 mb-1">Username Generator</h3>
               <p className="text-sm text-indigo-800">
                 Create unique, memorable usernames for social media, gaming, and online accounts. 
-                All generation happens locally in your browser.
+                We do not collect or store what you enter.
               </p>
             </div>
           </div>

@@ -350,7 +350,7 @@ export default function WorkforceRequirementCalculatorSEO() {
             </li>
             <li className="flex items-start gap-3">
               <span className="text-primary text-xl flex-shrink-0">✓</span>
-              <span><strong>No Software Required:</strong> Works entirely in your browser, no installation needed</span>
+              <span><strong>No Software Required:</strong> Nothing to install</span>
             </li>
           </ul>
         </div>

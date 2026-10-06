@@ -36,9 +36,9 @@ export const toolConfig = {
       { q: "What is XML to JSON conversion?", a: "XML to JSON conversion transforms data from XML (eXtensible Markup Language) format into JSON (JavaScript Object Notation) format. This is useful when working with legacy XML data that needs to be used in modern web applications that prefer JSON." },
       { q: "How does the converter handle XML attributes?", a: "When Include XML attributes is enabled, attributes are converted to JSON keys with an @ prefix. For example, XML attributes become JSON properties with the @ symbol prepended to the attribute name." },
       { q: "What is array detection?", a: "Array detection automatically converts repeated sibling elements into JSON arrays. For example, multiple book elements become a book array in JSON instead of individual objects." },
-      { q: "Can I convert large XML files?", a: "Yes! This tool runs entirely in your browser and can handle large XML files (100KB+) efficiently. All processing happens locally on your device with no server limitations." },
-      { q: "Is this tool free to use?", a: "Yes, our XML to JSON Converter is completely free and runs entirely in your browser. No registration, no limits, and no backend processing required. All conversion happens locally on your device." },
-      { q: "What happens to my data?", a: "Your data never leaves your device. All XML parsing and JSON generation happens entirely in your browser. We do not store, transmit, or process your data on any server." },
+      { q: "Can I convert large XML files?", a: "Yes! The tool handles large XML files (100KB+) efficiently." },
+      { q: "Is this tool free to use?", a: "Yes, our XML to JSON Converter is completely free, with no registration and no limits." },
+      { q: "What happens to my data?", a: "We do not collect or store what you enter." },
       { q: "Can I download the converted JSON?", a: "Yes! After conversion, you can download the JSON as a file with a single click. The file will be named converted.json and ready to use in your projects." },
     ],
   },
@@ -51,7 +51,7 @@ export const toolConfig = {
     "Copy to clipboard functionality",
     "Download JSON files",
     "Input validation with error messages",
-    "LocalStorage history",
+    "History",
     "Mobile-responsive design"
   ]
 };

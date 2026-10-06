@@ -61,6 +61,6 @@ export const toolConfig = {
     "History of parsed User-Agent strings",
     "Real-time parsing with instant results",
     "Mobile-responsive design",
-    "No server required - 100% client-side"
+    "Nothing to install"
   ]
 };

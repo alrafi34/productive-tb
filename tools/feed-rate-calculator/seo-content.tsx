@@ -65,7 +65,7 @@ export default function FeedRateCalculatorSEO() {
                 "Chip load status indicator (Optimal / Low / High)",
                 "Safety messages and machining tips",
                 "Chip load reference table for all materials",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Copy result to clipboard",
                 "Export printable TXT report",
                 "Decimal precision control",

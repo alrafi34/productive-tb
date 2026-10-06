@@ -73,9 +73,7 @@ export default function URLSanitizerSEO() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-3">Privacy & Security</h3>
             <p>
-              This URL tracker remover operates entirely in your browser using JavaScript. No URLs are 
-              sent to any server, ensuring complete privacy. All processing happens locally on your device, 
-              and your data never leaves your computer.
+              We do not collect or store what you enter.
             </p>
           </div>
 

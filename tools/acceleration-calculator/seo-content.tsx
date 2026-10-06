@@ -60,7 +60,7 @@ export default function AccelerationCalculatorSEO() {
                 "Step-by-step calculation breakdown",
                 "Deceleration detection with clear labeling",
                 "Swap velocities button for quick reversal",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Quick presets for common real-world scenarios",
                 "Export results as a TXT file",
               ].map((tip, i) => (

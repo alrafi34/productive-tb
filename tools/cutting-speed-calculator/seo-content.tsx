@@ -64,7 +64,7 @@ export default function CuttingSpeedCalculatorSEO() {
                 "Material database with recommended speed ranges",
                 "Speed status indicator (Optimal / Safe / Too Fast / Too Slow)",
                 "Live formula display with actual values",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as TXT file",
                 "Quick presets for common machining scenarios",
                 "Material reference table with all speed ranges",

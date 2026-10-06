@@ -51,7 +51,7 @@ export default function AngularVelocitySEO() {
                 "Instant unit conversion to all 4 output units",
                 "Step-by-step calculation breakdown",
                 "Live formula display with your actual values",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for common engineering scenarios",
                 "Selectable decimal precision (2–8 places)",

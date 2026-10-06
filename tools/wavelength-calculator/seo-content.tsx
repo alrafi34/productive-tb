@@ -33,7 +33,7 @@ export default function WavelengthCalculatorSEO() {
             amateur radio operators building homebrew antennas, physics students studying the electromagnetic
             spectrum, and audio engineers working with sound wave propagation</strong>. Results are shown
             simultaneously in kilometers, meters, centimeters, and millimeters, with calculation history and
-            a text export — free, browser-based, no signup required.
+            a text export — free, no signup required.
           </p>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function WavelengthCalculatorSEO() {
                 "Calculation history (last 20 entries)",
                 "Export results as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -60,7 +60,7 @@ export default function SpringForceCalculatorSEO() {
                 "Live formula display with your actual values",
                 "Compression and extension mode toggle",
                 "Unit conversion breakdown (N, kN, lbf)",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for common engineering scenarios",
                 "Scientific notation for very large/small values",

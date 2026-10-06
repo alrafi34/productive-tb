@@ -37,7 +37,7 @@ export default function WordCounterSEOContent() {
             limits</strong> such as a meta description or an X post, and which words you repeat most.
           </p>
           <p>
-            Everything runs in your browser. The text is never uploaded; your draft and goal are kept in this
+            We do not collect or store what you enter. The text is never uploaded; your draft and goal are kept in this
             browser&apos;s storage so they are still there if you close the tab, and the Reset button clears them.
           </p>
         </div>

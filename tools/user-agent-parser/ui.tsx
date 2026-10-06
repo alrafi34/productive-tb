@@ -302,7 +302,7 @@ export default function UserAgentParserUI() {
           <ul className="text-sm text-gray-600 space-y-1">
             <li>• Use this tool to test how your website detects different browsers and devices</li>
             <li>• QA testers can verify browser compatibility across different User-Agent strings</li>
-            <li>• All parsing happens locally in your browser - no data is sent to servers</li>
+            <li>Your inputs are not collected or stored</li>
             <li>• Click on history items to quickly reload and test previous User-Agent strings</li>
           </ul>
         </div>

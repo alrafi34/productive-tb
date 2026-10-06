@@ -52,8 +52,7 @@ export default function RandomIDGeneratorSEOContent() {
           <li className="flex gap-3">
             <span className="text-primary font-bold">✓</span>
             <span>
-              <strong>100% Private:</strong> All generation happens in your
-              browser
+              <strong>100% Private:</strong> We do not collect or store the IDs you generate.
             </span>
           </li>
         </ul>

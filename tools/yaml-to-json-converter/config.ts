@@ -52,7 +52,7 @@ export const toolConfig = {
     "Syntax highlighting",
     "Large YAML file support",
     "Mobile-responsive design",
-    "No backend processing - fully client-side",
+    "Your inputs are not collected or stored",
     "Support for complex nested structures",
     "Array and object handling"
   ]

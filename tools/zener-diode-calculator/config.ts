@@ -56,7 +56,7 @@ export const zenerDiodeCalculatorConfig = {
       { q: "How do I size the series resistor?", a: "Size so minimum load current keeps Zener current above its minimum, and maximum load current keeps Zener power below its rated maximum — check both extremes." },
       { q: "Why use a Zener regulator instead of a linear IC?", a: "Simple and cheap but inefficient (resistor always dissipates power) with poor load regulation — best for low-current reference or protection circuits, not general power supplies." },
       { q: "What does 'unstable' or 'warning' status mean?", a: "'Unstable' means Zener current is below minimum or negative (regulation failed). 'Warning' means power exceeds maximum rating. 'Stable' means both constraints are satisfied." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, resistance, and current values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

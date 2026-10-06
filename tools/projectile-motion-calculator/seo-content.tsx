@@ -57,7 +57,7 @@ export default function ProjectileMotionSEO() {
                 "Multi-unit velocity support (m/s, km/h, ft/s, mph)",
                 "Elevated launch height support",
                 "Full results breakdown table",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT or chart as PNG",
                 "Step-by-step formula panel",
                 "Quick presets for common scenarios",

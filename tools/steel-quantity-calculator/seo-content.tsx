@@ -103,7 +103,7 @@ export default function SteelQuantityCalculatorSEO() {
           <li>Real-time calculations with instant updates</li>
           <li>Unit conversion between metric and imperial</li>
           <li>Typical steel factor presets for quick estimation</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Export results as text or CSV</li>
           <li>Mobile-responsive design</li>
           <li>Free to use with no registration</li>

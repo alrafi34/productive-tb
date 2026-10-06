@@ -58,7 +58,7 @@ export default function HeatTransferCalculatorSEO() {
                 "Emissivity slider for radiation inputs",
                 "Automatic temperature unit conversion to Kelvin",
                 "Multi-unit output: W, kW, BTU/hr, kcal/hr",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">

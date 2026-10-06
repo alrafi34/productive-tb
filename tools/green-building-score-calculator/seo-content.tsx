@@ -367,8 +367,8 @@ export default function GreenBuildingScoreCalculatorSEO() {
             This Green Building Score Calculator provides instant sustainability assessment for architects, developers, 
             homeowners, and students. It offers real-time scoring, detailed breakdowns, and actionable improvement 
             suggestions. While simplified compared to official certification processes, it serves as an excellent 
-            educational tool and preliminary assessment for green building projects. All calculations run in your 
-            browser with complete privacy. Use this tool for design decisions, retrofit planning, and sustainability 
+            educational tool and preliminary assessment for green building projects. We do not collect or store what you enter. 
+            Use this tool for design decisions, retrofit planning, and sustainability 
             education.
           </p>
         </section>

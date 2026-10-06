@@ -8,13 +8,13 @@ export default function ZScoreCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>Z-score calculator</strong> is a free browser-based tool that computes the <strong>standard score</strong> of a value relative to a mean and standard deviation. A Z-score tells you exactly how many standard deviations a value is above or below the average — a fundamental measure used throughout statistics, quality control, finance, and standardized testing.
+            A <strong>Z-score calculator</strong> is a free tool that computes the <strong>standard score</strong> of a value relative to a mean and standard deviation. A Z-score tells you exactly how many standard deviations a value is above or below the average — a fundamental measure used throughout statistics, quality control, finance, and standardized testing.
           </p>
           <p>
             This calculator supports both directions: enter a value, mean, and standard deviation to get its Z-score, or enter a target Z-score along with a mean and standard deviation to reverse-calculate the corresponding value. Every result comes with a plain-language interpretation and an interpretation guide so you always know what the number means.
           </p>
           <p>
-            This tool is built for <strong>students, researchers, analysts, scientists, teachers, finance professionals, quality control engineers, and healthcare researchers</strong>. It works entirely in your browser — no data is ever sent to a server.
+            This tool is built for <strong>students, researchers, analysts, scientists, teachers, finance professionals, quality control engineers, and healthcare researchers</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function ZScoreCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Validation that blocks a zero or negative standard deviation",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -212,7 +212,7 @@ export default function ZScoreCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your numbers are never transmitted to any server or stored in any database. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 6 ? "border-b border-gray-100 pb-6" : ""}>

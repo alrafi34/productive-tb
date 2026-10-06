@@ -59,10 +59,10 @@ export default function VennDiagramSEOContent() {
         <div className="mt-8 pt-8 border-t border-purple-200">
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Why Use Our Venn Diagram Maker?</h3>
           <p className="text-sm text-gray-700 mb-3">
-            Our free online Venn diagram maker runs entirely in your browser with no backend required. Create professional diagrams instantly without installing software or creating accounts. Perfect for students, teachers, business professionals, and anyone who needs to visualize set relationships and overlapping categories.
+            Our free online Venn diagram maker is free to use. Create professional diagrams instantly without installing software or creating accounts. Perfect for students, teachers, business professionals, and anyone who needs to visualize set relationships and overlapping categories.
           </p>
           <p className="text-sm text-gray-700">
-            With support for 2 or 3 circles, customizable colors, opacity controls, and flexible labeling, you can create any type of Venn diagram from simple educational examples to complex business analysis. Export your work in multiple formats and save it locally for future editing.
+            With support for 2 or 3 circles, customizable colors, opacity controls, and flexible labeling, you can create any type of Venn diagram from simple educational examples to complex business analysis. Export your work in multiple formats and save it for future editing.
           </p>
         </div>
       </div>

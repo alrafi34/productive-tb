@@ -9,10 +9,10 @@ export const toolConfig = {
   seo: {
     faq: [
       { q: "Which browsers support voice typing?", a: "Chrome, Edge and Safari support speech recognition. Firefox does not yet, so use one of the others." },
-      { q: "Is my speech sent anywhere?", a: "Recognition is provided by your browser's speech service. In Chrome, audio is processed by Google's servers to produce the text; the notes themselves stay in your browser." },
+      { q: "Is my speech sent anywhere?", a: "Not to us. Recognition is provided by your browser's speech service. In Chrome, audio is processed by Google's servers to produce the text. We do not collect or store your notes." },
       { q: "Which languages can I dictate in?", a: "Choose the language before you start; the browser supports many languages and regional accents, such as English (US or UK), Spanish, French and German." },
       { q: "Can I edit the text while dictating?", a: "Yes. The notepad is editable, so you can fix words, add punctuation and keep dictating." },
-      { q: "How do I save my notes?", a: "Copy the text or download it as a file. Notes are not uploaded or stored on a server." },
+      { q: "How do I save my notes?", a: "Copy the text or download it as a file. We do not collect or store your notes." },
     ],
     title: "Voice to Text Notepad – Dictate Notes Online Free",
     description: "Dictate notes with your microphone and see the text appear as you speak. Edit, copy or download the transcript. Free, no sign-up.",
@@ -44,10 +44,10 @@ export const toolConfig = {
     "Real-time speech transcription",
     "Multiple language support",
     "Live microphone recording indicator",
-    "Auto-save notes to localStorage",
+    "Your inputs are not collected or stored",
     "Download notes as TXT or Markdown",
     "Copy notes to clipboard",
     "Word and character counter",
-    "No backend or API required"
+    "Nothing to install"
   ]
 };

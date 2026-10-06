@@ -57,7 +57,7 @@ export default function ForceCalculatorSEO() {
                 "Live formula display with your actual values",
                 "Educational explanation with each result",
                 "Unit conversion breakdown (N, kN, lbf)",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for common physics scenarios",
                 "Supports negative acceleration (deceleration)",

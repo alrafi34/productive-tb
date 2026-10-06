@@ -8,13 +8,13 @@ export default function VarianceCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>variance calculator</strong> is a free browser-based tool that computes both <strong>population variance</strong> and <strong>sample variance</strong> of any dataset instantly. Type or paste numbers separated by commas, spaces, or new lines — or upload a CSV or TXT file — and the calculator automatically detects your separators, parses the values, and returns variance, standard deviation, and a full descriptive statistics summary.
+            A <strong>variance calculator</strong> is a free tool that computes both <strong>population variance</strong> and <strong>sample variance</strong> of any dataset instantly. Type or paste numbers separated by commas, spaces, or new lines — or upload a CSV or TXT file — and the calculator automatically detects your separators, parses the values, and returns variance, standard deviation, and a full descriptive statistics summary.
           </p>
           <p>
             Beyond variance itself, this calculator also returns mean, sum, count, minimum, maximum, range, and population/sample standard deviation — plus a complete step-by-step breakdown showing every deviation and squared deviation used in the calculation, making it as useful for learning statistics as it is for real analysis.
           </p>
           <p>
-            This tool is built for <strong>students, teachers, data analysts, researchers, engineers, scientists, business analysts, financial analysts, and quality assurance professionals</strong>. It handles datasets of 100,000+ numbers efficiently, supports decimals and negative numbers, and never sends your data anywhere — everything runs locally in your browser.
+            This tool is built for <strong>students, teachers, data analysts, researchers, engineers, scientists, business analysts, financial analysts, and quality assurance professionals</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function VarianceCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past datasets",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -231,7 +231,7 @@ export default function VarianceCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your numbers are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

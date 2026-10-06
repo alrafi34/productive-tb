@@ -36,7 +36,7 @@ export default function WordCloudGeneratorSEOContent() {
           <li><strong>Word Rotation:</strong> Add visual interest with adjustable rotation angles</li>
           <li><strong>Stop Words Filtering:</strong> Remove common words like "the", "and", "is"</li>
           <li><strong>Export Options:</strong> Download as PNG, SVG, JSON, or CSV</li>
-          <li><strong>100% Browser-Based:</strong> No server required, all processing happens locally</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
         </ul>
       </section>
 
@@ -67,7 +67,7 @@ export default function WordCloudGeneratorSEOContent() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Privacy & Security</h2>
         <p>
-          Your text is processed entirely in your browser. No data is sent to any server, ensuring complete privacy and security. You can safely analyze sensitive documents without worrying about data exposure.
+          We do not collect or store what you enter. You can safely analyze sensitive documents without worrying about data exposure.
         </p>
       </section>
       <ToolFaq items={faq} />

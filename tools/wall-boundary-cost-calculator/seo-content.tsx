@@ -19,7 +19,7 @@ export default function WallBoundaryCostCalculatorSEO() {
             The calculator works by multiplying the wall area (perimeter × height) by your material and labor costs per square foot, then adding any extra expenses. It supports both feet and meter measurements and multiple currencies, making it suitable for projects worldwide.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations happen instantly in your browser with complete privacy. The tool includes preset templates for residential, commercial, and farm boundaries, plus features like cost breakdown, calculation history, and export options.
+            All calculations happen instantly with complete privacy. The tool includes preset templates for residential, commercial, and farm boundaries, plus features like cost breakdown, calculation history, and export options.
           </p>
         </div>
       </section>

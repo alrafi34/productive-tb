@@ -62,7 +62,7 @@ export default function TorqueCalculatorSEO() {
                 "Angle correction toggle for non-perpendicular forces",
                 "Live formula display with your actual values",
                 "Unit conversion breakdown table (Nm, kNm, lb-ft, lb-in, oz-in)",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for common engineering scenarios",
               ].map((tip, i) => (

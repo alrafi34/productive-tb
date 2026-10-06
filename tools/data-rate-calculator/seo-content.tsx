@@ -30,7 +30,7 @@ export default function DataRateCalculatorSEO() {
           <li>Adjustable decimal precision (2-8 decimal places)</li>
           <li>Common presets for typical scenarios</li>
           <li>Step-by-step calculation breakdown</li>
-          <li>Calculation history with localStorage persistence</li>
+          <li>Calculation history that persists between visits</li>
           <li>Export results to text file</li>
           <li>Copy results to clipboard</li>
           <li>Responsive design for all devices</li>

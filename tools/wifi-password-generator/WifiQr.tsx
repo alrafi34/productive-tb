@@ -59,7 +59,7 @@ export default function WifiQr({ password }: { password: string }) {
             <input type="checkbox" checked={hidden} onChange={(e) => setHidden(e.target.checked)} className="rounded border-gray-300" />
             Hidden network
           </label>
-          <p className="text-[11px] text-gray-500">Security: WPA/WPA2/WPA3. The code is made in your browser; nothing is uploaded.</p>
+          <p className="text-[11px] text-gray-500">Security: WPA/WPA2/WPA3. We do not collect or store what you enter.</p>
         </div>
         {dataUrl && (
           <div className="text-center">
