@@ -5,22 +5,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Tool } from "@/config/tools";
 import { searchTools } from "@/lib/search-tools";
+import { loadCatalogue, type Catalogue } from "@/lib/tool-catalogue";
 
 const MAX_RESULTS = 8;
-
-type Catalogue = { tools: Tool[]; categoryName: Map<string, string> };
-
-/* Loaded on first open, not at page load: the header renders on every page,
-   and a static import would ship the full catalogue with each of them.
-   Kept at module scope so reopening the dialog does not refetch it. */
-let cataloguePromise: Promise<Catalogue> | null = null;
-function loadCatalogue(): Promise<Catalogue> {
-  cataloguePromise ??= import("@/config/tools").then(({ tools, categories }) => ({
-    tools,
-    categoryName: new Map(categories.map(c => [c.slug, c.name])),
-  }));
-  return cataloguePromise;
-}
 
 type Props = {
   open: boolean;

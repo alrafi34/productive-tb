@@ -212,7 +212,7 @@ export default function HomePage() {
           />
 
           <div className="max-w-5xl mx-auto px-6 pt-20 pb-16 sm:pt-24 sm:pb-20 text-center">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold text-primary bg-primary/8 border border-primary/15 px-3.5 py-1.5 rounded-full mb-7">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-800 bg-primary/8 border border-primary/15 px-3.5 py-1.5 rounded-full mb-7">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
               Free forever · No sign-up · Runs in your browser
             </span>
@@ -283,7 +283,7 @@ export default function HomePage() {
                       <span className={`w-11 h-11 flex items-center justify-center text-xl rounded-xl border ${d.accent}`}>
                         {cat.icon}
                       </span>
-                      <span className="text-xs font-bold text-slate-400 tabular-nums">{count} tools</span>
+                      <span className="text-xs font-bold text-slate-500 tabular-nums">{count} tools</span>
                     </div>
 
                     <h3 className="text-base font-semibold text-slate-900 mb-1.5" style={{ fontFamily: "var(--font-heading)" }}>
@@ -379,7 +379,7 @@ export default function HomePage() {
                         {cat.name}
                       </span>
                     </span>
-                    <span className="text-[11px] font-bold text-slate-400 tabular-nums shrink-0">
+                    <span className="text-[11px] font-bold text-slate-500 tabular-nums shrink-0">
                       {countByCategory[cat.slug] ?? 0}
                     </span>
                   </Link>
@@ -402,7 +402,7 @@ export default function HomePage() {
         <section className="py-20 sm:py-24 px-6 bg-slate-900">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary mb-3">Why this one</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-400 mb-3">Why this one</p>
               <h2
                 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4"
                 style={{ fontFamily: "var(--font-heading)" }}
@@ -477,7 +477,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16">
 
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary mb-3">Also in the box</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700 mb-3">Also in the box</p>
               <h2
                 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-3"
                 style={{ fontFamily: "var(--font-heading)" }}
@@ -508,7 +508,7 @@ export default function HomePage() {
             </div>
 
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary mb-3">Fresh</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700 mb-3">Fresh</p>
               <h2
                 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-3"
                 style={{ fontFamily: "var(--font-heading)" }}
@@ -624,7 +624,7 @@ export default function HomePage() {
 function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: string; sub: string }) {
   return (
     <div className="text-center mb-12 sm:mb-14">
-      <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary mb-3">{eyebrow}</p>
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700 mb-3">{eyebrow}</p>
       <h2
         className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3"
         style={{ fontFamily: "var(--font-heading)" }}

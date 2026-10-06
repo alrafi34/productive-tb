@@ -3,10 +3,9 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { tools, categories } from "@/config/tools";
+import type { Tool } from "@/config/tools";
 import { searchTools } from "@/lib/search-tools";
-
-const categoryName = new Map(categories.map(c => [c.slug, c.name]));
+import { loadCatalogue, type Catalogue } from "@/lib/tool-catalogue";
 
 /* The five tools with the most search clicks (GSC, six months to 2026-09-21).
    The previous picks were guesses — torque-calculator had no impressions at
@@ -28,8 +27,19 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const [catalogue, setCatalogue] = useState<Catalogue | null>(null);
 
-  const { results, matchCount } = useMemo(() => searchTools(tools, query, MAX_RESULTS), [query]);
+  /* The tool list is fetched when the search is about to be used (hover,
+     touch or focus), not with the page, so visitors who never search do
+     not download and run it. */
+  function prepare() {
+    if (!catalogue) loadCatalogue().then(setCatalogue);
+  }
+
+  const { results, matchCount } = useMemo(
+    () => (catalogue ? searchTools(catalogue.tools, query, MAX_RESULTS) : { results: [], matchCount: 0 }),
+    [catalogue, query]
+  );
 
   /* "/" focuses search from anywhere on the page */
   useEffect(() => {
@@ -54,7 +64,7 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
-  function go(tool: (typeof tools)[number]) {
+  function go(tool: Tool) {
     setOpen(false);
     setQuery("");
     router.push(`/tools/${tool.category}/${tool.slug}`);
@@ -82,7 +92,7 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
 
   return (
     <div className="w-full max-w-2xl mx-auto" ref={wrapRef}>
-      <div className="relative">
+      <div className="relative" onPointerEnter={prepare} onTouchStart={prepare}>
         <div
           className={`flex items-center gap-3 bg-white border-2 rounded-2xl pl-5 pr-2 py-2 transition-all duration-200 ${
             showPanel
@@ -117,7 +127,10 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
               setActive(0);
               setOpen(true);
             }}
-            onFocus={() => setOpen(true)}
+            onFocus={() => {
+              prepare();
+              setOpen(true);
+            }}
             onKeyDown={onKeyDown}
             className="flex-1 min-w-0 py-2.5 text-[15px] text-slate-900 bg-transparent outline-none placeholder:text-slate-400"
           />
@@ -150,7 +163,9 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
             role="listbox"
             className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-900/10 overflow-hidden z-50 text-left"
           >
-            {results.length > 0 ? (
+            {!catalogue ? (
+              <p className="px-5 py-8 text-center text-sm text-slate-500">Loading tools…</p>
+            ) : results.length > 0 ? (
               <>
                 <ul className="max-h-[22rem] overflow-y-auto py-1.5">
                   {results.map((tool, i) => (
@@ -174,7 +189,7 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
                           <span className="block text-xs text-slate-500 truncate">{tool.description}</span>
                         </span>
                         <span className="hidden sm:block shrink-0 text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                          {categoryName.get(tool.category) ?? tool.category}
+                          {catalogue.categoryName.get(tool.category) ?? tool.category}
                         </span>
                       </button>
                     </li>
@@ -202,7 +217,7 @@ export default function HeroSearch({ totalTools }: { totalTools: number }) {
 
       {/* Quick links */}
       <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
-        <span className="text-xs text-slate-400 mr-1">Popular:</span>
+        <span className="text-xs text-slate-500 mr-1">Popular:</span>
         {QUICK_LINKS.map(q => (
           <Link
             key={q.slug}
