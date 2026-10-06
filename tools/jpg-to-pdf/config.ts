@@ -34,11 +34,11 @@ export const jpgToPdfConfig = {
       { name: "Create and download", text: "Click Create PDF, then Download PDF." },
     ],
     faq: [
-      { q: "Are my images uploaded to a server?", a: "No. The PDF is built in your browser with the open-source pdf-lib library, so your photos and documents never leave your device." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
       { q: "Does converting JPG to PDF reduce the quality?", a: "Upright JPGs are placed in the PDF unchanged, byte for byte, so there is no quality loss, and PNGs keep their transparency. HEIC, WebP, GIF, BMP, AVIF and rotated JPGs are redrawn as high-quality JPG (92%) first." },
       { q: "Should I choose A4 or US Letter?", a: "US Letter (8.5 × 11 in) is standard in the United States, Canada and Mexico, and A4 (210 × 297 mm) in Europe and most other countries. The tool picks one from your region; change it if you are sending the PDF somewhere that uses the other size." },
       { q: "How do I put several photos into one PDF?", a: "Add all the images at once or in batches, put them in order and click Create PDF. Every image becomes its own page in a single PDF file." },
-      { q: "Can I convert iPhone HEIC photos to PDF?", a: "Yes. HEIC photos are decoded in the browser and added to the PDF like any other image." },
+      { q: "Can I convert iPhone HEIC photos to PDF?", a: "Yes. HEIC photos are converted and added to the PDF like any other image." },
       { q: "How large will the PDF be?", a: "About the total size of the images you add, since JPGs are embedded as they are. To make it smaller, compress or resize the photos first, for example to around 2000 px on the long side for documents." },
       { q: "Why are my pages sideways?", a: "Orientation is set to Auto, so a wide image gets a landscape page. Choose Portrait to keep every page upright; the image then shrinks to fit the width. If the photo itself is sideways, rotate it with an image cropper first." },
     ],

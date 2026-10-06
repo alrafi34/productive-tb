@@ -63,6 +63,6 @@ export const goldenRatioCalculatorConfig = {
     "Copy to clipboard",
     "Export as JSON or TXT",
     "Common value presets",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

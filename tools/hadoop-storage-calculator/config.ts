@@ -74,7 +74,7 @@ export const hadoopStorageCalculatorConfig = {
     faq: [
       {
         q: "What is a Hadoop storage calculator?",
-        a: "A Hadoop storage calculator is a free browser-based tool that estimates the physical disk capacity an HDFS cluster needs, based on raw data size, replication factor, compression ratio, and reserved free space.",
+        a: "A Hadoop storage calculator is a free tool that estimates the physical disk capacity an HDFS cluster needs, based on raw data size, replication factor, compression ratio, and reserved free space.",
       },
       {
         q: "How is required HDFS storage calculated?",
@@ -102,7 +102,7 @@ export const hadoopStorageCalculatorConfig = {
       },
       {
         q: "Is my cluster configuration data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. No cluster sizing information is ever transmitted to any server.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

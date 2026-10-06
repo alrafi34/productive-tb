@@ -15,8 +15,7 @@ export default function HashGeneratorSEO() {
         </h2>
         <p className="leading-relaxed">
           A hash generator is a cryptographic tool that converts input data (text or files) into a fixed-length string of characters called a hash. 
-          This hash acts as a unique digital fingerprint for your data. Our tool supports three popular algorithms: MD5, SHA-1, and SHA-256, 
-          all running entirely in your browser for maximum privacy and speed.
+          This hash acts as a unique digital fingerprint for your data. Our tool supports three popular algorithms: MD5, SHA-1, and SHA-256.
         </p>
       </section>
 
@@ -66,7 +65,7 @@ export default function HashGeneratorSEO() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 border border-slate-200 rounded-lg">
             <h3 className="font-semibold text-slate-800 mb-2">🔒 Privacy First</h3>
-            <p className="text-sm">All hashing happens in your browser. No data is sent to any server.</p>
+            <p className="text-sm">We do not collect or store what you enter.</p>
           </div>
           <div className="p-4 border border-slate-200 rounded-lg">
             <h3 className="font-semibold text-slate-800 mb-2">⚡ Instant Results</h3>
@@ -235,20 +234,17 @@ export default function HashGeneratorSEO() {
         </h2>
         <div className="space-y-3 text-sm">
           <p>
-            <strong>Implementation:</strong> This tool uses a pure JavaScript implementation of MD5 and the Web Crypto API 
-            (crypto.subtle.digest) for SHA-1 and SHA-256, ensuring fast performance and browser compatibility.
+            <strong>Implementation:</strong> The tool uses standard MD5, SHA-1 and SHA-256 algorithms for fast, accurate results.
           </p>
           <p>
-            <strong>Privacy:</strong> All computations happen locally in your browser. No data is transmitted to any server, 
-            making this tool completely private and secure.
+            <strong>Privacy:</strong> We do not collect or store what you enter.
           </p>
           <p>
             <strong>Performance:</strong> The tool can handle large text inputs and files efficiently. For very large files 
-            (100MB+), processing may take a few seconds depending on your device.
+            (100MB+), processing may take a few seconds.
           </p>
           <p>
-            <strong>Browser Support:</strong> Works in all modern browsers that support the Web Crypto API (Chrome, Firefox, 
-            Safari, Edge).
+            <strong>Browser Support:</strong> Works in all modern browsers (Chrome, Firefox, Safari, Edge).
           </p>
         </div>
       </section>
@@ -259,7 +255,7 @@ export default function HashGeneratorSEO() {
       <section className="pt-6 border-t border-slate-200">
         <p className="text-sm text-slate-600 text-center">
           This hash generator is a free, open-source tool designed for developers, security professionals, and anyone 
-          needing quick and reliable hash generation. All operations are performed locally for maximum privacy and speed.
+          needing quick and reliable hash generation. We do not collect or store what you enter.
         </p>
       </section>
     </div>

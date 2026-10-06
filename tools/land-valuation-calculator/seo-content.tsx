@@ -24,8 +24,7 @@ export default function LandValuationCalculatorSEO() {
             across South Asia, the Middle East, and international markets.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations run entirely in your browser. No data is sent to any server, and your inputs
-            are never stored externally.
+            We do not collect or store what you enter.
           </p>
         </div>
       </section>

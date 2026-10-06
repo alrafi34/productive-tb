@@ -74,7 +74,7 @@ export const indexSizeCalculatorConfig = {
     faq: [
       {
         q: "What is an index size calculator?",
-        a: "An index size calculator is a free browser-based tool that estimates the approximate storage size of a database index before you create it, based on row count, column sizes, index type, and database engine.",
+        a: "An index size calculator is a free tool that estimates the approximate storage size of a database index before you create it, based on row count, column sizes, index type, and database engine.",
       },
       {
         q: "How is index size calculated?",
@@ -102,7 +102,7 @@ export const indexSizeCalculatorConfig = {
       },
       {
         q: "Is my schema information private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. No table names, column names, or schema details are ever transmitted to any server.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

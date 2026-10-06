@@ -93,7 +93,7 @@ export default function IrrigationWaterCalculatorUI() {
         {/* Info Banner */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
           <p className="text-sm text-blue-800">
-            Estimate daily irrigation water requirements for crops based on land size, crop type, soil, climate, and irrigation method. All calculations run instantly in your browser.
+            Estimate daily irrigation water requirements for crops based on land size, crop type, soil, climate, and irrigation method. All calculations run instantly.
           </p>
         </div>
 

@@ -49,7 +49,7 @@ export const toolConfig = {
       { q: "How do I make a button accessible?", a: "Use a real <button> element (or <a> for links), give the text a contrast ratio of at least 4.5:1 against the background, keep a visible focus outline for keyboard users, and make the button at least 24 × 24 CSS pixels, or 44 × 44 for touch." },
       { q: "How much padding and radius should a button have?", a: "Common values are 8–12 px vertical and 16–24 px horizontal padding, with a radius of 4–8 px for a modern look or 9999 px for a pill. Use the same values for every button in a design system." },
       { q: "What transition duration looks best?", a: "Between 150 and 300 ms. Shorter feels abrupt and longer feels sluggish. Transition color and background changes; avoid animating width, height or padding, which forces the page to re-layout." },
-      { q: "Are my button designs saved?", a: "No. We do not collect or store what you enter." },
+      { q: "Are my button designs saved?", a: "No. The tool does not store designs, so copy the CSS or Tailwind classes to keep a design." },
     ],
   },
   features: [

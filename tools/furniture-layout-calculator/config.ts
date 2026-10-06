@@ -29,7 +29,7 @@ export const furnitureLayoutCalculatorConfig = {
       { name: "Add furniture", text: "Add items from the presets (sofa, bed, desk, table) or create your own with a name, size and color." },
       { name: "Arrange it", text: "Drag items into place, rotate them 90°, or use Auto Arrange." },
       { name: "Check the space", text: "See how much of the floor the furniture covers and whether anything overlaps." },
-      { name: "Save or export", text: "Save the layout in your browser or download it as a PNG image or text report." },
+      { name: "Save or export", text: "Save the layout or download it as a PNG image or text report." },
     ],
     faq: [
       { q: "How much clearance do I need around furniture?", a: "Leave about 30–36 in (75–90 cm) for main walkways, 18 in (45 cm) between a sofa and coffee table, 24–36 in (60–90 cm) around a bed, and 36 in (90 cm) behind dining chairs so people can sit and get up." },

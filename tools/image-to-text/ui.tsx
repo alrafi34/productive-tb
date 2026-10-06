@@ -137,7 +137,7 @@ export default function ImageToTextUI() {
         onFiles={open}
         icon="🔤"
         title={file ? "Open another image" : "Drop an image here, click to browse or paste a screenshot"}
-        hint="JPG, PNG, WebP, HEIC, GIF, BMP, AVIF · the image is not uploaded"
+        hint="JPG, PNG, WebP, HEIC, GIF, BMP, AVIF · we do not collect or store your files"
         compact={!!file}
       />
       {error && <p className="mt-3 text-sm text-red-600">{error}</p>}

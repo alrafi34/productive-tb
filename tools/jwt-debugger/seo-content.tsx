@@ -35,7 +35,7 @@ export default function JWTDebuggerSEOContent() {
           <li>Base64URL visualization</li>
           <li>JSON syntax highlighting</li>
           <li>Local history tracking</li>
-          <li>100% client-side processing</li>
+          <li>Private: your inputs are not collected or stored</li>
         </ul>
 
         <h3 className="text-lg font-semibold mb-3 text-gray-900">
@@ -89,7 +89,7 @@ export default function JWTDebuggerSEOContent() {
           Privacy & Security
         </h3>
         <p className="mb-4">
-          All JWT decoding is performed entirely in your browser. Your tokens are never sent to any server or stored on external systems. This ensures complete privacy and security for sensitive authentication tokens.
+          We do not collect or store what you enter. This ensures complete privacy and security for sensitive authentication tokens.
         </p>
 
         <h3 className="text-lg font-semibold mb-3 text-gray-900">

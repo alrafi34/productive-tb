@@ -35,7 +35,7 @@ export const hashGeneratorConfig = {
     faq: [
       { q: "Can I reverse a hash to get the original data?", a: "No, hash functions are one-way. You cannot reverse a hash to get the original input. This is by design for security purposes." },
       { q: "Why do I get different hashes for the same text?", a: "Check for hidden whitespace, line breaks, or case differences. Even a single character change produces a completely different hash." },
-      { q: "Is this tool safe for sensitive data?", a: "Yes, all processing happens in your browser. However, remember that hashing is not encryption—don't share hashes of sensitive passwords." },
+      { q: "Is this tool safe for sensitive data?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you. However, remember that hashing is not encryption—don't share hashes of sensitive passwords." },
       { q: "Which algorithm should I use?", a: "Use SHA-256 for security-critical applications, SHA-1 for legacy compatibility, and MD5 for simple checksums and non-security purposes." },
       { q: "Can two different inputs produce the same hash?", a: "Theoretically yes (called a collision), but it's extremely rare with SHA-256. MD5 and SHA-1 have known collision vulnerabilities." },
     ],

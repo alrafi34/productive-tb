@@ -105,7 +105,7 @@ export const toolConfig = {
       },
       {
         q: "Is there a size limit on JSON I can validate?",
-        a: "There is no enforced limit because all processing runs in your browser. JavaScript's JSON.parse handles files of several megabytes without difficulty on modern hardware. The stats panel displays the input size so you can monitor it. For typical API payloads, config files, and data exports, size is not an issue.",
+        a: "There is no fixed limit. Files of several megabytes are handled without difficulty on modern hardware. The stats panel displays the input size so you can monitor it. For typical API payloads, config files, and data exports, size is not an issue.",
       },
       {
         q: "What is the difference between JSON and JavaScript object literals?",
@@ -113,11 +113,11 @@ export const toolConfig = {
       },
       {
         q: "Can I save or export my formatted or minified JSON?",
-        a: "Click Copy to Clipboard to copy the current output and paste it anywhere. The tool also maintains a local history of your last 10 validated inputs in your browser's localStorage so you can return to a previous session. Copy the output into a text editor and save with a .json extension to create a file.",
+        a: "Click Copy to Clipboard to copy the current output and paste it anywhere. The tool also keeps a history of your last 10 validated inputs so you can return to a previous session. Copy the output into a text editor and save with a .json extension to create a file.",
       },
       {
         q: "Is my JSON data private when using this tool?",
-        a: "Yes. All validation, formatting, and minification runs entirely in your browser using JavaScript's native JSON.parse and JSON.stringify. Your JSON is never transmitted to any server, stored in any remote database, or accessible to anyone other than you. The history feature saves a truncated preview to localStorage only — the data stays on your device.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },
@@ -130,10 +130,10 @@ export const toolConfig = {
     "Stats: size, character count, lines, depth, key count",
     "Drag-and-drop .json file upload",
     "Copy formatted or minified output to clipboard",
-    "Session history — last 10 inputs stored locally",
+    "Session history — last 10 inputs",
     "Keyboard shortcut: Ctrl+Enter to validate",
     "Dark and light theme toggle",
-    "100% browser-based — no server, no upload",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "json-formatter",

@@ -101,10 +101,10 @@ export default function JWTDebuggerUI() {
           <div className="mb-8">
             <h2 className="text-3xl font-bold mb-2 text-gray-900">JWT Debugger</h2>
             <p className="text-sm text-gray-600">
-              Decode and inspect JSON Web Tokens instantly. All processing happens locally in your browser.
+              Decode and inspect JSON Web Tokens instantly. We do not collect or store what you enter.
             </p>
             <p className="text-xs text-green-600 mt-2">
-              ✓ Tokens are decoded locally and never leave your browser
+              ✓ We do not collect or store your tokens
             </p>
           </div>
 

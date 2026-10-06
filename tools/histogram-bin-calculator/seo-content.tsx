@@ -8,13 +8,13 @@ export default function HistogramBinCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>histogram bin calculator</strong> is a free browser-based tool that determines the optimal number of bins for grouping a numeric dataset into a histogram. Choosing too few bins hides structure in your data; choosing too many creates noisy, hard-to-read bars. This calculator applies standard statistical rules — <strong>Sturges', Rice, Square Root, Freedman-Diaconis, and Scott's rule</strong> — to recommend a well-balanced bin count automatically.
+            A <strong>histogram bin calculator</strong> is a free tool that determines the optimal number of bins for grouping a numeric dataset into a histogram. Choosing too few bins hides structure in your data; choosing too many creates noisy, hard-to-read bars. This calculator applies standard statistical rules — <strong>Sturges', Rice, Square Root, Freedman-Diaconis, and Scott's rule</strong> — to recommend a well-balanced bin count automatically.
           </p>
           <p>
             Enter your dataset and pick a method (or set a manual bin count), and the calculator instantly computes bin width, bin ranges, counts, and percentages, visualized as an interactive bar chart.
           </p>
           <p>
-            Built for <strong>students, data analysts, statisticians, researchers, and quality assurance teams</strong>, the calculator runs entirely in your browser with instant results and no signup required.
+            Built for <strong>students, data analysts, statisticians, researchers, and quality assurance teams</strong>, the calculator works with instant results and no signup required.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function HistogramBinCalculatorSEO() {
                 "Download CSV, JSON, and print-friendly report",
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -207,7 +207,7 @@ export default function HistogramBinCalculatorSEO() {
           {[
             {
               q: "What is a histogram bin calculator?",
-              a: "A histogram bin calculator is a free browser-based tool that determines the optimal number of bins for grouping a numeric dataset into a histogram, using rules like Sturges', Rice, Square Root, Freedman-Diaconis, and Scott's rule.",
+              a: "A histogram bin calculator is a free tool that determines the optimal number of bins for grouping a numeric dataset into a histogram, using rules like Sturges', Rice, Square Root, Freedman-Diaconis, and Scott's rule.",
             },
             {
               q: "What is Sturges' Rule?",
@@ -243,7 +243,7 @@ export default function HistogramBinCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

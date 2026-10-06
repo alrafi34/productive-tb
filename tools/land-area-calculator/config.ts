@@ -39,7 +39,7 @@ export const landAreaCalculatorConfig = {
       { q: "Can I enter dimensions in meters?", a: "Yes. Select meters and enter the dimensions; the calculator converts with 1 m = 3.28084 ft. A 20 m × 30 m plot is 600 m², or about 6,458 sq ft." },
       { q: "How many square feet are in an acre?", a: "One acre is 43,560 sq ft, about 4,047 m². A hectare is 10,000 m², about 107,639 sq ft or 2.471 acres." },
       { q: "Does this work for irregular land?", a: "It is designed for rectangles. For triangles, trapezoids or many-sided lots, use the triangle, trapezoid or polygon area calculators, or split the lot into rectangles and triangles and add the areas." },
-      { q: "Is my data stored anywhere?", a: "No. Calculations run in your browser, and the history is kept only in your browser's local storage." },
+      { q: "Is my data stored anywhere?", a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
 };

@@ -60,10 +60,10 @@ export default function HeatmapGridSEOContent() {
         <div className="mt-8 pt-8 border-t border-red-200">
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Why Use Our Heatmap Grid?</h3>
           <p className="text-sm text-gray-700 mb-3">
-            Our free online heatmap grid generator runs entirely in your browser with no backend required. Create professional heatmaps instantly without installing software or creating accounts. Perfect for data analysts, UX researchers, educators, and anyone who needs to visualize density or frequency patterns.
+            Our free online heatmap grid generator is free to use. Create professional heatmaps instantly without installing software or creating accounts. Perfect for data analysts, UX researchers, educators, and anyone who needs to visualize density or frequency patterns.
           </p>
           <p className="text-sm text-gray-700">
-            With support for customizable grid sizes, multiple color gradients, drag-to-paint functionality, and live statistics, you can create any type of heatmap from simple educational examples to complex data analysis visualizations. Export your work in multiple formats and save it locally for future editing.
+            With support for customizable grid sizes, multiple color gradients, drag-to-paint functionality, and live statistics, you can create any type of heatmap from simple educational examples to complex data analysis visualizations. Export your work in multiple formats and save it for future editing.
           </p>
         </div>
       </div>

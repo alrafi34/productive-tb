@@ -57,7 +57,7 @@ export const inductiveReactanceCalculatorConfig = {
       { q: "How does inductive reactance affect current in an AC circuit?", a: "I = V ÷ XL in a purely inductive circuit. A 120V, 60Hz supply across a 100mH inductor (XL = 37.7Ω) draws about 3.18A." },
       { q: "Why do power transformers and RF chokes use different reactance considerations?", a: "Power transformers run at low fixed frequencies (50/60Hz) needing high inductance for meaningful reactance. RF chokes run at much higher frequencies, needing far less inductance for the same reactance." },
       { q: "How is inductive reactance used in filter design?", a: "In an LC filter, XL increases with frequency, progressively blocking higher frequencies. Combined with a capacitor's decreasing reactance, this creates precise frequency-dependent filtering." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your frequency and inductance values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

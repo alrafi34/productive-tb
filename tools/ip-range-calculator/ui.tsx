@@ -224,7 +224,7 @@ export default function IpRangeCalculatorUI() {
               IPv4 IP Range Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter an IPv4 address and CIDR prefix to instantly calculate the full IP range, usable hosts, and network details. All calculations run locally in your browser.
+              Enter an IPv4 address and CIDR prefix to instantly calculate the full IP range, usable hosts, and network details. We do not collect or store what you enter.
             </p>
           </div>
         </div>

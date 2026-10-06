@@ -10,7 +10,7 @@ export default function LandAreaCalculatorSquareMeterSEO() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">About Land Area Calculator (Square Meter)</h2>
           <p className="text-gray-700 leading-relaxed">
-            The Land Area Calculator (Square Meter) is a comprehensive browser-based tool that calculates and converts land measurements into square meters (m²). Whether you need to calculate area from dimensions or convert from other units like acres, hectares or square feet, this tool provides instant, accurate results.
+            The Land Area Calculator (Square Meter) is a comprehensive online tool that calculates and converts land measurements into square meters (m²). Whether you need to calculate area from dimensions or convert from other units like acres, hectares or square feet, this tool provides instant, accurate results.
           </p>
           <p className="text-gray-700 leading-relaxed mt-4">
             Perfect for real estate professionals, surveyors, engineers, architects, farmers, and property buyers who need quick and reliable land area calculations in the internationally recognized square meter unit.
@@ -46,7 +46,7 @@ export default function LandAreaCalculatorSquareMeterSEO() {
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">•</span>
-              <span><strong>Calculation History:</strong> Save and reuse recent calculations with local storage.</span>
+              <span><strong>Calculation History:</strong> Save and reuse recent calculations.</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">•</span>

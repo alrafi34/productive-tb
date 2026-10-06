@@ -59,7 +59,7 @@ export const inductorCalculatorConfig = {
       { q: "How is inductive reactance different from resistance?", a: "Resistance dissipates energy as heat at any frequency including DC. Inductive reactance opposes changing current without dissipating energy, is zero at DC, and increases linearly with frequency." },
       { q: "Why does inductive reactance increase with frequency?", a: "An inductor's back-EMF is proportional to the rate of change of current. Higher frequency means faster current changes, increasing back-EMF and reactance proportionally (XL = 2πfL)." },
       { q: "How accurate is the air-core formula for real coils?", a: "Most accurate for long, thin solenoids where length is several times the diameter. Short, fat coils need a correction like Wheeler's approximation due to end-fringing effects." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your coil parameters, inductance, and frequency values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

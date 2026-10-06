@@ -85,7 +85,7 @@ export default function HabitTrackerSEO() {
             🔒 Privacy & Data Storage
           </h3>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Your habit data is stored locally in your browser using localStorage. No account required, no data sent to servers. 
+            We do not collect or store what you enter. 
             Your habits remain completely private and accessible only to you. Use the export feature to backup your data or 
             transfer it between devices.
           </p>

@@ -10,7 +10,7 @@ export default function LandAreaCalculatorSEO() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">About Land Area Calculator</h2>
           <p className="text-gray-700 leading-relaxed">
-            The Land Area Calculator is a fast, browser-based utility that computes land area in square feet from length and width dimensions. It supports input in feet, meters, and yards, automatically converting to square feet and providing additional conversions to square meters, square yards, and acres.
+            The Land Area Calculator is a fast, online utility that computes land area in square feet from length and width dimensions. It supports input in feet, meters, and yards, automatically converting to square feet and providing additional conversions to square meters, square yards, and acres.
           </p>
           <p className="text-gray-700 leading-relaxed mt-4">
             Whether you are buying or selling property, planning construction, or estimating agricultural land, this tool gives you instant, accurate results without any backend or internet dependency.
@@ -34,7 +34,7 @@ export default function LandAreaCalculatorSEO() {
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">•</span>
-              <span><strong>Calculation History:</strong> Save up to 10 recent calculations locally and reload them with one click.</span>
+              <span><strong>Calculation History:</strong> Save up to 10 recent calculations and reload them with one click.</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">•</span>

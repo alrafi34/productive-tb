@@ -40,7 +40,7 @@ export const toolConfig = {
       { q: "Why sort JSON keys?", a: "Sorting keys A–Z at every level gives the same output for the same data, so two JSON files or API responses can be compared line by line in a diff. Arrays keep their order, because order matters in an array." },
       { q: "What is the difference between formatting and minifying?", a: "Formatting adds indentation and line breaks for people to read; minifying removes every space and line break outside strings for the smallest size to send or store." },
       { q: "What if my JSON has an error?", a: "The formatter shows the error message with its line and column. Use \"Fix it in the JSON Validator\" to repair common mistakes such as trailing commas, single quotes or unquoted keys automatically." },
-      { q: "Is my JSON uploaded anywhere?", a: "No. Formatting runs entirely in your browser, so private API responses and config files never leave your device." },
+      { q: "Is my JSON uploaded anywhere?", a: "No. We do not collect or store what you enter." },
     ],
   },
   features: [

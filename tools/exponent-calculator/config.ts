@@ -43,7 +43,7 @@ export const toolConfig = {
       { q: "How do fractional exponents work?", a: "Fractional exponents represent roots. For example, x^(1/2) is the square root of x, and x^(1/3) is the cube root of x. The calculator supports decimal inputs so you can evaluate these forms directly." },
       { q: "Is 0^0 valid in this calculator?", a: "Most programming environments evaluate 0^0 as 1 by convention, and this calculator follows that behavior. In pure mathematics, 0^0 can be treated as indeterminate depending on context." },
       { q: "Can I use this tool on mobile and desktop?", a: "Yes. The interface is responsive and works on phones, tablets, and desktop browsers, making it useful for quick checks in class, at work, or while studying." },
-      { q: "Are my calculations private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
+      { q: "Are my calculations private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you. No account is required." },
     ],
   },
   features: [

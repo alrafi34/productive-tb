@@ -34,7 +34,7 @@ export const imageToTextConfig = {
       { name: "Copy or download", text: "Click Copy text, or Download .txt to save it as a plain text file." },
     ],
     faq: [
-      { q: "Is my image uploaded to a server?", a: "No. Text recognition runs in your browser with Tesseract, the open-source OCR engine, compiled to WebAssembly. The engine and the language data are downloaded from a public CDN the first time; your image itself never leaves your device." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
       { q: "How accurate is the OCR?", a: "On clear printed text, such as a screenshot or a flat, well-lit scan, accuracy is usually above 95%. Blurry, skewed, low-resolution or low-contrast photos, decorative fonts and complex layouts give more errors, so always check the result." },
       { q: "Can it read handwriting?", a: "Only neat, printed-style handwriting, and not reliably. Tesseract is trained on printed text; cursive handwriting usually needs a specialised handwriting recognition service." },
       { q: "How do I get the best results?", a: "Photograph the page straight on in good light, fill the frame with the text, and avoid shadows and glare. Text should be at least about 20 pixels tall; crop away everything that is not text, and choose the right language." },

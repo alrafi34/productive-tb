@@ -32,7 +32,7 @@ export default function HSLColorSliderSEOContent() {
             This tool is built for <strong>UI designers, front-end developers, brand designers, and design
             system maintainers</strong> who need to select colors deliberately, generate consistent palettes,
             and export production-ready values in HSL, HEX, and RGB — without switching between separate
-            tools. Everything runs in the browser: no account, no upload, no round-trip to a server.
+            tools. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -107,7 +107,7 @@ export default function HSLColorSliderSEOContent() {
                 "Color history — revisit previous selections",
                 "Random color generator for exploration",
                 "Export as JSON or CSS custom properties",
-                "100% browser-based — no data sent to any server",
+                "Private: your inputs are not collected or stored",
                 "No sign-up or account required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -267,7 +267,7 @@ export default function HSLColorSliderSEOContent() {
             {
               icon: "💻",
               title: "Front-End Developers",
-              desc: "Generate CSS HSL values for custom properties and theme tokens, explore shades directly in the browser, and verify color relationships without leaving the development workflow.",
+              desc: "Generate CSS HSL values for custom properties and theme tokens, explore shades, and verify color relationships without leaving the development workflow.",
             },
             {
               icon: "🏢",

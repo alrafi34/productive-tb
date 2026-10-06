@@ -38,7 +38,7 @@ export const landDevelopmentCostCalculatorConfig = {
       { q: "How much contingency should I allow?", a: "About 10% is common for straightforward sites, and 15–20% for large, complex or poorly surveyed sites where ground conditions, permit delays or price rises are more likely." },
       { q: "What tax rate should I use?", a: "Whatever applies to your costs where you build: sales tax on materials in much of the US, VAT in the UK and EU (often recoverable for businesses), or 0 if your quotes already include it. The rate is an input, not a fixed value." },
       { q: "What is the difference between base cost and total cost?", a: "Base cost is the sum of the direct costs you enter. Total cost adds the contingency allowance and tax on top." },
-      { q: "Can I compare scenarios?", a: "Yes. Give a result a name and save it; up to 10 scenarios are stored in your browser and can be loaded again or compared." },
+      { q: "Can I compare scenarios?", a: "Yes. Give a result a name and save it; up to 10 scenarios are stored and can be loaded again or compared." },
       { q: "How accurate is the estimate?", a: "It is only as good as the figures you enter. Use contractor and utility quotes, local permit fee schedules and a site survey before committing to a budget." },
     ],
   },

@@ -31,7 +31,7 @@ export default function InductorCalculatorSEO() {
             Built for <strong>electronics hobbyists winding custom coils, RF and radio enthusiasts,
             electrical engineering students, and hardware designers</strong> sizing chokes and filter
             inductors. Supports three calculation modes, full unit prefix ranges, step-by-step derivation,
-            and text export — free and entirely browser-based.
+            and text export — free.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function InductorCalculatorSEO() {
                 "Full unit prefix support: H/mH/µH/nH, Hz/kHz/MHz, m/cm/mm",
                 "Complete step-by-step derivation for every result",
                 "Automatic unit conversion display",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

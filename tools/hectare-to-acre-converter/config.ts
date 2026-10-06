@@ -67,7 +67,7 @@ export const hectareToAcreConverterConfig = {
       { q: "How many acres is 100 hectares?", a: "100 hectares equals 247.105 acres. 100 hectares is also 1 square kilometer. Calculation: 100 × 2.47105 = 247.105." },
       { q: "Where are hectares used vs acres?", a: "Hectares are the standard metric land unit used across most of Europe, Asia, Africa, and South America — and by international agricultural and environmental organizations. Acres are primarily used in the United States, United Kingdom, Canada, and a few other countries. Most international farming data, UN statistics, and European land records use hectares." },
       { q: "What is the hectare to acre formula?", a: "Acres = Hectares × 2.47105. For reverse conversion: Hectares = Acres × 0.404686. Both conversion factors are internationally standardized and used in all official land measurement systems." },
-      { q: "Is my data private when using this converter?", a: "Yes. All conversions run entirely in your browser using JavaScript. Your inputs are never sent to any server, stored in any database, or accessible to anyone other than you." },
+      { q: "Is my data private when using this converter?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -80,7 +80,7 @@ export const hectareToAcreConverterConfig = {
     "Conversion history (last 10 entries)",
     "Copy result to clipboard",
     "Export conversion report",
-    "100% browser-based — no data sent to server",
+    "Private: your inputs are not collected or stored",
     "No registration required",
   ],
   relatedTools: [

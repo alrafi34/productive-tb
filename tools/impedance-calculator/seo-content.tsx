@@ -30,7 +30,7 @@ export default function ImpedanceCalculatorSEO() {
             Built for <strong>electrical engineers analyzing AC circuits, electronics students learning
             complex impedance, audio engineers matching speaker and amplifier impedance, and RF
             hobbyists</strong> working with resonant circuits. Includes six built-in circuit presets, full
-            step-by-step derivation, and text export — free and entirely browser-based.
+            step-by-step derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function ImpedanceCalculatorSEO() {
                 "Automatic circuit type classification",
                 "Full step-by-step derivation",
                 "Six built-in circuit presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

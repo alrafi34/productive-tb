@@ -58,7 +58,7 @@ export const toolConfig = {
       { q: "Does this calculator support custom tax rates?", a: "Yes. You can enter any tax rate manually and also use quick buttons for common VAT and GST rates." },
       { q: "Can I export calculations for accounting records?", a: "Yes. You can export the current calculation to CSV and keep a local calculation history for repeated tax checks." },
       { q: "Are these calculations tax-compliance advice?", a: "No. This tool is for accurate arithmetic conversion. Always verify legal tax treatment, exemptions, and jurisdiction-specific rules with official guidance." },
-      { q: "Is my calculation data private?", a: "Yes. Calculations run in your browser and local history is stored on your device. You can clear history anytime." },
+      { q: "Is my calculation data private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "What should I input in Add vs Remove mode?", a: "In Add mode, input the tax-exclusive base amount. In Remove mode, input the tax-inclusive final amount." },
     ],
   },

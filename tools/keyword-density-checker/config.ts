@@ -102,7 +102,7 @@ export const toolConfig = {
       },
       {
         q: "Is my text private when using this tool?",
-        a: "Yes. All analysis runs entirely in your browser using JavaScript. Your text is never transmitted to any server, stored in any database, or accessible to anyone other than you. This means you can safely paste unpublished drafts, client content, or proprietary documents without any data leaving your device.",
+        a: "Yes. We do not collect or store what you enter. This means you can safely paste unpublished drafts, client content, or proprietary documents.",
       },
       { q: "Does it check two- and three-word phrases?", a: "Yes. Switch to the 2-word or 3-word tab to see the phrases you repeat, such as project management or keyword density checker. With stop words ignored, phrases that start or end with a word like the, of or and are skipped, and only phrases used at least twice are listed." },
       { q: "How is phrase density calculated?", a: "The same way as for single words: the number of times the phrase appears divided by the total number of words, times 100. A three-word phrase used 4 times in an 800-word article has a density of 0.5%." },
@@ -120,7 +120,7 @@ export const toolConfig = {
     "Sortable results table",
     "Export to CSV and JSON",
     "No registration required",
-    "100% browser-based",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "word-counter",

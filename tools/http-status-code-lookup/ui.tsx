@@ -345,7 +345,6 @@ export default function HttpStatusCodeLookupUI() {
             <li>• Search by code number (404), name (Not Found), or keywords (redirect, server error)</li>
             <li>• Use category filters to narrow down results by status code type</li>
             <li>• Click on any code to see detailed explanation, use cases, and examples</li>
-            <li>• All data is stored locally - works offline once loaded</li>
           </ul>
         </div>
       </div>

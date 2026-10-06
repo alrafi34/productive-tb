@@ -29,7 +29,7 @@ export default function InductiveReactanceCalculatorSEO() {
             Built for <strong>electrical engineers designing filters and chokes, RF and radio hobbyists,
             electronics students learning AC circuit theory, and power electronics designers</strong>
             checking impedance at a specific operating frequency. Includes six built-in frequency/inductance
-            presets, full step-by-step working, and text export — free and entirely browser-based.
+            presets, full step-by-step working, and text export — free.
           </p>
         </div>
       </section>
@@ -82,9 +82,9 @@ export default function InductiveReactanceCalculatorSEO() {
                 "Full unit support: Hz/kHz/MHz, H/mH/µH/nH",
                 "Complete step-by-step derivation",
                 "Six built-in presets (50Hz to 1MHz)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

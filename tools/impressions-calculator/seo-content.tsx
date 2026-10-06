@@ -14,7 +14,7 @@ export default function ImpressionsCalculatorSEO() {
             Because impressions can be calculated from several different starting points depending on your available data, this tool supports four industry-standard estimation methods: Reach × Frequency (for audience-based planning), CPM + Budget (for paid media forecasting), Clicks ÷ CTR (for back-calculating from engagement data), and Engagement Rate Estimation (for organic social media posts). Each mode uses a transparent formula and shows the full calculation steps so you understand exactly how the number was derived.
           </p>
           <p>
-            This tool is built for <strong>digital marketers, social media managers, PPC specialists, media buyers, content creators, agencies, and business owners</strong> who need fast, reliable impression estimates without logging into an ad platform. All calculations run locally in your browser — no data is sent to any server. Results export as TXT or CSV for inclusion in reports and presentations.
+            This tool is built for <strong>digital marketers, social media managers, PPC specialists, media buyers, content creators, agencies, and business owners</strong> who need fast, reliable impression estimates without logging into an ad platform. We do not collect or store what you enter. Results export as TXT or CSV for inclusion in reports and presentations.
           </p>
         </div>
       </section>
@@ -67,7 +67,7 @@ export default function ImpressionsCalculatorSEO() {
                 ["Enter Your Values", "Fill in the input fields for the selected mode. All fields update the result in real time with a 150ms debounce — you do not need to click a calculate button. Decimal values are accepted in all fields."],
                 ["Review the Results", "The estimated impression count appears immediately in the result card, shown in both full format (e.g. 87,500) and abbreviated format (e.g. 87.5K). The insights panel below shows supporting metrics for context."],
                 ["Open Formula & Steps", "Click Formula & Steps to see the exact calculation breakdown — the formula used, the input values substituted in, and the result at each stage. Useful for verifying or presenting the calculation."],
-                ["Export or Copy", "Click Copy Report to copy the full calculation to clipboard. Use Export TXT for a plain-text report or Export CSV for a spreadsheet-friendly version with all steps and insights. Save to History stores up to 20 calculations in your browser."],
+                ["Export or Copy", "Click Copy Report to copy the full calculation to clipboard. Use Export TXT for a plain-text report or Export CSV for a spreadsheet-friendly version with all steps and insights. Save to History stores up to 20 calculations."],
               ].map(([title, desc], i) => (
                 <li key={i} className="flex items-start">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0 font-semibold">{i + 1}</span>
@@ -91,7 +91,7 @@ export default function ImpressionsCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Save up to 20 calculations to local browser history",
                 "Input validation with inline error messages",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -266,7 +266,7 @@ export default function ImpressionsCalculatorSEO() {
             },
             {
               q: "Does this tool store my data?",
-              a: "No. All calculations run entirely in your browser using JavaScript. No campaign data, budgets, or metrics you enter are transmitted to any server. The calculation history feature stores results in your browser's localStorage only — accessible only on your device and cleared when you clear your browser data. This makes the tool safe for working with confidential client campaign data.",
+              a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you. This makes the tool safe for working with confidential client campaign data.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

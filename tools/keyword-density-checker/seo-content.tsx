@@ -30,7 +30,7 @@ export default function KeywordDensityCheckerSEO() {
           <p>
             Built for <strong>SEO writers, content strategists, copyeditors, agency teams, and bloggers</strong> who
             need fast, accurate keyword analysis before publishing. Paste any content and instantly see keyword density
-            percentages, overuse flags, a visual keyword chart, and CSV/JSON export — all browser-based with no
+            percentages, overuse flags, a visual keyword chart, and CSV/JSON export — all online with no
             account required.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function KeywordDensityCheckerSEO() {
                 "Visual bar chart of top keywords",
                 "Sortable results table",
                 "Export to CSV and JSON",
-                "100% browser-based — no data sent to any server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

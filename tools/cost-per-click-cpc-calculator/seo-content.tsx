@@ -351,7 +351,7 @@ export default function CPCCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you. This makes the tool safe to use for confidential campaign data, client account figures, and internal budget planning.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

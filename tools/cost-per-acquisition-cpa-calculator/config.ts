@@ -54,7 +54,7 @@ export const costPerAcquisitionCpaCalculatorConfig = {
       { q: "How do I reduce my CPA?", a: "Improve landing page conversion rate, tighten audience targeting, improve ad creative to increase CTR, add negative keywords, and improve the post-click experience. Reducing CPC alone rarely produces sustained CPA improvements without also addressing conversion rate." },
       { q: "What is a good CPA:LTV ratio?", a: "A CPA:LTV ratio of 1:3 or better is the standard benchmark — each customer generates at least three times what it cost to acquire them. Ratios above 1:5 suggest underinvestment in growth. Ratios below 1:1 mean the business loses money on every customer." },
       { q: "How does attribution model affect CPA?", a: "Last-click attribution assigns 100% of credit to the final touchpoint — understating top-of-funnel channel contribution and overstating their CPA. Data-driven attribution distributes credit across touchpoints for more accurate per-channel CPAs." },
-      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you. This makes the tool safe to use for confidential campaign data, client account figures, and internal financial planning." },
     ],
   },
 };

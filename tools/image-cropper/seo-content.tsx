@@ -29,8 +29,7 @@ export default function ImageCropperSEO() {
             make round profile pictures with transparent corners.
           </p>
           <p>
-            Everything happens in your browser, including HEIC photos from an iPhone, so your pictures stay on your
-            device.
+            We do not collect or store your files.
           </p>
         </div>
       </section>

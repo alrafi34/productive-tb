@@ -8,13 +8,13 @@ export default function IndexSizeCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>index size calculator</strong> is a free browser-based tool that estimates the approximate storage size of a database index before you create it — helping you plan disk usage across PostgreSQL, MySQL, MariaDB, SQL Server, Oracle, and SQLite.
+            An <strong>index size calculator</strong> is a free tool that estimates the approximate storage size of a database index before you create it — helping you plan disk usage across PostgreSQL, MySQL, MariaDB, SQL Server, Oracle, and SQLite.
           </p>
           <p>
             Enter your row count, indexed column size, and primary key size, and the calculator instantly estimates the raw index size, compression savings, fill-factor impact, and final estimated storage footprint — plus the estimated page count for your chosen page size.
           </p>
           <p>
-            This tool is intended as an <strong>estimation calculator, not an exact database profiler</strong>. Actual index size depends on engine internals, storage engine, version, alignment, and compression settings, so treat these numbers as planning estimates rather than precise measurements. It's built for <strong>database administrators, backend developers, data engineers, DevOps engineers, cloud architects, and students</strong> learning database optimization — and it runs entirely in your browser.
+            This tool is intended as an <strong>estimation calculator, not an exact database profiler</strong>. Actual index size depends on engine internals, storage engine, version, alignment, and compression settings, so treat these numbers as planning estimates rather than precise measurements. It's built for <strong>database administrators, backend developers, data engineers, DevOps engineers, cloud architects, and students</strong> learning database optimization —.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function IndexSizeCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Export report as CSV or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
-                "All processing runs locally — no schema details are ever uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -234,7 +234,7 @@ export default function IndexSizeCalculatorSEO() {
           {[
             {
               q: "What is an index size calculator?",
-              a: "An index size calculator is a free browser-based tool that estimates the approximate storage size of a database index before you create it, based on row count, column sizes, index type, and database engine.",
+              a: "An index size calculator is a free tool that estimates the approximate storage size of a database index before you create it, based on row count, column sizes, index type, and database engine.",
             },
             {
               q: "How is index size calculated?",
@@ -262,7 +262,7 @@ export default function IndexSizeCalculatorSEO() {
             },
             {
               q: "Is my schema information private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. No table names, column names, row counts, or schema details are ever transmitted to any server.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>
