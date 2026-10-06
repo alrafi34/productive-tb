@@ -34,7 +34,7 @@ export default function JSONFormatterSEOContent() {
               What is a JSON Formatter?
             </h2>
             <p className="mb-4">
-              A JSON Formatter is a developer tool that helps you format, validate, and beautify JSON data instantly in your browser. Whether you're working with API responses, configuration files, or data structures, this tool makes it easy to read, understand, and debug JSON.
+              A JSON Formatter is a developer tool that helps you format, validate, and beautify JSON data instantly. Whether you're working with API responses, configuration files, or data structures, this tool makes it easy to read, understand, and debug JSON.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ export default function JSONFormatterSEOContent() {
             </h2>
             <ul className="space-y-2">
               <li>✓ <strong>100% Free</strong> - No registration or payment required</li>
-              <li>✓ <strong>Privacy First</strong> - All processing happens in your browser</li>
+              <li>✓ <strong>Privacy First</strong> Your inputs are not collected or stored</li>
               <li>✓ <strong>Fast & Responsive</strong> - Instant formatting and validation</li>
               <li>✓ <strong>Developer Friendly</strong> - Perfect for API debugging</li>
               <li>✓ <strong>Mobile Optimized</strong> - Works on all devices</li>

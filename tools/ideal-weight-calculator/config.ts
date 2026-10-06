@@ -54,7 +54,7 @@ export const toolConfig = {
       { q: "Can athletes or muscular people rely only on ideal weight formulas?", a: "Not always. High muscle mass, body composition, and sport-specific factors can make formula-only interpretation less reliable. Use these estimates with broader health context." },
       { q: "What is the healthy weight range in this calculator?", a: "The range is the weight that gives a body mass index (BMI) of 18.5 to 24.9, the World Health Organization's healthy band: 18.5 × height² to 24.9 × height², with height in meters. For 1.75 m that is about 56.7 to 76.3 kg (125 to 168 lb)." },
       { q: "Can I compare my current weight to the calculated healthy range?", a: "Yes. If you enter current weight, the calculator labels whether you are below, within, or above the healthy range based on the BMI 18.5–24.9 range." },
-      { q: "Is my data stored online?", a: "No. Calculations run in your browser and no personal health data is sent to external servers by this tool." },
+      { q: "Is my data stored online?", a: "No. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -68,6 +68,6 @@ export const toolConfig = {
     "Reset workflow quickly for repeated comparisons",
     "SEO-rich educational content with examples, FAQ, and structured schema",
     "Mobile-first responsive layout for phones, tablets, and desktops",
-    "100% client-side processing with no account required"
+    "Private with no account required"
   ]
 };

@@ -106,7 +106,7 @@ export const hslColorSliderConfig = {
       },
       {
         q: "How do I convert HSL to HEX or RGB?",
-        a: "This tool converts automatically. As you adjust the HSL sliders, the equivalent HEX and RGB values update in real time. The conversion is calculated in the browser using standard color mathematics. Click the copy button next to any format to grab it immediately — no separate converter or manual formula lookup needed.",
+        a: "This tool converts automatically. As you adjust the HSL sliders, the equivalent HEX and RGB values update in real time. The conversion uses standard color mathematics. Click the copy button next to any format to grab it immediately — no separate converter or manual formula lookup needed.",
       },
       {
         q: "What are analogous, complementary, and triadic color palettes?",
@@ -122,7 +122,7 @@ export const hslColorSliderConfig = {
       },
       {
         q: "Is my color data private when using this tool?",
-        a: "Yes. All color calculations and format conversions run entirely in your browser using JavaScript. No color values, palette data, or session information is transmitted to any server, stored in a database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

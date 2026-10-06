@@ -8,13 +8,13 @@ export default function HadoopStorageCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>Hadoop storage calculator</strong> is a free browser-based tool that estimates the total storage required for a Hadoop Distributed File System (HDFS) cluster based on raw data size, replication factor, compression ratio, reserved free space, and future growth.
+            A <strong>Hadoop storage calculator</strong> is a free tool that estimates the total storage required for a Hadoop Distributed File System (HDFS) cluster based on raw data size, replication factor, compression ratio, reserved free space, and future growth.
           </p>
           <p>
             Enter your raw dataset size, replication factor, and compression ratio, and the calculator instantly returns the effective data size, replicated storage, reserved capacity, and total required storage — plus a multi-year growth forecast so you can plan cluster capacity ahead of time.
           </p>
           <p>
-            This tool is built for <strong>data engineers, cloud architects, DevOps engineers, big data professionals, students, IT administrators, solution architects, and enterprises</strong> planning Hadoop clusters. It runs entirely in your browser — no infrastructure details are ever transmitted anywhere.
+            This tool is built for <strong>data engineers, cloud architects, DevOps engineers, big data professionals, students, IT administrators, solution architects, and enterprises</strong> planning Hadoop clusters. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function HadoopStorageCalculatorSEO() {
                 "Export report as CSV or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Clear validation for invalid replication, compression, and reserved values",
-                "All processing runs locally — no cluster details are ever uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -235,7 +235,7 @@ export default function HadoopStorageCalculatorSEO() {
           {[
             {
               q: "What is a Hadoop storage calculator?",
-              a: "A Hadoop storage calculator is a free browser-based tool that estimates the physical disk capacity an HDFS cluster needs, based on raw data size, replication factor, compression ratio, and reserved free space.",
+              a: "A Hadoop storage calculator is a free tool that estimates the physical disk capacity an HDFS cluster needs, based on raw data size, replication factor, compression ratio, and reserved free space.",
             },
             {
               q: "How is required HDFS storage calculated?",
@@ -263,7 +263,7 @@ export default function HadoopStorageCalculatorSEO() {
             },
             {
               q: "Is my cluster configuration data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. No cluster sizing information, data volumes, or configuration details are ever transmitted to any server.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

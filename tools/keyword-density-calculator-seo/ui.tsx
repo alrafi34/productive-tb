@@ -107,7 +107,7 @@ export default function KeywordDensityCalculatorUI() {
               Keyword Density Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Paste your content to instantly analyze keyword density, word frequency, phrase analysis, and reading time. Everything runs locally — your text never leaves your browser.
+              Paste your content to instantly analyze keyword density, word frequency, phrase analysis, and reading time. We do not collect or store what you enter.
             </p>
           </div>
         </div>

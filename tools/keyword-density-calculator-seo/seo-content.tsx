@@ -19,7 +19,7 @@ export default function KeywordDensityCalculatorSEO() {
             Beyond single-keyword density, a professional keyword analyzer also examines <em>word frequency distribution</em> across the entire document — surfacing the most prominent terms, bigrams (2-word phrases), and trigrams (3-word phrases). This gives a complete picture of what Google's crawlers will interpret as the page's primary topics, helping you align content with target search queries before publishing.
           </p>
           <p>
-            This tool is designed for <strong>content writers, SEO specialists, digital marketers, ecommerce sellers, marketing agencies, and anyone who creates content for search</strong>. It processes everything locally in your browser — your text is never sent to any server — making it safe for client content, proprietary drafts, or embargoed articles. Results update in real time as you type, with CSV and TXT export for reporting workflows.
+            This tool is designed for <strong>content writers, SEO specialists, digital marketers, ecommerce sellers, marketing agencies, and anyone who creates content for search</strong>. We do not collect or store your text, making it safe for client content, proprietary drafts, or embargoed articles. Results update in real time as you type, with CSV and TXT export for reporting workflows.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function KeywordDensityCalculatorSEO() {
                 "Sortable keyword frequency table",
                 "Export full report as CSV, TXT, or JSON",
                 "Copy summary to clipboard in one click",
-                "100% browser-based — nothing leaves your device",
+                "Private: your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -58,7 +58,7 @@ export const impedanceCalculatorConfig = {
       { q: "Why can't I just add resistance and reactance together?", a: "Resistance and reactance are 90 degrees out of phase, so they combine as perpendicular vector components: Z = √(R² + X²), not simple addition." },
       { q: "How do I calculate current from impedance and voltage?", a: "I = V ÷ Z. For 120V across Z = 14.14Ω, current ≈ 8.49A, out of phase with voltage by the circuit's phase angle." },
       { q: "Why does impedance matter for speaker and amplifier matching?", a: "Speakers present frequency-dependent impedance due to voice coil inductance and crossover capacitance. Matching to the amplifier's rated impedance affects power transfer and prevents overheating." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your resistance, reactance, and impedance values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

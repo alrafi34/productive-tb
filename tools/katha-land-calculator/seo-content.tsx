@@ -30,8 +30,7 @@ export default function KathaLandCalculatorSEO() {
             This <strong>kata land calculator</strong> is built for <strong>property buyers and sellers,
             real estate agents, land surveyors, lawyers preparing deed documents, and farmers managing
             agricultural plots</strong> across Bangladesh, West Bengal, Bihar, and Nepal. Supports
-            Katha, Decimal, Bigha, Acre, Square Feet, Square Meter, and Hectare. Browser-based,
-            free, no signup required.
+            Katha, Decimal, Bigha, Acre, Square Feet, Square Meter, and Hectare. Free, no signup required.
           </p>
         </div>
       </section>
@@ -91,7 +90,7 @@ export default function KathaLandCalculatorSEO() {
                 "Click-to-copy any result",
                 "Export full conversion as TXT",
                 "Shareable URL with your inputs",
-                "Browser-based — no signup required",
+                "No signup required",
                 "Works on mobile and tablet",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

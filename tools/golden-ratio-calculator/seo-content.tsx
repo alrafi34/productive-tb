@@ -293,8 +293,8 @@ export default function GoldenRatioCalculatorSEOContent() {
       {/* Footer Note */}
       <section className="pt-6 border-t border-slate-200">
         <p className="text-sm text-slate-600 text-center">
-          This golden ratio calculator is a free, browser-based tool for designers, developers, and creators. 
-          All calculations and visualizations happen locally with no server communication.
+          This golden ratio calculator is a free tool for designers, developers, and creators. 
+          We do not collect or store what you enter.
         </p>
       </section>
     </div>

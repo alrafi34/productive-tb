@@ -8,13 +8,13 @@ export default function KeywordDifficultyEstimatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>keyword difficulty estimator</strong> is a free browser-based SEO tool that scores how hard a keyword may be to rank for, using publicly observable ranking signals you enter manually — average domain authority, referring domains, content length, search intent, SERP features, and brand dominance among the current top-ranking pages. It answers the question every SEO professional asks before committing to a target: <em>is this keyword realistically winnable, or would that effort be better spent elsewhere?</em>
+            A <strong>keyword difficulty estimator</strong> is a free SEO tool that scores how hard a keyword may be to rank for, using publicly observable ranking signals you enter manually — average domain authority, referring domains, content length, search intent, SERP features, and brand dominance among the current top-ranking pages. It answers the question every SEO professional asks before committing to a target: <em>is this keyword realistically winnable, or would that effort be better spent elsewhere?</em>
           </p>
           <p>
-            Professional SEO platforms like Ahrefs, Semrush, and Moz calculate keyword difficulty using proprietary backlink databases that no browser-based tool can replicate. This calculator takes a different, fully transparent approach: you supply the ranking metrics you can see yourself — from a manual SERP review, a competitor's About page, or even numbers pulled from another tool — and a documented weighted formula converts them into a 0–100 difficulty score with a clear breakdown of exactly how each factor contributed.
+            Professional SEO platforms like Ahrefs, Semrush, and Moz calculate keyword difficulty using proprietary backlink databases that no online tool can replicate. This calculator takes a different, fully transparent approach: you supply the ranking metrics you can see yourself — from a manual SERP review, a competitor's About page, or even numbers pulled from another tool — and a documented weighted formula converts them into a 0–100 difficulty score with a clear breakdown of exactly how each factor contributed.
           </p>
           <p>
-            This tool is built for <strong>SEO professionals, bloggers, content marketers, affiliate marketers, digital marketing agencies, small business owners, freelancers, YouTubers, ecommerce store owners, and students learning SEO</strong> who want an instant, educational difficulty estimate without an API key or subscription. It supports a full score breakdown, a circular difficulty gauge, a keyword comparison mode, and exportable JSON, PNG, and print-ready reports — all processed entirely in your browser.
+            This tool is built for <strong>SEO professionals, bloggers, content marketers, affiliate marketers, digital marketing agencies, small business owners, freelancers, YouTubers, ecommerce store owners, and students learning SEO</strong> who want an instant, educational difficulty estimate without an API key or subscription. It supports a full score breakdown, a circular difficulty gauge, a keyword comparison mode, and exportable JSON, PNG, and print-ready reports.
           </p>
         </div>
       </section>
@@ -52,7 +52,7 @@ export default function KeywordDifficultyEstimatorSEO() {
             ))}
           </ul>
           <p className="text-sm text-gray-500 italic">
-            Important: this is an estimated, educational score based on a transparent client-side model — it is not affiliated with, and will not exactly match, official scores from Ahrefs, Semrush, Moz, or any other SEO platform. Those tools use proprietary backlink indexes this browser-based calculator cannot access.
+            Important: this is an estimated, educational score based on a transparent estimation model — it is not affiliated with, and will not exactly match, official scores from Ahrefs, Semrush, Moz, or any other SEO platform. Those tools use proprietary backlink indexes this online calculator cannot access.
           </p>
         </div>
       </section>
@@ -102,7 +102,7 @@ export default function KeywordDifficultyEstimatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past analyses",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -180,7 +180,7 @@ export default function KeywordDifficultyEstimatorSEO() {
             <h3 className="text-lg font-medium text-gray-800 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Common Mistakes to Avoid</h3>
             <ul className="space-y-3 text-gray-600 leading-relaxed">
               {[
-                "Don't expect this score to match Ahrefs, Semrush, or Moz exactly — those platforms use proprietary backlink indexes and click-through data this browser-based tool cannot access. Use this score for relative comparison and educational purposes, not as an official industry benchmark.",
+                "Don't expect this score to match Ahrefs, Semrush, or Moz exactly — those platforms use proprietary backlink indexes and click-through data this online tool cannot access. Use this score for relative comparison and educational purposes, not as an official industry benchmark.",
                 "Don't estimate domain authority or referring domains from memory or guesswork for high-stakes decisions — pull real numbers from a SERP review or another tool whenever the keyword matters enough to justify the extra few minutes.",
                 "Don't ignore search intent when interpreting the score. A Medium-difficulty informational keyword and a Medium-difficulty transactional keyword require very different content strategies even at the same numeric score.",
                 "Don't treat a single high difficulty score as a reason to abandon a keyword entirely — consider targeting a related long-tail variation instead, which often carries a much lower score while still building topical relevance toward the harder target.",
@@ -227,7 +227,7 @@ export default function KeywordDifficultyEstimatorSEO() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-gray-400 mt-4">* Scale thresholds are general guidance for a client-side estimation model — not a universal industry standard.</p>
+        <p className="text-xs text-gray-400 mt-4">* Scale thresholds are general guidance for a estimation model — not a universal industry standard.</p>
       </section>
 
       {/* ── 6. FAQ ── */}
@@ -275,7 +275,7 @@ export default function KeywordDifficultyEstimatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your keyword, metrics, and analysis data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

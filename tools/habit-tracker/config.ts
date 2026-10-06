@@ -46,6 +46,6 @@ export const toolConfig = {
     "Undo last action functionality",
     "Dark mode support",
     "Mobile-responsive swipe actions",
-    "100% localStorage persistence - no account needed"
+    "Progress saved between visits - no account needed"
   ]
 };

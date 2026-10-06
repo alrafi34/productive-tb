@@ -22,7 +22,7 @@ export default function IrrigationWaterCalculatorSEO() {
             requirement per unit area.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations run entirely in your browser with no data sent to any server. The tool supports
+            We do not collect or store what you enter. The tool supports
             five area units, ten crop types, four soil types, four climate zones, four irrigation methods,
             and four growth stages — covering most real-world irrigation planning scenarios.
           </p>
@@ -68,10 +68,10 @@ export default function IrrigationWaterCalculatorSEO() {
                 "Growth stage adjustment",
                 "Rainfall reduction support",
                 "Daily, weekly, and monthly estimates",
-                "Calculation history with LocalStorage",
+                "Calculation history",
                 "Export results as TXT",
                 "Mobile-friendly for field use",
-                "100% offline browser calculations",
+                "Nothing to install",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>

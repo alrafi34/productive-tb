@@ -30,7 +30,7 @@ export default function FuseRatingCalculatorSEO() {
             replacement fuses, panel builders speccing protection devices, electronics hobbyists sizing inline
             fuses for projects, industrial maintenance technicians servicing motor circuits, and homeowners
             replacing a blown fuse correctly</strong>. It supports both fast blow and slow blow fuse types, four
-            standard safety factor presets, and instant results. Browser-based, free, no signup required.
+            standard safety factor presets, and instant results. Free, no signup required.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function FuseRatingCalculatorSEO() {
                 "Calculation history (last 20 entries)",
                 "Export results as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

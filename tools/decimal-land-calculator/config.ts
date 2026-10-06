@@ -110,7 +110,7 @@ export const toolConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. We do not collect or store what you enter.",
+        a: "Yes. We do not collect or store what you enter. You can safely enter real property measurements or data from legal documents.",
       },
     ],
   },

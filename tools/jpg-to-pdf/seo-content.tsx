@@ -27,7 +27,7 @@ export default function JpgToPdfSEO() {
             size so the file prints properly, or keep each page the exact size of its image.
           </p>
           <p>
-            The PDF is created in your browser. Your images are not uploaded, which matters for IDs, contracts and
+            The PDF is created instantly. We do not collect or store your images, which matters for IDs, contracts and
             medical or financial paperwork.
           </p>
         </div>

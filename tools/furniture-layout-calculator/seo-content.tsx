@@ -13,7 +13,7 @@ export default function FurnitureLayoutCalculatorSEO() {
           The Furniture Layout Calculator is an interactive room planning tool that helps you design and optimize furniture placement. Whether you're moving into a new home, redecorating, or planning an office space, this calculator provides instant visual feedback and space efficiency analysis.
         </p>
         <p>
-          With drag-and-drop functionality, preset furniture dimensions, and automatic arrangement algorithms, you can experiment with different layouts before making any physical changes. The tool runs entirely in your browser with real-time calculations and visual rendering.
+          With drag-and-drop functionality, preset furniture dimensions, and automatic arrangement algorithms, you can experiment with different layouts before making any physical changes. The tool works with real-time calculations and visual rendering.
         </p>
       </section>
 

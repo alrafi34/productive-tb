@@ -30,7 +30,7 @@ export default function JSONValidatorSEO() {
     },
     {
       q: "Is there a size limit on JSON I can validate?",
-      a: "There is no enforced server-side limit because all processing runs in your browser. In practice, JavaScript's JSON.parse can handle files of several megabytes without difficulty on modern hardware. The tool displays the input size in the stats panel (bytes or KB) so you can monitor it. For very large files — tens of megabytes — browser tab memory may become a constraint, but for typical API payloads, config files, and data exports, size is not an issue.",
+      a: "There is no fixed limit. In practice, files of several megabytes are handled without difficulty on modern hardware. The tool displays the input size in the stats panel (bytes or KB) so you can monitor it. For very large files — tens of megabytes — browser tab memory may become a constraint, but for typical API payloads, config files, and data exports, size is not an issue.",
     },
     {
       q: "What is the difference between JSON and JavaScript object literals?",
@@ -38,11 +38,11 @@ export default function JSONValidatorSEO() {
     },
     {
       q: "Can I save or export my formatted or minified JSON?",
-      a: "Click the Copy to Clipboard button to copy the current output and paste it anywhere. The tool also maintains a local history of your last 10 validated inputs, stored in your browser's localStorage, so you can return to a previous session without re-pasting. For downloading, copy the output and paste it into a text editor, then save with a .json extension. Direct file download is not required since the clipboard covers the most common workflow.",
+      a: "Click the Copy to Clipboard button to copy the current output and paste it anywhere. The tool also maintains a history of your last 10 validated inputs so you can return to a previous session without re-pasting. For downloading, copy the output and paste it into a text editor, then save with a .json extension. Direct file download is not required since the clipboard covers the most common workflow.",
     },
     {
       q: "Is my JSON data private when using this tool?",
-      a: "Yes. All validation, formatting, and minification runs entirely in your browser using JavaScript's native JSON.parse and JSON.stringify. Your JSON is never transmitted to any server, stored in any remote database, or accessible to anyone other than you. The history feature saves a truncated preview to your browser's localStorage only — the data stays on your device.",
+      a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
     },
   ];
 
@@ -85,8 +85,7 @@ export default function JSONValidatorSEO() {
             regularly. Beyond validation it includes <strong>JSON formatting</strong> with
             configurable indentation, <strong>JSON minification</strong> for production payloads,
             a <strong>stats panel</strong> showing size, depth, and key count, drag-and-drop file
-            upload, clipboard copy, and a local session history. Everything runs in your
-            browser — your JSON never leaves your device.
+            upload, clipboard copy, and a local session history. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -161,10 +160,10 @@ export default function JSONValidatorSEO() {
                 "Stats: size, character count, lines, depth, key count",
                 "Drag-and-drop .json file upload",
                 "Copy formatted or minified output to clipboard",
-                "Session history — last 10 inputs stored locally",
+                "Session history — last 10 inputs",
                 "Keyboard shortcut: Ctrl+Enter to validate",
                 "Dark and light theme toggle",
-                "100% browser-based — no server, no upload",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

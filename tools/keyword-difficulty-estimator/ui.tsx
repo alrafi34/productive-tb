@@ -138,7 +138,7 @@ export default function KeywordDifficultyEstimatorUI() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-3">
-            This is an estimated difficulty score based on a transparent client-side model — not an official score from Ahrefs, Semrush, or Moz.
+            This is an estimated difficulty score based on a transparent estimation model — not an official score from Ahrefs, Semrush, or Moz.
           </p>
         </div>
 

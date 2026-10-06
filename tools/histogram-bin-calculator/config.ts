@@ -75,7 +75,7 @@ export const histogramBinCalculatorConfig = {
     faq: [
       {
         q: "What is a histogram bin calculator?",
-        a: "A histogram bin calculator is a free browser-based tool that determines the optimal number of bins (or bin width) for grouping a numeric dataset into a histogram, using standard statistical rules like Sturges', Rice, Square Root, Freedman-Diaconis, and Scott's rule.",
+        a: "A histogram bin calculator is a free tool that determines the optimal number of bins (or bin width) for grouping a numeric dataset into a histogram, using standard statistical rules like Sturges', Rice, Square Root, Freedman-Diaconis, and Scott's rule.",
       },
       {
         q: "What is Sturges' Rule?",
@@ -119,7 +119,7 @@ export const histogramBinCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

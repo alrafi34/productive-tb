@@ -66,7 +66,7 @@ export default function JSONToCSVSEOContent() {
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Conversion history with localStorage
+                Conversion history
               </li>
             </ul>
           </div>
@@ -105,8 +105,7 @@ export default function JSONToCSVSEOContent() {
               100% Private
             </h3>
             <p className="text-sm text-gray-600">
-              All processing happens in your browser. Your data never leaves your device
-            </p>
+              We do not collect or store what you enter.</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">🔧</div>

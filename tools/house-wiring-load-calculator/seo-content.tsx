@@ -33,7 +33,7 @@ export default function HouseWiringLoadCalculatorSEO() {
             electrical engineering students learning load calculation and diversity factor concepts</strong>. It
             includes a 34-item appliance wattage library across lighting, cooling, kitchen, laundry, and
             electronics categories, three ready-made house-size presets, and full calculation steps shown for
-            every result. Browser-based, free, no signup required.
+            every result. Free, no signup required.
           </p>
         </div>
       </section>
@@ -93,9 +93,9 @@ export default function HouseWiringLoadCalculatorSEO() {
                 "Standard breaker size recommendation with 1.25x margin",
                 "Apparent power (VA) output for panel sizing",
                 "Full step-by-step calculation shown for every result",
-                "Calculation history (last 20 entries) saved locally",
+                "Calculation history (last 20 entries)",
                 "Export results as CSV or text report",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

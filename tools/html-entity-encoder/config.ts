@@ -44,7 +44,7 @@ export const htmlEntityEncoderConfig = {
       { q: "Do I need to encode accented letters like é or symbols like €?", a: "Not on a page saved and served as UTF-8, which is the standard today: write é and € directly. Encode them only for systems that use another character set, some older email clients or when you must keep a file pure ASCII." },
       { q: "Why does &amp;lt; show as &lt; instead of <?", a: "Because it was encoded twice: & became &amp; and the result was encoded again. Decoding once gives &lt;, and decoding again gives <. This tool decodes exactly one level, so you can see and fix double-escaped text." },
       { q: "Does encoding HTML entities protect against XSS?", a: "Escaping text before putting it into HTML is one essential layer, but safety depends on the context: text in a <script> block, a URL or a CSS value needs different escaping. Use your framework's built-in escaping or a sanitizer for user input rather than escaping by hand." },
-      { q: "Is my text sent to a server?", a: "No. Encoding and decoding run entirely in your browser; nothing you paste is uploaded or stored anywhere except the optional local history on your own device." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
 };

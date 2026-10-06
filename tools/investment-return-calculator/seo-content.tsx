@@ -8,7 +8,7 @@ const strengths = [
   },
   {
     title: "Calculation history and CSV export",
-    text: "You can store recent ROI calculations locally and export them, making this more useful for repeat analysis than one-off calculators.",
+    text: "You can store recent ROI calculations and export them, making this more useful for repeat analysis than one-off calculators.",
   },
   {
     title: "Precision and formatting control",

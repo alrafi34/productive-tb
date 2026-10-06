@@ -49,7 +49,7 @@ export const toolConfig = {
       { q: "Can I use this tool as a stock ROI calculator?", a: "Yes. Enter the amount you originally invested in a stock and its current value. The tool instantly returns your gain/loss and ROI percentage." },
       { q: "Can I calculate crypto investment returns with this calculator?", a: "Yes. It works for crypto, ETFs, mutual funds, real estate estimates, and business project returns, as long as you can define initial and current values." },
       { q: "Why does this ROI result differ from annual return percentages?", a: "Standard ROI does not include time. Enter the holding period in years to also see the annualized return (CAGR): ((current ÷ initial)^(1 ÷ years) − 1) × 100. A 50% gain over 3 years is about 14.5% a year." },
-      { q: "Is my data private when using this ROI calculator?", a: "Yes. Calculations run in your browser, and saved history is stored locally on your device. You can clear history at any time." },
+      { q: "Is my data private when using this ROI calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "Do I need to sign up to use this free ROI calculator?", a: "No sign-up is required for standard use. You can calculate unlimited investment returns directly on the page." },
       { q: "How do I compare multiple investment opportunities quickly?", a: "Run multiple scenarios one after another, save each result in history, and export CSV for side-by-side review in a spreadsheet." },
       { q: "What is considered a good ROI percentage?", a: "A good ROI depends on risk, market conditions, and holding period. Use ROI as one decision input alongside volatility, fees, taxes, and time horizon." },

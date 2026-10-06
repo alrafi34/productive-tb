@@ -53,7 +53,7 @@ export default function ImageCompressorSEOContent() {
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                100% browser-based, no upload
+                Private
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
@@ -73,7 +73,7 @@ export default function ImageCompressorSEOContent() {
           An image compressor is a free online tool that reduces the file size of JPG, PNG, and WebP images while maintaining acceptable visual quality. This powerful tool helps web developers, photographers, and content creators optimize images for faster website loading, reduced storage costs, and improved user experience.
         </p>
         <p className="text-gray-600 leading-relaxed">
-          Our browser-based image compressor processes all images locally on your device using advanced Canvas API technology. Your photos never leave your computer, ensuring complete privacy and security. Whether you need to compress images for web optimization, email attachments, or social media, this tool provides instant results with customizable quality settings.
+          We do not collect or store your files. Whether you need to compress images for web optimization, email attachments, or social media, this tool provides instant results with customizable quality settings.
         </p>
       </section>
 
@@ -88,7 +88,7 @@ export default function ImageCompressorSEOContent() {
               How does online image compression work?
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Our image compressor uses the HTML5 Canvas API to reduce image file sizes directly in your browser. It works by adjusting the image quality level and optionally resizing dimensions. The tool supports JPG, PNG, and WebP formats and can compress images by 50-90% while maintaining good visual quality. All processing happens locally on your device, so your images are never uploaded to any server.
+              Our image compressor reduces image file sizes. It works by adjusting the image quality level and optionally resizing dimensions. The tool supports JPG, PNG, and WebP formats and can compress images by 50-90% while maintaining good visual quality. We do not collect or store your files.
             </p>
           </div>
           
@@ -106,7 +106,7 @@ export default function ImageCompressorSEOContent() {
               Is my image data secure when using this tool?
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Yes, absolutely! This image compressor is 100% private and secure. All image compression happens entirely in your browser using JavaScript and Canvas API. Your photos are never uploaded to our servers, stored in databases, or transmitted over the internet. This ensures complete privacy for your personal photos, business images, and confidential documents.
+              Yes, absolutely! This image compressor is 100% private and secure. We do not collect or store your files. This ensures complete privacy for your personal photos, business images, and confidential documents.
             </p>
           </div>
           
@@ -193,12 +193,12 @@ export default function ImageCompressorSEOContent() {
           <div className="text-center">
             <div className="text-4xl mb-3">⚡</div>
             <h3 className="font-semibold text-gray-800 mb-2">Lightning Fast</h3>
-            <p className="text-gray-600 text-sm">Instant compression with no upload wait time</p>
+            <p className="text-gray-600 text-sm">Instant compression with no wait time</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">🔒</div>
             <h3 className="font-semibold text-gray-800 mb-2">100% Private</h3>
-            <p className="text-gray-600 text-sm">All processing happens locally in your browser</p>
+            <p className="text-gray-600 text-sm">Your inputs are not collected or stored</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">🎯</div>

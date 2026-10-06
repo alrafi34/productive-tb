@@ -11,17 +11,17 @@ export default function ImageResizerSEOContent() {
 
       <h2 className="text-2xl font-bold text-gray-900 mb-4">What is an Image Resizer?</h2>
       <p className="text-gray-700 mb-4">
-        An image resizer is a tool that changes the dimensions (width and height) of digital images. Our free online image resizer allows you to resize photos to exact pixel dimensions while maintaining quality. Whether you need to resize images for web optimization, social media posts, email attachments, or print projects, this tool handles it all directly in your browser with complete privacy.
+        An image resizer is a tool that changes the dimensions (width and height) of digital images. Our free online image resizer allows you to resize photos to exact pixel dimensions while maintaining quality. Whether you need to resize images for web optimization, social media posts, email attachments, or print projects, this tool handles it all with complete privacy.
       </p>
       <p className="text-gray-700 mb-6">
-        Unlike traditional image editors that require software installation, our browser-based image resizer works instantly without uploads to external servers. All image processing happens locally on your device, ensuring your photos remain private and secure. The tool supports batch resizing, making it perfect for processing multiple images simultaneously.
+        Unlike traditional image editors that require software installation, our online image resizer works instantly with nothing to install. We do not collect or store your files. The tool supports batch resizing, making it perfect for processing multiple images simultaneously.
       </p>
 
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
       
       <h3 className="text-xl font-semibold text-gray-900 mb-2">How does the image resizer work?</h3>
       <p className="text-gray-700 mb-4">
-        Our image resizer uses the HTML5 Canvas API to resize images directly in your browser. When you upload an image, it's loaded into a canvas element and redrawn at your specified dimensions. The browser's built-in image smoothing algorithms ensure high-quality results. You can set custom width and height, maintain aspect ratio, choose output format, and control compression quality. The entire process happens client-side, meaning no data leaves your device.
+        Our image resizer changes the pixel dimensions of your images. When you add an image, it is redrawn at your specified dimensions with high-quality smoothing. You can set custom width and height, maintain aspect ratio, choose output format, and control compression quality. We do not collect or store what you enter.
       </p>
 
       <h3 className="text-xl font-semibold text-gray-900 mb-2">What image formats are supported?</h3>
@@ -31,7 +31,7 @@ export default function ImageResizerSEOContent() {
 
       <h3 className="text-xl font-semibold text-gray-900 mb-2">Is my data safe when using this tool?</h3>
       <p className="text-gray-700 mb-4">
-        Absolutely! Your images never leave your device. All resizing operations are performed entirely in your browser using JavaScript and the Canvas API. There are no server uploads, no cloud processing, and no data storage. Your photos remain 100% private and secure on your local machine. This makes our tool perfect for resizing sensitive images, personal photos, or confidential documents.
+        Yes. We do not collect or store your files. This makes our tool perfect for resizing sensitive images, personal photos, or confidential documents.
       </p>
 
       <h3 className="text-xl font-semibold text-gray-900 mb-2">Can I resize multiple images at once?</h3>
@@ -64,8 +64,8 @@ export default function ImageResizerSEOContent() {
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Benefits of Using Our Image Resizer</h2>
       <ul className="list-disc list-inside space-y-2 text-gray-700 mb-6">
         <li><strong>100% Free:</strong> No subscriptions, no hidden fees, no watermarks. Resize unlimited images completely free.</li>
-        <li><strong>No Installation Required:</strong> Works directly in your browser without downloading software or plugins.</li>
-        <li><strong>Complete Privacy:</strong> All processing happens locally on your device. Your images never touch our servers.</li>
+        <li><strong>No Installation Required:</strong> Works without downloading software or plugins.</li>
+        <li><strong>Complete Privacy:</strong> We do not collect or store your files.</li>
         <li><strong>Batch Processing:</strong> Resize multiple images simultaneously with the same settings for maximum efficiency.</li>
         <li><strong>High Quality:</strong> Advanced smoothing algorithms ensure your resized images maintain excellent quality.</li>
         <li><strong>Format Conversion:</strong> Convert between JPEG, PNG, and WebP formats while resizing.</li>

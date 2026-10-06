@@ -34,8 +34,8 @@ export const imageConverterConfig = {
       { name: "Download", text: "Download files one by one, or all of them together as a ZIP file." },
     ],
     faq: [
-      { q: "Are my images uploaded to a server?", a: "No. The conversion runs in your browser with the HTML canvas, so your photos never leave your device. You can even disconnect from the internet once the page has loaded." },
-      { q: "How do I convert HEIC photos from an iPhone to JPG?", a: "Add the .heic files and choose JPG as the output. The tool decodes HEIC in the browser and saves a standard JPG that opens on Windows, Android and any website. On the iPhone itself, Settings › Camera › Formats › Most Compatible makes the camera save JPG from the start." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store your files." },
+      { q: "How do I convert HEIC photos from an iPhone to JPG?", a: "Add the .heic files and choose JPG as the output. The tool converts HEIC and saves a standard JPG that opens on Windows, Android and any website. On the iPhone itself, Settings › Camera › Formats › Most Compatible makes the camera save JPG from the start." },
       { q: "Which format should I choose: JPG, PNG or WebP?", a: "JPG is best for photos and works everywhere. PNG is lossless and keeps transparency, so it suits screenshots, logos and graphics with text, but photos become large. WebP makes files about 25–35% smaller than JPG at similar quality and supports transparency; all current browsers show it, though some older desktop software does not." },
       { q: "What happens to transparent areas when I convert to JPG?", a: "JPG has no transparency, so transparent pixels are filled with the background color you choose, white by default. Convert to PNG or WebP to keep the transparency." },
       { q: "Does converting reduce image quality?", a: "Converting to PNG is lossless. JPG and WebP are lossy: at 90% the difference is very hard to see, while below about 70% you may notice blur and blocky edges. Converting a JPG to PNG does not bring back detail the JPG already lost." },

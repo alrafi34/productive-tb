@@ -37,7 +37,7 @@ export const toolConfig = {
       { q: "How do I set cell values?", a: "Click a cell to increase its value, or drag across cells to paint several at once. Set the number of rows and columns and the color scale to fit your data." },
       { q: "What can I use a heatmap for?", a: "Weekly schedules and availability, activity or habit tracking, website click or attention maps sketched by hand, and teaching how density or intensity is shown with color." },
       { q: "Which formats can I export?", a: "PNG for slides and documents, SVG for scalable graphics, and JSON to save the grid and load it again later." },
-      { q: "Is my grid saved?", a: "Yes, the current grid is stored in your browser. Export it as JSON to keep a copy or move it to another device." },
+      { q: "Is my grid saved?", a: "Yes, the current grid is saved automatically. Export it as JSON to keep a copy or move it to another device." },
     ],
   },
   features: [

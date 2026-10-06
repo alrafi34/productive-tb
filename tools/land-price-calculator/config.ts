@@ -43,7 +43,7 @@ export const landPriceCalculatorConfig = {
       { q: "What affects the price of land?", a: "Location and access, zoning and what can be built, road frontage, utilities (water, sewer, power), topography, flood risk, lot size and recent comparable sales. Small building lots usually cost far more per square foot than large rural parcels." },
       { q: "How much is an acre of land worth?", a: "It varies enormously. The USDA put the average US farmland value at about $4,170 per acre in 2024, while residential lots in metro areas can exceed $500,000 per acre. In the UK, farmland averaged roughly £10,000 per acre. Use local listings and recent sales for real figures." },
       { q: "Which currencies can I use?", a: "US dollars, euros, pounds, Canadian dollars and Australian dollars. The calculator does not convert between currencies; the total is in the same currency as the rate you enter." },
-      { q: "Is my data private?", a: "Yes. Everything runs in your browser; nothing you enter is sent to a server. History is saved only in your browser's local storage." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
   features: [
@@ -55,7 +55,7 @@ export const landPriceCalculatorConfig = {
     "Comparison mode for two deals side by side",
     "Real-time results as you type",
     "Save and export calculation history",
-    "100% browser-based — no data sent to any server",
+    "Private: your inputs are not collected or stored",
     "No registration required",
   ],
   relatedTools: [

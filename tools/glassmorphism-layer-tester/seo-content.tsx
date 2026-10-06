@@ -237,7 +237,7 @@ export default function GlassmorphismLayerTesterSEOContent() {
               Instant Preview
             </h3>
             <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              See changes in real-time as you adjust sliders. No waiting, no lag. All rendering happens instantly in your browser using optimized CSS.
+              See changes in real-time as you adjust sliders. No waiting, no lag. All rendering happens instantly using optimized CSS.
             </p>
           </div>
           
@@ -287,7 +287,7 @@ export default function GlassmorphismLayerTesterSEOContent() {
               Privacy First
             </h3>
             <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              All processing happens locally in your browser. No uploads, no server processing, no data collection. Your designs stay private.
+              We do not collect or store what you enter. Your designs stay private.
             </p>
           </div>
         </div>

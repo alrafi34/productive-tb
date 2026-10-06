@@ -284,7 +284,7 @@ export default function DomainAuthorityEstimatorSEO() {
             },
             {
               q: "Does this tool store my data?",
-              a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
+              a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you. This makes the tool safe for auditing client domains or sensitive internal data.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

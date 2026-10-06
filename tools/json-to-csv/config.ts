@@ -37,8 +37,8 @@ export const toolConfig = {
       { q: "What does flattening do?", a: "Flattening converts nested JSON objects and arrays into a flat structure with dot-notation keys. For example, an object with nested address becomes separate columns like address.city and address.zip, making it compatible with spreadsheet formats." },
       { q: "Can I use different delimiters?", a: "Yes! You can choose between comma, semicolon, or tab as your delimiter. This is useful when your data contains commas or when working with different regional CSV formats." },
       { q: "How are arrays handled?", a: "Arrays are flattened with index-based keys. For example, an array of tags becomes tags.0, tags.1, tags.2, etc. Each array element gets its own column in the CSV output." },
-      { q: "Is this tool free to use?", a: "Yes, our JSON to CSV Converter is completely free and runs entirely in your browser. No registration, no limits, and no backend processing required. All conversion happens locally on your device." },
-      { q: "What happens to my data?", a: "Your data never leaves your device. All JSON parsing and CSV generation happens entirely in your browser. We do not store, transmit, or process your data on any server." },
+      { q: "Is this tool free to use?", a: "Yes, our JSON to CSV Converter is completely free, with no registration and no limits." },
+      { q: "What happens to my data?", a: "We do not collect or store what you enter." },
       { q: "Can I download the CSV file?", a: "Yes! After conversion, you can download the CSV as a file with a single click. The file will be named data.csv and is ready to open in Excel or Google Sheets." },
     ],
   },
@@ -52,7 +52,7 @@ export const toolConfig = {
     "Copy to clipboard functionality",
     "Download CSV files",
     "Input validation with error messages",
-    "LocalStorage history",
+    "History",
     "Mobile-responsive design"
   ]
 };
