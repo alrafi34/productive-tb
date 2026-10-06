@@ -38,7 +38,7 @@ export const toolConfig = {
       { q: "Can I add a prefix to lines in Excel or Google Sheets instead?", a: "Yes, with a formula: =\"- \"&A1 in Excel or Google Sheets adds a prefix, and =A1&\",\" adds a suffix; then fill the formula down. This tool is quicker for a one-off list and keeps line breaks and blank lines as they are." },
       { q: "What happens to blank lines?", a: "They are kept blank, without a prefix, suffix or number, so a list split into groups keeps its layout. Tick Remove empty lines to drop them altogether." },
       { q: "How do I make a Markdown checklist?", a: "Use the Checklist template, which starts every line with - [ ] . GitHub, GitLab, Obsidian and many other Markdown editors show these as tick boxes; change [ ] to [x] to mark an item done." },
-      { q: "Is my list uploaded anywhere?", a: "No. Everything happens in your browser, so the list never leaves your device." },
+      { q: "Is my list uploaded anywhere?", a: "No. We do not collect or store what you enter." },
     ],
   },
 };

@@ -26,7 +26,7 @@ export const toolConfig = {
     howToSteps: [
       { name: "Enter two values", text: "Type any two of voltage, current and resistance, and set each one's unit: mV, V or kV; µA, mA or A; Ω, kΩ or MΩ." },
       { name: "Read the third", text: "The calculator works out the empty field with V = I × R as you type. If all three are filled, clear one." },
-      { name: "Copy or save", text: "Copy the result or save it to the history kept in your browser." },
+      { name: "Copy or save", text: "Copy the result or save it to the history kept." },
     ],
     faq: [
       { q: "What is Ohm's law?", a: "The voltage across a resistor equals the current through it times its resistance: V = I × R. Rearranged, I = V ÷ R and R = V ÷ I. For example, 12 V across 6 Ω drives 2 A." },
@@ -42,6 +42,6 @@ export const toolConfig = {
     "Support for multiple units (mV, V, kV, uA, mA, A, Ω, kΩ, MΩ)",
     "Copy results to clipboard",
     "Calculation history management",
-    "Works entirely in the browser"
+    "Nothing to install"
   ]
 };

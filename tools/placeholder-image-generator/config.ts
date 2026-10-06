@@ -41,9 +41,9 @@ export const placeholderImageGeneratorConfig = {
     "Optional border overlay",
     "Common preset sizes (thumbnail, square, social, banner)",
     "Copy to clipboard functionality",
-    "History tracking with localStorage",
+    "History tracking",
     "Real-time preview updates",
-    "100% browser-based, no server required"
+    "Your inputs are not collected or stored"
   ]
 };
 

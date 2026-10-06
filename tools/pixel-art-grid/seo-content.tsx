@@ -53,8 +53,8 @@ export default function PixelArtCreatorSEOContent() {
         
         <div className="mt-6 text-sm text-gray-500">
           <p>
-            This pixel art creator runs entirely in your browser with no server required. 
-            Your artwork is automatically saved locally and can be exported in multiple formats 
+            This pixel art creator is free to use. 
+            Your artwork is automatically and can be exported in multiple formats 
             for use in games, websites, or digital art projects.
           </p>
         </div>

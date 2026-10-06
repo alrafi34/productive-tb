@@ -58,7 +58,7 @@ export const parallelResistorCalculatorConfig = {
       { q: "Does adding more resistors in parallel always lower total resistance?", a: "Yes. Every added resistor creates another current path, always lowering or leaving unchanged the total — never raising it, unlike series circuits." },
       { q: "How is parallel resistance different from series resistance?", a: "Series resistors share current and simply add, increasing the total. Parallel resistors share voltage and use the reciprocal formula, decreasing the total." },
       { q: "How many resistors can I calculate in parallel at once?", a: "There's no fixed limit. Shorthand notation like 4.7k or 1M can be used for quick entry without a separate unit dropdown." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your resistor values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

@@ -30,7 +30,7 @@ export default function ParkingSpaceCalculatorSEO() {
             Built for <strong>architects, civil engineers, urban planners, commercial developers, facility
             managers, and business owners</strong> who need accurate stall counts during site feasibility,
             planning applications, or design review. Supports US standard and metric dimensions, 90° / 60° / 45°
-            layouts, one-way and two-way aisles, and ADA calculation. Browser-based, free, no signup required.
+            layouts, one-way and two-way aisles, and ADA calculation. Free, no signup required.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function ParkingSpaceCalculatorSEO() {
                 "Demand mode: required spaces from building type",
                 "Visual layout diagram",
                 "Export layout summary as PDF or text",
-                "100% browser-based — no data sent to any server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

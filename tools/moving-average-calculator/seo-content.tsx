@@ -8,13 +8,13 @@ export default function MovingAverageCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>moving average calculator</strong> is a free browser-based tool that smooths out short-term fluctuations in a dataset to reveal underlying trends. It supports <strong>Simple Moving Average (SMA)</strong>, <strong>Weighted Moving Average (WMA)</strong>, and <strong>Exponential Moving Average (EMA)</strong> — the three most widely used methods in finance, statistics, and time-series analysis.
+            A <strong>moving average calculator</strong> is a free tool that smooths out short-term fluctuations in a dataset to reveal underlying trends. It supports <strong>Simple Moving Average (SMA)</strong>, <strong>Weighted Moving Average (WMA)</strong>, and <strong>Exponential Moving Average (EMA)</strong> — the three most widely used methods in finance, statistics, and time-series analysis.
           </p>
           <p>
             This tool accepts manually typed numbers, pasted datasets, or uploaded CSV and TXT files. It automatically detects separators — commas, spaces, new lines, or tabs — computes the selected moving average across an adjustable window size, and visualizes the original data alongside the smoothed trend line.
           </p>
           <p>
-            Built for <strong>financial analysts, stock traders, cryptocurrency investors, students, teachers, researchers, business analysts, data analysts, economists, and engineers</strong>, the calculator runs entirely in your browser with instant results, no signup, and support for large datasets.
+            Built for <strong>financial analysts, stock traders, cryptocurrency investors, students, teachers, researchers, business analysts, data analysts, economists, and engineers</strong>, the calculator works with instant results, no signup, and support for large datasets.
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function MovingAverageCalculatorSEO() {
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcuts — Esc to clear, Ctrl+L for a random dataset",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -231,7 +231,7 @@ export default function MovingAverageCalculatorSEO() {
           {[
             {
               q: "What is a moving average calculator?",
-              a: "A moving average calculator is a free browser-based tool that smooths a dataset by averaging consecutive groups of values, supporting Simple, Weighted, and Exponential Moving Average methods.",
+              a: "A moving average calculator is a free tool that smooths a dataset by averaging consecutive groups of values, supporting Simple, Weighted, and Exponential Moving Average methods.",
             },
             {
               q: "What is the difference between SMA, WMA, and EMA?",
@@ -267,7 +267,7 @@ export default function MovingAverageCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

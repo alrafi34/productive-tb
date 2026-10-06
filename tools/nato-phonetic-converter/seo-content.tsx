@@ -47,7 +47,7 @@ const faqItems = [
   {
     question: "Is my text private when using this tool?",
     answer:
-      "Yes. Conversion runs in your browser, so your text is not sent to external servers for processing.",
+      "Yes. We do not collect or store what you enter.",
   },
 ];
 

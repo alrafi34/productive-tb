@@ -116,7 +116,7 @@ export default function PieChartSEO() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold text-gray-900">💾 Chart History</h3>
-            <p className="text-gray-600">Save and load your previous charts from local storage.</p>
+            <p className="text-gray-600">Save and load your previous charts.</p>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@ export default function PieChartSEO() {
       <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 space-y-4">
         <h3 className="text-xl font-black text-gray-900">Ready to Create Your Pie Chart?</h3>
         <p className="text-gray-600">
-          Start using this free Pie Chart Maker today. No signup required, no server processing, 100% browser-based. Perfect for students, professionals, and data enthusiasts!
+          Start using this free Pie Chart Maker today. We do not collect or store what you enter. Perfect for students, professionals, and data enthusiasts!
         </p>
       </div>
       <ToolFaq items={faq} />

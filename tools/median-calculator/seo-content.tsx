@@ -8,13 +8,13 @@ export default function MedianCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>median calculator</strong> is a free browser-based tool that instantly finds the middle value of a numerical dataset — the point where half the values fall above and half fall below. Unlike the mean, the median isn&apos;t skewed by extreme outliers, which makes it one of the most useful statistics for understanding a dataset&apos;s true center.
+            A <strong>median calculator</strong> is a free tool that instantly finds the middle value of a numerical dataset — the point where half the values fall above and half fall below. Unlike the mean, the median isn&apos;t skewed by extreme outliers, which makes it one of the most useful statistics for understanding a dataset&apos;s true center.
           </p>
           <p>
             This tool accepts manually typed numbers, pasted spreadsheet data, or uploaded CSV and TXT files. It automatically detects separators — commas, spaces, new lines, tabs, or semicolons — sorts your dataset, and shows exactly how the median was derived with a full step-by-step explanation.
           </p>
           <p>
-            Built for <strong>students, teachers, data analysts, researchers, business professionals, financial analysts, scientists, and engineers</strong>, the calculator runs entirely in your browser with instant results, no signup, and support for datasets ranging from a handful of numbers to thousands of values.
+            Built for <strong>students, teachers, data analysts, researchers, business professionals, financial analysts, scientists, and engineers</strong>, the calculator works with instant results, no signup, and support for datasets ranging from a handful of numbers to thousands of values.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function MedianCalculatorSEO() {
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcut — Esc to clear",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -228,7 +228,7 @@ export default function MedianCalculatorSEO() {
           {[
             {
               q: "What is a median calculator?",
-              a: "A median calculator is a free browser-based tool that instantly finds the middle value of a numerical dataset, sorting your data automatically and applying the correct formula for odd or even counts.",
+              a: "A median calculator is a free tool that instantly finds the middle value of a numerical dataset, sorting your data automatically and applying the correct formula for odd or even counts.",
             },
             {
               q: "How is the median calculated?",
@@ -264,7 +264,7 @@ export default function MedianCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server or stored in any database.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

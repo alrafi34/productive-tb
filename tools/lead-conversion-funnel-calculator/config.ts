@@ -80,7 +80,7 @@ export const leadConversionFunnelCalculatorConfig = {
     faq: [
       {
         q: "What is a lead conversion funnel calculator?",
-        a: "A lead conversion funnel calculator is a free browser-based tool that measures how effectively leads or visitors move through each stage of a marketing or sales process, from initial awareness (like website visitors) down to a final outcome (like paying customers). It calculates the conversion rate and drop-off percentage between every stage as well as the overall funnel conversion rate.",
+        a: "A lead conversion funnel calculator is a free tool that measures how effectively leads or visitors move through each stage of a marketing or sales process, from initial awareness (like website visitors) down to a final outcome (like paying customers). It calculates the conversion rate and drop-off percentage between every stage as well as the overall funnel conversion rate.",
       },
       {
         q: "How is conversion rate calculated between two stages?",
@@ -116,7 +116,7 @@ export const leadConversionFunnelCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your funnel stage names, values, and any saved history are never transmitted to any server, stored in any database, or accessible to anyone other than you. History is stored only in your browser's local storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

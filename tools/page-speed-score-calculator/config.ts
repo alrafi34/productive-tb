@@ -76,7 +76,7 @@ export const pageSpeedScoreCalculatorConfig = {
     faq: [
       {
         q: "What is a Page Speed Score Calculator?",
-        a: "A Page Speed Score Calculator is a free browser-based tool that estimates a website's overall performance score from manually entered Core Web Vitals — LCP, INP, CLS, FCP, TBT, and Speed Index — using a weighted formula inspired by Google Lighthouse's scoring methodology. It does not fetch live website data; you provide measurements from a tool like Lighthouse or PageSpeed Insights.",
+        a: "A Page Speed Score Calculator is a free tool that estimates a website's overall performance score from manually entered Core Web Vitals — LCP, INP, CLS, FCP, TBT, and Speed Index — using a weighted formula inspired by Google Lighthouse's scoring methodology. It does not fetch live website data; you provide measurements from a tool like Lighthouse or PageSpeed Insights.",
       },
       {
         q: "How is the performance score calculated?",
@@ -112,7 +112,7 @@ export const pageSpeedScoreCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. The metric values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

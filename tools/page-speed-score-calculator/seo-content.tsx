@@ -8,13 +8,13 @@ export default function PageSpeedScoreCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>page speed score calculator</strong> is a free browser-based tool that estimates a website&apos;s overall performance score from manually entered Core Web Vitals — Largest Contentful Paint (LCP), Interaction to Next Paint (INP), Cumulative Layout Shift (CLS), First Contentful Paint (FCP), Total Blocking Time (TBT), and Speed Index. Instead of crawling a live URL, it applies a weighted formula inspired by Google Lighthouse&apos;s scoring methodology to numbers you already have from Lighthouse, Chrome DevTools, PageSpeed Insights, WebPageTest, or GTmetrix.
+            A <strong>page speed score calculator</strong> is a free tool that estimates a website&apos;s overall performance score from manually entered Core Web Vitals — Largest Contentful Paint (LCP), Interaction to Next Paint (INP), Cumulative Layout Shift (CLS), First Contentful Paint (FCP), Total Blocking Time (TBT), and Speed Index. Instead of crawling a live URL, it applies a weighted formula inspired by Google Lighthouse&apos;s scoring methodology to numbers you already have from Lighthouse, Chrome DevTools, PageSpeed Insights, WebPageTest, or GTmetrix.
           </p>
           <p>
-            This is deliberately <em>not</em> a PageSpeed Insights API clone — there is no backend, no crawling, and no API key required. Everything runs instantly inside your browser, which makes it useful when you already have raw metrics from a report and want a quick score estimate, a second opinion, or a way to explore how changing one metric would shift the overall result.
+            This is deliberately <em>not</em> a PageSpeed Insights API clone — no crawling and no API key required. Everything runs instantly inside your browser, which makes it useful when you already have raw metrics from a report and want a quick score estimate, a second opinion, or a way to explore how changing one metric would shift the overall result.
           </p>
           <p>
-            Built for <strong>web developers, front-end engineers, SEO specialists, performance engineers, digital marketers, website owners, and students learning Core Web Vitals</strong>, this tool provides an instant weighted score, a letter grade, a per-metric breakdown, and tailored optimization recommendations — all processed locally with no data ever leaving your browser.
+            Built for <strong>web developers, front-end engineers, SEO specialists, performance engineers, digital marketers, website owners, and students learning Core Web Vitals</strong>, this tool provides an instant weighted score, a letter grade, a per-metric breakdown, and tailored optimization recommendations.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function PageSpeedScoreCalculatorSEO() {
                 "Keyboard shortcut — Esc to reset",
                 "Inline validation with clear, friendly error messages",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -228,7 +228,7 @@ export default function PageSpeedScoreCalculatorSEO() {
           {[
             {
               q: "What is a Page Speed Score Calculator?",
-              a: "A Page Speed Score Calculator is a free browser-based tool that estimates a website's overall performance score from manually entered Core Web Vitals — LCP, INP, CLS, FCP, TBT, and Speed Index — using a weighted formula inspired by Google Lighthouse's scoring methodology.",
+              a: "A Page Speed Score Calculator is a free tool that estimates a website's overall performance score from manually entered Core Web Vitals — LCP, INP, CLS, FCP, TBT, and Speed Index — using a weighted formula inspired by Google Lighthouse's scoring methodology.",
             },
             {
               q: "How is the performance score calculated?",
@@ -264,7 +264,7 @@ export default function PageSpeedScoreCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. The metric values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

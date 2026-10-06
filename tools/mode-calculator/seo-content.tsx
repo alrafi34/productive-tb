@@ -8,13 +8,13 @@ export default function ModeCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>mode calculator</strong> is a free browser-based tool that finds the most frequently occurring value (or values) in a dataset. Unlike mean or median, the mode works equally well for numbers and text, making it useful for anything from exam scores to survey responses to product color preferences.
+            A <strong>mode calculator</strong> is a free tool that finds the most frequently occurring value (or values) in a dataset. Unlike mean or median, the mode works equally well for numbers and text, making it useful for anything from exam scores to survey responses to product color preferences.
           </p>
           <p>
             This calculator automatically detects your separator (comma, space, new line, tab, or a mix) and whether your dataset is numeric or text, counts occurrences using an efficient single-pass frequency map, and returns every value tied for the highest frequency — correctly handling single-mode, multimodal, and no-mode datasets.
           </p>
           <p>
-            This tool is built for <strong>students, teachers, researchers, data analysts, statisticians, business analysts, data scientists, and survey creators</strong>. It supports a frequency table, an interactive bar chart, adjustable sorting, calculation history, and export as CSV, JSON, or TXT — entirely in your browser.
+            This tool is built for <strong>students, teachers, researchers, data analysts, statisticians, business analysts, data scientists, and survey creators</strong>. It supports a frequency table, an interactive bar chart, adjustable sorting, calculation history, and export as CSV, JSON, or TXT.
           </p>
         </div>
       </section>
@@ -83,7 +83,7 @@ export default function ModeCalculatorSEO() {
                 "Automatic number/text type detection",
                 "Multiple mode (multimodal) detection",
                 "No-mode detection when all values occur equally",
-                "Efficient single-pass frequency counting using JavaScript Map",
+                "Efficient single-pass frequency counting",
                 "Interactive frequency bar chart with the mode highlighted",
                 "Sortable frequency table (original, ascending, descending)",
                 "Handles datasets with 100,000+ values without freezing",
@@ -252,7 +252,7 @@ export default function ModeCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

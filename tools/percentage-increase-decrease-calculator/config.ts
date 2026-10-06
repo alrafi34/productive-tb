@@ -105,7 +105,7 @@ export const toolConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. The values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you. The CSV export generates the file locally on your device without any server-side processing.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },
@@ -118,7 +118,7 @@ export const toolConfig = {
     "Batch mode — process a full list of values at once",
     "CSV export of full batch results",
     "Accepts comma-formatted numbers and decimals",
-    "100% browser-based — no data sent to any server",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "percentage-calculator",

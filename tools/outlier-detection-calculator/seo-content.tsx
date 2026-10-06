@@ -8,13 +8,13 @@ export default function OutlierDetectionCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>outlier detection calculator</strong> is a free browser-based statistical tool that identifies values in a dataset that deviate significantly from the rest of the data. It supports five methods — the <strong>IQR Rule</strong>, the <strong>Z-Score Method</strong>, the <strong>Modified Z-Score (MAD)</strong> method, <strong>Percentile-Based</strong> detection, and a <strong>Custom Threshold</strong> — each with adjustable sensitivity.
+            An <strong>outlier detection calculator</strong> is a free statistical tool that identifies values in a dataset that deviate significantly from the rest of the data. It supports five methods — the <strong>IQR Rule</strong>, the <strong>Z-Score Method</strong>, the <strong>Modified Z-Score (MAD)</strong> method, <strong>Percentile-Based</strong> detection, and a <strong>Custom Threshold</strong> — each with adjustable sensitivity.
           </p>
           <p>
             Enter your dataset and pick a method, and the calculator instantly flags each outlier, shows its deviation score, and visualizes the full dataset as a dot plot, box plot, or histogram with outliers highlighted in red.
           </p>
           <p>
-            Built for <strong>data analysts, statisticians, researchers, quality assurance teams, and students</strong>, the calculator runs entirely in your browser with instant results and no signup required.
+            Built for <strong>data analysts, statisticians, researchers, quality assurance teams, and students</strong>, the calculator works with instant results and no signup required.
           </p>
         </div>
       </section>
@@ -90,7 +90,7 @@ export default function OutlierDetectionCalculatorSEO() {
                 "Copy full report and download CSV, JSON, or print-friendly report",
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -210,7 +210,7 @@ export default function OutlierDetectionCalculatorSEO() {
           {[
             {
               q: "What is an outlier detection calculator?",
-              a: "An outlier detection calculator is a free browser-based tool that identifies values in a dataset that deviate significantly from the rest of the data, using the IQR rule, Z-Score method, Modified Z-Score (MAD), Percentile-Based detection, or a Custom Threshold.",
+              a: "An outlier detection calculator is a free tool that identifies values in a dataset that deviate significantly from the rest of the data, using the IQR rule, Z-Score method, Modified Z-Score (MAD), Percentile-Based detection, or a Custom Threshold.",
             },
             {
               q: "How does the IQR rule work?",
@@ -254,7 +254,7 @@ export default function OutlierDetectionCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i, arr) => (
             <div key={i} className={i < arr.length - 1 ? "border-b border-gray-100 pb-6" : ""}>

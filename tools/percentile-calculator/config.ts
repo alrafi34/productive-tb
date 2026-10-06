@@ -75,7 +75,7 @@ export const percentileCalculatorConfig = {
     faq: [
       {
         q: "What is a percentile calculator?",
-        a: "A percentile calculator is a free browser-based tool that finds the value below which a given percentage of a dataset falls. For example, the 90th percentile (P90) is the value below which 90% of the data lies.",
+        a: "A percentile calculator is a free tool that finds the value below which a given percentage of a dataset falls. For example, the 90th percentile (P90) is the value below which 90% of the data lies.",
       },
       {
         q: "How is percentile calculated?",
@@ -123,7 +123,7 @@ export const percentileCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

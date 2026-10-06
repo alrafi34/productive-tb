@@ -103,7 +103,7 @@ export const matrixCalculatorConfig = {
       },
       {
         q: "What is the maximum matrix size supported?",
-        a: "The calculator supports matrices up to 20 by 20. All processing happens client-side in your browser so no network time is involved. For most homework and engineering use cases matrices are 3 by 3 to 6 by 6.",
+        a: "The calculator supports matrices up to 20 by 20. For most homework and engineering use cases matrices are 3 by 3 to 6 by 6.",
       },
       {
         q: "How accurate are the results?",
@@ -115,7 +115,7 @@ export const matrixCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All matrix operations run entirely in your browser using JavaScript. Your matrix values are never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history is stored only in your browser's localStorage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

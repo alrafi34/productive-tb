@@ -69,7 +69,7 @@ export const minMaxScalingCalculatorConfig = {
     faq: [
       {
         q: "What is a min-max scaling calculator?",
-        a: "A min-max scaling calculator is a free browser-based tool that rescales a list of numbers into a custom target range using min-max normalization. It finds the minimum and maximum of your dataset and proportionally maps every value onto your chosen output range.",
+        a: "A min-max scaling calculator is a free tool that rescales a list of numbers into a custom target range using min-max normalization. It finds the minimum and maximum of your dataset and proportionally maps every value onto your chosen output range.",
       },
       {
         q: "How is min-max scaling calculated?",
@@ -105,7 +105,7 @@ export const minMaxScalingCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

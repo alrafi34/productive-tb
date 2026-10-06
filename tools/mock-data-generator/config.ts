@@ -49,6 +49,6 @@ export const toolConfig = {
     "Locale-specific data generation",
     "Batch generation with preview",
     "Mobile responsive interface",
-    "100% client-side generation"
+    "Private generation"
   ]
 };

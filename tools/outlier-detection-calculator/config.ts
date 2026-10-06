@@ -76,7 +76,7 @@ export const outlierDetectionCalculatorConfig = {
     faq: [
       {
         q: "What is an outlier detection calculator?",
-        a: "An outlier detection calculator is a free browser-based tool that identifies unusual values in a dataset that deviate significantly from the rest of the data, using the IQR rule, Z-Score method, Modified Z-Score (MAD), Percentile-Based detection, or a Custom Threshold.",
+        a: "An outlier detection calculator is a free tool that identifies unusual values in a dataset that deviate significantly from the rest of the data, using the IQR rule, Z-Score method, Modified Z-Score (MAD), Percentile-Based detection, or a Custom Threshold.",
       },
       {
         q: "How does the IQR rule work?",
@@ -120,7 +120,7 @@ export const outlierDetectionCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

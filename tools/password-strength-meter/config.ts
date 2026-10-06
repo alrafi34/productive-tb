@@ -8,7 +8,7 @@ export const passwordStrengthMeterConfig = {
   backend: false,
   seo: {
     faq: [
-      { q: "Is it safe to enter my password here?", a: "Yes! All analysis happens locally in your browser. No passwords are sent to any server or stored anywhere except your device's localStorage (if you choose to save history)." },
+      { q: "Is it safe to enter my password here?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "What makes a password strong?", a: "A strong password has high entropy (80+ bits), uses all character types (uppercase, lowercase, numbers, symbols), is at least 12 characters long, and avoids common patterns or words." },
       { q: "How accurate is the crack time estimation?", a: "Our estimates assume a modern GPU capable of 10 billion guesses per second in an offline attack. Real-world crack times vary based on attack method, hardware, and security measures like rate limiting." },
       { q: "Should I use a password manager?", a: "Absolutely! Password managers generate and store complex, unique passwords for each account, making them much more secure than reusing simple passwords." },
@@ -55,8 +55,8 @@ export const passwordStrengthMeterConfig = {
     "Export as TXT or JSON",
     "Pattern detection (repeated, sequential)",
     "Common password detection",
-    "100% client-side processing",
-    "No server communication",
+    "Private: your inputs are not collected or stored",
+    "Your inputs are not collected or stored",
     "Privacy-focused"
   ]
 };

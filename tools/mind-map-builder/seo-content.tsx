@@ -41,7 +41,7 @@ export default function MindMapBuilderSEOContent() {
           <li><strong>Export Options:</strong> Save as PNG, SVG, or JSON</li>
           <li><strong>Import JSON:</strong> Load previously saved mind maps</li>
           <li><strong>Keyboard Shortcuts:</strong> Ctrl+Z (Undo), Ctrl+Y (Redo), Delete</li>
-          <li><strong>100% Browser-Based:</strong> No server required, all processing local</li>
+          <li><strong>Private:</strong> Nothing to install</li>
         </ul>
       </section>
 
@@ -85,7 +85,7 @@ export default function MindMapBuilderSEOContent() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Privacy & Security</h2>
         <p>
-          Your mind maps are processed entirely in your browser. No data is sent to any server, ensuring complete privacy and security. You can safely work with sensitive information without worrying about data exposure.
+          We do not collect or store what you enter. You can safely work with sensitive information without worrying about data exposure.
         </p>
       </section>
       <ToolFaq items={faq} />

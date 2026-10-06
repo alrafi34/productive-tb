@@ -8,13 +8,13 @@ export default function LeadConversionFunnelCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>lead conversion funnel calculator</strong> is a free browser-based tool that analyzes how effectively visitors, leads, or prospects move through every stage of a marketing or sales process. It answers the question every growth marketer and sales leader needs to know: <em>where exactly are we losing people, and which stage deserves attention first?</em>
+            A <strong>lead conversion funnel calculator</strong> is a free tool that analyzes how effectively visitors, leads, or prospects move through every stage of a marketing or sales process. It answers the question every growth marketer and sales leader needs to know: <em>where exactly are we losing people, and which stage deserves attention first?</em>
           </p>
           <p>
             A funnel rarely has just one number worth tracking — a healthy top-of-funnel conversion rate can hide a broken middle stage, and a strong overall conversion rate can mask an inefficient path with more leaks than necessary. This tool solves that by calculating the conversion rate and drop-off percentage between every single stage, the overall funnel conversion, and a funnel efficiency score, then automatically highlighting your single biggest bottleneck on both a data table and an interactive visual funnel.
           </p>
           <p>
-            This tool is built for <strong>digital marketers, SEO professionals, performance marketers, growth hackers, sales teams, CRM users, SaaS companies, startup founders, marketing agencies, eCommerce businesses, affiliate marketers, and students</strong> learning marketing analytics. It supports 2 to 10 fully custom, reorderable stages, exports results as CSV, JSON, PNG, or SVG, and saves funnel history for before-and-after comparison — all processed entirely in your browser.
+            This tool is built for <strong>digital marketers, SEO professionals, performance marketers, growth hackers, sales teams, CRM users, SaaS companies, startup founders, marketing agencies, eCommerce businesses, affiliate marketers, and students</strong> learning marketing analytics. It supports 2 to 10 fully custom, reorderable stages, exports results as CSV, JSON, PNG, or SVG, and saves funnel history for before-and-after comparison.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function LeadConversionFunnelCalculatorSEO() {
                 "Print-ready PDF report and full-text copy",
                 "Keyboard shortcuts — Ctrl/Cmd+Z to undo, Esc to reset",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -235,7 +235,7 @@ export default function LeadConversionFunnelCalculatorSEO() {
           {[
             {
               q: "What is a lead conversion funnel calculator?",
-              a: "A lead conversion funnel calculator is a free browser-based tool that measures how effectively leads or visitors move through each stage of a marketing or sales process, from initial awareness down to a final outcome like paying customers. It calculates the conversion rate and drop-off percentage between every stage as well as the overall funnel conversion rate.",
+              a: "A lead conversion funnel calculator is a free tool that measures how effectively leads or visitors move through each stage of a marketing or sales process, from initial awareness down to a final outcome like paying customers. It calculates the conversion rate and drop-off percentage between every stage as well as the overall funnel conversion rate.",
             },
             {
               q: "How is conversion rate calculated between two stages?",
@@ -271,7 +271,7 @@ export default function LeadConversionFunnelCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your funnel stage names, values, and any saved history are never transmitted to any server, stored in any database, or accessible to anyone other than you. History is stored only in your browser's local storage.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

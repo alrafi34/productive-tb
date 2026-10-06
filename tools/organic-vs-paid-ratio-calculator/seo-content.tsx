@@ -8,7 +8,7 @@ export default function OrganicVsPaidRatioCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>organic vs paid ratio calculator</strong> is a free browser-based tool that instantly compares how much of a website's traffic comes from unpaid search results versus paid advertising. It answers a question every marketing team eventually has to face: <em>how dependent are we on ad spend to keep traffic flowing, and what happens if that spend stops?</em>
+            An <strong>organic vs paid ratio calculator</strong> is a free tool that instantly compares how much of a website's traffic comes from unpaid search results versus paid advertising. It answers a question every marketing team eventually has to face: <em>how dependent are we on ad spend to keep traffic flowing, and what happens if that spend stops?</em>
           </p>
           <p>
             The organic-to-paid ratio is one of the clearest signals of long-term marketing health. A website generating most of its traffic organically has built durable, compounding search visibility that keeps working without ongoing spend. A website relying heavily on paid traffic is effectively renting its audience — the moment the ad budget is paused, that traffic disappears. Neither extreme is automatically wrong, but knowing exactly where a site sits on that spectrum is essential for budget planning, SEO investment decisions, and honest reporting to stakeholders.
@@ -98,7 +98,7 @@ export default function OrganicVsPaidRatioCalculatorSEO() {
                 "Calculation history — save and reload up to 20 past results",
                 "Reset with confirmation to prevent accidental data loss",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -271,7 +271,7 @@ export default function OrganicVsPaidRatioCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your organic and paid traffic figures are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -8,13 +8,13 @@ export default function PageRankEstimatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>Page Rank Estimator</strong> is a free browser-based tool that scores how likely a webpage is to rank well in Google search results, based on a weighted model built from widely accepted on-page, technical, content, and user-experience SEO best practices. It answers the question every content creator and SEO professional asks before hitting publish: <em>does this page have what it needs to compete?</em>
+            A <strong>Page Rank Estimator</strong> is a free tool that scores how likely a webpage is to rank well in Google search results, based on a weighted model built from widely accepted on-page, technical, content, and user-experience SEO best practices. It answers the question every content creator and SEO professional asks before hitting publish: <em>does this page have what it needs to compete?</em>
           </p>
           <p>
             This tool does <strong>not</strong> predict Google&apos;s actual ranking position and does <strong>not</strong> use or reproduce Google&apos;s real ranking algorithm — no third-party tool can, since Google&apos;s system considers hundreds of proprietary signals. Instead, it evaluates over 30 individual factors across seven categories — On-Page SEO, Content Quality, Images, Internal SEO, Technical SEO, User Experience, and Authority — and combines them into a single weighted score that highlights strengths, exposes weaknesses, and generates a prioritized improvement checklist.
           </p>
           <p>
-            This tool is built for <strong>SEO professionals, digital marketing agencies, bloggers, content creators, students, business owners, and website owners worldwide</strong> who want a fast, educational way to sanity-check a page before or after publishing. It runs 100% in your browser with no signup, lets you save and compare multiple reports, and exports results as CSV, JSON, or a print-ready report — and none of your data ever leaves your device.
+            This tool is built for <strong>SEO professionals, digital marketing agencies, bloggers, content creators, students, business owners, and website owners worldwide</strong> who want a fast, educational way to sanity-check a page before or after publishing. It requires no signup, lets you save and compare multiple reports, and exports results as CSV, JSON, or a print-ready report.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function PageRankEstimatorSEO() {
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcut — Esc to reset",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -234,11 +234,11 @@ export default function PageRankEstimatorSEO() {
           {[
             {
               q: "What is a Page Rank Estimator?",
-              a: "A Page Rank Estimator is a free browser-based tool that scores a webpage's SEO ranking potential using a weighted model built on widely accepted SEO best practices — covering on-page factors, content quality, technical SEO, user experience, and authority signals. It is not connected to Google and does not use or reproduce Google's actual ranking algorithm.",
+              a: "A Page Rank Estimator is a free tool that scores a webpage's SEO ranking potential using a weighted model built on widely accepted SEO best practices — covering on-page factors, content quality, technical SEO, user experience, and authority signals. It is not connected to Google and does not use or reproduce Google's actual ranking algorithm.",
             },
             {
               q: "Does this tool predict my actual Google ranking?",
-              a: "No. This tool estimates ranking potential based on SEO best-practice signals, not your actual position in Google search results. Google's real ranking algorithm considers hundreds of signals, many of which cannot be replicated by a client-side tool. Use this score as a checklist and prioritization guide, not a ranking prediction.",
+              a: "No. This tool estimates ranking potential based on SEO best-practice signals, not your actual position in Google search results. Google's real ranking algorithm considers hundreds of signals, many of which cannot be replicated by a simple estimator. Use this score as a checklist and prioritization guide, not a ranking prediction.",
             },
             {
               q: "How is the overall SEO score calculated?",
@@ -270,7 +270,7 @@ export default function PageRankEstimatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your page's SEO data, scores, and any saved reports are never transmitted to any server, stored in any database, or accessible to anyone other than you. Report history is stored only in your browser's local storage.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

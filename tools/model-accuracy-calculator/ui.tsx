@@ -187,7 +187,7 @@ export default function ModelAccuracyCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Paste actual and predicted labels to instantly compute classification accuracy. Supports binary,
-              multi-class, and text labels. Upload CSV for batch evaluation. All computation runs locally.
+              multi-class, and text labels. Upload CSV for batch evaluation. We do not collect or store what you enter.
             </p>
           </div>
         </div>

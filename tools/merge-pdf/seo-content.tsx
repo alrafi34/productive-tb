@@ -20,7 +20,7 @@ export default function MergePdfSEO() {
   return (
     <>
       <section className="mt-12 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Combine PDF Files in Your Browser</h2>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Combine PDF Files Online</h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
             Put a cover letter, résumé and references into one application, join monthly statements for your
@@ -28,8 +28,7 @@ export default function MergePdfSEO() {
             document</strong> in the order you set, and can take just the pages you need from each file.
           </p>
           <p>
-            Pages are copied without being re-rendered, so text stays selectable and nothing is compressed. The files
-            are processed on your device and are never uploaded.
+            Pages are copied without being re-rendered, so text stays selectable and nothing is compressed. We do not collect or store your files.
           </p>
         </div>
       </section>

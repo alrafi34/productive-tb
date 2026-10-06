@@ -8,13 +8,13 @@ export default function LogTransformationCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>log transformation calculator</strong> is a free browser-based tool that applies a logarithmic transformation to a single value or an entire dataset. It answers a question that comes up constantly in statistics and machine learning: <em>how do I compress a wide-ranging, skewed dataset into a scale that's easier to analyze and visualize?</em>
+            A <strong>log transformation calculator</strong> is a free tool that applies a logarithmic transformation to a single value or an entire dataset. It answers a question that comes up constantly in statistics and machine learning: <em>how do I compress a wide-ranging, skewed dataset into a scale that's easier to analyze and visualize?</em>
           </p>
           <p>
             The calculator supports natural log (ln), log base 10, log base 2, and any custom base you specify, applied instantly to a single number or a bulk-pasted dataset. It automatically flags values that can't be transformed — zero and negative numbers, since logarithms are undefined for them — and can skip them automatically so the rest of your dataset still processes.
           </p>
           <p>
-            This tool is built for <strong>students, teachers, data analysts, statisticians, researchers, machine learning engineers, data scientists, financial analysts, economists, scientists, and healthcare researchers</strong>. It accepts pasted spreadsheet data with automatic separator detection, shows before/after summary statistics, and exports to CSV, JSON, or TXT — all running entirely in your browser.
+            This tool is built for <strong>students, teachers, data analysts, statisticians, researchers, machine learning engineers, data scientists, financial analysts, economists, scientists, and healthcare researchers</strong>. It accepts pasted spreadsheet data with automatic separator detection, shows before/after summary statistics, and exports to CSV, JSON, or TXT.
           </p>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function LogTransformationCalculatorSEO() {
                 "Copy transformed dataset, export as TXT, CSV, or JSON",
                 "Calculation history — save and reload past datasets",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -229,7 +229,7 @@ export default function LogTransformationCalculatorSEO() {
           {[
             {
               q: "What is a log transformation calculator?",
-              a: "A log transformation calculator is a free browser-based tool that applies a logarithmic transformation — natural log, log10, log2, or a custom base — to a single value or an entire dataset, commonly used to reduce skew and compress large ranges in statistical and machine learning workflows.",
+              a: "A log transformation calculator is a free tool that applies a logarithmic transformation — natural log, log10, log2, or a custom base — to a single value or an entire dataset, commonly used to reduce skew and compress large ranges in statistical and machine learning workflows.",
             },
             {
               q: "How is a log transformation calculated?",
@@ -265,7 +265,7 @@ export default function LogTransformationCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

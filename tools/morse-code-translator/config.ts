@@ -51,7 +51,7 @@ export const toolConfig = {
       { q: "Does this tool include Morse audio playback?", a: "Yes. In text-to-morse mode, you can play the output as audio beeps and set playback speed in words per minute." },
       { q: "What is real-time conversion?", a: "When enabled, the output updates automatically while you type so you can refine text without extra clicks." },
       { q: "Can I copy or download translated output?", a: "Yes. You can copy translated text to clipboard or download results as TXT files." },
-      { q: "Is my message private when using this tool?", a: "Yes. Translation runs in your browser and your message is not sent to external servers." },
+      { q: "Is my message private when using this tool?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
 };

@@ -25,8 +25,8 @@ export default function PasswordGeneratorSEO() {
       a: "Pattern mode lets you define a template that controls exactly which character types appear at each position. Use U for an uppercase letter, l for lowercase, N for a number, and S for a symbol — any other character is kept as-is. The pattern 'UllllNNSS' would generate a password starting with one uppercase letter, four lowercase letters, two numbers, and two symbols — always in that structure. This is useful for systems with specific password composition rules that require a set number of each character type.",
     },
     {
-      q: "Is using crypto.getRandomValues() actually secure?",
-      a: "Yes. The crypto.getRandomValues() API uses the operating system's cryptographically secure pseudorandom number generator (CSPRNG) — the same source used for cryptographic key generation. It is fundamentally different from Math.random(), which uses a deterministic algorithm that can be predicted if the seed is known. Every password this tool generates draws from the OS-level CSPRNG, making the output statistically indistinguishable from true randomness and suitable for security-sensitive use.",
+      q: "Are the generated passwords truly random?",
+      a: "Yes. Passwords are generated with a cryptographically secure pseudorandom number generator (CSPRNG) — the same kind of source used for cryptographic key generation. It is fundamentally different from ordinary random functions, which use a deterministic algorithm that can be predicted if the seed is known. Every password this tool generates draws from that CSPRNG, making the output statistically indistinguishable from true randomness and suitable for security-sensitive use.",
     },
     {
       q: "How many passwords should I generate at once with bulk mode?",
@@ -38,7 +38,7 @@ export default function PasswordGeneratorSEO() {
     },
     {
       q: "Is my data private when using this password generator?",
-      a: "Yes. All password generation runs entirely in your browser using JavaScript and the Web Crypto API. The passwords you generate are never transmitted to any server, stored in any database, or accessible to anyone other than you. The optional history feature saves your last 10 generated passwords to your browser's localStorage — data that stays only on your device and is cleared when you clear your browser storage.",
+      a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
     },
   ];
 
@@ -64,7 +64,7 @@ export default function PasswordGeneratorSEO() {
             A <strong>password generator</strong> is a free online tool that creates random, cryptographically
             secure passwords on demand. Unlike passwords you invent yourself — which tend to follow predictable
             patterns like names, dates, or keyboard sequences — a generated password is drawn from the full
-            character space using the browser&apos;s built-in <code>crypto.getRandomValues()</code> API, producing
+            character space using a cryptographically secure random number generator, producing
             output that is statistically unpredictable and resistant to every common attack method.
           </p>
           <p>
@@ -81,8 +81,7 @@ export default function PasswordGeneratorSEO() {
             credentials fast. It supports three generation modes — random character, passphrase, and pattern
             — with customisable length up to 128 characters, character-type selection, ambiguous character
             exclusion, bulk generation of up to 50 passwords at once, entropy analysis, crack-time
-            estimation, and export as TXT or JSON. Everything runs in your browser — nothing is sent to
-            any server.
+            estimation, and export as TXT or JSON. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -95,10 +94,7 @@ export default function PasswordGeneratorSEO() {
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
             Every password this tool generates is drawn from a character pool built from your selected
-            options, using the browser&apos;s <code>crypto.getRandomValues()</code> — a cryptographically secure
-            pseudorandom number generator (CSPRNG) backed by the operating system. The process runs
-            entirely in your browser; no random seed, no generated password, and no settings ever leave
-            your device.
+            options, using a cryptographically secure pseudorandom number generator (CSPRNG). We do not collect or store what you enter.
           </p>
           <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
             <p className="text-sm font-medium text-gray-500 mb-3">Core Formula — Entropy</p>
@@ -152,7 +148,7 @@ export default function PasswordGeneratorSEO() {
             </h3>
             <ul className="space-y-2 text-gray-600">
               {[
-                "Cryptographically secure randomness via crypto.getRandomValues()",
+                "Cryptographically secure randomness",
                 "Three modes: random character, passphrase, and pattern",
                 "Adjustable length from 6 to 128 characters",
                 "Character-type toggles: uppercase, lowercase, numbers, symbols",
@@ -162,9 +158,9 @@ export default function PasswordGeneratorSEO() {
                 "Strength meter: Very Weak to Very Strong",
                 "Bulk generation: 5, 10, 20, or 50 passwords at once",
                 "Export as TXT or JSON file",
-                "Password history — last 10 generated, stored locally",
+                "Password history — last 10 generated,",
                 "One-click copy to clipboard",
-                "100% browser-based — no server, no signup",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

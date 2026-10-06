@@ -8,13 +8,13 @@ export default function MarketingROICalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>marketing ROI calculator</strong> is a free browser-based tool that instantly measures the Return on Investment of a marketing campaign from its cost and the revenue it generated. It answers the question every marketer, founder, and business owner needs answered before scaling a budget: <em>is this campaign actually making money, and by how much?</em>
+            A <strong>marketing ROI calculator</strong> is a free tool that instantly measures the Return on Investment of a marketing campaign from its cost and the revenue it generated. It answers the question every marketer, founder, and business owner needs answered before scaling a budget: <em>is this campaign actually making money, and by how much?</em>
           </p>
           <p>
             Calculating ROI sounds simple, but tracking it consistently across campaigns, channels, and currencies is where most marketers fall behind. This tool handles the math automatically — computing ROI percentage, net profit, and profit ratio the moment you enter your numbers — while also classifying performance into a clear status (Loss, Low Return, Profitable, Highly Profitable, or Excellent Performance) so you don&apos;t have to interpret the raw percentage yourself.
           </p>
           <p>
-            This tool is built for <strong>digital marketers, PPC advertisers, SEO specialists, social media marketers, marketing agencies, ecommerce businesses, SaaS companies, small business owners, startup founders, freelancers, and students</strong> learning marketing analytics. It supports 13 global currencies including a custom symbol option, saves campaign history with favorites, compares up to 4 campaigns side by side, and exports results as CSV, JSON, or a print-ready report — with everything processed locally in your browser.
+            This tool is built for <strong>digital marketers, PPC advertisers, SEO specialists, social media marketers, marketing agencies, ecommerce businesses, SaaS companies, small business owners, startup founders, freelancers, and students</strong> learning marketing analytics. It supports 13 global currencies including a custom symbol option, saves campaign history with favorites, compares up to 4 campaigns side by side, and exports results as CSV, JSON, or a print-ready report. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function MarketingROICalculatorSEO() {
                 "Keyboard shortcuts — Enter to jump to results, Esc to reset",
                 "Inline validation with clear, friendly error messages",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -273,7 +273,7 @@ export default function MarketingROICalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your campaign names, costs, revenue figures, and saved history are never transmitted to any server, stored in any database, or accessible to anyone other than you. History and favorites are stored only in your browser's local storage.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

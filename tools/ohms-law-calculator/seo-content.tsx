@@ -16,7 +16,7 @@ export default function ToolSEOContent() {
             The <strong>Ohm's Law Calculator</strong> is an interactive web-based tool designed to solve simple electrical circuits automatically. Utilizing Ohm's Law, this tool instantly calculates the missing variable—be it Voltage (V), Current (I), or Resistance (R)—when the other two are provided.
           </p>
           <p className="mt-3">
-            Because it is designed entirely as a client-side application, every calculation you perform operates exclusively in your browser. This means lighting-fast computations without data privacy concerns or server latency. This makes it an ideal study companion and a practical assistant for electrical engineers, technicians, and hobbyists.
+            We do not collect or store what you enter. This means lighting-fast computations without data privacy concerns or server latency. This makes it an ideal study companion and a practical assistant for electrical engineers, technicians, and hobbyists.
           </p>
         </div>
       </section>

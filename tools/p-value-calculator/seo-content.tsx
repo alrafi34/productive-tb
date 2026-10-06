@@ -8,13 +8,13 @@ export default function PValueCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>p-value calculator</strong> is a free browser-based tool that computes statistical significance directly from a test statistic. It answers the question every hypothesis test comes down to: <em>how likely is it that I&apos;d see a result this extreme if there were actually no real effect?</em>
+            A <strong>p-value calculator</strong> is a free tool that computes statistical significance directly from a test statistic. It answers the question every hypothesis test comes down to: <em>how likely is it that I&apos;d see a result this extreme if there were actually no real effect?</em>
           </p>
           <p>
             Rather than looking up critical values in a printed distribution table and interpolating by hand, this calculator computes the exact cumulative probability mathematically for seven common tests — Z-Test, One Sample T-Test, Two Sample T-Test, Paired T-Test, Chi-Square Test, Correlation Test, and F-Test — and immediately tells you whether to reject or fail to reject the null hypothesis at your chosen significance level.
           </p>
           <p>
-            This tool is built for <strong>students, researchers, data scientists, statisticians, business analysts, medical researchers, economists, engineers, social science researchers, and quality assurance professionals</strong>. It supports one-tailed and two-tailed tests, custom significance levels, adjustable decimal precision, and CSV/TXT/JSON export — running entirely in your browser with no signup required.
+            This tool is built for <strong>students, researchers, data scientists, statisticians, business analysts, medical researchers, economists, engineers, social science researchers, and quality assurance professionals</strong>. It supports one-tailed and two-tailed tests, custom significance levels, adjustable decimal precision, and CSV/TXT/JSON export — with no signup required.
           </p>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function PValueCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -232,7 +232,7 @@ export default function PValueCalculatorSEO() {
           {[
             {
               q: "What is a p-value calculator?",
-              a: "A p-value calculator is a free browser-based tool that computes the probability of observing a test statistic as extreme as yours under the null hypothesis, for tests including Z-tests, T-tests, Chi-Square, F-tests, and correlation tests, and reports whether the result is statistically significant.",
+              a: "A p-value calculator is a free tool that computes the probability of observing a test statistic as extreme as yours under the null hypothesis, for tests including Z-tests, T-tests, Chi-Square, F-tests, and correlation tests, and reports whether the result is statistically significant.",
             },
             {
               q: "How is a p-value calculated?",
@@ -268,7 +268,7 @@ export default function PValueCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your test statistics and inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
