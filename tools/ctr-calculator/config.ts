@@ -68,7 +68,7 @@ export const ctrCalculatorConfig = {
       },
       {
         name: "Compare Periods or Campaigns",
-        text: "Use the calculation history panel to compare multiple campaigns or time periods side by side without re-entering values. Each calculation is saved locally in your browser.",
+        text: "Use the calculation history panel to compare multiple campaigns or time periods side by side without re-entering values. Each calculation is saved.",
       },
       {
         name: "Export or Share",
@@ -114,7 +114,7 @@ export const ctrCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your clicks, impressions, and any campaign data you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

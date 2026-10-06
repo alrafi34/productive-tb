@@ -75,7 +75,7 @@ export const clusteringDistanceCalculatorConfig = {
     faq: [
       {
         q: "What is a clustering distance calculator?",
-        a: "A clustering distance calculator is a free browser-based tool that measures how far apart or how similar two numeric vectors are, using distance and similarity metrics commonly used in clustering algorithms, machine learning, and data analysis.",
+        a: "A clustering distance calculator is a free tool that measures how far apart or how similar two numeric vectors are, using distance and similarity metrics commonly used in clustering algorithms, machine learning, and data analysis.",
       },
       {
         q: "Which distance metric should I use for clustering?",
@@ -111,7 +111,7 @@ export const clusteringDistanceCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your vectors are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

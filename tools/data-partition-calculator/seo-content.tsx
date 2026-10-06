@@ -8,13 +8,13 @@ export default function DataPartitionCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>data partition calculator</strong> is a free browser-based tool that helps you plan the optimal partitioning strategy for datasets, files, databases, and distributed computing workloads. It calculates partition size, the number of partitions needed, records per partition, total storage, and balanced record distribution.
+            A <strong>data partition calculator</strong> is a free tool that helps you plan the optimal partitioning strategy for datasets, files, databases, and distributed computing workloads. It calculates partition size, the number of partitions needed, records per partition, total storage, and balanced record distribution.
           </p>
           <p>
             Choose a calculation mode, enter your dataset size or record count, and the calculator instantly returns the results — including an interactive distribution chart and partition size guidance based on common big data performance benchmarks.
           </p>
           <p>
-            This tool is built for <strong>data engineers, database administrators, cloud engineers, software developers, data analysts, students, DevOps engineers, and system architects</strong>. It runs entirely in your browser — no dataset details are ever transmitted anywhere.
+            This tool is built for <strong>data engineers, database administrators, cloud engineers, software developers, data analysts, students, DevOps engineers, and system architects</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function DataPartitionCalculatorSEO() {
                 "Export report as CSV or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Clear validation for zero, negative, and out-of-range partition counts",
-                "All processing runs locally — no dataset is ever uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -229,7 +229,7 @@ export default function DataPartitionCalculatorSEO() {
           {[
             {
               q: "What is a data partition calculator?",
-              a: "A data partition calculator is a free browser-based tool that helps you plan how to divide a dataset, file, or table into partitions — calculating partition size, partition count, records per partition, and total storage.",
+              a: "A data partition calculator is a free tool that helps you plan how to divide a dataset, file, or table into partitions — calculating partition size, partition count, records per partition, and total storage.",
             },
             {
               q: "How is partition size calculated?",
@@ -257,7 +257,7 @@ export default function DataPartitionCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. No dataset sizes, record counts, or storage details are ever transmitted to any server.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

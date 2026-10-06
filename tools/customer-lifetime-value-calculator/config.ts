@@ -54,7 +54,7 @@ export const customerLifetimeValueCalculatorConfig = {
       { q: "What are the four CLV formulas?", a: "Basic CLV: AOV × Frequency × Lifespan. Margin-Adjusted: AOV × Frequency × Lifespan × Gross Margin. Subscription: Monthly Revenue × Lifetime (months) × Gross Margin. SaaS/Predictive: (ARPU × Gross Margin) ÷ Monthly Churn Rate." },
       { q: "How can I increase CLV?", a: "Increase Average Order Value through upsells and bundles. Increase Purchase Frequency through email and loyalty programs. Extend Customer Lifespan through better onboarding and retention. Improve Gross Margin through pricing optimisation. For SaaS, reducing churn is almost always the highest-leverage improvement." },
       { q: "Should I use revenue CLV or margin-adjusted CLV?", a: "Always use Margin-Adjusted CLV for profitability decisions. Basic CLV is revenue — it tells you how much a customer spends. Margin-adjusted CLV is profit — it tells you how much you keep. These can differ by 50–80%, and using the wrong one leads to drastically overstated acquisition budgets." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser. Your AOV, churn rate, ARPU, and CAC figures are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
 };

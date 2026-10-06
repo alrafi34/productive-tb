@@ -31,8 +31,7 @@ export default function ConversionRateCalculatorSEO() {
             campaign efficiency, SaaS founders monitoring free trial sign-ups, email marketers
             calculating click-to-conversion rates, landing page optimizers running A/B tests,
             and marketing analysts reporting across channels</strong>. Real-time calculation,
-            performance badge, industry benchmarks, calculation history, CSV export. Browser-based,
-            free, no signup required.
+            performance badge, industry benchmarks, calculation history, CSV export. Free, no signup required.
           </p>
         </div>
       </section>
@@ -100,12 +99,12 @@ export default function ConversionRateCalculatorSEO() {
                 "Performance badge (Exceptional / Excellent / Good / Average / Low)",
                 "Reverse modes: Visitors Needed and Conversions Needed",
                 "Industry preset buttons for quick examples",
-                "Calculation history saved locally",
+                "Calculation history",
                 "Decimal precision selector (0–4 places)",
                 "Copy result or full breakdown to clipboard",
                 "Download as TXT or CSV",
                 "Shareable URL with pre-filled values",
-                "Browser-based — no signup required",
+                "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
@@ -285,7 +284,7 @@ export default function ConversionRateCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your visitor counts, conversion figures, and any campaign data you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

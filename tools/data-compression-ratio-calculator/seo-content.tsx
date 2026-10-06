@@ -8,13 +8,13 @@ export default function DataCompressionRatioCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>data compression ratio calculator</strong> is a free browser-based tool that measures how efficiently a file, archive, or backup was compressed by comparing its original size to its compressed size. It answers the question every engineer asks after running a compression job: <em>how much space did I actually save?</em>
+            A <strong>data compression ratio calculator</strong> is a free tool that measures how efficiently a file, archive, or backup was compressed by comparing its original size to its compressed size. It answers the question every engineer asks after running a compression job: <em>how much space did I actually save?</em>
           </p>
           <p>
             Enter the original and compressed file sizes in any unit — Bytes, KB, MB, GB, or TB — and the calculator instantly returns the compression ratio (like 4:1), the percentage reduction, the exact space saved, and an efficiency rating from Minimal to Outstanding.
           </p>
           <p>
-            This tool is built for <strong>software developers, data engineers, DevOps engineers, cloud engineers, storage administrators, students, IT professionals, system administrators, digital archivists, and researchers</strong>. It runs entirely in your browser — no file is ever uploaded, and no data leaves your device.
+            This tool is built for <strong>software developers, data engineers, DevOps engineers, cloud engineers, storage administrators, students, IT professionals, system administrators, digital archivists, and researchers</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function DataCompressionRatioCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Clear validation for zero, negative, and undefined inputs",
-                "All processing runs locally — no file is ever uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -233,7 +233,7 @@ export default function DataCompressionRatioCalculatorSEO() {
           {[
             {
               q: "What is a data compression ratio calculator?",
-              a: "A data compression ratio calculator is a free browser-based tool that measures how efficiently a file was compressed by comparing its original size to its compressed size. It returns the compression ratio, percentage reduction, and exact space saved.",
+              a: "A data compression ratio calculator is a free tool that measures how efficiently a file was compressed by comparing its original size to its compressed size. It returns the compression ratio, percentage reduction, and exact space saved.",
             },
             {
               q: "How is compression ratio calculated?",
@@ -269,7 +269,7 @@ export default function DataCompressionRatioCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your file sizes are never transmitted to any server, and no actual file content is ever uploaded — you only enter numeric sizes, not files themselves.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

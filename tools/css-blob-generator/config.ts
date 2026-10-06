@@ -50,6 +50,6 @@ export const cssBlobGeneratorConfig = {
     "Complete CSS output",
     "Responsive CSS output",
     "Copy to clipboard",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

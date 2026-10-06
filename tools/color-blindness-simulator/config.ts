@@ -41,7 +41,7 @@ export const colorBlindnessSimulatorConfig = {
       { q: "Which types should I test?", a: "Start with deuteranopia and protanopia, since red-green deficiencies are by far the most common. Then check tritanopia and achromatopsia; a design that still works in grayscale usually works for everyone." },
       { q: "What colors should I avoid together?", a: "Red with green, green with brown, blue with purple, and light green with yellow are the classic problem pairs, especially at similar lightness. Blue with orange, and blue with red, are much safer, and a clear difference in lightness helps every type." },
       { q: "What do the accessibility standards require?", a: "WCAG 2.2 success criterion 1.4.1 says color must not be the only way information is conveyed, so a chart, form error or status needs a label, icon or pattern too. WCAG is referenced by the ADA and Section 508 in the US and by EN 301 549 and the European Accessibility Act in the EU." },
-      { q: "Are my images uploaded?", a: "No. Images are loaded and filtered in your browser and never leave your device, so it is safe to test unreleased designs." },
+      { q: "Are my images uploaded?", a: "No. We do not collect or store what you enter." },
     ],
   }
 };

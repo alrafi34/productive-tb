@@ -70,6 +70,6 @@ export const cssKeyframeAnimatorConfig = {
     "Download CSS file",
     "Real-time preview updates",
     "Snap to grid (5% increments)",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

@@ -8,13 +8,13 @@ export default function CorrelationCoefficientCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>correlation coefficient calculator</strong> is a free browser-based tool that measures how strongly two variables are related. It computes the <strong>Pearson correlation coefficient</strong> by default, with optional <strong>Spearman rank</strong> and <strong>Kendall Tau</strong> methods, then visualizes the relationship with an interactive scatter plot and regression trend line.
+            A <strong>correlation coefficient calculator</strong> is a free tool that measures how strongly two variables are related. It computes the <strong>Pearson correlation coefficient</strong> by default, with optional <strong>Spearman rank</strong> and <strong>Kendall Tau</strong> methods, then visualizes the relationship with an interactive scatter plot and regression trend line.
           </p>
           <p>
             This tool accepts manually typed paired data, pasted spreadsheet columns, or uploaded CSV files with automatic column detection. It instantly calculates the correlation coefficient, R², covariance, and regression equation, and flags statistical outliers directly on the chart.
           </p>
           <p>
-            Built for <strong>students, teachers, researchers, statisticians, data analysts, scientists, economists, financial analysts, and business intelligence professionals</strong>, the calculator runs entirely in your browser with instant results, no signup, and support for datasets ranging from a handful of points to tens of thousands.
+            Built for <strong>students, teachers, researchers, statisticians, data analysts, scientists, economists, financial analysts, and business intelligence professionals</strong>, the calculator works with instant results, no signup, and support for datasets ranging from a handful of points to tens of thousands.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function CorrelationCoefficientCalculatorSEO() {
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcuts — Esc to clear, Ctrl+L for a sample",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -229,7 +229,7 @@ export default function CorrelationCoefficientCalculatorSEO() {
           {[
             {
               q: "What is a correlation coefficient calculator?",
-              a: "A correlation coefficient calculator is a free browser-based tool that measures the statistical relationship between two variables using Pearson, Spearman, or Kendall Tau correlation, with a visual scatter plot and regression line.",
+              a: "A correlation coefficient calculator is a free tool that measures the statistical relationship between two variables using Pearson, Spearman, or Kendall Tau correlation, with a visual scatter plot and regression line.",
             },
             {
               q: "What is the difference between Pearson, Spearman, and Kendall correlation?",
@@ -265,7 +265,7 @@ export default function CorrelationCoefficientCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

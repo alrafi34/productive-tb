@@ -45,7 +45,7 @@ export const colorPaletteExtractorConfig = {
       { q: "What is the difference between HEX, RGB and HSL?", a: "They describe the same color in different ways. HEX (#3b82f6) is the compact form used in CSS and design tools, RGB (59, 130, 246) gives the red, green and blue amounts from 0 to 255, and HSL (217°, 91%, 60%) gives hue, saturation and lightness, which is easiest for making lighter or darker shades." },
       { q: "What do WCAG AA and AAA mean here?", a: "They are contrast levels from the Web Content Accessibility Guidelines. Normal-size text needs a contrast ratio of at least 4.5:1 against its background for AA and 7:1 for AAA; large text (about 24 px, or 19 px bold) needs 3:1 and 4.5:1." },
       { q: "How do I use the exported CSS variables?", a: "Paste the :root block into your stylesheet and use the colors with var(--color-1), var(--color-2) and so on, for example background: var(--color-1);. Rename them to roles such as --brand or --accent once you decide how each color is used." },
-      { q: "Are my images uploaded?", a: "No. The image is read and analyzed in your browser with the Canvas API and never leaves your device." },
+      { q: "Are my images uploaded?", a: "No. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -70,9 +70,7 @@ export const colorPaletteExtractorConfig = {
     "Download palette as PNG image",
     "Copy individual color values",
     "Supports PNG, JPEG, WEBP, GIF",
-    "Client-side processing (no upload)",
-    "Fast performance with image optimization",
-    "100% browser-based",
-    "Privacy-focused (no server upload)"
+    "Private: your inputs are not collected or stored",
+    "Fast performance with image optimization"
   ]
 };

@@ -42,7 +42,7 @@ export const toolConfig = {
       { q: "What formula is used for compound interest?", a: "The calculator uses FV = P * (1 + r/n)^(n*t), where P is principal, r is annual rate (decimal), n is compounding periods per year, and t is years." },
       { q: "What compounding frequencies are supported?", a: "Annual, semi-annual, quarterly, monthly, and daily compounding are supported." },
       { q: "Can I use this for savings and investment planning?", a: "Yes. It is useful for forecasting growth scenarios for savings, recurring investment comparisons, and long-term financial planning assumptions." },
-      { q: "Is this calculator free and private?", a: "Yes. It is free to use and runs directly in your browser for standard calculations." },
+      { q: "Is this calculator free and private?", a: "Yes. It is free to use, and we do not collect or store what you enter." },
     ],
   },
   features: [
@@ -52,7 +52,7 @@ export const toolConfig = {
     "Currency formatting and precision control",
     "Copy results to clipboard",
     "Download yearly breakdown as CSV",
-    "Calculation history with local storage",
+    "Calculation history",
     "Mobile-friendly responsive design",
     "Dark/light theme support"
   ]

@@ -111,7 +111,7 @@ export const toolConfig = {
       },
       {
         q: "Is my design data private when using this tool?",
-        a: "Yes. All shadow generation runs entirely in your browser using JavaScript. Your shadow values, color choices, and configurations are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

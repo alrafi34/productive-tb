@@ -70,7 +70,7 @@ export const dataPartitionCalculatorConfig = {
     faq: [
       {
         q: "What is a data partition calculator?",
-        a: "A data partition calculator is a free browser-based tool that helps you plan how to divide a dataset, file, or table into partitions — calculating partition size, partition count, records per partition, and total storage.",
+        a: "A data partition calculator is a free tool that helps you plan how to divide a dataset, file, or table into partitions — calculating partition size, partition count, records per partition, and total storage.",
       },
       {
         q: "How is partition size calculated?",
@@ -98,7 +98,7 @@ export const dataPartitionCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. No dataset sizes, record counts, or storage details are ever transmitted to any server.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

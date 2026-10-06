@@ -76,7 +76,7 @@ export const dataSamplingCalculatorConfig = {
     faq: [
       {
         q: "What is a data sampling calculator?",
-        a: "A data sampling calculator is a free browser-based tool that calculates the required sample size for surveys, research studies, experiments, polls, market research, and A/B testing using standard statistical formulas based on confidence level, margin of error, population size, and expected proportion.",
+        a: "A data sampling calculator is a free tool that calculates the required sample size for surveys, research studies, experiments, polls, market research, and A/B testing using standard statistical formulas based on confidence level, margin of error, population size, and expected proportion.",
       },
       {
         q: "How is sample size calculated?",
@@ -112,7 +112,7 @@ export const dataSamplingCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

@@ -310,7 +310,7 @@ export default function CurtainWallCalculatorSEO() {
             <span className="text-2xl">🔒</span>
             <div>
               <h3 className="font-semibold text-gray-900">100% Private</h3>
-              <p className="text-sm">All calculations run in your browser. No data sent to servers.</p>
+              <p className="text-sm">We do not collect or store what you enter.</p>
             </div>
           </div>
           <div className="flex items-start gap-3">

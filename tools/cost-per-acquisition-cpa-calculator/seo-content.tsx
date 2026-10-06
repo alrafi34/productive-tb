@@ -14,7 +14,7 @@ export default function CPACalculatorSEO() {
             CPA sits at the heart of performance marketing. Unlike Cost Per Click (which measures traffic efficiency) or impressions (which measure reach), CPA measures the bottom-line efficiency of your entire acquisition funnel — from first ad impression through to completed conversion. A campaign with a $0.50 CPC can still have a $300 CPA if the funnel leaks at every stage. CPA is the metric that exposes that reality.
           </p>
           <p>
-            This tool is built for <strong>performance marketers, PPC managers, media buyers, growth teams, marketing agency analysts, ecommerce operators, SaaS founders, and marketing students</strong> who need to measure, report, and optimise acquisition cost across channels. It supports 10 currencies, includes industry preset buttons for instant benchmarking, exports to CSV and TXT, saves shareable URLs for every calculation, and runs entirely in your browser with no data sent to any server.
+            This tool is built for <strong>performance marketers, PPC managers, media buyers, growth teams, marketing agency analysts, ecommerce operators, SaaS founders, and marketing students</strong> who need to measure, report, and optimise acquisition cost across channels. It supports 10 currencies, includes industry preset buttons for instant benchmarking, exports to CSV and TXT, saves shareable URLs for every calculation, and is free to use.
           </p>
         </div>
       </section>
@@ -92,8 +92,8 @@ export default function CPACalculatorSEO() {
                 "Copy result or full summary to clipboard",
                 "Export full report as CSV or TXT",
                 "Shareable URL — every calculation gets a permanent link",
-                "Calculation history saved locally (up to 20 entries)",
-                "100% browser-based — no data leaves your device",
+                "Calculation history (up to 20 entries)",
+                "Private: your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -305,7 +305,7 @@ export default function CPACalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your marketing spend figures, acquisition counts, and any other data you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature uses your browser's localStorage — data stays on your device only. This makes the tool safe to use for confidential campaign data, client account figures, and internal financial planning.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

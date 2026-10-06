@@ -14,7 +14,7 @@ export default function CLVCalculatorSEO() {
             CLV connects acquisition cost to long-term value in a way that no single-period metric can. A customer who buys once for $50 has a different CLV than a customer who buys four times a year for three years at the same price. A SaaS customer paying $80/month with 3% churn has a completely different CLV profile than one paying $150/month with 8% churn. This calculator supports four distinct formulas — Basic, Margin-Adjusted, Subscription, and SaaS/Predictive — so the calculation matches your actual business model.
           </p>
           <p>
-            Built for <strong>SaaS founders, ecommerce operators, subscription businesses, marketing teams, financial analysts, and business students</strong> who need accurate CLV figures for budgeting, investor decks, channel analysis, and retention investment decisions. Supports 12 currencies, calculates Net CLV and CAC payback period, exports to CSV/TXT, and runs entirely in your browser.
+            Built for <strong>SaaS founders, ecommerce operators, subscription businesses, marketing teams, financial analysts, and business students</strong> who need accurate CLV figures for budgeting, investor decks, channel analysis, and retention investment decisions. Supports 12 currencies, calculates Net CLV and CAC payback period, exports to CSV/TXT.
           </p>
         </div>
       </section>
@@ -106,8 +106,8 @@ export default function CLVCalculatorSEO() {
                 "Step-by-step formula breakdown shown",
                 "Export full report as CSV or TXT",
                 "Shareable URL — every calculation gets a permanent link",
-                "Calculation history saved locally (up to 20 entries)",
-                "100% browser-based — no data leaves your device",
+                "Calculation history (up to 20 entries)",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -269,7 +269,7 @@ export default function CLVCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your AOV, churn rate, ARPU, CAC, and all other inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history uses your browser's localStorage — data stays local to your device. This makes the tool safe for confidential unit economics modelling and investor pitch preparation.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

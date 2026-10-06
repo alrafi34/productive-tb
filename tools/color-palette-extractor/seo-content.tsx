@@ -35,8 +35,7 @@ export default function ColorPaletteExtractorSEOContent() {
             <li><strong>Format Conversion:</strong> Colors are automatically converted to HEX, RGB, and HSL formats</li>
           </ul>
           <p className="leading-relaxed">
-            All processing happens entirely in your browser using the Canvas API and JavaScript, ensuring your images remain private 
-            and extraction is instant.
+            We do not collect or store what you enter.
           </p>
         </div>
       </section>

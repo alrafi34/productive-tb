@@ -63,7 +63,7 @@ export const cssAnimationPreviewerConfig = {
       { q: "Can I use this tool for UI micro-interactions?", a: "Yes. It is ideal for hover states, modal transitions, button feedback, and onboarding animations." },
       { q: "Can I copy generated CSS directly into my project?", a: "Yes. You can copy animation timing and related CSS settings directly for immediate implementation." },
       { q: "Is this tool free?", a: "Yes. The CSS animation previewer is free to use without account registration." },
-      { q: "Does this tool process animation data on a server?", a: "No. Animation preview and curve calculations are handled client-side for speed and privacy." },
+      { q: "Does this tool process animation data on a server?", a: "No. We do not collect or store what you enter." },
     ],
   }
 };

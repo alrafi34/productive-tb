@@ -73,7 +73,7 @@ export const dataCompressionRatioCalculatorConfig = {
     faq: [
       {
         q: "What is a data compression ratio calculator?",
-        a: "A data compression ratio calculator is a free browser-based tool that measures how efficiently a file was compressed by comparing its original size to its compressed size. It returns the compression ratio, percentage reduction, and exact space saved.",
+        a: "A data compression ratio calculator is a free tool that measures how efficiently a file was compressed by comparing its original size to its compressed size. It returns the compression ratio, percentage reduction, and exact space saved.",
       },
       {
         q: "How is compression ratio calculated?",
@@ -109,7 +109,7 @@ export const dataCompressionRatioCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your file sizes are never transmitted to any server, and no actual file content is ever uploaded, since you only enter numeric sizes, not files themselves.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

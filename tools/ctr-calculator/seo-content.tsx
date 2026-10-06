@@ -29,7 +29,7 @@ export default function CTRCalculatorSEO() {
             from Google Search Console, email marketers measuring campaign click rates, social media
             managers reporting on ad results, and marketing analysts benchmarking performance
             across channels</strong>. Real-time calculation, performance badge, calculation history,
-            CSV export, shareable URL. Browser-based, free, no signup required.
+            CSV export, shareable URL. Free, no signup required.
           </p>
         </div>
       </section>
@@ -94,13 +94,13 @@ export default function CTRCalculatorSEO() {
               {[
                 "Real-time CTR calculation as you type",
                 "Performance badge (Excellent / Good / Average / Low)",
-                "Calculation history saved locally",
+                "Calculation history",
                 "Decimal precision selector (0–4 places)",
                 "Quick example presets for common platforms",
                 "Copy result or full breakdown to clipboard",
                 "Download as TXT or CSV",
                 "Shareable URL with pre-filled values",
-                "Browser-based — no signup required",
+                "No signup required",
                 "Works on mobile and tablet",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -281,7 +281,7 @@ export default function CTRCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your clicks, impressions, and any campaign data you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

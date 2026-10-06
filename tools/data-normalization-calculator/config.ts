@@ -80,7 +80,7 @@ export const dataNormalizationCalculatorConfig = {
     faq: [
       {
         q: "What is a data normalization calculator?",
-        a: "A data normalization calculator is a free browser-based tool that transforms numeric datasets onto a comparable scale using standard techniques like Min-Max, Z-Score, and Robust Scaling. It's commonly used to prepare data for machine learning models, statistical comparison, and visualization.",
+        a: "A data normalization calculator is a free tool that transforms numeric datasets onto a comparable scale using standard techniques like Min-Max, Z-Score, and Robust Scaling. It's commonly used to prepare data for machine learning models, statistical comparison, and visualization.",
       },
       {
         q: "What is the difference between Min-Max and Z-Score normalization?",
@@ -108,7 +108,7 @@ export const dataNormalizationCalculatorConfig = {
       },
       {
         q: "How large a dataset can this calculator handle?",
-        a: "The calculator uses efficient, single-pass statistical calculations and comfortably handles datasets with tens of thousands of values with instant, debounced recalculation directly in your browser.",
+        a: "The calculator uses efficient, single-pass statistical calculations and comfortably handles datasets with tens of thousands of values with instant, debounced recalculation.",
       },
       {
         q: "Can I upload a dataset instead of typing it?",
@@ -116,7 +116,7 @@ export const dataNormalizationCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

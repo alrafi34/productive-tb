@@ -249,8 +249,8 @@ border-radius: 60% 40% 30% 70% / 50% 30% 70% 40%;
       {/* Footer Note */}
       <section className="pt-6 border-t border-slate-200">
         <p className="text-sm text-slate-600 text-center">
-          This CSS blob generator is a free, browser-based tool for designers and developers. 
-          All generation and exports happen locally with no server communication.
+          This CSS blob generator is a free tool for designers and developers. 
+          We do not collect or store what you enter.
         </p>
       </section>
     </div>

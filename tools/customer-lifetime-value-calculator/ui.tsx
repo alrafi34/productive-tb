@@ -246,7 +246,7 @@ export default function CLVCalculatorUI() {
               Customer Lifetime Value (CLV) Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Choose a formula and enter your numbers to instantly calculate CLV. Supports Basic, Margin-Adjusted, Subscription, and SaaS methods. All calculations run locally in your browser.
+              Choose a formula and enter your numbers to instantly calculate CLV. Supports Basic, Margin-Adjusted, Subscription, and SaaS methods. We do not collect or store what you enter.
             </p>
           </div>
         </div>

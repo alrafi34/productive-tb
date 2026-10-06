@@ -39,7 +39,7 @@ export const toolConfig = {
       { q: "What is the difference between BMR and TDEE?", a: "BMR reflects calories needed at complete rest. TDEE includes your total daily activity and is more useful for setting calorie intake." },
       { q: "How many calories should I cut to lose weight?", a: "A deficit of about 250 to 500 calories per day is common for steady progress. Aggressive deficits can work short-term but may be harder to sustain." },
       { q: "Does this tool also estimate macros?", a: "Yes. It calculates protein, carbs, and fats in both calories and grams to make your nutrition target easier to execute." },
-      { q: "Is my data private?", a: "Calculations run in-browser. Saved history is kept in local storage on your device and can be cleared at any time." },
+      { q: "Is my data private?", a: "We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "Is this tool enough for medical nutrition planning?", a: "No. Use it as a baseline estimator. For medical or therapeutic plans, work with a licensed professional." },
     ],
   },

@@ -56,6 +56,6 @@ export const toolConfig = {
     "Cron validation system",
     "Syntax highlighting",
     "Mobile responsive design",
-    "No backend required - 100% client-side"
+    "Nothing to install"
   ]
 };

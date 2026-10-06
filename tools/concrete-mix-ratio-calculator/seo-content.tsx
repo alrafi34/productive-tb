@@ -23,7 +23,7 @@ export default function ConcreteMixRatioCalculatorSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">About Concrete Mix Ratio Calculator</h2>
         <p className="mb-4">
-          The Concrete Mix Ratio Calculator is a professional construction tool designed to help civil engineers, architects, contractors, and builders calculate the exact proportions of cement, sand, and aggregate required for concrete production. This browser-based utility eliminates manual calculation errors and provides instant, accurate results based on industry-standard formulas.
+          The Concrete Mix Ratio Calculator is a professional construction tool designed to help civil engineers, architects, contractors, and builders calculate the exact proportions of cement, sand, and aggregate required for concrete production. This online utility eliminates manual calculation errors and provides instant, accurate results based on industry-standard formulas.
         </p>
         <p>
           Whether you're working on residential construction, commercial projects, or infrastructure development, this calculator ensures you get the right material quantities for your concrete mix, helping you optimize costs and reduce waste.
@@ -198,7 +198,7 @@ export default function ConcreteMixRatioCalculatorSEO() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
-            <span>Calculation history with localStorage</span>
+            <span>Calculation history</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
