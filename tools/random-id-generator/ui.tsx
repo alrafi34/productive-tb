@@ -218,8 +218,7 @@ export default function RandomIDGeneratorUI() {
         {/* Info Box */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
           <p className="text-sm text-blue-900">
-            <span className="font-semibold">💡 Tip:</span> All IDs are generated
-            locally in your browser. Nothing is sent to any server.
+            <span className="font-semibold">💡 Tip:</span> We do not collect or store what you enter.
           </p>
         </div>
       </div>

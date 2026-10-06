@@ -31,8 +31,7 @@ export default function RLTimeConstantCalculatorSEO() {
             This <strong>RL circuit calculator</strong> is built for <strong>electronics students learning
             inductive transient response, hobbyists building relay and solenoid drivers, RF and power
             circuit designers, and engineers analyzing motor windings and switching transients</strong>. It
-            includes six common presets, calculation history, text export, and real-time results — entirely
-            browser-based, free, and with no signup required.
+            includes six common presets, calculation history, text export, and real-time results — free, with no signup required.
           </p>
         </div>
       </section>
@@ -92,7 +91,7 @@ export default function RLTimeConstantCalculatorSEO() {
                 "Export results as a text report",
                 "Copy result to clipboard",
                 "Shareable, bookmarkable tool URL",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

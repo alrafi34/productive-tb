@@ -8,13 +8,13 @@ export default function RegressionCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>regression calculator</strong> is a free browser-based tool that performs <strong>simple linear regression</strong> to identify the relationship between an independent variable (X) and a dependent variable (Y). It calculates the best-fit regression line using the least squares method, predicts new values, and measures how well the line fits your data.
+            A <strong>regression calculator</strong> is a free tool that performs <strong>simple linear regression</strong> to identify the relationship between an independent variable (X) and a dependent variable (Y). It calculates the best-fit regression line using the least squares method, predicts new values, and measures how well the line fits your data.
           </p>
           <p>
             This tool accepts data through an editable table, pasted spreadsheet columns, or uploaded CSV files with automatic column detection. It instantly calculates the regression equation, R², RMSE, MAE, and residuals, and visualizes the fit with an interactive scatter plot and residual plot.
           </p>
           <p>
-            Built for <strong>students, teachers, data analysts, researchers, business analysts, financial analysts, engineers, and scientists</strong>, the calculator runs entirely in your browser with instant results, no signup, and support for datasets ranging from a few points to thousands of observations.
+            Built for <strong>students, teachers, data analysts, researchers, business analysts, financial analysts, engineers, and scientists</strong>, the calculator works with instant results, no signup, and support for datasets ranging from a few points to thousands of observations.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function RegressionCalculatorSEO() {
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcuts — Esc to clear, Ctrl+L for a sample",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -236,7 +236,7 @@ export default function RegressionCalculatorSEO() {
           {[
             {
               q: "What is a regression calculator?",
-              a: "A regression calculator is a free browser-based tool that performs simple linear regression on paired X, Y data, finding the best-fit line, R², and prediction values using the least squares method.",
+              a: "A regression calculator is a free tool that performs simple linear regression on paired X, Y data, finding the best-fit line, R², and prediction values using the least squares method.",
             },
             {
               q: "How is the regression line calculated?",
@@ -272,7 +272,7 @@ export default function RegressionCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

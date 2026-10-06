@@ -49,7 +49,7 @@ export const toolConfig = {
       { q: "What text stats are included besides reading time?", a: "It reports words, characters, characters without spaces, sentences, paragraphs, and a length-based difficulty category." },
       { q: "Can I copy results or a reading-time badge?", a: "Yes. You can copy full summary results or copy a compact badge string such as minutes-read output." },
       { q: "Does the tool save my input text?", a: "It can keep input in local browser storage for convenience, so your draft remains available in your own browser context." },
-      { q: "Is my content private while using this tool?", a: "Yes. Calculations run in the browser and do not require sending your text to external processing services." },
+      { q: "Is my content private while using this tool?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

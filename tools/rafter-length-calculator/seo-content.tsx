@@ -18,7 +18,7 @@ export default function RafterLengthCalculatorSEO() {
           <li>Common pitch presets (3:12 to 12:12)</li>
           <li>Support for feet and meters</li>
           <li>Export results to text and CSV formats</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Mobile-responsive design</li>
         </ul>
 
@@ -178,7 +178,7 @@ export default function RafterLengthCalculatorSEO() {
         <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
           <li>100% free with no registration required</li>
           <li>Instant results with real-time calculations</li>
-          <li>Works entirely in your browser - no installation needed</li>
+          <li>Nothing to install</li>
           <li>Mobile-friendly responsive design</li>
           <li>Multiple input methods for flexibility</li>
           <li>Visual diagrams for better understanding</li>

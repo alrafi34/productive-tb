@@ -56,7 +56,7 @@ export const toolConfig = {
       { q: "Is this useful for editing academic or professional documents?", a: "Yes. It helps standardize capitalization across essays, reports, presentations, and internal documentation." },
       { q: "Can I copy converted text quickly?", a: "Yes. You can convert and copy text in one workflow for fast reuse in other tools and platforms." },
       { q: "Is this case converter free?", a: "Yes. It is free to use without registration." },
-      { q: "Is my text private?", a: "Yes. Text processing happens in your browser, so your content is not uploaded to remote servers." },
+      { q: "Is my text private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

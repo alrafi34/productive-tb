@@ -29,7 +29,7 @@ export default function RealPowerCalculatorSEO() {
             Built for <strong>electrical engineers sizing equipment, electricians verifying load
             calculations, and students</strong> learning AC power relationships. Includes six built-in
             presets from residential loads to industrial motors, full step-by-step derivation, and text
-            export — free and entirely browser-based.
+            export — free.
           </p>
         </div>
       </section>
@@ -85,7 +85,7 @@ export default function RealPowerCalculatorSEO() {
                 "Automatic efficiency rating based on power factor",
                 "Full step-by-step derivation",
                 "Six built-in presets (residential, industrial, resistive, more)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

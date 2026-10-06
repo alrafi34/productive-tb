@@ -9,7 +9,7 @@ export default function ResistorColorCodeCalculatorSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">About Resistor Color Code Calculator</h2>
         <p className="mb-4">
-          The Resistor Color Code Calculator is a fast, browser-based tool that helps you decode resistor color bands 
+          The Resistor Color Code Calculator is a fast, online tool that helps you decode resistor color bands 
           into resistance values and tolerance levels instantly. Whether you're working with 4-band, 5-band, or 6-band 
           resistors, this calculator provides accurate results with step-by-step explanations.
         </p>
@@ -169,7 +169,7 @@ export default function ResistorColorCodeCalculatorSEO() {
             <span className="text-2xl">🔒</span>
             <div>
               <h3 className="font-semibold text-gray-900 mb-1">Privacy First</h3>
-              <p className="text-sm text-gray-600">100% client-side, no data sent to servers</p>
+              <p className="text-sm text-gray-600">Your inputs are not collected or stored</p>
             </div>
           </div>
         </div>

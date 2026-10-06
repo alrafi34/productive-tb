@@ -76,7 +76,7 @@ export const queryOptimizationCalculatorConfig = {
     faq: [
       {
         q: "What is a query optimization calculator?",
-        a: "A query optimization calculator is a free browser-based tool that estimates how much a database query's performance improved after optimization, based on execution time, rows scanned, and query frequency. It does not execute SQL — it calculates improvement metrics from numbers you provide.",
+        a: "A query optimization calculator is a free tool that estimates how much a database query's performance improved after optimization, based on execution time, rows scanned, and query frequency. It does not execute SQL — it calculates improvement metrics from numbers you provide.",
       },
       {
         q: "How is performance improvement calculated?",
@@ -112,7 +112,7 @@ export const queryOptimizationCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

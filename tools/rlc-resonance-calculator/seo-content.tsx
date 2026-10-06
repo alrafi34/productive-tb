@@ -32,7 +32,7 @@ export default function RLCResonanceCalculatorSEO() {
             studying resonance and filter theory, RF and radio hobbyists tuning LC tank circuits, filter
             and oscillator designers, and engineers analyzing impedance matching and power factor
             correction networks</strong>. It includes six common presets, calculation history, text export,
-            and real-time results — entirely browser-based, free, and with no signup required.
+            and real-time results — free, with no signup required.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function RLCResonanceCalculatorSEO() {
                 "Export results as a text report",
                 "Copy result to clipboard",
                 "Shareable, bookmarkable tool URL",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

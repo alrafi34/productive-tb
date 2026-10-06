@@ -22,8 +22,7 @@ export default function PropertyAppreciationCalculatorSEO() {
             inflation to see the real purchasing power of your future property value.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations run entirely in your browser. No data is sent to any server, and your
-            calculation history is stored only in your browser's local storage.
+            We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -66,7 +65,7 @@ export default function PropertyAppreciationCalculatorSEO() {
                 "CSV export for full data analysis",
                 "Copy results to clipboard",
                 "Shareable URL with saved inputs",
-                "Calculation history saved locally",
+                "Calculation history",
                 "Multi-currency support (USD, EUR, GBP, CAD, AUD)",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -226,7 +225,7 @@ export default function PropertyAppreciationCalculatorSEO() {
             },
             {
               q: "Is my data saved anywhere?",
-              a: "No. All calculations run entirely in your browser. History is saved only in your browser's localStorage and is never sent to any server.",
+              a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 5 ? "border-b border-gray-100 pb-6" : ""}>

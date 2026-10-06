@@ -16,7 +16,7 @@ const strengths = [
   },
   {
     title: "Private browser-side processing",
-    text: "No account required and no server-side processing for standard use cases, improving privacy and speed.",
+    text: "No account required.",
   },
 ];
 

@@ -45,7 +45,7 @@ export default function RevenueGrowthCalculatorSEO() {
                 "Copy result or full report to clipboard",
                 "Export TXT and CSV reports",
                 "Shareable URL with pre-filled values",
-                "Calculation history saved locally",
+                "Calculation history",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>

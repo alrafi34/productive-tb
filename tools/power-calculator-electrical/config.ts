@@ -67,7 +67,7 @@ export const powerCalculatorElectricalConfig = {
       { q: "Can I use this calculator for three-phase power?", a: "No, this calculator is built for single-phase circuits. Three-phase power uses P = √3 × V × I × PF, a 1.732 multiplier for the phase relationship between conductors. Using this tool's result for a three-phase load underestimates power by about 42%." },
       { q: "What is the difference between this calculator and Ohm's Law?", a: "This calculator solves P = V × I for power. Ohm's Law is V = I × R, relating voltage, current, and resistance. The two combine when resistance is known: P = I²R or P = V²/R." },
       { q: "Why do I get a division-by-zero error?", a: "The calculator blocks calculations that would divide by zero, which is mathematically undefined. This happens if current is 0 while solving for voltage, or voltage is 0 while solving for current. Enter nonzero values for both known fields." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, and power values are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

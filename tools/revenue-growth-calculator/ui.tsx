@@ -167,7 +167,7 @@ export default function RevenueGrowthCalculatorUI() {
               Revenue Growth Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter previous and current revenue to instantly calculate your growth rate. All calculations run locally in your browser.
+              Enter previous and current revenue to instantly calculate your growth rate. We do not collect or store what you enter.
             </p>
           </div>
         </div>

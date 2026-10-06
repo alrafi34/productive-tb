@@ -44,7 +44,7 @@ export const toolConfig = {
     "Convert Roman numerals back to numbers",
     "Real-time validation and error detection",
     "Copy results to clipboard",
-    "Conversion history with LocalStorage",
+    "Conversion history",
     "Random number generator for testing",
     "Interactive Roman numeral reference chart",
     "Mobile-friendly responsive design"

@@ -52,7 +52,7 @@ export const toolConfig = {
       { q: "Is this salary converter useful for freelancers and contractors?", a: "Yes. Freelancers can use it to convert target annual income into practical daily and hourly rates for project pricing and negotiation." },
       { q: "Why are my results different from payroll checks?", a: "This calculator estimates gross pay conversions. Payroll checks include deductions like tax, retirement, insurance, and other withholdings." },
       { q: "Does this tool calculate net salary after tax?", a: "No. This tool focuses on gross salary conversion. Use a dedicated tax or take-home pay calculator for net paycheck estimation." },
-      { q: "Is this salary calculator free and private?", a: "Yes. It is free to use and runs in your browser. Saved settings/history are stored locally and can be cleared anytime." },
+      { q: "Is this salary calculator free and private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "Can I use this for job offer comparisons?", a: "Yes. You can enter different salary values, save scenarios, and compare monthly, weekly, daily, and hourly equivalents quickly." },
       { q: "What is a good hourly rate from annual salary?", a: "A good rate depends on industry, location, experience, and benefits. This tool helps you standardize numbers so comparisons are more objective." },
     ],
@@ -67,7 +67,7 @@ export const toolConfig = {
     "Copy results to clipboard",
     "Copy full conversion summary",
     "Save salary scenarios to local history",
-    "Save preferred settings to local storage",
+    "Save preferred settings",
     "Mobile-friendly responsive design",
     "SEO-rich content with formulas, examples, and FAQ",
     "Instant calculations as you type"

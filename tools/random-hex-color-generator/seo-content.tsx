@@ -95,7 +95,7 @@ export default function RandomHexColorGeneratorSEOContent() {
           <div>
             <h3 className="font-semibold text-gray-800 mb-2">Mathematical Color Generation</h3>
             <p className="text-gray-700 text-sm mb-2">
-              Our generator uses JavaScript's Math.random() function to create truly random RGB values, ensuring each color has an equal probability of being generated across the entire color spectrum.
+              Our generator uses a pseudo-random number generator to create truly random RGB values, ensuring each color has an equal probability of being generated across the entire color spectrum.
             </p>
           </div>
           

@@ -53,7 +53,7 @@ export const seoScoreCalculatorConfig = {
       { q: "How long should a meta description be?", a: "About 140–160 characters, which fits on most desktop results; mobile shows a little less. Meta descriptions are not a ranking factor, but a clear summary that includes the search term can raise the click-through rate. Google often replaces them with text from the page." },
       { q: "How many words does a page need?", a: "There is no minimum. The calculator gives full marks from 1,500 words because in-depth pages tend to answer more of the questions behind a search, but a short page that fully answers a simple question can rank well. Aim to be more useful than the pages already ranking, not to hit a number." },
       { q: "What keyword density should I aim for?", a: "Do not target a density. Use the main keyword in the title, H1, URL and early in the text, then write naturally with related terms and synonyms. Repeating a phrase unnaturally reads badly and can count as keyword stuffing under Google's spam policies." },
-      { q: "Is my page data saved or sent anywhere?", a: "No. The score is calculated in your browser and nothing you type is sent to a server." },
+      { q: "Is my page data saved or sent anywhere?", a: "No. We do not collect or store what you enter." },
     ],
   },
 };

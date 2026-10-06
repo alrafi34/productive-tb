@@ -4,7 +4,7 @@ export default function ScreenResolutionCheckerSEOContent() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Screen Resolution Checker</h2>
         <p className="mb-4">
-          The Screen Resolution Checker is a fast, browser-based developer utility that instantly displays detailed information about your device screen and browser viewport. It helps developers, QA testers, designers, and support teams quickly identify screen-related properties needed for responsive design debugging and bug reporting.
+          The Screen Resolution Checker is a fast, online developer utility that instantly displays detailed information about your device screen and browser viewport. It helps developers, QA testers, designers, and support teams quickly identify screen-related properties needed for responsive design debugging and bug reporting.
         </p>
       </section>
 
@@ -113,7 +113,7 @@ export default function ScreenResolutionCheckerSEOContent() {
       <section>
         <h3 className="text-xl font-semibold text-gray-900 mb-3">Performance & Privacy</h3>
         <p>
-          This tool runs 100% in your browser using vanilla JavaScript. All calculations happen locally on your device. No data is sent to any server, and no external APIs are required. The tool loads instantly and updates metrics in real-time with minimal performance impact.
+          We do not collect or store what you enter. The tool loads instantly and updates metrics in real-time with minimal performance impact.
         </p>
       </section>
     </div>

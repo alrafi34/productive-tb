@@ -82,7 +82,7 @@ export const serpCtrEstimatorConfig = {
     faq: [
       {
         q: "What is a SERP CTR estimator?",
-        a: "A SERP CTR estimator is a free browser-based tool that predicts the click-through rate a webpage will receive based on its ranking position in Google's search results, using CTR data compiled from industry studies. It converts a ranking position and search volume into an estimated number of monthly and annual organic clicks, helping you forecast traffic before or after a ranking change.",
+        a: "A SERP CTR estimator is a free tool that predicts the click-through rate a webpage will receive based on its ranking position in Google's search results, using CTR data compiled from industry studies. It converts a ranking position and search volume into an estimated number of monthly and annual organic clicks, helping you forecast traffic before or after a ranking change.",
       },
       {
         q: "How is organic CTR calculated by position?",
@@ -122,7 +122,7 @@ export const serpCtrEstimatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your search volume, ranking positions, and any custom CTR values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history and saved inputs are stored only in your browser's local storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

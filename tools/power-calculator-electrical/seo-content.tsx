@@ -30,7 +30,7 @@ export default function PowerCalculatorElectricalSEO() {
             industrial technicians</strong> who need a fast, dependable way to check power, voltage, or
             current without pulling out a separate calculator and a unit-conversion chart. Every calculation
             runs instantly as you type, includes six common voltage presets, and can be copied, saved to
-            history, or exported as a text file — all directly in your browser, with no signup.
+            history, or exported as a text file, with no signup.
           </p>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function PowerCalculatorElectricalSEO() {
                 "Copy result to clipboard",
                 "Export calculation as a text file",
                 "Automatic division-by-zero protection",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

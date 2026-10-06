@@ -29,8 +29,7 @@ export default function ShadowLengthCalculatorSEO() {
           <p>
             Built for <strong>architects checking building shadow impact on neighboring properties, urban planners
             conducting shadow studies for permit applications, photographers planning golden-hour shoots, teachers
-            demonstrating trigonometry, and solar panel installers calculating shading distances</strong>. Everything,
-            including the sun position, is calculated in your browser.
+            demonstrating trigonometry, and solar panel installers calculating shading distances</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -93,7 +92,7 @@ export default function ShadowLengthCalculatorSEO() {
                 "Hour-by-hour shadow table for the chosen day",
                 "Meters and feet, with a live diagram",
                 "Copy, history, and export as image or text",
-                "Runs in your browser — nothing is uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

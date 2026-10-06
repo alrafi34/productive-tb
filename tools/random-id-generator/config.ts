@@ -35,7 +35,7 @@ export const randomIDGeneratorConfig = {
     faq: [
       { q: "Which ID should I use?", a: "UUID v4 for general unique IDs in databases and APIs; NanoID when you want a shorter, URL-safe ID (21 characters by default); UUID v1 when you want IDs that include a timestamp. The CUID-style option is for readable IDs, not for secrets." },
       { q: "How unique is a UUID v4?", a: "It has 122 random bits, about 5.3 × 10³⁶ possible values. Even generating a billion UUIDs, the chance of any two matching is vanishingly small." },
-      { q: "Are the IDs secure enough for tokens?", a: "UUID v4 and NanoID here use the browser's cryptographic random generator (crypto.getRandomValues). The CUID-style IDs use Math.random and should not be used as secrets such as session tokens or password reset codes." },
+      { q: "Are the IDs secure enough for tokens?", a: "UUID v4 and NanoID here use a cryptographically secure random generator. The CUID-style IDs use a standard pseudo-random generator and should not be used as secrets such as session tokens or password reset codes." },
       { q: "What is the difference between UUID v1 and v4?", a: "v1 is built from the time of creation plus a node value, so IDs sort roughly by time; v4 is entirely random. v4 reveals nothing about when or where it was made." },
       { q: "Can I generate many IDs at once?", a: "Yes. Choose how many you need and copy them all, or export them as JSON or CSV." },
     ],

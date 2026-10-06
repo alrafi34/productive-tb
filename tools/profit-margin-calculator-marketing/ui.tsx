@@ -197,7 +197,7 @@ export default function ProfitMarginCalculatorUI() {
               Profit Margin Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your cost and selling price to instantly calculate profit margin, markup, and profitability. All calculations run locally in your browser.
+              Enter your cost and selling price to instantly calculate profit margin, markup, and profitability. We do not collect or store what you enter.
             </p>
           </div>
         </div>

@@ -11,7 +11,7 @@ export default function RandomIDGeneratorSEOContent() {
           UUID / CUID Generator – Generate Unique IDs Instantly
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          The UUID / CUID Generator is a free, browser-based tool that instantly
+          The UUID / CUID Generator is a free tool that instantly
           generates unique identifiers for databases, APIs, testing, and
           distributed systems. Generate single or bulk IDs in multiple formats
           with zero server requests.
@@ -178,11 +178,10 @@ export default function RandomIDGeneratorSEOContent() {
           </div>
           <div className="p-4 bg-gray-50 rounded-lg">
             <h4 className="font-semibold text-gray-900 mb-1">
-              Is my data sent to a server?
+              Is my data private?
             </h4>
             <p className="text-sm text-gray-700">
-              No. All ID generation happens entirely in your browser using
-              crypto.getRandomValues(). Nothing is logged or stored.
+              No. We do not collect or store what you enter.
             </p>
           </div>
           <div className="p-4 bg-gray-50 rounded-lg">

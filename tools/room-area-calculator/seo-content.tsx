@@ -204,7 +204,7 @@ export default function RoomAreaCalculatorSEO() {
         <ul className="list-disc list-inside space-y-2 leading-relaxed">
           <li><strong>Speed:</strong> Calculate room area in seconds with real-time results</li>
           <li><strong>Accuracy:</strong> Eliminate manual calculation errors</li>
-          <li><strong>Convenience:</strong> Works entirely in your browser, no installation needed</li>
+          <li><strong>Convenience:</strong> Nothing to install</li>
           <li><strong>Flexibility:</strong> Support for multiple units and automatic conversions</li>
           <li><strong>Extras:</strong> Built-in tile and paint calculators</li>
           <li><strong>Documentation:</strong> Save history and export results</li>

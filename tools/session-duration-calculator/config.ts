@@ -76,7 +76,7 @@ export const sessionDurationCalculatorConfig = {
     faq: [
       {
         q: "What is a session duration calculator?",
-        a: "A session duration calculator is a free browser-based tool that computes the average length of a session — such as a website visit, app session, or video watch time — by dividing total session time by the number of sessions. It also converts the result into human-readable, HH:MM:SS, and decimal formats.",
+        a: "A session duration calculator is a free tool that computes the average length of a session — such as a website visit, app session, or video watch time — by dividing total session time by the number of sessions. It also converts the result into human-readable, HH:MM:SS, and decimal formats.",
       },
       {
         q: "How is average session duration calculated?",
@@ -108,11 +108,11 @@ export const sessionDurationCalculatorConfig = {
       },
       {
         q: "Can I process thousands of session durations at once?",
-        a: "Yes. Bulk mode is designed to handle large pasted datasets efficiently in the browser, though the chart preview displays only the first 60 sessions for readability while the calculation itself uses the complete dataset.",
+        a: "Yes. Bulk mode is designed to handle large pasted datasets efficiently, though the chart preview displays only the first 60 sessions for readability while the calculation itself uses the complete dataset.",
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your session data is never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history is stored only in your browser's local storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

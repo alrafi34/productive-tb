@@ -90,7 +90,7 @@ export const toolConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations, including the sun position, run in your browser. If you press Use my location, your device shares its position with this page only to fill in the coordinates; nothing is sent to a server.",
+        a: "Yes. We do not collect or store what you enter.",
       },
       { q: "Which direction does a shadow point?", a: "Directly away from the sun. In the Northern Hemisphere the noon sun is to the south, so noon shadows point north; in the morning the sun is in the east and shadows point west, and in the evening the reverse. Date-and-place mode shows the exact bearing for the time you choose." },
     ],
@@ -104,7 +104,7 @@ export const toolConfig = {
     "Winter solstice reference angles by latitude",
     "Copy result to clipboard",
     "Export diagram as image",
-    "100% browser-based — no data sent to any server",
+    "Private: your inputs are not collected or stored",
     "No registration required",
   ],
   relatedTools: [

@@ -53,9 +53,9 @@ export const scientificCalculatorConfig = {
       { q: "Does this calculator support degrees and radians?", a: "Yes. You can switch between DEG and RAD modes for trigonometric and inverse-trigonometric calculations." },
       { q: "Which scientific functions are included?", a: "The calculator includes sin, cos, tan, asin, acos, atan, log, ln, square root, powers, constants like pi and e, and factorial." },
       { q: "Can I calculate nested expressions with parentheses?", a: "Yes. You can build expressions using parentheses and operators, then evaluate the complete formula in one step." },
-      { q: "Does it keep calculation history?", a: "Yes. The calculator stores history in your browser so you can review and reuse previous expressions quickly." },
+      { q: "Does it keep calculation history?", a: "Yes. The calculator stores history so you can review and reuse previous expressions quickly." },
       { q: "Can I use keyboard shortcuts?", a: "Yes. Numeric keys, arithmetic operators, Enter, Escape, Backspace, and parentheses are supported for faster input." },
-      { q: "Is my data sent to a server?", a: "No. Calculations run client-side in your browser and history is stored locally on your device." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "Can I export my history?", a: "Yes. You can export your calculation history as JSON for backup, review, or workflow reuse." },
       { q: "Is this suitable for students and engineers?", a: "Yes. It is useful for students, engineers, developers, and professionals who need quick scientific math operations without installing extra software." },
     ],
@@ -69,12 +69,12 @@ export const scientificCalculatorConfig = {
     "Mathematical constants (π, e)",
     "Memory functions (M+, M-, MR, MC)",
     "Angle mode toggle (degrees/radians)",
-    "Calculation history with localStorage",
+    "Calculation history",
     "Keyboard support",
     "Copy result to clipboard",
     "Export history as JSON",
     "Copy full expression to clipboard",
     "Responsive design for all devices",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

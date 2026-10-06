@@ -38,7 +38,7 @@ export default function ReactivePowerCalculatorSEO() {
     },
     {
       q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your voltage, current, and phase angle values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -76,7 +76,7 @@ export default function ReactivePowerCalculatorSEO() {
             Built for <strong>electrical engineers sizing power factor correction equipment, facility
             managers investigating utility reactive power charges, and students</strong> learning AC power
             theory. Includes six built-in presets from residential to industrial loads, full step-by-step
-            derivation, and text export — free and entirely browser-based.
+            derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -134,7 +134,7 @@ export default function ReactivePowerCalculatorSEO() {
                 "Efficiency rating based on phase angle",
                 "Full step-by-step derivation",
                 "Six built-in presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

@@ -56,7 +56,7 @@ export const reactivePowerCalculatorConfig = {
       { q: "How do I convert reactive power from VAR to kVAR?", a: "Divide by 1,000. 1,150 VAR = 1.15 kVAR. Industrial reactive power is typically reported in kVAR." },
       { q: "Why is reactive power important for power factor correction?", a: "Correction capacitors supply reactive power locally to offset inductive loads. Knowing existing Q (from this tool) plus a target power factor determines the correction capacitance needed." },
       { q: "How does phase angle affect reactive power?", a: "Larger phase angles produce more reactive power for the same V and I, since sin(θ) grows from 0 at 0° to 1 at 90° — heavily inductive loads have larger angles." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, and phase angle values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

@@ -30,8 +30,7 @@ export default function RCTimeConstantCalculatorSEO() {
             This <strong>RC circuit calculator</strong> is built for <strong>electronics students learning
             transient response, hobbyists prototyping timing and debounce circuits, filter and audio
             circuit designers, and engineers verifying power supply and coupling capacitor values</strong>.
-            It includes six common presets, calculation history, text export, and real-time results —
-            entirely browser-based, free, and with no signup required.
+            It includes six common presets, calculation history, text export, and real-time results — free, with no signup required.
           </p>
         </div>
       </section>
@@ -90,7 +89,7 @@ export default function RCTimeConstantCalculatorSEO() {
                 "Export results as a text report",
                 "Copy result to clipboard",
                 "Shareable, bookmarkable tool URL",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -26,7 +26,7 @@ export default function RainwaterRunoffCalculatorSEO() {
             coefficients near 0.90–0.95, while grass and sandy soils are as low as 0.20–0.30.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations run entirely in your browser with no data sent to any server. The tool supports
+            We do not collect or store what you enter. The tool supports
             three rainfall units, four area units, eight preset surface types, and a custom coefficient mode
             for specialized surfaces.
           </p>

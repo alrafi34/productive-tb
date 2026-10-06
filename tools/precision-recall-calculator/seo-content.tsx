@@ -11,7 +11,7 @@ export default function PrecisionRecallCalculatorSEO() {
         <p>
           This tool computes the core classification evaluation metrics used in machine learning and AI:
           precision, recall, F1 score, accuracy, and specificity — directly from the four values of a binary
-          confusion matrix (TP, FP, FN, TN). All calculations run instantly in your browser with no data uploaded.
+          confusion matrix (TP, FP, FN, TN). We do not collect or store what you enter.
         </p>
         <p className="mt-3">
           Enter your confusion matrix values and every metric updates in real time. Toggle the formula panel

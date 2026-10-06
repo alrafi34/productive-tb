@@ -60,7 +60,7 @@ export const seriesResistorCalculatorConfig = {
       { q: "What happens if one resistor fails open in a series circuit?", a: "The entire circuit is broken and no current flows through any part of the chain, since a single open point stops current everywhere in a series loop." },
       { q: "Can I add resistors with different tolerances together?", a: "Yes, but combined tolerance is weighted by each resistor's share of the total resistance, not simply the tolerance of the largest resistor." },
       { q: "How many resistors can I add with this calculator?", a: "There's no fixed limit — add resistors one at a time or paste a bulk list of comma- or newline-separated values for a large chain at once." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your resistor values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

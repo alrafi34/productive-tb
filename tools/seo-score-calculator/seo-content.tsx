@@ -18,7 +18,7 @@ export default function SEOScoreCalculatorSEO() {
             Unlike enterprise crawlers that take hours to audit a site, an SEO score calculator gives you <em>instant feedback</em> on a single page. You enter the page's details — or paste them in from your CMS — and the tool flags every issue in real time. It is the fastest way to verify that a page meets SEO fundamentals before publishing, or to identify exactly which factors are holding an existing page back from ranking higher.
           </p>
           <p>
-            This tool is designed for <strong>SEO professionals, content writers, digital marketers, ecommerce sellers, startup founders, and marketing agencies</strong> who need a reliable on-page SEO checklist without paying for a full-stack SEO platform. Everything runs locally in your browser — no data is uploaded to any server — making it safe for auditing client pages or sensitive internal content.
+            This tool is designed for <strong>SEO professionals, content writers, digital marketers, ecommerce sellers, startup founders, and marketing agencies</strong> who need a reliable on-page SEO checklist without paying for a full-stack SEO platform. We do not collect or store what you enter, making it safe for auditing client pages or sensitive internal content.
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function SEOScoreCalculatorSEO() {
                 "HTTPS, mobile-friendly, canonical, and robots meta flags",
                 "Export report as structured text file",
                 "Copy full audit to clipboard in one click",
-                "100% browser-based — no data leaves your device",
+                "Private: your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

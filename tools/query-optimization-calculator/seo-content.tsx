@@ -8,13 +8,13 @@ export default function QueryOptimizationCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>query optimization calculator</strong> is a free browser-based tool that estimates how much a <strong>database query's performance improved</strong> after optimization. It doesn't execute SQL — instead, you provide execution time, rows scanned, and query frequency before and after a change (like adding an index, rewriting a query, or introducing caching), and the calculator quantifies the impact.
+            A <strong>query optimization calculator</strong> is a free tool that estimates how much a <strong>database query's performance improved</strong> after optimization. It doesn't execute SQL — instead, you provide execution time, rows scanned, and query frequency before and after a change (like adding an index, rewriting a query, or introducing caching), and the calculator quantifies the impact.
           </p>
           <p>
             Enter your original and optimized execution times to instantly see the performance improvement percentage, speed multiplier, and time saved. Optionally add rows scanned and daily execution counts to see rows reduction and cumulative daily, monthly, and yearly time savings.
           </p>
           <p>
-            Built for <strong>database administrators, backend developers, full-stack developers, data engineers, software architects, students learning SQL optimization, and technical interview candidates</strong>, the calculator runs entirely in your browser with instant results and no signup required.
+            Built for <strong>database administrators, backend developers, full-stack developers, data engineers, software architects, students learning SQL optimization, and technical interview candidates</strong>, the calculator works with instant results and no signup required.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function QueryOptimizationCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -211,7 +211,7 @@ export default function QueryOptimizationCalculatorSEO() {
           {[
             {
               q: "What is a query optimization calculator?",
-              a: "A query optimization calculator is a free browser-based tool that estimates how much a database query's performance improved after optimization, based on execution time, rows scanned, and query frequency you provide. It does not execute SQL.",
+              a: "A query optimization calculator is a free tool that estimates how much a database query's performance improved after optimization, based on execution time, rows scanned, and query frequency you provide. It does not execute SQL.",
             },
             {
               q: "How is performance improvement calculated?",
@@ -247,7 +247,7 @@ export default function QueryOptimizationCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
