@@ -9,7 +9,7 @@ export default function SignalAttenuationCalculatorSEO() {
     { q: "What is a typical attenuation value for common cables?", a: "RG-58 coaxial cable loses about 0.2 dB per meter at 100 MHz, Cat6 Ethernet cable loses about 0.05 dB per meter at 100 MHz, and single-mode fiber optic cable loses roughly 0.2 to 0.3 dB per kilometer. These are starting reference values — actual loss depends on frequency, cable quality, and connector count." },
     { q: "What does dBm mean in the power attenuation mode?", a: "dBm is a power unit referenced to 1 milliwatt, calculated as dBm = 10 × log₁₀(P in mW / 1 mW). It's the standard unit for RF signal strength because it compresses a huge dynamic range into manageable numbers — 0 dBm equals 1 mW, and 30 dBm equals 1 watt. The calculator accepts dBm directly and converts it to watts internally before computing attenuation." },
     { q: "How accurate is distance-based attenuation for real cable runs?", a: "Distance-based attenuation gives an estimate based on the loss-per-unit figure you supply, which itself depends on frequency, cable quality, and temperature. It does not automatically include connector losses, splice losses, or bends, which should be added separately — a common rule of thumb is 0.1 to 0.5 dB per connector on RF systems." },
-    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, and distance values, along with your calculation history, are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+    { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
   ];
 
   const howToSteps: [string, string][] = [
@@ -47,7 +47,7 @@ export default function SignalAttenuationCalculatorSEO() {
             telecom and network engineers planning fiber and copper cable runs, audio engineers tracking
             signal loss through cables and equipment, and electronics students learning the power-vs-voltage
             dB relationship</strong>. Every mode shows full step-by-step working, supports W/mW/dBm and V/mV
-            unit conversions, and runs entirely in your browser — free, with no signup required.
+            unit conversions — free, with no signup required.
           </p>
         </div>
       </section>
@@ -109,7 +109,7 @@ export default function SignalAttenuationCalculatorSEO() {
                 "Built-in presets for each mode",
                 "Calculation history (last 20 entries)",
                 "Export results as a text report",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

@@ -43,7 +43,7 @@ export const toolConfig = {
       { q: "How are decimal ratios simplified?", a: "They are first multiplied by a power of 10 to make whole numbers, then divided by the GCD. 1.5 : 0.5 becomes 15 : 5, which simplifies to 3 : 1." },
       { q: "How do I turn a ratio into percentages?", a: "Divide each part by the total and multiply by 100. In 1 : 2 : 3 the total is 6, so the parts are 16.7%, 33.3% and 50%." },
       { q: "How do I scale a ratio up, for example for a recipe?", a: "Multiply every part by the same number. A 2 : 3 mix of flour to water becomes 4 : 6 or 6 : 9; the equivalent ratios list shows the first five multiples." },
-      { q: "Is my data stored?", a: "Calculations run in your browser. Your last five ratios are kept in this browser's local storage so you can reopen them; nothing is sent to a server." },
+      { q: "Is my data stored?", a: "We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
   features: [

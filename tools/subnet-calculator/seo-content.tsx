@@ -41,7 +41,7 @@ export default function SubnetCalculatorSEO() {
                 "CIDR ↔ subnet mask auto conversion",
                 "Binary visualization of IP and mask",
                 "Private / public / loopback IP detection",
-                "Calculation history saved locally",
+                "Calculation history",
                 "Export results as TXT or JSON",
                 "Copy all results to clipboard",
                 "Quick presets for common subnets",

@@ -172,7 +172,7 @@ export default function URLEncoderSEO() {
       <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 space-y-4">
         <h3 className="text-xl font-black text-gray-900">Ready to Encode or Decode URLs?</h3>
         <p className="text-gray-600">
-          Start using this free URL Encoder/Decoder tool today. No signup required, no server processing, 100% browser-based. Perfect for developers, testers, and anyone working with URLs!
+          Start using this free URL Encoder/Decoder tool today. We do not collect or store what you enter. Perfect for developers, testers, and anyone working with URLs!
         </p>
       </div>
       <ToolFaq items={toolConfig.seo.faq} />

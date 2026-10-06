@@ -244,7 +244,7 @@ export default function TimeComplexityCalculatorUI() {
               Time Complexity Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Estimate Big-O time complexity by describing your algorithm, configuring loops and recursion, or comparing growth rates visually. All analysis runs locally in your browser.
+              Estimate Big-O time complexity by describing your algorithm, configuring loops and recursion, or comparing growth rates visually. We do not collect or store what you enter.
             </p>
           </div>
         </div>

@@ -57,7 +57,7 @@ export default function UnixTimestampConverterSEO() {
               Privacy-first conversion
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              All processing runs in your browser. You can validate sensitive production timestamps without sending inputs to a remote API.
+              We do not collect or store what you enter. You can validate sensitive production timestamps without sending inputs to a remote API.
             </p>
           </div>
         </div>

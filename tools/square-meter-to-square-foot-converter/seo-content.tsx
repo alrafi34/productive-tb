@@ -54,8 +54,8 @@ export default function ToolSEOContent() {
             construction estimates, or interior layouts, converting area units correctly is essential.
           </p>
           <p className="mt-3">
-            The calculator runs entirely in your browser, supports precision control, includes batch conversion,
-            and lets you export conversion results as CSV. No sign-up, no backend processing, and no data upload.
+            The calculator supports precision control, includes batch conversion,
+            and lets you export conversion results as CSV. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -208,12 +208,12 @@ export default function ToolSEOContent() {
             <p>Yes. Use batch mode to paste many values and export results as a CSV file.</p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my data uploaded to a server?</h3>
-            <p>No. This tool performs conversion directly in your browser.</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my data private?</h3>
+            <p>No. This tool performs conversion.</p>
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Is conversion history private?</h3>
-            <p>Yes. Saved history is stored locally in your browser and not sent anywhere.</p>
+            <p>Yes. We do not collect or store what you enter.</p>
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Do I need to install anything?</h3>

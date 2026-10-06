@@ -172,7 +172,7 @@ export default function SRIGeneratorUI() {
         {/* Security Notice */}
         <div className="mb-6 bg-green-50 border border-green-200 rounded-xl p-4">
           <p className="text-sm text-green-800 text-center">
-            🔒 <strong>100% Secure:</strong> All hashing is performed locally in your browser using Web Crypto API. No data is sent to any server.
+            🔒 <strong>100% Secure:</strong> We do not collect or store what you enter.
           </p>
         </div>
 

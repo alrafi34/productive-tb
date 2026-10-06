@@ -79,11 +79,10 @@ export default function UnitRatioCalculatorSEO() {
           </div>
           <div className="bg-gray-50 rounded-lg p-5">
             <h3 className="text-lg font-medium text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              6. Browser-Based, Fast, and Private
+              6. Fast and Private
             </h3>
             <p className="text-sm leading-relaxed">
-              All calculations run in your browser. Your inputs are not uploaded to external servers, and recent history is
-              stored locally for convenience.
+              We do not collect or store what you enter.
             </p>
           </div>
         </div>

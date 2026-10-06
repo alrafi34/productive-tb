@@ -36,7 +36,7 @@ export const toolConfig = {
       { q: "What can I make with the timeline creator?", a: "Project plans and roadmaps, historical timelines for school work, company milestones and personal events. Each entry has a date, a title and an optional description." },
       { q: "Are events sorted automatically?", a: "Yes. Events are placed in date order on the timeline, whatever order you add them in." },
       { q: "Which export formats are available?", a: "PNG for presentations and documents, SVG for scalable graphics, and JSON to save the timeline and load it again." },
-      { q: "Is my timeline saved?", a: "Yes, it is stored in your browser, so it is still there when you come back on the same device. Export JSON to move it elsewhere." },
+      { q: "Is my timeline saved?", a: "Yes, it is stored, so it is still there when you come back on the same device. Export JSON to move it elsewhere." },
       { q: "How many events should a timeline have?", a: "Timelines are easiest to read with about 5–15 events. For longer histories, split them into periods or show only the key milestones." },
     ],
   },
@@ -50,10 +50,10 @@ export const toolConfig = {
     "Drag-and-drop event reordering",
     "Export as high-resolution PNG",
     "Copy timeline to clipboard",
-    "LocalStorage autosave",
+    "Autosave",
     "Import/export timeline JSON",
     "Undo/redo functionality",
     "Responsive design",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

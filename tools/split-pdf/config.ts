@@ -34,7 +34,7 @@ export const splitPdfConfig = {
       { name: "Download", text: "Download each file, or all of them as one ZIP file." },
     ],
     faq: [
-      { q: "Is my PDF uploaded to a server?", a: "No. The PDF is split in your browser with the open-source pdf-lib library, so it never leaves your device." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store your files." },
       { q: "How do I split a PDF into single pages?", a: "Choose Split every N pages and set N to 1. You get one PDF per page, which you can download separately or together as a ZIP file." },
       { q: "How do I save just one page of a PDF?", a: "Choose Extract pages, type the page number, for example 4, and click Extract pages. For several pages in one file, type them all, such as 2, 5-7." },
       { q: "How do I delete pages from a PDF?", a: "Choose Delete pages and type the pages to remove, for example 1, 10-. The tool saves a copy with every other page, in the original order." },

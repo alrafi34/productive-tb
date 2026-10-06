@@ -78,7 +78,7 @@ export const textDiffCheckerConfig = {
       { q: "Can I upload files for comparison?", a: "Yes. You can upload or drag-and-drop supported text files such as .txt, .md, and .csv." },
       { q: "Can I export diff results?", a: "Yes. You can copy the diff output and download results in TXT or HTML formats." },
       { q: "Is this text diff checker free?", a: "Yes. It is free to use without registration." },
-      { q: "Is my text private?", a: "Yes. Comparison runs in your browser and does not require sending text to external servers." },
+      { q: "Is my text private?", a: "Yes. We do not collect or store what you enter." },
     ],
   }
 };

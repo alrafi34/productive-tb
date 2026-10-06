@@ -174,11 +174,11 @@ export default function TipCalculatorSEOContent() {
           </div>
           <div className="flex gap-2 text-sm">
             <span className="text-primary font-bold">🔒</span>
-            <span>100% client-side processing</span>
+            <span>Private: your inputs are not collected or stored</span>
           </div>
           <div className="flex gap-2 text-sm">
             <span className="text-primary font-bold">⚙️</span>
-            <span>Settings saved locally</span>
+            <span>Settings</span>
           </div>
         </div>
       </section>
@@ -225,11 +225,11 @@ export default function TipCalculatorSEOContent() {
         <ul className="space-y-2 text-sm">
           <li className="flex gap-2">
             <span className="text-primary font-bold">✓</span>
-            <span>Runs 100% in your browser with no server communication</span>
+            <span>Your inputs are not collected or stored</span>
           </li>
           <li className="flex gap-2">
             <span className="text-primary font-bold">✓</span>
-            <span>Stores settings locally using browser localStorage only</span>
+            <span>Your inputs are not collected or stored</span>
           </li>
           <li className="flex gap-2">
             <span className="text-primary font-bold">✓</span>
@@ -237,7 +237,7 @@ export default function TipCalculatorSEOContent() {
           </li>
           <li className="flex gap-2">
             <span className="text-primary font-bold">✓</span>
-            <span>Works offline after initial page load</span>
+            <span>Nothing to install</span>
           </li>
           <li className="flex gap-2">
             <span className="text-primary font-bold">✓</span>

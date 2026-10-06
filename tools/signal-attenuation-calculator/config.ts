@@ -111,7 +111,7 @@ export const signalAttenuationCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, and distance values, along with your calculation history, are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

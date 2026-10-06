@@ -12,7 +12,7 @@ export const toolConfig = {
       { q: "What is the difference between encodeURI and encodeURIComponent?", a: "encodeURI keeps characters that structure a URL, such as / ? & and =, so it suits a whole URL. encodeURIComponent encodes those too, so it suits a single query-string value." },
       { q: "Why is a space sometimes + instead of %20?", a: "HTML forms encode spaces in query strings as +. Both mean a space in a query string, but only %20 is correct in the path of a URL." },
       { q: "Why does decoding fail?", a: "Decoding fails when a % is not followed by two valid hex digits, for example 100% on its own. Encode the text first, or fix the stray % sign." },
-      { q: "Is my data sent to a server?", a: "No. Encoding and decoding run entirely in your browser." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
     ],
     title: "URL Encoder / Decoder – Percent-Encode URLs Online",
     description: "Encode special characters in URLs and query strings as percent-encoding (%20) or decode encoded URLs back to plain text, in your browser.",
@@ -53,8 +53,8 @@ export const toolConfig = {
     "Character counter",
     "Keyboard shortcuts",
     "Dark/Light theme toggle",
-    "Recent history with LocalStorage",
+    "Recent history",
     "Mobile responsive design",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

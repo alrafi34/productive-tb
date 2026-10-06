@@ -9,7 +9,7 @@ export default function SlabConcreteCalculatorSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">About Slab Concrete Calculator</h2>
         <p className="mb-4">
-          The Advanced Slab Concrete Calculator is a professional construction tool designed to help civil engineers, contractors, architects, and DIY builders accurately estimate the volume of concrete required for slab construction. This browser-based utility provides instant calculations with support for multiple units and optional cost estimation.
+          The Advanced Slab Concrete Calculator is a professional construction tool designed to help civil engineers, contractors, architects, and DIY builders accurately estimate the volume of concrete required for slab construction. This online utility provides instant calculations with support for multiple units and optional cost estimation.
         </p>
         <p>
           Whether you're planning a residential driveway, commercial floor slab, or industrial foundation, this calculator eliminates manual calculation errors and helps you order the right amount of concrete, reducing waste and optimizing costs.
@@ -131,7 +131,7 @@ export default function SlabConcreteCalculatorSEO() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
-            <span>Calculation history with localStorage</span>
+            <span>Calculation history</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>

@@ -58,7 +58,7 @@ export const transformerTurnsRatioCalculatorConfig = {
       { q: "How do I calculate turns ratio if I only know two voltages?", a: "Turns Ratio = Vp ÷ Vs directly, since voltage ratio equals turns ratio in an ideal transformer." },
       { q: "Can I calculate turns needed if I know one winding's turns and both voltages?", a: "Yes. Calculate turns ratio = Vp ÷ Vs, then the other winding's turns = known turns ÷ or × turns ratio, depending on which side is known." },
       { q: "How is turns ratio used in power distribution transformers?", a: "Utility transformers step 11kV down to 415V using a large turns ratio — roughly 26.5:1 — to convert transmission voltage to usable distribution levels." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage and turns values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

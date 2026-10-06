@@ -8,13 +8,13 @@ export default function SparkJobTimeCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>Spark job time calculator</strong> is a free browser-based tool that estimates the execution time of an <strong>Apache Spark job</strong> before you run it, based on your dataset size, cluster resources, and job characteristics. It's a quick sanity check for data engineers, platform teams, and Spark learners who want a ballpark estimate before committing compute to an expensive workload.
+            A <strong>Spark job time calculator</strong> is a free tool that estimates the execution time of an <strong>Apache Spark job</strong> before you run it, based on your dataset size, cluster resources, and job characteristics. It's a quick sanity check for data engineers, platform teams, and Spark learners who want a ballpark estimate before committing compute to an expensive workload.
           </p>
           <p>
             Enter your dataset size and storage format, cluster configuration (executors and cores), and job characteristics like processing complexity and shuffle intensity, and the calculator instantly breaks the estimated runtime into read, processing, shuffle, write, and scheduling overhead phases — flagging the primary bottleneck and suggesting a targeted optimization.
           </p>
           <p>
-            Built for <strong>data engineers, data scientists, platform engineers, DevOps teams, cloud architects, and Spark learners</strong>, the calculator runs entirely in your browser with instant results and no signup required.
+            Built for <strong>data engineers, data scientists, platform engineers, DevOps teams, cloud architects, and Spark learners</strong>, the calculator works with instant results and no signup required.
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function SparkJobTimeCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Scenario history — save and reload past estimates",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -212,7 +212,7 @@ export default function SparkJobTimeCalculatorSEO() {
           {[
             {
               q: "What is a Spark job time calculator?",
-              a: "A Spark job time calculator is a free browser-based tool that estimates Apache Spark job execution time using a simplified model based on dataset size, cluster resources, storage type, compression, shuffle intensity, and processing complexity.",
+              a: "A Spark job time calculator is a free tool that estimates Apache Spark job execution time using a simplified model based on dataset size, cluster resources, storage type, compression, shuffle intensity, and processing complexity.",
             },
             {
               q: "How is the estimated runtime calculated?",
@@ -248,7 +248,7 @@ export default function SparkJobTimeCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

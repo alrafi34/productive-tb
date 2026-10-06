@@ -14,8 +14,8 @@ export const toolConfig = {
       { q: "What precision should I use for property listings?", a: "For public listings, 1 to 2 decimal places is usually enough. For technical planning, you can use 3 to 6 decimals." },
       { q: "Does this converter work for large land areas?", a: "Yes for raw area conversion. For acre, hectare, or plot-focused workflows, you may want a dedicated land area converter as a follow-up step." },
       { q: "Can I process multiple values at once?", a: "Yes. Use batch mode to paste many values and export results as a CSV file." },
-      { q: "Is my data uploaded to a server?", a: "No. This tool performs conversion directly in your browser." },
-      { q: "Is conversion history private?", a: "Yes. Saved history is stored locally in your browser and not sent anywhere." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
+      { q: "Is conversion history private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "Do I need to install anything?", a: "No installation is needed. Open the page and start converting instantly." },
     ],
     title: "Square Meter to Square Foot Converter (m2 to ft2) Online",
@@ -45,7 +45,7 @@ export const toolConfig = {
     "Quick area presets for common values",
     "Visual area comparison tool",
     "Batch conversion mode with CSV export",
-    "Conversion history stored locally",
+    "Conversion history",
     "Export results to CSV"
   ]
 };

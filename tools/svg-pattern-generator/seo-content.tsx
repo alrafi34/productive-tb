@@ -82,8 +82,7 @@ export default function SVGPatternGeneratorSEOContent() {
           </ul>
 
           <p className="mt-6 text-gray-600">
-            All processing happens in your browser. No data is sent to any
-            server. Generate unlimited patterns completely privately.
+            We do not collect or store what you enter. Generate unlimited patterns completely privately.
           </p>
         </div>
       </div>

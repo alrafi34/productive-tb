@@ -210,7 +210,7 @@ export default function SubnetCalculatorUI() {
               IPv4 Subnet Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter an IPv4 address and CIDR prefix to instantly calculate network details. All calculations run locally in your browser.
+              Enter an IPv4 address and CIDR prefix to instantly calculate network details. We do not collect or store what you enter.
             </p>
           </div>
         </div>

@@ -48,11 +48,11 @@ export const toolConfig = {
     "Live clock updates every minute",
     "Highlight working hours (9AM–6PM)",
     "Visual day/night indicators",
-    "Save favorite cities to localStorage",
+    "Save favorite cities",
     "Copy converted times to clipboard",
     "Shareable meeting time summary",
     "Dark mode support",
     "Time difference indicators",
-    "100% browser-based - no backend needed"
+    "Private: your inputs are not collected or stored"
   ]
 };

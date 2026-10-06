@@ -38,7 +38,7 @@ export const toolConfig = {
       { q: "How does the SVG arc command work?", a: "A rx ry rotation large-arc sweep x y draws part of an ellipse with radii rx and ry to the point (x, y). Because two ellipses and two directions can connect two points, large-arc (1 or 0) picks the longer or shorter arc and sweep (1 or 0) picks clockwise or counter-clockwise." },
       { q: "Why is my path cut off or not visible?", a: "Usually the viewBox does not cover the path's coordinates, the fill and stroke are both none, or the stroke width is tiny compared with the viewBox. Use Fit to path to set the viewBox from the path's real bounds, curves included." },
       { q: "How do I make a circle with a path?", a: "Use two arcs, because one arc cannot start and end at the same point: M10 50 A40 40 0 1 0 90 50 A40 40 0 1 0 10 50 Z draws a circle of radius 40 centred at (50, 50). In plain SVG the <circle> element is simpler." },
-      { q: "Is my SVG uploaded anywhere?", a: "No. Paths are drawn and parsed in your browser; uploaded SVG files are read locally and never sent to a server." },
+      { q: "Is my SVG uploaded anywhere?", a: "No. We do not collect or store your files." },
     ],
   },
 };

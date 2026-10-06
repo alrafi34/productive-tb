@@ -218,7 +218,7 @@ export default function SteganographyToolUI() {
         {/* Security Notice */}
         <div className="mb-6 bg-green-50 border border-green-200 rounded-xl p-4">
           <p className="text-sm text-green-800 text-center">
-            🔒 <strong>100% Secure:</strong> All image processing happens locally in your browser. Images and messages are never uploaded.
+            🔒 <strong>100% Secure:</strong> We do not collect or store your files. Images and messages are never uploaded.
           </p>
         </div>
 

@@ -51,6 +51,6 @@ export const toolConfig = {
     "Randomize pattern",
     "Reset to defaults",
     "Mobile responsive",
-    "Client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

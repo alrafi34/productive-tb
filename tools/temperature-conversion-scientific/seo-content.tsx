@@ -55,7 +55,7 @@ export default function ToolSEOContent() {
             comparison.
           </p>
           <p>
-            Every conversion is processed directly in your browser. That means fast performance, no account required, and better privacy for
+            Every conversion is instant. That means fast performance, no account required, and better privacy for
             your data.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function ToolSEOContent() {
             <ul className="space-y-2 text-gray-600 list-disc pl-5">
               <li>Useful for physics, chemistry, thermodynamics, and engineering tasks.</li>
               <li>Works for weather references, classroom work, and technical documentation.</li>
-              <li>Runs directly in-browser with no software install and no signup.</li>
+              <li>We do not collect or store what you enter.</li>
               <li>Mobile and desktop friendly for quick conversions anywhere.</li>
             </ul>
           </div>
@@ -335,8 +335,7 @@ export default function ToolSEOContent() {
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my conversion data private?</h3>
             <p className="text-gray-600 leading-relaxed">
-              Conversions run in your browser. Saved history is stored locally on your device, giving you better privacy and quick repeat
-              access.
+              We do not collect or store what you enter.
             </p>
           </div>
           <div>

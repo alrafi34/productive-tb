@@ -11,7 +11,7 @@ export default function TimelineCreatorSEOContent() {
           Create Beautiful Visual Timelines Instantly
         </h2>
         <p className="text-gray-600 mb-4">
-          The Visual Timeline Creator is a free, browser-based tool that lets you build stunning chronological timelines in seconds. Perfect for students, project managers, teachers, and content creators who need to visualize events and milestones.
+          The Visual Timeline Creator is a free tool that lets you build stunning chronological timelines in seconds. Perfect for students, project managers, teachers, and content creators who need to visualize events and milestones.
         </p>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">
@@ -27,7 +27,7 @@ export default function TimelineCreatorSEOContent() {
           <li>Save and load timeline data as JSON</li>
           <li>Undo/redo functionality for easy editing</li>
           <li>Auto-save to browser storage</li>
-          <li>100% client-side processing - no data sent to servers</li>
+          <li>Private: your inputs are not collected or stored</li>
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">
@@ -62,7 +62,7 @@ export default function TimelineCreatorSEOContent() {
         <ul className="list-disc list-inside space-y-2 text-gray-600">
           <li><strong>Free:</strong> No subscription or hidden costs</li>
           <li><strong>No Sign-up:</strong> Start creating immediately</li>
-          <li><strong>Privacy-First:</strong> All processing happens in your browser</li>
+          <li><strong>Privacy-First:</strong> Your inputs are not collected or stored</li>
           <li><strong>Fast:</strong> Real-time preview and instant exports</li>
           <li><strong>Flexible:</strong> Multiple layout options and customization</li>
           <li><strong>Reliable:</strong> Auto-save ensures you never lose your work</li>

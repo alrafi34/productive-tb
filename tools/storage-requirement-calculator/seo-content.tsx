@@ -8,7 +8,7 @@ export default function StorageRequirementCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>storage requirement calculator</strong> is a free browser-based tool that estimates how much digital storage you actually need for files, backups, CCTV recordings, databases, websites, media libraries, or cloud storage. It goes beyond a simple multiplication by modeling the real-world overhead that catches most people off guard: compression savings, multiple backup copies, RAID redundancy, year-over-year growth, and a safety margin.
+            A <strong>storage requirement calculator</strong> is a free tool that estimates how much digital storage you actually need for files, backups, CCTV recordings, databases, websites, media libraries, or cloud storage. It goes beyond a simple multiplication by modeling the real-world overhead that catches most people off guard: compression savings, multiple backup copies, RAID redundancy, year-over-year growth, and a safety margin.
           </p>
           <p>
             Rather than guessing and buying too little (or wildly overpaying for capacity you&apos;ll never use), this tool walks through each factor step by step and shows exactly how your raw data size becomes a final, purchasable storage requirement — complete with a recommended disk size, a suggested cloud plan tier, and an estimated monthly cost.
@@ -98,7 +98,7 @@ export default function StorageRequirementCalculatorSEO() {
                 "Keyboard shortcut — Esc to reset",
                 "Inline validation with friendly, realistic-value warnings",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -235,7 +235,7 @@ export default function StorageRequirementCalculatorSEO() {
           {[
             {
               q: "What is a Storage Requirement Calculator?",
-              a: "A Storage Requirement Calculator is a free browser-based tool that estimates how much digital storage you need for files, backups, CCTV recordings, databases, websites, or cloud storage, accounting for compression, backup copies, RAID redundancy, growth, and a safety margin.",
+              a: "A Storage Requirement Calculator is a free tool that estimates how much digital storage you need for files, backups, CCTV recordings, databases, websites, or cloud storage, accounting for compression, backup copies, RAID redundancy, growth, and a safety margin.",
             },
             {
               q: "How is total file storage calculated?",
@@ -271,7 +271,7 @@ export default function StorageRequirementCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your storage figures are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -110,8 +110,8 @@ export default function SteganographyToolSEOContent() {
           </div>
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">🌐</div>
-            <h3 className="font-semibold text-gray-900 mb-2">100% Client-Side</h3>
-            <p className="text-sm text-gray-600">All processing happens locally. No images uploaded to servers</p>
+            <h3 className="font-semibold text-gray-900 mb-2">Private</h3>
+            <p className="text-sm text-gray-600">We do not collect or store what you enter.</p>
           </div>
         </div>
       </section>
@@ -256,7 +256,7 @@ export default function SteganographyToolSEOContent() {
         <div className="space-y-4 text-sm text-gray-600">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">How It Works</h3>
-            <p>The tool uses the HTML5 Canvas API to read and modify pixel data. Each pixel&apos;s RGB values are converted to binary, and the message bits replace the least significant bits. A 32-bit header stores the message length for extraction.</p>
+            <p>We do not collect or store what you enter. Each pixel&apos;s RGB values are converted to binary, and the message bits replace the least significant bits. A 32-bit header stores the message length for extraction.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Encryption Method</h3>
@@ -264,7 +264,7 @@ export default function SteganographyToolSEOContent() {
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Browser Compatibility</h3>
-            <p>Works in all modern browsers that support Canvas API: Chrome, Firefox, Safari, Edge, and Opera.</p>
+            <p>Works in all modern browsers: Chrome, Firefox, Safari, Edge, and Opera.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Performance</h3>

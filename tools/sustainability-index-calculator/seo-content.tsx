@@ -134,7 +134,7 @@ export default function SustainabilityIndexCalculatorSEO() {
           <li>✓ <strong>Preset Scenarios:</strong> Compare against standard building types and green building benchmarks</li>
           <li>✓ <strong>Export Reports:</strong> Generate detailed reports for stakeholders and documentation</li>
           <li>✓ <strong>History Tracking:</strong> Save and compare multiple assessments over time</li>
-          <li>✓ <strong>Free & Browser-Based:</strong> No installation or subscription required</li>
+          <li>✓ <strong>Free:</strong> No installation or subscription required</li>
         </ul>
       </section>
 

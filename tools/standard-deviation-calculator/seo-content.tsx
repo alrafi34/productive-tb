@@ -8,13 +8,13 @@ export default function StandardDeviationCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>standard deviation calculator</strong> is a free browser-based tool that measures how spread out a dataset is from its average. A low standard deviation means values cluster tightly around the mean; a high standard deviation means they&apos;re spread widely — one of the most fundamental measures in statistics for understanding data variability.
+            A <strong>standard deviation calculator</strong> is a free tool that measures how spread out a dataset is from its average. A low standard deviation means values cluster tightly around the mean; a high standard deviation means they&apos;re spread widely — one of the most fundamental measures in statistics for understanding data variability.
           </p>
           <p>
             This calculator computes both <strong>population standard deviation (σ)</strong> and <strong>sample standard deviation (s)</strong>, alongside a full suite of related statistics — mean, median, mode, variance, quartiles, interquartile range, coefficient of variation, and standard error — plus an interactive histogram and box plot visualization.
           </p>
           <p>
-            Built for <strong>students, teachers, statisticians, researchers, data analysts, business professionals, engineers, scientists, and quality assurance teams</strong>, the tool accepts manual entry, pasted spreadsheet data, or uploaded CSV files, and runs entirely in your browser — no signup, no server, and no data ever leaving your device.
+            Built for <strong>students, teachers, statisticians, researchers, data analysts, business professionals, engineers, scientists, and quality assurance teams</strong>, the tool accepts manual entry, pasted spreadsheet data, or uploaded CSV files, with no signup required. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function StandardDeviationCalculatorSEO() {
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcuts — Esc to clear, Ctrl+L for a new example",
                 "Invalid value detection with a clear inline warning",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -233,7 +233,7 @@ export default function StandardDeviationCalculatorSEO() {
           {[
             {
               q: "What is a standard deviation calculator?",
-              a: "A standard deviation calculator is a free browser-based tool that measures how spread out a dataset is from its average, computing both population and sample standard deviation along with related statistics.",
+              a: "A standard deviation calculator is a free tool that measures how spread out a dataset is from its average, computing both population and sample standard deviation along with related statistics.",
             },
             {
               q: "What is the difference between population and sample standard deviation?",
@@ -269,7 +269,7 @@ export default function StandardDeviationCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server or stored in any database.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

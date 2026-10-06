@@ -42,7 +42,7 @@ export const toolConfig = {
       { q: "How does this converter detect seconds vs milliseconds?", a: "Numeric inputs with up to 11 digits are treated as seconds, and longer numeric inputs are treated as milliseconds. This avoids manual mode switching for common developer workflows." },
       { q: "Can I convert dates to Unix timestamps too?", a: "Yes. The date-to-Unix mode accepts standard date strings and returns both Unix seconds and Unix milliseconds instantly." },
       { q: "Does this tool support timezone checks?", a: "Yes. It shows timezone views for UTC, GMT, New York, London, Tokyo, and Sydney so you can validate cross-region logs and schedules quickly." },
-      { q: "Is my data uploaded to a server?", a: "No. Conversions run in your browser, so your timestamp inputs and date values are not sent to a backend for processing." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

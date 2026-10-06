@@ -12,7 +12,7 @@ export default function SunlightExposureCalculatorSEO() {
           <p className="text-gray-700 leading-relaxed">
             The Sunlight Exposure Calculator is a professional visualization tool designed to help architects, engineers, 
             urban planners, and solar energy professionals analyze how sunlight interacts with buildings throughout the day. 
-            This browser-based tool simulates sun position, shadow behavior, and sunlight intensity, providing instant visual 
+            This online tool simulates sun position, shadow behavior, and sunlight intensity, providing instant visual 
             and numerical insights for optimal building design and solar panel placement.
           </p>
         </section>
@@ -279,8 +279,7 @@ export default function SunlightExposureCalculatorSEO() {
             This calculator is designed for architects, engineers, urban planners, and solar energy professionals who need 
             quick and accurate sunlight exposure analysis. It combines scientific solar position calculations with intuitive 
             canvas-based visualization, making complex sun path analysis accessible while maintaining professional-grade 
-            accuracy. All calculations and rendering run entirely in your browser with no data sent to servers, ensuring 
-            privacy and instant performance. Use this tool for preliminary analysis and conceptual design, and consult with 
+            accuracy. We do not collect or store what you enter. Use this tool for preliminary analysis and conceptual design, and consult with 
             professionals for detailed engineering and compliance verification.
           </p>
         </section>

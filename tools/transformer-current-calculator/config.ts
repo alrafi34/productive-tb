@@ -57,7 +57,7 @@ export const transformerCurrentCalculatorConfig = {
       { q: "Why does power factor affect calculated current?", a: "Lower power factor means more current is needed for the same real power, since PF appears in the denominator of the current formula." },
       { q: "How do I choose single-phase or three-phase mode?", a: "Single-phase for residential/light commercial loads (110-240V). Three-phase for industrial motors and commercial buildings (380-480V)." },
       { q: "How does this relate to cable and breaker sizing?", a: "This gives base continuous current. Real sizing applies a 1.25× continuous-load margin and ambient/derating factors on top." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, voltage, and power factor values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

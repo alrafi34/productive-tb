@@ -74,7 +74,7 @@ export default function TimeDurationCalculatorSEO() {
               Privacy-first and no signup required
             </h3>
             <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              The calculation runs in your browser, and your recent entries stay local to your device. You can use the tool
+              We do not collect or store what you enter. You can use the tool
               instantly without account creation or unnecessary setup.
             </p>
           </div>

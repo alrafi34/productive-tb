@@ -76,7 +76,7 @@ export const sparkJobTimeCalculatorConfig = {
     faq: [
       {
         q: "What is a Spark job time calculator?",
-        a: "A Spark job time calculator is a free browser-based tool that estimates Apache Spark job execution time using a simplified model based on dataset size, cluster resources (executors and cores), storage type, compression, shuffle intensity, and processing complexity.",
+        a: "A Spark job time calculator is a free tool that estimates Apache Spark job execution time using a simplified model based on dataset size, cluster resources (executors and cores), storage type, compression, shuffle intensity, and processing complexity.",
       },
       {
         q: "How is the estimated runtime calculated?",
@@ -112,7 +112,7 @@ export const sparkJobTimeCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

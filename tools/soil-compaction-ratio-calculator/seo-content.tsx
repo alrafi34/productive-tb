@@ -10,10 +10,10 @@ export default function SoilCompactionRatioCalculatorSEO() {
           About the Soil Compaction Ratio Calculator
         </h2>
         <p className="mb-4">
-          The Soil Compaction Ratio Calculator is a professional browser-based engineering utility that calculates <strong>relative compaction</strong> (compaction ratio) by comparing field dry density against maximum dry density from laboratory Proctor testing. It is designed for civil engineers, geotechnical engineers, site supervisors, contractors, and engineering students working on earthwork, road construction, embankments, foundations, and quality control.
+          The Soil Compaction Ratio Calculator is a professional online engineering utility that calculates <strong>relative compaction</strong> (compaction ratio) by comparing field dry density against maximum dry density from laboratory Proctor testing. It is designed for civil engineers, geotechnical engineers, site supervisors, contractors, and engineering students working on earthwork, road construction, embankments, foundations, and quality control.
         </p>
         <p>
-          The tool operates entirely in the browser with instant calculations, supports multiple density unit systems, and provides engineering-grade outputs including step-by-step breakdowns, pass/fail indicators, and export-ready reports.
+          The tool gives instant calculations, supports multiple density unit systems, and provides engineering-grade outputs including step-by-step breakdowns, pass/fail indicators, and export-ready reports.
         </p>
       </section>
 

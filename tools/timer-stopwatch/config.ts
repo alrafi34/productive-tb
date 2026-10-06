@@ -34,6 +34,6 @@ export const toolConfig = {
     "Stopwatch with detailed lap analysis (fastest/slowest)",
     "Multiple simultaneous countdown timers",
     "Keyboard shortcuts (Space, L, R) for professional use",
-    "Session history saved locally in your browser"
+    "Session history saved"
   ]
 };

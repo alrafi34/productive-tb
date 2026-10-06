@@ -38,7 +38,7 @@ export default function TransformerEfficiencyCalculatorSEO() {
     },
     {
       q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, current, and loss values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -79,7 +79,7 @@ export default function TransformerEfficiencyCalculatorSEO() {
             comparing distribution transformer options, and facility managers</strong> assessing whether an
             aging transformer needs replacement. Includes six built-in presets from high-efficiency modern
             units to older transformers needing replacement, full step-by-step derivation, and text export
-            — free and entirely browser-based.
+            — free.
           </p>
         </div>
       </section>
@@ -136,7 +136,7 @@ export default function TransformerEfficiencyCalculatorSEO() {
                 "Automatic efficiency rating (Excellent to Very Poor)",
                 "Full step-by-step derivation",
                 "Six built-in presets across efficiency levels",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

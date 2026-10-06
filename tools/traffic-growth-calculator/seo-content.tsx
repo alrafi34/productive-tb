@@ -8,13 +8,13 @@ export default function TrafficGrowthCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>traffic growth calculator</strong> is a free browser-based tool that projects how a website's monthly traffic will change over time, using either a compound or linear growth model. It answers a question every SEO professional and content team eventually asks: <em>if this growth rate holds, where will our traffic actually be in six, twelve, or thirty-six months?</em>
+            A <strong>traffic growth calculator</strong> is a free tool that projects how a website's monthly traffic will change over time, using either a compound or linear growth model. It answers a question every SEO professional and content team eventually asks: <em>if this growth rate holds, where will our traffic actually be in six, twelve, or thirty-six months?</em>
           </p>
           <p>
             Website traffic rarely grows in a straight line — SEO, content marketing, and audience-building efforts compound over time, the same way interest compounds on an investment. A blog growing 8% month-over-month doesn't simply add 8% of its starting traffic every month forever; each month's growth builds on the previous month's larger base. This calculator models that compounding effect precisely, while also supporting a simpler linear model for cases where growth is expected to be flat and additive rather than accelerating.
           </p>
           <p>
-            This tool is built for <strong>SEO specialists, digital marketers, content creators, bloggers, startup founders, marketing agencies, SaaS companies, ecommerce businesses, and students learning digital marketing</strong> who need to forecast traffic, set realistic growth targets, and compare multiple growth scenarios side by side. Every calculation runs locally in your browser — no signup, no data collection — with a full monthly projection table, a visual growth chart, and exportable CSV, JSON, and PNG reports.
+            This tool is built for <strong>SEO specialists, digital marketers, content creators, bloggers, startup founders, marketing agencies, SaaS companies, ecommerce businesses, and students learning digital marketing</strong> who need to forecast traffic, set realistic growth targets, and compare multiple growth scenarios side by side. No signup and no data collection, with a full monthly projection table, a visual growth chart, and exportable CSV, JSON, and PNG reports.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function TrafficGrowthCalculatorSEO() {
                 "Calculation history — save and reload up to 20 past forecasts",
                 "Keyboard shortcuts — Enter to jump to results, Esc to reset",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -267,7 +267,7 @@ export default function TrafficGrowthCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your traffic figures, growth rate assumptions, and forecast data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

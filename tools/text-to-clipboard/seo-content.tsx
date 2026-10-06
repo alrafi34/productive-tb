@@ -16,7 +16,7 @@ const strengths = [
   },
   {
     title: "Privacy-first behavior",
-    text: "All operations run in the browser for fast response and local content handling.",
+    text: "We do not collect or store what you enter.",
   },
 ];
 

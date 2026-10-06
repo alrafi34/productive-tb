@@ -26,7 +26,7 @@ export default function ThermalExpansionCalculatorSEO() {
             temperature inputs.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations run instantly in your browser with no data sent to any server. Results include
+            We do not collect or store what you enter. Results include
             the expansion amount, final dimension, percentage change, and a step-by-step formula breakdown.
           </p>
         </div>
