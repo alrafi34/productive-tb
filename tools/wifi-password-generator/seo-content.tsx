@@ -11,8 +11,7 @@ export default function WiFiPasswordGeneratorSEOContent() {
           The WiFi Password Generator is a specialized tool designed to create secure, router-compatible 
           passwords for wireless networks. Whether you're setting up a home WiFi network, creating a guest 
           network, or securing your business WiFi, this tool generates passwords that are both secure and 
-          easy to share. All generation happens locally in your browser using cryptographically secure 
-          randomness.
+          easy to share. We do not collect or store what you enter.
         </p>
       </section>
 
@@ -21,7 +20,7 @@ export default function WiFiPasswordGeneratorSEOContent() {
           Key Features
         </h2>
         <ul className="space-y-2 text-gray-700">
-          <li><strong>Cryptographically Secure:</strong> Uses crypto.getRandomValues() for true randomness</li>
+          <li><strong>Cryptographically Secure:</strong> Uses a cryptographically secure random generator</li>
           <li><strong>Router Compatible:</strong> Validates passwords against WPA2/WPA3 standards</li>
           <li><strong>Memorable Mode:</strong> Generates easy-to-type passwords using pronounceable patterns</li>
           <li><strong>Quick Presets:</strong> Home WiFi, Guest WiFi, and Advanced security presets</li>
@@ -186,7 +185,7 @@ export default function WiFiPasswordGeneratorSEOContent() {
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Favorites System</h3>
-            <p>Mark passwords as favorites to save them locally. Perfect for keeping backup passwords 
+            <p>Mark passwords as favorites to save them. Perfect for keeping backup passwords 
             or passwords for different networks.</p>
           </div>
           <div>
@@ -196,7 +195,7 @@ export default function WiFiPasswordGeneratorSEOContent() {
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Password History</h3>
-            <p>Automatically saves your last 10 generated passwords locally. Quick access to recently 
+            <p>Automatically saves your last 10 generated passwords. Quick access to recently 
             generated passwords without regenerating.</p>
           </div>
         </div>
@@ -210,12 +209,9 @@ export default function WiFiPasswordGeneratorSEOContent() {
           Your security and privacy are paramount:
         </p>
         <ul className="space-y-2 text-gray-700">
-          <li><strong>100% Client-Side:</strong> All password generation happens in your browser</li>
-          <li><strong>No Server Communication:</strong> Nothing is sent to any server</li>
-          <li><strong>Cryptographically Secure:</strong> Uses crypto.getRandomValues() API</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
+          <li><strong>Cryptographically Secure:</strong> Uses a cryptographically secure random generator</li>
           <li><strong>No Tracking:</strong> We don't track what passwords you generate</li>
-          <li><strong>Local Storage Only:</strong> History and favorites stored only in your browser</li>
-          <li><strong>No Analytics:</strong> No third-party scripts or tracking</li>
         </ul>
       </section>
 
@@ -264,8 +260,7 @@ export default function WiFiPasswordGeneratorSEOContent() {
         </h2>
         <p className="text-gray-700 leading-relaxed">
           This WiFi password generator works in all modern browsers including Chrome, Firefox, Safari, 
-          Edge, and Opera. The crypto.getRandomValues() API is supported in all browsers released after 
-          2013, ensuring wide compatibility and secure password generation.
+          Edge, and Opera, with secure password generation on every platform.
         </p>
       </section>
       <ToolFaq items={wifiPasswordGeneratorConfig.seo.faq} />

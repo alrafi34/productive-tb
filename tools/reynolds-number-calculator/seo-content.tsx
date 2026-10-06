@@ -58,7 +58,7 @@ export default function ReynoldsNumberCalculatorSEO() {
                 "Visual flow regime indicator bar",
                 "Fluid presets: Water, Air, Engine Oil, Seawater",
                 "Auto-detection of fluid type from inputs",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT file",
                 "Formula substitution breakdown",
               ].map((tip, i) => (

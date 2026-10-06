@@ -29,7 +29,7 @@ export default function AntennaLengthCalculatorSEO() {
           <li>Real-time calculation with debounced input handling</li>
           <li>Common frequency presets (WiFi, IoT, GPS, Bluetooth)</li>
           <li>Step-by-step calculation breakdown</li>
-          <li>Calculation history with localStorage persistence</li>
+          <li>Calculation history that persists between visits</li>
           <li>Export results to text file</li>
           <li>Copy results to clipboard</li>
           <li>Responsive design for all devices</li>

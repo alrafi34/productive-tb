@@ -62,7 +62,7 @@ export default function KineticEnergyCalculatorSEO() {
                 "Live formula display with your actual values",
                 "Step-by-step calculation breakdown",
                 "Unit conversion table (J, kJ, MJ, cal, kWh)",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for baseball, car, bicycle, train",
               ].map((tip, i) => (

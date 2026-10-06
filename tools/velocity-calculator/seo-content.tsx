@@ -63,7 +63,7 @@ export default function VelocityCalculatorSEO() {
                 "Step-by-step calculation breakdown",
                 "Live formula display with your actual values",
                 "Shareable URL with query parameters",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for common scenarios",
               ].map((tip, i) => (

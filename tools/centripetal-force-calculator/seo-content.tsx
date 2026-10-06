@@ -60,7 +60,7 @@ export default function CentripetalForceSEO() {
                 "Step-by-step calculation breakdown",
                 "Live formula display with your actual values",
                 "Unit conversion breakdown (N, kN, lbf)",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
                 "Quick presets for common scenarios",
                 "Scientific notation for very large/small values",

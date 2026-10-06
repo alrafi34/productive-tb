@@ -46,7 +46,7 @@ export default function VideoFrameExtractorSEOContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <span>100% browser-based - no uploads to servers</span>
+                <span>Private: your inputs are not collected or stored</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
@@ -87,8 +87,7 @@ export default function VideoFrameExtractorSEOContent() {
           <div className="prose prose-gray max-w-none">
             <p className="text-gray-700">
               Our video frame extractor eliminates the need for heavy video editing software when you just need 
-              a quick screenshot from a video. Built entirely for the browser using HTML5 Video and Canvas APIs, 
-              it processes everything locally on your device for maximum privacy and speed.
+              a quick screenshot from a video. We do not collect or store your files.
             </p>
             <p className="text-gray-700">
               Whether you're a YouTuber needing thumbnails, a social media manager creating preview images, 

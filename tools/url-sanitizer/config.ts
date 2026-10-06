@@ -53,8 +53,7 @@ export const toolConfig = {
     "History of cleaned URLs",
     "Drag & drop URL input",
     "Mobile responsive design",
-    "100% client-side processing",
-    "No data sent to servers",
+    "Private: your inputs are not collected or stored",
     "Privacy-focused design"
   ]
 };

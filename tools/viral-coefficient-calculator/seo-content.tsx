@@ -8,13 +8,13 @@ export default function ViralCoefficientCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>viral coefficient calculator</strong> (also called a K-Factor calculator) is a free browser-based tool that measures how effectively your existing users bring in new users through referrals, invitations, or sharing. It answers a core growth question: <em>for every user I have, how many new users do they generate on their own?</em>
+            A <strong>viral coefficient calculator</strong> (also called a K-Factor calculator) is a free tool that measures how effectively your existing users bring in new users through referrals, invitations, or sharing. It answers a core growth question: <em>for every user I have, how many new users do they generate on their own?</em>
           </p>
           <p>
             The Viral Coefficient, or K-Factor, is calculated by multiplying the average number of invitations each user sends by the percentage of those invitations that convert into new users. A K-Factor above 1 means your product is growing virally — each generation of referred users is larger than the last — while a K-Factor below 1 means referrals alone will shrink over time and need to be supplemented by other acquisition channels.
           </p>
           <p>
-            This tool is built for <strong>startup founders, SaaS businesses, product managers, growth marketers, mobile app developers, social media marketers, affiliate marketers, investors, and students learning growth marketing</strong>. It projects new users from your current K-Factor, simulates compound referral growth across multiple generations, and exports results as CSV, JSON, or a print-ready report — entirely in your browser.
+            This tool is built for <strong>startup founders, SaaS businesses, product managers, growth marketers, mobile app developers, social media marketers, affiliate marketers, investors, and students learning growth marketing</strong>. It projects new users from your current K-Factor, simulates compound referral growth across multiple generations, and exports results as CSV, JSON, or a print-ready report.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function ViralCoefficientCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past results",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -267,7 +267,7 @@ export default function ViralCoefficientCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your invitation and conversion data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 8 ? "border-b border-gray-100 pb-6" : ""}>

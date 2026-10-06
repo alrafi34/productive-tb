@@ -52,7 +52,7 @@ export default function FlowRateCalculatorSEO() {
                 "7 mass flow unit conversions",
                 "Fluid density presets (Water, Air, Oil, etc.)",
                 "Step-by-step calculation breakdown",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT file",
                 "Keyboard shortcut: Esc to reset",
               ].map((tip, i) => (

@@ -66,7 +66,7 @@ export default function ColumnBucklingCalculatorSEO() {
                 "Step-by-step formula breakdown for students",
                 "Visual end condition diagrams",
                 "K-factor reference table",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT file",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">

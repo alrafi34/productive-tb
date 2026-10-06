@@ -311,7 +311,7 @@ export default function VoiceToTextNotepadUI() {
             <div>
               <h3 className="font-semibold text-green-900 mb-1">100% Private & Secure</h3>
               <p className="text-sm text-green-800">
-                All speech processing happens locally in your browser. No audio or text is sent to any server.
+                We do not collect or store what you enter.
               </p>
             </div>
           </div>

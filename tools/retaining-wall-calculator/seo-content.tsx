@@ -252,7 +252,7 @@ export default function RetainingWallCalculatorSEO() {
           <li>Backfill slope consideration</li>
           <li>Status indicators (safe/caution/unsafe)</li>
           <li>Engineering notes and recommendations</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Export to text or CSV</li>
           <li>Copy results to clipboard</li>
           <li>Mobile-responsive design</li>

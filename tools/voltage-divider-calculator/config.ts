@@ -61,7 +61,7 @@ export const voltageDividerCalculatorConfig = {
       { q: "Can I use a voltage divider to step down power?", a: "No. A resistive divider wastes power as heat and cannot supply meaningful current without significant voltage sag. Use a voltage regulator or buck converter for power conversion instead." },
       { q: "How do I calculate power dissipation in divider resistors?", a: "Power (W) = Current² × Resistance. With 1.5mA through a 4.7kΩ resistor: Power = 0.0015² × 4,700 = 0.0106W (10.6mW)." },
       { q: "What ratio do I need for an Arduino or ESP32 ADC?", a: "Arduino reads up to 5V; ESP32 up to about 3.3V. To read a 12V source on a 5V ADC, use a ratio of 5/12 = 0.417 — R1 = 4.7kΩ, R2 = 3.3kΩ gives Vout = 4.95V." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage and resistor values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

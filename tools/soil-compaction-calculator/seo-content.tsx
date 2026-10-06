@@ -244,7 +244,7 @@ export default function SoilCompactionCalculatorSEO() {
           <li>Visual progress bars and comparisons</li>
           <li>Soil type presets with typical values</li>
           <li>Engineering notes and recommendations</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Export to text or CSV</li>
           <li>Copy results to clipboard</li>
           <li>Color-coded status indicators</li>

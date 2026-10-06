@@ -98,7 +98,7 @@ export default function SpecificHeatCalculatorSEO() {
                 "Temperature units: °C, °F, K",
                 "Multi-unit output: J, kJ, kcal, BTU",
                 "Step-by-step calculation breakdown",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as a TXT file",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">

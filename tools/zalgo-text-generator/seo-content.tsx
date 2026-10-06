@@ -47,7 +47,7 @@ const faqItems = [
   {
     question: "Is this Zalgo text generator private?",
     answer:
-      "Yes. Processing happens in your browser, so your source text is not sent to external servers for conversion.",
+      "Yes. We do not collect or store what you enter.",
   },
 ];
 

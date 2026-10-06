@@ -133,8 +133,7 @@ export default function WiFiPasswordGeneratorUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">WiFi Password Generator</h3>
               <p className="text-sm text-blue-800">
-                Generate secure, router-compatible WiFi passwords. All generation happens locally 
-                using crypto.getRandomValues(). Perfect for home and guest networks.
+                Generate secure, router-compatible WiFi passwords. We do not collect or store what you enter. Perfect for home and guest networks.
               </p>
             </div>
           </div>

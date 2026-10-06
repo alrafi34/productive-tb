@@ -10,8 +10,7 @@ export default function UsernameGeneratorSEOContent() {
         <p className="text-gray-700 leading-relaxed">
           The Username Generator is a powerful tool for creating unique, memorable usernames for social media, 
           gaming platforms, forums, and online accounts. Whether you need a cool gamer tag, a professional 
-          social media handle, or a fantasy-themed username, this tool generates creative options instantly 
-          in your browser.
+          social media handle, or a fantasy-themed username, this tool generates creative options instantly.
         </p>
       </section>
 
@@ -29,7 +28,7 @@ export default function UsernameGeneratorSEOContent() {
           <li><strong>History Tracking:</strong> Access your last 20 generated usernames</li>
           <li><strong>Export Options:</strong> Download as TXT or JSON files</li>
           <li><strong>Customizable:</strong> Control length, characters, and separators</li>
-          <li><strong>100% Private:</strong> All generation happens in your browser</li>
+          <li><strong>100% Private:</strong> Your inputs are not collected or stored</li>
         </ul>
       </section>
 
@@ -164,7 +163,7 @@ export default function UsernameGeneratorSEOContent() {
           
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Favorites System</h3>
-            <p>Mark usernames as favorites to save them locally. Access your favorites anytime to 
+            <p>Mark usernames as favorites to save them. Access your favorites anytime to 
             copy or reference them. Great for keeping backup options or usernames for different platforms.</p>
           </div>
           
@@ -236,11 +235,9 @@ export default function UsernameGeneratorSEOContent() {
           Your privacy is important:
         </p>
         <ul className="space-y-2 text-gray-700">
-          <li><strong>100% Client-Side:</strong> All username generation happens in your browser</li>
-          <li><strong>No Server Communication:</strong> Nothing is sent to any server</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
           <li><strong>No Tracking:</strong> We don't track what usernames you generate</li>
-          <li><strong>Local Storage Only:</strong> Favorites and history stored only in your browser</li>
-          <li><strong>Cryptographically Secure:</strong> Uses crypto.getRandomValues() for randomness</li>
+          <li><strong>Cryptographically Secure:</strong> Uses a cryptographically secure random generator</li>
         </ul>
       </section>
 
@@ -265,7 +262,7 @@ export default function UsernameGeneratorSEOContent() {
         </h2>
         <p className="text-gray-700 leading-relaxed">
           This username generator works in all modern browsers including Chrome, Firefox, Safari, Edge, 
-          and Opera. The crypto.getRandomValues() API ensures secure random generation across all platforms.
+          and Opera, with secure random generation on every platform.
         </p>
       </section>
       <ToolFaq items={usernameGeneratorConfig.seo.faq} />

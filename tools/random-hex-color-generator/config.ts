@@ -12,7 +12,7 @@ export const randomHexColorGeneratorConfig = {
     'Multiple palette sizes (1, 3, 5 colors)',
     'Color locking to preserve favorites',
     'Copy HEX, RGB, and HSL values with one click',
-    'Color history with localStorage persistence',
+    'Color history that persists between visits',
     'Automatic text contrast adjustment',
     'Gradient generation mode',
     'Export options (CSS, SCSS, JSON, Tailwind)',

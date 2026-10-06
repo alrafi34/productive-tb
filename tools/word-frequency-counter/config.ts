@@ -60,7 +60,7 @@ export const toolConfig = {
       { q: "Can I export word frequency data?", a: "Yes. Export options include CSV and JSON, and you can also copy formatted results to clipboard." },
       { q: "Who should use a word frequency analyzer?", a: "Writers, editors, students, researchers, and SEO teams can use it to analyze vocabulary patterns and keyword distribution." },
       { q: "Is this word frequency counter free?", a: "Yes. It is free to use without account registration." },
-      { q: "Is my text private?", a: "Yes. Analysis runs in your browser, so your text is not uploaded to external servers." },
+      { q: "Is my text private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

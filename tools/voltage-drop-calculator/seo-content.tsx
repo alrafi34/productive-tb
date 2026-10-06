@@ -30,7 +30,7 @@ export default function VoltageDropCalculatorSEO() {
             branch circuit and feeder runs, electrical engineers designing power distribution, solar and battery
             system installers sizing low-voltage DC cabling, and homeowners or DIYers planning long outdoor or
             workshop runs</strong>. It supports single-phase, three-phase, and DC systems in both copper and
-            aluminum. Browser-based, free, no signup required.
+            aluminum. Free, no signup required.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function VoltageDropCalculatorSEO() {
                 "6 built-in common configuration presets",
                 "Calculation history (last 20 entries)",
                 "Export results as text report",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

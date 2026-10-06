@@ -61,7 +61,7 @@ export default function MomentumCalculatorSEO() {
                 "Live formula display with your actual values",
                 "Step-by-step calculation breakdown",
                 "Unit conversion table (kg·m/s, g·m/s, lb·ft/s)",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Export results as a TXT file",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -58,7 +58,7 @@ export default function NaturalFrequencySEO() {
                 "Angular frequency and period output",
                 "Step-by-step calculation breakdown",
                 "Quick presets for common scenarios",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT file",
                 "Copy result to clipboard",
                 "Precision control (2–8 decimal places)",

@@ -30,7 +30,7 @@ export default function VoltageDividerCalculatorSEO() {
             Built for <strong>electronics students, hobbyists working with Arduino and ESP32 projects,
             hardware developers designing sensor interfaces, and electrical engineers</strong> prototyping
             signal-level voltage conversion. Includes six built-in presets for common logic-level conversions,
-            step-by-step calculation display, and text export — free and entirely browser-based.
+            step-by-step calculation display, and text export — free.
           </p>
         </div>
       </section>
@@ -87,9 +87,9 @@ export default function VoltageDividerCalculatorSEO() {
                 "Power dissipation in R1 and R2 (mW)",
                 "Resistance unit support: Ω, kΩ, MΩ",
                 "Six built-in presets (Arduino, ESP32, logic-level)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

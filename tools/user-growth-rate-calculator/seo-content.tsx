@@ -8,13 +8,13 @@ export default function UserGrowthRateCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>user growth rate calculator</strong> is a free browser-based tool that measures how quickly a user base has grown (or shrunk) between two points in time. It answers a core analytics question: <em>what percentage did my user base change by, and is that pace of growth healthy?</em>
+            A <strong>user growth rate calculator</strong> is a free tool that measures how quickly a user base has grown (or shrunk) between two points in time. It answers a core analytics question: <em>what percentage did my user base change by, and is that pace of growth healthy?</em>
           </p>
           <p>
             Growth rate is one of the first metrics investors, founders, and growth teams look at when evaluating a product's trajectory, since a single percentage instantly communicates momentum. This calculator divides the net change in users by the starting user count, rates the result against standard growth benchmarks from Declining to Excellent, converts the rate to an annualized equivalent based on your selected time period, and projects future user counts on an interactive chart.
           </p>
           <p>
-            This tool is built for <strong>SaaS founders, startup teams, product managers, marketing teams, growth analysts, mobile app developers, investors, and students learning analytics</strong>. It supports adjustable decimal precision, calculation history, scenario comparison, and export as CSV, JSON, or a print-ready report — entirely in your browser.
+            This tool is built for <strong>SaaS founders, startup teams, product managers, marketing teams, growth analysts, mobile app developers, investors, and students learning analytics</strong>. It supports adjustable decimal precision, calculation history, scenario comparison, and export as CSV, JSON, or a print-ready report.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function UserGrowthRateCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past results",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -256,7 +256,7 @@ export default function UserGrowthRateCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your user counts and growth data are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

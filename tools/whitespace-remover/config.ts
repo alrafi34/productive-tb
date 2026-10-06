@@ -78,7 +78,7 @@ export const whitespaceRemoverConfig = {
       { q: "Can I convert tabs to spaces or spaces to tabs?", a: "Yes. Tab conversion supports both directions and lets you choose tab size." },
       { q: "Can I upload files for cleanup?", a: "Yes. You can upload or drag-and-drop text files such as .txt, .md, and .csv." },
       { q: "Is this whitespace remover free?", a: "Yes. It is free to use with no account required." },
-      { q: "Is my text private?", a: "Yes. Cleaning runs in your browser, so your text is not sent to external servers." },
+      { q: "Is my text private?", a: "Yes. We do not collect or store what you enter." },
     ],
   }
 };

@@ -20,7 +20,7 @@ export default function WallAreaCalculatorSEO() {
           <li><strong>Real-Time Calculations:</strong> Instant results as you type</li>
           <li><strong>Unit Flexibility:</strong> Support for both feet and meters</li>
           <li><strong>Export Options:</strong> Download results as CSV or text files</li>
-          <li><strong>Auto-Save:</strong> Your data is automatically saved locally</li>
+          <li><strong>Auto-Save:</strong> Your data is saved automatically</li>
         </ul>
 
         <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Use</h3>

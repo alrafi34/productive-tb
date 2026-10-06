@@ -40,6 +40,6 @@ export const toolConfig = {
     "Activity level adjustment for accurate calorie needs",
     "Real-time calculation as you type",
     "Copy results to clipboard",
-    "Save calculation history locally"
+    "Save calculation history"
   ]
 };

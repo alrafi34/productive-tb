@@ -53,6 +53,6 @@ export const usernameGeneratorConfig = {
     "Username history (last 20)",
     "Export as TXT or JSON",
     "Exclude ambiguous characters",
-    "100% client-side generation"
+    "Private generation"
   ]
 };

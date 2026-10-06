@@ -57,8 +57,7 @@ export default function UserAgentParserSEOContent() {
               Privacy & Security
             </h3>
             <p>
-              All User-Agent parsing happens entirely in your browser using JavaScript. No data is sent to 
-              external servers, ensuring complete privacy and security of your browser information.
+              We do not collect or store what you enter.
             </p>
   
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">

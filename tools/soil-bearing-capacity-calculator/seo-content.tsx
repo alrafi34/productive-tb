@@ -186,7 +186,7 @@ export default function SoilBearingCapacityCalculatorSEO() {
           <li>Customizable factor of safety</li>
           <li>Unit conversion (meters/feet)</li>
           <li>Engineering notes and recommendations</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Export results to text or CSV</li>
           <li>Copy results to clipboard</li>
           <li>Status indicators (safe/moderate/unsafe)</li>

@@ -61,7 +61,7 @@ export default function BernoulliEquationCalculatorSEO() {
                 "Step-by-step formula substitution",
                 "Energy terms breakdown table",
                 "Fluid presets: Water, Air, Oil, Gasoline, Seawater",
-                "Calculation history with localStorage",
+                "Calculation history",
                 "Export results as TXT file",
                 "Swap inputs between Point 1 and Point 2",
               ].map((tip, i) => (

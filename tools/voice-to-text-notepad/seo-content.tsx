@@ -13,7 +13,7 @@ export default function VoiceToTextNotepadSEOContent() {
         <div className="space-y-6 text-gray-700 leading-relaxed">
           <p>
             Transform your spoken words into written text instantly with our free Voice-to-Text Notepad. 
-            This powerful browser-based tool uses the Web Speech API to provide real-time speech recognition, 
+            This powerful online tool provides real-time speech recognition, 
             allowing you to dictate notes, ideas, and documents without typing a single word.
           </p>
 
@@ -39,11 +39,9 @@ export default function VoiceToTextNotepadSEOContent() {
                 🔒 Privacy & Security
               </h3>
               <ul className="space-y-2 text-sm">
-                <li>• 100% browser-based processing</li>
-                <li>• No data sent to external servers</li>
-                <li>• Local storage only</li>
+                <li>• We do not collect or store your notes</li>
+                <li>• Speech recognition is provided by your browser (in Chrome, by Google)</li>
                 <li>• No registration required</li>
-                <li>• Works offline after loading</li>
                 <li>• Secure microphone access</li>
               </ul>
             </div>
@@ -59,7 +57,7 @@ export default function VoiceToTextNotepadSEOContent() {
             <li>Use the pause button to temporarily stop recording</li>
             <li>Edit the transcribed text manually if needed</li>
             <li>Copy your notes or download them as TXT/Markdown files</li>
-            <li>Your notes are automatically saved to your browser's local storage</li>
+            <li>Your notes are automatically saved</li>
           </ol>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
@@ -84,7 +82,7 @@ export default function VoiceToTextNotepadSEOContent() {
             Browser Compatibility
           </h3>
           <p className="text-sm">
-            This tool works best in modern browsers that support the Web Speech API, including:
+            This tool works best in modern browsers that support speech recognition, including:
             Chrome (desktop and mobile), Edge, Safari (iOS 14.5+), and Firefox (with experimental features enabled).
             For the best experience, use Chrome or Edge on desktop devices.
           </p>

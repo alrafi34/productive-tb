@@ -64,7 +64,7 @@ export default function BoltLoadCalculatorSEO() {
                 "Engineering warnings for overload conditions",
                 "Tensile stress area from ISO 898 / ASME B1.1 tables",
                 "Export results as TXT or CSV",
-                "Calculation history with localStorage persistence",
+                "Calculation history that persists between visits",
                 "Quick presets for common bolt standards",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">

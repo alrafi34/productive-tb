@@ -59,7 +59,7 @@ export default function GearRatioCalculatorSEO() {
                 "Torque multiplication with unit support",
                 "Compare two gear setups side by side",
                 "Presets for bicycle, automotive, robotics",
-                "Calculation history with localStorage",
+                "Calculation history",
               ].map((tip, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
