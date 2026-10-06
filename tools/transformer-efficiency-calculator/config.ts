@@ -57,7 +57,7 @@ export const transformerEfficiencyCalculatorConfig = {
       { q: "Why does transformer efficiency vary with load?", a: "Core losses dominate at light load; copper losses dominate at heavy load. Peak efficiency typically occurs around 50-75% of rated load." },
       { q: "Why do utilities care about distribution transformer efficiency?", a: "These run continuously for decades, so small efficiency gains compound into large lifetime energy savings, justifying higher upfront cost for efficient units." },
       { q: "Can transformer efficiency exceed 100%?", a: "No. Output power can never exceed input power. A result above 100% indicates a measurement or input error." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, voltage, current, and loss values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

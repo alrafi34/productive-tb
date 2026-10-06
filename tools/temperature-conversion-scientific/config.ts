@@ -14,7 +14,7 @@ export const toolConfig = {
       { q: "Why is Rankine included in this converter?", a: "Rankine is useful in thermodynamics and some engineering systems. Including Rankine makes the tool more complete for scientific and technical users beyond everyday weather conversion." },
       { q: "Can this tool handle decimal and negative temperatures?", a: "Yes. You can input negative numbers and decimal values, then control output precision with the decimal slider for cleaner or more detailed results." },
       { q: "Is this free online temperature converter mobile friendly?", a: "Yes. The tool is free to use and works across desktop, tablet, and mobile browsers." },
-      { q: "Is my conversion data private?", a: "Conversions run in your browser. Saved history is stored locally on your device, giving you better privacy and quick repeat access." },
+      { q: "Is my conversion data private?", a: "We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
       { q: "Can I copy all conversion results at once?", a: "Yes. Use the copy button to export all unit results together, which is ideal for reports, notes, spreadsheets, and assignments." },
     ],
     title: "Temperature Converter – Celsius, Fahrenheit, Kelvin, Rankine",
@@ -50,6 +50,6 @@ export const toolConfig = {
     "Adjustable decimal precision",
     "Copy all results to clipboard",
     "Calculation history management",
-    "Works entirely in the browser"
+    "Nothing to install"
   ]
 };

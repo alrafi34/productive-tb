@@ -54,7 +54,7 @@ export default function SquareFeetToAcreConverterSEO({ onPick }: { onPick?: (val
             Built for <strong>home buyers reading listing data, real estate agents preparing comparisons,
             architects calculating site coverage, contractors sizing permits, agricultural planners
             working with field areas, and anyone who encounters square footage and needs the acreage</strong>.
-            Browser-based, free, no signup required.
+            Free, no signup required.
           </p>
         </div>
       </section>
@@ -115,7 +115,7 @@ export default function SquareFeetToAcreConverterSEO({ onPick }: { onPick?: (val
                 "Conversion history (last 10 entries)",
                 "Copy result to clipboard",
                 "Export conversion report as text",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

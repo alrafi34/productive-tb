@@ -24,7 +24,7 @@ export default function SQLFormatterSEOContent() {
           <li>Query statistics and analysis</li>
           <li>Copy to clipboard functionality</li>
           <li>Local history tracking</li>
-          <li>100% client-side processing - no data sent to servers</li>
+          <li>Private: your inputs are not collected or stored</li>
         </ul>
 
         <h3 className="text-lg font-semibold mb-3 text-gray-900">
@@ -64,7 +64,7 @@ export default function SQLFormatterSEOContent() {
           Privacy & Security
         </h3>
         <p className="mb-4">
-          All SQL formatting is performed entirely in your browser. Your queries are never sent to any server or stored on external systems. This ensures complete privacy and security for sensitive database queries.
+          We do not collect or store what you enter. This ensures complete privacy and security for sensitive database queries.
         </p>
 
         <h3 className="text-lg font-semibold mb-3 text-gray-900">

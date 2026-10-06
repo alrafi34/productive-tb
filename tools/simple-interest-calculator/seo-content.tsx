@@ -12,7 +12,7 @@ const comparisonPoints = [
   },
   {
     title: "Practical output controls",
-    text: "Use precision options, copy summary text, and save recent calculations locally.",
+    text: "Use precision options, copy summary text, and save recent calculations.",
   },
   {
     title: "Single-page clarity",

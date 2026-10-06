@@ -45,8 +45,8 @@ export const toolConfig = {
     "Copy to clipboard functionality",
     "Query statistics analyzer",
     "Dark/Light theme toggle",
-    "LocalStorage history",
+    "History",
     "Mobile responsive design",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

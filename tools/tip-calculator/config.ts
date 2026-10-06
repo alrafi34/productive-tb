@@ -45,7 +45,7 @@ export const tipCalculatorConfig = {
       { q: "How is the tip calculated?", a: "Tip = bill × tip % ÷ 100, total = bill + tip, and each person pays total ÷ number of people. An $80 bill with an 18% tip is $14.40 in tip and $94.40 in total, or $23.60 each for four people." },
       { q: "What does round-up do?", a: "It rounds each person's share up to the next whole amount, so $23.60 becomes $24.00. Everyone pays a round number and the extra goes to the tip." },
       { q: "Which currencies can I use?", a: "US dollars, euros, pounds, Canadian dollars and Australian dollars. The currency is guessed from your location and can be changed at any time; the maths is the same in every currency." },
-      { q: "Is my data saved?", a: "Your last bill, tip and currency are kept in your browser's local storage so they are there next time. Nothing is sent to a server." },
+      { q: "Is my data saved?", a: "Your last bill, tip and currency are saved so they are there next time. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -60,7 +60,7 @@ export const tipCalculatorConfig = {
     "Bill split visualization",
     "Per-person breakdown display",
     "Clear all button",
-    "LocalStorage memory for last settings",
+    "Remembers your last settings",
     "Dark/Light theme support",
     "Mobile responsive design",
     "Keyboard shortcuts",
@@ -68,6 +68,6 @@ export const tipCalculatorConfig = {
     "Preset quick buttons",
     "Smooth animations",
     "Large touch targets for mobile",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

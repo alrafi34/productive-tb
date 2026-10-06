@@ -8,13 +8,13 @@ export default function SocialMediaReachCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>social media reach calculator</strong> is a free browser-based tool that estimates the potential reach, impressions, engagement, shares, saves, and audience growth of social media content across nine major platforms — Instagram, Facebook, TikTok, LinkedIn, YouTube, X (Twitter), Pinterest, Threads, and Snapchat. Rather than relying on platform analytics dashboards, this calculator lets you forecast performance before publishing so you can set realistic KPIs, evaluate campaign scenarios, and plan content strategy with data-driven confidence.
+            A <strong>social media reach calculator</strong> is a free tool that estimates the potential reach, impressions, engagement, shares, saves, and audience growth of social media content across nine major platforms — Instagram, Facebook, TikTok, LinkedIn, YouTube, X (Twitter), Pinterest, Threads, and Snapchat. Rather than relying on platform analytics dashboards, this calculator lets you forecast performance before publishing so you can set realistic KPIs, evaluate campaign scenarios, and plan content strategy with data-driven confidence.
           </p>
           <p>
             Reach, impressions, and engagement are the three core metrics in social media marketing, but each platform calculates and weighs them differently. Instagram's algorithm distributes content to roughly 20–40% of followers organically; TikTok's For You Page can push content far beyond the follower base; LinkedIn rewards professional content with a 25–35% organic reach rate that outperforms most other networks. This calculator applies platform-specific baseline assumptions — adjustable for content type, audience quality, and paid amplification — to produce a meaningful, contextualised estimate rather than a generic formula.
           </p>
           <p>
-            This tool is built for <strong>social media managers, digital marketers, content creators, influencers, agencies, startup founders, and small business owners</strong> who need a quick, reliable reach estimate without exporting data from ad platforms. All calculations run locally in your browser — no data is stored or transmitted. Results export as TXT or CSV for use in client reports and content calendars.
+            This tool is built for <strong>social media managers, digital marketers, content creators, influencers, agencies, startup founders, and small business owners</strong> who need a quick, reliable reach estimate without exporting data from ad platforms. We do not collect or store what you enter. Results export as TXT or CSV for use in client reports and content calendars.
           </p>
         </div>
       </section>
@@ -99,7 +99,7 @@ export default function SocialMediaReachCalculatorSEO() {
                 "Copy full report to clipboard or share a summary in one click",
                 "Side-by-side comparison mode for two campaigns",
                 "Save up to 20 calculations to local browser history",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -280,7 +280,7 @@ export default function SocialMediaReachCalculatorSEO() {
             },
             {
               q: "Does this tool store my data?",
-              a: "No. All calculations run entirely in your browser using JavaScript. No follower counts, engagement rates, or campaign data you enter are transmitted to any server. The history feature stores results only in your browser's localStorage, accessible only on your device and cleared when you clear your browser data. This makes the tool completely safe for planning confidential client campaigns.",
+              a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you. This makes the tool completely safe for planning confidential client campaigns.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

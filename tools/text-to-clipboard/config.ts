@@ -60,7 +60,7 @@ export const toolConfig = {
       { q: "Is this helpful for writers and content teams?", a: "Yes. It is useful for copying snippets, templates, short responses, and content blocks into editors or CMS tools." },
       { q: "Can developers use this for docs and code sharing?", a: "Yes. Markdown and HTML copy formats are useful for documentation, issue reports, and technical communication." },
       { q: "Is the text to clipboard tool free?", a: "Yes. It is free to use without sign-up." },
-      { q: "Is my text private?", a: "Yes. Text handling is browser-based and does not require uploading content to external servers." },
+      { q: "Is my text private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

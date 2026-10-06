@@ -38,7 +38,7 @@ export default function TransformerCurrentCalculatorSEO() {
     },
     {
       q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. Your power, voltage, and power factor values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -77,7 +77,7 @@ export default function TransformerCurrentCalculatorSEO() {
             Built for <strong>electricians sizing cables and overload protection, electrical engineers
             verifying transformer and motor current ratings, and facility managers</strong> assessing
             circuit loading. Includes six built-in presets spanning residential to heavy industrial systems,
-            full step-by-step derivation, and text and JSON export — free and entirely browser-based.
+            full step-by-step derivation, and text and JSON export — free.
           </p>
         </div>
       </section>
@@ -134,7 +134,7 @@ export default function TransformerCurrentCalculatorSEO() {
                 "Apparent power (VA) calculation",
                 "Full step-by-step derivation",
                 "Six built-in presets (residential, industrial, motor)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export as text or JSON file",
                 "No signup required",
               ].map((f, i) => (

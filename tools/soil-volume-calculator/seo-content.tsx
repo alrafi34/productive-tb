@@ -19,7 +19,7 @@ export default function SoilVolumeCalculatorSEO() {
             This calculator supports five excavation shapes — rectangular, circular, trench, triangular, and custom area — covering the most common real-world scenarios in construction, landscaping, civil engineering, and agriculture. Results are instantly converted between cubic meters, cubic feet, and cubic yards.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Optional soil density input enables weight estimation in kilograms and metric tons. An optional cost-per-unit field provides a quick project cost estimate. All calculations run entirely in your browser with no data sent to any server.
+            Optional soil density input enables weight estimation in kilograms and metric tons. An optional cost-per-unit field provides a quick project cost estimate. We do not collect or store what you enter.
           </p>
         </div>
       </section>

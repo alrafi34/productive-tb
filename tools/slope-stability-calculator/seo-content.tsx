@@ -216,7 +216,7 @@ export default function SlopeStabilityCalculatorSEO() {
           <li>Status indicators (stable/marginal/unstable)</li>
           <li>Visual FoS progress indicator</li>
           <li>Engineering notes and recommendations</li>
-          <li>Calculation history with localStorage</li>
+          <li>Calculation history</li>
           <li>Export to text or CSV</li>
           <li>Copy results to clipboard</li>
           <li>Mobile-responsive design</li>

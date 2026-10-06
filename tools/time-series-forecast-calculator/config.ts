@@ -83,7 +83,7 @@ export const timeSeriesForecastCalculatorConfig = {
     faq: [
       {
         q: "What is a time series forecast calculator?",
-        a: "A time series forecast calculator is a free browser-based tool that analyzes historical data and predicts future values using statistical forecasting methods such as moving average, exponential smoothing, Holt's linear trend, linear trend regression and seasonal naive forecasting.",
+        a: "A time series forecast calculator is a free tool that analyzes historical data and predicts future values using statistical forecasting methods such as moving average, exponential smoothing, Holt's linear trend, linear trend regression and seasonal naive forecasting.",
       },
       {
         q: "Which forecasting method should I use?",
@@ -127,7 +127,7 @@ export const timeSeriesForecastCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

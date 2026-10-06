@@ -6,9 +6,8 @@ export default function TextToSpeechSEOContent() {
           What is Text-to-Speech Preview?
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          The Text-to-Speech Preview tool converts written text into spoken audio directly in your browser using the Web Speech API. 
-          It allows you to hear how text sounds with different voices, languages, pitch levels, and speaking speeds—all without sending 
-          any data to external servers.
+          The Text-to-Speech Preview tool converts written text into spoken audio. 
+          It allows you to hear how text sounds with different voices, languages, pitch levels, and speaking speeds. We do not collect or store what you enter.
         </p>
       </section>
 
@@ -23,7 +22,7 @@ export default function TextToSpeechSEOContent() {
           <li>✓ <strong>Speed Control:</strong> Set speech rate from 0.5x to 2x</li>
           <li>✓ <strong>Volume Control:</strong> Adjust playback volume</li>
           <li>✓ <strong>Playback Controls:</strong> Play, pause, resume, and stop</li>
-          <li>✓ <strong>100% Private:</strong> All processing happens locally in your browser</li>
+          <li>✓ <strong>100% Private:</strong> Your inputs are not collected or stored</li>
           <li>✓ <strong>No API Cost:</strong> Uses native browser speech synthesis</li>
         </ul>
       </section>
@@ -61,7 +60,7 @@ export default function TextToSpeechSEOContent() {
           Browser Compatibility
         </h2>
         <p className="text-gray-700 mb-3">
-          The Web Speech API is supported in most modern browsers:
+          Text-to-speech works in most modern browsers:
         </p>
         <ul className="text-gray-700 space-y-1">
           <li>✓ Chrome/Chromium (recommended)</li>
@@ -91,8 +90,7 @@ export default function TextToSpeechSEOContent() {
           Privacy & Security
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          All text-to-speech processing happens entirely in your browser using your device's native speech synthesis engine. 
-          No text, audio, or personal data is sent to any server. Your content remains completely private and secure.
+          We do not collect or store what you enter. Your content remains completely private and secure.
         </p>
       </section>
     </div>

@@ -76,7 +76,7 @@ export const standardDeviationCalculatorConfig = {
     faq: [
       {
         q: "What is a standard deviation calculator?",
-        a: "A standard deviation calculator is a free browser-based tool that measures how spread out a dataset is from its average (mean). It computes both population and sample standard deviation, along with variance, median, mode, quartiles, and other statistical measures.",
+        a: "A standard deviation calculator is a free tool that measures how spread out a dataset is from its average (mean). It computes both population and sample standard deviation, along with variance, median, mode, quartiles, and other statistical measures.",
       },
       {
         q: "What is the difference between population and sample standard deviation?",
@@ -112,7 +112,7 @@ export const standardDeviationCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

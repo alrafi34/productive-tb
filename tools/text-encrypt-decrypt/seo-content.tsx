@@ -11,10 +11,10 @@ export default function TextEncryptDecryptSEOContent() {
           About Text Encrypt & Decrypt Tool
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          The Text Encrypt & Decrypt Tool is a versatile, browser-based utility for transforming text using 
+          The Text Encrypt & Decrypt Tool is a versatile, online utility for transforming text using 
           various encoding and encryption methods. Whether you need simple text obfuscation with ROT13, 
-          data encoding with Base64, or binary representation, this tool handles it all instantly in your 
-          browser. Perfect for developers, students, and anyone needing quick text transformations.
+          data encoding with Base64, or binary representation, this tool handles it all instantly. 
+          Perfect for developers, students, and anyone needing quick text transformations.
         </p>
       </section>
 
@@ -27,12 +27,12 @@ export default function TextEncryptDecryptSEOContent() {
           <li><strong>Live Dual-Panel:</strong> See input and output side-by-side with instant updates</li>
           <li><strong>Large Text Support:</strong> Efficiently handles 100,000+ characters</li>
           <li><strong>Debounced Processing:</strong> Smooth performance even with massive text blocks</li>
-          <li><strong>Transformation History:</strong> Saves last 10 transformations locally</li>
+          <li><strong>Transformation History:</strong> Saves last 10 transformations</li>
           <li><strong>Swap Function:</strong> Quickly reverse input and output</li>
           <li><strong>Copy to Clipboard:</strong> One-click copying with visual feedback</li>
           <li><strong>Export Options:</strong> Download as TXT or JSON files</li>
           <li><strong>Keyboard Shortcuts:</strong> Ctrl+Enter to transform, Ctrl+C to copy</li>
-          <li><strong>100% Client-Side:</strong> All processing happens in your browser</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
         </ul>
       </section>
 
@@ -134,7 +134,7 @@ export default function TextEncryptDecryptSEOContent() {
         <div className="space-y-4 text-gray-700">
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Transformation History</h3>
-            <p>Automatically saves your last 10 transformations in browser localStorage. Click any 
+            <p>Automatically saves your last 10 transformations. Click any 
             history item to reload it instantly. Perfect for comparing different encoding methods or 
             retrieving previous work.</p>
           </div>
@@ -167,10 +167,8 @@ export default function TextEncryptDecryptSEOContent() {
           Your privacy is important:
         </p>
         <ul className="space-y-2 text-gray-700">
-          <li><strong>100% Client-Side:</strong> All transformations happen in your browser</li>
-          <li><strong>No Server Communication:</strong> Nothing is sent to any server</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
           <li><strong>No Tracking:</strong> We don't track what you encrypt or decrypt</li>
-          <li><strong>Local Storage Only:</strong> History is stored only in your browser</li>
           <li><strong>No Analytics:</strong> No third-party scripts or tracking</li>
         </ul>
         <p className="text-gray-700 leading-relaxed mt-3">

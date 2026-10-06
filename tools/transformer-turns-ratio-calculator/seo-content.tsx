@@ -31,7 +31,7 @@ export default function TransformerTurnsRatioCalculatorSEO() {
             Built for <strong>electrical engineers designing transformers, electronics hobbyists winding
             custom transformers, and students</strong> learning transformer theory. Includes six built-in
             presets from household step-down to industrial distribution transformers, full step-by-step
-            derivation, and text export — free and entirely browser-based.
+            derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function TransformerTurnsRatioCalculatorSEO() {
                 "Calculates missing voltages or turns automatically",
                 "Full step-by-step derivation",
                 "Six built-in presets (step-up, step-down, isolation, more)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

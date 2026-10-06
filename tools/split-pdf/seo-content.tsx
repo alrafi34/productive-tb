@@ -27,7 +27,7 @@ export default function SplitPdfSEO() {
             equal parts, <strong>extracts pages</strong> into a new file or <strong>deletes pages</strong>, in a few
             clicks.
           </p>
-          <p>Pages are copied unchanged and the work happens in your browser, so your document stays private.</p>
+          <p>Pages are copied unchanged. We do not collect or store your files.</p>
         </div>
       </section>
 

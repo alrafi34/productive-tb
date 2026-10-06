@@ -28,8 +28,7 @@ export default function TextReverserSEOContent() {
             writers experimenting with stylized text, social media creators making attention-grabbing
             captions, teachers generating classroom challenges, developers and QA engineers testing
             string-handling logic, and students learning text manipulation concepts</strong>. Five
-            reversal modes, live character and word count, click-to-copy, TXT export, browser-based
-            with no signup required.
+            reversal modes, live character and word count, click-to-copy, TXT export, no signup required.
           </p>
         </div>
       </section>
@@ -100,7 +99,7 @@ export default function TextReverserSEOContent() {
                 "Click-to-copy output",
                 "Download as .txt file",
                 "Shareable URL with input encoded",
-                "Browser-based — no signup required",
+                "No signup required",
                 "Works on mobile and tablet",
                 "Handles multi-paragraph text blocks",
                 "Preserves punctuation and spacing",
@@ -267,7 +266,7 @@ export default function TextReverserSEOContent() {
             },
             {
               q: "Can this tool reverse long text documents?",
-              a: "Yes. There is no hard character limit for typical use. Paste multi-paragraph text for sentence or paragraph reversal, or long strings for letter and word reversal. For very large documents (thousands of words), processing is still instant since all operations run client-side in your browser. Download the output as a .txt file rather than copying for large batches.",
+              a: "Yes. There is no hard character limit for typical use. Paste multi-paragraph text for sentence or paragraph reversal, or long strings for letter and word reversal. For very large documents (thousands of words), processing is still instant. Download the output as a .txt file rather than copying for large batches.",
             },
             {
               q: "Does the tool work for non-English text?",
@@ -279,7 +278,7 @@ export default function TextReverserSEOContent() {
             },
             {
               q: "Is my text private when using this tool?",
-              a: "Yes. All processing happens entirely in your browser using JavaScript. The text you enter is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

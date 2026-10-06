@@ -41,7 +41,7 @@ export const textToSlugConverterConfig = {
       { q: "How are accented and special characters handled?", a: "With accent removal on, letters are turned into plain ASCII: café becomes cafe, Straße becomes strasse and Ørsted becomes orsted. The & sign becomes and, apostrophes are dropped (don't → dont), and all other punctuation separates words." },
       { q: "Can a URL slug contain non-English characters?", a: "Yes. Browsers and search engines support Unicode URLs, so café or münchen can stay as they are when you turn accent removal off. They are sent percent-encoded (caf%C3%A9) when copied, so plain ASCII slugs are easier to share." },
       { q: "Should I change the slug of a published page?", a: "Only with care. A new slug is a new URL, so add a 301 redirect from the old one to keep links and rankings; otherwise visitors and search engines hit a 404 page." },
-      { q: "Is my text uploaded anywhere?", a: "No. Slugs are generated in your browser and nothing you type is sent to a server." },
+      { q: "Is my text uploaded anywhere?", a: "No. We do not collect or store what you enter." },
     ],
   },
 };

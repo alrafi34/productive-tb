@@ -19,7 +19,7 @@ export default function SurveyAreaCalculatorSEO() {
             The calculator accepts measurements in feet, meters, yards, or kilometers and instantly converts the result into all major area units: square feet, square meters, acres, hectares, square yards, decimal, bigha, and katha. This makes it useful for professionals and property owners worldwide.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations run entirely in your browser with no data sent to any server. The tool includes preset templates for common plot sizes, a full conversion table, calculation history saved locally, and a TXT export option.
+            We do not collect or store what you enter. The tool includes preset templates for common plot sizes, a full conversion table, calculation history, and a TXT export option.
           </p>
         </div>
       </section>

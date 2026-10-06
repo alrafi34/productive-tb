@@ -32,7 +32,7 @@ export default function TransistorBiasCalculatorSEO() {
             transistor theory, hobbyists building amplifier and switching circuits, circuit designers
             prototyping analog stages, and engineers verifying a bias network before committing it to a
             PCB</strong>. It supports voltage divider, fixed, and emitter bias, includes four built-in
-            presets, saves your last 10 calculations, and runs entirely in your browser — free, with no
+            presets, saves your last 10 calculations — free, with no
             signup required.
           </p>
         </div>
@@ -92,7 +92,7 @@ export default function TransistorBiasCalculatorSEO() {
                 "Calculation history (last 10 entries saved)",
                 "Export results as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -78,7 +78,7 @@ export const tableToMarkdownConfig = {
       { q: "Does it handle markdown special characters?", a: "Yes. Enable escape mode to prevent markdown symbols from breaking table formatting in rendered output." },
       { q: "Can I wrap cell values in backticks?", a: "Yes. Backtick wrapping is available for code-oriented tables and technical documentation workflows." },
       { q: "Can I preview the output before copying?", a: "Yes. The tool shows both markdown source and rendered HTML table preview so you can validate layout before publishing." },
-      { q: "Is this table to markdown tool private?", a: "Yes. Conversion runs in your browser, so your table content is not sent to external servers." },
+      { q: "Is this table to markdown tool private?", a: "Yes. We do not collect or store what you enter." },
     ],
   }
 };

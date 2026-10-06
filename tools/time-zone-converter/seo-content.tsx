@@ -18,8 +18,8 @@ export default function TimeZoneConverterSEO() {
           <li>See working hours and day differences at a glance</li>
           <li>Save favorite cities for quick access</li>
           <li>Copy meeting times to share with your team</li>
-          <li>100% browser-based - no login required</li>
-          <li>Works offline - all calculations happen locally</li>
+          <li>Private: your inputs are not collected or stored</li>
+          <li>Nothing to install</li>
         </ul>
       </section>
 
@@ -55,7 +55,7 @@ export default function TimeZoneConverterSEO() {
           <li>Visual day/night indicators</li>
           <li>Highlight working hours (9AM-6PM)</li>
           <li>Show time differences between cities</li>
-          <li>Save favorite cities to localStorage</li>
+          <li>Save favorite cities</li>
           <li>Copy meeting summaries instantly</li>
           <li>Dark mode support</li>
         </ul>
@@ -89,7 +89,7 @@ export default function TimeZoneConverterSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Privacy & Security</h2>
         <p>
-          This tool runs 100% in your browser. No data is sent to any server. Your timezone preferences and favorite cities are saved only in your browser's localStorage. Your privacy is completely protected.
+          We do not collect or store what you enter. Your privacy is completely protected.
         </p>
       </section>
       <ToolFaq items={toolConfig.seo.faq} />

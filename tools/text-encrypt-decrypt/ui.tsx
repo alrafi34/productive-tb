@@ -144,7 +144,7 @@ export default function TextEncryptDecryptUI() {
             <div>
               <h3 className="font-semibold text-purple-900 mb-1">Text Encrypt & Decrypt Tool</h3>
               <p className="text-sm text-purple-800">
-                Transform text using ROT13, Base64, and more. All processing happens locally in your browser. 
+                Transform text using ROT13, Base64, and more. We do not collect or store what you enter. 
                 Perfect for simple text obfuscation and encoding.
               </p>
             </div>

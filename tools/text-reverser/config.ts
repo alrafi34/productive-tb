@@ -102,7 +102,7 @@ export const toolConfig = {
       },
       {
         q: "Can this tool reverse long text documents?",
-        a: "Yes. There is no hard character limit for typical use. Paste multi-paragraph text for sentence or paragraph reversal, or long strings for letter and word modes. All operations run client-side in your browser so processing is instant regardless of length. Download the output as a .txt file for large batches.",
+        a: "Yes. There is no hard character limit for typical use. Paste multi-paragraph text for sentence or paragraph reversal, or long strings for letter and word modes. Processing is instant regardless of length. Download the output as a .txt file for large batches.",
       },
       {
         q: "Does the tool work for non-English text?",
@@ -114,7 +114,7 @@ export const toolConfig = {
       },
       {
         q: "Is my text private when using this tool?",
-        a: "Yes. All processing happens entirely in your browser using JavaScript. The text you enter is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

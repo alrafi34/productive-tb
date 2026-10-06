@@ -59,7 +59,7 @@ export const threePhasePowerCalculatorConfig = {
       { q: "Why is power factor needed for three-phase calculations?", a: "PF separates real power (useful work, kW) from apparent power (total demand, kVA), just as in single-phase circuits. Motors typically run 0.80-0.95 PF at full load." },
       { q: "Does frequency (50Hz vs 60Hz) affect the power calculation?", a: "No, power depends on voltage, current, and PF, not frequency directly — but standard voltages differ by region (400-415V/50Hz vs 480V/60Hz)." },
       { q: "How do I size a generator for a three-phase load?", a: "Calculate apparent power (kVA) using S = √3 × V × I ÷ 1000, since generators are rated in kVA. Add margin for motor starting surge current." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, power, and power factor values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

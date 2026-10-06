@@ -14,13 +14,13 @@ export default function TimeSeriesForecastCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>time series forecast calculator</strong> is a free browser-based tool that analyzes historical data and predicts future values using proven statistical forecasting techniques. It supports nine methods — <strong>Naive</strong>, <strong>Drift</strong>, <strong>Moving Average</strong>, <strong>Weighted Moving Average</strong>, <strong>Simple Exponential Smoothing</strong>, <strong>Holt&apos;s Linear Trend</strong>, <strong>Linear Trend</strong>, <strong>Polynomial Trend</strong> and <strong>Seasonal Naive</strong> — and ranks them on your own data so you can see which one fits best.
+            A <strong>time series forecast calculator</strong> is a free tool that analyzes historical data and predicts future values using proven statistical forecasting techniques. It supports nine methods — <strong>Naive</strong>, <strong>Drift</strong>, <strong>Moving Average</strong>, <strong>Weighted Moving Average</strong>, <strong>Simple Exponential Smoothing</strong>, <strong>Holt&apos;s Linear Trend</strong>, <strong>Linear Trend</strong>, <strong>Polynomial Trend</strong> and <strong>Seasonal Naive</strong> — and ranks them on your own data so you can see which one fits best.
           </p>
           <p>
             This tool accepts manually typed numbers, pasted single-column or two-column Date,Value datasets, or uploaded CSV and TXT files. It instantly fits the selected model to your history, projects future periods with a 95% prediction interval, calculates accuracy metrics like MAE, RMSE and MAPE, and visualizes historical, fitted and forecast values on an interactive chart.
           </p>
           <p>
-            Built for <strong>business analysts, financial analysts, sales teams, inventory managers, supply chain professionals, small business owners, students, and researchers</strong>, the calculator runs entirely in your browser with instant results, no signup, and support for large datasets.
+            Built for <strong>business analysts, financial analysts, sales teams, inventory managers, supply chain professionals, small business owners, students, and researchers</strong>, the calculator works with instant results, no signup, and support for large datasets.
           </p>
         </div>
       </section>
@@ -103,7 +103,7 @@ export default function TimeSeriesForecastCalculatorSEO() {
                 "Print-friendly report generation",
                 "Forecast history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>

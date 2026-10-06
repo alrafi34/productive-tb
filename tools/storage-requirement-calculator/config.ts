@@ -76,7 +76,7 @@ export const storageRequirementCalculatorConfig = {
     faq: [
       {
         q: "What is a Storage Requirement Calculator?",
-        a: "A Storage Requirement Calculator is a free browser-based tool that estimates how much digital storage you need for files, backups, CCTV recordings, databases, websites, or cloud storage, accounting for compression, backup copies, RAID redundancy, growth, and a safety margin.",
+        a: "A Storage Requirement Calculator is a free tool that estimates how much digital storage you need for files, backups, CCTV recordings, databases, websites, or cloud storage, accounting for compression, backup copies, RAID redundancy, growth, and a safety margin.",
       },
       {
         q: "How is total file storage calculated?",
@@ -112,7 +112,7 @@ export const storageRequirementCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your storage figures are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

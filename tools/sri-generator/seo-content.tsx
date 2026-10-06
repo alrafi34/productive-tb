@@ -109,12 +109,12 @@ export default function SRIGeneratorSEOContent() {
           <div className="text-center">
             <div className="text-4xl mb-3">⚡</div>
             <h3 className="font-semibold text-gray-800 mb-2">Instant Generation</h3>
-            <p className="text-gray-600 text-sm">Generate SRI hashes in milliseconds using Web Crypto API</p>
+            <p className="text-gray-600 text-sm">Generate SRI hashes in milliseconds</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">🔒</div>
             <h3 className="font-semibold text-gray-800 mb-2">100% Private</h3>
-            <p className="text-gray-600 text-sm">All processing happens locally - no data sent to servers</p>
+            <p className="text-gray-600 text-sm">Your inputs are not collected or stored</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">📦</div>

@@ -33,7 +33,7 @@ export default function ThreePhasePowerCalculatorSEO() {
             sizing motor cables and protection devices, and facility managers</strong> verifying three-phase
             supply and generator capacity. Includes six built-in presets covering common industrial voltage
             systems in both 50Hz and 60Hz regions, full step-by-step derivation, and text and CSV export —
-            free and entirely browser-based.
+            free.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function ThreePhasePowerCalculatorSEO() {
                 "50Hz and 60Hz system support",
                 "Full step-by-step derivation with √3 shown explicitly",
                 "Six built-in industrial voltage presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export as text or CSV file",
                 "No signup required",
               ].map((f, i) => (
