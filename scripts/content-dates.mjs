@@ -24,6 +24,7 @@ const OUT = 'config/content-dates.ts';
 /* Mechanical commits that touched content files without changing the content. */
 const IGNORE_COMMITS = new Set([
   '04b0ed3', // www → non-www URL in power-consumption-calculator's JSON-LD
+  '608abcb', // #126: homepage text colours only (contrast), no copy change
 ]);
 
 /* Standalone pages whose content lives in one file. */

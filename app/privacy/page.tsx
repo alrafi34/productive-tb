@@ -6,12 +6,12 @@ import { siteConfig } from "@/config/site";
 
 /* Keep in sync with the address shown on the Contact page. */
 const CONTACT_EMAIL = "contact@productivetoolbox.com";
-const LAST_UPDATED = "August 7, 2026";
+const LAST_UPDATED = "October 6, 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Our privacy policy in plain English. We have no accounts, and what you type into our tools stays on your device.",
+    "Our privacy policy in plain English. We have no accounts, and we do not collect what you type into our tools.",
   alternates: { canonical: `${siteConfig.url}/privacy` },
   robots: { index: true, follow: true },
 };
@@ -30,12 +30,8 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
     body: (
       <div className="space-y-4">
         <P>
-          <Term>It stays on your device.</Term> Every calculator and utility on this site runs inside your own
-          browser. The numbers, text, images and files you enter are never sent to us.
-        </P>
-        <P>
-          We do not receive them, cannot see them, and have nowhere to store them. When you close or reload the
-          page, they are gone.
+          <Term>We do not collect it.</Term> The numbers, text, images and files you enter into our tools are
+          not collected or stored by us, and we cannot see them.
         </P>
       </div>
     ),
@@ -59,8 +55,19 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
           came from.
         </P>
         <P>
-          We use this only to see which tools people find useful and to keep the site working properly. It is
-          looked at in aggregate, and it does not identify you personally.
+          This is gathered by analytics services, including <Term>Google Analytics</Term>, which use cookies or
+          similar technology. We use it only in aggregate, to see which tools people find useful and to keep the
+          site working properly, and we do not use it to identify you. You can opt out of Google Analytics with
+          Google&apos;s{" "}
+          <a
+            href="https://tools.google.com/dlpage/gaoptout"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="text-primary font-medium hover:underline"
+          >
+            opt-out browser add-on
+          </a>
+          .
         </P>
       </div>
     ),
@@ -97,6 +104,10 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
           .
         </P>
         <P>
+          If you are in the European Economic Area, the United Kingdom or Switzerland, you are asked for your
+          consent before personalised advertising cookies are used, and you can change your choice at any time.
+        </P>
+        <P>
           You can also block or delete cookies in your browser settings. The tools on this site will still work
           normally if you do.
         </P>
@@ -131,8 +142,10 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
           your data, just ask and we will handle it.
         </P>
         <P>
-          Depending on where you live, you may have additional rights over your personal information — including
-          the right to access or delete it. Email us and we will help.
+          Depending on where you live (for example in the EEA, the UK or certain US states), you may have the
+          right to access, correct or delete your personal information, to object to or limit how it is used, to
+          opt out of personalised advertising, and to withdraw consent you have given. Email us and we will help.
+          You can also complain to your local data protection authority.
         </P>
       </div>
     ),
@@ -199,11 +212,11 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-              Short version: we don&apos;t have accounts, and what you type into our tools never leaves your
-              browser.
+              Short version: we don&apos;t have accounts, and we don&apos;t collect what you type into our
+              tools.
             </p>
             <p className="text-sm text-slate-500 mt-6">
-              Last updated: <time dateTime="2026-08-07">{LAST_UPDATED}</time>
+              Last updated: <time dateTime="2026-10-06">{LAST_UPDATED}</time>
             </p>
           </div>
         </section>
