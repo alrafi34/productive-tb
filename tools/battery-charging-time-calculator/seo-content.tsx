@@ -31,7 +31,7 @@ export default function BatteryChargingTimeCalculatorSEO() {
             Built for <strong>anyone planning around device charging time</strong> — from travelers timing
             a phone charge before a flight to car owners estimating how long a battery charger needs to run.
             Includes six built-in presets covering common devices, mAh and Ah unit support, full
-            step-by-step derivation, and text export — free and entirely browser-based.
+            step-by-step derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function BatteryChargingTimeCalculatorSEO() {
                 "Optional energy (Wh) calculation with voltage",
                 "Full step-by-step derivation",
                 "Six built-in presets (phone, tablet, car, more)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

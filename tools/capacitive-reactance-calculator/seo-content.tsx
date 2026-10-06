@@ -255,7 +255,7 @@ export default function CapacitiveReactanceCalculatorSEO() {
           <li><strong>Common Presets:</strong> Quick access to typical frequency/capacitance combinations</li>
           <li><strong>Educational:</strong> Perfect for students learning AC circuit theory</li>
           <li><strong>Professional:</strong> Quick calculations for circuit design</li>
-          <li><strong>No Installation:</strong> Works entirely in your browser</li>
+          <li><strong>No Installation:</strong> Nothing to download or set up</li>
           <li><strong>History Tracking:</strong> Save and review past calculations</li>
         </ul>
       </section>

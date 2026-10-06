@@ -30,7 +30,7 @@ export default function BmiCalculatorSEO() {
             This calculator answers all of those questions in one place. Beyond the BMI score, it shows your{" "}
             <strong>BMI category</strong>, the <strong>healthy weight range for your exact height</strong>, and{" "}
             <strong>ideal weight estimates</strong> using the clinically established Devine and Robinson formulas.
-            It supports both metric (kg/cm) and imperial (lb/ft/in) units, runs entirely in your browser, and requires
+            It supports both metric (kg/cm) and imperial (lb/ft/in) units and requires
             no account or sign-up.
           </p>
         </div>
@@ -97,7 +97,7 @@ export default function BmiCalculatorSEO() {
                 "Weight simulator slider — preview BMI at target weights",
                 "Local history log for tracking changes over time",
                 "Metric and imperial — switch anytime without data loss",
-                "100% browser-based — nothing sent to any server",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

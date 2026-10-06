@@ -8,13 +8,13 @@ export default function ABTestCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>A/B test calculator</strong> is a free browser-based statistical tool that determines whether the difference in conversion rate between two variants — Variant A and Variant B — is <strong>statistically significant</strong> or just random noise. It answers the question every marketer and product team asks after running a split test: <em>is this result real, or could it have happened by chance?</em>
+            An <strong>A/B test calculator</strong> is a free statistical tool that determines whether the difference in conversion rate between two variants — Variant A and Variant B — is <strong>statistically significant</strong> or just random noise. It answers the question every marketer and product team asks after running a split test: <em>is this result real, or could it have happened by chance?</em>
           </p>
           <p>
             The calculator uses a <strong>two-proportion z-test</strong>, the standard statistical method for comparing conversion rates between two independent groups. Enter the visitor and conversion counts for each variant, and it instantly computes conversion rates, lift, a Z-score, a p-value, a confidence interval, and a clear significant/not-significant verdict — complete with a plain-language decision summary.
           </p>
           <p>
-            This tool is built for <strong>marketers, product managers, UX researchers, SaaS companies, advertisers, developers, eCommerce businesses, startups, and data analysts</strong> who need fast, reliable A/B testing insights without complex statistical software. It runs entirely in your browser — no data is ever sent to a server.
+            This tool is built for <strong>marketers, product managers, UX researchers, SaaS companies, advertisers, developers, eCommerce businesses, startups, and data analysts</strong> who need fast, reliable A/B testing insights without complex statistical software. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function ABTestCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past tests",
                 "Validation that blocks conversions exceeding total visitors",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -231,7 +231,7 @@ export default function ABTestCalculatorSEO() {
           {[
             {
               q: "What is an A/B test calculator?",
-              a: "An A/B test calculator is a free browser-based tool that determines whether the difference in conversion rate between two variants is statistically significant. It uses a two-proportion z-test to compute conversion rates, lift, a Z-score, a p-value, and a confidence interval from your visitor and conversion counts.",
+              a: "An A/B test calculator is a free tool that determines whether the difference in conversion rate between two variants is statistically significant. It uses a two-proportion z-test to compute conversion rates, lift, a Z-score, a p-value, and a confidence interval from your visitor and conversion counts.",
             },
             {
               q: "How is statistical significance calculated in an A/B test?",
@@ -267,7 +267,7 @@ export default function ABTestCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your visitor and conversion numbers are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

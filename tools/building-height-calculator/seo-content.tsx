@@ -295,8 +295,7 @@ export default function BuildingHeightCalculatorSEO() {
             This calculator is designed for architects, civil engineers, urban planners, and real estate developers who 
             need quick and accurate building height estimates based on zoning regulations. It combines industry-standard 
             FAR calculations with road width rules, providing instant feedback for preliminary planning and feasibility 
-            studies. All calculations run entirely in your browser with no data sent to servers, ensuring privacy and 
-            instant performance. Use this tool for initial planning and always verify final designs with local zoning 
+            studies. We do not collect or store what you enter. Use this tool for initial planning and always verify final designs with local zoning 
             authorities and building departments.
           </p>
         </section>

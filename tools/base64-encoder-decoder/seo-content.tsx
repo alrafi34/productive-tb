@@ -6,10 +6,9 @@ export default function Base64EncoderDecoderSEOContent() {
           About Base64 Encoder/Decoder
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          The Base64 Encoder/Decoder is a fast, browser-based utility for converting text to Base64 format 
+          The Base64 Encoder/Decoder is a fast, online utility for converting text to Base64 format 
           and decoding Base64 back to readable text. Base64 encoding is essential for web development, APIs, 
-          email attachments, data URLs, and authentication headers. This tool handles all conversions instantly 
-          in your browser with no server required.
+          email attachments, data URLs, and authentication headers. We do not collect or store what you enter.
         </p>
       </section>
 
@@ -28,11 +27,11 @@ export default function Base64EncoderDecoderSEOContent() {
           <li><strong>Size Comparison:</strong> View original vs encoded file size</li>
           <li><strong>Swap Function:</strong> Quickly reverse input and output</li>
           <li><strong>Copy to Clipboard:</strong> One-click copying with visual feedback</li>
-          <li><strong>Conversion History:</strong> Save last 20 conversions locally</li>
+          <li><strong>Conversion History:</strong> Save last 20 conversions</li>
           <li><strong>Export Options:</strong> Download as TXT or save history as JSON</li>
           <li><strong>Keyboard Shortcuts:</strong> Ctrl+Enter to convert, Ctrl+C to copy</li>
           <li><strong>Large Text Support:</strong> Handle 100,000+ characters efficiently</li>
-          <li><strong>100% Client-Side:</strong> All processing happens in your browser</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
         </ul>
       </section>
 
@@ -191,7 +190,7 @@ export default function Base64EncoderDecoderSEOContent() {
           Conversion History
         </h2>
         <p className="text-gray-700 leading-relaxed mb-3">
-          The tool automatically saves your last 20 conversions in browser localStorage. You can:
+          The tool automatically saves your last 20 conversions. You can:
         </p>
         <ul className="space-y-2 text-gray-700">
           <li>View all recent conversions with timestamps</li>
@@ -255,11 +254,8 @@ export default function Base64EncoderDecoderSEOContent() {
           Your privacy is our priority:
         </p>
         <ul className="space-y-2 text-gray-700">
-          <li><strong>100% Client-Side:</strong> All conversions happen in your browser</li>
-          <li><strong>No Server Communication:</strong> Nothing is sent to any server</li>
+          <li><strong>Private:</strong> Your inputs are not collected or stored</li>
           <li><strong>No Tracking:</strong> We don't track what you encode or decode</li>
-          <li><strong>Local Storage Only:</strong> History is stored only in your browser</li>
-          <li><strong>No Third-Party Scripts:</strong> No analytics or tracking code</li>
         </ul>
         <p className="text-gray-700 leading-relaxed mt-3">
           <strong>Important Note:</strong> Base64 is an encoding scheme, not an encryption method. It provides 
@@ -297,12 +293,12 @@ export default function Base64EncoderDecoderSEOContent() {
         <div className="space-y-3 text-gray-700">
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Encoding Algorithm</h3>
-            <p className="text-sm">Uses browser's native btoa() function with UTF-8 support via 
+            <p className="text-sm">Uses standard Base64 encoding with UTF-8 support via 
             encodeURIComponent() for proper handling of special characters.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Decoding Algorithm</h3>
-            <p className="text-sm">Uses browser's native atob() function with UTF-8 support via 
+            <p className="text-sm">Uses standard Base64 decoding with UTF-8 support via 
             decodeURIComponent() for proper handling of special characters.</p>
           </div>
           <div>
@@ -340,13 +336,7 @@ export default function Base64EncoderDecoderSEOContent() {
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">Is my data stored anywhere?</h3>
-            <p className="text-sm">No, all processing happens in your browser. Only conversion history is 
-            stored locally in your browser's localStorage.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Can I use this offline?</h3>
-            <p className="text-sm">Yes, once the page loads, all functionality works offline. No internet 
-            connection is required for encoding/decoding.</p>
+            <p className="text-sm">We do not collect or store what you enter.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">What's the difference between Base64 and Base32?</h3>

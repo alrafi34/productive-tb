@@ -57,7 +57,7 @@ export const apparentPowerCalculatorConfig = {
       { q: "How do I calculate apparent power for three-phase?", a: "S = √3 × V_line × I_line for a balanced three-phase system. Multiply the single-phase result by √3 (≈1.732)." },
       { q: "What is the maximum current for a given apparent power rating?", a: "I = S ÷ V. A 1,500VA device on 120V draws a maximum of 1,500 ÷ 120 = 12.5A." },
       { q: "Why is apparent power always ≥ real power?", a: "Apparent power is the hypotenuse of the power triangle (S² = P² + Q²), always at least as large as either leg. PF = P/S can never exceed 1.0." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage and current values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

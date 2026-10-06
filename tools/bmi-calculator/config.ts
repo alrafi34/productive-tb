@@ -109,7 +109,7 @@ export const toolConfig = {
       },
       {
         q: "Is my data stored when I use this BMI calculator?",
-        a: "No data is sent to any server. All calculations happen locally in your browser using JavaScript. The optional history feature stores previous results in your browser's localStorage — this data stays on your device and is not accessible to anyone else. Clearing your browser data will remove the saved history.",
+        a: "We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
       {
         q: "What should I do if my BMI is outside the healthy range?",
@@ -124,7 +124,7 @@ export const toolConfig = {
     "Ideal weight estimates using Devine and Robinson formulas",
     "Interactive weight simulator to preview BMI changes",
     "Local history for repeat check-ins — no account needed",
-    "100% browser-based — your data never leaves your device",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "body-fat-calculator",

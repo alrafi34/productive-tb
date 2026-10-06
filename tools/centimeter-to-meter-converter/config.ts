@@ -29,6 +29,6 @@ export const toolConfig = {
     "Copy results to clipboard with one click",
     "Calculation history management",
     "Auto-detect numeric input and handle errors safely",
-    "Works entirely offline in the browser"
+    "Nothing to install"
   ]
 };

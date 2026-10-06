@@ -73,7 +73,7 @@ export const aspectRatioCalculatorConfig = {
     "Common resolutions (720p-8K)",
     "Copy dimensions to clipboard",
     "Export as JSON or TXT",
-    "100% client-side processing",
+    "Private: your inputs are not collected or stored",
     "Mobile responsive design",
     "Instant calculations"
   ]

@@ -57,7 +57,7 @@ export default function AcreToSquareFeetConverterSEO({ onPick }: { onPick?: (val
             Built for <strong>real estate agents converting property listing sizes, buyers evaluating
             land parcels, architects and contractors calculating buildable area from deed descriptions,
             agricultural planners working with field sizes, and anyone who encounters acreage in listings
-            and needs to visualize it in square feet</strong>. Browser-based, free, no signup required.
+            and needs to visualize it in square feet</strong>. Free, no signup required.
           </p>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function AcreToSquareFeetConverterSEO({ onPick }: { onPick?: (val
                 "Copy result to clipboard",
                 "Export conversion report as text",
                 "Press Esc to clear the input",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

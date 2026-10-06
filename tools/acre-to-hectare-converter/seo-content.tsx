@@ -45,7 +45,7 @@ export default function AcreToHectareConverterSEO({ onPick }: { onPick?: (value:
             Built for <strong>farmers comparing international land data, real estate agents working with
             cross-border property listings, land surveyors preparing documentation, agricultural
             researchers processing datasets, and anyone who regularly moves between imperial and metric
-            land measurements</strong>. Browser-based, free, no signup required.
+            land measurements</strong>. Free, no signup required.
           </p>
         </div>
       </section>
@@ -106,7 +106,7 @@ export default function AcreToHectareConverterSEO({ onPick }: { onPick?: (value:
                 "Conversion history (last 10 entries)",
                 "Copy result to clipboard",
                 "Export conversion report",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

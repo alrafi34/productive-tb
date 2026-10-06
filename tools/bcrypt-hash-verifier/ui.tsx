@@ -96,7 +96,7 @@ export default function BcryptHashVerifierUI() {
         {/* Security Notice */}
         <div className="mb-6 bg-green-50 border border-green-200 rounded-xl p-4">
           <p className="text-sm text-green-800 text-center">
-            🔒 <strong>100% Secure:</strong> All password verification happens locally in your browser. No data is sent to any server.
+            🔒 <strong>100% Secure:</strong> We do not collect or store what you enter.
           </p>
         </div>
 

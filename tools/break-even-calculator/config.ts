@@ -53,7 +53,7 @@ export const breakEvenCalculatorConfig = {
       { q: "What is the CM ratio?", a: "The contribution margin ratio is CM as a percentage of selling price. A 60% CM ratio means 60 cents of every dollar goes toward fixed costs and profit. Higher CM ratios mean faster break-even as revenue scales." },
       { q: "Can I use this for a service business?", a: "Yes. For pure service businesses with no per-client material cost, set variable cost to zero. Your selling price is your rate. Fixed costs are your monthly overhead. Break-even is the number of projects needed to cover costs." },
       { q: "What is the difference between fixed and variable costs?", a: "Fixed costs remain constant regardless of output — rent, insurance, salaries, subscriptions. Variable costs change with output — materials, packaging, shipping, commissions. Reducing fixed costs lowers break-even permanently; reducing variable costs raises CM on every unit." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser. Your fixed costs, variable costs, selling prices, and profit targets are never transmitted to any server or stored in any database." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
 };

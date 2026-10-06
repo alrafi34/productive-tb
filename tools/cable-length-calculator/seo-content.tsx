@@ -33,7 +33,7 @@ export default function CableLengthCalculatorSEO() {
             technicians routing DC wiring, and project estimators</strong> who need an accurate material
             quantity before ordering. It supports electrical, Ethernet, fiber optic, and coaxial cable types,
             with cable-specific slack recommendations, six built-in installation presets, calculation history,
-            and text/CSV export. Everything runs in your browser — free, no signup required.
+            and text/CSV export. Free, no signup required.
           </p>
         </div>
       </section>
@@ -92,10 +92,10 @@ export default function CableLengthCalculatorSEO() {
                 "One-click recommended slack per cable type",
                 "Smart warnings for excessive bends and long runs",
                 "Six built-in scenario presets to start from",
-                "Calculation history (last 20 entries) saved locally",
+                "Calculation history (last 20 entries)",
                 "Export results as text report or CSV",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

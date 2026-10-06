@@ -187,7 +187,7 @@ export default function Base64EncoderDecoderUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Base64 Encoder/Decoder</h3>
               <p className="text-sm text-blue-800">
-                Convert text to Base64 or decode Base64 back to text instantly. Upload files, auto-detect format, and save history. All processing happens locally in your browser.
+                Convert text to Base64 or decode Base64 back to text instantly. Upload files, auto-detect format, and save history. We do not collect or store what you enter.
               </p>
             </div>
           </div>

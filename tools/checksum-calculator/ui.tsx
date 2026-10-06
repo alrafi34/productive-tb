@@ -185,7 +185,7 @@ export default function ChecksumCalculatorUI() {
         <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3">
           <span className="text-lg mt-0.5">🔒</span>
           <p className="text-sm text-blue-700" style={{ fontFamily: "var(--font-body)" }}>
-            All processing is done locally in your browser using the <strong>Web Crypto API</strong>. No data is ever uploaded to any server.
+            We do not collect or store the files or text you check.
           </p>
         </div>
 

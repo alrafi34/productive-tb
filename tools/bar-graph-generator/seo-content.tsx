@@ -89,7 +89,7 @@ Product D,15`}
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Privacy & Security</h2>
         <p>
-          Your data is processed entirely in your browser. No data is sent to any server, ensuring complete privacy and security. You can safely work with sensitive business or personal data without worrying about exposure.
+          We do not collect or store what you enter. You can safely work with sensitive business or personal data without worrying about exposure.
         </p>
       </section>
     </div>

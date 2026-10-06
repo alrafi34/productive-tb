@@ -55,7 +55,7 @@ export default function Base32EncoderSEOContent() {
           <div className="text-center p-4 bg-blue-50 rounded-lg">
             <div className="text-2xl mb-2">🔒</div>
             <h4 className="font-semibold text-gray-800 mb-1">Secure</h4>
-            <p className="text-xs text-gray-600">100% client-side processing</p>
+            <p className="text-xs text-gray-600">Private: your inputs are not collected or stored</p>
           </div>
           
           <div className="text-center p-4 bg-green-50 rounded-lg">
@@ -83,8 +83,7 @@ export default function Base32EncoderSEOContent() {
 
         <div className="text-center text-xs text-gray-500 border-t pt-6">
           <p>
-            This Base32 encoder/decoder tool processes all data locally in your browser. 
-            No data is sent to external servers, ensuring complete privacy and security.
+            We do not collect or store what you enter.
           </p>
         </div>
       </div>

@@ -77,8 +77,8 @@ const AUDIENCES = [
 
 const VALUE_PROPS = [
   {
-    title: "Runs in your browser",
-    body: "Calculations happen locally on your device. Your inputs are not uploaded or stored on our servers.",
+    title: "Your inputs stay private",
+    body: "What you type into a tool is not collected or stored by us.",
     icon: (
       <>
         <rect x="3" y="4" width="18" height="13" rx="2" />
@@ -131,7 +131,7 @@ const FAQS = [
   },
   {
     q: "Is the data I enter kept private?",
-    a: "Tool calculations run in your browser, so the values you type are processed on your own device rather than being sent to and stored on our servers.",
+    a: "Yes. We do not collect or store the values you type into our tools.",
   },
   {
     q: "Can I use these tools for commercial or client work?",
@@ -150,7 +150,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: siteConfig.name,
   url: siteConfig.url,
-  description: `${TOTAL_TOOLS} free engineering and technical calculators that run in your browser`,
+  description: `${TOTAL_TOOLS} free engineering and technical calculators`,
   potentialAction: {
     "@type": "SearchAction",
     target: `${siteConfig.url}/tools?q={search_term_string}`,
@@ -170,7 +170,7 @@ const faqSchema = {
 
 export const metadata: Metadata = {
   title: `${TOTAL_TOOLS} Free Engineering & Technical Calculators | Productive Toolbox`,
-  description: `${TOTAL_TOOLS} free online calculators and tools for electrical, architectural, mechanical, land and data work — plus everyday text, image and developer utilities. Runs in your browser. No sign-up.`,
+  description: `${TOTAL_TOOLS} free online calculators and tools for electrical, architectural, mechanical, land and data work — plus everyday text, image and developer tools. No sign-up.`,
   openGraph: {
     title: `${TOTAL_TOOLS} Free Engineering & Technical Calculators`,
     description: `Electrical, structural, mechanical, land and data calculators — free, instant, no account required.`,
@@ -214,7 +214,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-6 pt-20 pb-16 sm:pt-24 sm:pb-20 text-center">
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-800 bg-primary/8 border border-primary/15 px-3.5 py-1.5 rounded-full mb-7">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              Free forever · No sign-up · Runs in your browser
+              Free forever · No sign-up
             </span>
 
             <h1

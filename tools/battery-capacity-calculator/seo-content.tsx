@@ -30,8 +30,7 @@ export default function BatteryCapacityCalculatorSEO() {
           <p>
             Built for <strong>solar system designers, RV and camper owners, and anyone specifying backup
             power</strong> for outages or off-grid use. Includes six built-in presets from LED lighting
-            backup to full solar systems, full step-by-step derivation, and text export — free and entirely
-            browser-based.
+            backup to full solar systems, full step-by-step derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -90,7 +89,7 @@ export default function BatteryCapacityCalculatorSEO() {
                 "Battery type-specific default efficiency (lead-acid, Li-ion, LiFePO4)",
                 "Full step-by-step derivation",
                 "Six built-in presets (LED, solar, RV, more)",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

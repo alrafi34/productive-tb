@@ -42,8 +42,8 @@ export default function ChecksumCalculatorSEO() {
                 "Multi-algorithm mode – compute all hashes at once",
                 "Checksum comparison tool for integrity verification",
                 "Export as TXT or JSON",
-                "Calculation history saved locally",
-                "100% browser-based – no uploads, full privacy",
+                "Calculation history",
+                "Private: your inputs are not collected or stored",
               ].map(f => (
                 <li key={f} className="flex items-center gap-2">
                   <span className="text-green-500">✓</span> {f}

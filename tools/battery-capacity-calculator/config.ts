@@ -57,7 +57,7 @@ export const batteryCapacityCalculatorConfig = {
       { q: "How much capacity for an 8-hour LED backup?", a: "60W at 12V for 8 hours: 480Wh, 40Ah ideal, 50Ah adjusted at 80% lead-acid efficiency." },
       { q: "Should I size to exactly the calculated capacity?", a: "No, add 20-30% margin — regularly discharging to 100% shortens cycle life, especially for lead-acid batteries." },
       { q: "How is this different from a battery backup time calculator?", a: "This solves for required capacity given a target runtime. A backup time calculator solves the reverse: how long an existing battery lasts under a load." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, voltage, runtime, and battery type are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

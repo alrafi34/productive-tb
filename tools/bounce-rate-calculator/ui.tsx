@@ -225,7 +225,7 @@ export default function BounceRateCalculatorUI() {
               Bounce Rate Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter single page visits and total visits to instantly calculate your website bounce rate. All calculations run locally in your browser.
+              Enter single page visits and total visits to instantly calculate your website bounce rate. We do not collect or store what you enter.
             </p>
           </div>
         </div>

@@ -101,7 +101,7 @@ export default function AgeCalculatorSEO() {
                 "Age at any past or future comparison date",
                 "Batch mode — multiple DOBs at once",
                 "CSV export for batch results",
-                "100% browser-based — no data sent to any server",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

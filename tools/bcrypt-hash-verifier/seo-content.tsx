@@ -98,8 +98,8 @@ export default function BcryptHashVerifierSEOContent() {
           </div>
           <div className="bg-white rounded-lg p-5 shadow-sm">
             <div className="text-3xl mb-3">🌐</div>
-            <h3 className="font-semibold text-gray-900 mb-2">100% Client-Side</h3>
-            <p className="text-sm text-gray-600">All processing happens locally. No server requests</p>
+            <h3 className="font-semibold text-gray-900 mb-2">Private</h3>
+            <p className="text-sm text-gray-600">We do not collect or store what you enter.</p>
           </div>
         </div>
       </section>

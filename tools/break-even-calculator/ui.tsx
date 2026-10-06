@@ -162,7 +162,7 @@ export default function BreakEvenCalculatorUI() {
               Break Even Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your fixed costs, variable cost per unit, and selling price to instantly calculate your break-even point. All calculations run locally in your browser.
+              Enter your fixed costs, variable cost per unit, and selling price to instantly calculate your break-even point. We do not collect or store what you enter.
             </p>
           </div>
         </div>

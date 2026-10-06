@@ -68,7 +68,7 @@ export const acreToHectareConverterConfig = {
       { q: "How many hectares is 640 acres (1 square mile)?", a: "640 acres equals 258.999 hectares — approximately 259 hectares. One US section (1 square mile) of land is 640 acres or about 259 hectares." },
       { q: "What is the acre to hectare formula?", a: "Hectares = Acres × 0.404686. For reverse conversion: Acres = Hectares × 2.47105. Both conversion factors are internationally standardized and used in all official land measurement systems." },
       { q: "Where are acres used vs hectares?", a: "Acres are primarily used in the United States, United Kingdom, Canada, and a few other countries for real estate and agriculture. Hectares are the standard metric unit used across most of Europe, Asia, Africa, and South America, and in all international agricultural and environmental data." },
-      { q: "Is my data private when using this converter?", a: "Yes. All conversions run entirely in your browser using JavaScript. Your inputs are never sent to any server, stored in any database, or accessible to anyone other than you." },
+      { q: "Is my data private when using this converter?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -81,7 +81,7 @@ export const acreToHectareConverterConfig = {
     "Conversion history (last 10 entries)",
     "Copy result to clipboard",
     "Export conversion report",
-    "100% browser-based — no data sent to server",
+    "Private: your inputs are not collected or stored",
     "No registration required",
   ],
   relatedTools: [

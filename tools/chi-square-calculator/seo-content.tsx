@@ -8,13 +8,13 @@ export default function ChiSquareCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>chi-square calculator</strong> is a free browser-based statistical tool that performs the two most common <strong>chi-square (χ²) hypothesis tests</strong>: the <strong>Goodness of Fit test</strong>, which checks whether observed category counts match an expected distribution, and the <strong>Test of Independence</strong>, which checks whether two categorical variables in a contingency table are related.
+            A <strong>chi-square calculator</strong> is a free statistical tool that performs the two most common <strong>chi-square (χ²) hypothesis tests</strong>: the <strong>Goodness of Fit test</strong>, which checks whether observed category counts match an expected distribution, and the <strong>Test of Independence</strong>, which checks whether two categorical variables in a contingency table are related.
           </p>
           <p>
             Enter your observed frequencies — a simple category list for goodness of fit, or a full contingency table for independence — and the calculator instantly computes the chi-square statistic, degrees of freedom, p-value, effect size, and a plain-language decision, along with every intermediate step so you can verify the math yourself.
           </p>
           <p>
-            This tool is built for <strong>students, teachers, researchers, business analysts, data analysts, healthcare professionals, scientists, university professors, and statisticians</strong>. It runs entirely in your browser — no data is ever sent to a server, and results update instantly as you edit the table.
+            This tool is built for <strong>students, teachers, researchers, business analysts, data analysts, healthcare professionals, scientists, university professors, and statisticians</strong>. Results update instantly as you edit the table.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function ChiSquareCalculatorSEO() {
                 "Instant calculation with a 150ms debounce as you type",
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and review up to 20 past tests",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -229,7 +229,7 @@ export default function ChiSquareCalculatorSEO() {
           {[
             {
               q: "What is a chi-square calculator?",
-              a: "A chi-square calculator is a free browser-based tool that performs chi-square hypothesis tests. It supports the Goodness of Fit test, which checks whether observed category counts match expected values, and the Test of Independence, which checks whether two categorical variables in a table are associated.",
+              a: "A chi-square calculator is a free tool that performs chi-square hypothesis tests. It supports the Goodness of Fit test, which checks whether observed category counts match expected values, and the Test of Independence, which checks whether two categorical variables in a table are associated.",
             },
             {
               q: "How is the chi-square statistic calculated?",
@@ -265,7 +265,7 @@ export default function ChiSquareCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your data is never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
