@@ -8,13 +8,13 @@ export default function DataGrowthCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>data growth calculator</strong> is a free browser-based tool that forecasts how much digital data — a database, backup set, or cloud storage bucket — will grow over time, based on an initial size and a recurring growth rate. It answers a question every infrastructure team eventually faces: <em>how much storage will I actually need in 6, 12, or 24 months?</em>
+            A <strong>data growth calculator</strong> is a free tool that forecasts how much digital data — a database, backup set, or cloud storage bucket — will grow over time, based on an initial size and a recurring growth rate. It answers a question every infrastructure team eventually faces: <em>how much storage will I actually need in 6, 12, or 24 months?</em>
           </p>
           <p>
             Data grows in two common patterns: a fixed amount added every period (like a backup system adding a consistent daily snapshot size), or a percentage that compounds every period (like a database growing faster as more customers and records are added). This calculator supports both models, automatically converts between MB, GB, TB, and PB, and visualizes the projection with an interactive chart and a growth timeline table.
           </p>
           <p>
-            This tool is built for <strong>data engineers, database administrators, cloud architects, DevOps engineers, system administrators, software engineers, IT managers, startup founders, and storage infrastructure teams</strong> who need to plan capacity ahead of time. It supports scenario comparison, an optional storage cost estimate, calculation history, and export as CSV, JSON, or a print-ready report — entirely in your browser.
+            This tool is built for <strong>data engineers, database administrators, cloud architects, DevOps engineers, system administrators, software engineers, IT managers, startup founders, and storage infrastructure teams</strong> who need to plan capacity ahead of time. It supports scenario comparison, an optional storage cost estimate, calculation history, and export as CSV, JSON, or a print-ready report.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function DataGrowthCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past projections",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -254,7 +254,7 @@ export default function DataGrowthCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your storage figures and growth assumptions are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

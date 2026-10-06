@@ -66,7 +66,7 @@ export const customScrollbarStylerConfig = {
     "Real-time preview updates",
     "Cross-browser compatibility",
     "Hover state preview",
-    "100% client-side processing",
-    "No backend required"
+    "Private: your inputs are not collected or stored",
+    "Nothing to install"
   ]
 };

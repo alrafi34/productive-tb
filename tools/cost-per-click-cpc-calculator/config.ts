@@ -73,7 +73,7 @@ export const costPerClickCpcCalculatorConfig = {
       { q: "What is the relationship between CPC and Quality Score?", a: "Quality Score (1–10) directly affects your Ad Rank and actual CPC paid. Improving Quality Score from 5 to 8 on a competitive keyword can reduce actual CPC by 30–50% without changing your max bid." },
       { q: "Why does Google Analytics show fewer sessions than Google Ads clicks?", a: "A discrepancy of 10–30% between Google Ads clicks and Analytics sessions is normal. Causes include users hitting back before the tag fires, bot filtering, JavaScript disabled, redirect timing, and ad blockers. Use platform click count for CPC calculation." },
       { q: "How is CPC different on search vs display vs social?", a: "Search CPC is driven by keyword auction competition and high purchase intent. Display CPC is generally lower as ads appear on third-party sites with lower intent. Social CPC uses demographic targeting with CPCs varying widely by platform and audience quality." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser. Your advertising cost figures and click counts are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
 };

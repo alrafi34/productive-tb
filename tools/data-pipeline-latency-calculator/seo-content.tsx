@@ -8,13 +8,13 @@ export default function DataPipelineLatencyCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>data pipeline latency calculator</strong> is a free browser-based tool that estimates the total end-to-end latency of a data pipeline by modeling the cumulative delay introduced by each processing stage — from source ingestion through queues, transformations, validation, and final storage or warehouse loading.
+            A <strong>data pipeline latency calculator</strong> is a free tool that estimates the total end-to-end latency of a data pipeline by modeling the cumulative delay introduced by each processing stage — from source ingestion through queues, transformations, validation, and final storage or warehouse loading.
           </p>
           <p>
             Real pipelines rarely run every step one after another. This calculator supports both fully sequential pipelines and pipelines with parallel processing stages — where the pipeline&apos;s true delay is determined by the slowest stage in a group, not the sum of all of them. It automatically detects the bottleneck stage, converts between milliseconds, seconds, and minutes, and supports unlimited stages while staying responsive.
           </p>
           <p>
-            Built for <strong>data engineers, analytics engineers, software engineers, DevOps teams, cloud architects, students, and technical interview candidates</strong>, the tool lets you model ETL jobs, streaming pipelines, Kafka consumers, Spark processing steps, and warehouse loads — all processed locally in your browser with drag-and-drop stage reordering, JSON import/export, and calculation history.
+            Built for <strong>data engineers, analytics engineers, software engineers, DevOps teams, cloud architects, students, and technical interview candidates</strong>, the tool lets you model ETL jobs, streaming pipelines, Kafka consumers, Spark processing steps, and warehouse loads — with drag-and-drop stage reordering, JSON import/export, and calculation history.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function DataPipelineLatencyCalculatorSEO() {
                 "Calculation history — save and reload past pipelines",
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcuts — Esc to reset, Ctrl+Z to undo delete",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -233,7 +233,7 @@ export default function DataPipelineLatencyCalculatorSEO() {
           {[
             {
               q: "What is a Data Pipeline Latency Calculator?",
-              a: "A Data Pipeline Latency Calculator is a free browser-based tool that estimates the total end-to-end latency of a data pipeline by modeling the cumulative delay introduced by each processing stage.",
+              a: "A Data Pipeline Latency Calculator is a free tool that estimates the total end-to-end latency of a data pipeline by modeling the cumulative delay introduced by each processing stage.",
             },
             {
               q: "How is total pipeline latency calculated?",
@@ -269,7 +269,7 @@ export default function DataPipelineLatencyCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your pipeline data is never transmitted to any server or stored in any database.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -109,7 +109,7 @@ export default function CPCCalculatorUI() {
           <div>
             <h3 className="text-sm font-semibold text-blue-900" style={{ fontFamily: "var(--font-heading)" }}>Cost Per Click (CPC) Calculator</h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your ad spend and total clicks to instantly calculate your CPC. All calculations run locally in your browser.
+              Enter your ad spend and total clicks to instantly calculate your CPC. We do not collect or store what you enter.
             </p>
           </div>
         </div>

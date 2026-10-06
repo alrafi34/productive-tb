@@ -48,6 +48,6 @@ export const toolConfig = {
     "Copy HTML snippet",
     "Triangle size presets",
     "Real-time visual feedback",
-    "Client-side processing for fast and private usage"
+    "Private: your inputs are not collected or stored"
   ]
 };

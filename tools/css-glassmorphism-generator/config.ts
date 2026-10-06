@@ -56,7 +56,7 @@ export const toolConfig = {
       { q: "Can I customize radius, border, and shadows?", a: "Yes. You can tune border radius, transparency, blur, and shadow intensity to match your design language." },
       { q: "Does this tool support mobile and desktop design workflows?", a: "Yes. You can fine-tune styles and copy output for responsive interfaces across desktop and mobile layouts." },
       { q: "Is this CSS glassmorphism generator free?", a: "Yes. It is free to use without sign-up." },
-      { q: "Does the tool process styles locally?", a: "Yes. Style generation happens client-side in the browser for fast and private use." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -67,6 +67,6 @@ export const toolConfig = {
     "One-click CSS and Tailwind code copy",
     "Border and shadow controls",
     "Mobile responsive design",
-    "Client-side processing for fast and private usage"
+    "Private: your inputs are not collected or stored"
   ]
 };

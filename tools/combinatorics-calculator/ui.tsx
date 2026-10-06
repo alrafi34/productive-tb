@@ -149,8 +149,7 @@ export default function CombinatoricsCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Calculate permutations, combinations, factorials, circular arrangements, and multiset
-              permutations instantly. Step-by-step formulas included. All calculations run locally
-              in your browser using exact BigInt arithmetic.
+              permutations instantly. Step-by-step formulas included. We do not collect or store what you enter.
             </p>
           </div>
         </div>

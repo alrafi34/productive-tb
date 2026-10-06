@@ -14,7 +14,7 @@ export default function CPCCalculatorSEO() {
             CPC is the foundation of performance marketing economics. It sits at the start of a conversion funnel calculation that flows from clicks → leads → customers → revenue. Without a clear CPC figure, you cannot calculate Cost Per Lead, Cost Per Acquisition, or Return on Ad Spend — the metrics that determine whether a channel is profitable or not. A campaign generating 10,000 clicks sounds impressive; a CPC of $0.18 and a CPC of $12.50 on those same 10,000 clicks represent completely different business realities.
           </p>
           <p>
-            This tool is built for <strong>PPC specialists, media buyers, social media managers, ecommerce marketers, marketing agency teams, startup founders, and digital marketing students</strong> who need to audit campaign efficiency, compare platforms, report to clients, and make budgeting decisions — fast, without a spreadsheet. It supports 9 currencies, includes industry preset buttons for quick benchmarking, exports to CSV and TXT, and runs entirely in your browser with no data sent to any server.
+            This tool is built for <strong>PPC specialists, media buyers, social media managers, ecommerce marketers, marketing agency teams, startup founders, and digital marketing students</strong> who need to audit campaign efficiency, compare platforms, report to clients, and make budgeting decisions — fast, without a spreadsheet. It supports 9 currencies, includes industry preset buttons for quick benchmarking, exports to CSV and TXT, and is free to use.
           </p>
         </div>
       </section>
@@ -92,8 +92,8 @@ export default function CPCCalculatorSEO() {
                 "Copy result or full summary to clipboard",
                 "Export full report as CSV or TXT",
                 "Shareable URL — every calculation gets a permanent link",
-                "Calculation history saved locally (up to 20 entries)",
-                "100% browser-based — no data leaves your device",
+                "Calculation history (up to 20 entries)",
+                "Private: your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -351,7 +351,7 @@ export default function CPCCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your advertising cost figures, click counts, and any campaign data you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature uses your browser's localStorage, which is local to your device only. This makes the tool safe to use for confidential campaign data, client account figures, and internal budget planning.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

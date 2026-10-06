@@ -49,6 +49,6 @@ export const toolConfig = {
     "Axis visualization",
     "Gap control",
     "Mobile responsive",
-    "Client-side processing for fast private usage"
+    "Private: your inputs are not collected or stored"
   ]
 };

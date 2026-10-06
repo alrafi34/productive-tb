@@ -76,7 +76,7 @@ export const dataPipelineLatencyCalculatorConfig = {
     faq: [
       {
         q: "What is a Data Pipeline Latency Calculator?",
-        a: "A Data Pipeline Latency Calculator is a free browser-based tool that estimates the total end-to-end latency of a data pipeline by summing the delay introduced by each processing stage — from source ingestion through queues, transformations, and final storage or warehouse loading.",
+        a: "A Data Pipeline Latency Calculator is a free tool that estimates the total end-to-end latency of a data pipeline by summing the delay introduced by each processing stage — from source ingestion through queues, transformations, and final storage or warehouse loading.",
       },
       {
         q: "How is total pipeline latency calculated?",
@@ -112,7 +112,7 @@ export const dataPipelineLatencyCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your pipeline stages and latency values are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

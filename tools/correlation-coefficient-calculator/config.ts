@@ -68,7 +68,7 @@ export const correlationCoefficientCalculatorConfig = {
     faq: [
       {
         q: "What is a correlation coefficient calculator?",
-        a: "A correlation coefficient calculator is a free browser-based tool that measures the statistical relationship between two variables. It computes Pearson, Spearman, or Kendall correlation coefficients, visualizes the relationship on a scatter plot, and explains the strength and direction of the relationship.",
+        a: "A correlation coefficient calculator is a free tool that measures the statistical relationship between two variables. It computes Pearson, Spearman, or Kendall correlation coefficients, visualizes the relationship on a scatter plot, and explains the strength and direction of the relationship.",
       },
       {
         q: "What is the difference between Pearson, Spearman, and Kendall correlation?",
@@ -104,7 +104,7 @@ export const correlationCoefficientCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

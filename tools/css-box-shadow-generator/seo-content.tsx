@@ -9,7 +9,7 @@ export default function CSSBoxShadowGeneratorSEO() {
     { q: "What blur and spread values should I use for card shadows?", a: "A widely-used card shadow pattern is a two-layer shadow: a sharp close shadow for definition and a soft far shadow for elevation. Example: box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 8px 20px rgba(0,0,0,0.08). The first layer (blur 3px, opacity 12%) creates a crisp edge. The second layer (blur 20px, opacity 8%) creates the ambient lift effect. Google Material Design uses exactly this technique with three layers at different elevations." },
     { q: "Does box-shadow affect layout or performance?", a: "Box-shadow does not affect document layout — it is rendered outside the element's box model and does not push other elements. It has no effect on margin, padding, or the element's dimensions. For performance, box-shadow is GPU-composited in modern browsers and is generally cheaper to animate than filter: drop-shadow or multiple background layers. Avoid very large blur values (above 80–100px) on elements that animate, as repaints become more expensive at large blur radii." },
     { q: "What is the difference between box-shadow and filter drop-shadow?", a: "box-shadow follows the element's rectangular border-box, including border-radius for rounded corners. filter: drop-shadow() follows the actual visible shape of the element — including transparent cutouts in PNGs, SVG shapes, and irregular clipping paths. Use box-shadow for standard UI components (cards, buttons, modals). Use filter: drop-shadow() when the element has a non-rectangular visible shape and you want the shadow to conform to that shape." },
-    { q: "Is my design data private when using this tool?", a: "Yes. All shadow generation runs entirely in your browser using JavaScript. Your shadow values, color choices, and configurations are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+    { q: "Is my design data private when using this tool?", a: "Yes. We do not collect or store what you enter." },
   ];
 
   const howToSteps: [string, string][] = [
@@ -47,8 +47,7 @@ export default function CSSBoxShadowGeneratorSEO() {
           <p>
             Built for <strong>frontend developers building component libraries, UI designers prototyping
             elevation systems, full-stack teams who need quick shadow code without opening Figma,
-            and CSS learners exploring how box-shadow parameters interact</strong>. Browser-based, free,
-            no account required.
+            and CSS learners exploring how box-shadow parameters interact</strong>. Free, no account required.
           </p>
         </div>
       </section>
@@ -107,7 +106,7 @@ export default function CSSBoxShadowGeneratorSEO() {
                 "Presets: soft, material, deep, floating, neumorphism",
                 "Preview background color selector",
                 "Production-ready CSS output — one-click copy",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

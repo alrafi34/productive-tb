@@ -10,7 +10,7 @@ export default function CSVToJSONSEOContent() {
           CSV to JSON Converter – Instant Data Transformation
         </h2>
         <p className="mb-4">
-          Convert CSV (Comma-Separated Values) data into structured JSON format instantly with our free browser-based converter. Perfect for developers, data engineers, and analysts who need to transform spreadsheet data for APIs, databases, or JavaScript applications.
+          Convert CSV (Comma-Separated Values) data into structured JSON format instantly with our free converter. Perfect for developers, data engineers, and analysts who need to transform spreadsheet data for APIs, databases, or JavaScript applications.
         </p>
       </section>
 
@@ -34,7 +34,7 @@ export default function CSVToJSONSEOContent() {
           <li>Real-time table preview</li>
           <li>Pretty or minified JSON output</li>
           <li>Copy to clipboard or download as file</li>
-          <li>100% client-side processing</li>
+          <li>Private: your inputs are not collected or stored</li>
         </ul>
       </section>
 
@@ -84,7 +84,7 @@ Alice,25,Los Angeles`}
       <section>
         <h3 className="text-xl font-bold mb-3 text-gray-900">Privacy & Performance</h3>
         <p>
-          All processing happens 100% in your browser. No data is sent to any server. The converter handles large CSV files efficiently with real-time parsing and preview rendering.
+          We do not collect or store what you enter. The converter handles large CSV files efficiently with real-time parsing and preview rendering.
         </p>
       </section>
       <ToolFaq items={faq} />

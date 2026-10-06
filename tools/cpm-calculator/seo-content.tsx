@@ -8,7 +8,7 @@ export default function CPMCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>CPM calculator</strong> is a free browser-based tool that instantly calculates Cost Per Mille — the cost per 1,000 ad impressions — from your advertising cost and impression count. It answers the question every media buyer asks before, during, and after a campaign: <em>how much am I really paying to put this ad in front of a thousand views?</em>
+            A <strong>CPM calculator</strong> is a free tool that instantly calculates Cost Per Mille — the cost per 1,000 ad impressions — from your advertising cost and impression count. It answers the question every media buyer asks before, during, and after a campaign: <em>how much am I really paying to put this ad in front of a thousand views?</em>
           </p>
           <p>
             CPM is the foundational pricing model behind most digital advertising platforms, including Google Ads, Meta Ads (Facebook and Instagram), TikTok Ads, LinkedIn Ads, X (Twitter) Ads, Pinterest Ads, Snapchat Ads, YouTube Ads, Microsoft Ads, and nearly every programmatic display network. Because CPM connects three variables — cost, impressions, and the CPM rate itself — knowing any two lets you solve for the third. This calculator supports all three directions: calculate CPM from cost and impressions, calculate the advertising cost required to hit a target CPM, or calculate how many impressions a given budget will buy at a known CPM.
@@ -96,7 +96,7 @@ export default function CPMCalculatorSEO() {
                 "Keyboard shortcuts — Enter to jump to results, Esc to reset",
                 "Inline validation with auto-focus on the first invalid field",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -267,7 +267,7 @@ export default function CPMCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your advertising cost, impression counts, and CPM figures are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

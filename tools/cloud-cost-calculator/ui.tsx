@@ -239,8 +239,7 @@ export default function CloudCostCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Estimate monthly and yearly cloud infrastructure costs across 10 providers.
-              Configure compute, storage, database, bandwidth, and more. All calculations run
-              locally — no API calls, no signup required.
+              Configure compute, storage, database, bandwidth, and more. We do not collect or store what you enter.
             </p>
           </div>
         </div>

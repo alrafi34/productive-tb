@@ -9,7 +9,7 @@ export default function ConcreteVolumeCalculatorSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">About Concrete Volume Calculator</h2>
         <p className="mb-4">
-          The Concrete Volume Calculator is a professional construction tool designed to help civil engineers, architects, contractors, and builders calculate the exact volume of concrete required for various construction elements. This browser-based utility supports multiple shapes including slabs, columns, beams, and footings, providing instant and accurate results.
+          The Concrete Volume Calculator is a professional construction tool designed to help civil engineers, architects, contractors, and builders calculate the exact volume of concrete required for various construction elements. This online utility supports multiple shapes including slabs, columns, beams, and footings, providing instant and accurate results.
         </p>
         <p>
           Whether you're working on residential construction, commercial projects, or infrastructure development, this calculator helps you avoid material wastage, cost overruns, and calculation errors by providing precise volume outputs with optional unit conversions and batch calculation support.
@@ -126,7 +126,7 @@ export default function ConcreteVolumeCalculatorSEO() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>
-            <span>Calculation history with localStorage</span>
+            <span>Calculation history</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">✓</span>

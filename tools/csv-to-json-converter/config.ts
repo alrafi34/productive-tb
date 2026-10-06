@@ -45,7 +45,7 @@ export const toolConfig = {
       { q: "How are commas, quotes and line breaks inside a value handled?", a: "As in the CSV standard (RFC 4180): a value wrapped in double quotes may contain the delimiter and line breaks, and a doubled quote (\"\") inside it becomes one quote. For example \"Los Angeles, CA\" stays one value." },
       { q: "Why is my file split into the wrong columns?", a: "The delimiter is probably different. Excel uses a semicolon in countries where the comma is the decimal separator, such as Germany, France and Spain; choose Semicolon or turn on auto-detect. Tab-separated files need Tab." },
       { q: "What happens with blank or repeated column names?", a: "A blank header becomes column_1, column_2 and so on by position, and a repeated header gets a suffix such as email_2, so no column is dropped from the JSON. Empty lines in the file are skipped." },
-      { q: "Is my data uploaded?", a: "No. The file is read and converted in your browser, so it never leaves your device, which makes the tool safe for customer lists and other private data." },
+      { q: "Is my data uploaded?", a: "No. We do not collect or store what you enter." },
     ],
   },
   features: [

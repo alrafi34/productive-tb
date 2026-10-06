@@ -8,13 +8,13 @@ export default function DataTransferCostCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>data transfer cost calculator</strong> is a free browser-based tool that estimates the cost of moving data between cloud providers, CDNs, VPS servers, object storage services, APIs, and streaming platforms. Data transfer — also called bandwidth or egress traffic — is one of the most overlooked cloud expenses: most people understand storage pricing but underestimate what it costs to actually move that data in and out.
+            A <strong>data transfer cost calculator</strong> is a free tool that estimates the cost of moving data between cloud providers, CDNs, VPS servers, object storage services, APIs, and streaming platforms. Data transfer — also called bandwidth or egress traffic — is one of the most overlooked cloud expenses: most people understand storage pricing but underestimate what it costs to actually move that data in and out.
           </p>
           <p>
             This calculator lets you estimate transfer costs before deployment, helping you avoid unexpected cloud bills. It supports both binary (GiB, TiB) and decimal (GB, TB) unit conventions side by side, since providers are not always consistent about which one they actually bill against — a gap that has surprised more than one engineering team at invoice time.
           </p>
           <p>
-            Built for <strong>cloud engineers, DevOps engineers, backend developers, system administrators, startup founders, SaaS companies, CDN users, video streaming platforms, AI/ML teams, enterprise IT teams, and students learning cloud computing</strong>, the tool runs entirely in your browser with instant calculations, no signup, and no data ever leaving your device.
+            Built for <strong>cloud engineers, DevOps engineers, backend developers, system administrators, startup founders, SaaS companies, CDN users, video streaming platforms, AI/ML teams, enterprise IT teams, and students learning cloud computing</strong>, the tool works with instant calculations, no signup.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function DataTransferCostCalculatorSEO() {
                 "Keyboard shortcut — Esc to reset",
                 "Inline validation with clear, friendly error messages",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -235,7 +235,7 @@ export default function DataTransferCostCalculatorSEO() {
           {[
             {
               q: "What is a Data Transfer Cost Calculator?",
-              a: "A Data Transfer Cost Calculator is a free browser-based tool that estimates the cost of transferring data between cloud providers, CDNs, VPS servers, object storage services, or APIs, based on a data size, a price per unit, and a billing period.",
+              a: "A Data Transfer Cost Calculator is a free tool that estimates the cost of transferring data between cloud providers, CDNs, VPS servers, object storage services, or APIs, based on a data size, a price per unit, and a billing period.",
             },
             {
               q: "How is the transfer cost calculated?",
@@ -271,7 +271,7 @@ export default function DataTransferCostCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your data size, pricing, and billing details are never transmitted to any server or stored in any database.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

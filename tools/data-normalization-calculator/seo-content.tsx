@@ -8,13 +8,13 @@ export default function DataNormalizationCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>data normalization calculator</strong> is a free browser-based tool that rescales numeric datasets onto a comparable scale using standard normalization techniques. It answers a question every data analyst and machine learning practitioner runs into: <em>how do I make features measured on wildly different scales comparable, without distorting the underlying patterns?</em>
+            A <strong>data normalization calculator</strong> is a free tool that rescales numeric datasets onto a comparable scale using standard normalization techniques. It answers a question every data analyst and machine learning practitioner runs into: <em>how do I make features measured on wildly different scales comparable, without distorting the underlying patterns?</em>
           </p>
           <p>
             Choosing the right normalization method — and computing it correctly across an entire dataset — is easy to get wrong by hand. This calculator supports six standard techniques: Min-Max (0–1 or a custom range), Z-Score standardization, Decimal Scaling, Unit Vector (L2) normalization, Mean Normalization, and Robust Scaling using the median and interquartile range.
           </p>
           <p>
-            This tool is built for <strong>data analysts, data scientists, machine learning engineers, students, teachers, researchers, statisticians, financial analysts, and business intelligence professionals</strong>. It accepts pasted or typed data with automatic separator detection, shows a live before/after comparison, and exports to CSV, JSON, or TXT — all running entirely in your browser.
+            This tool is built for <strong>data analysts, data scientists, machine learning engineers, students, teachers, researchers, statisticians, financial analysts, and business intelligence professionals</strong>. It accepts pasted or typed data with automatic separator detection, shows a live before/after comparison, and exports to CSV, JSON, or TXT.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function DataNormalizationCalculatorSEO() {
                 "Calculation history — save and reload past datasets",
                 "Auto-saves your last session and restores it on return",
                 "Clear validation for zero-range and zero-variance edge cases",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -234,7 +234,7 @@ export default function DataNormalizationCalculatorSEO() {
           {[
             {
               q: "What is a data normalization calculator?",
-              a: "A data normalization calculator is a free browser-based tool that rescales numeric datasets onto a comparable scale using standard techniques such as Min-Max, Z-Score, and Robust Scaling, commonly used for machine learning preprocessing and statistical comparison.",
+              a: "A data normalization calculator is a free tool that rescales numeric datasets onto a comparable scale using standard techniques such as Min-Max, Z-Score, and Robust Scaling, commonly used for machine learning preprocessing and statistical comparison.",
             },
             {
               q: "How is Min-Max normalization calculated?",
@@ -270,7 +270,7 @@ export default function DataNormalizationCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -8,13 +8,13 @@ export default function DataSamplingCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>data sampling calculator</strong> is a free browser-based statistical tool that determines the <strong>required sample size</strong> for surveys, research studies, experiments, polls, market research, and A/B testing. It uses internationally accepted statistical formulas based on confidence level, margin of error, population size, and expected proportion.
+            A <strong>data sampling calculator</strong> is a free statistical tool that determines the <strong>required sample size</strong> for surveys, research studies, experiments, polls, market research, and A/B testing. It uses internationally accepted statistical formulas based on confidence level, margin of error, population size, and expected proportion.
           </p>
           <p>
             Choosing an incorrect sample size can make survey results unreliable — too small, and your margin of error balloons; too large, and you waste time and budget. This calculator eliminates manual formula work and instantly shows you a statistically valid sample size, with a full step-by-step breakdown.
           </p>
           <p>
-            Built for <strong>researchers, students, data analysts, statisticians, market researchers, product managers, UX researchers, business analysts, and quality assurance teams</strong>, the calculator runs entirely in your browser with instant results and no signup required.
+            Built for <strong>researchers, students, data analysts, statisticians, market researchers, product managers, UX researchers, business analysts, and quality assurance teams</strong>, the calculator works with instant results and no signup required.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function DataSamplingCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -212,7 +212,7 @@ export default function DataSamplingCalculatorSEO() {
           {[
             {
               q: "What is a data sampling calculator?",
-              a: "A data sampling calculator is a free browser-based tool that calculates the required sample size for surveys, research, experiments, polls, and A/B testing using standard statistical formulas based on confidence level, margin of error, population size, and expected proportion.",
+              a: "A data sampling calculator is a free tool that calculates the required sample size for surveys, research, experiments, polls, and A/B testing using standard statistical formulas based on confidence level, margin of error, population size, and expected proportion.",
             },
             {
               q: "How is sample size calculated?",
@@ -248,7 +248,7 @@ export default function DataSamplingCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

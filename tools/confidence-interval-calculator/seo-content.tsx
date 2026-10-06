@@ -8,13 +8,13 @@ export default function ConfidenceIntervalCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>confidence interval calculator</strong> is a free browser-based tool that estimates the range within which a true population parameter — typically a mean or proportion — is likely to fall, at a chosen confidence level. It answers the core question every researcher and analyst faces: <em>given this sample, how much can I trust the estimate, and how wide is the range of plausible values?</em>
+            A <strong>confidence interval calculator</strong> is a free tool that estimates the range within which a true population parameter — typically a mean or proportion — is likely to fall, at a chosen confidence level. It answers the core question every researcher and analyst faces: <em>given this sample, how much can I trust the estimate, and how wide is the range of plausible values?</em>
           </p>
           <p>
             Calculating a confidence interval by hand means picking the right critical value from a Z or t table, computing standard error correctly, and applying the right formula for your situation — a mean with known variance, a mean with unknown variance, or a proportion. This calculator handles all three automatically, plus margin of error and required sample size, and computes exact Z and t critical values mathematically rather than rounding from a lookup table.
           </p>
           <p>
-            This tool is built for <strong>students, researchers, data scientists, business analysts, market researchers, quality control engineers, healthcare professionals, statisticians, financial analysts, and social science researchers</strong>. It supports six confidence level presets plus custom levels, adjustable decimal precision, shareable calculation URLs, and CSV/TXT/JSON export — and runs entirely in your browser with no signup and no server involved.
+            This tool is built for <strong>students, researchers, data scientists, business analysts, market researchers, quality control engineers, healthcare professionals, statisticians, financial analysts, and social science researchers</strong>. It supports six confidence level presets plus custom levels, adjustable decimal precision, shareable calculation URLs, and CSV/TXT/JSON export — and is free to use.
           </p>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function ConfidenceIntervalCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Clear inline validation for invalid proportions, sample sizes, and confidence levels",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -229,7 +229,7 @@ export default function ConfidenceIntervalCalculatorSEO() {
           {[
             {
               q: "What is a confidence interval calculator?",
-              a: "A confidence interval calculator is a free browser-based tool that estimates the range within which a population parameter, such as a mean or proportion, is likely to fall at a chosen confidence level, using your sample mean or proportion, standard deviation, and sample size.",
+              a: "A confidence interval calculator is a free tool that estimates the range within which a population parameter, such as a mean or proportion, is likely to fall at a chosen confidence level, using your sample mean or proportion, standard deviation, and sample size.",
             },
             {
               q: "How is a confidence interval calculated?",
@@ -265,7 +265,7 @@ export default function ConfidenceIntervalCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your sample data is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

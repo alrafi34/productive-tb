@@ -229,7 +229,7 @@ export default function CTRCalculatorUI() {
               Click-Through Rate (CTR) Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your clicks and impressions to instantly calculate CTR. All calculations run locally in your browser — no data is sent anywhere.
+              Enter your clicks and impressions to instantly calculate CTR. We do not collect or store what you enter.
             </p>
           </div>
         </div>

@@ -76,7 +76,7 @@ export const dataTransferCostCalculatorConfig = {
     faq: [
       {
         q: "What is a Data Transfer Cost Calculator?",
-        a: "A Data Transfer Cost Calculator is a free browser-based tool that estimates the cost of transferring data between cloud providers, CDNs, VPS servers, object storage services, or APIs. You enter a data size, a price per unit, and a billing period, and it instantly calculates the estimated cost.",
+        a: "A Data Transfer Cost Calculator is a free tool that estimates the cost of transferring data between cloud providers, CDNs, VPS servers, object storage services, or APIs. You enter a data size, a price per unit, and a billing period, and it instantly calculates the estimated cost.",
       },
       {
         q: "How is the transfer cost calculated?",
@@ -112,7 +112,7 @@ export const dataTransferCostCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your data size, pricing, and billing details are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

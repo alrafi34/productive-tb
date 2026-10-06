@@ -63,7 +63,7 @@ export const cssFilterTesterConfig = {
       { q: "Are CSS filters performance-heavy?", a: "Most filters are efficient in modern browsers, but heavy blur on large assets can increase rendering cost, especially on lower-end devices." },
       { q: "Is the generated CSS production-ready?", a: "Yes. The output uses standard CSS filter syntax and can be pasted directly into stylesheets or component styles." },
       { q: "Is this CSS filter tester free?", a: "Yes. The tool is free and does not require registration." },
-      { q: "Does this tool process images server-side?", a: "No. Filter preview and generation happen in the browser for speed and privacy." },
+      { q: "Does this tool process images server-side?", a: "No. We do not collect or store what you enter." },
     ],
   }
 };

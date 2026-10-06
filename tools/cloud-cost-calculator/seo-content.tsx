@@ -30,7 +30,7 @@ export default function CloudCostCalculatorSEO() {
             existing deployments, CTOs comparing provider costs before migration, and students learning
             cloud architecture and cost optimization</strong>. Covers compute, storage, object storage,
             managed database, bandwidth, serverless, and CDN line items. Compare up to 9 providers
-            side by side. Browser-based, free, no signup required.
+            side by side. Free, no signup required.
           </p>
         </div>
       </section>
@@ -100,7 +100,7 @@ export default function CloudCostCalculatorSEO() {
                 "Regional pricing multipliers",
                 "Monthly, yearly, and hourly rate outputs",
                 "Switch providers without re-entering config",
-                "Browser-based — no signup required",
+                "No signup required",
                 "All estimates use public on-demand rates",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -314,7 +314,7 @@ export default function CloudCostCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your configuration values — server counts, storage sizes, and any other inputs — are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

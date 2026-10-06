@@ -189,7 +189,7 @@ export default function CPACalculatorUI() {
               Cost Per Acquisition (CPA) Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your marketing spend and total acquisitions to instantly calculate CPA. All calculations run locally in your browser.
+              Enter your marketing spend and total acquisitions to instantly calculate CPA. We do not collect or store what you enter.
             </p>
           </div>
         </div>

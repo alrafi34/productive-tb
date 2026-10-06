@@ -80,7 +80,7 @@ export const confidenceIntervalCalculatorConfig = {
     faq: [
       {
         q: "What is a confidence interval calculator?",
-        a: "A confidence interval calculator is a free browser-based tool that estimates the range within which a population parameter — such as a mean or proportion — is likely to fall, at a chosen confidence level. It computes the interval using your sample mean or proportion, standard deviation, sample size, and confidence level.",
+        a: "A confidence interval calculator is a free tool that estimates the range within which a population parameter — such as a mean or proportion — is likely to fall, at a chosen confidence level. It computes the interval using your sample mean or proportion, standard deviation, sample size, and confidence level.",
       },
       {
         q: "How is a confidence interval calculated?",
@@ -116,7 +116,7 @@ export const confidenceIntervalCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your sample data is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

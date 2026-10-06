@@ -55,8 +55,8 @@ export const toolConfig = {
       { q: "What is the difference between linear and radial gradients?", a: "Linear gradients transition colors along a direction line, while radial gradients transition colors outward from a center point in circle or ellipse form." },
       { q: "Can I reverse a gradient quickly?", a: "Yes. Use the reverse option to invert the stop order without manually editing each stop." },
       { q: "Are gradient presets included?", a: "Yes. Presets are available for quick starting points, and you can customize them further." },
-      { q: "Is this CSS gradient generator free?", a: "Yes. It is free to use and runs directly in your browser." },
-      { q: "Is my gradient data uploaded anywhere?", a: "No. Gradient generation is handled client-side in-browser." },
+      { q: "Is this CSS gradient generator free?", a: "Yes. It is free to use." },
+      { q: "Is my gradient data uploaded anywhere?", a: "No. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -69,6 +69,6 @@ export const toolConfig = {
     "Gradient presets",
     "Copy CSS code",
     "Mobile responsive",
-    "Client-side processing for fast private usage"
+    "Private: your inputs are not collected or stored"
   ]
 };

@@ -206,7 +206,7 @@ export default function DataTransferCalculatorUI() {
               Data Transfer Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Calculate how long it takes to transfer any file over any connection. Supports downloads, uploads, backups, cloud migrations, and more. All calculations run locally in your browser.
+              Calculate how long it takes to transfer any file over any connection. Supports downloads, uploads, backups, cloud migrations, and more. We do not collect or store what you enter.
             </p>
           </div>
         </div>

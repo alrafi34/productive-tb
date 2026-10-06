@@ -8,13 +8,13 @@ export default function ClusteringDistanceCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>clustering distance calculator</strong> is a free browser-based tool that measures how far apart — or how similar — two numeric vectors are, using ten of the most common distance and similarity metrics from data science and machine learning: Euclidean, Manhattan, Minkowski, Chebyshev, Cosine, Hamming, Canberra, Bray-Curtis, Pearson Correlation, and Jaccard.
+            A <strong>clustering distance calculator</strong> is a free tool that measures how far apart — or how similar — two numeric vectors are, using ten of the most common distance and similarity metrics from data science and machine learning: Euclidean, Manhattan, Minkowski, Chebyshev, Cosine, Hamming, Canberra, Bray-Curtis, Pearson Correlation, and Jaccard.
           </p>
           <p>
             Enter two vectors of equal length, choose a metric, and the calculator instantly returns the distance (or similarity) score, a full step-by-step formula breakdown, a coordinate table, and a visualization — a 2D scatter plot for two-dimensional vectors, or a per-dimension difference chart for higher-dimensional data.
           </p>
           <p>
-            This tool is built for <strong>data scientists, machine learning engineers, data analysts, students, researchers, AI engineers, business intelligence professionals, and educators</strong> working with clustering algorithms like k-means and k-nearest neighbors, recommendation systems, and pattern recognition. It runs entirely in your browser — no data is ever sent to a server.
+            This tool is built for <strong>data scientists, machine learning engineers, data analysts, students, researchers, AI engineers, business intelligence professionals, and educators</strong> working with clustering algorithms like k-means and k-nearest neighbors, recommendation systems, and pattern recognition. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function ClusteringDistanceCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON",
                 "Calculation history — save and reload up to 20 past results",
                 "Clear validation for mismatched dimensions and invalid values",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -235,7 +235,7 @@ export default function ClusteringDistanceCalculatorSEO() {
           {[
             {
               q: "What is a clustering distance calculator?",
-              a: "A clustering distance calculator is a free browser-based tool that measures how far apart or how similar two numeric vectors are, using distance and similarity metrics commonly used in clustering algorithms, machine learning, and data analysis.",
+              a: "A clustering distance calculator is a free tool that measures how far apart or how similar two numeric vectors are, using distance and similarity metrics commonly used in clustering algorithms, machine learning, and data analysis.",
             },
             {
               q: "Which distance metric should I use for clustering?",
@@ -271,7 +271,7 @@ export default function ClusteringDistanceCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your vectors are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -76,7 +76,7 @@ export const clusterUtilizationCalculatorConfig = {
     faq: [
       {
         q: "What is a cluster utilization calculator?",
-        a: "A cluster utilization calculator is a free browser-based tool that calculates how efficiently CPU, memory, storage, GPU, or any custom resource is being used across a computing cluster, showing utilization percentage, remaining capacity, and headroom.",
+        a: "A cluster utilization calculator is a free tool that calculates how efficiently CPU, memory, storage, GPU, or any custom resource is being used across a computing cluster, showing utilization percentage, remaining capacity, and headroom.",
       },
       {
         q: "How is utilization calculated?",
@@ -112,7 +112,7 @@ export const clusterUtilizationCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

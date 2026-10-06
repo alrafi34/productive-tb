@@ -259,7 +259,7 @@ export default function ConfusionMatrixCalculatorUI() {
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Enter confusion matrix values (TP, FP, FN, TN) to instantly calculate all classification metrics —
               accuracy, precision, recall, F1, MCC, and more. Upload a CSV for automatic matrix generation.
-              All calculations run locally in your browser.
+              We do not collect or store what you enter.
             </p>
           </div>
         </div>

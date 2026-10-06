@@ -226,7 +226,7 @@ export default function ConversionRateCalculatorUI() {
               Conversion Rate Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter your visitors and conversions to instantly calculate your conversion rate. All calculations run locally in your browser — no data is sent anywhere.
+              Enter your visitors and conversions to instantly calculate your conversion rate. We do not collect or store what you enter.
             </p>
           </div>
         </div>

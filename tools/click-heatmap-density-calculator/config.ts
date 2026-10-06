@@ -76,7 +76,7 @@ export const clickHeatmapDensityCalculatorConfig = {
     faq: [
       {
         q: "What is a Click Heatmap Density Calculator?",
-        a: "A Click Heatmap Density Calculator is a free browser-based tool that visualizes where clicks or taps concentrate on a webpage, image, or app screen. You can manually place click points, import coordinates from a CSV or JSON file, or generate random test data, and the tool renders an interactive density heatmap using a Gaussian-style accumulation algorithm.",
+        a: "A Click Heatmap Density Calculator is a free tool that visualizes where clicks or taps concentrate on a webpage, image, or app screen. You can manually place click points, import coordinates from a CSV or JSON file, or generate random test data, and the tool renders an interactive density heatmap using a Gaussian-style accumulation algorithm.",
       },
       {
         q: "How does the heatmap algorithm work?",
@@ -108,11 +108,11 @@ export const clickHeatmapDensityCalculatorConfig = {
       },
       {
         q: "Does the tool save my work automatically?",
-        a: "Your click points and heatmap settings are automatically saved to your browser's local storage and restored the next time you visit. Uploaded background images are not persisted across sessions due to their size.",
+        a: "Your click points and heatmap settings are automatically saved and restored the next time you visit. Uploaded background images are not persisted across sessions due to their size.",
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All rendering, statistics, and file parsing happen entirely in your browser using JavaScript. No image, coordinate, or click data is ever uploaded to a server or stored in a database.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

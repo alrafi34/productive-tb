@@ -57,8 +57,8 @@ export const toolConfig = {
       { q: "Does this tool include accessibility checks?", a: "Yes. It includes contrast ratio checks and shows WCAG pass/fail guidance to support readable and accessible interfaces." },
       { q: "Can I export palettes for development workflows?", a: "Yes. You can export palette values as CSS variables, SCSS, JSON, and Tailwind-style formats for direct project usage." },
       { q: "Is gradient generation included?", a: "Yes. The tool provides gradient previews and copy-ready CSS gradient output from your generated palette." },
-      { q: "Is this color palette generator free to use?", a: "Yes. The tool is free and works directly in your browser with no sign-up required." },
-      { q: "Does this tool store my design data on a server?", a: "No. Palette generation and color operations run client-side in your browser." },
+      { q: "Is this color palette generator free to use?", a: "Yes. The tool is free to use with no sign-up required." },
+      { q: "Does this tool store my design data on a server?", a: "No. We do not collect or store what you enter." },
       { q: "Who benefits most from this palette generator?", a: "UI/UX designers, frontend developers, brand designers, students, and content creators can use it for quick and consistent color systems." },
     ],
   },
@@ -72,6 +72,6 @@ export const toolConfig = {
     "Export to CSS/SCSS/JSON/Tailwind",
     "Gradient generator",
     "Copy entire palette and individual color values",
-    "Client-side processing for fast and private usage"
+    "Private: your inputs are not collected or stored"
   ]
 };

@@ -8,10 +8,10 @@ export default function ClickHeatmapDensityCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>click heatmap density calculator</strong> is a free browser-based tool that visualizes where clicks or taps concentrate on a webpage, image, dashboard, or app screen. Upload a screenshot, click directly on the canvas to place points, import coordinates from a CSV or JSON file, or generate random test data — the tool renders an interactive density heatmap instantly, entirely inside your browser.
+            A <strong>click heatmap density calculator</strong> is a free tool that visualizes where clicks or taps concentrate on a webpage, image, dashboard, or app screen. Upload a screenshot, click directly on the canvas to place points, import coordinates from a CSV or JSON file, or generate random test data — the tool renders an interactive density heatmap instantly, entirely inside your browser.
           </p>
           <p>
-            Unlike hosted heatmap services, this tool requires no tracking script, no account, and no data upload to a server. Every calculation — from the Gaussian-style density accumulation to hotspot and cold-zone detection — runs locally using canvas rendering, so your click data never leaves your device.
+            Unlike hosted heatmap services, this tool requires no tracking script and no account. We do not collect or store what you enter.
           </p>
           <p>
             Built for <strong>UX designers, UI designers, product designers, CRO specialists, marketing teams, SEO professionals, product managers, web developers, agencies, and researchers</strong>, this tool provides adjustable heat radius, intensity, opacity, and blur controls, six color palettes, live density statistics, undo/redo history, and PNG, SVG, CSV, and JSON export.
@@ -96,7 +96,7 @@ export default function ClickHeatmapDensityCalculatorSEO() {
                 "Export click data as CSV or JSON, or copy statistics as text",
                 "Auto-saves click points and settings, restored on return",
                 "Friendly error handling for invalid files and oversized images",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -231,7 +231,7 @@ export default function ClickHeatmapDensityCalculatorSEO() {
           {[
             {
               q: "What is a Click Heatmap Density Calculator?",
-              a: "A Click Heatmap Density Calculator is a free browser-based tool that visualizes where clicks or taps concentrate on a webpage, image, or app screen using an interactive canvas heatmap, built from manually placed, imported, or randomly generated click points.",
+              a: "A Click Heatmap Density Calculator is a free tool that visualizes where clicks or taps concentrate on a webpage, image, or app screen using an interactive canvas heatmap, built from manually placed, imported, or randomly generated click points.",
             },
             {
               q: "How does the heatmap algorithm work?",
@@ -263,11 +263,11 @@ export default function ClickHeatmapDensityCalculatorSEO() {
             },
             {
               q: "Does the tool save my work automatically?",
-              a: "Your click points and heatmap settings are automatically saved to your browser's local storage and restored the next time you visit. Uploaded background images are not persisted due to their size.",
+              a: "Your click points and heatmap settings are automatically saved and restored the next time you visit. Uploaded background images are not persisted due to their size.",
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All rendering, statistics, and file parsing happen entirely in your browser using JavaScript. No image, coordinate, or click data is ever uploaded to a server or stored in a database.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
