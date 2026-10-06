@@ -80,7 +80,7 @@ export const logTransformationCalculatorConfig = {
     faq: [
       {
         q: "What is a log transformation calculator?",
-        a: "A log transformation calculator is a free browser-based tool that applies a logarithmic transformation to a single value or an entire dataset, using natural log (ln), log base 10, log base 2, or any custom base you choose.",
+        a: "A log transformation calculator is a free tool that applies a logarithmic transformation to a single value or an entire dataset, using natural log (ln), log base 10, log base 2, or any custom base you choose.",
       },
       {
         q: "Why would I apply a log transformation to my data?",
@@ -116,7 +116,7 @@ export const logTransformationCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

@@ -277,8 +277,7 @@ export default function PasswordStrengthMeterSEOContent() {
           <div>
             <h3 className="font-semibold text-slate-800 mb-1">Is it safe to enter my password here?</h3>
             <p className="text-sm">
-              Yes! All analysis happens locally in your browser. No passwords are sent to any server or stored anywhere 
-              except your device's localStorage (if you choose to save history).
+              Yes! We do not collect or store what you enter.
             </p>
           </div>
           <div>
@@ -356,7 +355,7 @@ export default function PasswordStrengthMeterSEOContent() {
       <section className="pt-6 border-t border-slate-200">
         <p className="text-sm text-slate-600 text-center">
           This password strength meter is a free, privacy-focused tool designed to help you create stronger passwords. 
-          All analysis is performed locally in your browser with no server communication.
+          We do not collect or store what you enter.
         </p>
       </section>
     </div>

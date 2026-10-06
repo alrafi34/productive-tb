@@ -38,7 +38,7 @@ export const toolConfig = {
       { q: "How do I make a table in Markdown?", a: "Separate columns with | and put a line of dashes under the header row: | Name | Price | on the first line, | --- | ---: | on the second, then one row per line. A colon on the right of the dashes right-aligns the column, on both sides centres it." },
       { q: "How do I add a line break without a new paragraph?", a: "End the line with two spaces or a backslash (\\) before pressing Enter. A single Enter joins the lines into one paragraph, and an empty line starts a new paragraph." },
       { q: "Can I use HTML inside Markdown?", a: "Yes, most Markdown renderers accept inline HTML such as <kbd>, <sup> or <details>. For safety this previewer removes scripts, event handlers and javascript: links from the output." },
-      { q: "Is my document stored or uploaded?", a: "No. The Markdown is converted in your browser and is not sent to a server; download it as a .md file if you want to keep it." },
+      { q: "Is my document stored or uploaded?", a: "No. We do not collect or store what you enter." },
     ],
   },
 };

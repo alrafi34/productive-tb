@@ -100,8 +100,8 @@ export const passwordGeneratorConfig = {
         a: "Pattern mode lets you define a template that controls exactly which character types appear at each position. Use U for uppercase, l for lowercase, N for a number, and S for a symbol — any other character is kept as-is. The pattern UUllllNNS generates a password starting with two uppercase letters, four lowercase, two numbers, and one symbol. This is useful for systems with specific password composition rules.",
       },
       {
-        q: "Is using crypto.getRandomValues() actually secure?",
-        a: "Yes. The crypto.getRandomValues() API uses the operating system's cryptographically secure pseudorandom number generator (CSPRNG) — the same source used for cryptographic key generation. It is fundamentally different from Math.random(), which uses a deterministic algorithm that can be predicted if the seed is known. Every password this tool generates draws from the OS-level CSPRNG, making the output suitable for security-sensitive use.",
+        q: "Are the generated passwords truly random?",
+        a: "Yes. Passwords are generated with a cryptographically secure pseudorandom number generator (CSPRNG) — the same kind of source used for cryptographic key generation. It is fundamentally different from ordinary random functions, which use a deterministic algorithm that can be predicted if the seed is known. Every password this tool generates draws from that CSPRNG, making the output suitable for security-sensitive use.",
       },
       {
         q: "How many passwords should I generate at once with bulk mode?",
@@ -113,12 +113,12 @@ export const passwordGeneratorConfig = {
       },
       {
         q: "Is my data private when using this password generator?",
-        a: "Yes. All password generation runs entirely in your browser using JavaScript and the Web Crypto API. The passwords you generate are never transmitted to any server, stored in any database, or accessible to anyone other than you. The optional history feature saves your last 10 generated passwords to your browser's localStorage — data that stays only on your device and is cleared when you clear your browser storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },
   features: [
-    "Cryptographically secure generation via crypto.getRandomValues()",
+    "Cryptographically secure generation",
     "Three modes: random character, passphrase, and pattern",
     "Adjustable length from 6 to 128 characters",
     "Character-type toggles: uppercase, lowercase, numbers, symbols",
@@ -128,9 +128,9 @@ export const passwordGeneratorConfig = {
     "Strength meter: Very Weak to Very Strong",
     "Bulk generation: 5, 10, 20, or 50 passwords at once",
     "Export as TXT or JSON file",
-    "Password history — last 10 generated, stored locally",
+    "Password history — last 10 generated,",
     "One-click copy to clipboard",
-    "100% browser-based — no server, no signup",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "wifi-password-generator",

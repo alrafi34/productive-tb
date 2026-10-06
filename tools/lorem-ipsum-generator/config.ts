@@ -60,7 +60,7 @@ export const toolConfig = {
       { q: "Can I add custom words?", a: "Yes. Add custom dictionary terms and they are mixed into output when using medium or full randomization modes." },
       { q: "Can I download generated text?", a: "Yes. You can copy output instantly and download as TXT. When HTML mode is enabled, HTML download is also available." },
       { q: "Is this lorem ipsum tool free?", a: "Yes. It is free to use without signup." },
-      { q: "Is my content private?", a: "Yes. Generation runs in your browser, so text is not uploaded to external servers." },
+      { q: "Is my content private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

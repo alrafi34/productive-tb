@@ -127,8 +127,8 @@ export default function PasswordGeneratorUI() {
             <div>
               <h3 className="font-semibold text-green-900 mb-1">100% Secure & Private</h3>
               <p className="text-sm text-green-800">
-                All passwords are generated locally in your browser using crypto.getRandomValues(). 
-                Nothing is sent to any server.
+                Passwords are generated with a cryptographically secure random number generator.
+                We do not collect or store the passwords you generate.
               </p>
             </div>
           </div>

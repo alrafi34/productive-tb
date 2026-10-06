@@ -57,7 +57,7 @@ export const ledResistorCalculatorConfig = {
       { q: "How do I calculate the resistor's power rating?", a: "P = I² × R. A 150Ω resistor at 20mA dissipates 0.06W — use a resistor rated at least 2x this for safety margin." },
       { q: "What LED current should I use if unknown?", a: "20mA is standard for common 3mm/5mm indicator LEDs. Always check the datasheet for high-power or specialty LEDs." },
       { q: "Can I use a higher resistance to dim an LED?", a: "Yes, higher resistance reduces current and brightness. Lower resistance increases both but risks exceeding maximum rated current." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, and LED count values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

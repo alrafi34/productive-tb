@@ -13,7 +13,7 @@ export default function MatrixCalculatorSEOContent() {
           <p>
             A <strong>matrix calculator</strong> is a free online tool that performs linear algebra
             operations on matrices — addition, subtraction, multiplication, determinant, inverse, and
-            transpose — instantly in your browser. It answers the question that comes up in every
+            transpose — instantly. It answers the question that comes up in every
             linear algebra course, engineering simulation, and data science workflow:{" "}
             <em>what is the result of this matrix operation, and did I set it up correctly?</em>
           </p>
@@ -30,7 +30,7 @@ export default function MatrixCalculatorSEOContent() {
             operations before coding them, teachers demonstrating matrix concepts in class, and
             anyone preparing for CCNA, engineering, or mathematics certifications</strong> that
             include matrix problems. Supports matrices up to 20×20, six operations, CSV export,
-            calculation history, and real-time dimension validation. Browser-based, free, no signup.
+            calculation history, and real-time dimension validation. Free, no signup required.
           </p>
         </div>
       </section>
@@ -99,10 +99,10 @@ export default function MatrixCalculatorSEOContent() {
                 "Load example matrices for quick testing",
                 "Copy result as CSV to clipboard",
                 "Download result as CSV file",
-                "Calculation history (last 20 saved locally)",
+                "Calculation history (last 20)",
                 "Supports matrices up to 20×20",
                 "Results to 4 decimal places",
-                "Browser-based — no signup required",
+                "No signup required",
                 "Works on mobile and tablet",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -299,7 +299,7 @@ export default function MatrixCalculatorSEOContent() {
             },
             {
               q: "What is the maximum matrix size supported?",
-              a: "The calculator supports matrices up to 20×20. Operations on large matrices (10×10 and above) may take slightly longer to display since the result has up to 400 cells, but all processing happens client-side in your browser so no network time is involved. For most homework and engineering use cases, matrices are 3×3 to 6×6.",
+              a: "The calculator supports matrices up to 20×20. Operations on large matrices (10×10 and above) may take slightly longer to display since the result has up to 400 cells. For most homework and engineering use cases, matrices are 3×3 to 6×6.",
             },
             {
               q: "How accurate are the results?",
@@ -311,7 +311,7 @@ export default function MatrixCalculatorSEOContent() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All matrix operations run entirely in your browser using JavaScript. Your matrix values are never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history is stored only in your browser's localStorage.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

@@ -112,7 +112,7 @@ export const marketingRoiCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your campaign names, costs, revenue figures, and saved history are never transmitted to any server, stored in any database, or accessible to anyone other than you. History and favorites are stored only in your browser's local storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

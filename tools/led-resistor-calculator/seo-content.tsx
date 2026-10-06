@@ -31,7 +31,7 @@ export default function LEDResistorCalculatorSEO() {
             Built for <strong>electronics hobbyists building LED circuits, students learning Ohm's Law
             applications, and hardware designers</strong> specifying indicator and status LEDs. Includes
             five built-in color presets with typical forward voltages, full step-by-step derivation, and
-            text export — free and entirely browser-based.
+            text export — free.
           </p>
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function LEDResistorCalculatorSEO() {
                 "Support for multiple LEDs in series",
                 "Five color presets (red, green, yellow, blue, white)",
                 "Full step-by-step derivation",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

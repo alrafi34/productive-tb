@@ -32,7 +32,7 @@ export const modelAccuracyCalculatorConfig = {
       { q: "What is a good accuracy for a machine learning model?", a: "It depends heavily on the problem. For balanced binary classification, 90%+ is typically excellent. For highly imbalanced datasets (e.g. fraud detection where 0.1% are fraudulent), even 99.9% accuracy can be meaningless — the model might just be predicting the majority class." },
       { q: "How do I calculate accuracy for multi-class classification?", a: "The formula is identical: count how many predictions exactly match the actual label, divide by total, and multiply by 100. This tool automatically handles multi-class labels — just paste your actual and predicted lists with matching length." },
       { q: "What is the difference between training accuracy and test accuracy?", a: "Training accuracy is measured on the data used to train the model. Test accuracy is measured on held-out data the model has never seen. Test accuracy is the meaningful metric — high training accuracy with low test accuracy indicates overfitting." },
-      { q: "Does this tool support uploading CSV files?", a: "Yes. Switch to CSV mode and upload a .csv or .txt file with two columns named 'actual' and 'predicted'. The tool parses the file locally in your browser — no data is uploaded to any server." },
+      { q: "Does this tool support uploading CSV files?", a: "Yes. Switch to CSV mode and upload a .csv or .txt file with two columns named 'actual' and 'predicted'. We do not collect or store your files." },
     ],
   },
   relatedTools: [

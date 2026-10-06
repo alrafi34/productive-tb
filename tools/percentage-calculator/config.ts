@@ -109,7 +109,7 @@ export const toolConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. The values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you. The CSV export in Batch mode generates the file locally on your device without any server-side processing.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },
@@ -123,7 +123,7 @@ export const toolConfig = {
     "Batch mode — apply any formula to a full list at once",
     "CSV export of batch results",
     "Results update instantly as you type",
-    "100% browser-based — no server, no signup required",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "percentage-increase-decrease-calculator",

@@ -26,7 +26,7 @@ export default function PatternNoiseSEOContent() {
     },
     {
       q: "Can I use the generated textures commercially?",
-      a: "Yes. Textures generated with this tool are free for unlimited personal and commercial use. There are no watermarks, licensing fees, or attribution requirements. You can embed them in client deliverables, SaaS products, commercial websites, app interfaces, and printed materials. All generation happens in your browser — no assets are stored on any server — so there is no usage tracking or licensing system to manage.",
+      a: "Yes. Textures generated with this tool are free for unlimited personal and commercial use. There are no watermarks, licensing fees, or attribution requirements. You can embed them in client deliverables, SaaS products, commercial websites, app interfaces, and printed materials. There is no usage tracking or licensing system to manage.",
     },
     {
       q: "How do I create a Figma-style grain overlay?",
@@ -38,7 +38,7 @@ export default function PatternNoiseSEOContent() {
     },
     {
       q: "Is my work private when using this tool?",
-      a: "Yes. All noise generation happens entirely in your browser using the HTML5 Canvas API and JavaScript. No images, settings, or exported files are ever sent to any server. Your textures are generated and remain on your device only. This means you can use the tool to create textures for confidential client projects or unreleased products without any data leaving your machine.",
+      a: "Yes. We do not collect or store what you enter. This means you can use the tool to create textures for confidential client projects or unreleased products.",
     },
   ];
 
@@ -78,8 +78,7 @@ export default function PatternNoiseSEOContent() {
           <p>
             Built for <strong>UI and product designers, frontend developers implementing design tokens,
             motion designers adding texture overlays, and digital illustrators creating background
-            layers</strong>. All generation happens in your browser — no uploads, no accounts, no
-            watermarks. Export and use your textures in personal or commercial projects freely.
+            layers</strong>. We do not collect or store what you enter. Export and use your textures in personal or commercial projects freely.
           </p>
         </div>
       </section>
@@ -91,7 +90,7 @@ export default function PatternNoiseSEOContent() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            All five pattern types are generated via the HTML5 Canvas API directly in your browser.
+            We do not collect or store what you enter.
             Each algorithm produces pixel values differently:
           </p>
           <div className="bg-gray-50 border border-gray-100 rounded-lg px-6 py-4 my-4">
@@ -147,7 +146,7 @@ export default function PatternNoiseSEOContent() {
                 "Resolution control: 128px to 1024px",
                 "Quick presets for common design scenarios",
                 "Preview on light, dark, gradient, and image backgrounds",
-                "100% browser-based — no uploads, no server",
+                "Private: your inputs are not collected or stored",
                 "Free for personal and commercial use, no watermarks",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

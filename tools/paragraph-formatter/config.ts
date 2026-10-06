@@ -54,7 +54,7 @@ export const toolConfig = {
       { q: "Can I remove only extra spaces without changing paragraphs?", a: "Yes. You can run individual actions like space cleanup or line-break fixes so you keep control over final formatting." },
       { q: "Who should use a paragraph formatting tool?", a: "Writers, students, editors, marketers, and support teams can use it to quickly clean text before publishing or sharing." },
       { q: "Is this paragraph formatter free?", a: "Yes. It is free to use with no signup requirement for standard text formatting tasks." },
-      { q: "Is my text private when I use this tool?", a: "Yes. Formatting runs in the browser, so your text does not need to be uploaded to external servers." },
+      { q: "Is my text private when I use this tool?", a: "Yes. We do not collect or store what you enter." },
       { q: "Can I copy or export formatted text?", a: "Yes. You can copy the cleaned text directly and use it in documents, CMS editors, or other writing tools." },
       { q: "Does this help SEO writing workflows?", a: "Yes. Cleaner paragraph structure improves readability, editorial consistency, and content quality before indexing and publication." },
     ],

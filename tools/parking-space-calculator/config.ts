@@ -62,7 +62,7 @@ export const parkingSpaceCalculatorConfig = {
       { q: "How does parking angle affect stall count?", a: "At 90°, stalls are perpendicular to the aisle and two-way traffic is possible — this yields the highest stall count per area. At 60° and 45°, stalls are angled with one-way aisles — easier maneuvering but lower stall density per area." },
       { q: "What is lot efficiency ratio?", a: "Lot efficiency ratio is stall area divided by total lot area, expressed as a percentage. A well-designed surface lot achieves 60–70%. Below 55% usually indicates poor geometry or too many aisles. Above 75% may mean insufficient pedestrian and landscape space." },
       { q: "How do I calculate ADA parking requirements?", a: "ADA requires 1 accessible space per 25 total stalls (4% minimum). Of the accessible spaces, 1 in 6 must be van-accessible (8 ft access aisle instead of 5 ft). Enter your total stall count and this calculator returns both the accessible and van-accessible requirements automatically." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your lot dimensions, stall counts, and inputs are never transmitted to any server or stored anywhere outside your device." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [

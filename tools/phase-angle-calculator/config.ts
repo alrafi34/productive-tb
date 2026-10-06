@@ -58,7 +58,7 @@ export const phaseAngleCalculatorConfig = {
       { q: "How do I calculate phase angle from a nameplate power factor?", a: "Use power factor mode: enter the rated PF (e.g. 0.85) and the calculator returns φ = arccos(0.85) = 31.79° directly." },
       { q: "Why does phase angle matter for electricity billing?", a: "Many tariffs penalize low power factor (large phase angle) since more current is drawn than the real power alone requires. Correction capacitors reduce phase angle toward zero." },
       { q: "Can phase angle be calculated for three-phase systems the same way?", a: "The same formulas apply per phase in a balanced three-phase system. Unbalanced systems need each phase analyzed separately." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your power, impedance, and power factor values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

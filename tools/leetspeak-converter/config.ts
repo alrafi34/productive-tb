@@ -40,7 +40,7 @@ export const leetspeakConverterConfig = {
       { q: "Why can't leetspeak always be decoded perfectly?", a: "Several letters share the same symbol: 1 can mean I or L, and digits in the original text (like 2026) look the same as letter swaps. The decoder reads 1 as i and turns every recognised symbol into a letter, so check names and numbers by eye." },
       { q: "Is leetspeak good for passwords?", a: "Not on its own. Password crackers try common substitutions such as P@55w0rd automatically, so they add little strength. A long passphrase of random words, or a password manager, protects you far better." },
       { q: "Where is leetspeak used today?", a: "Mostly for fun and style: gamer tags, usernames, jokes about hackers, retro internet themes and puzzles. Some words from leet culture, like pwned, n00b and w00t, have passed into everyday gaming slang." },
-      { q: "Is my text sent to a server?", a: "No. Translation happens in your browser, so nothing you type is uploaded." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
 };

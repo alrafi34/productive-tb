@@ -34,8 +34,7 @@ export default function PercentageCalculatorSEO() {
             shoppers, business owners, teachers, and anyone who works with numbers</strong> regularly.
             Beyond the four basic formulas, it includes <strong>Reverse mode</strong> for recovering
             original values, <strong>Multi-Step mode</strong> for chaining sequential percentage
-            changes, and <strong>Batch mode</strong> for processing entire lists with CSV export —
-            all running locally in your browser with no data sent to any server.
+            changes, and <strong>Batch mode</strong> for processing entire lists with CSV export.
           </p>
         </div>
       </section>
@@ -108,7 +107,7 @@ export default function PercentageCalculatorSEO() {
                 "CSV export of batch results",
                 "Accepts decimals and comma-formatted numbers",
                 "Results update instantly as you type",
-                "100% browser-based — no server, no signup required",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

@@ -66,7 +66,7 @@ export const movingAverageCalculatorConfig = {
     faq: [
       {
         q: "What is a moving average calculator?",
-        a: "A moving average calculator is a free browser-based tool that smooths out fluctuations in a dataset by averaging consecutive groups of values. It supports Simple, Weighted, and Exponential Moving Average methods, commonly used to identify trends in financial, business, and time-series data.",
+        a: "A moving average calculator is a free tool that smooths out fluctuations in a dataset by averaging consecutive groups of values. It supports Simple, Weighted, and Exponential Moving Average methods, commonly used to identify trends in financial, business, and time-series data.",
       },
       {
         q: "What is the difference between SMA, WMA, and EMA?",
@@ -102,7 +102,7 @@ export const movingAverageCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

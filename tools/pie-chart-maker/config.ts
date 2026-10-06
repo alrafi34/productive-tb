@@ -37,7 +37,7 @@ export const toolConfig = {
       { q: "Can I import data from a spreadsheet?", a: "Yes. Paste or import CSV with a label and a value on each row, and the chart updates with one slice per row." },
       { q: "Which export formats are supported?", a: "PNG for documents and slides, SVG for crisp scaling on the web and in design tools, and CSV for the underlying data." },
       { q: "When should I not use a pie chart?", a: "When there are more than about 5–7 categories, when the values are close to each other, or when you want to compare changes over time. A bar chart is easier to read in those cases." },
-      { q: "Is my data saved?", a: "Yes, the chart data is stored in your browser so it is still there when you return. Nothing is uploaded." },
+      { q: "Is my data saved?", a: "Yes, the chart data is saved so it is still there when you return." },
     ],
   },
   features: [
@@ -55,7 +55,7 @@ export const toolConfig = {
     "Show/hide percentages and labels",
     "Dark/Light theme toggle",
     "Responsive design for all devices",
-    "LocalStorage chart history",
-    "100% client-side processing"
+    "Chart history",
+    "Private: your inputs are not collected or stored"
   ]
 };

@@ -31,7 +31,7 @@ export default function PhaseAngleCalculatorSEO() {
             Built for <strong>electrical engineers analyzing motor and industrial loads, power quality
             technicians investigating power factor penalties, and electronics students</strong> learning AC
             circuit theory. Includes eight built-in presets across all three modes, full step-by-step
-            derivation, and text export — free and entirely browser-based.
+            derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function PhaseAngleCalculatorSEO() {
                 "Corresponding power factor for every mode",
                 "Full step-by-step derivation",
                 "Eight built-in presets across all modes",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

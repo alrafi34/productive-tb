@@ -34,8 +34,8 @@ export const mergePdfConfig = {
       { name: "Download", text: "Click Download PDF to save the combined document." },
     ],
     faq: [
-      { q: "Are my PDF files uploaded?", a: "No. The files are combined in your browser with the open-source pdf-lib library. Nothing is sent to a server, so it is safe for contracts, bank statements and other private documents." },
-      { q: "Is there a limit on the number or size of files?", a: "There is no fixed limit. Because the work happens on your device, very large files (hundreds of megabytes) depend on your computer's or phone's memory." },
+      { q: "Are my PDF files uploaded?", a: "No. We do not collect or store what you enter." },
+      { q: "Is there a limit on the number or size of files?", a: "There is no fixed limit. Very large files (hundreds of megabytes) may take longer to process." },
       { q: "Can I merge only some pages of each PDF?", a: "Yes. Type the pages in the Pages box under each file, for example 1-3, 5, 8- for pages 1 to 3, page 5 and page 8 to the end. Leave it empty for all pages." },
       { q: "Does merging change the quality?", a: "No. Pages are copied as they are, with their text, fonts, vector graphics and images unchanged, so text stays sharp and searchable." },
       { q: "Can I merge password-protected PDFs?", a: "Not while they are encrypted. Open the file in a PDF reader with its password, save or print a copy without protection, and add that copy." },

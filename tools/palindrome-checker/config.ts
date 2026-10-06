@@ -76,7 +76,7 @@ export const palindromeCheckerConfig = {
       { q: "Does this tool show cleaned and reversed text?", a: "Yes. The result panel shows original, cleaned, and reversed text so you can validate why a match passed or failed." },
       { q: "Can I check numbers as part of palindrome logic?", a: "Yes. You can keep numbers or enable ignore-numbers depending on whether numeric characters should affect the result." },
       { q: "Can I copy or download results?", a: "Yes. In single mode, you can copy a detailed report or download it as a TXT file for documentation and sharing." },
-      { q: "Is my text private when using this tool?", a: "Yes. Processing is done in your browser, so your input is not sent to external servers." },
+      { q: "Is my text private when using this tool?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
 };

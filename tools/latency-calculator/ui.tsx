@@ -194,7 +194,7 @@ export default function LatencyCalculatorUI() {
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
               Estimate propagation delay, transmission delay, RTT, and gaming ping based on distance, medium, and bandwidth.
-              All calculations run locally in your browser.
+              We do not collect or store what you enter.
             </p>
           </div>
         </div>

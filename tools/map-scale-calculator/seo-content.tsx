@@ -13,7 +13,7 @@ export default function MapScaleCalculatorSEO() {
         </h2>
         <div className="prose prose-gray max-w-none">
           <p className="text-gray-700 leading-relaxed mb-4">
-            A <strong>Map Scale Calculator</strong> is a browser-based tool that converts distances measured
+            A <strong>Map Scale Calculator</strong> is a online tool that converts distances measured
             on a map into real-world distances using a map scale ratio. It also works in reverse — given a
             known real-world distance, it calculates the corresponding measurement on the map.
           </p>
@@ -24,8 +24,7 @@ export default function MapScaleCalculatorSEO() {
           </p>
           <p className="text-gray-700 leading-relaxed">
             This tool supports all common distance units — millimeters, centimeters, meters, kilometers,
-            inches, feet, and miles — and automatically selects the most readable output unit. All
-            calculations run entirely in your browser with no data sent to any server.
+            inches, feet, and miles — and automatically selects the most readable output unit. We do not collect or store what you enter.
           </p>
         </div>
       </section>

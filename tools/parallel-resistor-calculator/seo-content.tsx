@@ -28,8 +28,7 @@ export default function ParallelResistorCalculatorSEO() {
           <p>
             Built for <strong>electronics students verifying textbook problems, hobbyists combining
             standard resistor values to hit a target, and electrical engineers</strong> checking equivalent
-            resistance during circuit analysis. No signup, unlimited resistors, and instant real-time results
-            — entirely browser-based.
+            resistance during circuit analysis. No signup, unlimited resistors, and instant real-time results.
           </p>
         </div>
       </section>
@@ -85,9 +84,9 @@ export default function ParallelResistorCalculatorSEO() {
                 "Shorthand entry support (e.g. 4.7k, 1M)",
                 "Automatic Ω, kΩ, MΩ unit conversion",
                 "Reciprocal formula applied automatically for any count",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Add, edit, or remove resistors instantly",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -8,13 +8,13 @@ export default function MeanCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>mean calculator</strong> is a free browser-based tool that computes the arithmetic mean (average) of any set of numbers instantly. Type or paste numbers separated by commas, spaces, or new lines — or upload a CSV or TXT file — and the calculator automatically detects your separators, parses the values, and returns the mean along with a full statistical summary.
+            A <strong>mean calculator</strong> is a free tool that computes the arithmetic mean (average) of any set of numbers instantly. Type or paste numbers separated by commas, spaces, or new lines — or upload a CSV or TXT file — and the calculator automatically detects your separators, parses the values, and returns the mean along with a full statistical summary.
           </p>
           <p>
             Beyond the mean itself, this calculator also returns count, sum, minimum, maximum, and range — the essential descriptive statistics most people reach for alongside an average. It handles very large datasets efficiently, supports decimals and negative numbers, and never sends your data anywhere.
           </p>
           <p>
-            This tool is built for <strong>students, teachers, data analysts, researchers, engineers, financial analysts, business professionals, scientists, accountants, and anyone working with numerical data</strong>. It supports file upload with drag-and-drop, calculation history, adjustable decimal precision, and export as CSV, TXT, or JSON — entirely in your browser.
+            This tool is built for <strong>students, teachers, data analysts, researchers, engineers, financial analysts, business professionals, scientists, accountants, and anyone working with numerical data</strong>. It supports file upload with drag-and-drop, calculation history, adjustable decimal precision, and export as CSV, TXT, or JSON.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function MeanCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past datasets",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -252,7 +252,7 @@ export default function MeanCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your numbers are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

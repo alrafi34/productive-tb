@@ -89,7 +89,7 @@ export default function MockDataGeneratorUI() {
             <div>
               <h3 className="font-semibold text-green-900 mb-1">100% Secure & Private</h3>
               <p className="text-sm text-green-800">
-                All data is generated locally in your browser using JavaScript. Nothing is sent to any server.
+                We do not collect or store what you enter.
               </p>
             </div>
           </div>

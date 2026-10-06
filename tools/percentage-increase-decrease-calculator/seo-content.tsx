@@ -34,7 +34,7 @@ export default function PercentageIncreaseDecreaseSEO() {
     },
     {
       q: "Is my data private when using this calculator?",
-      a: "Yes. All calculations run entirely in your browser using JavaScript. The values you enter are never transmitted to any server, stored in any database, or accessible to anyone other than you. The CSV export generates the file locally on your device without any server-side processing.",
+      a: "Yes. We do not collect or store what you enter.",
     },
   ];
 
@@ -75,8 +75,7 @@ export default function PercentageIncreaseDecreaseSEO() {
             It includes <strong>reverse percentage lookup</strong> to recover original values,{" "}
             <strong>multi-step simulation</strong> to model compounded changes across multiple stages,{" "}
             <strong>batch mode</strong> to process an entire list of values at once, and{" "}
-            <strong>CSV export</strong> for moving results directly into spreadsheets — all calculated
-            locally in your browser with no data sent to any server.
+            <strong>CSV export</strong> for moving results directly into spreadsheets.
           </p>
         </div>
       </section>
@@ -149,7 +148,7 @@ export default function PercentageIncreaseDecreaseSEO() {
                 "Per-row change: from, to, absolute diff, percent, direction",
                 "CSV export of full batch results",
                 "Accepts comma-formatted numbers and decimals",
-                "100% browser-based — no data sent to any server",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

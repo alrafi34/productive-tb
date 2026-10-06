@@ -80,11 +80,11 @@ export const pageRankEstimatorConfig = {
     faq: [
       {
         q: "What is a Page Rank Estimator?",
-        a: "A Page Rank Estimator is a free browser-based tool that scores a webpage's SEO ranking potential using a weighted model built on widely accepted SEO best practices — covering on-page factors, content quality, technical SEO, user experience, and authority signals. It is not connected to Google and does not use or reproduce Google's actual ranking algorithm.",
+        a: "A Page Rank Estimator is a free tool that scores a webpage's SEO ranking potential using a weighted model built on widely accepted SEO best practices — covering on-page factors, content quality, technical SEO, user experience, and authority signals. It is not connected to Google and does not use or reproduce Google's actual ranking algorithm.",
       },
       {
         q: "Does this tool predict my actual Google ranking?",
-        a: "No. This tool estimates ranking potential based on SEO best-practice signals, not your actual position in Google search results. Google's real ranking algorithm considers hundreds of signals, many of which (like proprietary quality and relevance models) cannot be replicated by a client-side tool. Use this score as a checklist and prioritization guide, not a ranking prediction.",
+        a: "No. This tool estimates ranking potential based on SEO best-practice signals, not your actual position in Google search results. Google's real ranking algorithm considers hundreds of signals, many of which (like proprietary quality and relevance models) cannot be replicated by a simple estimator. Use this score as a checklist and prioritization guide, not a ranking prediction.",
       },
       {
         q: "How is the overall SEO score calculated?",
@@ -116,7 +116,7 @@ export const pageRankEstimatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your page's SEO data, scores, and any saved reports are never transmitted to any server, stored in any database, or accessible to anyone other than you. Report history is stored only in your browser's local storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

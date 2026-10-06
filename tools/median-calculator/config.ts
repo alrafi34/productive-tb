@@ -76,7 +76,7 @@ export const medianCalculatorConfig = {
     faq: [
       {
         q: "What is a median calculator?",
-        a: "A median calculator is a free browser-based tool that instantly finds the middle value of a numerical dataset. It sorts your data automatically, determines whether the count is odd or even, and applies the correct formula to compute the median.",
+        a: "A median calculator is a free tool that instantly finds the middle value of a numerical dataset. It sorts your data automatically, determines whether the count is odd or even, and applies the correct formula to compute the median.",
       },
       {
         q: "How is the median calculated?",
@@ -104,7 +104,7 @@ export const medianCalculatorConfig = {
       },
       {
         q: "How large a dataset can I calculate the median for?",
-        a: "The calculator is optimized to handle large datasets efficiently — comfortably processing hundreds to thousands of values instantly using JavaScript's built-in sorting.",
+        a: "The calculator is optimized to handle large datasets efficiently — comfortably processing hundreds to thousands of values instantly.",
       },
       {
         q: "Can I change how many decimal places the result shows?",
@@ -112,7 +112,7 @@ export const medianCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you. Calculation history is stored only in your browser's local storage.",
+        a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
       },
     ],
   },

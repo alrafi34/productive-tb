@@ -8,13 +8,13 @@ export default function MinMaxScalingCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>min-max scaling calculator</strong> is a free browser-based tool that transforms a list of numbers into a new range using <strong>min-max normalization</strong> — the standard feature-scaling technique used throughout machine learning, data science, statistics, and finance. It answers a question every practitioner runs into before training a model or comparing metrics: <em>how do I put these numbers on a consistent scale?</em>
+            A <strong>min-max scaling calculator</strong> is a free tool that transforms a list of numbers into a new range using <strong>min-max normalization</strong> — the standard feature-scaling technique used throughout machine learning, data science, statistics, and finance. It answers a question every practitioner runs into before training a model or comparing metrics: <em>how do I put these numbers on a consistent scale?</em>
           </p>
           <p>
             Paste in any dataset — one value per line, comma-separated, space-separated, or pasted directly from Excel — set your target minimum and maximum, and the calculator instantly rescales every value proportionally so the original minimum maps to your target minimum and the original maximum maps to your target maximum.
           </p>
           <p>
-            This tool is built for <strong>data scientists, machine learning engineers, students, researchers, statisticians, financial analysts, engineers, business analysts, developers, and teachers</strong>. It runs entirely in your browser, handles large datasets smoothly, and never sends your data to a server.
+            This tool is built for <strong>data scientists, machine learning engineers, students, researchers, statisticians, financial analysts, engineers, business analysts, developers, and teachers</strong>. It handles large datasets smoothly.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function MinMaxScalingCalculatorSEO() {
                 "Copy scaled values directly to your clipboard",
                 "Export as CSV, JSON, or TXT",
                 "Calculation history — save and review up to 20 past datasets",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -227,7 +227,7 @@ export default function MinMaxScalingCalculatorSEO() {
           {[
             {
               q: "What is a min-max scaling calculator?",
-              a: "A min-max scaling calculator is a free browser-based tool that rescales a list of numbers into a custom target range using min-max normalization. It finds the minimum and maximum of your dataset and proportionally maps every value onto your chosen output range.",
+              a: "A min-max scaling calculator is a free tool that rescales a list of numbers into a custom target range using min-max normalization. It finds the minimum and maximum of your dataset and proportionally maps every value onto your chosen output range.",
             },
             {
               q: "How is min-max scaling calculated?",
@@ -263,7 +263,7 @@ export default function MinMaxScalingCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

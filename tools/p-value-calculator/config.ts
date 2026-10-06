@@ -80,7 +80,7 @@ export const pValueCalculatorConfig = {
     faq: [
       {
         q: "What is a p-value calculator?",
-        a: "A p-value calculator is a free browser-based tool that computes the probability of observing a test statistic as extreme as yours, assuming the null hypothesis is true. It supports Z-tests, T-tests, Chi-Square tests, F-tests, and correlation tests, and tells you whether your result is statistically significant at a chosen significance level.",
+        a: "A p-value calculator is a free tool that computes the probability of observing a test statistic as extreme as yours, assuming the null hypothesis is true. It supports Z-tests, T-tests, Chi-Square tests, F-tests, and correlation tests, and tells you whether your result is statistically significant at a chosen significance level.",
       },
       {
         q: "How is a p-value calculated?",
@@ -116,7 +116,7 @@ export const pValueCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your test statistics and inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

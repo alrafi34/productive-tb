@@ -109,7 +109,7 @@ export const toolConfig = {
       },
       {
         q: "Is my work private when using this tool?",
-        a: "Yes. All noise generation happens entirely in your browser using the HTML5 Canvas API. No images, settings, or exported files are ever sent to any server. Your textures are generated and remain on your device only.",
+        a: "Yes. We do not collect or store what you enter. This means you can use the tool to create textures for confidential client projects or unreleased products.",
       },
     ],
   },
@@ -125,7 +125,7 @@ export const toolConfig = {
     "Resolution control: 128px to 1024px",
     "Quick presets for common use cases",
     "Free for commercial use — no watermarks",
-    "100% browser-based — no uploads",
+    "Private: your inputs are not collected or stored",
   ],
   relatedTools: [
     "css-box-shadow-generator",

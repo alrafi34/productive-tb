@@ -8,7 +8,7 @@ export default function PlaceholderImageGeneratorSEOContent() {
         
         <div className="prose prose-sm max-w-none text-gray-700 space-y-4">
           <p>
-            The Placeholder Image Generator is a fast, browser-based tool for creating custom placeholder images for UI mockups, wireframes, and prototypes. Generate SVG or PNG images with custom dimensions, colors, and text labels instantly.
+            The Placeholder Image Generator is a fast, online tool for creating custom placeholder images for UI mockups, wireframes, and prototypes. Generate SVG or PNG images with custom dimensions, colors, and text labels instantly.
           </p>
           
           <h3 className="text-lg font-semibold text-gray-900 mt-6">Key Features</h3>
@@ -20,9 +20,9 @@ export default function PlaceholderImageGeneratorSEOContent() {
             <li>Optional border overlay</li>
             <li>Common preset sizes (thumbnail, square, social, banner)</li>
             <li>Copy to clipboard functionality</li>
-            <li>History tracking with localStorage</li>
+            <li>History tracking</li>
             <li>Real-time preview updates</li>
-            <li>100% browser-based, no server required</li>
+            <li>Your inputs are not collected or stored</li>
           </ul>
           
           <h3 className="text-lg font-semibold text-gray-900 mt-6">Use Cases</h3>

@@ -169,7 +169,7 @@ export default function MatrixCalculatorUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Matrix Calculator</h3>
               <p className="text-sm text-blue-800">
-                Perform matrix operations including addition, multiplication, inversion, determinant, and transpose. All calculations happen locally in your browser.
+                Perform matrix operations including addition, multiplication, inversion, determinant, and transpose. We do not collect or store what you enter.
               </p>
             </div>
           </div>

@@ -31,7 +31,7 @@ export default function OpAmpCalculatorSEO() {
             learning op-amp theory, circuit designers prototyping analog front-ends, audio engineers building
             mixer and buffer stages, and hobbyists checking a breadboard build against the expected
             output</strong>. It supports all four circuit types, includes built-in presets for each, saves
-            your last 10 calculations, and runs entirely in your browser — free, with no signup required.
+            your last 10 calculations — free, with no signup required.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function OpAmpCalculatorSEO() {
                 "Calculation history (last 10 entries saved)",
                 "Export results as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

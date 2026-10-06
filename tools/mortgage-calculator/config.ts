@@ -48,7 +48,7 @@ export const mortgageCalculatorConfig = {
       { q: "How much do extra payments save?", a: "Paying $200 more each month on a $320,000, 6.5%, 30-year loan clears it in 281 months instead of 360 and saves about $105,000 in interest." },
       { q: "Which property tax rate should I use?", a: "Use your local rate. In the U.S. effective rates range from well under 1% to over 2% of the home's value depending on the state and county; outside the U.S. property taxes are often a fixed annual amount, which you can convert to a percentage of the price." },
       { q: "Does this work outside the United States?", a: "Yes. Choose your currency and enter your own rate, term, tax and insurance figures. Leave PMI at 0 if your country has no mortgage insurance, and use the HOA field for service charges or ground rent." },
-      { q: "Is my data stored anywhere?", a: "No. All calculations run in your browser and nothing you type is sent to a server." },
+      { q: "Is my data stored anywhere?", a: "No. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -59,6 +59,6 @@ export const mortgageCalculatorConfig = {
     "Extra payment savings",
     "Full amortization schedule with CSV export",
     "Multi-currency: USD, EUR, GBP, CAD, AUD, CHF",
-    "100% client-side processing"
+    "Private: your inputs are not collected or stored"
   ]
 };

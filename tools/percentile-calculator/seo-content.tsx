@@ -8,13 +8,13 @@ export default function PercentileCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>percentile calculator</strong> is a free browser-based statistical tool that finds the value below which a given percentage of a dataset falls. Enter your data and a target percentile — like P90 or P95 — and the calculator instantly returns the corresponding value using linear interpolation between closest ranks.
+            A <strong>percentile calculator</strong> is a free statistical tool that finds the value below which a given percentage of a dataset falls. Enter your data and a target percentile — like P90 or P95 — and the calculator instantly returns the corresponding value using linear interpolation between closest ranks.
           </p>
           <p>
             Alongside your target percentile, the calculator shows quartiles (Q1, median, Q3), the interquartile range (IQR), and a full table of common percentiles (P1 through P99), all visualized on an interactive chart.
           </p>
           <p>
-            Built for <strong>students, data analysts, statisticians, researchers, performance engineers, and business analysts</strong>, the calculator runs entirely in your browser with instant results and no signup required.
+            Built for <strong>students, data analysts, statisticians, researchers, performance engineers, and business analysts</strong>, the calculator works with instant results and no signup required.
           </p>
         </div>
       </section>
@@ -86,7 +86,7 @@ export default function PercentileCalculatorSEO() {
                 "Shareable calculation URL using query parameters",
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -205,7 +205,7 @@ export default function PercentileCalculatorSEO() {
           {[
             {
               q: "What is a percentile calculator?",
-              a: "A percentile calculator is a free browser-based tool that finds the value below which a given percentage of a dataset falls, using linear interpolation between closest ranks.",
+              a: "A percentile calculator is a free tool that finds the value below which a given percentage of a dataset falls, using linear interpolation between closest ranks.",
             },
             {
               q: "How is percentile calculated?",
@@ -241,7 +241,7 @@ export default function PercentileCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>
