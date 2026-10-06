@@ -8,13 +8,13 @@ export default function EncodingEfficiencyCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>encoding efficiency calculator</strong> is a free browser-based tool that measures how efficiently an encoding method represents data by comparing the original data size to the encoded size. It answers a question every backend engineer eventually asks: <em>how much bigger does Base64, Hex, or another encoding actually make my data?</em>
+            An <strong>encoding efficiency calculator</strong> is a free tool that measures how efficiently an encoding method represents data by comparing the original data size to the encoded size. It answers a question every backend engineer eventually asks: <em>how much bigger does Base64, Hex, or another encoding actually make my data?</em>
           </p>
           <p>
             Enter the original and encoded data sizes in any unit — Bytes, KB, MB, GB, TB, or Bits — and the calculator instantly returns the encoding overhead percentage, expansion ratio, compression ratio, encoding efficiency percentage, and the exact additional storage required.
           </p>
           <p>
-            This tool is built for <strong>software developers, backend engineers, data engineers, API developers, security engineers, cloud engineers, QA engineers, compression researchers, and students</strong>. It runs entirely in your browser — no data is ever uploaded, and nothing leaves your device.
+            This tool is built for <strong>software developers, backend engineers, data engineers, API developers, security engineers, cloud engineers, QA engineers, compression researchers, and students</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function EncodingEfficiencyCalculatorSEO() {
                 "Export report as CSV, TXT, or JSON, plus a printable layout",
                 "Calculation history — save and reload up to 20 past results",
                 "Clear validation for zero, negative, and undefined inputs",
-                "All processing runs locally — no data is ever uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -236,7 +236,7 @@ export default function EncodingEfficiencyCalculatorSEO() {
           {[
             {
               q: "What is an encoding efficiency calculator?",
-              a: "An encoding efficiency calculator is a free browser-based tool that measures how much larger data becomes after encoding by comparing the original size to the encoded size. It returns the encoding overhead, expansion ratio, compression ratio, and efficiency percentage.",
+              a: "An encoding efficiency calculator is a free tool that measures how much larger data becomes after encoding by comparing the original size to the encoded size. It returns the encoding overhead, expansion ratio, compression ratio, and efficiency percentage.",
             },
             {
               q: "How is encoding overhead calculated?",
@@ -272,7 +272,7 @@ export default function EncodingEfficiencyCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your data sizes are never transmitted to any server, and no actual file or data content is ever uploaded — you only enter numeric sizes.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

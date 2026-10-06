@@ -190,7 +190,7 @@ export default function FractionCalculatorUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Fraction Calculator</h3>
               <p className="text-sm text-blue-800">
-                Add, subtract, multiply, and divide fractions with automatic simplification. All calculations happen instantly in your browser.
+                Add, subtract, multiply, and divide fractions with automatic simplification. All calculations happen instantly.
               </p>
             </div>
           </div>

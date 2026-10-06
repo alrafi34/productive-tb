@@ -8,13 +8,13 @@ export default function EtlThroughputCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>ETL throughput calculator</strong> is a free browser-based tool that measures how fast an Extract, Transform, Load pipeline processes data — in records per second, megabytes per second, or as an estimated completion time. It answers the questions every data engineer asks before and after a pipeline run: <em>how fast is this actually running, how long will it take, and is that fast enough?</em>
+            An <strong>ETL throughput calculator</strong> is a free tool that measures how fast an Extract, Transform, Load pipeline processes data — in records per second, megabytes per second, or as an estimated completion time. It answers the questions every data engineer asks before and after a pipeline run: <em>how fast is this actually running, how long will it take, and is that fast enough?</em>
           </p>
           <p>
             This calculator supports four calculation modes covering the most common ETL performance questions: raw records throughput, data-size throughput for file or byte-based pipelines, estimated completion time from a known processing speed, and capacity planning to check whether a pipeline can meet a target SLA at peak load — including a growth-adjusted projection.
           </p>
           <p>
-            This tool is built for <strong>data engineers, data analysts, data architects, BI engineers, database administrators, cloud engineers, DevOps engineers, students learning data engineering, and organizations planning ETL capacity</strong>. It supports Current vs. Optimized scenario comparison, calculation history, and export as CSV, JSON, or a print-ready report — entirely in your browser.
+            This tool is built for <strong>data engineers, data analysts, data architects, BI engineers, database administrators, cloud engineers, DevOps engineers, students learning data engineering, and organizations planning ETL capacity</strong>. It supports Current vs. Optimized scenario comparison, calculation history, and export as CSV, JSON, or a print-ready report.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function EtlThroughputCalculatorSEO() {
                 "Copy full report to clipboard in one click",
                 "Calculation history — save and reload up to 20 past results",
                 "No signup required — 100% free to use",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -255,7 +255,7 @@ export default function EtlThroughputCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your pipeline figures are never transmitted to any server, stored in any database, or accessible to anyone other than you. The calculation history feature saves results only to your browser's local storage, which you can clear at any time.",
+              a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 7 ? "border-b border-gray-100 pb-6" : ""}>

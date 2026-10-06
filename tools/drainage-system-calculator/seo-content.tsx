@@ -10,7 +10,7 @@ export default function DrainageSystemCalculatorSEO() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">About the Drainage System Calculator</h2>
           <p className="text-gray-700 leading-relaxed">
-            The Drainage System Calculator is a professional browser-based engineering utility for estimating and designing land drainage systems. It uses the Rational Method for peak runoff flow and Manning&apos;s Equation for pipe and channel capacity — the two most widely used formulas in civil and agricultural drainage engineering. The tool is 100% front-end, requires no installation, and delivers instant results for engineers, planners, contractors, and students.
+            The Drainage System Calculator is a professional online engineering utility for estimating and designing land drainage systems. It uses the Rational Method for peak runoff flow and Manning&apos;s Equation for pipe and channel capacity — the two most widely used formulas in civil and agricultural drainage engineering. The tool is 100% front-end, requires no installation, and delivers instant results for engineers, planners, contractors, and students.
           </p>
         </section>
 

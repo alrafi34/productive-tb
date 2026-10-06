@@ -39,7 +39,7 @@ export const dueDateCalculatorConfig = {
       { q: "Why are pregnancy weeks counted from the last period?", a: "Because the start of the last period is usually known and conception is not. By this convention you are already about 2 weeks pregnant at conception, which is why a pregnancy is called 40 weeks long although the baby develops for about 38." },
       { q: "How accurate is the due date?", a: "It is an estimate: only about 4–5% of babies arrive on their due date, and most are born within two weeks either side of it. A first-trimester ultrasound, measured from the baby's crown-rump length, is the most accurate way to date a pregnancy, so your provider may adjust the date after it." },
       { q: "What do early term, full term and late term mean?", a: "Babies born from 37 weeks 0 days to 38 weeks 6 days are early term, 39 weeks 0 days to 40 weeks 6 days full term, 41 weeks late term and from 42 weeks post-term (ACOG definitions). Before 37 weeks a birth is preterm." },
-      { q: "Is my information private?", a: "Yes. The calculation runs in your browser and the dates you enter are not sent or stored anywhere." },
+      { q: "Is my information private?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
 };

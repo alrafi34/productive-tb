@@ -8,13 +8,13 @@ export default function ExponentialSmoothingCalculatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            An <strong>exponential smoothing calculator</strong> is a free browser-based tool that smooths noisy time-series data and generates forecasts by giving exponentially decreasing weight to older observations. It supports <strong>Simple Exponential Smoothing</strong>, <strong>Holt&apos;s Double Exponential Smoothing</strong>, and <strong>Holt-Winters Triple Exponential Smoothing</strong> — the three foundational forecasting methods used across finance, operations, and research.
+            An <strong>exponential smoothing calculator</strong> is a free tool that smooths noisy time-series data and generates forecasts by giving exponentially decreasing weight to older observations. It supports <strong>Simple Exponential Smoothing</strong>, <strong>Holt&apos;s Double Exponential Smoothing</strong>, and <strong>Holt-Winters Triple Exponential Smoothing</strong> — the three foundational forecasting methods used across finance, operations, and research.
           </p>
           <p>
             This tool accepts manually typed numbers, pasted datasets, or uploaded CSV and TXT files. It instantly computes smoothed values, projects future periods, calculates error statistics like MAE, RMSE, and MAPE, and visualizes the original data, smoothed trend, and forecast on an interactive chart.
           </p>
           <p>
-            Built for <strong>business analysts, financial analysts, supply chain managers, inventory planners, sales managers, marketing teams, economists, students, teachers, and researchers</strong>, the calculator runs entirely in your browser with instant results, no signup, and support for large datasets.
+            Built for <strong>business analysts, financial analysts, supply chain managers, inventory planners, sales managers, marketing teams, economists, students, teachers, and researchers</strong>, the calculator works with instant results, no signup, and support for large datasets.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function ExponentialSmoothingCalculatorSEO() {
                 "Calculation history — save and reload past results",
                 "Auto-saves your last session and restores it on return",
                 "Keyboard shortcuts — Esc to reset, Ctrl+L for a random dataset",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span><span>{f}</span>
@@ -236,7 +236,7 @@ export default function ExponentialSmoothingCalculatorSEO() {
           {[
             {
               q: "What is an exponential smoothing calculator?",
-              a: "An exponential smoothing calculator is a free browser-based tool that smooths time-series data and generates forecasts using Simple, Holt's Double, or Holt-Winters Triple exponential smoothing.",
+              a: "An exponential smoothing calculator is a free tool that smooths time-series data and generates forecasts using Simple, Holt's Double, or Holt-Winters Triple exponential smoothing.",
             },
             {
               q: "How is Simple Exponential Smoothing calculated?",
@@ -272,7 +272,7 @@ export default function ExponentialSmoothingCalculatorSEO() {
             },
             {
               q: "Is my data private when using this calculator?",
-              a: "Yes. All calculations run entirely in your browser using JavaScript. Your dataset is never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+              a: "Yes. We do not collect or store what you enter.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

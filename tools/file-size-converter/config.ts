@@ -23,7 +23,7 @@ export const fileSizeConverterConfig = {
       { q: "Which standard should I use?", a: "Use binary (1,024) to match what Windows shows, for RAM, and for most programming. Use decimal (1,000) for drive and SSD capacities, cloud storage plans, macOS and iOS, and anything tied to network speed." },
       { q: "How long does it take to download a file?", a: "Multiply the size in bytes by 8 to get bits, then divide by your speed in bits per second. A 5 GB (decimal) file on a 100 Mbps connection takes 5,000,000,000 × 8 ÷ 100,000,000 = 400 seconds, about 6 minutes 40 seconds, at full speed. Real downloads are slower because of protocol overhead and shared connections." },
       { q: "What is the difference between Mbps and MB/s?", a: "Mbps is megabits per second, the unit internet providers use. MB/s is megabytes per second, which download managers often show. One byte is 8 bits, so 100 Mbps is at most 12.5 MB/s." },
-      { q: "Is my data sent anywhere?", a: "No. Every conversion runs in your browser. Recent conversions are kept only in this browser's local storage." },
+      { q: "Is my data sent anywhere?", a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
     title: "File Size Converter – Bytes, KB, MB, GB, TB",
     description: "Convert bytes, KB, MB, GB, TB and PB in binary (1024) or decimal (1000), see how Windows and macOS show a size, and how long it takes to download.",

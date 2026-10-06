@@ -55,7 +55,7 @@ export default function FloorAreaCalculatorSEO() {
           <li><strong>Unit Conversion:</strong> Switch between meters and feet seamlessly</li>
           <li><strong>Floor Grouping:</strong> Organize rooms by floor levels with automatic subtotals</li>
           <li><strong>Largest Room Highlight:</strong> Automatically identifies the largest room</li>
-          <li><strong>Auto-Save:</strong> Your data is saved locally in your browser</li>
+          <li><strong>Auto-Save:</strong> Your data is saved</li>
           <li><strong>Export Options:</strong> Download as CSV or text summary</li>
           <li><strong>Copy to Clipboard:</strong> Quickly copy total area for documentation</li>
           <li><strong>Mobile Responsive:</strong> Works perfectly on all devices</li>
@@ -154,7 +154,7 @@ export default function FloorAreaCalculatorSEO() {
         <ul className="list-disc list-inside space-y-2 leading-relaxed">
           <li><strong>Speed:</strong> Calculate total area in seconds, not minutes</li>
           <li><strong>Accuracy:</strong> Eliminate manual calculation errors</li>
-          <li><strong>Convenience:</strong> Works entirely in your browser, no installation needed</li>
+          <li><strong>Convenience:</strong> Nothing to install</li>
           <li><strong>Flexibility:</strong> Support for multiple units and floor grouping</li>
           <li><strong>Documentation:</strong> Export results for reports and presentations</li>
           <li><strong>Accessibility:</strong> Free tool available 24/7 from any device</li>

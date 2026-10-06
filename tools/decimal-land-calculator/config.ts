@@ -110,7 +110,7 @@ export const toolConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your land values and inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you. You can safely enter real property measurements or data from legal documents without any information leaving your device.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },
@@ -123,7 +123,7 @@ export const toolConfig = {
     "Real-time results as you type",
     "Copy individual results to clipboard",
     "Export full conversion as text file",
-    "100% browser-based — no data sent to any server",
+    "Private: your inputs are not collected or stored",
     "No registration required",
   ],
   relatedTools: [

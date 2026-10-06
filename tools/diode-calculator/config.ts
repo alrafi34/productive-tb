@@ -57,7 +57,7 @@ export const diodeCalculatorConfig = {
       { q: "Why choose a Schottky diode over silicon?", a: "Lower forward voltage (~0.3V vs 0.7V) reduces power dissipation and heat, and Schottky diodes switch faster — preferred for switching supplies and protection circuits." },
       { q: "How do I use this for reverse-polarity protection design?", a: "Use Voltage Drop mode to see how much voltage the protection diode consumes. A 0.7V silicon drop in a 5V line leaves only 4.3V — Schottky may be worth the tradeoff." },
       { q: "How is this different from the LED resistor calculator?", a: "This covers general diodes (silicon, germanium, Schottky) plus LEDs, with a dedicated voltage-drop mode. The LED resistor calculator specializes in LED resistor sizing." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser using JavaScript. Your voltage, current, and resistance values are never transmitted to any server." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   relatedTools: [

@@ -83,7 +83,7 @@ export default function ElectricMotorPowerCalculatorSEO() {
                 "Results in W, kW and HP with step-by-step working",
                 "Presets for common motors",
                 "Copy, export as text or CSV, and history",
-                "Runs in your browser — nothing is uploaded",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

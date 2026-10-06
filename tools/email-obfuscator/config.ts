@@ -38,8 +38,8 @@ export const toolConfig = {
       { q: "Does obfuscation affect SEO?", a: "No, search engines can read HTML entities correctly. Your content remains indexable and SEO-friendly." },
       { q: "Which encoding method is best?", a: "Mixed encoding provides the best protection as it's harder for bots to detect patterns. JavaScript obfuscation is also very effective but requires JavaScript to be enabled." },
       { q: "Can I decode obfuscated emails?", a: "Yes, use the Decode tab in this tool to convert obfuscated emails back to plain text." },
-      { q: "Is this tool free to use?", a: "Yes, completely free for personal and commercial use. All processing happens in your browser with no data sent to servers." },
-      { q: "Do I need to install anything?", a: "No, this is a web-based tool that works entirely in your browser. No installation or registration required." },
+      { q: "Is this tool free to use?", a: "Yes, completely free for personal and commercial use." },
+      { q: "Do I need to install anything?", a: "No. No installation or registration required." },
     ],
   },
   features: [

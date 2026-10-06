@@ -103,7 +103,7 @@ export const earthingResistanceCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your soil resistivity, rod dimensions, and configuration inputs are never transmitted to any server, stored in any database, or accessible to anyone other than you.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

@@ -32,7 +32,7 @@ export default function DecimalLandCalculatorSEO() {
             Built for <strong>property buyers and sellers in Bangladesh and India, real estate agents, land
             surveyors, legal document preparers, farmers, and NRIs managing property abroad</strong> who need
             fast and accurate conversions across all regional units. Enter any value, select your region, and
-            get every conversion at once — browser-based, free, no signup required.
+            get every conversion at once — free, no signup required.
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function DecimalLandCalculatorSEO() {
                 "Results update in real time as you type",
                 "Copy individual results to clipboard",
                 "Export full conversion as text file",
-                "Browser-based — no data sent to any server",
+                "Your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

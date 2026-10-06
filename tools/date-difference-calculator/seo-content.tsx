@@ -79,7 +79,7 @@ export default function DateDifferenceCalculatorSEO() {
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Save recent date calculations in your browser
+                Save recent date calculations
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
@@ -142,8 +142,7 @@ export default function DateDifferenceCalculatorSEO() {
             enable time details, save recent entries, and copy the final answer without manual reformatting.
           </p>
           <p>
-            Privacy is built in as well. Calculations happen in your browser, which is especially useful for personal dates and
-            sensitive planning data. This makes the tool practical for students, professionals, business teams, and anyone who
+            Privacy is built in as well. We do not collect or store what you enter. This makes the tool practical for students, professionals, business teams, and anyone who
             needs a trustworthy date duration calculator online.
           </p>
         </div>
@@ -322,8 +321,7 @@ export default function DateDifferenceCalculatorSEO() {
               Is my data private?
             </h3>
             <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-              Yes. Calculations run in your browser. Your selected dates are not sent to a server. Recent history is stored
-              locally in your browser only, so you can quickly reopen past calculations.
+              Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you.
             </p>
           </div>
 
@@ -383,7 +381,7 @@ export default function DateDifferenceCalculatorSEO() {
             <div className="text-4xl mb-3">🔒</div>
             <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: "var(--font-heading)" }}>100% Private</h3>
             <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-body)" }}>
-              Your dates stay on your device because all calculations are handled in-browser.
+              We do not collect or store what you enter.
             </p>
           </div>
         </div>

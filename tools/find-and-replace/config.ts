@@ -78,7 +78,7 @@ export const findAndReplaceConfig = {
       { q: "Can I run multiple replacements in one pass?", a: "Yes. Batch mode allows multiple enabled find-replace rules to be applied sequentially." },
       { q: "Can I upload files for editing?", a: "Yes. You can upload or drag and drop .txt, .md, and .csv files." },
       { q: "Is this find and replace tool free?", a: "Yes. It is free to use with no sign-up required." },
-      { q: "Is my text private?", a: "Yes. Processing runs in your browser, so your text is not uploaded to external servers." },
+      { q: "Is my text private?", a: "Yes. We do not collect or store what you enter." },
     ],
   }
 };

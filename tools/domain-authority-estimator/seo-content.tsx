@@ -8,13 +8,13 @@ export default function DomainAuthorityEstimatorSEO() {
         </h2>
         <div className="space-y-4 text-gray-600 leading-relaxed">
           <p>
-            A <strong>domain authority estimator</strong> is a free browser-based SEO tool that calculates a website's estimated authority score using a transparent, weighted algorithm built from publicly known ranking signals. Unlike official Domain Authority — a proprietary metric owned by Moz that requires access to their private web index and algorithm — this estimator uses inputs you can collect from any standard SEO platform to produce a comparable, actionable score between 0 and 100.
+            A <strong>domain authority estimator</strong> is a free SEO tool that calculates a website's estimated authority score using a transparent, weighted algorithm built from publicly known ranking signals. Unlike official Domain Authority — a proprietary metric owned by Moz that requires access to their private web index and algorithm — this estimator uses inputs you can collect from any standard SEO platform to produce a comparable, actionable score between 0 and 100.
           </p>
           <p>
             Domain authority reflects how likely a website is to rank well in search engine results. It is not a metric Google uses directly, but it is widely accepted as a proxy for link equity, trustworthiness, and competitive positioning. A site with a high estimated DA has accumulated more quality referring domains, older domain history, higher organic traffic, and cleaner backlink signals than a lower-scoring competitor. Understanding these signals — and how they combine — is essential for diagnosing ranking gaps and prioritising SEO investments.
           </p>
           <p>
-            This tool is built for <strong>SEO professionals, digital marketers, website owners, content strategists, link-building specialists, and SEO students</strong> who need an instant, data-informed authority benchmark without a paid Moz subscription. Enter signals from Ahrefs, SEMrush, Google Search Console, or any backlink tool. The score, factor breakdown, strengths, weaknesses, and prioritised recommendations update instantly in your browser — no data is sent to any server.
+            This tool is built for <strong>SEO professionals, digital marketers, website owners, content strategists, link-building specialists, and SEO students</strong> who need an instant, data-informed authority benchmark without a paid Moz subscription. Enter signals from Ahrefs, SEMrush, Google Search Console, or any backlink tool. The score, factor breakdown, strengths, weaknesses, and prioritised recommendations update instantly.
           </p>
         </div>
       </section>
@@ -102,7 +102,7 @@ export default function DomainAuthorityEstimatorSEO() {
                 "Export report as TXT or JSON",
                 "Copy full report to clipboard in one click",
                 "Save up to 20 estimates to local browser history",
-                "All processing runs locally — no data leaves your browser",
+                "Your inputs are not collected or stored",
                 "No signup, no account, no rate limits",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -284,7 +284,7 @@ export default function DomainAuthorityEstimatorSEO() {
             },
             {
               q: "Does this tool store my data?",
-              a: "No. All calculations run entirely in your browser using JavaScript. None of the domain names, backlink counts, or other signals you enter are transmitted to any server. When you use the Save to History feature, data is stored only in your browser's localStorage — it stays on your device and is cleared when you clear your browser data. This makes the tool safe for auditing client domains or sensitive internal data.",
+              a: "No. We do not collect or store what you enter. Any history the tool keeps is visible only to you.",
             },
           ].map(({ q, a }, i) => (
             <div key={i} className={i < 9 ? "border-b border-gray-100 pb-6" : ""}>

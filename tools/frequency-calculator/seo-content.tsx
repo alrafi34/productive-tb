@@ -9,7 +9,7 @@ export default function FrequencyCalculatorSEO() {
     { q: "Can I use this calculator for audio frequencies?", a: "Yes. Human hearing spans roughly 20 Hz to 20 kHz, and this calculator handles that entire range plus everything above and below it. A 440 Hz concert-pitch A note has a time period of about 2.27 ms, while a 1 kHz test tone — the standard reference signal in audio engineering — has a period of exactly 1 ms." },
     { q: "Can I use this calculator for RF and radio frequencies?", a: "Yes, up to the MHz range. AM broadcast frequencies (530–1700 kHz) and shortwave/HF signals (up to 30 MHz) convert cleanly — for example, a 1 MHz carrier has a 1 microsecond period. For frequencies above the MHz range (GHz-scale microwave and cellular signals), convert your value to MHz first, since MHz is the highest frequency unit this tool supports." },
     { q: "What is the difference between Hz, kHz, and MHz?", a: "Hz (Hertz) is the base unit — one cycle per second. kHz (kilohertz) equals 1,000 Hz, and MHz (megahertz) equals 1,000,000 Hz. A 100 kHz signal is the same as 100,000 Hz or 0.1 MHz. The calculator lets you pick input and output units independently, so you can enter a value in kHz and read the result in Hz or MHz without doing the multiplication yourself." },
-    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your frequency values, time periods, and calculation history are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+    { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
   ];
 
   const howToSteps: [string, string][] = [
@@ -48,7 +48,7 @@ export default function FrequencyCalculatorSEO() {
             engineers working with test tones and waveform periods, RF technicians and radio hobbyists
             converting carrier frequencies, embedded and firmware engineers timing PWM and clock signals,
             and electronics students learning the f = 1/T relationship</strong>. Every calculation runs
-            instantly in your browser with step-by-step working shown, adjustable precision up to 8 decimal
+            instantly with step-by-step working shown, adjustable precision up to 8 decimal
             places, calculation history, and a text export — free, with no signup required.
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function FrequencyCalculatorSEO() {
                 "Calculation history (last 10 entries)",
                 "Export results as a text report",
                 "Copy result to clipboard",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

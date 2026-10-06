@@ -125,9 +125,9 @@ export default function ElectricBillCalculatorSEO() {
                 "Tax as a percentage of the bill",
                 "Presets: U.S. average, UK price cap and EU average",
                 "Line-by-line cost breakdown",
-                "History saved in your browser",
+                "History saved",
                 "CSV and text export",
-                "Free, no sign-up, nothing sent to a server",
+                "Your inputs are not collected or stored",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-green-500 flex-shrink-0">✓</span>

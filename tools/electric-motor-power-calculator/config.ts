@@ -66,7 +66,7 @@ export const electricMotorPowerCalculatorConfig = {
       { q: "What is the difference between kW and kVA for motors?", a: "kW is real power (actual work done). kVA is apparent power (total drawn from supply). kW = kVA × Power Factor. Generator and transformer sizing must use kVA, not kW." },
       { q: "Why is √3 used in three-phase motor calculations?", a: "√3 (1.7321) is the three-phase constant that accounts for the phase relationship between the three supply conductors. Omitting it in three-phase calculations produces a result 42% too low." },
       { q: "How do I size a motor for an application?", a: "Calculate required shaft output from the mechanical load (P = F × v or P = T × ω). Apply a 1.15–1.25 service factor. Select the next standard motor rating above the result from the IEC standard series: 0.37, 0.55, 0.75, 1.1, 1.5, 2.2, 3, 4, 5.5, 7.5, 11, 15, 22, 30, 37, 45, 55, 75 kW." },
-      { q: "Is my data private when using this calculator?", a: "Yes. All calculations run in your browser. Your motor specs and electrical parameters are never transmitted to any server or stored outside your device." },
+      { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter." },
     ],
   },
   features: [
@@ -77,7 +77,7 @@ export const electricMotorPowerCalculatorConfig = {
     "Results in W, kW and HP with step-by-step working",
     "Presets for common motors",
     "Copy, export as text or CSV, and history",
-    "Runs in your browser — nothing is uploaded",
+    "Your inputs are not collected or stored",
   ],
   relatedTools: [
     "air-conditioner-power-calculator",

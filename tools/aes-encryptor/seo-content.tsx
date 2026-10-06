@@ -209,7 +209,7 @@ export default function AESEncryptorSEOContent() {
         <div className="space-y-6">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Is my data private?</h3>
-            <p className="text-gray-600">No. We do not collect or store what you enter.</p>
+            <p className="text-gray-600">Yes. We do not collect or store what you enter.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">How secure is AES-GCM encryption?</h3>

@@ -11,7 +11,7 @@ export const toolConfig = {
       { q: "How many options can I add?", a: "As many as fit on the wheel; each option gets an equal-sized slice and its own color." },
       { q: "Can I remove the winner and spin again?", a: "Yes. Delete the winning option from the list and spin again, which is useful for picking an order or several winners." },
       { q: "Can I use it in a classroom?", a: "Yes. Add students' names, project it on a screen and spin to pick who answers next or to form groups." },
-      { q: "Is it free?", a: "Yes, with no sign-up. The wheel runs entirely in your browser." },
+      { q: "Is it free?", a: "Yes, with no sign-up." },
     ],
     title: "Spin the Wheel – Random Decision Wheel Picker",
     description: "Add your own options and spin the wheel to pick one at random. Every option has an equal chance. Great for classrooms, games and team decisions.",

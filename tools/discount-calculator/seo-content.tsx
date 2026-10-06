@@ -29,7 +29,7 @@ export default function DiscountCalculatorSEO() {
           <p>
             Built for <strong>shoppers comparing sale prices, retail managers pricing promotions, e-commerce
             sellers calculating margins, accountants verifying invoice discounts, and students working through
-            pricing problems</strong>. All calculations run in your browser — no account, no signup required.
+            pricing problems</strong>. We do not collect or store what you enter.
           </p>
         </div>
       </section>
@@ -90,7 +90,7 @@ export default function DiscountCalculatorSEO() {
                 "Reverse mode — find original price from sale price",
                 "Batch mode — apply discount to many prices at once",
                 "CSV export of batch results",
-                "100% browser-based — no data sent to server",
+                "Private: your inputs are not collected or stored",
                 "No signup required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

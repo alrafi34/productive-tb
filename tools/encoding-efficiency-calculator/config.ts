@@ -79,7 +79,7 @@ export const encodingEfficiencyCalculatorConfig = {
     faq: [
       {
         q: "What is an encoding efficiency calculator?",
-        a: "An encoding efficiency calculator is a free browser-based tool that measures how much larger data becomes after encoding by comparing the original size to the encoded size. It returns the encoding overhead, expansion ratio, compression ratio, and efficiency percentage.",
+        a: "An encoding efficiency calculator is a free tool that measures how much larger data becomes after encoding by comparing the original size to the encoded size. It returns the encoding overhead, expansion ratio, compression ratio, and efficiency percentage.",
       },
       {
         q: "How is encoding overhead calculated?",
@@ -115,7 +115,7 @@ export const encodingEfficiencyCalculatorConfig = {
       },
       {
         q: "Is my data private when using this calculator?",
-        a: "Yes. All calculations run entirely in your browser using JavaScript. Your data sizes are never transmitted to any server, and no actual file or data content is ever uploaded, since you only enter numeric sizes.",
+        a: "Yes. We do not collect or store what you enter.",
       },
     ],
   },

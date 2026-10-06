@@ -32,7 +32,7 @@ export default function EarthingResistanceCalculatorSEO() {
             grounding equipment enclosures, and students studying IEEE 80 or IEC 62305 earthing calculations</strong>.
             It shows the full calculation — 4L/d, the natural logarithm, and the final resistance — step by step,
             supports single and multiple-rod configurations, includes a soil resistivity reference table, and
-            flags when your design needs improvement. Browser-based, free, no signup required.
+            flags when your design needs improvement. Free, no signup required.
           </p>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function EarthingResistanceCalculatorSEO() {
                 "Six preset configurations to start from",
                 "Calculation history (last 20 entries)",
                 "Export results as a text report",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

@@ -217,7 +217,7 @@ export default function DownloadTimeCalculatorUI() {
               Download Time Calculator
             </h3>
             <p className="text-sm text-blue-700 mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              Enter a file size and internet speed to instantly estimate download time. Supports real-world efficiency adjustment and shareable URLs. All calculations run locally in your browser.
+              Enter a file size and internet speed to instantly estimate download time. Supports real-world efficiency adjustment and shareable URLs. We do not collect or store what you enter.
             </p>
           </div>
         </div>

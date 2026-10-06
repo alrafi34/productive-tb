@@ -21,7 +21,7 @@ export default function SEOContent() {
           </div>
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">Step 4: Download</h3>
-            <p>Download individual clean images or use "Download All" for batch processing. All files are processed locally in your browser.</p>
+            <p>Download individual clean images or use "Download All" for batch processing. We do not collect or store your files.</p>
           </div>
         </div>
       </section>
@@ -106,8 +106,7 @@ export default function SEOContent() {
               Is my data safe when using this tool?
             </h3>
             <p className="text-gray-600">
-              Absolutely! All processing happens entirely in your browser using JavaScript and the Canvas API. Your images 
-              never leave your device or get uploaded to any server. This ensures complete privacy and security for your photos.
+              Yes. We do not collect or store your files. This ensures complete privacy and security for your photos.
             </p>
           </div>
           <div className="bg-gray-50 p-4 rounded-lg">

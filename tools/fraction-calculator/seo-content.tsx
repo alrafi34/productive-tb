@@ -15,8 +15,8 @@ const comparisonPoints = [
     text: "Use random examples, quick presets, copy buttons, and local history to move faster through practice sets.",
   },
   {
-    title: "Browser-based and private",
-    text: "No login, no installation, and no server-side math required for standard use.",
+    title: "Private",
+    text: "We do not collect or store what you enter.",
   },
 ];
 
@@ -38,7 +38,7 @@ export default function FractionCalculatorSEO() {
         </p>
         <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
           Whether you are solving homework, checking worksheets, scaling recipe quantities, or handling measurement math,
-          this tool gives fast and accurate fraction results directly in the browser. It is designed for everyday use,
+          this tool gives fast and accurate fraction results. It is designed for everyday use,
           with clear inputs, instant updates, and practical output formats.
         </p>
       </section>

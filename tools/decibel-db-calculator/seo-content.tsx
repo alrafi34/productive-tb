@@ -9,7 +9,7 @@ export default function DecibelCalculatorSEO() {
     { q: "Can I add decibel values together?", a: "Yes, and this is one of the main reasons dB is used industry-wide. Because dB is logarithmic, cascaded gains and losses along a signal chain add instead of multiply. A +10 dB amplifier stage followed by a -4 dB cable loss and another +6 dB stage totals +12 dB overall, without needing to multiply any raw ratios together." },
     { q: "What is the difference between dB, dBm, and dBW?", a: "dB is a relative unit comparing two values — it has no meaning on its own without a reference point. dBm is an absolute power unit referenced to 1 milliwatt (0 dBm = 1 mW), and dBW is referenced to 1 watt (0 dBW = 1 W). This calculator computes relative dB from ratios; it does not convert absolute power values in watts directly into dBm or dBW." },
     { q: "What does a negative dB value mean?", a: "A negative dB value indicates attenuation or loss rather than gain. In ratio-to-dB modes, entering a ratio less than 1 (meaning the output is smaller than the input) always produces a negative dB result. In dB-to-ratio modes, entering a negative dB value always returns a ratio less than 1." },
-    { q: "Is my data private when using this calculator?", a: "Yes. All calculations run entirely in your browser using JavaScript. Your ratio and dB values, along with your calculation history, are never transmitted to any server, stored in any database, or accessible to anyone other than you." },
+    { q: "Is my data private when using this calculator?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
   ];
 
   const howToSteps: [string, string][] = [
@@ -47,7 +47,7 @@ export default function DecibelCalculatorSEO() {
             This tool is built for <strong>audio engineers measuring amplifier gain and sound pressure
             levels, RF and electronics engineers working with attenuation and antenna gain, network and
             telecom technicians analyzing signal loss, and electronics students learning the power-versus-voltage
-            dB relationship</strong>. All four conversion directions run instantly in your browser with
+            dB relationship</strong>. All four conversion directions run instantly with
             full step-by-step working shown — free, with no signup required.
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function DecibelCalculatorSEO() {
                 "Export results as a text report",
                 "Copy result to clipboard",
                 "Remembers your last used mode",
-                "100% browser-based — no data sent to a server",
+                "Private: your inputs are not collected or stored",
                 "No registration required",
               ].map((f, i) => (
                 <li key={i} className="flex items-center gap-2">

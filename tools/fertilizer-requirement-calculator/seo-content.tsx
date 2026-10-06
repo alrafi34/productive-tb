@@ -24,7 +24,7 @@ export default function FertilizerRequirementCalculatorSEO() {
             choose your fertilizer type, and get instant calculations with application recommendations.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            All calculations happen instantly in your browser with no data sent to any server. The tool
+            We do not collect or store what you enter. The tool
             supports multiple area units, currencies, and provides detailed recommendations for optimal
             fertilizer application timing and methods.
           </p>

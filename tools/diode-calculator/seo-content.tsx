@@ -31,7 +31,7 @@ export default function DiodeCalculatorSEO() {
             Built for <strong>electronics hobbyists designing rectifier and protection circuits, students
             learning diode theory, and hardware designers</strong> selecting between silicon, germanium,
             Schottky, and LED options. Includes five built-in diode type presets, full step-by-step
-            derivation, and text export — free and entirely browser-based.
+            derivation, and text export — free.
           </p>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function DiodeCalculatorSEO() {
                 "Power dissipation and recommended wattage",
                 "Full step-by-step derivation",
                 "Five built-in diode type presets",
-                "Calculation history (saved locally)",
+                "Calculation history",
                 "Export calculation as a text file",
                 "No signup required",
               ].map((f, i) => (

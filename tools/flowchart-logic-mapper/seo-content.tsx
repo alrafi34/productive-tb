@@ -59,10 +59,10 @@ export default function FlowchartSEOContent() {
         <div className="mt-8 pt-8 border-t border-blue-200">
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Why Use Our Flowchart Mapper?</h3>
           <p className="text-sm text-gray-700 mb-3">
-            Our free online flowchart logic mapper runs entirely in your browser with no backend required. Create professional flowcharts instantly without installing software or creating accounts. Perfect for developers, business analysts, students, and anyone who needs to visualize processes and workflows.
+            Our free online flowchart logic mapper is free to use. Create professional flowcharts instantly without installing software or creating accounts. Perfect for developers, business analysts, students, and anyone who needs to visualize processes and workflows.
           </p>
           <p className="text-sm text-gray-700">
-            With support for multiple box shapes, customizable colors, and flexible arrow connections, you can create any type of diagram from simple process flows to complex decision trees. Export your work in multiple formats and save it locally for future editing.
+            With support for multiple box shapes, customizable colors, and flexible arrow connections, you can create any type of diagram from simple process flows to complex decision trees. Export your work in multiple formats and save it for future editing.
           </p>
         </div>
       </div>

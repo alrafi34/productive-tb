@@ -272,8 +272,7 @@ export default function FireSafetyLoadCalculatorSEO() {
             This calculator is designed for architects, civil engineers, fire safety engineers, and building professionals 
             who need accurate fire load calculations for building design and risk assessment. It combines engineering 
             precision with an intuitive interface, making complex fire safety calculations accessible while maintaining 
-            professional-grade accuracy. All calculations run entirely in your browser with no data sent to servers, 
-            ensuring privacy and instant performance.
+            professional-grade accuracy. We do not collect or store what you enter.
           </p>
         </section>
 

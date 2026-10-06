@@ -179,7 +179,7 @@ export default function FileHashGeneratorUI() {
         {/* Security Notice */}
         <div className="mb-6 bg-green-50 border border-green-200 rounded-xl p-4">
           <p className="text-sm text-green-800 text-center">
-            🔒 <strong>100% Secure:</strong> Files are processed locally in your browser. No files are uploaded to any server.
+            🔒 <strong>100% Secure:</strong> We do not collect or store your files.
           </p>
         </div>
 

@@ -64,7 +64,7 @@ export const electricBillCalculatorConfig = {
       { q: "What is tiered (block) electricity pricing?", a: "Your usage is split into bands with their own price, and each band is charged only for the kWh inside it. With 0–500 kWh at $0.15 and 501+ at $0.20, a 700 kWh month costs 500 × 0.15 + 200 × 0.20 = $115." },
       { q: "Why is my calculated bill different from my actual bill?", a: "Utilities often add delivery or transmission charges, fuel or energy adjustments, regulatory fees and rounding. Enter the all-in average by dividing your total bill by the kWh used, or add the extra fees as service charges, to match your bill." },
       { q: "Which appliances use the most electricity?", a: "Anything that heats or cools: water heaters, space heaters, air conditioners, clothes dryers and EV chargers. A 4,500 W tank water heater running 3 hours a day uses about 405 kWh a month, while an LED bulb uses 1.5 kWh." },
-      { q: "Is my data private?", a: "Yes. Everything is calculated in your browser, and saved history stays in your browser's local storage. Nothing is sent to a server." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter. Any history the tool keeps is visible only to you." },
     ],
   },
   relatedTools: [

@@ -34,7 +34,7 @@ export const toolConfig = {
     },
     faq: [
       { q: "Is this tool secure for production use?", a: "This tool is designed for development and testing. For production systems, always verify passwords on the server-side to prevent exposing hashes to clients." },
-      { q: "Is my data private?", a: "No. We do not collect or store what you enter." },
+      { q: "Is my data private?", a: "Yes. We do not collect or store what you enter." },
       { q: "What cost factor should I use?", a: "Cost factor 10 is recommended for most applications. Use 12 or higher for sensitive data. The higher the cost, the more secure but slower." },
       { q: "Can I verify hashes from different Bcrypt versions?", a: "Yes, this tool supports $2a$, $2b$, and $2y$ versions of Bcrypt hashes." },
       { q: "Why is verification slow?", a: "Bcrypt is intentionally slow to prevent brute-force attacks. Higher cost factors take longer to verify." },
