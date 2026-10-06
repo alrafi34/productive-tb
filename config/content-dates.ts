@@ -537,6 +537,6 @@ export const PAGE_CONTENT_DATES: Record<string, string> = {
   "/tools": "2026-08-07",
   "/about": "2026-08-07",
   "/contact": "2026-08-07",
-  "/privacy": "2026-08-07",
+  "/privacy": "2026-10-06",
   "/terms": "2026-08-07",
 };

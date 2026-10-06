@@ -25,6 +25,7 @@ const OUT = 'config/content-dates.ts';
 const IGNORE_COMMITS = new Set([
   '04b0ed3', // www → non-www URL in power-consumption-calculator's JSON-LD
   '608abcb', // #126: homepage text colours only (contrast), no copy change
+  'e04b4d4', // the same change on the PR branch, before the squash merge
 ]);
 
 /* Standalone pages whose content lives in one file. */
