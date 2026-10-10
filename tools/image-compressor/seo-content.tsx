@@ -1,3 +1,5 @@
+import { toolConfig } from "./config";
+
 export default function ImageCompressorSEOContent() {
   return (
     <>
@@ -14,19 +16,19 @@ export default function ImageCompressorSEOContent() {
             <ol className="space-y-3 text-gray-600">
               <li className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">1</span>
-                <span>Upload images by dragging and dropping or clicking the upload area</span>
+                <span>Add images by dropping them, clicking the upload area or pasting with Ctrl+V. Each one is compressed straight away.</span>
               </li>
               <li className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">2</span>
-                <span>Adjust compression quality and output format settings</span>
+                <span>Pick a quality preset or a target size such as 100 KB, and optionally another output format or a smaller size.</span>
               </li>
               <li className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">3</span>
-                <span>Preview the compressed images and file size savings</span>
+                <span>Check the savings and use Compare to see the original and the result side by side.</span>
               </li>
               <li className="flex items-start">
                 <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">4</span>
-                <span>Download individual images or all as a ZIP file</span>
+                <span>Download each image, or all of them in one ZIP file.</span>
               </li>
             </ol>
           </div>
@@ -37,19 +39,19 @@ export default function ImageCompressorSEOContent() {
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Compress JPG, PNG, and WebP images
+                Compress JPG, PNG, WebP, HEIC, GIF and BMP images
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Batch compression for multiple files
+                Real PNG compression that keeps transparency
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Adjustable quality settings (0-100)
+                Compress to a target size such as 100 KB
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
-                Resize images with max width/height
+                Convert to JPG, PNG or WebP and resize by % or max size
               </li>
               <li className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
@@ -70,7 +72,7 @@ export default function ImageCompressorSEOContent() {
           What is an Image Compressor?
         </h2>
         <p className="text-gray-600 leading-relaxed mb-4">
-          An image compressor is a free online tool that reduces the file size of JPG, PNG, and WebP images while maintaining acceptable visual quality. This powerful tool helps web developers, photographers, and content creators optimize images for faster website loading, reduced storage costs, and improved user experience.
+          An image compressor is a free online tool that reduces the file size of JPG, PNG, WebP and HEIC images while keeping them looking the same. This powerful tool helps web developers, photographers, and content creators optimize images for faster website loading, reduced storage costs, and improved user experience.
         </p>
         <p className="text-gray-600 leading-relaxed">
           We do not collect or store your files. Whether you need to compress images for web optimization, email attachments, or social media, this tool provides instant results with customizable quality settings.
@@ -83,59 +85,16 @@ export default function ImageCompressorSEOContent() {
           Frequently Asked Questions
         </h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              How does online image compression work?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Our image compressor reduces image file sizes. It works by adjusting the image quality level and optionally resizing dimensions. The tool supports JPG, PNG, and WebP formats and can compress images by 50-90% while maintaining good visual quality. We do not collect or store your files.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What image formats can I compress?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              This free image compressor supports the most common web image formats: JPG/JPEG, PNG, and WebP. You can upload images in any of these formats and choose your preferred output format. WebP typically provides the best compression ratios for web use, while JPEG is ideal for photographs and PNG works best for images with transparency or text.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Is my image data secure when using this tool?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes, absolutely! This image compressor is 100% private and secure. We do not collect or store your files. This ensures complete privacy for your personal photos, business images, and confidential documents.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              Can I compress multiple images at once?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Yes! Our batch image compressor allows you to upload and compress multiple images simultaneously. Simply drag and drop multiple files or select them from your file browser. Each image will be compressed with your chosen settings, and you can download them individually or all together as a ZIP file for convenient bulk export.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              What quality setting should I use for image compression?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              The optimal quality setting depends on your use case. For web images, 75-85% quality provides a good balance between file size and visual quality. For maximum compression (social media, thumbnails), use 60-70%. For high-quality prints or professional photography, use 90-95%. Our tool offers preset modes: High Quality (90%), Balanced (75%), and Maximum Compression (60%) to help you choose.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-2">
-              How much can I reduce image file size?
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Image compression results vary based on the original image and settings used. Typically, you can reduce JPG images by 50-70%, PNG images by 40-60%, and achieve even better results by converting to WebP format (60-80% reduction). The tool shows real-time compression statistics including original size, compressed size, and percentage saved for each image.
-            </p>
-          </div>
+          {toolConfig.seo.faq.map(({ q, a }) => (
+            <div key={q}>
+              <h3 className="text-lg font-medium text-gray-800 mb-2">
+                {q}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                {a}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -203,7 +162,7 @@ export default function ImageCompressorSEOContent() {
           <div className="text-center">
             <div className="text-4xl mb-3">🎯</div>
             <h3 className="font-semibold text-gray-800 mb-2">Precise Control</h3>
-            <p className="text-gray-600 text-sm">Adjustable quality and size settings</p>
+            <p className="text-gray-600 text-sm">Quality, target size, format and resize</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">📦</div>
