@@ -14,22 +14,12 @@ export default function ImageCompressorSEOContent() {
               Quick Start Guide
             </h3>
             <ol className="space-y-3 text-gray-600">
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">1</span>
-                <span>Add images by dropping them, clicking the upload area or pasting with Ctrl+V. Each one is compressed straight away.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">2</span>
-                <span>Pick a quality preset or a target size such as 100 KB, and optionally another output format or a smaller size.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">3</span>
-                <span>Check the savings and use Compare to see the original and the result side by side.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">4</span>
-                <span>Download each image, or all of them in one ZIP file.</span>
-              </li>
+              {toolConfig.seo.howToSteps.map(({ text }, i) => (
+                <li key={i} className="flex items-start">
+                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">{i + 1}</span>
+                  <span>{text}</span>
+                </li>
+              ))}
             </ol>
           </div>
           <div>
@@ -77,6 +67,23 @@ export default function ImageCompressorSEOContent() {
         <p className="text-gray-600 leading-relaxed">
           We do not collect or store your files. Whether you need to compress images for web optimization, email attachments, or social media, this tool provides instant results with customizable quality settings.
         </p>
+      </section>
+
+      {/* Target size Section */}
+      <section className="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          Compress an Image to 20 KB, 50 KB, 100 KB or Any Size
+        </h2>
+        <p className="text-gray-600 leading-relaxed mb-4">
+          Upload forms often reject photos above a set size. Enter the limit in the Target file size box and the tool picks the highest quality that fits, so you never have to guess a quality setting.
+        </p>
+        <ul className="space-y-2 text-gray-600">
+          <li><strong className="text-gray-800">20 KB:</strong> signatures and small ID photos on application forms</li>
+          <li><strong className="text-gray-800">50 KB:</strong> profile pictures, avatars and passport-style photos for online forms</li>
+          <li><strong className="text-gray-800">100 KB:</strong> job portals, visa and university applications, and fast-loading website images</li>
+          <li><strong className="text-gray-800">200–500 KB:</strong> email attachments, blog posts and product photos for Shopify or WordPress</li>
+          <li><strong className="text-gray-800">1 MB:</strong> high-quality photos for sites with a 1 MB upload limit</li>
+        </ul>
       </section>
 
       {/* FAQ Section */}
