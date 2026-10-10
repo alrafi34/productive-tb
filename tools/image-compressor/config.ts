@@ -8,12 +8,15 @@ export const toolConfig = {
   backend: false,
   seo: {
     faq: [
-      { q: "How does online image compression work?", a: "Our image compressor reduces image file sizes. It works by adjusting the image quality level and optionally resizing dimensions. The tool supports JPG, PNG, and WebP formats and can compress images by 50-90% while maintaining good visual quality. We do not collect or store your files." },
-      { q: "What image formats can I compress?", a: "This free image compressor supports the most common web image formats: JPG/JPEG, PNG, and WebP. You can upload images in any of these formats and choose your preferred output format. WebP typically provides the best compression ratios for web use, while JPEG is ideal for photographs and PNG works best for images with transparency or text." },
-      { q: "Is my image data secure when using this tool?", a: "Yes. We do not collect or store what you enter." },
-      { q: "Can I compress multiple images at once?", a: "Yes! Our batch image compressor allows you to upload and compress multiple images simultaneously. Simply drag and drop multiple files or select them from your file browser. Each image will be compressed with your chosen settings, and you can download them individually or all together as a ZIP file for convenient bulk export." },
-      { q: "What quality setting should I use for image compression?", a: "The optimal quality setting depends on your use case. For web images, 75-85% quality provides a good balance between file size and visual quality. For maximum compression (social media, thumbnails), use 60-70%. For high-quality prints or professional photography, use 90-95%. Our tool offers preset modes: High Quality (90%), Balanced (75%), and Maximum Compression (60%) to help you choose." },
-      { q: "How much can I reduce image file size?", a: "Image compression results vary based on the original image and settings used. Typically, you can reduce JPG images by 50-70%, PNG images by 40-60%, and achieve even better results by converting to WebP format (60-80% reduction). The tool shows real-time compression statistics including original size, compressed size, and percentage saved for each image." },
+      { q: "How does the image compressor work?", a: "JPG and WebP images are re-saved at the quality you choose. PNG images keep fewer colours, the method made popular by TinyPNG, which usually cuts screenshots, logos and graphics by 50–80% while text and edges stay sharp. If a result would be larger than your original, the original is kept, so a file never gets bigger." },
+      { q: "What image formats can I compress?", a: "You can add JPG, PNG, WebP, HEIC/HEIF (iPhone photos), GIF, BMP and AVIF. Results are saved as JPG, PNG or WebP: keep the input format or choose another one. HEIC photos are saved as JPG by default, and animated GIFs keep their first frame." },
+      { q: "Can I compress an image to a specific size, like 100 KB?", a: "Yes. Type a target size or pick one from 20 KB to 1 MB. The tool finds the highest quality that fits. If even the lowest quality is too large, it reduces the pixel dimensions and tells you the new size." },
+      { q: "Is my image data secure when using this tool?", a: "Yes. We do not collect or store your files. Re-saved images also lose EXIF metadata such as camera details and GPS location; a file that is kept as it was stays unchanged." },
+      { q: "Can I compress multiple images at once?", a: "Yes. Choose, drop or paste as many images as you need. Each one is compressed as soon as it is added, and Download all saves them together in one ZIP file." },
+      { q: "What quality setting should I use for image compression?", a: "For websites, 70–85% looks the same as the original for most photos. Use 60% (Smallest file) for thumbnails and social posts, 75% (Balanced) as an everyday default and 90% (High quality) for portfolios and print previews. For PNG, quality sets how many colours are kept, and 100% is lossless." },
+      { q: "How much smaller will my images be?", a: "Typical savings are 50–80% for JPG photos, 50–80% for PNG screenshots and graphics, and 60–80% when a photo is converted to WebP. Images that are already well compressed may not shrink further; those are kept as they are." },
+      { q: "Can I see the difference before downloading?", a: "Yes. Click Compare to open a before-and-after view with a slider, and zoom to 100% or 200% to check fine detail." },
+      { q: "Why did my PNG barely get smaller?", a: "Photos saved as PNG cannot lose colours without visible banding, so they are kept lossless. Choose JPG or WebP as the output format for photos; they are made for them and are usually several times smaller." },
     ],
     title: "Free Image Compressor - Reduce JPG, PNG, WebP Size Online",
     description: "Free online image compressor to reduce JPG, PNG, and WebP file sizes instantly. Compress images in your browser with no upload. Perfect for web optimization.",
@@ -45,10 +48,12 @@ export const toolConfig = {
     }
   },
   features: [
-    "Compress JPG, PNG, WebP images",
-    "Batch compression support",
-    "Adjustable quality settings",
-    "Private: your files are not collected or stored",
-    "Download as ZIP"
+    "Compress JPG, PNG, WebP, HEIC, GIF and BMP images",
+    "Real PNG compression that keeps transparency",
+    "Compress to a target size such as 100 KB",
+    "Convert to JPG, PNG or WebP",
+    "Before-and-after comparison",
+    "Batch compression with ZIP download",
+    "Private: your files are not collected or stored"
   ]
 };

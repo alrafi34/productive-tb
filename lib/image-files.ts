@@ -19,7 +19,7 @@ export type DecodedImage = {
   close: () => void;
 };
 
-async function heicToBlob(file: File): Promise<Blob> {
+export async function heicToBlob(file: File): Promise<Blob> {
   const heic2any = (await import("heic2any")).default;
   const out = await heic2any({ blob: file, toType: "image/png" });
   return Array.isArray(out) ? out[0] : out;
