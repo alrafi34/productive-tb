@@ -241,7 +241,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "hydraulic-pressure-calculator": "2026-10-06",
   "ideal-gas-law-calculator": "2026-10-06",
   "ideal-weight-calculator": "2026-10-06",
-  "image-compressor": "2026-10-06",
+  "image-compressor": "2026-10-10",
   "image-converter": "2026-10-06",
   "image-cropper": "2026-10-06",
   "image-resizer": "2026-10-06",
