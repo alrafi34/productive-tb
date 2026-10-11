@@ -25,7 +25,7 @@ export const tools: Tool[] = [
   { slug: "word-frequency-counter", name: "Word Frequency Counter", description: "Analyze word counts, percentages, and repeated terms in text.", category: "writing", icon: "📊", free: true },
   
   // Image & Design Tools (11-18)
-  { slug: "image-compressor", name: "Image Compressor", description: "Reduce JPG/PNG size in browser.", category: "image", icon: "🖼️", free: true },
+  { slug: "image-compressor", name: "Image Compressor", description: "Compress JPG, PNG, WebP or HEIC to any size, like 100 KB.", category: "image", icon: "🖼️", free: true },
   { slug: "image-resizer", name: "Image Resizer", description: "Set custom width & height.", category: "image", icon: "📐", free: true },
   { slug: "base64-image-encoder", name: "Base64 Image Encoder", description: "Convert images to Base64 string.", category: "image", icon: "🔐", free: true },
   { slug: "image-converter", name: "Image Converter", description: "Convert JPG, PNG, WebP and HEIC images between formats.", category: "image", icon: "🔁", free: true },
