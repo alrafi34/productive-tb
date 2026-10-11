@@ -1,15 +1,10 @@
-export interface VoiceRecognitionState {
-  isRecording: boolean;
-  isSupported: boolean;
-  isPaused: boolean;
-  error: string | null;
-}
-
 export interface NotepadSettings {
   language: string;
+  /* Keep the current note on this device between visits */
   autoSave: boolean;
-  autoScroll: boolean;
-  showWordCount: boolean;
+  /* "period", "new line" … become punctuation and line breaks */
+  voiceCommands: boolean;
+  autoCapitalize: boolean;
 }
 
 export interface SavedNote {

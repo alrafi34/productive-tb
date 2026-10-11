@@ -1,596 +1,462 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  initializeSpeechRecognition,
-  isSpeechRecognitionSupported,
+  LANGUAGES,
+  applyCommands,
+  commandsFor,
+  copyText,
   countWords,
-  countCharacters,
-  countCharactersNoSpaces,
-  estimateReadingTime,
-  downloadAsText,
-  downloadAsMarkdown,
-  copyToClipboard,
-  saveCurrentNote,
-  loadCurrentNote,
-  saveSettings,
+  defaultLanguage,
+  downloadMarkdown,
+  downloadText,
+  downloadWord,
+  errorMessage,
+  formatDuration,
+  getRecognitionCtor,
+  insertChunk,
+  isAndroid,
+  knownBrokenBrowser,
+  loadNote,
+  loadSavedNotes,
   loadSettings,
-  saveNote,
-  getSavedNotes,
-  deleteSavedNote,
-  clearAllSavedNotes,
-  insertTimestamp,
-  SUPPORTED_LANGUAGES,
-  cleanupTranscript
+  makeSavedNote,
+  readingMinutes,
+  storeNote,
+  storeSavedNotes,
+  storeSettings,
 } from './logic';
-import { VoiceRecognitionState, NotepadSettings, SavedNote, SpeechRecognition, SpeechRecognitionEvent, SpeechRecognitionErrorEvent } from './types';
+import type { NotepadSettings, SavedNote, SpeechRecognition, SpeechRecognitionErrorEvent, SpeechRecognitionEvent } from './types';
 import VoiceToTextNotepadSEOContent from './seo-content';
 import RelatedTools from '@/components/RelatedTools';
 import RelatedStrip from '@/components/RelatedStrip';
 
+type Status = 'idle' | 'starting' | 'listening' | 'paused';
+type Undo = { text: string; label: string } | null;
+
+const btn = 'px-4 py-2 rounded-lg font-medium text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed';
+
+const PUNCTUATION: [string, string, string][] = [
+  ['.', '.', 'Period'], [',', ',', 'Comma'], ['?', '?', 'Question mark'], ['!', '!', 'Exclamation mark'],
+  [':', ':', 'Colon'], [';', ';', 'Semicolon'], ['↵', '\n', 'New line'], ['¶', '\n\n', 'New paragraph'],
+];
+
 export default function VoiceToTextNotepadUI() {
   const [text, setText] = useState('');
-  /* null until checked in the browser. Starting at false made the server
-     render the "not supported" error as the page's main content. */
-  const [isSupported, setIsSupported] = useState<boolean | null>(null);
-  const [isRecording, setIsRecording] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [interim, setInterim] = useState('');
+  /* null until checked in the browser, so the server never renders a
+     "not supported" message */
+  const [supported, setSupported] = useState<boolean | null>(null);
+  const [brokenBrowser, setBrokenBrowser] = useState<string | null>(null);
+  const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
-  const [settings, setSettings] = useState<NotepadSettings>({
-    language: 'en-US',
-    autoSave: true,
-    autoScroll: true,
-    showWordCount: true
-  });
+  const [settings, setSettings] = useState<NotepadSettings>({ language: 'en-US', autoSave: true, voiceCommands: true, autoCapitalize: true });
   const [savedNotes, setSavedNotes] = useState<SavedNote[]>([]);
-  const [showHistory, setShowHistory] = useState(false);
+  const [showSaved, setShowSaved] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [recordingTime, setRecordingTime] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
+  const [undo, setUndo] = useState<Undo>(null);
+  const [loaded, setLoaded] = useState(false);
 
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const finalTranscriptRef = useRef('');
+  const recRef = useRef<SpeechRecognition | null>(null);
+  // Latest values for the recognition callbacks, which outlive renders
+  const textRef = useRef('');
+  const caretRef = useRef(0);
+  const settingsRef = useRef(settings);
+  const wantRef = useRef(false);
+  const restartsRef = useRef<number[]>([]);
 
-  // Initialize on component mount
-  useEffect(() => {
-    const supported = isSpeechRecognitionSupported();
-    setIsSupported(supported);
-    
-    if (supported) {
-      recognitionRef.current = initializeSpeechRecognition();
-      setupSpeechRecognition();
-    }
+  useEffect(() => { settingsRef.current = settings; }, [settings]);
 
-    // Load saved data
-    const savedText = loadCurrentNote();
-    const savedSettings = loadSettings();
-    const notes = getSavedNotes();
-    
-    setText(savedText);
-    setSettings(savedSettings);
-    setSavedNotes(notes);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
+  const setNote = useCallback((next: string, caret = next.length) => {
+    textRef.current = next;
+    caretRef.current = caret;
+    setText(next);
   }, []);
 
-  // Auto-save current note
+  // ---- Load on mount ----
   useEffect(() => {
-    if (settings.autoSave && text) {
-      const timeoutId = setTimeout(() => {
-        saveCurrentNote(text);
-      }, 1000);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [text, settings.autoSave]);
-
-  // Auto-scroll to bottom
-  useEffect(() => {
-    if (settings.autoScroll && textareaRef.current && isRecording) {
-      textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
-    }
-  }, [text, settings.autoScroll, isRecording]);
-
-  const setupSpeechRecognition = () => {
-    if (!recognitionRef.current) return;
-
-    const recognition = recognitionRef.current;
-    recognition.lang = settings.language;
-
-    recognition.onstart = () => {
-      setIsRecording(true);
-      setError(null);
-      finalTranscriptRef.current = text;
-      startTimer();
+    setSupported(!!getRecognitionCtor());
+    setBrokenBrowser(knownBrokenBrowser());
+    const s = loadSettings(defaultLanguage(navigator.languages?.length ? navigator.languages : [navigator.language]));
+    setSettings(s);
+    settingsRef.current = s;
+    if (s.autoSave) setNote(loadNote());
+    setSavedNotes(loadSavedNotes());
+    setLoaded(true);
+    return () => {
+      wantRef.current = false;
+      recRef.current?.abort();
     };
+  }, [setNote]);
 
-    recognition.onresult = (event: SpeechRecognitionEvent) => {
-      let interimTranscript = '';
-      let finalTranscript = finalTranscriptRef.current;
+  // ---- Keep the current note on this device ----
+  useEffect(() => {
+    if (!loaded || !settings.autoSave) return;
+    const id = setTimeout(() => storeNote(text), 500);
+    return () => clearTimeout(id);
+  }, [text, settings.autoSave, loaded]);
 
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const transcript = event.results[i][0].transcript;
-        
-        if (event.results[i].isFinal) {
-          finalTranscript += cleanupTranscript(transcript) + ' ';
-        } else {
-          interimTranscript += transcript;
-        }
+  // ---- Listening timer ----
+  useEffect(() => {
+    if (status !== 'listening') return;
+    const id = setInterval(() => setElapsed(e => e + 1), 1000);
+    return () => clearInterval(id);
+  }, [status]);
+
+  const updateSettings = (patch: Partial<NotepadSettings>) => {
+    const next = { ...settingsRef.current, ...patch };
+    setSettings(next);
+    settingsRef.current = next;
+    storeSettings(next);
+    if (patch.autoSave === false) storeNote('');
+    if (patch.autoSave === true) storeNote(textRef.current);
+    // A new language takes effect on a fresh session
+    if (patch.language && wantRef.current) recRef.current?.abort();
+  };
+
+  /* Puts dictated or clicked text where the caret is */
+  const insert = useCallback((raw: string) => {
+    const s = settingsRef.current;
+    const chunk = s.voiceCommands ? applyCommands(raw, s.language) : raw;
+    const at = Math.min(caretRef.current, textRef.current.length);
+    const { text: next, caret } = insertChunk(textRef.current, at, chunk, s.autoCapitalize);
+    setNote(next, caret);
+    const ta = textareaRef.current;
+    if (ta && document.activeElement === ta) {
+      requestAnimationFrame(() => ta.setSelectionRange(caret, caret));
+    } else if (ta && caret >= next.length - 1) {
+      requestAnimationFrame(() => { ta.scrollTop = ta.scrollHeight; });
+    }
+  }, [setNote]);
+
+  const startSession = useCallback(() => {
+    const Ctor = getRecognitionCtor();
+    if (!Ctor) return;
+    const rec = new Ctor();
+    // Android Chrome repeats earlier words in continuous mode; short
+    // sessions restarted on end avoid that
+    rec.continuous = !isAndroid();
+    rec.interimResults = true;
+    rec.maxAlternatives = 1;
+    rec.lang = settingsRef.current.language;
+
+    rec.onstart = () => {
+      if (recRef.current !== rec) return;
+      setStatus('listening');
+    };
+    rec.onresult = (e: SpeechRecognitionEvent) => {
+      if (recRef.current !== rec) return;
+      let pending = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const r = e.results[i];
+        if (r.isFinal) insert(r[0].transcript);
+        else pending += r[0].transcript;
       }
-
-      finalTranscriptRef.current = finalTranscript;
-      setText(finalTranscript + interimTranscript);
+      setInterim(pending);
+    };
+    rec.onerror = (e: SpeechRecognitionErrorEvent) => {
+      if (recRef.current !== rec) return;
+      const msg = errorMessage(e.error, knownBrokenBrowser());
+      if (msg) {
+        wantRef.current = false;
+        setError(msg);
+      }
+    };
+    rec.onend = () => {
+      if (recRef.current !== rec) return;
+      setInterim('');
+      if (!wantRef.current) {
+        recRef.current = null;
+        setStatus(s => (s === 'paused' ? 'paused' : 'idle'));
+        return;
+      }
+      // The browser ends sessions after silence or a time limit: carry on,
+      // unless it keeps ending straight away
+      const now = Date.now();
+      restartsRef.current = [...restartsRef.current.filter(t => now - t < 10000), now];
+      if (restartsRef.current.length > 6) {
+        wantRef.current = false;
+        recRef.current = null;
+        setStatus('idle');
+        setError('Dictation keeps stopping. Check your microphone and internet connection, then press Start again.');
+        return;
+      }
+      setTimeout(() => { if (wantRef.current) startSession(); }, 150);
     };
 
-    recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-      console.error('Speech recognition error:', event.error);
-      setError(getErrorMessage(event.error));
-      setIsRecording(false);
-      stopTimer();
-    };
-
-    recognition.onend = () => {
-      setIsRecording(false);
-      setIsPaused(false);
-      stopTimer();
-    };
-  };
-
-  const getErrorMessage = (error: string): string => {
-    switch (error) {
-      case 'not-allowed':
-        return 'Microphone access denied. Please allow microphone access and try again.';
-      case 'no-speech':
-        return 'No speech detected. Please try speaking again.';
-      case 'audio-capture':
-        return 'No microphone found. Please check your microphone connection.';
-      case 'network':
-        return 'Network error occurred. Please check your internet connection.';
-      default:
-        return `Speech recognition error: ${error}`;
+    recRef.current = rec;
+    try {
+      rec.start();
+    } catch {
+      setError('Dictation could not start. Press Start again.');
+      wantRef.current = false;
+      recRef.current = null;
+      setStatus('idle');
     }
-  };
+  }, [insert]);
 
-  const startTimer = () => {
-    setRecordingTime(0);
-    intervalRef.current = setInterval(() => {
-      setRecordingTime(prev => prev + 1);
-    }, 1000);
-  };
-
-  const stopTimer = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  };
-
-  const formatTime = (seconds: number): string => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const startRecording = () => {
-    if (!recognitionRef.current || !isSupported) return;
-    
+  const start = useCallback(() => {
+    if (!getRecognitionCtor() || wantRef.current) return;
     setError(null);
-    recognitionRef.current.lang = settings.language;
-    recognitionRef.current.start();
+    if (status !== 'paused') setElapsed(0);
+    restartsRef.current = [];
+    wantRef.current = true;
+    setStatus('starting');
+    startSession();
+  }, [status, startSession]);
+
+  const stopListening = useCallback((next: 'idle' | 'paused') => {
+    wantRef.current = false;
+    setStatus(next);
+    // stop() (not abort) lets the last words arrive
+    recRef.current?.stop();
+  }, []);
+
+  const listening = status === 'listening' || status === 'starting';
+
+  // ---- Shortcut: Ctrl/⌘ + Shift + Space starts or stops ----
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && e.shiftKey && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        if (wantRef.current) stopListening('idle');
+        else start();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [start, stopListening]);
+
+  const trackCaret = () => {
+    const ta = textareaRef.current;
+    if (ta) caretRef.current = ta.selectionEnd;
   };
 
-  const stopRecording = () => {
-    if (recognitionRef.current && isRecording) {
-      recognitionRef.current.stop();
-    }
+  const replaceNote = (next: string, label: string) => {
+    if (textRef.current.trim()) setUndo({ text: textRef.current, label });
+    setNote(next);
   };
 
-  const pauseRecording = () => {
-    if (recognitionRef.current && isRecording) {
-      recognitionRef.current.stop();
-      setIsPaused(true);
-    }
+  const clearNote = () => replaceNote('', 'Note cleared.');
+
+  const restore = () => {
+    if (!undo) return;
+    setNote(undo.text);
+    setUndo(null);
   };
 
-  const resumeRecording = () => {
-    if (isPaused) {
-      startRecording();
-      setIsPaused(false);
-    }
-  };
-
-  const clearText = () => {
-    setText('');
-    finalTranscriptRef.current = '';
-    saveCurrentNote('');
-  };
+  useEffect(() => {
+    if (!undo) return;
+    const id = setTimeout(() => setUndo(null), 15000);
+    return () => clearTimeout(id);
+  }, [undo]);
 
   const handleCopy = async () => {
-    if (!text.trim()) return;
-    
-    const success = await copyToClipboard(text);
-    if (success) {
+    if (await copyText(text.trim())) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
   };
 
-  const handleSaveNote = () => {
+  const saveToList = () => {
     if (!text.trim()) return;
-    
-    const note = saveNote(text);
-    setSavedNotes([note, ...savedNotes.slice(0, 9)]);
+    const list = [makeSavedNote(text.trim()), ...savedNotes].slice(0, 20);
+    setSavedNotes(list);
+    storeSavedNotes(list);
+    setShowSaved(true);
   };
 
-  const handleDeleteNote = (id: string) => {
-    deleteSavedNote(id);
-    setSavedNotes(savedNotes.filter(note => note.id !== id));
+  const deleteSaved = (id: string) => {
+    const list = savedNotes.filter(n => n.id !== id);
+    setSavedNotes(list);
+    storeSavedNotes(list);
   };
 
-  const handleClearHistory = () => {
-    clearAllSavedNotes();
-    setSavedNotes([]);
-  };
-
-  const handleLoadNote = (content: string) => {
-    setText(content);
-    finalTranscriptRef.current = content;
-  };
-
-  const handleSettingsChange = (newSettings: Partial<NotepadSettings>) => {
-    const updated = { ...settings, ...newSettings };
-    setSettings(updated);
-    saveSettings(updated);
-    
-    // Update recognition language if changed
-    if (newSettings.language && recognitionRef.current) {
-      recognitionRef.current.lang = newSettings.language;
-    }
-  };
-
-  const insertTimestampAtCursor = () => {
-    const timestamp = insertTimestamp();
-    const textarea = textareaRef.current;
-    
-    if (textarea) {
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      const newText = text.substring(0, start) + timestamp + text.substring(end);
-      setText(newText);
-      
-      // Set cursor position after timestamp
-      setTimeout(() => {
-        textarea.selectionStart = textarea.selectionEnd = start + timestamp.length;
-        textarea.focus();
-      }, 0);
-    } else {
-      setText(text + timestamp);
-    }
-  };
-
-  const stats = {
-    words: countWords(text),
-    characters: countCharacters(text),
-    charactersNoSpaces: countCharactersNoSpaces(text),
-    readingTime: estimateReadingTime(text)
-  };
-
-  if (isSupported === false) {
-    return (
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-          <div className="text-4xl mb-4">🚫</div>
-          <h2 className="text-xl font-semibold text-red-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-            Speech Recognition Not Supported
-          </h2>
-          <p className="text-red-700 mb-4">
-            Your browser doesn't support the Web Speech API. Please use Chrome, Edge, or Safari for the best experience.
-          </p>
-          <div className="text-sm text-red-600">
-            <strong>Supported browsers:</strong> Chrome (recommended), Edge, Safari (iOS 14.5+)
-          </div>
-        </div>
-        <RelatedStrip />
-        <VoiceToTextNotepadSEOContent />
-        <RelatedTools />
-      </div>
-    );
-  }
+  const words = countWords(text);
+  const hasText = text.trim().length > 0;
+  const commandList = commandsFor(settings.language);
+  const canDictate = supported === true;
 
   return (
     <>
-      <div className="max-w-5xl mx-auto">
-        {/* Privacy Notice */}
-        <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
-          <div className="flex items-start gap-3">
-            <span className="text-2xl">🔒</span>
-            <div>
-              <h3 className="font-semibold text-green-900 mb-1">100% Private & Secure</h3>
-              <p className="text-sm text-green-800">
-                We do not collect or store what you enter.
-              </p>
-            </div>
+      <div className="max-w-5xl mx-auto space-y-6">
+        {supported === false && (
+          <div role="alert" className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-900">
+            <strong>This browser has no speech recognition.</strong> Open this page in Chrome, Edge or Safari to dictate. You can still type, save and download notes here.
           </div>
-        </div>
+        )}
+        {supported && brokenBrowser && (
+          <div role="status" className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-900">
+            {brokenBrowser} usually blocks speech recognition. If dictation does not start, open this page in Chrome, Edge or Safari.
+          </div>
+        )}
 
-        {/* Settings Panel */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-            Settings
-          </h2>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Language
-              </label>
+        {/* Controls */}
+        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 sm:p-6">
+          <div className="flex flex-wrap items-center gap-3">
+            {listening ? (
+              <>
+                <button onClick={() => stopListening('idle')} className={`${btn} bg-red-500 hover:bg-red-600 text-white px-5 py-3`}>
+                  ⏹ Stop
+                </button>
+                <button onClick={() => stopListening('paused')} className={`${btn} bg-gray-100 hover:bg-gray-200 text-gray-800 py-3`}>
+                  ⏸ Pause
+                </button>
+              </>
+            ) : (
+              <button onClick={start} disabled={!canDictate} className={`${btn} bg-primary hover:bg-primary-hover text-white px-5 py-3`}>
+                🎤 {status === 'paused' ? 'Resume' : 'Start dictation'}
+              </button>
+            )}
+            <div className="flex items-center gap-2 text-sm text-gray-700" aria-live="polite">
+              <span className={`w-3 h-3 rounded-full ${status === 'listening' ? 'bg-red-500 animate-pulse' : status === 'paused' ? 'bg-amber-400' : 'bg-gray-300'}`} />
+              {status === 'listening' ? 'Listening' : status === 'starting' ? 'Starting…' : status === 'paused' ? 'Paused' : 'Ready'}
+              {(listening || status === 'paused') && <span className="text-gray-500 font-mono">{formatDuration(elapsed)}</span>}
+            </div>
+            <label className="ml-auto flex items-center gap-2 text-sm text-gray-700">
+              <span className="sr-only sm:not-sr-only">Language</span>
               <select
                 value={settings.language}
-                onChange={(e) => handleSettingsChange({ language: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                onChange={e => updateSettings({ language: e.target.value })}
+                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary max-w-[14rem]"
+                aria-label="Dictation language"
               >
-                {SUPPORTED_LANGUAGES.map(lang => (
-                  <option key={lang.code} value={lang.code}>
-                    {lang.name}
-                  </option>
-                ))}
+                {LANGUAGES.map(l => <option key={l.code} value={l.code}>{l.name}</option>)}
               </select>
-            </div>
-
-            <div className="flex flex-col justify-end">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings.autoSave}
-                  onChange={(e) => handleSettingsChange({ autoSave: e.target.checked })}
-                  className="w-4 h-4 text-primary rounded focus:ring-primary"
-                />
-                <span className="text-sm text-gray-700">Auto-save</span>
-              </label>
-            </div>
-
-            <div className="flex flex-col justify-end">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings.autoScroll}
-                  onChange={(e) => handleSettingsChange({ autoScroll: e.target.checked })}
-                  className="w-4 h-4 text-primary rounded focus:ring-primary"
-                />
-                <span className="text-sm text-gray-700">Auto-scroll</span>
-              </label>
-            </div>
-
-            <div className="flex flex-col justify-end">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings.showWordCount}
-                  onChange={(e) => handleSettingsChange({ showWordCount: e.target.checked })}
-                  className="w-4 h-4 text-primary rounded focus:ring-primary"
-                />
-                <span className="text-sm text-gray-700">Show stats</span>
-              </label>
-            </div>
+            </label>
           </div>
-        </div>
-
-        {/* Recording Controls */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded-full ${isRecording ? 'bg-red-500 animate-pulse' : 'bg-gray-300'}`} />
-                <span className="text-sm font-medium text-gray-700">
-                  {isRecording ? 'Recording' : isPaused ? 'Paused' : 'Ready'}
-                </span>
-              </div>
-              
-              {isRecording && (
-                <div className="text-sm text-gray-500">
-                  {formatTime(recordingTime)}
-                </div>
-              )}
-            </div>
-
-            <div className="flex gap-2">
-              {!isRecording && !isPaused && (
-                <button
-                  onClick={startRecording}
-                  className="px-4 py-2 bg-primary hover:bg-primary-hover text-white rounded-lg font-medium transition-colors flex items-center gap-2"
-                >
-                  🎤 Start Recording
-                </button>
-              )}
-              
-              {isRecording && (
-                <>
-                  <button
-                    onClick={pauseRecording}
-                    className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium transition-colors"
-                  >
-                    ⏸️ Pause
-                  </button>
-                  <button
-                    onClick={stopRecording}
-                    className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors"
-                  >
-                    ⏹️ Stop
-                  </button>
-                </>
-              )}
-              
-              {isPaused && (
-                <button
-                  onClick={resumeRecording}
-                  className="px-4 py-2 bg-primary hover:bg-primary-hover text-white rounded-lg font-medium transition-colors"
-                >
-                  ▶️ Resume
-                </button>
-              )}
-            </div>
-          </div>
-
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
-              {error}
+            <div role="alert" className="mt-3 bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700 flex justify-between gap-3">
+              <span>{error}</span>
+              <button onClick={() => setError(null)} aria-label="Dismiss" className="font-bold shrink-0">✕</button>
             </div>
           )}
+          <p className="mt-3 text-xs text-gray-500">
+            Shortcut: Ctrl + Shift + Space (⌘ + Shift + Space on Mac) starts and stops dictation. Words go where the cursor is.
+          </p>
         </div>
 
-        {/* Text Editor */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
-              Your Notes
-            </h2>
-            <button
-              onClick={insertTimestampAtCursor}
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors"
-            >
-              🕒 Insert Time
-            </button>
+        {/* Editor */}
+        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 sm:p-6">
+          <div className="flex flex-wrap items-center gap-1.5 mb-3" aria-label="Insert punctuation">
+            {PUNCTUATION.map(([label, value, name]) => (
+              <button
+                key={name}
+                title={name}
+                aria-label={name}
+                onMouseDown={e => e.preventDefault()}
+                onClick={() => insert(value)}
+                className="min-w-9 h-9 px-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-800 font-semibold"
+              >
+                {label}
+              </button>
+            ))}
           </div>
-
           <textarea
             ref={textareaRef}
             value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Start speaking to create notes... or type here manually."
-            className="w-full h-64 px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-y text-gray-800 leading-relaxed"
-            style={{ fontFamily: "var(--font-body)" }}
+            onChange={e => { textRef.current = e.target.value; setText(e.target.value); caretRef.current = e.target.selectionEnd; }}
+            onSelect={trackCaret}
+            onKeyUp={trackCaret}
+            onClick={trackCaret}
+            placeholder={canDictate ? 'Press Start dictation and speak, or type here.' : 'Type your notes here.'}
+            className="w-full h-72 px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-y text-gray-800 leading-relaxed"
+            style={{ fontFamily: 'var(--font-body)' }}
+            aria-label="Your notes"
           />
+          <div className="min-h-6 mt-2 text-sm text-gray-400 italic" aria-live="polite">
+            {interim && <>Hearing: {interim}</>}
+          </div>
 
-          {settings.showWordCount && (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 pt-4 border-t border-gray-100">
-              <div className="text-center">
-                <div className="text-lg font-bold text-primary">{stats.words}</div>
-                <div className="text-xs text-gray-500">Words</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-primary">{stats.characters}</div>
-                <div className="text-xs text-gray-500">Characters</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-primary">{stats.charactersNoSpaces}</div>
-                <div className="text-xs text-gray-500">No Spaces</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-primary">{stats.readingTime} min</div>
-                <div className="text-xs text-gray-500">Reading Time</div>
-              </div>
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
+            <p className="text-sm text-gray-600">
+              <strong className="text-gray-900">{words}</strong> words • <strong className="text-gray-900">{text.length}</strong> characters
+              {words > 0 && <> • about {readingMinutes(text)} min to read</>}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button onClick={handleCopy} disabled={!hasText} className={`${btn} bg-primary hover:bg-primary-hover text-white`}>
+                {copied ? '✓ Copied' : 'Copy'}
+              </button>
+              <button onClick={() => downloadWord(text.trim())} disabled={!hasText} className={`${btn} bg-gray-800 hover:bg-gray-900 text-white`}>Word</button>
+              <button onClick={() => downloadText(text.trim())} disabled={!hasText} className={`${btn} bg-gray-800 hover:bg-gray-900 text-white`}>TXT</button>
+              <button onClick={() => downloadMarkdown(text.trim())} disabled={!hasText} className={`${btn} bg-gray-800 hover:bg-gray-900 text-white`}>Markdown</button>
+              <button onClick={saveToList} disabled={!hasText} className={`${btn} bg-blue-50 hover:bg-blue-100 text-blue-700`}>Save note</button>
+              <button onClick={clearNote} disabled={!hasText} className={`${btn} bg-white border border-gray-200 hover:border-red-300 hover:text-red-600 text-gray-700`}>Clear</button>
+            </div>
+          </div>
+          {undo && (
+            <div role="status" className="mt-3 flex items-center justify-between gap-3 bg-gray-900 text-white text-sm rounded-lg px-4 py-2">
+              <span>{undo.label}</span>
+              <button onClick={restore} className="font-semibold underline">Undo</button>
             </div>
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-6">
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={handleCopy}
-              disabled={!text.trim()}
-              className="px-4 py-2 bg-primary hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
-            >
-              {copied ? '✓ Copied' : '📋 Copy Notes'}
-            </button>
-            
-            <button
-              onClick={() => downloadAsText(text)}
-              disabled={!text.trim()}
-              className="px-4 py-2 bg-gray-800 hover:bg-gray-900 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
-            >
-              📄 Download TXT
-            </button>
-            
-            <button
-              onClick={() => downloadAsMarkdown(text)}
-              disabled={!text.trim()}
-              className="px-4 py-2 bg-gray-800 hover:bg-gray-900 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
-            >
-              📝 Download MD
-            </button>
-            
-            <button
-              onClick={handleSaveNote}
-              disabled={!text.trim()}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
-            >
-              💾 Save Note
-            </button>
-            
-            <button
-              onClick={clearText}
-              disabled={!text.trim()}
-              className="px-4 py-2 bg-white border border-gray-200 hover:border-red-300 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed text-gray-700 rounded-lg font-medium transition-colors"
-            >
-              🗑️ Clear
-            </button>
+        {/* Settings */}
+        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 sm:p-6">
+          <h2 className="text-lg font-semibold text-gray-800 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Options</h2>
+          <div className="grid sm:grid-cols-3 gap-3 text-sm text-gray-700">
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" checked={settings.voiceCommands} onChange={e => updateSettings({ voiceCommands: e.target.checked })} className="mt-0.5 w-4 h-4" />
+              <span>Voice commands for punctuation</span>
+            </label>
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" checked={settings.autoCapitalize} onChange={e => updateSettings({ autoCapitalize: e.target.checked })} className="mt-0.5 w-4 h-4" />
+              <span>Capitalize new sentences</span>
+            </label>
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" checked={settings.autoSave} onChange={e => updateSettings({ autoSave: e.target.checked })} className="mt-0.5 w-4 h-4" />
+              <span>Keep my note on this device</span>
+            </label>
           </div>
+          {settings.voiceCommands && (
+            <div className="mt-4 text-sm text-gray-600">
+              {commandList.length ? (
+                <>
+                  <p className="mb-2">Say these words to insert punctuation:</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {commandList.map(([phrase, value]) => (
+                      <span key={phrase} className="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs">
+                        “{phrase}” → <code className="font-semibold">{value === '\n' ? 'new line' : value === '\n\n' ? 'new paragraph' : value.trim()}</code>
+                      </span>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p>Voice commands are available in English, Spanish, French and German. For this language, use the punctuation buttons above the note.</p>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Saved Notes History */}
+        {/* Saved notes */}
         {savedNotes.length > 0 && (
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-800" style={{ fontFamily: "var(--font-heading)" }}>
-                Saved Notes ({savedNotes.length})
-              </h2>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setShowHistory(!showHistory)}
-                  className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors"
-                >
-                  {showHistory ? 'Hide' : 'Show'}
-                </button>
-                {savedNotes.length > 0 && (
-                  <button
-                    onClick={handleClearHistory}
-                    className="px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg text-sm font-medium transition-colors"
-                  >
-                    Clear All
-                  </button>
-                )}
-              </div>
+          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-lg font-semibold text-gray-800" style={{ fontFamily: 'var(--font-heading)' }}>Saved notes ({savedNotes.length})</h2>
+              <button onClick={() => setShowSaved(v => !v)} className={`${btn} px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700`}>
+                {showSaved ? 'Hide' : 'Show'}
+              </button>
             </div>
-
-            {showHistory && (
-              <div className="space-y-3 max-h-96 overflow-y-auto">
-                {savedNotes.map((note) => (
-                  <div key={note.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm text-gray-800 line-clamp-3 mb-2">
-                          {note.content.substring(0, 150)}
-                          {note.content.length > 150 && '...'}
-                        </div>
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
-                          <span>{new Date(note.timestamp).toLocaleString()}</span>
-                          <span>{note.wordCount} words</span>
-                        </div>
-                      </div>
-                      <div className="flex gap-2 flex-shrink-0">
-                        <button
-                          onClick={() => handleLoadNote(note.content)}
-                          className="px-2 py-1 bg-primary hover:bg-primary-hover text-white rounded text-xs font-medium transition-colors"
-                        >
-                          Load
-                        </button>
-                        <button
-                          onClick={() => handleDeleteNote(note.id)}
-                          className="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-xs font-medium transition-colors"
-                        >
-                          Delete
-                        </button>
-                      </div>
+            {showSaved && (
+              <ul className="space-y-2 max-h-96 overflow-y-auto">
+                {savedNotes.map(note => (
+                  <li key={note.id} className="border border-gray-200 rounded-lg p-3 flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-sm text-gray-800 line-clamp-2 whitespace-pre-line">{note.content}</p>
+                      <p className="text-xs text-gray-500 mt-1">{new Date(note.timestamp).toLocaleString()} • {note.wordCount} words</p>
                     </div>
-                  </div>
+                    <div className="flex gap-1.5 shrink-0">
+                      <button onClick={() => replaceNote(note.content, 'Saved note opened.')} className={`${btn} px-2 py-1 bg-primary hover:bg-primary-hover text-white text-xs`}>Open</button>
+                      <button onClick={() => deleteSaved(note.id)} className={`${btn} px-2 py-1 bg-red-50 hover:bg-red-100 text-red-700 text-xs`}>Delete</button>
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
+            <p className="mt-2 text-xs text-gray-500">Saved notes stay on this device. Up to 20 are kept.</p>
           </div>
         )}
       </div>
