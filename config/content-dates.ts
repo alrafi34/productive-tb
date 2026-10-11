@@ -506,7 +506,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "ventilation-calculator": "2026-10-06",
   "video-frame-extractor": "2026-10-06",
   "viral-coefficient-calculator": "2026-10-06",
-  "voice-to-text-notepad": "2026-10-06",
+  "voice-to-text-notepad": "2026-10-11",
   "voltage-divider-calculator": "2026-10-06",
   "voltage-drop-calculator": "2026-10-06",
   "voltage-regulation-calculator": "2026-09-27",
