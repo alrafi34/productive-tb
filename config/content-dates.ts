@@ -29,7 +29,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "arc-flash-calculator": "2026-09-27",
   "ascii-art-generator": "2026-10-06",
   "aspect-ratio-calculator": "2026-10-06",
-  "audio-visualizer": "2026-10-06",
+  "audio-visualizer": "2026-10-11",
   "average-calculator": "2026-10-06",
   "backlink-ratio-calculator": "2026-10-06",
   "bandwidth-calculator": "2026-10-06",
