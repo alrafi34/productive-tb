@@ -312,7 +312,7 @@ export const tools: Tool[] = [
 
   // ── New 50 Tools ── (Multimedia)
   { slug: "text-to-speech-preview", name: "Text-to-Speech Preview", description: "Convert any text to speech using browser voices. Choose language, pitch, rate, and voice.", category: "multimedia", icon: "🔊", free: true },
-  { slug: "audio-visualizer", name: "Audio Visualizer", description: "Upload an audio file or use your microphone to see a real-time frequency bar chart visualization.", category: "multimedia", icon: "🎵", free: true },
+  { slug: "audio-visualizer", name: "Audio Visualizer", description: "Make music visualizer videos from a song, or visualize your microphone live.", category: "multimedia", icon: "🎵", free: true },
   { slug: "video-frame-extractor", name: "Video Frame Extractor", description: "Load a video file, scrub to any moment, and save the current frame as a PNG image.", category: "multimedia", icon: "🎬", free: true },
 
   // ── Electrical Engineering Tools (90 tools) ──
