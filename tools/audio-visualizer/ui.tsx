@@ -1,496 +1,447 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import {
-  initAudioContext,
-  createAnalyser,
-  loadAudioFile,
-  startMicrophone,
-  stopMicrophone,
-  getFrequencyData,
-  getWaveformData,
-  resumeAudioContext,
-  isAudioContextSupported,
-  isMicrophoneSupported,
-} from "./logic";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AudioEngine, downloadBlob, extensionFor, formatSize, formatTime, safeName, startRecording, videoMimeType } from "./logic";
+import { ASPECTS, THEMES, Spectrogram, drawFrame, type Aspect, type Scene, type VisualStyle } from "./render";
 import AudioVisualizerSEOContent from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
 
-type VisualizationStyle = "bars" | "waveform" | "circular" | "radial";
+type Source = "none" | "file" | "mic";
+type Notice = { kind: "error" | "info"; text: string } | null;
+
+const STYLES: [VisualStyle, string][] = [
+  ["bars", "Bars"], ["mirror", "Mirror bars"], ["wave", "Waveform"], ["circle", "Circle"], ["spectrogram", "Spectrogram"],
+];
+const DETAIL: [number, string][] = [[1024, "Low (512 bins)"], [2048, "Medium (1,024 bins)"], [4096, "High (2,048 bins)"], [8192, "Very high (4,096 bins)"]];
+
+const btn = "px-4 py-2 rounded-lg text-sm font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed";
+const card = "bg-white rounded-xl border border-gray-100 shadow-sm p-4 sm:p-6";
+const field = "w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary";
+const heading = "text-base font-semibold text-gray-800 mb-3";
 
 function AudioVisualizerContent() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const animationRef = useRef<number | undefined>(undefined);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const engineRef = useRef<AudioEngine | null>(null);
+  const spectroRef = useRef(new Spectrogram());
+  const rafRef = useRef(0);
+  const recRef = useRef<{ recorder: MediaRecorder; endAt: number } | null>(null);
+  // Title filled in from the file name, replaced when another file is added
+  const autoTitleRef = useRef("");
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMicrophoneActive, setIsMicrophoneActive] = useState(false);
-  const [visualizationStyle, setVisualizationStyle] = useState<VisualizationStyle>("bars");
-  const [sensitivity, setSensitivity] = useState(1.0);
-  const [fftSize, setFftSize] = useState(256);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [source, setSource] = useState<Source>("none");
   const [fileName, setFileName] = useState("");
-  const [error, setError] = useState("");
-  const [mounted, setMounted] = useState(false);
-  const [isMicSupported, setIsMicSupported] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [time, setTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [notice, setNotice] = useState<Notice>(null);
+  const [dragging, setDragging] = useState(false);
 
-  useEffect(() => {
-    setIsMicSupported(isMicrophoneSupported());
-    setMounted(true);
+  const [style, setStyle] = useState<VisualStyle>("bars");
+  const [themeIdx, setThemeIdx] = useState(0);
+  const [customColor, setCustomColor] = useState("");
+  const [bg, setBg] = useState(THEMES[0].bg);
+  const [image, setImage] = useState<ImageBitmap | null>(null);
+  const [title, setTitle] = useState("");
+  const [artist, setArtist] = useState("");
+  const [aspect, setAspect] = useState<Aspect>("16:9");
+  const [sensitivity, setSensitivity] = useState(1.2);
+  const [smoothing, setSmoothing] = useState(0.8);
+  const [fftSize, setFftSize] = useState(4096);
+  const [volume, setVolume] = useState(1);
+
+  const [mime, setMime] = useState<string | null>(null);
+  const [range, setRange] = useState({ whole: true, from: 0, to: 0 });
+  const [exporting, setExporting] = useState<{ start: number; end: number } | null>(null);
+  const [result, setResult] = useState<{ size: number; name: string } | null>(null);
+
+  const theme = THEMES[themeIdx];
+  const colors = customColor ? [customColor, customColor] : theme.colors;
+  const scene: Scene = { style, colors, bg, image, title, artist, sensitivity, sampleRate: 44100 };
+  const sceneRef = useRef(scene);
+  useEffect(() => { sceneRef.current = scene; });
+
+  useEffect(() => { setMime(videoMimeType()); }, []);
+
+  const getEngine = useCallback((): AudioEngine => {
+    if (!engineRef.current) engineRef.current = new AudioEngine(fftSize, smoothing);
+    return engineRef.current;
+  }, [fftSize, smoothing]);
+
+  useEffect(() => () => { cancelAnimationFrame(rafRef.current); engineRef.current?.dispose(); }, []);
+  useEffect(() => { engineRef.current?.setFftSize(fftSize); }, [fftSize]);
+  useEffect(() => { engineRef.current?.setSmoothing(smoothing); }, [smoothing]);
+  useEffect(() => { if (engineRef.current) engineRef.current.volume.gain.value = volume; }, [volume]);
+
+  const active = playing || source === "mic";
+
+  /* One frame; live frames advance the spectrogram */
+  const paint = useCallback((live: boolean) => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    const eng = engineRef.current;
+    const s = { ...sceneRef.current, sampleRate: eng?.ctx.sampleRate ?? 44100 };
+    if (eng && live) {
+      eng.sample();
+      drawFrame(ctx, eng.freq, eng.wave, s, spectroRef.current, true);
+    } else {
+      drawFrame(ctx, new Uint8Array(1024), new Uint8Array(2048).fill(128), s, spectroRef.current, false);
+    }
   }, []);
 
-  const drawBars = useCallback((ctx: CanvasRenderingContext2D, data: Uint8Array) => {
-    const width = ctx.canvas.width;
-    const height = ctx.canvas.height;
-    const barWidth = width / data.length;
-
-    ctx.fillStyle = "#f0f0f0";
-    ctx.fillRect(0, 0, width, height);
-
-    for (let i = 0; i < data.length; i++) {
-      const barHeight = (data[i] / 255) * height * sensitivity;
-      const hue = (i / data.length) * 360;
-      ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-      ctx.fillRect(i * barWidth, height - barHeight, barWidth - 1, barHeight);
-    }
-  }, [sensitivity]);
-
-  const drawWaveform = useCallback((ctx: CanvasRenderingContext2D, data: Uint8Array) => {
-    const width = ctx.canvas.width;
-    const height = ctx.canvas.height;
-
-    ctx.fillStyle = "#f0f0f0";
-    ctx.fillRect(0, 0, width, height);
-
-    ctx.strokeStyle = "#058554";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-
-    const sliceWidth = width / data.length;
-    let x = 0;
-
-    for (let i = 0; i < data.length; i++) {
-      const v = (data[i] / 128.0) * sensitivity;
-      const y = (v * height) / 2;
-
-      if (i === 0) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
-      }
-
-      x += sliceWidth;
-    }
-
-    ctx.lineTo(width, height / 2);
-    ctx.stroke();
-  }, [sensitivity]);
-
-  const drawCircular = useCallback((ctx: CanvasRenderingContext2D, data: Uint8Array) => {
-    const width = ctx.canvas.width;
-    const height = ctx.canvas.height;
-    const centerX = width / 2;
-    const centerY = height / 2;
-    const radius = Math.min(width, height) / 3;
-
-    ctx.fillStyle = "#f0f0f0";
-    ctx.fillRect(0, 0, width, height);
-
-    for (let i = 0; i < data.length; i++) {
-      const angle = (i / data.length) * Math.PI * 2;
-      const barLength = (data[i] / 255) * radius * sensitivity;
-
-      const x1 = centerX + Math.cos(angle) * radius;
-      const y1 = centerY + Math.sin(angle) * radius;
-      const x2 = centerX + Math.cos(angle) * (radius + barLength);
-      const y2 = centerY + Math.sin(angle) * (radius + barLength);
-
-      const hue = (i / data.length) * 360;
-      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.stroke();
-    }
-  }, [sensitivity]);
-
-  const drawRadial = useCallback((ctx: CanvasRenderingContext2D, data: Uint8Array) => {
-    const width = ctx.canvas.width;
-    const height = ctx.canvas.height;
-    const centerX = width / 2;
-    const centerY = height / 2;
-
-    ctx.fillStyle = "#f0f0f0";
-    ctx.fillRect(0, 0, width, height);
-
-    const avgFreq = data.reduce((a, b) => a + b) / data.length;
-    const pulseRadius = (avgFreq / 255) * 100 * sensitivity;
-
-    ctx.fillStyle = `rgba(5, 133, 84, ${avgFreq / 255})`;
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, pulseRadius, 0, Math.PI * 2);
-    ctx.fill();
-
-    for (let i = 0; i < data.length; i++) {
-      const angle = (i / data.length) * Math.PI * 2;
-      const barLength = (data[i] / 255) * 80 * sensitivity;
-
-      const x = centerX + Math.cos(angle) * barLength;
-      const y = centerY + Math.sin(angle) * barLength;
-
-      const hue = (i / data.length) * 360;
-      ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-      ctx.beginPath();
-      ctx.arc(x, y, 2, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }, [sensitivity]);
-
-  const animate = useCallback(() => {
-    if (!canvasRef.current) return;
-
-    const ctx = canvasRef.current.getContext("2d");
-    if (!ctx) return;
-
-    let data: Uint8Array;
-
-    if (visualizationStyle === "waveform") {
-      data = getWaveformData();
-    } else {
-      data = getFrequencyData();
-    }
-
-    if (visualizationStyle === "bars") {
-      drawBars(ctx, data);
-    } else if (visualizationStyle === "waveform") {
-      drawWaveform(ctx, data);
-    } else if (visualizationStyle === "circular") {
-      drawCircular(ctx, data);
-    } else if (visualizationStyle === "radial") {
-      drawRadial(ctx, data);
-    }
-
-    animationRef.current = requestAnimationFrame(animate);
-  }, [visualizationStyle, drawBars, drawWaveform, drawCircular, drawRadial]);
-
   useEffect(() => {
-    if (isPlaying || isMicrophoneActive) {
-      animationRef.current = requestAnimationFrame(animate);
-    } else {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
+    if (!active) return;
+    const loop = () => {
+      paint(true);
+      const a = engineRef.current?.audio;
+      if (a) {
+        setTime(a.currentTime);
+        const rec = recRef.current;
+        if (rec && a.currentTime >= rec.endAt && rec.recorder.state === "recording") rec.recorder.stop();
       }
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      rafRef.current = requestAnimationFrame(loop);
     };
-  }, [isPlaying, isMicrophoneActive, animate]);
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [active, paint]);
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  // A new video size starts a fresh spectrogram
+  useEffect(() => {
+    spectroRef.current.reset();
+  }, [aspect]);
 
-    setError("");
+  // Still frame when nothing plays, so settings show straight away
+  useEffect(() => {
+    if (!active) paint(false);
+  }, [active, paint, aspect, style, themeIdx, customColor, bg, image, title, artist, sensitivity]);
+
+  // ---- Sources ----
+  const loadFile = async (file: File) => {
+    if (!file.type.startsWith("audio/") && !file.type.startsWith("video/") && !/\.(mp3|wav|m4a|aac|ogg|oga|opus|flac|webm|mp4)$/i.test(file.name)) {
+      setNotice({ kind: "error", text: `“${file.name}” is not an audio file. Choose an MP3, WAV, M4A, OGG or FLAC file.` });
+      return;
+    }
+    setNotice(null);
+    setResult(null);
     try {
-      resumeAudioContext();
-      createAnalyser(fftSize);
-      const audio = await loadAudioFile(file);
-      audioRef.current = audio;
-      setFileName(file.name);
+      const eng = getEngine();
+      setPlaying(false);
+      const audio = await eng.loadFile(file);
+      audio.onplay = () => setPlaying(true);
+      audio.onpause = () => setPlaying(false);
+      audio.onended = () => {
+        setPlaying(false);
+        if (recRef.current?.recorder.state === "recording") recRef.current.recorder.stop();
+      };
+      audio.ontimeupdate = () => setTime(audio.currentTime);
       setDuration(audio.duration);
-      setCurrentTime(0);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load audio");
-    }
-  };
-
-  const handlePlayPause = () => {
-    if (!audioRef.current) return;
-
-    resumeAudioContext();
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
-    }
-  };
-
-  const handleStop = () => {
-    if (!audioRef.current) return;
-    audioRef.current.pause();
-    audioRef.current.currentTime = 0;
-    setIsPlaying(false);
-    setCurrentTime(0);
-  };
-
-  const handleMicrophoneToggle = async () => {
-    if (isMicrophoneActive) {
-      stopMicrophone();
-      setIsMicrophoneActive(false);
-      setIsPlaying(false);
+      setTime(0);
+      setRange({ whole: true, from: 0, to: Math.floor(audio.duration) });
+      setSource("file");
+      setFileName(file.name);
+      const auto = file.name.replace(/\.[^.]+$/, "").replace(/[_]+/g, " ");
+      const previous = autoTitleRef.current;
+      autoTitleRef.current = auto;
+      setTitle((t) => (!t || t === previous ? auto : t));
+    } catch (e) {
+      setSource("none");
       setFileName("");
-    } else {
-      setError("");
-      try {
-        resumeAudioContext();
-        createAnalyser(fftSize);
-        await startMicrophone();
-        setIsMicrophoneActive(true);
-        setIsPlaying(true);
-        setFileName("Microphone Input");
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to access microphone. Please check permissions.");
-        setIsMicrophoneActive(false);
-      }
+      setNotice({ kind: "error", text: e instanceof Error ? e.message : "The file could not be opened." });
     }
   };
 
-  const handleTimelineClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!audioRef.current || !duration) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const percent = (e.clientX - rect.left) / rect.width;
-    audioRef.current.currentTime = percent * duration;
+  const togglePlay = async () => {
+    const eng = engineRef.current;
+    const a = eng?.audio;
+    if (!eng || !a) return;
+    await eng.resume();
+    if (a.paused) a.play().catch(() => setNotice({ kind: "error", text: "Playback could not start. Press Play again." }));
+    else a.pause();
   };
 
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  const toggleMic = async () => {
+    if (source === "mic") {
+      if (exporting) recRef.current?.recorder.stop();
+      engineRef.current?.stopSource();
+      setSource("none");
+      setFileName("");
+      return;
+    }
+    setNotice(null);
+    setResult(null);
+    try {
+      const eng = getEngine();
+      await eng.resume();
+      setPlaying(false);
+      await eng.startMic();
+      setSource("mic");
+      setFileName("");
+      setDuration(0);
+    } catch (e) {
+      setNotice({ kind: "error", text: e instanceof Error ? e.message : "The microphone could not be started." });
+    }
   };
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
+  const seek = (t: number) => {
+    const a = engineRef.current?.audio;
+    if (!a) return;
+    a.currentTime = t;
+    setTime(t);
+  };
 
-    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setCurrentTime(0);
-    };
+  const onImage = async (file: File | undefined) => {
+    if (!file) return;
+    try {
+      setImage(await createImageBitmap(file));
+    } catch {
+      setNotice({ kind: "error", text: "That image could not be opened. Use a JPG, PNG or WebP image." });
+    }
+  };
 
-    audio.addEventListener("timeupdate", handleTimeUpdate);
-    audio.addEventListener("ended", handleEnded);
+  // ---- Output ----
+  const snapshot = () => {
+    canvasRef.current?.toBlob((b) => b && downloadBlob(b, `${safeName(title || fileName || "visualizer")}.png`), "image/png");
+  };
 
-    return () => {
-      audio.removeEventListener("timeupdate", handleTimeUpdate);
-      audio.removeEventListener("ended", handleEnded);
-    };
-  }, []);
+  const fullscreen = () => {
+    const el = stageRef.current;
+    if (!el) return;
+    if (document.fullscreenElement) document.exitFullscreen();
+    else el.requestFullscreen?.().catch(() => {});
+  };
+
+  const exportVideo = async () => {
+    const eng = engineRef.current;
+    const canvas = canvasRef.current;
+    if (!eng || !canvas || !mime) return;
+    const isMic = source === "mic";
+    const a = eng.audio;
+    const start = isMic || range.whole ? 0 : Math.max(0, Math.min(range.from, duration));
+    const end = isMic ? Infinity : range.whole ? duration : Math.min(duration, Math.max(range.to, start + 1));
+    setResult(null);
+    setNotice(null);
+    try {
+      await eng.resume();
+      if (a) {
+        a.pause();
+        a.currentTime = start;
+        await new Promise((r) => a.addEventListener("seeked", r, { once: true }));
+      }
+      spectroRef.current.reset();
+      const { recorder, done } = startRecording(canvas, eng.recordDest.stream, mime);
+      recRef.current = { recorder, endAt: end };
+      setExporting({ start, end });
+      if (a) await a.play();
+      const blob = await done;
+      a?.pause();
+      const name = `${safeName(title || fileName || "visualizer")}-visualizer.${extensionFor(mime)}`;
+      downloadBlob(blob, name);
+      setResult({ size: blob.size, name });
+    } catch (e) {
+      setNotice({ kind: "error", text: e instanceof Error ? e.message : "The video could not be created." });
+      if (recRef.current?.recorder.state === "recording") recRef.current.recorder.stop();
+    } finally {
+      recRef.current = null;
+      setExporting(null);
+    }
+  };
+
+  const stopExport = () => {
+    if (recRef.current?.recorder.state === "recording") recRef.current.recorder.stop();
+  };
+
+  const progress = exporting && source === "file" ? Math.min(1, (time - exporting.start) / Math.max(0.1, exporting.end - exporting.start)) : 0;
 
   return (
-    <div className="max-w-4xl mx-auto">
-      {/* Canvas */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-6">
-        <canvas
-          ref={canvasRef}
-          width={800}
-          height={400}
-          className="w-full h-auto rounded-lg bg-gray-50 border border-gray-200"
-        />
-      </div>
-
-      {/* Timeline */}
-      {fileName && !isMicrophoneActive && (
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-medium text-gray-700">{fileName}</span>
-            <span className="text-sm text-gray-500">
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </span>
-          </div>
+    <div className="max-w-6xl mx-auto">
+      <div className="space-y-6">
+        {/* Stage */}
+        <div className="space-y-4 min-w-0">
           <div
-            onClick={handleTimelineClick}
-            className="w-full h-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 transition-colors"
+            ref={stageRef}
+            className={`relative rounded-xl overflow-hidden bg-gray-900 flex items-center justify-center ${dragging ? "ring-4 ring-primary" : ""}`}
+            onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+            onDragLeave={() => setDragging(false)}
+            onDrop={(e) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files?.[0]; if (f) loadFile(f); }}
           >
-            <div
-              className="h-full bg-primary rounded-full transition-all"
-              style={{ width: `${(currentTime / duration) * 100}%` }}
-            />
+            <canvas ref={canvasRef} width={ASPECTS[aspect].w} height={ASPECTS[aspect].h} className="block max-w-full max-h-[70vh] w-auto h-auto" aria-label="Audio visualization" />
+            {source === "none" && (
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white/90 hover:text-white"
+              >
+                <span className="text-4xl">🎵</span>
+                <span className="font-semibold text-lg">Drop an audio file here or click to choose</span>
+                <span className="text-sm text-white/70">MP3, WAV, M4A, OGG, FLAC • or use your microphone</span>
+              </button>
+            )}
           </div>
-        </div>
-      )}
+          <input ref={fileInputRef} type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.opus,.flac" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) loadFile(f); e.target.value = ""; }} />
 
-      {/* Microphone Status */}
-      {isMicrophoneActive && (
-        <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
-          <p className="text-green-800 text-sm">🎤 Microphone is active and visualizing in real-time</p>
-        </div>
-      )}
-
-      {/* Error Message */}
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
-          <p className="text-red-800 text-sm">{error}</p>
-        </div>
-      )}
-
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Controls */}
-        <div className="space-y-6">
-          {/* Audio Source */}
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-              Audio Source
-            </h2>
-            <div className="space-y-3">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Upload Audio File
-                </label>
-                <input
-                  type="file"
-                  accept="audio/*"
-                  onChange={handleFileUpload}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-                <p className="text-xs text-gray-500 mt-1">MP3, WAV, OGG, M4A</p>
-              </div>
-
-              {mounted && isMicSupported && (
-                <button
-                  onClick={handleMicrophoneToggle}
-                  className={`w-full px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                    isMicrophoneActive
-                      ? "bg-red-100 hover:bg-red-200 text-red-700"
-                      : "bg-primary hover:bg-primary-hover text-white"
-                  }`}
-                >
-                  {isMicrophoneActive ? "🎤 Stop Microphone" : "🎤 Start Microphone"}
-                </button>
-              )}
-              {mounted && !isMicSupported && (
-                <div className="w-full px-4 py-2 rounded-lg text-sm text-gray-500 bg-gray-50 border border-gray-200">
-                  🎤 Microphone not supported
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Playback Controls */}
-          {fileName && !isMicrophoneActive && (
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-                Playback
-              </h2>
-              <div className="flex gap-2">
-                <button
-                  onClick={handlePlayPause}
-                  className="flex-1 px-4 py-2 bg-primary hover:bg-primary-hover text-white rounded-lg text-sm font-semibold transition-colors"
-                >
-                  {isPlaying ? "⏸ Pause" : "▶ Play"}
-                </button>
-                <button
-                  onClick={handleStop}
-                  className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-semibold transition-colors"
-                >
-                  ⏹ Stop
-                </button>
-              </div>
+          {notice && (
+            <div role={notice.kind === "error" ? "alert" : "status"} className={`rounded-xl p-3 text-sm flex justify-between gap-3 ${notice.kind === "error" ? "bg-red-50 border border-red-200 text-red-800" : "bg-blue-50 border border-blue-200 text-blue-800"}`}>
+              <span>{notice.text}</span>
+              <button onClick={() => setNotice(null)} aria-label="Dismiss" className="font-bold shrink-0">✕</button>
             </div>
           )}
 
-          {/* Visualization Style */}
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-              Visualization
-            </h2>
-            <div className="space-y-2">
-              {(["bars", "waveform", "circular", "radial"] as VisualizationStyle[]).map((style) => (
-                <button
-                  key={style}
-                  onClick={() => setVisualizationStyle(style)}
-                  className={`w-full px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                    visualizationStyle === style
-                      ? "bg-primary text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
-                >
-                  {style === "bars" && "📊 Frequency Bars"}
-                  {style === "waveform" && "〰️ Waveform"}
-                  {style === "circular" && "⭕ Circular"}
-                  {style === "radial" && "🎯 Radial"}
-                </button>
+          {/* Transport */}
+          <div className={card}>
+            <div className="flex flex-wrap items-center gap-2">
+              <button onClick={() => fileInputRef.current?.click()} disabled={!!exporting} className={`${btn} bg-gray-100 hover:bg-gray-200 text-gray-800`}>📂 {source === "file" ? "Change file" : "Choose audio file"}</button>
+              <button onClick={toggleMic} disabled={!!exporting && source !== "mic"} className={`${btn} ${source === "mic" ? "bg-red-100 hover:bg-red-200 text-red-700" : "bg-gray-100 hover:bg-gray-200 text-gray-800"}`}>
+                🎤 {source === "mic" ? "Stop microphone" : "Use microphone"}
+              </button>
+              <span className="flex-1" />
+              <button onClick={snapshot} className={`${btn} bg-gray-100 hover:bg-gray-200 text-gray-800`}>📷 PNG</button>
+              <button onClick={fullscreen} className={`${btn} bg-gray-100 hover:bg-gray-200 text-gray-800`}>⛶ Fullscreen</button>
+            </div>
+
+            {source === "file" && (
+              <div className="mt-4">
+                <p className="text-sm font-medium text-gray-700 truncate mb-2">{fileName}</p>
+                <div className="flex items-center gap-3">
+                  <button onClick={togglePlay} disabled={!!exporting} aria-label={playing ? "Pause" : "Play"} className={`${btn} bg-primary hover:bg-primary-hover text-white w-14`}>
+                    {playing ? "❚❚" : "▶"}
+                  </button>
+                  <span className="text-xs text-gray-600 font-mono w-10 text-right">{formatTime(time)}</span>
+                  <input type="range" min={0} max={duration || 0} step="any" value={Math.min(time, duration || 0)} disabled={!!exporting}
+                    onChange={(e) => seek(parseFloat(e.target.value))} aria-label="Position" className="flex-1 accent-primary" />
+                  <span className="text-xs text-gray-600 font-mono w-10">{formatTime(duration)}</span>
+                </div>
+                <label className="mt-3 flex items-center gap-3 text-sm text-gray-700">
+                  Volume
+                  <input type="range" min={0} max={1} step={0.05} value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} className="w-40 accent-primary" />
+                  <span className="text-xs text-gray-500">(does not affect the exported video)</span>
+                </label>
+              </div>
+            )}
+            {source === "mic" && (
+              <p className="mt-3 text-sm text-green-700">🎤 Listening to your microphone. The sound is not played back, so there is no echo.</p>
+            )}
+          </div>
+
+          {/* Export */}
+          <div className={card}>
+            <h2 className={heading} style={{ fontFamily: "var(--font-heading)" }}>Create a video</h2>
+            {!mime ? (
+              <p className="text-sm text-gray-600">This browser cannot record video. Use a current version of Chrome, Edge, Firefox or Safari to export.</p>
+            ) : (
+              <>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <label className="text-sm font-medium text-gray-700">
+                    Size
+                    <select value={aspect} onChange={(e) => setAspect(e.target.value as Aspect)} disabled={!!exporting} className={`${field} mt-1`}>
+                      {(Object.keys(ASPECTS) as Aspect[]).map((k) => <option key={k} value={k}>{ASPECTS[k].label} – {ASPECTS[k].w}×{ASPECTS[k].h}</option>)}
+                    </select>
+                  </label>
+                  {source === "file" && (
+                    <div className="text-sm font-medium text-gray-700">
+                      Part of the track
+                      <div className="mt-1 flex items-center gap-2">
+                        <select value={range.whole ? "whole" : "part"} onChange={(e) => setRange((r) => ({ ...r, whole: e.target.value === "whole" }))} disabled={!!exporting} className={field}>
+                          <option value="whole">Whole track ({formatTime(duration)})</option>
+                          <option value="part">From – to (seconds)</option>
+                        </select>
+                      </div>
+                      {!range.whole && (
+                        <div className="mt-2 flex items-center gap-2">
+                          <input type="number" min={0} max={duration} value={range.from} onChange={(e) => setRange((r) => ({ ...r, from: Math.max(0, parseFloat(e.target.value) || 0) }))} className={field} aria-label="From second" />
+                          <span>–</span>
+                          <input type="number" min={0} max={duration} value={range.to} onChange={(e) => setRange((r) => ({ ...r, to: Math.max(0, parseFloat(e.target.value) || 0) }))} className={field} aria-label="To second" />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div className="mt-4">
+                  {exporting ? (
+                    <div>
+                      {source === "file" ? (
+                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden"><div className="h-full bg-primary" style={{ width: `${progress * 100}%` }} /></div>
+                      ) : (
+                        <p className="text-sm text-red-700 font-medium">● Recording…</p>
+                      )}
+                      <div className="mt-2 flex items-center justify-between gap-3 text-sm text-gray-600">
+                        <span>Recording in real time — keep this tab open and visible.</span>
+                        <button onClick={stopExport} className={`${btn} bg-red-100 hover:bg-red-200 text-red-700`}>{source === "mic" ? "Stop and save" : "Stop early and save"}</button>
+                      </div>
+                    </div>
+                  ) : (
+                    <button onClick={exportVideo} disabled={source === "none"} className={`${btn} w-full py-3 bg-primary hover:bg-primary-hover text-white`}>
+                      🎬 {source === "mic" ? "Record video from microphone" : `Export ${extensionFor(mime).toUpperCase()} video`}
+                    </button>
+                  )}
+                  {source === "none" && <p className="mt-2 text-xs text-gray-500">Choose an audio file or start the microphone first.</p>}
+                  {result && <p className="mt-2 text-sm text-green-700">✓ Saved {result.name} ({formatSize(result.size)}).</p>}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Settings */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className={card}>
+            <h2 className={heading} style={{ fontFamily: "var(--font-heading)" }}>Style</h2>
+            <div className="grid grid-cols-2 gap-2">
+              {STYLES.map(([s, label]) => (
+                <button key={s} onClick={() => setStyle(s)} aria-pressed={style === s}
+                  className={`${btn} px-2 ${style === s ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>{label}</button>
               ))}
             </div>
           </div>
 
-          {/* Settings */}
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-              Settings
-            </h2>
-            <div className="space-y-4">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-medium text-gray-700">Sensitivity</label>
-                  <span className="text-sm text-gray-600">{sensitivity.toFixed(1)}x</span>
-                </div>
-                <input
-                  type="range"
-                  min="0.5"
-                  max="5"
-                  step="0.1"
-                  value={sensitivity}
-                  onChange={(e) => setSensitivity(parseFloat(e.target.value))}
-                  className="w-full"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">FFT Resolution</label>
-                <select
-                  value={fftSize}
-                  onChange={(e) => setFftSize(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                  {[64, 128, 256, 512, 1024, 2048].map((size) => (
-                    <option key={size} value={size}>
-                      {size} bins
-                    </option>
-                  ))}
-                </select>
-              </div>
+          <div className={card}>
+            <h2 className={heading} style={{ fontFamily: "var(--font-heading)" }}>Colours</h2>
+            <div className="grid grid-cols-3 gap-2">
+              {THEMES.map((t, i) => (
+                <button key={t.name} onClick={() => { setThemeIdx(i); setCustomColor(""); setBg(t.bg); }} aria-pressed={themeIdx === i && !customColor}
+                  className={`rounded-lg p-1.5 text-xs font-semibold border ${themeIdx === i && !customColor ? "border-primary ring-2 ring-primary/30" : "border-gray-200"}`}>
+                  <span className="block h-4 rounded" style={{ background: `linear-gradient(90deg, ${t.colors.join(",")})` }} />
+                  <span className="block mt-1 text-gray-700">{t.name}</span>
+                </button>
+              ))}
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-3 text-sm text-gray-700">
+              <label className="flex items-center gap-2">Bar colour
+                <input type="color" value={customColor || theme.colors[1]} onChange={(e) => setCustomColor(e.target.value)} className="w-8 h-8 rounded border border-gray-200" />
+              </label>
+              <label className="flex items-center gap-2">Background
+                <input type="color" value={bg} onChange={(e) => setBg(e.target.value)} className="w-8 h-8 rounded border border-gray-200" />
+              </label>
+            </div>
+            <div className="mt-3 flex items-center gap-2 text-sm">
+              <label className={`${btn} px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-800 cursor-pointer`}>
+                🖼️ Background image
+                <input type="file" accept="image/*" className="hidden" onChange={(e) => { onImage(e.target.files?.[0]); e.target.value = ""; }} />
+              </label>
+              {image && <button onClick={() => setImage(null)} className="text-red-600 text-xs font-semibold">Remove</button>}
             </div>
           </div>
-        </div>
 
-        {/* Info Panel */}
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-              How It Works
-            </h2>
-            <div className="space-y-3 text-sm text-gray-700">
-              <p>
-                <strong>Upload Audio:</strong> Select an MP3, WAV, OGG, or M4A file to visualize its frequency spectrum in real-time.
-              </p>
-              <p>
-                <strong>Microphone Input:</strong> Use your microphone to see live visualizations of your voice or ambient sound.
-              </p>
-              <p>
-                <strong>Visualization Styles:</strong>
-              </p>
-              <ul className="list-disc list-inside space-y-1 ml-2">
-                <li><strong>Frequency Bars:</strong> Classic vertical bars showing frequency amplitude</li>
-                <li><strong>Waveform:</strong> Oscilloscope-style line showing audio wave</li>
-                <li><strong>Circular:</strong> Radial bars arranged in a circle</li>
-                <li><strong>Radial:</strong> Pulsing circle with frequency dots</li>
-              </ul>
-              <p>
-                <strong>Sensitivity:</strong> Adjust how responsive the visualization is to audio levels.
-              </p>
-              <p>
-                <strong>FFT Resolution:</strong> Higher values provide more frequency detail but use more processing power.
-              </p>
-            </div>
+          <div className={card}>
+            <h2 className={heading} style={{ fontFamily: "var(--font-heading)" }}>Text</h2>
+            <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Track title" className={field} aria-label="Track title" maxLength={80} />
+            <input value={artist} onChange={(e) => setArtist(e.target.value)} placeholder="Artist or channel name" className={`${field} mt-2`} aria-label="Artist" maxLength={80} />
+          </div>
+
+          <div className={card}>
+            <h2 className={heading} style={{ fontFamily: "var(--font-heading)" }}>Response</h2>
+            <label className="block text-sm text-gray-700">Sensitivity: {sensitivity.toFixed(1)}×
+              <input type="range" min={0.5} max={3} step={0.1} value={sensitivity} onChange={(e) => setSensitivity(parseFloat(e.target.value))} className="w-full accent-primary" />
+            </label>
+            <label className="block text-sm text-gray-700 mt-2">Smoothing: {Math.round(smoothing * 100)}%
+              <input type="range" min={0} max={0.95} step={0.05} value={smoothing} onChange={(e) => setSmoothing(parseFloat(e.target.value))} className="w-full accent-primary" />
+            </label>
+            <label className="block text-sm text-gray-700 mt-2">Frequency detail
+              <select value={fftSize} onChange={(e) => setFftSize(parseInt(e.target.value, 10))} className={`${field} mt-1`}>
+                {DETAIL.map(([n, label]) => <option key={n} value={n}>{label}</option>)}
+              </select>
+            </label>
           </div>
         </div>
       </div>

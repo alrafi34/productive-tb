@@ -53,6 +53,25 @@ const nextConfig: NextConfig = {
       // this one had no impressions and no currency choice. Its query is about
       // usage, which the energy consumption calculator answers.
       "power-consumption-calculator": "/tools/electrical/energy-consumption-calculator",
+      // Tools from the site before this codebase that Search Console still
+      // reports as 404 (export 2026-10-12), sent to the tool that does the same job
+      "unix-timestamp-converter": "/tools/calculator/timestamp-unix-converter",
+      "regex-tester-calculator": "/tools/developer/regex-tester",
+      "sql-query-formatter": "/tools/developer/sql-formatter",
+      "time-zone-converter-cs": "/tools/productivity/time-zone-converter",
+      "hash-function-calculator": "/tools/security/hash-generator",
+      "hex-to-binary-calculator": "/tools/math/binary-hex-decimal-converter",
+      "binary-to-hex-calculator": "/tools/math/binary-hex-decimal-converter",
+      "octal-to-decimal-calculator": "/tools/math/binary-hex-decimal-converter",
+      "checksum-calculator-cs": "/tools/computer-science/checksum-calculator",
+      "space-complexity-calculator": "/tools/computer-science/time-complexity-calculator",
+      "algorithm-efficiency-calculator": "/tools/computer-science/time-complexity-calculator",
+      "password-entropy-calculator": "/tools/security/password-strength-meter",
+      "password-entropy-calculator-cs": "/tools/security/password-strength-meter",
+      "image-metadata-exif-viewer": "/tools/image/exif-remover",
+      "shaft-torque-calculator": "/tools/mechanical/torque-calculator",
+      "inverter-load-calculator": "/tools/electrical/solar-inverter-calculator",
+      "gps-land-area-calculator": "/tools/land/polygon-area-calculator",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },
