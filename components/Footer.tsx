@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { siteConfig } from "@/config/site";
 import { tools, categories } from "@/config/tools";
 

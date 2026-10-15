@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { useToolNav } from "@/components/ToolNavContext";
 
 const CHIP_COUNT = 8;

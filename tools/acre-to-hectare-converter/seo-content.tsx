@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import ToolFaq from "@/components/ToolFaq";
 import ValueLink from "@/components/ValueLink";
 import { acreToHectareConverterConfig } from "./config";

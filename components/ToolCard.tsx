@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import type { Tool } from "@/config/tools";
 
 export default function ToolCard({ tool }: { tool: Tool }) {
