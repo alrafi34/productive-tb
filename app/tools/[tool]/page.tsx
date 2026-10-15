@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CategoryToolsGrid from "@/components/CategoryToolsGrid";

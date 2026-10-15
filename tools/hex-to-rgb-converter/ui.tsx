@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { useState } from "react";
 import { hexToRgb, rgbToHex, rgbToHsl, generatePalette, hexHasAlpha, parseRgb, hexSteps, rgbToUnit } from "./logic";
 import HexToRgbSEOContent from "./seo-content";

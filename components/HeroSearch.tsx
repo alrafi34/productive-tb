@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import type { Tool } from "@/config/tools";
 import { searchTools } from "@/lib/search-tools";
 import { loadCatalogue, type Catalogue } from "@/lib/tool-catalogue";

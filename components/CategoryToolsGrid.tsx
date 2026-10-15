@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import ToolCard from "@/components/ToolCard";
 import { tools } from "@/config/tools";
 import type { Category } from "@/config/tools";

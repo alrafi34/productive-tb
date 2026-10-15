@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { useToolNav } from "@/components/ToolNavContext";
 
 /* The related-tools grid at the foot of every tool page. The list itself is
