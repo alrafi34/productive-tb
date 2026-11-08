@@ -11,6 +11,42 @@ export const LEVELS: Record<Level, { label: string; hint: string; maxSide: numbe
   strong: { label: "Strong", hint: "Smallest file, images softer", maxSide: 1100, quality: 0.5 },
 };
 
+export type Settings = { maxSide: number; quality: number };
+
+/* From best quality to smallest file; the target-size search walks this. The
+   three named levels are steps 0, 2 and 5. */
+export const LADDER: Settings[] = [
+  { maxSide: 2200, quality: 0.82 },
+  { maxSide: 1900, quality: 0.75 },
+  { maxSide: 1600, quality: 0.68 },
+  { maxSide: 1400, quality: 0.62 },
+  { maxSide: 1250, quality: 0.56 },
+  { maxSide: 1100, quality: 0.5 },
+  { maxSide: 950, quality: 0.45 },
+  { maxSide: 800, quality: 0.4 },
+  { maxSide: 650, quality: 0.36 },
+  { maxSide: 520, quality: 0.32 },
+];
+
+/* "Where is it going?" presets for the target-size mode. Sizes are decimal
+   (1 KB = 1,000 bytes), the stricter reading upload forms use, so a file that
+   fits here also fits a form that counts 1 KB as 1,024 bytes. */
+export const KB = 1000;
+export const MB = 1000 * 1000;
+export const TARGET_PRESETS: { label: string; value: number; unit: "KB" | "MB" }[] = [
+  { label: "Email attachment (20 MB)", value: 20, unit: "MB" },
+  { label: "Job application (2 MB)", value: 2, unit: "MB" },
+  { label: "Visa or government form (1 MB)", value: 1, unit: "MB" },
+  { label: "500 KB", value: 500, unit: "KB" },
+  { label: "200 KB", value: 200, unit: "KB" },
+  { label: "100 KB", value: 100, unit: "KB" },
+];
+
+/* 200000 → "200 KB", 2000000 → "2 MB" */
+export function formatTarget(bytes: number): string {
+  return bytes >= MB ? `${+(bytes / MB).toFixed(2)} MB` : `${+(bytes / KB).toFixed(1)} KB`;
+}
+
 export type CompressResult = {
   bytes: Uint8Array;
   originalSize: number;
@@ -151,13 +187,13 @@ async function encodeJpeg(img: CanvasImageSource & { width: number; height: numb
    Each image is replaced only if the new version is smaller. */
 export async function compressPdf(
   input: Uint8Array,
-  level: Level,
+  level: Level | Settings,
   opts: { removeMetadata: boolean; onProgress?: (done: number, total: number) => void },
 ): Promise<CompressResult> {
   const lib = await import("pdf-lib");
   const { PDFName, PDFNumber, PDFRawStream, PDFRef } = lib;
   const doc = await loadPdf(input);
-  const { maxSide, quality } = LEVELS[level];
+  const { maxSide, quality } = typeof level === "string" ? LEVELS[level] : level;
 
   const images = doc.context
     .enumerateIndirectObjects()
@@ -220,4 +256,85 @@ export async function compressPdf(
     imagesCompressed: compressed,
     unchanged,
   };
+}
+
+export type TargetResult = CompressResult & {
+  target: number;
+  /* The output is at or under the target. */
+  hit: boolean;
+  /* The original was already small enough and is returned untouched. */
+  alreadyUnder: boolean;
+  /* Ladder step used (0 = best quality), or -1 when nothing was re-encoded. */
+  step: number;
+};
+
+/* Finds the best-quality ladder step whose output fits the target, with a
+   binary search (smaller steps give smaller files). If even the last step is
+   too big, returns that smallest version with hit = false. */
+export async function compressToTarget(
+  input: Uint8Array,
+  target: number,
+  opts: { removeMetadata: boolean; onProgress?: (text: string) => void },
+): Promise<TargetResult> {
+  if (input.length <= target) {
+    return { bytes: input, originalSize: input.length, imagesFound: 0, imagesCompressed: 0, unchanged: true, target, hit: true, alreadyUnder: true, step: -1 };
+  }
+  const cache = new Map<number, CompressResult>();
+  let tries = 0;
+  const run = async (step: number) => {
+    const known = cache.get(step);
+    if (known) return known;
+    tries++;
+    const r = await compressPdf(input, LADDER[step], {
+      removeMetadata: opts.removeMetadata,
+      onProgress: (done, total) => opts.onProgress?.(`Try ${tries} · images ${done} of ${total}`),
+    });
+    cache.set(step, r);
+    return r;
+  };
+
+  const last = LADDER.length - 1;
+  const smallest = await run(last);
+  if (smallest.bytes.length > target || smallest.imagesCompressed === 0) {
+    return { ...smallest, target, hit: smallest.bytes.length <= target, alreadyUnder: false, step: last };
+  }
+  // Invariant: step hi fits the target; find the lowest step that still fits.
+  let lo = 0, hi = last;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if ((await run(mid)).bytes.length <= target) hi = mid;
+    else lo = mid + 1;
+  }
+  return { ...(await run(hi)), target, hit: true, alreadyUnder: false, step: hi };
+}
+
+/* Splits a PDF into consecutive page ranges that each fit the target size.
+   Starts from an even split and adds parts until every part fits. Returns an
+   error if a single page is already larger than the target. */
+export async function splitToTarget(
+  input: Uint8Array,
+  target: number,
+): Promise<{ parts: { pages: [number, number]; bytes: Uint8Array }[] } | { error: string }> {
+  const { PDFDocument } = await import("pdf-lib");
+  const src = await loadPdf(input);
+  const count = src.getPageCount();
+  const build = async (from: number, to: number) => {
+    const out = await PDFDocument.create();
+    const pages = await out.copyPages(src, Array.from({ length: to - from + 1 }, (_, i) => from + i));
+    pages.forEach((p) => out.addPage(p));
+    return out.save({ useObjectStreams: true });
+  };
+  for (let k = Math.max(2, Math.ceil(input.length / target)); k <= count; k++) {
+    const parts: { pages: [number, number]; bytes: Uint8Array }[] = [];
+    let ok = true;
+    for (let i = 0; i < k && ok; i++) {
+      const from = Math.floor((i * count) / k);
+      const to = Math.floor(((i + 1) * count) / k) - 1;
+      const bytes = await build(from, to);
+      if (bytes.length > target) ok = false;
+      else parts.push({ pages: [from + 1, to + 1], bytes });
+    }
+    if (ok) return { parts };
+  }
+  return { error: "At least one page is larger than the target on its own, so splitting cannot reach it. Try a larger target." };
 }
