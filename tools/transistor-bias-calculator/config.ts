@@ -125,7 +125,6 @@ export const transistorBiasCalculatorConfig = {
     "ohms-law-calculator",
     "voltage-divider-calculator",
     "led-resistor-calculator",
-    "power-calculator-electrical"
   ]
 };
 

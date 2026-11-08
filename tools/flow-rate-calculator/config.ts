@@ -51,7 +51,6 @@ export const flowRateCalculatorConfig = {
   relatedTools: [
     "reynolds-number-calculator",
     "pipe-velocity-calculator",
-    "pressure-drop-calculator",
     "bernoulli-equation-calculator",
     "water-flow-rate-calculator",
     "drainage-flow-calculator",

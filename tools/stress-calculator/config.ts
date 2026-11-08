@@ -48,7 +48,6 @@ export const stressCalculatorConfig = {
   relatedTools: [
     "torque-calculator",
     "force-calculator",
-    "beam-deflection-calculator",
     "spring-force-calculator",
     "young-modulus-calculator",
     "factor-of-safety-calculator",

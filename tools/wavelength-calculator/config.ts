@@ -104,11 +104,9 @@ export const wavelengthCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "frequency-calculator",
     "signal-attenuation-calculator",
     "decibel-db-calculator",
     "rf-power-calculator",
-    "rlc-resonance-calculator",
     "impedance-calculator",
   ],
 };

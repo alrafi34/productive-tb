@@ -63,7 +63,6 @@ export const batteryChargingTimeCalculatorConfig = {
     "battery-capacity-calculator",
     "battery-backup-time-calculator",
     "energy-consumption-calculator",
-    "power-calculator-electrical",
   ],
 };
 

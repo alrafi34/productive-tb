@@ -47,7 +47,6 @@ export const momentOfInertiaCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "beam-deflection-calculator",
     "stress-calculator",
     "torque-calculator",
     "bending-stress-calculator",
