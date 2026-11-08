@@ -34,6 +34,7 @@ export const tools: Tool[] = [
   { slug: "jpg-to-pdf", name: "JPG to PDF Converter", description: "Combine JPG, PNG, WebP and HEIC images into one PDF.", category: "pdf", icon: "📄", free: true },
   { slug: "merge-pdf", name: "Merge PDF", description: "Combine PDF files into one, in any order.", category: "pdf", icon: "📑", free: true },
   { slug: "split-pdf", name: "Split PDF", description: "Split a PDF, extract pages or delete pages.", category: "pdf", icon: "✂️", free: true },
+  { slug: "compress-pdf", name: "Compress PDF", description: "Reduce PDF file size; text stays sharp.", category: "pdf", icon: "🗜️", free: true },
   { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "Convert HEX to RGB and RGB to HEX, with the math shown step by step.", category: "design", icon: "🎨", free: true },
   { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate harmony-based palettes with export and contrast checks.", category: "design", icon: "🌈", free: true },
   { slug: "favicon-generator", name: "Favicon Generator", description: "Resize image to 16×16 or 32×32 for web.", category: "image", icon: "🌐", free: true },
@@ -645,7 +646,7 @@ export const tools: Tool[] = [
 export const categories: Category[] = [
   { slug: "writing", name: "Writing Tools", description: "Word counters, case converters, readability tools.", icon: "✍️" },
   { slug: "image", name: "Image Tools", description: "Compress, resize, and convert images easily.", icon: "🖼️" },
-  { slug: "pdf", name: "PDF Tools", description: "Merge, split and create PDF files in your browser.", icon: "📄" },
+  { slug: "pdf", name: "PDF Tools", description: "Compress, merge, split and create PDF files.", icon: "📄" },
   { slug: "design", name: "Design Tools", description: "Color pickers, gradients, and design helpers.", icon: "🎨" },
   { slug: "security", name: "Security Tools", description: "Password generators and encryption tools.", icon: "🔒" },
   { slug: "calculator", name: "Calculator Tools", description: "All types of calculators — BMI, loan, GPA, and more.", icon: "🧮" },

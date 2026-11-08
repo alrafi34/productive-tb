@@ -20,7 +20,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["image-converter", "image-cropper", "image-to-text"],
 
   /* ── PDF ── */
-  ["jpg-to-pdf", "merge-pdf", "split-pdf"],
+  ["compress-pdf", "merge-pdf", "split-pdf", "jpg-to-pdf"],
 
   /* ── Design ── */
   ["hex-to-rgb-converter", "hex-to-rgba-converter", "color-format-converter", "hsl-color-slider", "random-hex-color-generator"],
@@ -167,9 +167,10 @@ export const NEXT_STEPS: Readonly<Record<string, readonly string[]>> = {
   "image-converter": ["image-compressor", "image-resizer", "jpg-to-pdf"],
   "image-cropper": ["image-resizer", "image-compressor", "image-converter"],
   "image-to-text": ["word-counter", "sentence-case-converter", "image-cropper"],
-  "jpg-to-pdf": ["merge-pdf", "image-compressor", "image-cropper"],
-  "merge-pdf": ["split-pdf", "jpg-to-pdf"],
-  "split-pdf": ["merge-pdf", "jpg-to-pdf"],
+  "jpg-to-pdf": ["merge-pdf", "compress-pdf", "image-compressor"],
+  "merge-pdf": ["compress-pdf", "split-pdf", "jpg-to-pdf"],
+  "split-pdf": ["merge-pdf", "compress-pdf", "jpg-to-pdf"],
+  "compress-pdf": ["split-pdf", "merge-pdf", "image-compressor"],
   "password-generator": ["password-strength-meter", "hash-generator", "username-generator"],
   "json-validator": ["json-formatter", "json-to-csv", "yaml-to-json-converter"],
   "base64-encoder-decoder": ["url-encoder-decoder", "jwt-debugger", "base32-encoder"],
@@ -288,6 +289,7 @@ export const POPULAR_POOL: readonly string[] = [
   "jpg-to-pdf",
   "merge-pdf",
   "split-pdf",
+  "compress-pdf",
   "favicon-generator",
   "exif-remover",
   "image-to-grayscale",

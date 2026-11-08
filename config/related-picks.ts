@@ -280,6 +280,7 @@ export const RELATED_PICKS: Readonly<Record<string, readonly string[]>> = {
   "mean-calculator": ["median-calculator", "mode-calculator", "standard-deviation-calculator", "variance-calculator", "percentile-calculator"],
   "median-calculator": ["mean-calculator", "standard-deviation-calculator", "data-growth-calculator", "etl-throughput-calculator", "storage-requirement-calculator", "session-duration-calculator"],
   "merge-pdf": ["image-converter", "image-to-text"],
+  "compress-pdf": ["image-compressor", "image-resizer", "image-to-text"],
   "meter-to-km-converter": ["centimeter-to-meter-converter", "unit-ratio-calculator"],
   "min-max-scaling-calculator": ["data-normalization-calculator", "log-transformation-calculator", "standard-deviation-calculator", "z-score-calculator", "mean-calculator", "outlier-detection-calculator"],
   "mind-map-builder": ["flowchart-logic-mapper", "venn-diagram-maker", "word-cloud-generator"],
