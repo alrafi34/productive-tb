@@ -49,7 +49,6 @@ export const hydraulicPressureCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "pressure-drop-calculator",
     "flow-rate-calculator",
     "pump-efficiency-calculator",
     "force-calculator",

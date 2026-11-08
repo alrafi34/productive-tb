@@ -67,7 +67,6 @@ export const energyConsumptionCalculatorConfig = {
   },
   relatedTools: [
     "electric-bill-calculator",
-    "power-calculator-electrical",
     "ohms-law-calculator",
     "air-conditioner-power-calculator",
     "solar-panel-calculator",

@@ -53,7 +53,6 @@ export const bernoulliEquationCalculatorConfig = {
   },
   relatedTools: [
     "reynolds-number-calculator",
-    "pressure-drop-calculator",
     "flow-rate-calculator",
     "pipe-velocity-calculator",
     "hydraulic-pressure-calculator",

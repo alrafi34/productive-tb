@@ -85,6 +85,5 @@ export const parkingSpaceCalculatorConfig = {
     "floor-area-calculator",
     "land-area-calculator-square-meter",
     "room-volume-calculator",
-    "building-height-calculator",
   ],
 };

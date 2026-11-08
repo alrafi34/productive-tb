@@ -78,6 +78,10 @@ const nextConfig: NextConfig = {
       // as near-duplicates; the target now carries the merged features
       "slab-concrete-calculator": "/tools/architecture/concrete-volume-calculator",
       "keyword-density-calculator-seo": "/tools/writing/keyword-density-checker",
+      // Catalogue cut, batch 1 (GSC 3-month export, 2026-11-08): 26 specialist
+      // tools with no impressions were removed and now 404. This one has a
+      // direct equivalent, so it redirects instead.
+      "live-load-calculator": "/tools/architecture/structural-load-calculator",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },

@@ -109,7 +109,6 @@ export const toolConfig = {
   ],
   relatedTools: [
     "sunlight-exposure-calculator",
-    "building-height-calculator",
     "solar-panel-calculator",
     "sun-angle-calculator",
     "structural-load-calculator",

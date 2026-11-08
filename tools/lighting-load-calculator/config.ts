@@ -43,6 +43,5 @@ export const lightingLoadCalculatorConfig = {
   relatedTools: [
     "electrical-load-calculator-building",
     "energy-consumption-calculator",
-    "energy-efficiency-calculator-building"
   ]
 };

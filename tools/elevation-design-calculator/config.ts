@@ -41,7 +41,6 @@ export const elevationDesignCalculatorConfig = {
   },
   relatedTools: [
     "facade-area-calculator",
-    "building-height-calculator",
     "floor-area-calculator"
   ]
 };
