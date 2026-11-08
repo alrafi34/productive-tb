@@ -75,6 +75,7 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "column-load-calculator": "2026-10-06",
   "combinatorics-calculator": "2026-09-30",
   "compound-interest-calculator": "2026-10-06",
+  "compress-pdf": "2026-11-08",
   "concrete-mix-ratio-calculator": "2026-10-06",
   "concrete-volume-calculator": "2026-11-08",
   "confidence-interval-calculator": "2026-10-06",
