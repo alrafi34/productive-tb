@@ -109,8 +109,6 @@ export const rcTimeConstantCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "rl-time-constant-calculator",
-    "rlc-resonance-calculator",
     "capacitor-calculator",
     "capacitor-charge-time-calculator",
     "impedance-calculator",

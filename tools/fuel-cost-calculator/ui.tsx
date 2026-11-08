@@ -187,7 +187,7 @@ export default function FuelCostCalculatorUI() {
           {/* Quick Unit Toggles */}
           <div className="flex flex-wrap items-center justify-between mb-8 pb-6 border-b border-gray-100 gap-4">
             <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-              <span>⛽</span> Fuel Calculation
+              Trip Details
             </h2>
             <div className="flex bg-gray-100 p-1 rounded-lg">
               <button

@@ -52,6 +52,5 @@ export const dragForceCalculatorConfig = {
     "reynolds-number-calculator",
     "bernoulli-equation-calculator",
     "flow-rate-calculator",
-    "pressure-drop-calculator",
   ],
 };

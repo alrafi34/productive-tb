@@ -51,6 +51,5 @@ export const naturalFrequencyCalculatorConfig = {
     "torque-calculator",
     "kinetic-energy-calculator",
     "moment-of-inertia-calculator",
-    "beam-deflection-calculator",
   ],
 };

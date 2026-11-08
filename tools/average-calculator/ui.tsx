@@ -137,9 +137,9 @@ export default function AverageCalculatorUI() {
                   <p className="text-primary-100 font-medium mb-2" style={{ fontFamily: "var(--font-heading)" }}>
                     Average
                   </p>
-                  <h2 className="text-5xl font-bold tracking-tight break-words">
+                  <p className="text-5xl font-bold tracking-tight break-words" aria-live="polite">
                     {formatNumber(average)}
-                  </h2>
+                  </p>
                   {weightedResult !== null && (
                     <p className="mt-3 text-primary-100">
                       Weighted average: <span className="font-semibold text-white">{formatNumber(weightedResult)}</span>

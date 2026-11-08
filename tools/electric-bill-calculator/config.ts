@@ -69,7 +69,6 @@ export const electricBillCalculatorConfig = {
   },
   relatedTools: [
     "energy-consumption-calculator",
-    "power-calculator-electrical",
     "solar-panel-calculator",
     "air-conditioner-power-calculator",
     "wire-size-calculator",

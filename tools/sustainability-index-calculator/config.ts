@@ -40,9 +40,6 @@ export const sustainabilityIndexCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "green-building-score-calculator",
-    "energy-efficiency-calculator-building",
-    "carbon-footprint-calculator-construction"
   ]
 };
 

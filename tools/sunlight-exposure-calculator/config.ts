@@ -41,7 +41,6 @@ export const sunlightExposureCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "building-height-calculator",
     "room-area-calculator",
     "plot-area-calculator"
   ]

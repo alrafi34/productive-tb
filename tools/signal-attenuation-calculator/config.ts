@@ -117,7 +117,6 @@ export const signalAttenuationCalculatorConfig = {
   },
   relatedTools: [
     "decibel-db-calculator",
-    "frequency-calculator",
     "wavelength-calculator",
     "impedance-calculator",
     "amplifier-gain-calculator",
