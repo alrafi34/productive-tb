@@ -40,8 +40,5 @@ export const soilCompactionCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "soil-bearing-capacity-calculator",
-    "foundation-depth-calculator",
-    "excavation-volume-calculator"
   ]
 };

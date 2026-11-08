@@ -40,8 +40,6 @@ export const coolingLoadCalculatorArchitectureConfig = {
     ],
   },
   relatedTools: [
-    "hvac-load-calculator",
-    "ventilation-calculator",
     "air-change-rate-calculator"
   ]
 };

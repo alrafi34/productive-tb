@@ -84,7 +84,6 @@ export const electricMotorPowerCalculatorConfig = {
     "wire-size-calculator",
     "ups-load-calculator",
     "generator-size-calculator",
-    "electrical-efficiency-calculator",
     "reactive-power-calculator",
   ],
 };

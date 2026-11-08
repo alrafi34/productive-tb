@@ -42,6 +42,5 @@ export const waterTankCapacityCalculatorConfig = {
   relatedTools: [
     "rainwater-harvesting-calculator",
     "concrete-volume-calculator",
-    "excavation-volume-calculator"
   ]
 };

@@ -42,7 +42,6 @@ export const steelQuantityCalculatorConfig = {
   },
   relatedTools: [
     "rebar-weight-calculator",
-    "rebar-spacing-calculator",
     "concrete-volume-calculator"
   ]
 };

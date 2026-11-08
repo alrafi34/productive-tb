@@ -82,6 +82,19 @@ const nextConfig: NextConfig = {
       // tools with no impressions were removed and now 404. This one has a
       // direct equivalent, so it redirects instead.
       "live-load-calculator": "/tools/architecture/structural-load-calculator",
+      // Catalogue cut, batch 2: 57 specialist tools with no clicks in three
+      // months were removed. These ten have a close kept equivalent; the
+      // other 47 now 404.
+      "beam-load-calculator": "/tools/architecture/structural-load-calculator",
+      "excavation-volume-calculator": "/tools/land/soil-volume-calculator",
+      "3d-volume-calculator-architecture": "/tools/architecture/room-volume-calculator",
+      "loan-interest-calculator-property": "/tools/calculator/mortgage-calculator",
+      "roi-real-estate-calculator": "/tools/calculator/investment-return-calculator",
+      "wall-boundary-cost-calculator": "/tools/land/fence-material-calculator",
+      "hvac-load-calculator": "/tools/architecture/cooling-load-calculator-architecture",
+      "electrical-load-calculator-building": "/tools/electrical/house-wiring-load-calculator",
+      "drainage-flow-calculator": "/tools/land/rainwater-runoff-calculator",
+      "bigha-land-calculator": "/tools/land/decimal-land-calculator",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },

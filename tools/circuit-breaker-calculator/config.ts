@@ -121,7 +121,6 @@ export const circuitBreakerCalculatorConfig = {
     "wire-size-calculator",
     "fuse-rating-calculator",
     "short-circuit-current-calculator",
-    "electrical-load-calculator-building",
     "energy-consumption-calculator"
   ]
 };

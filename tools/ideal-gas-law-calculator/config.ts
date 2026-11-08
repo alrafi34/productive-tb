@@ -34,9 +34,6 @@ export const idealGasLawCalculatorConfig = {
     },
   },
   relatedTools: [
-    "reynolds-number-calculator",
-    "bernoulli-equation-calculator",
-    "flow-rate-calculator",
     "temperature-conversion-scientific",
     "heat-transfer-calculator",
   ],

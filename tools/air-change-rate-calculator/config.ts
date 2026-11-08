@@ -41,8 +41,6 @@ export const airChangeRateCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "ventilation-calculator",
-    "hvac-load-calculator",
     "room-volume-calculator"
   ]
 };

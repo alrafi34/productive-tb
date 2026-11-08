@@ -41,8 +41,6 @@ export const rainwaterHarvestingCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "excavation-volume-calculator",
-    "drainage-flow-calculator",
     "concrete-volume-calculator"
   ]
 };

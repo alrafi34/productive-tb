@@ -115,10 +115,8 @@ export const capacitiveReactanceCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "inductive-reactance-calculator",
     "impedance-calculator",
     "capacitor-calculator",
-    "rc-time-constant-calculator",
     "ohms-law-calculator",
   ],
 };

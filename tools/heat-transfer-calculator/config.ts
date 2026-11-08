@@ -50,10 +50,7 @@ export const heatTransferCalculatorConfig = {
   },
   relatedTools: [
     "thermal-stress-calculator",
-    "thermal-expansion-calculator",
     "specific-heat-calculator",
-    "thermal-efficiency-calculator",
-    "reynolds-number-calculator",
     "ideal-gas-law-calculator",
   ],
 };

@@ -51,6 +51,5 @@ export const momentumCalculatorConfig = {
     "velocity-calculator",
     "acceleration-calculator",
     "torque-calculator",
-    "centripetal-force-calculator",
   ],
 };

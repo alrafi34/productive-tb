@@ -122,9 +122,7 @@ export const cableLengthCalculatorConfig = {
     "wire-size-calculator",
     "voltage-drop-calculator",
     "circuit-breaker-calculator",
-    "earthing-resistance-calculator",
     "house-wiring-load-calculator",
-    "electrical-load-calculator-building"
   ]
 };
 

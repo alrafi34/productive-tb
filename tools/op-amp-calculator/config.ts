@@ -106,7 +106,6 @@ export const opAmpCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "transistor-bias-calculator",
     "amplifier-gain-calculator",
     "voltage-divider-calculator",
     "ohms-law-calculator",

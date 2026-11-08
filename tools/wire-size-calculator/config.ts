@@ -121,7 +121,6 @@ export const wireSizeCalculatorConfig = {
     "circuit-breaker-calculator",
     "energy-consumption-calculator",
     "electric-motor-power-calculator",
-    "electrical-load-calculator-building",
     "ohms-law-calculator",
   ],
 };

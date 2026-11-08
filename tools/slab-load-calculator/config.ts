@@ -43,7 +43,6 @@ export const slabLoadCalculatorConfig = {
   },
   relatedTools: [
     "concrete-volume-calculator",
-    "beam-load-calculator",
     "column-load-calculator"
   ]
 };

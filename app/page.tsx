@@ -36,10 +36,10 @@ const DISCIPLINES = [
 
 const POPULAR = pick([
   "voltage-drop-calculator",
-  "beam-load-calculator",
+  "escalation-cost-calculator",
   "wire-size-calculator",
   "torque-calculator",
-  "arc-flash-calculator",
+  "compress-pdf",
   "percentage-calculator",
   "word-counter",
   "password-generator",

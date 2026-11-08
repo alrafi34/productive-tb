@@ -52,7 +52,6 @@ export const accelerationCalculatorConfig = {
     "force-calculator",
     "kinetic-energy-calculator",
     "torque-calculator",
-    "centripetal-force-calculator",
     "projectile-motion-calculator",
   ],
 };

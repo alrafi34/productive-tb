@@ -62,10 +62,7 @@ export const phaseAngleCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "power-factor-calculator",
     "impedance-calculator",
-    "inductive-reactance-calculator",
-    "apparent-power-calculator",
   ],
 };
 

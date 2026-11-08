@@ -111,7 +111,6 @@ export const amplifierGainCalculatorConfig = {
   },
   relatedTools: [
     "op-amp-calculator",
-    "transistor-bias-calculator",
     "decibel-db-calculator",
     "ohms-law-calculator",
     "impedance-calculator",

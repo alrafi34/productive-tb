@@ -61,9 +61,7 @@ export const transformerCurrentCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "transformer-turns-ratio-calculator",
     "transformer-efficiency-calculator",
-    "three-phase-power-calculator",
     "wire-size-calculator",
   ],
 };
