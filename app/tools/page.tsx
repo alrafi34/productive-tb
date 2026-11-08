@@ -8,7 +8,8 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "All Tool Categories – Browse 500+ Free Online Utilities",
   description:
-    "Browse our complete library of 500+ free online tools organized by category. Math calculators, developer utilities, writing tools, design helpers, and much more. No sign-up required.",
+    "Browse 500+ free online tools by category: construction, land, electrical and finance calculators, plus developer, writing and design utilities. No sign-up.",
+  alternates: { canonical: `${siteConfig.url}/tools` },
   openGraph: {
     title: "All Tools – Productive Toolbox",
     description: "Browse 500+ free online tools by category",

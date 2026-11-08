@@ -22,12 +22,12 @@ const TOP_CATEGORIES = [...categories]
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: `What Productive Toolbox is, who builds it, how ${TOTAL_TOOLS} free browser-based engineering and technical calculators are made, how the site is funded, and the limits you should know about.`,
+  description: `Who builds Productive Toolbox, how its ${TOTAL_TOOLS} free engineering and technical calculators are made, how the site is funded, and its limits.`,
   alternates: { canonical: `${siteConfig.url}/about` },
   robots: { index: true, follow: true },
   openGraph: {
     title: `About ${siteConfig.name}`,
-    description: `${TOTAL_TOOLS} free calculators across ${TOTAL_CATEGORIES} categories, running entirely in your browser.`,
+    description: `${TOTAL_TOOLS} free calculators across ${TOTAL_CATEGORIES} categories.`,
     url: `${siteConfig.url}/about`,
   },
 };

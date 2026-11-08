@@ -430,7 +430,6 @@ export const RELATED_PICKS: Readonly<Record<string, readonly string[]>> = {
   "social-media-reach-calculator": ["impressions-calculator", "ctr-calculator", "conversion-rate-calculator", "cost-per-click-cpc-calculator", "bounce-rate-calculator"],
   "soil-bearing-capacity-calculator": ["foundation-depth-calculator", "retaining-wall-calculator", "footing-size-calculator", "structural-load-calculator"],
   "soil-compaction-calculator": ["soil-bearing-capacity-calculator", "foundation-depth-calculator", "excavation-volume-calculator"],
-  "soil-compaction-ratio-calculator": ["land-leveling-calculator", "earth-filling-calculator", "soil-volume-calculator", "excavation-cost-calculator"],
   "soil-volume-calculator": ["earth-filling-calculator", "excavation-cost-calculator", "land-area-calculator-square-feet"],
   "solar-battery-calculator": ["solar-panel-calculator", "battery-capacity-calculator", "solar-inverter-calculator"],
   "solar-inverter-calculator": ["solar-panel-calculator", "solar-battery-calculator", "battery-capacity-calculator"],

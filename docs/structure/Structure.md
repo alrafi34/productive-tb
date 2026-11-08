@@ -6,7 +6,7 @@ productive-tb/
 ├── app/
 │   ├── layout.tsx                         # Root layout (fonts: Poppins + Inter, global SEO metadata, JSON-LD)
 │   ├── globals.css                        # Global CSS & CSS variables
-│   ├── page.tsx                           # Homepage (hero, search, category carousel, testimonials)
+│   ├── page.tsx                           # Homepage (hero, search, category carousel)
 │   ├── favicon.ico
 │   ├── robots.ts                          # Robots.txt generation
 │   ├── sitemap.ts                         # XML sitemap generation
@@ -38,7 +38,6 @@ productive-tb/
 │   ├── RelatedTools.tsx                   # Related tools section at bottom of tool pages
 │   ├── SearchSection.tsx                  # Homepage search component
 │   ├── ToolsFilter.tsx                    # Client-side filter/search for tools
-│   ├── TestimonialsSection.tsx            # Homepage testimonials
 │   ├── ToolHeader.tsx                     # (stub — not yet used)
 │   ├── ToolFooter.tsx                     # (stub — not yet used)
 │   └── ToolSidebar.tsx                    # (stub — not yet used)

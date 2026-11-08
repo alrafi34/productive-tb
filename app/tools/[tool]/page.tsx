@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { redirect, notFound } from "next/navigation";
+import { permanentRedirect, notFound } from "next/navigation";
 import Link from "@/components/SiteLink";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -157,7 +157,7 @@ export default async function CategoryOrRedirectPage({
   /* ── Case 2: slug matches a known tool → redirect to /tools/[category]/[slug] ── */
   const tool = tools.find(t => t.slug === slug);
   if (tool) {
-    redirect(`/tools/${tool.category}/${tool.slug}`);
+    permanentRedirect(`/tools/${tool.category}/${tool.slug}`);
   }
 
   /* ── Case 3: nothing matched ── */

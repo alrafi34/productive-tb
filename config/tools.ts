@@ -432,7 +432,6 @@ export const tools: Tool[] = [
   { slug: "drainage-system-calculator", name: "Drainage System Calculator", description: "Design land drainage flow.", category: "land", icon: "💧", free: true },
   { slug: "rainwater-runoff-calculator", name: "Rainwater Runoff Calculator", description: "Estimate water runoff from land.", category: "land", icon: "🌧️", free: true },
   { slug: "land-leveling-calculator", name: "Land Leveling Calculator", description: "Calculate leveling volume.", category: "land", icon: "📏", free: true },
-  { slug: "soil-compaction-ratio-calculator", name: "Soil Compaction Ratio Calculator", description: "Calculate compaction efficiency.", category: "land", icon: "🏗️", free: true },
   { slug: "map-scale-calculator", name: "Map Scale Calculator", description: "Convert map scale to real distance.", category: "land", icon: "🗺️", free: true },
   { slug: "subdivision-cost-calculator", name: "Subdivision Cost Calculator", description: "Estimate cost of dividing land.", category: "land", icon: "💰", free: true },
   { slug: "land-development-cost-calculator", name: "Land Development Cost Calculator", description: "Calculate full land development cost.", category: "land", icon: "🏗️", free: true },

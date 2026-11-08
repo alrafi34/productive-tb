@@ -79,7 +79,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
-  logo: `${siteConfig.url}/logo.png`,
+  logo: `${siteConfig.url}/favicon.png`,
   description: "Free online tools for productivity",
 };
 
