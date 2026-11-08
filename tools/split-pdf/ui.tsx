@@ -5,12 +5,14 @@ import FileDropZone from "@/components/FileDropZone";
 import RelatedStrip from "@/components/RelatedStrip";
 import RelatedTools from "@/components/RelatedTools";
 import { downloadBlob, formatBytes } from "@/lib/image-files";
-import { describePages, isPdfFile, loadPdf } from "@/lib/pdf-pages";
+import PdfPasswordPrompt from "@/components/PdfPasswordPrompt";
+import { describePages, isPdfFile, loadPdf, PdfPasswordError } from "@/lib/pdf-pages";
 import { createZip } from "@/lib/zip";
 import { MODES, outputName, planSplit, splitPdf, type SplitMode } from "./logic";
 import SplitPdfSEO from "./seo-content";
 
-type Source = { name: string; size: number; bytes: Uint8Array; pageCount: number };
+type Source = { name: string; size: number; bytes: Uint8Array; pageCount: number; password?: string };
+type Locked = { name: string; size: number; bytes: Uint8Array; wrong: boolean };
 type Output = { name: string; pages: number[]; bytes: Uint8Array };
 
 export default function SplitPdfUI() {
@@ -21,6 +23,30 @@ export default function SplitPdfUI() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [outputs, setOutputs] = useState<Output[]>([]);
+  const [locked, setLocked] = useState<Locked | null>(null);
+
+  const open = async (file: { name: string; size: number; bytes: Uint8Array }, password?: string) => {
+    setBusy(true);
+    try {
+      const doc = await loadPdf(file.bytes, password);
+      const pageCount = doc.getPageCount();
+      setSrc({ ...file, pageCount, password });
+      setLocked(null);
+      setSpec(pageCount > 1 ? `1-${Math.ceil(pageCount / 2)}, ${Math.ceil(pageCount / 2) + 1}-${pageCount}` : "1");
+      setError("");
+    } catch (e) {
+      setSrc(null);
+      if (e instanceof PdfPasswordError) {
+        setLocked({ ...file, wrong: e.wrong });
+        setError("");
+      } else {
+        setLocked(null);
+        setError(e instanceof Error ? e.message : "Could not read this PDF.");
+      }
+    } finally {
+      setBusy(false);
+    }
+  };
 
   const load = async (files: File[]) => {
     const file = files[0];
@@ -29,20 +55,7 @@ export default function SplitPdfUI() {
       setError("Please choose a PDF file.");
       return;
     }
-    setBusy(true);
-    try {
-      const bytes = new Uint8Array(await file.arrayBuffer());
-      const doc = await loadPdf(bytes);
-      const pageCount = doc.getPageCount();
-      setSrc({ name: file.name, size: file.size, bytes, pageCount });
-      setSpec(pageCount > 1 ? `1-${Math.ceil(pageCount / 2)}, ${Math.ceil(pageCount / 2) + 1}-${pageCount}` : "1");
-      setError("");
-    } catch (e) {
-      setSrc(null);
-      setError(e instanceof Error ? e.message : "Could not read this PDF.");
-    } finally {
-      setBusy(false);
-    }
+    await open({ name: file.name, size: file.size, bytes: new Uint8Array(await file.arrayBuffer()) });
   };
 
   const plan = src ? planSplit(mode, src.pageCount, spec, every) : null;
@@ -52,7 +65,7 @@ export default function SplitPdfUI() {
     setBusy(true);
     setError("");
     try {
-      const files = await splitPdf(src.bytes, plan.groups);
+      const files = await splitPdf(src.bytes, plan.groups, src.password);
       setOutputs(files.map((bytes, i) => ({ bytes, pages: plan.groups![i], name: outputName(src.name, plan.groups![i]) })));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not split the PDF.");
@@ -79,6 +92,11 @@ export default function SplitPdfUI() {
       />
       {busy && !src && <p className="mt-3 text-sm text-gray-500">Reading PDF…</p>}
       {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+      {locked && (
+        <div className="mt-3">
+          <PdfPasswordPrompt key={locked.name} fileName={locked.name} wrong={locked.wrong} busy={busy} onUnlock={(pw) => open(locked, pw)} />
+        </div>
+      )}
 
       {src && (
         <div className="mt-6 bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-5">

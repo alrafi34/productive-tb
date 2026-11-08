@@ -64,15 +64,45 @@ export function describePages(pages: number[]): string {
   return parts.join(", ");
 }
 
-/* Loads a PDF with pdf-lib, turning its errors into sentences people understand. */
-export async function loadPdf(bytes: Uint8Array) {
-  const { PDFDocument } = await import("pdf-lib");
+/* Thrown when a PDF needs an open password: `wrong` is true when one was given
+   and did not match. The tools catch it to show a password box. */
+export class PdfPasswordError extends Error {
+  constructor(public wrong: boolean) {
+    super(wrong ? "That password is not correct. Try again." : "This PDF is locked with a password. Enter it to continue.");
+    this.name = "PdfPasswordError";
+  }
+}
+
+/* Loads a PDF, turning its errors into sentences people understand.
+   Encrypted PDFs that open without a password (only printing, copying or
+   editing is restricted, as with many bank statements and forms) are opened
+   with the empty password; the copies the tools save are not encrypted. A PDF
+   that does need a password throws PdfPasswordError until it is given. */
+export async function loadPdf(bytes: Uint8Array, password?: string) {
+  const { PDFDocument } = await import("@cantoo/pdf-lib");
+  const unreadable = () => new Error("This file could not be read as a PDF. It may be damaged or not a PDF.");
+  // Matched by message: the library's error subclasses do not survive
+  // instanceof in every bundle.
+  const isEncrypted = (e: unknown) => e instanceof Error && /is encrypted/i.test(e.message);
+  const open = (pw?: string) => PDFDocument.load(bytes, pw === undefined ? { updateMetadata: false } : { updateMetadata: false, password: pw });
+  if (password !== undefined) {
+    try {
+      return await open(password);
+    } catch (e) {
+      if (e instanceof Error && /password incorrect|needs password/i.test(e.message)) throw new PdfPasswordError(true);
+      throw unreadable();
+    }
+  }
   try {
-    return await PDFDocument.load(bytes, { updateMetadata: false });
+    return await open();
   } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    if (/encrypt/i.test(msg)) throw new Error("This PDF is password-protected or encrypted. Remove the protection in a PDF reader first, then try again.");
-    throw new Error("This file could not be read as a PDF. It may be damaged or not a PDF.");
+    if (!isEncrypted(e)) throw unreadable();
+  }
+  try {
+    return await open("");
+  } catch (e) {
+    if (e instanceof Error && /password incorrect|needs password/i.test(e.message)) throw new PdfPasswordError(false);
+    throw unreadable();
   }
 }
 

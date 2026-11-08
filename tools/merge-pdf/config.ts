@@ -38,7 +38,7 @@ export const mergePdfConfig = {
       { q: "Is there a limit on the number or size of files?", a: "There is no fixed limit. Very large files (hundreds of megabytes) may take longer to process." },
       { q: "Can I merge only some pages of each PDF?", a: "Yes. Type the pages in the Pages box under each file, for example 1-3, 5, 8- for pages 1 to 3, page 5 and page 8 to the end. Leave it empty for all pages." },
       { q: "Does merging change the quality?", a: "No. Pages are copied as they are, with their text, fonts, vector graphics and images unchanged, so text stays sharp and searchable." },
-      { q: "Can I merge password-protected PDFs?", a: "Not while they are encrypted. Open the file in a PDF reader with its password, save or print a copy without protection, and add that copy." },
+      { q: "Can I merge password-protected PDFs?", a: "Yes. A PDF that opens without a password but blocks printing, copying or editing is added like any other. If a file needs a password to open, a password box appears next to it; type the password and the file is added. The merged PDF is saved without a password." },
       { q: "What is not carried over?", a: "Page content is copied in full. Bookmarks (the outline), links between documents and fillable form fields may not be kept in the merged file." },
     ],
   },

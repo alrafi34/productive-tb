@@ -40,7 +40,7 @@ export const splitPdfConfig = {
       { q: "How do I delete pages from a PDF?", a: "Choose Delete pages and type the pages to remove, for example 1, 10-. The tool saves a copy with every other page, in the original order." },
       { q: "Does splitting reduce quality?", a: "No. Pages are copied as they are, with the same text, fonts and images, so text stays sharp and searchable." },
       { q: "Why are the split files almost as large as the original?", a: "Fonts and images shared by many pages are copied into every file that uses them. A 10-page file that embeds a large font can therefore produce single-page files that each still contain that font." },
-      { q: "Can I split a password-protected PDF?", a: "Not while it is encrypted. Open it in a PDF reader with its password, save a copy without protection, and split that copy." },
+      { q: "Can I split a password-protected PDF?", a: "Yes. A PDF that opens without a password but blocks printing, copying or editing splits like any other. If it needs a password to open, type the password in the box that appears. The split files are saved without a password." },
     ],
   },
 };

@@ -72,11 +72,11 @@ export type PdfOptions = { size: PageSize; orientation: Orientation; margin: Mar
    keep transparency; everything else, and rotated JPGs, is redrawn as a
    high-quality JPG first. */
 export async function imagesToPdf(files: File[], opts: PdfOptions, title: string): Promise<Uint8Array> {
-  const { PDFDocument } = await import("pdf-lib");
+  const { PDFDocument } = await import("@cantoo/pdf-lib");
   const doc = await PDFDocument.create();
   doc.setTitle(title);
   doc.setCreator("Productive Toolbox – JPG to PDF");
-  doc.setProducer("pdf-lib");
+  doc.setProducer("Productive Toolbox");
   const marginPt = MARGINS[opts.margin].pt;
 
   for (const file of files) {
