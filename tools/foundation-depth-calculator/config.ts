@@ -43,7 +43,6 @@ export const foundationDepthCalculatorConfig = {
   },
   relatedTools: [
     "footing-size-calculator",
-    "concrete-volume-calculator",
-    "slab-concrete-calculator"
+    "concrete-volume-calculator"
   ]
 };

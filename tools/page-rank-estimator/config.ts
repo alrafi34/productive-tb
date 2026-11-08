@@ -11,7 +11,7 @@ export const pageRankEstimatorConfig = {
     "seo-score-calculator",
     "serp-ctr-estimator",
     "domain-authority-estimator",
-    "keyword-density-calculator-seo",
+    "keyword-density-checker",
     "backlink-ratio-calculator",
     "traffic-growth-calculator",
   ],

@@ -119,3 +119,35 @@ export function countTarget(text: string, target: string, caseSensitive = false)
   }
   return count;
 }
+
+export interface TextStats {
+  words: number;
+  uniqueWords: number;
+  characters: number;
+  sentences: number;
+  paragraphs: number;
+  /* minutes, at 238 words per minute reading and 130 speaking */
+  readingMin: number;
+  speakingMin: number;
+}
+
+export function textStats(text: string): TextStats {
+  const words = text.replace(/[^\w\s'-]/g, " ").split(/\s+/).filter(Boolean);
+  const trimmed = text.trim();
+  return {
+    words: words.length,
+    uniqueWords: new Set(words.map(w => w.toLowerCase())).size,
+    characters: text.length,
+    sentences: (text.match(/[.!?]+(?=\s|$)/g) ?? []).length || (trimmed ? 1 : 0),
+    paragraphs: text.split(/\n\s*\n/).filter(p => p.trim()).length || (trimmed ? 1 : 0),
+    readingMin: words.length / 238,
+    speakingMin: words.length / 130,
+  };
+}
+
+export function formatMinutes(min: number): string {
+  if (min < 1) return "< 1 min";
+  const m = Math.floor(min);
+  const s = Math.round((min - m) * 60);
+  return s > 0 ? `${m} min ${s} sec` : `${m} min`;
+}

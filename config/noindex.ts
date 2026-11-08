@@ -3,6 +3,10 @@
    64 were created on 1–2 August and never earned one; 54 older tools earned
    none in 3–6 months.
 
+   Added 2026-11-08 from the "Crawled – currently not indexed" export: five
+   thin generators (dice roller, heatmap grid, px to rem, random hex colour,
+   combinatorics) that Google crawled and declined to index.
+
    Listed tools get <meta name="robots" content="noindex, follow">, are left
    out of the sitemap and are not offered as related tools. They still load,
    and stay in site search and category grids for visitors.
@@ -31,6 +35,7 @@ export const NOINDEX_TOOLS: ReadonlySet<string> = new Set([
   "cluster-utilization-calculator",
   "clustering-distance-calculator",
   "column-buckling-calculator",
+  "combinatorics-calculator",
   "confidence-interval-calculator",
   "correlation-coefficient-calculator",
   "cpm-calculator",
@@ -44,6 +49,7 @@ export const NOINDEX_TOOLS: ReadonlySet<string> = new Set([
   "data-pipeline-latency-calculator",
   "data-sampling-calculator",
   "data-transfer-cost-calculator",
+  "dice-roller",
   "dithering-filter",
   "domain-authority-estimator",
   "email-click-rate-calculator",
@@ -58,6 +64,7 @@ export const NOINDEX_TOOLS: ReadonlySet<string> = new Set([
   "green-building-score-calculator",
   "habit-tracker",
   "hadoop-storage-calculator",
+  "heatmap-grid",
   "histogram-bin-calculator",
   "ideal-gas-law-calculator",
   "impressions-calculator",
@@ -88,8 +95,10 @@ export const NOINDEX_TOOLS: ReadonlySet<string> = new Set([
   "placeholder-image-generator",
   "pressure-drop-calculator",
   "property-appreciation-calculator",
+  "px-to-rem-converter",
   "query-optimization-calculator",
   "rafter-length-calculator",
+  "random-hex-color-generator",
   "refrigeration-cop-calculator",
   "regex-tester",
   "regression-calculator",

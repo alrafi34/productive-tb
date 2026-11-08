@@ -81,6 +81,50 @@ export const calculateMaterialBreakdown = (
   };
 };
 
+export const SLAB_SHAPES: ShapeType[] = ['slab', 'slab-round', 'slab-triangle', 'slab-lshape'];
+export const isSlabShape = (shape: ShapeType): boolean => SLAB_SHAPES.includes(shape);
+
+/* Slab thickness is entered in inches (ft) or centimeters (m) */
+export const slabThicknessUnit = (unit: Unit): string => (unit === 'ft' ? 'in' : 'cm');
+
+export const getSlabThicknessPresets = (unit: Unit): Array<{ value: number; label: string }> =>
+  unit === 'ft'
+    ? [
+        { value: 4, label: '4 in – patio, path, garage floor' },
+        { value: 6, label: '6 in – driveway, heavier loads' },
+        { value: 8, label: '8 in – heavy vehicles' },
+      ]
+    : [
+        { value: 10, label: '10 cm – patio, path, garage floor' },
+        { value: 15, label: '15 cm – driveway, heavier loads' },
+        { value: 20, label: '20 cm – heavy vehicles' },
+      ];
+
+const positive = (...values: number[]) => values.every((v) => !isNaN(v) && v > 0);
+
+/* Plan area in m² and a readable dimension string for each slab outline */
+const slabArea = (shape: ShapeType, d: Record<string, string>, unit: Unit): { areaM2: number; text: string } | null => {
+  const toM = unit === 'ft' ? 0.3048 : 1;
+  if (shape === 'slab') {
+    const l = parseFloat(d.length), w = parseFloat(d.width);
+    if (!positive(l, w)) return null;
+    return { areaM2: l * toM * w * toM, text: `${l} × ${w} ${unit}` };
+  }
+  if (shape === 'slab-round') {
+    const r = parseFloat(d.radius);
+    if (!positive(r)) return null;
+    return { areaM2: Math.PI * Math.pow(r * toM, 2), text: `r=${r} ${unit}` };
+  }
+  if (shape === 'slab-triangle') {
+    const b = parseFloat(d.base), h = parseFloat(d.height);
+    if (!positive(b, h)) return null;
+    return { areaM2: (b * toM * h * toM) / 2, text: `base=${b} ${unit}, h=${h} ${unit}` };
+  }
+  const l1 = parseFloat(d.length), w1 = parseFloat(d.width), l2 = parseFloat(d.length2), w2 = parseFloat(d.width2);
+  if (!positive(l1, w1, l2, w2)) return null;
+  return { areaM2: l1 * toM * w1 * toM + l2 * toM * w2 * toM, text: `(${l1}×${w1}) + (${l2}×${w2}) ${unit}` };
+};
+
 // Calculate concrete volume based on shape
 export const calculateConcreteVolume = (
   shape: ShapeType,
@@ -92,10 +136,17 @@ export const calculateConcreteVolume = (
   let volumeM3 = 0;
   let dimensionsStr = '';
   
-  if (shape === 'slab' || shape === 'footing') {
+  if (isSlabShape(shape)) {
+    const area = slabArea(shape, dimensions, unit);
+    const thickness = parseFloat(dimensions.thickness);
+    if (!area || !positive(thickness)) return null;
+    const thicknessM = thickness * (unit === 'ft' ? 0.0254 : 0.01);
+    volumeM3 = area.areaM2 * thicknessM;
+    dimensionsStr = `${area.text}, ${thickness} ${slabThicknessUnit(unit)} thick`;
+  } else if (shape === 'footing') {
     const length = parseFloat(dimensions.length);
     const width = parseFloat(dimensions.width);
-    const thickness = parseFloat(dimensions.thickness || dimensions.depth);
+    const thickness = parseFloat(dimensions.depth);
     
     if (isNaN(length) || isNaN(width) || isNaN(thickness) || 
         length <= 0 || width <= 0 || thickness <= 0) {
@@ -159,6 +210,9 @@ export const formatNumber = (num: number, decimals: number = 3): string => {
 export const getShapeDisplayName = (shape: ShapeType): string => {
   const names: Record<ShapeType, string> = {
     slab: 'Slab',
+    'slab-round': 'Round Slab',
+    'slab-triangle': 'Triangular Slab',
+    'slab-lshape': 'L-Shaped Slab',
     column: 'Column',
     beam: 'Beam',
     footing: 'Footing',

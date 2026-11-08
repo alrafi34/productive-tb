@@ -12,8 +12,12 @@ import {
   exportBatchToCSV,
   exportToText,
   downloadFile,
-  formatNumber
+  formatNumber,
+  isSlabShape,
+  slabThicknessUnit,
+  getSlabThicknessPresets
 } from "./logic";
+import { CURRENCIES, type CurrencyCode, formatMoney, guessCurrency } from "@/lib/currency";
 import ConcreteVolumeCalculatorSEO from "./seo-content";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedStrip from "@/components/RelatedStrip";
@@ -26,11 +30,19 @@ export default function ConcreteVolumeCalculatorUI() {
   const [mixRatio, setMixRatio] = useState<MixRatio>({ cement: 1, sand: 2, aggregate: 4 });
   
   // Dimensions for different shapes
-  const [slabDimensions, setSlabDimensions] = useState<SlabDimensions>({
-    length: "",
-    width: "",
-    thickness: ""
-  });
+  const emptySlab: SlabDimensions = { length: "", width: "", thickness: "", radius: "", base: "", height: "", length2: "", width2: "" };
+  const [slabDimensions, setSlabDimensions] = useState<SlabDimensions>(emptySlab);
+
+  // Optional ready-mix price per cubic yard (ft) or m³ (m)
+  const [showCost, setShowCost] = useState(false);
+  const [costPerUnit, setCostPerUnit] = useState("");
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+
+  // Guessed after hydration so the server markup matches; always editable
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setCurrency(guessCurrency()));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   
   const [columnDimensions, setColumnDimensions] = useState<ColumnDimensions>({
     radius: "",
@@ -60,7 +72,7 @@ export default function ConcreteVolumeCalculatorUI() {
   useEffect(() => {
     let dimensions: any = {};
     
-    if (shape === 'slab') {
+    if (isSlabShape(shape)) {
       dimensions = slabDimensions;
     } else if (shape === 'column' || shape === 'cylinder') {
       dimensions = columnDimensions;
@@ -87,7 +99,7 @@ export default function ConcreteVolumeCalculatorUI() {
   };
 
   const handleReset = () => {
-    setSlabDimensions({ length: "", width: "", thickness: "" });
+    setSlabDimensions(emptySlab);
     setColumnDimensions({ radius: "", height: "" });
     setBeamDimensions({ length: "", width: "", height: "" });
     setFootingDimensions({ length: "", width: "", depth: "" });
@@ -114,7 +126,7 @@ export default function ConcreteVolumeCalculatorUI() {
 
   const handleCopy = () => {
     if (calculation) {
-      const text = `${getShapeDisplayName(calculation.shape)}: ${formatNumber(calculation.totalVolume)} m³`;
+      const text = `${getShapeDisplayName(calculation.shape)}: ${formatNumber(calculation.totalVolume * 1.30795, 2)} yd³ (${formatNumber(calculation.totalVolume)} m³)`;
       navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -162,6 +174,27 @@ export default function ConcreteVolumeCalculatorUI() {
   const totalBatchAggregate = batch.reduce((sum, item) => sum + (item.materials?.aggregateVolume || 0), 0);
 
   const mixRatioPresets = getMixRatioPresets();
+  const thicknessUnit = slabThicknessUnit(unit);
+  const price = parseFloat(costPerUnit);
+  const totalCost = showCost && calculation && price > 0
+    ? price * (unit === "ft" ? calculation.totalVolume * 1.30795 : calculation.totalVolume)
+    : null;
+  const inputClass = "w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono";
+  const slabField = (key: keyof SlabDimensions, label: string, placeholder: string) => (
+    <div key={key}>
+      <label htmlFor={`slab-${key}`} className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+      <input
+        id={`slab-${key}`}
+        type="number"
+        value={slabDimensions[key]}
+        onChange={(e) => setSlabDimensions({ ...slabDimensions, [key]: e.target.value })}
+        className={inputClass}
+        placeholder={placeholder}
+        min="0"
+        step="0.01"
+      />
+    </div>
+  );
 
   return (
     <>
@@ -174,7 +207,7 @@ export default function ConcreteVolumeCalculatorUI() {
             <div>
               <h3 className="font-semibold text-blue-900 mb-1">Concrete Volume Calculator</h3>
               <p className="text-sm text-blue-800">
-                Calculate exact volume of concrete for slabs, columns, beams, and footings. Supports batch calculations and unit conversion.
+                Concrete for rectangular, round, triangular and L-shaped slabs, columns, beams and footings, in cubic yards and m³, with an optional cost estimate.
               </p>
             </div>
           </div>
@@ -197,6 +230,9 @@ export default function ConcreteVolumeCalculatorUI() {
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
                 >
                   <option value="slab">Slab (Rectangular)</option>
+                  <option value="slab-round">Slab (Round)</option>
+                  <option value="slab-triangle">Slab (Triangular)</option>
+                  <option value="slab-lshape">Slab (L-Shaped)</option>
                   <option value="column">Column (Cylindrical)</option>
                   <option value="beam">Beam (Rectangular)</option>
                   <option value="footing">Footing (Rectangular)</option>
@@ -287,6 +323,54 @@ export default function ConcreteVolumeCalculatorUI() {
                 </div>
               )}
 
+              {/* Cost Estimation */}
+              <div className="pt-2">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={showCost}
+                    onChange={(e) => setShowCost(e.target.checked)}
+                    className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                  />
+                  <span className="text-sm font-medium text-gray-700">
+                    Estimate the cost
+                  </span>
+                </label>
+              </div>
+
+              {showCost && (
+                <div>
+                  <label htmlFor="concrete-cost" className="block text-sm font-medium text-gray-700 mb-2">
+                    Price per {unit === "ft" ? "cubic yard" : "m³"}
+                  </label>
+                  <div className="flex gap-2">
+                    <select
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                      aria-label="Currency"
+                      className="px-3 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-medium"
+                    >
+                      {CURRENCIES.map((c) => (
+                        <option key={c.code} value={c.code}>{c.symbol} {c.code}</option>
+                      ))}
+                    </select>
+                    <input
+                      id="concrete-cost"
+                      type="number"
+                      value={costPerUnit}
+                      onChange={(e) => setCostPerUnit(e.target.value)}
+                      className={inputClass}
+                      placeholder={unit === "ft" ? "165" : "140"}
+                      min="0"
+                      step="0.01"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Use your local ready-mix supplier&apos;s price.
+                  </p>
+                </div>
+              )}
+
               <div className="pt-4 space-y-2">
                 <button
                   onClick={handleReset}
@@ -319,10 +403,10 @@ export default function ConcreteVolumeCalculatorUI() {
                     {getShapeDisplayName(calculation.shape)} Volume
                   </p>
                   <div className="text-4xl font-bold mb-1">
-                    {formatNumber(calculation.totalVolume)}
+                    {unit === "ft" ? formatNumber(calculation.totalVolume * 1.30795, 2) : formatNumber(calculation.totalVolume)}
                   </div>
                   <div className="text-xl text-primary-100">
-                    cubic meters (m³)
+                    {unit === "ft" ? "cubic yards (yd³)" : "cubic meters (m³)"}
                   </div>
                 </div>
 
@@ -343,6 +427,16 @@ export default function ConcreteVolumeCalculatorUI() {
                     <span className="text-primary-100">In Cubic Yards:</span>
                     <span className="font-semibold">{formatNumber(calculation.totalVolume * 1.30795)} yd³</span>
                   </div>
+                  <div className="flex justify-between">
+                    <span className="text-primary-100">In Cubic Meters:</span>
+                    <span className="font-semibold">{formatNumber(calculation.totalVolume)} m³</span>
+                  </div>
+                  {totalCost !== null && (
+                    <div className="flex justify-between">
+                      <span className="text-primary-100">Estimated Cost:</span>
+                      <span className="font-semibold">{formatMoney(totalCost, currency)}</span>
+                    </div>
+                  )}
                   
                   {calculation.materials && (
                     <>
@@ -394,50 +488,47 @@ export default function ConcreteVolumeCalculatorUI() {
                 {getShapeDisplayName(shape)} Dimensions
               </h3>
               
-              {(shape === 'slab') && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Length ({unit})
-                    </label>
-                    <input
-                      type="number"
-                      value={slabDimensions.length}
-                      onChange={(e) => setSlabDimensions({ ...slabDimensions, length: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                      placeholder="10"
-                      min="0"
-                      step="0.01"
-                    />
+              {isSlabShape(shape) && (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {shape === 'slab' && [
+                      slabField("length", `Length (${unit})`, unit === "ft" ? "20" : "6"),
+                      slabField("width", `Width (${unit})`, unit === "ft" ? "12" : "4"),
+                    ]}
+                    {shape === 'slab-round' && slabField("radius", `Radius (${unit})`, unit === "ft" ? "6" : "2")}
+                    {shape === 'slab-triangle' && [
+                      slabField("base", `Base (${unit})`, unit === "ft" ? "12" : "4"),
+                      slabField("height", `Height (${unit})`, unit === "ft" ? "10" : "3"),
+                    ]}
+                    {shape === 'slab-lshape' && [
+                      slabField("length", `Part 1 length (${unit})`, unit === "ft" ? "20" : "6"),
+                      slabField("width", `Part 1 width (${unit})`, unit === "ft" ? "12" : "4"),
+                      slabField("length2", `Part 2 length (${unit})`, unit === "ft" ? "10" : "3"),
+                      slabField("width2", `Part 2 width (${unit})`, unit === "ft" ? "8" : "2.5"),
+                    ]}
+                    {slabField("thickness", `Thickness (${thicknessUnit})`, unit === "ft" ? "4" : "10")}
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Width ({unit})
-                    </label>
-                    <input
-                      type="number"
-                      value={slabDimensions.width}
-                      onChange={(e) => setSlabDimensions({ ...slabDimensions, width: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                      placeholder="5"
-                      min="0"
-                      step="0.01"
-                    />
+                  <div className="flex flex-wrap gap-2">
+                    {getSlabThicknessPresets(unit).map((p) => (
+                      <button
+                        key={p.value}
+                        type="button"
+                        onClick={() => setSlabDimensions({ ...slabDimensions, thickness: String(p.value) })}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                          slabDimensions.thickness === String(p.value)
+                            ? "bg-primary text-white"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Thickness ({unit})
-                    </label>
-                    <input
-                      type="number"
-                      value={slabDimensions.thickness}
-                      onChange={(e) => setSlabDimensions({ ...slabDimensions, thickness: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg font-mono"
-                      placeholder="0.15"
-                      min="0"
-                      step="0.01"
-                    />
-                  </div>
+                  {shape === 'slab-lshape' && (
+                    <p className="text-xs text-gray-500">
+                      Split the L into two rectangles that do not overlap, then enter each one.
+                    </p>
+                  )}
                 </div>
               )}
 
@@ -572,9 +663,15 @@ export default function ConcreteVolumeCalculatorUI() {
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="text-sm text-green-800">
                     <strong>Formula:</strong> {
-                      (shape === 'column' || shape === 'cylinder') 
-                        ? 'Volume = π × r² × h' 
-                        : 'Volume = Length × Width × Height'
+                      (shape === 'column' || shape === 'cylinder')
+                        ? 'Volume = π × r² × h'
+                        : shape === 'slab-round'
+                          ? 'Volume = π × r² × thickness'
+                          : shape === 'slab-triangle'
+                            ? 'Volume = ½ × base × height × thickness'
+                            : shape === 'slab-lshape'
+                              ? 'Volume = (L1 × W1 + L2 × W2) × thickness'
+                              : 'Volume = Length × Width × Height'
                     }
                   </div>
                 </div>
