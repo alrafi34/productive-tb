@@ -9,7 +9,7 @@ export const serpCtrEstimatorConfig = {
   free: true,
   relatedTools: [
     "ctr-calculator",
-    "keyword-density-calculator-seo",
+    "keyword-density-checker",
     "seo-score-calculator",
     "domain-authority-estimator",
     "traffic-growth-calculator",
