@@ -1,10 +1,17 @@
 export type Unit = 'ft' | 'm';
-export type ShapeType = 'slab' | 'column' | 'beam' | 'footing' | 'cylinder';
+export type ShapeType = 'slab' | 'slab-round' | 'slab-triangle' | 'slab-lshape' | 'column' | 'beam' | 'footing' | 'cylinder';
 
+/* Every slab outline shares one set of fields. Thickness is in inches when the
+   unit is feet and in centimeters when it is meters; the rest are in the unit. */
 export interface SlabDimensions {
   length: string;
   width: string;
   thickness: string;
+  radius: string;
+  base: string;
+  height: string;
+  length2: string;
+  width2: string;
 }
 
 export interface ColumnDimensions {

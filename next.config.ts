@@ -74,6 +74,10 @@ const nextConfig: NextConfig = {
       "shaft-torque-calculator": "/tools/mechanical/torque-calculator",
       "inverter-load-calculator": "/tools/electrical/solar-inverter-calculator",
       "gps-land-area-calculator": "/tools/land/polygon-area-calculator",
+      // Crawled – not indexed (2026-11): both pages of each pair were rejected
+      // as near-duplicates; the target now carries the merged features
+      "slab-concrete-calculator": "/tools/architecture/concrete-volume-calculator",
+      "keyword-density-calculator-seo": "/tools/writing/keyword-density-checker",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },

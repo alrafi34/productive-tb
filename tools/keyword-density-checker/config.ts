@@ -110,6 +110,7 @@ export const toolConfig = {
   },
   features: [
     "Real-time keyword density analysis",
+    "Word, sentence and paragraph counts with reading and speaking time",
     "Word frequency counting with density percentages",
     "Stop-word filtering",
     "Case-sensitive analysis mode",
@@ -128,6 +129,5 @@ export const toolConfig = {
     "seo-score-calculator",
     "text-case-converter",
     "character-counter",
-    "keyword-density-calculator-seo",
   ],
 };

@@ -70,7 +70,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   /* ── Architecture ── */
   ["floor-area-calculator", "plot-area-calculator", "room-area-calculator", "room-volume-calculator", "wall-area-calculator", "facade-area-calculator", "3d-volume-calculator-architecture"],
   ["paint-required-calculator", "tile-quantity-calculator", "floor-finish-calculator", "skirting-material-calculator", "cladding-material-calculator"],
-  ["brick-calculator", "cement-calculator", "sand-calculator", "concrete-mix-ratio-calculator", "concrete-volume-calculator", "slab-concrete-calculator"],
+  ["brick-calculator", "cement-calculator", "sand-calculator", "concrete-mix-ratio-calculator", "concrete-volume-calculator"],
   ["rebar-weight-calculator", "rebar-spacing-calculator", "steel-quantity-calculator"],
   ["foundation-depth-calculator", "footing-size-calculator", "soil-bearing-capacity-calculator", "soil-compaction-calculator", "excavation-volume-calculator", "retaining-wall-calculator", "slope-stability-calculator"],
   ["beam-load-calculator", "column-load-calculator", "slab-load-calculator", "structural-load-calculator", "live-load-calculator", "fire-safety-load-calculator"],
@@ -124,7 +124,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["ctr-calculator", "cpm-calculator", "cost-per-click-cpc-calculator", "cost-per-acquisition-cpa-calculator", "ad-spend-calculator", "ad-frequency-calculator", "impressions-calculator", "serp-ctr-estimator"],
   ["conversion-rate-calculator", "lead-conversion-funnel-calculator", "bounce-rate-calculator", "marketing-roi-calculator", "break-even-calculator", "profit-margin-calculator-marketing"],
   ["customer-lifetime-value-calculator", "churn-rate-calculator", "retention-rate-calculator", "revenue-growth-calculator", "viral-coefficient-calculator", "traffic-growth-calculator"],
-  ["seo-score-calculator", "keyword-density-calculator-seo", "keyword-difficulty-estimator", "backlink-ratio-calculator", "domain-authority-estimator", "page-rank-estimator", "organic-vs-paid-ratio-calculator"],
+  ["seo-score-calculator", "keyword-difficulty-estimator", "backlink-ratio-calculator", "domain-authority-estimator", "page-rank-estimator", "organic-vs-paid-ratio-calculator"],
   ["engagement-rate-calculator", "social-media-reach-calculator", "email-open-rate-calculator", "email-click-rate-calculator"],
 
   /* ── Data analytics ── */

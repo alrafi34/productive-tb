@@ -4,7 +4,8 @@ import { useState, useMemo } from "react";
 import {
   countWords, countUniqueWords, calculateDensity,
   highlightOverusedWords, sortDensityData,
-  exportToCSV, exportToJSON, countPhrases, countTarget
+  exportToCSV, exportToJSON, countPhrases, countTarget,
+  textStats, formatMinutes
 } from "./logic";
 import type { DensityData, AnalysisOptions } from "./types";
 import KeywordDensityCheckerSEOContent from "./seo-content";
@@ -46,6 +47,7 @@ export default function KeywordDensityCheckerUI() {
     return { keyword, count, density: analysis.total ? (count / analysis.total) * 100 : 0 };
   });
   const unit = view === 1 ? "word" : "phrase";
+  const stats = useMemo(() => textStats(text), [text]);
 
   const topWords = analysis.data.slice(0, 10);
 
@@ -232,6 +234,27 @@ export default function KeywordDensityCheckerUI() {
             >
               {showChart ? "📊 Hide Chart" : "📊 Show Chart"}
             </button>
+          </div>
+        )}
+
+        {/* Content statistics */}
+        {text.trim() && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            {([
+              ["Words", stats.words.toLocaleString("en-US")],
+              ["Unique words", stats.uniqueWords.toLocaleString("en-US")],
+              ["Characters", stats.characters.toLocaleString("en-US")],
+              ["Sentences", stats.sentences.toLocaleString("en-US")],
+              ["Paragraphs", stats.paragraphs.toLocaleString("en-US")],
+              ["Reading time", formatMinutes(stats.readingMin)],
+              ["Speaking time", formatMinutes(stats.speakingMin)],
+              ["Keywords found", analysis.data.length.toLocaleString("en-US")],
+            ] as const).map(([label, value]) => (
+              <div key={label} className="bg-white rounded-xl border border-gray-200 shadow-sm px-4 py-3">
+                <div className="text-xs text-gray-500">{label}</div>
+                <div className="text-lg font-semibold text-gray-800">{value}</div>
+              </div>
+            ))}
           </div>
         )}
 

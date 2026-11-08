@@ -9,10 +9,10 @@ export default function ConcreteVolumeCalculatorSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">About Concrete Volume Calculator</h2>
         <p className="mb-4">
-          The Concrete Volume Calculator is a professional construction tool designed to help civil engineers, architects, contractors, and builders calculate the exact volume of concrete required for various construction elements. This online utility supports multiple shapes including slabs, columns, beams, and footings, providing instant and accurate results.
+          The Concrete Volume Calculator is a professional construction tool designed to help civil engineers, architects, contractors, and builders calculate the exact volume of concrete required for various construction elements. It covers rectangular, round, triangular and L-shaped slabs as well as columns, beams and footings, and gives the result in cubic yards, cubic feet and m³.
         </p>
         <p>
-          Whether you're working on residential construction, commercial projects, or infrastructure development, this calculator helps you avoid material wastage, cost overruns, and calculation errors by providing precise volume outputs with optional unit conversions and batch calculation support.
+          Whether you're working on residential construction, commercial projects, or infrastructure development, this calculator helps you avoid material wastage, cost overruns, and calculation errors by giving precise volumes, an optional cost at your own price per cubic yard or m³, and batch totals for projects with several pours.
         </p>
       </section>
 
@@ -38,7 +38,17 @@ export default function ConcreteVolumeCalculatorSEO() {
               Volume = Length × Width × Height (or Thickness/Depth)
             </code>
             <p className="mt-2 text-sm">
-              <strong>Example:</strong> Slab 10m × 5m × 0.15m = 7.5 m³
+              <strong>Example:</strong> Slab 20 ft × 12 ft × 4 in = 20 × 12 × 0.333 = 80 cu ft ≈ 2.96 yd³; in metric, 10 m × 5 m × 15 cm = 7.5 m³
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-800 mb-2">Round, Triangular and L-Shaped Slabs</h3>
+            <code className="block bg-white p-3 rounded border border-gray-300 text-sm">
+              Round: π × r² × t · Triangle: ½ × base × height × t · L-shape: (L1 × W1 + L2 × W2) × t
+            </code>
+            <p className="mt-2 text-sm">
+              <strong>Example:</strong> A 12 ft diameter patio 4 in thick is π × 6² × 0.333 ≈ 37.7 cu ft ≈ 1.4 yd³.
             </p>
           </div>
 
@@ -55,10 +65,10 @@ export default function ConcreteVolumeCalculatorSEO() {
           <div>
             <h3 className="font-semibold text-gray-800 mb-2">Unit Conversion</h3>
             <code className="block bg-white p-3 rounded border border-gray-300 text-sm">
-              1 cubic meter (m³) = 35.3147 cubic feet (ft³)
+              1 m³ = 35.3147 ft³ = 1.308 yd³ · 1 yd³ = 27 ft³
             </code>
             <p className="mt-2 text-sm">
-              The calculator automatically handles conversions between meters and feet.
+              Slab thickness is entered in inches (feet mode) or centimeters (meter mode) and converted for you.
             </p>
           </div>
         </div>
@@ -79,7 +89,7 @@ export default function ConcreteVolumeCalculatorSEO() {
               <tr>
                 <td className="px-4 py-3 text-sm font-semibold">Floor Slab</td>
                 <td className="px-4 py-3 text-sm">Rectangular</td>
-                <td className="px-4 py-3 text-sm">Thickness: 0.1-0.15m (4-6 inches)</td>
+                <td className="px-4 py-3 text-sm">Thickness: 4–6 in (10–15 cm)</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 text-sm font-semibold">Column</td>
@@ -104,38 +114,12 @@ export default function ConcreteVolumeCalculatorSEO() {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Features</h2>
         <ul className="grid md:grid-cols-2 gap-3">
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Multiple shape calculations (slab, column, beam, footing)</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Real-time volume calculations</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Unit conversion (meters ↔ feet)</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Batch calculation support</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Quantity multiplier for identical structures</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Calculation history</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Export to CSV and text formats</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">✓</span>
-            <span>Mobile-responsive design</span>
-          </li>
+          {concreteVolumeCalculatorConfig.features.map((f) => (
+            <li key={f} className="flex items-start gap-2">
+              <span className="text-primary mt-1">✓</span>
+              <span>{f}</span>
+            </li>
+          ))}
         </ul>
       </section>
 
