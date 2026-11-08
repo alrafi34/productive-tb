@@ -40,8 +40,6 @@ export const acousticSoundproofingCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "heat-loss-calculator-building",
     "insulation-thickness-calculator",
-    "ventilation-calculator"
   ]
 };

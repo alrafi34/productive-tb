@@ -46,7 +46,6 @@ export const forceCalculatorConfig = {
   relatedTools: [
     "torque-calculator",
     "kinetic-energy-calculator",
-    "centripetal-force-calculator",
     "momentum-calculator",
     "spring-force-calculator",
     "acceleration-calculator",

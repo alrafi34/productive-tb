@@ -61,9 +61,7 @@ export const realPowerCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "power-factor-calculator",
     "reactive-power-calculator",
-    "apparent-power-calculator",
     "impedance-calculator",
   ],
 };

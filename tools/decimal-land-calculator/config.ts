@@ -130,7 +130,6 @@ export const toolConfig = {
     "acre-to-hectare-converter",
     "hectare-to-acre-converter",
     "katha-land-calculator",
-    "bigha-land-calculator",
     "land-area-calculator-square-meter",
     "acre-to-square-feet-converter",
   ],

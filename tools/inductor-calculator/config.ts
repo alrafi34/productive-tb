@@ -65,7 +65,6 @@ export const inductorCalculatorConfig = {
   relatedTools: [
     "capacitor-calculator",
     "capacitive-reactance-calculator",
-    "inductive-reactance-calculator",
     "ohms-law-calculator",
   ],
 };

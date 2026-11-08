@@ -61,8 +61,6 @@ export const reactivePowerCalculatorConfig = {
   },
   relatedTools: [
     "real-power-calculator",
-    "apparent-power-calculator",
-    "power-factor-calculator",
     "phase-angle-calculator",
   ],
 };

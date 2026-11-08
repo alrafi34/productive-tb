@@ -36,6 +36,5 @@ export const torqueCalculatorConfig = {
     "angular-velocity-calculator",
     "spring-force-calculator",
     "shaft-torque-calculator",
-    "centripetal-force-calculator",
   ],
 };

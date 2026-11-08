@@ -42,7 +42,5 @@ export const retainingWallCalculatorConfig = {
   },
   relatedTools: [
     "concrete-volume-calculator",
-    "soil-bearing-capacity-calculator",
-    "foundation-depth-calculator"
   ]
 };

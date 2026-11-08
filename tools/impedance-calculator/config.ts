@@ -62,7 +62,6 @@ export const impedanceCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "inductive-reactance-calculator",
     "capacitive-reactance-calculator",
     "phase-angle-calculator",
     "ohms-law-calculator",

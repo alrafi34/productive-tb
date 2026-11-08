@@ -50,7 +50,5 @@ export const springForceCalculatorConfig = {
     "torque-calculator",
     "kinetic-energy-calculator",
     "elastic-potential-energy-calculator",
-    "natural-frequency-calculator",
-    "stress-calculator",
   ],
 };

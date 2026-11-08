@@ -113,7 +113,6 @@ export const voltageDropCalculatorConfig = {
     "wire-size-calculator",
     "circuit-breaker-calculator",
     "fuse-rating-calculator",
-    "electrical-load-calculator-building",
     "ohms-law-calculator",
     "electric-motor-power-calculator",
   ],

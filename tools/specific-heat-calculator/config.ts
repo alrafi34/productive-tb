@@ -35,10 +35,7 @@ export const specificHeatCalculatorConfig = {
   },
   relatedTools: [
     "heat-transfer-calculator",
-    "thermal-efficiency-calculator",
-    "thermal-expansion-calculator",
     "ideal-gas-law-calculator",
-    "reynolds-number-calculator",
     "temperature-conversion-scientific",
   ],
 };

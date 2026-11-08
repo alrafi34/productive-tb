@@ -41,8 +41,6 @@ export const slopeStabilityCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "soil-bearing-capacity-calculator",
     "retaining-wall-calculator",
-    "foundation-depth-calculator"
   ]
 };

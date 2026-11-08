@@ -41,8 +41,6 @@ export const septicTankSizeCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "drainage-flow-calculator",
-    "excavation-volume-calculator",
     "concrete-volume-calculator"
   ]
 };

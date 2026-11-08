@@ -41,7 +41,6 @@ export const structuralLoadCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "beam-load-calculator",
     "slab-load-calculator",
     "column-load-calculator"
   ]

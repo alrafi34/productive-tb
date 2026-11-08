@@ -40,7 +40,6 @@ export const waterFlowRateCalculatorConfig = {
   },
   relatedTools: [
     "plumbing-pipe-size-calculator",
-    "drainage-flow-calculator",
     "water-tank-capacity-calculator"
   ]
 };

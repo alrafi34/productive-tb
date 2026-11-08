@@ -50,7 +50,6 @@ export const angularVelocityCalculatorConfig = {
   },
   relatedTools: [
     "torque-calculator",
-    "centripetal-force-calculator",
     "gear-ratio-calculator",
     "velocity-calculator",
     "angular-acceleration-calculator",

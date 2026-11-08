@@ -42,8 +42,6 @@ export const columnLoadCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "beam-load-calculator",
-    "foundation-depth-calculator",
     "concrete-volume-calculator"
   ]
 };

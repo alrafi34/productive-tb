@@ -105,8 +105,6 @@ export const decibelCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "signal-attenuation-calculator",
-    "wavelength-calculator",
     "rf-power-calculator",
     "power-density-calculator",
     "amplifier-gain-calculator",

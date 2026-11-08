@@ -40,8 +40,6 @@ export const insulationThicknessCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "heat-loss-calculator-building",
-    "hvac-load-calculator",
     "cooling-load-calculator-architecture"
   ]
 };

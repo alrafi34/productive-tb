@@ -40,7 +40,6 @@ export const plumbingPipeSizeCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "drainage-flow-calculator",
     "water-tank-capacity-calculator",
     "concrete-volume-calculator"
   ]
