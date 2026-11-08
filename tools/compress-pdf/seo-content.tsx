@@ -14,6 +14,13 @@ export default function CompressPdfSEO() {
     ["Strong", "1,100 px", "Lower", "Email attachments and upload limits of 1–2 MB"],
   ];
 
+  const sizes: [string, string][] = [
+    ["2 MB", "Job applications, résumé uploads, many school and university portals"],
+    ["1 MB", "Many visa, passport and government forms"],
+    ["500 KB", "Online forms with tight limits, scanned ID documents"],
+    ["200 KB / 100 KB", "Very strict portals; best for one or two scanned pages"],
+  ];
+
   const limits: [string, string][] = [
     ["Gmail / Yahoo Mail attachment", "25 MB"],
     ["Outlook.com attachment", "20 MB"],
@@ -38,6 +45,41 @@ export default function CompressPdfSEO() {
             smaller, and if nothing in the file can be made smaller you get the original back. No watermark is added.
             We do not collect or store your files.
           </p>
+        </div>
+      </section>
+
+      <section className={card}>
+        <h2 className={h2} style={{ fontFamily: "var(--font-heading)" }}>Compress a PDF to 100 KB, 200 KB, 500 KB or 1 MB</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          <p>
+            Upload forms rarely ask for &quot;smaller&quot;; they ask for <strong>under 200 KB</strong> or{" "}
+            <strong>under 2 MB</strong>. Choose <em>To a file size</em>, type the limit or tap a preset, and the tool
+            tries several quality settings and keeps the sharpest version that fits. You do not have to guess a level
+            and try again.
+          </p>
+          <p>
+            If even the smallest version is over the limit, which happens with long scanned documents, click{" "}
+            <em>Split into parts</em>. The PDF is cut into page ranges that each fit, ready to upload one by one or to
+            download together as a ZIP.
+          </p>
+        </div>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Target</th>
+                <th className="text-left py-2 px-3 font-semibold text-gray-700">Often asked for by</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {sizes.map(([t, w]) => (
+                <tr key={t} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-medium text-gray-900 whitespace-nowrap">{t}</td>
+                  <td className="py-2 px-3 text-gray-700">{w}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -93,8 +135,8 @@ export default function CompressPdfSEO() {
           </table>
         </div>
         <p className="mt-4 text-sm text-gray-600">
-          Limits change and differ between forms, so check the one you are using. If a file is still too large after
-          Strong compression, split it into parts and send them separately.
+          Limits change and differ between forms, so check the one you are using. Email limits apply to the whole
+          message, so keep attachments a little under them.
         </p>
       </section>
 
