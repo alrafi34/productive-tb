@@ -87,7 +87,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["land-area-calculator-square-feet", "land-area-calculator-square-meter", "katha-land-calculator", "bigha-land-calculator", "decimal-land-calculator"],
   ["survey-area-calculator", "polygon-area-calculator", "triangle-land-area-calculator", "trapezoid-land-calculator", "boundary-length-calculator", "plot-division-calculator", "map-scale-calculator"],
   ["land-price-calculator", "price-per-square-feet-calculator", "land-valuation-calculator", "property-appreciation-calculator", "rental-yield-calculator", "roi-real-estate-calculator"],
-  ["soil-volume-calculator", "earth-filling-calculator", "land-leveling-calculator", "soil-compaction-ratio-calculator", "excavation-cost-calculator"],
+  ["soil-volume-calculator", "earth-filling-calculator", "land-leveling-calculator", "soil-compaction-calculator", "excavation-cost-calculator"],
   ["subdivision-cost-calculator", "land-development-cost-calculator", "fence-material-calculator", "wall-boundary-cost-calculator"],
   ["fertilizer-requirement-calculator", "irrigation-water-calculator", "drainage-system-calculator", "rainwater-runoff-calculator"],
 

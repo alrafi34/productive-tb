@@ -433,7 +433,6 @@ export const TOOL_CONTENT_DATES: Record<string, string> = {
   "social-media-reach-calculator": "2026-10-06",
   "soil-bearing-capacity-calculator": "2026-10-06",
   "soil-compaction-calculator": "2026-10-06",
-  "soil-compaction-ratio-calculator": "2026-10-06",
   "soil-volume-calculator": "2026-10-06",
   "solar-battery-calculator": "2026-09-27",
   "solar-inverter-calculator": "2026-09-27",

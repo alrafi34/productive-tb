@@ -53,6 +53,8 @@ const nextConfig: NextConfig = {
       // this one had no impressions and no currency choice. Its query is about
       // usage, which the energy consumption calculator answers.
       "power-consumption-calculator": "/tools/electrical/energy-consumption-calculator",
+      // Same relative-compaction calculator in two categories with the same title
+      "soil-compaction-ratio-calculator": "/tools/architecture/soil-compaction-calculator",
       // Tools from the site before this codebase that Search Console still
       // reports as 404 (export 2026-10-12), sent to the tool that does the same job
       "unix-timestamp-converter": "/tools/calculator/timestamp-unix-converter",

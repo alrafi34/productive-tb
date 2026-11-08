@@ -1,31 +1,8 @@
 import { toolConfig } from "./config";
 
 export default function JSONFormatterSEOContent() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": toolConfig.name,
-    "description": toolConfig.description,
-    "url": `https://productivetoolbox.com/tools/developer/${toolConfig.slug}`,
-    "applicationCategory": "DeveloperApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "2500"
-    }
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-gray-700">
         <div className="space-y-8">

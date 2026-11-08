@@ -3,7 +3,6 @@ import Link from "@/components/SiteLink";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSearch from "@/components/HeroSearch";
-import TestimonialsSection from "@/components/LazyTestimonialsSection";
 import { tools, categories } from "@/config/tools";
 import { siteConfig } from "@/config/site";
 
@@ -537,9 +536,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* ═══ 8 · Social proof (existing component) ═══ */}
-        <TestimonialsSection />
 
         {/* ═══ 9 · FAQ ═══ */}
         <section id="faq" className="py-20 sm:py-24 px-6 border-t border-slate-100 scroll-mt-20">
