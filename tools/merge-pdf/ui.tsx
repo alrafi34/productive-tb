@@ -5,11 +5,13 @@ import FileDropZone from "@/components/FileDropZone";
 import RelatedStrip from "@/components/RelatedStrip";
 import RelatedTools from "@/components/RelatedTools";
 import { downloadBlob, formatBytes } from "@/lib/image-files";
-import { isPdfFile, loadPdf, parsePageList } from "@/lib/pdf-pages";
+import PdfPasswordPrompt from "@/components/PdfPasswordPrompt";
+import { isPdfFile, loadPdf, parsePageList, PdfPasswordError } from "@/lib/pdf-pages";
 import { mergePdfs } from "./logic";
 import MergePdfSEO from "./seo-content";
 
-type Item = { id: string; name: string; size: number; bytes: Uint8Array; pageCount: number; pages: string };
+type Item = { id: string; name: string; size: number; bytes: Uint8Array; pageCount: number; pages: string; password?: string };
+type Locked = { id: string; name: string; size: number; bytes: Uint8Array; wrong: boolean };
 let nextId = 0;
 
 export default function MergePdfUI() {
@@ -19,11 +21,14 @@ export default function MergePdfUI() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<{ blob: Blob; pages: number } | null>(null);
   const [name, setName] = useState("merged");
+  const [locked, setLocked] = useState<Locked[]>([]);
+  const [unlocking, setUnlocking] = useState("");
 
   const addFiles = async (files: File[]) => {
     setLoading(true);
     const problems: string[] = [];
     const added: Item[] = [];
+    const needPassword: Locked[] = [];
     for (const file of files) {
       if (!isPdfFile(file)) {
         problems.push(`${file.name}: not a PDF`);
@@ -34,10 +39,12 @@ export default function MergePdfUI() {
         const doc = await loadPdf(bytes);
         added.push({ id: String(nextId++), name: file.name, size: file.size, bytes, pageCount: doc.getPageCount(), pages: "" });
       } catch (e) {
-        problems.push(`${file.name}: ${e instanceof Error ? e.message : "could not be read"}`);
+        if (e instanceof PdfPasswordError) needPassword.push({ id: String(nextId++), name: file.name, size: file.size, bytes: new Uint8Array(await file.arrayBuffer()), wrong: false });
+        else problems.push(`${file.name}: ${e instanceof Error ? e.message : "could not be read"}`);
       }
     }
     setItems((prev) => [...prev, ...added]);
+    setLocked((prev) => [...prev, ...needPassword]);
     setError(problems.join(" "));
     setResult(null);
     setLoading(false);
@@ -54,11 +61,29 @@ export default function MergePdfUI() {
     setResult(null);
   };
 
+  const unlock = async (file: Locked, password: string) => {
+    setUnlocking(file.id);
+    try {
+      const doc = await loadPdf(file.bytes, password);
+      setItems((prev) => [...prev, { id: file.id, name: file.name, size: file.size, bytes: file.bytes, pageCount: doc.getPageCount(), pages: "", password }]);
+      setLocked((prev) => prev.filter((x) => x.id !== file.id));
+      setResult(null);
+    } catch (e) {
+      if (e instanceof PdfPasswordError) setLocked((prev) => prev.map((x) => (x.id === file.id ? { ...x, wrong: true } : x)));
+      else {
+        setLocked((prev) => prev.filter((x) => x.id !== file.id));
+        setError(`${file.name}: ${e instanceof Error ? e.message : "could not be read"}`);
+      }
+    } finally {
+      setUnlocking("");
+    }
+  };
+
   const merge = async () => {
     setBusy(true);
     setError("");
     try {
-      const r = await mergePdfs(items.map((i) => ({ name: i.name, bytes: i.bytes, pages: i.pages })));
+      const r = await mergePdfs(items.map((i) => ({ name: i.name, bytes: i.bytes, pages: i.pages, password: i.password })));
       setResult({ blob: new Blob([r.bytes as BlobPart], { type: "application/pdf" }), pages: r.pageCount });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not merge the files.");
@@ -83,6 +108,17 @@ export default function MergePdfUI() {
       />
       {loading && <p className="mt-3 text-sm text-gray-500">Reading files…</p>}
       {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+      {locked.map((f) => (
+        <div key={f.id} className="mt-3">
+          <PdfPasswordPrompt
+            fileName={f.name}
+            wrong={f.wrong}
+            busy={unlocking === f.id}
+            onUnlock={(pw) => unlock(f, pw)}
+            onRemove={() => setLocked((prev) => prev.filter((x) => x.id !== f.id))}
+          />
+        </div>
+      ))}
 
       {items.length > 0 && (
         <>
@@ -154,7 +190,7 @@ export default function MergePdfUI() {
                 Download PDF · {result.pages} pages · {formatBytes(result.blob.size)}
               </button>
             )}
-            <button onClick={() => { setItems([]); setResult(null); setError(""); }} disabled={busy} className="px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+            <button onClick={() => { setItems([]); setLocked([]); setResult(null); setError(""); }} disabled={busy} className="px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
               Clear
             </button>
           </div>

@@ -5,7 +5,8 @@ import FileDropZone from "@/components/FileDropZone";
 import RelatedStrip from "@/components/RelatedStrip";
 import RelatedTools from "@/components/RelatedTools";
 import { downloadBlob, formatBytes } from "@/lib/image-files";
-import { isPdfFile } from "@/lib/pdf-pages";
+import PdfPasswordPrompt from "@/components/PdfPasswordPrompt";
+import { isPdfFile, loadPdf, PdfPasswordError } from "@/lib/pdf-pages";
 import { createZip } from "@/lib/zip";
 import { compressPdf, compressToTarget, formatTarget, KB, LEVELS, MB, splitToTarget, TARGET_PRESETS, type Level } from "./logic";
 import CompressPdfSEO from "./seo-content";
@@ -15,7 +16,10 @@ type Part = { name: string; pages: [number, number]; bytes: Uint8Array };
 type Item = {
   id: string;
   file: File;
-  status: "waiting" | "working" | "done" | "error";
+  status: "waiting" | "working" | "done" | "error" | "locked";
+  password?: string;
+  wrongPassword?: boolean;
+  unlocking?: boolean;
   progress?: string;
   result?: {
     blob: Blob;
@@ -52,7 +56,7 @@ export default function CompressPdfUI() {
     setItems((prev) => prev.map((x) => (x.id === id ? { ...x, ...patch } : x)));
 
   // Any change of settings means the files have to be compressed again.
-  const reset = () => setItems((prev) => prev.map((x) => ({ id: x.id, file: x.file, status: "waiting" })));
+  const reset = () => setItems((prev) => prev.map((x) => ({ id: x.id, file: x.file, password: x.password, status: x.status === "locked" ? "locked" : "waiting" })));
 
   const addFiles = (files: File[]) => {
     const pdfs = files.filter(isPdfFile);
@@ -64,13 +68,14 @@ export default function CompressPdfUI() {
   const run = async () => {
     setBusy(true);
     for (const item of items) {
-      if (item.status === "done") continue;
+      if (item.status === "done" || item.status === "locked") continue;
       update(item.id, { status: "working", progress: "Reading…", error: undefined, parts: undefined, splitError: undefined });
       try {
         const bytes = new Uint8Array(await item.file.arrayBuffer());
         if (mode === "target") {
           const r = await compressToTarget(bytes, targetBytes, {
             removeMetadata,
+            password: item.password,
             onProgress: (text) => update(item.id, { progress: text }),
           });
           update(item.id, {
@@ -88,6 +93,7 @@ export default function CompressPdfUI() {
         } else {
           const r = await compressPdf(bytes, level, {
             removeMetadata,
+            password: item.password,
             onProgress: (done, total) => update(item.id, { progress: total ? `Images ${done} of ${total}` : "Saving…" }),
           });
           update(item.id, {
@@ -101,7 +107,8 @@ export default function CompressPdfUI() {
           });
         }
       } catch (e) {
-        update(item.id, { status: "error", error: e instanceof Error ? e.message : "Could not compress this file." });
+        if (e instanceof PdfPasswordError) update(item.id, { status: "locked", wrongPassword: e.wrong });
+        else update(item.id, { status: "error", error: e instanceof Error ? e.message : "Could not compress this file." });
       }
     }
     setBusy(false);
@@ -112,7 +119,7 @@ export default function CompressPdfUI() {
     update(item.id, { splitting: true, splitError: undefined });
     try {
       const bytes = new Uint8Array(await item.result.blob.arrayBuffer());
-      const r = await splitToTarget(bytes, item.result.target);
+      const r = await splitToTarget(bytes, item.result.target, item.password);
       if ("error" in r) update(item.id, { splitting: false, splitError: r.error });
       else
         update(item.id, {
@@ -128,7 +135,18 @@ export default function CompressPdfUI() {
     }
   };
 
-  const pending = items.some((i) => i.status !== "done");
+  const unlock = async (item: Item, password: string) => {
+    update(item.id, { unlocking: true });
+    try {
+      await loadPdf(new Uint8Array(await item.file.arrayBuffer()), password);
+      update(item.id, { unlocking: false, password, wrongPassword: false, status: "waiting" });
+    } catch (e) {
+      if (e instanceof PdfPasswordError) update(item.id, { unlocking: false, wrongPassword: true });
+      else update(item.id, { unlocking: false, status: "error", error: e instanceof Error ? e.message : "Could not read this file." });
+    }
+  };
+
+  const pending = items.some((i) => i.status === "waiting" || i.status === "error");
   const done = items.filter((i) => i.result);
   const totalBefore = done.reduce((s, i) => s + i.file.size, 0);
   const totalAfter = done.reduce((s, i) => s + (i.result?.blob.size ?? 0), 0);
@@ -294,6 +312,20 @@ export default function CompressPdfUI() {
                       ✕
                     </button>
                   </div>
+
+                  {item.status === "locked" && (
+                    <div className="mt-3">
+                      <PdfPasswordPrompt
+                        fileName={item.file.name}
+                        wrong={!!item.wrongPassword}
+                        busy={!!item.unlocking}
+                        onUnlock={(pw) => unlock(item, pw)}
+                      />
+                    </div>
+                  )}
+                  {item.password && item.status === "waiting" && (
+                    <p className="mt-2 text-sm text-[#058554]">🔓 Unlocked. Click Compress to continue.</p>
+                  )}
 
                   {missed && !item.parts && (
                     <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg flex flex-wrap items-center gap-3">

@@ -1,16 +1,16 @@
 import { loadPdf, parsePageList } from "@/lib/pdf-pages";
 
-export type MergeInput = { name: string; bytes: Uint8Array; pages: string };
+export type MergeInput = { name: string; bytes: Uint8Array; pages: string; password?: string };
 
 /* Copies the chosen pages of each file, in order, into one new PDF. Links,
    form fields and bookmarks that span documents are not carried over. */
 export async function mergePdfs(inputs: MergeInput[]): Promise<{ bytes: Uint8Array; pageCount: number }> {
-  const { PDFDocument } = await import("pdf-lib");
+  const { PDFDocument } = await import("@cantoo/pdf-lib");
   const out = await PDFDocument.create();
   out.setCreator("Productive Toolbox – Merge PDF");
-  out.setProducer("pdf-lib");
+  out.setProducer("Productive Toolbox");
   for (const input of inputs) {
-    const src = await loadPdf(input.bytes);
+    const src = await loadPdf(input.bytes, input.password);
     const parsed = parsePageList(input.pages, src.getPageCount());
     if (parsed.error !== undefined) throw new Error(`${input.name}: ${parsed.error}`);
     const copied = await out.copyPages(src, parsed.pages);

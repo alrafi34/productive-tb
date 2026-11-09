@@ -40,14 +40,14 @@ export function outputName(source: string, pages: number[]): string {
   return pages.length === 1 ? `${base}_page_${label}.pdf` : `${base}_pages_${label}.pdf`;
 }
 
-export async function splitPdf(bytes: Uint8Array, groups: number[][]): Promise<Uint8Array[]> {
-  const { PDFDocument } = await import("pdf-lib");
-  const src = await loadPdf(bytes);
+export async function splitPdf(bytes: Uint8Array, groups: number[][], password?: string): Promise<Uint8Array[]> {
+  const { PDFDocument } = await import("@cantoo/pdf-lib");
+  const src = await loadPdf(bytes, password);
   const outputs: Uint8Array[] = [];
   for (const pages of groups) {
     const doc = await PDFDocument.create();
     doc.setCreator("Productive Toolbox – Split PDF");
-    doc.setProducer("pdf-lib");
+    doc.setProducer("Productive Toolbox");
     const title = src.getTitle();
     if (title) doc.setTitle(title);
     const copied = await doc.copyPages(src, pages);

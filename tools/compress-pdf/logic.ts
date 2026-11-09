@@ -56,7 +56,7 @@ export type CompressResult = {
   unchanged: boolean;
 };
 
-type PdfLib = typeof import("pdf-lib");
+type PdfLib = typeof import("@cantoo/pdf-lib");
 
 /* zlib-wrapped deflate, which is what PDF /FlateDecode uses. */
 async function inflate(data: Uint8Array): Promise<Uint8Array> {
@@ -95,7 +95,7 @@ function unPredict(data: Uint8Array, width: number, bpp: number): Uint8Array | n
 
 /* Number of colour components, or 0 for colour spaces we leave alone
    (CMYK, indexed, Lab, separations…). */
-function components(lib: PdfLib, doc: import("pdf-lib").PDFDocument, cs: unknown): number {
+function components(lib: PdfLib, doc: import("@cantoo/pdf-lib").PDFDocument, cs: unknown): number {
   const { PDFName, PDFArray, PDFNumber, PDFRef, PDFDict, PDFRawStream } = lib;
   if (cs instanceof PDFRef) cs = doc.context.lookup(cs);
   if (cs instanceof PDFName) {
@@ -116,8 +116,8 @@ function components(lib: PdfLib, doc: import("pdf-lib").PDFDocument, cs: unknown
 /* Decoded image ready to draw on a canvas, or null if this image is skipped. */
 async function decodeImage(
   lib: PdfLib,
-  doc: import("pdf-lib").PDFDocument,
-  stream: import("pdf-lib").PDFRawStream,
+  doc: import("@cantoo/pdf-lib").PDFDocument,
+  stream: import("@cantoo/pdf-lib").PDFRawStream,
 ): Promise<CanvasImageSource | null> {
   const { PDFName, PDFNumber, PDFArray, PDFDict, PDFBool } = lib;
   const dict = stream.dict;
@@ -188,31 +188,32 @@ async function encodeJpeg(img: CanvasImageSource & { width: number; height: numb
 export async function compressPdf(
   input: Uint8Array,
   level: Level | Settings,
-  opts: { removeMetadata: boolean; onProgress?: (done: number, total: number) => void },
+  opts: { removeMetadata: boolean; password?: string; onProgress?: (done: number, total: number) => void },
 ): Promise<CompressResult> {
-  const lib = await import("pdf-lib");
+  const lib = await import("@cantoo/pdf-lib");
   const { PDFName, PDFNumber, PDFRawStream, PDFRef } = lib;
-  const doc = await loadPdf(input);
+  const doc = await loadPdf(input, opts.password);
   const { maxSide, quality } = typeof level === "string" ? LEVELS[level] : level;
 
-  const images = doc.context
+  const allImages = doc.context
     .enumerateIndirectObjects()
     .filter(([, obj]) => obj instanceof PDFRawStream && obj.dict.get(PDFName.of("Subtype")) === PDFName.of("Image")) as [
-    import("pdf-lib").PDFRef,
-    import("pdf-lib").PDFRawStream,
+    import("@cantoo/pdf-lib").PDFRef,
+    import("@cantoo/pdf-lib").PDFRawStream,
   ][];
 
   // Soft masks (the transparency of an image) are images too, but they must
   // stay greyscale and keep their exact values, so they are never re-encoded.
   const masks = new Set(
-    images.map(([, s]) => s.dict.get(PDFName.of("SMask"))).filter((m) => m instanceof PDFRef).map((m) => (m as import("pdf-lib").PDFRef).toString()),
+    allImages.map(([, s]) => s.dict.get(PDFName.of("SMask"))).filter((m) => m instanceof PDFRef).map((m) => (m as import("@cantoo/pdf-lib").PDFRef).toString()),
   );
+  // Only the pictures themselves are counted and re-encoded.
+  const images = allImages.filter(([ref]) => !masks.has(ref.toString()));
 
   let compressed = 0;
   for (let i = 0; i < images.length; i++) {
     const [ref, stream] = images[i];
     opts.onProgress?.(i, images.length);
-    if (masks.has(ref.toString())) continue;
     try {
       const img = (await decodeImage(lib, doc, stream)) as (CanvasImageSource & { width: number; height: number; close?: () => void }) | null;
       if (!img) continue;
@@ -274,7 +275,7 @@ export type TargetResult = CompressResult & {
 export async function compressToTarget(
   input: Uint8Array,
   target: number,
-  opts: { removeMetadata: boolean; onProgress?: (text: string) => void },
+  opts: { removeMetadata: boolean; password?: string; onProgress?: (text: string) => void },
 ): Promise<TargetResult> {
   if (input.length <= target) {
     return { bytes: input, originalSize: input.length, imagesFound: 0, imagesCompressed: 0, unchanged: true, target, hit: true, alreadyUnder: true, step: -1 };
@@ -287,6 +288,7 @@ export async function compressToTarget(
     tries++;
     const r = await compressPdf(input, LADDER[step], {
       removeMetadata: opts.removeMetadata,
+      password: opts.password,
       onProgress: (done, total) => opts.onProgress?.(`Try ${tries} · images ${done} of ${total}`),
     });
     cache.set(step, r);
@@ -314,9 +316,10 @@ export async function compressToTarget(
 export async function splitToTarget(
   input: Uint8Array,
   target: number,
+  password?: string,
 ): Promise<{ parts: { pages: [number, number]; bytes: Uint8Array }[] } | { error: string }> {
-  const { PDFDocument } = await import("pdf-lib");
-  const src = await loadPdf(input);
+  const { PDFDocument } = await import("@cantoo/pdf-lib");
+  const src = await loadPdf(input, password);
   const count = src.getPageCount();
   const build = async (from: number, to: number) => {
     const out = await PDFDocument.create();
