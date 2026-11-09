@@ -47,7 +47,6 @@ export const forceCalculatorConfig = {
     "torque-calculator",
     "kinetic-energy-calculator",
     "momentum-calculator",
-    "spring-force-calculator",
     "acceleration-calculator",
   ],
 };

@@ -113,7 +113,6 @@ export const fuseRatingCalculatorConfig = {
     "circuit-breaker-calculator",
     "voltage-drop-calculator",
     "wire-size-calculator",
-    "short-circuit-current-calculator",
     "ohms-law-calculator",
     "energy-consumption-calculator",
   ],

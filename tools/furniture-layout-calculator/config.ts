@@ -40,7 +40,6 @@ export const furnitureLayoutCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "interior-space-optimization-calculator",
     "room-area-calculator",
     "floor-area-calculator"
   ]

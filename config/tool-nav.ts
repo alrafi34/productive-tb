@@ -69,18 +69,18 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
 
   /* ── Architecture ── */
   ["floor-area-calculator", "plot-area-calculator", "room-area-calculator", "room-volume-calculator", "wall-area-calculator", "facade-area-calculator"],
-  ["paint-required-calculator", "tile-quantity-calculator", "floor-finish-calculator", "skirting-material-calculator", "cladding-material-calculator"],
+  ["paint-required-calculator", "tile-quantity-calculator", "floor-finish-calculator", "cladding-material-calculator"],
   ["brick-calculator", "cement-calculator", "sand-calculator", "concrete-mix-ratio-calculator", "concrete-volume-calculator"],
   ["rebar-weight-calculator", "steel-quantity-calculator"],
-  ["soil-compaction-calculator", "retaining-wall-calculator", "slope-stability-calculator"],
-  ["column-load-calculator", "slab-load-calculator", "structural-load-calculator", "fire-safety-load-calculator"],
+  ["soil-compaction-calculator", "retaining-wall-calculator"],
+  ["column-load-calculator", "slab-load-calculator", "structural-load-calculator"],
   ["roof-area-calculator", "roof-pitch-calculator", "rafter-length-calculator", "staircase-calculator", "step-rise-run-calculator"],
-  ["window-area-calculator", "door-area-calculator", "glass-panel-size-calculator", "elevation-design-calculator"],
-  ["air-change-rate-calculator", "cooling-load-calculator-architecture", "insulation-thickness-calculator"],
-  ["lighting-load-calculator", "sunlight-exposure-calculator", "shadow-length-calculator", "acoustic-soundproofing-calculator"],
-  ["construction-cost-estimator", "material-cost-calculator", "labor-cost-calculator", "escalation-cost-calculator", "project-timeline-calculator", "workforce-requirement-calculator"],
-  ["rainwater-harvesting-calculator", "septic-tank-size-calculator", "water-tank-capacity-calculator", "plumbing-pipe-size-calculator", "water-flow-rate-calculator"],
-  ["interior-space-optimization-calculator", "furniture-layout-calculator", "parking-space-calculator", "emergency-exit-width-calculator"],
+  ["window-area-calculator", "door-area-calculator", "glass-panel-size-calculator"],
+  ["cooling-load-calculator-architecture", "insulation-thickness-calculator"],
+  ["sunlight-exposure-calculator", "shadow-length-calculator", "acoustic-soundproofing-calculator"],
+  ["construction-cost-estimator", "material-cost-calculator", "labor-cost-calculator", "escalation-cost-calculator", "workforce-requirement-calculator"],
+  ["rainwater-harvesting-calculator", "septic-tank-size-calculator", "water-tank-capacity-calculator", "plumbing-pipe-size-calculator"],
+  ["furniture-layout-calculator", "parking-space-calculator"],
 
   /* ── Land ── */
   ["land-area-calculator-square-feet", "land-area-calculator-square-meter", "katha-land-calculator", "decimal-land-calculator"],
@@ -90,23 +90,21 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["subdivision-cost-calculator", "land-development-cost-calculator", "fence-material-calculator"],
 
   /* ── Mechanical ── */
-  ["velocity-calculator", "acceleration-calculator", "projectile-motion-calculator", "momentum-calculator", "kinetic-energy-calculator", "angular-velocity-calculator"],
-  ["force-calculator", "spring-force-calculator", "torque-calculator", "gear-ratio-calculator"],
-  ["heat-transfer-calculator", "specific-heat-calculator", "ideal-gas-law-calculator"],
+  ["velocity-calculator", "acceleration-calculator", "projectile-motion-calculator", "momentum-calculator", "kinetic-energy-calculator"],
+  ["force-calculator", "torque-calculator", "gear-ratio-calculator"],
+  ["specific-heat-calculator", "ideal-gas-law-calculator"],
 
   /* ── Electrical ── */
   ["ohms-law-calculator", "voltage-divider-calculator", "series-resistor-calculator", "parallel-resistor-calculator", "resistor-color-code-calculator", "led-resistor-calculator"],
-  ["real-power-calculator", "reactive-power-calculator", "phase-angle-calculator"],
   ["energy-consumption-calculator", "electric-bill-calculator", "fan-power-consumption-calculator", "air-conditioner-power-calculator", "room-lighting-calculator"],
-  ["capacitor-calculator", "capacitor-charge-time-calculator", "inductor-calculator", "capacitive-reactance-calculator", "impedance-calculator"],
-  ["transformer-efficiency-calculator", "transformer-current-calculator", "electric-motor-power-calculator", "motor-efficiency-calculator", "motor-speed-calculator"],
+  ["capacitor-calculator", "capacitive-reactance-calculator"],
+  ["transformer-efficiency-calculator", "electric-motor-power-calculator", "motor-efficiency-calculator", "motor-speed-calculator"],
   ["battery-capacity-calculator", "battery-backup-time-calculator", "ups-load-calculator", "ups-backup-calculator", "generator-size-calculator"],
   ["solar-panel-calculator", "solar-battery-calculator", "solar-inverter-calculator"],
-  ["wire-size-calculator", "voltage-drop-calculator", "cable-length-calculator", "fuse-rating-calculator", "circuit-breaker-calculator", "house-wiring-load-calculator"],
-  ["amplifier-gain-calculator", "op-amp-calculator"],
+  ["wire-size-calculator", "voltage-drop-calculator", "fuse-rating-calculator", "circuit-breaker-calculator", "house-wiring-load-calculator"],
   ["decibel-db-calculator", "antenna-length-calculator", "rf-power-calculator"],
   ["adc-resolution-calculator", "logic-gate-calculator", "clock-frequency-calculator", "data-rate-calculator"],
-  ["smps-calculator", "voltage-regulation-calculator", "power-density-calculator", "heat-dissipation-calculator", "heatsink-calculator"],
+  ["smps-calculator", "voltage-regulation-calculator"],
 
   /* ── Computer science ── */
   ["subnet-calculator", "ip-range-calculator", "cidr-calculator", "bandwidth-calculator", "latency-calculator", "download-time-calculator", "data-transfer-calculator", "file-size-converter"],
@@ -171,7 +169,7 @@ export const NEXT_STEPS: Readonly<Record<string, readonly string[]>> = {
   "json-validator": ["json-formatter", "json-to-csv", "yaml-to-json-converter"],
   "base64-encoder-decoder": ["url-encoder-decoder", "jwt-debugger", "base32-encoder"],
   "color-palette-generator": ["contrast-checker", "color-format-converter", "css-gradient-generator"],
-  "voltage-drop-calculator": ["wire-size-calculator", "cable-length-calculator", "circuit-breaker-calculator"],
+  "voltage-drop-calculator": ["wire-size-calculator", "circuit-breaker-calculator"],
   "wire-size-calculator": ["voltage-drop-calculator", "circuit-breaker-calculator", "fuse-rating-calculator"],
   "torque-calculator": ["gear-ratio-calculator", "electric-motor-power-calculator"],
   "keyword-density-checker": ["word-counter", "word-frequency-counter", "reading-time-calculator"],

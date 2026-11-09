@@ -40,6 +40,5 @@ export const coolingLoadCalculatorArchitectureConfig = {
     ],
   },
   relatedTools: [
-    "air-change-rate-calculator"
   ]
 };

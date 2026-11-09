@@ -62,7 +62,6 @@ export const phaseAngleCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "impedance-calculator",
   ],
 };
 

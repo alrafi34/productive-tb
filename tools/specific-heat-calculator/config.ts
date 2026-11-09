@@ -34,7 +34,6 @@ export const specificHeatCalculatorConfig = {
     },
   },
   relatedTools: [
-    "heat-transfer-calculator",
     "ideal-gas-law-calculator",
     "temperature-conversion-scientific",
   ],

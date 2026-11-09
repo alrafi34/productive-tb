@@ -65,9 +65,7 @@ export const capacitorCalculatorConfig = {
   },
   relatedTools: [
     "capacitive-reactance-calculator",
-    "capacitor-charge-time-calculator",
     "ohms-law-calculator",
     "voltage-divider-calculator",
-    "inductor-calculator",
   ],
 };

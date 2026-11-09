@@ -115,7 +115,6 @@ export const capacitiveReactanceCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "impedance-calculator",
     "capacitor-calculator",
     "ohms-law-calculator",
   ],

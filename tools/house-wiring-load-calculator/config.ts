@@ -109,7 +109,6 @@ export const houseWiringLoadCalculatorConfig = {
   relatedTools: [
     "wire-size-calculator",
     "circuit-breaker-calculator",
-    "cable-length-calculator",
     "fuse-rating-calculator"
   ]
 };

@@ -61,7 +61,6 @@ export const transformerEfficiencyCalculatorConfig = {
     ],
   },
   relatedTools: [
-    "transformer-current-calculator",
   ],
 };
 

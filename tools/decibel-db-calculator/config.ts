@@ -106,7 +106,6 @@ export const decibelCalculatorConfig = {
   },
   relatedTools: [
     "rf-power-calculator",
-    "power-density-calculator",
     "amplifier-gain-calculator",
   ]
 };
