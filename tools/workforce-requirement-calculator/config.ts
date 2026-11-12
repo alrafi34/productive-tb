@@ -41,7 +41,6 @@ export const workforceRequirementCalculatorConfig = {
   },
   relatedTools: [
     "labor-cost-calculator",
-    "project-timeline-calculator",
     "construction-cost-estimator"
   ]
 };

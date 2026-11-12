@@ -32,10 +32,8 @@ export const gearRatioCalculatorConfig = {
   },
   relatedTools: [
     "torque-calculator",
-    "angular-velocity-calculator",
     "force-calculator",
     "velocity-calculator",
     "kinetic-energy-calculator",
-    "spring-force-calculator",
   ],
 };

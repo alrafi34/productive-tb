@@ -49,7 +49,6 @@ export const projectileMotionCalculatorConfig = {
     "kinetic-energy-calculator",
     "force-calculator",
     "velocity-calculator",
-    "angular-velocity-calculator",
     "momentum-calculator",
   ],
 };

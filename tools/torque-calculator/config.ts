@@ -33,8 +33,6 @@ export const torqueCalculatorConfig = {
   relatedTools: [
     "gear-ratio-calculator",
     "force-calculator",
-    "angular-velocity-calculator",
-    "spring-force-calculator",
     "shaft-torque-calculator",
   ],
 };

@@ -36,7 +36,6 @@ export const velocityCalculatorConfig = {
     "torque-calculator",
     "force-calculator",
     "kinetic-energy-calculator",
-    "angular-velocity-calculator",
     "projectile-motion-calculator",
   ],
 };

@@ -95,6 +95,26 @@ const nextConfig: NextConfig = {
       "electrical-load-calculator-building": "/tools/electrical/house-wiring-load-calculator",
       "drainage-flow-calculator": "/tools/land/rainwater-runoff-calculator",
       "bigha-land-calculator": "/tools/land/decimal-land-calculator",
+      // Catalogue cut, batch 3: 25 specialist tools with one or two clicks in
+      // three months. Each with a close kept equivalent redirects (15); the other
+      // ten (air change, fire load, exit width, project timeline, heat
+      // dissipation, heatsink, impedance, inductor, power density, angular
+      // velocity) now 404.
+      "elevation-design-calculator": "/tools/architecture/facade-area-calculator",
+      "interior-space-optimization-calculator": "/tools/architecture/furniture-layout-calculator",
+      "lighting-load-calculator": "/tools/electrical/room-lighting-calculator",
+      "skirting-material-calculator": "/tools/architecture/floor-finish-calculator",
+      "slope-stability-calculator": "/tools/architecture/retaining-wall-calculator",
+      "water-flow-rate-calculator": "/tools/architecture/plumbing-pipe-size-calculator",
+      "cable-length-calculator": "/tools/electrical/voltage-drop-calculator",
+      "capacitor-charge-time-calculator": "/tools/electrical/capacitor-calculator",
+      "op-amp-calculator": "/tools/electrical/amplifier-gain-calculator",
+      "real-power-calculator": "/tools/electrical/phase-angle-calculator",
+      "reactive-power-calculator": "/tools/electrical/phase-angle-calculator",
+      "short-circuit-current-calculator": "/tools/electrical/circuit-breaker-calculator",
+      "transformer-current-calculator": "/tools/electrical/transformer-efficiency-calculator",
+      "heat-transfer-calculator": "/tools/architecture/insulation-thickness-calculator",
+      "spring-force-calculator": "/tools/mechanical/force-calculator",
     };
     return Object.entries(merged).flatMap(([slug, destination]) => [
       { source: `/tools/:category/${slug}`, destination, permanent: true },
