@@ -34,6 +34,7 @@ export const tools: Tool[] = [
   { slug: "jpg-to-pdf", name: "JPG to PDF Converter", description: "Combine JPG, PNG, WebP and HEIC images into one PDF.", category: "pdf", icon: "📄", free: true },
   { slug: "merge-pdf", name: "Merge PDF", description: "Combine PDF files into one, in any order.", category: "pdf", icon: "📑", free: true },
   { slug: "split-pdf", name: "Split PDF", description: "Split a PDF, extract pages or delete pages.", category: "pdf", icon: "✂️", free: true },
+  { slug: "pdf-to-jpg", name: "PDF to JPG", description: "Convert PDF pages to JPG or PNG images.", category: "pdf", icon: "🖼️", free: true },
   { slug: "compress-pdf", name: "Compress PDF", description: "Reduce PDF file size; text stays sharp.", category: "pdf", icon: "🗜️", free: true },
   { slug: "hex-to-rgb-converter", name: "HEX to RGB Converter", description: "Convert HEX to RGB and RGB to HEX, with the math shown step by step.", category: "design", icon: "🎨", free: true },
   { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate harmony-based palettes with export and contrast checks.", category: "design", icon: "🌈", free: true },
@@ -58,6 +59,7 @@ export const tools: Tool[] = [
   { slug: "markdown-previewer", name: "Markdown Previewer", description: "Live Markdown editor with GitHub tables and task lists, and HTML export.", category: "writing", icon: "📋", free: true },
   { slug: "remove-duplicate-lines", name: "Remove Duplicate Lines", description: "Deduplicate line-based text with case, whitespace, and sort controls.", category: "writing", icon: "🧹", free: true },
   { slug: "find-and-replace", name: "Find and Replace", description: "Search and replace text with regex, batch rules, and preview controls.", category: "writing", icon: "🔍", free: true },
+  { slug: "markdown-to-text", name: "Markdown to Text", description: "Remove ** and ## from ChatGPT text; copy clean or formatted text.", category: "writing", icon: "🧹", free: true },
   { slug: "text-diff-checker", name: "Text Diff Checker", description: "Compare text versions by line, word, or character with visual diff output.", category: "writing", icon: "🔀", free: true },
   { slug: "bionic-reading-converter", name: "Bionic Reading Converter", description: "Bold the first letters of every word, Bionic Reading style.", category: "writing", icon: "👁️", free: true },
   { slug: "whitespace-remover", name: "White Space Remover", description: "Clean leading/trailing spaces, extra gaps, tabs, and empty lines.", category: "writing", icon: "🧽", free: true },
@@ -302,6 +304,7 @@ export const tools: Tool[] = [
   { slug: "time-zone-converter", name: "Time Zone Converter", description: "Convert time between world cities instantly. See multiple time zones side by side.", category: "productivity", icon: "🌍", free: true },
   { slug: "voice-to-text-notepad", name: "Voice-to-Text Notepad", description: "Speak and see your words as text, with voice punctuation and Word or TXT download.", category: "productivity", icon: "🎤", free: true },
   { slug: "working-days-calculator", name: "Working Days Calculator", description: "Calculate business days between two dates with flexible weekend configurations (1 or 2 days) and optional public holidays.", category: "productivity", icon: "📆", free: true },
+  { slug: "time-card-calculator", name: "Time Card Calculator", description: "Weekly hours worked with breaks, overtime and gross pay.", category: "productivity", icon: "🕘", free: true },
 
   // ── New 50 Tools ── (Visualization)
   { slug: "timeline-creator", name: "Visual Timeline Creator", description: "Add events with dates to build a shareable visual horizontal or vertical timeline. Export as PNG.", category: "visualization", icon: "📅", free: true },
