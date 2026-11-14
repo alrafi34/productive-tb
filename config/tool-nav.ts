@@ -20,7 +20,7 @@ export const TOOL_FAMILIES: readonly (readonly string[])[] = [
   ["image-converter", "image-cropper", "image-to-text"],
 
   /* ── PDF ── */
-  ["compress-pdf", "merge-pdf", "split-pdf", "jpg-to-pdf"],
+  ["compress-pdf", "merge-pdf", "split-pdf", "jpg-to-pdf", "pdf-to-jpg"],
 
   /* ── Design ── */
   ["hex-to-rgb-converter", "hex-to-rgba-converter", "color-format-converter", "hsl-color-slider", "random-hex-color-generator"],
@@ -165,6 +165,9 @@ export const NEXT_STEPS: Readonly<Record<string, readonly string[]>> = {
   "merge-pdf": ["compress-pdf", "split-pdf", "jpg-to-pdf"],
   "split-pdf": ["merge-pdf", "compress-pdf", "jpg-to-pdf"],
   "compress-pdf": ["split-pdf", "merge-pdf", "image-compressor"],
+  "pdf-to-jpg": ["compress-pdf", "jpg-to-pdf", "image-compressor"],
+  "time-card-calculator": ["paycheck-calculator", "time-duration-calculator", "working-days-calculator"],
+  "markdown-to-text": ["word-counter", "text-diff-checker", "sentence-case-converter"],
   "password-generator": ["password-strength-meter", "hash-generator", "username-generator"],
   "json-validator": ["json-formatter", "json-to-csv", "yaml-to-json-converter"],
   "base64-encoder-decoder": ["url-encoder-decoder", "jwt-debugger", "base32-encoder"],
@@ -282,6 +285,9 @@ export const POPULAR_POOL: readonly string[] = [
   "merge-pdf",
   "split-pdf",
   "compress-pdf",
+  "pdf-to-jpg",
+  "time-card-calculator",
+  "markdown-to-text",
   "favicon-generator",
   "exif-remover",
   "image-to-grayscale",

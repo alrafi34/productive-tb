@@ -23,6 +23,7 @@
     "lucide-react": "^0.577.0",
     "marked": "^18.0.14",
     "next": "16.1.6",
+    "pdfjs-dist": "6.4.299",
     "qrcode": "^1.5.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
